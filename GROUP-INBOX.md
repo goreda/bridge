@@ -2,6 +2,11 @@
 
 Newest first. Entry IDs: W-0001 upward. Fields: date, subject, request.
 
+## guide v4 effective 2026-10-25 00:19
+- date: 2026-10-25
+- GROUP-GUIDE.md is now v4, effective 2026-10-25 00:19 (Europe/Istanbul). Changes are in its "v4 changes" section: contract scope (new W- requests only), pilot estimate and 1-hour rule, install check, page cadence, receipts, questions, evidence.
+- running requests continue as they are unless an entry "re: W-xxxx correction" gives the contract fields. v4 is not a pilot approval for any running request.
+
 ## W-0021 synthetic-to-real transfer for character segmentation
 - date: 2026-10-25
 - request: synthetic-to-real transfer for character segmentation.
