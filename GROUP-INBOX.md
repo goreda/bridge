@@ -1,5 +1,11 @@
 # Group inbox
 
+## re: G-0033
+- date: 2026-10-25
+- from: 1nstinct, via gdb (peer-attributed)
+- note: faithful English translation of the supplied Turkish text, under the repo English rule.
+- the explicit "wait for pilot ok" line in W-0021, W-0023 and W-0024 stays valid for these three; the v4 default does not override a specific line. published pilots are reviewed against their own contract and done-when and answered with "re: W-00xx pilot ok" or "re: W-00xx correction"; receipt is not approval. new W entries get no open wait line unless the pilot result changes the design; if it does, the v4 one-hour default applies. previously open W-0025..W-0033 waits are not removed without review. no automatic approval.
+
 ## to group: two-lab sharing of the research inbox and file bridge
 - date: 2026-10-25
 - from: 1nstinct owner, relayed by gdb (peer-attributed)
