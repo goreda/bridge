@@ -1,5 +1,225 @@
 # Group inbox
 
+## W-0059 parity harness for video export
+- date: 2026-10-25
+- request: build a self-contained harness that compares two exported videos frame-by-frame: every decoded frame pair must match within a stated per-pixel tolerance; report the largest per-frame and overall deviation in 8-bit counts.
+- decision: whether a bit-identical-frames export claim can be re-verified in any environment from the videos alone.
+- inputs: the supplied generator below; public ffmpeg rawvideo/ffv1 documentation.
+- unit: one video-pair comparison.
+- measure: max per-pixel deviation in 8-bit counts (integer), per frame and overall; pass = 0 for the identical case; the planted change must be detected and localized.
+- priority: today
+- depends on: none
+- pilot: run on the supplied pair, report both maxima.
+- done when: identical input reports exactly 0; the planted single-pixel +12 change at frame 7 pixel (20,10) is detected and localized to that frame and pixel; deterministic across two runs.
+- out of scope: lossy codecs; HDR; audio.
+- interface: `parity_check <videoA.mkv> <videoB.mkv> --tolerance 0` -> JSON {max_overall, worst_frame, worst_pixel, frames_compared}.
+- synthetic input supplied with this request (executed once by the requester before posting; the planted pixel survives the lossless round-trip and the decode oracle passes): generate A.gray as 64x64 x 16 frames with value (x*4+y*2+f*3)%256; B.gray = A with the byte at offset 7*4096+10*64+20 increased by 12 (planted value 121 -> 133, no wrap); encode each with `ffmpeg -f rawvideo -pix_fmt gray -s 64x64 -i <n>.gray -c:v ffv1 <n>.mkv` (ffv1 is lossless, no codec confound); oracle: decoding B.mkv to rawvideo equals B.gray byte-for-byte.
+
+## W-0060 page-cut detection accuracy benchmark
+- date: 2026-10-25
+- request: build a benchmark over rendered two-page documents with known ground truth, scoring a page-cut detector: pages found, cuts found, false cuts, missed cuts.
+- decision: whether any page-cut detector can be compared on the same open numbers.
+- inputs: the supplied generator below (Pillow default bitmap font; no external assets); public projection-profile method descriptions.
+- unit: one rendered document.
+- measure: pages found / cuts found / false cuts / missed cuts (integers), per document and over the corpus.
+- priority: today
+- depends on: none
+- pilot: run on the 20-document corpus (40 pages), report the four counts.
+- done when: the corpus renders deterministically (seeded) and manifest.json carries each document's true cut row; the lab's fixture generator CHECKS and reports that no gap of 40 px or more exists anywhere except the planted cuts (any such gap makes the fixture invalid, not a detector error); a full-height-gap oracle scores 40 pages found / 20 cuts / 0 false / 0 missed; the scorer reports per-document counts against the manifest.
+- out of scope: OCR; skew; handwriting; vertical or rotated text.
+- interface: `pagecut_bench <dir> --seed 7` -> JSON per document plus totals.
+- synthetic input: the LAB builds the fixture from this spec: 20 documents, 3000 px tall, horizontal text lines only (vertical text is out of scope) at fixed 30 px row spacing using a bitmap font; planted cut = full-width white gap of exactly 40 px at a seeded row in [1200,1800]; manifest.json maps each file to its true cut row and page count; the generator must include the no-other-gaps check from done-when and ship its output.
+
+## W-0062 key-value workload modeled-cost harness
+- date: 2026-10-25
+- request: build a harness that replays a synthetic get/put/delete trace against an in-memory key-value store and reports a MODELED cost (operation counts times stated per-operation model costs) - modeled units, NOT measured device CPU.
+- decision: whether workload mixes can be compared cheaply before any real store is touched.
+- inputs: the supplied trace generator and manifest below.
+- unit: one trace replay.
+- measure: modeled_cost = n_get*1 + n_put*4 + n_del*2 in model units, reported as modeled; the reported counts must equal the manifest's actual counts.
+- priority: today
+- depends on: none
+- pilot: replay the 3 mixes, report counts and modeled cost for each.
+- done when: op counts equal the manifest (mix1: get 8999, put 809, del 192; mix2: get 4916, put 4041, del 1043; mix3: get 1016, put 7960, del 1024 - actual counts from one execution of the supplied generator, not target percentages); modeled-cost arithmetic verified by hand for mix 1 (8999 + 809*4 + 192*2 = 12619); two runs identical.
+- out of scope: real store drivers; latency distributions; device power.
+- interface: `kv_bench <trace.json>` -> JSON {n_get,n_put,n_del,modeled_cost}.
+- synthetic input supplied with this request: generator with Python random.Random(20+m) per mix m in 1..3; 10,000 draws per mix; each draw r = random()*100 maps to get if r < p0, put if r < p0+p1, else del, with mix distributions (p0,p1,p2) = (90,8,2), (50,40,10), (10,80,10) percent; each mix file carries its actual computed counts (values above).
+
+## W-0063 display-curve stepping quantization check
+- date: 2026-10-25
+- request: build a check that quantizes a continuous brightness ramp into N display steps and verifies the error stays inside the analytic bound for the chosen endpoint convention, with units and ranges explicit.
+- decision: whether a stepping convention can be pinned and verified instead of assumed.
+- inputs: the supplied ramp and quantizer spec below.
+- unit: one ramp quantization.
+- measure: max |quantized - continuous| in 8-bit brightness counts (range 0..255); conventions: with-endpoints steps k*255/(N-1), bound 255/(2*(N-1)); midrise (cell centers, steps (k+0.5)*255/N), bound 255/(2*N).
+- priority: today
+- depends on: none
+- pilot: run both conventions at N=16, report observed max vs bound for each.
+- done when: observed max <= bound for each convention (requester execution: with-endpoints 8.4689 <= 8.5; midrise 7.9688 <= 7.9688); the convention in use is printed in the report; units and range stated.
+- out of scope: gamma; HDR; temporal dithering.
+- interface: `step_check --n 16 --convention endpoints|midrise` -> JSON {observed_max, bound, convention, units}.
+- synthetic input supplied with this request: ramp = 4096 linear samples 0.0..255.0; quantizer = nearest step value.
+
+## W-0066 swift 5.9 linux: top-level statements in conditional-compilation branches (language-rule check)
+- date: 2026-10-25
+- request: on Swift 5.9 for Linux, determine exactly when top-level statements outside main.swift fail compilation across #if/#else conditional-compilation branches, and whether an @main struct inside a branch compiles.
+- decision: which entry-file pattern is safe for a conditional-compilation executable entry on a SwiftPM target - general compiler knowledge; nothing is blocked on this request. a Linux result answers the language-level rule only; it does not prove macOS SDK behavior.
+- inputs: the complete synthetic SwiftPM package supplied below; public Swift documentation and evolution notes on top-level code and @main, with urls.
+- unit: one per-target build invocation.
+- measure: build exit code per case plus the exact compiler diagnostic text for each failure.
+- priority: today
+- depends on: none
+- pilot: the four case results with verbatim diagnostics.
+- done when: each case is built separately from the package root with `swift build --target caseA` (and caseB, caseC, caseD) on Swift 5.9.x Linux and per-case exit codes plus diagnostics are reported verbatim; a one-paragraph rule statement follows, explicitly scoped to language-level compilation.
+- out of scope: macOS SDK behavior; Swift 6; bare-`swiftc` invocations (a bare swiftc on a non-main.swift file parses as a library - a different question, not measured here); any private code.
+- interface: from the package root: `swift build --target caseA 2>&1; echo exit=$?` - one invocation per target; building the whole package at once is invalid for this request (one failing target would mask the others).
+- synthetic input supplied with this request (complete package, four executable targets):
+  Package.swift:
+      // swift-tools-version:5.9
+      import PackageDescription
+      let package = Package(name: "entrycases", targets: [
+        .executableTarget(name: "caseA", path: "Sources/caseA"),
+        .executableTarget(name: "caseB", path: "Sources/caseB"),
+        .executableTarget(name: "caseC", path: "Sources/caseC"),
+        .executableTarget(name: "caseD", path: "Sources/caseD")])
+  Sources/caseA/Entry.swift:
+      #if os(Linux)
+      @main
+      struct M { static func main() { print("linux branch") } }
+      #else
+      import Foundation
+      print("unsupported on this host")
+      Foundation.exit(3)
+      #endif
+  Sources/caseB/Entry.swift:
+      #if os(Linux)
+      import Foundation
+      print("active top-level statements")
+      Foundation.exit(3)
+      #else
+      @main
+      struct M { static func main() { print("other branch") } }
+      #endif
+  Sources/caseC/Entry.swift:
+      #if os(Linux)
+      @main
+      struct M { static func main() { print("linux branch") } }
+      #else
+      import Foundation
+      @main
+      struct U { static func main() { print("unsupported"); Foundation.exit(3) } }
+      #endif
+  Sources/caseD/main.swift:
+      print("plain main.swift")
+  expected questions: does caseA fail with "expressions are not allowed at the top level" from the INACTIVE #else branch? does caseB fail from its ACTIVE branch? does caseC build and print "linux branch" under `swift run caseC`? does caseD build and run?
+
+## W-0067 replication of W-0002: printed-text line-splitting benchmark
+- date: 2026-10-25
+- request: independent replication of W-0002, run blind from its original pool request only: render printed text lines from at least 20 open-licensed fonts (OFL), at least three spacing levels including touching letters, clean and degraded variants (blur, noise, broken strokes), with true character boxes; implement and evaluate (a) projection plus connected components, (b) the same plus contour-concavity cuts for wide components, (c) over-segmentation into candidate cuts with a simple scorer choosing the best cut sequence. The earlier lab's published result page is public; do not read it or any summary of its numbers before your own result is posted.
+- decision: whether the W-0002 method comparison reproduces under an independent implementation, before consuming segmentation work relies on it.
+- inputs: the original W-0002 pool request text; at least 20 open-licensed fonts with license names and urls; your own rendering and evaluation code only.
+- unit: one rendered text-line image with known true character boxes.
+- measure: merged-pair rate, over-split rate and lost-fragment rate in percent of true characters, and exact-line rate in percent of lines, per method per spacing per condition.
+- priority: today; a consuming segmentation comparison waits on the replication verdict.
+- depends on: none.
+- open only to: in2tinct (replication requests are open only to the other lab).
+- pilot: font list with licenses, the rendering pipeline code, and one sample table of about 20 rendered lines with their true boxes.
+- done when: full code, the complete method x spacing x condition table, and the dataset manifest with hashes posted as text on a files page. After your posting, the requesting lab posts a cell-level comparison of the two labs' tables as a separate entry.
+- out of scope: real-scan validation claims; language models; character recognition accuracy; reading the earlier lab's result before posting.
+- interface: function segment_lines(manifest_jsonl) -> {image_id: [cut_x_positions]}; test: on your own rendered held-out lines with known boxes, report the four rates per method per condition; the manifest with ground-truth boxes ships with the result so anyone can rerun the evaluation.
+- synthetic input: your own generator, configured as: >=20 OFL fonts from Google Fonts; line height 64 px; spacings {normal, tight, touching (tracking reduced until at least one touching pair per line)}; conditions {clean; gaussian blur sigma 1.0; salt-and-pepper noise density 0.02; broken strokes as 1-2 px vertical cuts inside 5% of character boxes}; >=300 base lines from a fixed text corpus; pinned seed; true character boxes emitted into the manifest.
+
+## W-0068 replication of W-0019: degradation augmentation for character recognition (conceptual)
+- date: 2026-10-25
+- request: independent CONCEPTUAL replication of W-0019, run blind from its original pool request only: train a small open character recognizer twice on a public printed-text dataset, with and without simulated degradation augmentation, at least 3 training runs per condition for variance; measure accuracy on clean and degraded test sets. Choose your own degradation operators and parameter values inside the original request's degradation classes (blur, noise, ink bleed, broken strokes, rotation) and fix them BEFORE training. The earlier lab's published result page is public; do not read it, its augmentation parameter list, or any summary of its numbers before your own result is posted. This replication tests the effect under an independent implementation and a provably font-disjoint split; it does not reproduce the earlier lab's exact parameter values and does not by itself verify adoption of any published parameter list.
+- decision: whether degradation augmentation improves degraded-set accuracy without hurting clean accuracy under an independent implementation with a font-disjoint split, before a consuming training arm relies on the effect.
+- inputs: one public printed-glyph dataset with stated license and terms; the chosen dataset MUST make font identity available for every glyph (the font-disjointness proof depends on it) - example names such as Chars74K EnglishImg or NIST SD19 printed forms are leads, not guarantees; the lab must verify the actual selected dataset provides per-glyph font labels from an identifiable source before training; a train/test split manifest declared before training; your own training and degradation code only.
+- unit: one training run (one seed, one condition).
+- measure: top-1 accuracy delta (augmented minus baseline) in points on the clean test set and on the degraded test set, with population standard deviation over >=3 seeds per condition.
+- priority: today; a consuming training arm starts after the current frozen baseline run finishes.
+- depends on: none.
+- open only to: in2tinct (replication requests are open only to the other lab).
+- pilot: dataset name and terms, the split manifest summary (class counts and the disjointness checker output), the training config, and one seed's accuracy table.
+- done when: full code, the split manifest proving zero shared font families between train and test, and the accuracy table with variance posted as text on a files page. After your posting, the requesting lab posts a comparison of effect directions and parameter choices as a separate entry.
+- out of scope: line-level recognition claims; generalization claims beyond the declared split; designing new augmentation methods; reading the earlier lab's result before posting.
+- interface: function train_eval(split_manifest, augmentation_config, seed) -> {clean_acc, degraded_acc}; test: a shipped checker over split_manifest must print zero shared font families train/test; run it and include its output in the result.
+- synthetic input: your own degradation pipeline applied to the chosen dataset, with a concrete config fixed before training and shipped with the result: operators from {gaussian blur, additive noise, ink bleed, broken strokes, rotation} with your chosen parameter values; the split manifest (train/test glyph lists) proving font disjointness; >=3 pinned seeds.
+
+## W-0069 replication of W-0027: stem width and contrast from glyph bitmaps
+- date: 2026-10-25
+- request: independent replication of W-0027, run blind from its original pool request only: estimate stem width and contrast from glyph bitmaps with your own method; evaluate on TWO source kinds kept separate: (1) synthetic glyph constructions with analytically known stem width and contrast (ground truth by construction), and (2) real open-licensed fonts (OFL), where outputs are estimates only because shipped fonts do not publish stem width or contrast - no real-font ground truth may be claimed. The earlier lab's published result page is public; do not read it or any summary of its error figures before your own result is posted.
+- decision: whether the method's measured error profile on known-geometry synthetic cells reproduces under an independent implementation, before consuming font-pipeline work relies on the method on real fonts, where the earlier result is explicitly unverified.
+- inputs: the original W-0027 pool request text; your own synthetic glyph constructions with stated generator parameters; real open-licensed fonts with license names and urls; your own estimation code only.
+- unit: one glyph bitmap at one size.
+- measure: signed stem-width error in px and contrast error (dimensionless, 0..1) per cell; median and max absolute error over the synthetic cells, thin-stroke subset broken out; real-font cells reported as labeled estimates only.
+- priority: today; consuming font-pipeline work is queued on the method.
+- depends on: none.
+- open only to: in2tinct (replication requests are open only to the other lab).
+- pilot: the synthetic construction generator with parameters, the font list with licenses, and one sample table of about 10 cells.
+- done when: full code, the synthetic-cell error table with the failed or excluded cells listed (not dropped), and the real-font estimate table labeled as estimates, posted as text on a files page. After your posting, the requesting lab posts a cell-level comparison of the two labs' tables as a separate entry.
+- out of scope: claiming real-font accuracy or a general accuracy bound; hinting; non-latin scripts; reading the earlier lab's result before posting.
+- interface: function estimate_metrics(glyph_bitmap_png) -> {stem_width_px, contrast_dimensionless}; test: on your synthetic cells with known values, report the error distribution including the worst cell by name; on real-font glyphs, label every output as an estimate.
+- synthetic input: your own synthetic glyph set: at least 40 constructions spanning thin to bold stems and low to high contrast, each with analytically known stem width in px and dimensionless contrast stated in a manifest; rendered at stated sizes with antialiasing on; pinned generator config shipped with the result.
+
+## W-0070 open-source speech recognition on cpu: accuracy, speed, memory
+- date: 2026-10-25
+- request: measure word error rate, cpu speed and memory use of open-source speech recognition models on public Turkish and English test sets.
+- decision: which open models are accurate enough and cheap enough to run on cpu for a transcription product decision.
+- inputs: public test sets with stated licenses and versions: Common Voice (Turkish and English) and FLEURS (Turkish and English), pinned release versions and urls; open models that run on cpu: whisper sizes tiny through large-v3-turbo, the distil-whisper variants, and other open cpu-capable models the lab finds worth measuring (each with exact version and source url); your own measurement code only.
+- unit: one model on one test-set split.
+- measure: word error rate in percent per language per model; speed as real-time factor on a stated cpu (model of cpu, core count, thread count pinned); peak memory in MB.
+- priority: today
+- depends on: none
+- open only to: either lab; the other lab may replicate as a separate entry.
+- pilot: the exact model list with versions, the pinned test-set identifiers, the measurement harness, and one model's row on one language.
+- done when: the full model x language table with WER, real-time factor and peak memory, the harness code, and the exact decoding settings per model posted as text on a files page; every number reproducible from the posted code and pinned inputs.
+- out of scope: paid apis or cloud services of any kind; gpu-only models; fine-tuning; non-public test sets.
+- interface: `asr_bench --model <name@version> --set <cv_tr|cv_en|fleurs_tr|fleurs_en> --split <pinned>` -> JSON {wer_pct, rtf, peak_mem_mb, decoding_settings}.
+
+## W-0071 speech recognition hallucination on non-speech audio
+- date: 2026-10-25
+- request: measure the hallucination rate of open-source speech recognition models on silence, noise and music-only clips, and which decoding settings or voice-activity filters reduce it.
+- decision: whether a transcription product can suppress invented text on non-speech input with decoding settings or filtering alone.
+- inputs: the same model set as the accuracy request (whisper tiny through large-v3-turbo, distil variants, other open cpu models; exact versions); synthetic and public non-speech clips you generate or pin: digital silence, recorded-style background noise (public noise sets with license), and public music-only clips (license + url), durations stated.
+- unit: one clip on one model setting.
+- measure: hallucination rate = fraction of clips whose transcript contains any word, per clip class per model per setting; effect of each decoding setting (temperature, no_speech_threshold or equivalent, compression-ratio guards) and each voice-activity filter tested, reported separately.
+- priority: today
+- depends on: W-0070
+- pilot: the clip corpus manifest with licenses and hashes, the harness, and one model's hallucination table across clip classes.
+- done when: the full model x clip-class x setting table, the harness code, and a shortlist of settings or filters that cut hallucinations without measured accuracy loss on the accuracy request's sets (cross-referenced, not assumed), posted as text on a files page.
+- out of scope: paid apis; training or fine-tuning; claims about languages not measured.
+- interface: `hallucination_bench --model <name@version> --clips <manifest> --setting <json>` -> JSON {clip_class, n_clips, n_with_words, rate}.
+
+## W-0072 streaming speech recognition: latency and correction behavior
+- date: 2026-10-25
+- request: measure latency to first word and the correction rate of open-source speech recognition when audio arrives in 0.5 to 2 second chunks.
+- decision: whether chunked (near-streaming) recognition is usable for a product, and at what chunk size.
+- inputs: the cpu-viable models from the accuracy request (exact versions); the same pinned public test clips (Turkish and English); a chunked-feeding harness you write (chunk sizes 0.5, 1.0 and 2.0 seconds); any open local-streaming wrapper the lab chooses to measure as a separate row, with version and url.
+- unit: one clip at one chunk size on one model.
+- measure: latency to first emitted word in seconds from audio start (processing time on the pinned cpu, stated separately from audio position); correction rate = fraction of emitted words later changed by the same recognizer before the clip ends; final WER per configuration against the same references.
+- priority: today
+- depends on: W-0070
+- pilot: the harness, the chunk-size matrix, and one model's measurements at the three chunk sizes.
+- done when: the full model x chunk-size table (first-word latency, correction rate, final WER) with harness code posted as text on a files page, reproducible from posted code and pinned inputs.
+- out of scope: paid streaming apis; gpu-only models; claims of true websocket streaming when the method is chunked re-decoding - name the method honestly.
+- interface: `stream_bench --model <name@version> --clip <id> --chunk <0.5|1.0|2.0>` -> JSON {first_word_latency_s, correction_rate, final_wer_pct}.
+
+## W-0073 turkish text normalization for fair speech-recognition scoring
+- date: 2026-10-25
+- request: define and implement a Turkish text normalization for word error rate scoring (casing, punctuation, apostrophes, number-to-word conversion), so model comparisons are fair, and measure how scoring changes with and without it.
+- decision: which normalization the engine-selection comparison adopts, with the fairness effect measured rather than assumed.
+- inputs: a pinned sample of public Turkish reference transcripts (from the accuracy request's test sets); reference implementations or descriptions of Turkish normalization rules from public sources with urls; your own normalizer code.
+- unit: one reference/hypothesis transcript pair.
+- measure: WER before and after normalization on the pinned sample, per normalization rule class (casing, punctuation, apostrophes, numbers) toggled separately; count of pairs where the verdict changes.
+- priority: today
+- depends on: W-0070
+- pilot: the normalizer with its rule list, and the before/after WER table on the pinned sample with each rule class toggled.
+- done when: the normalizer code, the rule list with sources, and the toggle table posted as text on a files page; the adopted normalization is stated as a config, not buried in code.
+- out of scope: English normalization beyond what the shared harness needs; language detection; changing reference transcripts' wording (normalization never edits meaning).
+- interface: `normalize_tr <text>` -> text; `wer_score --ref <file> --hyp <file> --normalize <config>` -> JSON {wer_pct, per_rule_effect}.
+
+consuming card for all four: the engine-selection decision for the transcription product (what runs on cpu within the owner's limits; any paid provider stays a separate money gate).
+
 ## W-0041 touching-glyph segmentation candidates without a language model
 - date: 2026-10-25
 - request: geometry-only methods for generating candidate split points of touching printed glyphs.
