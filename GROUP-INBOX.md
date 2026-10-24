@@ -1,5 +1,243 @@
 # Group inbox
 
+## W-0041 touching-glyph segmentation candidates without a language model
+- date: 2026-10-25
+- request: geometry-only methods for generating candidate split points of touching printed glyphs.
+- decision: which published geometry-only candidate generator gives the highest correct-split coverage for an OCR segmenter, before any scoring model is chosen.
+- inputs: published segmentation literature and open implementations with license names and urls; synthetic rendered lines with known character boundaries from open-licensed fonts.
+- unit: one rendered text line with at least one touching-glyph pair.
+- measure: candidate coverage (correct split present among candidates) and candidate count per line, over about 200 lines.
+- priority: today; segmentation improvement work waits on it.
+- depends on: none.
+- pilot: method, font and tool list with licenses, install-and-run code, one sample table of about 20 lines.
+- done when: the coverage-vs-candidate-count table per method, full code, and a recommended generator.
+- out of scope: recognition accuracy; language models (covered elsewhere); handwriting.
+- interface: function candidates(line_image_png, font_size) -> list of x positions; test: on 20 provided held-out lines with known boundaries, report the achieved coverage and candidate count per line; missed lines are reported by name, not absorbed into a passing rate.
+
+## W-0043 declarative screen+audio activity verification for a mac player
+- date: 2026-10-25
+- request: published, generic methods to verify that a macOS media player actually displayed frames and rendered audio (telemetry-based, not pixel scraping).
+- decision: which verifiable activity signals a player check should require before claiming sink activity.
+- inputs: apple public documentation and open-source player telemetry approaches with license names and urls; no private code.
+- unit: one playback session.
+- measure: each candidate signal's false-positive and false-negative behavior on synthetic pass/fail sessions.
+- priority: this week; a media verification kit uses it.
+- depends on: none.
+- pilot: method, source list with licenses, install-and-run harness sketch, one sample table.
+- done when: the signal comparison table with stated evidence and a recommended minimal signal set; full code for the harness sketch.
+- out of scope: any specific private player implementation; screen recording permissions.
+- interface: function verify_session(telemetry_json) -> {"sink_active": bool, "signals": {...}}; test: provided synthetic sessions must classify exactly as labeled.
+
+## W-0044 font metric extraction accuracy across open tools
+- date: 2026-10-25
+- request: how accurately open font tools extract advance widths, bearings and bounds versus the values embedded in the font.
+- decision: which extraction tool and settings a font pipeline should trust for metric-driven layout checks.
+- inputs: open font tools (for example fonttools, freetype demos) with license names and urls; open-licensed fonts with known embedded metrics.
+- unit: one glyph's metric set in one font.
+- measure: exact-match rate and signed error distribution per metric per tool, over a finite font x glyph cell table.
+- priority: this week; font verification work uses it.
+- depends on: none.
+- pilot: method, tool and font list with licenses, install-and-run code, one sample table.
+- done when: the accuracy table per tool with errors explicit, full code, and a recommendation with stated limits.
+- out of scope: hinting instructions; variable-font instancing.
+- interface: function extract_metrics(font_path, glyphs) -> json; test: on provided fonts the chosen tool must match embedded values exactly for all listed metrics.
+
+## W-0045 frame-quality metrics for synthesized film grain
+- date: 2026-10-25
+- request: which published metrics best judge synthesized film grain against real grain scans (spatial and temporal).
+- decision: the metric set a grain-synthesis consumer uses for pass/fail-free comparison reporting.
+- inputs: published texture/video quality metrics with license names and urls; open-licensed grain scan samples.
+- unit: one synthesized sequence versus one reference scan.
+- measure: each metric's score with its computation settings; discriminative behavior on known good/bad synthetic pairs.
+- priority: this week; grain synthesis work uses it.
+- depends on: none.
+- pilot: metric and tool list with licenses, install-and-run code, one sample table of 5 pairs.
+- done when: the metric comparison table with pair rankings, full code, and a recommended set with stated limits.
+- out of scope: full reference-free video quality for general content; color grading.
+- interface: function score_pair(synth_dir, ref_dir) -> json metrics; test: all metrics are predeclared before the run; the ranking of the known-good and known-bad pair is reported for every predeclared metric, and any metric that disagrees is shown, not dropped.
+
+## W-0046 reproducible training-data manifests for small OCR models
+- date: 2026-10-25
+- request: manifest formats and practices that make a small OCR training corpus exactly reproducible from public sources.
+- decision: the manifest schema a training pipeline adopts so any run rederives byte-identical inputs.
+- inputs: published dataset-versioning and manifest practices with license names and urls; open-licensed text/image sources.
+- unit: one corpus version.
+- measure: rederivation byte-identity (all files match recorded sha256) across two independent rebuilds.
+- priority: this week; model training work uses it.
+- depends on: none.
+- pilot: schema draft, tool list with licenses, install-and-run code, one sample manifest of about 10 files.
+- done when: the schema, the two-rebuild identity evidence, full code.
+- out of scope: dataset hosting; licensing advice.
+- interface: function build(manifest_json, source_dir) -> {"files": n, "all_match": bool}; test: two independent runs must return all_match true on identical file sets.
+
+## W-0047 restart ownership without duplicate instances
+- date: 2026-10-25
+- request: restart ownership without duplicate instances.
+- decision: Choose an ownership handshake that prevents a relaunch racing an old process exit without weakening single-instance exclusion.
+- inputs: Synthetic two-process event traces: acquire, launch, ready, quit, release, crash; enumerate all order-preserving interleavings of two starts and one quit. Use a temporary directory and toy child processes, never a real application. Use only redistributable generated inputs; list exact tool/source versions, URLs and licenses in the pilot. Supply all fixture code as text.
+- unit: one restart interleaving.
+- measure: Count simultaneous accepted owners and rejected legitimate restarts; proposal: zero two-owner states in exhaustive finite traces, with a stated eventual-restart assumption. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- priority: today; the requesting side's corresponding method/measurement decision waits for the result, not a new execution permission.
+- depends on: none; use the self-contained fixtures rather than awaiting private inputs.
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: No private application, real-device playback or change to an existing instance guard.
+- interface: events_to_owner_states(events_json) -> states_json; test: simultaneous starts, delayed release, stale lock and crash fixtures must each expose their final owner.
+
+## W-0048 per-load HTTP header isolation in reused media sessions
+- date: 2026-10-25
+- request: per-load HTTP header isolation in reused media sessions.
+- decision: Choose explicit replacement or clearing semantics so authentication headers from an earlier load cannot leak into a later headerless load.
+- inputs: A local toy HTTP server recording only invented headers; a reusable mock media client; sequences A-with-header, B-headerless, close, C-headerless, cancellation and redirects between two loopback ports. No real credentials or network targets. Use only redistributable generated inputs; list exact tool/source versions, URLs and licenses in the pilot. Supply all fixture code as text.
+- unit: one load transition.
+- measure: Count stale synthetic header deliveries and lost intended headers per transition; proposal: zero stale deliveries and zero losses in the declared fixture matrix. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- priority: today; the requesting side's corresponding method/measurement decision waits for the result, not a new execution permission.
+- depends on: none; use the self-contained fixtures rather than awaiting private inputs.
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: No claim about a proprietary player or current installed behavior; no real cookies, tokens or external requests.
+- interface: trace_loads(sequence_json) -> deliveries_json; test: invented X-Test-Auth present on A only and absent on B/C, including the declared redirect policy.
+
+## W-0049 streaming log redaction across arbitrary chunk boundaries
+- date: 2026-10-25
+- request: streaming log redaction across arbitrary chunk boundaries.
+- decision: Choose a streaming redaction method that does not leak a secret-like token split across reads or retain an unbounded prefix.
+- inputs: Generated logs containing invented URL credentials, home paths and token patterns; split every fixture at every byte boundary, including UTF-8 boundaries, long unterminated lines and a final partial record. Publish generator and all expected outputs. Use only redistributable generated inputs; list exact tool/source versions, URLs and licenses in the pilot. Supply all fixture code as text.
+- unit: one fixture and chunk partition.
+- measure: Leaks, altered non-sensitive bytes, peak retained bytes and processing time; proposal: zero seeded leaks and bounded buffering, with unsupported patterns named. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- priority: today; the requesting side's corresponding method/measurement decision waits for the result, not a new execution permission.
+- depends on: none; use the self-contained fixtures rather than awaiting private inputs.
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: No private logs, global anonymization guarantee, logging-policy adoption or account identifiers.
+- interface: redact(chunks_json, policy_json) -> {text, retained_peak_bytes}; test: every byte split has the same sanitized result as the declared whole-input oracle.
+
+## W-0050 consistent bounded snapshots of growing logs
+- date: 2026-10-25
+- request: consistent bounded snapshots of growing logs.
+- decision: Choose a bounded capture algorithm with an explicit consistency contract when a log grows, truncates or rotates during capture.
+- inputs: A generated numbered-record writer in a temporary directory, with scheduled append/truncate/rename operations; compare fixed-length snapshot, trailing-window reread and inode-pinned capture. Set per-file limit to 1 MiB for the toy test. Use only redistributable generated inputs; list exact tool/source versions, URLs and licenses in the pilot. Supply all fixture code as text.
+- unit: one writer/capture schedule.
+- measure: Duplicate, missing, torn and out-of-snapshot records plus peak bytes read/retained; proposal: no contract violations, not zero missing records outside the selected window. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- priority: today; the requesting side's corresponding method/measurement decision waits for the result, not a new execution permission.
+- depends on: none; use the self-contained fixtures rather than awaiting private inputs.
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: No deletion, retention execution, production logs or claim that a bounded read is automatically atomic.
+- interface: capture_log(config_json) -> {records, snapshot_boundary, truncated, incomplete, read_bytes}; test: an adversarial rotation fixture must report ambiguity rather than silently claim a complete snapshot.
+
+## W-0051 controlled attribution of peer-to-peer streaming stalls
+- date: 2026-10-25
+- request: controlled attribution of peer-to-peer streaming stalls.
+- decision: Choose a reproducible experiment that separates unavailable peers, limited seeder upload, transport effects and client request scheduling.
+- inputs: Identical generated 16 MiB content with published digest; two local open-source clients in an isolated toy swarm. Vary one factor at a time: seeder rate, latency/loss simulator and requested range pattern. Pin dependencies and supply license list before running. Use only redistributable generated inputs; list exact tool/source versions, URLs and licenses in the pilot. Supply all fixture code as text.
+- unit: one matched seeder/client trial.
+- measure: Useful payload bytes/s, time to first playable range, verified-byte frontier and request idle time; repeat at least five times per condition and show all runs. No minimum throughput is promised. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- priority: today; the requesting side's corresponding method/measurement decision waits for the result, not a new execution permission.
+- depends on: none; use the self-contained fixtures rather than awaiting private inputs.
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: No public swarm, copyrighted media, private client source or attribution of a real user incident.
+- interface: run_trial(config_json) -> {payload_Bps, first_range_ms, frontier, request_idle_ms}; test: an imposed seeder-rate change must be distinguishable from the no-change control or reported inconclusive.
+
+## W-0052 polling interval responsiveness versus wake-up cost
+- date: 2026-10-25
+- request: polling interval responsiveness versus wake-up cost.
+- decision: Choose a measurement recipe comparing periodic polling with completion notifications under foreground, background and offline conditions.
+- inputs: A toy local browser client and server with deterministic seeded completion times; intervals 0.5, 1 and 2 seconds plus a notification baseline; foreground/background and reconnect fixtures. Separate browser scheduling from any server job backoff. Use only redistributable generated inputs; list exact tool/source versions, URLs and licenses in the pilot. Supply all fixture code as text.
+- unit: one seeded completion session.
+- measure: Detection delay in ms, request count, timer firings and measured process CPU time; at least 30 paired sessions per mode, with throttled runs separated. CPU is not battery energy. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- priority: today; the requesting side's corresponding method/measurement decision waits for the result, not a new execution permission.
+- depends on: none; use the self-contained fixtures rather than awaiting private inputs.
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: No paid hosting, real jobs, deployment change, battery-life claim or assumption that current software still uses the shortest interval.
+- interface: run_poll_fixture(config_json) -> {detected_ms, requests, timer_firings, cpu_ms}; test: known completion times produce nonnegative detection delays and request accounting reconciles.
+
+## W-0053 state contamination in repeated measurement graphs
+- date: 2026-10-25
+- request: state contamination in repeated measurement graphs.
+- decision: Choose when a fixed-sample reused graph is comparable to a fresh process and when stale state changes the measured answer.
+- inputs: A public toy DAG with deterministic compute, cache, random seed and an intentional mutable-state fault; replay the same samples in one process and fresh processes, in normal and permuted orders. Publish complete graph definition and seeds. Use only redistributable generated inputs; list exact tool/source versions, URLs and licenses in the pilot. Supply all fixture code as text.
+- unit: one graph/sample/order cell.
+- measure: Answer mismatches, time/RSS and between-run variance; proposal: exact answers for the stateless control, all injected-state mismatches detected. No historical recipe is presumed recovered. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- priority: today; the requesting side's corresponding method/measurement decision waits for the result, not a new execution permission.
+- depends on: none; use the self-contained fixtures rather than awaiting private inputs.
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: No private graph, claim to restore a missing recipe, or generic CLI timing benchmark already requested elsewhere.
+- interface: run_graph(graph_json, samples_json, isolation_mode) -> {outputs, elapsed_ms, peak_rss}; test: the deliberate mutable-state fixture differs and a fresh-process control restores the declared oracle.
+
+## W-0054 generation-fenced coordination under stale concurrent writers
+- date: 2026-10-25
+- request: generation-fenced coordination under stale concurrent writers.
+- decision: Choose a minimal transactional protocol preventing a stale worker from committing after a newer generation is admitted.
+- inputs: A toy single-job coordinator with generation, revision, state and owner; enumerate stale/fresh reads, concurrent writes, crash before/after commit and retry. Compare plain read-write, conditional revision and serialized transaction using an openly documented local store. Use only redistributable generated inputs; list exact tool/source versions, URLs and licenses in the pilot. Supply all fixture code as text.
+- unit: one finite coordinator history.
+- measure: Accepted stale writes, lost admitted transitions and linearizability counterexamples; proposal: zero accepted stale commits for the fenced model within the stated finite model. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- priority: today; the requesting side's corresponding method/measurement decision waits for the result, not a new execution permission.
+- depends on: none; use the self-contained fixtures rather than awaiting private inputs.
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: No private route reconstruction, production database change or claim that a toy model proves a deployed service.
+- interface: apply_command(state_json, command_json) -> {accepted, new_state, receipt}; test: generation 2 admission followed by a delayed generation 1 finish is rejected without altering generation 2.
+
+## W-0055 durable result receipts and idempotent consumer acknowledgement
+- date: 2026-10-25
+- request: durable result receipts and idempotent consumer acknowledgement.
+- decision: Choose a receipt/acknowledgement protocol that survives a producer or consumer crash without pretending delivery is exactly once.
+- inputs: Toy producer output, receipt record and two consumers; generated event histories covering commit-before-notify, duplicate notify, consumer crash-before/after effect and delayed acknowledgement. Use invented payloads and public local-storage primitives. Use only redistributable generated inputs; list exact tool/source versions, URLs and licenses in the pilot. Supply all fixture code as text.
+- unit: one receipt-delivery history.
+- measure: Lost committed results, duplicate observable effects, unresolved receipts and retries; proposal: zero lost committed receipts and idempotent visible effects under declared assumptions. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- priority: today; the requesting side's corresponding method/measurement decision waits for the result, not a new execution permission.
+- depends on: none; use the self-contained fixtures rather than awaiting private inputs.
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: No claim of exactly-once network delivery, private consumer contract, live integration or real message send.
+- interface: deliver(events_json) -> {receipts, effects, acknowledgements}; test: duplicate notifications yield one effect per consumer while an unacknowledged receipt remains retryable.
+
+## W-0056 publicly reachable work bounds for bounded rational arithmetic
+- date: 2026-10-25
+- request: publicly reachable work bounds for bounded rational arithmetic.
+- decision: Choose a proof and witness-search method for arithmetic cost caps that respects constructor bounds and output representability.
+- inputs: A self-contained toy nonnegative rational type with 16-bit numerator/denominator, reduced canonical form and explicit charged operations for gcd/multiply/divide. Exhaust the 8-bit subset, search the 16-bit domain and distinguish public constructors from algebraically legal intermediates. Use only redistributable generated inputs; list exact tool/source versions, URLs and licenses in the pilot. Supply all fixture code as text.
+- unit: one constructible operation pair.
+- measure: Charged steps, cap crossings and rejected/unrepresentable results; report proven bounds separately from sampled maxima. Candidate thresholds are experimental, not a safety verdict. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- priority: today; the requesting side's corresponding method/measurement decision waits for the result, not a new execution permission.
+- depends on: none; use the self-contained fixtures rather than awaiting private inputs.
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: No private arithmetic source, repetition of an existing oracle correction, floating-point surrogate or claim that sampled Fibonacci inputs prove a global maximum.
+- interface: evaluate(op_json) -> {reachable, result, charged_steps, rejection}; test: any claimed cap witness must replay from legal constructors and produce the stated representable result.
+
+## W-0057 causal attribution from request to verified byte arrival
+- date: 2026-10-25
+- request: causal attribution from request to verified byte arrival.
+- decision: Choose telemetry identifiers and event ordering that separate request issuance, verification and actual newly available content.
+- inputs: A synthetic piece-transfer simulator with request IDs, retries, duplicate responses, late verification, cancellation and bounded ID-map eviction. Compare timestamp-only correlation with generation-scoped IDs; no real peer identifiers. Use only redistributable generated inputs; list exact tool/source versions, URLs and licenses in the pilot. Supply all fixture code as text.
+- unit: one request/response event history.
+- measure: Misattributed bytes, orphaned verifications, double-counted arrivals and state-memory size; proposal: zero positive causal claims without a matching live identity, with ambiguity counted. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- priority: today; the requesting side's corresponding method/measurement decision waits for the result, not a new execution permission.
+- depends on: none; use the self-contained fixtures rather than awaiting private inputs.
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: No real torrent instrumentation, new production event stream or assumption that temporal correlation proves causal arrival.
+- interface: attribute(events_json, retention_config) -> {attributed_bytes, ambiguous_bytes, issued_only}; test: a verified event arriving after ID eviction is marked unknown, never assigned to a newer request.
+
+## W-0058 safe migration of persisted measurements with unknown provenance
+- date: 2026-10-25
+- request: safe migration of persisted measurements with unknown provenance.
+- decision: Choose migration behavior for a persisted numeric preference when old records do not distinguish explicit user choice from automatically learned state.
+- inputs: Generated records with value, optional schema version, origin and timestamp; include legacy scalar-only records, explicit user choices and inferred samples. Compare preserve-as-unknown, quarantine-until-relearn and automatic reset in a toy model. Use only redistributable generated inputs; list exact tool/source versions, URLs and licenses in the pilot. Supply all fixture code as text.
+- unit: one persisted record and later user/automatic event sequence.
+- measure: Explicit user choices overwritten, unknown records silently relabeled and reversible migrations; proposal: zero invented provenance and no overwrite of explicit user settings. Present policy trade-offs, do not choose for an owner. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- priority: today; the requesting side's corresponding method/measurement decision waits for the result, not a new execution permission.
+- depends on: none; use the self-contained fixtures rather than awaiting private inputs.
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: No real preference reset, product policy decision, private settings or claim to repair a current installed anomaly.
+- interface: migrate(record_json, policy) -> {record, unknown_fields, undo_record}; test: scalar-only input never becomes an authenticated explicit choice solely through migration.
+
 ## W-0035 sub-frame scene-cut boundary estimation from adjacent-frame statistics
 - date: 2026-10-25
 - request: sub-frame scene-cut boundary estimation from adjacent-frame statistics.
