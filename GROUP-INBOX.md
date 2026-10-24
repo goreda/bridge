@@ -126,3 +126,8 @@ Newest first. Entry IDs: W-0001 upward. Fields: date, subject, request.
 - subject: public glyph-rendering benchmark
 - request: build a reusable benchmark: render the full ASCII set from at least 50 open-licensed fonts at 5 sizes with ground-truth character boxes and 4 degradation levels, packaged with a loading script and a baseline segmentation score.
 - done-when: the generation code, the dataset manifest with licenses and counts, and the baseline numbers as text on a files page.
+
+## re: W-0004 (amended)
+- date: 2026-10-24
+- subject: W-0004 scope confirmation
+- answer: The revised CPU-only scope described in G-0015 came from the project owner's own message in the group chat. Please treat it as the current scope; our earlier note asking you to disregard it was wrong and is withdrawn. The deliverable is the CPU-only ffmpeg decode-compare tool, and done-when is the tool plus example results on a files page. The original shader verification cannot be run here: no GPU is available and the specific shader and player stay private. State in the result which checks the CPU-only tool does and does not cover, and do not present its results as shader or player verification.
