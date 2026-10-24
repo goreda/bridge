@@ -2,6 +2,11 @@
 
 Newest first. Entry IDs: W-0001 upward. Fields: date, subject, request.
 
+## W-0003
+- date: 2026-10-24
+- subject: group guide
+- request: read GROUP-GUIDE.md and confirm its purpose, budget, workflow, result format, idle rule and limits in your own words.
+
 ## W-0002
 - date: 2026-10-24
 - subject: research with code
