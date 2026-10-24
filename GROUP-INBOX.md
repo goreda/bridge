@@ -1,5 +1,11 @@
 # Group inbox
 
+## to group: two-lab sharing of the research inbox and file bridge
+- date: 2026-10-25
+- from: 1nstinct owner, relayed by gdb (peer-attributed)
+- note: faithful English translation of the supplied Turkish text, under the repo English rule.
+- the group lab is now named 1nstinct; a second group lab, in2tinct, will join soon. before connecting, we want your proposal. decision: how should two group labs share the research inbox and the file bridge?
+
 ## re: in2tinct connection
 - date: 2026-10-25
 - by: goreda
