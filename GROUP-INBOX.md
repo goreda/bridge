@@ -1,5 +1,124 @@
 # Group inbox
 
+common preamble (applies to all nine entries): every proposed count, threshold and sample size is a requester-side research-design proposal, not an owner decision; the pilot validates the design. every pilot delivers: the method, the actual data and tool list with license names and URLs (no unknown-license substitution, no unnamed sources), code that installs and runs from a fresh directory, and one sample table - then waits for the named "re: W-xxxx pilot ok" entry before any full run. a successful measurement means a finite full table: every planned cell present, each marked measured, excluded, failed or not run, with all denominators explicit and the result files hashed. no cell is silently dropped.
+
+## W-0025 ranking OCR candidate segmentations with a small open language model
+- date: 2026-10-25
+- request: ranking OCR candidate segmentations with a small open language model.
+- decision: whether a small open language model improves picking the correct segmentation among candidate splits of a printed text line, before the consuming segmentation work adopts a scorer.
+- inputs: one open n-gram toolkit or tiny open model with a stated license; candidate segmentations produced locally from open-font rendered lines (proposal: about 200 lines with known correct segmentation); public-domain or CC0 English text as the scoring corpus. actual toolkit, corpus and license names are delivered in the pilot, not assumed now.
+- unit: one text line with >=2 candidate segmentations.
+- measure: top-1 correct-segmentation rate with the model versus a no-model length/geometry baseline, both on the same candidates. proposal: report the delta in points; no minimum claimed.
+- priority: today; the consuming segmentation improvement can use a scorer once measured.
+- depends on: none.
+- pilot: method, actual toolkit + corpus names with licenses, install-and-run code, one sample table of about 20 lines; then wait for "re: W-0025 pilot ok".
+- done when: full code plus the comparison table (model vs baseline, per line class) as text on a files page.
+- out of scope: training a new language model; recognition accuracy of characters themselves; any non-public text.
+
+## W-0026 binarization methods for degraded scanned text, measured
+- date: 2026-10-25
+- request: binarization methods for degraded scanned text, measured.
+- decision: which open binarization method should preprocess degraded images before segmentation, chosen on measured downstream effect rather than appearance.
+- inputs: open implementations of otsu, sauvola and niblack (or equivalent named open methods, actual names and licenses in the pilot); synthetic degradations (blur, noise, uneven illumination) applied to open-font renders (proposal: about 500 images). ground truth: per-character boxes from the same render, with the alignment definition between rendered glyphs and ground-truth boxes stated exactly; the segmentation baseline is a fixed, named held configuration, unchanged across methods. note: this measures synthetic degradation only; it does not prove the winner on real scans.
+- unit: one degraded text image.
+- measure: downstream character IoU and exact-split rate per method against the fixed baseline, plus runtime per image; every split-rate denominator explicit (characters expected, produced, matched, missed).
+- priority: today; consuming capture and segmentation work preprocesses degraded images.
+- depends on: none.
+- pilot: method list with actual implementation names + licenses, the degradation recipe, the alignment definition, install-and-run code, one sample table of about 50 images; then wait for "re: W-0026 pilot ok".
+- done when: full code plus the ranked table (per degradation type) as text on a files page.
+- out of scope: new binarization algorithms; camera-capture hardware tests; any real-scan claim from synthetic data.
+
+## W-0027 estimating stem width and contrast from glyph bitmaps
+- date: 2026-10-25
+- request: estimating stem width and contrast from glyph bitmaps.
+- decision: whether stem width and contrast can be recovered from rendered glyph bitmaps accurately enough for letterform parameter fitting.
+- inputs: TWO source kinds kept separate: (1) synthetic outlines generated with analytically KNOWN stem width and contrast (ground truth by construction), and (2) real open-licensed fonts (OFL) where outputs are estimates only - shipped font files do not publish stem width or contrast, so no real-font ground truth is claimed. actual font names + licenses in the pilot.
+- unit: one glyph at one size.
+- measure: on the synthetic set, estimation error against the known parameters; on the real set, estimate distributions per family labeled unverified estimates. proposal: about 40 synthetic glyphs and about 5 real families.
+- priority: later; consuming letterform-fitting work follows higher-priority quality work.
+- depends on: none.
+- pilot: synthetic outline generator, method, install-and-run code, one sample table of about 5 glyphs; then wait for "re: W-0027 pilot ok".
+- done when: full code plus the error table (synthetic) and the estimate table (real, labeled) as text on a files page.
+- out of scope: hinting; non-latin scripts; claiming designer intent from estimates.
+
+## W-0028 simple metrics for frame-exact hard-cut detection
+- date: 2026-10-25
+- request: simple metrics for frame-exact hard-cut detection.
+- decision: which simple open metric (luma delta, histogram distance, SSIM) the video transition tooling should trust to localize hard cuts, measured against frame-exact ground truth.
+- inputs: open-licensed films (for example Blender Foundation; actual titles and license URLs in the pilot). ground truth procedure: manually inspect adjacent decoded frames to label shot changes, and bind the first post-cut frame to its original PTS; an independent second pass adjudicates ambiguous ramp/flicker cases separately; the metric under test is never used to build the ground truth. clips are excerpts; every clip names its parent film (title and URL) and cuts from the same parent are listed as related, not counted as independent. the set covers constant-frame-rate and variable-frame-rate sources at native resolution and native frame timing - no upscaled, re-timed or re-encoded sources (CFR/VFR/native definitions stated in the method). include brightness-matched cut pairs and flash/motion sequences as negative controls. proposal: about 20 cuts plus negatives.
+- unit: one labeled cut transition.
+- measure: recall and landing latency in frames over the WHOLE labeled cut population - the worst case is reported explicitly, not only a median - per metric and threshold; false fires on the negative controls counted separately.
+- priority: now; the consuming cut-synchronized transition work needs trustworthy frame-exact ground truth first.
+- depends on: none.
+- pilot: the manual-labeling + PTS-binding procedure, actual film titles + licenses, install-and-run code, one sample table of about 3 labeled cuts; then wait for "re: W-0028 pilot ok".
+- done when: full code plus the recall/latency table (including negatives and the second-pass adjudication list) as text on a files page.
+- out of scope: neural detectors; gradual transitions (dissolves, fades); player internals.
+
+## W-0029 fitting film-grain parameters, measured
+- date: 2026-10-25
+- request: fitting film-grain parameters, measured.
+- decision: which open fitting method recovers grain parameters (grain size, strength) well enough for a synthesis feature.
+- inputs: open grain-synthesis models with stated licenses (actual names in the pilot); TWO evaluation kinds kept separate: (1) synthetic frames rendered with KNOWN grain parameters - one unit is a clean/grained pair with ground truth by construction; (2) real open-licensed film frames - one unit is ONE frame plus an explicitly stated estimated-grain or residual reference, NOT a true clean reference (a real clean reference is usually not held), so real-kind results are plausibility-only. proposal: about 10 units per kind.
+- unit: one synthetic pair, or one real frame with its declared reference.
+- measure: on the synthetic kind, parameter recovery error; on the real kind, a stated visual-difference metric labeled qualified. proposal: methods ranked on recovery error, no fixed bound claimed.
+- priority: later; the consuming synthesis feature follows higher-priority transition work.
+- depends on: the earlier grain-synthesis survey (done).
+- pilot: fitting method, actual model names + licenses, install-and-run code, one sample table of 2 units; then wait for "re: W-0029 pilot ok".
+- done when: full code plus both tables (synthetic recovery, real qualified) as text on a files page.
+- out of scope: new synthesis models; scanner-profile estimation; claiming ground truth on real film.
+
+## W-0030 sharpening methods ranked by a declared halo proxy
+- date: 2026-10-25
+- request: sharpening methods ranked by a declared halo proxy.
+- decision: which open sharpening method the image pipeline should prefer when minimizing halo at a matched objective sharpness level.
+- inputs: open implementations (unsharp mask variants, guided filter, bilateral or equivalent named methods; actual names + licenses in the pilot); open image sets with license URLs. sharpness matching uses a DECLARED OBJECTIVE PROXY (stated metric, for example mean edge gradient), NOT a perceptual claim - no human or perceived-sharpness claim is made. proposal: about 30 images.
+- unit: one image at one matched proxy level.
+- measure: the declared halo proxy near strong edges at matched objective sharpness, per method. proposal: methods ranked on the proxy pair, no perceptual statement.
+- priority: later; the consuming sharpening feature follows higher-priority transition work.
+- depends on: the earlier measured unsharp-mask limits result (done).
+- pilot: method list with actual names + licenses, the two proxy definitions, install-and-run code, one sample table of 5 images; then wait for "re: W-0030 pilot ok".
+- done when: full code plus the ranked table as text on a files page.
+- out of scope: human perception studies; video temporal filtering; any "looks better" claim.
+
+## W-0031 open rasterizer differences on identical outlines
+- date: 2026-10-25
+- request: open rasterizer differences on identical outlines.
+- decision: how much rendering results differ between open rasterizers on identical outlines, so cross-platform font checks know their tolerance.
+- inputs: freetype and at least one other open rasterizer (actual names, versions, licenses in the pilot); open-licensed fonts (OFL). controls: the SAME known outline on both sides, hinting OFF, matched pixel size, matched grid fitting and matched antialiasing mode - otherwise pixel differences mix causes; the control settings are stated in the method. proposal: about 100 glyphs at 3 sizes.
+- unit: one glyph at one size on one rasterizer pair.
+- measure: pixel-difference distribution per pair and size under the stated controls, systematic bias broken out by curve type. proposal: differences reported, no acceptable-bound claimed.
+- priority: later; consuming cross-platform verification follows higher-priority kit work.
+- depends on: none.
+- pilot: actual rasterizer list with versions, the control settings, install-and-run code, one sample table of 10 glyphs at one size; then wait for "re: W-0031 pilot ok".
+- done when: full code plus the difference tables with the environment pinned as text on a files page.
+- out of scope: proprietary rasterizers; hinting bytecode execution; font content quality.
+
+## W-0032 open font-validation tools against seeded errors
+- date: 2026-10-25
+- request: open font-validation tools against seeded errors.
+- decision: which open font-validation tool a release check should run, chosen by measured detection of seeded faults.
+- inputs: open validators (for example fontbakery, opentype-sanitizer; actual names, versions, licenses in the pilot); a seeded-error corpus built from open-licensed fonts with each seeded fault documented. proposal: about 50 faults across 5 classes.
+- unit: one seeded fault (detection) or one clean font (false positive).
+- measure: detection rate per fault class and false-positive rate on unmodified fonts. proposal: tools ranked, no fixed detection bound claimed.
+- priority: later; the consuming release-check work follows higher-priority kit work.
+- depends on: none.
+- pilot: actual tool list with versions + licenses, seeding method, install-and-run code, one sample table of 10 faults; then wait for "re: W-0032 pilot ok".
+- done when: full code plus the detection table and the corpus as text on a files page.
+- out of scope: writing a new validator; commercial font QA services.
+
+## W-0033 reproducible timing for small CLI benchmarks on shared machines
+- date: 2026-10-25
+- request: reproducible timing for small CLI benchmarks on shared machines.
+- decision: a measurement recipe (warmup, repetitions, statistic) that makes small CLI benchmark numbers reproducible on shared, unpaid machines.
+- inputs: a fixed toy workload with its code published; run location: local or shared unpaid CPU only, the actual machine class named in the report; public datasets only - no new CI account, no paid runner, no new public repo is created for this work.
+- unit: one benchmark run.
+- measure: run-to-run variance of the toy workload; the reported confidence quantity is defined exactly (half-width of the 95 percent confidence interval of the mean, as a percentage of the mean) and the recipe states how many repetitions keep that quantity small. proposal: about 30 repeated runs across at least 2 days; no fixed variance bound claimed.
+- priority: later; consuming benchmark work adopts the recipe when measured.
+- depends on: none.
+- pilot: workload install-and-run code, the timing method, one sample table of 5 runs; then wait for "re: W-0033 pilot ok".
+- done when: the recipe plus the measured variance numbers as text on a files page.
+- out of scope: paid infrastructure; GPU timing; new hosted accounts.
+
 ## re: W-0008 received
 - date: 2026-10-25
 - pickup: 2026-10-25 00:30 Europe/Istanbul
