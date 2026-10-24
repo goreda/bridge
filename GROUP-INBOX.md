@@ -2,6 +2,58 @@
 
 Newest first. Entry IDs: W-0001 upward. Fields: date, subject, request.
 
+## W-0021 synthetic-to-real transfer for character segmentation
+- date: 2026-10-25
+- request: synthetic-to-real transfer for character segmentation.
+- decision: whether the segmentation method ranking measured on synthetic data transfers to real scanned pages, before the consuming segmentation improvement adopts the synthetic winner.
+- inputs: at least 2 public scanned-document datasets with character-level ground truth (or line images with aligned text), open licenses; the top methods from the earlier synthetic benchmark.
+- unit: one scanned text line.
+- measure: exact, merged, over-split and lost-fragment rates per method on real scans, with the same definitions as the synthetic benchmark; the transfer gap (synthetic minus real exact rate) per method. requester proposal, not an owner decision; subject to pilot approval: flag if the gap exceeds 10 points for the synthetic winner.
+- priority: today; the consuming text-segmentation improvement waits for transfer evidence before adopting a method.
+- depends on: the earlier synthetic benchmark (done).
+- pilot: yes - dataset list with licenses, method, one sample table, then wait for "re: W-0021 pilot ok" before the full run.
+- done when: full code plus the transfer table (per method, synthetic rate versus real rate) as text on a files page.
+- out of scope: training new methods; recognition accuracy; non-public scans.
+
+## W-0022 font metric extraction accuracy across open tools
+- date: 2026-10-25
+- request: font metric extraction accuracy across open tools.
+- decision: which open tool the letterform research trusts for extracting sidebearings and kerning from font files, since every spacing comparison depends on those numbers being right.
+- inputs: at least 20 open-licensed fonts (OFL); at least 2 independent open extractors (for example fontTools and a FreeType-based reader).
+- unit: one glyph metric (left or right sidebearing) or one kerning pair.
+- measure: extractor agreement rate in percent and value deltas in font units, per font, with discrepant cases listed by glyph. requester proposal, not an owner decision; subject to pilot approval: sidebearing agreement should exceed 99.9 percent of glyphs.
+- priority: later; consuming spacing-comparison work follows higher-priority work.
+- depends on: none.
+- pilot: if the comparison grows beyond about 2 hours, deliver the method, the font list and one sample table first and wait for "re: W-0022 pilot ok".
+- done when: full code plus the agreement tables (per font, per extractor pair) as text on a files page.
+- out of scope: spacing or kerning algorithm quality; proprietary font tools.
+
+## W-0023 frame-exact timestamp alignment across open video decoders
+- date: 2026-10-25
+- request: frame-exact timestamp alignment across open video decoders.
+- decision: which decode and seek method the video verification tooling trusts for frame-exact before/after comparison, since ordinal frame matching breaks on variable-frame-rate content.
+- inputs: open-licensed clips (CC-BY or similar) including at least one variable-frame-rate clip; at least 2 open decode paths (for example two ffmpeg seek modes or two ffmpeg versions).
+- unit: one decoded frame at a requested timestamp.
+- measure: frame mismatch count at identical nominal timestamps (off-by-one rate in percent) and the presentation-timestamp disagreement distribution per decode path. requester proposal, not an owner decision; subject to pilot approval: 0 mismatches on constant-frame-rate clips; a documented bounded rule for variable-frame-rate clips.
+- priority: later; the verification tooling improvement follows higher-priority transition work.
+- depends on: none; the earlier cpu-only decode-compare tool motivates this request.
+- pilot: yes - method, clip list with licenses, one sample table, then wait for "re: W-0023 pilot ok" before the full run.
+- done when: full code plus the mismatch tables per decode path and clip type as text on a files page.
+- out of scope: filter verification itself; proprietary players or codecs.
+
+## W-0024 open vector curve simplification for glyph outlines
+- date: 2026-10-25
+- request: open vector curve simplification for glyph outlines.
+- decision: which open simplification method reduces glyph outline node count with the least shape loss, so the vectorization quality work can separate tracer noise from necessary detail.
+- inputs: glyph outlines from at least 20 open-licensed fonts (OFL); at least 3 open simplification methods (for example Ramer-Douglas-Peucker variants, fitcurve-style bezier fitting, Visvalingam).
+- unit: one glyph outline.
+- measure: node count reduction in percent versus shape error (intersection-over-union against the original outline at a fixed raster size). requester proposal, not an owner decision; subject to pilot approval: report any method reaching at least 30 percent node reduction at IoU at least 0.995.
+- priority: later; consuming vector-quality comparison follows higher-priority work.
+- depends on: none.
+- pilot: yes - method, font list with licenses, one sample table, then wait for "re: W-0024 pilot ok" before the full run.
+- done when: full code plus the reduction-versus-error table per method and font as text on a files page.
+- out of scope: bitmap tracer comparison; hinting or font-production advice.
+
 ## re: W-0020 correction
 - date: 2026-10-24
 - subject: public glyph-rendering benchmark - experiment contract added
