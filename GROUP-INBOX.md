@@ -2,6 +2,221 @@
 
 Newest first. Entry IDs: W-0001 upward. Fields: date, subject, request.
 
+## re: W-0020 correction
+- date: 2026-10-24
+- subject: public glyph-rendering benchmark - experiment contract added
+- correction: requesting side's owner, 2026-10-24. The request now carries the experiment contract (GROUP-GUIDE.md). The original entry above stays in force except where a field below restates it.
+- decision: a reusable public benchmark the consuming open-source segmentation work can adopt as its standard input set.
+- inputs: the full ASCII set from at least 50 open-licensed fonts (OFL) at 5 sizes with ground-truth character boxes and 4 degradation levels.
+- unit: one rendered text-line image.
+- measure: a manifest with per-font license and image counts, plus a baseline segmentation score (merged, over-split and lost-fragment rates in percent) from one simple baseline method, so later methods have a fixed comparison point.
+- priority: today; the text-segmentation improvement adopts it when ready.
+- depends on: none (W-0002 may migrate to this benchmark later).
+- pilot: yes - method, font list with licenses, one sample page, then wait for "re: W-0020 pilot ok" before the full run.
+- done when: the generation code, the dataset manifest with licenses and counts, and the baseline numbers as text on a files page.
+- out of scope: non-ASCII scripts; recognition accuracy.
+
+## re: W-0019 correction
+- date: 2026-10-24
+- subject: augmentation effect on character recognition - experiment contract added
+- correction: requesting side's owner, 2026-10-24. The request now carries the experiment contract (GROUP-GUIDE.md). The original entry above stays in force except where a field below restates it.
+- decision: whether degradation augmentation improves a small recognizer's accuracy on degraded printed text.
+- inputs: a public printed-text dataset; the W-0018 degradation pipeline if validated, otherwise an own simulation; a small open character recognizer.
+- unit: one training run.
+- measure: accuracy delta on clean and degraded test sets in percent, with at least 3 training runs per arm so variance is reported, not a single lucky run.
+- priority: today; a character-recognition training comparison waits for it.
+- depends on: W-0018 (uses its pipeline if ready).
+- pilot: yes - method, dataset list with licenses, one sample run table, then wait for "re: W-0019 pilot ok" before the full runs.
+- done when: full code, the accuracy table with run variance, and the augmentation parameter list as text on a files page.
+- out of scope: production OCR systems; large models.
+
+## re: W-0018 correction
+- date: 2026-10-24
+- subject: degraded-scan simulation - experiment contract added
+- correction: requesting side's owner, 2026-10-24. The request now carries the experiment contract (GROUP-GUIDE.md). The original entry above stays in force except where a field below restates it.
+- decision: whether a synthetic scan-degradation pipeline is realistic enough to train and test character recognition against.
+- inputs: a degradation pipeline (blur, noise, ink bleed, broken strokes, rotation); at least 2 public scanned-text datasets for comparison.
+- unit: one image.
+- measure: degradation statistics on real versus synthetic images (for example stroke-width and noise-histogram distances); the statistics and acceptance thresholds are requester proposals in the pilot, not owner decisions, subject to pilot approval.
+- priority: today; a character-recognition training comparison waits for it.
+- depends on: none.
+- pilot: yes - method, dataset list with licenses, one sample comparison, then wait for "re: W-0018 pilot ok" before the full run.
+- done when: the full pipeline code, the realism comparison numbers, and example image grids as text on a files page.
+- out of scope: recognition training itself (W-0019); non-public datasets.
+
+## re: W-0017 correction
+- date: 2026-10-24
+- subject: automatic kerning pair generation - experiment contract added
+- correction: requesting side's owner, 2026-10-24. The request now carries the experiment contract (GROUP-GUIDE.md). The original entry above stays in force except where a field below restates it.
+- decision: whether outline-derived kerning proposals agree with the kerning pairs fonts already ship, as a comparison baseline for consuming spacing research.
+- inputs: at least 20 open-licensed fonts that ship designer kerning pairs; a python prototype of an open outline-based kerning method.
+- unit: one kerning pair.
+- measure: agreement rate in percent, overshoot in font units, and missed-pair rate in percent, per font; designer pairs are a reference, not a universal truth.
+- priority: today; consuming letterform-spacing research waits for it.
+- depends on: none.
+- pilot: yes - method, font list with licenses, one sample table, then wait for "re: W-0017 pilot ok" before the full run.
+- done when: full code, the evaluation table, and a list of pair classes where the method disagrees most, as text on a files page.
+- out of scope: treating designer pairs as ground truth for scoring the method as wrong.
+
+## re: W-0016 correction
+- date: 2026-10-24
+- subject: automatic letter spacing - experiment contract added
+- correction: requesting side's owner, 2026-10-24. The request now carries the experiment contract (GROUP-GUIDE.md). The original entry above stays in force except where a field below restates it.
+- decision: how closely an open letter-spacing method reproduces each font's designed spacing per glyph class, as a comparison baseline for consuming spacing research.
+- inputs: at least 20 open-licensed fonts; a python prototype of an open spacing method (for example the HT LetterSpacer approach).
+- unit: one glyph in one font.
+- measure: deviation of computed sidebearings from the font's designed spacing per glyph class, in font units and in percent of em; the designed spacing is one designer's reference, not a universal truth - deviation is reported as comparison, not error.
+- priority: today; consuming letterform-spacing research waits for it.
+- depends on: none.
+- pilot: yes - method, font list with licenses, one sample table, then wait for "re: W-0016 pilot ok" before the full run.
+- done when: full code, the deviation table per font and glyph class, and known failure shapes as text on a files page.
+- out of scope: claims that the designer spacing is wrong; hinting or rendering.
+
+## re: W-0015 correction
+- date: 2026-10-24
+- subject: tracer quality vs render resolution - experiment contract added
+- correction: requesting side's owner, 2026-10-24. The request now carries the experiment contract (GROUP-GUIDE.md). The original entry above stays in force except where a field below restates it.
+- decision: the cheapest render resolution that reaches 99% of a tracer's IoU plateau, so consuming vectorization research does not over-render.
+- inputs: the 2 best open tracers from W-0014 (or chosen independently if W-0014 is not finished); at least 8 render sizes per glyph.
+- unit: one glyph at one render size.
+- measure: IoU versus resolution curve and node-count growth curve; the plateau point is the smallest resolution reaching 99% of the maximum measured IoU.
+- priority: today; a glyph vectorization quality comparison waits for it.
+- depends on: W-0014 (optional).
+- pilot: yes - method, font list with licenses, one sample curve, then wait for "re: W-0015 pilot ok" before the full run.
+- done when: full code, the resolution curves, and the plateau table as text on a files page.
+- out of scope: non-open tracers; runtime performance claims beyond node count.
+
+## re: W-0014 correction
+- date: 2026-10-24
+- subject: open image tracers compared - experiment contract added
+- correction: requesting side's owner, 2026-10-24. The request now carries the experiment contract (GROUP-GUIDE.md). The original entry above stays in force except where a field below restates it.
+- decision: which open bitmap tracer is the reference baseline for glyph vectorization quality.
+- inputs: rendered glyphs from at least 20 open-licensed fonts (OFL) at several sizes; at least 3 open-source tracers (for example potrace, autotrace, vtracer).
+- unit: one glyph at one render size.
+- measure: intersection-over-union against the vector original (0-1), node count per glyph, and corner-handling failure examples; no fixed ranking threshold - the full table decides.
+- priority: today; a glyph vectorization quality comparison waits for it.
+- depends on: none.
+- pilot: yes - method, font list with licenses, one sample table, then wait for "re: W-0014 pilot ok" before the full run.
+- done when: full code, the per-font result table, and failing-case examples as text on a files page.
+- out of scope: proprietary tracers; hinting or font-production advice.
+
+## re: W-0013 correction
+- date: 2026-10-24
+- subject: sharpening parameter study - experiment contract added
+- correction: requesting side's owner, 2026-10-24. The request now carries the experiment contract (GROUP-GUIDE.md). The original entry above stays in force except where a field below restates it.
+- decision: the strongest sharpening setting with no measurable halo per resolution, for consuming video-filter research.
+- inputs: open-licensed frames at 480p, 1080p and 2160p - native-resolution sources, not upscaled (any generated downscale is labeled as such) - and scaling ratios from 1x to 4x; at least 100 unsharp-mask parameter combinations.
+- unit: one parameter combination on one frame.
+- measure: an open halo/ringing metric defined in the pilot; the strongest setting whose halo metric stays within the noise floor per resolution (noise floor defined in the pilot as a requester proposal, not an owner decision, subject to pilot approval).
+- priority: later; consuming grain/sharpening comparison follows higher-priority transition work.
+- depends on: none.
+- pilot: yes - method, metric definition, data and license list, one sample table, then wait for "re: W-0013 pilot ok" before the full run.
+- done when: the metric definition, the full sweep code, and the result table as text on a files page.
+- out of scope: subjective sharpness preference; proprietary filters.
+
+## re: W-0012 correction
+- date: 2026-10-24
+- subject: film grain parameter study - experiment contract added
+- correction: requesting side's owner, 2026-10-24. The request now carries the experiment contract (GROUP-GUIDE.md). The original entry above stays in force except where a field below restates it.
+- changed: inputs: at least 20 open-licensed film clips -> inputs: at least 20 open-licensed film clips, each from a different source film
+- decision: whether fitted grain parameters are stable enough per resolution to be reused by consuming video-filter research.
+- inputs: at least 20 open-licensed film clips, each from a different source film, at 480p, 1080p and 2160p - native-resolution sources, not upscaled; an open estimator (for example AV1-style AR fitting).
+- unit: one clip at one resolution.
+- measure: fitted grain strength and cutoff per resolution, plus fit stability across scenes (per-clip coefficient of variation; the stability threshold is a requester proposal in the pilot, not an owner decision, subject to pilot approval).
+- priority: later; consuming grain/sharpening comparison follows higher-priority transition work.
+- depends on: W-0011 for method choice (or an independently chosen open estimator).
+- pilot: yes - method, data and license list, one sample table, then wait for "re: W-0012 pilot ok" before the full run.
+- done when: full code, the per-clip parameter table, and a note on which resolutions break the model, as text on a files page.
+- out of scope: designing a new estimator; upscaled sources counted as native.
+
+## re: W-0011 correction
+- date: 2026-10-24
+- subject: film grain models survey - experiment contract added
+- correction: requesting side's owner, 2026-10-24. The request now carries the experiment contract (GROUP-GUIDE.md). The original entry above stays in force except where a field below restates it.
+- decision: which grain representation consuming video-filter research should adopt for synthesis and measurement.
+- inputs: open literature and specifications (for example the AV1 film grain synthesis model and AR-coefficient fitting), with citations.
+- unit: one surveyed method.
+- measure: a comparison table of at least 3 methods: how grain size and strength are represented per resolution and codec format, with citations for each claim.
+- priority: later; consuming grain/sharpening comparison follows higher-priority transition work.
+- depends on: none.
+- pilot: if the survey grows beyond about 2 hours, deliver the method and source list with one sample comparison first and wait for "re: W-0011 pilot ok".
+- done when: the written survey with the comparison table as text on a files page.
+- out of scope: new measurements (W-0012 covers those); inventing a new grain model.
+
+## re: W-0010 correction
+- date: 2026-10-24
+- subject: scene-cut detection methods compared - experiment contract added
+- correction: requesting side's owner, 2026-10-24. The request now carries the experiment contract (GROUP-GUIDE.md). The original entry above stays in force except where a field below restates it.
+- changed: inputs: at least 30 open-licensed clips -> inputs: at least 30 open-licensed clips, each from a different source film
+- decision: which open scene-cut detector, in its strictly causal form, consuming video tooling research should use.
+- inputs: at least 30 open-licensed clips, each from a different source film, with hand-labeled cut lists; at least 4 open detection methods (for example histogram difference, ffmpeg scdet, SSIM-based, feature-based).
+- unit: one labeled cut, or one minute of non-cut footage for the false-positive rate.
+- measure: precision, recall, false positives per minute, and detection latency in frames, per method; strictly causal detection (decided from frames up to the cut) reported separately from any look-ahead variant (decided using later frames); look-ahead results are never presented as prediction.
+- priority: now; a video brightness-transition evaluation waits for it.
+- depends on: none.
+- pilot: yes - method, data and license list, one labeled sample table, then wait for "re: W-0010 pilot ok" before the full run.
+- done when: the labeled cut lists, full code, and the comparison table with the causal/look-ahead split as text on a files page.
+- out of scope: frame prediction or generation; presenting look-ahead results as prediction.
+
+## re: W-0009 correction
+- date: 2026-10-24
+- subject: change visibility at scene cuts - experiment contract added
+- correction: requesting side's owner, 2026-10-24. The request now carries the experiment contract (GROUP-GUIDE.md). The original entry above stays in force except where a field below restates it.
+- changed: inputs: at least 20 open-licensed clips -> inputs: at least 20 open-licensed clips, each from a different source film
+- decision: how large a brightness or gamma change at a cut boundary goes unnoticed by computed metrics, versus the same change inside a shot.
+- inputs: at least 20 open-licensed clips, each from a different source film, with paired edits (change at a cut boundary versus inside a shot); at least two open visibility metrics, one of which may be the W-0008 model.
+- unit: one paired edit.
+- measure: metric score versus inserted delta curves for cut versus in-shot placement; report the delta at which the two curves diverge by more than 2x (requester proposal, not an owner decision; subject to pilot approval).
+- priority: now; a video brightness-transition evaluation waits for it.
+- depends on: W-0008 (optional - one metric may come from it).
+- pilot: yes - method, data and license list, one sample table, then wait for "re: W-0009 pilot ok" before the full run.
+- done when: code, the clip list with licenses, and the measured score table as text on a files page.
+- out of scope: human-perception claims; computed metrics only.
+
+## re: W-0008 correction
+- date: 2026-10-24
+- subject: computed brightness-difference model for video - experiment contract added
+- correction: requesting side's owner, 2026-10-24. The request now carries the experiment contract (GROUP-GUIDE.md). The original entry above stays in force except where a field below restates it.
+- decision: which published contrast-visibility model consuming video tooling research should use to score frame-to-frame brightness and gamma differences.
+- inputs: open psychophysics literature on contrast visibility; synthetically modified frames from open-licensed clips (CC-BY or similar) across at least 3 luminance ranges.
+- unit: one frame pair.
+- measure: a visibility score per luminance range; proposed sanity bar: the score rises monotonically with inserted delta in at least 9 of 10 steps per range (requester proposal, not an owner decision; subject to pilot approval).
+- priority: now; a video brightness-transition evaluation waits for it.
+- depends on: none.
+- pilot: yes - deliver the method, the data and license list and one sample table, then wait for "re: W-0008 pilot ok" before the full run.
+- done when: full code, the model with parameters and sources, and a measured visibility-score table per luminance range, as text on a files page.
+- out of scope: human-perception validation; this is a computed metric from published models, not a human JND study.
+
+## re: W-0004 correction
+- date: 2026-10-24
+- subject: video decode-compare tool (CPU-only) - experiment contract added
+- correction: requesting side's owner, 2026-10-24. The request now carries the experiment contract (GROUP-GUIDE.md). The original entry above stays in force except where a field below restates it.
+- decision: which capture paths a CPU-only decode-compare check can and cannot cover, so consuming video research knows what remains unverified.
+- inputs: any public-domain video clip; a small public filter whose full code ships in the report; CPU-only tooling (no GPU).
+- unit: one decoded frame pair at a matched timestamp.
+- measure: per-pixel difference count and mean and max absolute difference per capture path; one extreme-parameter control where a difference must be plainly visible in the numbers; at least two frame-capture methods compared at matched timestamps.
+- priority: today; a video post-processing verification need waits for it.
+- depends on: none.
+- pilot: no pilot gate for this small build; if a path cannot be run in the lab, state which and why in the result instead of substituting another deliverable.
+- done when: the CPU-only tool plus example results as text on a files page, stating which checks the tool does and does not cover; the result is not presented as shader or player verification (requesting side's owner scope 2026-10-24).
+- out of scope: any specific private shader or player; GPU-dependent capture paths.
+
+## re: W-0002 correction
+- date: 2026-10-24
+- subject: character-splitting benchmark - experiment contract added
+- correction: requesting side's owner, 2026-10-24. The request now carries the experiment contract (GROUP-GUIDE.md). The original entry above stays in force except where a field below restates it.
+- changed: done when; old: prior completion wording; new: full python code and the numbers per stated condition published as text on a files page, in resumable steps posted after each step; decided by: requesting side's owner 2026-10-24.
+- changed: measure: not specified -> merged-pair rate, over-split rate and lost-fragment rate per method and condition, in percent of true characters (requester proposal, not an owner decision)
+- decision: which open character-splitting method the consuming open-source OCR segmentation work should adopt for wide or merged components.
+- inputs: rendered text lines from at least 20 open-licensed fonts (google fonts, OFL), three spacing levels including touching letters, clean and degraded variants (blur, noise, broken strokes), with true character boxes.
+- unit: one rendered text-line image.
+- measure: merged-pair rate, over-split rate and lost-fragment rate per method and condition, in percent of true characters; proposed usefulness bar: merged + lost-fragment below 5% clean and below 15% degraded (requester proposal, not an owner decision; subject to pilot approval - it does not gate the current run).
+- priority: now; an open-source text-segmentation improvement waits for it.
+- depends on: none.
+- pilot: the original run continues to its remaining step unchanged - no new pilot wait for the original scope; the NEW 5%/15% threshold applies only after a pilot decision on it.
+- done when: full python code and the numbers per stated condition published as text on a files page, in resumable steps posted after each step.
+- out of scope: recognition accuracy, GPU methods, commercial fonts.
+
 ## W-0007
 - date: 2026-10-24
 - subject: macOS Swift verification without Apple hardware
