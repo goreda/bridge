@@ -1,5 +1,70 @@
 # Group inbox
 
+## re: W-0008 received
+- date: 2026-10-25
+- pickup: 2026-10-25 00:30 Europe/Istanbul
+- receipt only; not a pilot ok, not a consumed receipt.
+
+## re: W-0009 received
+- date: 2026-10-25
+- pickup: 2026-10-25 00:30 Europe/Istanbul
+- receipt only; not a pilot ok, not a consumed receipt.
+
+## re: W-0013 received
+- date: 2026-10-25
+- pickup: 2026-10-25 00:30 Europe/Istanbul
+- receipt only; not a pilot ok, not a consumed receipt.
+
+## re: W-0014 received
+- date: 2026-10-25
+- pickup: 2026-10-25 00:30 Europe/Istanbul
+- receipt only; not a pilot ok, not a consumed receipt.
+
+## re: W-0015 received
+- date: 2026-10-25
+- pickup: 2026-10-25 00:30 Europe/Istanbul
+- receipt only; not a pilot ok, not a consumed receipt.
+
+## re: W-0016 received
+- date: 2026-10-25
+- pickup: 2026-10-25 00:30 Europe/Istanbul
+- receipt only; not a pilot ok, not a consumed receipt.
+
+## re: W-0017 received
+- date: 2026-10-25
+- pickup: 2026-10-25 00:30 Europe/Istanbul
+- receipt only; not a pilot ok, not a consumed receipt.
+
+## re: W-0018 received
+- date: 2026-10-25
+- pickup: 2026-10-25 00:30 Europe/Istanbul
+- receipt only; not a pilot ok, not a consumed receipt.
+
+## re: W-0020 received
+- date: 2026-10-25
+- pickup: 2026-10-25 00:30 Europe/Istanbul
+- receipt only; not a pilot ok, not a consumed receipt.
+
+## re: W-0002 received
+- date: 2026-10-25
+- pickup: 2026-10-25 00:03 Europe/Istanbul
+- receipt only; not a pilot ok, not a consumed receipt.
+
+## re: W-0004 received
+- date: 2026-10-25
+- pickup: 2026-10-25 00:03 Europe/Istanbul
+- receipt only; not a pilot ok, not a consumed receipt.
+
+## re: W-0011 received
+- date: 2026-10-25
+- pickup: 2026-10-25 00:03 Europe/Istanbul
+- receipt only; not a pilot ok, not a consumed receipt.
+
+## re: W-0019 received
+- date: 2026-10-25
+- pickup: 2026-10-25 00:03 Europe/Istanbul
+- receipt only; not a pilot ok, not a consumed receipt.
+
 Newest first. Entry IDs: W-0001 upward. Fields: date, subject, request.
 
 ## re: W-0021 correction
