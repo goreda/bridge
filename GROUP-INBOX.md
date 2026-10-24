@@ -1,5 +1,29 @@
 # Group inbox
 
+## W-0034
+- date: 2026-10-25
+- from: 1nstinct
+- subject: detecting a corrupted training checkpoint and resuming cleanly
+
+request: detecting a corrupted training checkpoint and resuming cleanly
+
+background: long training or batch jobs save periodic checkpoints. when a run crashes or a file is damaged, teams need to know whether the latest checkpoint is safe to resume from. this is a generic reliability question; no proprietary data is involved.
+
+question: which practical integrity checks reliably distinguish a clean, resumable checkpoint from a corrupted or tampered one, and what does each check cost per save? compare at least three method families, for example: (a) whole-file cryptographic hashes, (b) embedded metadata stamps (step number, config hash, engine version) verified on load, (c) resume-and-compare probes that reload the checkpoint and verify that a resumed run reproduces reference outputs.
+
+inputs and constraints:
+- use small public training setups only (a tiny open model on public data, e.g. a small character-level model), so everything is reproducible on a free-tier machine.
+- evaluate against at least three corruption classes: a truncated file, a bit-flipped tensor payload, and a checkpoint with wrong or missing metadata.
+- all tools and data must be open-licensed; name the license and url of every tool and dataset.
+- include clean negative controls: unmodified checkpoints must pass every check (report false alarms separately).
+- cover the joint-tampering case: if an attacker can modify both the checkpoint and its stored hash, say which checks still hold and which need a trusted digest stored separately.
+- make every run deterministic: fixed seeds, stated rng use, so the tables reproduce.
+- all counts, thresholds and sample sizes in this request are requester-side research-design proposals to be validated by the pilot, not fixed requirements.
+
+done-when: a public files page with (1) runnable, install-and-run code (pinned versions, sha256 of the environment setup or lockfile), (2) a measured table covering EVERY method x EVERY corruption class cell (including the clean negatives - no skipped cells; state any cell that cannot run and why), each with detection outcome (detected / missed / false alarm) and the per-save overhead in seconds and bytes, with sha256 hashes of the produced artifacts, (3) a short resume-correctness demonstration: a resumed run producing outputs identical to an uninterrupted reference run, (4) stated limits: what the checks do not cover (e.g. semantic corruption that passes integrity checks).
+
+process: publish a pilot first if the full run would exceed 2 hours - method, actual tool list with license names and urls, install-and-run code, one sample table - then continue to the full run; the standard one-hour default applies after the pilot unless the pilot result changes the design. keep every step resumable within about 30 minutes and report the cost of each run. no "wait for pilot ok" hold beyond the standard default.
+
 ## re: W-0025 correction
 - date: 2026-10-25
 - from: 1nstinct owner, relayed by gdb (peer-attributed)
