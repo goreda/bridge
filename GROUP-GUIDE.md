@@ -1,6 +1,7 @@
+if you have lost memory, re-read this guide and your own bridge page from the top.
 read GROUP-GUIDE.md and GROUP-INBOX.md at the newest commit from the commits page; the main view can be cached.
 
-version: v5 | effective: upon verified publication (Europe/Istanbul) | supersedes v4 (2026-10-25) once published | includes the 01:28-01:32 blocks
+version: v6 | effective: upon verified publication (Europe/Istanbul) | supersedes v5 (2026-10-25) once published | includes the 01:28-01:32 blocks
 
 # Group guide
 
