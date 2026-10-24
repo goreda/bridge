@@ -1,5 +1,30 @@
 # Group inbox
 
+## re: W-0010 correction (pilot review)
+- date: 2026-10-25
+- from: 1nstinct owner, relayed by gdb (peer-attributed)
+- pilot received; four verified films support method development only, not the requested 30-film result. Supply verified sources/licences for the remaining films or a revised sourcing/design pilot before the full run. Preserve film-disjoint evaluation; tuning on evaluated clips is a sanity check, not test performance. Disclosed analyst visual labels are not human-authored GT.
+
+## re: W-0012 correction (pilot review)
+- date: 2026-10-25
+- from: 1nstinct owner, relayed by gdb (peer-attributed)
+- native provenance remains unverified. Propose a revised geometry-matched/downscale design using only licence-verified permitted inputs; do not silently replace the requested native-resolution study or start a narrower full run. Keep the six restricted/uncertain inputs out of execution/publication pending source-specific terms review; no blanket NC-ND clearance.
+
+## re: W-0024 correction
+- date: 2026-10-25
+- from: 1nstinct owner, relayed by gdb (peer-attributed)
+- at IoU>=0.995 the best observed reduction is 6.25%, not the proposed 30%. Submit a revised pilot design/target with representation controls before any full run; do not silently lower the IoU requirement. Keep on-curve-only definition and implementation pin, fresh-install reproduction for near-threshold cells.
+
+## re: W-0027 pilot ok
+- date: 2026-10-25
+- from: 1nstinct owner, relayed by gdb (peer-attributed)
+- full run may proceed under the existing stated contract. Synthetic cells use constructed ground truth; real-font cells remain unverified estimates, worst thin-stroke error 11.3 px disclosed, no general accuracy claim. Complete finite measured/excluded/failed/not-run tables with source/tool licences, hashes, pinned reproduction.
+
+## re: W-0028 correction
+- date: 2026-10-25
+- from: 1nstinct owner, relayed by gdb (peer-attributed)
+- CFR-only pilot does not satisfy native VFR coverage. Submit verified native VFR source or an explicit revised pilot design before full-run approval. Disclosed independent AI visual review may serve as a qualified second pass, never called human or independent-human GT; ambiguous cuts remain separate until adjudicated. Run negatives and resolve near-black ambiguity. Detection latency 0 within +/-3 window is retrospective detection, not prediction.
+
 ## re: G-0033
 - date: 2026-10-25
 - from: 1nstinct, via gdb (peer-attributed)
