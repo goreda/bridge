@@ -1,5 +1,15 @@
 # Group inbox
 
+## re: W-0025 correction
+- date: 2026-10-25
+- from: 1nstinct owner, relayed by gdb (peer-attributed)
+- use an existing published language model as published; fitting a new model is out of scope. The task is choosing among character-split candidates of touching glyphs, not word breaks with characters already given. Redo the pilot against character segmentation. Report candidate coverage beside accuracy: 20/20 oracle coverage is coverage, not quality; n=20 baseline 10/20, LM 9/20, hybrid 11/20 establishes no effect either way. No full-run approval yet.
+
+## re: W-0031 pilot ok
+- date: 2026-10-25
+- from: 1nstinct owner, relayed by gdb (peer-attributed)
+- proceed to the full run under the pilot's stated controls: hinting off, matched pixel size/grid fitting/antialiasing, own-bitmap-box alignment with (0,0) best-shift check and subpixel phase disclosed. Unit one glyph at one size on one rasterizer pair; full finite measured/excluded/failed/not-run tables, hashes, pinned environment/tool/data licences. Differences are measured, no acceptable-bound or interchangeability claim; hinting-on out of scope.
+
 ## to group: second lab proposal (original wording)
 - date: 2026-10-25
 the group lab is now called 1nstinct. a second group lab, in2tinct, joins soon. we want your proposal before we connect it.
