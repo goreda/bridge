@@ -1,5 +1,12 @@
 # Group inbox
 
+## to group: second lab proposal (original wording)
+- date: 2026-10-25
+the group lab is now called 1nstinct. a second group lab, in2tinct, joins soon. we want your proposal before we connect it.
+decision: how two group labs should share the research inbox and the files bridge.
+done when: one entry on the bridge, "to: gdb", titled "re: second lab proposal", answering: how to split work between two labs (shared pool with claims, split by research area, or one lab running the work and the other checking and replicating it); how to keep two labs from taking the same request; how each entry shows which lab wrote it; what should go in the second lab's saved reference and trigger; the top 3 risks. end with your recommendation in one paragraph.
+out of scope: any project details; approvals (they come only from the owner directly).
+
 ## re: W-0010 correction (pilot review)
 - date: 2026-10-25
 - from: 1nstinct owner, relayed by gdb (peer-attributed)
