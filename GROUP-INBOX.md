@@ -1,5 +1,89 @@
 # Group inbox
 
+## W-0035 sub-frame scene-cut boundary estimation from adjacent-frame statistics
+- date: 2026-10-25
+- request: sub-frame scene-cut boundary estimation from adjacent-frame statistics.
+- decision: which published estimator best locates a hard cut between two frames given only per-frame statistics (mean luma, histograms), and whether a non-grid midpoint assumption biases frame-accurate snap decisions.
+- inputs: published research on scene-cut/shot-boundary detection at sub-frame precision; synthetic CFR and VFR clips with known cut positions (license-named generators); ffmpeg or comparable open tools with license names and urls.
+- unit: one synthetic clip with one known hard cut.
+- measure: absolute boundary error in frames (0.25-frame buckets), mean and p95, per estimator; bias sign reported separately.
+- priority: today; cut-synchronized capture work waits on it.
+- depends on: none.
+- pilot: method, tool and generator list with licenses, install-and-run code, one sample table of about 10 clips.
+- done when: the comparison table with per-estimator error and bias, full code, and a stated recommendation for a 0-frame-tolerance consumer.
+- out of scope: neural scene detectors; content-aware (semantic) cut classification.
+- interface: function estimate_cut_pts(prev_stats, next_stats, frame_rate) -> float seconds; input json on stdin, output json {"cut_pts": float, "confidence": float}; test: 10 provided synthetic clips must each return within +-0.5 frame of the known cut.
+
+## W-0036 frame-accurate capture under queue saturation
+- date: 2026-10-25
+- request: how player/render queues distort frame-accurate capture timing under saturation, and mitigations.
+- decision: whether queue-drained capture needs back-pressure, deadline timers, or position gates to hold 0-frame error under load.
+- inputs: published documentation and measurements of media player render queues (mpv, vlc, ffmpeg filters) with license names; synthetic load harness on open tools.
+- unit: one capture run at one load level.
+- measure: capture offset in frames versus a no-load control, over 30 runs per configuration; variance reported, not only mean.
+- priority: today; cut-synchronized capture work waits on it.
+- depends on: none.
+- pilot: harness design, tool list with licenses, install-and-run code, one sample table of 5 runs.
+- done when: offset table per mitigation (none, back-pressure, deadline, position gate) with variance and a recommendation; full code.
+- out of scope: hardware-specific GPU behavior; proprietary players.
+- interface: function run_capture(config_json) -> {"offset_frames": int, "runs": [...]}; test: the no-load control must return 0 on 30/30 runs.
+
+## W-0037 CFR vs VFR timestamp handling in open video tools
+- date: 2026-10-25
+- request: how open video tools derive and rebase timestamps for CFR versus VFR sources, and where frame-accurate seeks silently fall back.
+- decision: which timestamp mode a frame-accurate consumer must request, and what fallback behavior to detect.
+- inputs: ffmpeg/gstreamer/mp4box documentation and source behavior notes with license names and urls; synthetic CFR and VFR files with known pts grids.
+- unit: one file in one timestamp mode.
+- measure: correctness of reported pts per frame against the known grid (exact match count), and detection of any rebasing or fallback.
+- priority: today; cut-synchronized capture work waits on it.
+- depends on: none.
+- pilot: method, tool list with licenses, install-and-run code, one sample table of 2 files.
+- done when: a table of mode x tool x behavior with exact pts match counts, full code, and a consumer recommendation.
+- out of scope: codec internals; streaming protocols.
+- interface: function probe_grid(path) -> json per-frame pts list; test: two provided synthetic files must reproduce their known grids exactly.
+
+## W-0038 curve fitting: join fidelity under tolerance-driven simplification
+- date: 2026-10-25
+- request: published methods for preserving join semantics (miter, bevel, corner) when fitting cubic curves to polylines under an error tolerance.
+- decision: which join-preservation rule a curve fitter should adopt to avoid corner artifacts at strict tolerance.
+- inputs: published curve-fitting / polygon-simplification literature and open implementations with license names and urls; synthetic polyline fixtures with known joins.
+- unit: one polyline with one or more joins.
+- measure: join-corner artifact count and max deviation in pixels at fixed tolerance, per method.
+- priority: today; curve fidelity work waits on it.
+- depends on: none.
+- pilot: method list with licenses, install-and-run code, one sample table of 10 fixtures.
+- done when: the comparison table with artifact counts and deviations, full code, and a recommended rule.
+- out of scope: font-specific hinting; rasterization.
+- interface: function fit(polyline_json, tolerance) -> segments_json; test: 10 provided fixtures must show zero join-corner artifacts under the recommended rule.
+
+## W-0039 straight-edge capture bias from rasterization thresholds
+- date: 2026-10-25
+- request: measuring and correcting systematic over/under-coverage when a coverage threshold converts antialiased edges to polygons.
+- decision: whether a threshold-derived polygon carries a measurable one-sided bias on straight edges, and the correction term.
+- inputs: published antialiasing/coverage literature with license names; synthetic straight-edge renders at known angles and positions.
+- unit: one straight edge at one angle.
+- measure: signed coverage error along the edge (mean and max) before and after correction.
+- priority: today; curve fidelity work waits on it.
+- depends on: none.
+- pilot: method, tool list with licenses, install-and-run code, one sample table of 8 angles.
+- done when: the bias table per angle, the correction term with measured effect, full code.
+- out of scope: hinting; subpixel rendering layouts.
+- interface: function measure_bias(edge_json, threshold) -> {"mean_error": float, "correction": float}; test: the corrected output must halve the mean signed error on the provided fixtures.
+
+## W-0040 decision-identical caching for repeated geometric evaluations
+- date: 2026-10-25
+- request: cache designs for repeated expensive geometric evaluations that provably return decision-identical results.
+- decision: which cache key and equivalence proof lets an iterative fitter cut runtime without changing any decision.
+- inputs: published memoization/incremental-evaluation approaches with license names; a synthetic evaluator with known decision outputs.
+- unit: one evaluation sequence.
+- measure: runtime reduction ratio and decision mismatches (must be zero) over 100 sequences.
+- priority: later this week.
+- depends on: none.
+- pilot: method, license list, install-and-run code, one sample table of 5 sequences.
+- done when: the table with runtime ratios and zero-mismatch evidence, full code, and cache key specification.
+- out of scope: approximate caching; probabilistic sketches.
+- interface: function evaluate_with_cache(seq_json) -> {"decisions": [...], "cache_hits": int}; test: decisions must equal the uncached baseline on all 100 sequences.
+
 ## W-0034
 - date: 2026-10-25
 - from: 1nstinct
