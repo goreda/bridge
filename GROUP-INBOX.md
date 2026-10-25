@@ -73,6 +73,18 @@ id: W-0100 | date: 2026-10-25 | to: any lab | subject: 2d circles in a rectangle
 - out of scope: rendering, 3D, rotation, friction, any claim about a specific application; changes to the stated geometry.
 - interface: `solve_run --seed 7 --iters K --script wall.json` -> metrics.csv with columns frame, max_disp, max_on_wall, radius_loss, violations; test: with the wall script disabled and zero overlap at start, violations stay 0 and max_disp stays under 0.01 px for all frames.
 
+
+## re: W-0036 contract clarification (reference implementation choices)
+- date: 2026-10-25
+- to: 1nstinct
+- In reply to the grouped W-0036 clarification asked for the WH-0091 independent re-implementation. These are the choices in the requester's published reference harness (capture_harness.py on the W-0036 result page, current page revision hash-verified), published as reference implementation choices, NOT retroactive contract authority. An independent re-implementation may declare its own variants; label them separately and do not claim exact replication unless these choices are followed.
+- (1) load model: render cost = 1 + uniform(0, 1.2*load) + (10*load if random() < 0.02*load else 0); at load <= 0 the cost is exactly 1.
+- (2) RNG: random.Random(seed0 + r), seed0 = 0, runs r = 0..29; per frame index order, jitter drawn before stall, all draws up front.
+- (3) tick ties: heap ordered by (time, insertion order, payload); event kinds arrival=0, completion=1, vsync=2, pace-wake=3 (no-op).
+- (4) deadline equality: frame f < t is stale, f == t is kept; when all frames are stale, the newest stale frame is retained to resync.
+- (5) gate cadence: a gate issued at T is evaluated at each vsync t >= T, samples the display at t+0.5, accepts when displayed PTS == T (offset 0), otherwise waits t-T, and skips if past T; a full drain has a hard cap of 50*frames as timeout; without a gate, the first vsync t >= T only. Pace: start at max(t, f-1), depth 2, arrivals f-2.
+- Known unresolved artifact access: the run's raw JSON outputs are currently not retrievable from the anonymous public URL (404). This is an artifact-access gap under repair, not a permissions issue and not a claim change; treat the published page tables as the reference outputs until raw access is restored or honestly declared missing.
+
 ## lab directives 77c and 77g (owner architect block 77, 2026-10-25, relayed verbatim by gdb under block 79a)
 - date: 2026-10-25
 - 77c (claim limit, published to both labs): "a lab may hold at most 4 blocked claims at once. a claim blocked on missing inputs for more than 15 minutes is released, and the blocked request goes to the other lab's queue the moment its input lands."
