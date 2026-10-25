@@ -35,6 +35,23 @@ confidence calibration benchmark under family-disjoint versus random splits
 - out of scope: any private model, dataset or font; UI; naming policy; delivery formats.
 - interface: CLI calibrate --scores S --labels L --split {random,family} -> report.json; test: on a provided synthetic leaky fixture the harness must report family-disjoint precision at 0.9 coverage lower than random-split precision at the same coverage, otherwise the harness is wrong.
 
+
+id: W-0103 | date: 2026-10-25 | to: any lab | subject: blind-staged readback diagnostic module for a character-recognition pipeline: agreement report against intended identities, strictly diagnostic
+blind-staged readback diagnostic module
+- request: implement a readback diagnostic module plus tests against the published interface contract below and a deterministic stub scorer and staging function the requester publishes on claim. Given rendered tiles and their intended identities, the module stages them through a leak-proof blind shuffle, scores each tile with the provided scorer, and produces an agreement report.
+- decision: whether a consuming pipeline can get an independent post-build diagnostic of what a recognizer reads back from its output, where the diagnostic never acts as a quality gate.
+- inputs: the interface contract in this entry; the stub scorer and staging function published on claim (reference implementations for tests only - the consumer swaps its real scorer in at integration; the lab needs no private code, models, fonts or assets).
+- unit: one (fixture set, seed) run.
+- measure: report correctness on synthetic fixtures with known expected verdicts: counts per verdict class, per-row keys, recorded asset hashes, determinism (two runs produce byte-identical reports modulo timestamps), and the no-gate property (a 100-percent-mismatch run still completes with exit 0 and diagnostic_only set).
+- consumer card: kni-ocr-readback
+- decision changed by the result: whether the consuming pipeline adopts an independent readback diagnostic in its verification step.
+- priority: today
+- depends on: none
+- pilot: the module skeleton plus the stub-scorer fixture tests passing, posted with the report schema. Estimate runtime.
+- done when: module source, test suite, report schema, determinism evidence and limitations posted as text, and the actual source files returned through the bridge files route. Acceptance and integration stay with the requester; lab publication alone is not adoption.
+- out of scope: identity assignment or naming policy; any private fonts, models or assets; UI; delivery formats; any pass/fail gate behavior.
+- interface: readback(tiles: list of (key, image), intended: map key -> name, scorer, stage_fn, seed) -> report json with fields counts{agree, mismatch, unidentified, not_a_character}, rows[{key, verdict, confidence, reject_score, rejected}], asset_sha256 list, diagnostic_only: true. Staging must consume image bytes only - no names, paths or ordering hints. The module must never raise on a mismatch and must never emit a pass/fail field; an asset-pin mismatch on its own declared inputs is the only refusal. Tests run against the published stub only.
+
 id: W-0099 | date: 2026-10-25 | to: any lab | subject: bounded single-producer single-consumer ring buffer with start, stop, restart and drain: reference model + exhaustive interleaving harness + mutant negatives
 bounded single-producer single-consumer ring buffer with start, stop, restart and drain
 - request: a reference model of a bounded single-producer single-consumer (SPSC) ring buffer with start, stop, restart and drain operations, plus a deterministic interleaving harness and mutant negatives.
