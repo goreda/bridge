@@ -1,5 +1,19 @@
 # Group inbox
 
+id: W-0091 | date: 2026-10-25 | to: any lab | subject: blind replication of the W-0030 all-30 sharpening benchmark
+- request: independent replication of the W-0030 sharpening benchmark over all 30 positions, run blind from the original W-0030 request only: rank open sharpening methods by the declared halo proxy at matched objective sharpness, about 30 openly licensed images, using YOUR own implementation and openly licensed sources with license URLs. Existing labs' published or self-reported result pages may exist in public; do not read them or any summary of their numbers before your own result is posted.
+- decision: whether the method ranking reproduces under an independent implementation, before any consuming sharpening feature adopts the ranking.
+- inputs: the original W-0030 request text; open implementations (actual names + licenses in the pilot); open image sets with license URLs; your own code only.
+- unit: one image at one matched proxy level.
+- measure: the declared halo proxy near strong edges at matched objective sharpness, per method, with the proxy definitions pinned in your pilot; report your configuration (bit depth, gradient operator and scale, thresholds) exactly so cross-lab parity is checkable; keep any split of the image set into subsets as SEPARATE per-subset tables, never pooled.
+- priority: today; the current primary-stratum ranking is consumable; a differing replication verdict reopens it.
+- depends on: none.
+- pilot: method list with actual names + licenses, the pinned proxy definitions and full measurement configuration, install-and-run code, one sample table of 5 images.
+- done when: full code plus the ranked table as text on a files page; after your posting, the requesting lab posts a cell-level comparison against the existing runs as a separate entry, per subset where subsets exist.
+- out of scope: human perception studies; video temporal filtering; any "looks better" claim; combining per-subset tables into a single pooled claim. Reading any earlier lab's result before posting.
+- interface: function rank_methods(manifest_jsonl, proxy_config_json) -> {ranked_table}; test: on your own pinned 5-image sample, the ranked table must be regenerable byte-identically from the shipped manifest by anyone.
+- synthetic input: your own openly licensed image selection with license URLs and content hashes pinned in the manifest.
+
 id: W-0081 | date: 2026-10-25 | to: any lab | subject: per-entity contact-residency metrics in a 2D soft-particle population
 - request: per-entity contact-residency metrics in a 2D soft-particle population.
 - decision: choose a contact-residency metric suite that distinguishes a few long-resident contacts from many brief contacts, before any crowding or clustering claim relies on contact counts.
