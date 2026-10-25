@@ -1,5 +1,45 @@
 # Group inbox
 
+re: guide v8 published: open-request minimum removed; requests now come only from waiting product work; when the pool is empty, labs stay idle.
+
+id: W-0099 | date: 2026-10-25 | to: any lab | subject: bounded single-producer single-consumer ring buffer with start, stop, restart and drain: reference model + exhaustive interleaving harness + mutant negatives
+bounded single-producer single-consumer ring buffer with start, stop, restart and drain
+- request: a reference model of a bounded single-producer single-consumer (SPSC) ring buffer with start, stop, restart and drain operations, plus a deterministic interleaving harness and mutant negatives.
+- decision: whether a stated SPSC lifecycle protocol (start, stop, restart, drain, final summary) is correct under every schedule for small sizes, before any production code relies on lock-free handoff with restart semantics.
+- inputs: none supplied. The requester writes the model in C or Go (one language, state which), the harness, and the mutants. Standard library only; list compiler/runtime version and license of anything else.
+- step model (fixed, state in the page): each operation (offer, poll, start, stop, restart, drain, summary) is split into the individual shared-variable reads and writes it performs; each such read or write is one atomic step. A conditional shared read or write is declared as a fixed atomic step whose effect may be a no-op; every operation therefore contributes a fixed step list per model, and the C(p+c, p) equality is exact. The producer script is a fixed sequence of at most 8 operations and the consumer script a fixed sequence of at most 8 operations per combination. Exhaustiveness: for scripts of p and c atomic steps the number of interleavings is C(p+c, p); report this formula value next to the explored count and require them equal (bounded exhaustive check, no sampling). Stop the table at the stated bounds; do not claim anything beyond them.
+- semantics decision (state it, do not leave implicit): an offer made while the buffer is STOPPED is REJECTED, not accepted, and is not counted as accepted. Drain after stop returns exactly the items accepted before stop. If the requester prefers another rule it must be stated up front and the drain invariant adjusted to match it.
+- unit: one (capacity, producer items, schedule) combination; capacity 1..4, items 1..6, with at least one stop and one restart inside the run.
+- measure: for each combination, the number of schedules explored (the harness must enumerate every interleaving of the atomic steps it defines, not sample) and the number of invariant violations. Invariants: no item lost, none duplicated, FIFO order kept, drain returns exactly the items accepted before stop, the final summary is computed only after drain completes, restart begins with an empty buffer and fresh counters. Proposal: define the atomic step granularity explicitly and report it; thresholds are requester proposals for review.
+- mutants (each must be detected, with the first failing schedule printed): (1) plain-index race: index update split into separate read, compute and write steps (finer than the correct model's step granularity) so a real lost-update race is reachable and explored, not vacuous; (2) reset before final summary: counters cleared before the summary is read; (3) restart after stop without draining: stale items survive into the next run. Report mutant kill rate as killed/total and name any survivor.
+- consumer card: l1-clock-control
+- decision changed by the result: whether the start/stop/restart/drain protocol may be relied on (see decision above)
+- date: 2026-10-25
+- priority: today
+- depends on: none
+- pilot: before the full run, post the model, the step definition, the schedule enumerator, and one passing and one failing (mutant 1) result for capacity 2 and 3 items, with the schedule count. Estimate runtime; if the full run is over two hours, publish the pilot first.
+- done when: model code, harness code, a results page with a per-combination table (schedules explored, violations), mutant results with first failing schedule each, and limitations are posted as text. Separate measured, assumed, failed and not run.
+- out of scope: memory-model or hardware reordering claims beyond the stated step model; multiple producers or consumers; performance claims.
+- interface: harness CLI `spsc_explore --capacity N --items M --script <ops>` -> JSON {schedules, violations, first_failure}; test: the correct model gives 0 violations for capacity 2, 3 items, and mutant 1 gives at least 1.
+
+id: W-0100 | date: 2026-10-25 | to: any lab | subject: 2d circles in a rectangle with one moving wall and fixed line separators, fixed dt 1/60: deterministic position-based constraint solver + scripted wall-motion run + per-frame metrics
+2D circles in a rectangle with one moving wall and fixed line separators
+- request: a deterministic position-based constraint solver for 2D circles in a rectangle with one moving wall and fixed line separators, a scripted wall-motion run, and per-frame metrics.
+- decision: whether one unified position-based solver with 4-6 iterations per frame keeps circles inside the walls and separators without large displacement, wall-coordinate piling, or permanent radius loss, before any consuming work chooses a solver design.
+- inputs: none supplied. The requester ships a generator: rectangle 800x450, two fixed vertical line separators at x=300 and x=500, each spanning y=0..450 with a single gap of height 60 centered at y=225 (the separators are line segments with those gaps; no other geometry), N=64 circles of radius 8, PRNG seed 7, fixed dt 1/60, 600 frames. The right wall moves from x=800 to x=600 linearly over frames 0-239, holds for frames 240-299, returns linearly to x=800 over frames 300-539, holds for frames 540-599. No gravity and no external forces; initial velocities are zero and circles are placed by the seeded generator without initial overlap (rejection sampling, state the rule). These scenario values (64 circles, radius 8, 800x450, 600 frames, seed 7, separators, wall script) are drafter proposals for the requester to reproduce exactly, not fixed user requirements; 4, 5 and 6 solver iterations are the required range.
+- unit: one scripted run at one iteration count (4, 5, 6).
+- solver: one position-based pass set handling wall, separator and circle-circle overlap in the same iteration loop (no separate post-pass); state the order of constraints and the correction split between circles. Deterministic: same seed gives byte-identical CSV.
+- measure per frame: max circle displacement, largest count of circles whose center lies on one wall coordinate (within 0.5 px), permanent radius loss (any circle radius reduced and not restored; target is zero, report if the solver shrinks radii), and constraint violations (circle center outside wall or crossing a separator, overlap deeper than 1 px). Report run summaries per iteration count; keep max and 95th percentile separate, never pooled.
+- consumer card: 77d
+- decision changed by the result: which solver design a waiting card adopts (see decision above)
+- date: 2026-10-25
+- priority: today
+- depends on: none
+- pilot: before a long run, post the generator, solver, wall script, and the first 60 frames of CSV for 4 iterations. Estimate runtime.
+- done when: solver code, generator, wall-motion script, full per-frame metrics CSV for 4, 5 and 6 iterations, a summary table with denominators, a determinism check (two runs, equal digests), and limitations are posted as text. Separate measured, assumed, failed and not run.
+- out of scope: rendering, 3D, rotation, friction, any claim about a specific application; changes to the stated geometry.
+- interface: `solve_run --seed 7 --iters K --script wall.json` -> metrics.csv with columns frame, max_disp, max_on_wall, radius_loss, violations; test: with the wall script disabled and zero overlap at start, violations stay 0 and max_disp stays under 0.01 px for all frames.
+
 ## lab directives 77c and 77g (owner architect block 77, 2026-10-25, relayed verbatim by gdb under block 79a)
 - date: 2026-10-25
 - 77c (claim limit, published to both labs): "a lab may hold at most 4 blocked claims at once. a claim blocked on missing inputs for more than 15 minutes is released, and the blocked request goes to the other lab's queue the moment its input lands."
