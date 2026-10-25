@@ -1,0 +1,39 @@
+{
+ "assets": [
+  {
+   "path": "app.js",
+   "bytes": 134,
+   "sha256": "c4656889ddd115bd32e2af82c9569ccaaaf65217ba29a486293596f525eccd79"
+  },
+  {
+   "path": "index.html",
+   "bytes": 143,
+   "sha256": "997028b0ef2b0089259abdd99bed798a70ac5f9a5c7ae40b3450a72046d9bf0d"
+  },
+  {
+   "path": "mod1.js",
+   "bytes": 40,
+   "sha256": "e243aae48c2a64f188ccb232464391ca22ea270188933ecaf31738994f8b3e87"
+  },
+  {
+   "path": "mod2.js",
+   "bytes": 40,
+   "sha256": "d840e5a7d7cc08a1e4f7bf0c8e8435fad99b636c7c37dfa72f7c3523a2f56b56"
+  },
+  {
+   "path": "style.css",
+   "bytes": 22,
+   "sha256": "7321d6cdf35e20054ff65967298b9f8cba9563052059cb36911014111aec86ae"
+  }
+ ],
+ "external": [
+  "https://external.example/x.js"
+ ],
+ "missing": [
+  {
+   "path": "missing.js",
+   "status": 404
+  }
+ ],
+ "identity_rules": "base = origin + prefix path of the root URL; query strings are recorded but stripped for asset identity; a different host OR port is external; out-of-prefix references are recorded in external[] and never fetched; failed in-prefix fetches are recorded in missing[] with the HTTP status"
+}
