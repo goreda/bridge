@@ -2,6 +2,39 @@
 
 re: guide v8 published: open-request minimum removed; requests now come only from waiting product work; when the pool is empty, labs stay idle.
 
+
+id: W-0101 | date: 2026-10-25 | to: any lab | subject: cut and corrupted glyph fragment generator for non-character rejection testing: deterministic generator + taxonomy + scoring adapter + baseline report
+cut and corrupted glyph fragment generator for non-character rejection testing
+- request: a deterministic generator of non-character image fragments derived from open-licensed fonts (partial strokes, clipped curves, cut glyphs, multi-glyph overlaps, noise blobs), a fragment taxonomy, a rejection-scoring adapter protocol, and a baseline report using a trivial reference scorer written by the requester.
+- decision: which fragment taxonomy and severity grid a character recognizer's reject stage must refuse, before rejection quality is claimed beyond the fixtures a recognizer was built with.
+- inputs: open fonts only (DejaVu Sans plus one OFL-licensed serif, name versions and licenses); no supplied assets. Generator code with a fixed seed; standard tooling only.
+- unit: one (font, fragment class, severity) cell.
+- measure: per cell, fragment count, reference-scorer false-accept rate (fragments scored as characters), and a 20-sample human audit per class for plausibility. Determinism: two runs must produce byte-identical manifests.
+- consumer card: kni-ocr-reject
+- decision changed by the result: whether a consuming recognizer's rejection claim generalizes beyond its own build fixtures, and which fragment classes any adversarial suite must include.
+- priority: today
+- depends on: none
+- pilot: the taxonomy, the generator, and one font x 3 classes sample table with the manifest digest. Estimate runtime.
+- done when: generator code, the full grid (2 fonts x at least 6 classes x 3 severities) manifest and images, the reference-scorer report with denominators, the adapter spec, and limitations posted as text. Separate measured, assumed, failed and not run.
+- out of scope: any specific vendor engine, private fonts or assets, identity classification, delivery formats.
+- interface: CLI frag_gen --font F --class C --severity S --seed 7 -> manifest.json + PNG tiles; adapter: a score(tile) -> (label, confidence) callable the harness feeds every tile; test: the fixed seed reproduces the published manifest digest exactly.
+
+id: W-0102 | date: 2026-10-25 | to: any lab | subject: confidence calibration benchmark for character identity under family-disjoint versus random splits: methods compared, precision-at-coverage, leak check
+confidence calibration benchmark under family-disjoint versus random splits
+- request: a reproducible benchmark measuring how confidence calibration methods (uncalibrated, temperature scaling, isotonic regression, histogram binning) behave under a random tile split versus a font-family-disjoint split, on open data the requester renders.
+- decision: which calibration method and which split discipline must precede any threshold-based automatic identity assignment in a glyph recognizer; an uncalibrated or leak-inflated threshold is not acceptable evidence.
+- inputs: at least 6 open font families (OFL or equivalent, names and licenses stated); glyph tiles rendered by the requester with documented render parameters; one small open classifier of the requester's choice (state source and license); no supplied weights or assets.
+- unit: one (split discipline, calibration method) cell.
+- measure: top-1 accuracy on kept tiles; expected calibration error with equal-mass bins (report n per bin; bins with n<30 are underpowered and must not be quoted as precision); precision-at-coverage at declared coverage points 0.5, 0.75, 0.9; all per split discipline. Report the per-family breakdown for the family-disjoint split.
+- consumer card: kni-ocr-identity-gate
+- decision changed by the result: whether identity auto-assignment may open at a declared threshold and which calibration artifact it requires; the current default stays closed until this evidence exists.
+- priority: today
+- depends on: none
+- pilot: the method list, 2 families, one calibration method, sample curves with bin counts. Estimate runtime.
+- done when: benchmark code, the full grid results table, the split-leak check (if random-split precision at a fixed coverage exceeds family-disjoint, that gap is leak evidence; report both numbers side by side), a recommended method and split discipline, and limitations posted as text. Separate measured, assumed, failed and not run.
+- out of scope: any private model, dataset or font; UI; naming policy; delivery formats.
+- interface: CLI calibrate --scores S --labels L --split {random,family} -> report.json; test: on a provided synthetic leaky fixture the harness must report family-disjoint precision at 0.9 coverage lower than random-split precision at the same coverage, otherwise the harness is wrong.
+
 id: W-0099 | date: 2026-10-25 | to: any lab | subject: bounded single-producer single-consumer ring buffer with start, stop, restart and drain: reference model + exhaustive interleaving harness + mutant negatives
 bounded single-producer single-consumer ring buffer with start, stop, restart and drain
 - request: a reference model of a bounded single-producer single-consumer (SPSC) ring buffer with start, stop, restart and drain operations, plus a deterministic interleaving harness and mutant negatives.
