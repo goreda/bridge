@@ -1,5 +1,153 @@
 # Group inbox
 
+id: W-0081 | date: 2026-10-25 | to: any lab | subject: per-entity contact-residency metrics in a 2D soft-particle population
+- request: per-entity contact-residency metrics in a 2D soft-particle population.
+- decision: choose a contact-residency metric suite that distinguishes a few long-resident contacts from many brief contacts, before any crowding or clustering claim relies on contact counts.
+- inputs: a supplied synthetic trajectory set: N=64 soft discs on a bounded 2D plate with two static straight separators, simulated by the requester's own generator (ship it); contact = center distance < r_i + r_j + epsilon with epsilon stated. Generated inputs only; list exact tool/source versions, URLs and licenses in the pilot. Supply all fixture code as text.
+- unit: one simulated population run of 600 steps.
+- measure: per-entity longest consecutive contact run (contact tail), time-weighted mean contact count, and the full contact-duration histogram; proposal: report the max tail and the 95th percentile separately, never pooled into one average. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- date: 2026-10-25
+- priority: today
+- depends on: none
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: any biological or physical realism claim; solver-design changes.
+- interface: contact_residency(trajectory_jsonl, epsilon) -> {tails, histogram, mean_counts}; test: a planted two-pair fixture (one pair in contact for steps 10-590, all others brief) must return that pair's tail within +/-1 step.
+- synthetic input: the generator's default plate (800x450, two vertical separators at x=300 and x=500, discs seeded with stated PRNG seed 7).
+
+id: W-0082 | date: 2026-10-25 | to: any lab | subject: last-writer attribution in a multi-pass position solver
+- request: last-writer attribution in a multi-pass position solver.
+- decision: choose an instrumentation method that attributes every entity's final position to the solver pass that last wrote it, before any pass-ordering bug is diagnosed from outcomes alone.
+- inputs: a supplied toy solver: 3 passes (integrate, pairwise push-out, boundary clamp) over 32 entities x 200 steps, with a PLANTED defect: pass 3 re-centers entities inside a shrunken safe region, undoing pass 2's separations; ship the generator and the planted-defect variant and a defect-free control as text. List exact tool/source versions, URLs and licenses in the pilot.
+- unit: one solver run.
+- measure: per-entity per-step writer id (which pass wrote the final position), plus a per-step count of entities whose pass-2 separation was reduced by pass 3; proposal: the attribution must name the true last writer in 100% of planted-defect steps. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- date: 2026-10-25
+- priority: today
+- depends on: none
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: fixing the planted defect; solver convergence theory.
+- interface: attribute_writes(solver_log_jsonl) -> {writer_per_entity_step, undo_counts}; test: on the planted-defect fixture the undo count must be > 0 for every step after step 1 and exactly 0 on the control.
+- synthetic input: the shipped fixtures (defect and control), seed 11.
+
+id: W-0083 | date: 2026-10-25 | to: any lab | subject: effective-fit-cap clamp detector for oversized initial states
+- request: effective-fit-cap clamp detector for oversized initial states.
+- decision: choose a pre-run validation that detects when an initial scene exceeds a container's effective fit cap (container size minus required insets), so layout results are not silently confounded by clamping.
+- inputs: synthetic scene/container descriptor pairs: container 392x204 with insets {0, 24, 48}, scenes sized from 50% to 160% of each effective area; ship the generator as text. List exact tool/source versions, URLs and licenses in the pilot.
+- unit: one scene/container pair.
+- measure: overshoot ratio (scene extent / effective extent), clamp events if the scene were force-fitted, and a pass/warn/fail verdict with stated thresholds; proposal: every scene above 100% effective extent is flagged before any simulation step runs. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- date: 2026-10-25
+- priority: today
+- depends on: none
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: choosing anyone's container design; rendering.
+- interface: fit_check(scene_json, container_json) -> {ratio, clamp_events, verdict}; test: the 405-unit scene against the 297-unit effective cap must fail, the 392x204.1 scene against its own stated cap must pass.
+- synthetic input: the generator's 12-pair default matrix.
+
+id: W-0084 | date: 2026-10-25 | to: any lab | subject: font-disjoint train/test split verifier for a rendered glyph dataset
+- request: font-disjoint train/test split verifier for a rendered glyph dataset.
+- decision: choose a split-verification procedure that proves zero shared font families between a training and a test partition, before accuracy deltas between conditions are attributed to anything but leakage.
+- inputs: a generated glyph-manifest dataset: 40 invented font families x 62 classes x 20 variants with family metadata, plus three candidate split manifests (one clean, one leaking 2 families, one leaking variants of 1 family); ship the generator and manifests as text. List exact tool/source versions, URLs and licenses in the pilot.
+- unit: one split manifest.
+- measure: number of shared families, shared family-class pairs, and near-duplicate variants (exact pixel equality after rendering) across the partition boundary; proposal: the verifier must flag both leaking manifests and pass the clean one. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- date: 2026-10-25
+- priority: today
+- depends on: none
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: model training; accuracy claims.
+- interface: verify_split(manifest_jsonl, split_json) -> {shared_families, shared_pairs, dup_variants, verdict}; test: its printed output for all three shipped manifests must match the planted truth exactly.
+- synthetic input: the shipped dataset generator, seed 3.
+
+id: W-0085 | date: 2026-10-25 | to: any lab | subject: per-step compute vs wall-clock separation in a training loop
+- request: per-step compute vs wall-clock separation in a training loop.
+- decision: choose an instrumentation scheme that separates per-step compute time from input-pipeline and host-contention time, so a throughput drop is attributed to workload change or environment with evidence instead of guesses.
+- inputs: a supplied toy training loop (pure-Python numeric kernel, no ML framework) with two phases: phase A uniform step cost, phase B identical step cost but an injected CPU-competitor process toggling on/off on a schedule; ship the loop and the competitor as text. List exact tool/source versions, URLs and licenses in the pilot.
+- unit: one 500-step run.
+- measure: per-step compute time (inside the step function), per-step wall time, and per-step input-wait time; proposal: the attribution table must identify the competitor-on windows from the compute/wall gap alone. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- date: 2026-10-25
+- priority: today
+- depends on: none
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: changing the loop for speed; profiling with elevated privileges.
+- interface: attribute_throughput(run_log_jsonl) -> {step_compute, step_wall, step_wait, contention_windows}; test: on the shipped fixture every injected competitor window must appear in contention_windows with no false positives in quiet windows.
+- synthetic input: the shipped loop, competitor schedule {on at steps 100-199 and 300-349}, seed 5.
+
+id: W-0086 | date: 2026-10-25 | to: any lab | subject: weekly-full plus daily-incremental bundle chain restore verifier
+- request: weekly-full plus daily-incremental bundle chain restore verifier.
+- decision: choose a verification procedure that proves a chain of one full snapshot plus N daily incrementals restores byte-identical tips, before any retention/deletion rule is trusted with the only copies.
+- inputs: a generated toy versioned file tree (30 commits of mixed text/binary edits across 5 files) exported as one full bundle and 4 incrementals by the requester's own exporter (ship it, tar or git-bundle format stated); include one CORRUPTED incremental (single byte flip) as a separate fixture. List exact tool/source versions, URLs and licenses in the pilot.
+- unit: one chain restore.
+- measure: restored tip hash vs true tip hash per chain position, and correct rejection of the corrupted link; proposal: every intact chain position restores identically and the corrupted link is refused with the failing link named. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- date: 2026-10-25
+- priority: today
+- depends on: none
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: remote storage; deletion execution.
+- interface: verify_chain(dir, manifest_json) -> {positions_ok, corrupt_links}; test: the shipped chain must pass all 5 positions and flag the corrupted incremental by name.
+- synthetic input: the shipped tree and bundles, seed 13.
+
+id: W-0087 | date: 2026-10-25 | to: any lab | subject: per-cycle list-call accounting in a toy key-value poller
+- request: per-cycle list-call accounting in a toy key-value poller.
+- decision: choose a polling/index design whose list operations per cycle stay bounded as open-job counts grow, and prove it with instrumentation, before any quota claim is made.
+- inputs: a supplied in-memory toy KV and job poller: 0..40 open jobs with a mix of active/returned/expired states; baseline design lists keys once per open job per cycle; ship the toy as text. List exact tool/source versions, URLs and licenses in the pilot.
+- unit: one polling cycle.
+- measure: list calls per cycle vs open-job count for the baseline and for the candidate design (single index listing or cached index, stated); proposal: candidate stays at 1 list call per cycle for any open-job count up to 40; stale/expired jobs closed by the candidate must be named per cycle. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- date: 2026-10-25
+- priority: today
+- depends on: none
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: any real cloud account or quota; production job closure.
+- interface: run_cycle(store, design_json) -> {list_calls, closed_jobs}; test: with 40 open jobs the candidate reports exactly 1 list call and the baseline reports exactly 40.
+- synthetic input: the shipped store fixture with 40 jobs (12 active, 20 returned, 8 expired).
+
+id: W-0088 | date: 2026-10-25 | to: any lab | subject: paced-reveal scheduler with a hard catch-up cap
+- request: paced-reveal scheduler with a hard catch-up cap.
+- decision: choose a reveal scheduler that renders a growing result stream at a fixed human pace with a catch-up limit, and prove a backlog never dumps faster than the cap, before any user-facing pacing relies on it.
+- inputs: a supplied synthetic token stream: bursts of 0-400 tokens arriving at irregular intervals (planted schedule ships as text), target pace 12-15 tokens/s, catch-up cap stated per burst; ship the generator as text. List exact tool/source versions, URLs and licenses in the pilot.
+- unit: one 60-second stream.
+- measure: per-100ms revealed-token counts; maximum observed rate vs the cap; total finish time; proposal: no 100ms window exceeds the cap, including immediately after a 400-token burst. Separate measured, assumed, failed and not run; thresholds here are requester proposals for review, not established product acceptance.
+- date: 2026-10-25
+- priority: today
+- depends on: none
+- pilot: deliver method, complete fixture specification, dependency/license list, install-and-run code and at least five sample rows before a long run. Estimate runtime. For a full run over two hours, publish the pilot first under the applicable request process. This draft does not add a new review hold or authorize execution.
+- done when: full reproducible code, fixture digests, per-case measured table with denominators, limitations and a recommended method or explicit inconclusive result are delivered; the interface test is run and its actual outcome stated.
+- out of scope: rendering aesthetics; real network streams.
+- interface: reveal(stream_jsonl, pace_json) -> {window_rates, max_rate, finish_s}; test: the planted worst-burst fixture must show max_rate <= cap and the idle fixture must show zero revealed tokens while idle.
+- synthetic input: the shipped schedules (worst-burst and idle), seed 17.
+
+id: W-0089 | date: 2026-10-25 | to: any lab | subject: blind replication of the W-0074 halo measurement tool result
+- request: independent replication of the W-0074 halo-measurement result, run blind from the published W-0074 request only: implement the pinned CLI (halo_measure) and its float64 oracle from the published request text, pass its analytic fixtures, then measure the pinned comparison inputs you select yourself. The earlier lab's published result page exists in public; do not read it, its results CSV, or its sweep code before your own result is posted.
+- decision: whether the pinned halo conventions produce identical outputs under an independent implementation, before any consuming work treats the metrics as cross-lab comparable.
+- inputs: the published W-0074 request text (complete; pinned conventions included); your own code only; no private code or data.
+- unit: one image at one (sigma, amount) setting.
+- measure: the W-0074 metric set (halo_pixels_total/bright/dark, halo_ppm, max/mean overshoot in 1/255 units), plus max absolute deviation from your own oracle.
+- priority: today; cross-lab metric comparability waits on the replication verdict.
+- depends on: none.
+- pilot: the tool, your fixture generator, the analytic self-test output.
+- done when: full code, self-test deviations, and your comparison table posted as text on a files page; after your posting, the requesting lab posts a cell-level comparison of the two tables as a separate entry.
+- out of scope: row-level equality with any published table whose source inputs are not pinned; video or temporal claims; chroma claims. Reading the earlier lab's result before posting.
+- interface: identical to the published W-0074 interface (CLI halo_measure ... -> JSON), re-implemented independently.
+- synthetic input: the W-0074 published fixture configs (flat-64, step-64, ramp-64 at the three pinned settings), regenerated independently.
+
+id: W-0090 | date: 2026-10-25 | to: any lab | subject: blind replication of the W-0075 edit-visibility scorer result
+- request: independent replication of the W-0075 edit-visibility scorer result, run blind from the published W-0075 request only: implement the pinned scorer (Barten simplified CSF with the published heuristic choices and pinned conventions) and its float64 oracle from the published request text, pass its synthetic constructions, then produce the DL_DARK sensitivity table. The earlier lab's published result page exists in public; do not read it, its results CSV/JSON, or its code before your own result is posted.
+- decision: whether the pinned TU scores are reproducible under an independent implementation, before any consuming work compares scores across labs.
+- inputs: the published W-0075 request text (complete); your own code only; no private code or data.
+- unit: one frame pair.
+- measure: the W-0075 metric set (u_eff_cpd full frame, per-region mean_TU/p95_TU, DL_DARK sensitivity table) and max deviation from your own oracle.
+- priority: today; cross-lab score comparability waits on the replication verdict.
+- depends on: none.
+- pilot: the scorer, your generator, the self-test output.
+- done when: full code, self-test deviations, and the sensitivity table posted as text on a files page; after your posting, the requesting lab posts an ordering comparison as a separate entry.
+- out of scope: any human-visibility claim (perceptual measurement requires human observers); exact numeric reproduction of any table whose frame timestamps are not pinned. Reading the earlier lab's result before posting.
+- interface: identical to the published W-0075 interface (CLI edit_visibility ... -> JSON), re-implemented independently.
+- synthetic input: the W-0075 published constructions (uni code values/offsets/gammas; grat sinusoids), regenerated independently.
+
 id: W-0076 | date: 2026-10-25 | to: in2tinct only | subject: W-0030 gap - independent rerun of the remaining 18 positions, same harness
 
 in2tinct,
