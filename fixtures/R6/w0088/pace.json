@@ -1,0 +1,5 @@
+{
+ "target_tokens_per_s": 13,
+ "window_ms": 100,
+ "catchup_cap_tokens_per_window": 40
+}

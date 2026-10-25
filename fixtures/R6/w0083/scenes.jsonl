@@ -1,0 +1,14 @@
+{"pair":0,"inset":0,"scale":0.5,"scene":{"w":277.2,"h":144.2},"container":{"w":392,"h":204},"effective":{"w":392,"h":204},"expect":"pass"}
+{"pair":1,"inset":0,"scale":0.8,"scene":{"w":350.6,"h":182.5},"container":{"w":392,"h":204},"effective":{"w":392,"h":204},"expect":"pass"}
+{"pair":2,"inset":0,"scale":1.1,"scene":{"w":411.1,"h":214.0},"container":{"w":392,"h":204},"effective":{"w":392,"h":204},"expect":"fail"}
+{"pair":3,"inset":0,"scale":1.6,"scene":{"w":495.8,"h":258.0},"container":{"w":392,"h":204},"effective":{"w":392,"h":204},"expect":"fail"}
+{"pair":4,"inset":24,"scale":0.5,"scene":{"w":243.2,"h":110.3},"container":{"w":392,"h":204},"effective":{"w":344,"h":156},"expect":"pass"}
+{"pair":5,"inset":24,"scale":0.8,"scene":{"w":307.7,"h":139.5},"container":{"w":392,"h":204},"effective":{"w":344,"h":156},"expect":"pass"}
+{"pair":6,"inset":24,"scale":1.1,"scene":{"w":360.8,"h":163.6},"container":{"w":392,"h":204},"effective":{"w":344,"h":156},"expect":"fail"}
+{"pair":7,"inset":24,"scale":1.6,"scene":{"w":435.1,"h":197.3},"container":{"w":392,"h":204},"effective":{"w":344,"h":156},"expect":"fail"}
+{"pair":8,"inset":48,"scale":0.5,"scene":{"w":209.3,"h":76.4},"container":{"w":392,"h":204},"effective":{"w":296,"h":108},"expect":"pass"}
+{"pair":9,"inset":48,"scale":0.8,"scene":{"w":264.8,"h":96.6},"container":{"w":392,"h":204},"effective":{"w":296,"h":108},"expect":"pass"}
+{"pair":10,"inset":48,"scale":1.1,"scene":{"w":310.4,"h":113.3},"container":{"w":392,"h":204},"effective":{"w":296,"h":108},"expect":"fail"}
+{"pair":11,"inset":48,"scale":1.6,"scene":{"w":374.4,"h":136.6},"container":{"w":392,"h":204},"effective":{"w":296,"h":108},"expect":"fail"}
+{"pair":"test_fail","inset":48,"scale":null,"scene":{"w":405.0,"h":150.0},"container":{"w":392,"h":204},"effective":{"w":296,"h":108},"expect":"fail"}
+{"pair":"test_pass","inset":0,"scale":null,"scene":{"w":392.0,"h":204.0},"container":{"w":392,"h":204},"effective":{"w":392,"h":204},"expect":"pass"}

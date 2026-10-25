@@ -1,0 +1,223 @@
+{
+ "name": "fixtures-R6",
+ "date": "2026-10-25",
+ "convention": "sha256 + bytes per file; regenerable files reproduce under Python 3.10.12 with the pinned seeds",
+ "regenerable": [
+  "w0081/planted_truth.json",
+  "w0081/trajectory.jsonl",
+  "w0082/planted_truth.json",
+  "w0082/solver_log_control.jsonl",
+  "w0082/solver_log_defect.jsonl",
+  "w0083/scenes.jsonl",
+  "w0084/families.json",
+  "w0084/manifest.jsonl",
+  "w0084/planted_truth.json",
+  "w0084/split_clean.json",
+  "w0084/split_leak2.json",
+  "w0084/split_leakvar.json",
+  "w0086/chain_truth.json",
+  "w0086/full-06.tar",
+  "w0086/inc-1-12.tar",
+  "w0086/inc-2-18.tar",
+  "w0086/inc-3-24-CORRUPTED.tar",
+  "w0086/inc-3-24.tar",
+  "w0086/inc-4-30.tar",
+  "w0087/planted_truth.json",
+  "w0087/store_fixture.json",
+  "w0088/pace.json",
+  "w0088/planted_truth.json",
+  "w0088/schedule_idle.jsonl",
+  "w0088/schedule_worst_burst.jsonl"
+ ],
+ "files": [
+  {
+   "path": "README.md",
+   "bytes": 13361,
+   "sha256": "3f4e28713b24f8761b068f4c085f3f60d5da51cae9b8cad3443ac26f56524be0"
+  },
+  {
+   "path": "W0085-R2-LIMITS.md",
+   "bytes": 3151,
+   "sha256": "03bea65f826324867b1ad6b6fb3ab066bc5cda479461821092832c792505c554"
+  },
+  {
+   "path": "w0081/planted_truth.json",
+   "bytes": 169,
+   "sha256": "8f7e389adc0bf94c2667d3c36a4682ce51a39e0e6518124f01d8ca0cfa83e718"
+  },
+  {
+   "path": "w0081/trajectory.jsonl",
+   "bytes": 1524776,
+   "sha256": "5acd6200bdbcc82f4e46afaff72517cc1e035255ed7d1d096ccfa7cea6628975"
+  },
+  {
+   "path": "w0081/w0081_gen_trajectory.py",
+   "bytes": 6095,
+   "sha256": "c80c9324d2e8dd01eb355d3a942c86180a60fc1cb3824b341f00e24610080dab"
+  },
+  {
+   "path": "w0082/planted_truth.json",
+   "bytes": 282,
+   "sha256": "1b17151b182e354b338a1351a7a13d084787f06ffe393749bcbbd52a4132b581"
+  },
+  {
+   "path": "w0082/solver_log_control.jsonl",
+   "bytes": 667684,
+   "sha256": "ec53ac68646a6a10f4f26a80506551db1eec9fb7d88def39de4249a6a439cdf1"
+  },
+  {
+   "path": "w0082/solver_log_defect.jsonl",
+   "bytes": 642623,
+   "sha256": "3989851b0a8b01493aa232e6ca7064c497199833183774bc247a44c6409416ac"
+  },
+  {
+   "path": "w0082/w0082_toy_solver.py",
+   "bytes": 4310,
+   "sha256": "77472c9a53ee0b81ac06c02d260613f02a1194c90630dbb413901ac300b5473b"
+  },
+  {
+   "path": "w0083/scenes.jsonl",
+   "bytes": 1977,
+   "sha256": "650c937fc1e57673a232d310badbbb47602e15971d9d9b81394ce1f6d7887efd"
+  },
+  {
+   "path": "w0083/w0083_gen_scenes.py",
+   "bytes": 2762,
+   "sha256": "f21e18d38e9c16d1f71a593c9fdcb424905c436fa81776085a57accb7abfea3f"
+  },
+  {
+   "path": "w0084/families.json",
+   "bytes": 4940,
+   "sha256": "860a0c7202e92a9a21a00acd6a720d0f8fb3a7806c466f1cf7871a4a9bb3c889"
+  },
+  {
+   "path": "w0084/manifest.jsonl",
+   "bytes": 9274080,
+   "sha256": "7f39a33267d51d3c3ac2a6fea5d18b51e5b09dcfe61a6d042def746bd5747b35"
+  },
+  {
+   "path": "w0084/planted_truth.json",
+   "bytes": 373,
+   "sha256": "49b9ec45aeba7d8cac1ab4c5c4e02f49d58cf7f616392ac5d6d20f1681840da9"
+  },
+  {
+   "path": "w0084/split_clean.json",
+   "bytes": 261,
+   "sha256": "988a3b754b1d5f9ec408bf340b369361da0b0d890122d274934bb3ae72181053"
+  },
+  {
+   "path": "w0084/split_leak2.json",
+   "bytes": 273,
+   "sha256": "b676d4a1383803ff1b4ef9ad7d84097362c903afe0fb4b58b8609e5f39263287"
+  },
+  {
+   "path": "w0084/split_leakvar.json",
+   "bytes": 519,
+   "sha256": "40706f51b21c789ebfc2802ab1aa0c549e4400cb1468274862dff24669dc3a06"
+  },
+  {
+   "path": "w0084/w0084_gen_glyphs.py",
+   "bytes": 3736,
+   "sha256": "dcc72e7fe1e4f8a88ea10c83b20d78b0412000ec2149487a3c53d2c0723f562b"
+  },
+  {
+   "path": "w0085/planted_truth.json",
+   "bytes": 276,
+   "sha256": "c0cbbd415fdb6461af94cc8f7da752b55deb4a385748fb0b9e2dbdde4398910e"
+  },
+  {
+   "path": "w0085/w0085_competitor.py",
+   "bytes": 876,
+   "sha256": "eb71c0dbbbb3a47283d9495ade04dd42b5f29331ff2809e58d1b400f4e5c0531"
+  },
+  {
+   "path": "w0085/w0085_toy_loop.py",
+   "bytes": 2998,
+   "sha256": "d48fcab76fcdc4b8aa8189f69b96c0b7eb78c31b9609d81bc6ad2992a00d396e"
+  },
+  {
+   "path": "w0086/chain_truth.json",
+   "bytes": 2848,
+   "sha256": "31f8b1f3abc76cd6186b908fb02929adb06e6ddc1c4d61e42dadae440bfdc5d9"
+  },
+  {
+   "path": "w0086/full-06.tar",
+   "bytes": 10240,
+   "sha256": "09699ce686002139fc1aba95adb3e510c58765c30fef7a88f3732cc0730d548f"
+  },
+  {
+   "path": "w0086/inc-1-12.tar",
+   "bytes": 10240,
+   "sha256": "c5178c5c42024e91881e1a74081dd8b4ec2bbaa80282063274de549e6cc887b4"
+  },
+  {
+   "path": "w0086/inc-2-18.tar",
+   "bytes": 10240,
+   "sha256": "801b77579158a7b78d63cff4f39493a36a9173ebb5811355b65f3f2ad05b1cfb"
+  },
+  {
+   "path": "w0086/inc-3-24-CORRUPTED.tar",
+   "bytes": 10240,
+   "sha256": "bfb41ea667ff9c9d4c9c402ddb327910c686a1f51666948a8cfe5e48d0a38bf3"
+  },
+  {
+   "path": "w0086/inc-3-24.tar",
+   "bytes": 10240,
+   "sha256": "21ece752506b9f23ae35f4957d6e4d2c854aad006da46eba52b1a9bd00a3494b"
+  },
+  {
+   "path": "w0086/inc-4-30.tar",
+   "bytes": 10240,
+   "sha256": "baa24b7b21de5491ce8ccbc3abac972c760075460c5076c8d8facc0339979214"
+  },
+  {
+   "path": "w0086/w0086_tree_exporter.py",
+   "bytes": 6189,
+   "sha256": "2692799f0ed599f0613cefa55ae0db674c1743b12e332435e2adfd449503c2d3"
+  },
+  {
+   "path": "w0087/planted_truth.json",
+   "bytes": 592,
+   "sha256": "a5de341fb8b45568e469acc4678abc53ef9b1809ed6d1fdd55009c63bf87f543"
+  },
+  {
+   "path": "w0087/store_fixture.json",
+   "bytes": 3876,
+   "sha256": "a952c4fd899010c9cc98791fbac0fc33e9d83b47304a171807b81e27dc6042ee"
+  },
+  {
+   "path": "w0087/w0087_toy_kv.py",
+   "bytes": 3663,
+   "sha256": "e38816c1126e1a6f516f9d5f1a92eeb6eda25bd4083168cca34fd2a66abdebbe"
+  },
+  {
+   "path": "w0088/pace.json",
+   "bytes": 87,
+   "sha256": "12e38d5bbbdb27ea5e906a56c79f9f4da153bb02caa8e5cd5da6c5c968a77629"
+  },
+  {
+   "path": "w0088/planted_truth.json",
+   "bytes": 232,
+   "sha256": "2db67becdd2987ebbdbe5ccc2f1e661f504eeceef66f15eb9ff5bcdf20ffdf4f"
+  },
+  {
+   "path": "w0088/schedule_idle.jsonl",
+   "bytes": 76,
+   "sha256": "80a99fec5249984c43ad404b1f729afe7f99d723d5b4559f7c9a07772e3aaf2c"
+  },
+  {
+   "path": "w0088/schedule_worst_burst.jsonl",
+   "bytes": 2140,
+   "sha256": "c7bd71f1b01725e1a6b86052bdc19322b6282d563299b4f9e9d969c2170754c1"
+  },
+  {
+   "path": "w0088/w0088_gen_stream.py",
+   "bytes": 1908,
+   "sha256": "7e285f4e389636279233420c9ddfd9d4cc1e9c6093b6453bed82c03d8356b4f3"
+  }
+ ],
+ "version": "v4",
+ "pinned_not_shipped": [
+  "w0084/manifest.jsonl"
+ ]
+}

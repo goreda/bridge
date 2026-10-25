@@ -1,0 +1,72 @@
+{
+ "seed": 13,
+ "commits": 30,
+ "tips": [
+  6,
+  12,
+  18,
+  24,
+  30
+ ],
+ "format": "tar (ustar), deterministic: sorted members, mtime=0, uid/gid=0, uname/gname='', no pax",
+ "chain_header_member": "r6chain.txt",
+ "delete_convention": "empty whiteout member .wh.<path> (overlayfs convention)",
+ "incremental_semantics": "full per-file snapshots, last-writer-wins; NOT deltas - check EVERY tip, a later link can heal a corrupt earlier one",
+ "tip_file_sha256": {
+  "6": {
+   "data.bin": "49f1445e6c68bf545d9f8790da60496bb2ac27b236792d0322b9bf9ce569be85"
+  },
+  "12": {
+   "blob.bin": "f34ba7fa9609cb8c11f3bb4603f1f5a2a94a8ceaae4cc352fbd8fa2d8e9bf484",
+   "data.bin": "4675427e91e2c491540ea18a5e043a5e3514b1f53aa323c20acd2abbe83e2307",
+   "index.md": "5f3df844db5755f0d4a368b1f65e1c44b24cedca24dd82569bd0bf621f7ebe84",
+   "notes.txt": "2fc1ac9b9784b3cb00946d41f4a025dc39c7e0e65af0e92a5dec6c65779ecbaa"
+  },
+  "18": {
+   "blob.bin": "9a27fe567cde7065e482e0996f43bfa2124dc590655b0d1a43809e737b69655e",
+   "data.bin": "5d8cd4d617cfdebc0bb6cf51ecaaabe3c9c6813af73b23eda8dc71bb2bd9df06",
+   "index.md": "e90309bc63c92df99726ca93ecdab112819b3ba830359479447ac0001ab74500",
+   "notes.txt": "96f44c593b1d657dee3a10fa30073b7a86e4ef0f4be3f54d87c613cb2690d1d8",
+   "table.csv": "8e1526738993ae7cb21094c47ae966ecad8ba17e075c42e5e79241dc7d02db47"
+  },
+  "24": {
+   "blob.bin": "0f946a7ba807bb57cb325ed34469460c95b81b0a26c7d14d2b7a360673d645b4",
+   "index.md": "74b32fa8a67758dbbcd20f2d8ae9f555c8a87fc9e99b19af7ee9876ecf61f112",
+   "notes.txt": "727b08b171c2a43142822acd9eaa81ae20ad672a97c4d1b6b6e3aa9116890cda",
+   "table.csv": "099cfbd1fc3b92f062b2dd2479048633e8c430a078b5bae2acf203d7600a838b"
+  },
+  "30": {
+   "blob.bin": "d25c739cc8e5688bec11da654e4b8d3caceb0a2b1ef7a6392ec7eabcd5630dfa",
+   "data.bin": "eeee97782f05e10547ee9a7582fc66f35a3561c2476ff0e525f3040983b1b17d",
+   "index.md": "52263982321644fea785dd2a2b8cbc27b0f7f4ba1884af75bef814389d6860c8",
+   "notes.txt": "6bf9353950fbbc41966b9b20c3618faeebb71f3763ec0a2dad398a90444f4eac"
+  }
+ },
+ "corrupt_link": "inc-3-24-CORRUPTED.tar",
+ "bundles": {
+  "full-06.tar": {
+   "bytes": 10240,
+   "sha256": "09699ce686002139fc1aba95adb3e510c58765c30fef7a88f3732cc0730d548f"
+  },
+  "inc-1-12.tar": {
+   "bytes": 10240,
+   "sha256": "c5178c5c42024e91881e1a74081dd8b4ec2bbaa80282063274de549e6cc887b4"
+  },
+  "inc-2-18.tar": {
+   "bytes": 10240,
+   "sha256": "801b77579158a7b78d63cff4f39493a36a9173ebb5811355b65f3f2ad05b1cfb"
+  },
+  "inc-3-24.tar": {
+   "bytes": 10240,
+   "sha256": "21ece752506b9f23ae35f4957d6e4d2c854aad006da46eba52b1a9bd00a3494b"
+  },
+  "inc-4-30.tar": {
+   "bytes": 10240,
+   "sha256": "baa24b7b21de5491ce8ccbc3abac972c760075460c5076c8d8facc0339979214"
+  },
+  "inc-3-24-CORRUPTED.tar": {
+   "bytes": 10240,
+   "sha256": "bfb41ea667ff9c9d4c9c402ddb327910c686a1f51666948a8cfe5e48d0a38bf3"
+  }
+ }
+}

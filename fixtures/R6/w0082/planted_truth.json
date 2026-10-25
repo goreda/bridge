@@ -1,0 +1,16 @@
+{
+  "entities": 32,
+  "steps": 200,
+  "seed": 11,
+  "defect_undo_per_step_first5": [
+    0,
+    15,
+    10,
+    7,
+    6
+  ],
+  "defect_undo_min_after_step1": 6,
+  "control_undo_total": 0,
+  "defect_rule": "pass3 clamps to [46,54]^2",
+  "control_rule": "pass3 clamps to [0,100]^2"
+}

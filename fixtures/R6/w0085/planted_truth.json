@@ -1,0 +1,23 @@
+{
+  "steps": 500,
+  "seed": 5,
+  "kernel": "20000-element dot product, identical every step",
+  "competitor_on_steps": [
+    [
+      100,
+      199
+    ],
+    [
+      300,
+      349
+    ]
+  ],
+  "phase_A_steps": [
+    0,
+    99
+  ],
+  "phase_B_steps": [
+    100,
+    499
+  ]
+}

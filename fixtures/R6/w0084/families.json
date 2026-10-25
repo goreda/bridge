@@ -1,0 +1,362 @@
+[
+ {
+  "family_id": 0,
+  "name": "fam-00",
+  "stroke_w": 2.917,
+  "slant": -0.113,
+  "serif": false,
+  "xo": 2,
+  "yo": 1
+ },
+ {
+  "family_id": 1,
+  "name": "fam-01",
+  "stroke_w": 1.874,
+  "slant": -0.034,
+  "serif": false,
+  "xo": 1,
+  "yo": 2
+ },
+ {
+  "family_id": 2,
+  "name": "fam-02",
+  "stroke_w": 1.589,
+  "slant": 0.08,
+  "serif": false,
+  "xo": 0,
+  "yo": 0
+ },
+ {
+  "family_id": 3,
+  "name": "fam-03",
+  "stroke_w": 2.668,
+  "slant": 0.137,
+  "serif": true,
+  "xo": 2,
+  "yo": 0
+ },
+ {
+  "family_id": 4,
+  "name": "fam-04",
+  "stroke_w": 2.484,
+  "slant": -0.176,
+  "serif": false,
+  "xo": 0,
+  "yo": 0
+ },
+ {
+  "family_id": 5,
+  "name": "fam-05",
+  "stroke_w": 3.186,
+  "slant": 0.188,
+  "serif": false,
+  "xo": 3,
+  "yo": 1
+ },
+ {
+  "family_id": 6,
+  "name": "fam-06",
+  "stroke_w": 3.126,
+  "slant": 0.123,
+  "serif": true,
+  "xo": 0,
+  "yo": 2
+ },
+ {
+  "family_id": 7,
+  "name": "fam-07",
+  "stroke_w": 3.005,
+  "slant": -0.073,
+  "serif": true,
+  "xo": 3,
+  "yo": 3
+ },
+ {
+  "family_id": 8,
+  "name": "fam-08",
+  "stroke_w": 1.786,
+  "slant": -0.286,
+  "serif": false,
+  "xo": 0,
+  "yo": 0
+ },
+ {
+  "family_id": 9,
+  "name": "fam-09",
+  "stroke_w": 2.385,
+  "slant": -0.096,
+  "serif": true,
+  "xo": 0,
+  "yo": 3
+ },
+ {
+  "family_id": 10,
+  "name": "fam-10",
+  "stroke_w": 2.94,
+  "slant": 0.034,
+  "serif": true,
+  "xo": 2,
+  "yo": 0
+ },
+ {
+  "family_id": 11,
+  "name": "fam-11",
+  "stroke_w": 1.748,
+  "slant": 0.077,
+  "serif": true,
+  "xo": 1,
+  "yo": 1
+ },
+ {
+  "family_id": 12,
+  "name": "fam-12",
+  "stroke_w": 1.798,
+  "slant": 0.177,
+  "serif": false,
+  "xo": 2,
+  "yo": 0
+ },
+ {
+  "family_id": 13,
+  "name": "fam-13",
+  "stroke_w": 3.052,
+  "slant": 0.192,
+  "serif": true,
+  "xo": 0,
+  "yo": 0
+ },
+ {
+  "family_id": 14,
+  "name": "fam-14",
+  "stroke_w": 1.332,
+  "slant": 0.036,
+  "serif": true,
+  "xo": 0,
+  "yo": 2
+ },
+ {
+  "family_id": 15,
+  "name": "fam-15",
+  "stroke_w": 3.172,
+  "slant": 0.125,
+  "serif": false,
+  "xo": 0,
+  "yo": 0
+ },
+ {
+  "family_id": 16,
+  "name": "fam-16",
+  "stroke_w": 3.08,
+  "slant": -0.121,
+  "serif": false,
+  "xo": 3,
+  "yo": 0
+ },
+ {
+  "family_id": 17,
+  "name": "fam-17",
+  "stroke_w": 2.987,
+  "slant": -0.27,
+  "serif": true,
+  "xo": 0,
+  "yo": 2
+ },
+ {
+  "family_id": 18,
+  "name": "fam-18",
+  "stroke_w": 2.282,
+  "slant": -0.133,
+  "serif": true,
+  "xo": 0,
+  "yo": 1
+ },
+ {
+  "family_id": 19,
+  "name": "fam-19",
+  "stroke_w": 2.053,
+  "slant": 0.17,
+  "serif": true,
+  "xo": 0,
+  "yo": 3
+ },
+ {
+  "family_id": 20,
+  "name": "fam-20",
+  "stroke_w": 2.307,
+  "slant": -0.025,
+  "serif": false,
+  "xo": 3,
+  "yo": 1
+ },
+ {
+  "family_id": 21,
+  "name": "fam-21",
+  "stroke_w": 2.822,
+  "slant": 0.241,
+  "serif": false,
+  "xo": 2,
+  "yo": 2
+ },
+ {
+  "family_id": 22,
+  "name": "fam-22",
+  "stroke_w": 2.351,
+  "slant": 0.189,
+  "serif": false,
+  "xo": 2,
+  "yo": 1
+ },
+ {
+  "family_id": 23,
+  "name": "fam-23",
+  "stroke_w": 2.734,
+  "slant": -0.049,
+  "serif": true,
+  "xo": 3,
+  "yo": 0
+ },
+ {
+  "family_id": 24,
+  "name": "fam-24",
+  "stroke_w": 1.431,
+  "slant": -0.235,
+  "serif": false,
+  "xo": 1,
+  "yo": 3
+ },
+ {
+  "family_id": 25,
+  "name": "fam-25",
+  "stroke_w": 1.158,
+  "slant": 0.221,
+  "serif": true,
+  "xo": 1,
+  "yo": 3
+ },
+ {
+  "family_id": 26,
+  "name": "fam-26",
+  "stroke_w": 2.615,
+  "slant": 0.238,
+  "serif": true,
+  "xo": 1,
+  "yo": 3
+ },
+ {
+  "family_id": 27,
+  "name": "fam-27",
+  "stroke_w": 1.555,
+  "slant": 0.185,
+  "serif": true,
+  "xo": 3,
+  "yo": 0
+ },
+ {
+  "family_id": 28,
+  "name": "fam-28",
+  "stroke_w": 2.995,
+  "slant": 0.09,
+  "serif": false,
+  "xo": 3,
+  "yo": 3
+ },
+ {
+  "family_id": 29,
+  "name": "fam-29",
+  "stroke_w": 2.521,
+  "slant": 0.17,
+  "serif": false,
+  "xo": 1,
+  "yo": 3
+ },
+ {
+  "family_id": 30,
+  "name": "fam-30",
+  "stroke_w": 1.683,
+  "slant": 0.152,
+  "serif": true,
+  "xo": 0,
+  "yo": 0
+ },
+ {
+  "family_id": 31,
+  "name": "fam-31",
+  "stroke_w": 2.892,
+  "slant": -0.043,
+  "serif": true,
+  "xo": 3,
+  "yo": 1
+ },
+ {
+  "family_id": 32,
+  "name": "fam-32",
+  "stroke_w": 1.558,
+  "slant": -0.092,
+  "serif": false,
+  "xo": 2,
+  "yo": 0
+ },
+ {
+  "family_id": 33,
+  "name": "fam-33",
+  "stroke_w": 3.409,
+  "slant": 0.051,
+  "serif": true,
+  "xo": 0,
+  "yo": 0
+ },
+ {
+  "family_id": 34,
+  "name": "fam-34",
+  "stroke_w": 2.76,
+  "slant": 0.261,
+  "serif": true,
+  "xo": 2,
+  "yo": 2
+ },
+ {
+  "family_id": 35,
+  "name": "fam-35",
+  "stroke_w": 2.585,
+  "slant": -0.122,
+  "serif": false,
+  "xo": 3,
+  "yo": 0
+ },
+ {
+  "family_id": 36,
+  "name": "fam-36",
+  "stroke_w": 2.889,
+  "slant": 0.241,
+  "serif": false,
+  "xo": 0,
+  "yo": 1
+ },
+ {
+  "family_id": 37,
+  "name": "fam-37",
+  "stroke_w": 2.886,
+  "slant": -0.248,
+  "serif": false,
+  "xo": 2,
+  "yo": 1
+ },
+ {
+  "family_id": 38,
+  "name": "fam-38",
+  "stroke_w": 1.423,
+  "slant": 0.007,
+  "serif": true,
+  "xo": 2,
+  "yo": 1
+ },
+ {
+  "family_id": 39,
+  "name": "fam-39",
+  "stroke_w": 1.135,
+  "slant": 0.263,
+  "serif": false,
+  "xo": 1,
+  "yo": 2
+ }
+]
