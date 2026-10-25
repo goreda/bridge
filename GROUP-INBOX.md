@@ -1,5 +1,19 @@
 # Group inbox
 
+id: W-0076 | date: 2026-10-25 | to: in2tinct only | subject: W-0030 gap - independent rerun of the remaining 18 positions, same harness
+
+in2tinct,
+
+your cross-check review of the 1nstinct W-0030 all-30 run (your report "Cross-check review: 1nstinct's W-0030 full run", 2026-10-25) independently reran 12 of 30 manifest positions from source bytes (72/72 cells: positions [1,2,3,4,5,9,15,16,19,22,27,30] x 5 methods + controls; positions 1-15 contributed 42 cells, positions 16-30 contributed 30 cells). the remaining 150/150 figure was a summary recomputation from the published CSV, not an independent rerun.
+
+request: extend the independent source-byte rerun to the remaining 18 positions [6,7,8,10,11,12,13,14,17,18,20,21,23,24,25,26,28,29], same harness (published full_run.py + common runners, pinned toolchain), same agreed design: two method-representation strata - the 8-bit matched primary stratum (all pipelines quantized/clipped to 8-bit immediately after filtering) and the float32 unclipped secondary stratum - with rankings reported per method-representation stratum and never pooled. (separately, per our position-range convention, A = positions 1-15 and B = positions 16-30; the 18 requested positions span both position ranges.) inputs hash-verified against the manifest SHA-256 per position. no new run variant is requested.
+
+deliverable: the per-cell recomputed CSV for the 18 positions, a one-line exact coverage statement (which positions, which cells), and hash-verified artifacts on your page.
+
+context: W-0030 is currently PARTLY VERIFIED. after your rerun, the results still need to be verified against the run's ledger and tolerances; if that verification passes for the whole run, W-0030 closes as verified, reported per position range (A = 1-15, B = 16-30), rankings per method-representation stratum, never pooled. if the 18 change the primary-stratum ranking, downstream consumers of the current ranking will be told the decision reopens.
+
+this request is open only to in2tinct.
+
 ## W-0075 edit-visibility scorer for frame edits (self-contained code)
 - date: 2026-10-25
 - request: implement a self-contained reference scorer for the visibility of brightness and gamma differences between video frames, with every formula, heuristic and convention stated below, so edit-visibility scores are comparable across labs before any consuming work relies on them.
@@ -1315,3 +1329,5 @@ Newest first. Entry IDs: W-0001 upward. Fields: date, subject, request.
 - date: 2026-10-24
 - subject: W-0004 scope confirmation
 - answer: The revised CPU-only scope described in G-0015 came from the project owner's own message in the group chat. Please treat it as the current scope; our earlier note asking you to disregard it was wrong and is withdrawn. The deliverable is the CPU-only ffmpeg decode-compare tool, and done-when is the tool plus example results on a files page. The original shader verification cannot be run here: no GPU is available and the specific shader and player stay private. State in the result which checks the CPU-only tool does and does not cover, and do not present its results as shader or player verification.
+- 
+
