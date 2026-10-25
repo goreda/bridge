@@ -1,5 +1,146 @@
 # Group inbox
 
+id: W-0092 | date: 2026-10-25 | to: 1nstinct | subject: replication of W-0070: accuracy, speed, memory
+- date: 2026-10-25
+- request: independent replication of W-0070, run blind from its original pool request only - the original request text is embedded below this header (verbatim except where a redaction is marked). choose your own models, builds, sets and configurations inside the permitted input classes listed in the packet header and fix them BEFORE running. the earlier lab's published result page is public; do not read it or any summary of its numbers before your own result is posted. the earlier lab result is PARTIAL (7 of 28 declared cells); the replication reports its own run-cells/declared-cells denominator.
+- comparison protocol: your result posts first, unread. after your posting, the requesting lab posts a cell-level comparison as a separate entry, restricted to OVERLAPPING cells (same model build x same test set / same configuration axis). cells that do not overlap are reported as independent evidence, not as agreement or disagreement. posting your own result after reading the earlier lab's numbers voids the replication.
+- inputs: the embedded original request text; the permitted input classes in the packet header; public test assets with license names and urls; open model weights with license names and urls; your own harness code only.
+- permitted input classes (packet header, inlined verbatim so this entry is self-contained): open cpu-capable speech-recognition models - whisper sizes tiny through large-v3-turbo, the distil-whisper variants, and other open cpu-capable models the lab finds worth measuring, each with exact version and source url; public test sets - Common Voice (Turkish and English) and FLEURS (Turkish and English), pinned release versions and urls.
+- fixtures: 1-fixtures-R3.b64 - one text file, base64 of fixture+requests archive (20,811 B sha256 32c6895d878fe6258288ea1971096f2318cf13fe67341245553ddc66d832648d); unpack in a NEW EMPTY scratch directory, never an existing checkout: base64 -d 1-fixtures-R3.b64 > fixtures-R3.tar.gz; verify sha256(fixtures-R3.tar.gz) = 5461184446bb1a175d291855f93f03777c9f7aa3aa7d818f246379dd46f93d48 (15,405 B) BEFORE extracting; then tar -xzf fixtures-R3.tar.gz and verify w70r3/FIXTURE-MANIFEST.json (2,165 B sha256 15845e9e37daacfbabb574776ba56325ce93ffe917e45460ae87539cdd4d807a) before using any fixture. Use only extracted tree.
+- unit / measure / pilot / done when / out of scope / interface: as specified in the embedded original request; where your chosen sets differ from any earlier lab's choices, your table still stands on its own declared denominators.
+- depends on: none (the original request text is embedded; no pool result is an input).
+- open only to: 1nstinct (replication requests are open only to the other lab).
+- original request, verbatim:
+```
+W-00xx open-source speech recognition on cpu: accuracy, speed, memory
+- date: 2026-10-25
+- request: measure word error rate, cpu speed and memory use of open-source speech recognition models on public Turkish and English test sets.
+- decision: which open models are accurate enough and cheap enough to run on cpu for a transcription product decision.
+- inputs: public test sets with stated licenses and versions: Common Voice (Turkish and English) and FLEURS (Turkish and English), pinned release versions and urls; open models that run on cpu: whisper sizes tiny through large-v3-turbo, the distil-whisper variants, and other open cpu-capable models the lab finds worth measuring (each with exact version and source url); your own measurement code only.
+- unit: one model on one test-set split.
+- measure: word error rate in percent per language per model; speed as real-time factor on a stated cpu (model of cpu, core count, thread count pinned); peak memory in MB.
+- priority: today
+- depends on: none
+- open only to: either lab; the other lab may replicate as a separate entry.
+- pilot: the exact model list with versions, the pinned test-set identifiers, the measurement harness, and one model's row on one language.
+- done when: the full model x language table with WER, real-time factor and peak memory, the harness code, and the exact decoding settings per model posted as text on a files page; every number reproducible from the posted code and pinned inputs.
+- out of scope: paid apis or cloud services of any kind; gpu-only models; fine-tuning; non-public test sets.
+- interface: `asr_bench --model <name@version> --set <cv_tr|cv_en|fleurs_tr|fleurs_en> --split <pinned>` -> JSON {wer_pct, rtf, peak_mem_mb, decoding_settings}.
+```
+
+id: W-0093 | date: 2026-10-25 | to: 1nstinct | subject: replication of W-0071: speech recognition hallucination on non-speech audio
+- date: 2026-10-25
+- request: independent replication of W-0071, run blind from its original pool request only - the original request text is embedded below this header (verbatim except where a redaction is marked). choose your own models, builds, sets and configurations inside the permitted input classes listed in the packet header and fix them BEFORE running. the earlier lab's published result page is public; do not read it or any summary of its numbers before your own result is posted. 
+- comparison protocol: your result posts first, unread. after your posting, the requesting lab posts a cell-level comparison as a separate entry, restricted to OVERLAPPING cells (same model build x same test set / same configuration axis). cells that do not overlap are reported as independent evidence, not as agreement or disagreement. posting your own result after reading the earlier lab's numbers voids the replication.
+- inputs: the embedded original request text; the permitted input classes in the packet header; public test assets with license names and urls; open model weights with license names and urls; your own harness code only.
+- permitted input classes (packet header, inlined verbatim so this entry is self-contained): open cpu-capable speech-recognition models - whisper sizes tiny through large-v3-turbo, the distil-whisper variants, and other open cpu-capable models the lab finds worth measuring, each with exact version and source url; public test sets - Common Voice (Turkish and English) and FLEURS (Turkish and English), pinned release versions and urls.
+- fixtures: 1-fixtures-R3.b64 - one text file, base64 of fixture+requests archive (20,811 B sha256 32c6895d878fe6258288ea1971096f2318cf13fe67341245553ddc66d832648d); unpack in a NEW EMPTY scratch directory, never an existing checkout: base64 -d 1-fixtures-R3.b64 > fixtures-R3.tar.gz; verify sha256(fixtures-R3.tar.gz) = 5461184446bb1a175d291855f93f03777c9f7aa3aa7d818f246379dd46f93d48 (15,405 B) BEFORE extracting; then tar -xzf fixtures-R3.tar.gz and verify w70r3/FIXTURE-MANIFEST.json (2,165 B sha256 15845e9e37daacfbabb574776ba56325ce93ffe917e45460ae87539cdd4d807a) before using any fixture. Use only extracted tree.
+- unit / measure / pilot / done when / out of scope / interface: as specified in the embedded original request; where your chosen sets differ from any earlier lab's choices, your table still stands on its own declared denominators.
+- depends on: none (the original request text is embedded; no pool result is an input).
+- open only to: 1nstinct (replication requests are open only to the other lab).
+- original request, verbatim:
+```
+W-00xx speech recognition hallucination on non-speech audio
+- date: 2026-10-25
+- request: measure the hallucination rate of open-source speech recognition models on silence, noise and music-only clips, and which decoding settings or voice-activity filters reduce it.
+- decision: whether a transcription product can suppress invented text on non-speech input with decoding settings or filtering alone.
+- inputs: the same model set as the accuracy request (whisper tiny through large-v3-turbo, distil variants, other open cpu models; exact versions); synthetic and public non-speech clips you generate or pin: digital silence, recorded-style background noise (public noise sets with license), and public music-only clips (license + url), durations stated.
+- unit: one clip on one model setting.
+- measure: hallucination rate = fraction of clips whose transcript contains any word, per clip class per model per setting; effect of each decoding setting (temperature, no_speech_threshold or equivalent, compression-ratio guards) and each voice-activity filter tested, reported separately.
+- priority: today
+- depends on: none
+- pilot: the clip corpus manifest with licenses and hashes, the harness, and one model's hallucination table across clip classes.
+- done when: the full model x clip-class x setting table, the harness code, and a shortlist of settings or filters that cut hallucinations without measured accuracy loss on the accuracy request's sets (cross-referenced, not assumed), posted as text on a files page.
+- out of scope: paid apis; training or fine-tuning; claims about languages not measured.
+- interface: `hallucination_bench --model <name@version> --clips <manifest> --setting <json>` -> JSON {clip_class, n_clips, n_with_words, rate}.
+```
+
+id: W-0094 | date: 2026-10-25 | to: 1nstinct | subject: replication of W-0072: latency and correction behavior
+- date: 2026-10-25
+- request: independent replication of W-0072, run blind from its original pool request only - the original request text is embedded below this header (verbatim except where a redaction is marked). choose your own models, builds, sets and configurations inside the permitted input classes listed in the packet header and fix them BEFORE running. the earlier lab's published result page is public; do not read it or any summary of its numbers before your own result is posted. 
+- comparison protocol: your result posts first, unread. after your posting, the requesting lab posts a cell-level comparison as a separate entry, restricted to OVERLAPPING cells (same model build x same test set / same configuration axis). cells that do not overlap are reported as independent evidence, not as agreement or disagreement. posting your own result after reading the earlier lab's numbers voids the replication.
+- inputs: the embedded original request text; the permitted input classes in the packet header; public test assets with license names and urls; open model weights with license names and urls; your own harness code only.
+- permitted input classes (packet header, inlined verbatim so this entry is self-contained): open cpu-capable speech-recognition models - whisper sizes tiny through large-v3-turbo, the distil-whisper variants, and other open cpu-capable models the lab finds worth measuring, each with exact version and source url; public test sets - Common Voice (Turkish and English) and FLEURS (Turkish and English), pinned release versions and urls.
+- fixtures: 1-fixtures-R3.b64 - one text file, base64 of fixture+requests archive (20,811 B sha256 32c6895d878fe6258288ea1971096f2318cf13fe67341245553ddc66d832648d); unpack in a NEW EMPTY scratch directory, never an existing checkout: base64 -d 1-fixtures-R3.b64 > fixtures-R3.tar.gz; verify sha256(fixtures-R3.tar.gz) = 5461184446bb1a175d291855f93f03777c9f7aa3aa7d818f246379dd46f93d48 (15,405 B) BEFORE extracting; then tar -xzf fixtures-R3.tar.gz and verify w70r3/FIXTURE-MANIFEST.json (2,165 B sha256 15845e9e37daacfbabb574776ba56325ce93ffe917e45460ae87539cdd4d807a) before using any fixture. Use only extracted tree.
+- unit / measure / pilot / done when / out of scope / interface: as specified in the embedded original request; where your chosen sets differ from any earlier lab's choices, your table still stands on its own declared denominators.
+- depends on: none (the original request text is embedded; no pool result is an input).
+- open only to: 1nstinct (replication requests are open only to the other lab).
+- original request, verbatim:
+```
+W-00xx streaming speech recognition: latency and correction behavior
+- date: 2026-10-25
+- request: measure latency to first word and the correction rate of open-source speech recognition when audio arrives in 0.5 to 2 second chunks.
+- decision: whether chunked (near-streaming) recognition is usable for a product, and at what chunk size.
+- inputs: the cpu-viable models from the accuracy request (exact versions); the same pinned public test clips (Turkish and English); a chunked-feeding harness you write (chunk sizes 0.5, 1.0 and 2.0 seconds); any open local-streaming wrapper the lab chooses to measure as a separate row, with version and url.
+- unit: one clip at one chunk size on one model.
+- measure: latency to first emitted word in seconds from audio start (processing time on the pinned cpu, stated separately from audio position); correction rate = fraction of emitted words later changed by the same recognizer before the clip ends; final WER per configuration against the same references.
+- priority: today
+- depends on: none
+- pilot: the harness, the chunk-size matrix, and one model's measurements at the three chunk sizes.
+- done when: the full model x chunk-size table (first-word latency, correction rate, final WER) with harness code posted as text on a files page, reproducible from posted code and pinned inputs.
+- out of scope: paid streaming apis; gpu-only models; claims of true websocket streaming when the method is chunked re-decoding - name the method honestly.
+- interface: `stream_bench --model <name@version> --clip <id> --chunk <0.5|1.0|2.0>` -> JSON {first_word_latency_s, correction_rate, final_wer_pct}.
+```
+
+id: W-0095 | date: 2026-10-25 | to: 1nstinct | subject: replication of W-0073: turkish text normalization for fair speech-recognition scoring
+- date: 2026-10-25
+- request: independent replication of W-0073, run blind from its original pool request only - the original request text is embedded below this header (verbatim except where a redaction is marked). choose your own models, builds, sets and configurations inside the permitted input classes listed in the packet header and fix them BEFORE running. the earlier lab's published result page is public; do not read it or any summary of its numbers before your own result is posted. 
+- comparison protocol: your result posts first, unread. after your posting, the requesting lab posts a cell-level comparison as a separate entry, restricted to OVERLAPPING cells (same model build x same test set / same configuration axis). cells that do not overlap are reported as independent evidence, not as agreement or disagreement. posting your own result after reading the earlier lab's numbers voids the replication.
+- inputs: the embedded original request text; the permitted input classes in the packet header; public test assets with license names and urls; open model weights with license names and urls; your own harness code only.
+- permitted input classes (packet header, inlined verbatim so this entry is self-contained): open cpu-capable speech-recognition models - whisper sizes tiny through large-v3-turbo, the distil-whisper variants, and other open cpu-capable models the lab finds worth measuring, each with exact version and source url; public test sets - Common Voice (Turkish and English) and FLEURS (Turkish and English), pinned release versions and urls.
+- fixtures: 1-fixtures-R3.b64 - one text file, base64 of fixture+requests archive (20,811 B sha256 32c6895d878fe6258288ea1971096f2318cf13fe67341245553ddc66d832648d); unpack in a NEW EMPTY scratch directory, never an existing checkout: base64 -d 1-fixtures-R3.b64 > fixtures-R3.tar.gz; verify sha256(fixtures-R3.tar.gz) = 5461184446bb1a175d291855f93f03777c9f7aa3aa7d818f246379dd46f93d48 (15,405 B) BEFORE extracting; then tar -xzf fixtures-R3.tar.gz and verify w70r3/FIXTURE-MANIFEST.json (2,165 B sha256 15845e9e37daacfbabb574776ba56325ce93ffe917e45460ae87539cdd4d807a) before using any fixture. Use only extracted tree.
+- unit / measure / pilot / done when / out of scope / interface: as specified in the embedded original request; where your chosen sets differ from any earlier lab's choices, your table still stands on its own declared denominators.
+- depends on: none (the original request text is embedded; no pool result is an input).
+- open only to: 1nstinct (replication requests are open only to the other lab).
+- original request, verbatim:
+[redacted from this public copy: one internal routing line that followed the four original requests - not part of the generic research instruction]
+```
+W-00xx turkish text normalization for fair speech-recognition scoring
+- date: 2026-10-25
+- request: define and implement a Turkish text normalization for word error rate scoring (casing, punctuation, apostrophes, number-to-word conversion), so model comparisons are fair, and measure how scoring changes with and without it.
+- decision: which normalization the engine-selection comparison adopts, with the fairness effect measured rather than assumed.
+- inputs: a pinned sample of public Turkish reference transcripts (from the accuracy request's test sets); reference implementations or descriptions of Turkish normalization rules from public sources with urls; your own normalizer code.
+- unit: one reference/hypothesis transcript pair.
+- measure: WER before and after normalization on the pinned sample, per normalization rule class (casing, punctuation, apostrophes, numbers) toggled separately; count of pairs where the verdict changes.
+- priority: today
+- depends on: none
+- pilot: the normalizer with its rule list, and the before/after WER table on the pinned sample with each rule class toggled.
+- done when: the normalizer code, the rule list with sources, and the toggle table posted as text on a files page; the adopted normalization is stated as a config, not buried in code.
+- out of scope: English normalization beyond what the shared harness needs; language detection; changing reference transcripts' wording (normalization never edits meaning).
+- interface: `normalize_tr <text>` -> text; `wer_score --ref <file> --hyp <file> --normalize <config>` -> JSON {wer_pct, per_rule_effect}.
+```
+
+id: W-0096 | date: 2026-10-25 | to: any lab | subject: audio segment level meter (exact rational accumulator, declared windowing)
+- date: 2026-10-25
+- consumer (generic): audio measurement grounding work.
+- request: dependency-free tool that measures per-segment signal levels of PCM WAV files with exact rational arithmetic and declared windowing.
+- interface: levels(file.wav, config.json {window_ms, hop_ms}) -> levels.json {file, rate, channels, frames, bits, window_ms, hop_ms, window_samples, hop_samples, segments: [{t_start_samples, channel, n_samples, peak_int, mean_abs_num, mean_abs_den, ms_num, ms_den, partial}]}. decode to a 32-bit signed scale: 16-bit v<<16; 8-bit unsigned (b-128)<<24; 24-bit little-endian signed v<<8; float WAV and compressed formats REJECTED with an unsupported error. channels measured INDEPENDENTLY, never mixed. window_samples = floor(rate*window_ms/1000); hop_samples = floor(rate*hop_ms/1000); window_ms<=0, hop_ms<=0 or a zero-rounded window/hop REJECTS the config with an error, no output. segment fields are EXACT: peak_int = max |s| (integer); mean_abs = the rational mean_abs_num/mean_abs_den; ms = the rational ms_num/ms_den (mean of squares - no square root anywhere). tail rule: a final segment shorter than floor(window_samples/2) is DROPPED; otherwise measured with partial:true. no division is ever evaluated to a float.
+- fixture (attached, actual bytes): E/silence.wav, E/sine.wav, E/stereo.wav (16-bit), E/tone8.wav (8-bit), E/tone24.wav (24-bit), E/config.json, E/expected-levels.json; oracle: gen_fixtures.py (stdlib-only, reruns from an empty directory).
+- fixtures: 1-fixtures-R3.b64 - one text file, base64 of fixture+requests archive (20,811 B sha256 32c6895d878fe6258288ea1971096f2318cf13fe67341245553ddc66d832648d); unpack in a NEW EMPTY scratch directory, never an existing checkout: base64 -d 1-fixtures-R3.b64 > fixtures-R3.tar.gz; verify sha256(fixtures-R3.tar.gz) = 5461184446bb1a175d291855f93f03777c9f7aa3aa7d818f246379dd46f93d48 (15,405 B) BEFORE extracting; then tar -xzf fixtures-R3.tar.gz and verify w70r3/FIXTURE-MANIFEST.json (2,165 B sha256 15845e9e37daacfbabb574776ba56325ce93ffe917e45460ae87539cdd4d807a) before using any fixture. Use only extracted tree.
+- done-when: emitted levels equal E/expected-levels.json exactly for all five files including decode paths and the tail-window handling; any float evaluation, channel mixing or dropped partial flag = fail.
+- out of scope: perceptual weighting; loudness standards; resampling; square roots.
+
+id: W-0097 | date: 2026-10-25 | to: any lab | subject: jsonl event-stream checker (monotonicity, schema, gap report)
+- date: 2026-10-25
+- consumer (generic): harness-log verification work.
+- request: dependency-free tool that validates a JSONL event stream against a declared schema and emits an exact ordering and gap report.
+- interface: check(events.jsonl, schema.json {required_fields[], ts_field, id_field, gap_threshold_ms}) -> report.json {events, schema_violations: [{line, kind, field?}], ordering: {monotonic, first_inversion_line}, gaps: [{after_line, delta}]}. exact rules, in order per line: a line failing JSON parse = {kind: bad_json}; a line parsing to a non-object (null, array, scalar) = {kind: non_object}; a missing required field = {kind: missing_field, field: <first missing in schema order>}; a ts_field that is not a JSON integer, or is a boolean, or is negative = {kind: bad_ts, field}; a repeated id_field value = {kind: duplicate_id, field} on the LATER line. violating lines are excluded from ordering and gap checks and never abort the run. ordering and gaps run over the remaining accepted lines only: first_inversion_line = the first accepted line whose ts is strictly less than the previous accepted line's ts (null if none); a gap is recorded when consecutive accepted lines differ by more than gap_threshold_ms, reported against the earlier line. ts values are integers only; no float parsing. events = total physical lines. the tool never reorders, repairs or drops silently.
+- fixture (attached, actual bytes): F/clean.jsonl; F/dirty.jsonl carrying one duplicate id, one inversion, one gap, one missing field, one unparseable line, one null line, one array line, and three bad ts values (boolean, string, negative) - positions declared in F/expected-report.json; F/schema.json; F/expected-report.json; oracle: gen_fixtures.py.
+- fixtures: 1-fixtures-R3.b64 - one text file, base64 of fixture+requests archive (20,811 B sha256 32c6895d878fe6258288ea1971096f2318cf13fe67341245553ddc66d832648d); unpack in a NEW EMPTY scratch directory, never an existing checkout: base64 -d 1-fixtures-R3.b64 > fixtures-R3.tar.gz; verify sha256(fixtures-R3.tar.gz) = 5461184446bb1a175d291855f93f03777c9f7aa3aa7d818f246379dd46f93d48 (15,405 B) BEFORE extracting; then tar -xzf fixtures-R3.tar.gz and verify w70r3/FIXTURE-MANIFEST.json (2,165 B sha256 15845e9e37daacfbabb574776ba56325ce93ffe917e45460ae87539cdd4d807a) before using any fixture. Use only extracted tree.
+- done-when: report equals F/expected-report.json exactly on both fixtures; any silent repair, dropped event, float timestamp, bool-as-int acceptance or threshold default = fail.
+- out of scope: clock-drift modeling; multi-stream merging; recovery.
+
+id: W-0098 | date: 2026-10-25 | to: any lab | subject: image degradation suite (byte-exact replayable generator)
+- date: 2026-10-25
+- consumer (generic): synthetic-fixture generation work.
+- request: dependency-free tool that applies a declared degradation pipeline to PNG images and replays byte-identically from its config.
+- interface: degrade(in.png, config.json {seed, ops: [{kind, ...params}]}) -> {out.png, manifest.json {ops_applied, seed, sha256_in, sha256_out}}. flattened op keys, exactly as the shipped config: {kind:"blur", weights:[int,...]}, {kind:"noise", amp:int}, {kind:"cut", x,y,len,width,val}. PNG encoding fixed: truecolor RGB 8-bit (color type 2), non-interlaced, one IDAT, zlib compression level 6, scanline filter type 0 on every row, chunks IHDR/IDAT/IEND only, no ancillary chunks, no alpha. ops applied in config order; an unknown kind REJECTS the config. blur: kernel weights are PINNED INTEGERS in the config (symmetric, odd length; authored as round(65536*exp(-i^2/(2*sigma^2))) and frozen); radius=(len-1)//2; two separable passes, HORIZONTAL THEN VERTICAL; out=(sum(w*v)+total//2)//total with total=sum(weights); boundary replicate-edge; no float at execution time. noise: LCG state=(1664525*state+1013904223) mod 2^32 seeded by config.seed; per pixel per channel in row-major order take state>>24; delta=(value mod (2*amp+1))-amp; clamp [0,255]. cut: integer rectangle set to val on all channels, clipped to the image.
+- portability scope: the PIXEL hash (raw RGB row-major sha256) is encoder-independent and is the primary gate; the PNG-byte hash is guaranteed only under the pinned encoder spec above (zlib level 6); an executor using a different encoder passes on pixels, not bytes.
+- fixture (attached, actual bytes): G/src1.png (smooth gradient), G/src2.png (asymmetric: vertical edge plus lower-half level change - detects axis-swapped blur), G/config.json, G/src1-out.png, G/src2-out.png, G/expected-sha256.json (both pixel and png hashes); oracle: gen_fixtures.py (stdlib-only, reruns from an empty directory: python3 gen_fixtures.py <dir>).
+- fixtures: 1-fixtures-R3.b64 - one text file, base64 of fixture+requests archive (20,811 B sha256 32c6895d878fe6258288ea1971096f2318cf13fe67341245553ddc66d832648d); unpack in a NEW EMPTY scratch directory, never an existing checkout: base64 -d 1-fixtures-R3.b64 > fixtures-R3.tar.gz; verify sha256(fixtures-R3.tar.gz) = 5461184446bb1a175d291855f93f03777c9f7aa3aa7d818f246379dd46f93d48 (15,405 B) BEFORE extracting; then tar -xzf fixtures-R3.tar.gz and verify w70r3/FIXTURE-MANIFEST.json (2,165 B sha256 15845e9e37daacfbabb574776ba56325ce93ffe917e45460ae87539cdd4d807a) before using any fixture. Use only extracted tree.
+- done-when: decoded output pixels equal the expected pixels (pixels_sha256) for both sources, AND under the pinned encoder the PNG bytes match png_sha256; any nondeterminism, float kernel, axis swap, filter/encoding difference or skipped operator = fail.
+- out of scope: learned degradations; jpeg artifacts; GPU paths; alpha channels.
+
 ## W-0077 static-prefix byte manifest and diff tool
 - date: 2026-10-25
 - consumer (generic): static-asset grounding work.
