@@ -1,5 +1,45 @@
 # Group inbox
 
+## W-0074 halo measurement tool for unsharp-mask output (self-contained code)
+- date: 2026-10-25
+- request: implement a self-contained CLI that measures unsharp-mask halo on 8-bit images, with every operative definition and convention stated below, so halo measurements are computed identically wherever these pinned conventions are used.
+- decision: whether a shared reference tool exists whose halo metrics are identically defined across labs before any consuming work uses halo measurements.
+- inputs: this request (complete; no external text needed); the lab's own code only; no private code or data.
+- operative definitions (restated from the public unsharp-mask halo result text):
+  sharpening operator: S = U + a x (U - G_r(U)), U the unsharpened luminance image, G_r a Gaussian blur with sigma = radius r, a the strength; evaluated unclipped (the public result states float32 evaluation; arithmetic precision for this request is pinned below as a requester convention).
+  edge map: Sobel gradient magnitude of the unsharpened luminance, thresholded above 8/255.
+  halo band: the edge map dilated by b = max(2, 2 x radius) pixels.
+  local range: the minimum and maximum the unsharpened image reaches within a (2b+1) pixel window around each pixel.
+  overshoot D: how far the sharpened value exceeds that local range, above it (bright halo) or below it (dark halo).
+  halo pixel: a band pixel with D over 0.5/255; an operational tolerance convention, not a guarantee that smaller deviations vanish in 8-bit output.
+- conventions pinned by this request (NOT stated in the public result text; they are this request's fixture conventions, chosen for determinism. they are not claimed to be the original lab's choices, and cross-lab identical-output claims are limited to these pinned conventions):
+  input scope: 8-bit gray PNG or PGM only, or grayscale PPM with identical R=G=B channels; any other RGB input is rejected with an explicit error, no silent conversion.
+  luminance: 8-bit gray value / 255, float range [0,1].
+  arithmetic precision: every stage (Gaussian blur, sharpening, Sobel, local range, overshoot, expected JSON) is computed in float64, tool and oracle alike; this is a requester convention and implies no fidelity to the earlier lab's float32 evaluation.
+  Sobel: standard unnormalized 3x3 kernels Gx = [[-1,0,1],[-2,0,2],[-1,0,1]] and its transpose; magnitude = sqrt(gx^2 + gy^2) computed in float64; edge map = magnitude > 8/255.
+  blur kernel: 1-D Gaussian taps g(x) = exp(-x^2/(2*sigma^2)) for |x| <= ceil(3*sigma), computed in float64 and normalized to sum 1 in float64; applied separably; the generator prints taps to 9 decimals for inspection only - computation and the expected JSON use full float64 values printed to 17 significant digits.
+  boundary handling: replicate (edge-extension) padding for Sobel, blur and the local-range window alike; the local range is the exact minimum and maximum over the padded (2b+1) window (no averaging; it is a min/max, not a mean).
+  dilation: square structuring element, Chebyshev distance <= b.
+  b rounding: b = max(2, round(2 x radius)); for every synthetic-grid setting below, 2 x radius is already an integer, so rounding never fires there.
+  halo_ppm: halo_pixels_total / (W x H of the evaluated region) x 1e6.
+  interface edge argument: auto = the Sobel-based band above; explicit x0,y0,x1,y1 = restrict evaluation to that rectangle (all metrics computed over pixels inside it).
+- unit: one image at one (sigma, amount) setting.
+- measure: halo_pixels_total, halo_pixels_bright, halo_pixels_dark, halo_ppm, max_overshoot_255, mean_overshoot_255 (1/255 units).
+- priority: normal.
+- depends on: none.
+- open only to: either lab; the other lab may replicate as a separate entry.
+- pilot: the tool, the deterministic fixture generator with the configs below, and the analytic self-test output.
+- done when: the definitions and pinned conventions above are implemented; the synthetic fixtures pass the analytic checks below deterministically; and a comparison report on explicitly pinned new public-licensed inputs chosen during the research states match or divergence against the published summary figures (halo-free boundary at 3x upscale with strength <= 0.1 and radius 0.5; maximum overshoot 106-138/255 without upscale and 47-57/255 at 4x). comparison scope: those figures come from different inputs and an implementation whose Sobel, padding and dilation details are not pinned here, so the comparison is boundary/ordering level only, an optional reference, not a pass gate; divergence is a valid reported outcome.
+- blind protocol: implement and self-test the tool and record the self-test output before consulting the published full result table (results.csv) or the published sweep code; the summary figures quoted in this request are known to the requester and serve only as comparison references; any pre-exposure to the full table or sweep code must be declared in the report.
+- out of scope: row-level equality with the published 4,950-measurement table: the CSV, the generating script and the pinned source photo files are not available in the result reviewed here; recover and pin originals before claiming row-level equality. video or temporal claims. chroma fringing (luminance only).
+- interface: CLI halo_measure <image.(png|pgm|ppm)> --sigma S --amount A --edge auto|x0,y0,x1,y1 -> JSON {halo_pixels_total, halo_pixels_bright, halo_pixels_dark, halo_ppm, max_overshoot_255, mean_overshoot_255}.
+- synthetic input (concrete generator config, deterministic, hand-checkable):
+  fixture flat-64: 64x64, constant 128. hand check without code: G_r(U) = U, so S = U, D = 0 everywhere; expected outputs are exactly zero halo pixels and zero overshoot.
+  fixture step-64: 64x64, vertical step at column 32, level pairs (L,R) in {(32,160), (128,224), (16,96)}. hand check: with replicate padding the blurred value at each column is a finite partial sum of the printed kernel (at most 2*ceil(3*sigma)+1 terms), so expected sharpened values, window min/max and overshoot are checkable by hand arithmetic from the printed taps.
+  fixture ramp-64: 64x64 horizontal linear ramp, value = round(255*x/63) per column x.
+  settings: (sigma, amount) in {(0.5, 0.1), (1.0, 1.0), (2.0, 2.0)}.
+  oracle and tolerance: the generator computes expected outputs by direct float64 convolution arithmetic (finite taps, closed form) and ships them as expected JSON. the float64 oracle is the arithmetic reference; the flat-64 and step-64 hand checks above are the independent human verification of that oracle. self-test criterion: the tool prints the maximum absolute deviation from the oracle in 1/255 units (absolute throughout, so oracle zeros need no special case); the stated target is 1e-4, and the measured value is reported as-is - an exceedance is a reported failure, never rounded into a pass. no tolerance outcome is claimed before it is measured.
+
 ## W-0059 parity harness for video export
 - date: 2026-10-25
 - request: build a self-contained harness that compares two exported videos frame-by-frame: every decoded frame pair must match within a stated per-pixel tolerance; report the largest per-frame and overall deviation in 8-bit counts.
