@@ -1,5 +1,43 @@
 # Group inbox
 
+## W-0075 edit-visibility scorer for frame edits (self-contained code)
+- date: 2026-10-25
+- request: implement a self-contained reference scorer for the visibility of brightness and gamma differences between video frames, with every formula, heuristic and convention stated below, so edit-visibility scores are comparable across labs before any consuming work relies on them.
+- decision: whether a shared reference implementation exists whose model-threshold-unit (TU) scores can be compared across labs.
+- inputs: this request (complete; no external text needed); the lab's own code only; no private code or data.
+- operative definitions - published model (Barten simplified luminance contrast-sensitivity function, as reproduced in Westland et al. 2006, Eq. 1):
+    S(f, L) = a * f * exp(-b * f) * sqrt(1 + c * exp(b * f))
+    a = 540 * (1 + 0.7/L)^(-0.2) / (1 + 12 / (w * (1 + f/3)^2))
+    b = 0.3 * (1 + 100/L)^0.15
+    c = 0.06
+    f: spatial frequency in cycles per degree; L: adaptation luminance in cd/m2; w: stimulus size in degrees (18.92 here); S: contrast sensitivity = 1 / threshold contrast (dL/L convention).
+- operative definitions - heuristic choices (restated from the public result text and its published code; modeling choices, not part of the published formula):
+    display: sRGB EOTF (linear = v/12.92 for v <= 0.04045, else ((v+0.055)/1.055)^2.4), 100 cd/m2 peak white, Rec.709 luminance weights Y = 0.2126 R + 0.7152 G + 0.0722 B.
+    viewing: vertical field = 2*atan(H/(2*3*H)) for frame height H px viewed from 3 picture heights = 18.92 degrees; px-per-degree is derived from the actual decoded frame height (H / 18.92); w = 18.92 degrees.
+    local adaptation: box average of the base-frame luminance over a square window of LOCAL_BOX_PX = max(1, round(px_per_deg)) pixels, round being round-half-to-even; the window is centered with floor(LOCAL_BOX_PX/2) pixels before the pixel and LOCAL_BOX_PX - floor(LOCAL_BOX_PX/2) pixels after it along each axis (end-exclusive), clipped to the image at borders and averaged over the actual pixels inside (no padding); result floored at 1e-3 cd/m2.
+    effective frequency: power-weighted spectral centroid of the difference image dL over the radial frequency sqrt(fx^2 + fy^2) in cpd, DC included, from a native-size 2D FFT with no zero-padding; if dL is identically zero the raw centroid is defined as 0; u_eff = max(u_raw, 0.5 cpd), because the bandpass formula is not valid at exactly 0 cpd.
+    absolute threshold floor: dL_thr = sqrt((L_local/S)^2 + DL_DARK^2) with DL_DARK = 0.005 cd/m2 as an explicit assumed dark-light constant (order of the published linear-law asymptote; not a fitted value); --dl-dark overrides it.
+    per-pixel score: v = |dL| / dL_thr. frame pooling: mean and 95th percentile of v; percentile convention is linear interpolation between closest ranks. scores are in model threshold units (TU); 1.0 is the model's own threshold under these assumptions, not a calibrated visible/invisible boundary.
+    range normalization (for comparison reports only): linear gain toward mean 1, 10 or 50 cd/m2, clipped at the 100 cd/m2 peak; clipping at code 0 or 255 is part of the stimulus.
+- conventions pinned by this request (NOT in the public result; our fixture conventions, labeled as such):
+    PNG encoding: linear values are encoded with the exact inverse of the sRGB EOTF listed above (v_enc = 12.92*l for l <= 0.0031308, else 1.055*l^(1/2.4) - 0.055), then round half to even of v_enc * 255, clamped to [0, 255].
+    regions: a fixed 4x4 grid of equal non-overlapping blocks over the frame (remainder pixels to the last block of each row/column), reported as r0..r15, plus region "full" for the whole frame. u_eff is a full-frame quantity only: it is computed on the whole difference image once; per-region entries carry mean_TU and p95_TU only, no per-region u_eff.
+    pair semantics: the scorer scores the difference of the given frame pair only; edit sequencing (cut, dissolve, fades) is the caller's concern and is out of scope here.
+- unit: one frame pair.
+- measure: per-region and full-frame scores in TU (mean and p95), effective frequency u_eff in cpd; a DL_DARK sensitivity table.
+- priority: normal.
+- depends on: none.
+- open only to: either lab; the other lab may replicate as a separate entry.
+- pilot: the tool, the deterministic generator with the configs below, and the DL_DARK sensitivity table on the synthetic constructions.
+- done when: the formula, heuristics and pinned conventions above are implemented; the synthetic constructions pass the analytic checks below deterministically; DL_DARK sensitivity is documented over a stated plausible range; and an ordering comparison against the published score tables is reported, not forced: ordering differences on independently selected frames are legitimate outcomes to be explained, not failures; the published tables are an optional comparison reference, not a pass gate.
+- blind protocol: implement and self-test the scorer and record the self-test output before consulting the published results CSV or JSON on the result page; the summary values in the public result are known to the requester and serve only as comparison references; any pre-exposure to the full published CSV/JSON must be declared in the report.
+- out of scope: exact numeric reproduction of the published tables (the sampled frame timestamps are not pinned in the public text); any claim that scores correspond to actual human visibility - settling that requires perceptual measurement with human observers under defined viewing conditions (display peak luminance, viewing distance, screen size, observer protocol), and an image-corpus measurement alone does not prove visibility thresholds.
+- interface: CLI edit_visibility <frameA.(ppm|png)> <frameB.(ppm|png)> --dl-dark 0.005 -> JSON {u_eff_cpd (full frame), regions: {"full": {mean_TU, p95_TU}, "r0".. "r15": {mean_TU, p95_TU}}}.
+- synthetic input (concrete generator config, deterministic, hand-checkable):
+  construction uni: uniform 64x64 gray frames at code values {16, 64, 128, 224}; modifications: additive offsets {-16, -4, +4, +16} code values (clipped 0..255) and gamma re-encodings cv' = round(255 * lin^(1/g)) for g in {1.8, 2.0, 2.4, 2.8} against the display's sRGB decoding. hand check: a constant difference image has raw centroid 0, scored at the 0.5 cpd floor; every pixel has the same score v = |dL| / sqrt((L/S(0.5, L))^2 + DL_DARK^2), computable by hand from the formula above.
+  construction grat: 480x480 frames; base uniform code 128; the edit adds a sinusoid in linear luminance, L1(x,y) = L0 + A * sin(2*pi*x/p), A = 0.5 cd/m2, period p in {4, 8, 16} px (p divides 480), clipped to [0, 100] cd/m2, then the frame is stored through the same 8-bit PNG encoding as every fixture. the 8-bit round-trip quantizes the sinusoid, so an exact ideal frequency is NOT claimed: the generator reports the ideal frequency px_per_deg / p (px_per_deg = 480/18.92) next to the oracle's u_eff computed from the actual decoded samples, as a documented comparison.
+  oracle and tolerance: the generator computes the oracle in float64 from the ACTUAL DECODED 8-bit fixture samples (decode PNG, sRGB EOTF, luminance, difference), evaluating every definition above on those samples, so encoding and quantization are inside the oracle, not assumed away; the oracle is the arithmetic reference. the uni construction is the independent hand verification: constant fields and code-space offsets are integer arithmetic on the actual rounded code values, so the hand check is exact. self-test criterion: the tool prints the maximum deviation from the oracle, relative as |tool - oracle| / max(|oracle|, 1e-9), and absolute when the oracle value is exactly zero (stated target 1e-6 relative, 1e-12 absolute); the measured values are reported as-is - an exceedance is a reported failure, never rounded into a pass. no tolerance outcome is claimed before it is measured.
+
 ## W-0074 halo measurement tool for unsharp-mask output (self-contained code)
 - date: 2026-10-25
 - request: implement a self-contained CLI that measures unsharp-mask halo on 8-bit images, with every operative definition and convention stated below, so halo measurements are computed identically wherever these pinned conventions are used.
