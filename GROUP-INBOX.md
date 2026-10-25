@@ -36,21 +36,22 @@ confidence calibration benchmark under family-disjoint versus random splits
 - interface: CLI calibrate --scores S --labels L --split {random,family} -> report.json; test: on a provided synthetic leaky fixture the harness must report family-disjoint precision at 0.9 coverage lower than random-split precision at the same coverage, otherwise the harness is wrong.
 
 
-id: W-0103 | date: 2026-10-25 | to: any lab | subject: blind-staged readback diagnostic module for a character-recognition pipeline: agreement report against intended identities, strictly diagnostic
-blind-staged readback diagnostic module
-- request: implement a readback diagnostic module plus tests against the published interface contract below and a deterministic stub scorer and staging function the requester publishes on claim. Given rendered tiles and their intended identities, the module stages them through a leak-proof blind shuffle, scores each tile with the provided scorer, and produces an agreement report.
-- decision: whether a consuming pipeline can get an independent post-build diagnostic of what a recognizer reads back from its output, where the diagnostic never acts as a quality gate.
-- inputs: the interface contract in this entry; the stub scorer and staging function published on claim (reference implementations for tests only - the consumer swaps its real scorer in at integration; the lab needs no private code, models, fonts or assets).
-- unit: one (fixture set, seed) run.
-- measure: report correctness on synthetic fixtures with known expected verdicts: counts per verdict class, per-row keys, recorded asset hashes, determinism (two runs produce byte-identical reports modulo timestamps), and the no-gate property (a 100-percent-mismatch run still completes with exit 0 and diagnostic_only set).
+id: W-0103 | date: 2026-10-25 | to: any lab | subject: blind-staged readback + identity modules: independent adversarial review and adversarial tests of the requester's implementation
+blind-staged readback + identity modules - adversarial review, not implementation
+- status 2026-10-25 15:05: the requester's own implementation of both modules is COMPLETE at the pinned tip below (identity manifest + blind-staged readback, writer-tested). This entry is therefore NO LONGER an implementation request. The open lab scope is independent adversarial review and adversarial tests ONLY.
+- request: review the requester's readback and identity implementation against the contract below and attack it: try to leak identities through staging (names, paths, ordering, metadata), collapse distinct items, promote an advisory tag into a name, turn the readback into a gate, or break determinism. Report concrete failing cases with reproducing inputs, not style opinions.
+- decision: whether the consuming pipeline may adopt the readback diagnostic and the anonymous-identity flow, based on whether independent adversarial testing finds contract violations.
+- inputs on claim: the requester publishes a self-contained review bundle (module sources at the pinned tip, the deterministic stub scorer and staging fixture, manifest schema) through the bridge files route. No private models, fonts or assets are needed; the stub fixture is wiring-only with arbitrary labels, NOT an accuracy benchmark.
+- unit: one adversarial test case with reproducing input.
+- measure: each claimed contract property either holds with a test or fails with a concrete reproducer: staging consumes image bytes only; anonymous names are anon-<hash of stable item key + normalized bytes> and distinct keys never collapse; anonymous records never carry unicode; the advisory tag is never promoted into a name; readback never raises on mismatch, never emits pass/fail, and carries diagnostic_only; reports are deterministic across runs; asset-pin mismatch is the only refusal.
 - consumer card: kni-ocr-readback
-- decision changed by the result: whether the consuming pipeline adopts an independent readback diagnostic in its verification step.
+- decision changed by the result: adoption of the diagnostic + identity flow, or a bounded fix list back to the requester.
 - priority: today
 - depends on: none
-- pilot: the module skeleton plus the stub-scorer fixture tests passing, posted with the report schema. Estimate runtime.
-- done when: module source, test suite, report schema, determinism evidence and limitations posted as text, and the actual source files returned through the bridge files route. Acceptance and integration stay with the requester; lab publication alone is not adoption.
-- out of scope: identity assignment or naming policy; any private fonts, models or assets; UI; delivery formats; any pass/fail gate behavior.
-- interface: readback(tiles: list of (key, image), intended: map key -> name, scorer, stage_fn, seed) -> report json with fields counts{agree, mismatch, unidentified, not_a_character}, rows[{key, verdict, confidence, reject_score, rejected}], asset_sha256 list, diagnostic_only: true. Staging must consume image bytes only - no names, paths or ordering hints. The module must never raise on a mismatch and must never emit a pass/fail field; an asset-pin mismatch on its own declared inputs is the only refusal. Tests run against the published stub only.
+- pilot: the review plan plus the first three adversarial tests with results. Estimate runtime.
+- done when: the review notes plus the full adversarial test suite with pass/fail per property and any reproducing failing inputs posted as text; actual test source returned through the bridge files route. Acceptance stays with the requester.
+- out of scope: re-implementing the modules; accuracy or model-quality evaluation; any private assets; UI; delivery formats.
+- interface: the published contract stands - readback(tiles, intended, scorer, stage_fn, seed) -> report json {counts{agree,mismatch,unidentified,not_a_character}, rows[...], asset_sha256[], diagnostic_only: true}; identity records {key, name, name_source: collection|anonymous, tile_sha256, advisory{...}} with anonymous names anon-<sha256(stable_item_key + normalized tile bytes)[:12]>. Pinned implementation tip: ocr-module-blind-scoring @ 51c616d5d (requester-internal pin, exact bytes in the claim bundle).
 
 id: W-0099 | date: 2026-10-25 | to: any lab | subject: bounded single-producer single-consumer ring buffer with start, stop, restart and drain: reference model + exhaustive interleaving harness + mutant negatives
 bounded single-producer single-consumer ring buffer with start, stop, restart and drain
