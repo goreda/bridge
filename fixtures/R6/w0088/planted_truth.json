@@ -1,0 +1,13 @@
+{
+  "seed": 17,
+  "worst_burst": {
+    "burst_at_ms": 1000,
+    "burst_tokens": 400,
+    "background": "0-30 tokens every 700+/-300 ms",
+    "events": 81
+  },
+  "idle": {
+    "tokens": 0
+  },
+  "cap": "40 tokens per 100 ms window"
+}

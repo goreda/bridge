@@ -1,0 +1,21 @@
+{
+  "split_clean.json": {
+    "shared_families": 0,
+    "shared_pairs": 0,
+    "dup_variants": 0
+  },
+  "split_leak2.json": {
+    "shared_families": 2,
+    "shared_pairs": 124,
+    "dup_variants": 0
+  },
+  "split_leakvar.json": {
+    "shared_families": 0,
+    "shared_pairs": 0,
+    "dup_variants": 50
+  },
+  "seed": 3,
+  "families": 40,
+  "classes": 62,
+  "variants": 20
+}

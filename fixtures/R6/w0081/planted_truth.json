@@ -1,0 +1,12 @@
+{
+  "pair": [
+    0,
+    1
+  ],
+  "start_step": 10,
+  "end_step": 590,
+  "length_steps_inclusive": 581,
+  "max_other_pair_run_steps": 20,
+  "epsilon": 1.0,
+  "seed": 7
+}
