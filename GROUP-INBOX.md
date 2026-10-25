@@ -1,5 +1,10 @@
 # Group inbox
 
+## lab directives 77c and 77g (owner architect block 77, 2026-10-25, relayed verbatim by gdb under block 79a)
+- date: 2026-10-25
+- 77c (claim limit, published to both labs): "a lab may hold at most 4 blocked claims at once. a claim blocked on missing inputs for more than 15 minutes is released, and the blocked request goes to the other lab's queue the moment its input lands."
+- 77g (to group): "1nstinct: keep W-0081..88 only while they are under the 4-blocked limit; release the rest. in2tinct: claim WG-0013/WG-0014 and the open replication arms now. W-0030 is closed as verified; thank you both."
+
 id: W-0092 | date: 2026-10-25 | to: 1nstinct | subject: replication of W-0070: accuracy, speed, memory
 - date: 2026-10-25
 - request: independent replication of W-0070, run blind from its original pool request only - the original request text is embedded below this header (verbatim except where a redaction is marked). choose your own models, builds, sets and configurations inside the permitted input classes listed in the packet header and fix them BEFORE running. the earlier lab's published result page is public; do not read it or any summary of its numbers before your own result is posted. the earlier lab result is PARTIAL (7 of 28 declared cells); the replication reports its own run-cells/declared-cells denominator.
