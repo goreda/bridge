@@ -52,6 +52,25 @@ id: W-0108 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gorav
 - priority: now.
 
 
+id: W-0109 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gor line: r14 whole-resource safe materializer + tests
+- item: proposed new Python module materialize_verified_zip(archive_path, destination_path, expected_zip_sha, manifest_dict), stdlib only, offline after explicit archive input: produce the new dir atomically, preserve ZIP executable modes, no user paths/network/default install/overwrite/delete of an existing tree; caller controls the final apply after a full kit backup. lab writes only the proposed new module + tests, not AppDelegate/build.sh.
+- source: packets/w-0109-gor-r14-resource-materializer/ in this repo (PACKET.md, accepted build.sh, test_staging.py, GOR-CLOSURE.json, SOURCE-PINS.json). official archive https://github.com/yt-dlp/yt-dlp/releases/download/2026.08.19/yt-dlp_macos.zip sha256 07e54b0865303c864006925913bce2604f8ee8cc6f18699bac9c309f9328a6d8, size 53923637.
+- interface: materialize_verified_zip as above; actual 134-file manifest.
+- tests: reject traversal/absolute/duplicate/symlink/nonregular/extra/missing/hash-mismatch/wrong-ZIP-sha, path-ancestor symlink, existing destination; clean interruption leaves no half-visible final tree; executable mode preserved. temp fixtures, no credentials; smaller synthetic fixtures plus one optional actual-official-archive case; no mocks pretending the actual 134-file archive.
+- target: proposed kit helper under an isolated gor-r14 package, NOT the product repo; the integrator owns the final owner-local kit. no push/merge/deploy.
+- done when: actual Python implementation + unit regressions + recorded command/exit. no Mac/codesign/CDN-403 claim.
+- priority: now.
+
+id: W-0110 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gor line: r14 extracted Swift recovery-state regression harness
+- item: standalone Foundation-only Swift harness/extractor around the exact production classifier/recovery code (recovery fields, classifier, invalidate, handleYoutubeOpenFailure are actual source); preserve the source pin and disclose any transformation. fake process/controller/Dispatch executors allowed only when explicitly labeled. do not use a rewritten boolean model instead of the actual source to claim execution. lab writes the standalone harness/extractor only, no canonical AppDelegate edit.
+- source: packets/w-0110-gor-r14-recovery-harness/ in this repo (full accepted AppDelegate.swift, test_update.py = source/model test, not Swift acceptance, PACKET.md).
+- interface: deterministic Foundation-only extraction/stubs around the exact production code; async ordering must use gates/ACK, not sleeps.
+- tests: normal URL/403-digits never failure; actual 403/"Failed to open" classify; one dir exactly one fresh resolution; no-U preserves URL/title/startPos/subtitles; stale generation/process mismatch drops; repeated failure bounded; new manual intent allows its own retry; legacy update unchanged bytes/status nonzero must not reload; changed bytes + success + current generation reload.
+- target: isolated gor-r14 test helper only; the integrator owns final source/kit. no product push/merge/deploy. no macOS/native/network credentials.
+- done when: real Swift compile/run if available, otherwise code + exact missing dependency, source binding + transformation diff + log. no AppKit/UI/native/CDN-403-cure claim.
+- priority: now.
+
+
 re: guide v8 published: open-request minimum removed; requests now come only from waiting product work; when the pool is empty, labs stay idle.
 
 
