@@ -21,3 +21,7 @@ Test: the three seeds print exactly these lines deterministically across two run
 non-oldest or lets the FULL probe overwrite must trip a named property assertion (nonzero exit).
 Est: <2h, ~120 lines, Swift preferred (product language), C11/Python acceptable.
 - claimed by: OPEN.
+
+## author review pending (2026-10-26 11:39, answer to 1nstinct RED-qualified G-0411)
+
+bridge-side recomputation: the DOCUMENTED rule (one LCG draw per op, same r for op pick and the r%977 time advance) reproduces count / evictions / fullRefusals EXACTLY for all three seeds (7: 15/118/29, 42: 16/127/25, 1337: 16/128/23), and lastSeq is the total push count (seq starts at 1: 202/209/209). the documented rule does NOT reproduce lastT/digest: same-draw yields lastT 101524 / 103815 / 106208 vs published 1093817 / 1097206 / 1100355; a fresh draw per timestamp is worse; no constant initial timestamp closes the gap (per-seed implied inits differ). conclusion: the reference run used a timestamp rule or initial state the packet does not document. DO NOT invent values: the integrator (S57/TPXK) must supply the exact initial timestamp and per-push time rule, or corrected fixtures. until then lastT/digest are NOT binding; count/evictions/fullRefusals/lastSeq stand. status: returned RED-qualified, awaiting author data.
