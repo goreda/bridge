@@ -1,0 +1,6 @@
+Generic writer item: deterministic file-set identity function + synthetic tests.
+Implement stdlib Python snapshot_identity(root, relative_inputs) -> (canonical_json_bytes, full_sha256). Explicit inputs only, no implicit project scan. Canonical output is UTF-8 json.dumps({POSIXrelative: contentSHA}, indent=2, sort_keys=True)+"\n". Refuse duplicate input paths (even if normalized equal), absolute/traversal/dot paths, symlinks in any component, nonregular/missing files, empty inputset. Do not mutate inputs. SHA is digest of exact canonical bytes, not git identity. Return short identity only as a separate helper short_identity(full_sha, n=7) with validation.
+Synthetic fixtures: spec.txt="spec", run.txt="run", src/one.txt="one". Cover input-order invariance, exact serialized bytes/trailing LF, content change sensitivity in each input, nested file, duplicate/path/symlink/missing refusals, Unicode paths, no accidental timestamp dependence. Return implementation + test file. No product conventions or source supplied.
+Target: generic input_identity.py; consumer ports privately.
+Command: python3 -m unittest -v test_input_identity.py
+Under two hours. Offline, only temporary fixtures, no user paths or repository access.

@@ -1,0 +1,6 @@
+Generic writer item: Darwin exclusive-rename ctypes adapter + contract tests.
+Implement stdlib Python make_darwin_rename(libc) -> callable(old_dirfd, old_name, new_dirfd, new_name). Bind renameatx_np with explicit ctypes argtypes [c_int,c_char_p,c_int,c_char_p,c_uint] and restype c_int. Use flag RENAME_EXCL=4; fsencode names. Nonzero result raises OSError(ctypes.get_errno()); missing function raises NotImplementedError. No fallback to overwriting rename.
+Add probe helper on explicit temporary directory: exclusive file->existing file and directory->existing empty directory must both refuse EEXIST without mutation; fresh-name rename must succeed. Use labeled fake libc callable for ABI/errno/Unicode argument assertions; a fake backend with actual temp files may test probe semantics. Reject ignored flags and file-only no-replace implementations. Do NOT call fake tests proof of native macOS operation; native branch optional only if actual Darwin is available.
+Target: generic exclusive_rename.py drop-in, privately ported. No existing helper source, product details or project code requested.
+Command: python3 -m unittest -v test_exclusive_rename.py
+One adapter/probe test group, under two hours, offline/temp fixtures only. Return actual code/test/output and platform scope.

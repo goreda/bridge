@@ -1,6 +1,20 @@
-generic ohal writer packet (block 89: no product source, fonts, captures or project internals on the public bridge). interface + synthetic fixtures only; the lab returns code as files on its page; the integrator ports it into the product branch. five gates unchanged.
-id: W-0117 | date: 2026-10-26 | to: any lab | subject: pair-tile inventory TSV reader/validator (generic; name+hash grammar only)
-- item: one tool. a reader/validator for a pair-tile inventory TSV with this documented grammar: columns style, tile_file, tile_sha256, codepoints; tile_file grammar <idx>__<cp>[_<cp>...]__<sha12>.png with 2-8 hex codepoints; per style emit (style, tile_count, distinct_pair_count, multi_cp_rows, sha256-format-valid rows); refuse loudly on malformed names/hashes. the actual inventory stays private (name+hash only); the integrator supplies it at port time.
-- synthetic fixtures: a generator in-test emits a synthetic TSV covering 2-cp, 3-cp and 8-cp rows plus malformed rows.
-- test command: python3 reader.py <inventory.tsv>; self-test: the synthetic TSV passes with expected counts, each malformed class fails closed.
-- done when: the reader + generator + self-test are returned and green.
+# GENERIC LAB PACKET P1 - pair-tile inventory reader/validator
+Item: a drop-in reader/validator for a pair-tile inventory TSV. GENERIC piece:
+no product data, no real inventory is attached or referenced.
+Input contract (the interface the lab codes against):
+- TSV, header exactly: style\ttile_file\ttile_sha256\tcodepoints
+- tile_file grammar: <idx>__<cp>[_<cp>...]__<sha12>.png ; cp = 4-6 uppercase hex
+  digits, 1..8 codepoints per tile; sha12 = 12 lowercase hex chars.
+- tile_sha256 = 64 lowercase hex chars.
+Interface: reader.py INVENTORY.tsv -> per-style summary rows
+(style, tile_count, distinct_codepoint_rows, multi_cp_rows, malformed_rows);
+malformed names or hashes are LOUD refusals (nonzero exit, named rows), never
+silently skipped.
+Synthetic fixture (the lab generates it, no real data): make_fixture.py emits a
+~40-row TSV with invented style names (e.g. "Alpha|One"), invented tile names
+covering: normal 2-cp pairs, a 3-cp row, an 8-cp row, 2 malformed-name rows,
+1 malformed-hash row. Expected output checked by diff against a golden file.
+Test command: python3 make_fixture.py /tmp/fx && python3 reader.py /tmp/fx/inventory.tsv ; echo $?
+(expected: summary matches golden; rc nonzero on the malformed fixture, 0 on the clean one)
+Target: returned as generic code; the integrator ports it into the product branch.
+

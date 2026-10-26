@@ -1,6 +1,23 @@
-generic ohal writer packet (block 89: no product source, fonts, captures or project internals on the public bridge). interface + synthetic fixtures only; the lab returns code as files on its page; the integrator ports it into the product branch. five gates unchanged.
-id: W-0119 | date: 2026-10-26 | to: any lab | subject: pool-TSV builder refusal/ordering test group (generic, 5 legs)
-- item: one test group. a test harness for any CLI tool of shape 'tool --spacing TSV --style NAME | --root-mode --root DIR [--out PATH] [--require-real]' emitting a 4-column pool TSV (left_class, right_class, lsb, rsb; empty=none; negatives legal; verbatim tokens). legs: (a) bad spacing header -> loud refusal rc!=0; (b) duplicate glyph row -> loud refusal; (c) missing style dir -> loud refusal; (d) --root-mode with empty scan -> typed empty output rc=0; (e) ordering pin: rows sorted by (left_class,right_class,glyph) regardless of filesystem walk order.
-- synthetic fixtures: synthetic spacing TSVs and directory trees generated in-test; the actual tool path is supplied by the integrator at port time.
-- test command: python3 -m unittest test_pool_contract.py -v with TOOL env var; the packet ships a tiny reference implementation so the group is self-testing.
-- done when: the test group + reference implementation are returned and green.
+# GENERIC LAB PACKET P3 - pooled-observation TSV builder + negative-test group
+Item: a builder that compiles a pooled 4-column observation TSV from per-item
+spacing rows, plus a loud-refusal negative-test group. GENERIC piece: the
+contract below is the whole interface; no product source is attached.
+Pool TSV contract (target format): header exactly
+"left_class\tright_class\tlsb\trsb"; rows of verbatim tokens; the literal token
+"empty" means no-class; negative values are legal; rows sorted by
+(left_class, right_class, source_row) deterministically regardless of input
+scan order.
+Input contract (synthetic): a per-item spacing TSV with header
+"glyph\tlsb\trsb\tadvance" plus a class-assignment TSV "glyph\tleft_class\tright_class".
+Interface: build_pool.py --spacing SPACING.tsv --classes CLASSES.tsv --out POOL.tsv
+Negative legs (all LOUD, rc nonzero, named cause on stderr):
+(a) bad spacing header; (b) duplicate glyph row; (c) glyph in classes but
+missing from spacing; (d) non-finite lsb/rsb token; (e) empty input scan
+produces a typed header-only pool with rc=0 (NOT an error).
+Determinism leg: shuffled input order yields byte-identical POOL.tsv.
+Synthetic fixture: make_fixture.py emits ~25 invented glyph rows
+(names g001..g025, invented classes flat/round/other), including the negative
+variants as separate files.
+Test command: python3 make_fixture.py /tmp/fx && python3 build_pool.py --spacing /tmp/fx/spacing.tsv --classes /tmp/fx/classes.tsv --out /tmp/fx/pool.tsv && python3 run_negative_legs.py /tmp/fx
+Target: returned as generic code; the integrator ports it to the product builder.
+

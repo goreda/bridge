@@ -1,0 +1,6 @@
+Generic writer item: flat archive validation function + synthetic tests.
+Implement stdlib Python validate_flat_archive(path, expected_sha256, allowed_members, max_total_bytes) -> mapping[str, bytes]. Never extract or execute. allowed_members is a set of exact filenames. Require whole-archive SHA256, unique flat names (no slash/backslash, dot, drive prefixes or NUL), only regular files (reject symlink/device/directory), exact member set, total declared and actual uncompressed size below cap, CRC checked. Return bytes only after ALL entries verified; reject with ValueError and no filesystem changes.
+Synthetic fixtures: files alpha.txt="alpha", beta.txt="beta"; generate ZIPs in tempfile. Cover success, wrong hash, duplicate, traversal, absolute, backslash, extra/missing member, symlink/device, corrupt CRC, size cap, Unicode benign filename. Include implementation and unittest code, not prose-only review.
+Target: generic drop-in module flat_archive.py; consumer ports privately. No product source or project internals provided or requested.
+Command: python3 -m unittest -v test_flat_archive.py
+Expected under two hours. No network, user folders, credentials, installation or side effects beyond temporary test fixtures.
