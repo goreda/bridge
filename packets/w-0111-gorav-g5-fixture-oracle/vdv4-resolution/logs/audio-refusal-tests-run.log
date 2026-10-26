@@ -1,0 +1,13 @@
+A1_mp4: OPEN_REFUSED rejected("admission: container=mov,mp4,m4a,3gp,3g2,mj2 audio=0 video=1 other=0 codec=none")
+A2_ppm: OPEN_REFUSED rejected("admission: container=ppm_pipe audio=0 video=1 other=0 codec=none")
+A3_float_wav: OPEN_REFUSED rejected("avformat_open_input failed -2")
+A4_outside_roots: OPEN_REFUSED rejected("outside pinned roots")
+A5_vacuous_root: PIN_REFUSED rejected("pinned root resolves to \'/\': vacuous containment refused")
+A6_truncated: OPEN_REFUSED rejected("avformat_open_input failed -2") TYPED_OK
+A7_stale_session: NIL_OK
+A8a_root: PIN_REFUSED rejected("pinned root resolves to \'/\': vacuous containment refused")
+A8b_doubleslash: PIN_REFUSED rejected("pinned root resolves to \'/\': vacuous containment refused")
+A8c_dotroot: PIN_REFUSED rejected("pinned root resolves to \'/\': vacuous containment refused")
+A8d_symlink: PIN_REFUSED rejected("pinned root resolves to \'/\': vacuous containment refused")
+A8e_normal_pin_still_opens: OK
+AUDIO_REFUSAL_SUMMARY bad=0

@@ -1,0 +1,12 @@
+nil-open: pushed=1764000 fenced=0 terminal=endOfStream
+negative-control: pushed=0 fenced=433
+video-refused: outcome=videoRefusedResumed resets=0 rev unchanged
+reset-refused-after-commit: outcome=ringResetRefusedMuted closes=1 resumes=0
+committed+resetOK: outcome=nativeReady resume rev+1 corr=1 anchored
+canonical: firstPushWall=6.377696990966797e-05s pushed=1764000
+offset100ms: firstPushWall=0.1008378267288208s pushed=1764000
+cancel-wait: terminal=stoppedEarly pushed=0
+cancel-highwater: terminal=stoppedEarly pushed=90112
+order: revAtReset=1 (pre-seek), then nativeReady
+repeated: two rounds nativeReady, rev+2 total, resets=2
+ALL_CHECKS_PASS

@@ -1,0 +1,4 @@
+forward: shown=[0.0, 0.04, 0.08, 5.0, 5.04, 5.08] drops=0 waits=4
+backward: shown=[0.0, 0.04, 0.02, 0.06, 0.1] drops=0 waits=3
+ALL_CHECKS_PASS
+keyframeGap: shown=[0.0, 0.04, 5.3, 5.34]

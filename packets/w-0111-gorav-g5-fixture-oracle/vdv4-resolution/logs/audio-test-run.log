@@ -1,0 +1,13 @@
+A: start
+B: pin
+C: open
+D: pull loop
+opened: codec=pcm_s16le 44100Hz 2ch
+frames=11 bytes=176400 eos=true
+pcm_digest_fnv1a64=793d0b08641cf595
+expected          =793d0b08641cf595
+K4_AUDIO_PASS
+k8_render_digest=793d0b08641cf595 bytes=176400 underrunBytes=8192
+K8_AUDIO_RING_PASS
+k9 concurrent: bytes=176400 fifo=true drops=0
+K9_RING_CONCURRENCY_PASS

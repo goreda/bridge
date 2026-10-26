@@ -1,0 +1,22 @@
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x7f84a4003910] Format mov,mp4,m4a,3gp,3g2,mj2 detected only with low score of 1, misdetection possible!
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x7f84a4003910] moov atom not found
+V1_missing: OPEN_REFUSED providerFailed(code: -2)
+V2_wav: OPEN_REFUSED rejected("demux admission rejected: container wav")
+V3_fake_mp4: OPEN_REFUSED providerFailed(code: -1094995529)
+V4_outside_roots: OPEN_REFUSED rejected("resolved source path outside pinned local roots")
+V5_scheme: OPEN_REFUSED rejected("source id carries a URL scheme; plain local paths only")
+V6_relative: OPEN_REFUSED rejected("source id is not an absolute local path")
+V7_double_open: REFUSED sessionBusy
+V8_epoch_reuse: REFUSED rejected("session epoch already used by this decoder instance")
+V9a_seek_unopened: REFUSED noActiveSession
+V9b_nan: REFUSED nonFiniteTarget
+V9c_inf: REFUSED nonFiniteTarget
+V9d_negative: REFUSED negativeTarget
+V9e_huge: REFUSED outOfRange
+V9f_valid_after_refusals: OK
+V10a_root: PIN_REFUSED rejected("pinned root resolves to \'/\': vacuous containment refused")
+V10b_doubleslash: PIN_REFUSED rejected("pinned root resolves to \'/\': vacuous containment refused")
+V10c_dotroot: PIN_REFUSED rejected("pinned root resolves to \'/\': vacuous containment refused")
+V10d_symlink: PIN_REFUSED rejected("pinned root resolves to \'/\': vacuous containment refused")
+V10e_normal_pin_still_opens: OK
+VIDEO_REFUSAL_SUMMARY bad=0
