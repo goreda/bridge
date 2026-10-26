@@ -1,10 +1,63 @@
 # Group inbox
 
-ohal on (2026-10-26, block 86s; owner 2026-10-26 09:09). each lab works as a writer on the lines named in the task packets below, at full parallel capacity; no lab stays idle while a packet is open. the claim rule is unchanged: post "claim: W-xxxx, lab, time" on your own page, wait one check, earliest claim wins. a lab with no open packet takes the next open packet on any line and says so on its page. return code as a patch or full files on your own files page; the line's integrator applies it to the branch, runs the tests, and merges it like any writer's work. lab code runs in tests without credentials.
+ohal on (2026-10-26, block 86s owner 09:09; staffing block 88 owner 10:28). each lab works as a writer on the packet lines at full parallel capacity; no lab idle while a packet is open. claim rule: post "claim: W-xxxx, lab, time" on your own page, wait one check, earliest claim wins; one item, one writer. a writer starts from the product repo branch or pr head (gorav #1, kni #4, middots #71); if you cannot reach the source, say so and the integrator pushes a reachable branch this pulse. return code as a patch or full files on your files page; the integrator applies, tests and merges. lab code runs in tests without credentials. no font or capture files from licensed sources on the bridge - refer by name+hash (88f). receipt per line: open / claimed / returned / merged. five gates unchanged: delete, go live, money, accounts/credentials, messages outside the group need the owner's own words.
 
 guide v9: ohal mode; project work allowed on the bridge.
 
 re: receipts, 2026-10-26 10:07 pickup (gdb): collision fully resolved (1nstinct G-0397 yields W-0104..W-0108 to in2tinct's 09:22:39 claims; both pages record it; no penalty). deliveries received: W-0104 LANDED (in2tinct H-0327 candidate, patch sha256 064edca6f5a4ba2183a7f3e12b6ab94e53afcb7745acf01ab20e9fad56bf4405; integrator applied to the private KNI integration branch at 2f58e8649, pytest 30 + unittest 30 green on the actual tree). W-0106 bounded closeout (in2tinct H-0329: step indices proven stable, mutants caught, no engine fix required). W-0107 bounded partial (in2tinct H-0327: t130/t132 recovered, metrics on page; the counter-definition question is answered below - genuinely unknown, no fake). W-0109 qualified candidate (in2tinct H-0328, materializer sha256 27e371c6.. verified) + 1nstinct independent review split (G-0399); interim finding G-0401 confirms the active-parent staging-replacement race (12/200); fix packet W-0112 published below. W-0110 bounded closeout 49/49 (in2tinct H-0328; pin metadata corrected in-repo - lab pin db909d3b was wrong, true accepted AppDelegate sha256 3ce05563098b..a55, see lab-repro/PIN-CORRECTION.md). W-0111 item B closed out by 1nstinct (G-0400: k3-oracle + seekcheck-src delivered with full provenance). W-0105 reframed to the cleared synthetic 2-glyph scope (engine + docs published 09:42; Paul New/marq/Mercator assets are not public lab inputs - real-capture comparison is private internal integrator work; no full-fixture quality claim). W-0108 r2 self-contained inputs delivered 09:42; no result yet.
+
+re: block 88c packets, 2026-10-26 10:32 (gdb): fourteen new small writer packets published (one function / one test group / one fixture set / one port each, under-2-hour cuts). every packet dir carries its source files or excerpts, interface, test command and target branch. claim on your page per the rule above; one item, one writer.
+
+id: W-0113 | date: 2026-10-26 | to: any lab | subject: ca line CA-9: plain vs simd wasm parity difference report (devtools/t138, contract-checked, no bit-identity policy)
+- full packet: packets/w-0113-ca-plain-simd-parity-test/PACKET.md. target ohal/ca.
+- claimed by: OPEN.
+
+id: W-0114 | date: 2026-10-26 | to: any lab | subject: ca line CA-10: wallSubPass / keep_in morph-effect measurement harness (devtools/t139)
+- full packet: packets/w-0114-ca-wallsubpass-morph-measurement/PACKET.md. target ohal/ca.
+- claimed by: OPEN.
+
+id: W-0115 | date: 2026-10-26 | to: any lab | subject: ca line CA-11: reusable budget-channel sensitivity harness + self-tests (devtools/t140; data only, no policy change)
+- full packet: packets/w-0115-ca-budget-channel-sensitivity-harness/PACKET.md. target ohal/ca.
+- claimed by: OPEN.
+
+id: W-0116 | date: 2026-10-26 | to: any lab | subject: ca line CA-12: drawn-body vs wall overshoot harness + regression from the metaball field (devtools/ca12)
+- full packet: packets/w-0116-ca-drawn-overshoot-harness/PACKET.md. target ohal/ca.
+- claimed by: OPEN.
+
+id: W-0121 | date: 2026-10-26 | to: 1nstinct (W-0111 item B writer continuation) | subject: gorav line G5 remaining: k7b RGBA oracle for the playback suite (PlaybackTest.swift:202)
+- full packet: packets/w-0121-gorav-k7b-rgba-oracle/PACKET.md. returned on the lab page; integrator applies.
+- claimed by: 1nstinct, 2026-10-26 10:09 europe/istanbul (routed continuation of its claimed W-0111 line). status: CLAIMED-ROUTED.
+
+id: W-0122 | date: 2026-10-26 | to: any lab | subject: gorav line: r2 bundle manifest self-check tool
+- full packet: packets/w-0122-gorav-r2-manifest-selfcheck/PACKET.md.
+- claimed by: OPEN.
+
+id: W-0123 | date: 2026-10-26 | to: any lab | subject: gorav line: gate-timeout negative-control test group for the stage-2 seam
+- full packet: packets/w-0123-gorav-gate-timeout-negative-group/PACKET.md.
+- claimed by: OPEN.
+
+id: W-0124 | date: 2026-10-26 | to: any lab | subject: gorav line: seek regression fixture set for the two C4 finding classes (synthetic, generated in-test)
+- full packet: packets/w-0124-gorav-seek-regression-fixture-set/PACKET.md.
+- claimed by: OPEN.
+
+id: W-0125 | date: 2026-10-26 | to: any lab | subject: gor line: flat-ZIP bootstrap validation + isolated import regression test group (kit-only candidate)
+- full packet + sources: packets/w-0125-gor-bootstrap-isolation-testgroup/ (apply_kit.py, LAUNCHER-TEMPLATE.txt, HASHES-DRAFT.json). command: python3 -m unittest -v test_bootstrap.py.
+- claimed by: OPEN.
+
+id: W-0126 | date: 2026-10-26 | to: any lab | subject: gor line: source-resource closure validator fail-closed regression + minimal directory-symlink fix (build.sh manifest block)
+- full packet + sources: packets/w-0126-gor-resource-manifest-failclosed/ (build.sh, GOR-CLOSURE.json). command: python3 -m unittest -v test_build_resource_manifest.py.
+- claimed by: OPEN.
+
+id: W-0127 | date: 2026-10-26 | to: any lab | subject: gor line: source-snapshot / BuildID extraction regression test group (build.sh blocks)
+- full packet + sources: packets/w-0127-gor-build-identity-regression/ (build.sh, CANDIDATE-SOURCE-MANIFEST.json, HASHES-DRAFT.json). command: python3 -m unittest -v test_build_identity.py.
+- claimed by: OPEN.
+
+id: W-0128 | date: 2026-10-26 | to: any lab | subject: gor line: Darwin exclusive-rename FFI/probe contract port test group (materializer _darwin_exclusive_rename)
+- full packet + sources: packets/w-0128-gor-darwin-exclusive-rename-contract/ (materializer.py sha256 27e371c6.., test_materializer.py). command: python3 -m unittest -v test_darwin_rename_contract.py.
+- claimed by: OPEN.
+
+re: per-line receipt, 2026-10-26 10:32 (gdb) - open / claimed / returned / merged:
+kni: 0 / 1 (W-0105) / 0 / 1 (W-0104). gorav: 3 (W-0122, W-0123, W-0124) / 2 (W-0108, W-0121) / 1 (W-0111 item B) / 0. ca: 4 (W-0113, W-0114, W-0115, W-0116) / 0 / 2 (W-0106, W-0107) / 0. gor+photon: 5 (W-0112, W-0125, W-0126, W-0127, W-0128) / 1 (W-0109, candidate delivered, fix routed via W-0112) / 1 (W-0110) / 0. middots: 0 / 0 / 0 / 0 (inputs pending; 88d search running). transcribe: 0 / 0 / 0 / 0 (inputs pending; local-test items until the 12:00 CORS server change).
 
 re: W-0105 corrected sources (2026-10-26 09:42, gdb): the excerpt-only packet is replaced by the integrator's self-contained pack at packets/w-0105-kni-spacing-harness/ - full engine source (PR #4 head 1b5f1b37, git archive, credential-free cargo build, crates.io public deps pinned in Cargo.lock), CLI usage, manifest format + kern-overlap schema docs, and the 2-glyph anonymous fixture, with run commands in docs/CLI-USAGE.txt. NOTE (2026-10-26 09:47 rights review): the Paul New capture images are WITHHELD - confirmed third-party specimen captures, not user drawings; the Paul New harness commands are dead from this packet and the measurement scope is reduced to the synthetic 2-glyph fixture (no Paul New coverage claimed). details in the packet's PUBLICATION-NOTE.md. one internal directory (engine/fl-re/, third-party reverse-engineering notes) is excluded as not ours to publish - see PUBLICATION-NOTE.md; it is not needed for the harness work. same packet, same claim, no new id.
 

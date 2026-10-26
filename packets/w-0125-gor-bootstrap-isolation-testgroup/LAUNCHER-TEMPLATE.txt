@@ -1,0 +1,24 @@
+python3 - <<'PYGOR'
+# Final packaging substitutes exact ZIP name and SHA256 here. Do not run template.
+import hashlib, json, os, pathlib, stat, subprocess, tempfile, zipfile
+archive = pathlib.Path.home() / 'Downloads' / 'FINAL-ARCHIVE-NAME.zip'
+expected_zip_sha = 'FINAL-ARCHIVE-SHA256'
+if hashlib.sha256(archive.read_bytes()).hexdigest() != expected_zip_sha:
+    raise SystemExit('Wrong archive; nothing changed')
+with tempfile.TemporaryDirectory(prefix='gor-r14-p3v5-') as temp:
+    kit = pathlib.Path(temp)
+    with zipfile.ZipFile(archive) as z:
+        names = z.namelist()
+        if len(names) != len(set(names)) or any('/' in n or '\\' in n or n in ('.', '..') for n in names):
+            raise SystemExit('Unexpected archive members; nothing changed')
+        for info in z.infolist():
+            mode = info.external_attr >> 16
+            if mode and not stat.S_ISREG(mode):
+                raise SystemExit('Non-regular kit member; nothing changed')
+            target = kit / info.filename
+            target.write_bytes(z.read(info))
+            os.chmod(target, 0o644)
+    runner = "import runpy,sys;from pathlib import Path;kit=Path(sys.argv[1]);sys.path.insert(0,str(kit));sys.argv=[str(kit/'apply_kit.py')]+sys.argv[2:];runpy.run_path(str(kit/'apply_kit.py'),run_name='__main__')"
+    result = subprocess.run(['python3', '-I', '-c', runner, str(kit), '--root', str(pathlib.Path.home() / 'Downloads' / 'gor'), '--kit', str(kit), '--build'])
+    raise SystemExit(result.returncode)
+PYGOR
