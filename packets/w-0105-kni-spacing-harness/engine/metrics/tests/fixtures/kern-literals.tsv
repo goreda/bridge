@@ -1,0 +1,29 @@
+file	literal	count	class	note
+engine/metrics/src/gen.rs	0	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/metrics/src/gen.rs	0.0	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/metrics/src/gen.rs	1	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/metrics/src/gen.rs	2	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/metrics/src/gen.rs	2.0	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/metrics/src/gen.rs	3	5	format	column index or column count of the fixed TSV input formats
+engine/metrics/src/gen.rs	4	2	format	column index or column count of the fixed TSV input formats
+engine/metrics/src/gen.rs	5	5	format	column index or column count of the fixed TSV input formats
+engine/metrics/src/kern_proposal.rs	0	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/metrics/src/kern_proposal.rs	1	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/learning/src/prior.rs	0	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/learning/src/prior.rs	0.0	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/learning/src/prior.rs	0usize	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/learning/src/prior.rs	1	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/learning/src/prior.rs	1.0	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/learning/src/prior.rs	2	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/learning/src/gate.rs	0	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/learning/src/gate.rs	0.0	1	definition	lower bound of a valid quantile probability (try_quantile range check)
+engine/learning/src/gate.rs	0.5	1	definition	quantile 0.5 is the median
+engine/learning/src/gate.rs	0.9	1	CONVENTION	the upper quantile reported next to the median (p90); a reported statistic of the held-out gate
+engine/learning/src/gate.rs	0usize	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/learning/src/gate.rs	1	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/learning/src/gate.rs	1.0	1	definition	upper bound of a valid quantile probability (try_quantile range check)
+engine/learning/src/gate.rs	2	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/learning/src/gate.rs	3	1	CONVENTION	MIN_FOLD_GROUPS: groups needed before the leave-group-out gate can open; declared, not derived (see doc comment)
+engine/metrics/src/learn.rs	0	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/metrics/src/learn.rs	1	*	structural	counting, indexing, median arithmetic or a floor stated as CONVENTION in the code text
+engine/metrics/src/learn.rs	10	1	CONVENTION	number of histogram entries printed in the inventory report; no effect on kern values

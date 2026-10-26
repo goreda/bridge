@@ -1,0 +1,12 @@
+kni-pipeline refused: usage: --style-id <id> is required: StyleIdFlag { reason: "required flag --style-id is missing" }
+kni-pipeline <manifest-file> <output-dir> --style-id <id> [--jobs N] [--allow-partial] [--diagnostic-test-export] [--fallback-export-warn] [--spacing-oohh] [--class-channel-targets] [--auto-sb <median|class> [--auto-sb-class-table <path>] [--auto-sb-pool <path>] [--auto-sb-offset-lsb <f64>] [--auto-sb-offset-rsb <f64>] [--tie-break <A|B>]]
+
+Build (credential-free, source only): rust toolchain pinned in engine/rust-toolchain.toml; run:
+  cargo build --release --manifest-path engine/Cargo.toml
+No network services, accounts, or tokens are required; cargo fetches only public crates.io deps (engine/Cargo.lock pinned).
+
+Fixture commands (from this packet root):
+  2-glyph anonymous POST fixture (run_mode full):
+    kni-pipeline fixtures/post-2glyph-anon/manifest-anon.txt /tmp/w105-out --style-id Marq-Regular --allow-partial --fallback-export-warn
+  Paul New Regular 132-glyph stage1 harness manifest (run_mode stage1_only):
+    kni-pipeline engine/harness/c1/manifest-paulnew-c3on.txt /tmp/w105-pn --style-id PaulNew-Regular

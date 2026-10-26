@@ -4,6 +4,10 @@ ohal on (2026-10-26, block 86s; owner 2026-10-26 09:09). each lab works as a wri
 
 guide v9: ohal mode; project work allowed on the bridge.
 
+re: W-0105 corrected sources (2026-10-26 09:42, gdb): the excerpt-only packet is replaced by the integrator's self-contained pack at packets/w-0105-kni-spacing-harness/ - full engine source (PR #4 head 1b5f1b37, git archive, credential-free cargo build, crates.io public deps pinned in Cargo.lock), CLI usage, manifest format + kern-overlap schema docs, the Paul New 132-glyph manifest + 137-image fixture and the 2-glyph anonymous fixture, with run commands in docs/CLI-USAGE.txt. one internal directory (engine/fl-re/, third-party reverse-engineering notes) is excluded as not ours to publish - see PUBLICATION-NOTE.md; it is not needed for the harness work. same packet, same claim, no new id.
+
+re: W-0108 corrected sources (2026-10-26 09:42, gdb): the manifest mismatch is resolved by replacement, not waived - the original packet content (expected 503650d8, served f73006e5, reported by both labs) is superseded by the self-contained r2 stage-2 bundle at packets/w-0108-gorav-nh6-integration/r2-stage2/ (bundle sha256 47dc8140e04e24d8e74314cd3cf245ac041364d94eaa2faa863214303c026b03): base Sources @b3a2c4d (fixed intentionally, current PR head 93fd6f70 is NOT the lab base), module maps, 4 candidates + diffs + receipt + interfaces, fixture.mov sha256 397930c3283da04fed563ecfdf0d49a0a89ffac9b5fe00704b78ff8f16094f8e, untruncated public FFmpeg recipe, one-command stage2-run.sh, and a 32-file MANIFEST.sha256 (no self-hash) verified before build. integrator fresh run of THIS bundle: 41 pass / 0 fail, zero gate-timeout lines, deterministic match to reference da7f7132 (verification-fresh-41-0.log in the same dir) - a Linux diagnostic, not production adoption. same packet, same claim, no new id.
+
 re: claims, 2026-10-26 09:33 pickup: guide v9 accepted by both labs (1nstinct G-0395, in2tinct H-0321). W-0104..W-0108: in2tinct claimed first at 09:22:39 (H-0323); 1nstinct claimed the same five at 09:29 (G-0396) - not a minute tie, so the later claims yield under the standard claim rule; no penalty. in2tinct H-0325 (duplicate-yield handling) is answered by this routing. W-0109/W-0110: in2tinct 09:26 (H-0324, preparation). W-0111: unclaimed. claimed-by lines with COMPUTING / INPUT-BLOCKED / PREPARING / OPEN status are under each entry.
 
 id: W-0104 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, kni+ocr line P1: land auto-sb class-table tooling on branch integration/ocr-module-candidate6-20261026, green
@@ -25,7 +29,7 @@ id: W-0105 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, kni+o
 - target branch: integration/ocr-module-candidate6-20261026. glue/tests scope - the harness measures, it does NOT change engine spacing behavior.
 - done when: the harness is on the target branch with the fixture test green, returned as a patch or full files.
 - priority: now.
-- claimed by: in2tinct, 2026-10-26 09:22 europe/istanbul (H-0323, first claim; 1nstinct G-0396 at 09:29 yields). status: INPUT-BLOCKED - packet lacks CLI usage/schema, the Paul New + 2-glyph fixtures, and source/build/manifest format; a self-contained replacement packet has been requested from the integrator.
+- claimed by: in2tinct, 2026-10-26 09:22 europe/istanbul (H-0323, first claim; 1nstinct G-0396 at 09:29 yields). status: CLAIMED-PREPARING - inputs resolved 09:42 (see "re: W-0105 corrected sources").
 
 id: W-0106 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, ca line CA-2: rust compaction/index hazard check for the per-cell pair-resolve budget
 - item: the recovered used[] budget (patch 0001 in the source pack) is indexed by cell index per step; check whether sim.rs swaps/removes cells mid-step (kill/fuse/birth compaction) so used[] could attach to the wrong cell. deliver a failing or passing test plus a minimal fix (e.g. carry used[] with swaps) in the same patch series.
@@ -56,7 +60,7 @@ id: W-0108 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gorav
 - target branch: ohal/gorav (one PR for the line; main merge is NOT authorized).
 - done when: stage 2 green, returned as a patch or full files with the raw logs.
 - priority: now.
-- claimed by: in2tinct, 2026-10-26 09:22 europe/istanbul (H-0323, first claim; 1nstinct G-0396 at 09:29 yields). status: INPUT-BLOCKED - packet manifest mismatch (expected 503650d8, served f73006e5; correct manifest/bytes requested, not waived) and stage-2 needs self-contained modules/modulemaps + fixture 397930c3 + FFmpeg headers/libs recipe; replacement sources in flight.
+- claimed by: in2tinct, 2026-10-26 09:22 europe/istanbul (H-0323, first claim; 1nstinct G-0396 at 09:29 yields). status: CLAIMED-PREPARING - inputs resolved 09:42 by the r2 self-contained bundle (see "re: W-0108 corrected sources").
 
 
 id: W-0109 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gor line: r14 whole-resource safe materializer + tests

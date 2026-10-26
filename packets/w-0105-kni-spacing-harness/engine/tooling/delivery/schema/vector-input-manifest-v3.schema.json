@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "reference_font_sha256",
+    "candidate_font_sha256",
+    "upm",
+    "params",
+    "method",
+    "scope",
+    "codepoints"
+  ],
+  "properties": {
+    "schema": {
+      "const": "kni.vector-input-manifest.v3"
+    },
+    "reference_font_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "candidate_font_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "upm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "params": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "grid",
+        "margin"
+      ],
+      "properties": {
+        "grid": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "margin": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "method": {
+      "const": "merged-flattened-area-sampled-hausdorff-v2"
+    },
+    "scope": {
+      "const": "outlines-only"
+    },
+    "codepoints": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 1114111
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+# Outline delivery producer and gate, measurements contract version 2
+
+The tests use synthetic inputs only. Run them from this directory with `python -m unittest discover -s tests -v`.
+
+vector_v2.py provides the CLI actions produce and gate. No existing v1 producer, gate or shell changes; v1 is rejected at every v2 schema boundary, and existing v1 exact-field checks reject v2. It is not wired into the overall delivery entry point.
+
+Dependency: jsonschema (Draft202012Validator); the exact versions are pinned in requirements-ci.txt. Schema files explicitly cover measurements, input manifest and receipt. Runtime checks add finite-number rejection, duplicate JSON keys, duplicate codepoints, full reference keyset, independent cmap keyset, n_a_count and exact hash/UPM/Params/method/scope bindings. Candidate extra cmap keys are allowed because coverage is reference-driven. Every n/a glyph remains in glyphs with reason and has no numeric metric; no fake zeros. Numeric table rows cover only measured glyphs. Receipt contains unmeasurable rows and total n_a_count. Any n/a forbids PASS: receipt is N/A unless a measured metric also fails, then FAIL. No new passing status for incomplete inputs.
+
+Produce requires --manifest, --measurements, --cmap, --reference, --candidate, --receipt. Gate uses the same paths, rereads both font streams, hashes the original measurement bytes, rebuilds the expected receipt and rejects any difference. Gate returns PASS only for a byte-hash-bound, complete, all-measured passing result. It does not trust a receipt's own PASS or metadata. Every font-byte hash is validated against the manifest.
+
+Manifest schema kni.vector-input-manifest.v2 has schema, reference_font_sha256, candidate_font_sha256, upm, params {grid,margin}, method, scope and codepoints. Measurement shape is the separately delivered kni.vector-measurements.v2 contract. The independent cmap input has exactly schema kni.measured-cmap.v2, reference_font_sha256 and codepoints. It must come from independent parsing of the original reference bytes. This module verifies its hash/keyset, NOT that the list was honestly parsed; it also cannot prove measured numbers, UPM or Params came from the font/method rather than a false upstream claim. Hash binding and exact recomputation of receipt are not geometry attestation. Do not call these transport checks a native outline proof.
+
+The method identifier is merged-flattened-area-sampled-hausdorff-v1; scope is outlines-only. Metric units: symmetric_difference_area unit^2, hausdorff units. Numerical criterion is value <= its corresponding reported floor; the pinned manifest fixes method/Params, not arbitrary caller values. Before production use, owner-reviewed policy must establish allowable Params and verified upstream floor production. A manifest that accepts arbitrary floors can accept arbitrary poor geometry; this package does not claim otherwise.
+
+HMTX_DESIGN.md is design only, separate raw hmtx advance/LSB scope and n/a rules. No metric code added. Test transport bytes are synthetic strings used for hash tests, not font-parser fixtures.

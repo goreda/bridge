@@ -1,0 +1,11 @@
+kni-pixel-notdef-evidence	v3
+kind	repeated-form
+style	Marq/Regular
+frame	frame-test
+scale	2.4377
+ink_model	decoded-gray-all-255-no-transform-v1
+capture_sha256	021e8a07fb76322d0c5a82236cf0e490dfc607d569897232dcac2c579551d06d
+pixel_form_sha256	06373370a08ce16564ded8dfa9d0edb7ba333a40fa934dc5138ebd4c8c78a3cf
+selected	w41.png	00336ce157438e53fec97a67513a1ee3a59815afde22e68431d4b3448486dce8
+pixel_source	0x41	repeated-form	w41.png	00336ce157438e53fec97a67513a1ee3a59815afde22e68431d4b3448486dce8
+pixel_source	0x42	repeated-form	w42.png	00336ce157438e53fec97a67513a1ee3a59815afde22e68431d4b3448486dce8

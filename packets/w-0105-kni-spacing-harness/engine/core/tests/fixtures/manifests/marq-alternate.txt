@@ -1,0 +1,284 @@
+#@style_id Marq/Alternate
+#@style_id_slug Marq-Alternate
+#@scale_status DECLARED_CONVENTION OwnerDeclaredScaleSet/2026-10-16-v2 (patched by W7 from shim-UNVALIDATED: engine receipt independently reports scale_status DECLARED_CONVENTION; engine scale binding re-verifies capture_frame pin)
+#@space_source HsH=sidebearing/reference/sidebearing-monospace-reference/00020__0048_0020_0048__28958dd6ba4f.png,sidebearing/sb/00048__0048_0020_0048__28958dd6ba4f.png HHH=sidebearing/sb/00000__0048_0048_0048__882d5e57ab78.png
+#@notdef_status EVIDENCE-ABSENT (graphic is NOT exported: engine writes empty gid0)
+# kit v2.4 manifest generated from Alternate/glyph for style Marq/Alternate: 253 glyph tiles; excluded 0 tiles as .notdef (no auto-exclusion; candidates: none) and 5 sequence tiles; scale basis: OWNER-DECLARED-V2-UNVERIFIED-LOCALLY(evidence record not provisioned; engine scale binding re-verifies); space from space-measurement.json slope 107.0px (frame [1485, 1050]) * scale; .notdef graphic tile (repeated render, engine writes EMPTY .notdef today): NOTDEF-EVIDENCE-ABSENT (not the same as empty); NOT an authoritative inventory
+run_mode full
+population_sha256 bdc4048d04a6b3d36fddd5c6e77e864250bd48c99c4142d961b2d5407815f61f
+family Marq
+subfamily Alternate
+postscript_name Marq-Alternate
+capture_cohort Marq/Alternate
+capture_frame Marq-Alternate:1485x1050:H-sha256:342d808dae2f70d27a1db81023c160a010f298f6e79c2dd1414fef15335117c3
+#@name_source folder_family='Marq' folder_style='Alternate' label='Marq/Alternate' rule=run_config.rs:derive_names(candidate)
+scale 1.9602977667493797
+lsb_add 0
+rsb_add 0
+post_scope base
+post_scope_label post-lsb-rsb-pass
+#@notdef_staging pending: RUN.command runs kni/tools/stage_notdef.py after the run root exists (capture_manifest + notdef evidence lines are appended there)
+vendor NONE
+upm 1000
+rdp_epsilon 0.25
+fit_tolerance_policy fixed
+fit_squared_error 0.25
+fit_max_refits 8
+flatten_tolerance 0.5
+max_pairs 63756
+space 0x0020 209.75186104218363
+glyph 0x0021 exclam glyph/00319__0021__3c5cffbd1a95.png
+glyph 0x0022 quotedbl glyph/00320__0022__79804786a025.png
+glyph 0x0023 numbersign glyph/00321__0023__f5586d26ffd9.png
+glyph 0x0024 dollar glyph/00322__0024__03b2a306836d.png
+glyph 0x0025 percent glyph/00323__0025__26dc7f2957a6.png
+glyph 0x0026 ampersand glyph/00324__0026__ad5f69bc6c15.png
+glyph 0x0027 quotesingle glyph/00325__0027__b8db7371a046.png
+glyph 0x0028 parenleft glyph/00326__0028__d02ebae6850e.png
+glyph 0x0029 parenright glyph/00327__0029__5d26a9876525.png
+glyph 0x002A asterisk glyph/00328__002A__7f3ad2f5438d.png
+glyph 0x002B plus glyph/00329__002B__f8a2467b2f4a.png
+glyph 0x002C comma glyph/00330__002C__ceed7a57c0eb.png
+glyph 0x002D hyphen glyph/00331__002D__0c8dd6a7c8d8.png
+glyph 0x002E period glyph/00332__002E__1eef214868fe.png
+glyph 0x002F slash glyph/00333__002F__0bb9b7a88572.png
+glyph 0x0030 zero glyph/00309__0030__8976200ce976.png
+glyph 0x0031 one glyph/00310__0031__8d034f64c764.png
+glyph 0x0032 two glyph/00311__0032__3475f2a931c0.png
+glyph 0x0033 three glyph/00312__0033__f8f0f0124d98.png
+glyph 0x0034 four glyph/00313__0034__31f271cb438b.png
+glyph 0x0035 five glyph/00314__0035__f0517978c5cf.png
+glyph 0x0036 six glyph/00315__0036__6c09ee2acd60.png
+glyph 0x0037 seven glyph/00316__0037__334d74c1b91d.png
+glyph 0x0038 eight glyph/00317__0038__de356a077afc.png
+glyph 0x0039 nine glyph/00318__0039__5515d6e8f4c5.png
+glyph 0x003A colon glyph/00334__003A__349641a4284f.png
+glyph 0x003B semicolon glyph/00335__003B__0b2a1334d736.png
+glyph 0x003C less glyph/00336__003C__955e1d85e18c.png
+glyph 0x003D equal glyph/00337__003D__a039cfd750ea.png
+glyph 0x003E greater glyph/00338__003E__2d72d78011fc.png
+glyph 0x003F question glyph/00339__003F__4841b6740ea5.png
+glyph 0x0040 at glyph/00340__0040__dd96cb1a1427.png
+glyph 0x0041 A glyph/00000__0041__4233703d0ecb.png
+glyph 0x0042 B glyph/00001__0042__15c493eb0d5e.png
+glyph 0x0043 C glyph/00002__0043__3142403903a0.png
+glyph 0x0044 D glyph/00003__0044__a92d0dd5399b.png
+glyph 0x0045 E glyph/00004__0045__93624bebb868.png
+glyph 0x0046 F glyph/00005__0046__4b0be9acf190.png
+glyph 0x0047 G glyph/00006__0047__bd8dafd76017.png
+glyph 0x0048 H glyph/00007__0048__342d808dae2f.png
+glyph 0x0049 I glyph/00008__0049__a04ae1a414e3.png
+glyph 0x004A J glyph/00009__004A__c4d32d8a6ae9.png
+glyph 0x004B K glyph/00010__004B__df37ed80371a.png
+glyph 0x004C L glyph/00011__004C__74fbb47abb3a.png
+glyph 0x004D M glyph/00012__004D__2dab0fc4c414.png
+glyph 0x004E N glyph/00013__004E__f9cb98d9ea5a.png
+glyph 0x004F O glyph/00014__004F__ce4d287d219a.png
+glyph 0x0050 P glyph/00015__0050__8be22a9834d0.png
+glyph 0x0051 Q glyph/00016__0051__210e5da4ff3e.png
+glyph 0x0052 R glyph/00017__0052__fc090db915b0.png
+glyph 0x0053 S glyph/00018__0053__8c8d36109dc1.png
+glyph 0x0054 T glyph/00019__0054__36ca4163d459.png
+glyph 0x0055 U glyph/00020__0055__daf95988f8e7.png
+glyph 0x0056 V glyph/00021__0056__3c98ae70ed36.png
+glyph 0x0057 W glyph/00022__0057__8204039e6a61.png
+glyph 0x0058 X glyph/00023__0058__fd80fa1fa81f.png
+glyph 0x0059 Y glyph/00024__0059__55fef9cbdf5b.png
+glyph 0x005A Z glyph/00025__005A__b1f5bd9564ab.png
+glyph 0x005B bracketleft glyph/00341__005B__82874a7dd55b.png
+glyph 0x005C backslash glyph/00342__005C__696d9916640f.png
+glyph 0x005D bracketright glyph/00343__005D__faa35f81a976.png
+glyph 0x005E asciicircum glyph/00344__005E__f43476df649b.png
+glyph 0x005F underscore glyph/00345__005F__26d1ff81c6e7.png
+glyph 0x0060 grave glyph/00346__0060__14b0750d80b3.png
+glyph 0x0061 a glyph/00026__0061__557d9b8a2fa9.png
+glyph 0x0062 b glyph/00027__0062__bdca048b4e9f.png
+glyph 0x0063 c glyph/00028__0063__3c0675266a45.png
+glyph 0x0064 d glyph/00029__0064__9792246781b9.png
+glyph 0x0065 e glyph/00030__0065__33affd068411.png
+glyph 0x0066 f glyph/00031__0066__3ec2bac8b984.png
+glyph 0x0067 g glyph/00032__0067__1a01824351a5.png
+glyph 0x0068 h glyph/00033__0068__1f2039e03315.png
+glyph 0x0069 i glyph/00034__0069__f4ed886feda4.png
+glyph 0x006A j glyph/00035__006A__2fe069c1e26a.png
+glyph 0x006B k glyph/00036__006B__deb5ef9c29dd.png
+glyph 0x006C l glyph/00037__006C__670b99eef816.png
+glyph 0x006D m glyph/00038__006D__162a2392811d.png
+glyph 0x006E n glyph/00039__006E__1709926544b5.png
+glyph 0x006F o glyph/00040__006F__6e242e238ae0.png
+glyph 0x0070 p glyph/00041__0070__4e0711a1e714.png
+glyph 0x0071 q glyph/00042__0071__71d8b2e17c45.png
+glyph 0x0072 r glyph/00043__0072__ca8b5c4ba06f.png
+glyph 0x0073 s glyph/00044__0073__7d97f465cea7.png
+glyph 0x0074 t glyph/00045__0074__dba48ed513ef.png
+glyph 0x0075 u glyph/00046__0075__f261c23e4574.png
+glyph 0x0076 v glyph/00047__0076__1b8d24b80c98.png
+glyph 0x0077 w glyph/00048__0077__e18868fc7231.png
+glyph 0x0078 x glyph/00049__0078__3508b3876a0f.png
+glyph 0x0079 y glyph/00050__0079__db5008f386a0.png
+glyph 0x007A z glyph/00051__007A__22c44ad383a5.png
+glyph 0x007B braceleft glyph/00347__007B__123f3d0240e7.png
+glyph 0x007C bar glyph/00348__007C__b1893a5ae068.png
+glyph 0x007D braceright glyph/00349__007D__a4adedc96e50.png
+glyph 0x007E asciitilde glyph/00350__007E__c027f70ed09f.png
+glyph 0x00A1 exclamdown glyph/00351__00A1__ac283ce7e95d.png
+glyph 0x00A2 cent glyph/00374__00A2__cbdcc1e2d3c7.png
+glyph 0x00A3 sterling glyph/00375__00A3__d787bdf7d80c.png
+glyph 0x00A4 currency glyph/00376__00A4__d24475210614.png
+glyph 0x00A5 yen glyph/00377__00A5__06e4b21e745d.png
+glyph 0x00A7 section glyph/00369__00A7__5cc5f79e1145.png
+glyph 0x00A8 dieresis glyph/00469__00A8__6664f5fa4376.png
+glyph 0x00A9 copyright glyph/00371__00A9__554c1b47853d.png
+glyph 0x00AA ordfeminine glyph/00390__00AA__093c667ef939.png
+glyph 0x00AB guillemotleft glyph/00353__00AB__906e8595f20b.png
+glyph 0x00AC logicalnot glyph/00386__00AC__11d4203ebbbd.png
+glyph 0x00AE registered glyph/00372__00AE__015f149a2e2e.png
+glyph 0x00B0 degree glyph/00465__00B0__3ff7241826e7.png
+glyph 0x00B1 plusminus glyph/00380__00B1__a9d0186aed21.png
+glyph 0x00B2 uni00B2 glyph/00394__00B2__979af7150fc1.png
+glyph 0x00B3 uni00B3 glyph/00395__00B3__49087e8dd019.png
+glyph 0x00B4 acute glyph/00468__00B4__19b9ee77406a.png
+glyph 0x00B5 mu glyph/00466__00B5__8d04b0a1ba50.png
+glyph 0x00B6 paragraph glyph/00370__00B6__976b6eaab976.png
+glyph 0x00B7 periodcentered glyph/00424__00B7__33f0a1b27a35.png
+glyph 0x00B9 uni00B9 glyph/00393__00B9__a513b8c15852.png
+glyph 0x00BA ordmasculine glyph/00391__00BA__22ff3094352f.png
+glyph 0x00BB guillemotright glyph/00354__00BB__bc25c9c16665.png
+glyph 0x00BC onequarter glyph/00396__00BC__799f7e434fdf.png
+glyph 0x00BD onehalf glyph/00397__00BD__7fd61123e03c.png
+glyph 0x00BE threequarters glyph/00398__00BE__d2ecf7764037.png
+glyph 0x00BF questiondown glyph/00352__00BF__4bf3eb0a7404.png
+glyph 0x00C0 Agrave glyph/00052__00C0__112e869cced3.png
+glyph 0x00C1 Aacute glyph/00053__00C1__5379a5f81176.png
+glyph 0x00C2 Acircumflex glyph/00054__00C2__7bb9797a3209.png
+glyph 0x00C3 Atilde glyph/00055__00C3__e3769ea4c465.png
+glyph 0x00C4 Adieresis glyph/00056__00C4__a8d2bdb452c8.png
+glyph 0x00C5 Aring glyph/00057__00C5__f112131852e4.png
+glyph 0x00C6 AE glyph/00058__00C6__2c979ef4e5dd.png
+glyph 0x00C7 Ccedilla glyph/00059__00C7__6df9b3f9b876.png
+glyph 0x00C8 Egrave glyph/00060__00C8__5fe109a605ad.png
+glyph 0x00C9 Eacute glyph/00061__00C9__1cb29b0dc717.png
+glyph 0x00CA Ecircumflex glyph/00062__00CA__c511949c775d.png
+glyph 0x00CB Edieresis glyph/00063__00CB__71c9870103f5.png
+glyph 0x00CC Igrave glyph/00064__00CC__eb4401580504.png
+glyph 0x00CD Iacute glyph/00065__00CD__91f9cad6bbe1.png
+glyph 0x00CE Icircumflex glyph/00066__00CE__c86fcce4490f.png
+glyph 0x00CF Idieresis glyph/00067__00CF__e137b6606a90.png
+glyph 0x00D0 Eth glyph/00068__00D0__85d20727300c.png
+glyph 0x00D1 Ntilde glyph/00069__00D1__78ec820a9108.png
+glyph 0x00D2 Ograve glyph/00070__00D2__afd6caf4dff8.png
+glyph 0x00D3 Oacute glyph/00071__00D3__041eb14c4357.png
+glyph 0x00D4 Ocircumflex glyph/00072__00D4__be949176f121.png
+glyph 0x00D5 Otilde glyph/00073__00D5__ae8a31851c1f.png
+glyph 0x00D6 Odieresis glyph/00074__00D6__beac98eaa24e.png
+glyph 0x00D7 multiply glyph/00381__00D7__a500be4b278d.png
+glyph 0x00D8 Oslash glyph/00075__00D8__4263daa3d91f.png
+glyph 0x00D9 Ugrave glyph/00076__00D9__d65d38c96dd1.png
+glyph 0x00DA Uacute glyph/00077__00DA__5e8b168fc606.png
+glyph 0x00DB Ucircumflex glyph/00078__00DB__6d3c2fb592c1.png
+glyph 0x00DC Udieresis glyph/00079__00DC__249829db410c.png
+glyph 0x00DD Yacute glyph/00080__00DD__67d95b881bf2.png
+glyph 0x00DE Thorn glyph/00081__00DE__c64bebbb0e67.png
+glyph 0x00DF germandbls glyph/00082__00DF__ffefec83c9d1.png
+glyph 0x00E0 agrave glyph/00083__00E0__372ffa5ad9a1.png
+glyph 0x00E1 aacute glyph/00084__00E1__e289dee924d3.png
+glyph 0x00E2 acircumflex glyph/00085__00E2__d70af73d2c56.png
+glyph 0x00E3 atilde glyph/00086__00E3__5b4a61f054b4.png
+glyph 0x00E4 adieresis glyph/00087__00E4__9a1ccf7ca927.png
+glyph 0x00E5 aring glyph/00088__00E5__6469e6ed78c1.png
+glyph 0x00E6 ae glyph/00089__00E6__f72fd2ae6e69.png
+glyph 0x00E7 ccedilla glyph/00090__00E7__e65e682916c4.png
+glyph 0x00E8 egrave glyph/00091__00E8__0e8211f32d25.png
+glyph 0x00E9 eacute glyph/00092__00E9__2b287ce0edda.png
+glyph 0x00EA ecircumflex glyph/00093__00EA__b6b32471a769.png
+glyph 0x00EB edieresis glyph/00094__00EB__caaf384455d6.png
+glyph 0x00EC igrave glyph/00095__00EC__3d6fdbc1ecba.png
+glyph 0x00ED iacute glyph/00096__00ED__925166060ddb.png
+glyph 0x00EE icircumflex glyph/00097__00EE__16c92c556148.png
+glyph 0x00EF idieresis glyph/00098__00EF__d86642aece10.png
+glyph 0x00F0 eth glyph/00099__00F0__55dd772a0633.png
+glyph 0x00F1 ntilde glyph/00100__00F1__90cca5cbaeae.png
+glyph 0x00F2 ograve glyph/00101__00F2__7f3138bc5521.png
+glyph 0x00F3 oacute glyph/00102__00F3__23581990a932.png
+glyph 0x00F4 ocircumflex glyph/00103__00F4__4247be083aca.png
+glyph 0x00F5 otilde glyph/00104__00F5__1045f71765cf.png
+glyph 0x00F6 odieresis glyph/00105__00F6__21700626475b.png
+glyph 0x00F7 divide glyph/00382__00F7__4d59f66941a7.png
+glyph 0x00F8 oslash glyph/00106__00F8__a26fa1f6c1f1.png
+glyph 0x00F9 ugrave glyph/00107__00F9__e4b22e8aa28b.png
+glyph 0x00FA uacute glyph/00108__00FA__86476b9709d4.png
+glyph 0x00FB ucircumflex glyph/00109__00FB__3f30067e67d0.png
+glyph 0x00FC udieresis glyph/00110__00FC__90e3eed5268d.png
+glyph 0x00FD yacute glyph/00111__00FD__7c23fd28fae8.png
+glyph 0x00FE thorn glyph/00112__00FE__348e74a40e37.png
+glyph 0x00FF ydieresis glyph/00113__00FF__a5380f0696a8.png
+glyph 0x0110 Dcroat glyph/00130__0110__85d20727300c.png
+glyph 0x0111 dcroat glyph/00131__0111__246b414fc989.png
+glyph 0x0131 dotlessi glyph/00163__0131__8730f5b962c7.png
+glyph 0x0141 Lslash glyph/00179__0141__f7bbdd78461c.png
+glyph 0x0142 lslash glyph/00180__0142__a7c752fb7bae.png
+glyph 0x0152 OE glyph/00196__0152__26170d83129b.png
+glyph 0x0153 oe glyph/00197__0153__8869a652da62.png
+glyph 0x0160 Scaron glyph/00210__0160__b90a48e39592.png
+glyph 0x0161 scaron glyph/00211__0161__80afc3785f7c.png
+glyph 0x0178 Ydieresis glyph/00234__0178__fcf48c433656.png
+glyph 0x017D Zcaron glyph/00239__017D__2a0759f8140e.png
+glyph 0x017E zcaron glyph/00240__017E__0441aca455d5.png
+glyph 0x02C6 circumflex glyph/00470__02C6__1793c81f259d.png
+glyph 0x02C7 caron glyph/00471__02C7__c1b977962351.png
+glyph 0x02D8 breve glyph/00472__02D8__7132dec663c1.png
+glyph 0x02D9 dotaccent glyph/00473__02D9__922e5ac21cc9.png
+glyph 0x02DA ring glyph/00474__02DA__6e26554f0202.png
+glyph 0x02DB ogonek glyph/00475__02DB__7bcbd5486fc0.png
+glyph 0x02DC tilde glyph/00476__02DC__4ce21f77e6ae.png
+glyph 0x02DD hungarumlaut glyph/00477__02DD__5aeb51f6dc81.png
+glyph 0x2013 endash glyph/00365__2013__ba6310010393.png
+glyph 0x2014 emdash glyph/00366__2014__f53ea55589b9.png
+glyph 0x2018 quoteleft glyph/00357__2018__d7459752a33e.png
+glyph 0x2019 quoteright glyph/00358__2019__43ae10f2329c.png
+glyph 0x201A quotesinglbase glyph/00359__201A__ceed7a57c0eb.png
+glyph 0x201C quotedblleft glyph/00360__201C__5c13bc858cd1.png
+glyph 0x201D quotedblright glyph/00361__201D__5410b29b8c96.png
+glyph 0x201E quotedblbase glyph/00362__201E__dbdd7ca414c6.png
+glyph 0x2020 dagger glyph/00367__2020__ef9276c6a203.png
+glyph 0x2021 daggerdbl glyph/00368__2021__cfe665605c6c.png
+glyph 0x2022 bullet glyph/00363__2022__63637a151067.png
+glyph 0x2026 ellipsis glyph/00364__2026__212f477c0f36.png
+glyph 0x2030 perthousand glyph/00389__2030__20a4a204ef63.png
+glyph 0x2039 guilsinglleft glyph/00355__2039__90b7a331e70e.png
+glyph 0x203A guilsinglright glyph/00356__203A__92d1327c83a2.png
+glyph 0x2044 fraction glyph/00399__2044__3cbb40a04ce6.png
+glyph 0x2070 uni2070 glyph/00448__2070__67c7d0b12c30.png
+glyph 0x2074 uni2074 glyph/00449__2074__e6effe70fc5d.png
+glyph 0x2075 uni2075 glyph/00450__2075__7ef4643c447c.png
+glyph 0x2076 uni2076 glyph/00451__2076__f9f1fa39362b.png
+glyph 0x2077 uni2077 glyph/00452__2077__ad5dee958b19.png
+glyph 0x2078 uni2078 glyph/00453__2078__4b8b157c2cb8.png
+glyph 0x2079 uni2079 glyph/00454__2079__d96ed9caea18.png
+glyph 0x2080 uni2080 glyph/00405__2080__98d58a0efb45.png
+glyph 0x2081 uni2081 glyph/00406__2081__4d7c0765cd19.png
+glyph 0x2082 uni2082 glyph/00407__2082__fb5d04d221ba.png
+glyph 0x2083 uni2083 glyph/00408__2083__1707a2ef26ac.png
+glyph 0x2084 uni2084 glyph/00409__2084__4f8c870e5ec4.png
+glyph 0x2085 uni2085 glyph/00410__2085__a58c6ceee5ec.png
+glyph 0x2086 uni2086 glyph/00411__2086__7e5fd373ebe6.png
+glyph 0x2087 uni2087 glyph/00412__2087__a92aaa24b7d5.png
+glyph 0x2088 uni2088 glyph/00413__2088__6d6488ed81ce.png
+glyph 0x2089 uni2089 glyph/00414__2089__b7b7a397b552.png
+glyph 0x20AC Euro glyph/00378__20AC__80fd532d12bb.png
+glyph 0x2122 trademark glyph/00373__2122__f08179e2c436.png
+glyph 0x2202 partialdiff glyph/00441__2202__a316dcc242f3.png
+glyph 0x2206 Delta glyph/00387__2206__3a440ab58532.png
+glyph 0x220F product glyph/00439__220F__32cdde4ad663.png
+glyph 0x2211 summation glyph/00438__2211__11b6a79f19c7.png
+glyph 0x2212 minus glyph/00379__2212__79cc035c9a68.png
+glyph 0x221A radical glyph/00437__221A__3e5364aa92d7.png
+glyph 0x221E infinity glyph/00440__221E__daab09dab2fa.png
+glyph 0x222B integral glyph/00436__222B__7c8624c23178.png
+glyph 0x2248 approxequal glyph/00428__2248__c76a3e6fd0c1.png
+glyph 0x2260 notequal glyph/00383__2260__f3226be7da79.png
+glyph 0x2264 lessequal glyph/00384__2264__18a0de1cc63c.png
+glyph 0x2265 greaterequal glyph/00385__2265__7630a0402d16.png
+glyph 0x25CA lozenge glyph/00388__25CA__4eece90d37f7.png
+capture_manifest notdef/capture-manifest.tsv 3a1726280a4a37e03f20cd2c9787a3e6659facc16f6bfe8dfa805195f7c0e01c
+notdef evidence notdef/evidence.tsv 44e56b1317f7faa33606870c0b95906af8a38eb3b1414038633ada33eb7f54d1 Marq/Alternate 3a1726280a4a37e03f20cd2c9787a3e6659facc16f6bfe8dfa805195f7c0e01c 1.9602977667493797 Marq-Alternate:1485x1050:H-sha256:342d808dae2f70d27a1db81023c160a010f298f6e79c2dd1414fef15335117c3

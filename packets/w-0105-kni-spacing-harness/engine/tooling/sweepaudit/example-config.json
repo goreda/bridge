@@ -1,0 +1,60 @@
+{
+  "key_from_expected": true,
+  "result_patterns": [
+    "path:^[^/]+\\.done$"
+  ],
+  "refusal_patterns": [],
+  "sweep_level_regex": "^(anchor-matched\\.json|anchor-scan2?\\.log|fontlist\\.txt|runner\\.log|FAILURES\\.log)$",
+  "empty_ok_regex": "\\.done$",
+  "exclude_regex": "(^|/)audit-receipt\\.txt$",
+  "expected_count": 68,
+  "required_templates": [
+    "{key}.done",
+    "{key}.prep.json",
+    "{key}.cpname.tsv",
+    "{key}.cps.txt",
+    "{key}.quads.txt",
+    "{key}.wght400.ttf",
+    "{key}.stage.log",
+    "{key}-a.bin",
+    "{key}-b.bin",
+    "{key}-rustA.time.json",
+    "{key}-rustB.time.json",
+    "{key}-refA.time.json",
+    "{key}-refB.time.json",
+    "{key}-out-a/glyphs.tsv",
+    "{key}-out-a/outliers.tsv",
+    "{key}-out-a/tables.tsv",
+    "{key}-out-b/glyphs.tsv",
+    "{key}-out-b/outliers.tsv",
+    "{key}-out-b/tables.tsv"
+  ],
+  "tsv_checks": [
+    {
+      "path_regex": "-out-[ab]/glyphs\\.tsv$",
+      "label_column": "path_label",
+      "refusal_value": "empty",
+      "metric_columns": [
+        "symdiff",
+        "hausdorff_px",
+        "w",
+        "h"
+      ],
+      "note_column": "note"
+    }
+  ],
+  "required_exceptions": {
+    "{key}.wght400.ttf": [
+      "alegreyasans",
+      "crimsontext",
+      "dmserifdisplay"
+    ]
+  },
+  "pair_checks": [
+    {
+      "a_regex": "^(?P<key>[^/]+)-out-a/(?P<rest>.+)$",
+      "b_template": "{key}-out-b/{rest}",
+      "b_regex": "-out-b/"
+    }
+  ]
+}

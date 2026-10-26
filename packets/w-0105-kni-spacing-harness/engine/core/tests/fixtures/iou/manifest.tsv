@@ -1,0 +1,19 @@
+# Fixture-runner manifest. Scalar values are explicit; there is no quality threshold.
+style FixtureSynthetic
+frame_id IOU-FIXTURE-RUNNER-V1
+scale_k 1.7093023255813953
+capture_eps 0.5
+fit_squared_error 0.1
+fit_max_refits 6
+advance 1000
+iou_ink_threshold 128
+iou_flatten_steps 32
+max_pixels 1560000
+max_edges 1560000
+max_png_bytes 16777216
+max_png_working_bytes 67108864
+job r r_scan.png e820c617cd40ec517bb5e6e6daa01f948ae847de804474b3a78fc85071b3cbe0
+job dot_00b7 dot_00b7.png 33f0a1b27a357115174e881c168bc9df6989bf47e06aa627dfe894523349eae4
+exclude blank intentional-empty-outline
+# Repeated job key is a separate duplicate diagnostic; the population still has one r row.
+job r r_scan.png e820c617cd40ec517bb5e6e6daa01f948ae847de804474b3a78fc85071b3cbe0

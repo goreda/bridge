@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "reference_font_sha256",
+    "candidate_font_sha256",
+    "upm",
+    "params",
+    "method",
+    "scope",
+    "measurement_sha256",
+    "status",
+    "n_a_count",
+    "glyphs",
+    "table_rows",
+    "unmeasurable"
+  ],
+  "properties": {
+    "schema": {
+      "const": "kni.vector-delivery-gate.v2"
+    },
+    "reference_font_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "candidate_font_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "upm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "params": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "grid",
+        "margin"
+      ],
+      "properties": {
+        "grid": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "margin": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "method": {
+      "const": "merged-flattened-area-sampled-hausdorff-v1"
+    },
+    "scope": {
+      "const": "outlines-only"
+    },
+    "measurement_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "N/A"
+      ]
+    },
+    "n_a_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "glyphs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "codepoint",
+              "path_label",
+              "symmetric_difference_area",
+              "area_floor",
+              "hausdorff",
+              "distance_floor"
+            ],
+            "properties": {
+              "codepoint": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1114111
+              },
+              "path_label": {
+                "const": "vector"
+              },
+              "symmetric_difference_area": {
+                "type": "number",
+                "minimum": 0
+              },
+              "area_floor": {
+                "type": "number",
+                "minimum": 0
+              },
+              "hausdorff": {
+                "type": "number",
+                "minimum": 0
+              },
+              "distance_floor": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "codepoint",
+              "status",
+              "reason"
+            ],
+            "properties": {
+              "codepoint": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1114111
+              },
+              "status": {
+                "const": "n/a"
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        ]
+      }
+    },
+    "table_rows": {
+      "type": "array",
+      "items": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "codepoint",
+          "metric",
+          "value",
+          "limit",
+          "unit",
+          "pass"
+        ],
+        "properties": {
+          "codepoint": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1114111
+          },
+          "metric": {
+            "enum": [
+              "symmetric_difference_area",
+              "hausdorff"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "number",
+            "minimum": 0
+          },
+          "unit": {
+            "enum": [
+              "unit^2",
+              "units"
+            ]
+          },
+          "pass": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "unmeasurable": {
+      "type": "array",
+      "items": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "codepoint",
+          "reason"
+        ],
+        "properties": {
+          "codepoint": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1114111
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+[package]
+name = "kni-pipeline"
+version = "0.1.1"
+edition = "2021"
+
+[dependencies]
+kni-master = { path = "../master" }
+kni-core = { path = "../core" }
+kni-metrics = { path = "../metrics" }
+kni-learning = { path = "../learning" }
+kni_xheight_bridge = { path = "../../../../engine-src/kni_bridge" }
+kni_planner = { path = "../../../../engine-src/kni_planner" }
+rayon = "1"
+
