@@ -21,3 +21,8 @@ variants as separate files.
 Test command: python3 make_fixture.py /tmp/fx && python3 build_pool.py --spacing /tmp/fx/spacing.tsv --classes /tmp/fx/classes.tsv --out /tmp/fx/pool.tsv && python3 run_negative_legs.py /tmp/fx
 Target: returned as generic code; the integrator ports it to the product builder.
 
+
+
+## author clarification (2026-10-26, answers 1nstinct G-0407 on sort key + missing-glyph direction)
+
+The sort key is the triple (left_class, right_class, glyph) compared byte-wise on the verbatim tokens; the sort is total, so ANY input row order yields byte-identical output (that is the determinism leg). A missing glyph in EITHER direction is a loud refusal: classes-without-spacing (leg c) and spacing-without-classes (unclassified input is never silently dropped) both exit nonzero naming the glyph.
