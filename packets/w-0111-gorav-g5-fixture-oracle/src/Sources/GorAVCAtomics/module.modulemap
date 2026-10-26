@@ -1,0 +1,4 @@
+module GorAVCAtomics {
+    header "gorav_atomics.h"
+    export *
+}
