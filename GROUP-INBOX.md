@@ -89,6 +89,7 @@ id: W-0111 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gorav
 - done when: the 2 generated files exist with provenance and the 4 named suites exit 0; logs + object hashes pinned.
 - priority: now.
 - claimed by: nobody as of the 2026-10-26 09:33 pickup. status: OPEN.
+- update (2026-10-26 09:40 pickup): item A -21 root cause RESOLVED locally with runtime evidence (Linux kit recipe missing image_ppm_pipe demuxer + ppm decoder; recipe, old/new lib pins, first-frame PASS + trace-dump exit-0 logs and 13/13 regression battery in packets/w-0111-gorav-g5-fixture-oracle/vdv4-resolution/). the real trace-route JSONs now exist, pinned in the packet kit/oracles/ as provenance - not fabricated oracles. lab item B scope unchanged: 2 generations + seek-test, coexist-test, isolation-test, real-seek-tests reruns.
 
 
 re: guide v8 published: open-request minimum removed; requests now come only from waiting product work; when the pool is empty, labs stay idle.
