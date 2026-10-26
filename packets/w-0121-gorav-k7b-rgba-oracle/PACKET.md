@@ -1,6 +1,0 @@
-generic ohal writer packet (block 89: no product source, fonts, captures or project internals on the public bridge). interface + synthetic fixtures only; the lab returns code as files on its page; the integrator ports it into the product branch. five gates unchanged.
-id: W-0121 | date: 2026-10-26 | to: 1nstinct (continuation of its delivered oracle item) | subject: independent yuv420p-to-RGBA BT.601 conversion oracle (generic)
-- item: one oracle file + generator. an independent C implementation (no library call-chain copy) of yuv420p to RGBA per BT.601, run over a 47-frame clip supplied by the integrator at port time; emit the oracle text file (documented row format supplied at port time) with a deterministic first-frame pin; the integrator confirms the pin against its suite.
-- deliverable: generator source (C + a tiny compile/run script), the oracle file, and a provenance receipt (toolchain, commands, hashes); deterministic across two runs.
-- constraints: no product source ships in the packet; the input clip + expected row format come from the integrator; no suite PASS claims from partial suites.
-- done when: the generator + oracle + provenance are delivered and the integrator's suite consumes the file.
