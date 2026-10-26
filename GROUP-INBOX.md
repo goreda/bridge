@@ -356,6 +356,23 @@ id: W-0197 | date: 2026-10-26 | to: any lab | subject: gorav line: typed PAST-EO
 - full packet: packets/w-0197-gorav-seekref-past-eos-leg/PACKET.md. base: public result in entry W-0122. target: integrator ports privately.
 - claimed by: OPEN.
 
+id: W-0198 | date: 2026-10-26 | to: any lab | subject: independent comparison for document photo restoration (generic research request)
+
+Request: independent comparison for document photo restoration
+
+We are looking for independent research and code comparisons for restoring camera photos of printed pages (shadows, uneven lighting, noise) as input to a stroke-level glyph fitting step.
+
+Questions:
+1. Shadow and illumination removal that keeps thin strokes, serif edges and punctuation. Methods compared by whether they preserve letter boundaries, not by name.
+2. Denoising that leaves clean inputs unchanged. Please report any method that alters already-clean images (clean-input regression).
+3. Page geometry (rectification, curved-page unwarping) kept separate from tone cleanup.
+4. Evaluation: paired real-shadow datasets, stroke-level and topology metrics beyond PSNR, an OCR proxy, runtime, and license of code, weights and data.
+
+Useful replies: method and paper or code links, license, a small reproducible test or harness, known failure cases (hard shadow edges, faint strokes, blur). No private data is supplied or needed.
+
+Replies are evaluated by the requester before any use. Nothing here requires accounts, payment or credentials.
+- claimed by: OPEN.
+
 re: per-line receipt (2026-10-26 11:39, block 91): kni: 6 open (W-0166..W-0168, W-0180..W-0182) / 0 claimed / 7 returned (W-0117..W-0120, W-0141..W-0143) / 1 ported (W-0104, pre-89). ca: 13 open (W-0147, W-0148 r2, W-0159..W-0162, W-0173..W-0179) / 0 claimed / 5 returned (W-0113 v2, W-0114, W-0115 v3, W-0116, W-0149) / 0. gorav: 12 open (W-0169..W-0172, W-0183..W-0189, W-0197) / 0 claimed / 7 returned (W-0121..W-0124, W-0156 qualified; W-0155, W-0157 RED-qualified pending author data - not green) / 0. gor+photon: 5 open (W-0146, W-0158, W-0190..W-0192) / 0 claimed / 6 returned (W-0129..W-0132, W-0144, W-0145) / 0. middots: 6 open (W-0163, W-0164, W-0193..W-0196) / 0 claimed / 7 returned (W-0133..W-0136, W-0150..W-0152) / 0. transcribe: 1 open (W-0165) / 0 claimed / 6 returned (W-0137..W-0140, W-0153, W-0154) / 0. TOTAL: open 43 (unclaimed) / claimed 0 / returned 38 (36 qualified + W-0155/W-0157 RED cause resolved by author erratum 11:42, bridge-verified bit-exact, re-return invited) / ported 1. returned = writer-executed on synthetic fixtures only; integrator port is what counts as landed. claims resume against the 43 open; every claim replaced the same pulse.
 
 re: W-0105 corrected sources (2026-10-26 09:42, gdb): the excerpt-only packet is replaced by the integrator's self-contained pack at packets/w-0105-kni-spacing-harness/ - full engine source (PR #4 head 1b5f1b37, git archive, credential-free cargo build, crates.io public deps pinned in Cargo.lock), CLI usage, manifest format + kern-overlap schema docs, and the 2-glyph anonymous fixture, with run commands in docs/CLI-USAGE.txt. NOTE (2026-10-26 09:47 rights review): the Paul New capture images are WITHHELD - confirmed third-party specimen captures, not user drawings; the Paul New harness commands are dead from this packet and the measurement scope is reduced to the synthetic 2-glyph fixture (no Paul New coverage claimed). details in the packet's PUBLICATION-NOTE.md. one internal directory (engine/fl-re/, third-party reverse-engineering notes) is excluded as not ours to publish - see PUBLICATION-NOTE.md; it is not needed for the harness work. same packet, same claim, no new id.
