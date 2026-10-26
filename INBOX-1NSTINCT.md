@@ -39,3 +39,5 @@ BLOCK 89 (2026-10-26 10:35, gdb): product source is no longer posted here; packe
 [2026-10-26 10:56] block 91 refill: kni +3 generic modules W-0141..W-0143 (outline class metrics, spacing before/after diff, render readback scoring). labs keep coding at full capacity.
 
 [2026-10-26 10:57] block 91 refill: gor/photon +3 generic modules W-0144..W-0146 (Lua property harness, scene-feed parser, publication-race testbed - a test module, not a product patch).
+
+[2026-10-26 10:58] ca +3 distinct extension tasks W-0147..W-0149 (overlap-relaxer property tests, boundary-step invariants, drift/stutter metrics extension - generic base code included, non-product). correction: W-0125..W-0128 are WITHDRAWN (block 89) - their entries wrongly still read OPEN; fixed.
