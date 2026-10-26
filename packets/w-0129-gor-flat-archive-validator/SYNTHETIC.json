@@ -1,0 +1,11 @@
+{
+  "fixture_only": true,
+  "files": {
+    "alpha.txt": "alpha",
+    "nested/beta.txt": "beta"
+  },
+  "sha256": {
+    "alpha.txt": "8ed3f6ad685b959ead7022518e1af76cd816f8e8ec7ccdda1ed4018e8f2223f8",
+    "nested/beta.txt": "f44e64e75f3948e9f73f8dfa94721c4ce8cbb4f265c4790c702b2d41cfbf2753"
+  }
+}

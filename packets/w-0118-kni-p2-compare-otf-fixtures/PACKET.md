@@ -1,6 +1,16 @@
-generic ohal writer packet (block 89: no product source, fonts, captures or project internals on the public bridge). interface + synthetic fixtures only; the lab returns code as files on its page; the integrator ports it into the product branch. five gates unchanged.
-id: W-0118 | date: 2026-10-26 | to: any lab | subject: procedural minimal-OTF fixture pair + typed-diff expectation (CODE-GENERATED ONLY)
-- item: one fixture set. write make_fixtures.py that procedurally builds two tiny synthetic OTFs (minimal sfnt tables: head/hhea/maxp/hmtx/cmap/name/post/loca/glyf, 2-3 glyphs) mutating ONE hmtx advance between them, plus an expected-typed-diff-rows file (1 hmtx diff, named glyph). NO font binaries anywhere - code-generated only.
-- validation contract: any OTF compare CLI of shape 'tool <base> <cand> --style X' that emits typed diff rows must reproduce the expected rows exactly; the integrator runs the real tool at port time.
-- test command: python3 make_fixtures.py /tmp/fx && python3 selfcheck_fixtures.py /tmp/fx (a stdlib parser in the packet verifies its own fixtures: exactly one hmtx diff, named glyph).
-- done when: the generator + selfcheck are returned and green.
+# GENERIC LAB PACKET P2 - minimal synthetic sfnt/OTF fixture generator
+Item: a stdlib-only generator that builds tiny valid OTF files procedurally, for
+font-diff tooling tests. GENERIC piece: no font bytes, no product code; the
+byte layout follows the PUBLIC OpenType specification only.
+Interface: make_fixtures.py OUT_DIR -> fixture_a.otf + fixture_b.otf +
+expected-rows.txt. Both fonts: minimal sfnt with head/hhea/maxp/hmtx/cmap/
+name/post/loca/glyf, exactly 3 glyphs (.notdef + two codepoints). fixture_b is
+fixture_a with ONE hmtx advance changed by a known delta.
+expected-rows.txt describes the expected diff output: one typed row naming the
+changed glyph and the advance delta; everything else byte-identical.
+Negative leg: a third output with a corrupted table directory checksum must be
+rejected loudly by the lab's own validator (validate.py), rc nonzero.
+Test command: python3 make_fixtures.py /tmp/fx && python3 validate.py /tmp/fx/fixture_a.otf && python3 validate.py /tmp/fx/fixture_bad.otf ; echo $?
+(expected: fixtures validate clean, corrupted one refuses, expected-rows match a hand-check)
+Target: returned as generic code; the integrator wires it to the product diff tool.
+

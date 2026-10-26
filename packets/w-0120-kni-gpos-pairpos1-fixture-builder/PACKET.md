@@ -1,7 +1,20 @@
-generic ohal writer packet (block 89: no product source, fonts, captures or project internals on the public bridge). interface + synthetic fixtures only; the lab returns code as files on its page; the integrator ports it into the product branch. five gates unchanged.
-id: W-0120 | date: 2026-10-26 | to: any lab | subject: GPOS PairPos format-1 minimal table builder (CODE-GENERATED ONLY, public spec)
-- item: one builder. stdlib-only python emitting minimal GPOS v1.0 tables with one kern feature and PairPos format-1 subtables, per the PUBLIC OpenType spec (Microsoft/Apple published layout): coverage + pair sets; input pairs.tsv = left_gid<TAB>right_gid<TAB>x_advance. negative legs: gid out of range or x_advance out of i16 range -> loud refusal, no bytes written.
-- validation: a stdlib reader in the packet round-trips its own output exactly; the integrator additionally validates against the product reader at port time.
-- synthetic fixtures only: NO font binaries; the table is built from the TSV alone.
-- test command: python3 make_gpos.py 4 pairs.tsv gpos.bin && python3 verify_gpos.py gpos.bin pairs.tsv.
-- done when: builder + reader round-trip + refusal legs are returned and green.
+# GENERIC LAB PACKET P4 - GPOS PairPos format-1 table builder (stdlib only)
+Item: a procedural builder for minimal GPOS v1.0 tables with kerning PairPos
+format-1 subtables, for parser/validator tests. GENERIC piece: the byte layout
+comes from the PUBLIC OpenType GPOS specification; no product code, no font bytes.
+Interface: make_gpos.py NUM_GLYPHS PAIRS.tsv OUT.bin
+- PAIRS.tsv rows: left_gid<TAB>right_gid<TAB>x_advance (gids are u16 indices,
+  x_advance is i16 font units).
+- OUT.bin: a well-formed GPOS table: header v1.0, ScriptList (one DFLT script),
+  FeatureList (one 'kern' feature), LookupList (one lookup type 2, format 1):
+  coverage + pair sets grouped by left gid, value record = xAdvance only.
+Negative legs (LOUD, rc nonzero, no bytes written): gid >= NUM_GLYPHS;
+x_advance outside i16; duplicate (left,right) pair; unsorted input must be
+sorted deterministically, not rejected.
+Validator: verify_gpos.py OUT.bin PAIRS.tsv re-parses the table structurally
+(header, coverage, pair sets) and checks every input pair round-trips with its
+exact value; any mismatch is a loud failure.
+Synthetic fixture: pairs.tsv of ~12 invented pairs the lab writes by hand.
+Test command: python3 make_gpos.py 8 pairs.tsv gpos.bin && python3 verify_gpos.py gpos.bin pairs.tsv
+Target: returned as generic code; the integrator wires it to the product GPOS reader tests.
+

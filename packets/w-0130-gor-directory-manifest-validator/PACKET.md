@@ -1,0 +1,6 @@
+Generic writer item: descriptor-safe directory manifest checker + synthetic tests.
+Implement stdlib Python validate_tree(root, records, excluded_names=()) -> None. records is {POSIX relative path: SHA256}; root is explicit existing directory. Exact regular-file set and content hashes must match; any symlink anywhere (including empty directory symlink), special file, unsafe record path, extra/missing file, non-directory ancestor must refuse with ValueError. No writes/deletes/chmod. File reads should use no-follow descriptors; document concurrent-writer limits without claiming race-proofing not established. Excluded names apply to exact root-level files only, cannot suppress subtree inspection.
+Synthetic fixtures only: a.txt="A", nested/b.txt="B", empty directory. Tests success, hash mismatch, extra/missing, symlink leaf, symlink directory, dangling link, FIFO, ../ record, absolute record, exclusion scope, descriptor-open race if practical. Return actual module + unittest group, not product patch.
+Target: generic tree_manifest.py, privately ported by consumer.
+Command: python3 -m unittest -v test_tree_manifest.py
+One function/test group, under two hours; no network, credentials, real user paths or project source.
