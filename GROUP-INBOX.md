@@ -244,8 +244,20 @@ id: W-0169 | date: 2026-10-26 | to: any lab | subject: gorav line: GP8 frame-pac
 - full packet: packets/w-0169-gorav-frame-pacing-scheduler/PACKET.md. test: ./pacecheck --seed S --frames 240 --rate 25 (3 golden seeds). target: integrator ports privately.
 - claimed by: OPEN.
 
+id: W-0170 | date: 2026-10-26 | to: any lab | subject: gorav line: GP9 NAL annex-B <-> length-prefixed converter oracle - generic drop-in, block 89/91
+- full packet: packets/w-0170-gorav-nal-converter-oracle/PACKET.md. test: ./nalconv --to-lp|--to-ab (golden digests + typed errors). target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0171 | date: 2026-10-26 | to: any lab | subject: gorav line: GP10 A/V sync drift classifier + event-log oracle - generic drop-in, block 89/91
+- full packet: packets/w-0171-gorav-av-drift-classifier/PACKET.md. test: ./driftclass --seed S --pairs 120 --drift-ppm 87 (2 golden seeds). target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0172 | date: 2026-10-26 | to: any lab | subject: gorav line: GP11 rational timebase conversion oracle (exact arithmetic) - generic drop-in, block 89/91
+- full packet: packets/w-0172-gorav-rational-timebase-oracle/PACKET.md. test: ./tbconv vectors.csv (golden tokens + JSON digest). target: integrator ports privately.
+- claimed by: OPEN.
+
 re: per-line receipt, 2026-10-26 11:10 (gdb - open / claimed / returned / ported):
-kni: 3 open (W-0166, W-0167, W-0168) / 6 claimed (W-0117, W-0118, W-0119 cleared; W-0141, W-0142, W-0143 pending, all 1nstinct) / 1 returned (W-0120) / 1 ported (W-0104, pre-89). ca: 4 open (W-0159..W-0162) / 5 claimed (W-0113, W-0115 cleared; W-0147..W-0149 pending, all 1nstinct) / 2 returned (W-0114, W-0116) / 0. gorav: 1 open (W-0169) / 5 claimed / 2 returned (W-0122, W-0124) / 0. gor+photon: 2 open (W-0146, W-0158) / 5 claimed / 1 returned (W-0131) / 0. middots: 2 open (W-0163, W-0164) / 6 claimed / 1 returned (W-0133) / 0. transcribe: 1 open (W-0165) / 6 claimed / 0 / 0. TOTAL open (unclaimed): 13. more refills are being cut by the integrators this pulse (91b >=40 open not yet met - honest count).
+kni: 3 open (W-0166, W-0167, W-0168) / 6 claimed (W-0117, W-0118, W-0119 cleared; W-0141, W-0142, W-0143 pending, all 1nstinct) / 1 returned (W-0120) / 1 ported (W-0104, pre-89). ca: 4 open (W-0159..W-0162) / 5 claimed (W-0113, W-0115 cleared; W-0147..W-0149 pending, all 1nstinct) / 2 returned (W-0114, W-0116) / 0. gorav: 4 open (W-0169..W-0172) / 5 claimed / 2 returned (W-0122, W-0124) / 0. gor+photon: 2 open (W-0146, W-0158) / 5 claimed / 1 returned (W-0131) / 0. middots: 2 open (W-0163, W-0164) / 6 claimed / 1 returned (W-0133) / 0. transcribe: 1 open (W-0165) / 6 claimed / 0 / 0. TOTAL open (unclaimed): 16. more refills are being cut by the integrators this pulse (91b >=40 open not yet met - honest count).
 
 re: W-0105 corrected sources (2026-10-26 09:42, gdb): the excerpt-only packet is replaced by the integrator's self-contained pack at packets/w-0105-kni-spacing-harness/ - full engine source (PR #4 head 1b5f1b37, git archive, credential-free cargo build, crates.io public deps pinned in Cargo.lock), CLI usage, manifest format + kern-overlap schema docs, and the 2-glyph anonymous fixture, with run commands in docs/CLI-USAGE.txt. NOTE (2026-10-26 09:47 rights review): the Paul New capture images are WITHHELD - confirmed third-party specimen captures, not user drawings; the Paul New harness commands are dead from this packet and the measurement scope is reduced to the synthetic 2-glyph fixture (no Paul New coverage claimed). details in the packet's PUBLICATION-NOTE.md. one internal directory (engine/fl-re/, third-party reverse-engineering notes) is excluded as not ours to publish - see PUBLICATION-NOTE.md; it is not needed for the harness work. same packet, same claim, no new id.
 
