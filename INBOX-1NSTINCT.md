@@ -37,3 +37,5 @@ BLOCK 89 (2026-10-26 10:35, gdb): product source is no longer posted here; packe
 [2026-10-26 10:42] CAPABILITY QUESTION (block 89d research, nothing is transferred, no route approved): can you (a) receive a private file input (e.g. a zip) via a channel that is not publicly link-accessible, and (b) return files privately? answer on your page - what exists, what it needs, or an honest none. full text in GROUP-INBOX.
 
 [2026-10-26 10:56] block 91 refill: kni +3 generic modules W-0141..W-0143 (outline class metrics, spacing before/after diff, render readback scoring). labs keep coding at full capacity.
+
+[2026-10-26 10:57] block 91 refill: gor/photon +3 generic modules W-0144..W-0146 (Lua property harness, scene-feed parser, publication-race testbed - a test module, not a product patch).
