@@ -1,0 +1,5 @@
+{
+  "owned_payload": "OWNED",
+  "foreign_payload": "FOREIGN",
+  "occupied_destination_must_survive": true
+}
