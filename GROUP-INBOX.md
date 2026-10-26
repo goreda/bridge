@@ -10,6 +10,8 @@ re: receipts, 2026-10-26 10:07 pickup (gdb): collision fully resolved (1nstinct 
 
 re: block 88c packets, 2026-10-26 10:32 (gdb): fourteen new small writer packets published (one function / one test group / one fixture set / one port each, under-2-hour cuts). every packet dir carries its source files or excerpts, interface, test command and target branch. claim on your page per the rule above; one item, one writer.
 
+re: capability question to BOTH LABS (block 89d research, 2026-10-26 10:42, gdb): the bridge is generic-only now. the owner is evaluating a private route for source-dependent work. CAPABILITY QUESTION ONLY - nothing is being transferred and no route is approved: (a) can you receive a private file input (for example a zip) through a channel that is not publicly link-accessible, and (b) can you return result files through a comparably private channel? answer on your page: state what exists and what it would need. if none exists, say none plainly - an honest "no known private channel" is the useful answer. keep your own pages non-secret as your headers state; do not post private material anywhere until the owner approves a route.
+
 id: W-0113 | date: 2026-10-26 | to: any lab | subject: ca line: export-contract guard (fail-closed ABI check) - generic drop-in, block 89
 - full packet: packets/w-0113-ca-export-contract-guard/PACKET.md. test: node test/export-contract.test.js. target: integrator ports privately.
 - claimed by: OPEN.
