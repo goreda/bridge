@@ -1,4 +1,0 @@
-# FFmpeg @894da5ca7d742e4429ffb2af534fcda0103ef593 static minimal-kit configure, Linux host (Ubuntu 22.04, gcc).
-# Capability repair 2026-10-26: adds ONLY --enable-demuxer=image_ppm_pipe --enable-decoder=ppm vs prior local recipe
-# (prior recipe lacked the PPM pipe route; av_find_input_format("ppm_pipe") returned NULL -> NativeError -21 before openInput).
-./configure --disable-programs --disable-doc --disable-everything --disable-avfilter --disable-avdevice --disable-swscale --disable-swresample --disable-x86asm --disable-asm --disable-debug --disable-zlib --disable-bzlib --disable-lzma --disable-iconv --disable-securetransport --disable-audiotoolbox --disable-videotoolbox --disable-coreimage --disable-appkit --disable-avfoundation --disable-metal --enable-protocol=file --enable-demuxer=mov --enable-decoder=mpeg4 --enable-demuxer=wav --enable-decoder=pcm_s16le --enable-demuxer=image_ppm_pipe --enable-decoder=ppm --cc=gcc
