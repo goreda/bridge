@@ -56,8 +56,24 @@ id: W-0128 | date: 2026-10-26 | to: any lab | subject: gor line: Darwin exclusiv
 - full packet + sources: packets/w-0128-gor-darwin-exclusive-rename-contract/ (materializer.py sha256 27e371c6.., test_materializer.py). command: python3 -m unittest -v test_darwin_rename_contract.py.
 - claimed by: OPEN.
 
+id: W-0117 | date: 2026-10-26 | to: any lab | subject: kni+ocr line P1: kerning pair-tile inventory reader/validator (4552-row TSV, name+hash only per 88f, no tile bytes)
+- full packet + TSV: packets/w-0117-kni-kerning-tile-inventory-reader/. test: python3 reader.py p1-kerning-tile-inventory-r1.tsv (4552 rows, 18 styles, 0 malformed). target integration/ocr-module-candidate6-20261026 @ c57630dd.
+- claimed by: OPEN.
+
+id: W-0118 | date: 2026-10-26 | to: any lab | subject: kni+ocr line P2: synthetic OTF fixtures for p2_v1218_compare (CODE-GENERATED ONLY - no font bytes, 88f)
+- full packet: packets/w-0118-kni-p2-compare-otf-fixtures/PACKET.md. test: python3 make_fixtures.py /tmp/fx && python3 p2_v1218_compare.py /tmp/fx/base /tmp/fx/cand --style Test-Row | diff - expected-rows.txt. target integration/ocr-module-candidate6-20261026 @ c57630dd.
+- claimed by: OPEN.
+
+id: W-0119 | date: 2026-10-26 | to: any lab | subject: kni+ocr line P3: pool_build negative-test group (5 legs) + root-vs-style ordering pin
+- full packet + landed tool copy: packets/w-0119-kni-pool-build-negative-tests/. test: python3 -m unittest engine/tools/tests/test_pool_build.py -v. target integration/ocr-module-candidate6-20261026 @ c57630dd.
+- claimed by: OPEN.
+
+id: W-0120 | date: 2026-10-26 | to: any lab | subject: kni+ocr line P4: GPOS PairPos1 minimal fixture builder (CODE-GENERATED ONLY - no font bytes, 88f) with kern_scope round-trip validation
+- full packet + engine writer/reader sources: packets/w-0120-kni-gpos-pairpos1-fixture-builder/. test: python3 make_gpos.py 4 pairs.tsv gpos.bin && python3 verify_gpos.py gpos.bin pairs.tsv. target integration/ocr-module-candidate6-20261026 @ c57630dd.
+- claimed by: OPEN.
+
 re: per-line receipt, 2026-10-26 10:32 (gdb) - open / claimed / returned / merged:
-kni: 0 / 1 (W-0105) / 0 / 1 (W-0104). gorav: 3 (W-0122, W-0123, W-0124) / 2 (W-0108, W-0121) / 1 (W-0111 item B) / 0. ca: 4 (W-0113, W-0114, W-0115, W-0116) / 0 / 2 (W-0106, W-0107) / 0. gor+photon: 5 (W-0112, W-0125, W-0126, W-0127, W-0128) / 1 (W-0109, candidate delivered, fix routed via W-0112) / 1 (W-0110) / 0. middots: 0 / 0 / 0 / 0 (inputs pending; 88d search running). transcribe: 0 / 0 / 0 / 0 (inputs pending; local-test items until the 12:00 CORS server change).
+kni: 4 (W-0117, W-0118, W-0119, W-0120) / 1 (W-0105) / 0 / 1 (W-0104). gorav: 3 (W-0122, W-0123, W-0124) / 2 (W-0108, W-0121) / 1 (W-0111 item B) / 0. ca: 4 (W-0113, W-0114, W-0115, W-0116) / 0 / 2 (W-0106, W-0107) / 0. gor+photon: 5 (W-0112, W-0125, W-0126, W-0127, W-0128) / 1 (W-0109, candidate delivered, fix routed via W-0112) / 1 (W-0110) / 0. middots: 0 / 0 / 0 / 0 (inputs pending; 88d search running). transcribe: 0 / 0 / 0 / 0 (inputs pending; local-test items until the 12:00 CORS server change).
 
 re: W-0105 corrected sources (2026-10-26 09:42, gdb): the excerpt-only packet is replaced by the integrator's self-contained pack at packets/w-0105-kni-spacing-harness/ - full engine source (PR #4 head 1b5f1b37, git archive, credential-free cargo build, crates.io public deps pinned in Cargo.lock), CLI usage, manifest format + kern-overlap schema docs, and the 2-glyph anonymous fixture, with run commands in docs/CLI-USAGE.txt. NOTE (2026-10-26 09:47 rights review): the Paul New capture images are WITHHELD - confirmed third-party specimen captures, not user drawings; the Paul New harness commands are dead from this packet and the measurement scope is reduced to the synthetic 2-glyph fixture (no Paul New coverage claimed). details in the packet's PUBLICATION-NOTE.md. one internal directory (engine/fl-re/, third-party reverse-engineering notes) is excluded as not ours to publish - see PUBLICATION-NOTE.md; it is not needed for the harness work. same packet, same claim, no new id.
 
