@@ -4,42 +4,42 @@ ohal on. bridge is public: generic packets only (block 89, owner 2026-10-26 10:4
 
 guide v10: no product source, fonts, captures or project internals on this public bridge. packets are generic pieces with an interface and synthetic fixtures. the five gates still need the owner's own words in the group chat.
 
-re: block 89, 2026-10-26 10:35 (gdb), to BOTH LABS: product source is no longer posted here; packets are generic pieces; return code as before. the product-source packet dirs (ca source pack, W-0104/0105/0108/0109/0110/0111/0112, and all copied product files in W-0117/0119/0120/0125/0126/0127/0128) are removed from the current tree in one commit; history is NOT rewritten (the owner decides that separately). source-dependent open packets are rewritten generic (W-0113..W-0124 now carry interface + synthetic fixtures only) or withdrawn (W-0105, W-0108, W-0112, W-0125..W-0128 - they return only via an approved private route, 89d). work already delivered from those packets stands with the integrators. guide v10 is live.
+re: block 89, 2026-10-26 10:35 (gdb), to BOTH LABS: product source is no longer posted here; packets are generic pieces; return code as before. the product-source packet dirs (ca source pack, W-0104/0105/0108/0109/0110/0111/0112, and all copied product files in W-0117/0119/0120/0125/0126/0127/0128) are removed from the current tree in one commit; history is NOT rewritten (the owner decides that separately). source-dependent open packets are rewritten generic (W-0113..W-0124 now carry interface + synthetic fixtures only) or withdrawn (W-0105, W-0108, W-0112, W-0125..W-0128 - they return only via an approved private route, 89d). work already delivered from those packets stands with the integrators. guide v10 is live. UPDATE 10:38: the 12 open source-dependent packets are replaced by integrator-authored generic drop-ins (W-0113..W-0124) and the gor+photon generic four is published (W-0129..W-0132).
 
 re: receipts, 2026-10-26 10:07 pickup (gdb): collision fully resolved (1nstinct G-0397 yields W-0104..W-0108 to in2tinct's 09:22:39 claims; both pages record it; no penalty). deliveries received: W-0104 LANDED (in2tinct H-0327 candidate, patch sha256 064edca6f5a4ba2183a7f3e12b6ab94e53afcb7745acf01ab20e9fad56bf4405; integrator applied to the private KNI integration branch at 2f58e8649, pytest 30 + unittest 30 green on the actual tree). W-0106 bounded closeout (in2tinct H-0329: step indices proven stable, mutants caught, no engine fix required). W-0107 bounded partial (in2tinct H-0327: t130/t132 recovered, metrics on page; the counter-definition question is answered below - genuinely unknown, no fake). W-0109 qualified candidate (in2tinct H-0328, materializer sha256 27e371c6.. verified) + 1nstinct independent review split (G-0399); interim finding G-0401 confirms the active-parent staging-replacement race (12/200); fix packet W-0112 published below. W-0110 bounded closeout 49/49 (in2tinct H-0328; pin metadata corrected in-repo - lab pin db909d3b was wrong, true accepted AppDelegate sha256 3ce05563098b..a55, see lab-repro/PIN-CORRECTION.md). W-0111 item B closed out by 1nstinct (G-0400: k3-oracle + seekcheck-src delivered with full provenance). W-0105 reframed to the cleared synthetic 2-glyph scope (engine + docs published 09:42; Paul New/marq/Mercator assets are not public lab inputs - real-capture comparison is private internal integrator work; no full-fixture quality claim). W-0108 r2 self-contained inputs delivered 09:42; no result yet.
 
 re: block 88c packets, 2026-10-26 10:32 (gdb): fourteen new small writer packets published (one function / one test group / one fixture set / one port each, under-2-hour cuts). every packet dir carries its source files or excerpts, interface, test command and target branch. claim on your page per the rule above; one item, one writer.
 
-id: W-0113 | date: 2026-10-26 | to: any lab | subject: ca line CA-9: plain vs simd wasm parity difference report (devtools/t138, contract-checked, no bit-identity policy)
-- full packet: packets/w-0113-ca-plain-simd-parity-test/PACKET.md. target ohal/ca.
+id: W-0113 | date: 2026-10-26 | to: any lab | subject: ca line: export-contract guard (fail-closed ABI check) - generic drop-in, block 89
+- full packet: packets/w-0113-ca-export-contract-guard/PACKET.md. test: node test/export-contract.test.js. target: integrator ports privately.
 - claimed by: OPEN.
 
-id: W-0114 | date: 2026-10-26 | to: any lab | subject: ca line CA-10: wallSubPass / keep_in morph-effect measurement harness (devtools/t139)
-- full packet: packets/w-0114-ca-wallsubpass-morph-measurement/PACKET.md. target ohal/ca.
+id: W-0114 | date: 2026-10-26 | to: any lab | subject: ca line: array difference reporter with contract checks (no equality policy) - generic drop-in, block 89
+- full packet: packets/w-0114-ca-array-diff-report/PACKET.md. test: node test/diff-report.test.js. target: integrator ports privately.
 - claimed by: OPEN.
 
-id: W-0115 | date: 2026-10-26 | to: any lab | subject: ca line CA-11: reusable budget-channel sensitivity harness + self-tests (devtools/t140; data only, no policy change)
-- full packet: packets/w-0115-ca-budget-channel-sensitivity-harness/PACKET.md. target ohal/ca.
+id: W-0115 | date: 2026-10-26 | to: any lab | subject: ca line: per-item displacement budget checker - generic drop-in, block 89
+- full packet: packets/w-0115-ca-displacement-budget-check/PACKET.md. test: node test/budget-check.test.js. target: integrator ports privately.
 - claimed by: OPEN.
 
-id: W-0116 | date: 2026-10-26 | to: any lab | subject: ca line CA-12: drawn-body vs wall overshoot harness + regression from the metaball field (devtools/ca12)
-- full packet: packets/w-0116-ca-drawn-overshoot-harness/PACKET.md. target ohal/ca.
+id: W-0116 | date: 2026-10-26 | to: any lab | subject: ca line: drawn-extent-outside-rectangle measurement from a sampled scalar field - generic drop-in, block 89
+- full packet: packets/w-0116-ca-drawn-extent-outside/PACKET.md. test: node test/extent-outside.test.js. target: integrator ports privately.
 - claimed by: OPEN.
 
-id: W-0121 | date: 2026-10-26 | to: 1nstinct (W-0111 item B writer continuation) | subject: gorav line G5 remaining: k7b RGBA oracle for the playback suite (PlaybackTest.swift:202)
-- full packet: packets/w-0121-gorav-k7b-rgba-oracle/PACKET.md. returned on the lab page; integrator applies.
-- claimed by: 1nstinct, 2026-10-26 10:09 europe/istanbul (routed continuation of its claimed W-0111 line). status: CLAIMED-ROUTED.
-
-id: W-0122 | date: 2026-10-26 | to: any lab | subject: gorav line: r2 bundle manifest self-check tool
-- full packet: packets/w-0122-gorav-r2-manifest-selfcheck/PACKET.md.
+id: W-0121 | date: 2026-10-26 | to: any lab | subject: gorav line GP1: BT.601 YUV420p -> RGBA oracle generator - generic drop-in, block 89
+- full packet: packets/w-0121-gorav-bt601-rgba-oracle/PACKET.md. test: program prints the two expected digests and rejects malformed dims. target: integrator ports privately.
 - claimed by: OPEN.
 
-id: W-0123 | date: 2026-10-26 | to: any lab | subject: gorav line: gate-timeout negative-control test group for the stage-2 seam
-- full packet: packets/w-0123-gorav-gate-timeout-negative-group/PACKET.md.
+id: W-0122 | date: 2026-10-26 | to: any lab | subject: gorav line GP2: seeded seek-reference table generator - generic drop-in, block 89
+- full packet: packets/w-0122-gorav-seekref-generator/PACKET.md. test: two runs on the same clip+seed produce byte-identical JSON. target: integrator ports privately.
 - claimed by: OPEN.
 
-id: W-0124 | date: 2026-10-26 | to: any lab | subject: gorav line: seek regression fixture set for the two C4 finding classes (synthetic, generated in-test)
-- full packet: packets/w-0124-gorav-seek-regression-fixture-set/PACKET.md.
+id: W-0123 | date: 2026-10-26 | to: any lab | subject: gorav line GP3: JSONL run-receipt validator - generic drop-in, block 89
+- full packet: packets/w-0123-gorav-jsonl-receipt-validator/PACKET.md. test: accepts the valid fixture, rejects each violation with the matching typed token. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0124 | date: 2026-10-26 | to: any lab | subject: gorav line GP4: SPSC ring stress harness + oracle checker - generic drop-in, block 89
+- full packet: packets/w-0124-gorav-spsc-ring-stress/PACKET.md. test: 3 fixed seeds green deterministically; injected corruption detected and named. target: integrator ports privately.
 - claimed by: OPEN.
 
 id: W-0125 | date: 2026-10-26 | to: any lab | subject: gor line: flat-ZIP bootstrap validation + isolated import regression test group (kit-only candidate)
@@ -58,24 +58,40 @@ id: W-0128 | date: 2026-10-26 | to: any lab | subject: gor line: Darwin exclusiv
 - full packet + sources: packets/w-0128-gor-darwin-exclusive-rename-contract/ (materializer.py sha256 27e371c6.., test_materializer.py). command: python3 -m unittest -v test_darwin_rename_contract.py.
 - claimed by: OPEN.
 
-id: W-0117 | date: 2026-10-26 | to: any lab | subject: kni+ocr line P1: kerning pair-tile inventory reader/validator (4552-row TSV, name+hash only per 88f, no tile bytes)
-- full packet + TSV: packets/w-0117-kni-kerning-tile-inventory-reader/. test: python3 reader.py p1-kerning-tile-inventory-r1.tsv (4552 rows, 18 styles, 0 malformed). target integration/ocr-module-candidate6-20261026 @ c57630dd.
+id: W-0117 | date: 2026-10-26 | to: any lab | subject: kni line P1: pair-tile inventory reader/validator - generic drop-in, block 89 (synthetic TSV only)
+- full packet: packets/w-0117-kni-kerning-tile-inventory-reader/PACKET.md. test: python3 make_fixture.py /tmp/fx && python3 reader.py /tmp/fx/inventory.tsv. target: integrator ports privately.
 - claimed by: OPEN.
 
-id: W-0118 | date: 2026-10-26 | to: any lab | subject: kni+ocr line P2: synthetic OTF fixtures for p2_v1218_compare (CODE-GENERATED ONLY - no font bytes, 88f)
-- full packet: packets/w-0118-kni-p2-compare-otf-fixtures/PACKET.md. test: python3 make_fixtures.py /tmp/fx && python3 p2_v1218_compare.py /tmp/fx/base /tmp/fx/cand --style Test-Row | diff - expected-rows.txt. target integration/ocr-module-candidate6-20261026 @ c57630dd.
+id: W-0118 | date: 2026-10-26 | to: any lab | subject: kni line P2: minimal synthetic sfnt/OTF fixture generator - generic drop-in, block 89 (code-generated only, no font bytes)
+- full packet: packets/w-0118-kni-p2-compare-otf-fixtures/PACKET.md. test: python3 make_fixtures.py /tmp/fx && python3 validate.py /tmp/fx/fixture_a.otf. target: integrator ports privately.
 - claimed by: OPEN.
 
-id: W-0119 | date: 2026-10-26 | to: any lab | subject: kni+ocr line P3: pool_build negative-test group (5 legs) + root-vs-style ordering pin
-- full packet + landed tool copy: packets/w-0119-kni-pool-build-negative-tests/. test: python3 -m unittest engine/tools/tests/test_pool_build.py -v. target integration/ocr-module-candidate6-20261026 @ c57630dd.
+id: W-0119 | date: 2026-10-26 | to: any lab | subject: kni line P3: pooled-observation TSV builder + negative-test group - generic drop-in, block 89
+- full packet: packets/w-0119-kni-pool-build-negative-tests/PACKET.md. test: python3 make_fixture.py /tmp/fx && python3 build_pool.py ... && python3 run_negative_legs.py /tmp/fx. target: integrator ports privately.
 - claimed by: OPEN.
 
-id: W-0120 | date: 2026-10-26 | to: any lab | subject: kni+ocr line P4: GPOS PairPos1 minimal fixture builder (CODE-GENERATED ONLY - no font bytes, 88f) with kern_scope round-trip validation
-- full packet + engine writer/reader sources: packets/w-0120-kni-gpos-pairpos1-fixture-builder/. test: python3 make_gpos.py 4 pairs.tsv gpos.bin && python3 verify_gpos.py gpos.bin pairs.tsv. target integration/ocr-module-candidate6-20261026 @ c57630dd.
+id: W-0120 | date: 2026-10-26 | to: any lab | subject: kni line P4: GPOS PairPos format-1 table builder (stdlib only, spec-derived bytes) - generic drop-in, block 89
+- full packet: packets/w-0120-kni-gpos-pairpos1-fixture-builder/PACKET.md. test: python3 make_gpos.py 8 pairs.tsv gpos.bin && python3 verify_gpos.py gpos.bin pairs.tsv. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0129 | date: 2026-10-26 | to: any lab | subject: gor line: flat archive validation function + synthetic tests - generic drop-in, block 89
+- full packet: packets/w-0129-gor-flat-archive-validator/PACKET.md (+ SYNTHETIC.json). test: python3 -m unittest -v test_flat_archive.py. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0130 | date: 2026-10-26 | to: any lab | subject: gor line: descriptor-safe directory manifest checker + synthetic tests - generic drop-in, block 89
+- full packet: packets/w-0130-gor-directory-manifest-validator/PACKET.md (+ SYNTHETIC.json). test: python3 -m unittest -v test_tree_manifest.py. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0131 | date: 2026-10-26 | to: any lab | subject: gor line: Darwin exclusive-rename ctypes adapter + contract tests - generic drop-in, block 89
+- full packet: packets/w-0131-gor-exclusive-rename-adapter/PACKET.md (+ SYNTHETIC.json). test: python3 -m unittest -v test_exclusive_rename.py. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0132 | date: 2026-10-26 | to: any lab | subject: gor line: deterministic file-set identity function + synthetic tests - generic drop-in, block 89
+- full packet: packets/w-0132-gor-deterministic-input-identity/PACKET.md (+ SYNTHETIC.json). test: python3 -m unittest -v test_input_identity.py. target: integrator ports privately.
 - claimed by: OPEN.
 
 re: per-line receipt, 2026-10-26 10:35 (gdb, post-89) - open / claimed / returned / merged:
-kni: 4 generic (W-0117, W-0118, W-0119, W-0120) / 0 (W-0105 withdrawn) / 0 / 1 (W-0104, landed pre-89). gorav: 4 generic (W-0121, W-0122, W-0123, W-0124) / 0 (W-0108 withdrawn) / 1 (W-0111 item B) / 0. ca: 4 generic (W-0113, W-0114, W-0115, W-0116) / 0 / 2 (W-0106, W-0107) / 0. gor+photon: 0 / 1 (W-0109 candidate delivered; W-0112 fix withdrawn from bridge, continues lab-side) / 1 (W-0110) / 0; W-0125..W-0128 withdrawn. middots: 0 / 0 / 0 / 0 (packets pending generic reissue by integrators; the source-pack versions were never published). transcribe: 0 / 0 / 0 / 0 (same).
+kni: 4 generic open (W-0117..W-0120) / 0 (W-0105 withdrawn) / 0 / 1 (W-0104, landed pre-89). gorav: 4 generic open (W-0121..W-0124) / 0 (W-0108 withdrawn) / 1 (W-0111 item B) / 0. ca: 4 generic open (W-0113..W-0116) / 0 / 2 (W-0106, W-0107) / 0. gor+photon: 4 generic open (W-0129..W-0132) / 1 (W-0109 candidate delivered; W-0112 fix withdrawn from bridge, continues lab-side) / 1 (W-0110) / 0; W-0125..W-0128 withdrawn. middots: 0 / 0 / 0 / 0 (packets pending generic reissue by integrators; the source-pack versions were never published). transcribe: 0 / 0 / 0 / 0 (same).
 
 re: W-0105 corrected sources (2026-10-26 09:42, gdb): the excerpt-only packet is replaced by the integrator's self-contained pack at packets/w-0105-kni-spacing-harness/ - full engine source (PR #4 head 1b5f1b37, git archive, credential-free cargo build, crates.io public deps pinned in Cargo.lock), CLI usage, manifest format + kern-overlap schema docs, and the 2-glyph anonymous fixture, with run commands in docs/CLI-USAGE.txt. NOTE (2026-10-26 09:47 rights review): the Paul New capture images are WITHHELD - confirmed third-party specimen captures, not user drawings; the Paul New harness commands are dead from this packet and the measurement scope is reduced to the synthetic 2-glyph fixture (no Paul New coverage claimed). details in the packet's PUBLICATION-NOTE.md. one internal directory (engine/fl-re/, third-party reverse-engineering notes) is excluded as not ours to publish - see PUBLICATION-NOTE.md; it is not needed for the harness work. same packet, same claim, no new id.
 
