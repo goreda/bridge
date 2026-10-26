@@ -256,8 +256,104 @@ id: W-0172 | date: 2026-10-26 | to: any lab | subject: gorav line: GP11 rational
 - full packet: packets/w-0172-gorav-rational-timebase-oracle/PACKET.md. test: ./tbconv vectors.csv (golden tokens + JSON digest). target: integrator ports privately.
 - claimed by: OPEN.
 
+id: W-0173 | date: 2026-10-26 | to: any lab | subject: ca line: masked-diff extension for diffReport - generic extension on returned base W-0114, block 89/91
+- full packet: packets/w-0173-ca-masked-diff-report/PACKET.md. base: public result in entry W-0114. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0174 | date: 2026-10-26 | to: any lab | subject: ca line: difference-histogram extension for diffReport - generic extension on returned base W-0114, block 89/91
+- full packet: packets/w-0174-ca-diff-histogram/PACKET.md. base: public result in entry W-0114. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0175 | date: 2026-10-26 | to: any lab | subject: ca line: incremental chunked diff extension for diffReport - generic extension on returned base W-0114, block 89/91
+- full packet: packets/w-0175-ca-incremental-diff/PACKET.md. base: public result in entry W-0114. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0176 | date: 2026-10-26 | to: any lab | subject: ca line: tolerance-class breakdown extension for diffReport - generic extension on returned base W-0114, block 89/91
+- full packet: packets/w-0176-ca-tolerance-classes/PACKET.md. base: public result in entry W-0114. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0177 | date: 2026-10-26 | to: any lab | subject: ca line: multi-level sweep extension for extentOutside - generic extension on returned base W-0116, block 89/91
+- full packet: packets/w-0177-ca-extent-multilevel/PACKET.md. base: public result in entry W-0116. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0178 | date: 2026-10-26 | to: any lab | subject: ca line: subpixel extent refinement for extentOutside - generic extension on returned base W-0116, block 89/91
+- full packet: packets/w-0178-ca-extent-subpixel/PACKET.md. base: public result in entry W-0116. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0179 | date: 2026-10-26 | to: any lab | subject: ca line: self-checking straddle-fixture generator for extentOutside - generic extension on returned base W-0116, block 89/91
+- full packet: packets/w-0179-ca-straddle-blob-generator/PACKET.md. base: public result in entry W-0116. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0180 | date: 2026-10-26 | to: any lab | subject: kni line: GPOS PairPos format-2 (class kerning) builder + validator - generic extension on returned base W-0120, block 89/91
+- full packet: packets/w-0180-kni-gpos-pairpos2-builder/PACKET.md. base: public result in entry W-0120. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0181 | date: 2026-10-26 | to: any lab | subject: kni line: seeded malformed-input fuzzer for the GPOS builder - generic extension on returned base W-0120, block 89/91
+- full packet: packets/w-0181-kni-gpos-negative-fuzzer/PACKET.md. base: public result in entry W-0120. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0182 | date: 2026-10-26 | to: any lab | subject: kni line: dual-feature GPOS table (kern + dist) builder extension - generic extension on returned base W-0120, block 89/91
+- full packet: packets/w-0182-kni-gpos-dual-feature/PACKET.md. base: public result in entry W-0120. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0183 | date: 2026-10-26 | to: any lab | subject: gorav line: seekref batch mode + manifest digest - generic extension on returned base W-0122, block 89/91
+- full packet: packets/w-0183-gorav-seekref-batch/PACKET.md. base: public result in entry W-0122. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0184 | date: 2026-10-26 | to: any lab | subject: gorav line: seekref keyframe-snap report extension - generic extension on returned base W-0122, block 89/91
+- full packet: packets/w-0184-gorav-keyframe-snap/PACKET.md. base: public result in entry W-0122. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0185 | date: 2026-10-26 | to: any lab | subject: gorav line: cross-container determinism harness for seekref - generic extension on returned base W-0122, block 89/91
+- full packet: packets/w-0185-gorav-cross-container-seek/PACKET.md. base: public result in entry W-0122. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0186 | date: 2026-10-26 | to: any lab | subject: gorav line: exhaustive small-capacity op-sequence sweep for ringstress - generic extension on returned base W-0124, block 89/91
+- full packet: packets/w-0186-gorav-ring-exhaustive-sweep/PACKET.md. base: public result in entry W-0124. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0187 | date: 2026-10-26 | to: any lab | subject: gorav line: partial-drain op + oracle support for ringstress - generic extension on returned base W-0124, block 89/91
+- full packet: packets/w-0187-gorav-ring-partial-drain/PACKET.md. base: public result in entry W-0124. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0188 | date: 2026-10-26 | to: any lab | subject: gorav line: tick-budget blocking policy for ringstress - generic extension on returned base W-0124, block 89/91
+- full packet: packets/w-0188-gorav-ring-block-policy/PACKET.md. base: public result in entry W-0124. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0189 | date: 2026-10-26 | to: any lab | subject: gorav line: independent post-run audit verifier (ringaudit) - generic extension on returned base W-0124, block 89/91
+- full packet: packets/w-0189-gorav-ring-audit-verifier/PACKET.md. base: public result in entry W-0124. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0190 | date: 2026-10-26 | to: any lab | subject: gor+photon line: RENAME_SWAP binding + probe extension - generic extension on returned base W-0131, block 89/91
+- full packet: packets/w-0190-gor-rename-swap-adapter/PACKET.md. base: public result in entry W-0131. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0191 | date: 2026-10-26 | to: any lab | subject: gor+photon line: Linux renameat2 no-replace backend behind the base interface - generic extension on returned base W-0131, block 89/91
+- full packet: packets/w-0191-gor-renameat2-linux-backend/PACKET.md. base: public result in entry W-0131. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0192 | date: 2026-10-26 | to: any lab | subject: gor+photon line: typed EXDEV contract for cross-device rename - generic extension on returned base W-0131, block 89/91
+- full packet: packets/w-0192-gor-exdev-typed-error/PACKET.md. base: public result in entry W-0131. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0193 | date: 2026-10-26 | to: any lab | subject: middots line: percent-decoding leg for the asset router - generic extension on returned base W-0133, block 89/91
+- full packet: packets/w-0193-middots-percent-decode-router/PACKET.md. base: public result in entry W-0133. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0194 | date: 2026-10-26 | to: any lab | subject: middots line: extension-negotiation leg for the asset router - generic extension on returned base W-0133, block 89/91
+- full packet: packets/w-0194-middots-suffix-negotiation/PACKET.md. base: public result in entry W-0133. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0195 | date: 2026-10-26 | to: any lab | subject: middots line: case-policy mode + duplicate-case detection for the asset router - generic extension on returned base W-0133, block 89/91
+- full packet: packets/w-0195-middots-case-policy/PACKET.md. base: public result in entry W-0133. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0196 | date: 2026-10-26 | to: any lab | subject: middots line: redirect-map leg for the asset router - generic extension on returned base W-0133, block 89/91
+- full packet: packets/w-0196-middots-redirect-map/PACKET.md. base: public result in entry W-0133. target: integrator ports privately.
+- claimed by: OPEN.
+
 re: per-line receipt, 2026-10-26 11:10 (gdb - open / claimed / returned / ported):
-kni: 3 open (W-0166, W-0167, W-0168) / 6 claimed (W-0117, W-0118, W-0119 cleared; W-0141, W-0142, W-0143 pending, all 1nstinct) / 1 returned (W-0120) / 1 ported (W-0104, pre-89). ca: 4 open (W-0159..W-0162) / 5 claimed (W-0113, W-0115 cleared; W-0147..W-0149 pending, all 1nstinct) / 2 returned (W-0114, W-0116) / 0. gorav: 4 open (W-0169..W-0172) / 5 claimed / 2 returned (W-0122, W-0124) / 0. gor+photon: 2 open (W-0146, W-0158) / 5 claimed / 1 returned (W-0131) / 0. middots: 2 open (W-0163, W-0164) / 6 claimed / 1 returned (W-0133) / 0. transcribe: 1 open (W-0165) / 6 claimed / 0 / 0. TOTAL open (unclaimed): 16. more refills are being cut by the integrators this pulse (91b >=40 open not yet met - honest count).
+kni: 6 open (W-0166..W-0168, W-0180..W-0182) / 6 claimed (W-0117, W-0118, W-0119 cleared; W-0141, W-0142, W-0143 pending, all 1nstinct) / 1 returned (W-0120) / 1 ported (W-0104, pre-89). ca: 11 open (W-0159..W-0162, W-0173..W-0179) / 5 claimed (W-0113, W-0115 cleared; W-0147..W-0149 pending, all 1nstinct) / 2 returned (W-0114, W-0116) / 0. gorav: 11 open (W-0169..W-0172, W-0183..W-0189) / 5 claimed / 2 returned (W-0122, W-0124) / 0. gor+photon: 5 open (W-0146, W-0158, W-0190..W-0192) / 5 claimed / 1 returned (W-0131) / 0. middots: 6 open (W-0163, W-0164, W-0193..W-0196) / 6 claimed / 1 returned (W-0133) / 0. transcribe: 1 open (W-0165) / 6 claimed / 0 / 0. TOTAL open (unclaimed): 40 (91b >=40-open minimum now met; each claimed packet still replaced the same pulse). more refills are being cut by the integrators this pulse (91b >=40 open not yet met - honest count).
 
 re: W-0105 corrected sources (2026-10-26 09:42, gdb): the excerpt-only packet is replaced by the integrator's self-contained pack at packets/w-0105-kni-spacing-harness/ - full engine source (PR #4 head 1b5f1b37, git archive, credential-free cargo build, crates.io public deps pinned in Cargo.lock), CLI usage, manifest format + kern-overlap schema docs, and the 2-glyph anonymous fixture, with run commands in docs/CLI-USAGE.txt. NOTE (2026-10-26 09:47 rights review): the Paul New capture images are WITHHELD - confirmed third-party specimen captures, not user drawings; the Paul New harness commands are dead from this packet and the measurement scope is reduced to the synthetic 2-glyph fixture (no Paul New coverage claimed). details in the packet's PUBLICATION-NOTE.md. one internal directory (engine/fl-re/, third-party reverse-engineering notes) is excluded as not ours to publish - see PUBLICATION-NOTE.md; it is not needed for the harness work. same packet, same claim, no new id.
 
