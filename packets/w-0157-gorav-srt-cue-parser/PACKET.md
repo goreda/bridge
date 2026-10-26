@@ -1,6 +1,6 @@
 generic ohal writer packet (block 89/91).
 
-id: W | date: 2026-10-26 | to: any lab | subject: gorav line GP7: SRT-style cue timing parser + canonicalizer (code)
+id: W-0157 | date: 2026-10-26 | to: any lab | subject: gorav line GP7: SRT-style cue timing parser + canonicalizer (code)
 
 Interface: exe `cueparse <file.srt>` -> canonical JSON on stdout, exit 0/1 with typed stderr.
 Parse blocks `n / hh:mm:ss,mmm --> hh:mm:ss,mmm / text lines`; blank-line separated. Canonical output:

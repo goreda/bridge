@@ -1,6 +1,6 @@
 generic ohal writer packet (block 89/91).
 
-id: W | date: 2026-10-26 | to: any lab | subject: ca line: adversarial property-test group for the pairwise overlap relaxer
+id: W-0147 | date: 2026-10-26 | to: any lab | subject: ca line: adversarial property-test group for the pairwise overlap relaxer
 - item: one code/test extension, under 2 hours. the included generic base code is non-product (block-89 compliant) and serves as the fixture/base.
 - the base module lib/overlap-resolve.js (resolveOverlaps: pairwise disk separation with per-item displacement budget, budget never refunded) is INCLUDED, already implemented and 12/12 green on its smoke tests. the lab's task is the adversarial property-test group, not a re-implementation.
 - write test/overlap-properties.test.js (node, stdlib assert) covering, with seeded pseudo-random inputs (seed argument, deterministic):
