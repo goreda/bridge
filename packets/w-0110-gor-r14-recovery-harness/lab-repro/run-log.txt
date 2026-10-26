@@ -1,0 +1,76 @@
+[PASS] classifier negative: Opening URL https://rr2---sn-abc.googlevideo.com
+[PASS] classifier negative: [https @ 0x7f8dead] Opening 'https://example.com
+[PASS] classifier negative: https://www.youtube.com/watch?v=403
+[PASS] classifier negative: AV: 403.2  403 / 403
+[PASS] classifier negative: [mpv] buffer contains 403 bytes
+[PASS] classifier negative: nested script probe https://example.com/403403
+[PASS] classifier positive: Failed to open https://www.youtube.com/watch?v=a
+[PASS] classifier positive: [cplayer] Failed to open https://youtu.be/abc123
+[PASS] classifier positive: [ffmpeg] HTTP error 403: Forbidden
+[PASS] classifier positive: [https @ 0x7f00beef] HTTP error 403: Forbidden
+[PASS] classifier positive: HTTP error 403
+[PASS] classifier positive: [tls] Server returned 403 Forbidden
+[PASS] classifier positive: Server returned 403
+[PASS] classifier positive: ERROR: unable to download video data: HTTP Error
+[PASS] classifier positive: [ytdl_hook] ERROR: HTTP Error 403: Forbidden
+[PASS] isYoutubeURL www.youtube.com
+[PASS] isYoutubeURL youtu.be
+[PASS] isYoutubeURL rejects notyoutube.com
+[PASS] isYoutubeURL rejects example.com
+[yt-dlp-recovery] standalone extractor: one fresh resolution, no updater
+[PASS] standalone: exactly one fresh resolution
+[PASS] standalone: no-U preserves URL/title/startPos/subtitles
+[PASS] standalone: updater never launched (no -U)
+[PASS] standalone: retry marked attempted
+[yt-dlp-recovery] standalone extractor: one fresh resolution, no updater
+[PASS] repeated failure bounded at one reload
+[PASS] non-YouTube URL: no recovery
+[yt-dlp-recovery] staged binary missing; no reload
+[PASS] missing staged binary: no reload
+[PASS] missing staged binary: update flag reset
+[PASS] missing staged binary: retry still consumed (bounded)
+[yt-dlp-recovery] verified player failure; checking extractor update once this session
+[yt-dlp-recovery] update status=0 extractorChanged=false
+[PASS] legacy: one update process
+[PASS] unchanged bytes + status 0: no reload
+[PASS] unchanged bytes: update flag reset
+[yt-dlp-recovery] verified player failure; checking extractor update once this session
+[yt-dlp-recovery] update status=1 extractorChanged=false
+[PASS] changed bytes + status 1: no reload
+[yt-dlp-recovery] verified player failure; checking extractor update once this session
+[yt-dlp-recovery] update launch failed: Boom()
+[PASS] update launch failure: no reload
+[PASS] update launch failure: flag reset
+[yt-dlp-recovery] verified player failure; checking extractor update once this session
+[yt-dlp-recovery] update status=0 extractorChanged=true
+[yt-dlp-recovery] retry current source at 42.5s
+[PASS] changed bytes + success + current generation: reload
+[PASS] reload preserves URL/title/subtitles
+[PASS] reload resumes at live controller position
+[yt-dlp-recovery] verified player failure; checking extractor update once this session
+[yt-dlp-recovery] update status=0 extractorChanged=true
+[yt-dlp-recovery] retry current source at 12.0s
+[PASS] resume falls back to lastPlayedStartPos
+[yt-dlp-recovery] verified player failure; checking extractor update once this session
+[PASS] gate held: continuation has not run before ACK
+[yt-dlp-recovery] update status=0 extractorChanged=true
+[PASS] after background ACK only: main continuation still gated
+[yt-dlp-recovery] retry current source at 12.0s
+[PASS] after main ACK: reload delivered exactly once
+[yt-dlp-recovery] verified player failure; checking extractor update once this session
+[yt-dlp-recovery] update status=0 extractorChanged=true
+[PASS] stale generation: reload dropped
+[yt-dlp-recovery] verified player failure; checking extractor update once this session
+[yt-dlp-recovery] update status=0 extractorChanged=true
+[PASS] stale process: reload dropped
+[yt-dlp-recovery] verified player failure; checking extractor update once this session
+[yt-dlp-recovery] update status=0 extractorChanged=false
+[PASS] second failure same session: no second -U (once/session)
+[PASS] second failure same session: no reload
+[yt-dlp-recovery] standalone extractor: one fresh resolution, no updater
+[PASS] first failure: one reload
+[yt-dlp-recovery] standalone extractor: one fresh resolution, no updater
+[PASS] new manual intent allows its own retry
+[PASS] invalidate: generation bumped
+[PASS] invalidate: URL/subtitles cleared, retry reset
+==== 49 passed, 0 failed ====

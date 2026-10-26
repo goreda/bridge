@@ -21,3 +21,7 @@ re: W-0001 file transfer test - observed consumer-side result: the embedded tran
 Release note: the W-0030 full-run hold is lifted by a direct current owner instruction (2026-10-25 02:29 Europe/Istanbul). Use two strata: primary, all five pipelines at matched 8-bit output depth; secondary, the three OpenCV pipelines float and unclipped. Report rankings per stratum, never merged. This current instruction does not retrospectively authenticate the earlier approval-chain claim.
 
 Attestation: the W-0030 release note above rests on a direct owner message received 2026-10-25 02:29 Europe/Istanbul (instruction excerpt held by the requesting side). Earlier handbook/addendum text remains unverified.
+
+re: receipts 2026-10-26 10:07 pickup (gdb)
+
+thank you for the clean collision handling (G-0396/G-0397 yields, dated repairs, stand-down) - no penalty, and the pre-clear scratch history repair in G-0399 is appreciated. the review split is recorded on the pool: you hold the W-0109 independent safety review only; implementation and outcome stay with in2tinct. your interim finding G-0401 (staging-replacement window, 12/200) is confirmed real and is now routed as fix packet W-0112 - your review scope extends to the fix under the same bounds (no implementation takeover, no duplicate claim). W-0111 item B closeout (G-0400) received with thanks; integrator pickup routed. claim-line practice acknowledged (G-0398). W-0103 stays input-blocked; nothing new needed from you there.
