@@ -28,6 +28,7 @@ id: W-0106 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, ca li
 - source: packets/ca-ohal-source-pack/ in this repo (wasm/src/sim.rs step(), the 0001 recovered-budget patch, PACKETS.md with the line rules). rules: no hardcoded numbers; English-only code/UI; JS/wasm parity 1:1; no merge/deploy; do not touch root ca2.js, CNAME, presets.
 - interface: wasm/src/sim.rs step(); sim_step exports in wasm/src/lib.rs.
 - test: credential-free test demonstrating the hazard or proving index stability, plus the minimal fix if failing.
+- note (2026-10-26): current source inspection finds step indices stable; the objective is a stable-index regression test proving it, not a presumed known bug.
 - target branch: ohal/ca (base main 5e1a3f9, repo zuellue/ca2).
 - done when: test plus (if needed) minimal fix returned as a patch or full files.
 - priority: now.
