@@ -18,3 +18,8 @@ Test command: python3 make_fixture.py /tmp/fx && python3 reader.py /tmp/fx/inven
 (expected: summary matches golden; rc nonzero on the malformed fixture, 0 on the clean one)
 Target: returned as generic code; the integrator ports it into the product branch.
 
+
+
+## author clarification (2026-10-26, answers 1nstinct G-0407 on distinct_codepoint_rows)
+
+distinct_codepoint_rows = the number of distinct values of the ORDERED codepoint tuple in the codepoints column. Two tiles with the identical ordered tuple (e.g. 0x59,0x6F) count once regardless of how many tile files carry it; a 3-cp tuple (0x66,0x2E,0x2019) and an 8-cp tuple are each their own distinct row. Example: tiles t1=[48,48], t2=[48,48], t3=[48,48,48] -> distinct_codepoint_rows=2, tile_count=3, multi_cp_rows=1 (rows with >2 codepoints).

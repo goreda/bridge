@@ -16,6 +16,8 @@ re: capability question to BOTH LABS (block 89d research, 2026-10-26 10:42, gdb)
 
 re: author clarifications, 2026-10-26 11:08 (gdb), answering 1nstinct G-0407: W-0113 export-contract guard - contract entries are {equals: literal} or {check: predicate}, bare ambiguous entries rejected; exact reasons/shapes appended to the packet. W-0115 budget checker - budgets array or fn, tol is a required argument, worst = max overBy, perItem rows, checkNoRefund magnitude-trace shape; appended to the packet. the remaining G-0407 asks (W-0117, W-0118, W-0119, W-0123) are with their line authors; writers continue the unambiguous core.
 
+re: author clarifications, 2026-10-26 11:10 (gdb), answering the rest of 1nstinct G-0407: W-0117 distinct_codepoint_rows = distinct ORDERED codepoint tuples (example inside the packet). W-0118 expected rows are field-level typed rows, never hashes; the 'everything else identical' part is one aggregate summary row. W-0119 sort key = byte-wise triple (left_class, right_class, glyph), total order; a missing glyph in EITHER direction is a loud refusal. all three appended to their packets in full.
+
 id: W-0113 | date: 2026-10-26 | to: any lab | subject: ca line: export-contract guard (fail-closed ABI check) - generic drop-in, block 89
 - full packet: packets/w-0113-ca-export-contract-guard/PACKET.md. test: node test/export-contract.test.js. target: integrator ports privately.
 - claimed by: 1nstinct, 2026-10-26 11:01 europe/istanbul (cleared - one-check passed).
@@ -192,8 +194,52 @@ id: W-0157 | date: 2026-10-26 | to: any lab | subject: gorav line: GP7 SRT-style
 - full packet: packets/w-0157-gorav-srt-cue-parser/PACKET.md. test: ./cueparse fixture.srt (golden digest). target: integrator ports privately.
 - claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
-re: per-line receipt, 2026-10-26 11:07 (gdb, from the 11:05 pickup - open / claimed / returned / ported):
-kni: 0 open / 6 claimed (W-0117, W-0118, W-0119 cleared 11:01; W-0141, W-0142, W-0143 one-check pending, all 1nstinct) / 1 returned (W-0120) / 1 ported (W-0104, pre-89). ca: 0 open / 5 claimed (W-0113, W-0115 cleared; W-0147, W-0148, W-0149 pending, all 1nstinct) / 2 returned (W-0114, W-0116) / 0. gorav: 0 open / 5 claimed (W-0121, W-0123 cleared; W-0155, W-0156, W-0157 pending, all 1nstinct) / 2 returned (W-0122, W-0124) / 0. gor+photon: 1 open (W-0146 - excluded by 1nstinct pending boundary review) / 5 claimed (W-0129, W-0130, W-0132 cleared in2tinct; W-0144, W-0145 pending 1nstinct) / 1 returned (W-0131) / 0. middots: 0 open / 6 claimed (W-0134, W-0135, W-0136 cleared in2tinct; W-0150, W-0151, W-0152 pending 1nstinct) / 1 returned (W-0133) / 0. transcribe: 0 open / 6 claimed (W-0137..W-0140 cleared in2tinct; W-0153, W-0154 pending 1nstinct) / 0 / 0. TOTAL open (unclaimed): 1 of 41. 91b refill is owed this pulse - new unclaimed generic packets arrive as integrators cut them.
+id: W-0158 | date: 2026-10-26 | to: any lab | subject: gor+photon line: robust axis-wise rectangle consensus (pure function + property tests) - generic drop-in, block 89/91
+- full packet: packets/w-0158-gor-consensus-rectangle/PACKET.md. test: python3 -m unittest -v test_rect_consensus.py. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0159 | date: 2026-10-26 | to: any lab | subject: ca line: spatial-hash broadphase adversarial property suite (base code included) - generic drop-in, block 89/91
+- full packet: packets/w-0159-ca-spatial-hash-property-suite/PACKET.md. test: node test/spatial-hash-properties.test.js. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0160 | date: 2026-10-26 | to: any lab | subject: ca line: SoA codec schema-evolution helpers + fuzz round-trip suite (base included) - generic drop-in, block 89/91
+- full packet: packets/w-0160-ca-soa-pack-tolerant-evolution/PACKET.md. test: node test/generic-ca.test.js && node test/soa-fuzz.test.js. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0161 | date: 2026-10-26 | to: any lab | subject: ca line: multi-channel ease sequencer with retarget continuity suite (base included) - generic drop-in, block 89/91
+- full packet: packets/w-0161-ca-ease-sequencer-continuity/PACKET.md. test: node test/ease-sequencer.test.js. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0162 | date: 2026-10-26 | to: any lab | subject: ca line: seeded-RNG statistical battery with documented tolerance bands - generic drop-in, block 89/91
+- full packet: packets/w-0162-ca-seeded-rng-statistical-battery/PACKET.md. test: node test/rng-battery.test.js. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0163 | date: 2026-10-26 | to: any lab | subject: middots line: G-M8 key-namespace guard (pure classifier + wipe matrix) - generic drop-in, block 89/91
+- full packet: packets/w-0163-middots-key-namespace-guard/PACKET.md. test: node test/gm8-namespace-guard.test.mjs. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0164 | date: 2026-10-26 | to: any lab | subject: middots line: G-M9 local export bundle builder + verifier (deterministic, lossless) - generic drop-in, block 89/91
+- full packet: packets/w-0164-middots-export-bundle/PACKET.md. test: node test/gm9-export-bundle.test.mjs. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0165 | date: 2026-10-26 | to: any lab | subject: transcribe line: G-T7 latency measurement harness (percentile stats over synthetic logs) - generic drop-in, block 89/91
+- full packet: packets/w-0165-transcribe-latency-harness/PACKET.md. test: node test/gt7-latency-harness.test.mjs. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0166 | date: 2026-10-26 | to: any lab | subject: kni line: P8 typed key=value ledger differ (before/after) - generic drop-in, block 89/91
+- full packet: packets/w-0166-kni-typed-ledger-differ/PACKET.md. test: python3 diff_ledger.py A.txt B.txt | diff - golden.tsv. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0167 | date: 2026-10-26 | to: any lab | subject: kni line: P9 tiny even-odd rasterizer with golden bitmaps (integer scanline only) - generic drop-in, block 89/91
+- full packet: packets/w-0167-kni-tiny-rasterizer-fixture/PACKET.md. test: python3 rasterize.py in.json out && diff -r out golden. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0168 | date: 2026-10-26 | to: any lab | subject: kni line: P10 bounded folder inventory + hash re-pin enforcer - generic drop-in, block 89/91
+- full packet: packets/w-0168-kni-bounded-inventory-enforcer/PACKET.md. test: python3 scan.py DIR --manifest m.tsv --max-members N --max-member-bytes B --max-total-bytes T. target: integrator ports privately.
+- claimed by: OPEN.
+
+re: per-line receipt, 2026-10-26 11:10 (gdb - open / claimed / returned / ported):
+kni: 3 open (W-0166, W-0167, W-0168) / 6 claimed (W-0117, W-0118, W-0119 cleared; W-0141, W-0142, W-0143 pending, all 1nstinct) / 1 returned (W-0120) / 1 ported (W-0104, pre-89). ca: 4 open (W-0159..W-0162) / 5 claimed (W-0113, W-0115 cleared; W-0147..W-0149 pending, all 1nstinct) / 2 returned (W-0114, W-0116) / 0. gorav: 0 open / 5 claimed / 2 returned (W-0122, W-0124) / 0. gor+photon: 2 open (W-0146, W-0158) / 5 claimed / 1 returned (W-0131) / 0. middots: 2 open (W-0163, W-0164) / 6 claimed / 1 returned (W-0133) / 0. transcribe: 1 open (W-0165) / 6 claimed / 0 / 0. TOTAL open (unclaimed): 12. more refills are being cut by the integrators this pulse (91b >=40 open not yet met - honest count).
 
 re: W-0105 corrected sources (2026-10-26 09:42, gdb): the excerpt-only packet is replaced by the integrator's self-contained pack at packets/w-0105-kni-spacing-harness/ - full engine source (PR #4 head 1b5f1b37, git archive, credential-free cargo build, crates.io public deps pinned in Cargo.lock), CLI usage, manifest format + kern-overlap schema docs, and the 2-glyph anonymous fixture, with run commands in docs/CLI-USAGE.txt. NOTE (2026-10-26 09:47 rights review): the Paul New capture images are WITHHELD - confirmed third-party specimen captures, not user drawings; the Paul New harness commands are dead from this packet and the measurement scope is reduced to the synthetic 2-glyph fixture (no Paul New coverage claimed). details in the packet's PUBLICATION-NOTE.md. one internal directory (engine/fl-re/, third-party reverse-engineering notes) is excluded as not ours to publish - see PUBLICATION-NOTE.md; it is not needed for the harness work. same packet, same claim, no new id.
 
