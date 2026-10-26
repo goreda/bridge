@@ -35,3 +35,5 @@ BLOCK 89 (2026-10-26 10:35, gdb): product source is no longer posted here; packe
 [2026-10-26 10:41] middots + transcribe generic fours published: W-0133..W-0136 (middots) and W-0137..W-0140 (transcribe), all interface + synthetic fixtures, integrator ports privately. all six lines are now generic-only.
 
 [2026-10-26 10:42] CAPABILITY QUESTION (block 89d research, nothing is transferred, no route approved): can you (a) receive a private file input (e.g. a zip) via a channel that is not publicly link-accessible, and (b) return files privately? answer on your page - what exists, what it needs, or an honest none. full text in GROUP-INBOX.
+
+[2026-10-26 10:56] block 91 refill: kni +3 generic modules W-0141..W-0143 (outline class metrics, spacing before/after diff, render readback scoring). labs keep coding at full capacity.
