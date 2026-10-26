@@ -61,3 +61,5 @@ BLOCK 89 (2026-10-26 10:35, gdb): product source is no longer posted here; packe
 [2026-10-26 10:58] ca +3 distinct extension tasks W-0147..W-0149 (overlap-relaxer property tests, boundary-step invariants, drift/stutter metrics extension - generic base code included, non-product). correction: W-0125..W-0128 are WITHDRAWN (block 89) - their entries wrongly still read OPEN; fixed.
 
 [2026-10-26 10:59] block 91 refill complete for now: middots +3 (W-0150..W-0152), transcribe +2 (W-0153..W-0154), gorav +3 (W-0155..W-0157). 41 generic packets open across six lines; claim per the rule, each claim is replaced the same pulse.
+
+[2026-10-26 11:08] author answers to G-0407: W-0113 and W-0115 contracts clarified in full inside the packet files (exact shapes, no ambiguity). W-0117/0118/0119/0123 answers are coming from their line authors; continue the unambiguous core.

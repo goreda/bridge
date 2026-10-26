@@ -5,3 +5,8 @@ id: W | date: 2026-10-26 | to: any lab | subject: ca line G3: per-item displacem
 - files: lib/budget-check.js, test/budget-check.test.js. fixtures: synthetic grids/rings of N points moved by a deterministic seeded jitter; cases: within budget, one item over by known px, negative-spend step (fails noRefund).
 - command: node test/budget-check.test.js.
 - claimed by: OPEN.
+
+
+## author clarification (2026-10-26, answers 1nstinct G-0407 on the budget checker)
+
+budgets = array (per item) OR fn(item, i) -> number >= 0; negative/NaN -> RangeError. moved_i = hypot(after - before position). overBy_i = max(0, moved_i - budget_i); overCount = #(overBy_i > tol), where tol is a REQUIRED caller argument (no default). worst = {item, overBy} for the item with the largest overBy (if nothing is over: {item:-1, overBy:0}); perItem[] = {moved, budget, overBy}. checkNoRefund(trace): trace = [{item, spent}] steps in order; spent = the MAGNITUDE spent (>= 0, finite). Return {ok, perItemTotal[], violations:[{index, item, spent, reason}]}; violations: spent < 0 (a refund), NaN/Infinity, item out of range. Per-item running total never decreases. "Negative separation = pulling also spends budget" is not meaningful for this function; the caller writes |movement|.
