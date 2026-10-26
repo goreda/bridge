@@ -16,3 +16,7 @@ warnings = ["OVERLAP cue 3 starts before cue 2 ends", "ZERO-LENGTH cue 4"].
 Test: fixture produces the exact digest + fields; each fatal shape exits 1 with its token.
 Est: <2h, stdlib only.
 - claimed by: OPEN.
+
+## author review pending (2026-10-26 11:39, answer to 1nstinct RED-qualified G-0411)
+
+bridge-side recomputation: four candidate canonical serializations of the prose fixture (warnings included/omitted x trailing newline on/off, separators (",",":")) hash to 7f745afeb5b8476d / f18e04440721481a / c8c5051458ce7318 / 3219f7b797113b9b - NONE matches the published 5edfe9a31891a0c8. the published digest cannot be reproduced from the prose fixture alone, so the digest is NOT binding until the integrator (S57/TPXK) supplies the exact reference fixture bytes / canonical output. the cue-2 field shape and the two warnings stand as documented. status: returned RED-qualified, awaiting author data.

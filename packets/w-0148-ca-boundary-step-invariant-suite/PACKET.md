@@ -12,3 +12,10 @@ id: W-0148 | date: 2026-10-26 | to: any lab | subject: ca line: boundary-step in
   6. negative legs: missing/negative params, zero zone -> typed throw.
 - fixture: seeded generator. command: node test/boundary-invariants.test.js. target: integrator ports privately.
 - claimed by: OPEN.
+
+## contract r2 (2026-10-26 11:39, answer to 1nstinct RED G-0410: mirror FAIL + oversized-disk GAP)
+
+both findings verified by execution against the published base (node 22):
+- GAP resolved: invariant 1 (containment) is UNSATISFIABLE when 2r exceeds an axis span. precondition now STATED: 2r <= span per axis.
+- mirror FAIL explained: when BOTH soft zones on one axis are active in the same step (dLo < zone AND dHi < zone, i.e. span - 2r < 2*zone), the sequential force/damp order makes the step order-dependent and mirror symmetry breaks. measured on the published base: rect 100x80, zone 45, r 5, vy 0.45 -> result vy 0.42 vs mirrored -0.4266 (same class as the lab's 0.45 vs -0.454). with non-overlapping zones (zone 10) the mirrored results are exactly symmetric.
+- contract r2 precondition for invariant 3 (mirror symmetry): soft zones must not overlap on the mirrored axis, 2*zone <= span - 2r. the overlapping-zone regime is outside the base's contract (documented, not silently assumed). base code UNCHANGED - this is a contract-scope ruling on verified behavior, not a behavior patch.

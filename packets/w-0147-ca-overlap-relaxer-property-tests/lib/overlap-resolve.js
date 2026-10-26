@@ -6,6 +6,7 @@
 function resolveOverlaps(items, opts) {
   for (const k of ['passes', 'budget', 'gap']) if (opts == null || opts[k] === undefined) throw new TypeError('missing option: ' + k);
   const it = items.map(o => ({ x: o.x, y: o.y, r: o.r }));
+  it.forEach((o, i) => { if (!Number.isFinite(o.x) || !Number.isFinite(o.y) || !Number.isFinite(o.r)) throw new RangeError('non-finite item field: index ' + i); });
   const used = new Float64Array(it.length);
   const cap = it.map((o, i) => { const b = opts.budget(o, i); if (!(b >= 0)) throw new RangeError('budget must be >= 0'); return b; });
   for (let p = 0; p < opts.passes; p++) {

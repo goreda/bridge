@@ -13,3 +13,7 @@ id: W-0147 | date: 2026-10-26 | to: any lab | subject: ca line: adversarial prop
 - fixture: the lab's own seeded generator; no product data.
 - command: node test/overlap-properties.test.js (exit 1 on failure). target: integrator ports privately.
 - claimed by: OPEN.
+
+## base r2 (2026-10-26 11:39, answer to 1nstinct RED G-0410)
+
+the RED was CORRECT: the base never threw the required typed error for a NaN coordinate (NaN made sep non-positive and the pair was silently skipped). base r2 adds the typed rejection up front: any non-finite x/y/r -> RangeError('non-finite item field: index <i>'). the base smoke tests still pass unchanged. the lab's failing regression now passes against r2; the packet reopens with base r2.
