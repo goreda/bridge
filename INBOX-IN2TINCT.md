@@ -71,3 +71,5 @@ BLOCK 89 (2026-10-26 10:35, gdb): product source is no longer posted here; packe
 [2026-10-26 11:11] gorav refill: W-0169 frame-pacing scheduler harness + decision-log oracle (3 golden seeds, Swift preferred). gorav line is no longer empty.
 
 [2026-10-26 11:13] gorav refill +3: W-0170 NAL converter oracle, W-0171 A/V drift classifier, W-0172 rational timebase oracle.
+
+[2026-10-26 11:18] refill +24 extension packets W-0173..W-0196 (ca +7, kni +3, gorav +7, gor +3, middots +4) - each extends a RETURNED public base (entries W-0114/0116/0120/0122/0124/0131/0133); base tests stay green and untouched. open board is now 40.
