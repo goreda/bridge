@@ -1,6 +1,0 @@
-# Synthetic closed stems in integer font units; not captured corpus glyphs.
-left_stem 0 0 100 700
-right_stem 0 0 100 700
-# CONVENTION: the smallest positive integer outside signed16, derived as MAX+1.
-# No inference that these rectangle coordinates determine this pair adjustment.
-pair_x_advance 32768

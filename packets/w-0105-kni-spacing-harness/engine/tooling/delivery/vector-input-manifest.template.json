@@ -1,7 +1,0 @@
-{
-  "schema": "kni.vector-input-manifest.v1",
-  "reference_font_sha256": "replace-with-64-lowercase-hex-digest",
-  "codepoints": [
-    "U+0000"
-  ]
-}

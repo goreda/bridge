@@ -1,6 +1,0 @@
-opened: codec=ppm 17x11
-frame: 17x11 rgb24 key=true
-closeReport: leakedHandles=0 droppedPending=0 leaseTableLeaks=0 ledgerLeaks=0
-frame_digest_fnv1a64=acece099e7c4ad96
-expected          =acece099e7c4ad96
-GORAV_FIRST_FRAME_PASS

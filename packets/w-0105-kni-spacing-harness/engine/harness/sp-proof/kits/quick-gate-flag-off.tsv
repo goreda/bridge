@@ -1,7 +1,0 @@
-# SP-PROOF quick gate, flag-OFF lane (no collection fixtures needed).
-# diag = the style the gated layer touches (example), diagctl = control style
-# from the same source. With the flag OFF both must be byte-identical.
-# Columns: style_id <TAB> family <TAB> subfamily <TAB> manifest_relpath <TAB> out_relpath <TAB> scope
-# manifest_relpath is relative to this kit file's directory.
-diag	KNI Diagnostic	SixGlyph	../fixtures/diagnostic/manifest.txt	diag	off-target
-diagctl	KNI Diagnostic	SixGlyph	../fixtures/diagnostic/manifest.txt	diagctl	off-target

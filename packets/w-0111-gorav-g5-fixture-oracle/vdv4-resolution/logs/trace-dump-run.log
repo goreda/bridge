@@ -1,4 +1,0 @@
-frames=1 eos=true records=8 -> /tmp/instinct-repo/projects/gorav/card720/v6/source/payload/oracles/trace-snapshot-route.json
-kinds=selectedStream,demuxReadEOF,nilFlushSendResult,receiveEOF,terminalEOF,customIOCloseCalled,customIOCloseCompleted,closed
-path-route frames=47 records=7 -> /tmp/instinct-repo/projects/gorav/card720/v6/source/payload/oracles/trace-path-route.json
-kinds=selectedStream,demuxReadEOF,nilFlushSendResult,receiveEOF,terminalEOF,customIOAbsent,closed

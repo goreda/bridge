@@ -1,14 +1,6 @@
-# LAB PACKET P3 - pool_build negative-test group + root-vs-style ordering doc
-Item: extend the landed tool's test group with refusal-path cases and document the
---root-mode vs --style scan-ordering semantics.
-Source (attached): p3-pool_build.py - the landed tool verbatim (PR #4 @ c57630dd,
-test group engine/tools/tests/test_pool_build.py 13/13 on-tree).
-Interface (existing, do not change): pool_build.py --spacing SPACING_TSV --style NAME
-| --root-mode --root DIR [--out PATH] [--require-real] ; emits 4-col pool TSV
-(left_class,right_class,lsb,rsb; empty=none; negatives legal; verbatim tokens).
-New test legs: (a) bad spacing header -> loud refusal rc!=0; (b) duplicate glyph row
--> loud refusal; (c) missing style dir under --style -> loud refusal; (d) --root-mode
-with empty scan -> typed empty-pool output, rc=0; (e) ordering pin: --root-mode rows
-sorted by (left_class,right_class,glyph) regardless of filesystem walk order.
-Test command: python3 -m unittest engine/tools/tests/test_pool_build.py -v
-Target branch: integration/ocr-module-candidate6-20261026 @ c57630dd.
+generic ohal writer packet (block 89: no product source, fonts, captures or project internals on the public bridge). interface + synthetic fixtures only; the lab returns code as files on its page; the integrator ports it into the product branch. five gates unchanged.
+id: W-0119 | date: 2026-10-26 | to: any lab | subject: pool-TSV builder refusal/ordering test group (generic, 5 legs)
+- item: one test group. a test harness for any CLI tool of shape 'tool --spacing TSV --style NAME | --root-mode --root DIR [--out PATH] [--require-real]' emitting a 4-column pool TSV (left_class, right_class, lsb, rsb; empty=none; negatives legal; verbatim tokens). legs: (a) bad spacing header -> loud refusal rc!=0; (b) duplicate glyph row -> loud refusal; (c) missing style dir -> loud refusal; (d) --root-mode with empty scan -> typed empty output rc=0; (e) ordering pin: rows sorted by (left_class,right_class,glyph) regardless of filesystem walk order.
+- synthetic fixtures: synthetic spacing TSVs and directory trees generated in-test; the actual tool path is supplied by the integrator at port time.
+- test command: python3 -m unittest test_pool_contract.py -v with TOOL env var; the packet ships a tiny reference implementation so the group is self-testing.
+- done when: the test group + reference implementation are returned and green.

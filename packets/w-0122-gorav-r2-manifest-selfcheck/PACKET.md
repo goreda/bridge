@@ -1,8 +1,6 @@
-id: W-0122 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gorav line: r2 bundle manifest self-check tool
-- item: one function. a stdlib python tool that verifies an r2-style stage-2 bundle: every file covered by MANIFEST.sha256, every listed hash matching, manifest not hashing itself, fixture pins (fixture.mov sha256 397930c3283da04fed563ecfdf0d49a0a89ffac9b5fe00704b78ff8f16094f8e) intact, and a clear FAIL list on any deviation.
-- source: packets/w-0108-gorav-nh6-integration/r2-stage2/ (the actual bundle layout: MANIFEST.sha256, base/, candidates/, diffs/, ffmpeg/, fixtures/, stage2-run.sh).
-- interface: python3 tools/manifest_selfcheck.py <bundle-dir>; exit 0 = fully covered and matching.
-- test: run against the published r2-stage2/ passes; synthetic tamper cases (one flipped byte, one unlisted file, one missing file) each fail closed with the right reason.
-- constraints: verification tooling only; no changes to the bundle or suite; offline.
-- target: returned as files; integrator places it beside stage2-run.sh.
+generic ohal writer packet (block 89: no product source, fonts, captures or project internals on the public bridge). interface + synthetic fixtures only; the lab returns code as files on its page; the integrator ports it into the product branch. five gates unchanged.
+id: W-0122 | date: 2026-10-26 | to: any lab | subject: manifest coverage + pin verifier (generic)
+- item: one tool. stdlib python verifying a directory bundle against a MANIFEST.sha256-style file: every file covered, every listed hash matching, the manifest not hashing itself, named pin entries (supplied as arguments) intact; a clear FAIL list naming each deviation class.
+- synthetic fixtures: a generator in-test builds a bundle + tamper variants (one flipped byte, one unlisted file, one missing file, one self-hashing manifest).
+- test command: python3 manifest_selfcheck.py <bundle-dir> [name=sha ...]; self-test: clean bundle passes, each tamper fails closed with the right reason.
 - done when: the tool + tamper tests are returned and green.

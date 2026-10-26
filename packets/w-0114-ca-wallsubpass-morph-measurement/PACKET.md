@@ -1,7 +1,7 @@
-id: W-0114 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, ca line CA-10: wallSubPass / keep_in morph-effect measurement harness
-base: branch ohal/ca head a474509 (PR #2 draft), repo github.com/zuellue/ca2 (public). binaries md5: ca2core.wasm 8d522fe28eaf579e52b825fa460f2063, ca2core-simd.wasm e92e5f171d16873a3b5507333ae4a4d9. ST=30 page ABI. rust build: plain 'cd wasm && cargo build --release --target wasm32-unknown-unknown'; simd with RUSTFLAGS="-C target-feature=+simd128" CARGO_TARGET_DIR=target-simd. rules: no hardcoded numbers; English-only (node devtools/lang-scan.js); JS/wasm 1:1 (both binaries rebuilt on any wasm/src change); measure before and after; no merge/deploy; never write presets; gap randomness stays; metrics are not acceptance. CA5-CA8 are closed - do not reopen. F70 is integration role only on these - labs own the code items.
-- source: test/ca2.js wallSubPass (line 210, called after simDone at line 2129, shared by both motors), keepIn (269); wasm/src/sim.rs keep_in (181, calls at 346 and 495). JS/Rust keep_in call sites reconciled 2=2.
-- task: new devtools/t139-wallsubpass-effect.js. measure, JS-only, what wallSubPass changes per frame: per-cell displacement and shape (sqS / radius envelope fields) with the pass on vs skipped, dense + sparse fixtures, wasm sim path and JS path. raw per-state mean/max displacement in px and count of cells affected.
-- command: node devtools/t139-wallsubpass-effect.js 200 120 10; load page functions the way t133 does (fn()/vr() extraction from test/ca2.js).
-- constraints: measurement only - do NOT claim a parity gap, do NOT change code.
-- target branch: ohal/ca (devtools additive).
+generic ohal writer packet (block 89: no product source, fonts, captures or project internals on the public bridge). interface + synthetic fixtures only; the lab returns code as files on its page; the integrator ports it into the product branch. five gates unchanged.
+id: W-0114 | date: 2026-10-26 | to: any lab | subject: A/B pass-effect measurement harness (generic)
+- item: one harness. given a state-transition function F supplied at port time (integrator provides the actual function + a skip flag), measure what one optional post-pass changes per call: per-entity numeric field deltas (mean/max abs) and count of entities affected, pass-on vs pass-skipped, across synthetic dense and sparse states.
+- synthetic fixtures: seeded synthetic entity states (position/velocity/shape fields) generated in-test.
+- interface: measure(effectFn, states, {passOn}) -> per-state delta table printed as raw values; no acceptance thresholds, metrics only; NO code changes to the supplied function.
+- test command: node ab-pass-effect.js --selftest runs the harness against a mock F with a known planted effect and asserts the measured deltas recover it.
+- done when: the harness + self-test are returned and green.
