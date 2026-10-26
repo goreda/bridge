@@ -1,0 +1,56 @@
+From d4f98a5e0b6d66b78ee54d67b474d9dad285af5f Mon Sep 17 00:00:00 2001
+From: ca-integrator <ca@localhost>
+Date: Mon, 26 Oct 2026 09:13:26 +0300
+Subject: [PATCH] ohal/ca: recover f9 per-cell pair-resolve positional budget
+ in wasm/src/sim.rs (source recovery; behavior mirror of test/ca2.js
+ __ccU/__ccT). No binaries rebuilt into the tree; root/prod/CNAME untouched.
+
+---
+ wasm/src/sim.rs | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/wasm/src/sim.rs b/wasm/src/sim.rs
+index 9433241..9c6f1e1 100644
+--- a/wasm/src/sim.rs
++++ b/wasm/src/sim.rs
+@@ -13,12 +13,13 @@ pub struct Sim {
+     pub cm_id: Vec<f64>, pub cm: Vec<f64>, // per cluster: vx,vy,x,y,e (stride 5)
+     pub p: Vec<f64>, pub out: Vec<f64>,
+     s0: u64, s1: u64, live: usize, pub log: Vec<f64>,
++    used: Vec<f64>, // per-cell positional displacement spent this step by pair resolve (f9 budget)
+ }
+ pub static mut SIM: Option<Sim> = None;
+ pub fn sim() -> &'static mut Sim {
+     unsafe {
+         let s = &mut *std::ptr::addr_of_mut!(SIM);
+-        if s.is_none() { *s = Some(Sim { cells: vec![], n: 0, cap: 0, fx: vec![], fy: vec![], fgone: vec![], nf: 0, cm_id: vec![], cm: vec![], p: vec![0.0; 80], out: vec![0.0; 32], s0: 0x9E3779B97F4A7C15, s1: 0xD1B54A32D192ED03, live: 0, log: Vec::new() }); }
++        if s.is_none() { *s = Some(Sim { cells: vec![], n: 0, cap: 0, fx: vec![], fy: vec![], fgone: vec![], nf: 0, cm_id: vec![], cm: vec![], p: vec![0.0; 80], out: vec![0.0; 32], s0: 0x9E3779B97F4A7C15, s1: 0xD1B54A32D192ED03, live: 0, log: Vec::new(), used: Vec::new() }); }
+         s.as_mut().unwrap()
+     }
+ }
+@@ -382,8 +383,11 @@ impl Sim {
+         if dist < ra + rb && self.rnd01() < self.p[P_REPROCH] * capf && self.g(a, EN) > self.p[P_MINREP] && self.g(b, EN) > self.p[P_MINREP] && self.g(a, AGE) >= self.p[P_RMINAGE] && self.g(b, AGE) >= self.p[P_RMINAGE] { self.reproduce(a, b); } // juveniles do not reproduce: newborns overlap their parents and ungated contact births chained into rows (owner 21 Oct)
+         let nl = if dist != 0.0 { dist } else { 1.0 };
+         let (nx, ny) = (dx / nl, dy / nl); let sep = (ra + rb - dist) * 0.5;
+-        self.set(a, X, self.g(a, X) - nx * sep); self.set(a, Y, self.g(a, Y) - ny * sep);
+-        self.set(b, X, self.g(b, X) + nx * sep); self.set(b, Y, self.g(b, Y) + ny * sep);
++        // f9 (73d-1): a squeeze pushes as a force, it never carries - each cell may spend at most MAXS+1 of positional displacement per step
++        if self.used.len() <= a.max(b) { let l = a.max(b) + 1; self.used.resize(l, 0.0); }
++        let spa = sep.min((self.g(a, MAXS) + 1.0 - self.used[a]).max(0.0)); let spb = sep.min((self.g(b, MAXS) + 1.0 - self.used[b]).max(0.0));
++        self.set(a, X, self.g(a, X) - nx * spa); self.set(a, Y, self.g(a, Y) - ny * spa); self.used[a] += spa;
++        self.set(b, X, self.g(b, X) + nx * spb); self.set(b, Y, self.g(b, Y) + ny * spb); self.used[b] += spb;
+         let (avx, avy, bvx, bvy) = (self.g(a, VX), self.g(a, VY), self.g(b, VX), self.g(b, VY));
+         let ad = avx * nx + avy * ny; let bd = bvx * nx + bvy * ny;
+         let (r1x, r1y) = self.rand2d(); let (r2x, r2y) = self.rand2d();
+@@ -393,7 +397,7 @@ impl Sim {
+     pub fn step(&mut self, s0: f64, s1: f64) {
+         self.s0 = (s0 as u64) << 32 | 0x9E3779B9; self.s1 = (s1 as u64) << 32 | 0x85EBCA6B;
+         for k in 0..20 { self.out[k] = 0.0; } // 20-23 are cumulative kill-reason diagnostics, not per-step
+-        let n0 = self.n; self.live = n0; self.log.clear();
++        let n0 = self.n; self.live = n0; self.log.clear(); self.used.clear(); self.used.resize(self.cap.max(n0) + 1, 0.0);
+         let (mx, my, over) = (self.p[P_MX], self.p[P_MY], self.p[P_MOVER] != 0.0);
+         let (cx, cy, cw, ch) = (self.p[P_CX], self.p[P_CY], self.p[P_CW], self.p[P_CH]);
+         let mut hov_i: f64 = -1.0; let mut hovering = false; let mut hc = [255.0f64, 255.0, 255.0];
+-- 
+2.34.1
+

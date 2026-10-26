@@ -1,0 +1,35 @@
+test_duplicate_manifest_and_bad_table_refused (test_auto_sb_class_table.TestBindingAudit) ... ok
+test_manifest_pin_mismatch_and_unknown_glyph_visible (test_auto_sb_class_table.TestBindingAudit) ... ok
+test_matching_ids_do_not_mint_solved_or_execution_binding (test_auto_sb_class_table.TestBindingAudit) ... ok
+test_cubic_extremum (test_auto_sb_class_table.TestTable) ... ok
+test_deterministic_and_engine_columns (test_auto_sb_class_table.TestTable) ... ok
+test_diagonal_is_not_round_or_flat (test_auto_sb_class_table.TestTable) ... ok
+test_flat_round_empty_composite_and_implied (test_auto_sb_class_table.TestTable) ... ok
+test_open_contour_refused (test_auto_sb_class_table.TestTable) ... ok
+test_threshold_explicit_invalid (test_auto_sb_class_table.TestTable) ... ok
+test_empty_not_silently_promoted (test_auto_sb_class_table_edge_paths.TestEmptyRows) ... ok
+test_empty_row_full_fields (test_auto_sb_class_table_edge_paths.TestEmptyRows) ... ok
+test_flat_exactly_at_threshold_classifies (test_auto_sb_class_table_edge_paths.TestFlatRows) ... ok
+test_flat_left_round_right_mixed_sides (test_auto_sb_class_table_edge_paths.TestFlatRows) ... ok
+test_flat_reason_and_longest_segment_wins (test_auto_sb_class_table_edge_paths.TestFlatRows) ... ok
+test_flat_suppressed_by_competing_curve (test_auto_sb_class_table_edge_paths.TestFlatRows) ... ok
+test_zero_length_line_at_extreme_not_flat (test_auto_sb_class_table_edge_paths.TestFlatRows) ... ok
+test_duplicate_glyph_identifiers_refused (test_auto_sb_class_table_edge_paths.TestMalformedInputs) ... ok
+test_existing_output_never_overwritten (test_auto_sb_class_table_edge_paths.TestMalformedInputs) ... ok
+test_invalid_glyph_identifier_refused (test_auto_sb_class_table_edge_paths.TestMalformedInputs) ... ok
+test_missing_threshold_argument_refused (test_auto_sb_class_table_edge_paths.TestMalformedInputs) ... ok
+test_non_font_bytes_refused (test_auto_sb_class_table_edge_paths.TestMalformedInputs) ... ok
+test_open_contour_refused_through_measure (test_auto_sb_class_table_edge_paths.TestMalformedInputs) ... ok
+test_curve_entirely_at_extreme_not_round (test_auto_sb_class_table_edge_paths.TestRoundRows) ... ok
+test_endpoint_extremum_with_vertical_tangent_is_round (test_auto_sb_class_table_edge_paths.TestRoundRows) ... ok
+test_endpoint_extremum_without_vertical_tangent_not_round (test_auto_sb_class_table_edge_paths.TestRoundRows) ... ok
+test_round_suppressed_by_oblique_line (test_auto_sb_class_table_edge_paths.TestRoundRows) ... ok
+test_invalid_units_per_em_refused (test_auto_sb_class_table_edge_paths.TestUnitsHandling) ... ok
+test_threshold_boundary_value_one_accepted (test_auto_sb_class_table_edge_paths.TestUnitsHandling) ... ok
+test_threshold_is_em_relative_scales_with_upm (test_auto_sb_class_table_edge_paths.TestUnitsHandling) ... ok
+test_width_height_reported_in_font_units (test_auto_sb_class_table_edge_paths.TestUnitsHandling) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.037s
+
+OK

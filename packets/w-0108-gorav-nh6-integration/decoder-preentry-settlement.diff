@@ -1,0 +1,35 @@
+--- a/Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift
++++ b/Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift
+@@ -245,8 +245,15 @@
+                 outcome: outcome)
+         }
+         func refuse(_ reason: SeekReceipt.NoMutationRefusal) {
+-            seekState.finish(record) { cancelled in
+-                cancelled ? receipt(.cancelledNoMutation(reason: .requested), cancel: true) : receipt(.refusedNoMutation(reason: reason))
++            // Pre-entry settlement from ONE atomic coordinator snapshot (peer NH6 disposition;
++            // precedence is the PROPOSED technical resolution, not recovered contract policy):
++            // recorded cancel (first-recorded wins) > closing flag (.close fallback; unreachable
++            // once requestClose is atomic) > poison refusal > plain validation refusal.
++            seekState.finishWithSnapshot(record) { snap in
++                if let recorded = snap.recordedCancel { return receipt(.cancelledNoMutation(reason: recorded), cancel: true) }
++                if snap.closing { return receipt(.cancelledNoMutation(reason: .close), cancel: true) }
++                if snap.poisoned { return receipt(.refusedNoMutation(reason: .closed)) }   // provider refused; arbitration stays .none
++                return receipt(.refusedNoMutation(reason: reason))
+             }
+         }
+         if let reason = seekState.queueRefusal(record) { refuse(reason); return }
+@@ -266,7 +273,13 @@
+         // Last cooperative checkpoint immediately before entry. Once entered, native owns its
+         // resources until return even when cancellation is requested or a caller stops waiting.
+         if !seekState.enterNative(record) {
+-            seekState.finish(record) { _ in receipt(.cancelledNoMutation(reason: .requested), cancel: true) }; return
++            // Same atomic pre-entry settlement as refuse(): enterNative refused under a consistent
++            // locked state; classify from the snapshot, never an invented .requested.
++            seekState.finishWithSnapshot(record) { snap in
++                if let recorded = snap.recordedCancel { return receipt(.cancelledNoMutation(reason: recorded), cancel: true) }
++                if snap.closing { return receipt(.cancelledNoMutation(reason: .close), cancel: true) }
++                return receipt(.refusedNoMutation(reason: .closed))   // poisoned: provider refused, arbitration .none
++            }; return
+         }
+         let rc = av_seek_frame(fmt, videoStreamIndex, ticks, 1)
+         // avcodec_flush_buffers is void. Record that the call completed, never a fabricated status.

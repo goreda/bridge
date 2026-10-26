@@ -1,5 +1,56 @@
 # Group inbox
 
+ohal on (2026-10-26, block 86s; owner 2026-10-26 09:09). each lab works as a writer on the lines named in the task packets below, at full parallel capacity; no lab stays idle while a packet is open. the claim rule is unchanged: post "claim: W-xxxx, lab, time" on your own page, wait one check, earliest claim wins. a lab with no open packet takes the next open packet on any line and says so on its page. return code as a patch or full files on your own files page; the line's integrator applies it to the branch, runs the tests, and merges it like any writer's work. lab code runs in tests without credentials.
+
+guide v9: ohal mode; project work allowed on the bridge.
+
+id: W-0104 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, kni+ocr line P1: land auto-sb class-table tooling on branch integration/ocr-module-candidate6-20261026, green
+- item: add the auto-sb class table generator + binding audit + fixtures + tests to the integration branch, green.
+- source: packets/w-0104-kni-auto-sb-tooling/ in this repo (PACKET.md + 9 files), byte-exact extracts from the kni branch card363-auto-sb-class-table-tests (superset of card010-auto-sb-class-table). EXCLUDE the branches' .github/workflows/iou-run.yml (stale; reverts main's 7cd805c0) - do not port it.
+- interface: tools/perception/auto_sb_class_table.py (class-table generator), auto_sb_binding_audit.py (audit vs bindings), fixtures/auto-sb-mercator/ (class-table.tsv, binding-audit.json, receipt.json), docs AUTO-SB-CLASS-TABLE.md.
+- test: python3 -m pytest tools/perception/tests/test_auto_sb_class_table.py tools/perception/tests/test_auto_sb_class_table_edge_paths.py - all pass; reference output in tests/card363-focused-test-output.txt. credential-free, offline.
+- target branch: integration/ocr-module-candidate6-20261026 (PR #4 head = the ohal/kni line). commit as the writer's own commit; the integrator reviews before push.
+- constraints: additive only under tools/perception/; no engine/kit/workflow changes; no claims of engine behavior change.
+- done when: the packet code is on the target branch with green tests, returned as a patch or full files.
+- priority: now.
+
+id: W-0105 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, kni+ocr line P2: v12.2-vs-v12.1.8 spacing measurement harness (Paul New fixture)
+- item: a credential-free harness that runs the engine on the Paul New fixture twice (fixed source sidebearings vs auto_sb) and diffs sidebearings + kern pairs, asserting the 436 acceptance: sidebearings measured, kern pairs listed, NO self-pair overlap, no repeat of the v12.0.1 / v12.1.0 regressions.
+- source: packets/w-0105-kni-spacing-harness/ in this repo (PACKET.md, auto_sb-interface-excerpt.rs = engine pipeline auto_sb public interface (Mode median/class, build_pool_medians, apply), auto_sb.rs.full, manifest-fields-excerpt.txt = the manifest fields the harness drives (auto_sb, auto_sb_class_table, auto_sb_pool, auto_sb_offset_lsb/rsb, even-n tie rule), existing-fixtures.txt = fixture roots already in repo (kit-v415/notdef-v3 = 2-glyph smoke shape to mirror)).
+- interface: harness lives at tools/spacing/measure_v122.py (new): inputs = manifest template + fixture dir + two engine invocations; outputs = sidebearing diff TSV + kern-pair list + overlap verdict + receipt JSON.
+- test: tools/spacing/tests/ fixture run on the 2-glyph fixture produces a deterministic receipt; harness exits nonzero on any self-pair overlap or missing measurement. offline; engine binary built locally (cargo), no network.
+- target branch: integration/ocr-module-candidate6-20261026. glue/tests scope - the harness measures, it does NOT change engine spacing behavior.
+- done when: the harness is on the target branch with the fixture test green, returned as a patch or full files.
+- priority: now.
+
+id: W-0106 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, ca line CA-2: rust compaction/index hazard check for the per-cell pair-resolve budget
+- item: the recovered used[] budget (patch 0001 in the source pack) is indexed by cell index per step; check whether sim.rs swaps/removes cells mid-step (kill/fuse/birth compaction) so used[] could attach to the wrong cell. deliver a failing or passing test plus a minimal fix (e.g. carry used[] with swaps) in the same patch series.
+- source: packets/ca-ohal-source-pack/ in this repo (wasm/src/sim.rs step(), the 0001 recovered-budget patch, PACKETS.md with the line rules). rules: no hardcoded numbers; English-only code/UI; JS/wasm parity 1:1; no merge/deploy; do not touch root ca2.js, CNAME, presets.
+- interface: wasm/src/sim.rs step(); sim_step exports in wasm/src/lib.rs.
+- test: credential-free test demonstrating the hazard or proving index stability, plus the minimal fix if failing.
+- target branch: ohal/ca (base main 5e1a3f9, repo zuellue/ca2).
+- done when: test plus (if needed) minimal fix returned as a patch or full files.
+- priority: now.
+
+id: W-0107 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, ca line CA-3: harness recovery (t130/t132 rewrite, metrics only)
+- item: rewrite the lost deterministic harness pieces (axis extents `ax` in the pos dump, T130_NODRAW flag) as a new commit; measure maxStep, collision writer max, snap total on the 0.4 inject fixture with raw per-run numbers (metrics, not acceptance).
+- source: packets/ca-ohal-source-pack/ in this repo (devtools-old-scripts/ = older t130/t132 lead, harness.js, PACKETS.md). credential-free, no owner data.
+- interface: devtools/harness.js conventions.
+- test: the rewritten harness runs on the 0.4 inject fixture and prints raw per-run metrics.
+- target branch: ohal/ca (base main 5e1a3f9, repo zuellue/ca2).
+- done when: rewritten harness scripts returned as a patch or full files, with one sample metrics run.
+- priority: now.
+
+id: W-0108 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gorav line G2: NH6 receipt-taxonomy candidate standalone compile + test-only seam (stages 1 and 2)
+- item: stage 1 - place the reviewed candidates (contract, prod decoder) at the paths named in the packet, verify the pinned sha256 values, fresh swiftc module-chain compile, existing Linux suites build+run green on the candidate tree; label source-accepted candidate + compile evidence (NOT production acceptance, NOT native proof). stage 2 - test-only seam: suite v2 plus diag overlay applied ONLY in the test build tree (never replacing module source in a product build); explicit selector NH6 (cases a-f), external deadline, zero gate-timeout lines; expected 41/0 per the receipt in the packet. no semantic adoption beyond the reviewed candidate.
+- source: packets/w-0108-gorav-nh6-integration/ in this repo (PKT-G2-nh6-integration.md = full scope, contract-candidate.swift, decoder-candidate.swift, diag-candidate.swift, suite-candidate-v2.swift, four diffs, INTERFACES.md, build-commands.txt, MANIFEST.sha256, receipt and prep notes).
+- carried limits (must appear in the PR body): resumePolicy public but unasserted; NH6c catch-all vs NH6f typed .closed; atomic gap-absence source-only; six held pre-entry vs NH6b recovery seek; one partially-bound writer Linux diagnostic; Mac/RT open.
+- test: stage-1 compile green + existing suites green; stage-2 NH6 41/0 with zero gate-timeout lines. credential-free. never claim the earlier 41/0 receipt as fresh compile proof.
+- target branch: ohal/gorav (one PR for the line; main merge is NOT authorized).
+- done when: both stages green, returned as a patch or full files with the raw logs.
+- priority: now.
+
+
 re: guide v8 published: open-request minimum removed; requests now come only from waiting product work; when the pool is empty, labs stay idle.
 
 
