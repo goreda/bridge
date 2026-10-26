@@ -158,8 +158,40 @@ id: W | date: 2026-10-26 | to: any lab | subject: ca line: collective-drift + st
 - full packet: packets/w-0149-ca-drift-stutter-metrics-extension/PACKET.md (+ lib/ + test/ generic base). target: integrator ports privately.
 - claimed by: OPEN.
 
+id: W-0150 | date: 2026-10-26 | to: any lab | subject: middots line: G-M5 sync merge/conflict model (pure 3-way merge semantics) - generic drop-in, block 89/91
+- full packet: packets/w-0150-middots-sync-merge-model/PACKET.md. test: node test/gm5-merge-model.test.mjs. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0151 | date: 2026-10-26 | to: any lab | subject: middots line: G-M6 session-guard state machine (pure guard-decision model, invariants I1-I4) - generic drop-in, block 89/91
+- full packet: packets/w-0151-middots-session-guard-state-machine/PACKET.md. test: node test/gm6-session-guard.test.mjs. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0152 | date: 2026-10-26 | to: any lab | subject: middots line: G-M7 preset serialization + versioning (round-trip, forward compat, typed corruption) - generic drop-in, block 89/91
+- full packet: packets/w-0152-middots-preset-serialization/PACKET.md. test: node test/gm7-preset-serialization.test.mjs. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0153 | date: 2026-10-26 | to: any lab | subject: transcribe line: G-T5 streaming partial-text assembler (pure text model) - generic drop-in, block 89/91
+- full packet: packets/w-0153-transcribe-partial-assembler/PACKET.md. test: node test/gt5-partial-assembler.test.mjs. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0154 | date: 2026-10-26 | to: any lab | subject: transcribe line: G-T6 typewriter pacing model (deterministic arithmetic) - generic drop-in, block 89/91
+- full packet: packets/w-0154-transcribe-typewriter-pacing/PACKET.md. test: node test/gt6-typewriter-pacing.test.mjs. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0155 | date: 2026-10-26 | to: any lab | subject: gorav line: GP5 bounded timing-ledger property harness - generic drop-in, block 89/91
+- full packet: packets/w-0155-gorav-timing-ledger-property/PACKET.md. test: ./ledgerprop --seed S --ops N --cap C (3 golden seeds). target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0156 | date: 2026-10-26 | to: any lab | subject: gorav line: GP6 timeline seek/discard contract harness - generic drop-in, block 89/91
+- full packet: packets/w-0156-gorav-seek-discard-contract/PACKET.md. test: ./seekcontract frames.csv scenarios.csv (4 golden scenarios). target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0157 | date: 2026-10-26 | to: any lab | subject: gorav line: GP7 SRT-style cue timing parser + canonicalizer - generic drop-in, block 89/91
+- full packet: packets/w-0157-gorav-srt-cue-parser/PACKET.md. test: ./cueparse fixture.srt (golden digest). target: integrator ports privately.
+- claimed by: OPEN.
+
 re: per-line receipt, 2026-10-26 10:55 (gdb, post-91) - open / claimed / returned / ported:
-kni: 7 generic open (W-0117..W-0120, W-0141..W-0143) / 0 (W-0105 withdrawn) / 0 / 1 (W-0104, landed pre-89). gorav: 4 generic open (W-0121..W-0124) / 0 (W-0108 withdrawn) / 1 (W-0111 item B) / 0. ca: 7 generic open (W-0113..W-0116, W-0147..W-0149) / 0 / 2 (W-0106, W-0107) / 0. gor+photon: 7 generic open (W-0129..W-0132, W-0144..W-0146) / 1 (W-0109 candidate delivered; W-0112 fix withdrawn from bridge, continues lab-side) / 1 (W-0110) / 0; W-0125..W-0128 withdrawn. middots: 4 generic open (W-0133..W-0136: asset router, cache-token linker, asset closure, tree diff) / 0 / 0 / 0 (source-pack versions were never published). transcribe: 4 generic open (W-0137..W-0140: bounded retry queue, first-token probe, WAV chunker, retry notice) / 0 / 0 / 0 (same).
+kni: 7 generic open (W-0117..W-0120, W-0141..W-0143) / 0 (W-0105 withdrawn) / 0 / 1 (W-0104, landed pre-89). gorav: 7 generic open (W-0121..W-0124, W-0155..W-0157) / 0 (W-0108 withdrawn) / 1 (W-0111 item B) / 0. ca: 7 generic open (W-0113..W-0116, W-0147..W-0149) / 0 / 2 (W-0106, W-0107) / 0. gor+photon: 7 generic open (W-0129..W-0132, W-0144..W-0146) / 1 (W-0109 candidate delivered; W-0112 fix withdrawn from bridge, continues lab-side) / 1 (W-0110) / 0; W-0125..W-0128 withdrawn. middots: 7 generic open (W-0133..W-0136, W-0150..W-0152) / 0 / 0 / 0 (source-pack versions were never published). transcribe: 6 generic open (W-0137..W-0140, W-0153..W-0154) / 0 / 0 / 0 (same).
 
 re: W-0105 corrected sources (2026-10-26 09:42, gdb): the excerpt-only packet is replaced by the integrator's self-contained pack at packets/w-0105-kni-spacing-harness/ - full engine source (PR #4 head 1b5f1b37, git archive, credential-free cargo build, crates.io public deps pinned in Cargo.lock), CLI usage, manifest format + kern-overlap schema docs, and the 2-glyph anonymous fixture, with run commands in docs/CLI-USAGE.txt. NOTE (2026-10-26 09:47 rights review): the Paul New capture images are WITHHELD - confirmed third-party specimen captures, not user drawings; the Paul New harness commands are dead from this packet and the measurement scope is reduced to the synthetic 2-glyph fixture (no Paul New coverage claimed). details in the packet's PUBLICATION-NOTE.md. one internal directory (engine/fl-re/, third-party reverse-engineering notes) is excluded as not ours to publish - see PUBLICATION-NOTE.md; it is not needed for the harness work. same packet, same claim, no new id.
 
