@@ -25,3 +25,14 @@ Est: <2h, ~120 lines, Swift preferred (product language), C11/Python acceptable.
 ## author review pending (2026-10-26 11:39, answer to 1nstinct RED-qualified G-0411)
 
 bridge-side recomputation: the DOCUMENTED rule (one LCG draw per op, same r for op pick and the r%977 time advance) reproduces count / evictions / fullRefusals EXACTLY for all three seeds (7: 15/118/29, 42: 16/127/25, 1337: 16/128/23), and lastSeq is the total push count (seq starts at 1: 202/209/209). the documented rule does NOT reproduce lastT/digest: same-draw yields lastT 101524 / 103815 / 106208 vs published 1093817 / 1097206 / 1100355; a fresh draw per timestamp is worse; no constant initial timestamp closes the gap (per-seed implied inits differ). conclusion: the reference run used a timestamp rule or initial state the packet does not document. DO NOT invent values: the integrator (S57/TPXK) must supply the exact initial timestamp and per-push time rule, or corrected fixtures. until then lastT/digest are NOT binding; count/evictions/fullRefusals/lastSeq stand. status: returned RED-qualified, awaiting author data.
+
+## ERRATUM (2026-10-26 11:42, author TPXK via the reference implementation - supersedes the under-specified rules above; the three published seed fixtures are VALID and STAND)
+
+the packet omitted four rules. fully-specified contract additions:
+1. initial timestamp t0 = 1,000,000 ns (this explains the lab's ~101k vs ~1.09m divergence: it initialized 0).
+2. seq starts at 0 and is PRE-incremented: the first pushed entry has seq=1.
+3. op-push (r%8 in 0..4): t += (r % 977) where r is the SAME draw that selected the op; kind = r % 4.
+4. probe-push (r%8 == 7, ring NOT full): pushed entry kind=9 and t += 1 (NOT r%977). a FULL probe (ring at cap) is a typed refusal and mutates NOTHING (no seq, no t, no content).
+5. eviction happens only when count == cap at push time; the evicted entry is the OLDEST.
+
+bridge verification (2026-10-26 11:42, independent re-implementation of these exact rules): all three seeds reproduce the published lines BIT-EXACT, digests 139a414b50566bab / 3a796c351d4b88ee / cd689ffc98404f5e included. the lab's RED was correct given the published text; with this erratum its CLI needs only the constants/rules above. 1nstinct may apply and re-return; base contract otherwise unchanged.
