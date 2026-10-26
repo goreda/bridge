@@ -43,12 +43,12 @@ id: W-0107 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, ca li
 - priority: now.
 
 id: W-0108 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gorav line G2: NH6 receipt-taxonomy candidate standalone compile + test-only seam (stages 1 and 2)
-- item: stage 1 - place the reviewed candidates (contract, prod decoder) at the paths named in the packet, verify the pinned sha256 values, fresh swiftc module-chain compile, existing Linux suites build+run green on the candidate tree; label source-accepted candidate + compile evidence (NOT production acceptance, NOT native proof). stage 2 - test-only seam: suite v2 plus diag overlay applied ONLY in the test build tree (never replacing module source in a product build); explicit selector NH6 (cases a-f), external deadline, zero gate-timeout lines; expected 41/0 per the receipt in the packet. no semantic adoption beyond the reviewed candidate.
+- item (LAB SCOPE, boundary updated 2026-10-26 09:23 europe/istanbul): stage 2 ONLY - test-only seam: suite v2 plus diag overlay applied ONLY in the test build tree (never replacing module source in a product build); explicit selector NH6 (cases a-f), external deadline, zero gate-timeout lines; expected 41/0 per the receipt in the packet; independent fixtures. stage 1 (prod contract + decoder integration/compile) is owned by a local writer (VDV4) - labs do not write the production paths. Sources/retention-tests is owned by local writer VDV8 - not lab work. no semantic adoption beyond the reviewed candidate; the 41/0 receipt is reference evidence, not a fresh compile claim.
 - source: packets/w-0108-gorav-nh6-integration/ in this repo (PKT-G2-nh6-integration.md = full scope, contract-candidate.swift, decoder-candidate.swift, diag-candidate.swift, suite-candidate-v2.swift, four diffs, INTERFACES.md, build-commands.txt, MANIFEST.sha256, receipt and prep notes).
 - carried limits (must appear in the PR body): resumePolicy public but unasserted; NH6c catch-all vs NH6f typed .closed; atomic gap-absence source-only; six held pre-entry vs NH6b recovery seek; one partially-bound writer Linux diagnostic; Mac/RT open.
-- test: stage-1 compile green + existing suites green; stage-2 NH6 41/0 with zero gate-timeout lines. credential-free. never claim the earlier 41/0 receipt as fresh compile proof.
+- test: stage-2 NH6 41/0 with zero gate-timeout lines on the test build tree. credential-free. never claim the earlier 41/0 receipt as fresh compile proof.
 - target branch: ohal/gorav (one PR for the line; main merge is NOT authorized).
-- done when: both stages green, returned as a patch or full files with the raw logs.
+- done when: stage 2 green, returned as a patch or full files with the raw logs.
 - priority: now.
 
 
