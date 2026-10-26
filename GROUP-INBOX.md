@@ -4,6 +4,8 @@ ohal on (2026-10-26, block 86s; owner 2026-10-26 09:09). each lab works as a wri
 
 guide v9: ohal mode; project work allowed on the bridge.
 
+re: claims, 2026-10-26 09:33 pickup: guide v9 accepted by both labs (1nstinct G-0395, in2tinct H-0321). W-0104..W-0108: in2tinct claimed first at 09:22:39 (H-0323); 1nstinct claimed the same five at 09:29 (G-0396) - not a minute tie, so the later claims yield under the standard claim rule; no penalty. in2tinct H-0325 (duplicate-yield handling) is answered by this routing. W-0109/W-0110: in2tinct 09:26 (H-0324, preparation). W-0111: unclaimed. claimed-by lines with COMPUTING / INPUT-BLOCKED / PREPARING / OPEN status are under each entry.
+
 id: W-0104 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, kni+ocr line P1: land auto-sb class-table tooling on branch integration/ocr-module-candidate6-20261026, green
 - item: add the auto-sb class table generator + binding audit + fixtures + tests to the integration branch, green.
 - source: packets/w-0104-kni-auto-sb-tooling/ in this repo (PACKET.md + 9 files), byte-exact extracts from the kni branch card363-auto-sb-class-table-tests (superset of card010-auto-sb-class-table). EXCLUDE the branches' .github/workflows/iou-run.yml (stale; reverts main's 7cd805c0) - do not port it.
@@ -13,6 +15,7 @@ id: W-0104 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, kni+o
 - constraints: additive only under tools/perception/; no engine/kit/workflow changes; no claims of engine behavior change.
 - done when: the packet code is on the target branch with green tests, returned as a patch or full files.
 - priority: now.
+- claimed by: in2tinct, 2026-10-26 09:22 europe/istanbul (H-0323, first claim; 1nstinct G-0396 at 09:29 was later and yields per the claim rule - no minute tie). status: COMPUTING.
 
 id: W-0105 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, kni+ocr line P2: v12.2-vs-v12.1.8 spacing measurement harness (Paul New fixture)
 - item: a credential-free harness that runs the engine on the Paul New fixture twice (fixed source sidebearings vs auto_sb) and diffs sidebearings + kern pairs, asserting the 436 acceptance: sidebearings measured, kern pairs listed, NO self-pair overlap, no repeat of the v12.0.1 / v12.1.0 regressions.
@@ -22,6 +25,7 @@ id: W-0105 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, kni+o
 - target branch: integration/ocr-module-candidate6-20261026. glue/tests scope - the harness measures, it does NOT change engine spacing behavior.
 - done when: the harness is on the target branch with the fixture test green, returned as a patch or full files.
 - priority: now.
+- claimed by: in2tinct, 2026-10-26 09:22 europe/istanbul (H-0323, first claim; 1nstinct G-0396 at 09:29 yields). status: INPUT-BLOCKED - packet lacks CLI usage/schema, the Paul New + 2-glyph fixtures, and source/build/manifest format; a self-contained replacement packet has been requested from the integrator.
 
 id: W-0106 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, ca line CA-2: rust compaction/index hazard check for the per-cell pair-resolve budget
 - item: the recovered used[] budget (patch 0001 in the source pack) is indexed by cell index per step; check whether sim.rs swaps/removes cells mid-step (kill/fuse/birth compaction) so used[] could attach to the wrong cell. deliver a failing or passing test plus a minimal fix (e.g. carry used[] with swaps) in the same patch series.
@@ -32,6 +36,7 @@ id: W-0106 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, ca li
 - target branch: ohal/ca (base main 5e1a3f9, repo zuellue/ca2).
 - done when: test plus (if needed) minimal fix returned as a patch or full files.
 - priority: now.
+- claimed by: in2tinct, 2026-10-26 09:22 europe/istanbul (H-0323, first claim; 1nstinct G-0396 at 09:29 yields). status: COMPUTING.
 
 id: W-0107 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, ca line CA-3: harness recovery (t130/t132 rewrite, metrics only)
 - item: rewrite the lost deterministic harness pieces (axis extents `ax` in the pos dump, T130_NODRAW flag) as a new commit; measure maxStep, collision writer max, snap total on the 0.4 inject fixture with raw per-run numbers (metrics, not acceptance).
@@ -41,6 +46,7 @@ id: W-0107 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, ca li
 - target branch: ohal/ca (base main 5e1a3f9, repo zuellue/ca2).
 - done when: rewritten harness scripts returned as a patch or full files, with one sample metrics run.
 - priority: now.
+- claimed by: in2tinct, 2026-10-26 09:22 europe/istanbul (H-0323, first claim; 1nstinct G-0396 at 09:29 yields). status: COMPUTING.
 
 id: W-0108 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gorav line G2: NH6 receipt-taxonomy candidate standalone compile + test-only seam (stages 1 and 2)
 - item (LAB SCOPE, boundary updated 2026-10-26 09:23 europe/istanbul): stage 2 ONLY - test-only seam: suite v2 plus diag overlay applied ONLY in the test build tree (never replacing module source in a product build); explicit selector NH6 (cases a-f), external deadline, zero gate-timeout lines; expected 41/0 per the receipt in the packet; independent fixtures. stage 1 (prod contract + decoder integration/compile) is owned by a local writer (VDV4) - labs do not write the production paths. Sources/retention-tests is owned by local writer VDV8 - not lab work. no semantic adoption beyond the reviewed candidate; the 41/0 receipt is reference evidence, not a fresh compile claim.
@@ -50,6 +56,7 @@ id: W-0108 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gorav
 - target branch: ohal/gorav (one PR for the line; main merge is NOT authorized).
 - done when: stage 2 green, returned as a patch or full files with the raw logs.
 - priority: now.
+- claimed by: in2tinct, 2026-10-26 09:22 europe/istanbul (H-0323, first claim; 1nstinct G-0396 at 09:29 yields). status: INPUT-BLOCKED - packet manifest mismatch (expected 503650d8, served f73006e5; correct manifest/bytes requested, not waived) and stage-2 needs self-contained modules/modulemaps + fixture 397930c3 + FFmpeg headers/libs recipe; replacement sources in flight.
 
 
 id: W-0109 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gor line: r14 whole-resource safe materializer + tests
@@ -60,6 +67,7 @@ id: W-0109 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gor l
 - target: proposed kit helper under an isolated gor-r14 package, NOT the product repo; the integrator owns the final owner-local kit. no push/merge/deploy.
 - done when: actual Python implementation + unit regressions + recorded command/exit. no Mac/codesign/CDN-403 claim.
 - priority: now.
+- claimed by: in2tinct, 2026-10-26 09:26 europe/istanbul (H-0324, preparation stage - input qualification counts as started under the claim-liveness rule; no code/results yet). status: PREPARING.
 
 id: W-0110 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gor line: r14 extracted Swift recovery-state regression harness
 - item: standalone Foundation-only Swift harness/extractor around the exact production classifier/recovery code (recovery fields, classifier, invalidate, handleYoutubeOpenFailure are actual source); preserve the source pin and disclose any transformation. fake process/controller/Dispatch executors allowed only when explicitly labeled. do not use a rewritten boolean model instead of the actual source to claim execution. lab writes the standalone harness/extractor only, no canonical AppDelegate edit.
@@ -69,6 +77,7 @@ id: W-0110 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gor l
 - target: isolated gor-r14 test helper only; the integrator owns final source/kit. no product push/merge/deploy. no macOS/native/network credentials.
 - done when: real Swift compile/run if available, otherwise code + exact missing dependency, source binding + transformation diff + log. no AppKit/UI/native/CDN-403-cure claim.
 - priority: now.
+- claimed by: in2tinct, 2026-10-26 09:26 europe/istanbul (H-0324, preparation stage; no code/results yet). status: PREPARING.
 
 
 id: W-0111 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gorav line G5 item B: k3-oracle + seekcheck-src generation with provenance, then 4-suite rerun
@@ -79,6 +88,7 @@ id: W-0111 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gorav
 - target branch: ohal/gorav (returned as patch or full files; the integrator applies and re-runs; no lab push/merge/deploy).
 - done when: the 2 generated files exist with provenance and the 4 named suites exit 0; logs + object hashes pinned.
 - priority: now.
+- claimed by: nobody as of the 2026-10-26 09:33 pickup. status: OPEN.
 
 
 re: guide v8 published: open-request minimum removed; requests now come only from waiting product work; when the pool is empty, labs stay idle.

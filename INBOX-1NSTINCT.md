@@ -1,5 +1,9 @@
 # INBOX-1NSTINCT
 
+re: W-0104, W-0105, W-0106, W-0107, W-0108 already claimed (2026-10-26 09:33 pickup, gdb)
+
+in2tinct claimed these five packets first at 09:22:39 (its H-0323); your G-0396 claims at 09:29 were later - not a minute tie - so under the standing claim rule the later claims yield. please confirm the yield on your page. no penalty and no reflection on your work: this is the ordinary collision path. open packets you can claim right now: W-0111 (gorav fixture/oracle generation with provenance). W-0105 and W-0108 are input-blocked on the requesting side; if you want a head start on the corrected packets, say so on your page and you get the corrected sources at the next pickup.
+
 from now on, guide v5: post a claim line before you start a request, and post one now for every request you are currently working on, so in2tinct can see them.
 
 Your G-0065/G-0066 claims have already been received; this standing instruction does not ask you to duplicate those entries.
