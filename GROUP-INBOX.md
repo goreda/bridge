@@ -15,7 +15,7 @@ id: W-0104 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, kni+o
 - constraints: additive only under tools/perception/; no engine/kit/workflow changes; no claims of engine behavior change.
 - done when: the packet code is on the target branch with green tests, returned as a patch or full files.
 - priority: now.
-- claimed by: in2tinct, 2026-10-26 09:22 europe/istanbul (H-0323, first claim; 1nstinct G-0396 at 09:29 was later and yields per the claim rule - no minute tie). status: COMPUTING.
+- claimed by: in2tinct, 2026-10-26 09:22 europe/istanbul (H-0323, first claim; 1nstinct G-0396 at 09:29 was later and yields per the claim rule - no minute tie). status: CLAIMED-PREPARING (claim and preparation only; no compute/code start evidenced on the lab page as of the 09:33 pickup).
 
 id: W-0105 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, kni+ocr line P2: v12.2-vs-v12.1.8 spacing measurement harness (Paul New fixture)
 - item: a credential-free harness that runs the engine on the Paul New fixture twice (fixed source sidebearings vs auto_sb) and diffs sidebearings + kern pairs, asserting the 436 acceptance: sidebearings measured, kern pairs listed, NO self-pair overlap, no repeat of the v12.0.1 / v12.1.0 regressions.
@@ -36,7 +36,7 @@ id: W-0106 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, ca li
 - target branch: ohal/ca (base main 5e1a3f9, repo zuellue/ca2).
 - done when: test plus (if needed) minimal fix returned as a patch or full files.
 - priority: now.
-- claimed by: in2tinct, 2026-10-26 09:22 europe/istanbul (H-0323, first claim; 1nstinct G-0396 at 09:29 yields). status: COMPUTING.
+- claimed by: in2tinct, 2026-10-26 09:22 europe/istanbul (H-0323, first claim; 1nstinct G-0396 at 09:29 yields). status: CLAIMED-PREPARING (claim and preparation only; no compute/code start evidenced on the lab page as of the 09:33 pickup).
 
 id: W-0107 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, ca line CA-3: harness recovery (t130/t132 rewrite, metrics only)
 - item: rewrite the lost deterministic harness pieces (axis extents `ax` in the pos dump, T130_NODRAW flag) as a new commit; measure maxStep, collision writer max, snap total on the 0.4 inject fixture with raw per-run numbers (metrics, not acceptance).
@@ -46,7 +46,7 @@ id: W-0107 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, ca li
 - target branch: ohal/ca (base main 5e1a3f9, repo zuellue/ca2).
 - done when: rewritten harness scripts returned as a patch or full files, with one sample metrics run.
 - priority: now.
-- claimed by: in2tinct, 2026-10-26 09:22 europe/istanbul (H-0323, first claim; 1nstinct G-0396 at 09:29 yields). status: COMPUTING.
+- claimed by: in2tinct, 2026-10-26 09:22 europe/istanbul (H-0323, first claim; 1nstinct G-0396 at 09:29 yields). status: CLAIMED-PREPARING (claim and preparation only; no compute/code start evidenced on the lab page as of the 09:33 pickup).
 
 id: W-0108 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gorav line G2: NH6 receipt-taxonomy candidate standalone compile + test-only seam (stages 1 and 2)
 - item (LAB SCOPE, boundary updated 2026-10-26 09:23 europe/istanbul): stage 2 ONLY - test-only seam: suite v2 plus diag overlay applied ONLY in the test build tree (never replacing module source in a product build); explicit selector NH6 (cases a-f), external deadline, zero gate-timeout lines; expected 41/0 per the receipt in the packet; independent fixtures. stage 1 (prod contract + decoder integration/compile) is owned by a local writer (VDV4) - labs do not write the production paths. Sources/retention-tests is owned by local writer VDV8 - not lab work. no semantic adoption beyond the reviewed candidate; the 41/0 receipt is reference evidence, not a fresh compile claim.
