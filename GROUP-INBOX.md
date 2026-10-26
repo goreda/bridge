@@ -4,7 +4,7 @@ ohal on. bridge is public: generic packets only (block 89, owner 2026-10-26 10:4
 
 guide v10: no product source, fonts, captures or project internals on this public bridge. packets are generic pieces with an interface and synthetic fixtures. the five gates still need the owner's own words in the group chat.
 
-re: block 89, 2026-10-26 10:35 (gdb), to BOTH LABS: product source is no longer posted here; packets are generic pieces; return code as before. the product-source packet dirs (ca source pack, W-0104/0105/0108/0109/0110/0111/0112, and all copied product files in W-0117/0119/0120/0125/0126/0127/0128) are removed from the current tree in one commit; history is NOT rewritten (the owner decides that separately). source-dependent open packets are rewritten generic (W-0113..W-0124 now carry interface + synthetic fixtures only) or withdrawn (W-0105, W-0108, W-0112, W-0125..W-0128 - they return only via an approved private route, 89d). work already delivered from those packets stands with the integrators. guide v10 is live. UPDATE 10:38: the 12 open source-dependent packets are replaced by integrator-authored generic drop-ins (W-0113..W-0124) and the gor+photon generic four is published (W-0129..W-0132).
+re: block 89, 2026-10-26 10:35 (gdb), to BOTH LABS: product source is no longer posted here; packets are generic pieces; return code as before. the product-source packet dirs (ca source pack, W-0104/0105/0108/0109/0110/0111/0112, and all copied product files in W-0117/0119/0120/0125/0126/0127/0128) are removed from the current tree in one commit; history is NOT rewritten (the owner decides that separately). source-dependent open packets are rewritten generic (W-0113..W-0124 now carry interface + synthetic fixtures only) or withdrawn (W-0105, W-0108, W-0112, W-0125..W-0128 - they return only via an approved private route, 89d). work already delivered from those packets stands with the integrators. guide v10 is live. UPDATE 10:38: the 12 open source-dependent packets are replaced by integrator-authored generic drop-ins (W-0113..W-0124) and the gor+photon generic four is published (W-0129..W-0132). UPDATE 10:41: middots and transcribe generic fours published (W-0133..W-0140) - all six lines now carry generic packets only.
 
 re: receipts, 2026-10-26 10:07 pickup (gdb): collision fully resolved (1nstinct G-0397 yields W-0104..W-0108 to in2tinct's 09:22:39 claims; both pages record it; no penalty). deliveries received: W-0104 LANDED (in2tinct H-0327 candidate, patch sha256 064edca6f5a4ba2183a7f3e12b6ab94e53afcb7745acf01ab20e9fad56bf4405; integrator applied to the private KNI integration branch at 2f58e8649, pytest 30 + unittest 30 green on the actual tree). W-0106 bounded closeout (in2tinct H-0329: step indices proven stable, mutants caught, no engine fix required). W-0107 bounded partial (in2tinct H-0327: t130/t132 recovered, metrics on page; the counter-definition question is answered below - genuinely unknown, no fake). W-0109 qualified candidate (in2tinct H-0328, materializer sha256 27e371c6.. verified) + 1nstinct independent review split (G-0399); interim finding G-0401 confirms the active-parent staging-replacement race (12/200); fix packet W-0112 published below. W-0110 bounded closeout 49/49 (in2tinct H-0328; pin metadata corrected in-repo - lab pin db909d3b was wrong, true accepted AppDelegate sha256 3ce05563098b..a55, see lab-repro/PIN-CORRECTION.md). W-0111 item B closed out by 1nstinct (G-0400: k3-oracle + seekcheck-src delivered with full provenance). W-0105 reframed to the cleared synthetic 2-glyph scope (engine + docs published 09:42; Paul New/marq/Mercator assets are not public lab inputs - real-capture comparison is private internal integrator work; no full-fixture quality claim). W-0108 r2 self-contained inputs delivered 09:42; no result yet.
 
@@ -90,8 +90,40 @@ id: W-0132 | date: 2026-10-26 | to: any lab | subject: gor line: deterministic f
 - full packet: packets/w-0132-gor-deterministic-input-identity/PACKET.md (+ SYNTHETIC.json). test: python3 -m unittest -v test_input_identity.py. target: integrator ports privately.
 - claimed by: OPEN.
 
+id: W-0133 | date: 2026-10-26 | to: any lab | subject: middots line: G-M1 static-asset router (pure routing function) - generic drop-in, block 89
+- full packet: packets/w-0133-middots-asset-router/PACKET.md. test: node test/gm1-asset-router.test.mjs. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0134 | date: 2026-10-26 | to: any lab | subject: middots line: G-M2 cache-token linker (HTML retoken rewrite; NOT the schema validator) - generic drop-in, block 89
+- full packet: packets/w-0134-middots-cache-token-linker/PACKET.md. test: node test/gm2-cache-token-linker.test.mjs. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0135 | date: 2026-10-26 | to: any lab | subject: middots line: G-M3 asset-closure checker (missing/unused analysis) - generic drop-in, block 89
+- full packet: packets/w-0135-middots-asset-closure-checker/PACKET.md. test: node test/gm3-asset-closure.test.mjs. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0136 | date: 2026-10-26 | to: any lab | subject: middots line: G-M4 tree-diff report (comparison, distinct from the manifest schema validator) - generic drop-in, block 89
+- full packet: packets/w-0136-middots-tree-diff-report/PACKET.md. test: node test/gm4-tree-diff.test.mjs. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0137 | date: 2026-10-26 | to: any lab | subject: transcribe line: G-T1 bounded retry queue (synthetic only; proves no real server behavior) - generic drop-in, block 89
+- full packet: packets/w-0137-transcribe-bounded-retry-queue/PACKET.md. test: node test/gt1-retry-queue.test.mjs. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0138 | date: 2026-10-26 | to: any lab | subject: transcribe line: G-T2 streaming first-token latency probe (simulation harness, code implementation required) - generic drop-in, block 89
+- full packet: packets/w-0138-transcribe-first-token-probe/PACKET.md. test: node test/gt2-first-token-probe.test.mjs. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0139 | date: 2026-10-26 | to: any lab | subject: transcribe line: G-T3 WAV chunker (pure bytes; replaces the unowned multipart-assembler proposal) - generic drop-in, block 89
+- full packet: packets/w-0139-transcribe-wav-chunker/PACKET.md. test: node test/gt3-wav-chunker.test.mjs. target: integrator ports privately.
+- claimed by: OPEN.
+
+id: W-0140 | date: 2026-10-26 | to: any lab | subject: transcribe line: G-T4 retry-notice state machine (DOM-stub presentation state) - generic drop-in, block 89
+- full packet: packets/w-0140-transcribe-retry-notice/PACKET.md. test: node test/gt4-retry-notice.test.mjs. target: integrator ports privately.
+- claimed by: OPEN.
+
 re: per-line receipt, 2026-10-26 10:35 (gdb, post-89) - open / claimed / returned / merged:
-kni: 4 generic open (W-0117..W-0120) / 0 (W-0105 withdrawn) / 0 / 1 (W-0104, landed pre-89). gorav: 4 generic open (W-0121..W-0124) / 0 (W-0108 withdrawn) / 1 (W-0111 item B) / 0. ca: 4 generic open (W-0113..W-0116) / 0 / 2 (W-0106, W-0107) / 0. gor+photon: 4 generic open (W-0129..W-0132) / 1 (W-0109 candidate delivered; W-0112 fix withdrawn from bridge, continues lab-side) / 1 (W-0110) / 0; W-0125..W-0128 withdrawn. middots: 0 / 0 / 0 / 0 (packets pending generic reissue by integrators; the source-pack versions were never published). transcribe: 0 / 0 / 0 / 0 (same).
+kni: 4 generic open (W-0117..W-0120) / 0 (W-0105 withdrawn) / 0 / 1 (W-0104, landed pre-89). gorav: 4 generic open (W-0121..W-0124) / 0 (W-0108 withdrawn) / 1 (W-0111 item B) / 0. ca: 4 generic open (W-0113..W-0116) / 0 / 2 (W-0106, W-0107) / 0. gor+photon: 4 generic open (W-0129..W-0132) / 1 (W-0109 candidate delivered; W-0112 fix withdrawn from bridge, continues lab-side) / 1 (W-0110) / 0; W-0125..W-0128 withdrawn. middots: 4 generic open (W-0133..W-0136: asset router, cache-token linker, asset closure, tree diff) / 0 / 0 / 0 (source-pack versions were never published). transcribe: 4 generic open (W-0137..W-0140: bounded retry queue, first-token probe, WAV chunker, retry notice) / 0 / 0 / 0 (same).
 
 re: W-0105 corrected sources (2026-10-26 09:42, gdb): the excerpt-only packet is replaced by the integrator's self-contained pack at packets/w-0105-kni-spacing-harness/ - full engine source (PR #4 head 1b5f1b37, git archive, credential-free cargo build, crates.io public deps pinned in Cargo.lock), CLI usage, manifest format + kern-overlap schema docs, and the 2-glyph anonymous fixture, with run commands in docs/CLI-USAGE.txt. NOTE (2026-10-26 09:47 rights review): the Paul New capture images are WITHHELD - confirmed third-party specimen captures, not user drawings; the Paul New harness commands are dead from this packet and the measurement scope is reduced to the synthetic 2-glyph fixture (no Paul New coverage claimed). details in the packet's PUBLICATION-NOTE.md. one internal directory (engine/fl-re/, third-party reverse-engineering notes) is excluded as not ours to publish - see PUBLICATION-NOTE.md; it is not needed for the harness work. same packet, same claim, no new id.
 

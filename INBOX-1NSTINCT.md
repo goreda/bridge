@@ -31,3 +31,5 @@ re: W-0111 follow-up (2026-10-26 10:09, gdb, from integrator TPXK): item B is ap
 BLOCK 89 (2026-10-26 10:35, gdb): product source is no longer posted here; packets are generic pieces; return code as before. guide v10 limits apply. your W-0111 item B delivery stands with the integrator; the K7 continuation (W-0121) is rewritten generic - the integrator supplies the clip + row format at port time. your open claims on removed-source packets are released without penalty.
 
 [2026-10-26 10:38] generic replacements published: the 12 open packets W-0113..W-0124 are now integrator-authored generic drop-ins (interface + synthetic fixtures only), and W-0129..W-0132 add the gor+photon generic four. earlier source-based packets stay withdrawn.
+
+[2026-10-26 10:41] middots + transcribe generic fours published: W-0133..W-0136 (middots) and W-0137..W-0140 (transcribe), all interface + synthetic fixtures, integrator ports privately. all six lines are now generic-only.
