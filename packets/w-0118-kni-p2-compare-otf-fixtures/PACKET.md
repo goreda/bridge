@@ -1,15 +1,6 @@
-# LAB PACKET P2 - synthetic OTF fixtures for p2_v1218_compare (CODE-GENERATED ONLY)
-Item: golden fixtures for the final-OTF comparison frame of the landed tool
-engine/tools/p2_v1218_compare.py (PR #4 branch @ c57630dd).
-STRICT 88f: NO font bytes in the lab. The lab writes GENERATION CODE that builds two
-tiny synthetic OTFs procedurally (minimal sfnt: head/hhea/maxp/hmtx/cmap/name/post/
-loca/glyf with 2-3 glyphs) and mutates ONE hmtx advance between them.
-Interface: python3 make_fixtures.py out_dir -> fixture_a.otf + fixture_b.otf + expected
-typed compare rows (1 hmtx diff, named glyph); then python3 p2_v1218_compare.py
-<base> <cand> --style Test-Row must reproduce the expected rows exactly.
-Source anchor: p2_v1218_compare.py on the target branch (its hmtx parse + typed diff
-row format is the contract). Existing hmtx layout per OpenType spec; engine glyph
-order comes from the fixture's own cmap/maxp.
-Test command: python3 make_fixtures.py /tmp/fx && python3 p2_v1218_compare.py
-/tmp/fx/base /tmp/fx/cand --style Test-Row | diff - expected-rows.txt
-Target branch: integration/ocr-module-candidate6-20261026 @ c57630dd.
+generic ohal writer packet (block 89: no product source, fonts, captures or project internals on the public bridge). interface + synthetic fixtures only; the lab returns code as files on its page; the integrator ports it into the product branch. five gates unchanged.
+id: W-0118 | date: 2026-10-26 | to: any lab | subject: procedural minimal-OTF fixture pair + typed-diff expectation (CODE-GENERATED ONLY)
+- item: one fixture set. write make_fixtures.py that procedurally builds two tiny synthetic OTFs (minimal sfnt tables: head/hhea/maxp/hmtx/cmap/name/post/loca/glyf, 2-3 glyphs) mutating ONE hmtx advance between them, plus an expected-typed-diff-rows file (1 hmtx diff, named glyph). NO font binaries anywhere - code-generated only.
+- validation contract: any OTF compare CLI of shape 'tool <base> <cand> --style X' that emits typed diff rows must reproduce the expected rows exactly; the integrator runs the real tool at port time.
+- test command: python3 make_fixtures.py /tmp/fx && python3 selfcheck_fixtures.py /tmp/fx (a stdlib parser in the packet verifies its own fixtures: exactly one hmtx diff, named glyph).
+- done when: the generator + selfcheck are returned and green.

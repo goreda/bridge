@@ -1,8 +1,0 @@
-use kni_core::{boundary_bias, lever_api, reference_slice};
-use reference_slice::{Point,ReferenceRing,Span};
-fn rectangle(x0:f64,y0:f64,x1:f64,y1:f64)->Vec<ReferenceRing>{let start=Point{x:x0,y:y0};vec![ReferenceRing{start,spans:vec![Span::Line{end:Point{x:x1,y:y0}},Span::Line{end:Point{x:x1,y:y1}},Span::Line{end:Point{x:x0,y:y1}},Span::Line{end:start}]}]}
-fn mask()->lever_api::SourceMask{let mut ink=vec![255;100];for j in 2..8{for i in 2..8{ink[j*10+i]=0;}}lever_api::SourceMask{w:10,h:10,ink,scale:1.0,origin:(0.0,0.0)}}
-#[test] fn sign_and_no_mutation(){let m=mask();let inward=rectangle(3.0,-3.0,7.0,-7.0);let outward=rectangle(1.0,-1.0,9.0,-9.0);let h=lever_api::hash_rings(&inward);assert!(boundary_bias::measure(&inward,&m).unwrap().mean_px<0.0);assert!(boundary_bias::measure(&outward,&m).unwrap().mean_px>0.0);assert_eq!(h,lever_api::hash_rings(&inward));}
-#[test] fn deterministic(){let m=mask();let r=rectangle(2.0,-2.0,8.0,-8.0);let a=boundary_bias::measure(&r,&m).unwrap();let b=boundary_bias::measure(&r,&m).unwrap();assert_eq!(a.mean_px.to_bits(),b.mean_px.to_bits());assert_eq!(a.samples.len(),b.samples.len());}
-#[test] fn frame_scale_translation(){let m=mask();let r=rectangle(3.0,-3.0,7.0,-7.0);let a=boundary_bias::measure(&r,&m).unwrap();let mut m2=m.clone();m2.scale=2.0;m2.origin=(11.0,20.0);let r2=rectangle(17.0,14.0,25.0,6.0);let b=boundary_bias::measure(&r2,&m2).unwrap();assert_eq!(a.mean_px.to_bits(),b.mean_px.to_bits());}
-#[test] fn blank_refusal(){let mut m=mask();m.ink.fill(255);assert_eq!(boundary_bias::measure(&rectangle(2.0,-2.0,8.0,-8.0),&m).unwrap_err(),boundary_bias::BiasError::NoSourceBoundary);}

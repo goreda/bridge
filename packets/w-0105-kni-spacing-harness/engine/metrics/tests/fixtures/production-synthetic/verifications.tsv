@@ -1,3 +1,0 @@
-left_gid	right_gid	kern_u	residual_u	uncertainty_u	uncertainty_evidence	optical_evidence	full_geometry_evidence
-1	2	0	0	1	synthetic-uncertainty	synthetic-optical	synthetic-geometry
-2	1	-20	0	1	synthetic-uncertainty	synthetic-optical	synthetic-geometry

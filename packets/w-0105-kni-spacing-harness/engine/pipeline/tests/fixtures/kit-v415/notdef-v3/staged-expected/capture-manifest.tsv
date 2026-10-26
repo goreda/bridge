@@ -1,8 +1,0 @@
-kni-capture-manifest	v1
-style	Marq/Regular
-frame	frame-test
-cohort	Marq/Regular
-source	0x41	notdef/w41.png	00336ce157438e53fec97a67513a1ee3a59815afde22e68431d4b3448486dce8
-source	0x42	notdef/w42.png	00336ce157438e53fec97a67513a1ee3a59815afde22e68431d4b3448486dce8
-source	0x43	glyph/t43.png	33f0a1b27a357115174e881c168bc9df6989bf47e06aa627dfe894523349eae4
-source	0x44	glyph/t44.png	daf95988f8e779e0dfa361c86d798957f74a60b41c72d1191d27624282068fae
