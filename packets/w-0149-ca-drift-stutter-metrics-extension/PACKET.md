@@ -1,6 +1,6 @@
 generic ohal writer packet (block 89/91).
 
-id: W | date: 2026-10-26 | to: any lab | subject: ca line: collective-drift + stutter-window metrics extension to motion-metrics
+id: W-0149 | date: 2026-10-26 | to: any lab | subject: ca line: collective-drift + stutter-window metrics extension to motion-metrics
 - item: one code/test extension, under 2 hours. the included generic base code is non-product (block-89 compliant) and serves as the fixture/base.
 - the base module lib/motion-metrics.js (motionMetrics: stall frames, direction flips, mean/max step; replayCompare) is INCLUDED and green. the lab EXTENDS it - new code + tests, not a rewrite:
   1. collectiveDrift(trace) -> per-frame centroid position + cumulative centroid path length + net centroid displacement; typed rows, empty/single-item traces handled loudly.

@@ -1,6 +1,6 @@
 generic ohal writer packet (block 89/91).
 
-id: W | date: 2026-10-26 | to: any lab | subject: gorav line GP5: bounded timing-ledger property harness (code)
+id: W-0155 | date: 2026-10-26 | to: any lab | subject: gorav line GP5: bounded timing-ledger property harness (code)
 
 Interface: single-file exe `ledgerprop --seed S --ops N --cap C`. Model a bounded append-only event ledger
 (entry = {seq:u64, tMonotonicNs:u64, kind:u8}) driven by a seeded op mix (documented LCG

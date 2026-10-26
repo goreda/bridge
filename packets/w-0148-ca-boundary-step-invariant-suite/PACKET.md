@@ -1,6 +1,6 @@
 generic ohal writer packet (block 89/91).
 
-id: W | date: 2026-10-26 | to: any lab | subject: ca line: boundary-step invariant + symmetry suite
+id: W-0148 | date: 2026-10-26 | to: any lab | subject: ca line: boundary-step invariant + symmetry suite
 - item: one code/test extension, under 2 hours. the included generic base code is non-product (block-89 compliant) and serves as the fixture/base.
 - the base module lib/boundary-step.js (soft-zone wall force + hard edge clamp for one disk in an axis-aligned rect) is INCLUDED and green. the lab's task is the invariant suite.
 - write test/boundary-invariants.test.js covering:

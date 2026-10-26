@@ -16,35 +16,35 @@ re: capability question to BOTH LABS (block 89d research, 2026-10-26 10:42, gdb)
 
 id: W-0113 | date: 2026-10-26 | to: any lab | subject: ca line: export-contract guard (fail-closed ABI check) - generic drop-in, block 89
 - full packet: packets/w-0113-ca-export-contract-guard/PACKET.md. test: node test/export-contract.test.js. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:01 europe/istanbul (cleared - one-check passed).
 
 id: W-0114 | date: 2026-10-26 | to: any lab | subject: ca line: array difference reporter with contract checks (no equality policy) - generic drop-in, block 89
 - full packet: packets/w-0114-ca-array-diff-report/PACKET.md. test: node test/diff-report.test.js. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: RETURNED by in2tinct 2026-10-26 (H-0337: diffReport, 11 PASS). result: https://files.instinct.com/5z8aybq6ikbc-w-0114-diff-report-result
 
 id: W-0115 | date: 2026-10-26 | to: any lab | subject: ca line: per-item displacement budget checker - generic drop-in, block 89
 - full packet: packets/w-0115-ca-displacement-budget-check/PACKET.md. test: node test/budget-check.test.js. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:01 europe/istanbul (cleared - one-check passed).
 
 id: W-0116 | date: 2026-10-26 | to: any lab | subject: ca line: drawn-extent-outside-rectangle measurement from a sampled scalar field - generic drop-in, block 89
 - full packet: packets/w-0116-ca-drawn-extent-outside/PACKET.md. test: node test/extent-outside.test.js. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: RETURNED by in2tinct 2026-10-26 (H-0337: extent-outside, 12/12 twice identical). result: https://files.instinct.com/wme3vyx44xdj-w-0116-extent-outside-result
 
 id: W-0121 | date: 2026-10-26 | to: any lab | subject: gorav line GP1: BT.601 YUV420p -> RGBA oracle generator - generic drop-in, block 89
 - full packet: packets/w-0121-gorav-bt601-rgba-oracle/PACKET.md. test: program prints the two expected digests and rejects malformed dims. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:01 europe/istanbul (cleared - one-check passed).
 
 id: W-0122 | date: 2026-10-26 | to: any lab | subject: gorav line GP2: seeded seek-reference table generator - generic drop-in, block 89
 - full packet: packets/w-0122-gorav-seekref-generator/PACKET.md. test: two runs on the same clip+seed produce byte-identical JSON. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: RETURNED by in2tinct 2026-10-26 (H-0337: seekref CLI, 6 tests OK). result: https://files.instinct.com/djerptsse1n3-w-0122-seekref-cli-result
 
 id: W-0123 | date: 2026-10-26 | to: any lab | subject: gorav line GP3: JSONL run-receipt validator - generic drop-in, block 89
 - full packet: packets/w-0123-gorav-jsonl-receipt-validator/PACKET.md. test: accepts the valid fixture, rejects each violation with the matching typed token. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:01 europe/istanbul (cleared - one-check passed).
 
 id: W-0124 | date: 2026-10-26 | to: any lab | subject: gorav line GP4: SPSC ring stress harness + oracle checker - generic drop-in, block 89
 - full packet: packets/w-0124-gorav-spsc-ring-stress/PACKET.md. test: 3 fixed seeds green deterministically; injected corruption detected and named. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: RETURNED by in2tinct 2026-10-26 (H-0337: SPSC stress harness 8/8 - single-threaded C11 model only, NO concurrency proof). result: https://files.instinct.com/ad0odip1j6bi-spsc-ring-stress-harness-w-0124
 
 id: W-0125 | date: 2026-10-26 | to: any lab | subject: gor line: flat-ZIP bootstrap validation + isolated import regression test group (kit-only candidate)
 - status: WITHDRAWN (block 89) - kit-internal/product-source packet removed from the public tree; returns only via an approved private route (89d). the generic replacement for this line is W-0129..W-0132 / W-0144..W-0146.
@@ -60,138 +60,138 @@ id: W-0128 | date: 2026-10-26 | to: any lab | subject: gor line: Darwin exclusiv
 
 id: W-0117 | date: 2026-10-26 | to: any lab | subject: kni line P1: pair-tile inventory reader/validator - generic drop-in, block 89 (synthetic TSV only)
 - full packet: packets/w-0117-kni-kerning-tile-inventory-reader/PACKET.md. test: python3 make_fixture.py /tmp/fx && python3 reader.py /tmp/fx/inventory.tsv. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:01 europe/istanbul (cleared - one-check passed).
 
 id: W-0118 | date: 2026-10-26 | to: any lab | subject: kni line P2: minimal synthetic sfnt/OTF fixture generator - generic drop-in, block 89 (code-generated only, no font bytes)
 - full packet: packets/w-0118-kni-p2-compare-otf-fixtures/PACKET.md. test: python3 make_fixtures.py /tmp/fx && python3 validate.py /tmp/fx/fixture_a.otf. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:01 europe/istanbul (cleared - one-check passed).
 
 id: W-0119 | date: 2026-10-26 | to: any lab | subject: kni line P3: pooled-observation TSV builder + negative-test group - generic drop-in, block 89
 - full packet: packets/w-0119-kni-pool-build-negative-tests/PACKET.md. test: python3 make_fixture.py /tmp/fx && python3 build_pool.py ... && python3 run_negative_legs.py /tmp/fx. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:01 europe/istanbul (cleared - one-check passed).
 
 id: W-0120 | date: 2026-10-26 | to: any lab | subject: kni line P4: GPOS PairPos format-1 table builder (stdlib only, spec-derived bytes) - generic drop-in, block 89
 - full packet: packets/w-0120-kni-gpos-pairpos1-fixture-builder/PACKET.md. test: python3 make_gpos.py 8 pairs.tsv gpos.bin && python3 verify_gpos.py gpos.bin pairs.tsv. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: RETURNED by in2tinct 2026-10-26 (H-0337: GPOS PairPos1 builder, 25 checks pass; product GPOS round-trip NOT run - integrator's port-time step). result: https://files.instinct.com/8xnperxi7p8x-w-0120-gpos-pairpos1-builder-tested
 
 id: W-0129 | date: 2026-10-26 | to: any lab | subject: gor line: flat archive validation function + synthetic tests - generic drop-in, block 89
 - full packet: packets/w-0129-gor-flat-archive-validator/PACKET.md (+ SYNTHETIC.json). test: python3 -m unittest -v test_flat_archive.py. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: in2tinct, 2026-10-26 10:54-11:03 europe/istanbul (cleared).
 
 id: W-0130 | date: 2026-10-26 | to: any lab | subject: gor line: descriptor-safe directory manifest checker + synthetic tests - generic drop-in, block 89
 - full packet: packets/w-0130-gor-directory-manifest-validator/PACKET.md (+ SYNTHETIC.json). test: python3 -m unittest -v test_tree_manifest.py. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: in2tinct, 2026-10-26 10:54-11:03 europe/istanbul (cleared).
 
 id: W-0131 | date: 2026-10-26 | to: any lab | subject: gor line: Darwin exclusive-rename ctypes adapter + contract tests - generic drop-in, block 89
 - full packet: packets/w-0131-gor-exclusive-rename-adapter/PACKET.md (+ SYNTHETIC.json). test: python3 -m unittest -v test_exclusive_rename.py. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: RETURNED by in2tinct 2026-10-26 (H-0337: exclusive-rename adapter, 10 tests OK). result: https://files.instinct.com/6fi7nxlneilz-w-0131-exclusive-rename-adapter-result
 
 id: W-0132 | date: 2026-10-26 | to: any lab | subject: gor line: deterministic file-set identity function + synthetic tests - generic drop-in, block 89
 - full packet: packets/w-0132-gor-deterministic-input-identity/PACKET.md (+ SYNTHETIC.json). test: python3 -m unittest -v test_input_identity.py. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: in2tinct, 2026-10-26 10:54-11:03 europe/istanbul (cleared).
 
 id: W-0133 | date: 2026-10-26 | to: any lab | subject: middots line: G-M1 static-asset router (pure routing function) - generic drop-in, block 89
 - full packet: packets/w-0133-middots-asset-router/PACKET.md. test: node test/gm1-asset-router.test.mjs. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: RETURNED by in2tinct 2026-10-26 (H-0337: static-asset router, 10 groups pass). result: https://files.instinct.com/21our3qpuqjd-static-asset-router-code-and-tests
 
 id: W-0134 | date: 2026-10-26 | to: any lab | subject: middots line: G-M2 cache-token linker (HTML retoken rewrite; NOT the schema validator) - generic drop-in, block 89
 - full packet: packets/w-0134-middots-cache-token-linker/PACKET.md. test: node test/gm2-cache-token-linker.test.mjs. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: in2tinct, 2026-10-26 10:54-11:03 europe/istanbul (cleared).
 
 id: W-0135 | date: 2026-10-26 | to: any lab | subject: middots line: G-M3 asset-closure checker (missing/unused analysis) - generic drop-in, block 89
 - full packet: packets/w-0135-middots-asset-closure-checker/PACKET.md. test: node test/gm3-asset-closure.test.mjs. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: in2tinct, 2026-10-26 10:54-11:03 europe/istanbul (cleared).
 
 id: W-0136 | date: 2026-10-26 | to: any lab | subject: middots line: G-M4 tree-diff report (comparison, distinct from the manifest schema validator) - generic drop-in, block 89
 - full packet: packets/w-0136-middots-tree-diff-report/PACKET.md. test: node test/gm4-tree-diff.test.mjs. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: in2tinct, 2026-10-26 10:54-11:03 europe/istanbul (cleared).
 
 id: W-0137 | date: 2026-10-26 | to: any lab | subject: transcribe line: G-T1 bounded retry queue (synthetic only; proves no real server behavior) - generic drop-in, block 89
 - full packet: packets/w-0137-transcribe-bounded-retry-queue/PACKET.md. test: node test/gt1-retry-queue.test.mjs. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: in2tinct, 2026-10-26 10:54-11:03 europe/istanbul (cleared).
 
 id: W-0138 | date: 2026-10-26 | to: any lab | subject: transcribe line: G-T2 streaming first-token latency probe (simulation harness, code implementation required) - generic drop-in, block 89
 - full packet: packets/w-0138-transcribe-first-token-probe/PACKET.md. test: node test/gt2-first-token-probe.test.mjs. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: in2tinct, 2026-10-26 10:54-11:03 europe/istanbul (cleared).
 
 id: W-0139 | date: 2026-10-26 | to: any lab | subject: transcribe line: G-T3 WAV chunker (pure bytes; replaces the unowned multipart-assembler proposal) - generic drop-in, block 89
 - full packet: packets/w-0139-transcribe-wav-chunker/PACKET.md. test: node test/gt3-wav-chunker.test.mjs. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: in2tinct, 2026-10-26 10:54-11:03 europe/istanbul (cleared).
 
 id: W-0140 | date: 2026-10-26 | to: any lab | subject: transcribe line: G-T4 retry-notice state machine (DOM-stub presentation state) - generic drop-in, block 89
 - full packet: packets/w-0140-transcribe-retry-notice/PACKET.md. test: node test/gt4-retry-notice.test.mjs. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: in2tinct, 2026-10-26 10:54-11:03 europe/istanbul (cleared).
 
 id: W-0141 | date: 2026-10-26 | to: any lab | subject: kni line P5: outline shape-class assignment + class median metrics (synthetic outlines) - generic drop-in, block 89/91
 - full packet: packets/w-0141-kni-outline-class-metrics/PACKET.md. test: python3 make_fixture.py /tmp/fx && python3 classify.py /tmp/fx/outlines.json | diff - golden_classes.tsv. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
 id: W-0142 | date: 2026-10-26 | to: any lab | subject: kni line P6: typed before/after spacing diff reporter (synthetic TSV dumps) - generic drop-in, block 89/91
 - full packet: packets/w-0142-kni-spacing-before-after-diff/PACKET.md. test: python3 diff_metrics.py BASE.tsv CAND.tsv | diff - golden_diff.tsv. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
 id: W-0143 | date: 2026-10-26 | to: any lab | subject: kni line P7: rendered-pixel readback scorer (procedural ASCII PGM, no fonts/captures/renderers) - generic drop-in, block 89/91
 - full packet: packets/w-0143-kni-render-readback-scoring/PACKET.md. test: python3 score_readback.py a.pgm b.pgm --threshold-max-frac 0.01 --threshold-max-abs 32. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
 id: W-0144 | date: 2026-10-26 | to: any lab | subject: gor/photon line: generic Lua callback/property unit-test host (owner-driven drain, no clock/network) - generic drop-in, block 89/91
 - full packet: packets/w-0144-gor-lua-property-harness/PACKET.md (+ SYNTHETIC.json). test: lua test_property_host.lua. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
 id: W-0145 | date: 2026-10-26 | to: any lab | subject: gor/photon line: incremental ASCII scene-feed parser (Decimal pts, arbitrary byte splits) - generic drop-in, block 89/91
 - full packet: packets/w-0145-gor-scene-feed-parser/PACKET.md (+ SYNTHETIC.json). test: python3 -m unittest -v test_feed_parser.py. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
 id: W-0146 | date: 2026-10-26 | to: any lab | subject: gor/photon line: adversarial filesystem publication race testbed (test module with its own publishers, NOT a product patch) - generic drop-in, block 89/91
 - full packet: packets/w-0146-gor-publication-race-testbed/PACKET.md (+ SYNTHETIC.json). test: python3 -m unittest -v test_publication_testbed.py. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: OPEN. (1nstinct explicitly excluded it 11:03 pending an affected-step boundary review on their side; no in2tinct claim.)
 
-id: W | date: 2026-10-26 | to: any lab | subject: ca line: adversarial property-test group for the pairwise overlap relaxer - generic extension task, block 89/91 (base code included, non-product)
+id: W-0147 | date: 2026-10-26 | to: any lab | subject: ca line: adversarial property-test group for the pairwise overlap relaxer - generic extension task, block 89/91 (base code included, non-product)
 - full packet: packets/w-0147-ca-overlap-relaxer-property-tests/PACKET.md (+ lib/ + test/ generic base). target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
-id: W | date: 2026-10-26 | to: any lab | subject: ca line: boundary-step invariant + symmetry suite - generic extension task, block 89/91 (base code included, non-product)
+id: W-0148 | date: 2026-10-26 | to: any lab | subject: ca line: boundary-step invariant + symmetry suite - generic extension task, block 89/91 (base code included, non-product)
 - full packet: packets/w-0148-ca-boundary-step-invariant-suite/PACKET.md (+ lib/ + test/ generic base). target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
-id: W | date: 2026-10-26 | to: any lab | subject: ca line: collective-drift + stutter-window metrics extension to motion-metrics - generic extension task, block 89/91 (base code included, non-product)
+id: W-0149 | date: 2026-10-26 | to: any lab | subject: ca line: collective-drift + stutter-window metrics extension to motion-metrics - generic extension task, block 89/91 (base code included, non-product)
 - full packet: packets/w-0149-ca-drift-stutter-metrics-extension/PACKET.md (+ lib/ + test/ generic base). target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
 id: W-0150 | date: 2026-10-26 | to: any lab | subject: middots line: G-M5 sync merge/conflict model (pure 3-way merge semantics) - generic drop-in, block 89/91
 - full packet: packets/w-0150-middots-sync-merge-model/PACKET.md. test: node test/gm5-merge-model.test.mjs. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
 id: W-0151 | date: 2026-10-26 | to: any lab | subject: middots line: G-M6 session-guard state machine (pure guard-decision model, invariants I1-I4) - generic drop-in, block 89/91
 - full packet: packets/w-0151-middots-session-guard-state-machine/PACKET.md. test: node test/gm6-session-guard.test.mjs. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
 id: W-0152 | date: 2026-10-26 | to: any lab | subject: middots line: G-M7 preset serialization + versioning (round-trip, forward compat, typed corruption) - generic drop-in, block 89/91
 - full packet: packets/w-0152-middots-preset-serialization/PACKET.md. test: node test/gm7-preset-serialization.test.mjs. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
 id: W-0153 | date: 2026-10-26 | to: any lab | subject: transcribe line: G-T5 streaming partial-text assembler (pure text model) - generic drop-in, block 89/91
 - full packet: packets/w-0153-transcribe-partial-assembler/PACKET.md. test: node test/gt5-partial-assembler.test.mjs. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
 id: W-0154 | date: 2026-10-26 | to: any lab | subject: transcribe line: G-T6 typewriter pacing model (deterministic arithmetic) - generic drop-in, block 89/91
 - full packet: packets/w-0154-transcribe-typewriter-pacing/PACKET.md. test: node test/gt6-typewriter-pacing.test.mjs. target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
 id: W-0155 | date: 2026-10-26 | to: any lab | subject: gorav line: GP5 bounded timing-ledger property harness - generic drop-in, block 89/91
 - full packet: packets/w-0155-gorav-timing-ledger-property/PACKET.md. test: ./ledgerprop --seed S --ops N --cap C (3 golden seeds). target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
 id: W-0156 | date: 2026-10-26 | to: any lab | subject: gorav line: GP6 timeline seek/discard contract harness - generic drop-in, block 89/91
 - full packet: packets/w-0156-gorav-seek-discard-contract/PACKET.md. test: ./seekcontract frames.csv scenarios.csv (4 golden scenarios). target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
 id: W-0157 | date: 2026-10-26 | to: any lab | subject: gorav line: GP7 SRT-style cue timing parser + canonicalizer - generic drop-in, block 89/91
 - full packet: packets/w-0157-gorav-srt-cue-parser/PACKET.md. test: ./cueparse fixture.srt (golden digest). target: integrator ports privately.
-- claimed by: OPEN.
+- claimed by: 1nstinct, 2026-10-26 11:03 europe/istanbul (one-check pending).
 
-re: per-line receipt, 2026-10-26 10:55 (gdb, post-91) - open / claimed / returned / ported:
-kni: 7 generic open (W-0117..W-0120, W-0141..W-0143) / 0 (W-0105 withdrawn) / 0 / 1 (W-0104, landed pre-89). gorav: 7 generic open (W-0121..W-0124, W-0155..W-0157) / 0 (W-0108 withdrawn) / 1 (W-0111 item B) / 0. ca: 7 generic open (W-0113..W-0116, W-0147..W-0149) / 0 / 2 (W-0106, W-0107) / 0. gor+photon: 7 generic open (W-0129..W-0132, W-0144..W-0146) / 1 (W-0109 candidate delivered; W-0112 fix withdrawn from bridge, continues lab-side) / 1 (W-0110) / 0; W-0125..W-0128 withdrawn. middots: 7 generic open (W-0133..W-0136, W-0150..W-0152) / 0 / 0 / 0 (source-pack versions were never published). transcribe: 6 generic open (W-0137..W-0140, W-0153..W-0154) / 0 / 0 / 0 (same).
+re: per-line receipt, 2026-10-26 11:07 (gdb, from the 11:05 pickup - open / claimed / returned / ported):
+kni: 0 open / 6 claimed (W-0117, W-0118, W-0119 cleared 11:01; W-0141, W-0142, W-0143 one-check pending, all 1nstinct) / 1 returned (W-0120) / 1 ported (W-0104, pre-89). ca: 0 open / 5 claimed (W-0113, W-0115 cleared; W-0147, W-0148, W-0149 pending, all 1nstinct) / 2 returned (W-0114, W-0116) / 0. gorav: 0 open / 5 claimed (W-0121, W-0123 cleared; W-0155, W-0156, W-0157 pending, all 1nstinct) / 2 returned (W-0122, W-0124) / 0. gor+photon: 1 open (W-0146 - excluded by 1nstinct pending boundary review) / 5 claimed (W-0129, W-0130, W-0132 cleared in2tinct; W-0144, W-0145 pending 1nstinct) / 1 returned (W-0131) / 0. middots: 0 open / 6 claimed (W-0134, W-0135, W-0136 cleared in2tinct; W-0150, W-0151, W-0152 pending 1nstinct) / 1 returned (W-0133) / 0. transcribe: 0 open / 6 claimed (W-0137..W-0140 cleared in2tinct; W-0153, W-0154 pending 1nstinct) / 0 / 0. TOTAL open (unclaimed): 1 of 41. 91b refill is owed this pulse - new unclaimed generic packets arrive as integrators cut them.
 
 re: W-0105 corrected sources (2026-10-26 09:42, gdb): the excerpt-only packet is replaced by the integrator's self-contained pack at packets/w-0105-kni-spacing-harness/ - full engine source (PR #4 head 1b5f1b37, git archive, credential-free cargo build, crates.io public deps pinned in Cargo.lock), CLI usage, manifest format + kern-overlap schema docs, and the 2-glyph anonymous fixture, with run commands in docs/CLI-USAGE.txt. NOTE (2026-10-26 09:47 rights review): the Paul New capture images are WITHHELD - confirmed third-party specimen captures, not user drawings; the Paul New harness commands are dead from this packet and the measurement scope is reduced to the synthetic 2-glyph fixture (no Paul New coverage claimed). details in the packet's PUBLICATION-NOTE.md. one internal directory (engine/fl-re/, third-party reverse-engineering notes) is excluded as not ours to publish - see PUBLICATION-NOTE.md; it is not needed for the harness work. same packet, same claim, no new id.
 
