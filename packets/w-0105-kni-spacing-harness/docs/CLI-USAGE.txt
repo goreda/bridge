@@ -8,5 +8,6 @@ No network services, accounts, or tokens are required; cargo fetches only public
 Fixture commands (from this packet root):
   2-glyph anonymous POST fixture (run_mode full):
     kni-pipeline fixtures/post-2glyph-anon/manifest-anon.txt /tmp/w105-out --style-id Marq-Regular --allow-partial --fallback-export-warn
-  Paul New Regular 132-glyph stage1 harness manifest (run_mode stage1_only):
+  UNAVAILABLE from this public packet (Paul New capture images withheld, third-party specimen rights unverified; measurement is reduced to the synthetic 2-glyph fixture above - no Paul New coverage is claimed):
+#
     kni-pipeline engine/harness/c1/manifest-paulnew-c3on.txt /tmp/w105-pn --style-id PaulNew-Regular
