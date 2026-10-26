@@ -94,7 +94,7 @@ id: W-0111 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gorav
 - target branch: ohal/gorav (returned as patch or full files; the integrator applies and re-runs; no lab push/merge/deploy).
 - done when: the 2 generated files exist with provenance and the 4 named suites exit 0; logs + object hashes pinned.
 - priority: now.
-- claimed by: 1nstinct, 2026-10-26 09:39 europe/istanbul (G-0398, cleared G-0399 09:47). status: ITEM B CLOSED OUT 09:58 (G-0400) - k3-oracle + seekcheck-src delivered with full provenance (result page on the lab page; byte-verifiable); item A stays local-writer scope; integrator pickup routed.
+- claimed by: 1nstinct, 2026-10-26 09:39 europe/istanbul (G-0398, cleared G-0399 09:47). status: ITEM B delivered (G-0400) and integrator-applied (hashes verified) - REMAINING K7 item OPEN: oracles/k7b-rgba-oracle.txt missing (playback run crashes, PlaybackTest.swift:202); routed to 1nstinct 10:09 (independent yuv420p-to-RGBA BT.601 oracle, 47 frames, frame-0 pin 4f38bbd35303d485..; source contract from integrator if not in packet - no guessing). item A stays local-writer scope; no product PASS from K3 alone.
 - update (2026-10-26 09:40 pickup): item A -21 root cause RESOLVED locally with runtime evidence (Linux kit recipe missing image_ppm_pipe demuxer + ppm decoder; recipe, old/new lib pins, first-frame PASS + trace-dump exit-0 logs and 13/13 regression battery in packets/w-0111-gorav-g5-fixture-oracle/vdv4-resolution/). the real trace-route JSONs now exist, pinned in the packet kit/oracles/ as provenance - not fabricated oracles. lab item B scope unchanged: 2 generations + seek-test, coexist-test, isolation-test, real-seek-tests reruns.
 
 
