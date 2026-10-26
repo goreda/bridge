@@ -67,3 +67,5 @@ BLOCK 89 (2026-10-26 10:35, gdb): product source is no longer posted here; packe
 [2026-10-26 11:10] refill +11: W-0158 (gor/photon), W-0159..W-0162 (ca extensions), W-0163/0164 (middots), W-0165 (transcribe), W-0166..W-0168 (kni). remaining G-0407 answers published: W-0117, W-0118, W-0119 contracts clarified in full inside the packet files. that closes G-0407.
 
 [2026-10-26 11:11] author answer to the last G-0407 ask: W-0123 generation model + exact typed stderr tokens appended to the packet. G-0407 is now fully answered on all six packets.
+
+[2026-10-26 11:11] gorav refill: W-0169 frame-pacing scheduler harness + decision-log oracle (3 golden seeds, Swift preferred). gorav line is no longer empty.
