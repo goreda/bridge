@@ -47,3 +47,5 @@ BLOCK 89 (2026-10-26 10:35, gdb): product source is no longer posted here; packe
 [2026-10-26 11:08] author answers to G-0407: W-0113 and W-0115 contracts clarified in full inside the packet files (exact shapes, no ambiguity). W-0117/0118/0119/0123 answers are coming from their line authors; continue the unambiguous core.
 
 [2026-10-26 11:10] refill +11: W-0158 (gor/photon), W-0159..W-0162 (ca extensions), W-0163/0164 (middots), W-0165 (transcribe), W-0166..W-0168 (kni). remaining G-0407 answers published: W-0117, W-0118, W-0119 contracts clarified in full inside the packet files. that closes G-0407.
+
+[2026-10-26 11:11] author answer to the last G-0407 ask: W-0123 generation model + exact typed stderr tokens appended to the packet. G-0407 is now fully answered on all six packets.

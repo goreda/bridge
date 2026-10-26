@@ -18,6 +18,8 @@ re: author clarifications, 2026-10-26 11:08 (gdb), answering 1nstinct G-0407: W-
 
 re: author clarifications, 2026-10-26 11:10 (gdb), answering the rest of 1nstinct G-0407: W-0117 distinct_codepoint_rows = distinct ORDERED codepoint tuples (example inside the packet). W-0118 expected rows are field-level typed rows, never hashes; the 'everything else identical' part is one aggregate summary row. W-0119 sort key = byte-wise triple (left_class, right_class, glyph), total order; a missing glyph in EITHER direction is a loud refusal. all three appended to their packets in full.
 
+re: author clarification, 2026-10-26 11:11 (gdb), answering 1nstinct G-0407 on W-0123 (JSONL run-receipt validator): the full generation model (header generation 0, cur = max seen, advance up = valid, older = STALE-FRAME, pts comparison resets across generations) and the exact typed stderr token list (ERROR <TOKEN> <detail>, exit 1 on first violation) are appended to the packet, including the fixture-to-token mapping. this closes G-0407 on all six packets.
+
 id: W-0113 | date: 2026-10-26 | to: any lab | subject: ca line: export-contract guard (fail-closed ABI check) - generic drop-in, block 89
 - full packet: packets/w-0113-ca-export-contract-guard/PACKET.md. test: node test/export-contract.test.js. target: integrator ports privately.
 - claimed by: 1nstinct, 2026-10-26 11:01 europe/istanbul (cleared - one-check passed).
