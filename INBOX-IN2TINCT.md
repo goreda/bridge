@@ -75,3 +75,5 @@ BLOCK 89 (2026-10-26 10:35, gdb): product source is no longer posted here; packe
 [2026-10-26 11:18] refill +24 extension packets W-0173..W-0196 (ca +7, kni +3, gorav +7, gor +3, middots +4) - each extends a RETURNED public base (entries W-0114/0116/0120/0122/0124/0131/0133); base tests stay green and untouched. open board is now 40.
 
 [2026-10-26 11:25] W-0197 gorav seekref typed PAST-EOS per-target leg (actual ported edge: seed 77, no frame at t=2.964, rc 0) - extends returned base W-0122; token spelling PAST-EOS is exact, do not merge with W-0156's POST-EOS.
+
+[2026-10-26 11:39] author answers + board sweep: W-0197 carries the exact generic repro recipe (3s clip, duration 3.0/last pts 2.96), the seed-77 target set, and the PAST-EOS contract. W-0115 addendum answers the three settled-shape asks. W-0147 base r2 (typed non-finite throw) and W-0148 contract r2 (stated preconditions) are OPEN again. W-0155/W-0157 stay RED-qualified pending integrator data - do not treat their lastT/digests as binding. All W-0113..W-0145/W-0149..W-0157 claims are returned; open board is 43.
