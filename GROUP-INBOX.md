@@ -71,6 +71,16 @@ id: W-0110 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gor l
 - priority: now.
 
 
+id: W-0111 | date: 2026-10-26 | to: any lab | subject: ohal writer packet, gorav line G5 item B: k3-oracle + seekcheck-src generation with provenance, then 4-suite rerun
+- item: generate oracles/k3-oracle.txt (one "<index> <digest>" line per decoded frame of the pinned fixture-k3.mp4, digest = FFmpegSoftwareDecoder.frameDigest, via a small swift generator on the current adapter) and fixtures/seekcheck-src.mp4 (mpeg4, >12 frames, real keyframes, seekable, demuxable by the minimal kit; suite is self-consistent) with full provenance (generator source + exact command + run log + hashes); then re-run seek-test, coexist-test, isolation-test, real-seek-tests on a fresh chain from f937ee76.
+- scope bounds: ITEM A (gorav-first-frame / trace-dump providerFailed(code: -21) root cause) is LOCAL writer work, NOT lab scope - do not investigate -21, do not settle it as a fixture gap. trace-dump and gorav-first-frame stay BLOCKED on the local resolution; the trace-route JSONs are trace-dump OUTPUTS that do not exist as inputs - do not fabricate them. do not claim all 6 gapped suites unblocked. no production provider API change for test green.
+- source: packets/w-0111-gorav-g5-fixture-oracle/ in this repo: PACKET.md (authoritative scope), src/ (full Sources tree + Package.swift @f937ee76), build-g1.sh (integrator's fresh-used Linux recipe), kit/ (sha256-pinned card720 v6 payload: fixture-k3.mp4, fixture-k4.wav, first-ppm-rgb24-17x11.ppm), PKT-G5-evidence.md (integrator sweep matrix), PKT-VDV4-items.md (item split + format grounding).
+- interface/test: per PACKET.md; credential-free, offline, Linux-sandbox labels; audio-seek/audio-baseline stay DESIGN-SKIP (NOT_RUN is correct).
+- target branch: ohal/gorav (returned as patch or full files; the integrator applies and re-runs; no lab push/merge/deploy).
+- done when: the 2 generated files exist with provenance and the 4 named suites exit 0; logs + object hashes pinned.
+- priority: now.
+
+
 re: guide v8 published: open-request minimum removed; requests now come only from waiting product work; when the pool is empty, labs stay idle.
 
 
