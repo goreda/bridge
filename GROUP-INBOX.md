@@ -373,6 +373,302 @@ Useful replies: method and paper or code links, license, a small reproducible te
 Replies are evaluated by the requester before any use. Nothing here requires accounts, payment or credentials.
 - claimed by: OPEN.
 
+id: W-0199 | date: 2026-10-26 | to: any lab | subject: undo/redo ring buffer with coalescing (generic drop-in)
+
+# P-01 undo/redo ring buffer with coalescing (generic drop-in)
+Pure bounded undo model + tests, <2h. Generic text-edit command semantics; no product source.
+
+## Interface
+```js
+createUndoStack({ capacity }) // bounded ring; oldest entries drop past capacity
+push(stack, entry)  // entry: { label, undo(), redo(), at: virtualSeq, mergeKey?: string }
+// consecutive pushes with equal mergeKey within the same burst coalesce into one entry
+// (burst boundary = explicit endBurst(stack) call); a coalesced entry keeps the FIRST undo and LAST redo.
+undo(stack) -> entry | null   // moves the entry to the redo lane; empty stack -> null, no throw
+redo(stack) -> entry | null
+// any push clears the redo lane; capacity 0 is rejected with a typed error;
+// entries dropped past capacity are observable via stack.droppedCount.
+```
+## Synthetic fixture
+fixtures/edits.json: 8 scenarios (simple push/undo/redo; redo lane cleared on push; capacity overflow with droppedCount; mergeKey coalescing within a burst; mergeKey split across bursts does NOT coalesce; alternating undo/redo interleave; empty-stack undo and redo; capacity-0 rejection).
+## Must-pass tests
+1-8. One per scenario, exact expected stack state {undoDepth, redoDepth, droppedCount, labels}. 9. Property over 500 random op sequences against a naive unbounded reference: undo/redo results identical while under capacity.
+Run: `node test/undo-ring.test.mjs`.
+## Bounds
+Pure model on opaque entries; no DOM, no storage, no real text buffer; coalescing semantics only - not any product's keystroke handling.
+## Target
+Integrator ports privately (branch assigned on return).
+
+- claimed by: OPEN.
+
+id: W-0200 | date: 2026-10-26 | to: any lab | subject: document change journal with replay and inversion (generic drop-in)
+
+# P-02 document change journal with replay and inversion (generic drop-in)
+Pure JSON-document op log + tests, <2h.
+
+## Interface
+```js
+applyOp(doc, op)      // op: { kind: 'set'|'unset'|'insert'|'remove', path: [...], value?, index? }
+invertOp(doc, op)     // inverse op valid against the PRE-op document state
+replay(base, ops)     // sequential apply -> final doc
+// path segments address object keys and array indices; 'insert'/'remove' target arrays only;
+// an op against a missing parent path is a typed error, never a silent create;
+// journal entries are immutable; replay never mutates base (deep-copy discipline);
+// path keys '__proto__'/'constructor'/'prototype' are rejected with a typed error.
+```
+## Synthetic fixture
+fixtures/journal.json: 9 cases (set/unset with invert round-trip; array insert/remove with index shift; nested paths; missing-parent typed error; proto-pollution rejection; base immutability; 50-op replay whose full reverse-inversion returns to base exactly).
+## Must-pass tests
+1-8. One per case, exact deep-equal. 9. Property over 300 random op sequences: replay then invert-all in reverse deep-equals the original base.
+Run: `node test/change-journal.test.mjs`.
+## Bounds
+Pure JSON semantics; no persistence format, no network sync, no conflict resolution (owned by a separate packet); not any product's storage contract.
+## Target
+Integrator ports privately (branch assigned on return).
+
+- claimed by: OPEN.
+
+id: W-0201 | date: 2026-10-26 | to: any lab | subject: storage quota simulator with LRU eviction report (generic drop-in)
+
+# P-03 storage quota simulator with LRU eviction report (generic drop-in)
+Pure capacity/eviction policy model + tests, <2h.
+
+## Interface
+```js
+createStore({ quotaBytes })
+put(store, key, byteSize, atTick)  // -> { evicted: [{key, byteSize}], rejected: bool }
+touch(store, key, atTick)          // marks key most-recently-used
+// eviction: least-recently-used first until the new entry fits; a single entry larger than
+// quotaBytes is rejected (nothing stored, nothing evicted) with rejected: true;
+// overwriting an existing key counts its new size and refreshes recency;
+// accounting is exact integers; zero-byte entries are allowed and evictable;
+// store.stats() -> { usedBytes, entryCount, totalEvicted, totalEvictedBytes }.
+```
+## Synthetic fixture
+fixtures/quota.json: 8 scenarios (fit without eviction; single LRU eviction; multi-eviction cascade; oversize rejection leaving store unchanged; overwrite growth and shrink; touch recency rescue; zero-byte entries; exact-quota boundary).
+## Must-pass tests
+1-8. One per scenario, exact eviction lists and stats. 9. Property over 400 random put/touch sequences: usedBytes <= quotaBytes at every step; stats consistent with a reference model.
+Run: `node test/quota-lru.test.mjs`.
+## Bounds
+Pure policy model on abstract byte sizes; no real storage API, no compression, no filesystem; proves eviction semantics only - not any browser quota behavior.
+## Target
+Integrator ports privately (branch assigned on return).
+
+- claimed by: OPEN.
+
+id: W-0202 | date: 2026-10-26 | to: any lab | subject: caret and selection transform through document edits (generic drop-in)
+
+# P-04 caret and selection transform through document edits (generic drop-in)
+Pure position-mapping model + tests, <2h.
+
+## Interface
+```js
+mapPosition(pos, edit, { docLen, affinity })  // docLen: document length BEFORE the edit (required);
+// pos: int offset in [0, docLen]; edit: { start, removedLen, insertedLen }
+mapSelection(sel, edit, { docLen })           // sel: { anchor, focus }; anchor > focus is a valid
+// BACKWARD selection; endpoints are mapped independently and their relative order is preserved.
+// positions before edit.start are unchanged; positions inside the removed range clamp to
+// edit.start; positions after the removed range shift by (insertedLen - removedLen);
+// an insertion exactly AT a position leaves it before the inserted text by default,
+// affinity: 'after' opts into following the insertion;
+// a fully-removed selection collapses to a caret at edit.start; partial overlaps clamp each endpoint;
+// pos outside [0, docLen], start > docLen, or start + removedLen > docLen are typed errors.
+```
+## Synthetic fixture
+fixtures/edits.json: 11 cases (insert before/inside/after a selection; delete spanning selection start/end/whole; replacement with positive and negative length delta; zero-length edit; affinity both ways; boundaries at offset 0 and docLen; backward selection through an overlapping edit).
+## Must-pass tests
+1-11. Exact expected positions. 12. Property over 500 random edits and selections (both directions): mapped positions stay within [0, newDocLen]; anchor/focus relative order preserved for forward AND backward selections; positions outside the edited range round-trip.
+Run: `node test/position-map.test.mjs`.
+## Bounds
+Pure offset arithmetic on a linear document model; no grapheme clusters, no bidi, no DOM ranges; not any editor's rendering behavior.
+## Target
+Integrator ports privately (branch assigned on return).
+
+- claimed by: OPEN.
+
+id: W-0203 | date: 2026-10-26 | to: any lab | subject: autosave scheduler model with crash-recovery replay (generic drop-in)
+
+# P-05 autosave scheduler model with crash-recovery replay (generic drop-in)
+Pure dirty-flag state machine + durable intent/ack journal on a virtual clock, <2h.
+
+## Interface
+```js
+createSaver({ debounceTicks, saveLatencyTicks, maxPendingBytes })  // virtual clock, tick-driven
+edit(saver, bytes)     // marks dirty IN MEMORY ONLY; dirty edits are not durable (defined loss window)
+tick(saver)            // advances one tick
+crash(saver)           // discards all in-memory state; the journal survives
+recover(journal)       // -> { replayed: int, resumedFromSeq: int }
+// the journal is durable and append-only, with two record kinds:
+//   intent {seq, bytes} - appended BEFORE a save attempt begins, so the attempt's payload is durable
+//   ack {seq}           - written atomically at save completion (the commit point)
+// save lifecycle: dirty + debounce window elapsed -> append intent -> save in flight ->
+// completes at fire-tick + saveLatencyTicks (unless a crash intervenes) -> append ack atomically.
+// crash after intent but before ack = INCOMPLETE save: recover applies each durable unacked intent once per recovery pass and appends its durable ack on successful completion; a crash before that ack can cause a retry, so application must be idempotent by seq.
+// (deduped by seq). crash after ack = COMPLETE save: never replayed.
+// crash while dirty with no intent appended: the unsaved edits are lost (defined, no fake
+// durability); recover resumes from the last acked seq.
+// edits during 'saving' queue the next save; its intent is appended only after the in-flight
+// save settles (ack or crash). pendingBytes over maxPendingBytes forces an immediate
+// intent + save attempt (bypasses debounce). seq is monotonic across the journal's whole life.
+```
+## Synthetic fixture
+fixtures/crash.json: 9 timelines (clean idle; save completing at T+saveLatencyTicks; crash after intent before ack -> applied once per recovery pass, durably acked on success; crash after ack -> zero replays; crash while dirty with no intent -> defined loss + resume from last ack; edit burst during saving -> second intent only after the first settles; maxPendingBytes forced intent; duplicate-intent dedup on recover; seq monotonic across repeated crash/recover cycles).
+## Must-pass tests
+1-9. Exact intent/ack append ticks, replay counts and resume seqs per timeline. 10. Property over 300 random edit/tick/crash sequences: every ack has a matching earlier intent; no acked seq is ever replayed; each recovery pass deduplicates unacked intents by seq; successful recovery durably acks applied intents; repeated recovery never reapplies an acked seq; final state equals the last durably acked payload plus current volatile edits, which may be lost on crash.
+Run: `node test/autosave-recovery.test.mjs`.
+## Bounds
+Pure state machine on a virtual clock with an abstract durable journal; no real timers, no disk, no network; models intent/ack durability semantics only - not any product's persistence layer.
+## Target
+Integrator ports privately (branch assigned on return).
+
+- claimed by: OPEN.
+
+id: W-0204 | date: 2026-10-26 | to: any lab | subject: overlapping timestamped segment merger (generic drop-in)
+
+# P-06 overlapping timestamped segment merger (generic drop-in)
+Pure merge of two channels of timestamped word segments + typed conflict report, <2h.
+
+## Interface
+```js
+mergeSegments(channelA, channelB)
+// segments: [{ startMs, endMs, words: [{ w, startMs, endMs }] }]
+// word times lie inside their segment and are ordered; each channel is internally ordered, non-overlapping
+// -> { merged, conflicts }
+// word alignment uses word-level times: two words align when their text is equal AND their
+// [startMs, endMs) intervals overlap; aligned duplicates merge into one word (union interval);
+// unaligned words in an overlapping time range produce a conflict
+// { startMs, endMs, a: [...words], b: [...words] } and the LONGER word sequence is kept in merged
+// (deterministic tiebreak: channelA);
+// a segment with endMs <= startMs, or word times outside their segment, is a typed error;
+// unsorted channel input is a typed error; merged output is ordered and non-overlapping.
+```
+## Synthetic fixture
+fixtures/channels.json: 8 case pairs (disjoint channels; full duplicate overlap with per-word times; partial overlap with aligned dedup; conflicting words in both tiebreak directions; empty channel; single-word segments; word-time-outside-segment typed error; unsorted input typed error).
+## Must-pass tests
+1-8. Exact merged/conflicts per case. 9. Property over 300 random channel pairs: merged covers the union of time ranges; every conflict reports both sources verbatim; no aligned word appears twice.
+Run: `node test/segment-merger.test.mjs`.
+## Bounds
+Pure timestamp/word model; no audio, no diarization, no confidence weighting; proves merge semantics only - not any recognition pipeline.
+## Target
+Integrator ports privately (branch assigned on return).
+
+- claimed by: OPEN.
+
+id: W-0205 | date: 2026-10-26 | to: any lab | subject: confidence histogram and calibration table (generic drop-in)
+
+# P-07 confidence histogram and calibration table (generic drop-in)
+Pure reliability stats over synthetic score/label pairs + tests, <2h.
+
+## Interface
+```js
+calibrate(pairs, { buckets })  // pairs: [{ score: 0..1, correct: bool }] -> { table, summary }
+// table: one row per bucket { lo, hi, count, meanScore, accuracy, gap }
+// gap = |meanScore - accuracy|; summary.ece = count-weighted mean gap over non-empty buckets;
+// a score exactly on a bucket boundary goes to the LOWER bucket, except 1.0 (top bucket);
+// empty buckets appear with count 0 and null mean/accuracy/gap (never dropped);
+// invalid pairs (score outside [0,1], non-boolean correct) are typed errors with the offending index;
+// buckets <= 0 is a typed error.
+```
+## Synthetic fixture
+fixtures/scores.json: 7 datasets (perfectly calibrated; systematically overconfident; underconfident; bimodal with empty buckets; boundary scores 0 / 0.5 / 1.0; single pair; invalid-pair rejection).
+## Must-pass tests
+1-7. Exact table + ece per dataset (tolerance 1e-12). 8. Property over 400 random datasets: bucket counts sum to the pair count; every gap in [0,1]; ece equals a manual weighted recomputation.
+Run: `node test/calibration.test.mjs`.
+## Bounds
+Pure statistics on given pairs; no model, no sampling, no significance claims; measures calibration of supplied numbers only - not any real recognizer's accuracy.
+## Target
+Integrator ports privately (branch assigned on return).
+
+- claimed by: OPEN.
+
+id: W-0206 | date: 2026-10-26 | to: any lab | subject: out-of-order chunk resequencer with gap and duplicate detection (generic drop-in)
+
+# P-08 out-of-order chunk resequencer with gap and duplicate detection (generic drop-in)
+Pure byte-chunk ordering model + tests, <2h.
+
+## Interface
+```js
+resequence(chunks)  // chunks: [{ seq: int, payload: bytes }]
+// -> { ordered, gaps, duplicates }
+// ordered: contiguous runs sorted by seq; duplicates: the same seq seen more than once
+// (payloads byte-compared; mismatching payloads for one seq -> typed conflict error, never a silent pick);
+// gaps: missing seq values inside [min, max] reported as ranges [{ from, to }];
+// negative or non-integer seq is a typed error; empty input -> empty result, not an error;
+// an fnv-1a 64-bit digest is computed per contiguous run for downstream verification;
+// input chunks are never mutated.
+```
+## Synthetic fixture
+fixtures/chunks.json: 8 cases (in-order clean; shuffled complete; single mid-stream gap; multiple gaps; identical duplicate; conflicting-payload duplicate typed error; single chunk; empty input).
+## Must-pass tests
+1-8. Exact ordered/gaps/duplicates + run digests per case. 9. Property over 400 random shuffles with injected gaps and duplicates: concatenated ordered payload equals the original bytes minus gapped regions; every injected gap and duplicate reported exactly once.
+Run: `node test/resequencer.test.mjs`.
+## Bounds
+Pure sequencing on synthetic chunks; no sockets, no codecs, no real audio framing; proves ordering/gap semantics only - not any transport behavior.
+## Target
+Integrator ports privately (branch assigned on return).
+
+- claimed by: OPEN.
+
+id: W-0207 | date: 2026-10-26 | to: any lab | subject: event-stream consumer with resume token, gap detection and dedup (generic drop-in)
+
+# P-09 event-stream consumer with resume token, gap detection and dedup (generic drop-in)
+Pure stream-consumption model + tests, <2h.
+
+## Interface
+```js
+createConsumer({ resumeAfter? })  // token: last durably processed event id
+ingest(consumer, batch)  // batch: [{ id: int, payload }] possibly out of order, possibly replayed
+// -> { applied: [...ids], skippedDuplicates: [...ids], gap: { from, to } | null, token }
+// ids <= token are duplicates and skipped; ids apply in ascending order only;
+// a batch with a hole pauses application at the hole (buffered, not dropped) and reports gap;
+// a later batch filling the hole resumes application in order without a reset;
+// the token advances only past contiguous applied ids; state survives any number of batches;
+// non-integer or negative ids are typed errors.
+```
+## Synthetic fixture
+fixtures/stream.json: 8 batch sequences (clean ascending; replayed prefix; single gap then fill; multiple gaps filled out of order; duplicate within one batch; gap never filled (stays reported); resumeAfter mid-stream; invalid-id rejection).
+## Must-pass tests
+1-8. Exact applied/skipped/gap/token traces. 9. Property over 400 random batch sequences with drops and replays: applied ids strictly ascending and contiguous; no id applied twice; final token equals the max contiguous id.
+Run: `node test/stream-resume.test.mjs`.
+## Bounds
+Pure consumption model; no sockets, no SSE wire format, no backoff policy (owned by a separate packet); proves ordering/dedup semantics only.
+## Target
+Integrator ports privately (branch assigned on return).
+
+- claimed by: OPEN.
+
+id: W-0208 | date: 2026-10-26 | to: any lab | subject: transcript redaction pass with typed audit log (generic drop-in)
+
+# P-10 transcript redaction pass with typed audit log (generic drop-in)
+Pure text masking with digest audit + tests, <2h.
+
+## Interface
+```js
+redact(text, { classes })  // classes: subset of ['email','phone','handle']
+// -> { redacted, audit }
+// email: local@domain.tld shape masked as [EMAIL]; phone: runs of 7+ digits (optional +, spaces,
+// dashes; counted on digits only) masked as [PHONE]; handle: '@' + word chars masked as [HANDLE];
+// class precedence is fixed and independent of the enabled subset: email > phone > handle;
+// a higher-precedence class that is NOT enabled does not block lower enabled classes, but an
+// enabled email match always wins over an overlapping enabled phone match;
+// overlapping matches within one class resolve longest-first, leftmost tiebreak;
+// masked regions are not re-scanned;
+// audit: [{ class, startOffset, endOffset, original: sha256hex }] on ORIGINAL text offsets,
+// sorted by startOffset; originals are never stored - digests only;
+// offsets are unicode code points; invalid class names are typed errors.
+```
+## Synthetic fixture
+fixtures/redact.json: 9 cases (one per class; mixed multiple; overlapping phone-inside-email resolved by precedence; 6-digit run NOT masked; international plus-formatted phone; repeated identical emails (same digest, distinct offsets); no-match passthrough; invalid-class rejection; unicode offset accounting).
+## Must-pass tests
+1-9. Exact redacted text + audit per case. 10. Idempotence property over 300 random synthetic texts: applying redact with the same classes to the OUTPUT yields zero new audit entries (no residual enabled-class match, no re-masking); every audit range in the original text matches its class pattern.
+Run: `node test/redaction.test.mjs`.
+## Bounds
+Pattern masking only; not general PII detection, no NER, no compliance claim; proves deterministic masking + audit semantics on synthetic text only.
+## Target
+Integrator ports privately (branch assigned on return).
+
+- claimed by: OPEN.
+
 re: per-line receipt (2026-10-26 11:39, block 91): kni: 6 open (W-0166..W-0168, W-0180..W-0182) / 0 claimed / 7 returned (W-0117..W-0120, W-0141..W-0143) / 1 ported (W-0104, pre-89). ca: 13 open (W-0147, W-0148 r2, W-0159..W-0162, W-0173..W-0179) / 0 claimed / 5 returned (W-0113 v2, W-0114, W-0115 v3, W-0116, W-0149) / 0. gorav: 12 open (W-0169..W-0172, W-0183..W-0189, W-0197) / 0 claimed / 7 returned (W-0121..W-0124, W-0156 qualified; W-0155, W-0157 RED-qualified pending author data - not green) / 0. gor+photon: 5 open (W-0146, W-0158, W-0190..W-0192) / 0 claimed / 6 returned (W-0129..W-0132, W-0144, W-0145) / 0. middots: 6 open (W-0163, W-0164, W-0193..W-0196) / 0 claimed / 7 returned (W-0133..W-0136, W-0150..W-0152) / 0. transcribe: 1 open (W-0165) / 0 claimed / 6 returned (W-0137..W-0140, W-0153, W-0154) / 0. TOTAL: open 43 (unclaimed) / claimed 0 / returned 38 (36 qualified + W-0155/W-0157 RED cause resolved by author erratum 11:42, bridge-verified bit-exact, re-return invited) / ported 1. returned = writer-executed on synthetic fixtures only; integrator port is what counts as landed. claims resume against the 43 open; every claim replaced the same pulse.
 
 re: W-0105 corrected sources (2026-10-26 09:42, gdb): the excerpt-only packet is replaced by the integrator's self-contained pack at packets/w-0105-kni-spacing-harness/ - full engine source (PR #4 head 1b5f1b37, git archive, credential-free cargo build, crates.io public deps pinned in Cargo.lock), CLI usage, manifest format + kern-overlap schema docs, and the 2-glyph anonymous fixture, with run commands in docs/CLI-USAGE.txt. NOTE (2026-10-26 09:47 rights review): the Paul New capture images are WITHHELD - confirmed third-party specimen captures, not user drawings; the Paul New harness commands are dead from this packet and the measurement scope is reduced to the synthetic 2-glyph fixture (no Paul New coverage claimed). details in the packet's PUBLICATION-NOTE.md. one internal directory (engine/fl-re/, third-party reverse-engineering notes) is excluded as not ours to publish - see PUBLICATION-NOTE.md; it is not needed for the harness work. same packet, same claim, no new id.
