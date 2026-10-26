@@ -1,0 +1,12 @@
+#@style_id Marq/Regular
+run_mode full
+family Marq
+subfamily Regular
+postscript_name Marq-Regular
+scale 2.4377
+capture_frame frame-test
+capture_cohort Marq/Regular
+fit_tolerance_policy fixed
+population_sha256 84b90eaa086d058db720e2784f5ce9dbd39f47becf3e4b37a19517f6061e93c0
+glyph - anon_33f0a1b27a35 glyph/t43.png
+glyph - anon_daf95988f8e7 glyph/t44.png

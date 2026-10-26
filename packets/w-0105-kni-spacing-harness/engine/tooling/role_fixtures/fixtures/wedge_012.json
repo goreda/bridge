@@ -1,0 +1,1 @@
+{"contours": [{"nodes": [[-300.0, 0.0], [0.0, 0.0], [293.4442802201417, 62.3735072453278], [0.0, -400.0]], "segs": [["L"], ["L"], ["L"], ["L"]], "geometric_classes": [{"node": 1, "geometric_class": "corner", "turn_deg": 12.0}], "flat": [{"seg": 0, "class": "baseline", "y": 0.0}]}]}

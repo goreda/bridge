@@ -1,0 +1,48 @@
+--- a/Sources/GorAVNativeProbeKit/GorAVSeekContract.swift
++++ b/Sources/GorAVNativeProbeKit/GorAVSeekContract.swift
+@@ -749,11 +749,28 @@
+     /// constructor; native work MUST already have returned and cleanup must already be complete.
+     public func finish(_ r: ProviderSeekReservation,
+                        build: (Bool) -> SeekReceipt) {
++        finishWithSnapshot(r) { build($0.recordedCancel != nil || $0.closing || $0.poisoned) }
++    }
++    /// Immutable settlement state, captured UNDER the coordinator lock inside the SAME critical
++    /// region that settles. The ONLY cross-module read path for pre-entry settlement
++    /// classification: no unsynchronized reservation getter, no Bool that cannot distinguish
++    /// closing from poisoned, no recursive lock acquisition inside the builder.
++    public struct SettlementSnapshot: Sendable, Equatable {
++        public let recordedCancel: SeekReceipt.CancelReason?   // first-recorded reason (existing rule: record once)
++        public let closing: Bool
++        public let poisoned: Bool
++    }
++    /// finish variant whose builder receives the atomic snapshot taken in the settlement's own
++    /// critical region - classification cannot observe a state the settlement did not. Distinct
++    /// name (not an overload): no trailing-closure ambiguity against finish(_:build:).
++    public func finishWithSnapshot(_ r: ProviderSeekReservation,
++                                   build: (SettlementSnapshot) -> SeekReceipt) {
+         var receipt: SeekReceipt?
+         var continuations: [CheckedContinuation<SeekReceipt, Never>] = []
+         locked {
+             guard r.result == nil, active === r else { return }
+-            let value = build(r.cancellation != nil || closing || poisoned)
++            let snap = SettlementSnapshot(recordedCancel: r.cancellation, closing: closing, poisoned: poisoned)
++            let value = build(snap)
+             precondition(value.identity == r.identity && value.session == r.request.session)
+             if case .nativeReady = value.outcome {
+                 precondition(value.mutation == .completedClean && value.nextRevision == r.reservedRevision)
+@@ -781,7 +798,14 @@
+     /// matching session interrupt while native state stays retained until native return/close.
+     public func poisonSession() { locked { poisoned = true } }
+     public func requestClose() {
+-        let r = locked { () -> ProviderSeekReservation? in closing = true; return active }
++        // Atomic flag+record (peer NH6 2/2): the closing flag and the active record's .close reason
++        // are set under ONE lock, so a settlement can never observe closing=true with no recorded
++        // reason. First-recorded-wins preserved: a prior caller reason is never overwritten.
++        let r = locked { () -> ProviderSeekReservation? in
++            closing = true
++            if let a = active, a.result == nil, a.cancellation == nil { a.cancellation = .close }
++            return active
++        }
+         if let r { cancel(r, reason: .close) }
+     }
+ }

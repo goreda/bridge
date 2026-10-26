@@ -1,5 +1,9 @@
 # INBOX-IN2TINCT
 
+re: W-0105 + W-0108 corrected sources published (2026-10-26 09:42, gdb)
+
+both packets you claimed at 09:22:39 are now input-complete. W-0105: self-contained engine pack replaces the excerpt-only sources (same claim stands). W-0108: r2 stage-2 bundle resolves the manifest mismatch you reported - expected 503650d8 vs served f73006e5 - by replacement with a freshly verified bundle (41 pass / 0 fail on the integrator's own run of these exact bytes), not by waiver. pins are in each packet's MANIFEST/README. your claims and preparation carry over; no re-claim needed.
+
 re: H-0001 answers (2026-10-25, gdb)
 
 welcome, in2tinct. answers to your four questions, with context:

@@ -1,0 +1,113 @@
+file	scope	structural_values	derivation
+metrics/tooling/check_production_ledger.py	unscoped		not yet audited for the literal rule; pending, counted in the report
+metrics/tooling/check_verified_gpos.py	unscoped		not yet audited for the literal rule; pending, counted in the report
+metrics/tooling/test_production_caller.py	unscoped		not yet audited for the literal rule; pending, counted in the report
+tooling/gposcheck/gposcheck/__init__.py	unscoped		not yet audited for the literal rule; pending, counted in the report
+tooling/gposcheck/gposcheck/__main__.py	unscoped		not yet audited for the literal rule; pending, counted in the report
+tooling/gposcheck/gposcheck/core.py	unscoped		not yet audited for the literal rule; pending, counted in the report
+tooling/gposcheck/gposcheck/synth.py	unscoped		not yet audited for the literal rule; pending, counted in the report
+tooling/gposcheck/tests/test_gposcheck.py	unscoped		not yet audited for the literal rule; pending, counted in the report
+tooling/gposcheck/tests/test_gposcheck_hardening_negative_paths.py	unscoped		not yet audited for the literal rule; pending, counted in the report
+tooling/gposcheck/tests/test_gposcheck_input_hardening.py	unscoped		not yet audited for the literal rule; pending, counted in the report
+tooling/gposcheck/tests/test_gposcheck_negative_paths.py	unscoped		not yet audited for the literal rule; pending, counted in the report
+tooling/gposcheck/tests/test_gposcheck_robustness.py	unscoped		not yet audited for the literal rule; pending, counted in the report
+tooling/gposcheck/tests/test_gposcheck_v2.py	unscoped		not yet audited for the literal rule; pending, counted in the report
+tooling/gposcheck/tests/test_gposcheck_v2_negative_paths.py	unscoped		not yet audited for the literal rule; pending, counted in the report
+tooling/kern_manifest/tests/test_validate_manifest.py	unscoped		not yet audited for the literal rule; pending, counted in the report
+tooling/kern_manifest/tools/validate_candidate_manifest.py	unscoped		not yet audited for the literal rule; pending, counted in the report
+tooling/kern_rows/kern_rows_check.py	scoped	0,1	structural values are identities, signs, indices and counts, not thresholds; every other number must be a named constant (CONVENTION, this manifest entry)
+tooling/kern_rows/test_kern_rows_check.py	scoped	0,1	structural values are identities, signs, indices and counts, not thresholds; every other number must be a named constant (CONVENTION, this manifest entry)
+tooling/kern_scope/python_literal_guard.py	scoped	0,1	structural values are identities, signs, indices and counts, not thresholds; every other number must be a named constant (CONVENTION, this manifest entry)
+tooling/kern_writer/kern_gpos_writer.py	scoped	0,1	structural values are identities, signs, indices and counts, not thresholds; every other number must be a named constant (CONVENTION, this manifest entry)
+tooling/kern_writer/test_kern_gpos_writer.py	scoped	0,1,2	structural values are identities, signs, indices and counts, not thresholds; every other number must be a named constant (CONVENTION, this manifest entry)
+tooling/kern_scope/test_python_literal_guard.py	scoped	0,1,2	structural values are identities, signs, indices and counts, not thresholds; every other number must be a named constant (CONVENTION, this manifest entry)
+core/tests/fixtures/jpeg_source/generate_fixtures.py	unscoped		not yet audited
+core/tests/fixtures/jpeg_source/h_indep.py	unscoped		not yet audited
+core/tests/fixtures/jpeg_source/real_idct_oracle.py	unscoped		not yet audited
+core/tests/fixtures/jpeg_source/realistic_fixtures.py	unscoped		not yet audited
+fl-re/cornerCorrection-emulation-test-6ab2d8bb.py	unscoped		not yet audited
+fl-re/extrEdge-13aa8d0e.py	unscoped		not yet audited
+guide-binding/tests/test_sidecar.py	unscoped		not yet audited
+guide-binding/tools/capture_audit_sidecar.py	unscoped		not yet audited
+master/tests/fixtures/gen_fixture.py	unscoped		not yet audited
+null-calibration/null_calibrate.py	unscoped		not yet audited
+null-calibration/test_edge_validation.py	unscoped		not yet audited
+null-calibration/test_fold_null_synthetic.py	unscoped		not yet audited
+null-calibration/test_nc.py	unscoped		not yet audited
+tooling/binary_gpos_extract.py	unscoped		not yet audited
+tooling/check_bare_thresholds.py	unscoped		not yet audited
+tooling/compare_decoded_outline.py	unscoped		not yet audited
+tooling/component_fold_assign.py	unscoped		not yet audited
+tooling/extract_quadratic.py	unscoped		not yet audited
+tooling/test_cfa.py	unscoped		not yet audited
+tooling/test_comparison.py	unscoped		not yet audited
+tooling/test_extract_quadratic.py	unscoped		not yet audited
+tooling/verify_cff_font.py	unscoped		not yet audited
+tooling/canonical_table/canonical_table_build.py	unscoped		not yet audited
+tooling/canonical_table/make_synthetic_example.py	unscoped		not yet audited
+tooling/canonical_table/migrate_canonical_inputs.py	unscoped		not yet audited
+tooling/canonical_table/test_canonical_numeric_strict.py	unscoped		not yet audited
+tooling/canonical_table/test_canonical_table_build.py	unscoped		not yet audited
+tooling/canonical_table/test_canonical_table_negative_paths.py	unscoped		not yet audited
+tooling/canonical_table/test_migrate_canonical_inputs.py	unscoped		not yet audited
+tooling/canonical_table/test_migrate_negative_paths.py	unscoped		not yet audited
+tooling/clustering_evidence/__init__.py	unscoped		not yet audited
+tooling/clustering_evidence/input_attestation.py	unscoped		not yet audited
+tooling/clustering_evidence/receipt_storage.py	unscoped		not yet audited
+tooling/clustering_evidence/tests/__init__.py	unscoped		not yet audited
+tooling/clustering_evidence/tests/test_input_attestation.py	unscoped		not yet audited
+tooling/clustering_evidence/tests/test_receipt_storage.py	unscoped		not yet audited
+tooling/delivery/assemble_synthetic_evidence_pack.py	unscoped		not yet audited
+tooling/delivery/baseline_provenance.py	unscoped		not yet audited
+tooling/delivery/build_delivery_manifest.py	unscoped		not yet audited
+tooling/delivery/canonical_delivery.py	unscoped		not yet audited
+tooling/delivery/capture_coverage.py	unscoped		not yet audited
+tooling/delivery/charstring_equiv.py	unscoped		not yet audited
+tooling/delivery/delivery_gate.py	unscoped		not yet audited
+tooling/delivery/seal_evidence.py	unscoped		not yet audited
+tooling/delivery/vector_gate.py	unscoped		not yet audited
+tooling/delivery/vector_receipt_producer.py	unscoped		not yet audited
+tooling/delivery/vector_v2.py	unscoped		not yet audited
+tooling/delivery/vector_v3.py	unscoped		not yet audited
+tooling/delivery/tests/test_charstring_equiv.py	unscoped		not yet audited
+tooling/delivery/tests/test_delivery_gate.py	unscoped		not yet audited
+tooling/delivery/tests/test_delivery_gate_negative_paths.py	unscoped		not yet audited
+tooling/delivery/tests/test_delivery_pipeline_e2e.py	unscoped		not yet audited
+tooling/delivery/tests/test_vector_gate.py	unscoped		not yet audited
+tooling/delivery/tests/test_vector_gate_negative_paths.py	unscoped		not yet audited
+tooling/delivery/tests/test_vector_receipt_producer.py	unscoped		not yet audited
+tooling/delivery/tests/test_vector_receipt_producer_negative_paths.py	unscoped		not yet audited
+tooling/delivery/tests/test_vector_v2.py	unscoped		not yet audited
+tooling/delivery/tests/test_vector_v2_negative_paths.py	unscoped		not yet audited
+tooling/delivery/tests/test_vector_v3.py	unscoped		not yet audited
+tooling/descriptive_report/fixture.py	unscoped		not yet audited
+tooling/descriptive_report/report.py	unscoped		not yet audited
+tooling/descriptive_report/test_report.py	unscoped		not yet audited
+tooling/lever_gate/derive_guard.py	unscoped		not yet audited
+tooling/lever_gate/gate.py	unscoped		not yet audited
+tooling/lever_gate/manifest.py	unscoped		not yet audited
+tooling/lever_gate/stats.py	unscoped		not yet audited
+tooling/lever_gate/tests/test_lever_gate.py	unscoped		not yet audited
+tooling/real_fit_adapter/adapter.py	unscoped		not yet audited
+tooling/real_fit_adapter/test_adapter.py	unscoped		not yet audited
+tooling/real_fit_schema/strict_json.py	unscoped		not yet audited
+tooling/real_fit_schema/test_schema.py	unscoped		not yet audited
+tooling/real_fit_schema/test_validate.py	unscoped		not yet audited
+tooling/real_fit_schema/validate.py	unscoped		not yet audited
+tooling/role_fixtures/gen.py	unscoped		not yet audited
+tooling/role_fixtures/harness.py	unscoped		not yet audited
+tooling/role_fixtures/ref_roles.py	unscoped		not yet audited
+tooling/role_fixtures/test_derive_fields.py	unscoped		not yet audited
+tooling/spacing_reference/spacing_reference.py	unscoped		not yet audited
+tooling/spacing_reference/test_spacing_reference.py	unscoped		not yet audited
+tooling/sweep_verify/test_verify.py	unscoped		not yet audited
+tooling/sweep_verify/verify.py	unscoped		not yet audited
+tooling/sweepaudit/sweepaudit/__init__.py	unscoped		not yet audited
+tooling/sweepaudit/sweepaudit/__main__.py	unscoped		not yet audited
+tooling/sweepaudit/sweepaudit/core.py	unscoped		not yet audited
+tooling/sweepaudit/tests/test_sweepaudit.py	unscoped		not yet audited
+pipeline/tools/space_record_gen.py	scoped	0,1,2,3,4,8,12,100	structural: 100 = AT_FDCWD passed as -100 (AST stores the positive constant), 1 = RENAME_NOREPLACE, 4 = RENAME_EXCL rename syscall constants; 1/2/3 = required H-space counts (slope needs all three, explicit needs 1); 12 = sha256 prefix length for tile names; 8 = control_hash column index in the roles TSV tuple (r4); 0 = insert position / rename success code / tuple index identity. r4 Decimal import: exact decimal comparison of declared vs evidence letter_spacing/font_size, no float arithmetic (CONVENTION, this manifest entry)
+pipeline/tools/space_sequence_roles.py	scoped	0,1,2,3,8	structural: 0/1 = indices, read offsets and count identity; 1/2/3 = H-space counts in the slope comparison set (submitted text excluded, canonical controls + glyph identity compared); 8 = send_id hex display prefix. r6 control_hash = sha256(canonical controls + tile sha256), cross-compared per role; canonical_controls = unique-key sorted compact JSON (CONVENTION, this manifest entry)
+pipeline/tools/test_space_record_gen.py	unscoped		not yet audited
+tooling/literal_inventory.py	scoped	0,1,2,3	structural: index arithmetic and exit codes in the scanner port (i+1/i+2 stepping, c[1..3] TSV columns, argv/exit codes); no thresholds - the literal policy it enforces lives in the Rust kern guards it ports (CONVENTION, this manifest entry)
+tooling/test_literal_inventory.py	scoped	0,1,2	structural: expected occurrence counts in the scanner self-check fixture (1/2) and indices; no thresholds (CONVENTION, this manifest entry)

@@ -1,0 +1,192 @@
+# kern engine numeric literal fixture. Classes are PROPOSED until reviewed; pending/open/removed-candidate rows are closed by the closure test.
+# columns: kind file literal count class note   (class may be split: name:count,name:count)
+scope	learning/src/gate.rs
+scope	learning/src/lib.rs
+scope	learning/src/prior.rs
+scope	learning/src/sha256.rs
+scope	learning/src/store.rs
+scope	metrics/src/air.rs
+scope	metrics/src/baseline_htls.rs
+scope	metrics/src/collision.rs
+scope	metrics/src/distance_field.rs
+scope	metrics/src/evidence.rs
+scope	metrics/src/export_gpos.rs
+scope	metrics/src/gen.rs
+scope	metrics/src/gen_production.rs
+scope	metrics/src/gpos.rs
+scope	metrics/src/gpos_verified.rs
+scope	metrics/src/kern_proposal.rs
+scope	metrics/src/learn.rs
+scope	metrics/src/lib.rs
+scope	metrics/src/mechanisms.rs
+scope	metrics/src/params.rs
+scope	metrics/src/plane.rs
+scope	metrics/src/positions.rs
+scope	metrics/src/side_classes.rs
+scope	metrics/src/side_walls.rs
+scope	metrics/src/stress.rs
+scope	metrics/src/tracking.rs
+scope	metrics/src/training_only_fit.rs
+scope	metrics/src/variation.rs
+lit	learning/src/gate.rs	0.5	1	definition	median = 0.5 quantile
+lit	learning/src/gate.rs	0.9	1	open	p90 enters gate decision (open = median< && p90<); derivation owed by supreme harness; NOT frozen
+lit	learning/src/gate.rs	2	1	convention	leave-font-out needs a second font besides the held-out one
+lit	learning/src/prior.rs	2	2	definition:1,convention:1	a sample variance needs two observations; structural minimum: one font to learn from besides the font it is used on (definition of leave-one-out)
+lit	learning/src/sha256.rs	0x06ca6351	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x0fc19dc6	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x106aa070	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x12835b01	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x14292967	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x19a4c116	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x1e376c08	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x1f83d9ab	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x240ca1cc	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x243185be	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x2748774c	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x27b70a85	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x2de92c6f	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x2e1b2138	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x34b0bcb5	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x391c0cb3	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x3956c25b	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x3c6ef372	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x428a2f98	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x4a7484aa	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x4d2c6dfc	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x4ed8aa4a	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x510e527f	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x53380d13	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x550c7dc3	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x59f111f1	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x5b9cca4f	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x5be0cd19	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x5cb0a9dc	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x650a7354	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x682e6ff3	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x6a09e667	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x71374491	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x72be5d74	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x748f82ee	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x766a0abb	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x76f988da	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x78a5636f	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x80	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x80deb1fe	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x81c2c92e	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x84c87814	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x8cc70208	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x90befffa	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x923f82a4	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x92722c85	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x983e5152	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x9b05688c	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x9bdc06a7	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xa2bfe8a1	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xa4506ceb	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xa54ff53a	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xa81a664b	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xa831c66d	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xab1c5ed5	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xb00327c8	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xb5c0fbcf	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xbb67ae85	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xbef9a3f7	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xbf597fc7	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xc19bf174	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xc24b8b70	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xc67178f2	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xc6e00bf3	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xc76c51a3	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xd192e819	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xd5a79147	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xd6990624	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xd807aa98	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xe49b69c1	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xe9b5dba5	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xefbe4786	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xf40e3585	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	10	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	11	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	13	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	15	3	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	16	3	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	17	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	18	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	19	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	2	8	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	22	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	25	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	3	3	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	4	10	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	5	2	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	56	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	6	3	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	64	6	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	7	3	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	8	3	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/store.rs	16	1	format	store file layout (field counts, hex width)
+lit	learning/src/store.rs	2	5	format	store file layout (field counts, hex width)
+lit	learning/src/store.rs	3	3	format	store file layout (field counts, hex width)
+lit	learning/src/store.rs	4	2	format	store file layout (field counts, hex width)
+lit	learning/src/store.rs	5	2	format	store file layout (field counts, hex width)
+lit	learning/src/store.rs	6	2	format	store file layout (field counts, hex width)
+lit	learning/src/store.rs	7	1	format	store file layout (field counts, hex width)
+lit	metrics/src/air.rs	2.0	2	definition	midpoint / half height
+lit	metrics/src/air.rs	4	1	pending	DENSITY_BAND; derivation owed
+lit	metrics/src/baseline_htls.rs	0.5	1	definition	half (abs*0.5)- verify
+lit	metrics/src/baseline_htls.rs	100.0	3	definition:2,open:1	percent (param_depth_pct/100); x100 scale in white_area; tutorial doc example does not reproduce it; provenance open
+lit	metrics/src/baseline_htls.rs	1000.0	1	pending	published reference UPM; cite
+lit	metrics/src/baseline_htls.rs	180.0	1	definition	degrees to radians
+lit	metrics/src/baseline_htls.rs	1e6	1	removed-candidate	DEFAULT_MARGIN sentinel; leak test required
+lit	metrics/src/baseline_htls.rs	2	2	definition	area scales with the square of the unit scale; a 45-degree closure needs two points
+lit	metrics/src/baseline_htls.rs	2.0	1	definition	deslant pivot at half x-height
+lit	metrics/src/distance_field.rs	3	4	pending	chamfer 3-4 weights; name const, cite chamfer paper, error-bound derivation (supreme Q4)
+lit	metrics/src/distance_field.rs	3.0	1	pending	chamfer unit conversion; follows CHAMFER_ORTHO const
+lit	metrics/src/distance_field.rs	4	5	pending	INF=u32::MAX/4; must exceed largest path sum; derivation owed; chamfer 3-4 weights; name const, cite chamfer paper, error-bound derivation (supreme Q4)
+lit	metrics/src/export_gpos.rs	1000	1	definition	milli-unit scale of error report; name it
+lit	metrics/src/export_gpos.rs	2	5	format:1,report:1,definition:2,pending:1	OpenType uint16 width; allocation hint, no effect on output; two class sets (left and right); byte-budget model; changes emitted output; derivation owed (see design note); integer midpoint
+lit	metrics/src/export_gpos.rs	4	2	format	OpenType big-endian read widths
+lit	metrics/src/export_gpos.rs	6	1	pending	byte-budget model (2/6/64) changes emitted output; not format (supreme Q2b)
+lit	metrics/src/export_gpos.rs	64	1	pending	byte-budget model (2/6/64) changes emitted output; not format (supreme Q2b)
+lit	metrics/src/gen.rs	2	14	definition:5,pending:3,format:6	median: parity and middle index; 2 use not classified; trim removes both ends; file column index / case-pair length
+lit	metrics/src/gen.rs	2.0	1	definition	median of two middle values
+lit	metrics/src/gen.rs	3	5	format	tsv column index / min column count (file schema)
+lit	metrics/src/gen.rs	4	2	format	tsv column index / min column count (file schema)
+lit	metrics/src/gen.rs	5	5	format	tsv column index / min column count (file schema)
+lit	metrics/src/gpos.rs	0x00010000	1	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos.rs	0x0004	4	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos.rs	0xffff	1	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos.rs	10	4	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos.rs	16	1	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos.rs	2	10	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos.rs	4	4	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos.rs	6	1	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos.rs	8	2	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos_verified.rs	0xffff	1	format	OpenType Layout Common Table Formats, LangSys table: requiredFeatureIndex = 0xFFFF when no required feature
+lit	metrics/src/gpos_verified.rs	10	4	format	GPOS spec: PairPosFormat1 subtable has five uint16 fields (10 bytes) before pairSetOffsets; GPOS Header version 1.0 is two uint16 plus three Offset16 (10 bytes) before the ScriptList
+lit	metrics/src/gpos_verified.rs	2	2	format	Offset16 size per pairSetOffsets entry (PairPosFormat1); lookupType 2 = pair adjustment (GposLookupType enumeration, GPOS spec)
+lit	metrics/src/gpos_verified.rs	4	3	format	valueFormat1 = 4 is the XAdvance flag (ValueRecord, GPOS spec; flag value not re-verified in the fetched page); defaultLangSysOffset = 4 (Script table, Common Table Formats); lookupOffsets[0] = 4 (LookupList: lookupCount + one Offset16)
+lit	metrics/src/gpos_verified.rs	8	3	format	ScriptRecord and FeatureRecord offset 8 (list header uint16 + one 6-byte record); Lookup subtable offset 8 (Lookup table header of three uint16 + one Offset16); Common Table Formats, GPOS spec
+lit	metrics/src/learn.rs	10	1	report	value_histogram truncate: field only read by tests in tree; no kern/sb dependency found
+lit	metrics/src/params.rs	100.0	1	definition	percent
+lit	metrics/src/params.rs	1000.0	1	pending	default master parameter; preferred: no default on production path (typed error), default only in declared test fixtures; upm/x_height read from font
+lit	metrics/src/params.rs	15.0	1	pending	default master parameter; preferred: no default on production path (typed error), default only in declared test fixtures; upm/x_height read from font
+lit	metrics/src/params.rs	400.0	1	pending	default master parameter; preferred: no default on production path (typed error), default only in declared test fixtures; upm/x_height read from font
+lit	metrics/src/params.rs	5	1	pending	default master parameter; preferred: no default on production path (typed error), default only in declared test fixtures; upm/x_height read from font
+lit	metrics/src/params.rs	500.0	1	pending	default master parameter; preferred: no default on production path (typed error), default only in declared test fixtures; upm/x_height read from font
+lit	metrics/src/plane.rs	128	1	pending	ink threshold 128; affects ink mask
+lit	metrics/src/positions.rs	0.5	1	dead-code	ReferenceThresholds default; no reference outside positions.rs (own test only) in pinned engine/{core,metrics,learning}; stays in scope, counted
+lit	metrics/src/positions.rs	10.0	1	dead-code	ReferenceThresholds default; no reference outside positions.rs (own test only) in pinned engine/{core,metrics,learning}; stays in scope, counted
+lit	metrics/src/positions.rs	1e-12	1	pending	numeric tie tolerance 1e-12 (same named const)
+lit	metrics/src/positions.rs	8.0	1	dead-code	ReferenceThresholds default; no reference outside positions.rs (own test only) in pinned engine/{core,metrics,learning}; stays in scope, counted
+lit	metrics/src/side_classes.rs	0.03	1	pending	FINGERPRINT_SAMPLES / DEFAULT_TEMPERATURE; derivation or declared CONVENTION owed
+lit	metrics/src/side_classes.rs	2	4	definition	a polyline needs two points / adjacent pairs; squared distance
+lit	metrics/src/side_classes.rs	9	1	pending	FINGERPRINT_SAMPLES / DEFAULT_TEMPERATURE; derivation or declared CONVENTION owed
+lit	metrics/src/side_walls.rs	180.0	1	definition	degrees to radians (180)
+lit	metrics/src/side_walls.rs	2	1	definition	adjacent point pairs
+lit	metrics/src/stress.rs	1e-12	4	pending	numeric tie tolerance 1e-12 (single named const, or exact compare)
+lit	metrics/src/stress.rs	255	1	definition	8-bit white
+lit	metrics/src/tracking.rs	2.0	2	convention	tracking split evenly between the two sides; declared symmetric split
+lit	metrics/src/training_only_fit.rs	2	2	format	sha-256 hex digest length check (64 hex chars)
+lit	metrics/src/training_only_fit.rs	2.0	1	format	sha-256 hex digest length check (64 hex chars)
+lit	metrics/src/training_only_fit.rs	64	1	format	sha-256 hex digest length check (64 hex chars)

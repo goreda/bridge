@@ -1,0 +1,29 @@
+{
+  "frame": "synthetic-units",
+  "glyphs": [
+    {
+      "ink_width": "50",
+      "left_profile": [
+        "0"
+      ],
+      "name": "SyntheticA",
+      "right_profile": [
+        "0"
+      ]
+    },
+    {
+      "ink_width": "60",
+      "left_profile": [
+        "2"
+      ],
+      "name": "SyntheticB",
+      "right_profile": [
+        "2"
+      ]
+    }
+  ],
+  "interaction": "2",
+  "schema": "kni.synthetic-spacing-input.v1",
+  "synthetic": true,
+  "target_gap": "20"
+}

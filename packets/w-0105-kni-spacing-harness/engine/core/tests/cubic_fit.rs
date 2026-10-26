@@ -1,0 +1,10 @@
+// Authored NOT_RUN, not reconstruction/topology acceptance.
+use kni_core::cubic_fit::{fit_run,FitPolicy,FitOutcome,adjacent_chord_tangents};
+use kni_core::reference_slice::Point;
+#[test]fn singular_is_unresolved_not_fabricated(){let p=[Point{x:0.,y:0.},Point{x:1.,y:0.},Point{x:2.,y:0.}];assert!(matches!(fit_run(&p,Point{x:1.,y:0.},Point{x:-1.,y:0.},&FitPolicy{squared_error:0.,max_refits:0}),FitOutcome::SplitUnresolved{sample_index:Some(1),..}));}
+#[test]fn caller_tolerance_validation(){let p=[Point{x:0.,y:0.},Point{x:1.,y:1.},Point{x:2.,y:0.}];for tolerance in [-1.,f64::NAN,f64::INFINITY]{assert!(matches!(fit_run(&p,Point{x:1.,y:1.},Point{x:-1.,y:1.},&FitPolicy{squared_error:tolerance,max_refits:0}),FitOutcome::InvalidInput));}}
+#[test]fn optional_tangent_direction_explicit(){let p=[Point{x:0.,y:0.},Point{x:1.,y:0.},Point{x:1.,y:1.}];let(l,r)=adjacent_chord_tangents(&p).unwrap();assert_eq!(l,Point{x:1.,y:0.});assert_eq!(r,Point{x:0.,y:-1.});}
+#[test]fn zero_tangent_no_normalization_fallback(){let p=[Point{x:0.,y:0.},Point{x:1.,y:1.},Point{x:2.,y:0.}];assert!(matches!(fit_run(&p,Point{x:0.,y:0.},Point{x:-1.,y:1.},&FitPolicy{squared_error:1.,max_refits:0}),FitOutcome::InvalidInput));}
+
+#[test]fn gap_split_internal_and_earlier_ties(){use kni_core::cubic_fit::initial_split;assert_eq!(initial_split(&[Point{x:0.,y:0.},Point{x:1.,y:0.},Point{x:10.,y:0.}]),Some(1));assert_eq!(initial_split(&[Point{x:0.,y:0.},Point{x:5.,y:0.},Point{x:10.,y:0.},Point{x:11.,y:0.}]),Some(1));assert_eq!(initial_split(&[Point{x:0.,y:0.},Point{x:1.,y:0.}]),None);}
+#[test]fn positive_symmetric_three_point_fit(){let p=[Point{x:0.,y:0.},Point{x:1.,y:1.},Point{x:2.,y:0.}];let result=fit_run(&p,Point{x:1.,y:1.},Point{x:-1.,y:1.},&FitPolicy{squared_error:1.,max_refits:0});match result{FitOutcome::Fitted{controls,max_squared_error,..}=>{assert_eq!(controls[0],p[0]);assert_eq!(controls[3],p[2]);assert!(controls[1].x>0.);assert!(controls[2].x<2.);assert!(max_squared_error.is_finite()&&max_squared_error<=1.);},_=>panic!("authored symmetric normal equation fixture")}}

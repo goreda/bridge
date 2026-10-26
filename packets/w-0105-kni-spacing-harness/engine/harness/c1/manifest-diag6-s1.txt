@@ -1,0 +1,22 @@
+population_sha256 f44008499df195cc118e40bcdbfca6a21139b66a0905c60b078383f88b43a093
+run_mode stage1_only
+# DIAGNOSTIC export (6 glyph) - RE-IMPLEMENTATION merged tree, not a full font
+family KNI Diagnostic
+subfamily SixGlyph
+capture_cohort KNI Diagnostic/SixGlyph
+capture_frame KNIDiagnostic-SixGlyph:synthetic-fixtures:no-capture-frame
+postscript_name KNIDiagnostic-SixGlyph
+vendor NONE
+upm 1000
+scale 2.4377
+rdp_epsilon 0.25
+fit_tolerance_policy fixed
+fit_squared_error 0.25
+fit_max_refits 8
+flatten_tolerance 0.5
+glyph 0x72 r ../../core/tests/fixtures/r_scan.png
+glyph 0x73 s ../../core/tests/fixtures/s_scan.png
+glyph 0x75 u ../../core/tests/fixtures/u_scan.png
+glyph 0x00C9 Eacute ../../core/tests/fixtures/00C9_scan.png
+glyph 0x00B7 periodcentered ../../core/tests/fixtures/dot_00b7.png
+glyph 0x2018 quoteleft ../../core/tests/fixtures/quote_2018.png

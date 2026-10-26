@@ -1,0 +1,147 @@
+run_mode stage1_only
+population_sha256 a6ca02e2b053c7e6362a3381ad8cc84000c4c24cad8840f18dedcaa7376a6895
+capture_cohort Paul New/Regular
+capture_frame PaulNew-Regular:786x1122:H-sha256:c7cd69b88be228b339c3f7f1978ad11ced392b7f81f036c622a211c0a2e55464
+family Paul New
+subfamily Regular
+postscript_name PaulNew-Regular
+vendor NONE
+upm 1000
+scale 0.8912655971479501
+rdp_epsilon 0.25
+fit_tolerance_policy fixed
+fit_squared_error 0.25
+fit_max_refits 8
+flatten_tolerance 0.5
+glyph 0x0021 exclam ../../core/tests/fixtures/paul136/075__0021__a2f6acd96afb.jpg
+glyph 0x0022 quotedbl ../../core/tests/fixtures/paul136/078__0022__6bc1033056c8.jpg
+glyph 0x0023 numbersign ../../core/tests/fixtures/paul136/079__0023__e9c7cec93662.jpg
+glyph 0x0024 dollar ../../core/tests/fixtures/paul136/081__0024__e16498bd6496.jpg
+glyph 0x0025 percent ../../core/tests/fixtures/paul136/083__0025__00ecaf81c98d.jpg
+glyph 0x0026 ampersand ../../core/tests/fixtures/paul136/084__0026__ed7c234d5b12.jpg
+glyph 0x0027 quotesingle ../../core/tests/fixtures/paul136/077__0027__e8c9c126993a.jpg
+glyph 0x0028 parenleft ../../core/tests/fixtures/paul136/085__0028__073e3bc87ed3.jpg
+glyph 0x0029 parenright ../../core/tests/fixtures/paul136/086__0029__2ce925a70f86.jpg
+glyph 0x002A asterisk ../../core/tests/fixtures/paul136/066__002A__54e41dd1af6f.jpg
+glyph 0x002B plus ../../core/tests/fixtures/paul136/065__002B__3c5ac86dd5af.jpg
+glyph 0x002C comma ../../core/tests/fixtures/paul136/053__002C__b109a0166539.jpg
+glyph 0x002D hyphen ../../core/tests/fixtures/paul136/064__002D__4173547511e4.jpg
+glyph 0x002E period ../../core/tests/fixtures/paul136/026__002E__18c180f00dd5.jpg
+glyph 0x002F slash ../../core/tests/fixtures/paul136/068__002F__4f1296438384.jpg
+glyph 0x0030 zero ../../core/tests/fixtures/paul136/054__0030__c290c4e1853a.jpg
+glyph 0x0031 one ../../core/tests/fixtures/paul136/055__0031__060edf8a80ae.jpg
+glyph 0x0032 two ../../core/tests/fixtures/paul136/056__0032__cb8bda800f85.jpg
+glyph 0x0033 three ../../core/tests/fixtures/paul136/057__0033__dfc3251832e9.jpg
+glyph 0x0034 four ../../core/tests/fixtures/paul136/058__0034__91fb06f10995.jpg
+glyph 0x0035 five ../../core/tests/fixtures/paul136/059__0035__19f0e556f6a0.jpg
+glyph 0x0036 six ../../core/tests/fixtures/paul136/060__0036__361f99fb33d2.jpg
+glyph 0x0037 seven ../../core/tests/fixtures/paul136/061__0037__d597893d1e11.jpg
+glyph 0x0038 eight ../../core/tests/fixtures/paul136/062__0038__71d38973d223.jpg
+glyph 0x0039 nine ../../core/tests/fixtures/paul136/063__0039__d5f3337100d3.jpg
+glyph 0x003A colon ../../core/tests/fixtures/paul136/070__003A__36914b6c1092.jpg
+glyph 0x003B semicolon ../../core/tests/fixtures/paul136/071__003B__261e4c31df40.jpg
+glyph 0x003C less ../../core/tests/fixtures/paul136/072__003C__306f2d85a8b1.jpg
+glyph 0x003D equal ../../core/tests/fixtures/paul136/073__003D__ad752dfe7a4f.jpg
+glyph 0x003E greater ../../core/tests/fixtures/paul136/074__003E__284616ab2cfb.jpg
+glyph 0x003F question ../../core/tests/fixtures/paul136/076__003F__d64aec59e833.jpg
+glyph 0x0040 at ../../core/tests/fixtures/paul136/080__0040__33db90422c44.jpg
+glyph 0x0041 A ../../core/tests/fixtures/paul136/000__0041__8a5f67893494.jpg
+glyph 0x0042 B ../../core/tests/fixtures/paul136/001__0042__5782721cf3bc.jpg
+glyph 0x0043 C ../../core/tests/fixtures/paul136/002__0043__0f3d68408810.jpg
+glyph 0x0044 D ../../core/tests/fixtures/paul136/003__0044__40dc61c722f5.jpg
+glyph 0x0045 E ../../core/tests/fixtures/paul136/004__0045__4e006002c891.jpg
+glyph 0x0046 F ../../core/tests/fixtures/paul136/005__0046__5a455f0beaff.jpg
+glyph 0x0047 G ../../core/tests/fixtures/paul136/006__0047__59941262ac92.jpg
+glyph 0x0048 H ../../core/tests/fixtures/paul136/007__0048__c7cd69b88be2.jpg
+glyph 0x0049 I ../../core/tests/fixtures/paul136/008__0049__fc2d905d05ae.jpg
+glyph 0x004A J ../../core/tests/fixtures/paul136/009__004A__3930e1ad504f.jpg
+glyph 0x004B K ../../core/tests/fixtures/paul136/010__004B__bbc1e91a16c9.jpg
+glyph 0x004C L ../../core/tests/fixtures/paul136/011__004C__1b575e62394a.jpg
+glyph 0x004D M ../../core/tests/fixtures/paul136/012__004D__0072a1dcae8c.jpg
+glyph 0x004E N ../../core/tests/fixtures/paul136/013__004E__f4b18734c61f.jpg
+glyph 0x004F O ../../core/tests/fixtures/paul136/014__004F__ea681f0c772d.jpg
+glyph 0x0050 P ../../core/tests/fixtures/paul136/015__0050__72794c8c8c88.jpg
+glyph 0x0051 Q ../../core/tests/fixtures/paul136/016__0051__fefb4673aca5.jpg
+glyph 0x0052 R ../../core/tests/fixtures/paul136/017__0052__e66aca1b31f7.jpg
+glyph 0x0053 S ../../core/tests/fixtures/paul136/018__0053__4e8c29f8ea56.jpg
+glyph 0x0054 T ../../core/tests/fixtures/paul136/019__0054__016605de0320.jpg
+glyph 0x0055 U ../../core/tests/fixtures/paul136/020__0055__7667ba1d17cc.jpg
+glyph 0x0056 V ../../core/tests/fixtures/paul136/021__0056__1ecfecb1eb68.jpg
+glyph 0x0057 W ../../core/tests/fixtures/paul136/022__0057__18945771733b.jpg
+glyph 0x0058 X ../../core/tests/fixtures/paul136/023__0058__d990b0e0832d.jpg
+glyph 0x0059 Y ../../core/tests/fixtures/paul136/024__0059__a48b3c49c870.jpg
+glyph 0x005A Z ../../core/tests/fixtures/paul136/025__005A__785e475fde87.jpg
+glyph 0x005B bracketleft ../../core/tests/fixtures/paul136/090__005B__0a953637b26e.jpg
+glyph 0x005C backslash ../../core/tests/fixtures/paul136/069__005C__fdd32f818631.jpg
+glyph 0x005D bracketright ../../core/tests/fixtures/paul136/091__005D__73eb33491285.jpg
+glyph 0x005E asciicircum ../../core/tests/fixtures/paul136/067__005E__91bc2f5ce7d3.jpg
+glyph 0x005F underscore ../../core/tests/fixtures/paul136/097__005F__ee2d58f6b04b.jpg
+glyph 0x0061 a ../../core/tests/fixtures/paul136/027__0061__6cdd132a7d29.jpg
+glyph 0x0062 b ../../core/tests/fixtures/paul136/028__0062__8e90d96eddb1.jpg
+glyph 0x0063 c ../../core/tests/fixtures/paul136/029__0063__3431dc319c32.jpg
+glyph 0x0064 d ../../core/tests/fixtures/paul136/030__0064__a472eb6cef30.jpg
+glyph 0x0065 e ../../core/tests/fixtures/paul136/031__0065__1d619b6423ce.jpg
+glyph 0x0066 f ../../core/tests/fixtures/paul136/032__0066__c89abd856497.jpg
+glyph 0x0067 g ../../core/tests/fixtures/paul136/033__0067__a7837462d2cb.jpg
+glyph 0x0068 h ../../core/tests/fixtures/paul136/034__0068__d79b2ef62b92.jpg
+glyph 0x0069 i ../../core/tests/fixtures/paul136/035__0069__309e8931906f.jpg
+glyph 0x006A j ../../core/tests/fixtures/paul136/036__006A__f8c4a1ae7f66.jpg
+glyph 0x006B k ../../core/tests/fixtures/paul136/037__006B__be236572f6ca.jpg
+glyph 0x006C l ../../core/tests/fixtures/paul136/038__006C__895d24759472.jpg
+glyph 0x006D m ../../core/tests/fixtures/paul136/039__006D__12067013d380.jpg
+glyph 0x006E n ../../core/tests/fixtures/paul136/040__006E__1b6504997c1f.jpg
+glyph 0x006F o ../../core/tests/fixtures/paul136/041__006F__91d5f0f0c42f.jpg
+glyph 0x0070 p ../../core/tests/fixtures/paul136/042__0070__de70e8453137.jpg
+glyph 0x0071 q ../../core/tests/fixtures/paul136/043__0071__6bebcab01633.jpg
+glyph 0x0072 r ../../core/tests/fixtures/paul136/044__0072__c4696ca2886c.jpg
+glyph 0x0073 s ../../core/tests/fixtures/paul136/045__0073__f2085637a5dd.jpg
+glyph 0x0074 t ../../core/tests/fixtures/paul136/046__0074__ec28d707345e.jpg
+glyph 0x0075 u ../../core/tests/fixtures/paul136/047__0075__707704063c83.jpg
+glyph 0x0076 v ../../core/tests/fixtures/paul136/048__0076__24bc4fb24504.jpg
+glyph 0x0077 w ../../core/tests/fixtures/paul136/049__0077__655db3afa725.jpg
+glyph 0x0078 x ../../core/tests/fixtures/paul136/050__0078__229f9c8d47be.jpg
+glyph 0x0079 y ../../core/tests/fixtures/paul136/051__0079__cf49bcbc60e6.jpg
+glyph 0x007A z ../../core/tests/fixtures/paul136/052__007A__5327c31e9108.jpg
+glyph 0x007B braceleft ../../core/tests/fixtures/paul136/087__007B__28ff0c8c54f2.jpg
+glyph 0x007C bar ../../core/tests/fixtures/paul136/088__007C__dba2aafbdf9e.jpg
+glyph 0x007D braceright ../../core/tests/fixtures/paul136/089__007D__4eb7df6a9405.jpg
+glyph 0x00A1 exclamdown ../../core/tests/fixtures/paul136/114__00A1__02e703b64ed0.jpg
+glyph 0x00A2 cent ../../core/tests/fixtures/paul136/105__00A2__204d82cb8162.jpg
+glyph 0x00A3 sterling ../../core/tests/fixtures/paul136/106__00A3__91f4efd0a476.jpg
+glyph 0x00A4 currency ../../core/tests/fixtures/paul136/104__00A4__79edf943630d.jpg
+glyph 0x00A5 yen ../../core/tests/fixtures/paul136/107__00A5__2d6fe1a766d8.jpg
+glyph 0x00A6 brokenbar ../../core/tests/fixtures/paul136/113__00A6__42288edb56df.jpg
+glyph 0x00A7 section ../../core/tests/fixtures/paul136/125__00A7__9f2b2dba3c9e.jpg
+glyph 0x00A9 copyright ../../core/tests/fixtures/paul136/103__00A9__2c990f2679c9.jpg
+glyph 0x00AC logicalnot ../../core/tests/fixtures/paul136/100__00AC__88e175ef5bea.jpg
+glyph 0x00AE registered ../../core/tests/fixtures/paul136/102__00AE__6ecce0fcb636.jpg
+glyph 0x00B1 plusminus ../../core/tests/fixtures/paul136/110__00B1__c61bc4547672.jpg
+glyph 0x00B2 twosuperior ../../core/tests/fixtures/paul136/117__00B2__63f7b8666d80.jpg
+glyph 0x00B3 threesuperior ../../core/tests/fixtures/paul136/118__00B3__c7268335cc06.jpg
+glyph 0x00B6 paragraph ../../core/tests/fixtures/paul136/124__00B6__ef1709e55943.jpg
+glyph 0x00B9 onesuperior ../../core/tests/fixtures/paul136/116__00B9__6cfe4d1f92ad.jpg
+glyph 0x00BC onequarter ../../core/tests/fixtures/paul136/120__00BC__9f5569168c5e.jpg
+glyph 0x00BD onehalf ../../core/tests/fixtures/paul136/121__00BD__10fad6aae321.jpg
+glyph 0x00BE threequarters ../../core/tests/fixtures/paul136/122__00BE__453ce1122ccf.jpg
+glyph 0x00BF questiondown ../../core/tests/fixtures/paul136/115__00BF__a2f9f21f282f.jpg
+glyph 0x00C6 AE ../../core/tests/fixtures/paul136/128__00C6__1cdb50d9df1b.jpg
+glyph 0x00D7 multiply ../../core/tests/fixtures/paul136/111__00D7__32ba9240f2fd.jpg
+glyph 0x00E6 ae ../../core/tests/fixtures/paul136/130__00E6__af4e730f92d3.jpg
+glyph 0x00F7 divide ../../core/tests/fixtures/paul136/112__00F7__afabbc18fad2.jpg
+glyph 0x0152 OE ../../core/tests/fixtures/paul136/129__0152__55d63273da4a.jpg
+glyph 0x0153 oe ../../core/tests/fixtures/paul136/131__0153__3b0f4fcc3dce.jpg
+glyph 0x0192 florin ../../core/tests/fixtures/paul136/108__0192__4b5e30f4e2df.jpg
+glyph 0x2013 endash ../../core/tests/fixtures/paul136/098__2013__59c72f0587e4.jpg
+glyph 0x2014 emdash ../../core/tests/fixtures/paul136/099__2014__4753875de318.jpg
+glyph 0x2018 quoteleft ../../core/tests/fixtures/paul136/092__2018__19c8ddc6a768.jpg
+glyph 0x2019 quoteright ../../core/tests/fixtures/paul136/093__2019__2115d64e0b8c.jpg
+glyph 0x201C quotedblleft ../../core/tests/fixtures/paul136/094__201C__d877ebe67069.jpg
+glyph 0x201D quotedblright ../../core/tests/fixtures/paul136/095__201D__54b2b9ad017a.jpg
+glyph 0x2022 bullet ../../core/tests/fixtures/paul136/096__2022__7ad1d14456f4.jpg
+glyph 0x2030 perthousand ../../core/tests/fixtures/paul136/123__2030__b7101429b917.jpg
+glyph 0x2044 fraction ../../core/tests/fixtures/paul136/119__2044__e68cf213ef0b.jpg
+glyph 0x20AC Euro ../../core/tests/fixtures/paul136/082__20AC__d659f03cd92c.jpg
+glyph 0x2122 trademark ../../core/tests/fixtures/paul136/101__2122__080d1f1d4642.jpg
+glyph 0x2212 minus ../../core/tests/fixtures/paul136/109__2212__5897211437c1.jpg
+glyph 0xFB01 fi ../../core/tests/fixtures/paul136/126__FB01__630f75b92e11.jpg
+glyph 0xFB02 fl ../../core/tests/fixtures/paul136/127__FB02__26d479cca73a.jpg

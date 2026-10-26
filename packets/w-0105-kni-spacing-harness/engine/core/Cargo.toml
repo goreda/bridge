@@ -1,0 +1,11 @@
+[package]
+name = "kni-core"
+version = "0.1.5"
+edition = "2021"
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+[dev-dependencies]
+kni-metrics = { path = "../metrics" }

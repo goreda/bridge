@@ -1,0 +1,6 @@
+# SP-PROOF quick gate, flag-ON lane (example scoping).
+# diag flips to on-target: the flag ON build may change it, and the harness
+# proves everything else (diagctl here) stays byte-identical.
+# Columns: style_id <TAB> family <TAB> subfamily <TAB> manifest_relpath <TAB> out_relpath <TAB> scope
+diag	KNI Diagnostic	SixGlyph	../fixtures/diagnostic/manifest.txt	diag	on-target
+diagctl	KNI Diagnostic	SixGlyph	../fixtures/diagnostic/manifest.txt	diagctl	off-target

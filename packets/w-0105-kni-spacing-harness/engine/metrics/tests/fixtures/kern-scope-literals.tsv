@@ -1,0 +1,281 @@
+# kern engine numeric literal fixture. Classes are PROPOSED until reviewed; pending/open/removed-candidate rows are closed by the closure test.
+# columns: kind file literal count class note   (class may be split: name:count,name:count)
+scope	learning/src/gate.rs
+scope	learning/src/lib.rs
+scope	learning/src/prior.rs
+scope	learning/src/sha256.rs
+scope	learning/src/store.rs
+scope	metrics/src/air.rs
+scope	metrics/src/anchor_audit.rs
+scope	metrics/src/baseline_htls.rs
+scope	metrics/src/cadence.rs
+lit	metrics/src/anchor_audit.rs	0.20	1	convention	HOLD_RATE_MAX: declared hold-share ceiling, healthy-run tail rationale in module doc
+lit	metrics/src/anchor_audit.rs	0.5	3	definition	Binomial(n,1/2) null share mean and sigma = sqrt(p(1-p)/n) = 1/(2*sqrt(n))
+lit	metrics/src/anchor_audit.rs	2	4	definition	median midpoint indexing and even-count test in median()
+lit	metrics/src/anchor_audit.rs	2.0	2	convention:1,definition:1	CROSS_STYLE_MAD_FACTOR declared outlier multiple; median of the two central values
+lit	metrics/src/anchor_audit.rs	3	1	convention	CROSS_STYLE_MIN_STYLES: derived (k=2 ratio exactly 1, never flags); derivation in module doc
+lit	metrics/src/anchor_audit.rs	3.0	1	convention	SIGN_TEST_SIGMAS: declared three-sigma two-sided band; derivation in module doc
+lit	metrics/src/anchor_audit.rs	36	1	convention	SIGN_TEST_MIN_PAIRS: derived n*p*(1-p)>=9 at p=1/2; derivation in module doc
+lit	metrics/src/cadence.rs	2	2	definition	consecutive-interval pairing (row.ink.windows(2)) and minimum two ink intervals for an interior stem interval to exist on a row (row.ink.len() < 2 skip)
+lit	metrics/src/cadence.rs	2.0	1	definition	weighted-median half-total cumulative threshold (median definition; lower weighted median, no interpolation convention)
+scope	metrics/src/class_audit.rs
+scope	metrics/src/collision.rs
+scope	metrics/src/contrast_floor.rs
+scope	metrics/src/distance_field.rs
+scope	metrics/src/evidence.rs
+scope	metrics/src/exact_rows.rs
+lit	metrics/src/exact_rows.rs	0.5	2	definition	slab mid-height (lo+hi)*0.5 and per-end row weight = half the slab height (exact slab rows, stage 4)
+lit	metrics/src/exact_rows.rs	2	4	definition	windows(2) x3: consecutive vertex-y pairs bound a slab (from_rings, exact_aligned_rows_at) and consecutive cut ys (vertex ys + edge-crossing ys) bound a sub-slab; plus the [f64; 2] point type in the from_rings signature
+scope	metrics/src/export_gpos.rs
+scope	metrics/src/gen.rs
+scope	metrics/src/gen_production.rs
+scope	metrics/src/gpos.rs
+scope	metrics/src/gpos_verified.rs
+scope	metrics/src/kern_proposal.rs
+scope	metrics/src/learn.rs
+scope	metrics/src/lib.rs
+scope	metrics/src/mechanisms.rs
+scope	metrics/src/pair_visual_read.rs
+scope	metrics/src/params.rs
+scope	metrics/src/plane.rs
+scope	metrics/src/positions.rs
+scope	metrics/src/self_anchored_spacing.rs
+scope	metrics/src/signed_clearance.rs
+lit	metrics/src/signed_clearance.rs	0.5	1	definition	clearance_of trapezoid cell mean: (gap_lo + gap_hi) * 0.5
+lit	metrics/src/signed_clearance.rs	2	2	definition	bounds[f64;4] x_max index [2] in safe_integer_distance search-span bound
+scope	metrics/src/side_classes.rs
+scope	metrics/src/side_walls.rs
+scope	metrics/src/space_measurement.rs
+scope	metrics/src/stress.rs
+scope	metrics/src/tracking.rs
+scope	metrics/src/training_only_fit.rs
+scope	metrics/src/variation.rs
+scope	metrics/src/generated_outline_kern.rs
+scope	metrics/src/outline_spacing.rs
+scope	metrics/src/gpos_pairpos1.rs
+scope	metrics/src/gsub_liga.rs
+lit	learning/src/gate.rs	0.5	1	definition	median = 0.5 quantile
+lit	learning/src/gate.rs	0.9	1	open	p90 enters gate decision (open = median< && p90<); derivation owed by supreme harness; NOT frozen
+lit	learning/src/gate.rs	3	1	convention	MIN_FOLD_GROUPS: declared, not derived; see derivation in gate.rs doc
+lit	learning/src/prior.rs	2	2	definition:1,convention:1	a sample variance needs two observations; structural minimum: one font to learn from besides the font it is used on (definition of leave-one-out)
+lit	learning/src/sha256.rs	0x06ca6351	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x0fc19dc6	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x106aa070	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x12835b01	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x14292967	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x19a4c116	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x1e376c08	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x1f83d9ab	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x240ca1cc	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x243185be	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x2748774c	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x27b70a85	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x2de92c6f	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x2e1b2138	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x34b0bcb5	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x391c0cb3	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x3956c25b	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x3c6ef372	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x428a2f98	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x4a7484aa	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x4d2c6dfc	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x4ed8aa4a	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x510e527f	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x53380d13	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x550c7dc3	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x59f111f1	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x5b9cca4f	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x5be0cd19	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x5cb0a9dc	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x650a7354	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x682e6ff3	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x6a09e667	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x71374491	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x72be5d74	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x748f82ee	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x766a0abb	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x76f988da	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x78a5636f	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x80	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x80deb1fe	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x81c2c92e	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x84c87814	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x8cc70208	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x90befffa	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x923f82a4	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x92722c85	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x983e5152	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x9b05688c	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0x9bdc06a7	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xa2bfe8a1	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xa4506ceb	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xa54ff53a	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xa81a664b	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xa831c66d	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xab1c5ed5	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xb00327c8	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xb5c0fbcf	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xbb67ae85	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xbef9a3f7	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xbf597fc7	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xc19bf174	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xc24b8b70	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xc67178f2	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xc6e00bf3	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xc76c51a3	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xd192e819	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xd5a79147	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xd6990624	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xd807aa98	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xe49b69c1	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xe9b5dba5	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xefbe4786	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	0xf40e3585	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	10	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	11	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	13	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	15	3	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	16	3	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	17	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	18	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	19	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	2	8	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	22	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	25	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	3	3	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	4	10	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	5	2	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	56	1	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	6	3	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	64	6	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	7	3	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/sha256.rs	8	3	allowlist-fips	FIPS 180-4 constants/tables; per-file allowlist, reason stated
+lit	learning/src/store.rs	16	1	format	store file layout (field counts, hex width)
+lit	learning/src/store.rs	2	5	format	store file layout (field counts, hex width)
+lit	learning/src/store.rs	3	3	format	store file layout (field counts, hex width)
+lit	learning/src/store.rs	4	2	format	store file layout (field counts, hex width)
+lit	learning/src/store.rs	5	2	format	store file layout (field counts, hex width)
+lit	learning/src/store.rs	6	2	format	store file layout (field counts, hex width)
+lit	learning/src/store.rs	7	1	format	store file layout (field counts, hex width)
+lit	metrics/src/air.rs	2.0	2	definition	midpoint / half height
+lit	metrics/src/air.rs	4	1	pending	DENSITY_BAND; derivation owed
+lit	metrics/src/baseline_htls.rs	0.5	1	definition	half (abs*0.5)- verify
+lit	metrics/src/baseline_htls.rs	100.0	3	definition:2,open:1	percent (param_depth_pct/100); x100 scale in white_area; tutorial doc example does not reproduce it; provenance open
+lit	metrics/src/baseline_htls.rs	1000.0	1	convention	reference UPM of the published area unit (thousands of square units at 1000 upm)
+lit	metrics/src/baseline_htls.rs	180.0	1	definition	degrees to radians
+lit	metrics/src/baseline_htls.rs	1e6	1	removed-candidate	DEFAULT_MARGIN sentinel; leak test required
+lit	metrics/src/baseline_htls.rs	2	2	definition	area scales with the square of the unit scale; a 45-degree closure needs two points
+lit	metrics/src/baseline_htls.rs	2.0	1	definition	deslant pivot at half x-height
+lit	metrics/src/contrast_floor.rs	2	7	definition	median even-case midpoint terms (n % 2, n / 2, n / 2 - 1), bounds[2] = x_max structural span indices; structural indices/halves; font_median_pair_target median helper index n/2 and even/odd split n%2 (median definition)
+lit	metrics/src/contrast_floor.rs	2.0	3	definition	closed-form halving coefficients: median pair average, facing-width row-weight average, bisection midpoint (hi - lo) / 2.0
+lit	metrics/src/contrast_floor.rs	64	1	convention	STEP_BUDGET bisection cap: 64 halvings exceeds the f64 mantissa (53 bits); deterministic bound, not a tolerance
+lit	metrics/src/distance_field.rs	3	1	convention	3-4 chamfer orthogonal step; Borgefors 1986, max error 8% for the 3x3 integer mask
+lit	metrics/src/distance_field.rs	4	1	convention	3-4 chamfer diagonal step; integer approximation of 3*sqrt(2); Borgefors 1986
+lit	metrics/src/export_gpos.rs	1000	1	definition	milli-unit scale of error report; name it
+lit	metrics/src/export_gpos.rs	2	5	format:1,report:1,definition:2,pending:1	OpenType uint16 width; allocation hint, no effect on output; two class sets (left and right); byte-budget model; changes emitted output; derivation owed (see design note); integer midpoint
+lit	metrics/src/export_gpos.rs	4	2	format	OpenType big-endian read widths
+lit	metrics/src/export_gpos.rs	6	1	pending	byte-budget model (2/6/64) changes emitted output; not format (supreme Q2b)
+lit	metrics/src/export_gpos.rs	64	1	pending	byte-budget model (2/6/64) changes emitted output; not format (supreme Q2b)
+lit	metrics/src/gen.rs	2	12	definition:5,convention:1,format:6	median: parity and middle index; trim removes both ends; structural floor: a leave-one-out median needs two observations; file column index / case-pair length
+lit	metrics/src/gen.rs	2.0	1	definition	median of two middle values
+lit	metrics/src/gen.rs	3	5	format	tsv column index / min column count (file schema)
+lit	metrics/src/gen.rs	4	2	format	tsv column index / min column count (file schema)
+lit	metrics/src/gen.rs	5	5	format	tsv column index / min column count (file schema)
+lit	metrics/src/gpos.rs	0x00010000	1	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos.rs	0x0004	4	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos.rs	0xffff	1	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos.rs	10	4	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos.rs	16	1	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos.rs	2	10	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos.rs	4	4	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos.rs	6	1	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos.rs	8	2	format	OpenType GPOS table layout (offsets/versions/sizes)
+lit	metrics/src/gpos_verified.rs	0xffff	1	format	OpenType Layout Common Table Formats, LangSys table: requiredFeatureIndex = 0xFFFF when no required feature
+lit	metrics/src/gpos_verified.rs	10	4	format	GPOS spec: PairPosFormat1 subtable has five uint16 fields (10 bytes) before pairSetOffsets; GPOS Header version 1.0 is two uint16 plus three Offset16 (10 bytes) before the ScriptList
+lit	metrics/src/gpos_verified.rs	2	2	format	Offset16 size per pairSetOffsets entry (PairPosFormat1); lookupType 2 = pair adjustment (GposLookupType enumeration, GPOS spec)
+lit	metrics/src/gpos_verified.rs	4	3	format	valueFormat1 = 4 is the XAdvance flag (ValueRecord, GPOS spec; flag value not re-verified in the fetched page); defaultLangSysOffset = 4 (Script table, Common Table Formats); lookupOffsets[0] = 4 (LookupList: lookupCount + one Offset16)
+lit	metrics/src/gpos_verified.rs	8	3	format	ScriptRecord and FeatureRecord offset 8 (list header uint16 + one 6-byte record); Lookup subtable offset 8 (Lookup table header of three uint16 + one Offset16); Common Table Formats, GPOS spec
+lit	metrics/src/learn.rs	10	1	report	value_histogram truncate: field only read by tests in tree; no kern/sb dependency found
+lit	metrics/src/params.rs	100.0	1	definition	percent
+lit	metrics/src/params.rs	1000.0	1	pending	default master parameter; preferred: no default on production path (typed error), default only in declared test fixtures; upm/x_height read from font
+lit	metrics/src/params.rs	15.0	1	pending	default master parameter; preferred: no default on production path (typed error), default only in declared test fixtures; upm/x_height read from font
+lit	metrics/src/params.rs	400.0	1	pending	default master parameter; preferred: no default on production path (typed error), default only in declared test fixtures; upm/x_height read from font
+lit	metrics/src/params.rs	5	1	pending	default master parameter; preferred: no default on production path (typed error), default only in declared test fixtures; upm/x_height read from font
+lit	metrics/src/params.rs	500.0	1	pending	default master parameter; preferred: no default on production path (typed error), default only in declared test fixtures; upm/x_height read from font
+lit	metrics/src/plane.rs	128	1	convention	midpoint of 0..=255 rounded up; sets the ink mask
+lit	metrics/src/positions.rs	0.5	1	dead-code	ReferenceThresholds default; no reference outside positions.rs (own test only) in pinned engine/{core,metrics,learning}; stays in scope, counted
+lit	metrics/src/positions.rs	10.0	1	dead-code	ReferenceThresholds default; no reference outside positions.rs (own test only) in pinned engine/{core,metrics,learning}; stays in scope, counted
+lit	metrics/src/positions.rs	1e-12	1	convention	tolerance for equal wall-breakpoint y values; rounding noise only; separate from the distance tie tolerance
+lit	metrics/src/positions.rs	8.0	1	dead-code	ReferenceThresholds default; no reference outside positions.rs (own test only) in pinned engine/{core,metrics,learning}; stays in scope, counted
+lit	metrics/src/side_classes.rs	0.03	1	pending	FINGERPRINT_SAMPLES / DEFAULT_TEMPERATURE; derivation or declared CONVENTION owed
+lit	metrics/src/side_classes.rs	0.5	4	convention	rev2 section-4 half-stem side-class thresholds reused verbatim, not new constants (straight range <= 0.5*s; round-rule smoothness max_jump <= 0.5*s kept at the anatomy rule; majority window w* <= 0.5*s); provenance docs/kni/2026-10-18-nv1-anatomy-edge-classification.md
+lit	metrics/src/side_classes.rs	2	7	definition	a polyline needs two points / adjacent pairs; squared distance; bare-majority halving n / 2 + 1 and adjacent-row windows(2) in the anatomy classification
+lit	metrics/src/side_classes.rs	9	1	pending	FINGERPRINT_SAMPLES / DEFAULT_TEMPERATURE; derivation or declared CONVENTION owed
+lit	metrics/src/side_walls.rs	180.0	1	definition	degrees to radians (180)
+lit	metrics/src/side_walls.rs	2	1	definition	adjacent point pairs
+lit	metrics/src/stress.rs	1e-12	1	convention	numeric tie tolerance; derivation in the const doc (far below the 1/CHAMFER_ORTHO distance step)
+lit	metrics/src/stress.rs	255	1	definition	8-bit white
+lit	metrics/src/tracking.rs	2.0	2	convention	tracking split evenly between the two sides; declared symmetric split
+lit	metrics/src/training_only_fit.rs	2	2	format	sha-256 hex digest length check (64 hex chars)
+lit	metrics/src/training_only_fit.rs	2.0	1	format	sha-256 hex digest length check (64 hex chars)
+lit	metrics/src/training_only_fit.rs	64	1	format	sha-256 hex digest length check (64 hex chars)
+
+lit	metrics/src/self_anchored_spacing.rs	0.5	4	definition:2,convention:2	-0.5 in stable quadratic root of the normalized p' extremum solve (definition); side-class thresholds straight range<=0.5*scale, round max_jump<=0.5*scale (rev-model side-class convention)
+lit	metrics/src/self_anchored_spacing.rs	16	1	definition	hex radix for U+XXXX codepoint parse in glyph_codepoints validation
+lit	metrics/src/self_anchored_spacing.rs	1e-9	1	convention	RESIDUAL_GUARD: extremum residual guard for multiple (tangent) roots in isolated_roots_in_piece; inclusion-only candidate guard, documented; not a policy weight and never a filter
+lit	metrics/src/self_anchored_spacing.rs	2	28	definition	bounds[2]=x_max index (incl. raw_base placement compose l.bounds[2]-r.bounds[0]+sides), wall.windows(2) pairing, median n/2 halves, diagonal sign-majority n/2, p' quadratic coefficient 2*a2, optical_weighted_mean uniformity check (weights.len() < 2 / weights.windows(2)); V2 checkpoint envelope schema version:2 at construction + two fail-closed guards (3 sites); structural indices/halves (+2: bounds[2] in the self-pair and rebase measurement code); self_mode value 2 x1: `prepared.self_mode = 2` tags the below-epsilon candidate run (a mode tag, not a tuning value)
+lit	metrics/src/self_anchored_spacing.rs	2.0	28	definition:26,convention:2	K2 class-channel pair target per-side half (a+b)/2.0 and midrange candidate midpoint of the class extremes (definitions); NV-2 equal load-sharing sidebearing deltas correction/2 on both facing sides (declared convention, work list 2026-10-16 items 2+7)
+lit	metrics/src/self_anchored_spacing.rs	3	4	definition:3,convention:1	bounds[3]=y_max index (definition); pair_min_shared_rows default 3 shared band rows (policy convention, exposed on SpacingPolicy) (+2: bounds[3] y_max in the self-pair and rebase measurement code)
+lit	metrics/src/self_anchored_spacing.rs	3.0	9	definition	cubic-derivative coefficient math: second-moment integrals /3.0, normalized transform 3*c3*m terms, J' term 3*lambda*s3, p' coefficient 3*a3
+lit	metrics/src/self_anchored_spacing.rs	4	2	definition:1,convention:1	hex.len()==4 in U+XXXX parse (definition); fixed 4-step Newton polish budget for extremum residuals, deterministic, not a tolerance (convention)
+lit	metrics/src/self_anchored_spacing.rs	4.0	4	definition:3,convention:1	discriminant 4*qa*qc, J' coefficients 4*om*w2^2 and 4*w2*(om*w0-T) (definition); sample_resolution default 4.0 -> residual epsilon 2.0 (policy convention, exposed on SpacingPolicy)
+lit	metrics/src/self_anchored_spacing.rs	6	2	definition:1,convention:1	hex.len()==6 in U+XXXXXX parse (definition); STEM_LETTERS set size [n h m H I l] from rev-model anchor letter set (convention)
+lit	metrics/src/self_anchored_spacing.rs	6.0	1	definition	J' t^2 coefficient 6*om*w2*w1 from 2*(quadratic w)*(w') expansion
+lit	metrics/src/self_anchored_spacing.rs	9	1	definition	closed_accounting_residual bucket vector length: 9 mutually exclusive ordered-pair accounting buckets (emitted, max_pairs ledger, below-epsilon, unmeasurable, numeric-failed, geometric-hold, candidate-hold, fallback natural-clear, fallback guard-verified)
+lit	metrics/src/self_anchored_spacing.rs	64	1	convention	declared per-candidate computational budget, exhaustion typed NotConverged, not a collision theorem/tolerance
+lit	metrics/src/self_anchored_spacing.rs	20000	1	convention	max_pairs default soft cap; resource-bound policy: overflow lands in the exclusion ledger, complete=false, never silently dropped; exposed on SpacingPolicy
+lit	metrics/src/self_anchored_spacing.rs	4000000	1	convention	max_pair_evaluations default hard bound n(n-1); typed ResourceBoundExceeded refusal before any pair is dropped; exposed on SpacingPolicy
+lit	metrics/src/generated_outline_kern.rs	0.5	1	definition	explicit integer export rounding, half away from zero: (|v|+0.5).floor().copysign(v); K3 export contract
+lit	metrics/src/generated_outline_kern.rs	1024.0	1	convention	solver/guard agreement tolerance scale: 1024 * f64::EPSILON * scale (shared-primitive agree check)
+lit	metrics/src/generated_outline_kern.rs	16	1	convention	KERN_WORKER_STACK_BYTES = 16 << 20: 16 MiB per-thread stack for residual-kern rayon workers; declared headroom for deep pair-eval recursion, not derived from measurement
+lit	metrics/src/generated_outline_kern.rs	20	1	convention	KERN_WORKER_STACK_BYTES = 16 << 20: shift amount selecting the 16 MiB stack size (16 * 2^20 bytes); same declaration as the literal 16 row
+lit	metrics/src/generated_outline_kern.rs	2	2	definition	bounds[f64;4] x_max index [2] in Meas::new: pair ink span bound for the exact safe-integer search (same bound as signed_clearance::safe_integer_distance)
+lit	metrics/src/outline_spacing.rs	0.5	5	definition	row grid midpoint convention: y = anchor + (i + 0.5) * row_step; half-covered boundary row weight (covered * 0.5)
+lit	metrics/src/outline_spacing.rs	1e-9	1	convention	MERGE_GUARD_UNITS: merge epsilon for coincident interval edges; numeric guard, not a measurement
+lit	metrics/src/outline_spacing.rs	2	28	definition	pairwise windows(2) iteration, [f64;2] point/origin arity (incl. ring-reference vector elements), minimum ring length 2
+lit	metrics/src/outline_spacing.rs	2.0	1	definition	supplementary scan row for a grid-missed thin ring: y at the ring's own mid-height (rminy + rmaxy) / 2.0, derived from the ring's own y-extent (no constants)
+lit	metrics/src/outline_spacing.rs	4	1	definition	bounds [f64;4] arity [min_x, min_y, max_x, max_y]
+lit	metrics/src/outline_spacing.rs	4.0	1	convention	ScanPolicy::default row_step 4.0 font units; declared default scan pitch
+lit	metrics/src/outline_spacing.rs	4096	1	convention	ScanPolicy::default max_rows 4096; resource guard default
+lit	metrics/src/outline_spacing.rs	24	1	definition	MAX_FLATTEN_DEPTH: adaptive cubic flatten recursion depth cap; resource guard for profile_from_emitted path
+lit	metrics/src/gpos_pairpos1.rs	0x0004	1	format	OpenType ValueFormat bit for xAdvance (the only value written)
+lit	metrics/src/gpos_pairpos1.rs	2	1	format	OpenType lookup type 2, pair adjustment
+lit	metrics/src/gpos_pairpos1.rs	9	1	format	OpenType Extension Positioning lookup type 9; overflow splitting routes pairs beyond single-subtable bounds through an extension subtable
+lit	metrics/src/gsub_liga.rs	2	3	format	LookupList header is 2 u16 fields (lookupCount plus the single lookup offset); ScriptList carries 2 records (DFLT, latn), each 3 u16 fields in the header expression
+lit	metrics/src/gsub_liga.rs	3	2	format	LigatureSubst format1 header is 3 u16 fields before the set offsets (substFormat, coverageOffset, ligSetCount); a ScriptList record is 3 u16 fields (tag counted once, offset)
+lit	metrics/src/gsub_liga.rs	4	2	format	OpenType lookup type 4 (LigatureSubst); Script defaultLangSysOffset 4 (Script header is defaultLangSysOffset+langSysCount)
+lit	metrics/src/gsub_liga.rs	5	1	format	GSUB header is 5 u16 fields (majorVersion, minorVersion, script/feature/lookup list offsets)
+lit	metrics/src/gsub_liga.rs	8	2	derived	offset past the one-record FeatureList header (2 + 6 bytes); lookup header size (type+flag+subTableCount+one offset)
+lit	metrics/src/gsub_liga.rs	0xffff	1	format	OpenType LangSys reqFeatureIndex 0xFFFF (no required feature)
+scope	metrics/src/otf_self_parse.rs
+lit	metrics/src/otf_self_parse.rs	0x00010000	1	format	OpenType spec sfnt scaler type for TrueType outlines; one of the four spec-listed values in SCALER_TYPES
+lit	metrics/src/otf_self_parse.rs	0x4f54544f	1	format	OpenType spec sfnt scaler type 'OTTO' for CFF outlines; one of the four spec-listed values in SCALER_TYPES
+lit	metrics/src/otf_self_parse.rs	0x74727565	1	format	sfnt scaler type 'true' (Apple TrueType), spec-listed in SCALER_TYPES
+lit	metrics/src/otf_self_parse.rs	0x74797031	1	format	sfnt scaler type 'typ1' (Apple legacy Type 1 sfnt), spec-listed in SCALER_TYPES
+lit	metrics/src/otf_self_parse.rs	0x5f0f3cf5	1	format	head.magicNumber, fixed by the OpenType spec head table definition
+lit	metrics/src/otf_self_parse.rs	0xb1b0afba	1	format	whole-font checksum target once head.checkSumAdjustment is in place, fixed by the OpenType spec
+lit	metrics/src/otf_self_parse.rs	10	2	format	byte offset of rangeShift in the 12-byte sfnt header (scaler 0, numTables 4, searchRange 6, entrySelector 8, rangeShift 10); read twice: consistency check and finding detail
+lit	metrics/src/otf_self_parse.rs	12	5	format	12-byte sfnt header length (HEADER_LEN); directory record length-field offset +12; head.magicNumber offset +12 read twice (check and detail); end of the head checkSumAdjustment field (+8..+12); OpenType spec geometry
+lit	metrics/src/otf_self_parse.rs	16	2	format	16-byte directory record length (RECORD_LEN) and minimum head length holding magic plus checkSumAdjustment (HEAD_MIN_LEN); OpenType spec geometry
+lit	metrics/src/otf_self_parse.rs	2	4	format	byte offsets inside big-endian word/record reads (third byte of a u32) and the power-of-two doubling walk deriving entrySelector from numTables; spec directory geometry
+lit	metrics/src/otf_self_parse.rs	3	2	format	byte offset of the fourth byte inside big-endian u32 reads (header field and directory record tag); spec layout geometry
+lit	metrics/src/otf_self_parse.rs	4	6	format	4-byte word/tag geometry of the spec: SCALER_TYPES array length, WORD checksum-word size, 4-byte tag arrays (field and parameter), numTables header offset +4, record checksum field offset +4
+lit	metrics/src/otf_self_parse.rs	6	2	format	byte offset of searchRange in the 12-byte sfnt header; read twice (consistency check and finding detail)
+lit	metrics/src/otf_self_parse.rs	8	4	format	byte offset of entrySelector in the sfnt header (read twice: check and detail), directory record offset field +8, start of head.checkSumAdjustment at head +8; spec geometry
+lit	metrics/src/pair_visual_read.rs	2	8	definition:7,convention:1	border_count 2*w+2*h (2), border_ink*2 majority-polarity test (1), runs.len()>=2 + two len()-2 runner-up indices (3), f[2] manifest field index (1) = definitions; MIN_GAP_BAND_PX const (1) = declared minimum gap-band width, reviewer G-e (convention)
+lit	metrics/src/pair_visual_read.rs	256	2	definition	Otsu 256-bin gray histogram: array length and threshold scan range 0..256
+lit	metrics/src/pair_visual_read.rs	3	1	definition	manifest row arity: exactly 3 tab-separated fields
+lit	metrics/src/pair_visual_read.rs	4	1	definition	border pixel count 2w+2h-4 (corner double-count subtraction)
+lit	metrics/src/self_anchored_spacing.rs	32	10	definition	[u8;32] sha256 digest byte width: CacheEnvelope five pins (executable, source, input, policy, context), RangeEnvelope two (context, payload_hash), checkpoint_executable/checkpoint_source/checkpoint_hash return types (3)
+lit	metrics/src/self_anchored_spacing.rs	256	1	convention	CHECKPOINT_MAX_BYTES 256 MiB declared checkpoint cache file cap (256*1024*1024); declared resource bound: oversize read/decode is a typed checkpoint_error refusal, same pattern as max_pairs resource bounds
+lit	metrics/src/self_anchored_spacing.rs	1024	2	definition	CHECKPOINT_MAX_BYTES byte-magnitude factors (256*1024*1024 = 256 MiB)

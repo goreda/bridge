@@ -1,0 +1,9 @@
+family Karl Nawrot Typefaces
+subfamily Regular
+postscript_name KN-Regular
+scale 2.4377
+fit_tolerance_policy fixed
+run_mode stage1_only
+population_sha256 0000000000000000000000000000000000000000000000000000000000000000
+glyph 0x41 A "glyph/0001__0041__A Tile.png" 3.25
+glyph 0x42 B "glyph/0002__0042__B Tile.png"

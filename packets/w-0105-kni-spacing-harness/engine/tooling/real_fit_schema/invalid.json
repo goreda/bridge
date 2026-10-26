@@ -1,0 +1,119 @@
+{
+  "capture_outputs": [
+    [
+      [
+        {
+          "spans": [
+            {
+              "end": {
+                "x": 1,
+                "y": 0
+              },
+              "variant": "Line"
+            },
+            {
+              "end": {
+                "x": 0,
+                "y": 0
+              },
+              "variant": "Line"
+            }
+          ],
+          "start": {
+            "x": 0,
+            "y": 0
+          }
+        }
+      ],
+      2,
+      false,
+      0
+    ]
+  ],
+  "capture_provenance": [],
+  "context": {
+    "family_binding_pin": null,
+    "family_disjoint_verified": false,
+    "independence_evidence_pin": null,
+    "independence_verified": false,
+    "mode": "DESCRIPTIVE ONLY",
+    "sealed_membership": "UNVERIFIED"
+  },
+  "economy_observations": [],
+  "ledger_rows": [
+    {
+      "attempted": true,
+      "base_available": true,
+      "cand_available": true,
+      "family": "synthetic-family",
+      "namespace": "source-emulation:kern-delta-u",
+      "pair": "synthetic-pair-1",
+      "paired_available": true,
+      "partition": "fit",
+      "resid_base": 2,
+      "resid_cand": -1,
+      "unavailable_reason_base": "",
+      "unavailable_reason_cand": "",
+      "unit": "font units"
+    },
+    {
+      "attempted": true,
+      "base_available": true,
+      "cand_available": false,
+      "family": "synthetic-family",
+      "namespace": "source-emulation:kern-delta-u",
+      "pair": "synthetic-pair-2",
+      "paired_available": false,
+      "partition": "fit",
+      "resid_base": 2,
+      "resid_cand": 0,
+      "unavailable_reason_base": "",
+      "unavailable_reason_cand": "invalid or unavailable query wall",
+      "unit": "font units"
+    }
+  ],
+  "mode": "DESCRIPTIVE ONLY",
+  "observations": [
+    {
+      "kern": 0,
+      "left": "synthetic-A",
+      "right": "synthetic-V",
+      "row_pin": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ],
+  "predictions": [
+    {
+      "prediction": {
+        "mechanism": "synthetic mechanism",
+        "predicted": -12,
+        "query_outline_pins": [
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        ],
+        "unavailable_reason": null
+      },
+      "receipt": {
+        "excluded_row_count": 2,
+        "part_glyph_count": 1,
+        "retained_row_count": 3
+      }
+    },
+    {
+      "prediction": {
+        "mechanism": null,
+        "predicted": null,
+        "query_outline_pins": [
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        ],
+        "unavailable_reason": "invalid or unavailable query wall"
+      },
+      "receipt": {
+        "excluded_row_count": 2,
+        "part_glyph_count": 1,
+        "retained_row_count": 3
+      }
+    }
+  ],
+  "source_commit": "40a8a05f5ebaac8be3adf64e89366697eae8f9bb"
+}

@@ -1,0 +1,103 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "previous_frame_sha256": {
+      "maxLength": 64,
+      "minLength": 0,
+      "type": "string"
+    },
+    "receipt": {
+      "additionalProperties": false,
+      "properties": {
+        "c2_source": {
+          "maxLength": 40,
+          "minLength": 0,
+          "type": "string"
+        },
+        "co_gate_status": {
+          "maxLength": 20,
+          "minLength": 0,
+          "type": "string"
+        },
+        "gate_config_sha256": {
+          "maxLength": 64,
+          "minLength": 0,
+          "type": "string"
+        },
+        "gate_id": {
+          "maxLength": 20,
+          "minLength": 0,
+          "type": "string"
+        },
+        "input_sha256s": {
+          "items": {
+            "maxLength": 64,
+            "minLength": 0,
+            "type": "string"
+          },
+          "maxItems": 4,
+          "minItems": 0,
+          "type": "array"
+        },
+        "logical_hash_status": {
+          "maxLength": 20,
+          "minLength": 0,
+          "type": "string"
+        },
+        "res_c2_col": {
+          "additionalProperties": false,
+          "properties": {
+            "tag": {
+              "maxLength": 7,
+              "minLength": 0,
+              "type": "string"
+            },
+            "value": {
+              "maxLength": 16,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          "required": [
+            "tag",
+            "value"
+          ],
+          "type": "object"
+        },
+        "schema_version": {
+          "maximum": 1,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "status": {
+          "maxLength": 20,
+          "minLength": 0,
+          "type": "string"
+        },
+        "tree_sha256": {
+          "maxLength": 64,
+          "minLength": 0,
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "tree_sha256",
+        "gate_id",
+        "gate_config_sha256",
+        "input_sha256s",
+        "c2_source",
+        "res_c2_col",
+        "status",
+        "co_gate_status",
+        "logical_hash_status"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "previous_frame_sha256",
+    "receipt"
+  ],
+  "type": "object"
+}

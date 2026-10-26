@@ -1,0 +1,14 @@
+#@style_id Marq/Regular
+run_mode full
+family Marq
+subfamily Regular
+postscript_name Marq-Regular
+scale 2.4377
+capture_frame frame-test
+capture_cohort Marq/Regular
+fit_tolerance_policy fixed
+population_sha256 d66f8ff5775f31a9e75983cc9c19359450bffd1aaa1fdda94641cc78c897cab4
+glyph 0x43 t43 glyph/t43.png
+glyph 0x44 t44 glyph/t44.png
+capture_manifest notdef/capture-manifest.tsv 266b26109bf6e715a44796e0b73de4d8981ad92817e4438521f3d32041219d59
+notdef evidence notdef/evidence.tsv 001e64c93a0c8a38a4f55ebbe793c19e0e0f0234c8bf098a8f65b8b041ac17b6 Marq/Regular 266b26109bf6e715a44796e0b73de4d8981ad92817e4438521f3d32041219d59 2.4377 frame-test
