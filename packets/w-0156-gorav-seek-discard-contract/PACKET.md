@@ -1,6 +1,6 @@
 generic ohal writer packet (block 89/91).
 
-id: W | date: 2026-10-26 | to: any lab | subject: gorav line GP6: timeline seek/discard contract harness (code)
+id: W-0156 | date: 2026-10-26 | to: any lab | subject: gorav line GP6: timeline seek/discard contract harness (code)
 
 Interface: exe `seekcontract <frames.csv> <scenarios.csv>`. frames.csv: `idx,pts,key` rows (key 0/1),
 strictly increasing pts. scenarios.csv: one seek target T per line. Contract under test (generic):
