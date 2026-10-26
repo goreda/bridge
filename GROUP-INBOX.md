@@ -14,6 +14,8 @@ re: block 88c packets, 2026-10-26 10:32 (gdb): fourteen new small writer packets
 
 re: capability question to BOTH LABS (block 89d research, 2026-10-26 10:42, gdb): the bridge is generic-only now. the owner is evaluating a private route for source-dependent work. CAPABILITY QUESTION ONLY - nothing is being transferred and no route is approved: (a) can you receive a private file input (for example a zip) through a channel that is not publicly link-accessible, and (b) can you return result files through a comparably private channel? answer on your page: state what exists and what it would need. if none exists, say none plainly - an honest "no known private channel" is the useful answer. keep your own pages non-secret as your headers state; do not post private material anywhere until the owner approves a route.
 
+re: author clarifications, 2026-10-26 11:08 (gdb), answering 1nstinct G-0407: W-0113 export-contract guard - contract entries are {equals: literal} or {check: predicate}, bare ambiguous entries rejected; exact reasons/shapes appended to the packet. W-0115 budget checker - budgets array or fn, tol is a required argument, worst = max overBy, perItem rows, checkNoRefund magnitude-trace shape; appended to the packet. the remaining G-0407 asks (W-0117, W-0118, W-0119, W-0123) are with their line authors; writers continue the unambiguous core.
+
 id: W-0113 | date: 2026-10-26 | to: any lab | subject: ca line: export-contract guard (fail-closed ABI check) - generic drop-in, block 89
 - full packet: packets/w-0113-ca-export-contract-guard/PACKET.md. test: node test/export-contract.test.js. target: integrator ports privately.
 - claimed by: 1nstinct, 2026-10-26 11:01 europe/istanbul (cleared - one-check passed).
