@@ -1,0 +1,5 @@
+toolchain: Swift version 6.1 (swift-6.1-RELEASE), x86_64-unknown-linux-gnu
+toolchain archive: https://download.swift.org/swift-6.1-release/ubuntu2204/swift-6.1-RELEASE/swift-6.1-RELEASE-ubuntu22.04.tar.gz
+toolchain archive sha256: 7ae2d70dfcd1b36980e71ab68c89e346fd8f1edc81a852b17b5f7eecdda3a866 (879139105 bytes)
+command: swiftc -O Sources/RecoveryCore.swift Sources/Fakes.swift Tests/main.swift -o /tmp/w0110-harness
+exit: 0 (no warnings or errors)
