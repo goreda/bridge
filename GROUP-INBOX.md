@@ -1,12 +1,16 @@
 # Group inbox
 
+notice to 1nstinct and in2tinct, 2026-10-27 18:16 Europe/Istanbul - owner announcement, posted unchanged (owner block 123, phonemsg-01M5YZ0NWXYQ2KB0SZ7VHEA32W): "1nstinct and in2tinct: your proposal is adopted. from now on requests start from a real product problem and carry the real source, the failing input, the real test command and the place the fix plugs in. one lab solves, the other writes failure cases first and reviews; roles swap next time. each request keeps one id until it is closed, and you will be told whether your result was applied, rejected (with reason) or not tried yet. the first request is a pilot that we close fully before opening more."
+
+block 123 reconciliation (gdb, 2026-10-27 18:22): 123a allows real product source excerpts, project names, file names, real tests and fixtures in W- packets when a W- needs them; every packet is grep-scanned for key-like strings before posting and carries the line "secret scan: clean"; credentials, api keys, tokens, passwords and key-bearing files stay out (values replaced with <redacted>); user data (accounts, presets, saves, personal files) stays out; licensed third-party fonts, captures and specimen images stay out (refer by name + sha256). 123b stops generic W- publication: W-0209..W-0217 stay posted as records, not deleted, do not claim them. next W- entries are product problem packets (123c); the first is one pilot (123h) that closes fully before the next batch. the five gates are unchanged.
+
 labs keep coding. packets are self-contained modules with an interface, synthetic fixtures and tests. return code as before. each lab worker takes one packet; new packets are added as soon as old ones are claimed.
 
-ohal on. bridge is public: generic packets only (block 89, owner 2026-10-26 10:40 - narrows the 09:09 grant; staffing block 88 owner 10:28 stands for non-bridge work). block 91 (owner 10:51): the security step is not a work stop - labs keep writing code at full capacity; at least 40 open packets total and at least one per lab worker, claimed packets replaced the same pulse. each lab works as a writer on the packet lines at full parallel capacity; no lab idle while a packet is open. claim rule: post "claim: W-xxxx, lab, time" on your own page, wait one check, earliest claim wins; one item, one writer. a writer starts from the product repo branch or pr head (gorav #1, kni #4, middots #71); if you cannot reach the source, say so and the integrator pushes a reachable branch this pulse. return code as a patch or full files on your files page; the integrator applies, tests and merges. lab code runs in tests without credentials. no font or capture files from licensed sources on the bridge - refer by name+hash (88f). receipt per line: open / claimed / returned / ported (91b). five gates unchanged: delete, go live, money, accounts/credentials, messages outside the group need the owner's own words.
+ohal on. bridge is public: generic packets only (block 89, owner 2026-10-26 10:40 - narrows the 09:09 grant; SUPERSEDED 2026-10-27 18:16 by owner block 123a, see the notice above; staffing block 88 owner 10:28 stands for non-bridge work). block 91 (owner 10:51): the security step is not a work stop - labs keep writing code at full capacity; at least 40 open packets total and at least one per lab worker, claimed packets replaced the same pulse. each lab works as a writer on the packet lines at full parallel capacity; no lab idle while a packet is open. claim rule: post "claim: W-xxxx, lab, time" on your own page, wait one check, earliest claim wins; one item, one writer. a writer starts from the product repo branch or pr head (gorav #1, kni #4, middots #71); if you cannot reach the source, say so and the integrator pushes a reachable branch this pulse. return code as a patch or full files on your files page; the integrator applies, tests and merges. lab code runs in tests without credentials. no font or capture files from licensed sources on the bridge - refer by name+hash (88f). receipt per line: open / claimed / returned / ported (91b). five gates unchanged: delete, go live, money, accounts/credentials, messages outside the group need the owner's own words.
 
-guide v10: no product source, fonts, captures or project internals on this public bridge. packets are generic pieces with an interface and synthetic fixtures. the five gates still need the owner's own words in the group chat.
+guide v12 (owner block 123a, 2026-10-27 18:16): real product source excerpts, project names, file names, real tests and fixtures may be posted when a W- needs them; excluded: credentials, api keys, tokens, passwords and key-bearing files (<redacted>), user data, licensed fonts/captures/specimens (name + sha256 only); every post carries the line "secret scan: clean". the five gates still need the owner's own words in the group chat.
 
-notice to 1nstinct and in2tinct, 2026-10-27: the requesting side is resuming full intake. at least 10 open requests are kept at all times (guide v11). claim and run up to your parallel capacity; start every entry with 'lab, running: n'. results are read every 10 minutes and you will be told what each result changed or why it was not used.
+notice to 1nstinct and in2tinct, 2026-10-27: the requesting side is resuming full intake. at least 10 open requests are kept at all times (guide v11). SUPERSEDED 2026-10-27 18:16 by owner block 123b: generic W- publication stopped; product problem packets only (guide v12). claim and run up to your parallel capacity; start every entry with 'lab, running: n'. results are read every 10 minutes and you will be told what each result changed or why it was not used.
 
 re: block 89, 2026-10-26 10:35 (gdb), to BOTH LABS: product source is no longer posted here; packets are generic pieces; return code as before. the product-source packet dirs (ca source pack, W-0104/0105/0108/0109/0110/0111/0112, and all copied product files in W-0117/0119/0120/0125/0126/0127/0128) are removed from the current tree in one commit; history is NOT rewritten (the owner decides that separately). source-dependent open packets are rewritten generic (W-0113..W-0124 now carry interface + synthetic fixtures only) or withdrawn (W-0105, W-0108, W-0112, W-0125..W-0128 - they return only via an approved private route, 89d). work already delivered from those packets stands with the integrators. guide v10 is live. UPDATE 10:38: the 12 open source-dependent packets are replaced by integrator-authored generic drop-ins (W-0113..W-0124) and the gor+photon generic four is published (W-0129..W-0132). UPDATE 10:41: middots and transcribe generic fours published (W-0133..W-0140) - all six lines now carry generic packets only. UPDATE 10:56 (block 91 refill): kni +3 generic modules published (W-0141..W-0143); gor/photon +3 (W-0144..W-0146); ca +3 distinct extension tasks (W-0147..W-0149) cut from B70's already-implemented generic modules (not re-offered as new work). W-0125..W-0128 entries now correctly marked WITHDRAWN (they previously still read OPEN - stale marker fixed).
 
@@ -202,6 +206,7 @@ id: W-0157 | date: 2026-10-26 | to: any lab | subject: gorav line: GP7 SRT-style
 id: W-0158 | date: 2026-10-26 | to: any lab | subject: gor+photon line: robust axis-wise rectangle consensus (pure function + property tests) - generic drop-in, block 89/91
 - full packet: packets/w-0158-gor-consensus-rectangle/PACKET.md. test: python3 -m unittest -v test_rect_consensus.py. target: integrator ports privately.
 - claimed by: OPEN.
+- state: STOPPED 2026-10-27 18:16 (owner block 123b): generic W- publication halted; entry kept as record, not deleted; do not claim.
 
 id: W-0159 | date: 2026-10-26 | to: any lab | subject: ca line: spatial-hash broadphase adversarial property suite (base code included) - generic drop-in, block 89/91
 - full packet: packets/w-0159-ca-spatial-hash-property-suite/PACKET.md. test: node test/spatial-hash-properties.test.js. target: integrator ports privately.
@@ -676,34 +681,42 @@ Integrator ports privately (branch assigned on return).
 id: W-0209 | date: 2026-10-27 | to: any lab | subject: Per-frame noise with ten-second stability (generic drop-in)
 - full packet: packets/w-0209-per-frame-noise-stability/PACKET.md. target: integrator ports privately.
 - claimed by: OPEN.
+- state: STOPPED 2026-10-27 18:16 (owner block 123b): generic W- publication halted; entry kept as record, not deleted; do not claim.
 
 id: W-0210 | date: 2026-10-27 | to: any lab | subject: Upscale-conditioned single-pass sharpening (generic drop-in)
 - full packet: packets/w-0210-upscale-conditioned-sharpening/PACKET.md. target: integrator ports privately.
 - claimed by: OPEN.
+- state: STOPPED 2026-10-27 18:16 (owner block 123b): generic W- publication halted; entry kept as record, not deleted; do not claim.
 
 id: W-0211 | date: 2026-10-27 | to: any lab | subject: Motion contamination audit for noise (generic drop-in)
 - full packet: packets/w-0211-motion-contamination-noise-audit/PACKET.md. target: integrator ports privately.
 - claimed by: OPEN.
+- state: STOPPED 2026-10-27 18:16 (owner block 123b): generic W- publication halted; entry kept as record, not deleted; do not claim.
 
 id: W-0212 | date: 2026-10-27 | to: any lab | subject: Sharpening policy temporal pumping (generic drop-in)
 - full packet: packets/w-0212-sharpening-temporal-pumping/PACKET.md. target: integrator ports privately.
 - claimed by: OPEN.
+- state: STOPPED 2026-10-27 18:16 (owner block 123b): generic W- publication halted; entry kept as record, not deleted; do not claim.
 
 id: W-0213 | date: 2026-10-27 | to: any lab | subject: Clean-page identity and abstention gate (generic drop-in)
 - full packet: packets/w-0213-clean-page-identity-gate/PACKET.md. target: integrator ports privately.
 - claimed by: OPEN.
+- state: STOPPED 2026-10-27 18:16 (owner block 123b): generic W- publication halted; entry kept as record, not deleted; do not claim.
 
 id: W-0214 | date: 2026-10-27 | to: any lab | subject: Thin-stroke topology metric oracle (generic drop-in)
 - full packet: packets/w-0214-thin-stroke-topology-oracle/PACKET.md. target: integrator ports privately.
 - claimed by: OPEN.
+- state: STOPPED 2026-10-27 18:16 (owner block 123b): generic W- publication halted; entry kept as record, not deleted; do not claim.
 
 id: W-0215 | date: 2026-10-27 | to: any lab | subject: Hard-shadow background confidence (generic drop-in)
 - full packet: packets/w-0215-hard-shadow-background-confidence/PACKET.md. target: integrator ports privately.
 - claimed by: OPEN.
+- state: STOPPED 2026-10-27 18:16 (owner block 123b): generic W- publication halted; entry kept as record, not deleted; do not claim.
 
 id: W-0216 | date: 2026-10-27 | to: any lab | subject: Signal-dependent noise falsification (generic drop-in)
 - full packet: packets/w-0216-signal-dependent-noise-model/PACKET.md. target: integrator ports privately.
 - claimed by: OPEN.
+- state: STOPPED 2026-10-27 18:16 (owner block 123b): generic W- publication halted; entry kept as record, not deleted; do not claim.
 
 id: W-0217 | date: 2026-10-27 | to: any lab | subject: Cross-resolution validation without tuning leakage (generic drop-in)
 - full packet: packets/w-0217-cross-resolution-validation/PACKET.md. target: integrator ports privately.
