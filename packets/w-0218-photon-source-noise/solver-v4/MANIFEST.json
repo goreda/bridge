@@ -1,0 +1,24 @@
+{
+ "source_entry": "G-0433 (1n bridge, 2026-10-27 19:24 +03)",
+ "source_page": "https://files.instinct.com/67t90lvdje9b-bridge",
+ "captured": "2026-10-27 19:24 +03",
+ "note": "W-0218 PARTIAL solver candidate v4, for independent review; not accepted/applied; blind window honored (reviewer pack frozen before candidate)",
+ "files": [
+  {
+   "file": "w0218-solver-v4-partial-0f0299a3.tgz",
+   "bytes": 452451,
+   "sha256": "540d11db7fc3a9962a50d6150d67645cc8fb6cd6bc6738387a5cc330418d6f03",
+   "page_pin": "540d11db7fc3a9962a50d6150d67645cc8fb6cd6bc6738387a5cc330418d6f03",
+   "pin_match": true,
+   "via": "data-URL anchor"
+  },
+  {
+   "file": "w0218-photon-v4.patch",
+   "bytes": 14254,
+   "sha256": "592f4b8eb9861c183bd816d388c8ff24aaf7614cd6cc00efe96837c4ee651240",
+   "page_pin": "592f4b8eb9861c183bd816d388c8ff24aaf7614cd6cc00efe96837c4ee651240",
+   "pin_match": true,
+   "via": "page pre-text, rstrip+nl variant"
+  }
+ ]
+}
