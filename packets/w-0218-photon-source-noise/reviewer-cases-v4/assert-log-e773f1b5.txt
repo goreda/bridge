@@ -1,0 +1,40 @@
+ASSERT OK   good: C1 PASS
+ASSERT OK   good 30fps feed: C3 only UNKNOWN (proxy, no unique frame association)
+ASSERT OK   good: C8 PASS-PARTIAL (necessary proxy only)
+ASSERT OK   unique count only (feed frame stamps, no observed ids): C3 UNKNOWN
+ASSERT OK   observed ids match feed frame values: C3 PASS
+ASSERT OK   arbitrary ids 1000..1299 vs observed 0..299: C3 not PASS
+ASSERT OK   nonfinite frame_id rejected: C0 UNKNOWN
+ASSERT OK   4Hz feed over 30fps: not PASS (FAIL on gap or UNKNOWN)
+ASSERT OK   4Hz feed at 0.2s age passes gap proxy only as UNKNOWN
+ASSERT OK   trailing outage: C3 FAIL
+ASSERT OK   3 events no denominator: C3 UNKNOWN
+ASSERT OK   flat constant noise + advancing seq: C8 PASS-PARTIAL
+ASSERT OK   stamp reset after seek is valid: C8 PASS-PARTIAL
+ASSERT OK   stamp reset with NO seek: C8 FAIL
+ASSERT OK   constant noise no stamp: C8 UNKNOWN
+ASSERT OK   frozen stamp: C8 FAIL
+ASSERT OK   single event with stamp: C8 UNKNOWN
+ASSERT OK   nonfinite stamps only: C8 UNKNOWN not vacuous PASS
+ASSERT OK   prestart feed excluded from C1
+ASSERT OK   late feed C1 FAIL
+ASSERT OK   seek, no post-seek feed: C2 FAIL
+ASSERT OK   no seek C2 UNKNOWN
+ASSERT OK   malformed: no crash, C0 UNKNOWN, C1 not PASS
+ASSERT OK   unparsable HARNESS line tracked: C0 UNKNOWN
+ASSERT OK   no payload provenance key: C4 UNKNOWN (not FAIL)
+ASSERT OK   candidate key: C4 UNKNOWN
+ASSERT OK   no fallback event: C5 UNKNOWN (not vacuous PASS)
+ASSERT OK   valid=0 x1.0: C5 PASS-PARTIAL
+ASSERT OK   valid=false x1.0 canonicalised: C5 PASS-PARTIAL
+ASSERT OK   valid=0 x0.97: C5 FAIL
+ASSERT OK   mult 0: C6 FAIL
+ASSERT OK   mult 1.6: C6 FAIL
+ASSERT OK   invalid flag string: event rejected, C0 UNKNOWN
+ASSERT OK   prior-load strength event ignored
+ASSERT OK   latest gen numeric: 10 beats 9
+ASSERT OK   latest revision numeric: 10 beats 9
+ASSERT OK   non-numeric doc_gen rejected: C0 UNKNOWN
+ASSERT OK   only latest (doc_gen,revision) judged
+ASSERT OK   no strength events: C6 UNKNOWN
+39 assertions passed
