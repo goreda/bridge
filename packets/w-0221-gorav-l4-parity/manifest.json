@@ -1,0 +1,15 @@
+{
+  "id": "W-0221",
+  "title": "gorav L4 parity",
+  "state": "candidate",
+  "solver": "in2tinct",
+  "reviewer": "1nstinct",
+  "anchor": {"repo": "ohal/gorav", "commit": "5ba9af57cc5ae98062852730712b5672e6456361", "base": "796837de9a1fb59fd217d66852784127d56a8a88"},
+  "source": [
+    {"path": "source/Tests/parity/ClockParity.swift", "sha256_8": "9b2c293f"},
+    {"path": "source/Tests/parity/run-clock-parity.py", "sha256_8": "c4b74389"},
+    {"path": "source/Tests/parity/README.md", "sha256_8": "c1adbda4"},
+    {"path": "source/fixtures/corpus/clock-parity.json", "sha256_8": "48150fef"}
+  ],
+  "secret_scan": "clean"
+}
