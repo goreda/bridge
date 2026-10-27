@@ -1,0 +1,318 @@
+diff -ruN src_orig/photon.lua src_cand/photon.lua
+--- src_orig/photon.lua	2026-10-27 16:11:45.976785715 +0000
++++ src_cand/photon.lua	2026-10-27 16:47:29.636325259 +0000
+@@ -1554,6 +1554,7 @@
+ --  mix (dark scenes) costs 2-4%.
+ local GS = {
+     interval = 4.0,
++    epoch    = 0,    -- W-0218 capture epoch
+     crop     = 384,
+     block    = 32,
+     max_lag  = 24,
+@@ -1599,6 +1600,28 @@
+     cf2      = 0.40,   -- luma-of-mixed-channels variance factor (CS=0.5, HP5)
+ }
+ 
++-- W-0218: registered right after GS exists, so it runs BEFORE any other
++-- seek handler in this script (handlers run in registration order). Other
++-- seek handlers publish the scene feed immediately; without this they
++-- republished the pre-seek source value as current at the seek event.
++mp.register_event("seek", function()
++    GS.epoch = GS.epoch + 1                 -- in-flight captures are pre-seek
++    GS.last_noise_share = nil
++    GS.last_noise_at = nil
++    GS.noise_smooth = nil; GS.noise_smooth_at = nil
++    if GS.feed_from_gs then                 -- drop the GS-latched feed state now
++        GS.feed_from_gs = false
++        photon_scene_has_feed = false
++        photon_scene_noise = 0.10
++        photon_scene_smooth_noise = 0.10
++        -- Announce the cleared state now. The later SDR seek handler returns
++        -- early on HDR sources or with the engine off, so it cannot be relied on.
++        if GS.publish_hook then GS.publish_hook() end
++    end
++    GS.last_pos = nil
++    GS.next_probe_at = nil
++end)
++
+ --  Rendered grain state mirrored from photon-grain's hud-state broadcast.
+ --  ts staleness gates subtraction: a live engine publishes at 1Hz, so a
+ --  stale mirror means the values cannot be trusted and the sample is
+@@ -2986,12 +3009,36 @@
+     -- while the same frame repeats, so the probe kept sampling and
+     -- committed three escalating sizes mid-buffering (field run 1).
+     -- No sampling and no committing on a frozen image.
+-    if RADAR_STATE.stream_frozen() then SIZE_GOV.hold("live","cache-stall"); return end
++    if RADAR_STATE.stream_frozen() then SIZE_GOV.hold("live","cache-stall"); GS.retry("cache-stall"); return end
+     local gs_pos = mp.get_property_number("time-pos")
+-    if gs_pos and GS.last_pos == gs_pos then SIZE_GOV.hold("live","time-pos-frozen"); return end
++    if gs_pos and GS.last_pos == gs_pos then SIZE_GOV.hold("live","time-pos-frozen"); GS.retry("time-pos-frozen"); return end
+     GS.last_pos = gs_pos
+     GS.log_sample_contract()
++    -- W-0218: capture epoch. A seek/load/toggle while this sample is in
++    -- flight bumps GS.epoch; the finished sample then belongs to the old
++    -- position and must not become the current reading (the document
++    -- generation does not change on a seek).
++    local tick_epoch = GS.epoch
++    local cap_pos_start = mp.get_property_number("time-pos")
++    local probe_t0 = mp.get_time()
+     local est, mult, frame_h, frame_luma, share, vsrc = gs_sample_frame()
++    mp.msg.info(string.format("W0218-probe start=%.3f dur=%.3f valid_share=%s", probe_t0, mp.get_time() - probe_t0, tostring(share)))
++    if tick_epoch ~= GS.epoch then
++        mp.msg.info(string.format("W0218-drop reason=epoch-changed-during-sample epoch_start=%s epoch_now=%s",
++            tostring(tick_epoch), tostring(GS.epoch)))
++        return
++    end
++    -- W-0218: no frame/capture yet (start, post-seek) must not cost a whole
++    -- 4s interval: bounded retry with backoff (GS.retry). A valid capture
++    -- resets the retry budget; so does an epoch change (seek/load/toggle).
++    if share == nil and est == nil and (GS.nil_why == "capture-tuple-unbound"
++        or GS.nil_why == "capture-no-luma" or GS.nil_why == "capture-tuple-changed") then
++        GS.retry(GS.nil_why)
++    elseif share ~= nil then
++        GS.retry_n = 0
++    end
++    GS.cap_pos_start = cap_pos_start
++    GS.cap_pos_end = mp.get_property_number("time-pos")
+ -- PHOTON TELEMETRY ADDITION BEGIN
+     if COST.media_telemetry then
+     COST.trace_record("GRAIN_MEASUREMENT",{doc_gen=tick_gen,est=est,mult=mult,
+@@ -3020,6 +3067,39 @@
+     end
+     if frame_luma then GS.prev_luma = frame_luma end
+ 
++    -- W-0218: the source reading is stored BEFORE manual look learning. That
++    -- block returns early for the 3 samples it collects; previously those valid
++    -- readings were neither stored nor cleared and the feed fell back (observed
++    -- in the F10 run: 3 valid probes, no live source feed for ~16s).
++    -- 118h: a real noise reading feeds the scene feed (see
++    -- photon_publish_scene_feed). share = source-noise share of measured
++    -- HP power, the same validity rule the receiver's measured flag uses.
++    if (vsrc or 0) > 0 and (share or 0) >= GS.src_share_min then
++        GS.last_noise_share = share
++        GS.last_noise_at = mp.get_time()
++        GS.last_noise_raw_var = vsrc
++        GS.last_noise_cap_start, GS.last_noise_cap_end = GS.cap_pos_start, GS.cap_pos_end
++        -- W-0218: publish at once; do not wait for the next radar/HDR tick.
++        if GS.publish_hook then GS.publish_hook() end
++        -- W-0218: a reading that is not renewed must expire on its own
++        -- (12s freshness window) even if no other path republishes.
++        if GS.expire_timer then GS.expire_timer:kill() end
++        GS.expire_timer = mp.add_timeout(12.05, function()
++            if GS.last_noise_at and mp.get_time() - GS.last_noise_at > 12.0 then
++                GS.last_noise_share = nil
++                GS.last_noise_at = nil
++                if GS.publish_hook then GS.publish_hook(true) end
++            end
++        end)
++    else
++        -- 118h: an invalid reading clears the cache at once - the feed
++        -- must never republish a stale share as current. The 12s
++        -- freshness window in publish is only a backstop for
++        -- paused/frozen playback, where no new sample exists.
++        GS.last_noise_share = nil
++        GS.last_noise_at = nil
++        if GS.publish_hook then GS.publish_hook(true) end
++    end
+     -- STRENGTH top-up rides every valid sample (never waits on size):
+     -- fill = target body - what the source already carries.
+     -- B2: median of the last GS.window valid samples of this scene, deadband
+@@ -3071,20 +3151,6 @@
+             GS.look_learn_revision = nil
+         end
+     end
+-    -- 118h: a real noise reading feeds the scene feed (see
+-    -- photon_publish_scene_feed). share = source-noise share of measured
+-    -- HP power, the same validity rule the receiver's measured flag uses.
+-    if (vsrc or 0) > 0 and (share or 0) >= GS.src_share_min then
+-        GS.last_noise_share = share
+-        GS.last_noise_at = mp.get_time()
+-    else
+-        -- 118h: an invalid reading clears the cache at once - the feed
+-        -- must never republish a stale share as current. The 12s
+-        -- freshness window in publish is only a backstop for
+-        -- paused/frozen playback, where no new sample exists.
+-        GS.last_noise_share = nil
+-        GS.last_noise_at = nil
+-    end
+     if mult then
+         -- 118c (adaptive program only): the multiplier is relative to the
+         -- delivered b7 look (x1.0 = GRAIN_STRENGTH_USER_DEFAULT). A valid
+@@ -3188,6 +3254,32 @@
+ 
+ GS.timer = mp.add_periodic_timer(GS.interval, GS.paced_tick)
+ 
++-- W-0218: the periodic timer first fires one full interval (4s) after
++-- start, and a seek clears the reading, so the first sample plus probe
++-- latency leaves about 1s of margin to the 5s target and adds timing risk. Kick one early sample shortly after start/seek/toggle.
++-- paced_tick still enforces single-flight (probe_running / next_probe_at).
++GS.kick_gen = 0
++GS.CUT_MIN_GAP = 1.0   -- engineering choice: coalesce a burst of cut flags
++GS.retry_n = 0
++GS.retry_epoch = 0
++GS.RETRY_BACKOFF = {0.5, 1.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0}   -- engineering choice: 8 tries, ~13.5s total, never a tight loop
++function GS.retry(reason)
++    if GS.retry_epoch ~= GS.epoch then GS.retry_epoch = GS.epoch; GS.retry_n = 0 end
++    if GS.retry_n >= #GS.RETRY_BACKOFF then return false end
++    GS.retry_n = GS.retry_n + 1
++    GS.kick(GS.RETRY_BACKOFF[GS.retry_n])
++    return true
++end
++function GS.kick(delay)
++    GS.kick_gen = GS.kick_gen + 1
++    local g = GS.kick_gen
++    mp.add_timeout(delay or 0.5, function()
++        if g ~= GS.kick_gen then return end   -- superseded by a newer kick
++        GS.next_probe_at = nil                -- a kick is an explicit early sample; probe_running still guards overlap
++        GS.paced_tick()
++    end)
++end
++
+ -- 118b: the size decision is made at once, never after a wait - the 5s
+ -- bound is met by construction, not by a timer. At start (and when the
+ -- adaptive program is toggled on) commit the resolution-based size
+@@ -3715,6 +3807,31 @@
+ end
+ 
+ local function photon_publish_scene_feed()
++    -- W-0218: a scene cut reported by the existing cut detector (is_cut
++    -- rising edge) invalidates the held source reading and any capture in
++    -- flight: that frame belongs to the previous scene. The cut flag is the
++    -- detector's own (pbs cut score / LIVE_CALIB cut ramp); an arbitrary luma
++    -- change is NOT treated as a cut here. At most once per GS.CUT_MIN_GAP s.
++    do
++        local tnow0 = mp.get_time()
++        if photon_scene_is_cut and not GS.prev_cut
++           and (not GS.cut_at or tnow0 - GS.cut_at >= GS.CUT_MIN_GAP) then
++            GS.cut_at = tnow0
++            GS.epoch = GS.epoch + 1
++            GS.last_noise_share = nil
++            GS.last_noise_at = nil
++            GS.noise_smooth = nil; GS.noise_smooth_at = nil
++            if GS.feed_from_gs then
++                GS.feed_from_gs = false
++                photon_scene_has_feed = false
++                photon_scene_noise = 0.10
++                photon_scene_smooth_noise = 0.10
++            end
++            mp.msg.info("W0218-cut invalidated source reading, epoch=" .. tostring(GS.epoch))
++            if GS.kick then GS.kick(0.75) end
++        end
++        GS.prev_cut = photon_scene_is_cut == true
++    end
+     -- 118h: connect the grain noise feed to the GS probe's real
+     -- measurement when fresh (<=12s). The radar/PQ proxies above only run
+     -- when their own path is live; where no real reading exists the feed
+@@ -3725,8 +3842,39 @@
+         -- retarget the smoothed value here or the receiver never sees it.
+         local gs_noise = clamp(GS.last_noise_share or 0.10, 0.0, 1.0)
+         photon_scene_noise = gs_noise
+-        photon_scene_smooth_noise = lerp(gs_noise, photon_scene_smooth_noise, 0.5)
++        -- W-0218: smooth the source reading in its OWN state. The shared
++        -- photon_scene_smooth_noise is pulled toward the radar/PQ proxy
++        -- (0.10 / 0.50) on every tick, so smoothing on top of it never
++        -- converged to the source reading. Time constant 0.5s, first
++        -- reading after a gap takes the value directly.
++        local tnow = mp.get_time()
++        if GS.noise_smooth == nil then
++            GS.noise_smooth = gs_noise
++        else
++            local dt = math.max(0.0, tnow - (GS.noise_smooth_at or tnow))
++            local alpha = 1.0 - math.exp(-dt / 0.5)
++            GS.noise_smooth = GS.noise_smooth + (gs_noise - GS.noise_smooth) * alpha
++        end
++        GS.noise_smooth_at = tnow
++        photon_scene_smooth_noise = GS.noise_smooth
+         photon_scene_has_feed = true
++        GS.feed_from_gs = true
++    end
++    do
++        -- W-0218 evidence trace: validity, raw share, smoothed value, age.
++        local tnow = mp.get_time()
++        local sig = tostring(photon_scene_has_feed) .. tostring(GS.feed_from_gs)
++        if sig ~= GS.trace_sig or not GS.trace_at or tnow - GS.trace_at >= 1.0 then
++            GS.trace_sig = sig; GS.trace_at = tnow
++            mp.msg.info(string.format(
++                "W0218-feed t=%.3f has_feed=%s from_source=%s raw_share=%s smooth=%.4f age=%s time_pos=%s cap_pos=%s..%s",
++                tnow, tostring(photon_scene_has_feed), tostring(GS.feed_from_gs == true),
++                GS.last_noise_share and string.format("%.4f", GS.last_noise_share) or "none",
++                photon_safenum(photon_scene_smooth_noise, 0.10),
++                GS.last_noise_at and string.format("%.2f", tnow - GS.last_noise_at) or "none",
++                tostring(mp.get_property_number("time-pos")),
++                tostring(GS.last_noise_cap_start), tostring(GS.last_noise_cap_end)))
++        end
+     end
+     fps_query_ticks_since = fps_query_ticks_since + 1
+     if not cached_scene_fps or fps_query_ticks_since >= FPS_QUERY_STRIDE then
+@@ -3751,6 +3899,7 @@
+         {"is_hdr", is_hdr, "bool"},
+         {"is_cut", photon_scene_is_cut, "bool"},
+         {"has_feed", photon_scene_has_feed, "bool"},
++        {"noise_from_source", GS.feed_from_gs == true, "bool"},  -- W-0218 observability proposal only: no consumer validates it, not provenance
+         -- Read only by sharp — produced by photon_sharp_update_scene_baseline,
+         {"baseline_pbs", photon_sharp_scene_baseline_pbs, "num"},
+         {"baseline_contrast", photon_sharp_scene_baseline_contrast, "num"},
+@@ -3776,6 +3925,21 @@
+     end
+ end
+ 
++-- W-0218: called from the GS probe the moment a reading is stored or cleared.
++-- A cleared reading drops a GS-latched feed (no stale has_feed=true) and
++-- returns noise to the honest default; radar/HDR paths set their own flags.
++GS.publish_hook = function(cleared)
++    if cleared then
++        if not GS.feed_from_gs then return end
++        GS.feed_from_gs = false
++        GS.noise_smooth = nil; GS.noise_smooth_at = nil
++        photon_scene_has_feed = false
++        photon_scene_noise = 0.10
++        photon_scene_smooth_noise = 0.10
++    end
++    photon_publish_scene_feed()
++end
++
+ -- HDR hue: video-out-params only gives avg/max-pq-y by default, no per-
+ -- channel color, so hue needs two extra sources. SOURCE 1 (metadata,
+ -- below) is free but requires HDR10+ dynamic metadata; SOURCE 2
+@@ -4687,6 +4851,8 @@
+     SIZE_GOV.fallback_logged = false      -- 118b: provisional decision re-issued per document
+     SIZE_GOV.fallback_sent = nil
+     GS.last_noise_share = nil; GS.last_noise_at = nil   -- 118h: old file's reading is stale
++    GS.epoch = GS.epoch + 1   -- W-0218
++    if GS.publish_hook then GS.publish_hook(true) end   -- W-0218
+     RADAR_STATE.dynamic_neutral     = CALIB_DEFAULT
+     RADAR_STATE.live_buffer         = {}
+     RG.ring                         = nil
+@@ -4712,6 +4878,7 @@
+     GR.weight_shift                 = 0.0
+     GR.res_adapt                    = 1
+     if not GS.timer then GS.timer = mp.add_periodic_timer(GS.interval, GS.paced_tick) end
++    GS.kick(0.75)   -- W-0218: early first source-noise sample
+     RG.last_bucket                  = nil
+     RG.fail_streak                  = 0
+     photon_scene_ring               = 0.0
+@@ -4863,6 +5030,11 @@
+ mp.register_event("seek", function()
+     GS.last_noise_share = nil
+     GS.last_noise_at = nil
++    if GS.publish_hook then GS.publish_hook(true) end   -- W-0218: drop GS-latched feed now
++    GS.epoch = GS.epoch + 1    -- W-0218: in-flight samples are pre-seek
++    GS.last_pos = nil          -- W-0218: new position must not read as frozen
++    GS.next_probe_at = nil     -- W-0218: allow an immediate post-seek sample
++    GS.kick(0.75)
+ end)
+ 
+ mp.observe_property("video-params/gamma", "string", function(_, g)
+@@ -5186,9 +5358,12 @@
+     SIZE_GOV.seed = nil; SIZE_GOV.applied = nil
+     SIZE_GOV.ceiling = nil; SIZE_GOV.source = nil; SIZE_GOV.reset_history()
+     GS.last_noise_share = nil; GS.last_noise_at = nil   -- 118h: mode change invalidates the reading
++    GS.epoch = GS.epoch + 1   -- W-0218
++    if GS.publish_hook then GS.publish_hook(true) end   -- W-0218
+     SIZE_GOV.commit_resolution_fallback("adaptive-toggle")   -- 118b
+     GS.hist = {}; GS.pair = nil; GS.last_mult = nil; GS.mhist = {}
+     GS.probe_running = false; GS.next_probe_at = nil
++    GS.kick(0.75)   -- W-0218
+     GS.est = nil; GS.samples = 0; GS.prev_luma = nil; GS.last_pos = nil
+     grain_analysis_generation = grain_analysis_generation + 1
+     grain_analysis_running = false; grain_analysis_samples = {}
