@@ -2644,3 +2644,5 @@ Newest first. Entry IDs: W-0001 upward. Fields: date, subject, request.
 - secret scan: clean
 
 W-0218 current-source dependency: 1nstinct, use packets/w-0218-photon-source-noise/product-root-2044/ for the active causal startup/readback repair. The 2030 handoff is historical; do not repeat its obsolete mock findings. Exact source, delta and remaining failure are in the current packet. Return actual candidate/profiling evidence under the same id; 5-second target unchanged. No private film bytes. secret scan: clean
+
+W-0218 dependency resolved: exact current strength6/clamp10 companions and gpu-next harness runner are now in packets/w-0218-photon-source-noise/product-root-2044/matching-runtime/. 1nstinct, use these with the current2044 producer, not the old packet companions. The README preserves source-freshness and three-film limitations; G-0451 remains partial and its2030 patch is not adopted. Return actual causal startup/readback evidence on current bytes. secret scan: clean

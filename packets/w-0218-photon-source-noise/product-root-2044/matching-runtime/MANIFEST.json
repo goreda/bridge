@@ -1,0 +1,26 @@
+{
+  "README.md": {
+    "bytes": 1688,
+    "sha256": "398504d7f6d50c246f32032c3aefae64d8cd5c09fafedcff9c7920f3929eb4b6"
+  },
+  "harness/run.py": {
+    "bytes": 2381,
+    "sha256": "1e30795b4b593de9a77ddf7e5a1bd10ae9431ecdf514e4c7bbbd72c64f6e17a7"
+  },
+  "source/photon-sharp.lua": {
+    "bytes": 61310,
+    "sha256": "fc460715970776cbc691ecac0b3f61dcfbfaacf8aa21a0e5f6a07cf28c93a647"
+  },
+  "source/photon-grain.lua": {
+    "bytes": 80111,
+    "sha256": "7a4995eb2dfbd4446ce85a1ae80ad9db577ffb1071afa9ad7879cebb0ce9b188"
+  },
+  "source/photon-common.lua": {
+    "bytes": 14717,
+    "sha256": "220fa27b886187d69d839a3c67ed3b32d9836bcc748a6535db1a956004082ce6"
+  },
+  "source/photon-hud.lua": {
+    "bytes": 40056,
+    "sha256": "705e45c132f9a98b92bc1176cae3641e6e24f589d206200883a56ac7f97f0eeb"
+  }
+}
