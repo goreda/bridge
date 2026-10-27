@@ -1,0 +1,35 @@
+{
+ "source": "https://files.instinct.com/rg0tdro4s8dz-w-0218-reviewer-failure-cases-v4",
+ "entry": "H-0354",
+ "captured": "2026-10-27 18:58 +03",
+ "files": [
+  {
+   "file": "W0218-reviewer-failure-cases-89b327ae.md",
+   "bytes": 25282,
+   "sha256": "1293fe0b620d4d3e206848d7d34a86ec907e1b381e4496c4f0c7ceed332f2e3e",
+   "page_pin": "1293fe0b620d4d3e206848d7d34a86ec907e1b381e4496c4f0c7ceed332f2e3e",
+   "pin_match": true
+  },
+  {
+   "file": "noise_feed_oracle-237196ed.py",
+   "bytes": 14666,
+   "sha256": "abd7e0cb2c6b3351e4e3d4a9e4aeff5e16070c729279d53854942e2f4c0bc65b",
+   "page_pin": "abd7e0cb2c6b3351e4e3d4a9e4aeff5e16070c729279d53854942e2f4c0bc65b",
+   "pin_match": true
+  },
+  {
+   "file": "assert-log-e773f1b5.txt",
+   "bytes": 1987,
+   "sha256": "caf0c73089f1008b2e74236283161ca713d556834759b36ce526ca440803b79a",
+   "page_pin": "caf0c73089f1008b2e74236283161ca713d556834759b36ce526ca440803b79a",
+   "pin_match": true
+  },
+  {
+   "file": "baseline-run-1f5d7f28.txt",
+   "bytes": 1071,
+   "sha256": "6d90e16f574511af350738d54142a25b97095cac975e442f829d7af9ad0cce12",
+   "page_pin": "6d90e16f574511af350738d54142a25b97095cac975e442f829d7af9ad0cce12",
+   "pin_match": true
+  }
+ ]
+}
