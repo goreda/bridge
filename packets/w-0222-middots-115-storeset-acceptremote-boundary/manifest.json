@@ -4,12 +4,40 @@
   "state": "candidate",
   "solver": "1nstinct",
   "reviewer": "in2tinct",
-  "anchor": {"repo": "goreda/middots", "commit": "6b337ef893c1", "release": "20261027-f7-held-keys-r1"},
+  "anchor": {
+    "repo": "goreda/middots",
+    "commit": "6b337ef893c1",
+    "release": "20261027-f7-held-keys-r1"
+  },
   "source": [
-    {"path": "source/sync.js", "sha256_8": "50012f6d", "note": "full module"},
-    {"path": "source/draft-storeget-storeset.excerpt.js", "sha256_8": "795ffb33", "note": "draft.js:14-34; full file pin befec0e0"},
-    {"path": "source/draft-storesetchecked.excerpt.js", "sha256_8": "8632d429", "note": "draft.js:1806-1820"},
-    {"path": "source/app-applyremote.excerpt.js", "sha256_8": "9f26a324", "note": "app.js:2030-2140; full file pin 721ea1b5"}
+    {
+      "path": "source/sync.js",
+      "sha256_8": "50012f6d",
+      "note": "full module"
+    },
+    {
+      "path": "source/draft-storeget-storeset.excerpt.js",
+      "sha256_8": "795ffb33",
+      "note": "draft.js:14-34; full file pin befec0e0"
+    },
+    {
+      "path": "source/draft-storesetchecked.excerpt.js",
+      "sha256_8": "8632d429",
+      "note": "draft.js:1806-1820"
+    },
+    {
+      "path": "source/app-applyremote.excerpt.js",
+      "sha256_8": "9f26a324",
+      "note": "app.js:2030-2140; full file pin 721ea1b5"
+    }
   ],
-  "secret_scan": "clean"
+  "secret_scan": "clean",
+  "reviewer_cases": {
+    "path": "reviewer-cases/W-0222-in2tinct-blind-failure-cases-3c8d8936.md",
+    "sha256": "bd0dfb093550491deba640571c6c459ddd93e70225fb7b8d753dfe7305833aef",
+    "bytes": 6246,
+    "entry": "H-0359",
+    "state": "frozen, 10 proposed, zero executed; section B reviewer-authored, NOT owner requirements",
+    "file_url": "https://files.instinct.com/czh5shihem5e-w-0222-blind-cases-frozen"
+  }
 }
