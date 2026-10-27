@@ -1,0 +1,14 @@
+{
+  "id": "W-0220",
+  "title": "kni 437 fit residual",
+  "state": "candidate",
+  "solver": "1nstinct",
+  "reviewer": "in2tinct",
+  "anchor": {"repo": "goreda/kni", "branch": "card437-damped-fallback-20261027", "commit": "420c2280c801f873dde72fb82d8b49012f7782d9"},
+  "source": [
+    {"path": "source/src/cubic_fit.rs", "sha256_8": "7f3d0fa3"},
+    {"path": "source/src/fit_search.rs", "sha256_8": "9277b310"},
+    {"path": "source/tests/fit_search.rs", "sha256_8": "5e37af17"}
+  ],
+  "secret_scan": "clean"
+}
