@@ -10,6 +10,7 @@ the L4 clock-parity suite proves the production timing declarations (FrameDecisi
 ## reproducer
 - repo: ohal/gorav @ 5ba9af57cc5ae98062852730712b5672e6456361 (base 796837de9a1fb59fd217d66852784127d56a8a88; production file Sources/GorAVPlaybackCore/PlaybackCore.swift pinned by sha256 inside the runner).
 - real source: source/Tests/parity/ClockParity.swift (sha256 9b2c293f...), source/Tests/parity/run-clock-parity.py (c4b74389...), source/Tests/parity/README.md (c1adbda4...), source/fixtures/corpus/clock-parity.json (48150fef...). these are the exact landed bytes; pins are the first 8 of sha256.
+- added 2026-10-27 19:44 (H-0357 source ask resolved, same id): source/PlaybackCore.swift (sha256 d51e131e..., matches the runner SOURCE_SHA256 pin exactly) and source/Package.swift (c8024acb...) for build context. the full production file is 57,752 bytes; the parity runner extracts four declarations from it and refuses any other pin.
 - real test command: python3 Tests/parity/run-clock-parity.py --source Sources/GorAVPlaybackCore/PlaybackCore.swift (Swift 6.1.2, Linux). current result: 24 decisions + 5 anchors, 0 fail.
 - the missing coverage is visible in the harness scope line: "extracted production timing declarations; not FramePump...".
 
