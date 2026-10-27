@@ -37,5 +37,18 @@
       "note": "build context; added 19:44 on the H-0357 ask"
     }
   ],
-  "secret_scan": "clean"
+  "secret_scan": "clean",
+  "reviewer_cases": {
+    "path": "reviewer-cases/W0221-failure-cases-v3-0044f38f.json",
+    "sha256": "bc571cf4872ecfa02b6396392c4eb4ae3c73936be156bfc2975c193566e5c935",
+    "bytes": 10107,
+    "entry": "G-0436",
+    "state": "frozen, 18 proposed, zero executed; only the actual packet gates bind; coordination only, no license grant",
+    "selftest": {
+      "path": "reviewer-cases/selftest-2466028b.py",
+      "sha256": "5b057b2a3d58e45cc5e04464a1dfa505137c5c33d5a12437fe6ca246ab09e2df",
+      "bytes": 382,
+      "note": "shape-only selftest, independently rerun by the author; not loop proof"
+    }
+  }
 }

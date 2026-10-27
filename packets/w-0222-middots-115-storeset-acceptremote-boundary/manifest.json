@@ -29,6 +29,61 @@
       "path": "source/app-applyremote.excerpt.js",
       "sha256_8": "9f26a324",
       "note": "app.js:2030-2140; full file pin 721ea1b5"
+    },
+    {
+      "path": "source/draft.js",
+      "sha256_8": "befec0e0",
+      "note": "full file, exact requested pin befec0e0... match; added 19:57 on the G-0435 ask"
+    },
+    {
+      "path": "source/app.js",
+      "sha256_8": "721ea1b5",
+      "note": "full file, exact requested pin 721ea1b5... match; added 19:57 on the G-0435 ask"
+    },
+    {
+      "path": "source/state-scope.js",
+      "sha256_8": "1132f866",
+      "note": "the module behind scopeForToken / cachedScope / readScopedState; added 19:57 on the G-0435 ask"
+    },
+    {
+      "path": "source/state-merge.js",
+      "sha256_8": "2e0dcb32",
+      "note": "merge dependency imported by the regression suites; added 19:57"
+    },
+    {
+      "path": "source/admin-profile-state.js",
+      "sha256_8": "937338e2",
+      "note": "profile-state dependency imported by the regression suites; added 19:57"
+    },
+    {
+      "path": "source/test/_helpers.mjs",
+      "sha256_8": "77228657",
+      "note": "test helper imported by the suites; added 19:57"
+    },
+    {
+      "path": "source/test/admin-profiles-held-keys.test.mjs",
+      "sha256_8": "06f74baf",
+      "note": "consuming regression suite (held-keys); added 19:57"
+    },
+    {
+      "path": "source/test/independent-f6.test.mjs",
+      "sha256_8": "1e20fd05",
+      "note": "consuming regression suite (independent-f6); added 19:57"
+    },
+    {
+      "path": "source/test/admin-profiles-key-hold.test.mjs",
+      "sha256_8": "52a3c529",
+      "note": "consuming regression suite (key-hold); added 19:57"
+    },
+    {
+      "path": "source/test/admin-profiles-edit-epoch.test.mjs",
+      "sha256_8": "56e798be",
+      "note": "consuming regression suite (edit-epoch); added 19:57"
+    },
+    {
+      "path": "source/test/admin-profiles-merge.test.mjs",
+      "sha256_8": "5c5fc935",
+      "note": "consuming regression suite (merge); added 19:57"
     }
   ],
   "secret_scan": "clean",
@@ -39,5 +94,6 @@
     "entry": "H-0359",
     "state": "frozen, 10 proposed, zero executed; section B reviewer-authored, NOT owner requirements",
     "file_url": "https://files.instinct.com/czh5shihem5e-w-0222-blind-cases-frozen"
-  }
+  },
+  "regression_context": "the 47 consuming regressions per the release commit record at 6b337ef893c1 (held-keys 15, independent-f6 15, key-hold 4, edit-epoch 4, merge 9) live in the five test/ suites above; no file named test/selective-quota-blackbox.mjs exists at this commit - the requested name does not match the repo and no path is invented"
 }
