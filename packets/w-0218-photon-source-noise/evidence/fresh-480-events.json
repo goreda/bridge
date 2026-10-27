@@ -1,0 +1,480 @@
+[
+  {
+    "kind": "file-loaded",
+    "wall": 3e-06,
+    "position": 0,
+    "osd": {
+      "ml": 0,
+      "mt": 0,
+      "mr": 0,
+      "mb": 0,
+      "w": 0,
+      "h": 0,
+      "aspect": 0,
+      "par": 0
+    }
+  },
+  {
+    "kind": "frame-position",
+    "extra": [
+      0
+    ],
+    "wall": 0.001631,
+    "position": 0,
+    "osd": {
+      "ml": 0,
+      "mt": 0,
+      "mr": 0,
+      "mb": 0,
+      "w": 0,
+      "h": 0,
+      "aspect": 0,
+      "par": 0
+    }
+  },
+  {
+    "kind": "size-evidence",
+    "extra": [
+      "unmeasured"
+    ],
+    "wall": 0.00622,
+    "position": 0,
+    "osd": {
+      "ml": 0,
+      "mt": 0,
+      "mr": 0,
+      "mb": 0,
+      "w": 0,
+      "h": 0,
+      "aspect": 0,
+      "par": 0
+    }
+  },
+  {
+    "kind": "size-evidence",
+    "extra": [
+      "resolution-fallback"
+    ],
+    "wall": 0.009605,
+    "position": 0,
+    "osd": {
+      "ml": 0,
+      "mt": 0,
+      "mr": 0,
+      "mb": 0,
+      "w": 0,
+      "h": 0,
+      "aspect": 0,
+      "par": 0
+    }
+  },
+  {
+    "src": {
+      "rotate": 0,
+      "par": 0.999219,
+      "average-bpp": 12,
+      "dw": 854,
+      "dh": 480,
+      "crop-x": 0,
+      "crop-y": 0,
+      "crop-w": 854,
+      "crop-h": 480,
+      "aspect-name": "16:9",
+      "sar": 1.779167,
+      "sar-name": "16:9",
+      "colormatrix": "bt.709",
+      "colorlevels": "limited",
+      "alpha": "none",
+      "primaries": "bt.709",
+      "gamma": "bt.1886",
+      "stereo-in": "mono",
+      "sig-peak": 0,
+      "light": "auto",
+      "chroma-location": "mpeg2/4/h264",
+      "w": 854,
+      "h": 480,
+      "aspect": 1.779167,
+      "pixelformat": "yuv420p"
+    },
+    "kind": "frame-position",
+    "extra": [
+      0.033367
+    ],
+    "wall": 7.121665,
+    "position": 0.066733,
+    "osd": {
+      "ml": 0,
+      "mt": 0,
+      "mr": 0,
+      "mb": 1,
+      "w": 2276,
+      "h": 1280,
+      "aspect": 1.778125,
+      "par": 1
+    }
+  },
+  {
+    "src": {
+      "rotate": 0,
+      "par": 0.999219,
+      "average-bpp": 12,
+      "dw": 854,
+      "dh": 480,
+      "crop-x": 0,
+      "crop-y": 0,
+      "crop-w": 854,
+      "crop-h": 480,
+      "aspect-name": "16:9",
+      "sar": 1.779167,
+      "sar-name": "16:9",
+      "colormatrix": "bt.709",
+      "colorlevels": "limited",
+      "alpha": "none",
+      "primaries": "bt.709",
+      "gamma": "bt.1886",
+      "stereo-in": "mono",
+      "sig-peak": 0,
+      "light": "auto",
+      "chroma-location": "mpeg2/4/h264",
+      "w": 854,
+      "h": 480,
+      "aspect": 1.779167,
+      "pixelformat": "yuv420p"
+    },
+    "kind": "frame-position",
+    "extra": [
+      0.066733
+    ],
+    "wall": 9.734819,
+    "position": 0.066733,
+    "osd": {
+      "ml": 0,
+      "mt": 0,
+      "mr": 0,
+      "mb": 1,
+      "w": 2276,
+      "h": 1280,
+      "aspect": 1.778125,
+      "par": 1
+    }
+  },
+  {
+    "src": {
+      "rotate": 0,
+      "par": 0.999219,
+      "average-bpp": 12,
+      "dw": 854,
+      "dh": 480,
+      "crop-x": 0,
+      "crop-y": 0,
+      "crop-w": 854,
+      "crop-h": 480,
+      "aspect-name": "16:9",
+      "sar": 1.779167,
+      "sar-name": "16:9",
+      "colormatrix": "bt.709",
+      "colorlevels": "limited",
+      "alpha": "none",
+      "primaries": "bt.709",
+      "gamma": "bt.1886",
+      "stereo-in": "mono",
+      "sig-peak": 0,
+      "light": "auto",
+      "chroma-location": "mpeg2/4/h264",
+      "w": 854,
+      "h": 480,
+      "aspect": 1.779167,
+      "pixelformat": "yuv420p"
+    },
+    "kind": "seek-request",
+    "wall": 9.73487,
+    "position": 0.066733,
+    "osd": {
+      "ml": 0,
+      "mt": 0,
+      "mr": 0,
+      "mb": 1,
+      "w": 2276,
+      "h": 1280,
+      "aspect": 1.778125,
+      "par": 1
+    }
+  },
+  {
+    "src": {
+      "rotate": 0,
+      "par": 0.999219,
+      "average-bpp": 12,
+      "dw": 854,
+      "dh": 480,
+      "crop-x": 0,
+      "crop-y": 0,
+      "crop-w": 854,
+      "crop-h": 480,
+      "aspect-name": "16:9",
+      "sar": 1.779167,
+      "sar-name": "16:9",
+      "colormatrix": "bt.709",
+      "colorlevels": "limited",
+      "alpha": "none",
+      "primaries": "bt.709",
+      "gamma": "bt.1886",
+      "stereo-in": "mono",
+      "sig-peak": 0,
+      "light": "auto",
+      "chroma-location": "mpeg2/4/h264",
+      "w": 854,
+      "h": 480,
+      "aspect": 1.779167,
+      "pixelformat": "yuv420p"
+    },
+    "kind": "seek",
+    "wall": 10.021115,
+    "position": 8,
+    "osd": {
+      "ml": 0,
+      "mt": 0,
+      "mr": 0,
+      "mb": 1,
+      "w": 2276,
+      "h": 1280,
+      "aspect": 1.778125,
+      "par": 1
+    }
+  },
+  {
+    "src": {
+      "rotate": 0,
+      "par": 0.999219,
+      "average-bpp": 12,
+      "dw": 854,
+      "dh": 480,
+      "crop-x": 0,
+      "crop-y": 0,
+      "crop-w": 854,
+      "crop-h": 480,
+      "aspect-name": "16:9",
+      "sar": 1.779167,
+      "sar-name": "16:9",
+      "colormatrix": "bt.709",
+      "colorlevels": "limited",
+      "alpha": "none",
+      "primaries": "bt.709",
+      "gamma": "bt.1886",
+      "stereo-in": "mono",
+      "sig-peak": 0,
+      "light": "auto",
+      "chroma-location": "mpeg2/4/h264",
+      "w": 854,
+      "h": 480,
+      "aspect": 1.779167,
+      "pixelformat": "yuv420p"
+    },
+    "kind": "frame-position",
+    "extra": [
+      8
+    ],
+    "wall": 11.770857,
+    "position": 8,
+    "osd": {
+      "ml": 0,
+      "mt": 0,
+      "mr": 0,
+      "mb": 1,
+      "w": 2276,
+      "h": 1280,
+      "aspect": 1.778125,
+      "par": 1
+    }
+  },
+  {
+    "src": {
+      "rotate": 0,
+      "par": 0.999219,
+      "average-bpp": 12,
+      "dw": 854,
+      "dh": 480,
+      "crop-x": 0,
+      "crop-y": 0,
+      "crop-w": 854,
+      "crop-h": 480,
+      "aspect-name": "16:9",
+      "sar": 1.779167,
+      "sar-name": "16:9",
+      "colormatrix": "bt.709",
+      "colorlevels": "limited",
+      "alpha": "none",
+      "primaries": "bt.709",
+      "gamma": "bt.1886",
+      "stereo-in": "mono",
+      "sig-peak": 0,
+      "light": "auto",
+      "chroma-location": "mpeg2/4/h264",
+      "w": 854,
+      "h": 480,
+      "aspect": 1.779167,
+      "pixelformat": "yuv420p"
+    },
+    "kind": "scene-feed",
+    "extra": [
+      "peak=0.5000;contrast=0.3500;noise=0.1000;block=0.0000;ring=5.5362;rlevel=0.2560;sat=0.1000;motion=1.0000;smooth_peak=0.5000;smooth_contrast=0.3500;smooth_noise=0.1000;fps=29.9700;is_hdr=false;is_cut=false;has_feed=false"
+    ],
+    "wall": 13.886141,
+    "position": 8,
+    "osd": {
+      "ml": 0,
+      "mt": 0,
+      "mr": 0,
+      "mb": 1,
+      "w": 2276,
+      "h": 1280,
+      "aspect": 1.778125,
+      "par": 1
+    }
+  },
+  {
+    "src": {
+      "rotate": 0,
+      "par": 0.999219,
+      "average-bpp": 12,
+      "dw": 854,
+      "dh": 480,
+      "crop-x": 0,
+      "crop-y": 0,
+      "crop-w": 854,
+      "crop-h": 480,
+      "aspect-name": "16:9",
+      "sar": 1.779167,
+      "sar-name": "16:9",
+      "colormatrix": "bt.709",
+      "colorlevels": "limited",
+      "alpha": "none",
+      "primaries": "bt.709",
+      "gamma": "bt.1886",
+      "stereo-in": "mono",
+      "sig-peak": 0,
+      "light": "auto",
+      "chroma-location": "mpeg2/4/h264",
+      "w": 854,
+      "h": 480,
+      "aspect": 1.779167,
+      "pixelformat": "yuv420p"
+    },
+    "kind": "finish",
+    "wall": 15.003617,
+    "position": 8,
+    "osd": {
+      "ml": 0,
+      "mt": 0,
+      "mr": 0,
+      "mb": 1,
+      "w": 2276,
+      "h": 1280,
+      "aspect": 1.778125,
+      "par": 1
+    }
+  },
+  {
+    "src": {
+      "rotate": 0,
+      "par": 0.999219,
+      "average-bpp": 12,
+      "dw": 854,
+      "dh": 480,
+      "crop-x": 0,
+      "crop-y": 0,
+      "crop-w": 854,
+      "crop-h": 480,
+      "aspect-name": "16:9",
+      "sar": 1.779167,
+      "sar-name": "16:9",
+      "colormatrix": "bt.709",
+      "colorlevels": "limited",
+      "alpha": "none",
+      "primaries": "bt.709",
+      "gamma": "bt.1886",
+      "stereo-in": "mono",
+      "sig-peak": 0,
+      "light": "auto",
+      "chroma-location": "mpeg2/4/h264",
+      "w": 854,
+      "h": 480,
+      "aspect": 1.779167,
+      "pixelformat": "yuv420p"
+    },
+    "kind": "scene-feed",
+    "extra": [
+      "peak=0.5000;contrast=0.3500;noise=0.1000;block=0.0000;ring=5.5440;rlevel=0.2573;sat=0.1000;motion=0.2000;smooth_peak=0.5000;smooth_contrast=0.3500;smooth_noise=0.1000;fps=29.9700;is_hdr=false;is_cut=false;has_feed=false;baseline_pbs=37.6413;baseline_contrast=0.4667"
+    ],
+    "wall": 30.806433,
+    "position": 8,
+    "osd": {
+      "ml": 0,
+      "mt": 0,
+      "mr": 0,
+      "mb": 1,
+      "w": 2276,
+      "h": 1280,
+      "aspect": 1.778125,
+      "par": 1
+    }
+  },
+  {
+    "kind": "strength-mult",
+    "extra": [
+      "0.5000",
+      "1",
+      "480p.mp4",
+      "109.9392",
+      "0.715",
+      "1",
+      "1",
+      "0"
+    ],
+    "wall": 30.811956,
+    "osd": {
+      "ml": 0,
+      "mt": 0,
+      "mr": 0,
+      "mb": 1,
+      "w": 2276,
+      "h": 1280,
+      "aspect": 1.778125,
+      "par": 1
+    }
+  },
+  {
+    "kind": "scene-feed",
+    "extra": [
+      "peak=0.3777;contrast=0.4667;noise=0.7153;block=0.0000;ring=5.6474;rlevel=0.2746;sat=0.1887;motion=0.0000;smooth_peak=0.3821;smooth_contrast=0.4600;smooth_noise=0.4076;fps=29.9700;is_hdr=false;is_cut=false;has_feed=true;baseline_pbs=37.6413;baseline_contrast=0.4667;hue=0.8441;warmth=0.0639"
+    ],
+    "wall": 30.81199,
+    "osd": {
+      "ml": 0,
+      "mt": 0,
+      "mr": 0,
+      "mb": 1,
+      "w": 2276,
+      "h": 1280,
+      "aspect": 1.778125,
+      "par": 1
+    }
+  },
+  {
+    "kind": "scene-feed",
+    "extra": [
+      "peak=0.3777;contrast=0.4667;noise=0.7153;block=0.0000;ring=5.6474;rlevel=0.2746;sat=0.1887;motion=0.0000;smooth_peak=0.3778;smooth_contrast=0.4663;smooth_noise=0.4078;fps=29.9700;is_hdr=false;is_cut=false;has_feed=true;baseline_pbs=37.6413;baseline_contrast=0.4667;hue=0.8441;warmth=0.0639"
+    ],
+    "wall": 30.833805,
+    "osd": {
+      "ml": 0,
+      "mt": 0,
+      "mr": 0,
+      "mb": 1,
+      "w": 2276,
+      "h": 1280,
+      "aspect": 1.778125,
+      "par": 1
+    }
+  }
+]

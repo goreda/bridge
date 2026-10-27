@@ -1,0 +1,16 @@
+local utils=require('mp.utils')
+local started=mp.get_time()
+local function record(kind,extra)
+ mp.msg.info('HARNESS '..utils.format_json({kind=kind,wall=mp.get_time()-started,position=mp.get_property_number('time-pos'),osd=mp.get_property_native('osd-dimensions'),src=mp.get_property_native('video-dec-params'),extra=extra}))
+end
+mp.register_event('file-loaded',function()started=mp.get_time();record('file-loaded');mp.add_timeout(8,function()record('seek-request');mp.commandv('seek','8','absolute+exact')end);mp.add_timeout(15,function()record('finish');mp.commandv('screenshot-to-file',mp.get_opt('harness-shot') or '/tmp/photon118-harness/results/frame.png','window');mp.commandv('quit')end)end)
+mp.register_event('seek',function()record('seek')end)
+mp.register_event('playback-restart',function()record('restart')end)
+mp.register_script_message('photon-grain-hud-state',function(...)record('grain',{...})end)
+mp.register_script_message('photon-sharp-hud-state',function(...)record('sharp',{...})end)
+mp.observe_property('osd-dimensions','native',function()record('geometry')end)
+
+mp.register_script_message('photon-scene-feed',function(payload)record('scene-feed',{payload})end)
+mp.register_script_message('photon-grain-set-strength-mult',function(...)record('strength-mult',{...})end)
+mp.register_script_message('photon-grain-size-evidence',function(...)record('size-evidence',{...})end)
+mp.observe_property('time-pos','number',function(_,v)if v then record('frame-position',{v})end end)
