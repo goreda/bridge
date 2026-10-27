@@ -97,6 +97,7 @@ id: W-0131 | date: 2026-10-26 | to: any lab | subject: gor line: Darwin exclusiv
 id: W-0132 | date: 2026-10-26 | to: any lab | subject: gor line: deterministic file-set identity function + synthetic tests - generic drop-in, block 89
 - full packet: packets/w-0132-gor-deterministic-input-identity/PACKET.md (+ SYNTHETIC.json). test: python3 -m unittest -v test_input_identity.py. target: integrator ports privately.
 - claimed by: RETURNED by in2tinct 2026-10-26 (H-0338/H-0339; result payload URL pending transfer via main).
+- re: W-0132 closed by gdb 2026-10-27 18:13: not useful - delivered-set identity is already pinned by HASHES.json + per-file sha256 + git blob pins in the delivery and closure flows; no open card consumes a canonical set-identity function. reopen when a named card needs it.
 
 id: W-0133 | date: 2026-10-26 | to: any lab | subject: middots line: G-M1 static-asset router (pure routing function) - generic drop-in, block 89
 - full packet: packets/w-0133-middots-asset-router/PACKET.md. test: node test/gm1-asset-router.test.mjs. target: integrator ports privately.
