@@ -1,0 +1,29 @@
+# import/storage graph @ 6b337ef893c1 (generated 2026-10-27 20:08 from the pinned tree; prose-free listing)
+## admin.js
+1:import { UiPresetsContext } from './ui-presets.js?v=20261027-f7-held-keys-r1';
+2:import { readHomeLogo, writeHomeLogo } from './public-logo.js?v=20261027-f7-held-keys-r1';
+3:import { readLiveSelection, writeButtonSet, applyButtonSet, currentButtonSet, readRingOff } from './button-set.js?v=20261027-f7-held-keys-r1';
+4:import { AudioMigration } from './audio-migration.js?v=20261027-f7-held-keys-r1';
+5:import { LIBRARY_PATH, DEFAULT_RANGES, RANGE_LIMITS, DEATH_NAMES, randomUnit, newPhrase, normalizeLibrary, generateLife, generateDeath, setLibrary, setHomeLogo, BETA_PHRASES, BETA_WORDS } from './logo-library.js?v=20261027-f7-held-keys-r1';
+6:import { r as reactExports, j as jsxRuntimeExports, c as createRoot } from './vendor.js?v=20261027-f7-held-keys-r1';
+7:import { SYNC_URL } from './pieces.js?v=20261027-f7-held-keys-r1';
+8:import { FACES } from './faces.js?v=20261027-f7-held-keys-r1';
+9:import { slugFor } from './uploads.js?v=20261027-f7-held-keys-r1';
+10:import { AddPlus, PlusWord, Logo, NameField, LOGO_WORDS } from './reading.js?v=20261027-f7-held-keys-r1';
+11:import { saveBlob, logoGifBlob } from './mailing-export.js?v=20261027-f7-held-keys-r1';
+12:import { SRC_FILES, stashBackup, AdminPreviewFrame, Stepper, PlayButton, GlyphButton, Drop, Toggle } from './admin-shared.js?v=20261027-f7-held-keys-r1';
+-- storage call sites:
+## account.js
+1:import { r as reactExports, j as jsxRuntimeExports } from './vendor.js?v=20261027-f7-held-keys-r1';
+2:import { FOLDERS, clearPrivate } from './pieces.js?v=20261027-f7-held-keys-r1';
+3:import { authMode, mailAction, consumeMailLink, changeCode, isJoined, isMagicProfile, bindEmail, dropGrant, join, leave, pushNow, wipeProfile, recoveryStatus, recoveryAcknowledge, loginDiag } from './sync.js?v=20261027-f7-held-keys-r1';
+4:import { placePanel } from './draft.js?v=20261027-f7-held-keys-r1';
+5:import { wipeRecovery, WipeRecoverySection } from './wipe-recovery.js?v=20261027-f7-held-keys-r1'; // r2: inline section inside this panel, no self-mounted fixed box
+-- storage call sites:
+## pieces.js
+1:import { makeAudioLoader } from './audio-src.js?v=20261027-f7-held-keys-r1';
+-- storage call sites:
+## sync-recovery.js
+-- storage call sites:
+## admin-transcribe-durability.js
+-- storage call sites:
