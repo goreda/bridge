@@ -1,0 +1,9 @@
+C0-input PASS 0 malformed/nonfinite/unparsable events rejected, 15 usable
+C1-start<=5s FAIL first live feed 30.811987000000002s after current file-loaded (prestart/prior-generation feeds excluded)
+C2-postseek<=5s FAIL seek@10.021115: first live feed 20.790875s after seek event
+C3-freshness-proxy/perframe UNKNOWN only 4 frame events (<30); no denominator
+C4-provenance UNKNOWN no payload key observed; provenance may be carried by other external evidence. Missing observability, not a proven algorithm failure. Settle against solver semantics/evidence
+C5-fallback UNKNOWN no valid=0 (fallback) strength event in current load/generation: not exercised
+C6-mult-range PASS values [0.5], must be within .5..1.5 and never 0
+C7-valid-vs-fallback PASS-PARTIAL 1 valid-measurement events (flags canonicalised); valid=0 with x1.0 is a legitimate neutral fallback. Validity flag is not proof of source provenance
+C8-freshness UNKNOWN need >=3 live feeds all carrying a finite stamp (have 2, keys []); a single event is not freshness proof; equal noise values never show staleness
