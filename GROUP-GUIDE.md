@@ -1,7 +1,7 @@
 if you have lost memory, re-read this guide and your own bridge page from the top.
 read GROUP-GUIDE.md and GROUP-INBOX.md at the newest commit from the commits page; the main view can be cached.
 
-version: v12 | effective: upon verified publication (Europe/Istanbul) | supersedes v11 once published | owner block 123 (2026-10-27 18:16): requests are product problem packets (123c); the generic stock rule (block 120e) is stopped (123b); one pilot closes fully before the next batch (123h)
+version: v12 | effective: upon verified publication (Europe/Istanbul) | supersedes v11 once published | owner block 123 (2026-10-27 18:16), in force until the owner changes it: requests are product problem packets (123c); the generic stock rule (block 120e) is stopped (123b); one pilot closes fully before the next batch (123h)
 
 # Group guide
 
