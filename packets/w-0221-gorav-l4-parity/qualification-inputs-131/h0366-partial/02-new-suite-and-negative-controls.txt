@@ -1,0 +1,12 @@
+$ python3 Tests/parity/run-loop-parity.py --source ... --negative-controls
+loop parity: 17 corpus scenarios x {plain,commit} + 3 code-driven = 37 runs, 0 fail
+SOURCE_SHA256 d51e131eb6240279bbb207c7d1b323d947d6d3fb41fb0d4fdcf709a1419f2260
+NEGATIVE CONTROL drift-sign-flip              exit=1 failing_checks=84  e.g. FAIL steady-arrival-anchor[plain] shown count 1 != 8: [(10.0, 100.0)]
+NEGATIVE CONTROL deadline-off-by-one-frame    exit=1 failing_checks=91  e.g. FAIL steady-arrival-anchor[plain] shown count 7 != 8: [(10.25, 100.0), (10.5, 100.25), (10.75, 100.5), (11.0, 
+NEGATIVE CONTROL seek-anchor-wall-zero        exit=1 failing_checks=26  e.g. FAIL seek-anchor-honors-landing-gap[plain] shown count 0 != 3: []
+NEGATIVE CONTROL retry-limit-100-to-1000      exit=1 failing_checks=2  e.g. FAIL pathological-clock-retry-limit[plain] waits 1000 != 100
+NEGATIVE CONTROL drop-stale-wait-fence        exit=1 failing_checks=2  e.g. FAIL seekDuringWait[plain] seekStalePulls 0 != 1
+NEGATIVE CONTROL no-order-reset-on-seek       exit=1 failing_checks=4  e.g. FAIL backward-seek-after-play-with-reset[plain] shown count 2 != 4: [(100.0, 300.0), (100.25, 300.25)]
+all 6 negative controls fail as required
+Scope: unmodified production FramePump/AVSyncDecider/MediaWallAnchor/CancelCommit on a virtual monotonic clock with scripted source and recording sink; AtomicU64 and TimingLedger are test stand-ins. Not native display, audio, HDR, real decoder queue (QueuedFrameSource barrier) or full-package parity.
+exit 0

@@ -1,0 +1,78 @@
+### test/admin-profiles-edit-epoch.test.mjs
+ok 1 - one fresh merge preserves admin edit during awaited overlay and still accepts healthy revision
+ok 2 - second edit during bounded retry never spins or overwrites latest edit
+ok 3 - old session after awaited overlay neither retries nor writes
+ok 4 - non-restoring null-local retry preserves remote pieces and accepts revision without inventing admin-only local
+# tests 4
+# pass 4
+# fail 0
+### test/admin-profiles-held-keys.test.mjs
+ok 1 - corrupt local, remote key absent: raw corrupt value kept in its own scoped custody, never on the wire, healthy revision accepted
+ok 2 - corrupt local, remote valid: raw corrupt value kept in its own scoped custody, never on the wire, healthy revision accepted
+ok 3 - corrupt base, remote valid: raw corrupt value kept in its own scoped custody, never on the wire, healthy revision accepted
+ok 4 - corrupt remote + corrupt local: remote stays unchanged on the wire, local raw kept aside separately
+ok 5 - custody survives an unrelated second event, and the same raw value is not duplicated
+ok 6 - boot from the device copy: unreadable admin value is moved to custody, not treated as the account value
+ok 7 - two contexts interleaved on shared storage: distinct raw values both survive reload (peer F3 interleaving, no read-modify-write)
+ok 8 - same raw value from two tabs is one key (idempotent), different values never overwrite each other
+ok 9 - storage failure: custody pending in memory, revision/base/push NOT advanced, state envelope untouched; retry persists
+ok 10 - scope binding: custody of scope A is invisible to scope B, returns for A, and never enters a B state envelope
+ok 11 - a forged held key whose value names another scope is ignored
+ok 12 - key is SHA-256 of the raw value: matches node crypto for several inputs
+ok 13 - forced hash collision (test-only stub): occupied key with different content is never overwritten; the loser stays pending and holds the revision
+ok 14 - explicit device reset sweep removes custody with every other middots key
+ok 15 - selective quota: held-key write fails but STATE write would succeed -> state copy NOT replaced, revision/push held, raw still durable in old copy; retry then persists both
+# tests 15
+# pass 15
+# fail 0
+### test/admin-profiles-key-hold.test.mjs
+ok 1 - corrupt local admin value: pieces from other device still merged, revision accepted
+ok 2 - corrupt remote admin value: pieces from other device still merged, revision accepted
+ok 3 - corrupt base admin value: pieces from other device still merged, revision accepted
+ok 4 - save body does not return early when held
+# tests 4
+# pass 4
+# fail 0
+### test/admin-profiles-merge.test.mjs
+ok 1 - a session without adminProfiles keeps the service copy
+ok 2 - fresh browser after logout: local defaults never beat the saved account value
+ok 3 - first upload: account has no value, local values are kept
+ok 4 - an edit on this device wins over an unchanged service copy
+ok 5 - edits to different fields on two devices both survive
+ok 6 - a corrupt service value is held as it is
+ok 7 - admin conflicts never enter the piece conflict list
+ok 8 - an identical merged value is not a local change
+ok 9 - admin property order does not schedule a write
+# tests 9
+# pass 9
+# fail 0
+### test/in2tinct-w0222.test.mjs
+ok 1 - CONTROL: storage healthy -> scoped copy durable, acceptRemote called once, no note
+ok 2 - OBS-Q1: STATE_KEY write denied (quota), no custody pending -> acceptRemote STILL called, merged state applied, no note
+ok 3 - OBS-Q2: writeScopedWithCustody directly: STATE_KEY denied throws (caller catch => persisted=false)
+ok 4 - OBS-Q3: readback mismatch (stored value differs) -> durable:false returned
+ok 5 - OBS-Q4: readback mismatch inside applyRemote -> acceptRemote still called (same gate as Q1)
+ok 6 - NEG-CONTROL: custody pending and unwritable (dirty) -> early return, acceptRemote NOT called, note shown
+ok 7 - SCOPE: residue under another profile scope is not applied (readScopedState, real module)
+# tests 7
+# pass 7
+# fail 0
+### test/independent-f6.test.mjs
+ok 1 - corrupt local, remote key absent: raw corrupt value kept in its own scoped custody, never on the wire, healthy revision accepted
+ok 2 - corrupt local, remote valid: raw corrupt value kept in its own scoped custody, never on the wire, healthy revision accepted
+ok 3 - corrupt base, remote valid: raw corrupt value kept in its own scoped custody, never on the wire, healthy revision accepted
+ok 4 - corrupt remote + corrupt local: remote stays unchanged on the wire, local raw kept aside separately
+ok 5 - custody survives an unrelated second event, and the same raw value is not duplicated
+ok 6 - boot from the device copy: unreadable admin value is moved to custody, not treated as the account value
+ok 7 - two contexts interleaved on shared storage: distinct raw values both survive reload (peer F3 interleaving, no read-modify-write)
+ok 8 - same raw value from two tabs is one key (idempotent), different values never overwrite each other
+ok 9 - storage failure: custody pending in memory, revision/base/push NOT advanced, state envelope untouched; retry persists
+ok 10 - scope binding: custody of scope A is invisible to scope B, returns for A, and never enters a B state envelope
+ok 11 - a forged held key whose value names another scope is ignored
+ok 12 - key is SHA-256 of the raw value: matches node crypto for several inputs
+ok 13 - forced hash collision (test-only stub): occupied key with different content is never overwritten; the loser stays pending and holds the revision
+ok 14 - explicit device reset sweep removes custody with every other middots key
+ok 15 - F7 closes peer counterexample custody-only quota: state copy is NOT replaced while custody is not durable
+# tests 15
+# pass 15
+# fail 0

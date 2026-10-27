@@ -1,0 +1,328 @@
+{
+ "captured": "2026-10-27 20:06 +03",
+ "note": "2n reviewer wave H-0361..H-0365 result Files; all embedded payloads pin-verified (two report files verified against entry-stated pins)",
+ "sources": [
+  "https://files.instinct.com/c2ii4wyiactf-w-0222-baseline-review-repro",
+  "https://files.instinct.com/0vu9mr74b7j6-w-0218-v5b-addendum-evidence",
+  "https://files.instinct.com/duyaegf212b2-w-0219-findings-source-mock",
+  "https://files.instinct.com/s5qjbk789lym-w-0220-review-final-executed",
+  "https://files.instinct.com/rqtb2u7nfir0-w-0222-review-round-2-executed"
+ ],
+ "files": [
+  {
+   "entry": "H-0361",
+   "file": "output.txt",
+   "bytes": 402,
+   "sha256": "103d5deda4ea5260ceb4af093ea3df14e0188853d68ad4c936fce71862699fe6",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0361",
+   "file": "run.mjs",
+   "bytes": 377,
+   "sha256": "93ce47decae4cc2d48f037f4d08ebc83614c1fd9200e5cbdd97730b1d0ed1203",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0361",
+   "file": "case.mjs",
+   "bytes": 3334,
+   "sha256": "9a5b403d23e25e5c34a39fe7b3a5309c29b1b4ed1fe6f510076fa5a839504065",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0361",
+   "file": "package.json",
+   "bytes": 18,
+   "sha256": "1239d4d885dcad42201a27ed9324f8f0f760b78700d8db9ced39a511cffe7eae",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0361",
+   "file": "sync.js",
+   "bytes": 30781,
+   "sha256": "50012f6dae27015c0a92c88a3bdf69b7d2c816fc1fc34e09879d3e63cb95578a",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0361",
+   "file": "sync-recovery.js",
+   "bytes": 67,
+   "sha256": "b3f866a32da09087f4b23a8982096298b2ffb7ec35a76ffbde1adf4d63e56ad7",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0361",
+   "file": "admin-transcribe-durability.js",
+   "bytes": 113,
+   "sha256": "68be910751459ccc57030fe54c8587faa2442056ff39a9b2e7c8a3ede1968387",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0361",
+   "file": "pieces.js",
+   "bytes": 47,
+   "sha256": "7d397b7439169ecde16af6903329e6e6f8fa7843e6438b693e99a22366c51a69",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0362",
+   "file": "W0218-v5b-review-addendum.md",
+   "bytes": 3538,
+   "sha256": "a007cdae87c14555aedfc4be182eb974c538f9470a093fef020b155f088f729f",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0362",
+   "file": "env.txt",
+   "bytes": 644,
+   "sha256": "57274eccadafc84dcdbda508d3c8fafd44cab07aefca822d91d0ab4236c13006",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0362",
+   "file": "run_tests_stdout.txt",
+   "bytes": 6060,
+   "sha256": "ad823058a26ec00bb38e9af74b88a615bf70dfdf0538d499915ef6bfedae821b",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0362",
+   "file": "v5tests_on_v4candidate.txt",
+   "bytes": 3480,
+   "sha256": "3e63404a8c759db5ccb6db24cda727dcb00b40fd125dfc60e6cdd19695a55afd",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0362",
+   "file": "oracle_on_peer_logs.txt",
+   "bytes": 5340,
+   "sha256": "2dd3a5a8105437257eb528918f95a3718712869c0c86d9025d357cb820deef4a",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0362",
+   "file": "parsed_W0218_rows_f10_v5cand.txt",
+   "bytes": 322,
+   "sha256": "6212cd8d782e87319c7a31ff9b4f3a216ac5f96d080bbddfaccb8b5f97b151ef",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0362",
+   "file": "bundle_sha256_manifest.txt",
+   "bytes": 3703,
+   "sha256": "0e7cf6823660832e1b74798e896ee5eb770656d9f65215d2a7289affcd27926c",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0363",
+   "file": "W0219-solver-findings-public.md",
+   "bytes": 5031,
+   "sha256": "3042d9d09504181f0e3b91d65fe4e6629e69cc3dba3bcdcf31cb7f2d135415f8",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0364",
+   "file": "W-0220-in2tinct-review-FINAL.md",
+   "bytes": 11774,
+   "sha256": "c09f938f1ed10b54dacced75b9e18e4cb698d90f3c7a8cfe76b92fdf08501c95",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0364",
+   "file": "commands.sh",
+   "bytes": 1912,
+   "sha256": "39adc66b9ffe435109cd57052d6e7ca3edbfef99635fa139a573ee8144b80864",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0364",
+   "file": "probes/probe1_a2_invoke.rs",
+   "bytes": 88,
+   "sha256": "fa90a74e02dbe9d4d14aa99e3cd0e3956623da09f906c654e822491180c2c347",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0364",
+   "file": "probes/probe2_fuzz_closed_open.rs",
+   "bytes": 3009,
+   "sha256": "d0a99b13a90cf37b7dd86a7fca7f3ab95bb412d2b96d671d1093d6f6e024b0ec",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0364",
+   "file": "probes/probe3_v2_vectors.rs",
+   "bytes": 2869,
+   "sha256": "591bdbd53bb7a047374179c1059b6fa33cab18b404743b9dbb6e8cff355cf45b",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0364",
+   "file": "diffs/Cargo.toml.diff",
+   "bytes": 212,
+   "sha256": "a5a8b4f02b83d35b317e16608daf4d12c7c282ac4b2eab1fd1eec3a9ecf8d46b",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0364",
+   "file": "diffs/cubic_fit.rs.scratch.diff",
+   "bytes": 2476,
+   "sha256": "5dfdac737646da01d43c5e64b778c31dd479e6053027963ddea2d647aa94d038",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0364",
+   "file": "diffs/fit_search.rs.nofallback.diff",
+   "bytes": 1818,
+   "sha256": "db099094304e982b5a99f963754740748c4628ef3a2176147117f8277f0459eb",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0364",
+   "file": "stdout/toolchain.txt",
+   "bytes": 127,
+   "sha256": "4e113de1185ed0eb5d3847ee1583cdfd6c3dfae2342cdbc6cfe948b9ba6d4157",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0364",
+   "file": "stdout/sha256_scratch_and_orig.txt",
+   "bytes": 412,
+   "sha256": "e62fa7f14016821d040830914b15d06920ad6032eba965117868922884fa33ed",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0364",
+   "file": "stdout/R1_fit_search_test.txt",
+   "bytes": 716,
+   "sha256": "febd99c1e18a7a884471a1bfcdd0105a181a5ca81694d4b7ebb2c7802c9e00b4",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0364",
+   "file": "stdout/R2_a2_probe.txt",
+   "bytes": 255,
+   "sha256": "5cd0bbc722550bc8352c8de40ac01500fb55dbeb871c04c79757acd25ce3f3d3",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0364",
+   "file": "stdout/R3_R4_fuzz_probe2.txt",
+   "bytes": 1006,
+   "sha256": "0d0e4c026996274151710345bc31d1b67912f92b6464c462e9e05e98bb59f4c9",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0364",
+   "file": "stdout/R4_nofallback_probe2.txt",
+   "bytes": 365,
+   "sha256": "a9e1f90dcbd5c3258ff90466c1012975c3b59878591971788c1878f1b85721fb",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0364",
+   "file": "stdout/R5_vectors.txt",
+   "bytes": 4432,
+   "sha256": "1d4aca851e734994aaa4a5ca70259c1b437bf5398c7742c63d71845027db99d8",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0365",
+   "file": "round2/run-log.txt",
+   "bytes": 755,
+   "sha256": "b71b50a039a9361f6e5025c4d86c81f6c6831437263349538769bb9bb49c863e",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0365",
+   "file": "round2/full-output.txt",
+   "bytes": 5802,
+   "sha256": "f37ef766613854a121c1d0f54a5f7df8f5e3ea4ff2c7aa4728db1376d96a492d",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0365",
+   "file": "round2/in2tinct-w0222.test.mjs",
+   "bytes": 6171,
+   "sha256": "18b7d86c690da7357b27d509a7947c759da001421d8db35cb93064f8e8c120e1",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0365",
+   "file": "round1-harness/output.txt",
+   "bytes": 402,
+   "sha256": "103d5deda4ea5260ceb4af093ea3df14e0188853d68ad4c936fce71862699fe6",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0365",
+   "file": "round1-harness/run.mjs",
+   "bytes": 377,
+   "sha256": "93ce47decae4cc2d48f037f4d08ebc83614c1fd9200e5cbdd97730b1d0ed1203",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0365",
+   "file": "round1-harness/case.mjs",
+   "bytes": 3334,
+   "sha256": "9a5b403d23e25e5c34a39fe7b3a5309c29b1b4ed1fe6f510076fa5a839504065",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0365",
+   "file": "round1-harness/package.json",
+   "bytes": 18,
+   "sha256": "1239d4d885dcad42201a27ed9324f8f0f760b78700d8db9ced39a511cffe7eae",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0365",
+   "file": "round1-harness/sync.js",
+   "bytes": 30781,
+   "sha256": "50012f6dae27015c0a92c88a3bdf69b7d2c816fc1fc34e09879d3e63cb95578a",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0365",
+   "file": "round1-harness/sync-recovery.js",
+   "bytes": 67,
+   "sha256": "b3f866a32da09087f4b23a8982096298b2ffb7ec35a76ffbde1adf4d63e56ad7",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0365",
+   "file": "round1-harness/admin-transcribe-durability.js",
+   "bytes": 113,
+   "sha256": "68be910751459ccc57030fe54c8587faa2442056ff39a9b2e7c8a3ede1968387",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0365",
+   "file": "round1-harness/pieces.js",
+   "bytes": 47,
+   "sha256": "7d397b7439169ecde16af6903329e6e6f8fa7843e6438b693e99a22366c51a69",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0361",
+   "file": "review-ab6069e1.md",
+   "bytes": 3898,
+   "sha256": "5cd3e8f0b4d587481afc6a7fe149e73c3ac4ad72c015250c7b494afb718b36ab",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0363",
+   "file": "check_sharp_amount.py",
+   "bytes": 6252,
+   "sha256": "0b12de81c77b604e13bff0d2899bf31e919502968a00e8e3c4fb654b8b596c33",
+   "pin_match": true
+  },
+  {
+   "entry": "H-0365",
+   "file": "review.md",
+   "bytes": 5031,
+   "sha256": "e642bd8e28a9ced4e2ee591297a3b0e5dc95f2c16f32c948ebc8b10c37e989ce",
+   "pin_match": true
+  }
+ ]
+}

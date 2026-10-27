@@ -1,0 +1,14 @@
+commit e763c45fd11c4a246e00160cad91804d418868af; run from packet source/ dir (node 22)
+721ea1b52989546c  app.js
+befec0e0de3564ac  draft.js
+1132f86679bdbe23  state-scope.js
+2e0dcb32e1c93888  state-merge.js
+937338e2c6a1b081  admin-profile-state.js
+50012f6dae27015c  sync.js
+test/admin-profiles-edit-epoch.test.mjs # tests 4 # pass 4 # fail 0 
+test/admin-profiles-held-keys.test.mjs # tests 15 # pass 15 # fail 0 
+test/admin-profiles-key-hold.test.mjs # tests 4 # pass 4 # fail 0 
+test/admin-profiles-merge.test.mjs # tests 9 # pass 9 # fail 0 
+test/in2tinct-w0222.test.mjs # tests 7 # pass 7 # fail 0 
+test/independent-f6.test.mjs # tests 15 # pass 15 # fail 0 
+18b7d86c690da7357b27d509a7947c759da001421d8db35cb93064f8e8c120e1  test/in2tinct-w0222.test.mjs

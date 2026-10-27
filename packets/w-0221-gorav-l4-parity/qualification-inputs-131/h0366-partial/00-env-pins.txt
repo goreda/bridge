@@ -1,0 +1,23 @@
+# W0221 execution evidence (run 2026-10-27T17:04:26Z)
+## env
+Linux (host) 7.2.9 #07555aa85e03 SMP PREEMPT Fri Oct 16 21:47:50 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+Swift version 6.1.2 (swift-6.1.2-RELEASE)
+Target: x86_64-unknown-linux-gnu
+Python 3.10.12
+## packet commit e763c45fd11c4a246e00160cad91804d418868af; files fetched raw from goreda/bridge at that commit
+## pins (sha256 full)
+d51e131eb6240279bbb207c7d1b323d947d6d3fb41fb0d4fdcf709a1419f2260  Sources/GorAVPlaybackCore/PlaybackCore.swift
+c8024acbc50dbc977a59f72665c17c74ed4395a3c2159e54a757a8d6e46e2274  Package.swift
+9b2c293f362da7ab875084b3d3e026965e07f2ccdc040dfb52ef39c57068b981  Tests/parity/ClockParity.swift
+c4b7438957f1c20711b187cf4360965f1659d627a2013423c6f3bcc259d3b5a5  Tests/parity/run-clock-parity.py
+c1adbda4c43279c5ce29704a27e8754eb8eb5ccd967c17aba27d7a14192ad5a1  Tests/parity/README.md
+48150fefcb3998df79aea52d42598ac051423e37375004f1e61bcfc5176f48f6  fixtures/corpus/clock-parity.json
+c7aa5f0c4cf84198388e5a38bcb8ecd658a643b468322c08854b3c50b07a97c4  Tests/parity/LoopShim.swift
+cc5222002e5607a060e26e01023b895e13b119ab5d02eb380c0e84b61d6f7997  Tests/parity/LoopParity.swift
+68262ba09c942b110d6a324bd93b7fdd3adbe620737714cbfe6605cf13ae7976  Tests/parity/run-loop-parity.py
+a8ae2ec7f5e3102533c80f25a3d59073e3e45aabcae089140fa8db02e82036da  fixtures/corpus/loop-parity.json
+57752 repo/Sources/GorAVPlaybackCore/PlaybackCore.swift
+## peer freeze
+bc571cf4872ecfa02b6396392c4eb4ae3c73936be156bfc2975c193566e5c935  (workdir)/cases.json
+5b057b2a3d58e45cc5e04464a1dfa505137c5c33d5a12437fe6ca246ab09e2df  (workdir)/selftest.py
+ok 18 cases (parser selftest only)
