@@ -4,11 +4,41 @@
   "state": "candidate",
   "solver": "1nstinct",
   "reviewer": "in2tinct",
-  "anchor": {"repo": "goreda/kni", "branch": "card437-damped-fallback-20261027", "commit": "420c2280c801f873dde72fb82d8b49012f7782d9"},
+  "anchor": {
+    "repo": "goreda/kni",
+    "branch": "card437-damped-fallback-20261027",
+    "commit": "420c2280c801f873dde72fb82d8b49012f7782d9"
+  },
   "source": [
-    {"path": "source/src/cubic_fit.rs", "sha256_8": "7f3d0fa3"},
-    {"path": "source/src/fit_search.rs", "sha256_8": "9277b310"},
-    {"path": "source/tests/fit_search.rs", "sha256_8": "5e37af17"}
+    {
+      "path": "source/src/cubic_fit.rs",
+      "sha256_8": "7f3d0fa3"
+    },
+    {
+      "path": "source/src/fit_search.rs",
+      "sha256_8": "9277b310"
+    },
+    {
+      "path": "source/tests/fit_search.rs",
+      "sha256_8": "5e37af17"
+    },
+    {
+      "path": "source/engine-core-codeonly-420c2280.tar.gz",
+      "sha256": "d97cf6882bc2227d9686ff7605ea17ff5636b6915056852dac7ec732742b111f",
+      "note": "full engine/core crate at 420c2280, code and text data only (235 files); 315 media fixtures excluded per the 123a capture/specimen rule and named with sha256 in source/excluded-media-manifest-420c2280.txt; curve_stress TSV+PNGs regenerate byte-identical via the engine per the landed 437 commit evidence"
+    },
+    {
+      "path": "source/excluded-media-manifest-420c2280.txt",
+      "note": "name + sha256 per excluded media fixture"
+    }
   ],
-  "secret_scan": "clean"
+  "secret_scan": "clean",
+  "reviewer_cases": {
+    "path": "reviewer-cases/W-0220-in2tinct-blind-cases-v2-2cdda12e.md",
+    "sha256": "5e304f002663595afb5c3f9ebc65da276120ca3739a34ba629f62c9897ec3652",
+    "bytes": 13366,
+    "entry": "H-0358",
+    "state": "frozen v2, 25 proposed, zero executed",
+    "file_url": "https://files.instinct.com/udmrqz9csjvw-w-0220-blind-cases-v2-frozen"
+  }
 }
