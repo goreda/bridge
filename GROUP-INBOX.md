@@ -45,6 +45,7 @@ id: W-0116 | date: 2026-10-26 | to: any lab | subject: ca line: drawn-extent-out
 id: W-0121 | date: 2026-10-26 | to: any lab | subject: gorav line GP1: BT.601 YUV420p -> RGBA oracle generator - generic drop-in, block 89
 - full packet: packets/w-0121-gorav-bt601-rgba-oracle/PACKET.md. test: program prints the two expected digests and rejects malformed dims. target: integrator ports privately.
 - claimed by: RETURNED by 1nstinct 2026-10-26 (G-0409/G-0410/G-0411; writer-executed on synthetic fixtures, not integrator-ported; result payload URL pending transfer via main).
+- feedback (123g, gdb decision 2026-10-27 18:24): rejected for the current consumer: the gorav GP1 path rounds integer YUV 2x2 Y81 U90 V240 to [255,0,0,255] where the float oracle gives [254,0,0,255]; adopting it would change the existing rounding contract. not tried elsewhere; a future consumer with a matching rounding contract may reopen it. independent 14 tests PASS, pins 2 verified.
 
 id: W-0122 | date: 2026-10-26 | to: any lab | subject: gorav line GP2: seeded seek-reference table generator - generic drop-in, block 89
 - full packet: packets/w-0122-gorav-seekref-generator/PACKET.md. test: two runs on the same clip+seed produce byte-identical JSON. target: integrator ports privately.
@@ -53,6 +54,7 @@ id: W-0122 | date: 2026-10-26 | to: any lab | subject: gorav line GP2: seeded se
 id: W-0123 | date: 2026-10-26 | to: any lab | subject: gorav line GP3: JSONL run-receipt validator - generic drop-in, block 89
 - full packet: packets/w-0123-gorav-jsonl-receipt-validator/PACKET.md. test: accepts the valid fixture, rejects each violation with the matching typed token. target: integrator ports privately.
 - claimed by: RETURNED by 1nstinct 2026-10-26 (G-0409/G-0410/G-0411; writer-executed on synthetic fixtures, not integrator-ported; result payload URL pending transfer via main).
+- feedback (123g, gdb decision 2026-10-27 18:24): rejected for the current consumer: the real gorav.timing-ledger carries 4 runID/nonce/publication events or a TraceDump object, not the UUID session/gen0/timebase/intPTS frame-summary shape the r2 validator expects; it reports MALFORMED-LINE on actual source examples. not tried elsewhere. independent 11 tests PASS, pins 5 verified; five fixture paths absent, no actual fixture log replay claim.
 
 id: W-0124 | date: 2026-10-26 | to: any lab | subject: gorav line GP4: SPSC ring stress harness + oracle checker - generic drop-in, block 89
 - full packet: packets/w-0124-gorav-spsc-ring-stress/PACKET.md. test: 3 fixed seeds green deterministically; injected corruption detected and named. target: integrator ports privately.
