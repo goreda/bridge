@@ -1,0 +1,235 @@
+{
+ "id": "W-0221",
+ "role": "reviewer",
+ "phase": "frozen-blind",
+ "status": "proposed procedures; not executed",
+ "anchor": {
+  "repo": "ohal/gorav",
+  "commit": "5ba9af57cc5ae98062852730712b5672e6456361",
+  "base": "796837de9a1fb59fd217d66852784127d56a8a88"
+ },
+ "pins_must_not_change": [
+  "Package.swift",
+  "Sources/GorAVPlaybackCore/PlaybackCore.swift and its sha256 pin / explicit pin-review rule",
+  "original 24 decision + 5 anchor vectors must stay green (harness, runner, README, corpus MAY be extended per packet)"
+ ],
+ "conventions": "t = media time (s), w = wall time in the clock domain the loop schedules on. Every expect item is [PROPOSAL] unless it is one of the packet conditions in label_legend.",
+ "cases": [
+  {
+   "id": "FC-01",
+   "class": "seek",
+   "setup": "steady 24fps playback, anchor set at t=0,w=0",
+   "action": "seek to t=120.0 at w=10.0 while a frame for t=10.04 is queued",
+   "expect": [
+    "[PROPOSAL] frames with pts older than the seek target are not presented after seek ACK, subject to the production generation/ACK, keyframe and preroll policy; the solver must map this to that policy before it is used (preroll may legitimately present earlier frames)",
+    "[PROPOSAL] first frame after seek scheduled from the new anchor",
+    "[PROPOSAL] <=12 presented in first 0.5s",
+    "[PROPOSAL] stale pre-seek deadline never fires"
+   ],
+   "catches": "drift after seek, stale anchor"
+  },
+  {
+   "id": "FC-02",
+   "class": "seek",
+   "setup": "as FC-01",
+   "action": "two seeks 5ms apart (t=60 then t=30)",
+   "expect": [
+    "[PROPOSAL] final state anchored to t=30 only",
+    "[PROPOSAL] no frame from the t=60 generation presented"
+   ],
+   "catches": "seek race, missing generation check"
+  },
+  {
+   "id": "FC-03",
+   "class": "seek",
+   "setup": "as FC-01",
+   "action": "seek backward to t=0 and resetPresentation ACK arrives late (after 3 frames queued)",
+   "expect": [
+    "[PROPOSAL] frames queued before ACK are not presented early",
+    "[PROPOSAL] presentation starts only after ACK"
+   ],
+   "catches": "ACK ordering"
+  },
+  {
+   "id": "FC-04",
+   "class": "pause_resume",
+   "setup": "playback at t=5.0",
+   "action": "pause for 30s wall, resume",
+   "expect": [
+    "[PROPOSAL] after resume first frame is scheduled from a re-based anchor per production policy",
+    "[PROPOSAL] drop count delta == 0 on resume (only if production policy implies it)",
+    "[PROPOSAL] media time advances <= 1 frame interval during pause"
+   ],
+   "catches": "anchor not re-based on pause (30s of frames dropped)"
+  },
+  {
+   "id": "FC-05",
+   "class": "pause_resume",
+   "setup": "as FC-04",
+   "action": "pause/resume 100 times at 1ms gaps",
+   "expect": [
+    "[PROPOSAL] no deadlock; loop wakes after final resume within one frame interval",
+    "[PROPOSAL] cumulative media-vs-wall drift < 1 frame interval"
+   ],
+   "catches": "missed wakeup, accumulated drift"
+  },
+  {
+   "id": "FC-06",
+   "class": "pause_resume",
+   "setup": "as FC-04",
+   "action": "pause, seek, resume",
+   "expect": [
+    "[PROPOSAL] resume presents the sought frame first",
+    "[PROPOSAL] no frame from before seek"
+   ],
+   "catches": "state mix between pause and seek"
+  },
+  {
+   "id": "FC-07",
+   "class": "drop_burst",
+   "setup": "steady playback; decider reports late by >threshold",
+   "action": "feed 30 consecutive late frames, then on-time frames",
+   "expect": [
+    "[PROPOSAL] drop count equals decider drop verdicts",
+    "[PROPOSAL] first on-time frame presented at scheduled wall within loop tolerance (1ms is a placeholder)",
+    "[PROPOSAL] no on-time frame dropped after burst",
+    "[PROPOSAL] no negative/overflowed sleep interval"
+   ],
+   "catches": "deadline arithmetic after burst"
+  },
+  {
+   "id": "FC-08",
+   "class": "drop_burst",
+   "setup": "as FC-07",
+   "action": "alternate late/on-time frames for 1000 frames",
+   "expect": [
+    "[PROPOSAL] presented+dropped == 1000",
+    "[PROPOSAL] presented frames strictly increasing pts"
+   ],
+   "catches": "counting bug, reorder"
+  },
+  {
+   "id": "FC-09",
+   "class": "clock_jump",
+   "setup": "steady playback",
+   "action": "two separate tests. (a) monotonic/scheduling clock advances +3600s in one step (suspend/sleep-like gap), if the loop's clock source is injectable. (b) system wall-clock (NTP) step +3600s while the monotonic clock is unchanged.",
+   "expect": [
+    "[PROPOSAL] (a) [PROPOSAL] bounded resync per production policy, no unbounded catch-up",
+    "[PROPOSAL] (b) [PROPOSAL] if scheduling uses a monotonic clock, no effect on pacing; test confirms the clock domain actually used, and is dropped as not applicable if scheduling never reads wall time"
+   ],
+   "catches": "unbounded catch-up"
+  },
+  {
+   "id": "FC-10",
+   "class": "clock_jump",
+   "setup": "steady playback",
+   "action": "audio master clock jumps back -2.0s (SyncMaster = audio)",
+   "expect": [
+    "[PROPOSAL] decision follows SyncMaster; no negative sleep; no crash",
+    "[PROPOSAL] no frame presented twice"
+   ],
+   "catches": "backward clock"
+  },
+  {
+   "id": "FC-11",
+   "class": "clock_jump",
+   "setup": "steady playback",
+   "action": "audio clock stalls (stops advancing) for 5s",
+   "expect": [
+    "[PROPOSAL] loop falls back or holds per production decider; never busy-spins (wakeups in 5s <= 5*fps*2)"
+   ],
+   "catches": "busy loop"
+  },
+  {
+   "id": "FC-12",
+   "class": "extreme_pts",
+   "setup": "fresh pump",
+   "action": "frames with pts = 0, 1e-9, 30 days, Double.greatestFiniteMagnitude, negative values (legitimate negative stream origin), NaN, +inf",
+   "expect": [
+    "[PROPOSAL] no trap/overflow/crash for any value",
+    "[PROPOSAL] outcome (present, drop, clamp, reject) follows pinned production policy; negative pts is NOT assumed invalid",
+    "[PROPOSAL] NaN/inf: expectation derived from production policy, not asserted as invalid by reviewer",
+    "[PROPOSAL] 1 microsecond precision bound and no Duration/UInt64 overflow in sleep computation"
+   ],
+   "catches": "Double->integer conversion trap"
+  },
+  {
+   "id": "FC-13",
+   "class": "extreme_pts",
+   "setup": "playing",
+   "action": "pts goes backward by 1e6s mid-stream without seek (discontinuity)",
+   "expect": [
+    "[PROPOSAL] treated per production policy (drop or re-anchor), identical to the decider verdict; no stall"
+   ],
+   "catches": "discontinuity stall"
+  },
+  {
+   "id": "FC-14",
+   "class": "extreme_pts",
+   "setup": "playing",
+   "action": "two frames with identical pts",
+   "expect": [
+    "[PROPOSAL] no trap, no stall",
+    "[PROPOSAL] outcome follows pinned production policy; duplicate pts can be legitimate (duplicate frames) and is NOT assumed to be dropped",
+    "[PROPOSAL] no double wake at an identical deadline"
+   ],
+   "catches": "duplicate pts"
+  },
+  {
+   "id": "FC-15",
+   "class": "cancel",
+   "setup": "playing",
+   "action": "cancel the pump task during a sleep",
+   "expect": [
+    "[PROPOSAL] loop exits within 1 frame interval; no frame presented after cancel"
+   ],
+   "catches": "missed cancellation"
+  },
+  {
+   "id": "NC-01",
+   "class": "negative_control",
+   "action": "apply one-line perturbation to loop deadline arithmetic (e.g. deadline = scheduledWall + frameInterval, or sign flip of the drift term) in a COPY, never in the pinned file",
+   "expect": [
+    "[GATE] at least one new loop vector fails under the perturbation and passes when reverted; log shows both",
+    "[GATE] pinned production file sha256 unchanged in repo",
+    "[PROPOSAL] prediction: FC-01, FC-04, FC-07 would fail; the actual failing set depends on the solver's vectors and is not a gate"
+   ]
+  },
+  {
+   "id": "NC-02",
+   "class": "negative_control",
+   "action": "perturb in a copy: drop the generation check on seek",
+   "expect": [
+    "[PROPOSAL] reviewer-authored extra mutation, not a packet gate: removing the seek generation check should make a new vector fail",
+    "[PROPOSAL] prediction: FC-01, FC-02 would fail; the actual set is not a gate"
+   ]
+  },
+  {
+   "id": "REG-01",
+   "class": "regression",
+   "action": "run existing run-clock-parity.py",
+   "expect": [
+    "[GATE] existing 24 decisions + 5 anchors, 0 fail",
+    "[GATE] Package.swift and production file unchanged"
+   ]
+  }
+ ],
+ "acceptance_gates": {
+  "A_proposed_procedure": "this file; nothing executed",
+  "B_parser_selftest": "shape-only: checks JSON structure; says nothing about loop behaviour or case correctness",
+  "C_actual_production_loop_execution": "requires the real PlaybackCore.swift (FramePump) compiled on Linux Swift; NOT possible from what reviewer has",
+  "D_product_acceptance": "owner only"
+ },
+ "scope_gaps": [
+  "Production PlaybackCore.swift is reported available at bridge e7aa3e18 (matching the runner pin); it was UNREAD by the reviewer while blind. Package.swift status not stated to me. FramePump API, clock injection points and tolerances were therefore unknown when these cases were written.",
+  "If FramePump cannot take an injected clock/sleeper without editing production files, the clock/pause cases (FC-04, 05, 09, 10, 11, 15) cannot run deterministically under the 'production unchanged' rule; solver must state this, not substitute a model.",
+  "All thresholds, counts and negative-control failing-case predictions are [PROPOSAL]. Reviewer has not read the fix or source; blind preserved. No recreated model is called production."
+ ],
+ "version": 3,
+ "supersedes": {
+  "v2_sha256": "cb0712ad724c3de58bd26841c184965251b9d5682ad929a95d85c269ab32a5ce",
+  "v1_sha256": "fad08d6600a6521fdb4a32d6e3829d8a2b9935b569decc60f879dafc521297fd",
+  "note": "v1 and v2 are unshared drafts; superseded"
+ },
+ "label_legend": "[GATE] = ONLY explicit packet conditions: production file and Package.swift unchanged (pin and pin-review rule stay); original 24+5 vectors green; actual consuming-loop coverage; one arithmetic negative control that fails when perturbed and passes when reverted, with both runs logged. [PROPOSAL] = everything else: reviewer invariants, thresholds, counts, predictions. None is a known owner gate and none becomes a requirement until tied to pinned production policy."
+}
