@@ -1,0 +1,48 @@
+=== drift-sign-flip  mutant sha256 da4244fcfbcaafd82ae1bec93d7c2a250d60c8d5771a28f27304e1569e7482f3
+--- orig
++++ mutant
+@@ -831 +831 @@
+-                let pacedNow = paceAnchorPts! + (decisionNow - paceAnchorWall)
++                let pacedNow = paceAnchorPts! - (decisionNow - paceAnchorWall)
+OLD 24+5 runner on mutant (pin edited in temp copy only): exit 0; CLOCK_PARITY decisions=24 anchors=5 failures=0
+
+=== deadline-off-by-one-frame  mutant sha256 dd68ca6b03c7cf43a7cfd768758ea377f8672b2e1bd75dab05865f79c1f2c6a1
+--- orig
++++ mutant
+@@ -831 +831 @@
+-                let pacedNow = paceAnchorPts! + (decisionNow - paceAnchorWall)
++                let pacedNow = paceAnchorPts! + (decisionNow - paceAnchorWall) + frame.durationSeconds
+OLD 24+5 runner on mutant (pin edited in temp copy only): exit 0; CLOCK_PARITY decisions=24 anchors=5 failures=0
+
+=== seek-anchor-wall-zero  mutant sha256 40f7c6d95f7a829cf6fed77209ea66f99864d2ca0f3e8e5ef0e6b3c2b7ec2188
+--- orig
++++ mutant
+@@ -656 +656 @@
+-            paceAnchorPts = a; paceAnchorWall = clock.nowSeconds()   // SHARED anchor (M4)
++            paceAnchorPts = a; paceAnchorWall = 0   // SHARED anchor (M4)
+OLD 24+5 runner on mutant (pin edited in temp copy only): exit 0; CLOCK_PARITY decisions=24 anchors=5 failures=0
+
+=== retry-limit-100-to-1000  mutant sha256 ea3edabc2db21040f6670b1c236cbe1c9c373ccef42d2b8d682925cc48d02704
+--- orig
++++ mutant
+@@ -809 +809 @@
+-                if guardCount > 100 {
++                if guardCount > 1000 {
+OLD 24+5 runner on mutant (pin edited in temp copy only): exit 0; CLOCK_PARITY decisions=24 anchors=5 failures=0
+
+=== drop-stale-wait-fence  mutant sha256 1f10d621396d11d17c403ef9dfacbfe3070997cc5de89596ea752c60d63c3dc1
+--- orig
++++ mutant
+@@ -918 +918 @@
+-                    if pullRevision != (commit?.revision ?? presentationRevision) || seekBarrierInFlight {
++                    if false {
+OLD 24+5 runner on mutant (pin edited in temp copy only): exit 0; CLOCK_PARITY decisions=24 anchors=5 failures=0
+
+=== no-order-reset-on-seek  mutant sha256 adface2018ca741d84abef0759a18672cb07eaac2b75f71a066e80e557ce9f93
+--- orig
++++ mutant
+@@ -653,2 +652,0 @@
+-        lastPts = -Double.infinity
+-        lastDuration = 0.0
+OLD 24+5 runner on mutant (pin edited in temp copy only): exit 0; CLOCK_PARITY decisions=24 anchors=5 failures=0
+

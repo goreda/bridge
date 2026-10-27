@@ -1,0 +1,14 @@
+{
+  "h0366-partial/run-loop-parity.py": "68262ba09c942b110d6a324bd93b7fdd3adbe620737714cbfe6605cf13ae7976",
+  "h0366-partial/00-env-pins.txt": "45f2f503df69d2e97ad3d96e1a91268977a93f104cb446fe44fbda9d5d560b45",
+  "h0366-partial/W0221-qualified-report.md": "59b4bc432944dcb4ed59cbb855135faa5327ab5193ac794aa97ae2965642e702",
+  "h0366-partial/05-mutation-diffs-and-old-suite-vs-mutants.txt": "942aa57c1e0dbf3cdc82532196d5fa29dc12dc4692c3dcac263dc501a3acba87",
+  "h0366-partial/loop-parity.json": "a8ae2ec7f5e3102533c80f25a3d59073e3e45aabcae089140fa8db02e82036da",
+  "h0366-partial/02-new-suite-and-negative-controls.txt": "f7b4321cdea5bbfc18ca06649bc03437a182648daf4141d41e91aab2e8fcf6d5",
+  "h0366-partial/04-run-list.txt": "9ed333d3ecf4f798216f05aa23a2dad920327aeb639c17ce0501c5ba81f0d1c3",
+  "h0366-partial/01-old-suite.txt": "5cdf0a285d55335edbe7e35fec238364a8e07e7ac2db8215ba172e20f39cff1c",
+  "h0366-partial/LoopParity.swift": "cc5222002e5607a060e26e01023b895e13b119ab5d02eb380c0e84b61d6f7997",
+  "h0366-partial/LoopShim.swift": "c7aa5f0c4cf84198388e5a38bcb8ecd658a643b468322c08854b3c50b07a97c4",
+  "h0366-partial/06-unchanged-after.txt": "0b76feb9b3ece2e73a5d122abf0121049b59398d0b568b9414ae9305a7b8b703",
+  "h0366-partial/03-build-warnings.txt": "9ac8238da27779e76b052247db226d9c6290a861e622a4f822a1b89927bc8241"
+}

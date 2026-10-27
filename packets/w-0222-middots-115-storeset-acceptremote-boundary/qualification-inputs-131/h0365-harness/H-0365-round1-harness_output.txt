@@ -1,0 +1,6 @@
+PASS control_ok ret=true rev=7 base=rev7-state events=[]
+PASS T2_rev_denied ret=true rev=5 base=rev7-state events=["middots-recovery"]
+PASS T3_base_denied ret=true rev=7 base=absent events=[]
+PASS T4_silent_drop_synthetic ret=true rev=5 base=rev5-state events=[]
+PASS T5_get_throws_negative_control ret=false rev=5 base=rev5-state events=[]
+PASS T6_replay ret=undefined rev=7 base=rev7-state events=[]
