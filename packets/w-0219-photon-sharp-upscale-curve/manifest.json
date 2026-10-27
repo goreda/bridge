@@ -1,0 +1,18 @@
+{
+ "PROBLEM.md": {
+  "bytes": 3685,
+  "sha256": "d10de2096add90266889e869f05d625f2e9e566da2d0150708b6f45c21407707"
+ },
+ "harness/ASSERT-118g.md": {
+  "bytes": 622,
+  "sha256": "cb681ca8264820b71cdfe5eb634557b256d7ab28b51a0eefe6de2780171e7fe8"
+ },
+ "source/photon-common.lua": {
+  "bytes": 14717,
+  "sha256": "220fa27b886187d69d839a3c67ed3b32d9836bcc748a6535db1a956004082ce6"
+ },
+ "source/photon-sharp.lua": {
+  "bytes": 61310,
+  "sha256": "fc460715970776cbc691ecac0b3f61dcfbfaacf8aa21a0e5f6a07cf28c93a647"
+ }
+}
