@@ -1,0 +1,86 @@
+{
+  "MEDIA.md": {
+    "bytes": 1536,
+    "sha256": "8eee539ad4b55d0d2c760bc75c116447620a8e7b319c02782b2909f318c30dbb"
+  },
+  "PROBLEM.md": {
+    "bytes": 5360,
+    "sha256": "1233f050f6a089980a778e39338e0ae95628309788b4236b024c15ccd8415ba1"
+  },
+  "BUILD-MEDIA.sh": {
+    "bytes": 502,
+    "sha256": "3303689d44b99fb89bf94d6d522a9734a4af9311062b4750a53efe3f6a425344"
+  },
+  "evidence/480p-ffprobe.json": {
+    "bytes": 148,
+    "sha256": "f82970578f58414dbd88dd6d14b442e6bf8071fa91daf9c49ff52bda1ed23996"
+  },
+  "evidence/shader-noise-attenuation.glsl": {
+    "bytes": 311,
+    "sha256": "8cdd9ba723ba02803d3d9dbbd9fa377c11d3b452cd1d3805835db3492a0d115e"
+  },
+  "evidence/fresh-480-events.json": {
+    "bytes": 9895,
+    "sha256": "d89d42cf816d72c02101a3ee537ef6cd515557760ce0a6e8f571fe0ef3322c20"
+  },
+  "evidence/fresh-480-grain-hud-values.txt": {
+    "bytes": 3037,
+    "sha256": "365f1de6834b8892cf670c938c02ad6b6b3a515a7d978d01ad6e593e18054955"
+  },
+  "evidence/1080p-ffprobe.json": {
+    "bytes": 150,
+    "sha256": "6711ec65eaa93f4ca3c6bf718bcdb6dd7d20fd4b25ef59914129ad2d6f5dcc03"
+  },
+  "evidence/2160p-ffprobe.json": {
+    "bytes": 150,
+    "sha256": "3af3d3d55e80352fe7e81ac0f5530bd434d5e868062c03540ea5dfbc5374aa4f"
+  },
+  "harness/run.py": {
+    "bytes": 2313,
+    "sha256": "8c4c56037600bed8c8fc4941bc9a833947a670530b15ec935ad701f181173b9d"
+  },
+  "harness/observer.lua": {
+    "bytes": 1494,
+    "sha256": "048cc71385a3756b4c66ce612dae90a916eb763f27c64749af31fa837aa2fac4"
+  },
+  "harness/check_noise_feed.py": {
+    "bytes": 1002,
+    "sha256": "8007f2b56a6c1d4ea7199e06d350cec8010b6bff3c4c67b71f4580b18176aff4"
+  },
+  "harness/run.sh": {
+    "bytes": 159,
+    "sha256": "d65f82e6cc965a100e518a81b8a4bea3ed655ca16337b65818f27e35eaa6da4c"
+  },
+  "media/2160p.mp4": {
+    "bytes": 14699768,
+    "sha256": "c3fbe3fe1363626580ba88217508a58337801a105bacb7a1d0bc4f455ab11f41"
+  },
+  "media/480p.mp4": {
+    "bytes": 2266449,
+    "sha256": "74fcb56259bb5d338f26d261845015960fd5324eede3c48c8b370b826558461d"
+  },
+  "media/1080p.mp4": {
+    "bytes": 9235853,
+    "sha256": "f2d9f7ea62820da6e68082ebf25a3afc3ed073396684eba30fd9cc6dbe7bd2b7"
+  },
+  "source/photon.lua": {
+    "bytes": 409061,
+    "sha256": "7346978487b11c08481546c356b4f014221c0a9fad579486f4cf498e98338860"
+  },
+  "source/photon-sharp.lua": {
+    "bytes": 61310,
+    "sha256": "fc460715970776cbc691ecac0b3f61dcfbfaacf8aa21a0e5f6a07cf28c93a647"
+  },
+  "source/photon-grain.lua": {
+    "bytes": 79840,
+    "sha256": "fdf82eb8f86f13da7b205ae920a0a905c8f4b7afab38870ef472b31a2d28a70f"
+  },
+  "source/photon-common.lua": {
+    "bytes": 14717,
+    "sha256": "220fa27b886187d69d839a3c67ed3b32d9836bcc748a6535db1a956004082ce6"
+  },
+  "source/photon-hud.lua": {
+    "bytes": 41334,
+    "sha256": "fcd543b6e7ed969313fc1f76476f9a00645246f55badcdbc10b6cfd4bb401025"
+  }
+}
