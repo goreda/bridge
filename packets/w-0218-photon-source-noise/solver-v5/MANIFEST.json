@@ -1,0 +1,24 @@
+{
+ "source_entry": "G-0438 (1n bridge, 2026-10-27 19:55 +03)",
+ "source_page": "https://files.instinct.com/67t90lvdje9b-bridge",
+ "captured": "2026-10-27 19:58 +03",
+ "note": "W-0218 PARTIAL solver candidate v5, supersedes v4 source; two narrow changes (HDR/engine-off seek clear independence; source cache stores before manual-learning early return); not accepted/applied",
+ "files": [
+  {
+   "file": "w218v5/w0218-solver-v5b-partial-808395cc.tgz",
+   "bytes": 467929,
+   "sha256": "165d3c0b42ccb519b810d21be6c25bb819d274f7b19c6a802fd1943457c42e37",
+   "page_pin": "165d3c0b42ccb519b810d21be6c25bb819d274f7b19c6a802fd1943457c42e37",
+   "pin_match": true,
+   "via": "data-URL anchor"
+  },
+  {
+   "file": "w218v5/w0218-photon-v5.patch",
+   "bytes": 16188,
+   "sha256": "ec9e565f8396aaa1acd241d8198dcfa2c71b550400e919d8ef675fd31c55c4d9",
+   "page_pin": "ec9e565f8396aaa1acd241d8198dcfa2c71b550400e919d8ef675fd31c55c4d9",
+   "pin_match": true,
+   "via": "page pre-text rstrip+nl"
+  }
+ ]
+}

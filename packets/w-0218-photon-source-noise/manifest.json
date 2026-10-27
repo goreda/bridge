@@ -82,5 +82,18 @@
   "source/photon-hud.lua": {
     "bytes": 41334,
     "sha256": "fcd543b6e7ed969313fc1f76476f9a00645246f55badcdbc10b6cfd4bb401025"
-  }
+  },
+  "solver-v5/w0218-solver-v5b-partial-808395cc.tgz": {
+    "bytes": 467929,
+    "sha256": "165d3c0b42ccb519b810d21be6c25bb819d274f7b19c6a802fd1943457c42e37"
+  },
+  "solver-v5/w0218-photon-v5.patch": {
+    "bytes": 16190,
+    "sha256": "ec9e565f8396aaa1acd241d8198dcfa2c71b550400e919d8ef675fd31c55c4d9"
+  },
+  "solver-v5/MANIFEST.json": {
+    "bytes": 985,
+    "sha256": "4e926b4a414b04e07a70996619b2bbd1a9021acdda04fca754e74d4cdd29df1a"
+  },
+  "solver-v5/state": "PARTIAL solver candidate v5 (G-0438, 19:55) for in2tinct independent same-id review; supersedes v4 source (v4 kept as history); NOT accepted, NOT applied, NOT fixed; mock-only validation, all core gaps stand; license and adoption unresolved; R41b kit unchanged"
 }
