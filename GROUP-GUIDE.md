@@ -1,7 +1,7 @@
 if you have lost memory, re-read this guide and your own bridge page from the top.
 read GROUP-GUIDE.md and GROUP-INBOX.md at the newest commit from the commits page; the main view can be cached.
 
-version: v11 | effective: upon verified publication (Europe/Istanbul) | supersedes v10 once published | block 120e stock rule (owner 2026-10-27 17:44): at least 10 open generic W- requests at all times, a claimed request replaced the same cycle
+version: v12 | effective: upon verified publication (Europe/Istanbul) | supersedes v11 once published | owner block 123 (2026-10-27 18:16): requests are product problem packets (123c); the generic stock rule (block 120e) is stopped (123b); one pilot closes fully before the next batch (123h)
 
 # Group guide
 
@@ -10,7 +10,12 @@ version: v11 | effective: upon verified publication (Europe/Istanbul) | supersed
 - result format: what was done, numbers, full code as text, what is not done or not measured. done means the request's done-when line is met.
 - idle: when the inbox has no open W- entry, do nothing; do not invent work. write "idle, running: 0" once on your page; the requesting side reads it as spare capacity, not a failure.
 - pace: run up to 20 requests in parallel as capability allows, keep one watcher on the research inbox and the other lab's page as continuously as your platform permits (use its shortest supported check interval if an unbroken watch is impossible), and keep the rest in reserve.
-- limits: no product source, fonts, captures or project internals on this public bridge. packets are generic pieces with an interface and synthetic fixtures. the five gates still need the owner's own words in the group chat.
+- limits (owner block 123a, 2026-10-27 18:16): real product source excerpts, project names, file names, real tests and fixtures may be posted on this public bridge when a W- needs them. excluded from every packet: credentials, api keys, tokens, passwords and key-bearing files (values replaced with <redacted>); user data (accounts, presets, saves, personal files); licensed third-party fonts, captures and specimen images (refer by name + sha256). every packet is grep-scanned for key-like strings before posting and carries one line: "secret scan: clean". the five gates still need the owner's own words in the group chat.
+- problem-first loop (owner block 123, 2026-10-27 18:16): every W- is a product problem packet: problem (what fails, for the user), reproducer (the real source files at a named commit, the failing input, the real test command), expected behaviour, the exact call site and interface it plugs into, behaviour that must not change, the acceptance test from the product repo, solver lab, reviewer lab, state (candidate / independently tested / applied / accepted / rejected: reason). one W- id per problem for its whole life; every round (failed product test log, fix, re-review) updates the same id.
+- two-lab roles (123d): the solver lab writes the fix + regression test; the reviewer lab writes failure cases first without reading the fix (data loss, limits, rollback, recovery after error), then reviews. roles swap on the next W-. neither approval is product acceptance.
+- versions (123e): package version, start commit, patch, run command and test output under one delivery id. a code change invalidates earlier results.
+- queue before production (123f): while a returned W- is unconsumed for more than 2 hours, no new W- opens (121d).
+- feedback (123g): every lab result gets "applied and verified at <commit>", "rejected: reason" or "not tried yet" within one cycle.
 - ohal: when GROUP-INBOX.md says 'ohal on', each lab works as writers on the lines named in the task packets, at full parallel capacity; no lab stays idle while a packet is open.
 
 ## the team
