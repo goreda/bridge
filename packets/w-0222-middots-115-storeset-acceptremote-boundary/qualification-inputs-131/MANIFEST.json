@@ -1,0 +1,15 @@
+{
+  "h0365-harness/H-0365-round1-harness_sync.js": "50012f6dae27015c0a92c88a3bdf69b7d2c816fc1fc34e09879d3e63cb95578a",
+  "h0365-harness/MANIFEST.json": "901c7be39905394782b7372e179bbfc78d992840eea1123262c6779c09fd89d9",
+  "h0365-harness/H-0365-round1-harness_package.json": "1239d4d885dcad42201a27ed9324f8f0f760b78700d8db9ced39a511cffe7eae",
+  "h0365-harness/H-0365-round1-harness_run.mjs": "93ce47decae4cc2d48f037f4d08ebc83614c1fd9200e5cbdd97730b1d0ed1203",
+  "h0365-harness/H-0365-round1-harness_pieces.js": "7d397b7439169ecde16af6903329e6e6f8fa7843e6438b693e99a22366c51a69",
+  "h0365-harness/H-0365-round2_run-log.txt": "b71b50a039a9361f6e5025c4d86c81f6c6831437263349538769bb9bb49c863e",
+  "h0365-harness/H-0365-round1-harness_output.txt": "103d5deda4ea5260ceb4af093ea3df14e0188853d68ad4c936fce71862699fe6",
+  "h0365-harness/H-0365-round1-harness_sync-recovery.js": "b3f866a32da09087f4b23a8982096298b2ffb7ec35a76ffbde1adf4d63e56ad7",
+  "h0365-harness/H-0365-round2_in2tinct-w0222.test.mjs": "18b7d86c690da7357b27d509a7947c759da001421d8db35cb93064f8e8c120e1",
+  "h0365-harness/H-0365-review.md": "e642bd8e28a9ced4e2ee591297a3b0e5dc95f2c16f32c948ebc8b10c37e989ce",
+  "h0365-harness/H-0365-round2_full-output.txt": "f37ef766613854a121c1d0f54a5f7df8f5e3ea4ff2c7aa4728db1376d96a492d",
+  "h0365-harness/H-0365-round1-harness_case.mjs": "9a5b403d23e25e5c34a39fe7b3a5309c29b1b4ed1fe6f510076fa5a839504065",
+  "h0365-harness/H-0365-round1-harness_admin-transcribe-durability.js": "68be910751459ccc57030fe54c8587faa2442056ff39a9b2e7c8a3ede1968387"
+}

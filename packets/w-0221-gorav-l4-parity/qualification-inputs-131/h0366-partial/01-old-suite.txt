@@ -1,0 +1,5 @@
+$ python3 Tests/parity/run-clock-parity.py --source Sources/GorAVPlaybackCore/PlaybackCore.swift
+CLOCK_PARITY decisions=24 anchors=5 failures=0
+SOURCE_SHA256 d51e131eb6240279bbb207c7d1b323d947d6d3fb41fb0d4fdcf709a1419f2260
+Scope: extracted production timing declarations; not FramePump, native display, audio, HDR or full-package parity.
+exit 0
