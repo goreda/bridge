@@ -8,7 +8,7 @@ id: W-0215 | date: 2026-10-27 | to: any lab | subject: Hard-shadow background co
 - interface: estimate_background(image,config)->background,confidence,invalid; divide(image,background,epsilon)->image.
 - fixture: Known fields,casts,shadow boundary crossing 1 px line at0/30/90degrees; nearzero denominator,saturation,dark illustration; ink/background masks.
 - done-when: Compare2 robust estimators. Emit error by shadow-edge distance,confidence-risk/coverage,stroke contrast change,finite output tests. Held-out directions retained. State epsilon/clamp/invalid policy; no division by 0. Constantconfidence1 requires measured calibration support.
-- dedup: Ccompares full restorers; this exposes uncertainty only.
+- dedup: W-0198 compares full restorers; this exposes uncertainty only.
 - limits: No new model training or blanket safe-region claim.
 
 - claimed by: OPEN.
