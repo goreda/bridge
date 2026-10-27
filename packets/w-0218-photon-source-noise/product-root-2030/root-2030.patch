@@ -1,0 +1,319 @@
+--- a/photon.lua
++++ b/photon.lua
+@@ -1585,8 +1585,8 @@
+     -- from the measured source noise on every sample. look_R is learned from
+     -- his own manual strength changes (measured on the frame he accepted) and
+     -- kept in a state file. look_seed is used only until he has set one
+-    -- (accepted look 6.25/5.00 squared); disclosed, Mac-pending.
+-    look_seed = (6.25 / 5.00) ^ 2,
++    -- (factory look 7.8125/5.00 squared); a saved look still wins.
++    look_seed = (7.8125 / 5.00) ^ 2, -- requested +25% factory look; saved look_R still wins
+     look_R = nil,
+     look_learn = nil,   -- samples collected after a proven manual control revision
+     look_learn_revision = nil,
+@@ -1595,7 +1595,8 @@
+     last_noise_share = nil, -- 118h: source-noise share of the last valid reading
+     last_noise_at = nil,    -- 118h: mp.get_time() of that reading
+     look_path = nil,
+-    strength_default  = 5.00, -- GRAIN_BASE_STRENGTH factory default
++    strength_default  = 5.00, -- fixed synthetic calibration ruler; saved look_R units stay unchanged
++    receiver_strength_default = 6.00, -- actual receiver factory value / outgoing multiplier identity
+     cf2      = 0.40,   -- luma-of-mixed-channels variance factor (CS=0.5, HP5)
+ }
+ 
+@@ -1604,12 +1605,12 @@
+ --  stale mirror means the values cannot be trusted and the sample is
+ --  skipped (hold) rather than risking a wrong subtraction.
+ local GR = {
+-    enabled = false, amount = 1.0, strength = 5.0,
++    enabled = false, amount = 1.0, strength = 6.0,
+     size_rendered = 1.2, dev_rendered = 0.4, ts = 0,
+     soft_rendered = 1.0,  -- rendered GRAIN_SOFTNESS (0.70-1.00 auto); keys the tables
+     weight_shift = 0.0,   -- rendered layer-weight shift (dark-scene rebalance)
+     res_adapt = 1,        -- rendered RES_ADAPT toggle (0 = profile off: 1.0/1.0)
+-    amount_gpu = 1.0,   -- amount AFTER the shader's clamp(GR_AMOUNT,0,2)
++    amount_gpu = 1.0,   -- amount AFTER the shader's clamp(GR_AMOUNT,0,10)
+     user_offset = 0.0,  -- his manual amount crank; must not move the target
+ }
+ local GR_STALE_S = 5.0
+@@ -2426,20 +2427,21 @@
+     local m = math_floor(k / 2)
+     local T = {}
+     for y = 0, ch - 1 do
+-        local base = y * cw
++        local base, total = y * cw, 0.0
++        for x = 0, k - 1 do total = total + L[base + x] end
+         for x = m, cw - 1 - m do
+-            local s = 0
+-            for o = -m, m do s = s + L[base + x + o] end
+-            T[base + x] = s / k
++            T[base + x] = total / k
++            if x < cw - 1 - m then total = total - L[base + x - m] + L[base + x + m + 1] end
+         end
+     end
+     local HP = {}
+-    for y = m, ch - 1 - m do
+-        local base = y * cw
+-        for x = m, cw - 1 - m do
+-            local s = 0
+-            for o = -m, m do s = s + T[base + o * cw + x] end
+-            HP[base + x] = L[base + x] - s / k
++    for x = m, cw - 1 - m do
++        local total = 0.0
++        for y = 0, k - 1 do total = total + T[y * cw + x] end
++        for y = m, ch - 1 - m do
++            local i = y * cw + x
++            HP[i] = L[i] - total / k
++            if y < ch - 1 - m then total = total - T[(y - m) * cw + x] + T[(y + m + 1) * cw + x] end
+         end
+     end
+     return HP, m
+@@ -2515,6 +2517,9 @@
+     local capture_tuple = GS.capture_tuple()
+     if not capture_tuple then GS.nil_why = "capture-tuple-unbound"; return nil end
+     local capture_started = mp.get_time()
++    if GR.enabled and capture_started - GR.ts >= GR_STALE_S then
++        GS.nil_why = "stale-mirror-before-capture"; return nil
++    end
+     local L, cw, ch, frame_luma, h = GS.capture_luma()
+     local capture_finished = mp.get_time()
+     local after_tuple = GS.capture_tuple()
+@@ -2624,7 +2629,7 @@
+         -- DECONVOLUTION: subtract the engine's own synthetic covariance.
+         -- Per kept block the synthetic HP power is (255 x amp x DEV)^2 x
+         -- cf2 x var_tab(eff); the corrected source curve is what remains.
+-        local live = GR.enabled and (mp.get_time() - GR.ts) < GR_STALE_S
++        local live = GR.enabled and (capture_started - GR.ts) < GR_STALE_S
+         local var_src, cov = den, lags
+         local psyn_sum, p5_sum, p5_tgt = 0.0, 0.0, 0.0
+         if GR.enabled then
+@@ -2697,7 +2702,7 @@
+ 
+         local share = var_src / den
+         -- strength top-up: re-body to the accepted target, never blind add.
+-        -- target = (6.25/5)^2 x power-at-default-strength; fill the gap
++        -- target = saved look (or factory seed) x fixed reference power; fill the gap
+         -- between that and what the source already carries.
+         local mult = nil
+         GS.r_total = nil
+@@ -3020,6 +3025,21 @@
+     end
+     if frame_luma then GS.prev_luma = frame_luma end
+ 
++    -- 118h: a real noise reading feeds the scene feed (see
++    -- photon_publish_scene_feed). share = source-noise share of measured
++    -- HP power, the same validity rule the receiver's measured flag uses.
++    if (vsrc or 0) > 0 and (share or 0) >= GS.src_share_min then
++        GS.last_noise_share = share
++        GS.last_noise_at = mp.get_time()
++    else
++        -- 118h: an invalid reading clears the cache at once - the feed
++        -- must never republish a stale share as current. The 12s
++        -- freshness window in publish is only a backstop for
++        -- paused/frozen playback, where no new sample exists.
++        GS.last_noise_share = nil
++        GS.last_noise_at = nil
++    end
++    if GS.publish_current_noise then GS.publish_current_noise() end
+     -- STRENGTH top-up rides every valid sample (never waits on size):
+     -- fill = target body - what the source already carries.
+     -- B2: median of the last GS.window valid samples of this scene, deadband
+@@ -3055,7 +3075,7 @@
+                 GS.look_consumed_revision = revision
+                 GS.look_learn_revision = nil
+                 GS.save_look()
+-                GS.last_mult = GR.strength / GS.strength_default
++                GS.last_mult = GR.strength / GS.receiver_strength_default
+                 GS.mhist = {}
+                 -- hand control back to the measurement: the manual value is now
+                 -- the learned look, so auto strength resumes from it.
+@@ -3071,20 +3091,6 @@
+             GS.look_learn_revision = nil
+         end
+     end
+-    -- 118h: a real noise reading feeds the scene feed (see
+-    -- photon_publish_scene_feed). share = source-noise share of measured
+-    -- HP power, the same validity rule the receiver's measured flag uses.
+-    if (vsrc or 0) > 0 and (share or 0) >= GS.src_share_min then
+-        GS.last_noise_share = share
+-        GS.last_noise_at = mp.get_time()
+-    else
+-        -- 118h: an invalid reading clears the cache at once - the feed
+-        -- must never republish a stale share as current. The 12s
+-        -- freshness window in publish is only a backstop for
+-        -- paused/frozen playback, where no new sample exists.
+-        GS.last_noise_share = nil
+-        GS.last_noise_at = nil
+-    end
+     if mult then
+         -- 118c (adaptive program only): the multiplier is relative to the
+         -- delivered b7 look (x1.0 = GRAIN_STRENGTH_USER_DEFAULT). A valid
+@@ -3093,6 +3099,8 @@
+         -- floor) the strength is the b7 look exactly - not a fixed
+         -- 1.25/2.141 fallback. Legacy (program OFF) path unchanged.
+         local measured = (vsrc or 0) > 0 and (share or 0) >= GS.src_share_min
++        -- Measurement is in the fixed synthetic ruler; receiver multiplies its own base.
++        if SIZE_GOV.program_on then mult = mult * GS.strength_default / GS.receiver_strength_default end
+         if measured or not SIZE_GOV.program_on then
+             GS.mhist[#GS.mhist + 1] = SIZE_GOV.program_on and math_max(0.5, math_min(1.5, mult)) or mult
+             if #GS.mhist > GS.window then table.remove(GS.mhist, 1) end
+@@ -3494,11 +3502,11 @@
+ 
+     COST.ff_inc("radar")
+     local cmd = string.format(
+-        FFMPEG .. RADAR_STATE.net_opts() .. " -v 0 -nostats -threads 1 -hwaccel auto -ss %.3f -i %s -vframes 1 " ..
++        FFMPEG .. RADAR_STATE.net_opts() .. " -v info -nostats -threads 1 -hwaccel auto -ss %.3f -i %s -vframes 1 " ..
+         -- -m 6: UAVG added for the warmth field (see calc_frame_profile's
+         -- n_warmth comment). UAVG appears BEFORE HUEAVG in ffmpeg's
+         -- stream order, so -m must cover 6 lines, not 5 — match order
+-        "-vf \"scale=128:-1,signalstats\" -f null - 2>&1",
++        "-vf \"scale=128:-1,signalstats,metadata=print\" -f null - 2>&1",
+         job.t, string.format("%q", path))
+ 
+     mp.command_native_async({
+@@ -3525,7 +3533,11 @@
+                 (res and res.stdout and res.stdout ~= "" and res.stdout:sub(-200)) or "(empty)"))
+         elseif res.stdout ~= "" then
+             local profile = parse_frame_extended(res.stdout)
+-            if profile then buffer_insert(job.t, profile) end
++            if profile then
++                buffer_insert(job.t, profile)
++            else
++                mp.msg.warn("photon: radar probe returned no usable signalstats profile at t=" .. tostring(job.t))
++            end
+         end
+         mp.add_timeout(0.1, dispatch_radar)
+     end)
+@@ -3714,7 +3726,26 @@
+         string.format("%.4f", photon_safenum(photon_scene_rlevel, 0.0)))
+ end
+ 
++-- Color fallback samples only mpv's current decoded frame. It never admits
++-- flat luminance into PBS/gamma or the noise estimator, nor reopens a URL.
++RADAR_STATE.hue_capture = {at = -math.huge}
+ local function photon_publish_scene_feed()
++    if not is_hdr and enabled and DOC.active and SDR_STATE.capture_frame_profile then
++        local now, pos = mp.get_time(), mp.get_property_number("time-pos")
++        if pos and pos == pos and pos >= 0 and pos < math.huge
++            and not mp.get_property_bool("pause", false) and not RADAR_STATE.stream_frozen()
++            and not RADAR_STATE.hue_wait_frame and now - RADAR_STATE.hue_capture.at >= 1.0
++            and pos ~= RADAR_STATE.hue_capture.pos then
++            RADAR_STATE.hue_capture.at, RADAR_STATE.hue_capture.pos, RADAR_STATE.hue_capture.value = now, pos, nil
++            local _, chroma = SDR_STATE.capture_frame_profile()
++            if chroma then RADAR_STATE.hue_capture.value = chroma.hue end
++        end
++        if not RADAR_STATE.hue_wait_frame and pos and now - RADAR_STATE.hue_capture.at <= 1.5 and RADAR_STATE.hue_capture.pos and pos >= RADAR_STATE.hue_capture.pos and pos - RADAR_STATE.hue_capture.pos <= 1.5 then
++            photon_scene_hue = RADAR_STATE.hue_capture.value
++        else
++            photon_scene_hue = nil
++        end
++    end
+     -- 118h: connect the grain noise feed to the GS probe's real
+     -- measurement when fresh (<=12s). The radar/PQ proxies above only run
+     -- when their own path is live; where no real reading exists the feed
+@@ -3776,6 +3807,10 @@
+     end
+ end
+ 
++-- The probe must publish a valid reading even when manual-look learning
++-- returns before the next SDR update. No proxy validity is promoted here.
++GS.publish_current_noise = photon_publish_scene_feed
++
+ -- HDR hue: video-out-params only gives avg/max-pq-y by default, no per-
+ -- channel color, so hue needs two extra sources. SOURCE 1 (metadata,
+ -- below) is free but requires HDR10+ dynamic metadata; SOURCE 2
+@@ -4016,7 +4051,7 @@
+     -- Chosen VOD contract: no valid current-generation local bracket means
+     -- no gamma write. Network/live current-frame adaptation is a separate path.
+     local planned_gamma = RADAR_STATE.plan_gamma(pos)
+-    if planned_gamma == nil then return end
++    if planned_gamma == nil then photon_scene_hue = nil; photon_publish_scene_feed(); return end
+     local current_pbs = (pos and #RADAR_STATE.live_buffer > 0) and buffer_lookup(pos) or nil
+     local next_pbs    = (pos and #RADAR_STATE.live_buffer > 0) and buffer_lookup(pos + ANALYSIS_INTERVAL) or nil
+ 
+@@ -4222,7 +4257,7 @@
+         end
+     end
+     local profile = LIVE_CALIB.profile
+-    if not profile then return end
++    if not profile then photon_publish_scene_feed(); return end
+     local pbs = profile.pbs
+ 
+     photon_scene_is_cut = LIVE_CALIB.cut_ramp == true
+@@ -4313,7 +4348,8 @@
+     local hist = {}
+     for i = 0, 255 do hist[i] = 0 end
+     local n = 0
+-    local sum_y, sum_u, sum_v, sum_sat, sum_hue = 0.0, 0.0, 0.0, 0.0, 0.0
++    local sum_y, sum_u, sum_v, sum_sat = 0.0, 0.0, 0.0, 0.0
++    local hue_x, hue_y, hue_n = 0.0, 0.0, 0
+     local atan2 = math.atan2 or math.atan  -- LuaJIT 5.1 vs 5.3+
+     for y = 0, h - 1, sy do
+         local row = y * stride
+@@ -4330,7 +4366,11 @@
+             sum_sat = sum_sat + math.sqrt(u * u + v * v)
+             local hd = math.deg(atan2(v, u))
+             if hd < 0 then hd = hd + 360 end
+-            sum_hue = sum_hue + hd
++            if math.sqrt(u * u + v * v) >= 1.0 then
++                local angle = math.rad(hd)
++                hue_x, hue_y = hue_x + math.cos(angle), hue_y + math.sin(angle)
++                hue_n = hue_n + 1
++            end
+             local bin = math_floor(ly + 0.5)
+             if bin > 255 then bin = 255 end
+             hist[bin] = hist[bin] + 1
+@@ -4345,8 +4385,14 @@
+         end
+         return 255
+     end
+-    return calc_frame_profile(sum_y / n, pct(0.90), pct(0.10),
+-        sum_sat / n, sum_hue / n, sum_u / n + 128.0, 255)
++    local hue_deg = nil
++    if hue_n > 0 and hue_x * hue_x + hue_y * hue_y > 1e-12 then
++        hue_deg = math.deg(atan2(hue_y, hue_x)) % 360
++    end
++    local profile = calc_frame_profile(sum_y / n, pct(0.90), pct(0.10),
++        sum_sat / n, hue_deg, sum_u / n + 128.0, 255)
++    return profile, {hue = hue_deg and hue_deg / 360 or nil}
++
+ end
+ SDR_STATE.capture_frame_profile = COST.wrap("SDRCAP", SDR_STATE.capture_frame_profile_raw)
+ 
+@@ -4775,6 +4821,7 @@
+     -- Same pattern again, negativ's independent axis.
+     mp.commandv("script-message", "photon-negativ-set-target-enabled", negativ_user_enabled and "true" or "false")
+     remove_vf_filter()
++    RADAR_STATE.hue_capture.at, RADAR_STATE.hue_capture.pos, RADAR_STATE.hue_capture.value = -math.huge, nil, nil
+     LIVE_CALIB.profile = nil
+     LIVE_CALIB.last_capture = -math.huge
+     LIVE_CALIB.last_pbs = nil
+@@ -4825,6 +4872,9 @@
+ end)
+ 
+ mp.register_event("seek", function()
++    RADAR_STATE.hue_wait_frame = true
++    RADAR_STATE.hue_capture.value = nil
++    photon_scene_hue = nil
+     if not is_sdr then return end
+     -- Engine off: every consumer of the motion spike is
+     -- target-disabled too, so skip the smoothing math and
+@@ -4892,7 +4942,8 @@
+     LG.samples = {}
+     if LG.timer then LG.timer:kill(); LG.timer = nil end
+ end
+-mp.register_event("start-file", function() DOC.fence() end)
++mp.register_event("start-file", function() RADAR_STATE.hue_wait_frame = true; RADAR_STATE.hue_capture = {at = -math.huge}; photon_scene_hue = nil; DOC.fence() end)
++mp.register_event("playback-restart", function() RADAR_STATE.hue_wait_frame = false; RADAR_STATE.hue_capture.pos = nil end)
+ for _, ev_ in ipairs({"start-file", "end-file", "seek", "playback-restart", "file-loaded"}) do
+     mp.register_event(ev_, function() SHARE.clear() end)
+ end
+@@ -4993,7 +5044,7 @@
+     GR.amount = tonumber(amount_s) or GR.amount
+     -- amount the GPU actually draws: the shader clamps GR_AMOUNT to 2.0,
+     -- so the pre-clamp value would over-model the subtraction by (a/2)^2.
+-    GR.amount_gpu = tonumber(amount_gpu_s) or math.min(GR.amount, 2.0)
++    GR.amount_gpu = tonumber(amount_gpu_s) or math.min(GR.amount, 10.0)
+     GR.user_offset = tonumber(offset_s) or 0.0
+     GR.strength = tonumber(strength_s) or GR.strength
+     GR.size_rendered = tonumber(size_r) or GR.size_rendered
