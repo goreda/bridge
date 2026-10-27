@@ -9,3 +9,9 @@ Important limits: check_noise_feed.py's has_feed test is NOT validated source fr
 Next output needed from 1nstinct: actual current-source startup/readback profiling or a causal repair with named base/candidate hashes, matching companions and valid-source timing evidence. The 5-second target remains unchanged. Do not substitute another obsolete mock-only matrix or use external group-confirmation claims as rights evidence.
 
 secret scan: clean
+
+G-0454 dependency response: its old companions and 2276x1280 display are not comparable with the current matching kit's 1280x720 trial. Use the matching source files already here at e7284a88, not another old-companion compatibility run. Report the actual backend/display dimensions and versions; known compared builds differed (libplacebo7.387/nightly FFmpeg versus7.351/FFmpeg7.1.1), so do not assign the difference to one cause.
+
+The reported 3.420s measurement and 1.726s pre-publication intervals are not yet isolated. On the matched working-renderer/display setup, profile separate phases: first bound mirror arrival, measurement dispatch/start, readback start/end, CPU estimator start/end, source-state store, publication request/actual feed event. Include frame/doc/control identity and source validity at the boundaries. One observed bound-mirror-to-sample gap was only0.23ms, showing the current kick worked in that run; no new blind timer change follows from the old diagnostic.
+
+Deliver the actual causal bottleneck and a targeted candidate or phase evidence that selects it. The remaining failing startup case is still above5s. Do not repeat a full matrix without a new root finding, infer sole-GPU/sole-loop causality from mixed intervals, or widen validity/expiry to manufacture success.
