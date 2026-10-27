@@ -1,0 +1,203 @@
+--- a/photon.lua
++++ b/photon.lua
+@@ -1482,6 +1482,7 @@
+ end
+ 
+ local function rg_tick()
++    if RADAR_STATE.noise_bootstrap_pending then return end
+     -- Wall-clock timer: gate here instead of kill/reinstall so a paused
+     -- player or a toggled-off engine costs one boolean check per tick.
+     if not (enabled and playback_active) then return end
+@@ -2991,12 +2992,14 @@
+     -- while the same frame repeats, so the probe kept sampling and
+     -- committed three escalating sizes mid-buffering (field run 1).
+     -- No sampling and no committing on a frozen image.
++    if RADAR_STATE.hue_wait_frame then SIZE_GOV.hold("live","seek-frame-not-ready"); return end
+     if RADAR_STATE.stream_frozen() then SIZE_GOV.hold("live","cache-stall"); return end
+     local gs_pos = mp.get_property_number("time-pos")
+     if gs_pos and GS.last_pos == gs_pos then SIZE_GOV.hold("live","time-pos-frozen"); return end
+     GS.last_pos = gs_pos
+     GS.log_sample_contract()
+     local est, mult, frame_h, frame_luma, share, vsrc = gs_sample_frame()
++    GS.first_probe_finished = true
+ -- PHOTON TELEMETRY ADDITION BEGIN
+     if COST.media_telemetry then
+     COST.trace_record("GRAIN_MEASUREMENT",{doc_gen=tick_gen,est=est,mult=mult,
+@@ -3019,6 +3022,8 @@
+             -- so the estimate can fill. Reason renamed so logs stay distinguishable.
+             GS.prev_luma = frame_luma
+             GS.pair = nil
++            GS.last_noise_at, GS.last_noise_share = nil, nil
++            if GS.publish_current_noise then GS.publish_current_noise() end
+             SIZE_GOV.hold("live","luma-step",share)
+             return
+         end
+@@ -3030,7 +3035,7 @@
+     -- HP power, the same validity rule the receiver's measured flag uses.
+     if (vsrc or 0) > 0 and (share or 0) >= GS.src_share_min then
+         GS.last_noise_share = share
+-        GS.last_noise_at = mp.get_time()
++        GS.last_noise_at = GS.accepted_capture_tuple and GS.accepted_capture_tuple.observed_started or nil
+     else
+         -- 118h: an invalid reading clears the cache at once - the feed
+         -- must never republish a stale share as current. The 12s
+@@ -3178,11 +3183,19 @@
+ 
+ -- No queued catch-up work after a slow ON sample/vote. OFF keeps the old cadence.
+ function GS.paced_tick()
+-    if not SIZE_GOV.program_on then gs_tick(); return end
++    if not SIZE_GOV.program_on then
++        local ok, err = pcall(gs_tick)
++        GS.first_probe_finished = true
++        RADAR_STATE.noise_bootstrap_pending = false
++        if not ok then error(err) end
++        return
++    end
+     if GS.probe_running or (GS.next_probe_at and mp.get_time() < GS.next_probe_at) then return end
+     GS.probe_running = true
+     GS.probe_started = mp.get_time()
+     GS.probe_ok, GS.probe_error = pcall(gs_tick)
++    GS.first_probe_finished = true -- an error must not starve the hue fallback
++    RADAR_STATE.noise_bootstrap_pending = false
+     GS.probe_running = false
+     if not GS.probe_ok then
+         mp.msg.warn("photon: GS sample failed; next paced attempt remains enabled: " .. tostring(GS.probe_error))
+@@ -3271,7 +3284,7 @@
+         if BK.gen ~= my_gen then return end
+         -- Paused or toggled off: a frozen frame is not a new measurement.
+         -- Don't sample, don't count the tick, just re-arm (P0-3).
+-        if not (enabled and playback_active) then
++        if not (enabled and playback_active) or RADAR_STATE.noise_bootstrap_pending then
+             BK.timer = mp.add_timeout(BK.interval, tick)
+             return
+         end
+@@ -3732,7 +3745,7 @@
+ local function photon_publish_scene_feed()
+     if not is_hdr and enabled and DOC.active and SDR_STATE.capture_frame_profile then
+         local now, pos = mp.get_time(), mp.get_property_number("time-pos")
+-        if pos and pos == pos and pos >= 0 and pos < math.huge
++        if GS.first_probe_finished and not GS.publishing_noise and pos and pos == pos and pos >= 0 and pos < math.huge
+             and not mp.get_property_bool("pause", false) and not RADAR_STATE.stream_frozen()
+             and not RADAR_STATE.hue_wait_frame and now - RADAR_STATE.hue_capture.at >= 1.0
+             and pos ~= RADAR_STATE.hue_capture.pos then
+@@ -3747,17 +3760,22 @@
+         end
+     end
+     -- 118h: connect the grain noise feed to the GS probe's real
+-    -- measurement when fresh (<=12s). The radar/PQ proxies above only run
++    -- measurement when fresh (<=5s since capture request). The radar/PQ proxies above only run
+     -- when their own path is live; where no real reading exists the feed
+     -- stays honestly off and grain falls back to the 118b/118c
+     -- resolution-based values. Never label this path "measured".
+-    if GS.last_noise_at and (mp.get_time() - GS.last_noise_at) <= 12.0 then
+-        -- Raw AND smoothed: publish runs after the tick's smoothing pass, so
+-        -- retarget the smoothed value here or the receiver never sees it.
+-        local gs_noise = clamp(GS.last_noise_share or 0.10, 0.0, 1.0)
+-        photon_scene_noise = gs_noise
+-        photon_scene_smooth_noise = lerp(gs_noise, photon_scene_smooth_noise, 0.5)
+-        photon_scene_has_feed = true
++    local source_valid = not RADAR_STATE.hue_wait_frame and GS.last_noise_at and mp.get_time() >= GS.last_noise_at
++        and mp.get_time() - GS.last_noise_at <= GR_STALE_S
++    local outgoing_noise = photon_scene_noise
++    local outgoing_smooth_noise = photon_scene_smooth_noise
++    local outgoing_has_feed = photon_scene_has_feed
++    if source_valid then
++        outgoing_noise = clamp(GS.last_noise_share or 0.10, 0.0, 1.0)
++        GS.source_smooth = GS.source_smooth and lerp(outgoing_noise, GS.source_smooth, 0.5) or outgoing_noise
++        outgoing_smooth_noise = GS.source_smooth
++        outgoing_has_feed = true
++    else
++        GS.source_smooth = nil
+     end
+     fps_query_ticks_since = fps_query_ticks_since + 1
+     if not cached_scene_fps or fps_query_ticks_since >= FPS_QUERY_STRIDE then
+@@ -3769,7 +3787,7 @@
+     local payload = photon_scene_kv_encode({
+         {"peak", photon_safenum(photon_scene_peak, 0.5), "num"},
+         {"contrast", photon_safenum(photon_scene_contrast, 0.35), "num"},
+-        {"noise", photon_safenum(photon_scene_noise, 0.10), "num"},
++        {"noise", photon_safenum(outgoing_noise, 0.10), "num"},
+         {"block", photon_safenum(photon_scene_block, 0.0), "num"},
+         {"ring", photon_safenum(photon_scene_ring, 0.0), "num"},
+         {"rlevel", photon_safenum(photon_scene_rlevel, 0.0), "num"},
+@@ -3777,11 +3795,12 @@
+         {"motion", photon_safenum(photon_scene_motion, 0.20), "num"},
+         {"smooth_peak", photon_safenum(photon_scene_smooth_peak, 0.5), "num"},
+         {"smooth_contrast", photon_safenum(photon_scene_smooth_contrast, 0.35), "num"},
+-        {"smooth_noise", photon_safenum(photon_scene_smooth_noise, 0.10), "num"},
++        {"smooth_noise", photon_safenum(outgoing_smooth_noise, 0.10), "num"},
+         {"fps", photon_safenum(cached_scene_fps, 24.0), "num"},
+         {"is_hdr", is_hdr, "bool"},
+         {"is_cut", photon_scene_is_cut, "bool"},
+-        {"has_feed", photon_scene_has_feed, "bool"},
++        {"has_feed", outgoing_has_feed, "bool"},
++        {"noise_from_source", source_valid == true, "bool"},
+         -- Read only by sharp — produced by photon_sharp_update_scene_baseline,
+         {"baseline_pbs", photon_sharp_scene_baseline_pbs, "num"},
+         {"baseline_contrast", photon_sharp_scene_baseline_contrast, "num"},
+@@ -3809,7 +3828,12 @@
+ 
+ -- The probe must publish a valid reading even when manual-look learning
+ -- returns before the next SDR update. No proxy validity is promoted here.
+-GS.publish_current_noise = photon_publish_scene_feed
++GS.publish_current_noise = function()
++    GS.publishing_noise = true
++    local ok, err = pcall(photon_publish_scene_feed)
++    GS.publishing_noise = false
++    if not ok then error(err) end
++end
+ 
+ -- HDR hue: video-out-params only gives avg/max-pq-y by default, no per-
+ -- channel color, so hue needs two extra sources. SOURCE 1 (metadata,
+@@ -4732,6 +4756,8 @@
+     SIZE_GOV.reset_history()
+     SIZE_GOV.fallback_logged = false      -- 118b: provisional decision re-issued per document
+     SIZE_GOV.fallback_sent = nil
++    GS.first_probe_finished = false
++    RADAR_STATE.noise_bootstrap_pending = true
+     GS.last_noise_share = nil; GS.last_noise_at = nil   -- 118h: old file's reading is stale
+     RADAR_STATE.dynamic_neutral     = CALIB_DEFAULT
+     RADAR_STATE.live_buffer         = {}
+@@ -4872,6 +4898,7 @@
+ end)
+ 
+ mp.register_event("seek", function()
++    GS.last_noise_at, GS.last_noise_share, GS.source_smooth = nil, nil, nil
+     RADAR_STATE.hue_wait_frame = true
+     RADAR_STATE.hue_capture.value = nil
+     photon_scene_hue = nil
+@@ -4943,7 +4970,7 @@
+     if LG.timer then LG.timer:kill(); LG.timer = nil end
+ end
+ mp.register_event("start-file", function() RADAR_STATE.hue_wait_frame = true; RADAR_STATE.hue_capture = {at = -math.huge}; photon_scene_hue = nil; DOC.fence() end)
+-mp.register_event("playback-restart", function() RADAR_STATE.hue_wait_frame = false; RADAR_STATE.hue_capture.pos = nil end)
++mp.register_event("playback-restart", function() RADAR_STATE.hue_wait_frame = false; RADAR_STATE.hue_capture.pos = nil; if GS.request_bound_probe then GS.request_bound_probe() end end)
+ for _, ev_ in ipairs({"start-file", "end-file", "seek", "playback-restart", "file-loaded"}) do
+     mp.register_event(ev_, function() SHARE.clear() end)
+ end
+@@ -5065,7 +5092,25 @@
+     GR.doc_gen = producer_doc
+     GR.ts = mp.get_time()
+     GR.log_adaptive("state")
++    GS.request_bound_probe()
+ end)
++
++function GS.request_bound_probe()
++    if not GS.last_noise_at and GR.enabled and playback_active and DOC.active
++        and not RADAR_STATE.hue_wait_frame and GS.capture_tuple()
++        and (not GS.bootstrap_at or mp.get_time() - GS.bootstrap_at >= 1.0) then
++        local bootstrap_gen = DOC.gen
++        GS.bootstrap_at = mp.get_time()
++        mp.add_timeout(0, function()
++            if DOC.active and bootstrap_gen == DOC.gen and not GS.last_noise_at
++                and not RADAR_STATE.hue_wait_frame and playback_active
++                and not RADAR_STATE.stream_frozen() then
++                GS.next_probe_at = nil
++                GS.paced_tick()
++            end
++        end)
++    end
++end
+ 
+ --  F9: TOGGLE
+ 

@@ -1,0 +1,14 @@
+{
+  "photon.lua": {
+    "bytes": 414623,
+    "sha256": "ab21a468bbcced397f0ae6c37682fec65b3ec51c0596f125b8b7ff52f540efb6"
+  },
+  "README.md": {
+    "bytes": 2062,
+    "sha256": "39a3e701f31f3b01c6a8f2c42ca05286e60c51cdef9c821807091511450e9854"
+  },
+  "from-2030.patch": {
+    "bytes": 10350,
+    "sha256": "7ab7ba6b4ed901d12d9671b781d2910d8c753d37a70ea7951235335e310b7ed9"
+  }
+}
