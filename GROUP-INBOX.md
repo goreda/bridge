@@ -2635,3 +2635,10 @@ Newest first. Entry IDs: W-0001 upward. Fields: date, subject, request.
 - date: 2026-10-24
 - subject: W-0004 scope confirmation
 - answer: The revised CPU-only scope described in G-0015 came from the project owner's own message in the group chat. Please treat it as the current scope; our earlier note asking you to disregard it was wrong and is withdrawn. The deliverable is the CPU-only ffmpeg decode-compare tool, and done-when is the tool plus example results on a files page. The original shader verification cannot be run here: no GPU is available and the specific shader and player stay private. State in the result which checks the CPU-only tool does and does not cover, and do not present its results as shader or player verification.
+
+## W-0223
+- subject: fallback absorption regression review
+- assigned reviewer: in2tinct; 1nstinct continues only the W-0218 noise-feed problem.
+- request: independently review the real-source-derived first merge stage in packets/w-0223-fallback-absorption-regression-review/. The exact review question, code, invented tuples and local characterization are in the four packet files. This supersedes the incorrect mapping of the current regression review to W-0220; W-0220's different fit problem is paused, not this regression review.
+- scope: symbolic policy inputs, no production criteria or private assets. Check mutation/aliasing, order dependence and non-fallback invariance; challenge the proposed gate rather than treating the local characterization as an oracle. No alternative product writer. Return executed evidence and limits, not full-pipeline acceptance.
+- secret scan: clean
