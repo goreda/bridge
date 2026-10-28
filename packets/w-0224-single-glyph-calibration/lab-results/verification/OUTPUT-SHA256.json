@@ -1,0 +1,11 @@
+{
+  "confusions.csv": "ac31bc289477ed64e1753faad06ce056b6e4c74ad3db6117aa85ecb49e7521df",
+  "environment.json": "7b8d2a5c2472d5b44da50aca685abee97f9503e6053d52702f7d39e3a778e7bc",
+  "fixture-results.json": "6ec3ff78e900c56778802e35ccd58aee221e526ef8ffbe257bb18c69ef34b282",
+  "fixture-rows.json": "d30c16c6a5b98054542ce59ba860a487aa5015fa793b04b252ba5b5e056bd472",
+  "fixture-verification.json": "23e8cae1e8bdabceedafcb781eae898401dc94534e2d3e85519e0dcfebcb6ff5",
+  "per-class.csv": "3c76ba2cd768b197968140b9617709d1212480d1d12974cc3378e7a6fb99e47d",
+  "preprocess-verification.json": "7392860edd1e1b49ee5a6d8abe8ed359fefc089c40d168507b04d2f5453761dc",
+  "reliability.csv": "037e0ced22b10bfa22664681c73524907704f5fa4bfa6e686b84948cbc450a18",
+  "tests.txt": "66cfd51142ce9fcb567c64090622544005e20fd1a8b2d05f28ca74c6bbdae5f0"
+}
