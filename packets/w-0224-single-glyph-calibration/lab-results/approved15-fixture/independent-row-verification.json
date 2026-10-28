@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "rows": 3105,
+  "outcomes": {
+    "prediction": 2644,
+    "abstain": 251,
+    "missing": 210
+  },
+  "method": "Independently recompute declared fixture schedule and expected status/label/rejection for every row, verify all PNG hashes and row order; not production inference."
+}

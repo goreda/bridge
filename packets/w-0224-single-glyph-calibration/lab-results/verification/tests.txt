@@ -1,0 +1,3 @@
+PASS: fixture, label-order, seeded family split, denominator, abstain, missing, bucket boundaries, malformed predictions, calibration leakage, reject ambiguity, gate refusal
+PASS: negative family/SHA overlap, unknown cohort, absent/empty calibration, duplicate ID, missing fixture provenance, missing manifest, manifest membership/hash/assignment
+PASS: explicit missing validation/test partial null metrics, missing calibration typed partial refusal, unknown/contradictory/undeclared missing families and typo refusal

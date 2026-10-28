@@ -1,0 +1,13 @@
+{
+  "python": "3.10.12",
+  "pillow": "12.3.0",
+  "torch": "2.14.1+cpu",
+  "numpy": "2.2.6",
+  "input_sha256": {
+    "harness.py": "f1e2335a778be75ae8f99f8b1415bfd010439ac85966182ac24af8f7cdbd138f",
+    "tests.py": "5f197449ff1cb4a9ba021a9a68bb854833d4fcef465df8a240e9b8af01e8e0a7",
+    "labels-62.json": "60c94c582001b69f34ba2f8130dad169f89dfc491084a74e2253d5b51b5f4b73",
+    "pack-declarations.json": "856bba62049587e9d914fa616cf82221f645e872c65278ec132b3c728c1db8fa",
+    "font-manifest.json": "31fac437860ac40dda2a6b5e685334732eb84ed218bb1a4cfb2432f0c60421a3"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "same_id": "W-0224",
+  "response": "manifest ok",
+  "drop_families": [],
+  "manifest_sha256": "31fac437860ac40dda2a6b5e685334732eb84ed218bb1a4cfb2432f0c60421a3",
+  "publication_url": "https://files.instinct.com/67t90lvdje9b-bridge",
+  "requester_answer_commit": "bc62791dd2dae5a7dccf5df4c27136e22ec3f00b",
+  "answer_sha256": "aab3ab3dc0956e956cc4be9864fdef28653d8aee1414f4615a0c7196a40e2bad",
+  "scope": "exact 15 families; no replacements/additions"
+}
