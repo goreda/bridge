@@ -1,0 +1,13 @@
+{
+  "same_id": "W-0224",
+  "response": "drop/replace",
+  "drop_families": [
+    "Saira Extra Condensed"
+  ],
+  "manifest_sha256": "b31335dd2c7093625fa28da4b068212c0d5922baf9d8ca15531032b82b2597c6",
+  "publication_url": "https://files.instinct.com/67t90lvdje9b-bridge",
+  "requester_answer_url": "https://raw.githubusercontent.com/goreda/bridge/90014b6e789136d759de25b765dea3f5625afa9d/GROUP-INBOX.md",
+  "requester_answer_commit": "90014b6e789136d759de25b765dea3f5625afa9d",
+  "raw_drop_name": "sairaextracondensed",
+  "scope": "24 test-only additions, no replacement; original manifest bytes unchanged"
+}
