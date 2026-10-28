@@ -1,0 +1,10 @@
+{
+  "version": "w0225-geometry-v1",
+  "start_commit": "e7c61a2da4f44fd01c711ff57b81aaa0c68b9a5a",
+  "module_sha256": "535e9e0a339830df2abd39756b59e2de5b17f8f581245e47c5d755134cf4e032",
+  "harness_sha256": "1a129ebe0d253e1d910affcb766cbd595c65ca6219fa141738f1ad0921f29371",
+  "design_inputs": "Only5 calibration families from W0224; validation/test unopened in W0225",
+  "thresholds": "min6 regions, min2/cluster, relative gap.15, max cluster range.10, bottom spread.06; deliberately conservative; no validation/test tuning",
+  "calibration_result": "240/2790 geometric hints,2550/2790 abstain; descriptive render-case association240/240 of hinted labels only, not case proof",
+  "freeze_time_utc": "2026-10-28T19:23:42.985627+00:00"
+}
