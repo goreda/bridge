@@ -1,0 +1,186 @@
+{
+  "schema": "kni-composition-layout-v1",
+  "policy": "preserve_geometry_no_classifier_cuts",
+  "source_gray_sha256": "457651b3d60513433a38feac6913c25bb487a6497c4bf4a954a063f5eaf9a24f",
+  "unresolved_spans": 1,
+  "identity_boundaries_qualified": false,
+  "regions": [
+    {
+      "line": 1,
+      "index": 1,
+      "box": [
+        12,
+        11,
+        240,
+        135
+      ],
+      "component_ids": [
+        1
+      ],
+      "kind": "preserved_component",
+      "identity_boundary_qualified": false,
+      "cut_applied": false
+    },
+    {
+      "line": 1,
+      "index": 2,
+      "box": [
+        259,
+        11,
+        198,
+        135
+      ],
+      "component_ids": [
+        2
+      ],
+      "kind": "preserved_component",
+      "identity_boundary_qualified": false,
+      "cut_applied": false
+    },
+    {
+      "line": 1,
+      "index": 3,
+      "box": [
+        463,
+        11,
+        214,
+        135
+      ],
+      "component_ids": [
+        3
+      ],
+      "kind": "preserved_component",
+      "identity_boundary_qualified": false,
+      "cut_applied": false
+    },
+    {
+      "line": 1,
+      "index": 4,
+      "box": [
+        683,
+        11,
+        44,
+        135
+      ],
+      "component_ids": [
+        4
+      ],
+      "kind": "preserved_component",
+      "identity_boundary_qualified": false,
+      "cut_applied": false
+    },
+    {
+      "line": 1,
+      "index": 5,
+      "box": [
+        734,
+        11,
+        458,
+        135
+      ],
+      "component_ids": [
+        5,
+        6
+      ],
+      "kind": "unresolved_span",
+      "identity_boundary_qualified": false,
+      "cut_applied": false
+    },
+    {
+      "line": 2,
+      "index": 1,
+      "box": [
+        12,
+        241,
+        240,
+        135
+      ],
+      "component_ids": [
+        1
+      ],
+      "kind": "preserved_component",
+      "identity_boundary_qualified": false,
+      "cut_applied": false
+    },
+    {
+      "line": 2,
+      "index": 2,
+      "box": [
+        255,
+        241,
+        253,
+        135
+      ],
+      "component_ids": [
+        2
+      ],
+      "kind": "preserved_component",
+      "identity_boundary_qualified": false,
+      "cut_applied": false
+    },
+    {
+      "line": 2,
+      "index": 3,
+      "box": [
+        511,
+        241,
+        214,
+        135
+      ],
+      "component_ids": [
+        3
+      ],
+      "kind": "preserved_component",
+      "identity_boundary_qualified": false,
+      "cut_applied": false
+    },
+    {
+      "line": 2,
+      "index": 4,
+      "box": [
+        731,
+        241,
+        198,
+        135
+      ],
+      "component_ids": [
+        4
+      ],
+      "kind": "preserved_component",
+      "identity_boundary_qualified": false,
+      "cut_applied": false
+    },
+    {
+      "line": 2,
+      "index": 5,
+      "box": [
+        936,
+        241,
+        229,
+        135
+      ],
+      "component_ids": [
+        5
+      ],
+      "kind": "preserved_component",
+      "identity_boundary_qualified": false,
+      "cut_applied": false
+    },
+    {
+      "line": 2,
+      "index": 6,
+      "box": [
+        1142,
+        241,
+        278,
+        135
+      ],
+      "component_ids": [
+        6
+      ],
+      "kind": "preserved_component",
+      "identity_boundary_qualified": false,
+      "cut_applied": false
+    }
+  ]
+}

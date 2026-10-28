@@ -1,0 +1,11 @@
+{
+  "packet": "W-0225",
+  "posted": "2026-10-28 Europe/Istanbul",
+  "source_zip_sha256": "3cde96995aba4b0463b240b2c20107844fe16a54043ea717850c993baf6615a0",
+  "files": {
+    "RUN.txt": "78b088421fb2c7ddf16938b2a0bac2ba80b59d7a632317cfcd438eaf7e98cbd5",
+    "W-0225.md": "e92728e86df969872cadd490e2bc32690924abab2c7c9b86698ad30d1e2fee41",
+    "case_resolver.py": "71f67d2412eadb7dd65eb0cd56e77da0d8b3be3d5d300471d874b2bc89c168cd",
+    "test_case_resolver.py": "69414728e79f77afb6c4d40110c631e445d9d7a398b4a6a07b03b97a9b2459ad"
+  }
+}

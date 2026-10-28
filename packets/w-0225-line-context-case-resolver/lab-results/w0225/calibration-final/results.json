@@ -1,0 +1,1649 @@
+{
+  "stage": "calibration",
+  "module_sha256": "535e9e0a339830df2abd39756b59e2de5b17f8f581245e47c5d755134cf4e032",
+  "harness_sha256": "1a129ebe0d253e1d910affcb766cbd595c65ca6219fa141738f1ad0921f29371",
+  "scope": "GEOMETRIC GROUPING ONLY, never case/Unicode identity",
+  "overall": {
+    "regions": 2790,
+    "hinted": 240,
+    "unresolved": 2550,
+    "geometric_coverage": {
+      "numerator": 240,
+      "denominator": 2790,
+      "value": 0.08602150537634409
+    },
+    "abstention": {
+      "numerator": 2550,
+      "denominator": 2790,
+      "value": 0.9139784946236559
+    },
+    "descriptive_render_case_association": {
+      "numerator": 240,
+      "denominator": 240,
+      "value": 1.0,
+      "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+    },
+    "reasons": {
+      "geometric_height_group_only_not_case_proof": 240,
+      "height_groups_not_compact": 42,
+      "height_groups_not_separated": 438,
+      "uneven_or_rotated_ink_bottoms": 2025,
+      "too_few_neighbours": 45
+    }
+  },
+  "per_family": {
+    "Alegreya": {
+      "regions": 558,
+      "hinted": 48,
+      "unresolved": 510,
+      "geometric_coverage": {
+        "numerator": 48,
+        "denominator": 558,
+        "value": 0.08602150537634409
+      },
+      "abstention": {
+        "numerator": 510,
+        "denominator": 558,
+        "value": 0.9139784946236559
+      },
+      "descriptive_render_case_association": {
+        "numerator": 48,
+        "denominator": 48,
+        "value": 1.0,
+        "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+      },
+      "reasons": {
+        "geometric_height_group_only_not_case_proof": 48,
+        "height_groups_not_compact": 42,
+        "height_groups_not_separated": 54,
+        "uneven_or_rotated_ink_bottoms": 405,
+        "too_few_neighbours": 9
+      }
+    },
+    "Abril Fatface": {
+      "regions": 558,
+      "hinted": 48,
+      "unresolved": 510,
+      "geometric_coverage": {
+        "numerator": 48,
+        "denominator": 558,
+        "value": 0.08602150537634409
+      },
+      "abstention": {
+        "numerator": 510,
+        "denominator": 558,
+        "value": 0.9139784946236559
+      },
+      "descriptive_render_case_association": {
+        "numerator": 48,
+        "denominator": 48,
+        "value": 1.0,
+        "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+      },
+      "reasons": {
+        "geometric_height_group_only_not_case_proof": 48,
+        "height_groups_not_separated": 96,
+        "uneven_or_rotated_ink_bottoms": 405,
+        "too_few_neighbours": 9
+      }
+    },
+    "Arvo": {
+      "regions": 558,
+      "hinted": 48,
+      "unresolved": 510,
+      "geometric_coverage": {
+        "numerator": 48,
+        "denominator": 558,
+        "value": 0.08602150537634409
+      },
+      "abstention": {
+        "numerator": 510,
+        "denominator": 558,
+        "value": 0.9139784946236559
+      },
+      "descriptive_render_case_association": {
+        "numerator": 48,
+        "denominator": 48,
+        "value": 1.0,
+        "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+      },
+      "reasons": {
+        "geometric_height_group_only_not_case_proof": 48,
+        "height_groups_not_separated": 96,
+        "uneven_or_rotated_ink_bottoms": 405,
+        "too_few_neighbours": 9
+      }
+    },
+    "Inconsolata": {
+      "regions": 558,
+      "hinted": 48,
+      "unresolved": 510,
+      "geometric_coverage": {
+        "numerator": 48,
+        "denominator": 558,
+        "value": 0.08602150537634409
+      },
+      "abstention": {
+        "numerator": 510,
+        "denominator": 558,
+        "value": 0.9139784946236559
+      },
+      "descriptive_render_case_association": {
+        "numerator": 48,
+        "denominator": 48,
+        "value": 1.0,
+        "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+      },
+      "reasons": {
+        "geometric_height_group_only_not_case_proof": 48,
+        "height_groups_not_separated": 96,
+        "uneven_or_rotated_ink_bottoms": 405,
+        "too_few_neighbours": 9
+      }
+    },
+    "Barlow Condensed": {
+      "regions": 558,
+      "hinted": 48,
+      "unresolved": 510,
+      "geometric_coverage": {
+        "numerator": 48,
+        "denominator": 558,
+        "value": 0.08602150537634409
+      },
+      "abstention": {
+        "numerator": 510,
+        "denominator": 558,
+        "value": 0.9139784946236559
+      },
+      "descriptive_render_case_association": {
+        "numerator": 48,
+        "denominator": 48,
+        "value": 1.0,
+        "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+      },
+      "reasons": {
+        "geometric_height_group_only_not_case_proof": 48,
+        "height_groups_not_separated": 96,
+        "uneven_or_rotated_ink_bottoms": 405,
+        "too_few_neighbours": 9
+      }
+    }
+  },
+  "per_scenario": {
+    "mixed_scale_pairs": {
+      "regions": 240,
+      "hinted": 240,
+      "unresolved": 0,
+      "geometric_coverage": {
+        "numerator": 240,
+        "denominator": 240,
+        "value": 1.0
+      },
+      "abstention": {
+        "numerator": 0,
+        "denominator": 240,
+        "value": 0.0
+      },
+      "descriptive_render_case_association": {
+        "numerator": 240,
+        "denominator": 240,
+        "value": 1.0,
+        "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+      },
+      "reasons": {
+        "geometric_height_group_only_not_case_proof": 240
+      }
+    },
+    "mixed_ascenders": {
+      "regions": 210,
+      "hinted": 0,
+      "unresolved": 210,
+      "geometric_coverage": {
+        "numerator": 0,
+        "denominator": 210,
+        "value": 0.0
+      },
+      "abstention": {
+        "numerator": 210,
+        "denominator": 210,
+        "value": 1.0
+      },
+      "descriptive_render_case_association": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+      },
+      "reasons": {
+        "height_groups_not_compact": 42,
+        "height_groups_not_separated": 168
+      }
+    },
+    "all_lower_xonly": {
+      "regions": 270,
+      "hinted": 0,
+      "unresolved": 270,
+      "geometric_coverage": {
+        "numerator": 0,
+        "denominator": 270,
+        "value": 0.0
+      },
+      "abstention": {
+        "numerator": 270,
+        "denominator": 270,
+        "value": 1.0
+      },
+      "descriptive_render_case_association": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+      },
+      "reasons": {
+        "height_groups_not_separated": 270
+      }
+    },
+    "all_upper": {
+      "regions": 390,
+      "hinted": 0,
+      "unresolved": 390,
+      "geometric_coverage": {
+        "numerator": 0,
+        "denominator": 390,
+        "value": 0.0
+      },
+      "abstention": {
+        "numerator": 390,
+        "denominator": 390,
+        "value": 1.0
+      },
+      "descriptive_render_case_association": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+      },
+      "reasons": {
+        "uneven_or_rotated_ink_bottoms": 390
+      }
+    },
+    "single": {
+      "regions": 15,
+      "hinted": 0,
+      "unresolved": 15,
+      "geometric_coverage": {
+        "numerator": 0,
+        "denominator": 15,
+        "value": 0.0
+      },
+      "abstention": {
+        "numerator": 15,
+        "denominator": 15,
+        "value": 1.0
+      },
+      "descriptive_render_case_association": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+      },
+      "reasons": {
+        "too_few_neighbours": 15
+      }
+    },
+    "two": {
+      "regions": 30,
+      "hinted": 0,
+      "unresolved": 30,
+      "geometric_coverage": {
+        "numerator": 0,
+        "denominator": 30,
+        "value": 0.0
+      },
+      "abstention": {
+        "numerator": 30,
+        "denominator": 30,
+        "value": 1.0
+      },
+      "descriptive_render_case_association": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+      },
+      "reasons": {
+        "too_few_neighbours": 30
+      }
+    },
+    "descender_heavy": {
+      "regions": 225,
+      "hinted": 0,
+      "unresolved": 225,
+      "geometric_coverage": {
+        "numerator": 0,
+        "denominator": 225,
+        "value": 0.0
+      },
+      "abstention": {
+        "numerator": 225,
+        "denominator": 225,
+        "value": 1.0
+      },
+      "descriptive_render_case_association": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+      },
+      "reasons": {
+        "uneven_or_rotated_ink_bottoms": 225
+      }
+    },
+    "rotated": {
+      "regions": 240,
+      "hinted": 0,
+      "unresolved": 240,
+      "geometric_coverage": {
+        "numerator": 0,
+        "denominator": 240,
+        "value": 0.0
+      },
+      "abstention": {
+        "numerator": 240,
+        "denominator": 240,
+        "value": 1.0
+      },
+      "descriptive_render_case_association": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+      },
+      "reasons": {
+        "uneven_or_rotated_ink_bottoms": 240
+      }
+    },
+    "uneven_baseline": {
+      "regions": 240,
+      "hinted": 0,
+      "unresolved": 240,
+      "geometric_coverage": {
+        "numerator": 0,
+        "denominator": 240,
+        "value": 0.0
+      },
+      "abstention": {
+        "numerator": 240,
+        "denominator": 240,
+        "value": 1.0
+      },
+      "descriptive_render_case_association": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+      },
+      "reasons": {
+        "uneven_or_rotated_ink_bottoms": 240
+      }
+    },
+    "mixed_all62": {
+      "regions": 930,
+      "hinted": 0,
+      "unresolved": 930,
+      "geometric_coverage": {
+        "numerator": 0,
+        "denominator": 930,
+        "value": 0.0
+      },
+      "abstention": {
+        "numerator": 930,
+        "denominator": 930,
+        "value": 1.0
+      },
+      "descriptive_render_case_association": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+      },
+      "reasons": {
+        "uneven_or_rotated_ink_bottoms": 930
+      }
+    }
+  },
+  "per_family_scenario": {
+    "Alegreya": {
+      "mixed_scale_pairs": {
+        "regions": 48,
+        "hinted": 48,
+        "unresolved": 0,
+        "geometric_coverage": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0
+        },
+        "abstention": {
+          "numerator": 0,
+          "denominator": 48,
+          "value": 0.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "geometric_height_group_only_not_case_proof": 48
+        }
+      },
+      "mixed_ascenders": {
+        "regions": 42,
+        "hinted": 0,
+        "unresolved": 42,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 42,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 42,
+          "denominator": 42,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "height_groups_not_compact": 42
+        }
+      },
+      "all_lower_xonly": {
+        "regions": 54,
+        "hinted": 0,
+        "unresolved": 54,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 54,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 54,
+          "denominator": 54,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "height_groups_not_separated": 54
+        }
+      },
+      "all_upper": {
+        "regions": 78,
+        "hinted": 0,
+        "unresolved": 78,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 78,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 78,
+          "denominator": 78,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 78
+        }
+      },
+      "single": {
+        "regions": 3,
+        "hinted": 0,
+        "unresolved": 3,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 3,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 3,
+          "denominator": 3,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "too_few_neighbours": 3
+        }
+      },
+      "two": {
+        "regions": 6,
+        "hinted": 0,
+        "unresolved": 6,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 6,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 6,
+          "denominator": 6,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "too_few_neighbours": 6
+        }
+      },
+      "descender_heavy": {
+        "regions": 45,
+        "hinted": 0,
+        "unresolved": 45,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 45,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 45,
+          "denominator": 45,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 45
+        }
+      },
+      "rotated": {
+        "regions": 48,
+        "hinted": 0,
+        "unresolved": 48,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 48,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 48
+        }
+      },
+      "uneven_baseline": {
+        "regions": 48,
+        "hinted": 0,
+        "unresolved": 48,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 48,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 48
+        }
+      },
+      "mixed_all62": {
+        "regions": 186,
+        "hinted": 0,
+        "unresolved": 186,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 186,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 186,
+          "denominator": 186,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 186
+        }
+      }
+    },
+    "Abril Fatface": {
+      "mixed_scale_pairs": {
+        "regions": 48,
+        "hinted": 48,
+        "unresolved": 0,
+        "geometric_coverage": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0
+        },
+        "abstention": {
+          "numerator": 0,
+          "denominator": 48,
+          "value": 0.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "geometric_height_group_only_not_case_proof": 48
+        }
+      },
+      "mixed_ascenders": {
+        "regions": 42,
+        "hinted": 0,
+        "unresolved": 42,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 42,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 42,
+          "denominator": 42,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "height_groups_not_separated": 42
+        }
+      },
+      "all_lower_xonly": {
+        "regions": 54,
+        "hinted": 0,
+        "unresolved": 54,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 54,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 54,
+          "denominator": 54,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "height_groups_not_separated": 54
+        }
+      },
+      "all_upper": {
+        "regions": 78,
+        "hinted": 0,
+        "unresolved": 78,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 78,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 78,
+          "denominator": 78,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 78
+        }
+      },
+      "single": {
+        "regions": 3,
+        "hinted": 0,
+        "unresolved": 3,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 3,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 3,
+          "denominator": 3,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "too_few_neighbours": 3
+        }
+      },
+      "two": {
+        "regions": 6,
+        "hinted": 0,
+        "unresolved": 6,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 6,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 6,
+          "denominator": 6,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "too_few_neighbours": 6
+        }
+      },
+      "descender_heavy": {
+        "regions": 45,
+        "hinted": 0,
+        "unresolved": 45,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 45,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 45,
+          "denominator": 45,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 45
+        }
+      },
+      "rotated": {
+        "regions": 48,
+        "hinted": 0,
+        "unresolved": 48,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 48,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 48
+        }
+      },
+      "uneven_baseline": {
+        "regions": 48,
+        "hinted": 0,
+        "unresolved": 48,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 48,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 48
+        }
+      },
+      "mixed_all62": {
+        "regions": 186,
+        "hinted": 0,
+        "unresolved": 186,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 186,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 186,
+          "denominator": 186,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 186
+        }
+      }
+    },
+    "Arvo": {
+      "mixed_scale_pairs": {
+        "regions": 48,
+        "hinted": 48,
+        "unresolved": 0,
+        "geometric_coverage": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0
+        },
+        "abstention": {
+          "numerator": 0,
+          "denominator": 48,
+          "value": 0.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "geometric_height_group_only_not_case_proof": 48
+        }
+      },
+      "mixed_ascenders": {
+        "regions": 42,
+        "hinted": 0,
+        "unresolved": 42,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 42,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 42,
+          "denominator": 42,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "height_groups_not_separated": 42
+        }
+      },
+      "all_lower_xonly": {
+        "regions": 54,
+        "hinted": 0,
+        "unresolved": 54,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 54,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 54,
+          "denominator": 54,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "height_groups_not_separated": 54
+        }
+      },
+      "all_upper": {
+        "regions": 78,
+        "hinted": 0,
+        "unresolved": 78,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 78,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 78,
+          "denominator": 78,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 78
+        }
+      },
+      "single": {
+        "regions": 3,
+        "hinted": 0,
+        "unresolved": 3,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 3,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 3,
+          "denominator": 3,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "too_few_neighbours": 3
+        }
+      },
+      "two": {
+        "regions": 6,
+        "hinted": 0,
+        "unresolved": 6,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 6,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 6,
+          "denominator": 6,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "too_few_neighbours": 6
+        }
+      },
+      "descender_heavy": {
+        "regions": 45,
+        "hinted": 0,
+        "unresolved": 45,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 45,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 45,
+          "denominator": 45,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 45
+        }
+      },
+      "rotated": {
+        "regions": 48,
+        "hinted": 0,
+        "unresolved": 48,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 48,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 48
+        }
+      },
+      "uneven_baseline": {
+        "regions": 48,
+        "hinted": 0,
+        "unresolved": 48,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 48,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 48
+        }
+      },
+      "mixed_all62": {
+        "regions": 186,
+        "hinted": 0,
+        "unresolved": 186,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 186,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 186,
+          "denominator": 186,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 186
+        }
+      }
+    },
+    "Inconsolata": {
+      "mixed_scale_pairs": {
+        "regions": 48,
+        "hinted": 48,
+        "unresolved": 0,
+        "geometric_coverage": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0
+        },
+        "abstention": {
+          "numerator": 0,
+          "denominator": 48,
+          "value": 0.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "geometric_height_group_only_not_case_proof": 48
+        }
+      },
+      "mixed_ascenders": {
+        "regions": 42,
+        "hinted": 0,
+        "unresolved": 42,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 42,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 42,
+          "denominator": 42,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "height_groups_not_separated": 42
+        }
+      },
+      "all_lower_xonly": {
+        "regions": 54,
+        "hinted": 0,
+        "unresolved": 54,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 54,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 54,
+          "denominator": 54,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "height_groups_not_separated": 54
+        }
+      },
+      "all_upper": {
+        "regions": 78,
+        "hinted": 0,
+        "unresolved": 78,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 78,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 78,
+          "denominator": 78,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 78
+        }
+      },
+      "single": {
+        "regions": 3,
+        "hinted": 0,
+        "unresolved": 3,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 3,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 3,
+          "denominator": 3,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "too_few_neighbours": 3
+        }
+      },
+      "two": {
+        "regions": 6,
+        "hinted": 0,
+        "unresolved": 6,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 6,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 6,
+          "denominator": 6,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "too_few_neighbours": 6
+        }
+      },
+      "descender_heavy": {
+        "regions": 45,
+        "hinted": 0,
+        "unresolved": 45,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 45,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 45,
+          "denominator": 45,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 45
+        }
+      },
+      "rotated": {
+        "regions": 48,
+        "hinted": 0,
+        "unresolved": 48,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 48,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 48
+        }
+      },
+      "uneven_baseline": {
+        "regions": 48,
+        "hinted": 0,
+        "unresolved": 48,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 48,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 48
+        }
+      },
+      "mixed_all62": {
+        "regions": 186,
+        "hinted": 0,
+        "unresolved": 186,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 186,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 186,
+          "denominator": 186,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 186
+        }
+      }
+    },
+    "Barlow Condensed": {
+      "mixed_scale_pairs": {
+        "regions": 48,
+        "hinted": 48,
+        "unresolved": 0,
+        "geometric_coverage": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0
+        },
+        "abstention": {
+          "numerator": 0,
+          "denominator": 48,
+          "value": 0.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "geometric_height_group_only_not_case_proof": 48
+        }
+      },
+      "mixed_ascenders": {
+        "regions": 42,
+        "hinted": 0,
+        "unresolved": 42,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 42,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 42,
+          "denominator": 42,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "height_groups_not_separated": 42
+        }
+      },
+      "all_lower_xonly": {
+        "regions": 54,
+        "hinted": 0,
+        "unresolved": 54,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 54,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 54,
+          "denominator": 54,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "height_groups_not_separated": 54
+        }
+      },
+      "all_upper": {
+        "regions": 78,
+        "hinted": 0,
+        "unresolved": 78,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 78,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 78,
+          "denominator": 78,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 78
+        }
+      },
+      "single": {
+        "regions": 3,
+        "hinted": 0,
+        "unresolved": 3,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 3,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 3,
+          "denominator": 3,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "too_few_neighbours": 3
+        }
+      },
+      "two": {
+        "regions": 6,
+        "hinted": 0,
+        "unresolved": 6,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 6,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 6,
+          "denominator": 6,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "too_few_neighbours": 6
+        }
+      },
+      "descender_heavy": {
+        "regions": 45,
+        "hinted": 0,
+        "unresolved": 45,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 45,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 45,
+          "denominator": 45,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 45
+        }
+      },
+      "rotated": {
+        "regions": 48,
+        "hinted": 0,
+        "unresolved": 48,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 48,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 48
+        }
+      },
+      "uneven_baseline": {
+        "regions": 48,
+        "hinted": 0,
+        "unresolved": 48,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 48,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 48,
+          "denominator": 48,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 48
+        }
+      },
+      "mixed_all62": {
+        "regions": 186,
+        "hinted": 0,
+        "unresolved": 186,
+        "geometric_coverage": {
+          "numerator": 0,
+          "denominator": 186,
+          "value": 0.0
+        },
+        "abstention": {
+          "numerator": 186,
+          "denominator": 186,
+          "value": 1.0
+        },
+        "descriptive_render_case_association": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null,
+          "scope": "only hinted alphabetic render labels, not case classification/recognition correctness"
+        },
+        "reasons": {
+          "uneven_or_rotated_ink_bottoms": 186
+        }
+      }
+    }
+  },
+  "family_clustered_intervals": {
+    "method": "Whole-family percentile bootstrap, all sizes/scenarios within family resampled together; descriptive only, not independent glyph intervals.",
+    "families": 5,
+    "seed": 2252026,
+    "replicates": 3000,
+    "intervals": {
+      "geometric_coverage": {
+        "percentile95": [
+          0.08602150537634409,
+          0.08602150537634409
+        ],
+        "valid_replicates": 3000
+      },
+      "descriptive_render_case_association": {
+        "percentile95": [
+          1.0,
+          1.0
+        ],
+        "valid_replicates": 3000
+      }
+    }
+  }
+}

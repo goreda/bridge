@@ -1,0 +1,30 @@
+{
+  "secret_scan": "clean; zero credential value prefix/private key/absolute workspace path matches. No font binaries, weights or owner data.",
+  "representation": "Single code/table archive.1170 generated line PNGs omitted; exact hashes in output manifests, reproducible with harness and pinned OFL assets. Two sampled contact sheets included.",
+  "files": {
+    "case_resolver.py": "535e9e0a339830df2abd39756b59e2de5b17f8f581245e47c5d755134cf4e032",
+    "case_resolver.original.py": "71f67d2412eadb7dd65eb0cd56e77da0d8b3be3d5d300471d874b2bc89c168cd",
+    "case_resolver.patch": "50a1497550b223c89cd491dcd9b5d77049d8bdfde17d904a99caec3fdfb35091",
+    "line_harness.py": "1a129ebe0d253e1d910affcb766cbd595c65ca6219fa141738f1ad0921f29371",
+    "test_case_resolver.py": "69414728e79f77afb6c4d40110c631e445d9d7a398b4a6a07b03b97a9b2459ad",
+    "test_extra_geometry.py": "d261fadc789784fe52f9d01c374d106a1971471ca98d739561d8f435f7801b68",
+    "PINS.json": "f8019fa94ca9be30430c74044ff71bcc92e7450e482d6ba415f28934ed8f43ac",
+    "RUN.txt": "78b088421fb2c7ddf16938b2a0bac2ba80b59d7a632317cfcd438eaf7e98cbd5",
+    "W-0225.md": "e92728e86df969872cadd490e2bc32690924abab2c7c9b86698ad30d1e2fee41",
+    "REPORT.md": "b1e6706ac779f0f60fc7e9bc601f39f4f2c0a3db35f8ea03bc22c26e439c8445",
+    "freeze.json": "5b91401edb930d16edcc0fc6820be8cecf7a23fefc0182ae1d147bb68e0c0fd7",
+    "ACCESS-RECEIPT.json": "f661cac98700804d06f56476ee90187aca958ec5c0ded70494d1a0a8e9662dff",
+    "tests-output.txt": "bbf5c6259556b94bbd8e337bd9094dee97e6f8ce281fec9b4ca9bfd029502ae5",
+    "calibration-contact.png": "bb036c3cac2caf80dfd6e9a23652da5563c8887917993505f93e19734123c710",
+    "heldout-contact.png": "61637fbf408de768fc6a33eaaec81f15c1144fe1e374dc0f742d82d53c0a78eb",
+    "calibration-final/rows.json": "351332e49aca746600438c37c839cbc9a49d261c9515a34bf245a7994a848134",
+    "calibration-final/OUTPUT-SHA256.json": "ccaacf68b2bd1f98e3d5d40d80d35155ea5017b309946f5a88ac16ba17a5edb0",
+    "calibration-final/results.json": "5e8f177c17c8a0b324bf40dc2c734771c3422a462fa571b4f01a1240c005e1b1",
+    "validation-once/rows.json": "293d86cac326c1862db0582e6c4c9c387b8c79c7f6abb90f59ad86ee4eaccced",
+    "validation-once/OUTPUT-SHA256.json": "4c310410e437981475c8745bc2f07c73f8e133d8896515e98cc4f5a4d3f51f4a",
+    "validation-once/results.json": "56c6c38dbcc54e140d0db3e7c4753f40c7627a0999f4c5ca356e365fb5c2bc04",
+    "test-descriptive-once/rows.json": "b4ecee2916c8193b08c5aa581702b52983fa7112f0e97cbd6b9b8b0c0eb20de7",
+    "test-descriptive-once/OUTPUT-SHA256.json": "1220d74135534b891c77a5e3f9f1bebe317823e4d38b6cae34754832d3afe249",
+    "test-descriptive-once/results.json": "d361b105f7059038f370329cd14f7d8a361eca28b211677f1ef6e485299fbce7"
+  }
+}

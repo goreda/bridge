@@ -1,0 +1,18 @@
+test_all_same_height_never_forced (test_case_resolver.Safety) ... ok
+test_deterministic (test_case_resolver.Safety) ... ok
+test_empty_and_degenerate (test_case_resolver.Safety) ... ok
+test_no_identity_in_output (test_case_resolver.Safety) ... ok
+test_positional_reference_geometric_height_order (test_case_resolver.Safety) ... ok
+test_shape_and_labels (test_case_resolver.Safety) ... ok
+test_single_glyph_unresolved (test_case_resolver.Safety) ... ok
+test_two_glyphs_without_anchor_unresolved (test_case_resolver.Safety) ... ok
+test_flat_and_overlap (test_extra_geometry.Extra) ... ok
+test_groups_geometric_only (test_extra_geometry.Extra) ... ok
+test_invalid (test_extra_geometry.Extra) ... ok
+test_rotated_and_uneven (test_extra_geometry.Extra) ... ok
+test_scale_translation_order (test_extra_geometry.Extra) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.001s
+
+OK

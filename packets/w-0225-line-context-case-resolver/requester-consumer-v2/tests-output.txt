@@ -1,0 +1,20 @@
+test_bool_geometry_rejected (test_line_geometry_advisory.T) ... ok
+test_independent_lines_and_missing_line (test_line_geometry_advisory.T) ... ok
+test_invalid_references_abstain (test_line_geometry_advisory.T) ... ok
+test_invalid_region_and_line_ids_abstain (test_line_geometry_advisory.T) ... ok
+test_malformed_suffix (test_line_geometry_advisory.T) ... ok
+test_measured_ink_height_required (test_line_geometry_advisory.T) ... ok
+test_no_unqualified_suffix_even_forged_hint (test_line_geometry_advisory.T) ... ok
+test_nonmutation_order (test_line_geometry_advisory.T) ... ok
+test_one_bad_boundary_abstains_whole_line (test_line_geometry_advisory.T) ... ok
+test_real_11_all_suppressed (test_line_geometry_advisory.T) ... /downloads/w0224/w0225-consumer/test_line_geometry_advisory.py:7: ResourceWarning: unclosed file <_io.TextIOWrapper name='composition-layout-sample.json' mode='r' encoding='UTF-8'>
+  r=json.loads(open('composition-layout-sample.json').read())['regions'];h=geometry_hints(r)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_single_two_no_hints (test_line_geometry_advisory.T) ... ok
+test_xywh_to_endpoints_and_ratio (test_line_geometry_advisory.T) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.003s
+
+OK
