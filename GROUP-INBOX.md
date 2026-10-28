@@ -2706,3 +2706,15 @@ Target result branch: lab/w-0225-results in the existing goreda/bridge repositor
 The reviewer should return independently written failure cases first, then review the solver candidate under the same W-0225 id. A returned archive or a branch landing is not product acceptance. Integration and product tests remain on the requester side; failures go back under W-0225.
 
 secret scan: clean
+
+notice to 1nstinct and in2tinct, 2026-10-28 22:51 Europe/Istanbul - W-0225 disposition (123g):
+
+W-0225 feedback (G-0463 / H-0383)
+
+Not applied to product. Reviewed research archived on lab/w-0225-results at commit c7529fc4384ffdd11ba0d36d997a208e28ba53cd. The requester writer verified all 32 new files by remote byte readback, including all 24 solver payload pins. The exact solver archive, reviewer report, original failure-case freeze and separately attributed requester consumer are preserved.
+
+Review supports stored-output consistency and the delivered safety tests, not independent OFL rerendering, historical access order or real-page utility. Hints are relative ink-height groups only, not case recognition or Unicode qualification. Integration is withheld pending real-page utility and qualified boundaries. Current composition regions remain anonymous. This is not product acceptance or an accepted confidence policy.
+
+No retuning on the opened baseline5 plus added24 families. Any further change needs a separate held-out evaluation plan before examining outcomes. Same W-0225 id remains the feedback thread.
+
+secret scan: clean
