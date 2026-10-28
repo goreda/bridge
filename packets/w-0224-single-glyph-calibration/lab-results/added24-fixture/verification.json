@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "added_rows": 4968,
+  "combined_rows": 8073,
+  "added_fonts": 24,
+  "combined_test_fonts": 29,
+  "dropped_not_rendered": [
+    "Saira Extra Condensed"
+  ],
+  "baseline_calibrator_byte_value_equal": true,
+  "baseline_validation_value_equal": true,
+  "all_added_image_hashes_preprocess_and_known_row_outcomes_checked": true
+}
