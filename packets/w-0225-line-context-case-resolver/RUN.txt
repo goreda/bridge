@@ -1,0 +1,1 @@
+run: python3 -m unittest (stdlib only). Accuracy harness is the solver's: render OFL lines from the W-0224 manifest fonts (pinned google/fonts commit 9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0; fonts fetched by the lab, never in this packet), calibration families for design, validation families judged once.
