@@ -1,0 +1,47 @@
+[
+  {
+    "path": "labels-62.json",
+    "sha256": "60c94c582001b69f34ba2f8130dad169f89dfc491084a74e2253d5b51b5f4b73",
+    "bytes": 579
+  },
+  {
+    "path": "pack-declarations.json",
+    "sha256": "856bba62049587e9d914fa616cf82221f645e872c65278ec132b3c728c1db8fa",
+    "bytes": 91
+  },
+  {
+    "path": "source/kni_clear/intake.py",
+    "sha256": "58f7aeb534dd906f50b4dd7bf7929e2b3b8c8490d93075b6a3c18f5886efa83d",
+    "bytes": 1891
+  },
+  {
+    "path": "source/module_ocr/scoring.py",
+    "sha256": "89fdbddf69577691e1473786ffc3a9004f7573859fd24176c03190483fdaa2c5",
+    "bytes": 2919
+  },
+  {
+    "path": "source/seg402/abstention.py",
+    "sha256": "05572325b95ab79ca0efa901a068887017c49afb4615b3da969a84981ab2e494",
+    "bytes": 253
+  },
+  {
+    "path": "source/seg402/recognizer.py",
+    "sha256": "d2dbb99a15119ad327028fa4765b046096af75a8a5a512f5557ecf4531fb0781",
+    "bytes": 3597
+  },
+  {
+    "path": "source/single_glyph_intake.py",
+    "sha256": "91e668289b6175e715ee2762513e4d513ce84f2d56ebc6e31c386dc782fcc5bc",
+    "bytes": 2279
+  },
+  {
+    "path": "source/w6trainer-src/data.py",
+    "sha256": "0e73876d115c9dab69f00ea4f0ea225b901654416902b4103277d517c054babd",
+    "bytes": 6068
+  },
+  {
+    "path": "source/w6trainer-src/model.py",
+    "sha256": "64992f9003588bbc6681fbdcdd0eee22a806ed4065c6668a044063ccd0f7b332",
+    "bytes": 1541
+  }
+]
