@@ -1,0 +1,59 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "frame": [
+        384,
+        384
+      ],
+      "bbox": [
+        101,
+        72,
+        180,
+        290
+      ],
+      "scaled": [
+        38,
+        105
+      ],
+      "passed": true
+    },
+    {
+      "frame": [
+        256,
+        256
+      ],
+      "bbox": [
+        20,
+        110,
+        232,
+        145
+      ],
+      "scaled": [
+        105,
+        17
+      ],
+      "passed": true
+    },
+    {
+      "frame": [
+        512,
+        512
+      ],
+      "bbox": [
+        200,
+        200,
+        201,
+        201
+      ],
+      "scaled": [
+        105,
+        105
+      ],
+      "passed": true
+    }
+  ],
+  "blank": "typed TileNoInk; no made-up prediction",
+  "data_py_sha256": "0e73876d115c9dab69f00ea4f0ea225b901654416902b4103277d517c054babd",
+  "cleaning": "identity, clean renders only"
+}

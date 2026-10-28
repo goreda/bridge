@@ -1,0 +1,3822 @@
+{
+  "scope": "IMAGE-PIPELINE FIXTURE ORACLE ONLY, NOT RECOGNIZER PERFORMANCE",
+  "seed": 2242026,
+  "replicates": 5000,
+  "method": "Resample five whole families per heldout cohort with replacement, preserving all rows including render-size repeats and negatives. Fixed calibration map never refit. Percentile 95%, exploratory with only five independent families; not a population guarantee.",
+  "cohorts": {
+    "validation": {
+      "font_count": 5,
+      "metrics": {
+        "all_input_recall": {
+          "point": 0.7,
+          "percentile95": [
+            0.6827956989247311,
+            0.7172043010752688
+          ],
+          "valid_replicates": 5000
+        },
+        "coverage": {
+          "point": 0.7978494623655914,
+          "percentile95": [
+            0.7881720430107527,
+            0.8075268817204301
+          ],
+          "valid_replicates": 5000
+        },
+        "accepted_precision": {
+          "point": 0.8543307086614174,
+          "percentile95": [
+            0.8430079155672823,
+            0.8674540682414699
+          ],
+          "valid_replicates": 5000
+        },
+        "non_glyph_acceptance": {
+          "point": 0.19047619047619047,
+          "percentile95": [
+            0.11428571428571428,
+            0.26666666666666666
+          ],
+          "valid_replicates": 5000
+        },
+        "raw_top_label_ece": {
+          "point": 0.02264150943396226,
+          "percentile95": [
+            0.010666666666666713,
+            0.03487738419618536
+          ],
+          "valid_replicates": 5000
+        }
+      },
+      "per_class": {
+        "A": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.2413793103448276,
+              0.45454545454545453
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7142857142857143,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "B": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "C": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7692307692307693,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "D": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "E": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6363636363636364,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "F": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "G": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "H": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.75,
+              1.0
+            ],
+            "valid_replicates": 4999
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "I": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6363636363636364,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "J": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "K": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7692307692307693,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "L": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "M": {
+          "all_input_recall": {
+            "percentile95": [
+              0.26666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "N": {
+          "all_input_recall": {
+            "percentile95": [
+              0.26666666666666666,
+              0.8
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.4444444444444444,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "O": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "P": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "Q": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6363636363636364,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "R": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7692307692307693,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "S": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "T": {
+          "all_input_recall": {
+            "percentile95": [
+              0.26666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.4444444444444444,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "U": {
+          "all_input_recall": {
+            "percentile95": [
+              0.26666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.4444444444444444,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "V": {
+          "all_input_recall": {
+            "percentile95": [
+              0.26666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "W": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6363636363636364,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "X": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "Y": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.75,
+              1.0
+            ],
+            "valid_replicates": 4997
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "Z": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7692307692307693,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "a": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 4999
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "b": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "c": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 4998
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "d": {
+          "all_input_recall": {
+            "percentile95": [
+              0.26666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "e": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.8
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.75,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "f": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "g": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "h": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6363636363636364,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "i": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "j": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "k": {
+          "all_input_recall": {
+            "percentile95": [
+              0.26666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "l": {
+          "all_input_recall": {
+            "percentile95": [
+              0.2,
+              0.8666666666666667
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.42857142857142855,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.42857142857142855,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "m": {
+          "all_input_recall": {
+            "percentile95": [
+              0.26666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "n": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6363636363636364,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "o": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "p": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "q": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7692307692307693,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "r": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "s": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5454545454545454,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "t": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5454545454545454,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "u": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "v": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7692307692307693,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "w": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "x": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "y": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7692307692307693,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "z": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "0": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7271464646464647,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "1": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "2": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6363636363636364,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "3": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "4": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7692307692307693,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "5": {
+          "all_input_recall": {
+            "percentile95": [
+              0.26666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5714285714285714,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "6": {
+          "all_input_recall": {
+            "percentile95": [
+              0.26666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5714285714285714,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "7": {
+          "all_input_recall": {
+            "percentile95": [
+              0.2,
+              0.8
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "8": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "9": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        }
+      }
+    },
+    "test": {
+      "font_count": 5,
+      "metrics": {
+        "all_input_recall": {
+          "point": 0.710752688172043,
+          "percentile95": [
+            0.6935483870967742,
+            0.7268817204301076
+          ],
+          "valid_replicates": 5000
+        },
+        "coverage": {
+          "point": 0.810752688172043,
+          "percentile95": [
+            0.7956989247311828,
+            0.8247311827956989
+          ],
+          "valid_replicates": 5000
+        },
+        "accepted_precision": {
+          "point": 0.8562176165803109,
+          "percentile95": [
+            0.8448717948717949,
+            0.8678010471204188
+          ],
+          "valid_replicates": 5000
+        },
+        "non_glyph_acceptance": {
+          "point": 0.17142857142857143,
+          "percentile95": [
+            0.11428571428571428,
+            0.22857142857142856
+          ],
+          "valid_replicates": 5000
+        },
+        "raw_top_label_ece": {
+          "point": 0.023342175066312976,
+          "percentile95": [
+            0.014624505928853782,
+            0.032352941176470584
+          ],
+          "valid_replicates": 5000
+        }
+      },
+      "per_class": {
+        "A": {
+          "all_input_recall": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.35135135135135137,
+              0.5173103448275852
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "B": {
+          "all_input_recall": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "C": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6363636363636364,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "D": {
+          "all_input_recall": {
+            "percentile95": [
+              0.2,
+              0.8666666666666667
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.42857142857142855,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.42857142857142855,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "E": {
+          "all_input_recall": {
+            "percentile95": [
+              0.2,
+              0.8
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4,
+              0.8
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.42857142857142855,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.42857142857142855,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "F": {
+          "all_input_recall": {
+            "percentile95": [
+              0.26666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "G": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6363636363636364,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "H": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "I": {
+          "all_input_recall": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "J": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "K": {
+          "all_input_recall": {
+            "percentile95": [
+              0.26666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.4444444444444444,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "L": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              0.8
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5,
+              0.9230769230769231
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5454545454545454,
+              0.9166666666666666
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "M": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.8
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6666666666666666,
+              0.8666666666666667
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5454545454545454,
+              0.9230769230769231
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "N": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "O": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "P": {
+          "all_input_recall": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "Q": {
+          "all_input_recall": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7857142857142857,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "R": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "S": {
+          "all_input_recall": {
+            "percentile95": [
+              0.13333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.3333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.2857142857142857,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "T": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.8
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5454545454545454,
+              0.9230769230769231
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.75,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "U": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "V": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "W": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "X": {
+          "all_input_recall": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.75,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "Y": {
+          "all_input_recall": {
+            "percentile95": [
+              0.6666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7142857142857143,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "Z": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6363636363636364,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6363636363636364,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "a": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "b": {
+          "all_input_recall": {
+            "percentile95": [
+              0.26666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.4444444444444444,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "c": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              0.8
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5,
+              0.9230769230769231
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5454545454545454,
+              0.9166666666666666
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "d": {
+          "all_input_recall": {
+            "percentile95": [
+              0.2,
+              0.8
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4666666666666667,
+              0.8666666666666667
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.42857142857142855,
+              0.9230769230769231
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.42857142857142855,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "e": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "f": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "g": {
+          "all_input_recall": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.75,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "h": {
+          "all_input_recall": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7857142857142857,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "i": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7272727272727273,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "j": {
+          "all_input_recall": {
+            "percentile95": [
+              0.26666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "k": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.8
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6363636363636364,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6363636363636364,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "l": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "m": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "n": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "o": {
+          "all_input_recall": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.75,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "p": {
+          "all_input_recall": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7857142857142857,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "q": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7142857142857143,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6363636363636364,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "r": {
+          "all_input_recall": {
+            "percentile95": [
+              0.2,
+              0.8666666666666667
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.42857142857142855,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.42857142857142855,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "s": {
+          "all_input_recall": {
+            "percentile95": [
+              0.2,
+              0.8
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4,
+              0.8
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.42857142857142855,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "t": {
+          "all_input_recall": {
+            "percentile95": [
+              0.2,
+              0.8
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6363636363636364,
+              1.0
+            ],
+            "valid_replicates": 4999
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "u": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "v": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "w": {
+          "all_input_recall": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "x": {
+          "all_input_recall": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7857142857142857,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "y": {
+          "all_input_recall": {
+            "percentile95": [
+              0.26666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 4996
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.4444444444444444,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "z": {
+          "all_input_recall": {
+            "percentile95": [
+              0.2,
+              0.8
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.375,
+              0.9230769230769231
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.375,
+              0.9166666666666666
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "0": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4666666666666667,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6428571428571429,
+              0.9285714285714286
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "1": {
+          "all_input_recall": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.75,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.75,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "2": {
+          "all_input_recall": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7857142857142857,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.7857142857142857,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "3": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.8,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.7494318181818184,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "4": {
+          "all_input_recall": {
+            "percentile95": [
+              0.26666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.4444444444444444,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "5": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              0.8
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5,
+              0.9230769230769231
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "6": {
+          "all_input_recall": {
+            "percentile95": [
+              0.4,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6666666666666666,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "7": {
+          "all_input_recall": {
+            "percentile95": [
+              0.5333333333333333,
+              0.9333333333333333
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.7333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "8": {
+          "all_input_recall": {
+            "percentile95": [
+              0.3333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.5333333333333333,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.5555555555555556,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              0.625,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        },
+        "9": {
+          "all_input_recall": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "coverage": {
+            "percentile95": [
+              0.6,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_precision": {
+            "percentile95": [
+              0.75,
+              1.0
+            ],
+            "valid_replicates": 5000
+          },
+          "accepted_only_recall_conditional": {
+            "percentile95": [
+              1.0,
+              1.0
+            ],
+            "valid_replicates": 5000
+          }
+        }
+      }
+    }
+  }
+}

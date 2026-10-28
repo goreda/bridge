@@ -1,0 +1,277 @@
+{
+  "schema": "w0224-font-manifest-v1",
+  "google_fonts_commit": "9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0",
+  "seed": 2242026,
+  "split_rule": "Within each declared style stratum, shuffle listed family slugs using Python random.Random(2242026), then assign calibration, validation, test in that order; one file per whole family; no family appears in two cohorts.",
+  "style_inputs": {
+    "text": [
+      "lora",
+      "alegreya",
+      "vollkorn"
+    ],
+    "display": [
+      "righteous",
+      "breeserif",
+      "abrilfatface"
+    ],
+    "slab": [
+      "arvo",
+      "zillaslab",
+      "josefinslab"
+    ],
+    "mono": [
+      "inconsolata",
+      "cutivemono",
+      "anonymouspro"
+    ],
+    "condensed": [
+      "barlowcondensed",
+      "oswald",
+      "yanonekaffeesatz"
+    ]
+  },
+  "fonts": [
+    {
+      "family": "Alegreya",
+      "slug": "alegreya",
+      "file_name": "Alegreya[wght].ttf",
+      "upstream_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/alegreya/Alegreya%5Bwght%5D.ttf",
+      "ofl_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/alegreya/OFL.txt",
+      "sha256": "ba5564634b93a8f8ba57b48cd4f1ae7417d2b4656fbac779028679b00de3cf12",
+      "ofl_sha256": "f6f60d5d4cf4f4b1fc4e41353c897a2f5a16e6396c0cd8fa8bdfd2f4586a9a68",
+      "cohort": "calibration",
+      "style": "text",
+      "metadata_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/alegreya/METADATA.pb",
+      "description_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/alegreya/DESCRIPTION.en_us.html",
+      "variable_axes": {
+        "wght": 400.0
+      },
+      "coverage_classes": 62
+    },
+    {
+      "family": "Vollkorn",
+      "slug": "vollkorn",
+      "file_name": "Vollkorn[wght].ttf",
+      "upstream_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/vollkorn/Vollkorn%5Bwght%5D.ttf",
+      "ofl_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/vollkorn/OFL.txt",
+      "sha256": "4ebef434f76f80286204840354a84db79a0dc3c87deeeb791e015b70b2ade49d",
+      "ofl_sha256": "53f9c99fa3d47f7d632a42ee7bab4a834a60a744f6026d676c3a223cef2b2ef3",
+      "cohort": "validation",
+      "style": "text",
+      "metadata_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/vollkorn/METADATA.pb",
+      "description_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/vollkorn/DESCRIPTION.en_us.html",
+      "variable_axes": {
+        "wght": 400.0
+      },
+      "coverage_classes": 62
+    },
+    {
+      "family": "Lora",
+      "slug": "lora",
+      "file_name": "Lora[wght].ttf",
+      "upstream_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/lora/Lora%5Bwght%5D.ttf",
+      "ofl_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/lora/OFL.txt",
+      "sha256": "822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7",
+      "ofl_sha256": "1d9a970809ac804b582a6ce7f0ebc4e7fefcbfd7ff6299cad35ee656a21be716",
+      "cohort": "test",
+      "style": "text",
+      "metadata_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/lora/METADATA.pb",
+      "description_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/lora/DESCRIPTION.en_us.html",
+      "variable_axes": {
+        "wght": 400.0
+      },
+      "coverage_classes": 62
+    },
+    {
+      "family": "Abril Fatface",
+      "slug": "abrilfatface",
+      "file_name": "AbrilFatface-Regular.ttf",
+      "upstream_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/abrilfatface/AbrilFatface-Regular.ttf",
+      "ofl_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/abrilfatface/OFL.txt",
+      "sha256": "5971d4a3758a922a9fedc7f6fb825a96341a2e718c45a4b2c9a6b417c8c4dbe9",
+      "ofl_sha256": "aba8997e16b1e3888c6e855ba883c70d96bd4375bff8cb9c7ce0f097200f74b8",
+      "cohort": "calibration",
+      "style": "display",
+      "metadata_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/abrilfatface/METADATA.pb",
+      "description_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/abrilfatface/DESCRIPTION.en_us.html",
+      "variable_axes": {},
+      "coverage_classes": 62
+    },
+    {
+      "family": "Bree Serif",
+      "slug": "breeserif",
+      "file_name": "BreeSerif-Regular.ttf",
+      "upstream_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/breeserif/BreeSerif-Regular.ttf",
+      "ofl_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/breeserif/OFL.txt",
+      "sha256": "fd080582d70112ef479ba4ddd72407f9a4fcbcec4caa7d29de259b13eeb5f431",
+      "ofl_sha256": "fbe0442a6b1ce162c95e241df76cab5ef2daf6a5ac84ae1a7a6749f32c051098",
+      "cohort": "validation",
+      "style": "display",
+      "metadata_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/breeserif/METADATA.pb",
+      "description_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/breeserif/DESCRIPTION.en_us.html",
+      "variable_axes": {},
+      "coverage_classes": 62
+    },
+    {
+      "family": "Righteous",
+      "slug": "righteous",
+      "file_name": "Righteous-Regular.ttf",
+      "upstream_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/righteous/Righteous-Regular.ttf",
+      "ofl_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/righteous/OFL.txt",
+      "sha256": "2ffb3fe5c27d7e6571210b800448c4e234e651b46c6b4426c1bb567e5341348a",
+      "ofl_sha256": "1c5bc055869d5e9151ec7774082727db720ec4293c65be67f91a4bdcaeb02998",
+      "cohort": "test",
+      "style": "display",
+      "metadata_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/righteous/METADATA.pb",
+      "description_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/righteous/DESCRIPTION.en_us.html",
+      "variable_axes": {},
+      "coverage_classes": 62
+    },
+    {
+      "family": "Arvo",
+      "slug": "arvo",
+      "file_name": "Arvo-Regular.ttf",
+      "upstream_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/arvo/Arvo-Regular.ttf",
+      "ofl_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/arvo/OFL.txt",
+      "sha256": "f41bd41471ec2db7140351bdde614da5341524503598ff7fe79f3c89c13b605e",
+      "ofl_sha256": "359671bf16c00cae69cb66d041296b2adc7a4becd73a463cb8c5e101d97c7986",
+      "cohort": "calibration",
+      "style": "slab",
+      "metadata_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/arvo/METADATA.pb",
+      "description_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/arvo/DESCRIPTION.en_us.html",
+      "variable_axes": {},
+      "coverage_classes": 62
+    },
+    {
+      "family": "Josefin Slab",
+      "slug": "josefinslab",
+      "file_name": "JosefinSlab[wght].ttf",
+      "upstream_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/josefinslab/JosefinSlab%5Bwght%5D.ttf",
+      "ofl_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/josefinslab/OFL.txt",
+      "sha256": "52f8addf239848d129cfde96c3290b78e271ad657ef5645068d4f08046c2d1b8",
+      "ofl_sha256": "40be94683ce097454926ce71af843ceebf8a5eb01dc196f58063d65951cc5dae",
+      "cohort": "validation",
+      "style": "slab",
+      "metadata_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/josefinslab/METADATA.pb",
+      "description_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/josefinslab/DESCRIPTION.en_us.html",
+      "variable_axes": {
+        "wght": 100.0
+      },
+      "coverage_classes": 62
+    },
+    {
+      "family": "Zilla Slab",
+      "slug": "zillaslab",
+      "file_name": "ZillaSlab-Regular.ttf",
+      "upstream_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/zillaslab/ZillaSlab-Regular.ttf",
+      "ofl_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/zillaslab/OFL.txt",
+      "sha256": "41a4626844da9216b031308d4423045c765fe4231d99862d85d7d74509d37703",
+      "ofl_sha256": "240b385d3ec8c8d5c1d4af2bbba6ac72bac0309a80c1a8ff112c168643cc6811",
+      "cohort": "test",
+      "style": "slab",
+      "metadata_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/zillaslab/METADATA.pb",
+      "description_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/zillaslab/DESCRIPTION.en_us.html",
+      "variable_axes": {},
+      "coverage_classes": 62
+    },
+    {
+      "family": "Inconsolata",
+      "slug": "inconsolata",
+      "file_name": "Inconsolata[wdth,wght].ttf",
+      "upstream_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/inconsolata/Inconsolata%5Bwdth%2Cwght%5D.ttf",
+      "ofl_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/inconsolata/OFL.txt",
+      "sha256": "23ded25b447074d00659392bf9b1123d89df55cb07b0ad9bfef3366d199b5fcb",
+      "ofl_sha256": "29bd0cfd0fb2a45f9b057c834a057724bae1f63b525a8ac83d3e7525706d9f80",
+      "cohort": "calibration",
+      "style": "mono",
+      "metadata_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/inconsolata/METADATA.pb",
+      "description_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/inconsolata/DESCRIPTION.en_us.html",
+      "variable_axes": {
+        "wght": 400.0,
+        "wdth": 100.0
+      },
+      "coverage_classes": 62
+    },
+    {
+      "family": "Anonymous Pro",
+      "slug": "anonymouspro",
+      "file_name": "AnonymousPro-Regular.ttf",
+      "upstream_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/anonymouspro/AnonymousPro-Regular.ttf",
+      "ofl_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/anonymouspro/OFL.txt",
+      "sha256": "46d8b9a5f4b38fc9d30f3cdd676d4c6f78a9bef949bb1a8304216cc731eb87f8",
+      "ofl_sha256": "8594350034ab1cb85a1946ef8852e69290255816c311450a66fed6eeda9d6292",
+      "cohort": "validation",
+      "style": "mono",
+      "metadata_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/anonymouspro/METADATA.pb",
+      "description_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/anonymouspro/DESCRIPTION.en_us.html",
+      "variable_axes": {},
+      "coverage_classes": 62
+    },
+    {
+      "family": "Cutive Mono",
+      "slug": "cutivemono",
+      "file_name": "CutiveMono-Regular.ttf",
+      "upstream_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/cutivemono/CutiveMono-Regular.ttf",
+      "ofl_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/cutivemono/OFL.txt",
+      "sha256": "96a36a00079058684982f61ee334323f8b501d7b68dcecd6049a4f9177e3a62c",
+      "ofl_sha256": "ca83490f9c203cdaa5437202c44cb636e0c3c11b44b6dc5318bbe5678156e3f4",
+      "cohort": "test",
+      "style": "mono",
+      "metadata_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/cutivemono/METADATA.pb",
+      "description_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/cutivemono/DESCRIPTION.en_us.html",
+      "variable_axes": {},
+      "coverage_classes": 62
+    },
+    {
+      "family": "Barlow Condensed",
+      "slug": "barlowcondensed",
+      "file_name": "BarlowCondensed-Regular.ttf",
+      "upstream_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/barlowcondensed/BarlowCondensed-Regular.ttf",
+      "ofl_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/barlowcondensed/OFL.txt",
+      "sha256": "583cec5da3b84bc4dc7c9c72e2a565c94d34e431518b19d7e250b7830ad5f996",
+      "ofl_sha256": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f",
+      "cohort": "calibration",
+      "style": "condensed",
+      "metadata_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/barlowcondensed/METADATA.pb",
+      "description_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/barlowcondensed/DESCRIPTION.en_us.html",
+      "variable_axes": {},
+      "coverage_classes": 62
+    },
+    {
+      "family": "Oswald",
+      "slug": "oswald",
+      "file_name": "Oswald[wght].ttf",
+      "upstream_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/oswald/Oswald%5Bwght%5D.ttf",
+      "ofl_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/oswald/OFL.txt",
+      "sha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817",
+      "ofl_sha256": "0fd731a904b729a4e02eaf5e8ebd06783edd9abe400e8882760160230675b652",
+      "cohort": "validation",
+      "style": "condensed",
+      "metadata_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/oswald/METADATA.pb",
+      "description_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/oswald/DESCRIPTION.en_us.html",
+      "variable_axes": {
+        "wght": 400.0
+      },
+      "coverage_classes": 62
+    },
+    {
+      "family": "Yanone Kaffeesatz",
+      "slug": "yanonekaffeesatz",
+      "file_name": "YanoneKaffeesatz[wght].ttf",
+      "upstream_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/yanonekaffeesatz/YanoneKaffeesatz%5Bwght%5D.ttf",
+      "ofl_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/yanonekaffeesatz/OFL.txt",
+      "sha256": "17e3bd546d57d2c41200866ac310bd76b8c59c44cd738f6ca402a285f45e97b8",
+      "ofl_sha256": "9efbe6f8570e8c3d8b000914bd1da07ff4977d1325cc2d046180e05f40677f01",
+      "cohort": "test",
+      "style": "condensed",
+      "metadata_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/yanonekaffeesatz/METADATA.pb",
+      "description_url": "https://raw.githubusercontent.com/google/fonts/9862abc066c9b83bf84c3e8ed1fc2d8d48f9bbf0/ofl/yanonekaffeesatz/DESCRIPTION.en_us.html",
+      "variable_axes": {
+        "wght": 200.0
+      },
+      "coverage_classes": 62
+    }
+  ],
+  "render_gate": "Not rendered. Await manifest publication and same-id requester manifest ok or names-only drop/replace response.",
+  "exclusions": "No listed DejaVu or Noto family selected; descriptions and metadata retained for provenance review. Requester may exclude additional families."
+}

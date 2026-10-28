@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "known_per_class_all_input_recall": "70/100",
+  "known_per_class_coverage": "80/100",
+  "accepted_only_recall": "70/80",
+  "accepted_precision": "70/80 except A:70/90 with ten non-glyph false accepts",
+  "raw_ece": ".025",
+  "fitted_ece": "0 on identical synthetic mechanism, not real generalization",
+  "top_label_brier": ".11",
+  "non_glyph_false_accept": "10/40",
+  "counts_per_heldout_cohort": {
+    "prediction": 5600,
+    "abstain": 320,
+    "missing": 320
+  }
+}
