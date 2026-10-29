@@ -2,6 +2,6 @@
 def apply(points, constraints, integer_export=False):
     raise NotImplementedError("solver implementation required")
 
-def verify(points, constraints):
+def verify(points, constraints, integer_export=False):
     raise NotImplementedError("solver implementation required")
 
