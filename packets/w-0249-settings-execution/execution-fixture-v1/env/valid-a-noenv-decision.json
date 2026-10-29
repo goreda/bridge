@@ -1,0 +1,16 @@
+{
+  "coordinate_frame": "image_series_whole_canvas_pixels_y_down",
+  "declared_levels": {},
+  "levels_declaration_pin": null,
+  "quality_approved": false,
+  "schema": "kni-composition-settings-v1",
+  "settings_origin": "fixture-baked declaration, not automatic measurement",
+  "sidebearings": {
+    "declaration_pin": null,
+    "operation": "engine_derived",
+    "post_offsets": null,
+    "source": "engine_derived"
+  },
+  "source_sha256": "78c905b14886e7ac09928719caab4713071f4405eff31da31918b6798caf5cd6",
+  "vertical_metrics": "separate_evidence_consumer"
+}

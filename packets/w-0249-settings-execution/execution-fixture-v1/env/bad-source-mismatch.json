@@ -1,0 +1,21 @@
+{
+  "coordinate_frame": "image_series_whole_canvas_pixels_y_down",
+  "declared_levels": {},
+  "levels_declaration_pin": null,
+  "quality_approved": false,
+  "schema": "kni-composition-settings-v1",
+  "settings_origin": "fixture-baked declaration, not automatic measurement",
+  "sidebearings": {
+    "declaration_pin": "0000000000000000000000000000000000000000000000000000000000000000",
+    "operation": "add_to_engine_derived",
+    "post_offsets": {
+      "lsb_add": "5",
+      "post_scope": "base",
+      "post_scope_label": "fixture-shared-sb",
+      "rsb_add": "-3"
+    },
+    "source": "manual_add"
+  },
+  "source_sha256": "8f3fc740d53e9820830d0133d2ccec253ea80fc12b8f5cb3fc66e54cde4d2037",
+  "vertical_metrics": "separate_evidence_consumer"
+}
