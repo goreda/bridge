@@ -1,0 +1,11 @@
+{
+ "files": {
+  "README.txt": "e2ac8da6bbe0d008e828a63800a186bac9ee2d1ced3d23b7064583ebcc70d712",
+  "delta.json": "d711cb76b9f8f9813dcdaf5209e06888ace62b424d1c644c305e3ca23a752cf4",
+  "payload/HASHES.json": "dc8281316f9555121271a37b62ffc8b8daf1da47ffa46c953b3797c9c9024a77",
+  "payload/KNI-VERSION.json": "a981924555f027bbb895a463d98c99fb20164fb2feb60341401725c9022ab981",
+  "payload/kni/tools/demo_tool.py": "25658069928f4ae087c7978f4f064749a51098bbcf6b14aeca4b36a653e8387c",
+  "payload/kni/tools/tests/test_demo.py": "cb5955754e7793e6d4c2110f405745b98d037e6d1d2a44c0bdacfc8956ab6391",
+  "qualify-spec.json": "380d687fc9220a42448cacda4aac3541befc5aa06773e2a8ed36c6fd28b8c7f5"
+ }
+}

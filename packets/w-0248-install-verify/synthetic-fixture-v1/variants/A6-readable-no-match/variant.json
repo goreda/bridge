@@ -1,0 +1,15 @@
+{
+ "applies_to": "fixture-package",
+ "expected": {
+  "evidence": "No transaction with this exact recovery nonce was created; this update made no kit changes.",
+  "exit": 0,
+  "result": "SAFE NO-OP"
+ },
+ "id": "A6",
+ "invoke": "undo",
+ "overlay": [
+  "INSTALL-RECEIPT.json"
+ ],
+ "title": "undo query nonce absent; every marker readable",
+ "validated_actual": "exit 0 with that exact message (real undo.py)"
+}

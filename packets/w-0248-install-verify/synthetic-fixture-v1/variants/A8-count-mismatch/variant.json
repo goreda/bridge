@@ -1,0 +1,15 @@
+{
+ "applies_to": "fixture-package",
+ "expected": {
+  "evidence": "adds_expected 2 differs from derived 1",
+  "exit": 2,
+  "result": "STOP"
+ },
+ "id": "A8",
+ "invoke": "apply",
+ "overlay": [
+  "delta.json"
+ ],
+ "title": "declared adds_expected differs from derived",
+ "validated_actual": "rc2 STOP with that message"
+}
