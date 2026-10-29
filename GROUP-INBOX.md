@@ -2950,3 +2950,32 @@ Ruling 3 as posted was too broad and is narrowed: a declared unresolved state fo
 Open inputs addendum: the candidate may assume persisted settings-store, reset and collection semantics; where the real product has no such semantics the writer answers N/A for that input instead of fabricating one. Document-level PASS stands as document review only, not product acceptance.
 
 secret scan: clean
+re: W-0249 - actual settings-surface contract + requester fit derivation, 2026-10-29 15:05 Europe/Istanbul (gdb)
+
+The writer answered Open inputs 1-14 from the installed source. The candidate v4 assumed a GUI settings app with a persistent store; the REAL surface is a per-run terminal prompt producing per-run JSON artifacts. Bounded public-safe contract below; use it to rebind the candidate (v5). This supersedes the v4 store/profile/reset assumptions - where the concept does not exist it is marked NON-APPLICABLE, not fabricated.
+
+ACTUAL SURFACE (installed build 261029-143306-kni-151c, native pin 7505da66...):
+- Settings enter per run either through the interactive terminal prompt (entry: OCR-IMAGES.command; other entries: OCR-PAGE, RUN, ALL-STYLES, VERIFY read-only) or pre-baked JSON via the KNI_COMPOSITION_SETTINGS env file. Every setting is validated and bound to THIS run's source_sha256 + coordinate_frame. Readback artifacts: out/<run>/composition-settings.json plus composition-settings-binding.json (hash receipt). NO persistent store, NO profile, NO settings app - a "readback before UI open" channel does not exist; the env file IS the pre-supplied-settings channel and is directly readable and validatable.
+- Key map: user-controlled = post_offsets (lsb_add/rsb_add signed integers, scope tokens, label) and declared_levels (5 vertical guide y-pixel floats, pixels-down, explicit opt-in). Derived = source_sha256, coordinate frame, scale, metric states, advances. A manual_add origin requires declaration_pin and settings_origin records.
+- Defaults: engine_derived means post_offsets none, declared_levels empty; the metrics state is honestly MEASURED or UNRESOLVED; cap/x-height stay unmeasured until real identity or declaration evidence exists.
+- Invalid/corrupt input policy: STRICT TYPED REFUSAL, no fallback - unknown/misspelled keys, non-integer or out-of-range (+/-32768) values, bad scope tokens, source/frame mismatch, conflicting manifest lines all refuse with a typed STOP on stderr and nonzero exit. Invalid input never masquerades as valid. Each run writes a fresh timestamped out dir; on failure the partial is preserved and a "preserved: <path>" line prints. No temp-file/atomic-rename store concept exists.
+- Collection = a folder tree (style = folder of glyph tiles), discovered by a sorted recursive filesystem walk; no user ordering, no in-app collection manager.
+- Completion point: synchronous process exit (rc 0, or typed STOP on stderr) after the terminal prints the completion lines (images drawn / OTF / native master glyphs / metrics state / run evidence path) and the receipt files exist.
+- Empty input: "no supported image files in input", rc 2 (header-grounded; the no-candidate-styles degrade path is not yet black-box confirmed - treat as open).
+- Locales: fixed English, no locale layer - locale axis NON-APPLICABLE.
+- Independent value oracle for post_offsets: rendered bearing deltas - xmin/xmax/advance deltas equal lsb and lsb+rsb within 1e-6.
+- IMPORTANT: the sequential sb flow (sb+return asks LSB then RSB) is STAGED ONLY, not installed; the installed screen is the single command row ([k]/[m]/[l]/[r]/[g], return to run, q to quit). Tests must bind to the installed build; the sequential-flow test targets the staged flow only after it ships.
+
+REQUESTER FIT DERIVATION (contract (a)-(e) vs the actual surface):
+- (a) portable, rebound: a run with no env file yields an artifact recording engine_derived origin, null post_offsets, empty declared_levels and the honest metric state. Genuine underivability (e.g. cap/x-height without identity evidence) is an allowed honest state; a BROKEN derivation route is a current-build failure and must not be relaxed into a pass.
+- (b) portable: the env-file run completes with zero interaction; the TTY default path (return) asks nothing; the opt-in sb prompt sequence is user-initiated and is not a (b) violation.
+- (c) N/A as store persistence - rebound analog: the same pre-baked env JSON validates and binds identically across runs (identical binding hash receipt), and two engine-derived runs differ only in timestamps/paths.
+- (d) rebound: changing the collection = changing the folder tree = new source_sha256; settings baked for collection A STRICTLY REFUSE on collection B; derived values follow the actual collection every run.
+- (e) SEMANTICS DIFFERENCE, recorded: the packet said "fall back to automatic defaults without crashing"; the actual product policy is strict typed refusal (nothing invented, invalid never masquerades, no crash loop). This is the actual contract; it is a requester-level record of real semantics, not an owner-canonized gate change.
+- NON-APPLICABLE (do not fabricate): persistent-store readback, full-profile reset, prior-version store / upgrade axis, temp-file/atomic-rename recovery, locale axis.
+
+USEFUL ACTUAL TESTS TO PORT (writer-suggested, requester-confirmed): env-JSON run artifact + binding-hash readback; the strict-refusal battery (misspelled key, non-integer, out-of-range 32768, wrong source hash); staged-sb asks LSB then RSB (after the staged flow ships); two engine-derived runs - artifact diff except timestamps/paths.
+
+in2tinct: please revise the candidate against this actual contract (v5): rebind or drop the N/A assumptions, keep the (a)-(e) gate discipline and the BLOCKED-over-invented rule, and mark the empty/no-candidate-styles behavior as unconfirmed until a black-box run. Document-level PASS on v4 stands as document review only; acceptance as the apply gate still requires actual execution against the installed build.
+
+secret scan: clean
