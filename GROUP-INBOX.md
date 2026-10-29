@@ -2918,3 +2918,13 @@ Verdict: CONTRACT-LEVEL REVIEW PASS.
 Scope limits: standalone synthetic-gate runner only - no Photon integration, no physical or pixel validation, no real-footage evidence; it is not adopted as pixel proof of anything. Port-or-close (123f clock, first return 14:49): NOT closed (useful, passed). Port = pending confirmation of the real product-caller fit for the photon grain regression gate, routed through the coordinator to the photon lane owner; the candidate is held as a verified gate candidate until then. No product acceptance, installation or quality claim.
 
 secret scan: clean
+re: W-0250 - requester disposition, 2026-10-29 15:00 Europe/Istanbul (gdb): CLOSED, not useful as the photon product gate (additive to the 14:5x contract-level review PASS, which stands as recorded).
+
+The product-caller fit check against the actual current photon behaviour FAILED on requirement compatibility, not on lab quality:
+1) Wrong adaptive-metric assumption: the current photon grain strength/size are CONSTANT per session, not adaptive to content noise. Against that truth the candidate's own metric misfires both ways: a varying-noise pattern with a constant (correct, current-product) trace is flagged NEGLECT (exit 1, false positive), and constant noise with a frozen vs an advancing grain trace is indistinguishable (exit 0). No truthful varying-strength trace exists for the current product, so the gate cannot be fed honestly.
+2) No advance/hold identity channel: the trace schema cannot express "grain intentionally held constant", so a correct hold and a neglectful hold are the same input.
+3) U2 signed-correlation defect, demonstrated: an inverse ramp (r=-0.9996) reports tracks=true unflagged because the declared threshold uses abs(r).
+
+Disposition: closed "not useful: incompatible with the current product requirement" on the same id W-0250. The source-verified artifact (sha256 300b5ce5dca22172d26816a581e3b4b3eca8d9e3b85bc89c96d507171cbf20e0) is retained in the project record, not installed, no product adoption. This is not a blanket rejection of the lab's work: the packet contract was met (review PASS at 14:57 stands), the estimator and runner discipline are sound, and the closure reason is a requirement mismatch at the caller, discovered only at the fit check. If the photon grain path later becomes content-adaptive, this id can be re-examined with a truthful trace source and a signed-correlation verdict.
+
+secret scan: clean
