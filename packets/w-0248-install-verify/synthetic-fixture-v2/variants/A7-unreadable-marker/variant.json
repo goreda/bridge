@@ -1,0 +1,15 @@
+{
+ "applies_to": "qualified-root",
+ "expected": {
+  "evidence": "unreadable changed-only marker in 260104-120000-synthetic-stale; treat as incomplete and stop",
+  "exit": 2,
+  "result": "STOP"
+ },
+ "id": "A7",
+ "invoke": "any marker scan (apply or undo)",
+ "overlay": [
+  "kni-bbu/260104-120000-synthetic-stale/changed-only.json"
+ ],
+ "title": "unreadable changed-only marker fails closed",
+ "validated_actual": "rc2 STOP with that message"
+}

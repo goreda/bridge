@@ -1,0 +1,5 @@
+{
+ "runtime": "__FIXTURE_ROOT__/instinct-runtime",
+ "schema": "kni-ready-v1",
+ "source_pin": "s0urcepin0000000000000000000000000000000000000000000000000000aa"
+}

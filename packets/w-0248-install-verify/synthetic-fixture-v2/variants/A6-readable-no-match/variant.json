@@ -1,0 +1,15 @@
+{
+ "applies_to": "fixture-package",
+ "expected": {
+  "evidence": "No transaction with this exact recovery nonce was created; this update made no kit changes.",
+  "exit": 0,
+  "result": "SAFE NO-OP"
+ },
+ "id": "A6",
+ "invoke": "undo",
+ "overlay": [
+  "INSTALL-RECEIPT.json"
+ ],
+ "title": "undo query nonce absent; every marker readable",
+ "validated_actual": "v2: nonce corrected to 32 hex (de x 16); bootstrap find_tx_by_nonce -> None (safe no-op exit 0); v1 shipped a 34-char nonce (defect, corrected)"
+}

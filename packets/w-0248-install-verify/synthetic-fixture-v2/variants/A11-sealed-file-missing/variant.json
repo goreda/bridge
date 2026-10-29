@@ -1,0 +1,16 @@
+{
+ "applies_to": "fixture-package",
+ "expected": {
+  "evidence": "package changed: payload/kni/tools/demo_tool.py",
+  "exit": 2,
+  "result": "STOP"
+ },
+ "id": "A11",
+ "invoke": "apply",
+ "overlay": [],
+ "remove": [
+  "payload/kni/tools/demo_tool.py"
+ ],
+ "title": "a seal-listed package file is missing",
+ "validated_actual": "rc2 STOP: package changed: payload/kni/tools/demo_tool.py (real apply.py verify b8edd985...)"
+}

@@ -1,0 +1,8 @@
+{
+ "modes": {
+  "qualified-root/DEMO.command": "0644",
+  "qualified-root/OTHER.command": "0755",
+  "qualified-root/instinct-runtime/venv/bin/python3": "0755"
+ },
+ "note": "materialize.py enforces these modes after copying; git may not carry them"
+}

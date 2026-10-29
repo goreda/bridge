@@ -1,0 +1,19 @@
+{
+ "adds": [],
+ "after": {
+  "kni/tools/demo_tool.py": "ec1766068abe2d6f53def69d61961b0a27a0c5d698479f7a8be1e87782a7796e"
+ },
+ "before": {
+  "kni/tools/demo_tool.py": "3fd1a4f750bc1775a169806ca614af2e74b30de1718b721bfc6a1f578b58e81b"
+ },
+ "edits": [
+  "kni/tools/demo_tool.py"
+ ],
+ "id": "synthetic-demo-old",
+ "modefix": [],
+ "modes": {
+  "kni/tools/demo_tool.py": 420
+ },
+ "nonce": "a1b2c3d4e5f60718293a4b5c6d7e8f90",
+ "ready_before": "19c99e6a1d6455d75b2087247edbb1f9c2f66d0119f4ef0dd0ef8ed34b7ee4e6"
+}

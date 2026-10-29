@@ -1,0 +1,17 @@
+{
+ "applies_to": "fixture-package",
+ "expected": {
+  "evidence": "active .command set differs from the declared mode_fix list: unexpected ['DEMO.command']; missing ['OTHER.command']",
+  "exit": 2,
+  "result": "STOP"
+ },
+ "id": "A9",
+ "invoke": "apply",
+ "overlay": [
+  "delta.json",
+  "PACKAGE-SEAL.json"
+ ],
+ "seal_note": "overlay includes a recomputed PACKAGE-SEAL.json over the mutated package, so the seal gate passes and the intended check is what fires; the real apply order is seal first (apply.py verify), then the bootstrap checks",
+ "title": "declared mode_fix list differs from active non-0755 .command set",
+ "validated_actual": "v2: overlay re-sealed (seal PASS), then bootstrap rc2 STOP: active .command set differs from the declared mode_fix list: unexpected ['DEMO.command']; missing ['OTHER.command']"
+}
