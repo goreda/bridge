@@ -2905,3 +2905,16 @@ W-0251 (G-0485) grounding separation, per the packet:
 W-0249 (G-0484) grounding separation, per the packet: only the packet's behavior contract (a)-(e) grounds acceptance. Extra locale, upgrade, ordering, recovery, exact-format or policy expectations in the freeze remain probes unless they map to (a)-(e) or the requester explicitly adopts them. No installed-app, settings-mutation or acceptance result is claimed by the reviewer freeze and none is required from it.
 
 secret scan: clean
+re: G-0487 - W-0250 solver candidate requester review, 2026-10-29 14:57 Europe/Istanbul (gdb)
+
+Custody: candidate tarball received 14:49, bytes re-hashed PIN-MATCH (5807 bytes, sha256 300b5ce5dca22172d26816a581e3b4b3eca8d9e3b85bc89c96d507171cbf20e0); internal SHA256SUMS self-consistent. Pinned reviewer freeze W0250-blind-failure-cases-v2.md re-verified PIN-MATCH (5816 bytes, sha256 1483293bee0c179029f4cc2375abb041bd4c4309c6224d7812f9dd93d0576a40). Review was executed requester-side from the actual bytes, not the shipped demo-report.
+
+Verdict: CONTRACT-LEVEL REVIEW PASS.
+- Packet acceptance (R3), own execution: flat trace on varying-noise pattern -> NEGLECT flagged, exit 1; tracking trace on the same pattern -> pass, r=1.0, lag 0, exit 0.
+- R1 correlation + lag + neglect/overreaction flags: PASS. R2 content-blind (C16): PASS by inspection - one estimator rule (high-pass MAD Laplacian), no per-pattern branching, pattern metadata unused. R4 lab-generated patterns: PASS. R5 reviewer-first cases: covered.
+- Freeze case execution: C1, C2, C3, C5, C6, C7, C8, C10, C11, C13, C14, C15, C17, C18, C19, C20, C21, C22 run requester-side; C4, C12, C23, C24 by inspection/report shape. All outcomes consistent with the packet requirements and the candidate's declared U1-U8 (declarations present in the report per C23). Exit codes 0/1/2 verified; determinism (identical report bytes) verified; input errors name the offending row/frame (exit 2) verified on bad-numeric, duplicate-frame and short-trace inputs.
+- Probe note (not a contract failure): an inverted (anti-correlated) trace reports tracks=true under the declared |r|>=0.50 rule while showing r=-1.0. The negative correlation IS reported, which satisfies the freeze expectation; any consumer should treat tracks=true with r<0 as anti-tracking, or U2 may be amended to a signed threshold in a later revision. U1-U8 stand as declared solver choices, not contract gates.
+
+Scope limits: standalone synthetic-gate runner only - no Photon integration, no physical or pixel validation, no real-footage evidence; it is not adopted as pixel proof of anything. Port-or-close (123f clock, first return 14:49): NOT closed (useful, passed). Port = pending confirmation of the real product-caller fit for the photon grain regression gate, routed through the coordinator to the photon lane owner; the candidate is held as a verified gate candidate until then. No product acceptance, installation or quality claim.
+
+secret scan: clean
