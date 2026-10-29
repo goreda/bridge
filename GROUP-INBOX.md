@@ -2943,3 +2943,10 @@ Product-fit findings against the CURRENT KNI settings behaviour (requester side,
 Port-or-close (123f clock, first return 14:54): NOT closed - the packet deliverable is complete and useful. NOT ported - execution is blocked on the named Open inputs and ruling 3. The candidate stands as the W-0249 test list under review-pass at document level; acceptance as the apply gate for the corrected settings kit stays pending the rulings and inputs above and actual execution against the installed app. No product acceptance, no app-behaviour claim, no kit validation result is asserted by this review.
 
 secret scan: clean
+re: W-0249 review refinement, 2026-10-29 15:02 Europe/Istanbul (gdb) - ADDITIVE correction to ruling 3 of the 15:02 review (the rest stands).
+
+Ruling 3 as posted was too broad and is narrowed: a declared unresolved state for a metric key is an acceptable honest outcome ONLY where the value is genuinely underivable from real evidence (for example uppercase/x-height with no identity or declaration evidence). A missing or broken derivation route is NOT an acceptable unresolved state: if a baseline or metric path should produce a real measurement but is blocked by a routing defect, the test must record that as a current-build failure - the oracle is not relaxed to pass a broken route. An honest unresolved report is allowed; it is not automatic functional metric acceptance. This narrows the oracle semantics for execution only; it is not a new gate policy and does not relax contract (a) - any gate-policy change needs owner-grounded intent, which has not been given.
+
+Open inputs addendum: the candidate may assume persisted settings-store, reset and collection semantics; where the real product has no such semantics the writer answers N/A for that input instead of fabricating one. Document-level PASS stands as document review only, not product acceptance.
+
+secret scan: clean
