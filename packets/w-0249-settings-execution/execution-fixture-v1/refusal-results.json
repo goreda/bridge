@@ -1,0 +1,47 @@
+{
+ "T-08 env(A->B mismatch inv)": {
+  "rc": 2,
+  "stderr_last": "Image input STOP: settings source/frame differs",
+  "stdout_last": ""
+ },
+ "T-10 label token": {
+  "rc": 2,
+  "stderr_last": "Image input STOP: post_scope_label must be one safe token",
+  "stdout_last": ""
+ },
+ "T-10(i) unknown key": {
+  "rc": 2,
+  "stderr_last": "Image input STOP: post offsets require exactly lsb_add, rsb_add, post_scope, post_scope_label",
+  "stdout_last": ""
+ },
+ "T-10(ii) non-integer": {
+  "rc": 2,
+  "stderr_last": "Image input STOP: post offsets must be signed integer output units",
+  "stdout_last": ""
+ },
+ "T-10(iii) out-of-range": {
+  "rc": 2,
+  "stderr_last": "Image input STOP: post offset outside native representable range -32768..32767",
+  "stdout_last": ""
+ },
+ "T-10(iv) bad scope token": {
+  "rc": 2,
+  "stderr_last": "Image input STOP: invalid post_scope",
+  "stdout_last": ""
+ },
+ "T-10(vii) truncated JSON": {
+  "rc": 2,
+  "stderr_last": "Image input STOP: Expecting value: line 1 column 60 (char 59)",
+  "stdout_last": ""
+ },
+ "T-12 empty input": {
+  "rc": 2,
+  "stderr_last": "Image input STOP: no supported image files in input",
+  "stdout_last": ""
+ },
+ "valid env (engine absent)": {
+  "rc": 2,
+  "stderr_last": "Image input STOP: image OCR intake failed; evidence preserved: /tmp/w249fix/kit/out/261029-153809-images-1793277489103494846/work/inputs/000001",
+  "stdout_last": "Reading image 1/5: /tmp/w249fix/out/fixtures/collection-a/styleone/glyph_A.png"
+ }
+}

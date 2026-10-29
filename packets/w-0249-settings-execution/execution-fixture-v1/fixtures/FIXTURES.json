@@ -1,0 +1,15 @@
+{
+ "collection_a_source_sha256": "78c905b14886e7ac09928719caab4713071f4405eff31da31918b6798caf5cd6",
+ "collection_b_source_sha256": "8f3fc740d53e9820830d0133d2ccec253ea80fc12b8f5cb3fc66e54cde4d2037",
+ "fixture_files": {
+  "fixtures/collection-a/styleone/glyph_A.png": "9805a6308b2f099ecc457d8ac450f8e597fd68144fc3a2445111408bca04e75f",
+  "fixtures/collection-a/styleone/glyph_B.png": "50716129a45cdc81fe5d27bea99a37a0f9dac7680d9935f02ebaca8ebfa5bc57",
+  "fixtures/collection-a/styleone/glyph_C.png": "8d59a05b8bb3ad35b2fc4e784bfde756d6eb85e4d9826fec236b1c3a05d23560",
+  "fixtures/collection-a/styletwo/glyph_D.png": "256c11fd27f5548dfe6135cd936fc612d8d4ddddbc86fb64f28897033366557b",
+  "fixtures/collection-a/styletwo/glyph_E.png": "e41290958901eba8af8a2a64e1ca8455d532832a6dbd593b95666323dbf5e05a",
+  "fixtures/collection-b/styleone/glyph_A.png": "25b09dfa7f19d15b68013c4f22a3f2488d6dc5e6ebe1e18ea6d1236163b41610",
+  "fixtures/collection-b/styleone/glyph_X.png": "26e57e894bda36da2a627b9789e949abeeeb318d4f25cedb8d4da87dc82182c7",
+  "fixtures/collection-b/stylethree/glyph_Q.png": "1554fad1b80218253c02117830f78910a2cbf0234758ab94f51309524126f101"
+ },
+ "frame": "image_series_whole_canvas_pixels_y_down"
+}
