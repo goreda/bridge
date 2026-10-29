@@ -1,0 +1,13 @@
+{
+ "applies_to": "qualified-root",
+ "expected": {
+  "evidence": "alias refused: <path>/kni-bbu",
+  "exit": 2,
+  "result": "STOP"
+ },
+ "id": "A4",
+ "invoke": "apply with the kit root argument passed through a symlink path",
+ "overlay": [],
+ "title": "kit root reached through a symlinked ancestor",
+ "validated_actual": "rc2 STOP: alias refused"
+}

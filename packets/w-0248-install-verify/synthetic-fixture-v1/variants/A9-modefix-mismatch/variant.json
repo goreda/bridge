@@ -1,0 +1,15 @@
+{
+ "applies_to": "fixture-package",
+ "expected": {
+  "evidence": "active .command set differs from the declared mode_fix list: unexpected ['DEMO.command']; missing ['OTHER.command']",
+  "exit": 2,
+  "result": "STOP"
+ },
+ "id": "A9",
+ "invoke": "apply",
+ "overlay": [
+  "delta.json"
+ ],
+ "title": "declared mode_fix list differs from active non-0755 .command set",
+ "validated_actual": "rc2 STOP with that message"
+}
