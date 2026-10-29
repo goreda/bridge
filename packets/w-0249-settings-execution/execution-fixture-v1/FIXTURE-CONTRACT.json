@@ -1,0 +1,125 @@
+{
+ "adapters": {
+  "drive_prompt.py": "drives a prompt module's ask() with scripted answers, capturing prompt order + payload (module-level; the KNI_TERMINAL_APP=1 + isatty gate is entry-level)",
+  "execute_refusals.py": "the T-08/T-10/T-12 battery driver",
+  "run_entry.py": "assembles a scratch kit from the pinned installed tool bytes and invokes ocr_images.py directly (refusal paths die before the native engine is needed)"
+ },
+ "blocked_portions_exact": {
+  "T-02 metric_route_assessment": "requires an engine run to observe MEASURED vs UNRESOLVED derivation routes; writer-chain dependent.",
+  "declared_levels_value_oracle": "NO independent value oracle EXISTS in the product: validate_settings checks declared_levels population/shape/pin only; nothing consumes the declared values into a render an oracle could check. Carried OPEN with this exact reason; no oracle invented (15:34 ruling).",
+  "full_engine_tests": "T-01/T-02/T-03/T-04/T-06/T-07/T-09/T-13(outer A runs) need the native engine end-to-end (OCR assets + native pipe + OTF export + metric receipts). Execution route: the writer-owned Linux engine known-font metrics chain proof when it lands (reuse, never duplicate) or the installed Mac build. No substitute run was fabricated here."
+ },
+ "created": "2026-10-29",
+ "files": {
+  "README.md": "379d7500bad3cabb900744af736f928bc9eb9d8d4cdf7407a4bf006dc256c679",
+  "build_fixtures.py": "6933d373b3f43a5c98c58aca394b8ef04a59c28b1413d0783f8c456d7813157a",
+  "drive_prompt.py": "adf06b8adca0bdd7fe62f2d78c523c2e41ac96191e3d71e439cc6163e979a633",
+  "env/bad-label-token.json": "2116383832c34dbab68722eb25729b2d84863d31769d5ee66570a5eaec689027",
+  "env/bad-malformed-json.json": "5efc7d262baee8309d8b08afc616de6edfd770c6ec726e203093f4d80d1e69f6",
+  "env/bad-noninteger.json": "f89ac99da2d48266a32d52666ca6817d982631f543931170ff98f437245416a6",
+  "env/bad-out-of-range.json": "fcb73fa5c962e742a9e4383ecc0a057144190b51c956e374ef6bb045b00ec8b5",
+  "env/bad-scope-token.json": "a34cc87d73d97077a19d31a34e8db0d41a45a1f86f441b000f9624276218a10c",
+  "env/bad-source-mismatch.json": "d014611afcf82977c460df1ddcde2c307e044c7691cec621aa762b0eead1d6b4",
+  "env/bad-unknown-key.json": "af8dc75c772596d7bc0786a6a0dfde733b792f6ce93cb56725b9e9edc5973508",
+  "env/valid-a-noenv-decision.json": "dc19bbf2e279128a8fc068f3b10d8b853e90e76246db099c871fcdc4d24069bf",
+  "env/valid-a.json": "9f4d71ccbfea6ece4eabd2d991136c41bab6be46522862f7ae7fef69fd5c9d9b",
+  "execute_refusals.py": "314b0e385c8d219f4f2a149b3cf4fd5d8dcac523e007f0b9e15350e25f8a4d74",
+  "fixtures/FIXTURES.json": "a904424a5164eb71c5d098e84becbc0558f881b987ca1aa724959d75403e5803",
+  "fixtures/collection-a/styleone/glyph_A.png": "9805a6308b2f099ecc457d8ac450f8e597fd68144fc3a2445111408bca04e75f",
+  "fixtures/collection-a/styleone/glyph_B.png": "50716129a45cdc81fe5d27bea99a37a0f9dac7680d9935f02ebaca8ebfa5bc57",
+  "fixtures/collection-a/styleone/glyph_C.png": "8d59a05b8bb3ad35b2fc4e784bfde756d6eb85e4d9826fec236b1c3a05d23560",
+  "fixtures/collection-a/styletwo/glyph_D.png": "256c11fd27f5548dfe6135cd936fc612d8d4ddddbc86fb64f28897033366557b",
+  "fixtures/collection-a/styletwo/glyph_E.png": "e41290958901eba8af8a2a64e1ca8455d532832a6dbd593b95666323dbf5e05a",
+  "fixtures/collection-b/styleone/glyph_A.png": "25b09dfa7f19d15b68013c4f22a3f2488d6dc5e6ebe1e18ea6d1236163b41610",
+  "fixtures/collection-b/styleone/glyph_X.png": "26e57e894bda36da2a627b9789e949abeeeb318d4f25cedb8d4da87dc82182c7",
+  "fixtures/collection-b/stylethree/glyph_Q.png": "1554fad1b80218253c02117830f78910a2cbf0234758ab94f51309524126f101",
+  "refusal-results.json": "68a084a7609b036e6bf03ee02866cb3cf814bb8bc519d2a916a9909d197b2a42",
+  "run_entry.py": "c477273916e16a895aba017afecca6890b7e73e47117e40f1669c20715095869"
+ },
+ "fixture_contract": "w-0249-settings-execution-fixture-v1",
+ "fixtures": {
+  "builder": "build_fixtures.py (deterministic synthetic 64x64 grayscale PNG glyph trees, pure stdlib)",
+  "collections": {
+   "A": "styleone/{A,B,C} + styletwo/{D,E}",
+   "B": "styleone/{A,X} + stylethree/{Q} (different bytes + tree)",
+   "empty": "no files"
+  },
+  "source_sha256_derivation": "sha256 of ''.join(sha256(file)+'\\n') over the sorted recursive resolved-path walk (exactly ocr_images.py source_set_sha); A and B hashes recorded in fixtures/FIXTURES.json"
+ },
+ "results_executed_2026_10_29": {
+  "T-05_prompt_behavior": {
+   "actual": "installed bytes: exactly 1 prompt (the command row); bare return yields source=engine_derived, post_offsets None, declared_levels {} - the default path asks nothing; sb/guides prompts are user-initiated",
+   "level": "prompt module, scripted input",
+   "verdict": "the (b) no-mandatory-guide behavior is confirmed at the prompt level; the full run-completion portion needs the engine"
+  },
+  "T-08 + T-10(v)": {
+   "actual": "rc 2, 'Image input STOP: settings source/frame differs' (env baked for B run on A)",
+   "verdict": "typed refusal confirmed; settings baked for A must not silently apply to B"
+  },
+  "T-10(i)": {
+   "actual": "rc 2, 'post offsets require exactly lsb_add, rsb_add, post_scope, post_scope_label'",
+   "verdict": "unknown/misspelled key refused"
+  },
+  "T-10(ii)": {
+   "actual": "rc 2, 'post offsets must be signed integer output units'"
+  },
+  "T-10(iii)": {
+   "actual": "rc 2, 'post offset outside native representable range -32768..32767'"
+  },
+  "T-10(iv)": {
+   "actual": "rc 2, 'invalid post_scope' (+ label token: 'post_scope_label must be one safe token')"
+  },
+  "T-10(vi)": {
+   "actual": "refused: 'manifest post-offsets conflict with explicit settings' (bind_post_offsets)",
+   "level": "consumer adapter"
+  },
+  "T-10(vii)": {
+   "actual": "rc 2, stderr carries the RAW JSON parser message 'Expecting value: line 1 column 60 (char 59)'",
+   "verdict": "CONFIRMED PARSER OUTCOME (reviewer ask): a malformed/truncated env JSON is a STOP rc 2 refusal - invalid input never masquerades as valid - but the message is the generic JSONDecodeError text, NOT a named violation class; recorded as the actual current behavior, not relaxed"
+  },
+  "T-12": {
+   "actual": "rc 2, stderr 'Image input STOP: no supported image files in input'",
+   "level": "entry-refusal (Linux, real bytes)",
+   "verdict": "matches the v5 expectation exactly"
+  },
+  "consumer_matrix": {
+   "actual": "provenance rules (manual_add requires declaration pin; engine_derived rejects decisions), declared_levels population/pin checks, kerning_letters-stands-alone, duplicate scope, nonfinite numbers all refused with typed messages; assert_bearing_delta accepts exact lsb/rsb deltas within 1e-6 and refuses a 1-unit advance mismatch",
+   "level": "consumer adapter"
+  },
+  "partial_dir_behavior": {
+   "actual": "settings refusals leave an empty skeleton out/<run>/combined-input/ dir; a 'preserved: <path>' line prints only for later-stage failures (observed 'evidence preserved: <path>' on engine-stage failure)",
+   "verdict": "differs from the v5 matrix wording for settings refusals (no preserved line there); recorded actual"
+  },
+  "staged_sb_sequence": {
+   "actual": "'sb' asks lsb THEN rsb sequentially; decision payload lsb_add 5 / rsb_add -3 correct; printed command row drops separate [l]/[r]; silent aliases [m]/[l]/[r] still function; 'q' cancels",
+   "level": "staged bytes (584ab268...609e), NOT installed",
+   "verdict": "staged flow confirmed against the exact staged bytes; says nothing about the installed entry"
+  }
+ },
+ "scope": "W-0249 execution readiness: synthetic fixtures + test adapters + EXECUTED partial results against the installed 151c bytes and the staged sb bytes. Bounded per the 15:34 scope ruling: no engine-code duplication, no new product semantics, no invented automatic metric oracle.",
+ "side": "requester (goreda) verifier lane",
+ "targets": {
+  "installed": {
+   "custody": "goreda/kni db4a99c7 custody/2026-10-29-kni-151c/current-kit",
+   "kit_label": "261029-143306-kni-151c",
+   "pins": {
+    "budget_run.py": "943795a984973ce6608457cc4f34cd4c16d7cd87d89cb334ab43671eaaa4a570",
+    "composition_settings_consumer.py": "ec00318174a994f585f9a806cbe1920dea4765a4a49df113ea9db4a23aebb31a",
+    "composition_settings_prompt.py": "26cf0eebe13481138463cf293ad34a3b282e26f9a4b8c5501dbbbe51e88bf240",
+    "input_path.py": "fc9ebe810cf4ee3467811219daf591b6836e2855e92a2f16e989feb74f2fae32",
+    "ocr_images.py": "ea61e0ed32ad71b6938e11da5f3b9989c70b3449c68b893b897e0ba08eddf78d",
+    "ocr_series_identity.py": "10100756596ab2360755fe495dc0018c9d3204fdbcc738be66dc4d88fe390310"
+   },
+   "source_pin_7505": true
+  },
+  "staged_sb": {
+   "commit": "225c9d4e7bd9dd786926e57945c8322410e28d20",
+   "note": "SEPARATE target: staged only, NOT installed, custody 151c untouched; tests bind to these exact bytes, never to the installed entry",
+   "pins": {
+    "composition_settings_prompt.py": "584ab268e2194ab7f347369a5b88d6f82fda717e380672e0cdcc90a27acc609e",
+    "ocr_images.py": "595dcda72ccc534c5e0cacf33dc00a267e8a66c8842c356b3adf9bb6266beb15",
+    "test_staged_auto_metrics_sb.py": "a5c9e816a3503f7e149314d6be2c6d706af67ccdf03179960135b5a657992c85"
+   }
+  }
+ }
+}
