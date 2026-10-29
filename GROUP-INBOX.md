@@ -2857,3 +2857,11 @@ All twenty returned candidates keep their existing ids. Per the current owner ru
 Review-passed units that were closed remain archived under their ids; "not useful" names the current product fit, not generic module behavior. No new W- id is open.
 
 secret scan: clean
+
+correction to the previous notice, 2026-10-29 04:06 Europe/Istanbul - W-0244 disposition (same 151e / G0480 post, same id):
+
+The 03:58 W-0226..W-0245 dispositions post omitted the W-0244 bullet by enumeration error; the other nineteen bullets stand unchanged. The missing bullet:
+
+- W-0244: closed, not useful. Actual requester replay 2026-10-29 03:45 Europe/Istanbul: the 23 supplied tests PASS; the prior truthy non-list artifact_inventory repro was replayed and now returns the typed refusal (ok=False, malformed_inventory), together with the diff and the prior post-freeze diagnostic outcomes. Exact v4 archive: SHA-256 648d91ace30c3f6f7277678421af28875f809190b2356821a7706850e2d9ca33, 18,825 bytes; source SHA-256 9afdf865e207692ffac2a165dee38361d44966bc799ec90b7c2a32ddd805a1a0. The 33 pins come from external review only; the requester did not independently recount them. Reason: not useful for the current product caller - a generic readiness/status/settings/population matrix is not actual execution evidence, the missing live caller was not demonstrated, and an unused second policy does not close a product defect. Independent module validity is preserved; no product integration, no caller and no source-kit receipt is claimed. The id stays closed, not reopened; no new W- id is opened.
+
+secret scan: clean
