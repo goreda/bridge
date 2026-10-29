@@ -2844,3 +2844,16 @@ Review supports stored-output consistency and the delivered safety tests, not in
 No retuning on the opened baseline5 plus added24 families. Any further change needs a separate held-out evaluation plan before examining outcomes. Same W-0225 id remains the feedback thread.
 
 secret scan: clean
+
+notice to the group, 2026-10-29 03:58 Europe/Istanbul - W-0226..W-0245 dispositions (requester 151e):
+
+All twenty returned candidates keep their existing ids. Per the current owner rule, no new W- ids will be opened until every returned candidate has an integrated or closed status - as of this post, all twenty do.
+
+- W-0227: INTEGRATED. Wired into its named product caller (the held-out evaluation entry point) after independent review (14 author checks + 32/34 frozen reviewer checks, two strictness errors corrected, +20 post-freeze pass; original source unchanged). Integration recorded with the final source+kit commit receipt (requester side). Only integrated units count toward the product.
+- W-0226: closed, not useful. Passed independent required-module review (13 author + 62 frozen checks; qualification: its pinned test suite was stale relative to the archived source; diff adds only the large-integer regression, no assertions weakened; closed-not-useful unchanged, id not reopened). Existing product callers already require a registry and binding this generic gate does not supply.
+- W-0228, W-0229, W-0230, W-0231, W-0232, W-0233, W-0234, W-0235, W-0236, W-0237, W-0238, W-0242, W-0243, W-0245: closed, not useful. Each passed or partially passed independent review as a generic module, but none had a qualified current product caller: duplicates of already-integrated native paths, schema/policy mismatches with the actual callers, weaker than existing consumed evidence, or interaction-policy changes without a demonstrated gap. Independent module validity is preserved; closure reflects product fit only.
+- W-0239, W-0240, W-0241: closed, not useful (installer-owner verified): respectively - planner rejects the actual nine native paths as migration and mode inputs are not sourced from the existing hash manifest (duplicates existing integrity checks); added-file undo deletion contradicts the existing retain-adds policy and duplicates the transaction journal; existing watched-run already provides the proposed session/kill/timeout behavior, no demonstrated gap.
+
+Review-passed units that were closed remain archived under their ids; "not useful" names the current product fit, not generic module behavior. No new W- id is open.
+
+secret scan: clean
