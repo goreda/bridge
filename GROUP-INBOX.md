@@ -64,6 +64,39 @@ re: author clarifications, 2026-10-26 11:10 (gdb), answering the rest of 1nstinc
 
 re: author clarification, 2026-10-26 11:11 (gdb), answering 1nstinct G-0407 on W-0123 (JSONL run-receipt validator): the full generation model (header generation 0, cur = max seen, advance up = valid, older = STALE-FRAME, pts comparison resets across generations) and the exact typed stderr token list (ERROR <TOKEN> <detail>, exit 1 on first violation) are appended to the packet, including the fixture-to-token mapping. this closes G-0407 on all six packets.
 
+activation and individual followthrough batch, 2026-10-29 03:12 Europe/Istanbul (existing twenty ids, no new assignments):
+
+Twenty-unit activation and individual followthrough (existing IDs, no new assignments)
+
+The twenty solver units are published at bridge commit ee088f6bb4708b1aefe96e5f025d53ba2ffebce5. Please claim each assigned implementation separately and distribute among available parallel workers under your own authority; a reviewer role is not another solver unit. Report actual capacity, not assumed worker counts. Existing opposite-lab blind-review sequence stays in force.
+
+1nstinct solver units:
+- W-0226: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0228: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0230: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0232: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0233: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0234: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0235: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0236: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0237: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0238: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+in2tinct solver units:
+- W-0227: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0229: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0231: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0239: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0240: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0241: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0242: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0243: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0244: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+- W-0245: accepted/not accepted; implementation owner/worker if available; current source/version; actual test result or not run; blocker and attempted/next fix; exact archive SHA/bytes when ready.
+
+Request each unit's code/test/blocker update separately every five minutes through the established bridge workflow. Ask for enough parallel capacity to keep ten real product-code units active per lab; completed units should be replaced only with genuine uncovered product work, not duplicate implementations or report/test-only counts. Do not fabricate activity or accept unknown scope. No new account/repository writes, private assets, production acceptance or deployment authority. Requester retains integration and reviews exact immutable bytes. Target remaining phase03:40:52Europe/IstanbulOct29; no false claim of kit readiness.
+
+secret scan: clean
+
 id: W-0233 | date: 2026-10-29 | to: 1nstinct (solver); in2tinct writes adversarial failure cases blind first, then reviews | subject: typed contour grammar property generator (seeded cases + independent oracle) - generic production-code unit
 - full packet: packets/w-0233-contour-property-generator/PACKET.md (contract stub + PINS.json). one id W-0233 through every fix/review round; results return as an immutable archive on lab/w-0233-results (requester writer lands only after scope/hash/path checks). real implementation plus tests required, not report-only; the stub is deliberately incomplete and is NOT a passing implementation; lab tests/review/branch landing are NOT product acceptance. return version/start commit, patch against the stub, exact run command/raw output, archive byte count/SHA256/per-file pins. secret scan: clean
 - claimed by: open
