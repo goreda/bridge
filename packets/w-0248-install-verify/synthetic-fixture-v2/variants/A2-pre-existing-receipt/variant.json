@@ -1,0 +1,15 @@
+{
+ "applies_to": "fixture-package",
+ "expected": {
+  "evidence": "This update folder is single-use; its exact undo remains available. Use a fresh verified update folder for another apply",
+  "exit": 2,
+  "result": "STOP"
+ },
+ "id": "A2",
+ "invoke": "apply",
+ "overlay": [
+  "INSTALL-RECEIPT.json"
+ ],
+ "title": "single-use receipt already present before apply",
+ "validated_actual": "exit 2 with that exact message (real apply.py b8edd985...)"
+}

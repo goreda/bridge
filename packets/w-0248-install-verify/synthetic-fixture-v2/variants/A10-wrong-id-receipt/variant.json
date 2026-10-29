@@ -1,0 +1,16 @@
+{
+ "applies_to": "fixture-package",
+ "expected": {
+  "evidence": "undo reservation schema differs",
+  "exit": 2,
+  "result": "STOP"
+ },
+ "id": "A10",
+ "invoke": "undo",
+ "note": "the real 151c undo.py hardcodes its own package id; the shipped receipt carries the fixture id synthetic-OTHER-999 so any id-binding implementation refuses it",
+ "overlay": [
+  "INSTALL-RECEIPT.json"
+ ],
+ "title": "receipt update id differs from the package delta id (refused at the reservation schema gate)",
+ "validated_actual": "exit 2: Kit undo STOP: undo reservation schema differs (real undo.py 5fd0e298...; the id binding is enforced inside the reservation schema check, line: r.get(\"id\") != <package id> or malformed nonce)"
+}

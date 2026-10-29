@@ -1,0 +1,7 @@
+{
+ "id": "synthetic-9x-demo-001",
+ "note": "synthetic fixture qualify spec; mirrors real shape only",
+ "tests": [
+  "kni/tools/tests/test_demo.py"
+ ]
+}

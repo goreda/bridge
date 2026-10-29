@@ -1,0 +1,231 @@
+{
+ "base_trees": {
+  "fixture-package": "delta.json {id synthetic-9x-demo-001, adds_expected 1, edits_expected 3, mode_fix [DEMO.command]}; seal covers 8 files (every file except PACKAGE-SEAL.json); receipt excluded from the seal",
+  "qualified-root": "before-map pins KNI-VERSION.json and HASHES.json; READY placeholder __FIXTURE_ROOT__ rewritten by materialize.py; tx1 applied (nonce a1b2c3d4e5f60718293a4b5c6d7e8f90), tx2 undone (nonce ffeeddccbbaa99887766554433221100)"
+ },
+ "bindings": {
+  "B1": "demo qualification tool asserts the HASHES.json source_commit equals the payload kni/tools/demo_tool.py sha256 (exit 0/1/2); materialize.py + variant.json substitute for the frozen-B3 script",
+  "B2": "build and qualify hooks are external commands supplied by the driver under test; the fixture contract fixes the qualify candidate rule: candidate = every prior READY key preserved plus the changed marker, placed at $KNI_READY_CANDIDATE",
+  "B3": "kit build materialization = materialize.py overlay (documented substitute; labs may equivalently copy the trees by hand)",
+  "B4": "fail-closed rules identical to the real bootstrap: payload drift, count drift, mode_fix drift, alias, unreadable marker and incomplete transaction all STOP rc2; readable no-match undo is a safe no-op rc0",
+  "B5": "marker/journal/undo contents included in qualified-root/kni-bbu with exact nonces pre-declared here"
+ },
+ "check_order": "real apply order: apply.py verify() re-hashes every PACKAGE-SEAL.json-listed file FIRST (missing or changed sealed file = STOP rc2), then the bootstrap checks (payload drift, counts, mode_fix, alias, markers). Variants A1/A8/A9 ship a recomputed seal over the mutated package so the intended check is the one that fires.",
+ "content_rule": "synthetic only; no real kit bytes, fonts, user or machine data; paths and nonces are fixture values",
+ "created": "2026-10-29",
+ "files": {
+  "MODES.json": "e2bad57f8960be2784982af4858b54cc57dc933e02493ea3f8b5b84c1c0ff541",
+  "README.md": "60b62efc6d245edb8522f942e5d09ef6839edf9ea5dd911ca3382d8ea6e81cd1",
+  "fixture-package/PACKAGE-SEAL.json": "90e84418124658665fb5e9940044f169d17d1dc036e175c7f7b43739e7c8251f",
+  "fixture-package/README.txt": "e2ac8da6bbe0d008e828a63800a186bac9ee2d1ced3d23b7064583ebcc70d712",
+  "fixture-package/delta.json": "d711cb76b9f8f9813dcdaf5209e06888ace62b424d1c644c305e3ca23a752cf4",
+  "fixture-package/payload/HASHES.json": "dc8281316f9555121271a37b62ffc8b8daf1da47ffa46c953b3797c9c9024a77",
+  "fixture-package/payload/KNI-VERSION.json": "a981924555f027bbb895a463d98c99fb20164fb2feb60341401725c9022ab981",
+  "fixture-package/payload/kni/tools/demo_tool.py": "25658069928f4ae087c7978f4f064749a51098bbcf6b14aeca4b36a653e8387c",
+  "fixture-package/payload/kni/tools/tests/test_demo.py": "cb5955754e7793e6d4c2110f405745b98d037e6d1d2a44c0bdacfc8956ab6391",
+  "fixture-package/qualify-spec.json": "380d687fc9220a42448cacda4aac3541befc5aa06773e2a8ed36c6fd28b8c7f5",
+  "materialize.py": "3828e644c875f5590d027ec39e6e58f610ab5d2a886be51ffd9ca10a6e4c486e",
+  "qualified-root/DEMO.command": "1ad89c0d0d262032b6cfc483969fff527233af5ed6641e6879066a112c6a3d7a",
+  "qualified-root/HASHES.json": "887e74556e771987914a4107a8f919620cf5ea91c30bcde4c277970d1fab879e",
+  "qualified-root/KNI-READY.json": "19c99e6a1d6455d75b2087247edbb1f9c2f66d0119f4ef0dd0ef8ed34b7ee4e6",
+  "qualified-root/KNI-VERSION.json": "833969c832820c1348c1f502cff6d10974110556f3d98afc55e9ecf0d88ef53c",
+  "qualified-root/OTHER.command": "06ae4f0ca2b601ffe509d85cbf5c01c034975ec8ccc4c5b425d0830038da354a",
+  "qualified-root/instinct-runtime/venv/bin/python3": "eef03798c99e6863db83ae66981321c42867533ca48120e2961c87e399afe46a",
+  "qualified-root/kni-bbu/260101-120000-synthetic-demo-old/changed-only.json": "127f83962ba507fcc9a5b437d162f8e4e4ed98649d70fa1d059b0ad1d33e393f",
+  "qualified-root/kni-bbu/260101-120000-synthetic-demo-old/journal.json": "445bd20bc365d12858d2e074477e9018e041c80ee0fc826645516838d85a4713",
+  "qualified-root/kni-bbu/260102-120000-synthetic-demo-undone/changed-only.json": "0a456b745b9999e37baaf0b6f2396440d974af531b5e8efe9f06ad4d9219747e",
+  "qualified-root/kni-bbu/260102-120000-synthetic-demo-undone/journal.json": "1026a5593c3fa24ffa3cb0f49adcc55e8174084998960839a4368be1cc9cc9ca",
+  "qualified-root/kni-bbu/260102-120000-synthetic-demo-undone/undone.json": "27d8c332a20327134de55e7de5573bbaf2f85bc2269974621af2ab9d3aac7512",
+  "qualified-root/kni/tools/demo_tool.py": "ec1766068abe2d6f53def69d61961b0a27a0c5d698479f7a8be1e87782a7796e",
+  "variants/A1-flipped-payload-byte/PACKAGE-SEAL.json": "dd0009559f4e41870b532bcdfa48fa37e473fe0cbc24ed51f203d283e60ef278",
+  "variants/A1-flipped-payload-byte/payload/kni/tools/demo_tool.py": "c112794bc47f3412664148e26aab57042c861b232494096fae29bc0391883c04",
+  "variants/A1-flipped-payload-byte/variant.json": "245626f0f60bb05c4753cceaa79153f2b7d375178d1dba9300c6cc9f52540b26",
+  "variants/A10-wrong-id-receipt/INSTALL-RECEIPT.json": "6511ade054f48658030bacf7fecaaed1fe0cac68a0823ad0e4d34e60c9e717fe",
+  "variants/A10-wrong-id-receipt/variant.json": "350a7108d20807ed2c018119fb7ad6f1f93c046909e2a77281d4838a56d9493d",
+  "variants/A11-sealed-file-missing/variant.json": "04a1bd63e65128f84abbb2acf18878565c6e7257015f9ce1982b23a4a7767d6b",
+  "variants/A2-pre-existing-receipt/INSTALL-RECEIPT.json": "c263065dfd7287e718e2d943b00ac6eee4d61111f778d88d23446a214f7f43db",
+  "variants/A2-pre-existing-receipt/variant.json": "5bbbe991180d3ccdf0c31eee5b0fa46693f6270b18924bcb0dabac40e7a5e2e8",
+  "variants/A3-bad-receipt-schema/INSTALL-RECEIPT.json": "b02545e31f72894247773c592b98d67c2f045bc77c257e9b66e5a67f2febda71",
+  "variants/A3-bad-receipt-schema/variant.json": "d6187269264e68cc8edbadeacc2850c932a5fac30c4ebbcb466abd725852d561",
+  "variants/A4-symlinked-ancestor/variant.json": "d061327ce434756f0e98cf5ade851c52b39d19a63590099f9caef0edfc2f6a56",
+  "variants/A5-incomplete-transaction/kni-bbu/260103-120000-synthetic-stale/changed-only.json": "c862768bae021984fc79cb72cf9e49400ada2b862b93c92c23b01e08b2257b78",
+  "variants/A5-incomplete-transaction/kni-bbu/260103-120000-synthetic-stale/journal.json": "049b4a64249023ee07c10db94bca334c000eda2b726564d4c2b42eeeb1ee0512",
+  "variants/A5-incomplete-transaction/variant.json": "c2d5f66c62a1aa96898e266831e7177a1c9ddf7d62cbf89ffa32db1713f7effb",
+  "variants/A6-readable-no-match/INSTALL-RECEIPT.json": "dcc98ce90b82509fc31bc1a2027ca2e0848d75110944cdfe45f252a2767ad95b",
+  "variants/A6-readable-no-match/variant.json": "dbd2ee5b1531720502076d25e6e75e0d3048664568ee3d7f221661e75d71cfb3",
+  "variants/A7-unreadable-marker/kni-bbu/260104-120000-synthetic-stale/changed-only.json": "322d2438bce7c4edaa26642a23ada6ca8e77dbbe1d86e3f75ca0a8d1ab6ee84a",
+  "variants/A7-unreadable-marker/variant.json": "b3f712227a80e85bad60fe9231cbc9b98bd0c92e22c130e4c9d810d1a7fb1f79",
+  "variants/A8-count-mismatch/PACKAGE-SEAL.json": "ceb9a4178c92540c35a931b7ea5d35bfcc7174248e49c9e82ee9aee2a11663e7",
+  "variants/A8-count-mismatch/delta.json": "e720ef24526771b715f07527555f7c26bfc82c0cbd9c35f6a85cee3d97a022c4",
+  "variants/A8-count-mismatch/variant.json": "838177308c89481d37c4f5899eca2efa222765d3f69e732a4318684d55b45b10",
+  "variants/A9-modefix-mismatch/PACKAGE-SEAL.json": "42b3bfc9bfa132923d3e444523850103218e12ca6219b55ff94c368b39a14cc8",
+  "variants/A9-modefix-mismatch/delta.json": "5f2799a107b24108f6c1eebb7d42d128213f3bff95fed3f8553c6653dc512430",
+  "variants/A9-modefix-mismatch/variant.json": "c78eaaeb8debefdfbd9b9d716c655f684c8a92d1b1e11bf48a7f7844aac77b04"
+ },
+ "fixture_contract": "w-0248-synthetic-fixture-v2",
+ "happy_path": {
+  "apply": "exit 0; \"Changed-only update applied: 3 edits, 1 adds, 1 mode fixes.\"; transaction dir 26yymmdd-hhmmss-synthetic-9x-demo-001; READY re-pinned from candidate with all prior keys preserved plus last_update; DEMO.command mode 0755; tool VALUE = 2",
+  "undo": "exit 0 with the exact applied nonce; \"Changed-only update undone: before bytes, modes and KNI-READY restored; added files retained under the transaction dir.\"; tool VALUE = 1; DEMO.command 0644; added test retained under tx/retained-new/; journal phase undone + undone.json",
+  "validated_actual": "both executed 2026-10-29 by the requester against the real changed_only_update.py (pin below) with stub build/qualify hooks; all checks passed"
+ },
+ "modes": {
+  "file": "MODES.json",
+  "note": "git does not carry mode bits; materialize.py enforces MODES.json after copying (DEMO.command 0644 pre-fix, OTHER.command 0755, runtime venv python3 stub 0755)"
+ },
+ "placeholders": {
+  "__FIXTURE_ROOT__": "appears only in qualified-root/KNI-READY.json (and variant receipts); must be rewritten to the absolute materialized kit-root path before use"
+ },
+ "provenance": {
+  "real_code_pins": {
+   "apply.py": "b8edd9852f99d5779fa1dae5fc94850d6d1393952bd151f4bbd2b428de9ba92b",
+   "bootstrap changed_only_update.py": "99766a4a5015aeee3a382724027424c88477eeba9e49c3a67facda1916567015",
+   "native hooks + qualify spec + INSTALL-RECEIPT": "f2b505c8b7693aab6bd4e229c8220a45e052e8fca058f164dafb1c2d3431eaae",
+   "undo.py": "5fd0e298fdd35d495194d2a86174fb2cee121e033ce8801b150b44ff6f40420e"
+  },
+  "semantics_source": "goreda/kni db4a99c7 delivery/261029-143306-kni-151c (requester side)",
+  "validation": "happy-path apply+undo and all nine variant outcomes executed by the requester against the real pinned code in a requester-side sandbox on 2026-10-29; variant.json validated_actual fields record the observed messages"
+ },
+ "purpose": "Runnable synthetic fixture for W-0248 install/undo/verify verification: labs run their implementation under test against these trees and must reproduce the contracted outcomes.",
+ "receipt_id_binding": "the real 151c undo.py hardcodes its own package id inside the reservation schema check; the shipped variant receipts carry fixture ids (synthetic-9x-demo-001 / synthetic-OTHER-999). An implementation under test must bind receipts to the PACKAGE delta id. Requester-side validation of A2/A3/A6 ran with scratch receipts carrying the real id against the real pinned scripts; A10 demonstrates the id-binding refusal itself.",
+ "review_corrections": {
+  "D2": "A1/A8/A9 overlays now include a recomputed PACKAGE-SEAL.json; check order stated",
+  "D3": "MODES.json + materialize chmod (validated: happy modes OK)",
+  "D4": "README transaction names fixed to the actual dirs",
+  "D5": "materialize.py creates the A4 symlinked ancestor kit-link",
+  "D6": "acknowledged by design: real scripts are not shipped; validated_actual stays requester-reported",
+  "D7": "acknowledged: source_pin/based_on_kit are synthetic shapes",
+  "H-0449 D1": "A6 nonce corrected 34->32 hex"
+ },
+ "side": "requester (goreda)",
+ "supersedes": "w-0248-synthetic-fixture-v1 (bridge commit 430d46b48cca); v1 stays immutable history; v2 corrects the four reviewer-confirmed defects D1/D2/D3/D4 and answers D5, adds A10/A11",
+ "variants": {
+  "A1": {
+   "applies_to": "fixture-package",
+   "expected": {
+    "evidence": "payload differs: kni/tools/demo_tool.py",
+    "exit": 2,
+    "result": "STOP"
+   },
+   "invoke": "apply",
+   "seal_note": "overlay includes a recomputed PACKAGE-SEAL.json over the mutated package, so the seal gate passes and the intended check is what fires; the real apply order is seal first (apply.py verify), then the bootstrap checks",
+   "title": "payload byte differs from active manifest",
+   "validated_actual": "v2: overlay re-sealed (seal gate PASS via real apply.py verify), then bootstrap rc2 STOP: payload differs: kni/tools/demo_tool.py"
+  },
+  "A10": {
+   "applies_to": "fixture-package",
+   "expected": {
+    "evidence": "undo reservation schema differs",
+    "exit": 2,
+    "result": "STOP"
+   },
+   "invoke": "undo",
+   "note": "the real 151c undo.py hardcodes its own package id; the shipped receipt carries the fixture id synthetic-OTHER-999 so any id-binding implementation refuses it",
+   "title": "receipt update id differs from the package delta id (refused at the reservation schema gate)",
+   "validated_actual": "exit 2: Kit undo STOP: undo reservation schema differs (real undo.py 5fd0e298...; the id binding is enforced inside the reservation schema check, line: r.get(\"id\") != <package id> or malformed nonce)"
+  },
+  "A11": {
+   "applies_to": "fixture-package",
+   "expected": {
+    "evidence": "package changed: payload/kni/tools/demo_tool.py",
+    "exit": 2,
+    "result": "STOP"
+   },
+   "invoke": "apply",
+   "remove": [
+    "payload/kni/tools/demo_tool.py"
+   ],
+   "title": "a seal-listed package file is missing",
+   "validated_actual": "rc2 STOP: package changed: payload/kni/tools/demo_tool.py (real apply.py verify b8edd985...)"
+  },
+  "A2": {
+   "applies_to": "fixture-package",
+   "expected": {
+    "evidence": "This update folder is single-use; its exact undo remains available. Use a fresh verified update folder for another apply",
+    "exit": 2,
+    "result": "STOP"
+   },
+   "invoke": "apply",
+   "title": "single-use receipt already present before apply",
+   "validated_actual": "exit 2 with that exact message (real apply.py b8edd985...)"
+  },
+  "A3": {
+   "applies_to": "fixture-package",
+   "expected": {
+    "evidence": "undo reservation schema differs",
+    "exit": 2,
+    "result": "STOP"
+   },
+   "invoke": "undo",
+   "title": "undo reservation malformed (nonce not 32 hex)",
+   "validated_actual": "exit 2 with that exact message (real undo.py 5fd0e298...)"
+  },
+  "A4": {
+   "applies_to": "qualified-root",
+   "expected": {
+    "evidence": "alias refused: <path>/kni-bbu",
+    "exit": 2,
+    "result": "STOP"
+   },
+   "invoke": "apply with the kit root argument passed through a symlink path",
+   "title": "kit root reached through a symlinked ancestor",
+   "validated_actual": "rc2 STOP: alias refused"
+  },
+  "A5": {
+   "applies_to": "qualified-root",
+   "expected": {
+    "evidence": "incomplete or unsafe transaction 260103-120000-synthetic-stale",
+    "exit": 2,
+    "result": "STOP"
+   },
+   "invoke": "apply",
+   "title": "incomplete prior transaction blocks apply",
+   "validated_actual": "rc2 STOP with that message"
+  },
+  "A6": {
+   "applies_to": "fixture-package",
+   "expected": {
+    "evidence": "No transaction with this exact recovery nonce was created; this update made no kit changes.",
+    "exit": 0,
+    "result": "SAFE NO-OP"
+   },
+   "invoke": "undo",
+   "title": "undo query nonce absent; every marker readable",
+   "validated_actual": "v2: nonce corrected to 32 hex (de x 16); bootstrap find_tx_by_nonce -> None (safe no-op exit 0); v1 shipped a 34-char nonce (defect, corrected)"
+  },
+  "A7": {
+   "applies_to": "qualified-root",
+   "expected": {
+    "evidence": "unreadable changed-only marker in 260104-120000-synthetic-stale; treat as incomplete and stop",
+    "exit": 2,
+    "result": "STOP"
+   },
+   "invoke": "any marker scan (apply or undo)",
+   "title": "unreadable changed-only marker fails closed",
+   "validated_actual": "rc2 STOP with that message"
+  },
+  "A8": {
+   "applies_to": "fixture-package",
+   "expected": {
+    "evidence": "adds_expected 2 differs from derived 1",
+    "exit": 2,
+    "result": "STOP"
+   },
+   "invoke": "apply",
+   "seal_note": "overlay includes a recomputed PACKAGE-SEAL.json over the mutated package, so the seal gate passes and the intended check is what fires; the real apply order is seal first (apply.py verify), then the bootstrap checks",
+   "title": "declared adds_expected differs from derived",
+   "validated_actual": "v2: overlay re-sealed (seal PASS), then bootstrap rc2 STOP: adds_expected 2 differs from derived 1"
+  },
+  "A9": {
+   "applies_to": "fixture-package",
+   "expected": {
+    "evidence": "active .command set differs from the declared mode_fix list: unexpected ['DEMO.command']; missing ['OTHER.command']",
+    "exit": 2,
+    "result": "STOP"
+   },
+   "invoke": "apply",
+   "seal_note": "overlay includes a recomputed PACKAGE-SEAL.json over the mutated package, so the seal gate passes and the intended check is what fires; the real apply order is seal first (apply.py verify), then the bootstrap checks",
+   "title": "declared mode_fix list differs from active non-0755 .command set",
+   "validated_actual": "v2: overlay re-sealed (seal PASS), then bootstrap rc2 STOP: active .command set differs from the declared mode_fix list: unexpected ['DEMO.command']; missing ['OTHER.command']"
+  }
+ }
+}

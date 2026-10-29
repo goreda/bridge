@@ -1,0 +1,15 @@
+{
+ "adds": [],
+ "after": {
+  "KNI-VERSION.json": "833969c832820c1348c1f502cff6d10974110556f3d98afc55e9ecf0d88ef53c"
+ },
+ "before": {},
+ "edits": [
+  "KNI-VERSION.json"
+ ],
+ "id": "synthetic-demo-undone",
+ "modefix": [],
+ "modes": {},
+ "nonce": "ffeeddccbbaa99887766554433221100",
+ "ready_before": "19c99e6a1d6455d75b2087247edbb1f9c2f66d0119f4ef0dd0ef8ed34b7ee4e6"
+}
