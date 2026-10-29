@@ -1,0 +1,11 @@
+{
+ "files": {
+  "DEMO.command": "1ad89c0d0d262032b6cfc483969fff527233af5ed6641e6879066a112c6a3d7a",
+  "HASHES.json": "manifest records every kit file except its own self-hash",
+  "KNI-READY.json": "19c99e6a1d6455d75b2087247edbb1f9c2f66d0119f4ef0dd0ef8ed34b7ee4e6",
+  "KNI-VERSION.json": "833969c832820c1348c1f502cff6d10974110556f3d98afc55e9ecf0d88ef53c",
+  "OTHER.command": "06ae4f0ca2b601ffe509d85cbf5c01c034975ec8ccc4c5b425d0830038da354a",
+  "kni/tools/demo_tool.py": "ec1766068abe2d6f53def69d61961b0a27a0c5d698479f7a8be1e87782a7796e"
+ },
+ "source_commit": "syntheticcommit0000000000000000000000000000aa"
+}

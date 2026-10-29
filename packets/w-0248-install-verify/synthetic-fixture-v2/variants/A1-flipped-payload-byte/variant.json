@@ -1,0 +1,17 @@
+{
+ "applies_to": "fixture-package",
+ "expected": {
+  "evidence": "payload differs: kni/tools/demo_tool.py",
+  "exit": 2,
+  "result": "STOP"
+ },
+ "id": "A1",
+ "invoke": "apply",
+ "overlay": [
+  "payload/kni/tools/demo_tool.py",
+  "PACKAGE-SEAL.json"
+ ],
+ "seal_note": "overlay includes a recomputed PACKAGE-SEAL.json over the mutated package, so the seal gate passes and the intended check is what fires; the real apply order is seal first (apply.py verify), then the bootstrap checks",
+ "title": "payload byte differs from active manifest",
+ "validated_actual": "v2: overlay re-sealed (seal gate PASS via real apply.py verify), then bootstrap rc2 STOP: payload differs: kni/tools/demo_tool.py"
+}

@@ -1,0 +1,15 @@
+{
+ "applies_to": "fixture-package",
+ "expected": {
+  "evidence": "undo reservation schema differs",
+  "exit": 2,
+  "result": "STOP"
+ },
+ "id": "A3",
+ "invoke": "undo",
+ "overlay": [
+  "INSTALL-RECEIPT.json"
+ ],
+ "title": "undo reservation malformed (nonce not 32 hex)",
+ "validated_actual": "exit 2 with that exact message (real undo.py 5fd0e298...)"
+}

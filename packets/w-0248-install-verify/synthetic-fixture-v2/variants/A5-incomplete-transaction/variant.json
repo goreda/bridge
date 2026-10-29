@@ -1,0 +1,16 @@
+{
+ "applies_to": "qualified-root",
+ "expected": {
+  "evidence": "incomplete or unsafe transaction 260103-120000-synthetic-stale",
+  "exit": 2,
+  "result": "STOP"
+ },
+ "id": "A5",
+ "invoke": "apply",
+ "overlay": [
+  "kni-bbu/260103-120000-synthetic-stale/changed-only.json",
+  "kni-bbu/260103-120000-synthetic-stale/journal.json"
+ ],
+ "title": "incomplete prior transaction blocks apply",
+ "validated_actual": "rc2 STOP with that message"
+}
