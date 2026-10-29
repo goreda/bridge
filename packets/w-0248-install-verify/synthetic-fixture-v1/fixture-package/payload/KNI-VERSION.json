@@ -1,0 +1,6 @@
+{
+ "based_on_kit": "synthetic-9x-base-001",
+ "change_description": "synthetic demo tools-only update",
+ "kit_label": "synthetic-9x-demo-001",
+ "source_pin": "s0urcepin0000000000000000000000000000000000000000000000000000aa"
+}
