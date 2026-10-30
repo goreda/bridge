@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="640" height="320">
+<!-- hand-authored: group transform + clipPath + arc curve -->
+<g transform="translate(30,40) scale(0.9)">
+ <path d="M0 240 L0 0 L50 0 L50 240 Z" fill="black"/>
+ <circle cx="25" cy="-40" r="22" fill="black"/>
+</g>
+<g clip-path="url(#c1)">
+ <path d="M300 280 L300 40 L420 40 L420 280 Z" fill="black"/>
+</g>
+<defs><clipPath id="c1"><rect x="300" y="40" width="60" height="240"/></clipPath></defs>
+<path d="M460 260 C 460 160 560 160 560 260" stroke="black" stroke-width="30" fill="none"/>
+</svg>
