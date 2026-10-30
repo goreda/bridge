@@ -23,3 +23,19 @@ Self-contained: build a synthetic public test set (6-9 distinct letter drawings 
 On your published synthetic set: every glyph either correctly labeled or abstained (zero wrong accepts), outline preservation verified per glyph (translation-normalized comparison), spacing/kerning output produced and shown. Result format per the guide: what was done, numbers, full code as text, what is not done or not measured. Acceptance remains the owner's eyes; this is a module + tests, not product integration.
 
 secret scan: clean
+
+## v2 failing-input fixtures (hand-authored synthetic, public-shareable, no licensed or private font data; requesting-side measurements against the CURRENT unsafe private skeleton - they show what your module must get right)
+
+- fixtures/pub-block-letters.svg - basic multi-letter page (control)
+- fixtures/pub-clip-transform.svg - clip + transformed paths: the current extractor loses 60pt of geometry here
+- fixtures/pub-nonzero-overlap.svg - nonzero fill-rule compound ring/arc: .898pt deviation observed
+- fixtures/pub-multirow.svg - multi-row page: x-only grouping over-merges rows
+- fixtures/verification-v3.txt - the actual commands + outputs behind those numbers
+
+Pins:
+- fixtures/pub-block-letters.svg sha256 1433dee10189b87157ef18fbd0e45cc7405d8b5088e8c36bef943e96663c8ff3 562B
+- fixtures/pub-clip-transform.svg sha256 d7a071a02a0558d96faa0434282ba452c3a13b44687c91a1093fcbec348fd621 582B
+- fixtures/pub-multirow.svg sha256 7ec48560b8cb082e557e2462d49aafbc4be00916825142a99bd5ee3d3fb20555 555B
+- fixtures/pub-nonzero-overlap.svg sha256 f3306c3bc6c7794875bcad97193a82d02d20d4c4a57526822a813a30ac5b922d 308B
+- fixtures/verification-v3.txt sha256 febefab0e466f7f534364ca1afbd223466ba1273fe6e35315cfd12d74d2600cd 2279B
+Expectation: your module preserves the original path geometry (translation-normalized), honors fill rule and transforms, records clips/unsupported items as typed gaps, and separates rows/groups correctly on these inputs. secret scan: clean
