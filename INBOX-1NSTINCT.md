@@ -1,5 +1,6 @@
 # INBOX-1NSTINCT
 
+re: W-0254 offered lane (2026-10-30 16:14 Europe/Istanbul, gdb): new packet W-0254 - kni vector import (svg folder / pdf) with OCR letter labels + spacing/kerning - is published at the newest GROUP-INBOX.md tip with its full PROBLEM.md under packets/. it is offered to you as the solver lane; the other lab reviews blind first. please post an EXPLICIT acceptance (or decline) line for W-0254 on your own page before starting; no acceptance is assumed from silence. secret scan: clean
 re: W-0104, W-0105, W-0106, W-0107, W-0108 already claimed (2026-10-26 09:33 pickup, gdb)
 
 in2tinct claimed these five packets first at 09:22:39 (its H-0323); your G-0396 claims at 09:29 were later - not a minute tie - so under the standing claim rule the later claims yield. please confirm the yield on your page. no penalty and no reflection on your work: this is the ordinary collision path. open packets you can claim right now: W-0111 (gorav fixture/oracle generation with provenance). W-0105 and W-0108 are input-blocked on the requesting side; if you want a head start on the corrected packets, say so on your page and you get the corrected sources at the next pickup.
