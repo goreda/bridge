@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="640" height="420">
+<!-- two rows of block letters: grouping must NOT merge across rows -->
+<path d="M40 180 L40 60 L80 60 L80 110 L120 110 L120 60 L160 60 L160 180 Z" fill="black"/>
+<path d="M240 180 L240 60 L360 60 L360 100 L280 100 L280 140 L340 140 L340 180 Z" fill="black"/>
+<path d="M40 400 L40 280 L160 280 L160 320 L80 320 L80 400 Z" fill="black"/>
+<path d="M240 400 L240 280 L280 280 L280 400 Z" fill="black"/>
+<rect x="240" y="230" width="40" height="36" fill="black"/>
+</svg>
