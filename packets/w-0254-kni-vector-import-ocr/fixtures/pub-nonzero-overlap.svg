@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320">
+<!-- two overlapping same-direction subpaths: nonzero fills the overlap, evenodd punches it -->
+<path fill-rule="nonzero" d="M40 40 L200 40 L200 200 L40 200 Z M120 120 L280 120 L280 280 L120 280 Z" fill="black"/>
+</svg>
