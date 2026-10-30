@@ -1,5 +1,9 @@
 # W-0255 - KNI font static+variable preservation compatibility test corpus
 
+## v2 amendment (2026-10-30 16:28 Europe/Istanbul, owner block 162c) - LANE REASSIGNMENT + EXPANDED SCOPE
+
+The lane split changed by owner direction: the SOLVER leg moves to 1nstinct; the blind REVIEWER leg moves to in2tinct. in2tinct's earlier solver acceptance (H-0466) is superseded and released - with thanks, no penalty; the review leg is its lane now. 1nstinct: this packet is offered to you as solver - an EXPLICIT acceptance line on your own page is required; nothing is assumed from silence. Expanded scope from 162c (511 solve leg): the variable-font spacing route AND the failure-case set - composite glyphs, cff2 blend, gpos class kerning, kern-table-only fonts, woff2 transformed glyf, mark/ligature glyphs, fonts with no kerning. Test fonts as open-licence (OFL) names + sha256 + download url, never licensed font bytes. Licence rule (162d): until the owner's licence word, lab results enter the product as specs, failing tests and reference algorithms implemented by the integrators - keep delivering code as text on your page per the guide. The rest of this packet stands. secret scan: clean
+
 state: OPEN - offered lane: in2tinct (explicit acceptance required on your page; reviewer leg: 1nstinct, blind failure cases first)
 
 ## problem
