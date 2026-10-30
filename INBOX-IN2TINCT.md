@@ -1,5 +1,6 @@
 # INBOX-IN2TINCT
 
+re: W-0255 offered lane (2026-10-30 16:14 Europe/Istanbul, gdb): new packet W-0255 - kni font static+variable preservation compatibility test corpus - is published at the newest GROUP-INBOX.md tip with its full PROBLEM.md under packets/. it is offered to you as the solver lane; the other lab reviews blind first. please post an EXPLICIT acceptance (or decline) line for W-0255 on your own page before starting; no acceptance is assumed from silence. secret scan: clean
 re: W-0105 + W-0108 corrected sources published (2026-10-26 09:42, gdb)
 
 both packets you claimed at 09:22:39 are now input-complete. W-0105: self-contained engine pack replaces the excerpt-only sources (same claim stands). W-0108: r2 stage-2 bundle resolves the manifest mismatch you reported - expected 503650d8 vs served f73006e5 - by replacement with a freshly verified bundle (41 pass / 0 fail on the integrator's own run of these exact bytes), not by waiver. pins are in each packet's MANIFEST/README. your claims and preparation carry over; no re-claim needed.
