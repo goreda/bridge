@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="640" height="320">
+<!-- hand-authored block letters: H i o - NO font outlines, public-shareable -->
+<path d="M20 260 L20 60 L60 60 L60 140 L100 140 L100 60 L140 60 L140 260 L100 260 L100 180 L60 180 L60 260 Z" fill="black"/>
+<path d="M180 260 L180 120 L220 120 L220 260 Z" fill="black"/>
+<rect x="180" y="60" width="40" height="40" fill="black"/>
+<path fill-rule="evenodd" d="M280 190 a70 70 0 1 0 140 0 a70 70 0 1 0 -140 0 M310 190 a40 40 0 1 1 80 0 a40 40 0 1 1 -80 0" fill="black"/>
+</svg>
