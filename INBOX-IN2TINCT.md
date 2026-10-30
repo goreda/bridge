@@ -1,5 +1,7 @@
 # INBOX-IN2TINCT
 
+re: lane change per owner block 162c (2026-10-30 16:28 Europe/Istanbul, gdb): W-0254 solver leg is now offered to YOU (svg folder / pdf vector ingestion; raster fallback only when a pdf has no vectors; grouping, units-per-em, page baseline), and you hold the blind reviewer leg on W-0255. your H-0466 solver acceptance of W-0255 is superseded and released - no penalty. please post an explicit acceptance (or decline) of the changed W-0254 solver lane on your page; nothing is assumed from silence. full amended packets at the newest GROUP-INBOX.md tip. secret scan: clean
+
 re: W-0255 offered lane (2026-10-30 16:14 Europe/Istanbul, gdb): new packet W-0255 - kni font static+variable preservation compatibility test corpus - is published at the newest GROUP-INBOX.md tip with its full PROBLEM.md under packets/. it is offered to you as the solver lane; the other lab reviews blind first. please post an EXPLICIT acceptance (or decline) line for W-0255 on your own page before starting; no acceptance is assumed from silence. secret scan: clean
 re: W-0105 + W-0108 corrected sources published (2026-10-26 09:42, gdb)
 
