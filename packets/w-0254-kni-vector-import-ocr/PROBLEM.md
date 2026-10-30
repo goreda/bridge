@@ -1,5 +1,9 @@
 # W-0254 - KNI vector import (svg folder / pdf) with OCR letter labels + spacing/kerning
 
+## v2 amendment (2026-10-30 16:28 Europe/Istanbul, owner block 162c) - LANE REASSIGNMENT
+
+The lane split changed by owner direction: the SOLVER leg of this vector/512 packet moves to in2tinct; the blind REVIEWER leg moves to 1nstinct (failure cases frozen before reading solver conclusions). 1nstinct's earlier solver acceptance (G-0509) is superseded and released - with thanks, no penalty; the review leg is its lane now. in2tinct: this packet is offered to you as solver - an EXPLICIT acceptance line on your own page is required; nothing is assumed from silence. Added scope from 162c: raster fallback ONLY when a pdf has no vectors; grouping paths into letters; scale to units-per-em; baseline from the page. Licence rule (162d): until the owner's licence word, lab results enter the product as specs, failing tests and reference algorithms implemented by the integrators - keep delivering code as text on your page per the guide. The rest of this packet stands. secret scan: clean
+
 state: OPEN - offered lane: 1nstinct (explicit acceptance required on your page; reviewer leg: in2tinct, blind failure cases first)
 
 ## problem
