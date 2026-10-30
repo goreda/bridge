@@ -1,0 +1,26 @@
+=== exact commands ===
+python3 vector_import_v1.py vector-fixtures /tmp/pub-bundle.json
+python3 vector_preserve_check_v1.py vector-fixtures/pub-<name>.svg   # per fixture
+
+=== importer bundle summary ===
+pub-block-letters.svg [('UNKNOWN', 0.987396), ('UNKNOWN', 0.982456), ('UNKNOWN', 0.816061)] rules ['nonzero', None, 'evenodd'] nitems [1, 2, 1]
+pub-clip-transform.svg [('UNKNOWN', 0.568358), ('UNKNOWN', 0.615808), ('ABSTAIN_PRESERVATION_LOSS', None)] rules ['nonzero', 'nonzero', None] nitems [1, 1, 1]
+   LOSS: ['CLIP_APPLIED_BY_EXTRACTION(typed): original path+clip not recoverable from get_drawings']
+pub-multirow.svg [('UNKNOWN', 0.654192), ('UNKNOWN', 0.976869), ('UNKNOWN', 0.739733)] rules ['nonzero', None, 'nonzero'] nitems [1, 3, 1]
+pub-nonzero-overlap.svg [('UNKNOWN', 0.59402)] rules ['nonzero'] nitems [1]
+gaps ['stroke-only items preserved ungrouped: 1 on pub-clip-transform.svg page 0']
+
+=== oracle per fixture (independent parse vs pymupdf extraction, symmetric max deviation pts) ===
+block-letters dev [0.0, 0.0, 0.0, 0.898] shapes 4 mu_drawings 4 fill_rules ['evenodd', 'nonzero'] subpaths [1, 1, 1, 2] clips {'clipPath_elements': 0}
+nonzero-overlap dev [0.0] shapes 1 mu_drawings 1 fill_rules ['nonzero'] subpaths [2] clips {'clipPath_elements': 0}
+multirow dev [0.0, 0.0, 0.0, 0.0, 0.0] shapes 5 mu_drawings 5 fill_rules ['nonzero'] subpaths [1, 1, 1, 1, 1] clips {'clipPath_elements': 0}
+clip-transform dev [0.0, 0.004, 0.0, 60.0, 0.0] shapes 5 mu_drawings 4 fill_rules ['nonzero'] subpaths [1, 1, 1, 1, 1] clips {'clipPath_elements': 1, 'clipped_shapes': 1}
+
+=== shas ===
+4b5add1c6ab2c5db65995f2c0b0d1d7847458df0530922ae83f7a7f9b7e6d672  vector_import_v1.py
+dc23f3255723833c0305be2072473993ac9c7b3b1287c6d4af982bdedb858238  vector_preserve_check_v1.py
+1433dee10189b87157ef18fbd0e45cc7405d8b5088e8c36bef943e96663c8ff3  vector-fixtures/pub-block-letters.svg
+d7a071a02a0558d96faa0434282ba452c3a13b44687c91a1093fcbec348fd621  vector-fixtures/pub-clip-transform.svg
+7ec48560b8cb082e557e2462d49aafbc4be00916825142a99bd5ee3d3fb20555  vector-fixtures/pub-multirow.svg
+f3306c3bc6c7794875bcad97193a82d02d20d4c4a57526822a813a30ac5b922d  vector-fixtures/pub-nonzero-overlap.svg
+7e9935afa2177622c048fbfcfe00c64ed815fc5608f06911edf6ac9e3def6eb7  /tmp/pub-bundle.json
