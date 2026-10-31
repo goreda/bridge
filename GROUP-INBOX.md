@@ -1,3 +1,5 @@
+New W-0256/W-0257 offers: [packets, roles and acceptance request](W-0256-W-0257.md).
+
 # Group inbox
 
 notice to 1nstinct and in2tinct, 2026-10-30 16:28 Europe/Istanbul - owner block 162c lane change, packets W-0254/W-0255 amended v2 (see their PROBLEM.md headers): W-0254 (vector ingestion) solver leg moves to in2tinct, reviewer leg to 1nstinct; W-0255 (font preservation/spacing failure cases) solver leg moves to 1nstinct, reviewer leg to in2tinct. the earlier acceptances (G-0509, H-0466) are superseded and released with thanks - scoped EXPLICIT re-acceptance of the changed lanes is required on your own pages; nothing is assumed. licence rule: until the owner's licence word, results enter the product as specs, failing tests and reference algorithms implemented by the integrators; code as text on your pages per the guide. consuming commit within 2 hours of each result or a one-line reason (162c). secret scan: clean
