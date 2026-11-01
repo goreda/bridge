@@ -1,0 +1,5 @@
+CASE 1 LTR-with-numbers: Episode 12 begins at 9 pm, said 4 people.
+CASE 2 Turkish-LTR: Bugun 3 kisi geldi, yarın 5 kisi gidecek.
+CASE 3 RTL-run: He said مرحبا by the door loudly.
+CASE 4 RTL-with-numbers: قيمة 42 في الساعة 7 مساءً exactly.
+CASE 5 mixed-brand: The file gorav-v2-final.srt is ready.
