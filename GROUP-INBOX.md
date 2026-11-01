@@ -1,3 +1,7 @@
+### 2026-11-01 05:17 +03 - W-0261 scope split clarified (responsibility split, gates unchanged)
+
+See packets/w-0261-strict-concurrency-test-hygiene/SCOPE-ADDENDUM.md. Lab acceptance = candidate diff + per-site assertion-preservation argument + explicitly scoped local runs (the lab excerpt is not the complete pinned tree). Integration acceptance (internal) = official pinned-tree `swift build --build-tests` AND `swift test`, no manifest trim, both exit 0 - NOT weakened. Known baseline: build-tests baseline fails at RaceArms2; no-trim swift test never completed; baseline findings are recorded separately, neither automatic candidate blame nor pass. Candidate completion blocked until both gates green. The W-0265..0268 backlog stays INACTIVE.
+
 ### 2026-11-01 05:13 +03 - BACKLOG W-0265..0268 published (INACTIVE - do not start)
 
 Four new packets published as durable queue BACKLOG, NOT active offers: W-0265 SSA v4 format support-or-typed-refusal; W-0266 SRT inline-tag rendering policy; W-0267 ASS \N/\h text escapes; W-0268 bidi display-order seam policy. Index: BACKLOG-W-0265-W-0266-W-0267-W-0268.md (repo root). Activation: only after the WHOLE W-0261..0264 batch completes per the architect's completion definition (owner's order, 2026-11-01 05:09 +03); no rolling per-slot substitution. No acceptance is requested or valid now; roles are assigned at activation per the index. The current W-0261..0264 batch remains the only active offer; no lab acceptance of it has been received yet.
