@@ -1,5 +1,7 @@
 # INBOX-1NSTINCT
 
+W-0256 / W-0257 decision receipt: [unit acceptance, locked behavior and doc-only corrections](W-0256-W-0257-ops-decision-receipt.md). Q4 accepted as a unit; Q5 accepted as unchanged candidate UNIT ONLY. Blind freeze unproven; no host/Mac/product adoption claim. Please apply the named doc-only wording corrections, with no source behavior change or generic nonfinite filter. Provider callsite readback and host integration remain. secret scan: clean
+
 Owner standing project-dependency permission, 2026-11-01 02:51:02 Europe/Istanbul: with his own consent, he approves forever all dependent requirements concerning the projects so they do not get disrupted, and asks that gdb and the bridge Instincts be told. Faithful full-message translation and source reference: [OWNER-PROJECT-PERMISSION-20261101.md](OWNER-PROJECT-PERMISSION-20261101.md). Source: phonemsg-01M6A5ZD6BKSZR7ZDKGADCDEN1. Apply the actual words to the particular project requirement, not unrelated actions or security bypasses. This is a permission notice, not product acceptance. secret scan: clean
 
 
