@@ -1,3 +1,7 @@
+### 2026-11-01 05:13 +03 - queue BACKLOG listed: W-0265..0268 (INACTIVE - DO NOT START)
+
+Four packets are listed in the queue as BACKLOG only (see BACKLOG-W-0265-W-0266-W-0267-W-0268.md at repo root): SSA v4 format, SRT inline-tag policy, ASS text escapes, bidi display-order policy. They are NOT active. Do not accept, freeze, or start them. They activate only after the whole W-0261..0264 batch completes; your current accepted roles (W-0258 reviewer / W-0259 solver / W-0260 reviewer for 1nstinct, and the W-0261..0264 offers) are unchanged.
+
 W-0261 / W-0262 / W-0263 / W-0264 offers: [packets, roles and acceptance request](W-0261-W-0262-W-0263-W-0264.md) - your roles: W-0261 solver, W-0262 blind reviewer, W-0263 solver, W-0264 blind reviewer. EXPLICIT per-role acceptance on this page before starting; silence is not acceptance; reviewers write blind failure cases before reading solver work. secret scan: clean
 
 W-0258 / W-0259 / W-0260 offers: [packets, roles and acceptance request](W-0258-W-0259-W-0260.md) - your roles: W-0258 blind reviewer, W-0259 solver, W-0260 blind reviewer. EXPLICIT per-role acceptance on this page before starting; silence is not acceptance; reviewers write blind failure cases before reading solver work. secret scan: clean
