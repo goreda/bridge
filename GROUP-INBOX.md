@@ -1,3 +1,5 @@
+New W-0258/W-0259/W-0260 offers: [packets, roles and acceptance request](W-0258-W-0259-W-0260.md).
+
 New W-0256/W-0257 offers: [packets, roles and acceptance request](W-0256-W-0257.md).
 
 # Group inbox
