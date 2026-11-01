@@ -1,0 +1,28 @@
+120:error: emit-module command failed with exit code 1 (use -v to see invocation)
+122:Sources/race-witness-tests/RaceArms2.swift:603:12: error: mutation of captured var 'statsA' in concurrently-executing code
+125:Sources/race-witness-tests/RaceArms2.swift:625:12: error: mutation of captured var 'statsB' in concurrently-executing code
+129:Sources/race-witness-tests/RaceArms2.swift:231:12: error: mutation of captured var 'statsA' in concurrently-executing code
+132:Sources/race-witness-tests/RaceArms2.swift:235:12: error: mutation of captured var 'ackA' in concurrently-executing code
+135:Sources/race-witness-tests/RaceArms2.swift:270:71: error: mutation of captured var 'statsB' in concurrently-executing code
+138:Sources/race-witness-tests/RaceArms2.swift:369:12: error: mutation of captured var 'ackA' in concurrently-executing code
+141:Sources/race-witness-tests/RaceArms2.swift:377:12: error: mutation of captured var 'statsA' in concurrently-executing code
+144:Sources/race-witness-tests/RaceArms2.swift:397:12: error: mutation of captured var 'ackB' in concurrently-executing code
+147:Sources/race-witness-tests/RaceArms2.swift:404:12: error: mutation of captured var 'statsB' in concurrently-executing code
+150:Sources/race-witness-tests/RaceArms2.swift:420:12: error: mutation of captured var 'ackC' in concurrently-executing code
+153:Sources/race-witness-tests/RaceArms2.swift:432:12: error: mutation of captured var 'ackD1' in concurrently-executing code
+156:Sources/race-witness-tests/RaceArms2.swift:434:12: error: mutation of captured var 'ackD2' in concurrently-executing code
+159:Sources/race-witness-tests/RaceArms2.swift:453:12: error: mutation of captured var 'statsE' in concurrently-executing code
+162:Sources/race-witness-tests/RaceArms2.swift:457:12: error: mutation of captured var 'ackE' in concurrently-executing code
+165:Sources/race-witness-tests/RaceArms2.swift:527:29: error: mutation of captured var 'pulled' in concurrently-executing code
+168:Sources/race-witness-tests/RaceArms2.swift:542:12: error: mutation of captured var 'barrier' in concurrently-executing code
+171:Sources/race-witness-tests/RaceArms2.swift:551:29: error: mutation of captured var 'pulledB' in concurrently-executing code
+174:Sources/race-witness-tests/RaceArms2.swift:568:12: error: mutation of captured var 'statsC' in concurrently-executing code
+177:Sources/race-witness-tests/RaceArms2.swift:603:12: error: mutation of captured var 'statsA' in concurrently-executing code
+180:Sources/race-witness-tests/RaceArms2.swift:625:12: error: mutation of captured var 'statsB' in concurrently-executing code
+200:Sources/race-witness-tests/main.swift:597:49: error: reference to captured var 't' in concurrently-executing code
+203:Sources/race-witness-tests/main.swift:603:49: error: reference to captured var 't' in concurrently-executing code
+206:Sources/race-witness-tests/main.swift:606:63: error: reference to captured var 'bad' in concurrently-executing code
+209:Sources/race-witness-tests/main.swift:748:12: error: mutation of captured var 'statsBox' in concurrently-executing code
+212:Sources/race-witness-tests/main.swift:763:12: error: mutation of captured var 'statsBox2' in concurrently-executing code
+215:Sources/race-witness-tests/main.swift:786:12: error: mutation of captured var 'statsBox3' in concurrently-executing code
+218:error: fatalError
