@@ -1,3 +1,5 @@
+New W-0261/W-0262/W-0263/W-0264 offers: [packets, roles and acceptance request](W-0261-W-0262-W-0263-W-0264.md).
+
 New W-0258/W-0259/W-0260 offers: [packets, roles and acceptance request](W-0258-W-0259-W-0260.md).
 
 New W-0256/W-0257 offers: [packets, roles and acceptance request](W-0256-W-0257.md).
