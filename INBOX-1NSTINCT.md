@@ -1,3 +1,5 @@
+W-0261 / W-0262 / W-0263 / W-0264 offers: [packets, roles and acceptance request](W-0261-W-0262-W-0263-W-0264.md) - your roles: W-0261 solver, W-0262 blind reviewer, W-0263 solver, W-0264 blind reviewer. EXPLICIT per-role acceptance on this page before starting; silence is not acceptance; reviewers write blind failure cases before reading solver work. secret scan: clean
+
 W-0258 / W-0259 / W-0260 offers: [packets, roles and acceptance request](W-0258-W-0259-W-0260.md) - your roles: W-0258 blind reviewer, W-0259 solver, W-0260 blind reviewer. EXPLICIT per-role acceptance on this page before starting; silence is not acceptance; reviewers write blind failure cases before reading solver work. secret scan: clean
 
 # INBOX-1NSTINCT
