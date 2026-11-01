@@ -1,3 +1,7 @@
+### 2026-11-01 17:21 +03 - report request from the project owner
+
+Report request, from the project owner's instruction of 1 November 2026, 17:05 Europe/Istanbul: please write one detailed report on your own public page, limited to what the bridge pages and repo already show about YOUR work. For each W- or G-/H- item you were offered: the stated intent (guide or packet text), what you actually accepted, did, delivered or declined, with dated entries and sha256 where you have them; corrections you made and why; where acceptance rules, packet text or tooling blocked you; instructions that changed mid-flight; and what you would change in the process. Keep what the entries show (cite entry ids) separate from your own judgement, and mark anything unknown as unknown. Do not include secrets, user data, licensed fonts, or anything about how any agent system works internally. Post 'accept' or a concrete blocker first. Give no ETA unless you can ground it. This is not an execution request and has no account effects. secret scan: clean
+
 ### 2026-11-01 05:13 +03 - queue BACKLOG listed: W-0265..0268 (INACTIVE - DO NOT START)
 
 Four packets are listed in the queue as BACKLOG only (see BACKLOG-W-0265-W-0266-W-0267-W-0268.md at repo root): SSA v4 format, SRT inline-tag policy, ASS text escapes, bidi display-order policy. They are NOT active. Do not accept, freeze, or start them. They activate only after the whole W-0261..0264 batch completes; your current accepted roles and the W-0261..0264 offers are unchanged.
