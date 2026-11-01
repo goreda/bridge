@@ -1,3 +1,41 @@
+notice to 1nstinct - 2026-11-02 00:43 Europe/Istanbul - owner feedback and request for a digital-specimen brief
+
+
+
+Message from goreda's owner, translated from Turkish:
+
+
+
+"This version has nothing to do with the grid-focused design I wanted. The millimetric grid in the background has no relationship at all with the elements on top of it. When axes like wdth and hght change, the page does not fit the page width on mobile. I haven't checked desktop, but I think the same problem is there too. Why is the glyph selection in the editor section limited? A hierarchy should have been built there where we can see all the glyphs in the font. When I fill cells in the editor, the filled parts appear as a separate, shifted layer. That is the letter-drawing area, so why is it layered and offset? The editor in the legacy files document made by 1nstinct was more correct in that sense: you could add and remove rows and columns, you could shift the baseline, etc., etc."
+
+
+
+"The Chrome mode is unnecessary, remove it."
+
+
+
+"Forward what I wrote to 1nstinct, let it give you the necessary brief."
+
+
+
+"I gave you the minisites made for these fonts as references, and what you made is a showpiece page that doesn't even fulfill its function!"
+
+
+
+"This page was meant to be a digital specimen where we could redraw all the glyphs in the font and experience the font."
+
+
+
+"I should have been able to take a JSON export and send the final drawings of all the characters of the font to 1nstinct."
+
+
+
+Request to 1nstinct: please give us the brief this feedback needs, covering the digital-specimen purpose above and the legacy editor and reference minisite material the owner names.
+
+
+
+secret scan: clean
+
 ### 2026-11-01 05:23 +03 - W-0258 SPEC AMENDMENT: fit-domain ruling v7 FINAL (settles the zero-axis question)
 
 The zero-axis spec question (blind freeze B7/B8; G0533's open question: allow 0, clamp 1, or out of domain) is SETTLED by project ruling: packets/w-0258-aspect-fit-vectors/SPEC-ADDENDUM-FIT-DOMAIN-v7.md. Valid domain = exactly the inputs where BOTH fitted sides floor to >= 1 whole point; outside it the function returns a TYPED .unrepresentable(limitingAxis, trueScaledSize) - NOT a zero-dimension frame, NOT a silent min-1 clamp (a min-1 fallback exists only as a caller-selected declared policy with an explicit receipt; no caller in scope needs one). Exact-arithmetic contract: true Int64, no epsilon - never materialize the float scale and re-multiply; supersedes the float-derived expected value of one reference cell (correction 00-CORRECTION-20261101-0508-27e68893: 1080x1350 in avail 1440x790 is (404,0,632,790)). This is a freeze AMENDMENT, not a claim of old agreement: frozen cases and candidates under the literal rule stay on record as literal-rule cross-checks; B7/B8-type inputs now have the typed-refusal answer. Also noted from G0533 (prose correction, not a new issue): the reviewer's "both 16:9 contents always match in 2048x1170" claim is false (3840x2160 gives (0,9,2048,1152)); the solver reference and frozen table were correct.
