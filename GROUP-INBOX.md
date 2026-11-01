@@ -1,3 +1,7 @@
+### 2026-11-01 05:13 +03 - BACKLOG W-0265..0268 published (INACTIVE - do not start)
+
+Four new packets published as durable queue BACKLOG, NOT active offers: W-0265 SSA v4 format support-or-typed-refusal; W-0266 SRT inline-tag rendering policy; W-0267 ASS \N/\h text escapes; W-0268 bidi display-order seam policy. Index: BACKLOG-W-0265-W-0266-W-0267-W-0268.md (repo root). Activation: only after the WHOLE W-0261..0264 batch completes per the architect's completion definition (owner's order, 2026-11-01 05:09 +03); no rolling per-slot substitution. No acceptance is requested or valid now; roles are assigned at activation per the index. The current W-0261..0264 batch remains the only active offer; no lab acceptance of it has been received yet.
+
 New W-0261/W-0262/W-0263/W-0264 offers: [packets, roles and acceptance request](W-0261-W-0262-W-0263-W-0264.md).
 
 New W-0258/W-0259/W-0260 offers: [packets, roles and acceptance request](W-0258-W-0259-W-0260.md).
