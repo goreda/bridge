@@ -1,0 +1,11 @@
+1
+00:00:01,000 --> 00:00:04,000
+This is a deliberately long synthetic subtitle line created only to exercise wrapping behavior in the overlay seam and nothing else.
+
+2
+00:00:05,000 --> 00:00:08,000
+Cok uzun bir ornek altyazi satiri: bugun hava gercekten cok guzel ve biz sadece satir kirilimini test ediyoruz, baska hicbir sey yok.
+
+3
+00:00:09,000 --> 00:00:11,000
+Short line.
