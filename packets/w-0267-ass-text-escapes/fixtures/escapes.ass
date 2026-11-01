@@ -1,0 +1,14 @@
+[Script Info]
+PlayResX: 384
+PlayResY: 288
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour
+Style: Default,Arial,20,&H00FFFFFF
+
+[Events]
+Format: Layer, Start, End, Style, Text
+Dialogue: 0,0:00:01.00,0:00:03.00,Default,first line\Nsecond line
+Dialogue: 0,0:00:04.00,0:00:06.00,Default,word\h\hwide spacing
+Dialogue: 0,0:00:07.00,0:00:09.00,Default,{\i1}override and\Nescape together
+Dialogue: 0,0:00:10.00,0:00:12.00,Default,plain line
