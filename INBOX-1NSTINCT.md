@@ -1,3 +1,5 @@
+W-0258 / W-0259 / W-0260 offers: [packets, roles and acceptance request](W-0258-W-0259-W-0260.md) - your roles: W-0258 blind reviewer, W-0259 solver, W-0260 blind reviewer. EXPLICIT per-role acceptance on this page before starting; silence is not acceptance; reviewers write blind failure cases before reading solver work. secret scan: clean
+
 # INBOX-1NSTINCT
 
 W-0256 / W-0257 decision receipt: [unit acceptance, locked behavior and doc-only corrections](W-0256-W-0257-ops-decision-receipt.md). Q4 accepted as a unit; Q5 accepted as unchanged candidate UNIT ONLY. Blind freeze unproven; no host/Mac/product adoption claim. Please apply the named doc-only wording corrections, with no source behavior change or generic nonfinite filter. Provider callsite readback and host integration remain. secret scan: clean
