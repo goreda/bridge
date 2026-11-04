@@ -1,0 +1,407 @@
+diff --git a/Sources/race-witness-tests/RaceArms2.swift b/Sources/race-witness-tests/RaceArms2.swift
+index 91aceee..231a5db 100644
+--- a/Sources/race-witness-tests/RaceArms2.swift
++++ b/Sources/race-witness-tests/RaceArms2.swift
+@@ -3,6 +3,16 @@
+ import Foundation
+ import GorAVPlaybackCore
+ 
++/// Strict-concurrency repair (Swift 5.10.1 official gate): one-shot/typed
++/// result carrier synchronized by the EXISTING DispatchSemaphore discipline
++/// (write -> signal -> wait -> read). Replaces captured-var mutation inside
++/// Task bodies - no locking added to any witness path, every assertion and
++/// the timing structure unchanged.
++final class RWCell<T>: @unchecked Sendable {
++    var v: T
++    init(_ v: T) { self.v = v }
++}
++
+ private final class RW30Box {
+     private let lock = NSLock()
+     var assigned = false, committed = false, ackReturned = false
+@@ -227,20 +237,20 @@ func armRW31() {
+     let sinkA = RW25Sink()
+     let pumpA = FramePump(source: srcA, sink: sinkA, clock: RW25Clock(), commit: commitA, onWait: { _ in true })
+     let runDoneA = DispatchSemaphore(value: 0)
+-    var statsA: PumpStats? = nil
+-    Task { statsA = await pumpA.run(); runDoneA.signal() }
++    let statsA = RWCell<PumpStats?>(nil)
++    Task { statsA.v = await pumpA.run(); runDoneA.signal() }
+     check(srcA.waitForPulls(1, timeout: 2.0), "RW31/A pull parked before the seek")
+-    var ackA = false
++    let ackA = RWCell(false)
+     let ackDoneA = DispatchSemaphore(value: 0)
+-    Task { ackA = await pumpA.resetPresentation(); ackDoneA.signal() }
++    Task { ackA.v = await pumpA.resetPresentation(); ackDoneA.signal() }
+     ackDoneA.wait()
+-    check(ackA, "RW31/A seek ACK succeeded (typed revision bump)")
++    check(ackA.v, "RW31/A seek ACK succeeded (typed revision bump)")
+     check(srcA.coordinatedRevision == 1, "RW31/A coordinated source seek fired with the NEW revision")
+     srcA.releaseOldFrame()                       // pre-seek frame released AFTER the ACK
+     check(srcA.waitForPulls(2, timeout: 2.0), "RW31/A pump parked on the next pull after the fence")
+     srcA.releaseEOS()
+     runDoneA.wait()
+-    let stA = statsA!
++    let stA = statsA.v!
+     check(stA.shown == 0 && sinkA.shown == 0, "RW31/A held-pull old frame landed NO commit")
+     check(commitA.admitted == 0, "RW31/A held-pull old frame minted NO new-revision ticket")
+     check(stA.seekStalePulls == 1 && stA.fencedShows == 0,
+@@ -266,8 +276,8 @@ func armRW31() {
+         return true   // every wait COMPLETED
+     })
+     let runDoneB = DispatchSemaphore(value: 0)
+-    var statsB: PumpStats? = nil
+-    Task { _ = await pumpB.resetPresentation(seekAnchorSeconds: 0.0); statsB = await pumpB.run(); runDoneB.signal() }
++    let statsB = RWCell<PumpStats?>(nil)
++    Task { _ = await pumpB.resetPresentation(seekAnchorSeconds: 0.0); statsB.v = await pumpB.run(); runDoneB.signal() }
+     check(srcB.waitForPulls(1, timeout: 2.0), "RW31/B pull parked before frame release")
+     srcB.releaseOldFrame()                       // pre-seek frame delivered pre-ACK
+     check(waitEntered.wait(timeout: .now() + 2.0) == .success, "RW31/B frame parked in the pacing wait")
+@@ -277,7 +287,7 @@ func armRW31() {
+     check(srcB.waitForPulls(2, timeout: 2.0), "RW31/B pump parked on the next pull after the fence")
+     srcB.releaseEOS()
+     runDoneB.wait()
+-    let stB = statsB!
++    let stB = statsB.v!
+     check(stB.shown == 0 && sinkB.shown == 0, "RW31/B held-wait old frame landed NO commit")
+     check(commitB.admitted == 0, "RW31/B held-wait old frame minted NO new-revision ticket")
+     check(stB.seekStalePulls == 1 && stB.fencedShows == 0,
+@@ -364,23 +374,23 @@ func armRW32() {
+     let srcA = RW32QueuedSource(queued: [rw32frame(0.0, "old-0"), rw32frame(0.04, "old-1")])
+     let sinkA = RW25Sink()
+     let pumpA = FramePump(source: srcA, sink: sinkA, clock: RW25Clock(), commit: commitA, onWait: { _ in true })
+-    var ackA = false
++    let ackA = RWCell(false)
+     let ackDoneA = DispatchSemaphore(value: 0)
+-    Task { ackA = await pumpA.resetPresentation(); ackDoneA.signal() }
++    Task { ackA.v = await pumpA.resetPresentation(); ackDoneA.signal() }
+     ackDoneA.wait()
+-    check(ackA, "RW32/A seek ACK after actual flush receipt")
++    check(ackA.v, "RW32/A seek ACK after actual flush receipt")
+     check(srcA.barrierCalls == [1], "RW32/A barrier ran with the TARGET revision before the bump")
+     check(srcA.queueCount() == 0, "RW32/A the flush receipt ACTUALLY dropped the pre-seek queue")
+     check(commitA.revision == 1, "RW32/A the bump published only after the receipt")
+     let runDoneA = DispatchSemaphore(value: 0)
+-    var statsA: PumpStats? = nil
+-    Task { statsA = await pumpA.run(); runDoneA.signal() }
++    let statsA = RWCell<PumpStats?>(nil)
++    Task { statsA.v = await pumpA.run(); runDoneA.signal() }
+     check(srcA.waitForPulls(1, timeout: 2.0), "RW32/A first pull parked")
+     srcA.releasePull(.frame(rw32frame(0.0, "new-0")))   // post-seek production (due NOW at clock 0)
+     check(srcA.waitForPulls(2, timeout: 2.0), "RW32/A second pull parked")
+     srcA.releasePull(.ended(.endOfStream))
+     runDoneA.wait()
+-    let stA = statsA!
++    let stA = statsA.v!
+     check(stA.shown == 1 && stA.digestsShown == ["new-0"],
+           "RW32/A post-barrier pulls carry only NEW production - no old digest can surface")
+ 
+@@ -392,22 +402,22 @@ func armRW32() {
+     srcB.barrierOutcome = .failed("io error")
+     let sinkB = RW25Sink()
+     let pumpB = FramePump(source: srcB, sink: sinkB, clock: RW25Clock(), commit: commitB, onWait: { _ in true })
+-    var ackB = true
++    let ackB = RWCell(true)
+     let ackDoneB = DispatchSemaphore(value: 0)
+-    Task { ackB = await pumpB.resetPresentation(); ackDoneB.signal() }
++    Task { ackB.v = await pumpB.resetPresentation(); ackDoneB.signal() }
+     ackDoneB.wait()
+-    check(!ackB, "RW32/B typed barrier failure is a typed seek refusal (false)")
++    check(!ackB.v, "RW32/B typed barrier failure is a typed seek refusal (false)")
+     check(commitB.revision == 0, "RW32/B NO revision bump on a failed barrier")
+     check(srcB.queueCount() == 1, "RW32/B failed barrier did not drop source state")
+     let runDoneB = DispatchSemaphore(value: 0)
+-    var statsB: PumpStats? = nil
+-    Task { statsB = await pumpB.run(); runDoneB.signal() }
++    let statsB = RWCell<PumpStats?>(nil)
++    Task { statsB.v = await pumpB.run(); runDoneB.signal() }
+     check(srcB.waitForPulls(1, timeout: 2.0), "RW32/B first pull parked")
+     srcB.releasePull(.frame(rw32frame(0.0, "old-0")))
+     check(srcB.waitForPulls(2, timeout: 2.0), "RW32/B second pull parked")
+     srcB.releasePull(.ended(.endOfStream))
+     runDoneB.wait()
+-    check(statsB!.shown == 1 && statsB!.digestsShown == ["old-0"],
++    check(statsB.v!.shown == 1 && statsB.v!.digestsShown == ["old-0"],
+           "RW32/B refused seek: pre-seek production still admits under the unchanged revision")
+ 
+     // C. UNSUPPORTED: fail closed - typed refusal, no mutation.
+@@ -415,11 +425,11 @@ func armRW32() {
+     let srcC = RW32QueuedSource(queued: [])
+     srcC.barrierOutcome = .unsupported
+     let pumpC = FramePump(source: srcC, sink: RW25Sink(), clock: RW25Clock(), commit: commitC, onWait: { _ in true })
+-    var ackC = true
++    let ackC = RWCell(true)
+     let ackDoneC = DispatchSemaphore(value: 0)
+-    Task { ackC = await pumpC.resetPresentation(); ackDoneC.signal() }
++    Task { ackC.v = await pumpC.resetPresentation(); ackDoneC.signal() }
+     ackDoneC.wait()
+-    check(!ackC && commitC.revision == 0, "RW32/C .unsupported fails closed: typed refusal, no bump")
++    check(!ackC.v && commitC.revision == 0, "RW32/C .unsupported fails closed: typed refusal, no bump")
+ 
+     // D. OVERLAP: a NEWER reset supersedes the in-flight older one -
+     //    exactly ONE bump lands; the superseded reset publishes nothing.
+@@ -427,16 +437,16 @@ func armRW32() {
+     let srcD = RW32QueuedSource(queued: [])
+     srcD.parkNextBarrier()
+     let pumpD = FramePump(source: srcD, sink: RW25Sink(), clock: RW25Clock(), commit: commitD, onWait: { _ in true })
+-    var ackD1 = true, ackD2 = false
++    let ackD1 = RWCell(true), ackD2 = RWCell(false)
+     let doneD1 = DispatchSemaphore(value: 0), doneD2 = DispatchSemaphore(value: 0)
+-    Task { ackD1 = await pumpD.resetPresentation(); doneD1.signal() }
++    Task { ackD1.v = await pumpD.resetPresentation(); doneD1.signal() }
+     check(srcD.waitForBarrierParked(2.0), "RW32/D older reset parked in the barrier")
+-    Task { ackD2 = await pumpD.resetPresentation(); doneD2.signal() }
++    Task { ackD2.v = await pumpD.resetPresentation(); doneD2.signal() }
+     doneD2.wait()   // the NEWER reset's barrier was not parked: it completes
+-    check(ackD2, "RW32/D the newer reset wins and ACKs")
++    check(ackD2.v, "RW32/D the newer reset wins and ACKs")
+     srcD.releaseBarrier()
+     doneD1.wait()
+-    check(!ackD1, "RW32/D the superseded older reset publishes nothing (typed false)")
++    check(!ackD1.v, "RW32/D the superseded older reset publishes nothing (typed false)")
+     check(commitD.revision == 1, "RW32/D exactly one bump across overlapping resets")
+     check(srcD.barrierCalls.count == 2, "RW32/D both resets ran the barrier")
+ 
+@@ -449,12 +459,12 @@ func armRW32() {
+     let sinkE = RW25Sink()
+     let pumpE = FramePump(source: srcE, sink: sinkE, clock: RW25Clock(), commit: commitE, onWait: { _ in true })
+     let runDoneE = DispatchSemaphore(value: 0)
+-    var statsE: PumpStats? = nil
+-    Task { statsE = await pumpE.run(); runDoneE.signal() }
++    let statsE = RWCell<PumpStats?>(nil)
++    Task { statsE.v = await pumpE.run(); runDoneE.signal() }
+     check(srcE.waitForPulls(1, timeout: 2.0), "RW32/E first pull parked")
+-    var ackE = false
++    let ackE = RWCell(false)
+     let ackDoneE = DispatchSemaphore(value: 0)
+-    Task { ackE = await pumpE.resetPresentation(); ackDoneE.signal() }
++    Task { ackE.v = await pumpE.resetPresentation(); ackDoneE.signal() }
+     check(srcE.waitForBarrierParked(2.0), "RW32/E barrier in flight")
+     srcE.releasePull(.frame(rw32frame(0.0, "crossed")))   // pull returns MID-BARRIER
+     Thread.sleep(forTimeInterval: 0.15)                    // give the pump a chance to misbehave
+@@ -462,11 +472,11 @@ func armRW32() {
+           "RW32/E the crossed pull is GATED: zero admissions, zero shows while the barrier is in flight")
+     srcE.releaseBarrier()
+     ackDoneE.wait()
+-    check(ackE && commitE.revision == 1, "RW32/E ACK lands only after the actual receipt")
++    check(ackE.v && commitE.revision == 1, "RW32/E ACK lands only after the actual receipt")
+     check(srcE.waitForPulls(2, timeout: 2.0), "RW32/E pump re-pulled after the fence")
+     srcE.releasePull(.ended(.endOfStream))
+     runDoneE.wait()
+-    let stE = statsE!
++    let stE = statsE.v!
+     check(stE.seekStalePulls == 1 && stE.shown == 0 && stE.endReason == .endOfStream,
+           "RW32/E the crossed pull was fenced TYPED after the barrier, then EOS")
+ }
+@@ -522,36 +532,36 @@ func armRW34() {
+         .ended(.sourceEnded), .temporarilyUnavailable, .failed(9),
+     ])
+     let src = IdempotentEventSource(inner, binding: sess)
+-    var pulled: [SourceEvent] = []
++    let pulled = RWCell<[SourceEvent]>([])
+     let sem = DispatchSemaphore(value: 0)
+-    Task { for _ in 0..<7 { pulled.append(await src.nextEvent()) }; sem.signal() }
++    Task { for _ in 0..<7 { pulled.v.append(await src.nextEvent()) }; sem.signal() }
+     sem.wait()
+-    guard pulled.count == 7 else { check(false, "RW34/A pulled 7 events"); return }
+-    if case .frame(let f) = pulled[0] {
++    guard pulled.v.count == 7 else { check(false, "RW34/A pulled 7 events"); return }
++    if case .frame(let f) = pulled.v[0] {
+         check(f.digest == "rw34-f0", "RW34/A pre-terminal frame passes through")
+     } else { check(false, "RW34/A pre-terminal frame passes through") }
+     var allEOS = true
+-    for e in pulled[1...] { guard case .ended(.endOfStream) = e else { allEOS = false; break } }
++    for e in pulled.v[1...] { guard case .ended(.endOfStream) = e else { allEOS = false; break } }
+     check(allEOS, "RW34/A first terminal delivered once, then replayed idempotently (late frame/second terminal/starve/failure never surface)")
+     check(inner.pulls == 2, "RW34/A inner source never pulled again once latched (revival fence)", "pulls=\(inner.pulls)")
+     check(src.binding == sess, "RW34/A session binding preserved")
+     check(src.violationCount == 0 && src.lastViolation == nil, "RW34/A no violation before any pump-side report")
+     src.recordViolation(.eventAfterTerminal)
+     check(src.violationCount == 1 && src.lastViolation == .eventAfterTerminal, "RW34/A violation hook observable (count + last kind)")
+-    let barrierSem = DispatchSemaphore(value: 0); var barrier: SeekBarrierOutcome? = nil
+-    Task { barrier = await src.coordinateSeek(revision: 4); barrierSem.signal() }
++    let barrierSem = DispatchSemaphore(value: 0); let barrier = RWCell<SeekBarrierOutcome?>(nil)
++    Task { barrier.v = await src.coordinateSeek(revision: 4); barrierSem.signal() }
+     barrierSem.wait()
+-    check(barrier == .flushed, "RW34/A stateless source barrier is the typed .flushed receipt")
++    check(barrier.v == .flushed, "RW34/A stateless source barrier is the typed .flushed receipt")
+ 
+     // B. failure terminal latches identically.
+     let innerB = RW34ScriptedSource([.failed(7), .ended(.endOfStream)])
+     let srcB = IdempotentEventSource(innerB, binding: sess)
+-    var pulledB: [SourceEvent] = []
++    let pulledB = RWCell<[SourceEvent]>([])
+     let semB = DispatchSemaphore(value: 0)
+-    Task { for _ in 0..<3 { pulledB.append(await srcB.nextEvent()) }; semB.signal() }
++    Task { for _ in 0..<3 { pulledB.v.append(await srcB.nextEvent()) }; semB.signal() }
+     semB.wait()
+     var allFailed = true
+-    for e in pulledB { guard case .failed(let c) = e, c == 7 else { allFailed = false; break } }
++    for e in pulledB.v { guard case .failed(let c) = e, c == 7 else { allFailed = false; break } }
+     check(allFailed, "RW34/B typed failure terminal latched and replayed (later EOS never leaks)")
+     check(innerB.pulls == 1, "RW34/B inner never pulled after failure latch", "pulls=\(innerB.pulls)")
+ 
+@@ -564,10 +574,10 @@ func armRW34() {
+     ])
+     let pumpC = FramePump(source: IdempotentEventSource(innerC, binding: sess),
+                           sink: RW25Sink(), clock: RW25Clock(), onWait: { _ in true })
+-    let semC = DispatchSemaphore(value: 0); var statsC: PumpStats? = nil
+-    Task { statsC = await pumpC.run(); semC.signal() }
++    let semC = DispatchSemaphore(value: 0); let statsC = RWCell<PumpStats?>(nil)
++    Task { statsC.v = await pumpC.run(); semC.signal() }
+     semC.wait()
+-    let stC = statsC!
++    let stC = statsC.v!
+     check(stC.shown == 1 && stC.digestsShown == ["rw34-p0"], "RW34/C only the pre-terminal frame shows; the ghost frame never lands")
+     check(stC.endReason == .endOfStream && !stC.cancelled, "RW34/C exactly one typed EOS finalization")
+ }
+@@ -599,10 +609,10 @@ func armRW35() {
+     ])
+     let waitsA = RW35WaitBox()
+     let pumpA = FramePump(source: srcA, sink: RW25Sink(), clock: clockA, onWait: { d in waitsA.add(d); return true })
+-    let semA = DispatchSemaphore(value: 0); var statsA: PumpStats? = nil
+-    Task { statsA = await pumpA.run(); semA.signal() }
++    let semA = DispatchSemaphore(value: 0); let statsA = RWCell<PumpStats?>(nil)
++    Task { statsA.v = await pumpA.run(); semA.signal() }
+     semA.wait()
+-    let stA = statsA!
++    let stA = statsA.v!
+     check(stA.shown == 1 && stA.dropped == 0, "RW35/A anchor frame shows on arrival under a per-read jump clock (single decisionNow sample)")
+     check(stA.digestsShown == ["rw35-anchor"], "RW35/A the shown frame is the anchor frame")
+     check(waitsA.snapshot().allSatisfy { $0 < 0.25 }, "RW35/A no spurious long wait minted by a double clock sample", "waits=\(waitsA.snapshot())")
+@@ -621,10 +631,10 @@ func armRW35() {
+     let pumpB = FramePump(source: srcB, sink: RW25Sink(), clock: clockB, onWait: { d in
+         waitsB.add(d); clockB.t += d; return true   // the wait COMPLETED; the clock advanced by it
+     })
+-    let semB = DispatchSemaphore(value: 0); var statsB: PumpStats? = nil
+-    Task { statsB = await pumpB.run(); semB.signal() }
++    let semB = DispatchSemaphore(value: 0); let statsB = RWCell<PumpStats?>(nil)
++    Task { statsB.v = await pumpB.run(); semB.signal() }
+     semB.wait()
+-    let stB = statsB!
++    let stB = statsB.v!
+     check(stB.shown == 2 && stB.digestsShown == ["rw35-f0", "rw35-f1"], "RW35/B both frames show in pts order")
+     let wb = waitsB.snapshot()
+     check(wb.count == 1, "RW35/B exactly one pacing wait (anchor frame shows on arrival)", "waits=\(wb)")
+diff --git a/Sources/race-witness-tests/main.swift b/Sources/race-witness-tests/main.swift
+index bb3a59e..affd8fa 100644
+--- a/Sources/race-witness-tests/main.swift
++++ b/Sources/race-witness-tests/main.swift
+@@ -593,21 +593,21 @@ func armRW19() {
+ // record ceiling drops are counted and refuse success; a non-finite stamp
+ // refuses success with a visibly corrupted record.
+ func armRW20() {
+-    var t = 1000.0
+-    let l = TimingLedger(capacity: 64, clock: { t })
++    let t = RWCell(1000.0)
++    let l = TimingLedger(capacity: 64, clock: { t.v })
+     let req: [LedgerKind] = [.audioStartAttempt, .audioStartAccepted, .audioStopAttempt, .audioStopAccepted, .disposeCompleted]
+     for k in req { l.append(session: 1, generation: 1, segment: .teardown, subsystem: .audio, kind: k) }
+     check(l.missingSequence(session: 1, generation: 1, required: req).isEmpty, "RW20 ordered teardown sequence complete")
+     check(l.missingSequence(session: 1, generation: 2, required: req) == req, "RW20 NEG foreign generation fulfills nothing")
+     check(l.missingSequence(session: 2, generation: 1, required: req) == req, "RW20 NEG foreign session fulfills nothing")
+-    let l2 = TimingLedger(capacity: 3, clock: { t })
++    let l2 = TimingLedger(capacity: 3, clock: { t.v })
+     for i in 0..<5 { l2.append(session: 0, generation: 0, segment: .teardown, subsystem: .core, kind: .teardownStart, bytes: i) }
+     check(l2.count == 3 && l2.overflowed && l2.droppedEventCount == 2 && !l2.allowsSuccess, "RW20 NEG ceiling exact: 3 kept 2 dropped, refuses success")
+-    var bad = false; let badClock: @Sendable () -> Double = { bad ? .nan : 1000.0 }
+-    let l3 = TimingLedger(capacity: 16, clock: badClock); bad = true
++    let bad = RWCell(false); let badClock: @Sendable () -> Double = { bad.v ? .nan : 1000.0 }
++    let l3 = TimingLedger(capacity: 16, clock: badClock); bad.v = true
+     l3.append(session: 0, generation: 0, segment: .teardown, subsystem: .core, kind: .teardownStart)
+     check(l3.invalidStampCount == 1 && !l3.allowsSuccess && l3.snapshot().first?.note.hasPrefix("INVALID_STAMP:") == true, "RW20 NEG non-finite stamp counted, marked, refuses success")
+-    t += 1
++    t.v += 1
+ }
+ 
+ // RW21 - FINDING REPRODUCTION (observed v5/lane-0 candidate gaps; FAIL = the
+@@ -744,10 +744,10 @@ func armRW25() {
+     let sink = RW25Sink()
+     let pump = FramePump(source: src, sink: sink, clock: RW25Clock(), onWait: { _ in true })
+     let sem = DispatchSemaphore(value: 0)
+-    var statsBox: PumpStats? = nil
+-    Task { statsBox = await pump.run(); sem.signal() }
++    let statsBox = RWCell<PumpStats?>(nil)
++    Task { statsBox.v = await pump.run(); sem.signal() }
+     sem.wait()
+-    let st = statsBox!
++    let st = statsBox.v!
+     check(st.cancelled, "RW25 source-reported cancel sets stats.cancelled")
+     check(st.endReason == .cancelled, "RW25 end reason is TYPED .cancelled", "\(st.endReason)")
+ 
+@@ -759,10 +759,10 @@ func armRW25() {
+     let pump2 = FramePump(source: src2, sink: sink2, clock: RW25Clock(), commit: commit, onWait: { _ in true })
+     commit.requestCancel()
+     let sem2 = DispatchSemaphore(value: 0)
+-    var statsBox2: PumpStats? = nil
+-    Task { statsBox2 = await pump2.run(); sem2.signal() }
++    let statsBox2 = RWCell<PumpStats?>(nil)
++    Task { statsBox2.v = await pump2.run(); sem2.signal() }
+     sem2.wait()
+-    let st2 = statsBox2!
++    let st2 = statsBox2.v!
+     check(st2.shown == 0 && sink2.shown == 0, "RW25 externally-cancelled commit admits zero shows")
+     check(commit.admitted == 0, "RW25 commit cell recorded zero admissions")
+     check(st2.cancelled && st2.endReason == .cancelled, "RW25 pump ends typed cancelled via commit")
+@@ -782,10 +782,10 @@ func armRW25() {
+                           commit: commit3, onWait: { _ in true })
+     _ = try! commit3.bumpRevision()   // external seek AFTER pump adopted rev 0
+     let sem3 = DispatchSemaphore(value: 0)
+-    var statsBox3: PumpStats? = nil
+-    Task { statsBox3 = await pump3.run(); sem3.signal() }
++    let statsBox3 = RWCell<PumpStats?>(nil)
++    Task { statsBox3.v = await pump3.run(); sem3.signal() }
+     sem3.wait()
+-    let st3 = statsBox3!
++    let st3 = statsBox3.v!
+     check(st3.shown == 1 && sink3.shown == 1 && commit3.admitted == 1,
+           "RW25 post-invalidation pull on a stateless source admits under the live revision")
+     check(st3.endReason == .endOfStream, "RW25 admission is not an end; source EOS reached")
+diff --git a/Tests/AudioPacingTests/AudioPacingTests.swift b/Tests/AudioPacingTests/AudioPacingTests.swift
+index 29cbe80..73f7879 100644
+--- a/Tests/AudioPacingTests/AudioPacingTests.swift
++++ b/Tests/AudioPacingTests/AudioPacingTests.swift
+@@ -7,6 +7,16 @@
+ // qualification: the AudioUnit render callback itself is Mac-gated.
+ 
+ import XCTest
++
++/// Strict-concurrency repair (Swift 5.10.1 official gate): serial-callback
++/// wait recorder; the pump's onWait fires on its executor, the test reads
++/// after await pump.run() - identical happens-before to the captured var it
++/// replaces; the expected sequence assert is unchanged.
++private final class WaitsBox: @unchecked Sendable {
++    private var items: [Double] = []
++    func add(_ d: Double) { items.append(d) }
++    func snapshot() -> [Double] { items }
++}
+ import GorAVPlaybackCore
+ import GorAVAudioClockSwift
+ 
+@@ -584,7 +594,7 @@ final class AudioPacingTests: XCTestCase {
+         let clock = AudioMasterPacingClock(policy: policy, hostClock: { w.hostNow() })
+         XCTAssertEqual(policy.sessionStart(consumedFrames: 0, atHost: 100.0), .ok)
+         w.advance(1.0)
+-        var waits: [Double] = []
++        let waits = WaitsBox()
+         let source = ScriptedSource([
+             .frame(SourceFrame(ptsSeconds: 1.0, durationSeconds: 0.04, digest: "anchor")),
+             .frame(SourceFrame(ptsSeconds: 3.5, durationSeconds: 0.04, digest: "far-early")),
+@@ -594,7 +604,7 @@ final class AudioPacingTests: XCTestCase {
+         let pump = FramePump(source: source, sink: display, clock: clock,
+                              decider: AVSyncDecider(maxWaitSeconds: 1.0, master: .clock),
+                              onWait: { seconds in
+-            waits.append(seconds)
++            waits.add(seconds)
+             w.advance(seconds)
+             return true
+         })
+@@ -603,7 +613,7 @@ final class AudioPacingTests: XCTestCase {
+         XCTAssertEqual(stats.digestsShown, ["anchor", "far-early"])
+         // 2.5 s early, clamped: 1.0 + 1.0 + 0.5, re-decided off the audio
+         // master after each completed wait.
+-        XCTAssertEqual(waits, [1.0, 1.0, 0.5])
++        XCTAssertEqual(waits.snapshot(), [1.0, 1.0, 0.5])
+         XCTAssertFalse(clock.masterLost)
+     }
+ }

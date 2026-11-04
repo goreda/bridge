@@ -1,0 +1,263 @@
+CMD: swift run race-witness-tests -Xlinker -L$FFBUILD/FFmpeg-894da5ca7d742e4429ffb2af534fcda0103ef593/libavformat -Xlinker -L$FFBUILD/FFmpeg-894da5ca7d742e4429ffb2af534fcda0103ef593/libavcodec -Xlinker -L$FFBUILD/FFmpeg-894da5ca7d742e4429ffb2af534fcda0103ef593/libswscale -Xlinker -L$FFBUILD/FFmpeg-894da5ca7d742e4429ffb2af534fcda0103ef593/libswresample -Xlinker -L$FFBUILD/FFmpeg-894da5ca7d742e4429ffb2af534fcda0103ef593/libavutil (SUPPLEMENTARY runtime, pure PlaybackCore Linux-safe, @4b93230 = c8d3e29 sources)
+warning: 'gorav': found 3 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    $GORAV/Sources/subtitle-tests/SRTTests.swift
+    $GORAV/Sources/subtitle-tests/ASSTests.swift
+    $GORAV/Sources/subtitle-tests/SubtitlePlanTests.swift
+warning: 'gorav': found 3 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    $GORAV/Sources/subtitle-tests/SubtitlePlanTests.swift
+    $GORAV/Sources/subtitle-tests/ASSTests.swift
+    $GORAV/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 3 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    $GORAV/Sources/subtitle-tests/SRTTests.swift
+    $GORAV/Sources/subtitle-tests/ASSTests.swift
+    $GORAV/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 3 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    $GORAV/Sources/subtitle-tests/SubtitlePlanTests.swift
+    $GORAV/Sources/subtitle-tests/SRTTests.swift
+    $GORAV/Sources/subtitle-tests/SubtitleTrackTests.swift
+[0/1] Planning build
+Building for debugging...
+[0/7] Write swift-version-3F7A2EEDC74611F1.txt
+[1/2] Linking race-witness-tests
+Build complete! (0.35s)
+RW canonical race witnesses (lane-0)
+SEAM RW6 registry-exhaustion: MacShell arm, owner-run; NOT claimed from Linux
+PASS RW1 post-retire enter refused (silence, no payload)
+PASS RW1 readers 0 after refused enter
+PASS RW2 pre-retire enter admitted
+PASS RW2 admitted reader still counted post-retire
+PASS RW2 second enter refused while reader in flight
+PASS RW2 readers drain to zero
+PASS RW2 post-drain enter still refused
+PASS RW3 retire idempotent
+PASS RW3 retired cell never reopens (no generation reuse)
+PASS RW4 enter
+PASS RW4 stuck reader observable (blocks reset/reuse)
+PASS RW5 readers drain to zero under race
+PASS RW5 no enter after final retire
+PASS RW5 admitted-before-retire count = 64 (informational)
+PASS RW7 refused-enter hot path leaves no state
+ALL RACE WITNESSES PASS
+ARM RW8 old=EXPECTED-FAIL reproduced(weak=true) revised-core=COVERED-BY-RW12(registry-level-only) native=BLOCKED(owner-Mac-seam)
+ARM RW9 old=EXPECTED-FAIL reproduced(weak=false) revised-core=COVERED-BY-RW12(registry-level-only) native=BLOCKED(owner-Mac-seam)
+ARM RW10 old=EXPECTED-FAIL reproduced(overshot=2>1) revised-core=PASS-RW11(registry-level) native=BLOCKED(owner-Mac-seam)
+ARM-STATUS convention: old=EXPECTED-FAIL(reproduced) revised-core=<arm coverage, registry-level ONLY> native=BLOCKED(off-Mac seams are owner-run; no parse-only closure claimed).
+PASS RW11 every racer got success-or-typed-refusal
+PASS RW11 every token rolled back exactly once
+PASS RW11 token is once-consume (second rollback refused typed)
+PASS RW11 no leaked reservation after rollback
+PASS RW11b held active reservation commits under full fault backlog
+PASS RW11b FINDING-1-FIX active->fault commits with reserved terminal slot (concurrent terminal backlog full)
+PASS RW11b fault headroom stops one short while a terminal obligation is held
+PASS RW12 FINDING-3-FIX registration ROOT immutably retained (no rebind can free it)
+PASS RW12 registration token issued by token commit
+PASS RW12 consumed token cannot register twice (typed nil)
+PASS RW12b typed fault graph ATTACHED (root untouched)
+PASS RW12b graph edges (owner+handle) survive caller release
+PASS RW12b ATTACH-ONCE second attach refused typed (graph not replaceable)
+PASS RW12c active->fault commits (valid transition)
+PASS RW12c FINDING-2-FIX terminal->active REFUSED (no resurrection)
+PASS RW12c terminal kind immutable (fault->tombstone refused)
+PASS RW12c token drives its OWN entry (active->tombstone commits)
+PASS RW12c retentionState typed query: fault registration retained
+PASS RW13 fault exhaustion at the per-kind cap
+PASS RW13 typed exhaustion at per-kind cap (active=0 faults=4 tombstones=2)
+PASS RW13 active reserve refuses typed while a terminal backlog is full
+PASS RW13 tombstone headroom independent of fault cap
+PASS RW26 no evidence -> .noop
+PASS RW26 FINDING-7-FIX in-flight stop reads .pending (not stale, not noop)
+PASS RW26 published outcome returned for its generation
+PASS RW26 repeat idle query returns the SAME preserved outcome
+PASS RW26 FINDING-7-FIX new generation invalidates the old cache (no g1 outcome from g2 stop)
+PASS RW26 FINDING-8-FIX start/stop-owned failure evidence preserved for its generation
+PASS RW26 stale-generation publish refused typed
+PASS RW26 stale publish did not clear the current in-flight marker
+PASS RW26b exactly one teardown owner across concurrent stops
+PASS RW26b concurrent loser saw pending-or-cached, never a bare noop gap
+PASS RW26b post-finish beginStop is a no-op
+PASS RW26b repeat stop returns the preserved outcome
+RW11-RW13+RW26 registry/outcome acceptance arms done (r3-rev1 capability state machine).
+SEAM RW23 real-AudioUnit stop/uninit/dispose error injection + retired-callback zero-output: MacShell arms, owner-run; NOT claimed from Linux
+PASS RW24 commit cell available
+PASS RW24 admit before cancel succeeds (tickets issued)
+PASS RW24 pre-ACK ticket may finish its commit
+PASS RW24 admissions counted on the cell
+PASS RW24 cancel set monotonically
+PASS RW24 no admission after cancel (serialized refusal)
+PASS RW24 pre-admitted ticket stays GENUINE (sequence issued)
+PASS RW24 ACK=NO-FURTHER-COMMIT fresh unconsumed ticket fenced after the cancel-ACK
+PASS RW24 post-cancel refusal not counted
+PASS RW24 cancelled seek is a typed .cancelled refusal
+PASS RW24 cancelled commit refuses admission
+PASS RW24 stale revision refused typed
+PASS RW24 current revision admitted
+PASS RW24 ALIAS-FIX out-of-range revision refused (no mask alias)
+PASS RW24 pre-seek ticket stays GENUINE (sequence issued)
+PASS RW24 ACK=NO-FURTHER-COMMIT old-revision ticket fenced at commit after seek
+PASS RW24 post-seek admission needs the exact new revision
+PASS RW24 race: every racer admitted-or-refused
+PASS RW24 cell admission count == successful admits (no interleave)
+PASS RW25 source-reported cancel sets stats.cancelled
+PASS RW25 end reason is TYPED .cancelled
+PASS RW25 externally-cancelled commit admits zero shows
+PASS RW25 commit cell recorded zero admissions
+PASS RW25 pump ends typed cancelled via commit
+PASS RW25 post-invalidation pull on a stateless source admits under the live revision
+PASS RW25 admission is not an end; source EOS reached
+PASS RW25 no stale pull: the pull started after the invalidation
+PASS RW27 concurrent registration ids unique (no re-issue/overwrite)
+PASS RW27 every concurrent registration keeps its own root
+PASS RW28 first mint is the seeded next id
+PASS RW28 held-token rollback releases the slot
+PASS RW28 mints continue in order after a burn (no re-issue): 18446744073709551614, 18446744073709551615
+PASS RW28 reserve at the issuance ceiling refuses typed
+PASS RW28 exhaustion LATCHED (second reserve still refuses)
+PASS RW28 held pre-ceiling tokens register post-ceiling DISTINCT
+PASS RW28 both boundary roots retained (no overwrite)
+PASS RW28 capability-gated root reachable post-ceiling
+PASS RW28 capability-gated root reachable post-ceiling
+PASS RW28 retention kind intact post-ceiling
+PASS RW29 cross-cell validate refuses a foreign ticket
+PASS RW29 cross-cell mayFinish refuses a foreign ticket
+PASS RW29 issuer validate accepts its own ticket
+PASS RW29 first mayFinish consumes the ticket
+PASS RW29 replayed mayFinish refused (single consume)
+PASS RW29 consumed ticket stays genuine (validate is not the gate)
+PASS RW29 seeded admission ceiling refuses typed
+PASS RW29 admission saturation never carries into revision
+PASS RW29 admissionExhausted reads true at the ceiling
+PASS RW29 seeded near-ceiling bump lands exactly at the ceiling
+PASS RW29 ceiling bump is a typed .exhausted refusal
+PASS RW29 revision saturation never carries into the cancel bit
+PASS RW29 seekExhausted reads true at the ceiling
+PASS RW29 admissions still issue at the seek ceiling (independent fields)
+PASS RW30 cancel ACK blocked while the commit section was held after consume
+PASS RW30 after-consume: the ACK never returns before the assignment lands
+PASS RW30 the in-section commit completed WITH its assignment
+PASS RW30 the cancel ACK landed after the assignment
+PASS RW30 no admission after the ACK
+PASS RW30 post-ACK admission stays refused
+PASS RW30 seek ACK blocked while the commit section was held before consume
+PASS RW30 before-consume: the seek ACK never returns before the assignment lands
+PASS RW30 the held pre-seek commit still commits (it won the section race)
+PASS RW30 seek ACK landed after the assignment; revision now current
+PASS RW30 current-revision admission after the seek ACK
+PASS RW30 post-seek current-revision frame commits
+PASS RW30 ticket refuses a DIFFERENT pts (frame binding)
+PASS RW30 ticket refuses a DIFFERENT digest (frame binding)
+PASS RW30 a refused attempt did not burn the ticket; the exact frame commits
+PASS RW30 the committed ticket cannot replay
+PASS RW30 foreign-issuer ticket refused at commitFrame
+PASS RW30 foreign-registry token refused at register (owner checked before consume)
+PASS RW30 foreign-registry token refused at rollback
+PASS RW30 the TRUE owner's rollback still completes
+PASS RW30 same seeded ids on separate registries stay ISOLATED (no collision class)
+PASS RW30 each registry retains only its own root
+PASS RW30 a foreign capability reaches no root (capability is registry-scoped)
+PASS RW31/A pull parked before the seek
+PASS RW31/A seek ACK succeeded (typed revision bump)
+PASS RW31/A coordinated source seek fired with the NEW revision
+PASS RW31/A pump parked on the next pull after the fence
+PASS RW31/A held-pull old frame landed NO commit
+PASS RW31/A held-pull old frame minted NO new-revision ticket
+PASS RW31/A the old frame was fenced TYPED at the post-await provenance gate
+PASS RW31/A the fence is not an end; EOS reached
+PASS RW31/B pull parked before frame release
+PASS RW31/B frame parked in the pacing wait
+PASS RW31/B pump parked on the next pull after the fence
+PASS RW31/B held-wait old frame landed NO commit
+PASS RW31/B held-wait old frame minted NO new-revision ticket
+PASS RW31/B the completed post-ACK wait was fenced TYPED at the after-wait provenance check
+PASS RW31/B the fence is not an end; EOS reached
+PASS RW32/A seek ACK after actual flush receipt
+PASS RW32/A barrier ran with the TARGET revision before the bump
+PASS RW32/A the flush receipt ACTUALLY dropped the pre-seek queue
+PASS RW32/A the bump published only after the receipt
+PASS RW32/A first pull parked
+PASS RW32/A second pull parked
+PASS RW32/A post-barrier pulls carry only NEW production - no old digest can surface
+PASS RW32/B typed barrier failure is a typed seek refusal (false)
+PASS RW32/B NO revision bump on a failed barrier
+PASS RW32/B failed barrier did not drop source state
+PASS RW32/B first pull parked
+PASS RW32/B second pull parked
+PASS RW32/B refused seek: pre-seek production still admits under the unchanged revision
+PASS RW32/C .unsupported fails closed: typed refusal, no bump
+PASS RW32/D older reset parked in the barrier
+PASS RW32/D the newer reset wins and ACKs
+PASS RW32/D the superseded older reset publishes nothing (typed false)
+PASS RW32/D exactly one bump across overlapping resets
+PASS RW32/D both resets ran the barrier
+PASS RW32/E first pull parked
+PASS RW32/E barrier in flight
+PASS RW32/E the crossed pull is GATED: zero admissions, zero shows while the barrier is in flight
+PASS RW32/E ACK lands only after the actual receipt
+PASS RW32/E pump re-pulled after the fence
+PASS RW32/E the crossed pull was fenced TYPED after the barrier, then EOS
+PASS RW33 the outer commit still landed (no deadlock)
+PASS RW33 reentrant bump/mayFinish/commitFrame are TYPED refusals
+PASS RW33 every reentrant call counted (cancel+bump+mayFinish+commit)
+PASS RW33 reentrant cancel/bump changed nothing
+PASS RW33 the cell is still live after the section (cancel was refused)
+PASS RW14 runningGen born with active transition
+PASS RW14 beginStop -> teardownOwned
+PASS RW14 runningGen nil in the SAME transition (no late-running window)
+PASS RW14 NEG second beginStop no-op (single teardown owner)
+PASS RW14 NEG finishStop(wrong g) ignored
+PASS RW14 generations strictly monotonic, no reuse
+PASS RW15 failStop -> failed terminal
+PASS RW15 restart after failed teardown refused (retained handle never overwritten)
+PASS RW15 NEG finishStop after failStop is NOT a fake completion
+PASS RW15 NEG no re-teardown, no running resurrection in failed
+PASS RW15 failStart terminal, start refused
+PASS RW16 stop during starting -> startWillTearDown (stop does NOT tear down)
+PASS RW16 runningGen never born for torn-down start
+PASS RW16 commitStart after stop race refused
+PASS RW16 abort in stopping completes the stop once
+PASS RW17 active generation admitted
+PASS RW17 late callback from retired generation fenced + counted
+PASS RW17 every stale call counted (no dedup)
+PASS RW17 old generation stays fenced after new commit
+PASS RW18 3 frames admitted
+PASS RW18 receipt holds retired-session evidence across reset
+PASS RW18 live counters zero after reset
+PASS RW18 NEG overflow drop byte-exact + sticky latch
+PASS RW18 NEG partial-frame tail refused byte-exact, never misaligned
+PASS RW18 byte conservation requested==admitted+dropped
+PASS RW18 reset clears the sticky latch
+PASS RW19 producer pre-check sees running generation
+PASS RW19 joined/absent stop-reset: re-check refuses (no old push into stopped session)
+PASS RW19 new session generation differs from captured stale one
+PASS RW20 ordered teardown sequence complete
+PASS RW20 NEG foreign generation fulfills nothing
+PASS RW20 NEG foreign session fulfills nothing
+PASS RW20 NEG ceiling exact: 3 kept 2 dropped, refuses success
+PASS RW20 NEG non-finite stamp counted, marked, refuses success
+PASS RW21a export byte ceiling holds for every budget
+PASS RW21b export budget does not poison the run verdict
+ARM RW22 old=EXPECTED-FAIL reproduced(readerLeak=true) revised-core=PASS-by-control native=BLOCKED(Mac callback body owner-run)
+PASS RW22 control: exit-on-nil drains to zero
+RW14-RW22 L9 teardown subset done (RW21 now ACCEPTANCE after production fix; RW22 ARM status).
+PASS RW34/A pre-terminal frame passes through
+PASS RW34/A first terminal delivered once, then replayed idempotently (late frame/second terminal/starve/failure never surface)
+PASS RW34/A inner source never pulled again once latched (revival fence)
+PASS RW34/A session binding preserved
+PASS RW34/A no violation before any pump-side report
+PASS RW34/A violation hook observable (count + last kind)
+PASS RW34/A stateless source barrier is the typed .flushed receipt
+PASS RW34/B typed failure terminal latched and replayed (later EOS never leaks)
+PASS RW34/B inner never pulled after failure latch
+PASS RW34/C only the pre-terminal frame shows; the ghost frame never lands
+PASS RW34/C exactly one typed EOS finalization
+PASS RW35/A anchor frame shows on arrival under a per-read jump clock (single decisionNow sample)
+PASS RW35/A the shown frame is the anchor frame
+PASS RW35/A no spurious long wait minted by a double clock sample
+PASS RW35/A clean EOS after the anchor frame
+PASS RW35/B both frames show in pts order
+PASS RW35/B exactly one pacing wait (anchor frame shows on arrival)
+PASS RW35/B the wait is the pts delta off the anchor, never a wall-absolute
+PASS RW35/C decider: exactly-on-pts shows (the anchor-frame case)
+PASS RW35/C decider: half-frame-late drops (the double-sample failure mode)
+PASS RW35/C decider: early frame waits its delta
+ALL RACE WITNESSES PASS (incl RW34/RW35)
+RUN_EXIT=0
