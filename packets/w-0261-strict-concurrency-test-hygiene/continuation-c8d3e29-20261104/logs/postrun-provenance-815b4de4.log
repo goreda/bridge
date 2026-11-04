@@ -1,0 +1,12 @@
+CMD: git rev-parse HEAD
+c8d3e29e4ad6bc393031aa63c06d181006790a09
+EXIT=0
+CMD: sha256sum Package.swift
+ee2bd3a5893fc1f064500b783d0dfa950ef3544a0da2142ab09c3c2a88c19336  Package.swift
+EXIT=0
+EXPECTED: ee2bd3a5893fc1f064500b783d0dfa950ef3544a0da2142ab09c3c2a88c19336
+CMD: git diff --exit-code
+DIFF_EXIT=0
+CMD: git status --porcelain
+?? .build/
+EXIT=0

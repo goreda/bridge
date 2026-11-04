@@ -1,0 +1,65 @@
+CMD: swift build --build-tests -Xlinker -L$FFBUILD/FFmpeg-894da5ca7d742e4429ffb2af534fcda0103ef593/libavformat -Xlinker -L$FFBUILD/FFmpeg-894da5ca7d742e4429ffb2af534fcda0103ef593/libavcodec -Xlinker -L$FFBUILD/FFmpeg-894da5ca7d742e4429ffb2af534fcda0103ef593/libswscale -Xlinker -L$FFBUILD/FFmpeg-894da5ca7d742e4429ffb2af534fcda0103ef593/libswresample -Xlinker -L$FFBUILD/FFmpeg-894da5ca7d742e4429ffb2af534fcda0103ef593/libavutil (OFFICIAL FULL UNTRIMMED @ c8d3e29e4ad6bc393031aa63c06d181006790a09, Swift 5.10.1 RELEASE x86_64 Linux, FFmpeg 894da5ca bit-identical rebuild)
+warning: 'gorav': found 3 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    $GORAV/Sources/subtitle-tests/ASSTests.swift
+    $GORAV/Sources/subtitle-tests/SRTTests.swift
+    $GORAV/Sources/subtitle-tests/SubtitlePlanTests.swift
+warning: 'gorav': found 3 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    $GORAV/Sources/subtitle-tests/ASSTests.swift
+    $GORAV/Sources/subtitle-tests/SubtitleTrackTests.swift
+    $GORAV/Sources/subtitle-tests/SubtitlePlanTests.swift
+warning: 'gorav': found 3 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    $GORAV/Sources/subtitle-tests/ASSTests.swift
+    $GORAV/Sources/subtitle-tests/SubtitleTrackTests.swift
+    $GORAV/Sources/subtitle-tests/SRTTests.swift
+warning: 'gorav': found 3 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    $GORAV/Sources/subtitle-tests/SRTTests.swift
+    $GORAV/Sources/subtitle-tests/SubtitleTrackTests.swift
+    $GORAV/Sources/subtitle-tests/SubtitlePlanTests.swift
+[0/1] Planning build
+Building for debugging...
+[0/47] Write sources
+[2/62] Write swift-version-3F7A2EEDC74611F1.txt
+[4/19] Emitting module AudioPacingTests
+[5/19] Compiling AudioPacingTests AudioPacingTests.swift
+[6/20] $GORAV/.build/x86_64-unknown-linux-gnu/debug/GorAVDecoderOnlyCandidatePackageDiscoveredTests.derived/all-discovered-tests.swift
+[7/20] Wrapping AST for AudioPacingTests for debugging
+[8/20] Write sources
+[10/20] Emitting module race_witness_tests
+[11/20] Compiling race_witness_tests RaceArms2.swift
+[12/26] Emitting module GorAVDecoderOnlyCandidatePackageDiscoveredTests
+[13/26] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests AudioPacingTests.swift
+[14/26] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests DecodeHeartbeatTests.swift
+[15/26] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests GorAVAudioClockTests.swift
+[16/26] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests GorAVMetalPresenterTests.swift
+[17/29] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests J3AudioControlTests.swift
+[18/29] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests PlayerControlPlaneTests.swift
+[19/29] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests all-discovered-tests.swift
+[20/30] $GORAV/.build/x86_64-unknown-linux-gnu/debug/GorAVDecoderOnlyCandidatePackageTests.derived/runner.swift
+[21/30] Wrapping AST for GorAVDecoderOnlyCandidatePackageDiscoveredTests for debugging
+[22/30] Write sources
+[24/32] Compiling race_witness_tests main.swift
+$GORAV/Sources/race-witness-tests/main.swift:164:37: warning: initialization of immutable value 'bGo' was never used; consider replacing with assignment to '_' or removing it
+    let aLoaded = AtomicU64()!; let bGo = AtomicU64()!; let done = AtomicU64()!
+                                ~~~~^~~
+                                _
+$GORAV/Sources/race-witness-tests/main.swift:558:9: warning: variable 'bytes' was never mutated; consider changing to 'let' constant
+    var bytes = [UInt8](repeating: 0xAB, count: 12)
+    ~~~ ^
+    let
+$GORAV/Sources/race-witness-tests/main.swift:568:9: warning: variable 'five' was never mutated; consider changing to 'let' constant
+    var five = [UInt8](repeating: 1, count: 20)
+    ~~~ ^
+    let
+$GORAV/Sources/race-witness-tests/main.swift:571:9: warning: variable 'tail' was never mutated; consider changing to 'let' constant
+    var tail = [UInt8](repeating: 2, count: 10)
+    ~~~ ^
+    let
+[25/33] Wrapping AST for race-witness-tests for debugging
+[26/33] Write Objects.LinkFileList
+[28/33] Emitting module GorAVDecoderOnlyCandidatePackageTests
+[29/33] Compiling GorAVDecoderOnlyCandidatePackageTests runner.swift
+[29/34] Linking race-witness-tests
+[31/33] Write Objects.LinkFileList
+[32/33] Linking GorAVDecoderOnlyCandidatePackageTests.xctest
+Build complete! (2.15s)
+CHUNK_EXIT=0

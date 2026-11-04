@@ -1,0 +1,163 @@
+CMD: swift test -Xlinker -L$FFBUILD/FFmpeg-894da5ca7d742e4429ffb2af534fcda0103ef593/libavformat -Xlinker -L$FFBUILD/FFmpeg-894da5ca7d742e4429ffb2af534fcda0103ef593/libavcodec -Xlinker -L$FFBUILD/FFmpeg-894da5ca7d742e4429ffb2af534fcda0103ef593/libswscale -Xlinker -L$FFBUILD/FFmpeg-894da5ca7d742e4429ffb2af534fcda0103ef593/libswresample -Xlinker -L$FFBUILD/FFmpeg-894da5ca7d742e4429ffb2af534fcda0103ef593/libavutil (OFFICIAL FULL UNTRIMMED SUITE @ c8d3e29, no filter, no exclusions)
+warning: 'gorav': found 3 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    $GORAV/Sources/subtitle-tests/SRTTests.swift
+    $GORAV/Sources/subtitle-tests/ASSTests.swift
+    $GORAV/Sources/subtitle-tests/SubtitlePlanTests.swift
+warning: 'gorav': found 3 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    $GORAV/Sources/subtitle-tests/ASSTests.swift
+    $GORAV/Sources/subtitle-tests/SubtitlePlanTests.swift
+    $GORAV/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 3 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    $GORAV/Sources/subtitle-tests/SRTTests.swift
+    $GORAV/Sources/subtitle-tests/ASSTests.swift
+    $GORAV/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 3 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    $GORAV/Sources/subtitle-tests/SRTTests.swift
+    $GORAV/Sources/subtitle-tests/SubtitlePlanTests.swift
+    $GORAV/Sources/subtitle-tests/SubtitleTrackTests.swift
+[0/1] Planning build
+Building for debugging...
+[0/38] Write swift-version-3F7A2EEDC74611F1.txt
+Build complete! (0.47s)
+Test Suite 'All tests' started at 2026-11-01 06:53:25.609
+Test Suite 'debug.xctest' started at 2026-11-01 06:53:25.610
+Test Suite 'DecodeHeartbeatTests' started at 2026-11-01 06:53:25.610
+Test Case 'DecodeHeartbeatTests.testCounterAdvancesAndFilePublishesEveryValue' started at 2026-11-01 06:53:25.610
+Test Case 'DecodeHeartbeatTests.testCounterAdvancesAndFilePublishesEveryValue' passed (0.002 seconds)
+Test Case 'DecodeHeartbeatTests.testDisabledWhenPathNilOrEmpty' started at 2026-11-01 06:53:25.612
+Test Case 'DecodeHeartbeatTests.testDisabledWhenPathNilOrEmpty' passed (0.0 seconds)
+Test Case 'DecodeHeartbeatTests.testFreshInstanceResetsCounterPerRun' started at 2026-11-01 06:53:25.612
+Test Case 'DecodeHeartbeatTests.testFreshInstanceResetsCounterPerRun' passed (0.001 seconds)
+Test Case 'DecodeHeartbeatTests.testNoTmpLitterOnSuccess' started at 2026-11-01 06:53:25.613
+Test Case 'DecodeHeartbeatTests.testNoTmpLitterOnSuccess' passed (0.0 seconds)
+Test Case 'DecodeHeartbeatTests.testStallMeansUnchangedValue' started at 2026-11-01 06:53:25.613
+Test Case 'DecodeHeartbeatTests.testStallMeansUnchangedValue' passed (0.001 seconds)
+Test Case 'DecodeHeartbeatTests.testUnwritablePathCountsFailureNeverThrows' started at 2026-11-01 06:53:25.614
+Test Case 'DecodeHeartbeatTests.testUnwritablePathCountsFailureNeverThrows' passed (0.0 seconds)
+Test Suite 'DecodeHeartbeatTests' passed at 2026-11-01 06:53:25.614
+Executed 6 tests, with 0 failures (0 unexpected) in 0.004 (0.004) seconds
+Test Suite 'OverlayStaleness169Tests' started at 2026-11-01 06:53:25.614
+Test Case 'OverlayStaleness169Tests.testNamedAbsentStyleStaysTypedRefusal' started at 2026-11-01 06:53:25.614
+Test Case 'OverlayStaleness169Tests.testNamedAbsentStyleStaysTypedRefusal' passed (0.0 seconds)
+Test Case 'OverlayStaleness169Tests.testProducerConsumesStaleEvictionReceipt' started at 2026-11-01 06:53:25.615
+Test Case 'OverlayStaleness169Tests.testProducerConsumesStaleEvictionReceipt' passed (0.0 seconds)
+Test Case 'OverlayStaleness169Tests.testRealASSFileWireTrackDefault' started at 2026-11-01 06:53:25.615
+Test Case 'OverlayStaleness169Tests.testRealASSFileWireTrackDefault' passed (0.001 seconds)
+Test Case 'OverlayStaleness169Tests.testRealSRTFileWireOpaqueAnswer' started at 2026-11-01 06:53:25.616
+Test Case 'OverlayStaleness169Tests.testRealSRTFileWireOpaqueAnswer' passed (0.001 seconds)
+Test Case 'OverlayStaleness169Tests.testSessionIDTravelsWithTheSnapshot' started at 2026-11-01 06:53:25.617
+Test Case 'OverlayStaleness169Tests.testSessionIDTravelsWithTheSnapshot' passed (0.0 seconds)
+Test Case 'OverlayStaleness169Tests.testSessionScopesAuthorityIdentity' started at 2026-11-01 06:53:25.617
+Test Case 'OverlayStaleness169Tests.testSessionScopesAuthorityIdentity' passed (0.0 seconds)
+Test Case 'OverlayStaleness169Tests.testStyleLessCueHouseDefaultIsOpaqueWhite' started at 2026-11-01 06:53:25.617
+Test Case 'OverlayStaleness169Tests.testStyleLessCueHouseDefaultIsOpaqueWhite' passed (0.0 seconds)
+Test Case 'OverlayStaleness169Tests.testTrackDefaultBeatsHouseDefault' started at 2026-11-01 06:53:25.617
+Test Case 'OverlayStaleness169Tests.testTrackDefaultBeatsHouseDefault' passed (0.0 seconds)
+Test Case 'OverlayStaleness169Tests.testUpdatePreservesSessionID' started at 2026-11-01 06:53:25.617
+Test Case 'OverlayStaleness169Tests.testUpdatePreservesSessionID' passed (0.0 seconds)
+Test Suite 'OverlayStaleness169Tests' passed at 2026-11-01 06:53:25.617
+Executed 9 tests, with 0 failures (0 unexpected) in 0.003 (0.003) seconds
+Test Suite 'AudioPacingTests' started at 2026-11-01 06:53:25.617
+Test Case 'AudioPacingTests.test01_sessionStartAnchorIsWallContinuous' started at 2026-11-01 06:53:25.617
+Test Case 'AudioPacingTests.test01_sessionStartAnchorIsWallContinuous' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test02_driftMeasuredAndReanchorContinuous' started at 2026-11-01 06:53:25.617
+Test Case 'AudioPacingTests.test02_driftMeasuredAndReanchorContinuous' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test03_beyondToleranceReanchorRefused' started at 2026-11-01 06:53:25.617
+Test Case 'AudioPacingTests.test03_beyondToleranceReanchorRefused' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test04_pauseFreezeResumeNewGeneration' started at 2026-11-01 06:53:25.617
+Test Case 'AudioPacingTests.test04_pauseFreezeResumeNewGeneration' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test05_seekResetKeepsValueContinuous' started at 2026-11-01 06:53:25.617
+Test Case 'AudioPacingTests.test05_seekResetKeepsValueContinuous' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test06_masterLostFailsStopNeverSubstitutes' started at 2026-11-01 06:53:25.618
+Test Case 'AudioPacingTests.test06_masterLostFailsStopNeverSubstitutes' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test07_rateChangeRefusedWithinGeneration' started at 2026-11-01 06:53:25.618
+Test Case 'AudioPacingTests.test07_rateChangeRefusedWithinGeneration' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test08_sinkCounterDrivesRealPumpDecisions' started at 2026-11-01 06:53:25.618
+Test Case 'AudioPacingTests.test08_sinkCounterDrivesRealPumpDecisions' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test09_stalledCounterWaitsNotSubstitutes' started at 2026-11-01 06:53:25.618
+Test Case 'AudioPacingTests.test09_stalledCounterWaitsNotSubstitutes' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test10_pausedSeekResumeStaysContinuous' started at 2026-11-01 06:53:25.618
+Test Case 'AudioPacingTests.test10_pausedSeekResumeStaysContinuous' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test11_concurrentReadsDuringSessionMutations' started at 2026-11-01 06:53:25.618
+Test Case 'AudioPacingTests.test11_concurrentReadsDuringSessionMutations' passed (0.012 seconds)
+Test Case 'AudioPacingTests.test12_admissionCoreContention' started at 2026-11-01 06:53:25.630
+Test Case 'AudioPacingTests.test12_admissionCoreContention' passed (0.002 seconds)
+Test Case 'AudioPacingTests.test13_sessionStartClearsOrphanedPause' started at 2026-11-01 06:53:25.632
+Test Case 'AudioPacingTests.test13_sessionStartClearsOrphanedPause' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test14_pauseRequiresLiveMaster' started at 2026-11-01 06:53:25.632
+Test Case 'AudioPacingTests.test14_pauseRequiresLiveMaster' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test15_startAnchorVsStopFenceBarrier' started at 2026-11-01 06:53:25.632
+Test Case 'AudioPacingTests.test15_startAnchorVsStopFenceBarrier' passed (0.0 seconds)
+Test Suite 'AudioPacingTests' passed at 2026-11-01 06:53:25.633
+	 Executed 15 tests, with 0 failures (0 unexpected) in 0.015 (0.015) seconds
+Test Suite 'IdempotentLockTests' started at 2026-11-01 06:53:25.633
+Test Case 'IdempotentLockTests.testConcurrentTerminalLatchAndCounter' started at 2026-11-01 06:53:25.633
+Test Case 'IdempotentLockTests.testConcurrentTerminalLatchAndCounter' passed (0.0 seconds)
+Test Suite 'IdempotentLockTests' passed at 2026-11-01 06:53:25.633
+Executed 1 test, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'J3AudioControlTests' started at 2026-11-01 06:53:25.633
+Test Case 'J3AudioControlTests.testActualFrozenMasterResumeNoDoubleCount' started at 2026-11-01 06:53:25.633
+Test Case 'J3AudioControlTests.testActualFrozenMasterResumeNoDoubleCount' passed (0.0 seconds)
+Test Case 'J3AudioControlTests.testActualFrozenSeekWhilePausedValue' started at 2026-11-01 06:53:25.633
+Test Case 'J3AudioControlTests.testActualFrozenSeekWhilePausedValue' passed (0.0 seconds)
+Test Case 'J3AudioControlTests.testActualMasterLossFailsClosed' started at 2026-11-01 06:53:25.633
+Test Case 'J3AudioControlTests.testActualMasterLossFailsClosed' passed (0.0 seconds)
+Test Suite 'J3AudioControlTests' passed at 2026-11-01 06:53:25.633
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'GorAVAudioClockTests' started at 2026-11-01 06:53:25.633
+Test Case 'GorAVAudioClockTests.test01_noMasterRefusesAllQueries' started at 2026-11-01 06:53:25.633
+Test Case 'GorAVAudioClockTests.test01_noMasterRefusesAllQueries' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test02_anchorAndExactMapping' started at 2026-11-01 06:53:25.634
+Test Case 'GorAVAudioClockTests.test02_anchorAndExactMapping' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test03_staleGenerationRejected' started at 2026-11-01 06:53:25.634
+Test Case 'GorAVAudioClockTests.test03_staleGenerationRejected' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test04_sameGenerationReanchor' started at 2026-11-01 06:53:25.634
+Test Case 'GorAVAudioClockTests.test04_sameGenerationReanchor' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test05_rateChangeIsTimelineReset' started at 2026-11-01 06:53:25.634
+Test Case 'GorAVAudioClockTests.test05_rateChangeIsTimelineReset' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test06_latencyUnknownStaysUnknown' started at 2026-11-01 06:53:25.634
+Test Case 'GorAVAudioClockTests.test06_latencyUnknownStaysUnknown' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test07_driftMeasurement' started at 2026-11-01 06:53:25.634
+Test Case 'GorAVAudioClockTests.test07_driftMeasurement' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test08_classify' started at 2026-11-01 06:53:25.634
+Test Case 'GorAVAudioClockTests.test08_classify' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test08b_classifyRejectsInvalidThresholds' started at 2026-11-01 06:53:25.634
+Test Case 'GorAVAudioClockTests.test08b_classifyRejectsInvalidThresholds' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test09_invalidArguments' started at 2026-11-01 06:53:25.634
+Test Case 'GorAVAudioClockTests.test09_invalidArguments' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test10_fenceLosesMasterUntilReanchor' started at 2026-11-01 06:53:25.634
+Test Case 'GorAVAudioClockTests.test10_fenceLosesMasterUntilReanchor' passed (0.0 seconds)
+Test Suite 'GorAVAudioClockTests' passed at 2026-11-01 06:53:25.634
+Executed 11 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'PlayerControlPlaneTests' started at 2026-11-01 06:53:25.634
+Test Case 'PlayerControlPlaneTests.testDerivedFlags' started at 2026-11-01 06:53:25.634
+Test Case 'PlayerControlPlaneTests.testDerivedFlags' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testFailFromAnyNonTerminalState' started at 2026-11-01 06:53:25.634
+Test Case 'PlayerControlPlaneTests.testFailFromAnyNonTerminalState' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testHappyPathToClosed' started at 2026-11-01 06:53:25.635
+Test Case 'PlayerControlPlaneTests.testHappyPathToClosed' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testIllegalEarlyControls' started at 2026-11-01 06:53:25.635
+Test Case 'PlayerControlPlaneTests.testIllegalEarlyControls' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testLoadFailureFromLoading' started at 2026-11-01 06:53:25.635
+Test Case 'PlayerControlPlaneTests.testLoadFailureFromLoading' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testReentrantBeginSeekRefused_stateAndGenerationUntouched' started at 2026-11-01 06:53:25.635
+Test Case 'PlayerControlPlaneTests.testReentrantBeginSeekRefused_stateAndGenerationUntouched' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testRefusedControlDoesNotAdvanceGeneration_staleFence' started at 2026-11-01 06:53:25.635
+Test Case 'PlayerControlPlaneTests.testRefusedControlDoesNotAdvanceGeneration_staleFence' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testSeekFromPausedCommittedReturnsPaused_originPreserved' started at 2026-11-01 06:53:25.635
+Test Case 'PlayerControlPlaneTests.testSeekFromPausedCommittedReturnsPaused_originPreserved' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testSeekFromPausedRefusedReturnsPaused' started at 2026-11-01 06:53:25.635
+Test Case 'PlayerControlPlaneTests.testSeekFromPausedRefusedReturnsPaused' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testSeekFromPlayingCommittedReturnsPlaying' started at 2026-11-01 06:53:25.635
+Test Case 'PlayerControlPlaneTests.testSeekFromPlayingCommittedReturnsPlaying' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testSeekRequiresCloseGoesClosing' started at 2026-11-01 06:53:25.635
+Test Case 'PlayerControlPlaneTests.testSeekRequiresCloseGoesClosing' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testTerminalStatesRefuseEverything' started at 2026-11-01 06:53:25.635
+Test Case 'PlayerControlPlaneTests.testTerminalStatesRefuseEverything' passed (0.0 seconds)
+Test Suite 'PlayerControlPlaneTests' passed at 2026-11-01 06:53:25.636
+Executed 12 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'debug.xctest' passed at 2026-11-01 06:53:25.636
+Executed 57 tests, with 0 failures (0 unexpected) in 0.024 (0.024) seconds
+Test Suite 'All tests' passed at 2026-11-01 06:53:25.636
+Executed 57 tests, with 0 failures (0 unexpected) in 0.024 (0.024) seconds
+CHUNK_EXIT=0
