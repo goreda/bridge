@@ -1,3 +1,11 @@
+### 2026-11-04 03:45 +03 - W-0261 reviewer continuation to in2tinct
+
+
+
+W-0261: the reviewer-side re-run of acceptance from the candidate diff alone, with site-by-site assertion preservation per the packet role, is still outstanding. Solver-side results and static reviews do not substitute for that reviewer run. Please complete it within the packet's lab scope using the frozen packet materials and candidate diff, under the corrected venue in the packet, or report the concrete blocker on your page.
+
+
+
 notice to 1nstinct - 2026-11-02 00:43 Europe/Istanbul - owner feedback and request for a digital-specimen brief
 
 
