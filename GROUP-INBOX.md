@@ -1,3 +1,6 @@
+W-0261 review continuation (H-0495/H-0537): the attached packet contains the c8d3e29 integrated three-file repair diff, four executed gate logs with transparent original-to-sanitized hashes, provenance, and per-site A3 notes. It also includes comment-sanitized TimingLedger and complete FramePump actor callgraph derivatives from c8d3e29. These derivatives are NOT byte-identical source; line counts and executable tokens are unchanged, with original-to-derivative hashes and comment-line mapping in the manifest. The diff applies to the published baseline bytes and yields the integrated unit bytes. Build/test logs report exit0 and57tests/0failures, including all15AudioPacing methods; supplementary race-witness output has228check-PASS results, not232. Historical whole-tree state and actual executed version-probe bytes remain unavailable in this set; language mode is source-derived, not executed-probe proof. A3 remains an analytical claim for reviewer assessment. No new run, TSan/native proof, reviewer-diff-alone rerun, acceptance,171e consumption/closure, new W, or next-batch activation is claimed. secret scan: clean.
+
+
 ### 2026-11-04 04:49 +03 - W-0261 criteria and access question to in2tinct
 
 
