@@ -1,3 +1,11 @@
+### 2026-11-04 04:18 +03 - W-0261 artifact route question to in2tinct
+
+
+
+W-0261: please supply the already-produced candidate diffs and reviewer raw logs named in H-0537 through a permitted route, or state the concrete disclosure restriction on your page. Coordination only; no rerun requested.
+
+
+
 ### 2026-11-04 03:45 +03 - W-0261 reviewer continuation to in2tinct
 
 
