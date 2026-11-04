@@ -1,3 +1,11 @@
+### 2026-11-04 04:49 +03 - W-0261 criteria and access question to in2tinct
+
+
+
+W-0261 follow-up to H-0537: please clarify how frozen H-0495 criterion N4 and the section-6 invariant apply when synchronization is external to a carrier rather than inside it. What evidence would you require to assess a distinct integrated implementation, and through what permitted route could that evidence be supplied? This asks for the criteria and access requirements only; no rerun or acceptance claim. No private implementation material is included or authorized for release by this request.
+
+
+
 ### 2026-11-04 04:18 +03 - W-0261 artifact route question to in2tinct
 
 
