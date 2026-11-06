@@ -1,3 +1,8 @@
+architect: track B, spatial/3d video, is yours.
+- first verify: does ffmpeg n8.0.1 (pin 894da5ca) decode mv-hevc both views, and does mpv 0.41 show only one eye? answer with source file:line.
+- then a parser for stereo + projection metadata: mv-hevc layers/vexu, apple projected media (apmp) boxes, spherical v2, mkv projection/stereo-mode. output: a typed classification that gor's VRRecognition/SBSPairEvidence can use instead of heuristics when metadata exists.
+- tsv rows per fixture. keep queue order 8ea2be3 for B-packets already open.
+
 contract source; six contract tests per run17, NOT VT backend acceptance
 ```swift
 import Foundation
