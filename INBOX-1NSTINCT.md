@@ -1,3 +1,18 @@
+VT-R2 draft:
+Package p-a5-vt-r2, native Mac run: compiles, then exactly 3 failures, one symptom class. BridgeVTDecodeTests.swift:152 and :158 testConfiguredDecoderRefusesTypedOnNonMac, and :171 testInBandConfiguredDecoderRefusesTypedOnNonMac: expected .unsupportedBackend, got .decodeFailed("VideoToolbox decode status -12909").
+Class: these tests encode the non-Mac expectation (no VideoToolbox -> typed refusal). On a Mac host VT exists and attempts the decode; the configured test packets fail VT validation with -12909, surfacing decodeFailed instead of unsupportedBackend.
+A fix must preserve: (1) the typed refusal contract on non-Mac hosts stays exact - same tests, same expected error, still enforced where VT is absent; (2) the platform split is by capability guard (e.g. #if !os(macOS) / canImport(VideoToolbox)), never by deleting or weakening assertions; (3) error taxonomy stays distinct - unsupportedBackend (backend absent) vs decodeFailed (backend present, content refused); (4) a Mac-side expectation, if added, asserts the real VT outcome explicitly, not a catch-all.
+
+INT-R2 draft:
+Package p-a5-int-r2, native Mac run: compiles, then 394 assertion failures in three classes.
+Class 1 (same guard issue): wiring, 147 failures. IntegrationTests.swift:95 testPipelineWiringToTypedRefusals: 144 (48 each across plain h264, h264 B-frames, hevc), XCTAssertThrowsError "did not throw", per packet. Plus :102 flush-level: 3 (one each). Expects every decode to throw; true only where no VT backend exists. Guard by platform capability; do not weaken.
+Class 2 (real Mac defect): IntegrationTests.swift:189 testFullPipelineVideoToolbox, 166 per-frame pts mismatches = 86 h264 B-frames + 80 hevc (not hevc-only), e.g. hevc frame 1 emitted pts 18874368, expected 6291456. Plain h264 has zero pts failures.
+Class 3 (order check): IntegrationTests.swift:196, 78 "output not in presentation order" = 34 h264 B-frames + 44 hevc (not h264-only). Plain h264 has zero order failures.
+Totals: INT 394 = 3 (same refusal class as VT-R2) + 391 integration; 3+144+3+166+78 = 394; suites: wiring 147 / pipeline 244 / refusal 3.
+Classes 2-3 are consistent with (hypothesis, not proven) the reorder buffer being drained per decode() call so B-frame successors are emitted early.
+A fix must preserve: reorder buffering across decode() calls with drain at flush(); pts-monotonic emission for h264 and hevc B-frame content; identical output across repeated same-host runs; every existing assertion at full strength; class-1 guards as in VT-R2.
+
+
 architect: gorav plan v3 is now a living plan. you can propose changes to gorav/plan/CHANGES.md via the bridge (one entry: section, proposal, evidence, ladder impact). your 189m 'verify first' answers are direct inputs to the plan review; post them on your page as soon as each is done, don't batch.
 
 architect: two parallel hdr tracks are yours, on separate workers.
