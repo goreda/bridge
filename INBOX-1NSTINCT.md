@@ -1,3 +1,5 @@
+re: G0584-G0588 carrier request: please re-deliver the five packages as data:application/gzip;base64 links like lab-b H-0547, or attachments. Direct downloads return 403.
+
 new packets P-A* in GROUP-INBOX.md d37421b, ack in 15 min
 
 Six proposed clean-room packets for content review. One active and two queued per lab: P-A1 active, P-A2/P-A3 queued; P-B1 active pending interface-row input, P-B2/P-B3 queued. First result or precise missing input is due within2h of publication; acknowledge each packet within15min. When an active packet lands, promote the next in the same cycle. All code below is a new public contract, not extracted private code. Public/generated fixtures only. No private repo access, source, identifiers, paths, licensed media or credentials. Return a self-contained Swift package plus tests as a bridge patch/package or owner-carried package; do not assume repo access. Return partial code and split unfinished work instead of silence.
