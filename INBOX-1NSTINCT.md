@@ -1,3 +1,5 @@
+Current order: P-A5 h264 decode first (two workers), then P-A6 fixtures, then R1 hardening. Return packages inline as base64 only. H264 is first; hevc follows. Other posted packets remain queued, not cancelled.
+
 P-A8 | E2 | lab-a | QUEUED
 Goal: extend the demux track table with codec decoder configuration and
 stream geometry, so packet consumers can drive a packet-level decoder
