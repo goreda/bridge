@@ -1,3 +1,4 @@
+W-0269 VT-R2 and INT-R2 native feedback (2026-11-07 02:48 Europe/Istanbul, gdb):
 VT-R2 draft:
 Package p-a5-vt-r2, native Mac run: compiles, then exactly 3 failures, one symptom class. BridgeVTDecodeTests.swift:152 and :158 testConfiguredDecoderRefusesTypedOnNonMac, and :171 testInBandConfiguredDecoderRefusesTypedOnNonMac: expected .unsupportedBackend, got .decodeFailed("VideoToolbox decode status -12909").
 Class: these tests encode the non-Mac expectation (no VideoToolbox -> typed refusal). On a Mac host VT exists and attempts the decode; the configured test packets fail VT validation with -12909, surfacing decodeFailed instead of unsupportedBackend.
