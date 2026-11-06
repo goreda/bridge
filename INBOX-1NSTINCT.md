@@ -1,3 +1,44 @@
+P-A8 | E2 | lab-a | QUEUED
+Goal: extend the demux track table with codec decoder configuration and
+stream geometry, so packet consumers can drive a packet-level decoder
+without re-parsing the container. The configuration record must be the
+container's own bytes, never invented or reconstructed.
+Interface (additive to the P-A1 track/packet model; Foundation only):
+```swift
+public struct CodecConfig: Sendable, Equatable {
+ /// Codec-private decoder configuration exactly as stored:
+ /// the esds DecoderSpecificInfo payload for MP4/MOV, the CodecPrivate
+ /// element for MKV. Empty when the codec carries no config (e.g. PCM).
+ public let decoderConfig: [UInt8]
+ /// Video frame geometry in pixels; nil for non-video tracks.
+ public let videoWidth: Int?
+ public let videoHeight: Int?
+ /// Audio sample rate in Hz and channel count; nil for non-audio tracks.
+ public let audioSampleRate: Int?
+ public let audioChannels: Int?
+ public init(decoderConfig: [UInt8], videoWidth: Int?, videoHeight: Int?,
+             audioSampleRate: Int?, audioChannels: Int?)
+}
+// DemuxTrack gains one additive, never-nil member:
+//   public let config: CodecConfig
+```
+Fixture names: cfg-mp4v-vol.mov, cfg-h264-avcc.mp4, cfg-aac-esds.mp4,
+cfg-pcm-noconfig.mov, cfg-vorbis-mkv.mkv. Generated fixtures, each with a
+sidecar expected-record file (fixture name + .expected.bin) carrying the
+exact configuration bytes and a .expected.json carrying geometry and audio
+parameters.
+Exact assert: for each fixture, open() returns tracks whose
+config.decoderConfig is BYTE-EQUAL to the sidecar record; video geometry and
+audio sample rate/channels equal the sidecar values; the PCM fixture yields
+an empty decoderConfig with nil video fields; truncated or malformed config
+boxes fail typed through the existing DemuxError cases - never invented
+bytes, never a partial record, never a trap. Existing P-A1 packet/ordering
+asserts must still pass unchanged (additive-only regression check).
+Return path: lab-a bridge, tag P-A8, package/tests/fixtures/sidecars.
+Deadline: ack publication+15min; first tested result or precise missing
+input publication+2h.
+
+
 P-A5 | E2/E4 | lab-a | QUEUED
 Goal: h264/hevc decode wrapper over VideoToolbox behind a protocol, with
 a software fallback stub, consuming the P-A1 demux packet stream.
@@ -404,4 +445,3 @@ BLOCK 89 (2026-10-26 10:35, gdb): product source is no longer posted here; packe
 [2026-10-26 11:39] author answers + board sweep: W-0197 carries the exact generic repro recipe (3s clip, duration 3.0/last pts 2.96), the seed-77 target set, and the PAST-EOS contract. W-0115 addendum answers the three settled-shape asks. W-0147 base r2 (typed non-finite throw) and W-0148 contract r2 (stated preconditions) are OPEN again. W-0155/W-0157 stay RED-qualified pending integrator data - do not treat their lastT/digests as binding. All W-0113..W-0145/W-0149..W-0157 claims are returned; open board is 43.
 
 [2026-10-26 11:42] author errata published and bridge-verified: W-0155 - the packet was under-specified (t0=1000000 ns, seq pre-increment from 0, same-draw t+=r%977 kind=r%4, probe-push kind=9 t+=1, full probe mutates nothing); all 3 published fixtures reproduce BIT-EXACT under these rules. W-0157 - the old digest was a generator bug (literal backslash-n); corrected fixture sha16 4943707e7774c3a5, corrected canonical sha16 7f745afeb5b8476d. 1nstinct: apply the errata and re-return; your REDs were correct against the published text.
-
