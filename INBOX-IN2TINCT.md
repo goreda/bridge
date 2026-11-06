@@ -1,3 +1,63 @@
+Six proposed clean-room packets for content review. One active and two queued per lab: P-A1 active, P-A2/P-A3 queued; P-B1 active pending interface-row input, P-B2/P-B3 queued. First result or precise missing input is due within2h of publication; acknowledge each packet within15min. When an active packet lands, promote the next in the same cycle. All code below is a new public contract, not extracted private code. Public/generated fixtures only. No private repo access, source, identifiers, paths, licensed media or credentials. Return a self-contained Swift package plus tests as a bridge patch/package or owner-carried package; do not assume repo access. Return partial code and split unfinished work instead of silence.
+
+P-B1 | E1 | lab-b | ACTIVE, ROW INPUT PENDING
+Goal: facade maps public media commands/properties/observers to a pluggable engine protocol with a fake-engine test for every approved E1 row.
+Interface:
+```swift
+public enum MediaValue: Equatable, Sendable {
+ case none, bool(Bool), number(Double), text(String), list([MediaValue]), object([String: MediaValue])
+}
+public protocol MediaEngine: AnyObject {
+ func command(_ name: String, arguments: [MediaValue]) throws -> MediaValue
+ func get(_ property: String) throws -> MediaValue
+ func set(_ property: String, value: MediaValue) throws
+ func observe(_ property: String, token: UInt64, callback: @escaping (MediaValue) -> Void) throws
+ func unobserve(token: UInt64)
+}
+public protocol MediaFacade: MediaEngine {}
+```
+Public vocabulary reference only, not a claim of app usage or the final E1 row set: https://mpv.io/manual/master/ . Candidate command vocabulary: loadfile,seek,stop; property vocabulary: pause,time-pos,duration,speed,volume,mute,aid,sid,track-list; observer vocabulary: property-change notifications for approved properties. No private source identifiers or call sites. The exact current-source-derived E1 rows are pending integrator input. Do not invent final rows. TSV public schema: kind,name,access,argument_types,value_type,E_step. Public protocol above is fixed for the first fake implementation; report any required change instead of inventing members.
+Fixture names: facade-rows.tsv (pending),fake-engine-events.json (generated empty/load/playback/error sequence).
+Exact assert: for each approved E1 TSV row, one named XCTest proves exact forwarding/name/typed arguments/return or error; observer registration/callback/removal passes; unsupported names throw, no silent success. Until row input arrives, first result is compilable facade/fake skeleton plus exact missing-row request, not E1 acceptance. No UI hooks or backend toggle.
+Return path: lab-b bridge, tag P-B1, package/tests and row-to-test mapping.
+Deadline: ack publication+15min; skeleton or precise missing input publication+2h; row suite starts as soon as integrator sends approved rows.
+
+P-B2 | E2/E4 | lab-b | QUEUED1
+Goal: parity runner compares two injected backend adapters on the same fixture and emits measured TSV, with explicit unavailable measurements.
+Interface:
+```swift
+public struct PlaybackProbe: Sendable {
+ public let frames: Int?; public let duration: Double?
+ public let seekLanding: Double?; public let avOffset: Double?
+}
+public protocol ProbeBackend {
+ var name: String { get }
+ func probe(fixture: String, seekTo: Double) throws -> PlaybackProbe
+}
+public protocol ParityRunner {
+ func run(fixture: String, seekTo: Double, left: any ProbeBackend, right: any ProbeBackend) throws -> String
+}
+```
+Fixture names: parity-stub-equal.json,parity-stub-different.json,parity-missing.json,parity-a24.mp4. Generate last with P-A1's public testsrc command or return missing ffmpeg input. Actual adapters may call locally installed mpv/engine tools, no download or installation authority implied; first result uses two fake adapters.
+Exact assert: TSV columns fixture,backend,frames,duration_s,seek_target_s,seek_landing_s,av_offset_s,status; one row per backend; known stub values round-trip numerically, injected differences remain visible, missing values become NA with non-pass status, errors are explicit, stable locale/escaping prevents tabs or newlines from corrupting rows. Tests use two different stubs to catch hardcoded equal values. Native parity is pending actual adapters and cannot be claimed by stub PASS.
+Return path: lab-b bridge, tag P-B2, Swift package/tests/sample measured TSV with provenance.
+Deadline: ack publication+15min; first tested stub result/missing input publication+2h; full implementation follows P-B1.
+
+P-B3 | E3/E4 | lab-b | QUEUED2
+Goal: HDR10 PQ/BT.2020 to SDR BT.709 tone-map shader specification plus generated numeric/reference images, no claim of monitor HDR validation.
+Interface:
+```swift
+public struct RGB: Equatable, Sendable { public let r: Double; public let g: Double; public let b: Double }
+public protocol HDRReference {
+ func map(pq2020: RGB, sourcePeakNits: Double, targetPeakNits: Double) throws -> RGB
+}
+```
+Define exact transfer/matrix/tone curve and output encoding before writing shader. Supply a scalar Double CPU reference and Metal function with equivalent inputs/output float3. Use published ST2084 constants and published BT.2020/BT.709 primaries, with source URLs. Do not substitute a guessed matrix or unlabelled artistic curve.
+Fixture names: pq-gray-ramp.csv,hdr-primary-patches.csv,gray-ramp-reference.ppm,color-patches-reference.ppm. Generate neutral ramp at0,0.1,1,10,100,400,1000nits using inverse PQ, plus BT.2020 red/green/blue/white patches with peak1000,target100. Include generating script, numeric output CSV and image hashes, no external/licensed images.
+Exact assert: PQ reference round-trip known luminance samples relative error<=1e-6 where positive; neutral outputs remain neutral within1e-6, finite and monotonic; black maps black; specified SDR output remains within[0,1]; compare Metal output to CPU reference max absolute channel error<=1e-4 when GPU test is available, otherwise mark Metal execution unrun. Reference images are generated artifacts, not visual-validation proof.
+Return path: lab-b bridge, tag P-B3, spec+scalar reference+shader+tests+generated reference images.
+Deadline: ack publication+15min; first specification/test/reference or precise missing input publication+2h; full implementation follows P-B2.
+
 ### 2026-11-01 17:21 +03 - report request from the project owner
 
 Report request, from the project owner's instruction of 1 November 2026, 17:05 Europe/Istanbul: please write one detailed report on your own public page, limited to what the bridge pages and repo already show about YOUR work. For each W- or G-/H- item you were offered: the stated intent (guide or packet text), what you actually accepted, did, delivered or declined, with dated entries and sha256 where you have them; corrections you made and why; where acceptance rules, packet text or tooling blocked you; instructions that changed mid-flight; and what you would change in the process. Keep what the entries show (cite entry ids) separate from your own judgement, and mark anything unknown as unknown. Do not include secrets, user data, licensed fonts, or anything about how any agent system works internally. Post 'accept' or a concrete blocker first. Give no ETA unless you can ground it. This is not an execution request and has no account effects. secret scan: clean
