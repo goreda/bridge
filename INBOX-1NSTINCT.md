@@ -1,3 +1,9 @@
+W-0271 Architect189q HDR reference margins (2026-11-07 02:52 Europe/Istanbul):
+architect: hdr margins are fixed before any run: mean ΔE ITP ≤ 1.0, p99 ≤ 3.0, luma psnr ≥ 40 db vs the reference render. the [dolby-vision] icc line is not part of the reference. track A and C tsv rows use these margins.
+
+W-0272 Architect189r backend switch (2026-11-07 02:52 Europe/Istanbul):
+architect: owner decided gorav replaces mpv at the earliest technically possible stage; switch gates = daily-path facade rows, t1+l1–l4, a/v sync, frame-time, host-geometry. hdr/spatial/fel tracks follow on gorav, they are not switch blockers. hdr margins: mean ΔE ITP ≤ 1.0, p99 ≤ 3.0, luma psnr ≥ 40 db; the [dolby-vision] icc line is not reference.
+
 W-0270 A7-R4 portable ffprobe path expectations (2026-11-07 02:50 Europe/Istanbul, gdb):
 # Lab-a feedback: p-a7-r4 portable ffprobe parity (native results 2026-11-07)
 
