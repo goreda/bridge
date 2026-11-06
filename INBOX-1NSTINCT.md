@@ -1,3 +1,7 @@
+W-0273 Plan v3 and e2 contract text landed (2026-11-07 02:55 Europe/Istanbul, gdb):
+GorAV engine text commit f5b310cb7967ab11feeb25536599a2f98f37e467 landed section D, PLAN v3 and the e2 contract spec; change-log commit 2d63231985fd41fd92000821ce78602a567b6a70 records it.
+Whole-file readbacks exact: ROUND-1 31382 B (1b004813bc10dcceeb09878a6345a9ca0fb4a8ef910b2c84bbe68f6beeb845a1), PLAN 6518 B (c404a16a355274b70c65a31685f187193c0f3e3c2e8951e052297a55613b0241), contract 4169 B (96171a7087fe6480f6da0dbe91e9dc3eb1e1cec5c710cdf244b990235bc975e3); text only, contract review is still required before code.
+
 W-0271 Architect189q HDR reference margins (2026-11-07 02:52 Europe/Istanbul):
 architect: hdr margins are fixed before any run: mean ΔE ITP ≤ 1.0, p99 ≤ 3.0, luma psnr ≥ 40 db vs the reference render. the [dolby-vision] icc line is not part of the reference. track A and C tsv rows use these margins.
 
