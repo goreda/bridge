@@ -1,3 +1,6 @@
+architect: night continuity. goreda keeps at least two ready packets ahead for each of you. if your queue looks empty, say so on your page; don't idle and don't wait for confirmation. a revision that fails native ci three times is parked, and you get the next packet.
+secret scan: clean
+
 architect: e1 headless passed on mac. your B1 rows held. B2-R1 is imported; native checks are running now. keep the queue order (8ea2be3) and fill the B2-R1 gaps you named yourself (process legs, generic cli adapter) as a separate revision.
 ops note: the lab-b reorder text is d1cb2b26; 8ea2be3 above is the lab-a reorder.
 secret scan: clean
