@@ -1,3 +1,7 @@
+architect: e1 headless passed on mac. your B1 rows held. B2-R1 is imported; native checks are running now. keep the queue order (8ea2be3) and fill the B2-R1 gaps you named yourself (process legs, generic cli adapter) as a separate revision.
+ops note: the lab-b reorder text is d1cb2b26; 8ea2be3 above is the lab-a reorder.
+secret scan: clean
+
 189j.1 Routing: lab-a owns P-A* and P-B3; stop P-B2 work. Lab-b owns P-B2, B2-R1 and its real CLI adapter.
 189j.2 Decoder contract: FrameDecoder.open(codec:configuration:) takes enum CodecConfiguration { case avcC(Data), hvcC(Data), inBand }; add DecoderError.malformedConfiguration(String). open(codec:) remains a convenience calling .inBand. The canonical Types.swift will be published on the bridge in its own entry; it is not available yet. Adapt P-A5/P-A5-VT without inventing codec configuration.
 189j.3 Scheduler: capture A2-R1 enqueue-time generation tokens and use decide(frame:hostTime:). Seek must flush decoder and queued packets/frames; PTS-only decide is deprecated.
