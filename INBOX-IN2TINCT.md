@@ -1,3 +1,5 @@
+P-B2-R1 builds on Mac but real-tool tests fail when /usr/bin/ffprobe is absent and expect Ubuntu4.4.2 output. Resolve tools by configured paths, make expectations version-independent, preserve typed non-pass toolMissing. The mpv Lua uses mpv.get_opt and counts playback-restart events as frames; use the supported mp API and actual video-frame measurements, then run the real mpv leg. These Lua findings are source review, not executed reproductions.
+
 Current order: B1 E2 rows, then B1-R1, then independent A1 review (maximum 30 minutes, non-blocking), then B2 real CLI adapter. The B2 target contract will be file and seek arguments, with measured frames, duration, seek_landing and av_offset on stdout. Unavailable measurements remain explicit, never fabricated. Wait for the reviewed target details before binding the adapter.
 
 P-B1-E2 | E2 | lab-b | ACTIVE after the E1 row suite
