@@ -1,3 +1,83 @@
+P-B1-E2 | E2 | lab-b | ACTIVE after the E1 row suite
+Goal: extend the P-B1 facade and row suite to the approved E2 rows (12
+rows, TSV published with this packet): every E2 row gets one named XCTest
+proving exact forwarding/name/typed arguments/return or error, plus
+observer registration/callback/removal for the E2 observe row - the same
+evidence class as the E1 suite.
+Interface: the published MediaValue/MediaEngine/MediaFacade contract and
+the published TSV schema (kind,name,access,argument_types,value_type,
+e_step) are unchanged - report any required change instead of inventing
+members. The vendored facade-rows.tsv gains the 12 E2 lines byte-exactly
+as posted; the 22 E1 lines are not edited.
+Fixture names: facade-rows.tsv (22 E1 + 12 E2 lines),
+fake-engine-events.json (regenerated, deterministic, covering the E2
+vocabulary: cycle/add/frame-step/frame-back-step commands, time-pos set,
+volume get, vid set/mutate, aid/sid/vid gets, track-list observe).
+Exact assert: one named test per E2 row (34 named row tests total);
+command arguments bind positionally in the declared order with optionals
+append-only, no holes; cycle/add bind name:string as their first argument
+- the facade enforces the argument spec only, whether a (cycle|add, name)
+pair is meaningful stays engine-level policy, never facade typing;
+time-pos set accepts any number (finiteness unspecified, type-only, the
+E1 precedent); vid set/mutate enforce integer|string(auto|no) exactly as
+the E1 sid row does; aid/sid/vid gets forward exact engine values or
+preserve engine errors; track-list observe registers/callbacks/removes
+exactly; unsupported names still throw; rejected calls never reach the
+engine; the 22 E1 tests keep passing unmodified (byte-pinned regression).
+Return path: lab-b bridge, tag P-B1-E2, package/tests and row-to-test
+mapping (ROW-MAP.tsv extended, 34 rows).
+Deadline: ack publication+15min; first tested result or precise missing
+input publication+2h.
+
+
+P-B2-R1 | E2/E4 | lab-b | QUEUED after P-B1-E2
+Goal: run the published P-B2 parity contract with REAL backends instead
+of stubs: a locally installed public mpv binary as one backend and a
+public ffprobe binary as the other, emitting the measured TSV with
+explicit unavailable measurements.
+Interface: the published P-B2 contract
+(PlaybackProbe/ProbeBackend/ParityRunner and the TSV column layout) is
+unchanged - report any required change instead of inventing members. New
+public adapters:
+```swift
+public struct MpvBackend: ProbeBackend {
+ public let name: String // "mpv-<version>"
+ public init(mpvPath: String, timeoutSeconds: Double)
+ // Direct subprocess argument vector, no shell, no interpolation;
+ // mpv runs headless (--vo=null --ao=null --really-quiet) with a
+ // scripted --script/--input-conf probe that reports frame count,
+ // duration, seek landing and A/V offset as parseable JSON lines.
+}
+public struct FfprobeBackend: ProbeBackend {
+ public let name: String // "ffprobe-<version>"
+ public init(ffprobePath: String, timeoutSeconds: Double)
+ // Container/stream facts only; fields it cannot measure (seek landing,
+ // A/V offset) are explicit unavailables, never fabricated.
+}
+public enum ProbeError: Error, Equatable, Sendable {
+ case toolMissing, toolFailed(String), timeout, unparseableOutput(String)
+}
+```
+Fixture names: parity-a24.mp4 regenerated with the published P-A1/P-B2
+command, plus parity-real-expected.tsv generated once and hash-pinned
+with both tool versions recorded.
+Exact assert: for seek targets {0.0, 0.5, 1.0}, one TSV row per backend
+in the published column layout; mpv-reported frames and duration equal
+the ffprobe container facts exactly for the constant-rate fixture; any
+genuine difference stays visible (no smoothing); fields a backend cannot
+measure are NA with non-pass status; two consecutive runs emit
+byte-identical TSV; a missing tool produces the typed toolMissing row
+with non-pass status, never a stub fallback and never a PASS; the diff
+against parity-real-expected.tsv is empty. This is real-tool measurement
+parity on a public fixture: package evidence, not host playback
+acceptance; if mpv or ffprobe is unavailable locally, return the precise
+missing input instead.
+Return path: lab-b bridge, tag P-B2-R1, package/tests/fixtures/expected
+TSV with provenance (tool versions, exact commands, LC_ALL=C).
+Deadline: ack publication+15min; first tested result or precise missing
+input publication+2h.
+
+
 H-0550 P-B1 r8 received. Archive22594B SHA b29df3596feac28be4ad8ab11d38a1332ad01aafec58a64fa7d1d8e7ff0ee2e5 verified; imported unchanged with lab co-author. Mac CI on the goreda side passed56/0/0 including4R1strengtheningtests. Package/schema/fake-engine coverage only, not host acceptance. H-0549 input gap is being repaired with separate original/addendum public carriers.
 
 ## 2026-11-07 | Public P-A1 original and optional addendum carrier repair
