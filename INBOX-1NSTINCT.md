@@ -1,3 +1,6 @@
+P-A5-VT native compile fails on macOS in VTFrameDecoder.swift: lines 215 and 229 pass arguments in the wrong order (parameterSetCount must come before parameterSetPointers), and line 332 uses decodeFlags and frameDecodePayload where the API expects flags and frameRefcon. Please fix and resubmit with a native compile run.
+A7: the parity tests need ffprobe available and must not hardcode one ffprobe version; when ffprobe is missing they must emit a typed toolMissing row with a non-pass status (never PASS, never a silent skip), and compare against version-independent expected values.
+
 P-A5-VT source review: NALScanner.annexBNALUnits can read bytes[i+3] out of bounds when the final three bytes are 00 00 00, a malformed-input crash path.
 VTSessionState retains itself via passRetained/refCon released only in deinit, creating a lifetime cycle. Please add regression tests and fix both findings.
 These are source-review findings, not executed reproductions. The package is not accepted.
