@@ -1,3 +1,50 @@
+W-0270 A7-R4 portable ffprobe path expectations (2026-11-07 02:50 Europe/Istanbul, gdb):
+# Lab-a feedback: p-a7-r4 portable ffprobe parity (native results 2026-11-07)
+
+Scope: source package only, no engine merge. Results read first-hand from the
+filtered run logs. Linux: 29 cases, 0 failures. Mac: 29 cases, exactly 2
+failures, both in ONE symptom class.
+
+## Symptom class: an environment-specific path hardcoded as the expected value
+
+- `ParityRealTests.swift:474` `FFprobeLocatorTests.testRealEnvironmentResolvesSystemFFprobe`:
+  `XCTAssertEqual failed: ("/opt/homebrew/bin/ffprobe") is not equal to ("/usr/bin/ffprobe")`.
+- `ParityRealTests.swift:19` `FFprobeBackendRealTests.testNameIsStableAndVersionIsProvenanceOnly`:
+  `XCTAssertEqual failed: ("Optional("/opt/homebrew/bin/ffprobe")") is not equal to ("Optional("/usr/bin/ffprobe")")`.
+
+On the Mac runner the production portable lookup DID resolve ffprobe (at
+`/opt/homebrew/bin/ffprobe`, the Apple Silicon Homebrew prefix): there was no
+unavailable-tool / toolMissing failure, and the banner regression tests
+passed. The lookup result is correct; the tests' expected constant is wrong.
+`/usr/bin/ffprobe` is not a stable contract: Apple Silicon Homebrew installs
+to `/opt/homebrew/bin`, Intel Homebrew to `/usr/local/bin`, Linux to
+`/usr/bin`.
+
+## What a fix must preserve
+
+1. Change ONLY the incorrect path expectations. Derive the expected location
+   the same portable way the production lookup resolves it (PATH search /
+   platform locator), or assert location properties - absolute path, exists,
+   is executable, resolves to a working ffprobe. Never substitute another
+   hardcode: a `/opt/homebrew` constant fails on Intel and Linux hosts
+   exactly as `/usr/bin` failed here.
+2. In `testNameIsStableAndVersionIsProvenanceOnly`: keep the stable-name
+   assertion exact - the tool's name is the identity contract. The resolved
+   path and version/banner are environment provenance: recorded and
+   sanity-checked (non-empty, resolves, runs), never equated to a constant.
+3. Retain at full strength: the no-skip behavior; the typed toolMissing
+   rows (`testMatrixWithFFprobeAbsentAllRowsToolMissingNonPass`,
+   `testMissingFFprobeProducesTypedRowAndNonPassNeverStubFallback`,
+   `testTrulyAbsentResolvesNilAndBackendIsTypedToolMissingNA`); the banner
+   tests (`testFailedVersionBannerKeepsNameAndLegRuns`,
+   `testNonExecutableConfiguredPathIsUnavailable`); the error taxonomy
+   (`testNonZeroExitIsToolFailedWithDetail`,
+   `testDemuxOpenFailureIsUnparseableOutput`). No deleted rows, no broadened
+   assertions, no platform skip used as a substitute for a correct
+   expectation.
+4. Linux's 29/29 must remain 29/29 after the change; the Mac run must reach
+   29/29 with the same assertions, not with fewer.
+
 W-0269 VT-R2 and INT-R2 native feedback (2026-11-07 02:48 Europe/Istanbul, gdb):
 VT-R2 draft:
 Package p-a5-vt-r2, native Mac run: compiles, then exactly 3 failures, one symptom class. BridgeVTDecodeTests.swift:152 and :158 testConfiguredDecoderRefusesTypedOnNonMac, and :171 testInBandConfiguredDecoderRefusesTypedOnNonMac: expected .unsupportedBackend, got .decodeFailed("VideoToolbox decode status -12909").
