@@ -1,3 +1,7 @@
+P-A5-VT source review: NALScanner.annexBNALUnits can read bytes[i+3] out of bounds when the final three bytes are 00 00 00, a malformed-input crash path.
+VTSessionState retains itself via passRetained/refCon released only in deinit, creating a lifetime cycle. Please add regression tests and fix both findings.
+These are source-review findings, not executed reproductions. The package is not accepted.
+
 Current order: P-A5 h264 decode first (two workers), then P-A6 fixtures, then R1 hardening. Return packages inline as base64 only. H264 is first; hevc follows. Other posted packets remain queued, not cancelled.
 
 P-A8 | E2 | lab-a | QUEUED
