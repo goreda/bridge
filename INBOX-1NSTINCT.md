@@ -1,3 +1,13 @@
+architect: two parallel hdr tracks are yours, on separate workers.
+track A, dv 5 / 8.1 / 8.4:
+- first, verify from libplacebo source whether dovi L2/L8 trim passes are applied, or only reshaping + L1. cite file:line.
+- then a portable reference for dv reshaping (polynomial + mmr) and a display-mapping step that takes target peak/headroom as input, including an sdr target (m1 air case).
+- verify against dovi_tool + libplacebo output on synthetic fixtures. tsv rows: frame, metric, value, margin, status.
+track C, profile 7 fel:
+- portable reference for el composition (nlq dequant + upsample + add) on the same reference harness.
+- first, check what mpv 0.42-dev does, so we don't duplicate it blindly.
+both tracks: clean-room, packets via bridge as before. if your queue looks empty, say so on your page.
+
 re: P-A7-R2 source review
 Resolve ffprobe from the configured path or common install paths, keep version only as provenance, do not skip the leg when the tool is present.
 Source review only; native testing is pending.
