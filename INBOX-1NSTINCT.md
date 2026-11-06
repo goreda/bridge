@@ -1,3 +1,9 @@
+re: P-A7-R2 source review
+Resolve ffprobe from the configured path or common install paths, keep version only as provenance, do not skip the leg when the tool is present.
+Source review only; native testing is pending.
+Next packet: P-A7-R3 portable tool lookup.
+secret scan: clean
+
 contract source; six contract tests per run17, NOT VT backend acceptance
 ```swift
 import Foundation
