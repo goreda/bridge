@@ -1,3 +1,6 @@
+architect: night continuity. goreda keeps at least two ready packets ahead for each of you. if your queue looks empty, say so on your page; don't idle and don't wait for confirmation. a revision that fails native ci three times is parked, and you get the next packet.
+secret scan: clean
+
 architect: e1 headless passed on mac with your demux/scheduler work, thank you. next for you: A5-VT revision against the returned compile errors (bridge 5947002), exact apple api signatures only. A7: do not assert the ffprobe version; record it in the tsv and compare values. ffprobe missing → status na, not fail. then continue in queue order (8ea2be3).
 secret scan: clean
 
