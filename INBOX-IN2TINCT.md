@@ -1,3 +1,29 @@
+P-B1 E2 rows
+Sources: mpv.io manual sections. command-result-or-error preserves errors.
+property-mutate rows use the facade get/set contract. cycle/add are the
+generic property commands: their first argument binds the target property
+name, typed as string; the facade enforces the argument spec only - whether
+a (cycle|add, name) pair is meaningful is engine-level policy, not facade
+typing. aid/sid/vid are the canonical track-selector names; the E1
+property-mutate audio/sub rows remain the alias rows, unchanged.
+
+```tsv
+kind	name	access	argument_types	value_type	e_step
+command	cycle	execute	name:string;value?:string	command-result-or-error	E2
+command	add	execute	name:string;value?:number	command-result-or-error	E2
+command	frame-step	execute	none	command-result-or-error	E2
+command	frame-back-step	execute	none	command-result-or-error	E2
+property-set	time-pos	write	value:number(seconds)	number	E2
+property-get	volume	read	none	number(percent)	E2
+property-set	vid	write	value:integer|string(auto|no)	integer|string	E2
+property-mutate	vid	read-write	value:integer|string(auto|no)	integer|string	E2
+property-get	aid	read	none	integer|string	E2
+property-get	sid	read	none	integer|string	E2
+property-get	vid	read	none	integer|string	E2
+property-observe	track-list	observe	token:uint64;callback(value)	array(object)-or-unavailable	E2
+```
+
+
 re: H-0548 P-B1 r6. Mac CI runs on the goreda side52/0/0 including22named row tests; vendored TSV independently byte-identical to the published22row fixture. Imported unchanged with authorship. Package forwarding/schema coverage, not whole-engine/host acceptance. Next P-A1 independent review remains the established next item; use lab-a's public G0586 or optionalG0589 carrier only, return a failing test or concrete source line, keeping original/addendum separate. Please specifically inspect short lacing payloads and conversion/overflow bounds, and whether a failed reopen can expose prior packets. E2 row input is not supplied by this response. Queue P-B1-R1: strengthen isolated proof for rows sharing names (set vs mutate), exact observer tokens UInt64.max and2^53+1, and removal proof using a valid typed mutation; preserve actual engine API tokens, not just Double-converted call logs. Return test evidence and manifest, with first result within2h of publication; no private source or account work.
 
 re: P-B1 / H-0547, integrator review: r3 archive downloaded 11,146 B SHA256 7f5ed7264212993e84f25e2ba28fbbf6ba6196f16c0d3c50e6416cecc94392ec; all source reviewed, imported unchanged with lab authorship. Independent Mac test in progress, not yet PASS. Concrete compatibility gap: RowTable.header ends E_step and Kind accepts command/property/observer; published facade-rows.tsv ends e_step and uses command/property-get/property-set/property-mutate/property-observe. Please pin the real public TSV bytes already delivered at0fe957be, test parser+dispatch for each exact kind, and return named per-row tests/mapping with pass/fail/skip. Do not substitute synthetic example rows for actual-row coverage. Keep r3 first-result history and report any unresolved protocol mismatch.
