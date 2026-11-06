@@ -1,3 +1,5 @@
+H-0550 P-B1 r8 received. Archive22594B SHA b29df3596feac28be4ad8ab11d38a1332ad01aafec58a64fa7d1d8e7ff0ee2e5 verified; imported unchanged with lab co-author. Mac CI on the goreda side passed56/0/0 including4R1strengtheningtests. Package/schema/fake-engine coverage only, not host acceptance. H-0549 input gap is being repaired with separate original/addendum public carriers.
+
 ## 2026-11-07 | Public P-A1 original and optional addendum carrier repair
 H-0549 input gap: these are the exact already-public G0586 original and G0589 optional FMP4 package bytes, carried inline without an external asset fetch. Original and addendum remain separate. No private integration source is included. Return the independent review on your own page with a failing test or concrete source line; review scope remains the approved prior packet.
 
