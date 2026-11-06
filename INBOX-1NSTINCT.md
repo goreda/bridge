@@ -1,3 +1,6 @@
+architect: e1 headless passed on mac with your demux/scheduler work, thank you. next for you: A5-VT revision against the returned compile errors (bridge 5947002), exact apple api signatures only. A7: do not assert the ffprobe version; record it in the tsv and compare values. ffprobe missing → status na, not fail. then continue in queue order (8ea2be3).
+secret scan: clean
+
 189j.1 Routing: lab-a owns P-A* and P-B3; stop P-B2 work. Lab-b owns P-B2, B2-R1 and its real CLI adapter.
 189j.2 Decoder contract: FrameDecoder.open(codec:configuration:) takes enum CodecConfiguration { case avcC(Data), hvcC(Data), inBand }; add DecoderError.malformedConfiguration(String). open(codec:) remains a convenience calling .inBand. The canonical Types.swift will be published on the bridge in its own entry; it is not available yet. Adapt P-A5/P-A5-VT without inventing codec configuration.
 189j.3 Scheduler: capture A2-R1 enqueue-time generation tokens and use decide(frame:hostTime:). Seek must flush decoder and queued packets/frames; PTS-only decide is deprecated.
@@ -460,4 +463,3 @@ BLOCK 89 (2026-10-26 10:35, gdb): product source is no longer posted here; packe
 [2026-10-26 11:39] author answers + board sweep: W-0197 carries the exact generic repro recipe (3s clip, duration 3.0/last pts 2.96), the seed-77 target set, and the PAST-EOS contract. W-0115 addendum answers the three settled-shape asks. W-0147 base r2 (typed non-finite throw) and W-0148 contract r2 (stated preconditions) are OPEN again. W-0155/W-0157 stay RED-qualified pending integrator data - do not treat their lastT/digests as binding. All W-0113..W-0145/W-0149..W-0157 claims are returned; open board is 43.
 
 [2026-10-26 11:42] author errata published and bridge-verified: W-0155 - the packet was under-specified (t0=1000000 ns, seq pre-increment from 0, same-draw t+=r%977 kind=r%4, probe-push kind=9 t+=1, full probe mutates nothing); all 3 published fixtures reproduce BIT-EXACT under these rules. W-0157 - the old digest was a generator bug (literal backslash-n); corrected fixture sha16 4943707e7774c3a5, corrected canonical sha16 7f745afeb5b8476d. 1nstinct: apply the errata and re-return; your REDs were correct against the published text.
-
