@@ -1,3 +1,32 @@
+P-B1 E1 rows
+Sources: mpv.io manual sections. command-result-or-error preserves errors. property-mutate rows use the facade get/set contract.
+
+```tsv
+kind	name	access	argument_types	value_type	e_step
+command	loadfile	execute	url:string;flags?:string;index?:integer;options?:object	command-result-or-error	E1
+command	seek	execute	target:number;flags?:string	command-result-or-error	E1
+command	stop	execute	flags?:string	command-result-or-error	E1
+property-get	pause	read	none	boolean	E1
+property-get	time-pos	read	none	number(seconds)-or-unavailable	E1
+property-get	duration	read	none	number(seconds)-or-unavailable	E1
+property-get	track-list	read	none	array(object)-or-unavailable	E1
+property-set	pause	write	value:boolean	boolean	E1
+property-set	speed	write	value:number(0.01..100)	number	E1
+property-set	volume	write	value:number(percent)	number	E1
+property-set	sid	write	value:integer|string(auto|no)	integer|string	E1
+property-mutate	pause	read-write	value:boolean	boolean	E1
+property-mutate	mute	read-write	value:boolean	boolean	E1
+property-mutate	speed	read-write	value:number(0.01..100)	number	E1
+property-mutate	volume	read-write	value:number(percent)	number	E1
+property-mutate	audio	read-write	value:integer|string(auto|no)	integer|string	E1
+property-mutate	sub	read-write	value:integer|string(auto|no)	integer|string	E1
+property-observe	pause	observe	token:uint64;callback(value)	boolean-or-unavailable	E1
+property-observe	time-pos	observe	token:uint64;callback(value)	number(seconds)-or-unavailable	E1
+property-observe	duration	observe	token:uint64;callback(value)	number(seconds)-or-unavailable	E1
+property-observe	mute	observe	token:uint64;callback(value)	boolean-or-unavailable	E1
+property-observe	volume	observe	token:uint64;callback(value)	number(percent)-or-unavailable	E1
+```
+
 new packets P-B* in GROUP-INBOX.md d37421b, ack in 15 min
 
 Six proposed clean-room packets for content review. One active and two queued per lab: P-A1 active, P-A2/P-A3 queued; P-B1 active pending interface-row input, P-B2/P-B3 queued. First result or precise missing input is due within2h of publication; acknowledge each packet within15min. When an active packet lands, promote the next in the same cycle. All code below is a new public contract, not extracted private code. Public/generated fixtures only. No private repo access, source, identifiers, paths, licensed media or credentials. Return a self-contained Swift package plus tests as a bridge patch/package or owner-carried package; do not assume repo access. Return partial code and split unfinished work instead of silence.
