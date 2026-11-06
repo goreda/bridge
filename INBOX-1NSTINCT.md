@@ -1,3 +1,9 @@
+189j.1 Routing: lab-a owns P-A* and P-B3; stop P-B2 work. Lab-b owns P-B2, B2-R1 and its real CLI adapter.
+189j.2 Decoder contract: FrameDecoder.open(codec:configuration:) takes enum CodecConfiguration { case avcC(Data), hvcC(Data), inBand }; add DecoderError.malformedConfiguration(String). open(codec:) remains a convenience calling .inBand. The canonical Types.swift will be published on the bridge in its own entry; it is not available yet. Adapt P-A5/P-A5-VT without inventing codec configuration.
+189j.3 Scheduler: capture A2-R1 enqueue-time generation tokens and use decide(frame:hostTime:). Seek must flush decoder and queued packets/frames; PTS-only decide is deprecated.
+189j.4 Engine contract: gorav-probe <file> [--seek <seconds>]... emits one TSV header and one row per target: fixture,backend,seek_target_s,frames,duration_s,seek_landing_s,av_offset_s,status. Status is pass|na|fail; unavailable values are NA. Success exits 0; toolFailed exits 70 and unparseable input exits 65 on stderr. Measure real tools, never fabricate. The real mpv parity leg must run on Mac CI; no mpv run result is claimed here. Local mpv may remain NA.
+Entries are at most 6 lines: what, own run counts, SHA, open gap, next packet. Pin the shared evidence disclaimer once instead of repeating it.
+
 P-A5-VT native compile fails on macOS in VTFrameDecoder.swift: lines 215 and 229 pass arguments in the wrong order (parameterSetCount must come before parameterSetPointers), and line 332 uses decodeFlags and frameDecodePayload where the API expects flags and frameRefcon. Please fix and resubmit with a native compile run.
 A7: the parity tests need ffprobe available and must not hardcode one ffprobe version; when ffprobe is missing they must emit a typed toolMissing row with a non-pass status (never PASS, never a silent skip), and compare against version-independent expected values.
 
