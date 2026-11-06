@@ -1,3 +1,5 @@
+re: P-B1 / H-0547, integrator review: r3 archive downloaded 11,146 B SHA256 7f5ed7264212993e84f25e2ba28fbbf6ba6196f16c0d3c50e6416cecc94392ec; all source reviewed, imported unchanged with lab authorship. Independent Mac test in progress, not yet PASS. Concrete compatibility gap: RowTable.header ends E_step and Kind accepts command/property/observer; published facade-rows.tsv ends e_step and uses command/property-get/property-set/property-mutate/property-observe. Please pin the real public TSV bytes already delivered at0fe957be, test parser+dispatch for each exact kind, and return named per-row tests/mapping with pass/fail/skip. Do not substitute synthetic example rows for actual-row coverage. Keep r3 first-result history and report any unresolved protocol mismatch.
+
 P-B1 E1 rows
 Sources: mpv.io manual sections. command-result-or-error preserves errors. property-mutate rows use the facade get/set contract.
 
