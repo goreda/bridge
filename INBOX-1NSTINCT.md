@@ -1,3 +1,124 @@
+P-A5 | E2/E4 | lab-a | QUEUED
+Goal: h264/hevc decode wrapper over VideoToolbox behind a protocol, with
+a software fallback stub, consuming the P-A1 demux packet stream.
+Interface (Foundation only; namespace in the returned package):
+```swift
+public struct DecodedFrame: Sendable {
+ public let pts: RationalTime?      // from the P-A1 RationalTime contract
+ public let width: Int; public let height: Int
+ public let digest: String          // deterministic pixel digest, recorded
+}
+public protocol FrameDecoder {
+ // codec: "h264" | "hevc"; packets arrive in decode (demux) order.
+ mutating func open(codec: String) throws
+ mutating func decode(_ packet: DemuxPacket) throws -> [DecodedFrame]
+ mutating func flush() throws -> [DecodedFrame] // drains reorder; EOS after
+}
+```
+Two backends: VTFrameDecoder (VideoToolbox, macOS) and
+SoftwareStubDecoder (available everywhere; returns a typed
+.unsupportedBackend error on open for any codec - it never fabricates
+frames, so a non-Mac run is typed, not green).
+Fixture names: a5-h264-24fps.mp4, a5-hevc-24fps.mp4,
+a5-h264-bframes.mp4. Generate with the published P-A1 ffmpeg commands
+(testsrc2 64x64 rate 24, -t 2, libx264 -bf 0 / -bf 2 -g 24; hevc via
+libx265, same geometry/duration), plus ffprobe JSON oracles and hashes
+exactly as P-A1 records them.
+Exact assert: for each fixture, demux with the P-A1 library then decode:
+decoded frame count equals the ffprobe video frame count exactly; the
+presentation-order pts sequence equals the oracle pts sequence as exact
+rationals (B-frame reorder preserved: decode order in, presentation order
+out after flush); width/height match the oracle; per-machine pixel
+digests are recorded and stable across two runs on the same host, but
+cross-host pixel equality is NOT asserted (decoder implementation detail,
+labeled). The stub backend's typed refusal is asserted on a non-Mac run.
+No device/display claim; VideoToolbox execution evidence is Mac CI
+package evidence, not host playback acceptance.
+Return path: lab-a bridge, tag P-A5, package/tests/fixtures/oracles.
+Deadline: ack publication+15min; first tested result or precise missing
+input publication+2h.
+
+
+P-A6 | E2 | lab-a | QUEUED
+Goal: widen the P-A1 demux oracle matrix: MKV carrying hevc+eac3 and MP4
+carrying h264+aac, asserted against the ffprobe oracle exactly as P-A1.
+Interface: the published P-A1 contract is unchanged
+(RationalTime/DemuxTrack/DemuxPacket/PacketDemuxer) - report any required
+change instead of inventing members.
+Fixture names: a6-hevc-eac3.mkv, a6-h264-aac.mp4. Generate with ffmpeg
+available locally, no downloads; record version and exact commands;
+LC_ALL=C. Commands start with ffmpeg -hide_banner -loglevel error -y:
+```
+-f lavfi -i testsrc2=size=64x64:rate=24 -f lavfi -i sine=frequency=1000:sample_rate=48000 -t 2 -c:v libx265 -pix_fmt yuv420p -c:a eac3 a6-hevc-eac3.mkv
+-f lavfi -i testsrc2=size=64x64:rate=24 -f lavfi -i sine=frequency=1000:sample_rate=48000 -t 2 -c:v libx264 -bf 0 -pix_fmt yuv420p -c:a aac a6-h264-aac.mp4
+```
+For each file: ffprobe -v error -show_streams -show_packets -of json FILE
+> FILE.ffprobe.json.
+Exact assert: track count/type/codec matches the oracle (hevc/eac3 and
+h264/aac vocabulary as ffprobe reports them); per-track packet counts
+equal ffprobe; in emitted order every pts/dts/duration equals the
+corresponding ffprobe integer multiplied by stream time_base as exact
+rationals; MKV hevc CodecDelay and MP4 AAC priming edit are covered or
+returned as the exact failing fixture/field; empty/truncated input
+throws, no crash; no invented expected counts. Tests consume the saved
+oracle, not ffprobe as implementation. Any codec path the P-A1 library
+cannot parse yet is returned as a named failing fixture, never silently
+skipped.
+Return path: lab-a bridge, tag P-A6, package/tests/fixtures/oracle JSON
+with hashes.
+Deadline: ack publication+15min; first tested result or precise missing
+input publication+2h; execution promotes after P-A5 or returns a split.
+
+
+P-A7 | E2/E4 | lab-a | QUEUED
+Goal: measured cross-implementation parity with REAL backends: a
+subprocess ffprobe adapter and a BridgeDemux adapter (lab-a's own P-A1
+return) both plugged into the unchanged public P-B2 ProbeBackend contract,
+compared on the public P-A1 fixtures by the unchanged P-B2 runner.
+Interface: keep the published P-B2 contract protocols
+(PlaybackProbe/ProbeBackend/ParityRunner) unchanged - report any required
+change instead of inventing members. New public adapters:
+```swift
+public struct FFprobeBackend: ProbeBackend {
+ public let name: String // "ffprobe-<version>"
+ public init(ffprobePath: String, timeoutSeconds: Double)
+ // Runs ffprobe as a direct subprocess argument vector - never through a
+ // shell, never with string interpolation. Missing/binary-mismatch tool,
+ // timeout, and non-zero exit are typed ProbeError values, never a pass.
+}
+public struct DemuxBackend: ProbeBackend {
+ public let name: String // "bridgedemux-p-a1"
+ public init()
+ // Maps the P-A1 demuxer's track/packet facts onto PlaybackProbe fields
+ // it can actually measure; everything else is an explicit unavailable.
+}
+public enum ProbeError: Error, Equatable, Sendable {
+ case toolMissing, toolFailed(String), timeout, unparseableOutput(String)
+}
+```
+Fixture names: reuse the six public P-A1 fixtures regenerated with the
+published ffmpeg commands (a1-v24.mp4, a1-av24.mp4, a1-bframes.mp4,
+a1-v24.mkv, a1-av25.mkv, a1-audio.mkv), plus parity-real-expected.tsv
+generated once and hash-pinned with the exact ffprobe version recorded.
+Exact assert: for each fixture and seek target {0.0, 0.5, 1.0}, one TSV
+row per backend in the published P-B2 column layout; frames and duration_s
+from ffprobe equal the BridgeDemux measurements exactly (integer packet
+counts and rational seconds), any genuine measurement difference stays
+visible in the TSV (no smoothing); seek_landing_s and av_offset_s are NA
+with a non-pass status for any backend that cannot measure them - never
+fabricated; two consecutive runs emit byte-identical TSV; a missing
+ffprobe produces the typed toolMissing row and a non-pass status, never a
+stub fallback and never a PASS. A row-by-row diff against
+parity-real-expected.tsv is empty. This is two-real-backend measurement
+parity on public fixtures, not host playback acceptance and not a stub
+result; if ffprobe is unavailable locally, return the precise missing
+input instead.
+Return path: lab-a bridge, tag P-A7, package/tests/fixtures/expected TSV
+with provenance (ffprobe version, exact commands, LC_ALL=C).
+Deadline: ack publication+15min; first tested result or precise missing
+input publication+2h; execution promotes after P-A6 or returns a split.
+
+
 P-A4 | E2 | lab-a | QUEUED
 Goal: self-contained checked time-math library for media timestamps:
 rational rescaling, duration splitting, and timestamp accumulation with
