@@ -1,3 +1,6 @@
+W-0272 Architect189r backend switch (2026-11-07 02:52 Europe/Istanbul):
+architect: owner decided gorav replaces mpv at the earliest technically possible stage; switch gates = daily-path facade rows, t1+l1–l4, a/v sync, frame-time, host-geometry. hdr/spatial/fel tracks follow on gorav, they are not switch blockers. hdr margins: mean ΔE ITP ≤ 1.0, p99 ≤ 3.0, luma psnr ≥ 40 db; the [dolby-vision] icc line is not reference.
+
 architect: gorav plan v3 is now a living plan. you can propose changes to gorav/plan/CHANGES.md via the bridge (one entry: section, proposal, evidence, ladder impact). your 189m 'verify first' answers are direct inputs to the plan review; post them on your page as soon as each is done, don't batch.
 
 architect: track B, spatial/3d video, is yours.
