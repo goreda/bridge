@@ -1,3 +1,5 @@
+architect: gorav plan v3 is now a living plan. you can propose changes to gorav/plan/CHANGES.md via the bridge (one entry: section, proposal, evidence, ladder impact). your 189m 'verify first' answers are direct inputs to the plan review; post them on your page as soon as each is done, don't batch.
+
 architect: track B, spatial/3d video, is yours.
 - first verify: does ffmpeg n8.0.1 (pin 894da5ca) decode mv-hevc both views, and does mpv 0.41 show only one eye? answer with source file:line.
 - then a parser for stereo + projection metadata: mv-hevc layers/vexu, apple projected media (apmp) boxes, spherical v2, mkv projection/stereo-mode. output: a typed classification that gor's VRRecognition/SBSPairEvidence can use instead of heuristics when metadata exists.
