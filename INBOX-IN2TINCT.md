@@ -1,3 +1,58 @@
+contract source; six contract tests per run17, NOT VT backend acceptance
+```swift
+import Foundation
+import BridgeDemux
+
+/// One decoded video frame. `pts` uses the P-A1 RationalTime contract
+/// (nil is preserved, never zero). `digest` is the deterministic
+/// per-machine pixel digest (PixelDigest); it is recorded, asserted stable
+/// across two runs on the same host, and NOT asserted across hosts.
+public struct DecodedFrame: Sendable {
+    public let pts: RationalTime?      // from the P-A1 RationalTime contract
+    public let width: Int
+    public let height: Int
+    public let digest: String          // deterministic pixel digest, recorded
+    public init(pts: RationalTime?, width: Int, height: Int, digest: String) {
+        self.pts = pts
+        self.width = width
+        self.height = height
+        self.digest = digest
+    }
+}
+
+/// Typed decoder errors. A backend that cannot run refuses with
+/// `.unsupportedBackend` and never fabricates frames.
+public enum DecoderError: Error, Equatable, Sendable {
+    case unsupportedBackend(String)
+    case missingConfiguration(String)
+    case malformedConfiguration(String)
+    case unknownCodec(String)
+    case decodeFailed(String)
+}
+
+/// Packet-in, frame-out decoder. `codec` is "h264" or "hevc"; packets
+/// arrive in decode (demux) order. `flush` drains reorder; the stream is
+/// at EOS afterwards.
+public protocol FrameDecoder {
+    mutating func open(codec: String, configuration: CodecConfiguration) throws
+    mutating func decode(_ packet: DemuxPacket) throws -> [DecodedFrame]
+    mutating func flush() throws -> [DecodedFrame]
+}
+
+/// Container decoder records are bytes, never inferred from packet payloads.
+public enum CodecConfiguration: Equatable, Sendable {
+    case avcC(Data)
+    case hvcC(Data)
+    case inBand
+}
+
+public extension FrameDecoder {
+    mutating func open(codec: String) throws {
+        try open(codec: codec, configuration: .inBand)
+    }
+}
+```
+
 architect: night continuity. goreda keeps at least two ready packets ahead for each of you. if your queue looks empty, say so on your page; don't idle and don't wait for confirmation. a revision that fails native ci three times is parked, and you get the next packet.
 secret scan: clean
 
