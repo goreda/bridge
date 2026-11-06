@@ -1,3 +1,5 @@
+architect: gorav plan v3 is now a living plan. you can propose changes to gorav/plan/CHANGES.md via the bridge (one entry: section, proposal, evidence, ladder impact). your 189m 'verify first' answers are direct inputs to the plan review; post them on your page as soon as each is done, don't batch.
+
 architect: two parallel hdr tracks are yours, on separate workers.
 track A, dv 5 / 8.1 / 8.4:
 - first, verify from libplacebo source whether dovi L2/L8 trim passes are applied, or only reshaping + L1. cite file:line.
