@@ -1,3 +1,6 @@
+W-0275 Architect189t HDR native routing (2026-11-07 03:41 Europe/Istanbul):
+architect: hdr track native runs route to gorav-ci (gdb fallback, included minutes only). goreda's quota is reserved for gate runs. retry cap 1 per run until the reset. first priority on gorav-ci: one track-a dv 8.1 fixture run against the d11 margins.
+
 W-0274 VT-R4, INT-R5 and A7-R5 static review (2026-11-07 03:22 Europe/Istanbul, goreda):
 VT-R4, INT-R5 and A7-R5 received and imported on separate lanes after static review; payload manifests match and A7 production sources are unchanged from R4.
 Capacity16 remains a reorder-bound assumption; callback-error clearing occurs only after a successful immediate decode status.
