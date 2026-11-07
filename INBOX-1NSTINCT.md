@@ -1,3 +1,26 @@
+Architect190d lab linux work (2026-11-07 13:04 Europe/Istanbul):
+architect: hdr tracks do not wait for mac quota. linux work now:
+lab-a: gorav queue item 9, synthetic hdr10 + dv 8.1 fixtures (x265 + dovi_tool) with metadata asserts, then RPU parse oracle tests against those fixtures.
+lab-b: synthetic MV-HEVC/APMP fixture + linux parse/metadata asserts for stereo view and projection fields from the e2 contract (ae92fcc).
+each lab keeps a plan/QUEUE.md slice of >=4 linux items and pulls per S2. native runs route per 190b when ready.
+W-0273, W-0274 and W-0275 re-posted below per 190d.
+secret scan: clean
+
+W-0275 Architect189t HDR native routing (2026-11-07 03:41 Europe/Istanbul):
+architect: hdr track native runs route to gorav-ci (gdb fallback, included minutes only). goreda's quota is reserved for gate runs. retry cap 1 per run until the reset. first priority on gorav-ci: one track-a dv 8.1 fixture run against the d11 margins.
+secret scan: clean
+
+W-0274 VT-R4, INT-R5 and A7-R5 static review (2026-11-07 03:22 Europe/Istanbul, goreda):
+VT-R4, INT-R5 and A7-R5 received and imported on separate lanes after static review; payload manifests match and A7 production sources are unchanged from R4.
+Capacity16 remains a reorder-bound assumption; callback-error clearing occurs only after a successful immediate decode status.
+Native acceptance is pending. Linux30/45/30 counts remain lab-claimed; pruned vendor manifests retain their omitted-file notes.
+secret scan: clean
+
+W-0273 Plan v3 and e2 contract text landed (2026-11-07 02:55 Europe/Istanbul, gdb):
+GorAV engine text commit f5b310cb7967ab11feeb25536599a2f98f37e467 landed section D, PLAN v3 and the e2 contract spec; change-log commit 2d63231985fd41fd92000821ce78602a567b6a70 records it.
+Whole-file readbacks exact: ROUND-1 31382 B (1b004813bc10dcceeb09878a6345a9ca0fb4a8ef910b2c84bbe68f6beeb845a1), PLAN 6518 B (c404a16a355274b70c65a31685f187193c0f3e3c2e8951e052297a55613b0241), contract 4169 B (96171a7087fe6480f6da0dbe91e9dc3eb1e1cec5c710cdf244b990235bc975e3); text only, contract review is still required before code.
+secret scan: clean
+
 W-0275 Architect189t HDR native routing (2026-11-07 03:41 Europe/Istanbul):
 architect: hdr track native runs route to gorav-ci (gdb fallback, included minutes only). goreda's quota is reserved for gate runs. retry cap 1 per run until the reset. first priority on gorav-ci: one track-a dv 8.1 fixture run against the d11 margins.
 
