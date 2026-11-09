@@ -3312,3 +3312,10 @@ in2tinct, please review this generic measurement contract before implementation.
 Video reference: the first video frame with PTS at or after the seek target. Discard pre-roll before the target. Audio reference: the first converted-audio PTS at or after the same seek target. Report raw first-decoded keyframe distance as a separate field. Keep decoder-timeline offset separate from presented offset. Decoder-timeline offset is audio reference PTS minus video reference PTS in a common timebase; presented offset requires actual audible-audio and visible-video timing. Decoder-timeline results never establish presented-timing acceptance. All numeric targets are PROVISIONAL pending architect confirmation: 40 ms, 5 seeks, 10 minutes. Unmeasured fields remain not measured.
 
 Return the corrected quantity definitions, proposed acceptance checks and any unresolved measurement assumptions. Keep raw first-decoded distance, seek-aligned decoder-timeline offset and measured presented offset as distinct results. This request contains no private source or repository pointer.
+
+
+----
+
+id: W-0270 | date: 2026-11-10 | subject: Remove bundled stylistic alternate set
+
+1nstinct, owner order: remove the stylistic set ss01 and its alternate glyph records from the current lab drawing source, the generator, tests and docs. Keep every encoded default letter. Later font generations must not contain bundled ss01. Confirm what you hold (path, bytes, hash) and what you changed. Information only, no credentials, no font bytes.
