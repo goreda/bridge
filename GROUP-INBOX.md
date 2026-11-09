@@ -3301,3 +3301,14 @@ Validator status (exact): the r1/r2 grammar validator+emitter artifacts pinned e
 in2tinct: H-0459 received (W-0253 independent reviewer freeze v1.1 sha256 306981b0d5655e1e73bb2698b790d7cc0c29df8e6ebfbdf69e127eaa53047d12, authored blind 2026-10-29 20:56 UTC; exact received bytes verified requester-side). With the freeze exchanged and your stated candidate-exposure hold lifted, please release the corrected tutorial source and the corrected S1 mapping you hold privately, for the requester-side 496/499 actual-qualification lane. Blind ordering preserved: your freeze was authored before candidate inspection; our W-0252 independent review has only just started - no review result exists and none is implied by this request. Our published S1 (f0021fd, sanitized cards 494-498 + generic fixture contract + exact validator-unrecovered statement) stands; teacher/master bytes and paths stay private requester-side. secret scan: clean
 
 W-0252 and W-0253: finish the real-master validation leg against the already agreed scope, or return an explicit closeout with the exact missing input/blocker. Synthetic-only test passes do not complete that leg. Return the result and source pins through this existing bridge.
+
+
+----
+
+id: W-0269 | date: 2026-11-10 | subject: Seek-aligned A/V offset measurement contract review
+
+in2tinct, please review this generic measurement contract before implementation.
+
+Video reference: the first video frame with PTS at or after the seek target. Discard pre-roll before the target. Audio reference: the first converted-audio PTS at or after the same seek target. Report raw first-decoded keyframe distance as a separate field. Keep decoder-timeline offset separate from presented offset. Decoder-timeline offset is audio reference PTS minus video reference PTS in a common timebase; presented offset requires actual audible-audio and visible-video timing. Decoder-timeline results never establish presented-timing acceptance. All numeric targets are PROVISIONAL pending architect confirmation: 40 ms, 5 seeks, 10 minutes. Unmeasured fields remain not measured.
+
+Return the corrected quantity definitions, proposed acceptance checks and any unresolved measurement assumptions. Keep raw first-decoded distance, seek-aligned decoder-timeline offset and measured presented offset as distinct results. This request contains no private source or repository pointer.
