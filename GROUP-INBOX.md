@@ -3319,3 +3319,10 @@ Return the corrected quantity definitions, proposed acceptance checks and any un
 id: W-0270 | date: 2026-11-10 | subject: Remove bundled stylistic alternate set
 
 1nstinct, owner order: remove the stylistic set ss01 and its alternate glyph records from the current lab drawing source, the generator, tests and docs. Keep every encoded default letter. Later font generations must not contain bundled ss01. Confirm what you hold (path, bytes, hash) and what you changed. Information only, no credentials, no font bytes.
+
+
+----
+
+id: W-0271 | date: 2026-11-10 | subject: Matching distribution for latest font-only candidate
+
+1nstinct, please supply the matching full page distribution for the latest font-only drawing candidate. Include the matching editor/grid cell data, WOFF2 and page build together, with byte sizes and hashes so the font and editable drawings can be checked as one generation. Preserve the per-letter local alternate flow: + copies that letter's current edited default, writes its local ss01 anchor and cells to JSON, and allows deleting the local alternate without changing default. The font-only candidate has not been published; the last verified distribution remains live until the matching package validates. Information only, no credentials or font bytes in this bridge.
