@@ -1,3 +1,69 @@
+# 195b generic product implementation requests - batch 1
+
+Implement the named product module below, not a report, standalone test suite, lint or policy note. C/C++/Python and offline source work only; no GPU venue assumed. Unit checks and synthetic examples ride with the product implementation. Return source patch/module, minimal integration API, build command/tool versions, checks, synthetic sample output and limitations. Do not claim Metal/native GPU correctness from offline MSL or CPU execution. Local integrators ingest the code in the same cycle and compile through the native build lane. Do not publish, spend, change accounts or retrieve private inputs. Do not send commercial clips/fonts/captures or credentials. Missing actual interface/spec input means BLOCKED_INPUT, never invented behavior. Request canonical bridge w-ID after stock deduplication; these task labels are not canonical w-IDs.
+
+Live parameters change in a typed per-frame uniform block, not runtime shader source compilation. Route logic remains in the host application's typed store, never the render engine. Shader ports consume the dual-output generator, not translations of runtime hook macros. Product code must preserve the consuming player's known behavior; integrate review and native build before acceptance.
+
+## W-0276 | 195b-N6 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| N6 | DV reshaping product C | Portable reshaping implementation with explicit metadata input/output ABI, bit depth/range/precision; integrate existing track-A source if supplied, inspect license. Return defined supported profiles and typed unsupported cases. No full FEL claim from reshaping alone. Interface pin required before final integration. | R9 |
+
+## W-0277 | 195b-N7 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| N7 | Mobius tone map, BT.1886 target and perceptual gamut MSL | Implement generator-compatible color pass. Pin luminance units, transfer/range, gamut transform and parameter domains with color integrator before final wiring. No unrelated delta-E variant; oracle terms use dE-ITP where applicable. | R9/R1 |
+
+## W-0278 | 195b-N8 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| N8 | Pitch-preserving speed WSOLA C | Implement streaming module with rate change, channel coherence, bounded buffering/latency, reset/drain and timestamp/sample-count API. Synthetic tones/impulses accompany code. Pin buffer ownership/clock ABI with audio integrator; not an ffmpeg subprocess wrapper. | R6 |
+
+## W-0279 | 195b-N9 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| N9 | libswresample format/rate conversion C | Implement reusable converter module with layout/sample-format negotiation, delay accounting, flush/reset, seek-generation reset and timestamps; explicit dependency version and lifetime rules. Synthetic rate/layout cases accompany implementation. Final ABI pin required. | R6 |
+
+## W-0280 | 195b-N10 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| N10 | Crop-detection C | Implement per-frame detector and temporal stabilization with black/noise thresholds, pixel-format/stride handling and explicit detector output. Synthetic bars/dark scenes accompany code. Preserve consuming behavior after integrator supplies existing threshold/crop convention. | R8 |
+
+## W-0281 | 195b-B1 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| B1 | PGS decoder/bitmap renderer C | Product parser/state/display composition with palette/object/window/lifetime, PTS and clear events; bounded input/memory. Define output bitmap/palette ABI with subtitle integrator; synthetic segments accompany code. | R7/R1 |
+
+## W-0282 | 195b-B2 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| B2 | VobSub decoder/bitmap renderer C | Product IDX/SUB timing/palette/placement, SPU decode/control/clear and seek reset; bounds/truncation handling. Pin bitmap ABI with subtitle integrator. | R7/R1 |
+
+## W-0283 | 195b-B4 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| B4 | Stereo/projection metadata parser | Product track/container metadata parsing with normalized stereo/projection enums and unknown preservation, precedence and typed malformed inputs. Pin target metadata ABI; no eye-order guess. | R1/R3 |
+
+## W-0284 | 195b-B5 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| B5 | HLS/IPTV variant choice/live edge on avformat | Product selection/live-edge/discontinuity/reconnect code on avformat, with stream/seekability/cache state. Pin avformat provider/build capabilities; generated playlist/segment fixtures only. Admission alone is not decode support. | R3 |
+
+## W-0285 | 195b-B6 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| B6 | yt-dlp resolution and1080p cap | Implement bounded process/protocol adapter with format resolution, headers/cookies handoff,1080p policy, failure/cancel and credential redaction. Pin subprocess/result ABI, no captured account data. Do not issue live paid/auth calls. | R3 |
+
 
 
 # 195a-N01..N04 reviewed generic research requests
