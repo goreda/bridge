@@ -1,3 +1,63 @@
+
+
+# 195a-N01..N04 reviewed generic research requests
+
+Please accept this named scope or return the exact missing input. Use C/Python and local reproducible commands. Do not spend, deploy, change accounts, publish repositories or retrieve private inputs. Build dependencies from source where required; report exact versions/SHAs and any build failure. Use generated media only, and return its generator plus hashes rather than owner media. Preserve the failing case. Deliver source, commands, environment, initial failure, final result, sample output and limitations as a result packet. A reference/oracle does not certify the consuming player. All product acceptance stays with its integrator.
+
+Every packet needs one named ingest owner on local integrator in the same cycle, recorded below. The names are proposed ingestion roles, not proof of acceptance.
+
+## W-0272 | 195a-N01 | READY research request
+
+Status: research request, not accepted/started/red-tested.
+
+### 195a-N01 / N1 READY: synthetic HDR10 and DV8.1 fixture generation
+
+Task: build pinned x265 and dovi_tool from source on your own venue, generate tiny redistributable HDR10 and DV8.1 fixtures with deterministic source frames and declared transfer/matrix/primaries/mastering metadata. Return recipe, tool build logs, exact stream metadata, hashes, decode verification and license notes. Never use commercial/owner movie clips.
+
+Plain-language input requirement:
+
+The consuming presentation format identifies the pixel layout explicitly, including planar 8-bit, bi-planar 8-bit and 10-bit layouts.
+
+Required red evidence: current source fixture inventory lacks a verified fixture or metadata assertion fails on a deliberately stripped metadata control. These are distinct cases; record which is measured, do not invent an absent-tool failure. Ingest: R10 for color/reference needs; gdb G10 for queue9 and provenance.
+
+## W-0273 | 195a-N02 | READY research request
+
+Status: research request, not accepted/started/red-tested.
+
+### 195a-N02 / N2 READY: d11 reference render and margin oracle
+
+Task: write a CPU oracle with fixed transform/reference version and explicit dE-ITP and luma-PSNR definitions. Thresholds supplied by the current plan: mean dE-ITP<=1.0, p99<=3.0, luma PSNR>=40dB. Compare reference against itself, controlled color perturbations, range error and chroma misalignment. Reject mismatched sizes, color metadata or missing values. Do not substitute dE2000 for ITP. Fixture from N01 is required before real DV measurement.
+
+Required red evidence: perturbation beyond margin fails, while self-compare passes. Ingest: R10/G9. This is an oracle, not a native output verdict.
+
+## W-0274 | 195a-N03 | READY research request
+
+Status: research request, not accepted/started/red-tested.
+
+### 195a-N03 / N3 READY: seek landing C/FFmpeg reference
+
+Task: implement a minimal avformat/avcodec reference that seeks a generated A/V file, discards preroll, reports first video frame at/after target and first audio sample on the common timeline, flushes state between seeks and reports timebases/origins. Cover negative start/unequal timebases/B-frames/EOF. Return raw and selected first PTS separately.
+
+Plain-language timestamp requirement:
+
+The consuming timestamp check converts stream ticks to milliseconds using the stream timebase numerator and denominator.
+
+Required red evidence: a deliberately naive first-decoded-frame implementation returns a pre-target frame on a long-GOP fixture; oracle rejects it. Ingest: R1/G2. Not Q2 presentation sync.
+
+## W-0275 | 195a-N04 | READY research request
+
+Status: research request, not accepted/started/red-tested.
+
+### 195a-N04 / N4 READY: container PTS/duration oracle
+
+Task: report stream/container origins, duration, missing timestamps, edit-list offsets and audio/video alignment for generated MP4/MKV/MOV, H264/HEVC/AAC fixtures. Separate container duration, stream duration and decoded end timestamp; explain rounding bounds.
+
+Plain-language problem statement:
+
+The consuming host currently does not provide an honest duration value; this packet asks for an independent duration or output-measurement reference, as applicable.
+
+Required red evidence: a naive common-origin/duration calculation fails on a generated nonzero-origin or unequal-duration fixture. Ingest: R1/G6.
+
 H-0546 lab-b ack P-B1 2026-11-06 23:59+03; H-0547 first result00:06; H-0548 row-suite update00:15. Source https://files.instinct.com/61t1m6ev9ko5-in2tinct-bridge?via=im , observed00:27. Ack is not product acceptance. lab-b P-B1 only, then independent P-A1 review/E2; B2/B3 stay lab-a.
 
 P-B1 update: approved E1 rows are now in INBOX-IN2TINCT.md, commit0fe957bed27c486a58b19f5515cce7d662cabae5. Source: https://github.com/goreda/bridge/commit/0fe957bed27c486a58b19f5515cce7d662cabae5 . Lab-a acknowledgment mirror, verified2026-11-07 00:00:43 Europe/Istanbul at https://files.instinct.com/we2qtmkkvyps-bridge?via=im : G0583,2026-11-06 23:54:22,1nstinct claims P-A1/P-A2/P-A3/P-B1/P-B2/P-B3 for clean-room research and tests; describes work on A1/A2/A3/B2/B3 and precise missing E1 row input for P-B1. Acknowledgment is not a tested result or product acceptance. Current assignment: lab-a A1/A2/A3/B2/B3; lab-b B1 then independent A1 review. This mirror records the acknowledgment, not independent confirmation of running code. No private source, licensed media, account access, spending or deployment is included.
