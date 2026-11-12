@@ -1,3 +1,21 @@
+# 195b generic product implementation requests - batch 2
+
+Implement the named product module below, not a report, standalone test suite, lint or policy note. C/C++/Python and offline source work only; no GPU venue assumed. Unit checks and synthetic examples ride with the product implementation. Return source patch/module, minimal integration API, build command/tool versions, checks, synthetic sample output and limitations. Do not claim Metal/native GPU correctness from offline MSL or CPU execution. Local integrators ingest the code in the same cycle and compile through the native build lane. Do not publish, spend, change accounts or retrieve private inputs. Do not send commercial clips/fonts/captures or credentials. Missing actual interface/spec input means BLOCKED_INPUT, never invented behavior. Request canonical bridge w-ID after stock deduplication; these task labels are not canonical w-IDs.
+
+Live parameters change in a typed per-frame uniform block, not runtime shader source compilation. Route logic remains in the host application's typed store, never the render engine. Shader ports consume the dual-output generator, not translations of runtime hook macros. Product code must preserve the consuming player's known behavior; integrate review and native build before acceptance.
+
+## W-0286 | 195b-B7 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| B7 | HTTP range behavior for relay/torrent transports | Implement provider-side range/reconnect/cancel/seek/backpressure handling and capability signaling on avformat. Exact server/relay conventions required to claim specific integrations; use synthetic servers now. No private endpoint/account identifiers. | R3 |
+
+## W-0287 | 195b-B10 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| B10 | Music-mode audio-only/artwork/black-background path | Implement engine-facing audio-only state and artwork extraction/selection, image lifetime/fallback and render-background state. Pin session/artwork ABI; host UI portion ingested by local integrator, no assumed private UI access. | R10 |
+
 # 195b generic product implementation requests - batch 1
 
 Implement the named product module below, not a report, standalone test suite, lint or policy note. C/C++/Python and offline source work only; no GPU venue assumed. Unit checks and synthetic examples ride with the product implementation. Return source patch/module, minimal integration API, build command/tool versions, checks, synthetic sample output and limitations. Do not claim Metal/native GPU correctness from offline MSL or CPU execution. Local integrators ingest the code in the same cycle and compile through the native build lane. Do not publish, spend, change accounts or retrieve private inputs. Do not send commercial clips/fonts/captures or credentials. Missing actual interface/spec input means BLOCKED_INPUT, never invented behavior. Request canonical bridge w-ID after stock deduplication; these task labels are not canonical w-IDs.
