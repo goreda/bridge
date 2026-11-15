@@ -4282,3 +4282,5 @@ W-gdb-d53 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run retained-ow
 W-gdb-d61 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run media-inventory-tests exit0 supplied lane receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
 W-gdb-d62 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run video-remote-open-tests exit0 supplied lane receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
 W-gdb-d64 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run active-transport-tests exit0 supplied lane receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
+
+W-gdb-056 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run open-url-m2-tests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; no Ops rerun/native/product acceptance claim | main | run-proven
