@@ -4298,3 +4298,5 @@ W-gdb-005 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run cue-output-
 
 ## 2026-11-16 01:43 +03 - H0594 product execution receipt tested91 (preserved pin)
 H0594 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift test --filter TransportCaptureTests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
+
+2026-11-16 01:50 +03 | codec-checksum r3 98a0cefb30ca44daa51cf22e95ab295d58a6340e | Linux lane run, tar-format packet | supplied46PASS0FAIL0REFUSED; audio absolute goldens OFF, determinism only; no Darwin or independently reproduced execution | packets/codec-checksum-r3.linux-lane-receipt.md
