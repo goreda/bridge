@@ -3982,3 +3982,17 @@ W-gdb-gor-2 | gor | lane/gdb-native87-full-app-gate | 1nstinct reports claim G07
 W-gdb-006 | gorav | ohal/gorav @2112af0d | 1nstinct claim G0752 at11:23, implementation pending; transcript checker scope only
 W-gdb-021 | gorav | ohal/gorav @2112af0d | 1nstinct claim G0753 at11:23, implementation pending; standalone scenario-server kit scope only
 Count correction: publisher gate PASS is not lab-accepted/startable stock. G0754 says only006/021 currently claimed for gorav, other30 at33001fdb not claimed because dependency/consumer/oracle gaps;027/038 not yet triaged. Per-lab accepted occupancy remains unmeasured, not37. Claims and portable returns are not product applied/rejected/merge dispositions.
+
+## Consuming pin v2 corrections - 2026-11-15 11:30 Europe/Istanbul
+W-gdb-042 | gorav consuming pin | ohal/gorav @2112af0d | gated open, author v2; source matched; solver context not claim
+W-gdb-043 | gorav consuming pin | ohal/gorav @2112af0d | gated open, author v2; source matched; solver context not claim
+W-gdb-045 | gorav consuming pin | ohal/gorav @2112af0d | gated open, author v2; source matched; solver context not claim
+W-gdb-048 | gorav consuming pin | ohal/gorav @2112af0d | gated open, author v2; source matched; solver context not claim
+W-gdb-049 | gorav consuming pin | ohal/gorav @2112af0d | gated open, author v2; source matched; solver context not claim
+W-gdb-050 | gorav consuming pin | ohal/gorav @2112af0d | gated open, author v2; source matched; solver context not claim
+W-gdb-051 | gorav consuming pin | ohal/gorav @2112af0d | gated open, author v2; source matched; solver context not claim
+W-gdb-043 | W-0278-pin | ohal/gorav @2112af0d | reopens W0278/W-gdb010 withdrawal prospectively for additive stateful WSOLAProcessor module; no native/clock integration acceptance
+W-gdb-048 | W-0283-pin | ohal/gorav @2112af0d | precedence update: codec SEI > container side data > track metadata > nil; W-gdb014 container>track subchain preserved
+W-gdb-041 | W-0276-pin | none | still HOLD: RPU profile transform is not pixel reshaping seam/oracle; unpinned full-parser dependency; W0276/W-gdb009 withdrawal remains
+W-gdb-052 | W-0287-pin | none | still HOLD: artwork extraction read API/demux lease source unresolved; author must pin extraction or narrow to identity/classification
+New-series stock44gorav +2gor=46publisher-gated; not per-lab accepted/startable occupancy. Original6withdrawal records preserved,1prospectively reopened by043,other5stillwithdrawn. Full product suites publisher NOT_RUN.
