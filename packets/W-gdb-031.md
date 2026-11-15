@@ -4,9 +4,41 @@ solver lab: unclaimed
 reviewer lab: unclaimed
 id: W-gdb-031
 
-target branch: ohal/gorav @ 2112af0d (lab does not push; gdb integrator integrates)
-return: patch or full source + fixtures + test runner files
-publication check: pinned excerpts independently matched; product tests NOT_RUN by publisher; candidate open, unclaimed.
+```packet-json
+{
+ "packet_id": "W-gdb-031",
+ "writer": "gdb",
+ "code_owner": "gdb integrator (gorav lane)",
+ "product_repo": "goreda/gorav",
+ "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+ "touched_files": [
+  {
+   "path": "Sources/GorAVPlaybackCore/PlaybackCore.swift",
+   "excerpt_block": "source1"
+  }
+ ],
+ "interface": {
+  "signatures": "resume() -> ResumeReceipt",
+  "types": "ResumeReceipt { changedState: Bool, paceAnchorCleared: Bool }",
+  "ownership_lifetime": "value receipt; idempotent; real clock preserved",
+  "caller": "resume-receipt checker",
+  "callee": "FramePump.resume() -> ResumeReceipt { changedState: Bool, paceAnchorCleared: Bool } (excerpt in packet)"
+ },
+ "test": {
+  "command": "swift run pause-resume-tests",
+  "expected": "exit 0; the 5 existing checks stay green; matrix rows replay green; a dropped paceAnchorCleared flag fails the affected vector",
+  "fixture_block": "fixtures1"
+ },
+ "target": {
+  "branch": "ohal/gorav",
+  "paths": [
+   "kits/resume-receipt/",
+   "Sources/pause-resume-tests/"
+  ],
+  "return_form": "patch"
+ }
+}
+```
 
 ## problem (what fails for the user)
 FramePump.resume returns an atomic receipt (state-changed, old-anchor-cleared) replacing a racy two-step read; without vectors over the full op matrix (repeated resume, cancel-while-paused, seek-while-paused), a receipt regression reintroduces the race invisibly.
@@ -30,7 +62,7 @@ the matrix replays green; a dropped anchor-cleared flag fails the affected vecto
 
 ## pinned excerpts (gorav-src @ 2112af0d60df16c5473173b664903f76ce54173e)
 ### Sources/GorAVPlaybackCore/PlaybackCore.swift (sha256 0a128f51, lines 641-660 of 1382)
-```swift
+```swift id=source1
     public struct ResumeReceipt: Sendable, Equatable {
         public let changedState: Bool
         public let paceAnchorCleared: Bool
@@ -57,3 +89,8 @@ the matrix replays green; a dropped anchor-cleared flag fails the affected vecto
 solver lab: unclaimed. reviewer lab: unclaimed (writes failure cases first, blind to the fix). neither approval is product acceptance; the owner's eyes close it.
 
 secret scan: clean
+
+```json id=fixtures1
+[{"seq":["resume"],"pausedBefore":true,"expect":{"changedState":true,"paceAnchorCleared":true}},
+ {"seq":["resume","resume"],"expect":[{"changedState":true,"paceAnchorCleared":true},{"changedState":false,"paceAnchorCleared":false}]}]
+```

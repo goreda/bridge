@@ -4,9 +4,44 @@ solver lab: unclaimed
 reviewer lab: unclaimed
 id: W-gdb-024
 
-target branch: ohal/gorav @ 2112af0d (lab does not push; gdb integrator integrates)
-return: patch or full source + fixtures + test runner files
-publication check: pinned excerpts independently matched; product tests NOT_RUN by publisher; candidate open, unclaimed.
+```packet-json
+{
+ "packet_id": "W-gdb-024",
+ "writer": "gdb",
+ "code_owner": "gdb integrator (gorav lane)",
+ "product_repo": "goreda/gorav",
+ "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+ "touched_files": [
+  {
+   "path": "Sources/demux-parity-tests/DemuxParity.swift",
+   "excerpt_block": "source1"
+  },
+  {
+   "path": "Sources/demux-parity-tests/DemuxParity.swift",
+   "excerpt_block": "source1_1"
+  }
+ ],
+ "interface": {
+  "signatures": "generator -> stream description + golden digest; checker replay(candidateOutput, golden) -> PASS/FAIL",
+  "types": "golden digest row { packet sequence digest, pts/dts order, duration }",
+  "ownership_lifetime": "synthetic stream descriptions only; no media bytes",
+  "caller": "demux parity runner",
+  "callee": "golden digest checker: packet sequence + pts/dts order + duration per synthetic stream"
+ },
+ "test": {
+  "command": "python3 kits/demux-goldens/check.py --replay",
+  "expected": "exit 0; stdout 'demux-goldens: K/K golden digests byte-identical PASS'; one permuted packet order fails the checker with the stream id",
+  "fixture_block": "fixtures1"
+ },
+ "target": {
+  "branch": "ohal/gorav",
+  "paths": [
+   "kits/demux-goldens/"
+  ],
+  "return_form": "full-files"
+ }
+}
+```
 
 ## problem (what fails for the user)
 demux parity is asserted by a runner, but there are no independent golden digest tables for synthetic interleaved streams (B-frame reorder, no-timestamp packets, corrupt tail), so a packet-order regression can ship as A/V desync.
@@ -29,8 +64,8 @@ the existing parity suite stays green; synthetic streams only - no media bytes.
 goldens reproduce byte-identically from the generator; one permuted packet order fails the checker.
 
 ## pinned excerpts (gorav-src @ 2112af0d60df16c5473173b664903f76ce54173e)
-### Sources/demux-parity-tests/DemuxParity.swift (sha256 8d64bede, lines 1-60 of 91)
-```swift
+### Sources/demux-parity-tests/DemuxParity.swift (sha256 8d64bede, lines 1-34 of 91)
+```swift id=source1
 // queue 26: demux PTS-semantics parity witness. Compares the lab BridgeDemux (MP4Demuxer/MKVDemuxer via Demuxer)
 // against production avformat, per track, on the packet sequence (pts/dts/duration as reduced rationals).
 // Output: DIGEST lab fnv=<x>, DIGEST av fnv=<x>, PARITY pass=N fail=M. Exit 0 only when fail=0.
@@ -65,7 +100,10 @@ func labSide(_ bytes: [UInt8]) throws -> [[Pkt]] {
     var out = Array(repeating: [Pkt](), count: tracks.count)
     func r(_ x: RationalTime?) -> Rat? { x.map { Rat($0.value, $0.scale) } }
     while let p = try dx.next() {
-        guard let i = index[p.trackID] else { print("FAIL lab packet for unknown track id \(p.trackID)"); continue }
+```
+
+### Sources/demux-parity-tests/DemuxParity.swift (sha256 8d64bede, lines 36-60 of 91)
+```swift id=source1_1
         out[i].append(Pkt(pts: r(p.pts), dts: r(p.dts), dur: r(p.duration)))
     }
     return out
@@ -97,3 +135,7 @@ func avSide(_ path: String) -> [[Pkt]]? {
 solver lab: unclaimed. reviewer lab: unclaimed (writes failure cases first, blind to the fix). neither approval is product acceptance; the owner's eyes close it.
 
 secret scan: clean
+
+```json id=fixtures1
+{"stream":{"video":{"codec":"h264","gop":24,"bframes":2},"audio":{"codec":"aac","frameMs":21.33}},"golden":{"packetOrder":"<deliverable digest>","ptsMonotonicAfterReorder":true,"durationSeconds":4.0}}
+```

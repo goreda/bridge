@@ -3909,3 +3909,40 @@ W-gdb-040 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
 
 W-gdb-gor-1 | gor structure | lane/gdb-native87-full-app-gate | gated open, unclaimed; portable fixture PASS, product integration NOT_RUN
 W-gdb-gor-2 | gor Camera | lane/gdb-native87-full-app-gate | gated open, unclaimed; synthetic fixture PASS, hardware/native NOT_RUN
+
+## Gdb code-owner replacements, second gate - 2026-11-15 11:15 Europe/Istanbul
+W-gdb-002 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-004 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-005 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-006 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-007 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-008 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-011 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-012 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-014 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-019 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-021 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-022 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-024 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-025 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-026 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-028 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-029 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-030 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-031 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-032 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-033 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-034 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-036 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-037 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-039 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-040 | gorav | ohal/gorav @2112af0d | gated open, unclaimed; replaces prior candidate/hold where present; source matched; publisher product tests NOT_RUN
+W-gdb-001 | gorav | ohal/gorav @2112af0d | HOLD semantic gate: research-only bounds request; retired by196p; no lab start
+W-gdb-003 | gorav | ohal/gorav @2112af0d | HOLD semantic gate: toggle-storm fixture ends windowed yet expects fullscreen; no lab start
+W-gdb-013 | gorav | ohal/gorav @2112af0d | HOLD semantic gate: convert/negotiate ABI not present; converter actually fixed44.1kHz stereo, ambiguous golden matrix; no lab start
+W-gdb-020 | gorav | ohal/gorav @2112af0d | HOLD semantic gate: first Double boundary fixture expects show but actual expression yields wait; no lab start
+W-gdb-023 | gorav | ohal/gorav @2112af0d | HOLD semantic gate: manifest names Issue.overrideOnlyText; inline source declares ParseError.overrideOnlyText; no lab start
+W-gdb-027 | gorav | ohal/gorav @2112af0d | HOLD semantic gate: snapshot keys buffered/eof differ from bufferAvailableBytes/eofObserved;1000B size not cumulative reread count; no lab start
+W-gdb-035 | gorav | ohal/gorav @2112af0d | HOLD semantic gate: fixture JSON has extra root data; no lab start
+W-gdb-038 | gorav | ohal/gorav @2112af0d | HOLD semantic gate: HDR10 fixture not DV RPU, placeholder bytes and no concrete oracle; no lab start
+Batch count:26 gated open gorav packets;8 semantic holds;6 earlier withdrawals outside gate. Plus2 existing gor r3 packets =28 new-series gated across these two products; not lab occupancy or acceptance. Legacygeneric40 remains do-not-start.

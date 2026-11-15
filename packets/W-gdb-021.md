@@ -4,9 +4,40 @@ solver lab: unclaimed
 reviewer lab: unclaimed
 id: W-gdb-021
 
-target branch: ohal/gorav @ 2112af0d (lab does not push; gdb integrator integrates)
-return: patch or full source + fixtures + test runner files
-publication check: pinned excerpts independently matched; product tests NOT_RUN by publisher; candidate open, unclaimed.
+```packet-json
+{
+ "packet_id": "W-gdb-021",
+ "writer": "gdb",
+ "code_owner": "gdb integrator (gorav lane)",
+ "product_repo": "goreda/gorav",
+ "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+ "touched_files": [
+  {
+   "path": "Sources/remote-source-tests/main.swift",
+   "excerpt_block": "source1"
+  }
+ ],
+ "interface": {
+  "signatures": "ScenarioServer(scenario: String, ...); one typed switch per scenario + request log",
+  "types": "9 scenario kinds: dribble, trickled headers, range honored/ignored/partial, redirect chains/loops, chunked/gzip, content-length mismatch, drop mid-body, slow EOF",
+  "ownership_lifetime": "subprocess server; loopback only; no external endpoints, no credentials",
+  "caller": "rows 54/61/62/64 transport test suites",
+  "callee": "kit scenario API (python stdlib): dribble/trickle/range/redirect/chunked/gzip/length-mismatch/drop/slow-EOF, one typed switch each + request log"
+ },
+ "test": {
+  "command": "python3 kits/loopback-server/selftest.py",
+  "expected": "exit 0; stdout 'loopback-server selftest: 9/9 scenarios PASS'; a scenario switch produces exactly its scripted behavior shown in the request log",
+  "fixture_block": "fixtures1"
+ },
+ "target": {
+  "branch": "ohal/gorav",
+  "paths": [
+   "kits/loopback-server/"
+  ],
+  "return_form": "full-files"
+ }
+}
+```
 
 ## problem (what fails for the user)
 rows 54/61/62/64 (remote audio/video open, transport snapshots) each spawn ad-hoc python loopback servers; there is no shared scripted edge-case server, so edge behaviors (dribble, range, drop mid-body) are covered unevenly and new remote code ships untested against them.
@@ -30,7 +61,7 @@ the kit replays every existing loopback leg green plus its new scenarios; a scen
 
 ## pinned excerpts (gorav-src @ 2112af0d60df16c5473173b664903f76ce54173e)
 ### Sources/remote-source-tests/main.swift (sha256 b7bfea62, lines 1-60 of 115)
-```swift
+```swift id=source1
 import Foundation
 import GorAVCore
 import GorAVFFmpegAdapter
@@ -97,3 +128,9 @@ for _ in 0..<200 {
 solver lab: unclaimed. reviewer lab: unclaimed (writes failure cases first, blind to the fix). neither approval is product acceptance; the owner's eyes close it.
 
 secret scan: clean
+
+```python id=fixtures1
+from kit import ScenarioServer
+srv = ScenarioServer(scenario="range-honored", dribble=None)
+# GET /clip -> 200 full; GET with Range: bytes=100- -> 206 partial; request log records every hop
+```

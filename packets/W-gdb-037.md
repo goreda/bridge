@@ -4,9 +4,41 @@ solver lab: unclaimed
 reviewer lab: unclaimed
 id: W-gdb-037
 
-target branch: ohal/gorav @ 2112af0d (lab does not push; gdb integrator integrates)
-return: patch or full source + fixtures + test runner files
-publication check: pinned excerpts independently matched; product tests NOT_RUN by publisher; candidate open, unclaimed.
+```packet-json
+{
+ "packet_id": "W-gdb-037",
+ "writer": "gdb",
+ "code_owner": "gdb integrator (gorav lane)",
+ "product_repo": "goreda/gorav",
+ "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+ "touched_files": [
+  {
+   "path": "Sources/remote-source-tests/main.swift",
+   "excerpt_block": "source1"
+  }
+ ],
+ "interface": {
+  "signatures": "redirect-chain legs per remote-source-tests excerpt; vector runner replay -> PASS/FAIL",
+  "types": "per-hop header expectation tables; cross-host redirect drops authorization/cookie; diagnostics redact credential values",
+  "ownership_lifetime": "loopback only; no real credentials; diagnostics redact credential values",
+  "caller": "redirect redaction vector runner",
+  "callee": "remote-source-tests redaction legs (excerpt in packet) + loopback redirect chain"
+ },
+ "test": {
+  "command": "swift run remote-source-tests",
+  "expected": "exit 0; final line 'remote-source-tests: N PASS, 0 FAIL' with N >= 13; vector rows replay green; a seeded header leak is caught and printed redacted",
+  "fixture_block": "fixtures1"
+ },
+ "target": {
+  "branch": "ohal/gorav",
+  "paths": [
+   "kits/redirect-vectors/",
+   "Sources/remote-source-tests/"
+  ],
+  "return_form": "patch"
+ }
+}
+```
 
 ## problem (what fails for the user)
 on redirect, authorization/cookie headers must not leak to a different host; a redaction regression is a credential leak to an attacker-controlled redirect target.
@@ -30,7 +62,7 @@ vectors replay green; a seeded header leak is caught and printed redacted.
 
 ## pinned excerpts (gorav-src @ 2112af0d60df16c5473173b664903f76ce54173e)
 ### Sources/remote-source-tests/main.swift (sha256 b7bfea62, lines 1-80 of 115)
-```swift
+```swift id=source1
 import Foundation
 import GorAVCore
 import GorAVFFmpegAdapter
@@ -117,3 +149,7 @@ func probeOpen(withOptions opts: SourceOpenOptions?, epoch: UInt64) async -> Str
 solver lab: unclaimed. reviewer lab: unclaimed (writes failure cases first, blind to the fix). neither approval is product acceptance; the owner's eyes close it.
 
 secret scan: clean
+
+```json id=fixtures1
+{"chain":[{"host":"a.local","requestHeaders":["Authorization: Bearer <redacted>"]},{"redirect":"b.local"}],"expect":{"b.local":{"authorization":"ABSENT","cookie":"ABSENT"}},"sameHost":{"authorization":"preserved"}}
+```

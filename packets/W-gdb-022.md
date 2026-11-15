@@ -4,9 +4,46 @@ solver lab: unclaimed
 reviewer lab: unclaimed
 id: W-gdb-022
 
-target branch: ohal/gorav @ 2112af0d (lab does not push; gdb integrator integrates)
-return: patch or full source + fixtures + test runner files
-publication check: pinned excerpts independently matched; product tests NOT_RUN by publisher; candidate open, unclaimed.
+```packet-json
+{
+ "packet_id": "W-gdb-022",
+ "writer": "gdb",
+ "code_owner": "gdb integrator (gorav lane)",
+ "product_repo": "goreda/gorav",
+ "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+ "touched_files": [
+  {
+   "path": "Sources/GorAVSubtitles/SRTParser.swift",
+   "excerpt_block": "source1"
+  },
+  {
+   "path": "Sources/GorAVSubtitles/SubtitleCue.swift",
+   "excerpt_block": "source2"
+  }
+ ],
+ "interface": {
+  "signatures": "VTTParser.parse(_ text: String) -> Result<[SubtitleCue], VTTError> mirroring SRTParser (excerpt in packet)",
+  "types": "SubtitleCue (pinned excerpt); typed parse errors; NOTE/style blocks skipped typed",
+  "ownership_lifetime": "cues are value types; typed errors on malformed input",
+  "caller": "subtitle line (SubtitleTrack.load lane)",
+  "callee": "WebVTTParser.parse -> [SubtitleCue], signature mirrors SRTParser (excerpt in packet)"
+ },
+ "test": {
+  "command": "swift run vtt-parser-tests",
+  "expected": "exit 0; final line matches '^vtt-parser-tests: [1-9][0-9]* PASS, 0 FAIL$'; malformed inputs produce the typed errors in the table; swift run subtitle-srt-tests stays green",
+  "fixture_block": "fixtures1"
+ },
+ "target": {
+  "branch": "ohal/gorav",
+  "paths": [
+   "Sources/GorAVSubtitles/",
+   "Sources/vtt-parser-tests/",
+   "kits/vtt-fixtures/"
+  ],
+  "return_form": "patch"
+ }
+}
+```
 
 ## problem (what fails for the user)
 the subtitle line parses SRT and ASS only; WebVTT (the web standard sidecar) has no parser, so VTT sidecars are silently unusable.
@@ -30,7 +67,7 @@ parser tests PASS on Linux; malformed inputs produce the typed errors in the tab
 
 ## pinned excerpts (gorav-src @ 2112af0d60df16c5473173b664903f76ce54173e)
 ### Sources/GorAVSubtitles/SRTParser.swift (sha256 49ab4d12, lines 1-94 of 94)
-```swift
+```swift id=source1
 import Foundation
 
 /// Strict SubRip (SRT) parser (lane L5, unit u1). Typed refusals on malformed
@@ -128,7 +165,7 @@ public enum SRTParser {
 ```
 
 ### Sources/GorAVSubtitles/SubtitleCue.swift (sha256 2311ed30, lines 1-32 of 32)
-```swift
+```swift id=source2
 import Foundation
 
 /// One timed subtitle cue over the half-open interval [startSeconds, endSeconds).
@@ -167,3 +204,14 @@ public struct SubtitleCue: Equatable, Sendable {
 solver lab: unclaimed. reviewer lab: unclaimed (writes failure cases first, blind to the fix). neither approval is product acceptance; the owner's eyes close it.
 
 secret scan: clean
+
+```text id=fixtures1
+WEBVTT
+
+00:00:01.000 --> 00:00:03.000 line:90%
+Merhaba dunya
+
+00:00:04.000 --> 00:00:06.000
+Ikinci cue
+# expect: 2 cues; timings in seconds; settings preserved typed; NOTE blocks skipped
+```
