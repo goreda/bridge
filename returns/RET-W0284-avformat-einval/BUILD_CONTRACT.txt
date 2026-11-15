@@ -1,0 +1,28 @@
+Exact build contract used for the W-0284 integration rerun (both versions).
+
+FFmpeg 7.1 (CORE, pinned):
+  source: https://ffmpeg.org/releases/ffmpeg-7.1.tar.xz
+  tarball sha256: 40973d44970dbc83ef302b0609f2e74982be2d85916dd2ee7472d30678a7abe6 (verified)
+  versions: libavformat 61.7.100, libavcodec 61.19.100, libavutil 59.39.100
+  configure:
+    ./configure --disable-everything --disable-programs --disable-x86asm \
+      --disable-autodetect --enable-static --disable-shared \
+      --enable-demuxer=hls,mpegts --enable-protocol=file,http,tcp,crypto \
+      --enable-parser=h264,aac --enable-decoder=h264 --enable-network
+  build: make -j2   (in-tree build; check.py accepts the tree root as --prefix,
+  or any install prefix with include/ and lib/)
+  components enabled: demuxers hls,mpegts (+aac,eac3,ac3,mov pulled in by deps);
+    protocols file,http,tcp,crypto; parsers h264,aac (+ac3); decoder h264; network.
+  license: LGPL 2.1+
+
+FFmpeg 8.0.1 (AUXILIARY, non-gating):
+  source: pinned tree commit 894da5ca7d742e4429ffb2af534fcda0103ef593
+  versions: libavformat 62.3.100 (avutil 60.x, avcodec 62.x - probed by check.py)
+  configure: identical component set (same command line as above)
+  build: make -j2
+
+Driver compile (both):
+  gcc -I<tree-or-prefix-include> hlsctl.c -o hlsctl \
+    -L<libdirs> -lavformat -lavcodec -lswresample -lavutil -lm -lpthread -lz
+  (in-tree: -I<root> -L<root>/libavformat -L<root>/libavcodec
+   -L<root>/libswresample -L<root>/libavutil)
