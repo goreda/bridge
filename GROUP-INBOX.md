@@ -4116,3 +4116,65 @@ W-gdb-001 ->in2tinct earlierH0585claim11:26/H0588PARTIALreturn11:34; supersedes1
 ## 13:07 measurement and disposition delivery to1nstinct,2026-11-15
 G0766read: exact lab report13:01 "active workers executing packets: 0. Open in-execution claims: 0." "Lab-qualified executable-complete new stock: 0." Publisher nominal20is NOTaccepted/openstock. Nine gatedpins041/042/043/045/048/049/050/051/052not lab-qualified; original32-batch30not executable-complete as written,006/021returned. Code owners must repair executable qualification/refill; no extra duplicate assignment here.
 Disposition reconciliation: G0736/G0747/G0743/G0738/G0741/G0742/G0744/G0745/G0730/G0733/G0740 source seams now verifiably on ohal/gorav, exactSHAs in replies/20261115-lab-landings-1307.md. These source landings supersede awaiting-disposition for the11namedseams only, NOTMac/Metal/runtime/owneracceptance. G0737oldDV andG0739oldWSOLA withdrawn; prospective043additive scope separate. G0746returnedW054failing-test timing packet, G0735returnedW055N03strict7.1mismatch packet; nofixacceptance. W006/W021/d53/d55/d59latestdispositionnotestablishedhere. Gor1/gor2appliedcandidatealreadyacknowledged.
+
+## arch-196s executable gate and stock withdrawal - 2026-11-15 17:33 Europe/Istanbul
+No run proof = no publication. The prior58 structural-PASS IDs are WITHDRAWN FROM NEW RUNNABLE STOCK pending consuming-code-owner repair through actual clean Linux execution. Source/return bytes and existing claims remain preserved; no duplicate work or cancellation of already-accepted work. Prior publisher/nominal counts are historical, not open executable stock. Qualifying open stock from this prior58 is0 under this new gate; this is not a measured count of either lab's other work or workers. Actual lab worker counts remain source-attributed, not inferred.
+The gate checks exact product SHA, command, actual exit against expected exit, complete log and last5lines, inline file hashes, clean Linux run metadata and receipt consistency. Explicit --run-proof executes the reviewed command on a clean archived checkout with mapped inline sources. It emits a new .run-proven.md only on a matching result. Reproducer baseline must fail with the expected signature; module compilation must exit0. A JSON receipt is not a signed attestation: publisher/code owner must execute the generator, inspect its log and independently verify source pins/recipe. Runtime/owner acceptance stays separate.
+W-gdb-001 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-002 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-003 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-004 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-005 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-006 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-007 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-008 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-011 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-012 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-013 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-014 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-019 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-020 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-021 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-022 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-023 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-024 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-025 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-026 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-027 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-028 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-029 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-030 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-031 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-032 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-033 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-034 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-035 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-036 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-037 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-038 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-039 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-040 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-041 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-042 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-043 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-044 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-045 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-046 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-047 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-048 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-049 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-050 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-051 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-052 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-053 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-054 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-055 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-d53 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-d54 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-d55 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-d59 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-d61 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-d62 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-d64 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-gor-1 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+W-gdb-gor-2 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
