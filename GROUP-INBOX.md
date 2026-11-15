@@ -4181,3 +4181,20 @@ W-gdb-gor-2 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux 
 
 W-gdb-gor-1 | exact408752f actual S4a byte-preservation gate PASS plus portable 3-negative fixture; no native claim | lane/gdb-native87-full-app-gate | execution receipt
 W-gdb-gor-2 | exact4579f08 source inspected; synthetic stop model PASS only, not run-proven product repair or hardware | lane/gdb-native87-full-app-gate | synthetic-only receipt
+
+W-gdb-036 | clean Linux exact2112af0 swift run cue-output-tests exit0 run proof; solver unclaimed; execution only not owner acceptance | ohal/gorav | run-proven
+W-gdb-038 | clean Linux exact2112af0 python3 kits/hdr-roundtrip/check.py exit0 run proof; solver unclaimed; execution only not owner acceptance | ohal/gorav | run-proven
+W-gdb-041 | clean Linux exact2112af0 python3 kits/n6-profile-transform-pin/check.py kits/n6-profile-transform-pin/fixtures.json exit0 run proof; solver 1nstinct; execution only not owner acceptance | ohal/gorav | run-proven
+W-gdb-042 | clean Linux exact2112af0 python3 kits/n7-color-pin/check.py kits/n7-color-pin/fixtures.json exit0 run proof; solver 1nstinct; execution only not owner acceptance | ohal/gorav | run-proven
+W-gdb-043 | clean Linux exact2112af0 python3 kits/n8-wsola-pin/check.py kits/n8-wsola-pin/fixtures.json exit0 run proof; solver in2tinct; execution only not owner acceptance | ohal/gorav | run-proven
+W-gdb-044 | clean Linux exact2112af0 python3 kits/n9-resample-pin/check.py kits/n9-resample-pin/fixtures.json exit0 run proof; solver in2tinct; execution only not owner acceptance | ohal/gorav | run-proven
+W-gdb-045 | clean Linux exact2112af0 python3 kits/n10-crop-pin/check.py kits/n10-crop-pin/fixtures.json exit0 run proof; solver 1nstinct; execution only not owner acceptance | ohal/gorav | run-proven
+W-gdb-046 | clean Linux exact2112af0 python3 kits/b1-pgs-pin/check.py kits/b1-pgs-pin/fixtures.json exit0 run proof; solver in2tinct; execution only not owner acceptance | ohal/gorav | run-proven
+W-gdb-047 | clean Linux exact2112af0 python3 kits/b2-vobsub-pin/check.py kits/b2-vobsub-pin/fixtures.json exit0 run proof; solver in2tinct; execution only not owner acceptance | ohal/gorav | run-proven
+W-gdb-048 | clean Linux exact2112af0 python3 kits/b4-stereo-pin/check.py kits/b4-stereo-pin/fixtures.json exit0 run proof; solver in2tinct; execution only not owner acceptance | ohal/gorav | run-proven
+W-gdb-049 | clean Linux exact2112af0 python3 kits/b5-hls-pin/check.py kits/b5-hls-pin/fixtures.json exit0 run proof; solver 1nstinct; execution only not owner acceptance | ohal/gorav | run-proven
+W-gdb-050 | clean Linux exact2112af0 python3 kits/b6-ytdlp-pin/check.py kits/b6-ytdlp-pin/fixtures.json exit0 run proof; solver 1nstinct; execution only not owner acceptance | ohal/gorav | run-proven
+W-gdb-051 | clean Linux exact2112af0 python3 kits/b7-transport-pin/check.py kits/b7-transport-pin/fixtures.json exit0 run proof; solver 1nstinct; execution only not owner acceptance | ohal/gorav | run-proven
+W-gdb-052 | clean Linux exact2112af0 python3 kits/b10-music-pin/check.py kits/b10-music-pin/fixtures.json exit0 run proof; solver 1nstinct; execution only not owner acceptance | ohal/gorav | run-proven
+W-gdb-053 | clean Linux exact2112af0 python3 kits/spatial-190d-e2-pin/check.py kits/spatial-190d-e2-pin/fixtures.json exit0 run proof; solver in2tinct; execution only not owner acceptance | ohal/gorav | run-proven
+W-gdb-054 | clean Linux exact2112af0 cd kits/b7-transport-flake && python3 check.py exit0 run proof; solver 1nstinct; execution only not owner acceptance | ohal/gorav | run-proven
