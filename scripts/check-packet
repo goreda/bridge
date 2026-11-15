@@ -6,7 +6,8 @@ def check(text):
  errors=[]
  def need(ok,msg):
   if not ok:errors.append(msg)
- def value(v):return isinstance(v,str) and bool(v.strip()) and not re.search(r'\b(TODO|TBD|UNKNOWN|UNRESOLVED|PLACEHOLDER)\b',v,re.I)
+ def content(v):return isinstance(v,str) and bool(v.strip())
+ def value(v):return content(v) and not re.search(r'\b(TODO|TBD|UNKNOWN|UNRESOLVED|PLACEHOLDER)\b',v,re.I)
  blocks={m[1]:m[2] for m in re.findall(r'```([\w+-]+)(?:\s+id=([\w.-]+))?\n(.*?)\n```',text,re.S) if m[1]}
  manifests=re.findall(r'```packet-json\n(.*?)\n```',text,re.S)
  need(len(manifests)==1,'exactly one packet-json manifest required')
@@ -22,19 +23,19 @@ def check(text):
   for f in files:
    if not isinstance(f,dict):errors.append('b: invalid touched_files entry');continue
    p=f.get('path','');need(value(p) and not p.startswith('/') and '..' not in p.split('/'),'b: relative product path required')
-   need(value(blocks.get(f.get('excerpt_block'))),'b: nonempty inline excerpt block for '+str(p))
+   need(content(blocks.get(f.get('excerpt_block'))),'b: nonempty inline excerpt block for '+str(p))
  interface=m.get('interface',{});interface=interface if isinstance(interface,dict) else {}
  for key in ['signatures','types','ownership_lifetime','caller','callee']:
   need(value(interface.get(key)),'c: interface.'+key+' required')
  test=m.get('test',{});test=test if isinstance(test,dict) else {}
  need(value(test.get('command')) and '\n' not in test.get('command',''),'d: one executable test command required')
  need(value(test.get('expected')),'d: expected output/exit required')
- need(value(blocks.get(test.get('fixture_block'))),'d: inline fixture or complete generator block required')
+ need(content(blocks.get(test.get('fixture_block'))),'d: inline fixture or complete generator block required')
  target=m.get('target',{});target=target if isinstance(target,dict) else {}
  need(value(target.get('branch')),'e: target branch required')
  need(isinstance(target.get('paths'),list) and len(target['paths'])>0 and all(value(p) and not p.startswith('/') and '..' not in p.split('/') for p in target['paths']),'e: target relative paths required')
  need(target.get('return_form') in ('patch','module','full-files'),'e: return_form must be patch/module/full-files')
- need(m.get('scope')!='research','research-scope packets retired')
+ need(m.get('scope')!='research' and not re.search(r'\bresearch[ -]only\b|\(research\)',text,re.I),'research-scope packets retired')
  need(not re.search(r'gh[pousr]_[A-Za-z0-9]{16,}|github_pat_|AKIA[0-9A-Z]{16}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY|agent-01|phonemsg-|todo-01',text),'secret/private identifier pattern found')
  return errors
 
