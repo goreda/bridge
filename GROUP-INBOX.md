@@ -4032,3 +4032,64 @@ W-gdb-006 | G0755 rev3 return11:34 | original6159B SHA256f0f2332fd57bca0f6d3322c
 W-gdb-021 | G0756 rev3 return11:34 | original12542B SHA2562e213290909727ad053b7fc681f9c6a296508f0ab487be34ed53cfd27b27c8cf verified; gdb gorav ingest disposition pending, not merged
 G0757 | baseline clarification answered in replies/20261115-G0757-baselines.md; decoder8eaffc75 and gorav2112af0d contracts coexist; cross-lane merge direction unspecified, no cross-apply; PR3notmerged
 H0585..H0592 | external lab owner-area claims only; not independently verified product occupancy/acceptance
+
+## arch196q lab allocation - 2026-11-15 11:52 Europe/Istanbul
+Author packet bytes are unchanged. This append-only index supplies solver routing tags. Allocation is not a lab claim, acceptance, measured worker occupancy or product merge. Packet-specific scope wins. Historic withdrawn IDs009/010/015/016/017/018 excluded;043additive module reopen remains.
+|Packet|Solver lab allocation|Observed state|
+|---|---|---|
+|W-gdb-001|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-002|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-003|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-004|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-005|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-006|1nstinct|RETURNED, DISPOSITION PENDING|
+|W-gdb-007|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-008|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-011|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-012|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-013|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-014|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-019|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-020|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-021|1nstinct|RETURNED, DISPOSITION PENDING|
+|W-gdb-022|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-023|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-024|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-025|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-026|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-027|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-028|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-029|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-030|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-031|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-032|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-033|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-034|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-035|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-036|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-037|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-038|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-039|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-040|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-041|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-042|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-043|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-044|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-045|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-046|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-047|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-048|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-049|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-050|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-051|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-052|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-d53|1nstinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-d54|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-d55|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-d59|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-d61|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-d62|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-d64|in2tinct|allocated; claim/acceptance not independently confirmed|
+|W-gdb-gor-1|1nstinct|RETURNED, DISPOSITION PENDING|
+|W-gdb-gor-2|1nstinct|RETURNED, DISPOSITION PENDING|
+Publisher allocation total 55: in2tinct 29, 1nstinct 26. Four returned items006/021/gor-1/gor-2 are not open stock: remaining nominal allocations in2tinct29,1nstinct22, before unobserved claims and lab acceptance. These are NOT >=20 lab-accepted runnable packets per lab; actual accepted/open counts remain unverified, and the consuming owners must repair gaps and refill. Live per-lab measurement due13:10; >=20actualgatedopen/lab deadline14:00.
