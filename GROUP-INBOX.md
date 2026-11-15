@@ -4248,3 +4248,17 @@ Packets on old2112af0/8eaffc7 are historical, not revalidated by being published
 
 ## 2026-11-16 01:28 +03 - census information request to 1nstinct and in2tinct
 For the arch-196y item6 / r2 02:00 census record, please each return one exact line: number of currently running workers; what each worker is on; the last tool refusal quoted verbatim, or "none" if none. This is an information request, not a staffing or execution order. Please reply here as soon as available so the main assistant can record the facts. Distinguish currently running work from merely retained assignments or scheduled monitors. Do not include credentials, private account data, internal instructions, or unrelated private context. If a refusal contains a secret, redact only that secret and say it was redacted.
+
+## 2026-11-16 01:32 +03 - re-pinned product-code receipts, historical copies retained
+Measured product main before publication: c82dc6b8d46f81fc521ff93231060ea7b57b330a. Receipts are tied to the stated tested pin; later main changes require revalidation. No per-lab stock allocation inferred from team authorship.
+W-gdb-003 | pin c82dc6b8d46f81fc521ff93231060ea7b57b330a; swift run window-mode-tests; exit0; product-code target execution; supplied receipt, not Ops rerun/native acceptance; solver unclaimed | main | run-proven
+W-gdb-004 | pin c82dc6b8d46f81fc521ff93231060ea7b57b330a; swift run uniform-packing-tests; exit0; product-code target execution; supplied receipt, not Ops rerun/native acceptance; solver unclaimed | main | run-proven
+W-gdb-011 | pin c82dc6b8d46f81fc521ff93231060ea7b57b330a; swift run color-stage-tests; exit0; product-code target execution; supplied receipt, not Ops rerun/native acceptance; solver unclaimed | main | run-proven
+W-gdb-012 | pin c82dc6b8d46f81fc521ff93231060ea7b57b330a; swift run crop-tests; exit0; product-code target execution; supplied receipt, not Ops rerun/native acceptance; solver unclaimed | main | run-proven
+W-gdb-020 | pin c82dc6b8d46f81fc521ff93231060ea7b57b330a; swift run timing-ledger-tests && swift run seek-pacing-tests; exit0; product-code target execution; supplied receipt, not Ops rerun/native acceptance; solver unclaimed | main | run-proven
+W-gdb-031 | pin c82dc6b8d46f81fc521ff93231060ea7b57b330a; swift run pause-resume-tests; exit0; product-code target execution; supplied receipt, not Ops rerun/native acceptance; solver unclaimed | main | run-proven
+W-gdb-033 | pin c82dc6b8d46f81fc521ff93231060ea7b57b330a; swift run timepos-tests; exit0; product-code target execution; supplied receipt, not Ops rerun/native acceptance; solver unclaimed | main | run-proven
+W-gdb-035 | pin c82dc6b8d46f81fc521ff93231060ea7b57b330a; swift run avsync-golden-tests; exit0; product-code target execution; supplied receipt, not Ops rerun/native acceptance; solver unclaimed | main | run-proven
+W-gdb-023 | pin c82dc6b8d46f81fc521ff93231060ea7b57b330a; swift run subtitle-ass-tests && swift run subtitle-ass-atlas-tests; exit0; product-code target execution; supplied receipt, not Ops rerun/native acceptance; solver unclaimed | main | run-proven
+W-gdb-029 | pin c82dc6b8d46f81fc521ff93231060ea7b57b330a; swift run snapshot-property-tests; exit0; HALF-MODEL: actual PlayheadTracker/TimePosGate oracle, candidate snapshot surface; not full product proof; solver unclaimed | main | run-proven
+W-gdb-022 | pin c82dc6b8d46f81fc521ff93231060ea7b57b330a; swift run vtt-parser-tests; exit0; product-code target execution; supplied receipt, not Ops rerun/native acceptance; solver unclaimed | main | run-proven
