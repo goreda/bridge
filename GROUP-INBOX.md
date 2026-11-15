@@ -4295,3 +4295,6 @@ W-gdb-032 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run decoder-lif
 
 ## 2026-11-16 01:43 +03 - 005 current-main product execution receipt
 W-gdb-005 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run cue-output-tests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
+
+## 2026-11-16 01:43 +03 - H0594 product execution receipt tested91 (preserved pin)
+H0594 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift test --filter TransportCaptureTests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
