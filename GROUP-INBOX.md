@@ -4022,3 +4022,7 @@ W-gdb-d62 | rev2 independent open watchdogs bound deadline regression; actual Sw
 W-gdb-d64 | rev2 coordinated-seek nativeReady plus exact revision advance, stale prior binding; nil-tolerant counter; source signatures matched, actual seek sequence NOT_RUN
 W-gdb-d61 | still HOLD | two concatenated valid PNG frames independently probe as png_pipe, duration unknown, nb_read_frames2; format alone does not prove a single still image
 New-series52gorav +2gor=54publisher-gated; not lab accepted/runnable occupancy. New3rev2 packets clear prior holds, d61hold remains. Full Swift/product suites publisher NOT_RUN.
+
+## Decoder capture-only pin rev4 - 2026-11-15 11:42 Europe/Istanbul
+W-gdb-d61 | capture-only MediaInventory.containerFormat | goreda/gorav engine @8eaffc75b331a9d65ddce404266738a9d42043ed | gated open, original author rev4; defaulted nil init field, immutable copied demuxer name, effectiveDurationSeconds unchanged; prior still heuristic/rule withdrawn, no single-frame detection claim
+New-series53gorav +2gor=55publisher-gated; d61clears hold only as informational capture. Decoder7/7packets now published; not lab accepted/runnable occupancy. Full Swift/product suites publisher NOT_RUN;3inline fixture bytes match independently verified ffprobe4.4.2 artifacts, not pinned-provider acceptance.
