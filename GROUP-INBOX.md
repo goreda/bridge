@@ -4235,3 +4235,6 @@ W-gdb-d55 | exact8eaffc75b331a9d65ddce404266738a9d42043ed clean Linux swift run 
 W-gdb-d61 | exact8eaffc75b331a9d65ddce404266738a9d42043ed clean Linux swift run media-inventory-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | lane/gdb-196p-decoder (integrator creates it from product_sha; never ohal/gorav main or PR 3) | run-proven
 
 W-gdb-029 | exact2112af0 clean Linux snapshot-property-tests supplied module receipt exit0 988PASS/0FAIL; harness uses actual PlayheadTracker/TimePosGate, negative control caught; solver unclaimed; not Ops rerun/native acceptance | ohal/gorav | run-proven
+
+W-gdb-002 | exact2112af0 clean Linux swift run observation-model-tests exit0 supplied MODEL-BASED harness receipt; NOT product-code execution or product acceptance; solver unclaimed; not Ops rerun | ohal/gorav | run-proven
+W-gdb-008 | exact2112af0 clean Linux swift run audio-only-model-tests exit0 supplied MODEL-BASED harness receipt; NOT product-code execution or product acceptance; solver unclaimed; not Ops rerun | ohal/gorav | run-proven
