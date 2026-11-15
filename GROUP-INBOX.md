@@ -4404,3 +4404,7 @@ W-gdb-072 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda
 ## 2026-11-16 02:31 +03 - Team A028v2 supplied receipt; A007v3 packet defect
 W-gdb-028 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift run frame-lease-vector-tests && swift run frame-lease-tests && swift run frame-tap-tests, exit0, frame-tap-tests: 20 PASS, 0 FAIL; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 A007v3 lane b report: packet defect unescaped backslash-n in embedded Python, not product compile failure; v4 running, no receipt claimed.
+
+## 2026-11-16 02:32 +03 - Team A032v2 supplied receipt
+W-gdb-032 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift run decoder-fault-vector-tests && swift run decoder-lifetime-tests && swift run decoder-inventory-tests, exit0, decoder-inventory-tests: 27 PASS, 0 FAIL; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
+A007 baseline-vs-fix decision belongs to architect, not Team A; v4 product failure recorded separately.
