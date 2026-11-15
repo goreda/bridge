@@ -10,7 +10,7 @@ id: W-gdb-040
   "writer": "gdb",
   "code_owner": "gdb integrator (gorav lane)",
   "product_repo": "goreda/gorav",
-  "product_sha": "91a359f7b38cc0e6c4974661d85f389ef6041b1f",
+  "product_sha": "91a8b69abe9ce61e31188e3d426477a3f8528ede",
   "touched_files": [
     {
       "path": "scripts/ci/seek-determinism.sh",
@@ -47,11 +47,11 @@ id: W-gdb-040
   },
   "run_proof": {
     "version": 1,
-    "product_sha": "91a359f7b38cc0e6c4974661d85f389ef6041b1f",
+    "product_sha": "91a8b69abe9ce61e31188e3d426477a3f8528ede",
     "command": "bash scripts/ci/seek-determinism.sh",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-15T22:38:31.422226+00:00",
+    "ran_at": "2026-11-15T23:09:14.507105+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -72,7 +72,7 @@ id: W-gdb-040
       "SEEK-DETERMINISM PASS digests=125 byte-identical",
       "REAL_LEG rc=0"
     ],
-    "receipt_sha256": "9c137df4490d6565d3d184cbe26f69ead54b38a3f58031f67e0c3c7a4e7f5676"
+    "receipt_sha256": "ce570b837ac453664905172807e65ba127dbd8b55bf851277998a440c52e1252"
   }
 }
 ```
