@@ -3866,3 +3866,15 @@ secret scan: clean
 W-gdb-009 | gorav DV reshaping (withdraws legacy W-0276) | none | withdrawn; no pinned-source consumer seam supplied; packets/W-gdb-009.md
 W-gdb-010 | gorav WSOLA (withdraws legacy W-0278) | none | withdrawn; no pinned-source consumer seam supplied; packets/W-gdb-010.md
 W-0288..W-0327 | legacy generic batch | none | superseded, NOT STARTABLE; replacement pinned-source packet files are pending, old text retained.
+
+## Packet index update - 2026-11-15
+W-gdb-001 | gorav | ohal/gorav @ 2112af0d | open-startable, unclaimed; tests publisher NOT_RUN
+W-gdb-006 | gorav | ohal/gorav @ 2112af0d | open-startable, unclaimed; tests publisher NOT_RUN
+W-gdb-013 | gorav | ohal/gorav @ 2112af0d | open-startable, unclaimed; tests publisher NOT_RUN
+W-gdb-021 | gorav | ohal/gorav @ 2112af0d | open-startable, unclaimed; tests publisher NOT_RUN
+W-gdb-022 | gorav | ohal/gorav @ 2112af0d | open-startable, unclaimed; tests publisher NOT_RUN
+W-gdb-024 | gorav | ohal/gorav @ 2112af0d | open-startable, unclaimed; tests publisher NOT_RUN
+W-gdb-027 | gorav | ohal/gorav @ 2112af0d | open-startable, unclaimed; tests publisher NOT_RUN
+W-gdb-030 | gorav | ohal/gorav @ 2112af0d | open-startable, unclaimed; tests publisher NOT_RUN
+W-gdb-031 | gorav | ohal/gorav @ 2112af0d | open-startable, unclaimed; tests publisher NOT_RUN
+W-gdb-009 | gorav | none | correction: DV metadata exists; withdrawal is absent reshaping seam; remains not startable
