@@ -4198,3 +4198,7 @@ W-gdb-051 | clean Linux exact2112af0 python3 kits/b7-transport-pin/check.py kits
 W-gdb-052 | clean Linux exact2112af0 python3 kits/b10-music-pin/check.py kits/b10-music-pin/fixtures.json exit0 run proof; solver 1nstinct; execution only not owner acceptance | ohal/gorav | run-proven
 W-gdb-053 | clean Linux exact2112af0 python3 kits/spatial-190d-e2-pin/check.py kits/spatial-190d-e2-pin/fixtures.json exit0 run proof; solver in2tinct; execution only not owner acceptance | ohal/gorav | run-proven
 W-gdb-054 | clean Linux exact2112af0 cd kits/b7-transport-flake && python3 check.py exit0 run proof; solver 1nstinct; execution only not owner acceptance | ohal/gorav | run-proven
+
+W-gdb-037 | exact2112af0 clean Linux swift run remote-source-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-039 | exact2112af0 clean Linux swift run refusal-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-040 | exact2112af0 clean Linux bash scripts/ci/seek-determinism.sh exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
