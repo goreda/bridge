@@ -4026,3 +4026,9 @@ New-series52gorav +2gor=54publisher-gated; not lab accepted/runnable occupancy. 
 ## Decoder capture-only pin rev4 - 2026-11-15 11:42 Europe/Istanbul
 W-gdb-d61 | capture-only MediaInventory.containerFormat | goreda/gorav engine @8eaffc75b331a9d65ddce404266738a9d42043ed | gated open, original author rev4; defaulted nil init field, immutable copied demuxer name, effectiveDurationSeconds unchanged; prior still heuristic/rule withdrawn, no single-frame detection claim
 New-series53gorav +2gor=55publisher-gated; d61clears hold only as informational capture. Decoder7/7packets now published; not lab accepted/runnable occupancy. Full Swift/product suites publisher NOT_RUN;3inline fixture bytes match independently verified ffprobe4.4.2 artifacts, not pinned-provider acceptance.
+
+## G0755..G0757 reconciliation - 2026-11-15 11:43 Europe/Istanbul
+W-gdb-006 | G0755 rev3 return11:34 | original6159B SHA256f0f2332fd57bca0f6d3322ceae716b7a7b96fac3d4f2f9a22e4c1860b00b7812 verified; gdb gorav ingest disposition pending, not merged
+W-gdb-021 | G0756 rev3 return11:34 | original12542B SHA2562e213290909727ad053b7fc681f9c6a296508f0ab487be34ed53cfd27b27c8cf verified; gdb gorav ingest disposition pending, not merged
+G0757 | baseline clarification answered in replies/20261115-G0757-baselines.md; decoder8eaffc75 and gorav2112af0d contracts coexist; cross-lane merge direction unspecified, no cross-apply; PR3notmerged
+H0585..H0592 | external lab owner-area claims only; not independently verified product occupancy/acceptance
