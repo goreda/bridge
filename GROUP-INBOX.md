@@ -4384,3 +4384,10 @@ W-gdb-064 | supplied clean-Linux product-code receipt pinned91a8b69abe9ce61e3118
 W-gdb-065 | supplied clean-Linux product-code receipt pinned91a8b69abe9ce61e31188e3d426477a3f8528ede: swift run frame-time-tests, exit0, frame-time-tests: all pass; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 W-gdb-066 | supplied clean-Linux product-code receipt pinned91a8b69abe9ce61e31188e3d426477a3f8528ede: swift run host-geometry-tests, exit0, host-geometry-tests: all pass; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 W-gdb-067 | supplied clean-Linux product-code receipt pinned91a8b69abe9ce61e31188e3d426477a3f8528ede: swift run aspect-override-tests, exit0, aspect-override-tests: all pass; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
+
+
+## 2026-11-16 02:24 +03 Team B068v2/069/070 non-gate lane run report
+
+NON-GATE, no minted receipt or publication-gate PASS. Lane b reports Linux runs at8786bfe3, all exit0: 068v2 fit-spring-tests9PASS, final "fit-spring-tests: all pass"; 069 display-rotation-tests10PASS, final "display-rotation-tests: all pass"; 070 picture-motion-tests7PASS, final "picture-motion-tests: all pass". Reported named lists: W1-W7 spring, R1-R10 rotation, M1-M5 motion. These named subsets are not assumed equal to the total assertion counts. Full verbatim per-row text/log not supplied to Ops yet; no independent hash/source/run verification claimed.
+
+Current manifests have empty touched_files; check-packet refuses to mint receipts. V3 packets pending Team B. Not current-stock qualification, independent replay, Darwin or consuming acceptance. 071geometry follows at lane b. Source is Main's02:22:39relay of lane b run report, not an Ops rerun. No synthetic run_proof inserted.
