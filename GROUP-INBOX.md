@@ -4202,3 +4202,5 @@ W-gdb-054 | clean Linux exact2112af0 cd kits/b7-transport-flake && python3 check
 W-gdb-037 | exact2112af0 clean Linux swift run remote-source-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
 W-gdb-039 | exact2112af0 clean Linux swift run refusal-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
 W-gdb-040 | exact2112af0 clean Linux bash scripts/ci/seek-determinism.sh exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+
+W-gdb-055 | exact2112af0 clean Linux supplied carrier strict FFmpeg7.1 reproduced exit3 documented mismatch; outer check 5/5 exit0. Reproduction-only, original MATCH closure NOT passed. solver lab label in2tinct; kits/ materialization prefix normalized | ohal/gorav | run-proven
