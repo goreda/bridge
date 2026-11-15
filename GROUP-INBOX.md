@@ -3904,3 +3904,5 @@ W-gdb-035 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
 W-gdb-037 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
 W-gdb-039 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
 W-gdb-040 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
+
+195b-publication-scope | all12 target rows | row-owner W-02xx-pin pending | results may publish sanitized; no gated-count claim

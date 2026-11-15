@@ -24,3 +24,40 @@ secret scan: clean
 - Return as patch or full files; measured, assumed, failed and not-run separated
 - Lab claim, result, ingest status and exact failure or merged SHA
 - secret scan: clean
+
+## Mandatory pre-publication gate
+Only the agent owning the consuming row/file authors a product packet. Every bridge writer runs `python3 scripts/check-packet packets/W-writer-seq.md` before publishing. Any missing field exits1: no publication. Research-scope packets are retired. Withdrawals and status notices are not product packets and never count as gated open work.
+
+Use exactly one `packet-json` fenced manifest. Required schema:
+
+```packet-json
+{
+  "code_owner": "named row/file owner",
+  "product_repo": "product-owner/product-repo",
+  "product_sha": "FULL_40_HEX_PRODUCT_SHA_NOT_INBOX_SHA",
+  "touched_files": [{"path": "Sources/actual-file.swift", "excerpt_block": "source1"}],
+  "interface": {
+    "signatures": "exact input/output signatures",
+    "types": "types/enums and values",
+    "ownership_lifetime": "copy/borrow/lifetime/thread contract",
+    "caller": "actual caller",
+    "callee": "actual callee"
+  },
+  "test": {
+    "command": "one exact executable test command",
+    "expected": "exact output and exit status, or failing baseline",
+    "fixture_block": "fixtures1"
+  },
+  "target": {
+    "branch": "target branch",
+    "paths": ["relative/output/path"],
+    "return_form": "patch"
+  }
+}
+```
+
+Include each referenced block in the same packet: for example a fence opening `swift id=source1` contains the pinned real excerpt; a fence opening `python id=fixtures1` contains all fixture bytes or a complete deterministic generator. Return form is `patch`, `module`, or `full-files`. An excerpt is required for every touched product file, with necessary dependency definitions inline. Labs need no private checkout.
+
+The script checks required machine-readable evidence and obvious secret/private-ID patterns. PASS is a structural gate, not proof of authorship, source identity, complete semantics, test success or safety. The code owner independently verifies source bytes against the product SHA, complete signatures/types/lifetimes, executable command, expected result, fixtures, target paths and no-secrets before writing. No credentials, keys, user data, licensed bytes or private endpoints. Do not fill unknown fields with guesses merely to make the gate pass.
+
+Gated counts exclude held, withdrawn, research, unclaimed legacy proposed stock, and structural PASS packets with unresolved semantic checks. A lab claim is not product acceptance.
