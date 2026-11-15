@@ -7,6 +7,7 @@ demux pixel aspect (par > 1 stretches width, par < 1 stretches height) BEFORE
 the quarter-turn swap (rotation mod 180 == 90, floored modulo so negative
 rotations follow the source rule), and refuses non-positive demux sizes.
 Harness: 10 checks (R1-R10).
+v4 (2026-11-16): G0815 fix - the stretched size is range-guarded BEFORE the Int conversion, so a finite huge par refuses as nil instead of trapping. Mutation rows R11-R14.
 
 ```packet-json
 {
@@ -35,9 +36,9 @@ Harness: 10 checks (R1-R10).
   },
   "test": {
     "command": "swift run display-rotation-tests",
-    "expected": "Exit 0 and stdout ends with the line \"display-rotation-tests: all pass\" after 10 PASS lines (R1-R10). Any FAIL line exits 1.",
+    "expected": "Exit 0 and stdout ends with the line \"display-rotation-tests: all pass\" after 14 PASS lines (R1-R14). Any FAIL line exits 1.",
     "fixture_block": "fx_display_rotation_tests",
-    "note": "Run by the integrator on Linux. Derived from gor-fit.lua@d8b677b, no architect spec (marked per team-B instruction)."
+    "note": "Run by the integrator on Linux. Derived from gor-fit.lua@d8b677b, no architect spec (marked per team-B instruction). v4: G0815 fix - range guard before Int conversion (par 1e20/1e-20/1e308 refuse as nil, never trap); mutation rows R11-R14."
   },
   "target": {
     "branch": "lane/gdb-196z-picture (integrator creates it from product_sha; never ohal/gorav main or PR 3)",
@@ -70,7 +71,7 @@ Harness: 10 checks (R1-R10).
     "command": "swift run display-rotation-tests",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-15T23:24:12.400176+00:00",
+    "ran_at": "2026-11-15T23:50:48.075171+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -84,24 +85,24 @@ Harness: 10 checks (R1-R10).
       {
         "path": "Sources/GorAVPlaybackCore/DisplayRotation.swift",
         "block": "fx_display_rotation",
-        "sha256": "2f0d1853c393ef337e69081e7fdef7fb0b5df992dfb94c748a4b564b4b232a29"
+        "sha256": "c976cb3701e88b6662fa9e4183dedaa9ffdd06d9c72271d5f850c0be4954a212"
       },
       {
         "path": "Sources/display-rotation-tests/main.swift",
         "block": "fx_display_rotation_tests",
-        "sha256": "ba180163bfcf3ed89496995ddc41d184c5b75351b5e0744c1f17449037938862"
+        "sha256": "9f47cfdf090229e3d0507e71ca017197e3374d5a287119b3c677d029df9875ea"
       }
     ],
     "log_block": "actual_run_log",
-    "log_sha256": "b2f08d6a87a1c2d3e15e7e0eb2da7544bb60f1217851d9741c1f067a357d96c7",
+    "log_sha256": "3463c5d88e02bee9663f11bffa1c1b507005c9e05a0e686ac80e74769cd70727",
     "last_5_lines": [
-      "PASS R7 par below 1 stretches height",
-      "PASS R8 par then rotation: swap after the stretch",
-      "PASS R9 par 1 and non-positive par leave the size alone",
-      "PASS R10 non-positive demux size refuses",
+      "PASS R11 huge par refuses",
+      "PASS R12 par overflowing to infinity refuses",
+      "PASS R13 huge par with a quarter turn still refuses",
+      "PASS R14 large representable par still works",
       "display-rotation-tests: all pass"
     ],
-    "receipt_sha256": "a42de7eea35a6e4fcf2400f19966781e82ce4b921c20385cdef1fd08f882d3c5"
+    "receipt_sha256": "81526ad09267e9175e34d16e3ee9b6f36a0bfd3855d5b9a54ab4405dd21fe210"
   }
 }
 ```
@@ -139,9 +140,11 @@ public func gorDisplaySize(demuxW: Int, demuxH: Int, par: Double = 1, rotation: 
     // follow the source rule (rotation mod 180 == 90 swaps).
     let r = ((rotation % 180) + 180) % 180
     if r == 90 { swap(&w, &h) }
-    let iw = Int(w.rounded()), ih = Int(h.rounded())
-    guard iw > 0, ih > 0 else { return nil }
-    return (iw, ih)
+    // G0815: range-guard BEFORE the Int conversion. A finite huge par makes
+    // the stretched side unrepresentable; that refuses as nil, never traps.
+    let rw = w.rounded(), rh = h.rounded()
+    guard rw.isFinite, rh.isFinite, rw >= 1, rh >= 1, rw <= 9.0e18, rh <= 9.0e18 else { return nil }
+    return (Int(rw), Int(rh))
 }
 
 ```
@@ -176,6 +179,12 @@ check("R9 par 1 and non-positive par leave the size alone", dimsEq(gorDisplaySiz
 
 // Typed refusals.
 check("R10 non-positive demux size refuses", gorDisplaySize(demuxW: 0, demuxH: 1080) == nil && gorDisplaySize(demuxW: 1920, demuxH: -1) == nil)
+
+// G0815 mutation rows: finite huge par refuses as nil, never traps.
+check("R11 huge par refuses", gorDisplaySize(demuxW: 1920, demuxH: 1080, par: 1e20) == nil && gorDisplaySize(demuxW: 1920, demuxH: 1080, par: 1e-20) == nil)
+check("R12 par overflowing to infinity refuses", gorDisplaySize(demuxW: 1920, demuxH: 1080, par: 1e308) == nil)
+check("R13 huge par with a quarter turn still refuses", gorDisplaySize(demuxW: 1920, demuxH: 1080, par: 1e20, rotation: 90) == nil)
+check("R14 large representable par still works", dimsEq(gorDisplaySize(demuxW: 1920, demuxH: 1080, par: 1e6), 1920000000, 1080))
 
 print(failures == 0 ? "display-rotation-tests: all pass" : "display-rotation-tests: \(failures) FAIL")
 exit(failures == 0 ? 0 : 1)
@@ -418,7 +427,7 @@ Building for debugging...
 [19/24] Wrapping AST for GorAVNativeProbeKit for debugging
 [21/47] Emitting module GorAVPlaybackCore
 [22/69] Compiling GorAVPlaybackCore AudioTrackPlan.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -426,7 +435,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -434,7 +443,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -442,7 +451,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -450,7 +459,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -458,7 +467,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -466,7 +475,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -474,7 +483,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -482,7 +491,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -490,7 +499,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -498,7 +507,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -506,7 +515,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -514,7 +523,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -522,7 +531,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -530,7 +539,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [23/69] Compiling GorAVPlaybackCore ColorStage.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -538,7 +547,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -546,7 +555,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -554,7 +563,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -562,7 +571,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -570,7 +579,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -578,7 +587,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -586,7 +595,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -594,7 +603,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -602,7 +611,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -610,7 +619,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -618,7 +627,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -626,7 +635,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -634,7 +643,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -642,7 +651,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [24/69] Compiling GorAVPlaybackCore ControlBus.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -650,7 +659,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -658,7 +667,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -666,7 +675,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -674,7 +683,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -682,7 +691,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -690,7 +699,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -698,7 +707,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -706,7 +715,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -714,7 +723,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -722,7 +731,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -730,7 +739,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -738,7 +747,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -746,7 +755,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -754,7 +763,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [25/69] Compiling GorAVPlaybackCore CoreSeekDriver.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -762,7 +771,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -770,7 +779,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -778,7 +787,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -786,7 +795,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -794,7 +803,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -802,7 +811,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -810,7 +819,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -818,7 +827,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -826,7 +835,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -834,7 +843,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -842,7 +851,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -850,7 +859,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -858,7 +867,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -866,7 +875,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [26/69] Compiling GorAVPlaybackCore CropStage.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -874,7 +883,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -882,7 +891,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -890,7 +899,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -898,7 +907,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -906,7 +915,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -914,7 +923,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -922,7 +931,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -930,7 +939,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -938,7 +947,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -946,7 +955,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -954,7 +963,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -962,7 +971,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -970,7 +979,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -978,7 +987,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [27/69] Compiling GorAVPlaybackCore DecodeHeartbeat.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -986,7 +995,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -994,7 +1003,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1002,7 +1011,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1010,7 +1019,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -1018,7 +1027,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -1026,7 +1035,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -1034,7 +1043,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -1042,7 +1051,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -1050,7 +1059,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -1058,7 +1067,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -1066,7 +1075,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -1074,7 +1083,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -1082,7 +1091,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -1090,7 +1099,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [28/69] Compiling GorAVPlaybackCore DecodedFrameLeaseBridge.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1098,7 +1107,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1106,7 +1115,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1114,7 +1123,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1122,7 +1131,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -1130,7 +1139,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -1138,7 +1147,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -1146,7 +1155,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -1154,7 +1163,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -1162,7 +1171,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -1170,7 +1179,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -1178,7 +1187,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -1186,7 +1195,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -1194,7 +1203,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -1202,7 +1211,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [29/69] Compiling GorAVPlaybackCore DecodedFrameTap.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1210,7 +1219,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1218,7 +1227,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1226,7 +1235,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1234,7 +1243,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -1242,7 +1251,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -1250,7 +1259,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -1258,7 +1267,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -1266,7 +1275,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -1274,7 +1283,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -1282,7 +1291,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -1290,7 +1299,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -1298,7 +1307,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -1306,7 +1315,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -1314,7 +1323,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [30/69] Compiling GorAVPlaybackCore DecoderInventory.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1322,7 +1331,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1330,7 +1339,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1338,7 +1347,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1346,7 +1355,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -1354,7 +1363,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -1362,7 +1371,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -1370,7 +1379,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -1378,7 +1387,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -1386,7 +1395,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -1394,7 +1403,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -1402,7 +1411,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -1410,7 +1419,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -1418,7 +1427,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -1426,7 +1435,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [31/69] Compiling GorAVPlaybackCore DisplayRotation.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1434,7 +1443,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1442,7 +1451,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1450,7 +1459,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1458,7 +1467,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -1466,7 +1475,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -1474,7 +1483,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -1482,7 +1491,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -1490,7 +1499,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -1498,7 +1507,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -1506,7 +1515,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -1514,7 +1523,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -1522,7 +1531,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -1530,7 +1539,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -1538,7 +1547,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [32/69] Compiling GorAVPlaybackCore FrameLeaseStore.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1546,7 +1555,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1554,7 +1563,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1562,7 +1571,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1570,7 +1579,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -1578,7 +1587,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -1586,7 +1595,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -1594,7 +1603,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -1602,7 +1611,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -1610,7 +1619,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -1618,7 +1627,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -1626,7 +1635,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -1634,7 +1643,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -1642,7 +1651,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -1650,7 +1659,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [33/69] Compiling GorAVPlaybackCore FrameUniformABI.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1658,7 +1667,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1666,7 +1675,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1674,7 +1683,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1682,7 +1691,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -1690,7 +1699,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -1698,7 +1707,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -1706,7 +1715,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -1714,7 +1723,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -1722,7 +1731,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -1730,7 +1739,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -1738,7 +1747,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -1746,7 +1755,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -1754,7 +1763,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -1762,7 +1771,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [34/69] Compiling GorAVPlaybackCore HostTransform.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1770,7 +1779,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1778,7 +1787,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1786,7 +1795,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1794,7 +1803,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -1802,7 +1811,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -1810,7 +1819,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -1818,7 +1827,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -1826,7 +1835,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -1834,7 +1843,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -1842,7 +1851,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -1850,7 +1859,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -1858,7 +1867,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -1866,7 +1875,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -1874,7 +1883,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [35/69] Compiling GorAVPlaybackCore LabColorCurves.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1882,7 +1891,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1890,7 +1899,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1898,7 +1907,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -1906,7 +1915,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -1914,7 +1923,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -1922,7 +1931,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -1930,7 +1939,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -1938,7 +1947,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -1946,7 +1955,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -1954,7 +1963,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -1962,7 +1971,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -1970,7 +1979,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -1978,7 +1987,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -1986,7 +1995,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [36/69] Compiling GorAVPlaybackCore LabCropEngine.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -1994,7 +2003,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -2002,7 +2011,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -2010,7 +2019,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -2018,7 +2027,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -2026,7 +2035,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -2034,7 +2043,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -2042,7 +2051,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -2050,7 +2059,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -2058,7 +2067,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -2066,7 +2075,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -2074,7 +2083,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -2082,7 +2091,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -2090,7 +2099,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -2098,7 +2107,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [37/69] Compiling GorAVPlaybackCore LabHLSPlaylist.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -2106,7 +2115,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -2114,7 +2123,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -2122,7 +2131,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -2130,7 +2139,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -2138,7 +2147,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -2146,7 +2155,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -2154,7 +2163,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -2162,7 +2171,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -2170,7 +2179,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -2178,7 +2187,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -2186,7 +2195,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -2194,7 +2203,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -2202,7 +2211,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -2210,7 +2219,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [38/69] Compiling GorAVPlaybackCore LabMarginOracle.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -2218,7 +2227,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -2226,7 +2235,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -2234,7 +2243,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -2242,7 +2251,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -2250,7 +2259,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -2258,7 +2267,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -2266,7 +2275,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -2274,7 +2283,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -2282,7 +2291,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -2290,7 +2299,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -2298,7 +2307,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -2306,7 +2315,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -2314,7 +2323,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -2322,7 +2331,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [39/69] Compiling GorAVPlaybackCore LabMusicMode.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -2330,7 +2339,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -2338,7 +2347,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -2346,7 +2355,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -2354,7 +2363,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -2362,7 +2371,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -2370,7 +2379,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -2378,7 +2387,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -2386,7 +2395,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -2394,7 +2403,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -2402,7 +2411,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -2410,7 +2419,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -2418,7 +2427,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -2426,7 +2435,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -2434,7 +2443,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [40/69] Compiling GorAVPlaybackCore LabPGSDecoder.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -2442,7 +2451,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -2450,7 +2459,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -2458,7 +2467,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -2466,7 +2475,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -2474,7 +2483,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -2482,7 +2491,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -2490,7 +2499,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -2498,7 +2507,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -2506,7 +2515,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -2514,7 +2523,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -2522,7 +2531,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -2530,7 +2539,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -2538,7 +2547,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -2546,7 +2555,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [41/69] Compiling GorAVPlaybackCore LabPTSDuration.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -2554,7 +2563,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -2562,7 +2571,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -2570,7 +2579,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -2578,7 +2587,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -2586,7 +2595,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -2594,7 +2603,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -2602,7 +2611,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -2610,7 +2619,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -2618,7 +2627,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -2626,7 +2635,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -2634,7 +2643,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -2642,7 +2651,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -2650,7 +2659,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -2658,7 +2667,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [42/69] Compiling GorAVPlaybackCore LabStereoResolver.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -2666,7 +2675,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -2674,7 +2683,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -2682,7 +2691,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -2690,7 +2699,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -2698,7 +2707,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -2706,7 +2715,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -2714,7 +2723,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -2722,7 +2731,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -2730,7 +2739,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -2738,7 +2747,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -2746,7 +2755,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -2754,7 +2763,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -2762,7 +2771,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -2770,7 +2779,7 @@ Building for debugging...
  81 |         catch SeekRefusal.unsupported(let m) { return .admissionRefused(reason: .unsupported(m)) }
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
 [43/69] Compiling GorAVPlaybackCore LabSwrConverter.swift
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -2778,7 +2787,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:84:41: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  82 |         catch { return .admissionRefused(reason: .unsupported("\(error)")) }
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
@@ -2786,7 +2795,7 @@ Building for debugging...
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
  86 |         do { try txn.execute() }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:22: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -2794,7 +2803,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:85:49: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
  83 |         let adopted = txn.reservedRevision   // PINNED HANDSHAKE: adopt, never reserve separately
  84 |         lock.lock(); active = txn; lock.unlock()
  85 |         defer { lock.lock(); active = nil; lock.unlock() }
@@ -2802,7 +2811,7 @@ Building for debugging...
  86 |         do { try txn.execute() }
  87 |         catch {
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:215:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 213 |     @discardableResult
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
@@ -2810,7 +2819,7 @@ Building for debugging...
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:216:46: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 214 |     public func close(drainBudgetNanoseconds: UInt64 = 2_000_000_000) async -> CloseReport {
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
@@ -2818,7 +2827,7 @@ Building for debugging...
 217 |         lock.unlock()
 218 | 
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:217:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 215 |         lock.lock()
 216 |         if let report = latchedReport { lock.unlock(); return report }
 217 |         lock.unlock()
@@ -2826,7 +2835,7 @@ Building for debugging...
 218 | 
 219 |         store.close()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:223:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 221 |         let deadline = DispatchTime.now().uptimeNanoseconds &+ drainBudgetNanoseconds
 222 |         while true {
 223 |             lock.lock()
@@ -2834,7 +2843,7 @@ Building for debugging...
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:225:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 223 |             lock.lock()
 224 |             let inFlight = inFlightDecoderReleases
 225 |             lock.unlock()
@@ -2842,7 +2851,7 @@ Building for debugging...
 226 |             if inFlight == 0 || DispatchTime.now().uptimeNanoseconds >= deadline { break }
 227 |             try? await Task.sleep(nanoseconds: 1_000_000)
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:230:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 228 |         }
 229 | 
 230 |         lock.lock()
@@ -2850,7 +2859,7 @@ Building for debugging...
 231 |         var report = CloseReport()
 232 |         report.retainedTotal = retainedTotal
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:238:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 236 |         report.undrainedDecoderReleases = inFlightDecoderReleases
 237 |         latchedReport = report
 238 |         lock.unlock()
@@ -2858,7 +2867,7 @@ Building for debugging...
 239 |         return report
 240 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:251:23: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 249 |         Task {
 250 |             await decoder.releaseFrame(handle: handle, session: session)
 251 |             self.lock.lock()
@@ -2866,7 +2875,7 @@ Building for debugging...
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift:253:23: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode; this is an error in the Swift 6 language mode
 251 |             self.lock.lock()
 252 |             self.inFlightDecoderReleases -= 1
 253 |             self.lock.unlock()
@@ -2874,7 +2883,7 @@ Building for debugging...
 254 |         }
 255 |     }
 
-/tmp/packet-proof-yqiwkyq0/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-dz1grpfu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
  78 |         catch SeekRefusal.stale { return .admissionRefused(reason: .stale) }
  79 |         catch SeekRefusal.closed { return .admissionRefused(reason: .closed) }
  80 |         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
@@ -2903,13 +2912,13 @@ Building for debugging...
 [63/69] Compiling GorAVPlaybackCore TimingLedger.swift
 [64/69] Compiling GorAVPlaybackCore UniformPacking.swift
 [65/69] Compiling GorAVPlaybackCore WindowModePlan.swift
-[66/71] Wrapping AST for GorAVPlaybackCore for debugging
-[68/72] Emitting module display_rotation_tests
-[69/72] Compiling display_rotation_tests main.swift
+[66/70] Wrapping AST for GorAVPlaybackCore for debugging
+[68/72] Compiling display_rotation_tests main.swift
+[69/72] Emitting module display_rotation_tests
 [70/73] Wrapping AST for display-rotation-tests for debugging
 [71/73] Write Objects.LinkFileList
 [72/73] Linking display-rotation-tests
-Build of product 'display-rotation-tests' complete! (8.52s)
+Build of product 'display-rotation-tests' complete! (8.68s)
 PASS R1 rotation 90 swaps
 PASS R2 rotation 270 swaps (270 mod 180 == 90)
 PASS R3 rotation 180 does not swap
@@ -2920,5 +2929,9 @@ PASS R7 par below 1 stretches height
 PASS R8 par then rotation: swap after the stretch
 PASS R9 par 1 and non-positive par leave the size alone
 PASS R10 non-positive demux size refuses
+PASS R11 huge par refuses
+PASS R12 par overflowing to infinity refuses
+PASS R13 huge par with a quarter turn still refuses
+PASS R14 large representable par still works
 display-rotation-tests: all pass
 ```
