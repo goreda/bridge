@@ -3968,3 +3968,10 @@ W-gdb-038 | gorav | ohal/gorav @2112af0d | gated open unclaimed; valid JSON wrap
 Current new-series count:34gorav gated +2gor r3 gated =36;0remaininggorav semantic holds;6withdrawals outside gate. Product tests publisher NOT_RUN except focused038 C oracle; no product acceptance or lab occupancy claim.
 
 G0731/G0732/H0583 | gorav | replies/20261115-G0731-G0732-H0583.md | canonical IDs and qualification answer, no claim;10ABIpinpacketspending
+
+## Consuming pins reviewed - 2026-11-15 11:25 Europe/Istanbul
+W-gdb-044 | gorav W-0279-pin | ohal/gorav @2112af0d | gated open, assigned in2tinct context not claim; exact converter source checked
+W-gdb-046 | gorav W-0281-pin | ohal/gorav @2112af0d | gated open, assigned in2tinct context not claim; additive bitmap cue/time anchor, no bitmap renderer claim
+W-gdb-047 | gorav W-0282-pin | ohal/gorav @2112af0d | gated open, assigned in2tinct context not claim; shared bitmap shape with046, idx palette required
+Other submitted pin candidates041/042/043/045/048/049/050/051/052 are NOT PUBLISHED: semantic corrections requested from consuming-code author.041/043 have not reopened W0276/W0278; existing withdrawal records remain effective.
+New-series stock37gorav +2gor =39gated; previous34gorav remain gated,6withdrawals out. Allocation labels are not worker occupancy or lab claims; full suites publisher NOT_RUN.
