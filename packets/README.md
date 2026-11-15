@@ -61,3 +61,6 @@ Include each referenced block in the same packet: for example a fence opening `s
 The script checks required machine-readable evidence and obvious secret/private-ID patterns. PASS is a structural gate, not proof of authorship, source identity, complete semantics, test success or safety. The code owner independently verifies source bytes against the product SHA, complete signatures/types/lifetimes, executable command, expected result, fixtures, target paths and no-secrets before writing. No credentials, keys, user data, licensed bytes or private endpoints. Do not fill unknown fields with guesses merely to make the gate pass.
 
 Gated counts exclude held, withdrawn, research, unclaimed legacy proposed stock, and structural PASS packets with unresolved semantic checks. A lab claim is not product acceptance.
+
+## Source-token gate correction (2026-11-15)
+Placeholder words are checked in manifest values, not in quoted source or fixture bytes. A legitimate case unknown is not a missing field. Source and fixture blocks must still be nonempty. Research-only prose is rejected too. Structural PASS is separate from source/semantic validation; this publication held eight structurally passing packets for author correction.

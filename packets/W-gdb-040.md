@@ -4,9 +4,41 @@ solver lab: unclaimed
 reviewer lab: unclaimed
 id: W-gdb-040
 
-target branch: ohal/gorav @ 2112af0d (lab does not push; gdb integrator integrates)
-return: patch or full source + fixtures + test runner files
-publication check: pinned excerpts independently matched; product tests NOT_RUN by publisher; candidate open, unclaimed.
+```packet-json
+{
+ "packet_id": "W-gdb-040",
+ "writer": "gdb",
+ "code_owner": "gdb integrator (gorav lane)",
+ "product_repo": "goreda/gorav",
+ "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+ "touched_files": [
+  {
+   "path": "scripts/ci/seek-determinism.sh",
+   "excerpt_block": "source1"
+  }
+ ],
+ "interface": {
+  "signatures": "seek-determinism.sh -> run1.digest vs run2.digest, identical required",
+  "types": "digest spec fields { target, anchor, reset, resume, decision }; byte-exact spec is the deliverable",
+  "ownership_lifetime": "synthetic media descriptions only; byte-exact digest spec is the deliverable interface",
+  "caller": "CI step + seek determinism runner",
+  "callee": "scripts/ci/seek-determinism.sh digest compare (excerpt in packet) + hardened digest spec"
+ },
+ "test": {
+  "command": "bash scripts/ci/seek-determinism.sh",
+  "expected": "exit 0 on Linux; two runs of the fixed seek sequence produce identical digests; a seeded rng produces a field-by-field diff (negative control shown in the returned log)",
+  "fixture_block": "fixtures1"
+ },
+ "target": {
+  "branch": "ohal/gorav",
+  "paths": [
+   "scripts/ci/seek-determinism.sh",
+   "kits/seek-determinism/"
+  ],
+  "return_form": "patch"
+ }
+}
+```
 
 ## problem (what fails for the user)
 the same seek sequence must produce the same decisions every run; nondeterminism here ships as flaky seeks that no single-run test catches.
@@ -30,7 +62,7 @@ two runs produce identical digests; a seeded rng in the pipeline produces a fiel
 
 ## pinned excerpts (gorav-src @ 2112af0d60df16c5473173b664903f76ce54173e)
 ### scripts/ci/seek-determinism.sh (sha256 c1bfe018, lines 1-85 of 85)
-```sh
+```sh id=source1
 #!/usr/bin/env bash
 # Seek determinism witness (gorav queue item 12): run real-seek-tests twice
 # back-to-back and byte-compare the DIGEST log lines; nonzero exit on drift.
@@ -122,3 +154,7 @@ PY
 solver lab: unclaimed. reviewer lab: unclaimed (writes failure cases first, blind to the fix). neither approval is product acceptance; the owner's eyes close it.
 
 secret scan: clean
+
+```json id=fixtures1
+{"seekSequence":[0.0,1.5,2.96,0.5],"digestFields":["target","anchor","reset","resume","decision"],"expect":"run1.digest == run2.digest"}
+```

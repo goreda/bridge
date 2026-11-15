@@ -4,9 +4,45 @@ solver lab: unclaimed
 reviewer lab: unclaimed
 id: W-gdb-039
 
-target branch: ohal/gorav @ 2112af0d (lab does not push; gdb integrator integrates)
-return: patch or full source + fixtures + test runner files
-publication check: pinned excerpts independently matched; product tests NOT_RUN by publisher; candidate open, unclaimed.
+```packet-json
+{
+ "packet_id": "W-gdb-039",
+ "writer": "gdb",
+ "code_owner": "gdb integrator (gorav lane)",
+ "product_repo": "goreda/gorav",
+ "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+ "touched_files": [
+  {
+   "path": "Sources/refusal-tests/RefusalTests.swift",
+   "excerpt_block": "source1"
+  },
+  {
+   "path": "Sources/GorAVFFmpegAdapter/SourceOpenOptions.swift",
+   "excerpt_block": "source2"
+  }
+ ],
+ "interface": {
+  "signatures": "source open -> typed event row per RefusalTests excerpt vocabulary",
+  "types": "event rows opened(codec,WxH) | frameDecoded | endOfStream | failed(code,msg) | interrupted | feedSaturated(n); a bad input never yields opened(...)",
+  "ownership_lifetime": "synthetic bad inputs only; no real network faults",
+  "caller": "refusal vector runner",
+  "callee": "source-open refusal vocabulary (RefusalTests excerpt + SourceOpenOptions excerpt in packet): typed failed(code) events, never bare success"
+ },
+ "test": {
+  "command": "swift run refusal-tests",
+  "expected": "exit 0; existing refusal checks stay green; every vector produces its exact typed row; a genericized failure (negative control) fails with the vector id",
+  "fixture_block": "fixtures1"
+ },
+ "target": {
+  "branch": "ohal/gorav",
+  "paths": [
+   "kits/refusal-vectors/",
+   "Sources/refusal-tests/"
+  ],
+  "return_form": "patch"
+ }
+}
+```
 
 ## problem (what fails for the user)
 source-open failures must surface as typed refusals (missing file, zero-byte, unsupported codec, corrupt header, truncated moov, timeout, permission) - a generic failure hides the cause from the user and the gate.
@@ -30,7 +66,7 @@ every vector produces its exact typed token; a genericized failure (negative con
 
 ## pinned excerpts (gorav-src @ 2112af0d60df16c5473173b664903f76ce54173e)
 ### Sources/refusal-tests/RefusalTests.swift (sha256 0a52b823, lines 1-50 of 94)
-```swift
+```swift id=source1
 import Foundation
 import GorAVCore
 import GorAVNativeProbeKit
@@ -84,7 +120,7 @@ struct RefusalTests {
 ```
 
 ### Sources/GorAVFFmpegAdapter/SourceOpenOptions.swift (sha256 abd87be3, lines 1-113 of 113)
-```swift
+```swift id=source2
 import Foundation
 import GorAVCore
 import CFFmpeg
@@ -204,3 +240,7 @@ func goravR3OpenInput(_ ctx: UnsafeMutablePointer<UnsafeMutablePointer<AVFormatC
 solver lab: unclaimed. reviewer lab: unclaimed (writes failure cases first, blind to the fix). neither approval is product acceptance; the owner's eyes close it.
 
 secret scan: clean
+
+```json id=fixtures1
+[{"inputClass":"zero-byte-file","expect":"typed failed row, never opened(...)"},{"inputClass":"truncated-moov","expect":"typed failed row naming the truncation"},{"inputClass":"unsupported-codec","expect":"typed refused row"}]
+```

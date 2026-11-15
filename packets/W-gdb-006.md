@@ -4,9 +4,40 @@ solver lab: unclaimed
 reviewer lab: unclaimed
 id: W-gdb-006
 
-target branch: ohal/gorav @ 2112af0d (lab does not push; gdb integrator integrates)
-return: patch or full source + fixtures + test runner files
-publication check: pinned excerpts independently matched; product tests NOT_RUN by publisher; candidate open, unclaimed.
+```packet-json
+{
+ "packet_id": "W-gdb-006",
+ "writer": "gdb",
+ "code_owner": "gdb integrator (gorav lane)",
+ "product_repo": "goreda/gorav",
+ "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+ "touched_files": [
+  {
+   "path": ".github/workflows/engine-macos.yml",
+   "excerpt_block": "source1"
+  }
+ ],
+ "interface": {
+  "signatures": "check.py <transcripts-dir> -> per-transcript PASS/FAIL receipt + machine-readable receipt",
+  "types": "capability receipt { required: [protocols], perTranscript: PASS | 'FAIL missing: [...]' }",
+  "ownership_lifetime": "python3 stdlib + shell only; no FFmpeg build; no network",
+  "caller": "CI step consuming the receipt (engine-macos.yml lane)",
+  "callee": "configure-diff kit: recorded configure line + protocol list vs required capability set -> typed PASS/FAIL receipt"
+ },
+ "test": {
+  "command": "python3 kits/ffmpeg-configure-diff/check.py kits/ffmpeg-configure-diff/transcripts/",
+  "expected": "exit 0; stdout per transcript 'PASS file+http+tcp' / 'FAIL file-only missing: http,tcp'; negative control (dropped flag) printed in the returned log",
+  "fixture_block": "fixtures1"
+ },
+ "target": {
+  "branch": "ohal/gorav",
+  "paths": [
+   "kits/ffmpeg-configure-diff/"
+  ],
+  "return_form": "full-files"
+ }
+}
+```
 
 ## problem (what fails for the user)
 the pinned FFmpeg mirror is configured file-protocol-only, so four native harness rows (54/61/62/64) cannot run - remote-source behavior has no honest native witness. the protocol add is approved, but there is no kit proving a given build actually carries the required protocols (and nothing else unexpected).
@@ -30,7 +61,7 @@ kit PASSes a file+http+tcp transcript and FAILs the file-only one with the missi
 
 ## pinned excerpts (gorav-src @ 2112af0d60df16c5473173b664903f76ce54173e)
 ### .github/workflows/engine-macos.yml (sha256 5a16a065, lines 1-42 of 42)
-```yaml
+```yaml id=source1
 name: GorAV engine macOS baseline
 run-name: GorAV full-package and G3 native tests
 on:
@@ -79,3 +110,7 @@ jobs:
 solver lab: unclaimed. reviewer lab: unclaimed. neither approval is product acceptance; the owner's eyes close it.
 
 secret scan: clean
+
+```json id=fixtures1
+{"required":["file","http","tcp"],"transcripts":{"file+http+tcp":"--enable-protocol=file --enable-protocol=http --enable-protocol=tcp","file-only":"--enable-protocol=file"},"expect":{"file+http+tcp":"PASS","file-only":"FAIL missing: http,tcp"}}
+```
