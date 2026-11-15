@@ -4292,3 +4292,6 @@ W-gdb-014 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run media-inven
 W-gdb-019 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run seek-composition-tests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
 W-gdb-028 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run frame-lease-tests && swift run frame-tap-tests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
 W-gdb-032 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run decoder-lifetime-tests && swift run decoder-inventory-tests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
+
+## 2026-11-16 01:43 +03 - 005 current-main product execution receipt
+W-gdb-005 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run cue-output-tests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
