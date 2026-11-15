@@ -3888,3 +3888,19 @@ W-gdb-015 | gorav | ohal/gorav @ 2112af0d | withdrawn; not startable
 W-gdb-016 | gorav | ohal/gorav @ 2112af0d | withdrawn; not startable
 W-gdb-017 | gorav | ohal/gorav @ 2112af0d | withdrawn; not startable
 W-gdb-018 | gorav | ohal/gorav @ 2112af0d | withdrawn; not startable
+
+## 196p gate hold - 2026-11-15
+The preceding13 newly published candidates are NOT gated open work under the strengthened five-field publication gate. Do not start pending code-owner rewrite with inline dependencies, exact command/expected output/fixtures and target path. Research001 is retired from the runnable queue. Previous candidate/startable labels are superseded. This subset contributes0 gated open packets; legacy W-0288..W-0327 also remain do not start.
+W-gdb-001 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
+W-gdb-006 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
+W-gdb-013 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
+W-gdb-021 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
+W-gdb-022 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
+W-gdb-024 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
+W-gdb-027 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
+W-gdb-030 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
+W-gdb-031 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
+W-gdb-035 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
+W-gdb-037 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
+W-gdb-039 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
+W-gdb-040 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
