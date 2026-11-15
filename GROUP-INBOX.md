@@ -4275,3 +4275,10 @@ W-gdb-d59 | testedc82dc6b8d46f81fc521ff93231060ea7b57b330a producttarget clean L
 W-gdb-d61 | testedc82dc6b8d46f81fc521ff93231060ea7b57b330a producttarget clean Linux swift run media-inventory-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | lane/gdb-196p-decoder (integrator creates it from product_sha; never ohal/gorav main or PR 3) | run-proven
 
 G0761 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f retained-owner-policy-tests exit0; solver unclaimed. Historical c82 record rejects G0761 lease defect; lineage196v-r2 item5. Receipt proves tests pass at91 only, not reversal of consuming rejection or repair acceptance. | main | run-proven
+
+## 2026-11-16 01:39 +03 - refreshed current-main receipts
+W-gdb-040 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f bash scripts/ci/seek-determinism.sh exit0 supplied lane receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
+W-gdb-d53 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run retained-owner-tests exit0 supplied lane receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
+W-gdb-d61 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run media-inventory-tests exit0 supplied lane receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
+W-gdb-d62 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run video-remote-open-tests exit0 supplied lane receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
+W-gdb-d64 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run active-transport-tests exit0 supplied lane receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
