@@ -8,6 +8,98 @@ These are candidate requests, not accepted, started, tested or integrated work. 
 
 W numbering is provisional until a live tip and duplicate check immediately before publication. Prior requests remain unchanged. The entry-specific text below takes precedence over output defaults in this preamble.
 
+## W-0318 | MEM1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| MEM1 | Frame allocator pressure model + tests | Portable model of a frame-pool allocator under pressure: pool exhaustion, eviction ordering under pins, 2160-class budget arithmetic, fragmentation behavior with mixed sizes, honest OOM typed refusal (never silent fallback). Randomized operation sequences with deterministic seeds; assert eviction order and budget counters. | Frame-pool integrator |
+
+secret scan: clean
+
+## W-0319 | SEEK2 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| SEEK2 | Seek determinism digest kit | Kit that runs a fixed seek sequence twice through a candidate pipeline and digests every decision (target, anchor, reset, resume) into one comparison hash per run: identical digests required, any divergence printed field-by-field. Ships the sequence, the digest spec (byte-exact, documented) and synthetic media descriptions. | Seek-planner integrator |
+
+secret scan: clean
+
+## W-0320 | OPEN1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| OPEN1 | Source-open refusal taxonomy vectors | Vectors for typed source-open refusals: missing file, zero-byte file, unsupported codec, corrupt header, truncated moov, read timeout, permission error - each mapping to one typed refusal token, never a generic failure and never a partial success. Generator creates the synthetic bad inputs; expected token table per input. | Source-open integrator |
+
+secret scan: clean
+
+## W-0321 | PUMP1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| PUMP1 | Frame-pump terminal-state vectors | Vectors for a frame pump's terminal states: endOfStream, sourceEnded, cancelled, failed(code) - each scenario carries the expected terminal reason, the counters frozen at finish (presented, dropped), and the rule that terminal values persist after finish. Checker replays a candidate pump's event/snapshot log. Virtual clock, synthetic frames. | Frame-pump integrator |
+
+secret scan: clean
+
+## W-0322 | RC1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| RC1 | Resume-after-seek landing vectors | Combined seek+pause+resume sequence vectors: parked seek (seek while paused) then resume, seek during playback then immediate pause, resume racing a second seek. Expected ordering of anchor re-arm, first-frame landing and audio-landing events per sequence; checker scores a candidate event log. | Playback lifecycle integrator |
+
+secret scan: clean
+
+## W-0323 | BUF1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| BUF1 | Playback buffer accounting model | Portable model of playback-side buffer accounting: level in bytes and frames, underrun events, refill hysteresis, and the honesty rule - unknown fill states stay unknown, never inferred percentages. Property tests over randomized feed/consume sequences assert counter invariants. Deterministic seeds. | Playback-buffer integrator |
+
+secret scan: clean
+
+## W-0324 | META1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| META1 | Media tag charset/normalization fixtures | Tag fixtures for metadata readers: UTF-8 with combining marks, NFC/NFD twins that must compare equal, Latin-1 legacy bytes with declared conversion, duplicate keys, empty values, embedded NUL rejection. Expected normalized tag tables per fixture; document the normalization rule the tables assume. | Media-metadata integrator |
+
+secret scan: clean
+
+## W-0325 | SYNC1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| SYNC1 | Master-clock arbitration vectors | Vectors for clock-master arbitration: audio-master loss mid-run (fall back to video/system pacing typed, never silent drift), master recovery, competing masters at open, master switch during pause. Expected pacing-source sequence and terminal handling per scenario; checker replays a candidate arbiter log. | Playback clock/audio integrator |
+
+secret scan: clean
+
+## W-0326 | SNAP1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| SNAP1 | Snapshot consistency property model | Property-test kit for a playback snapshot surface: counter monotonicity across pause/seek/close, live-versus-terminal field stability after pump finish, optional fields present exactly when their source exists (nil is a failure when the source ran). Randomized operation scripts with deterministic seeds; assert every invariant per step. | Playback observation integrator |
+
+secret scan: clean
+
+## W-0327 | GEN1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| GEN1 | Golden-fixture self-check harness | Meta-kit guarding fixture determinism: every generator in the fixture packs runs twice from its seed and must emit byte-identical output; the harness walks a fixture directory, reruns generators, diffs bytes, and prints a typed PASS/FAIL receipt per generator. Adoptable by all other fixture packets; python3 stdlib only. | Fixture-maintenance integrator |
+
+secret scan: clean
+
+---
+
+# Generic playback research and implementation requests
+
+Each entry requests its stated output type. A research table, fixture kit or test runner is not a product implementation or product acceptance. Use portable C/C++/Python and reproducible local commands as appropriate to the entry; no GPU venue assumed. Return source/generators where requested, exact dependency versions, commands, sample output, checks and limitations. The survey entry returns its cited table only.
+
+Use public sources and synthetic inputs only. No private repositories, project identifiers, real user data, accounts, captures, commercial media, licensed fonts or credentials. Do not spend, deploy, change accounts, publish repositories or retrieve private inputs. Local loopback traffic is allowed only where the entry requests it. CPU/model checks do not establish native device, GPU, real-decoder or consuming-product correctness.
+
+These are candidate requests, not accepted, started, tested or integrated work. Final integration requires the consuming integrator's actual interface and checks. Where an ABI, layout, policy, threshold, precedence rule or expected behavior is not supplied or established by a cited public specification, return BLOCKED_INPUT naming that input. A proposed model or synthetic convention must be labelled as proposed, never treated as the existing product contract. No private source pin or call site is supplied here. No same-cycle ingest or build is promised by this draft.
+
+W numbering is provisional until a live tip and duplicate check immediately before publication. Prior requests remain unchanged. The entry-specific text below takes precedence over output defaults in this preamble.
+
 ## W-0308 | CRP1 | proposed fixture/vector/model request
 
 Status: request only, not accepted/started/tested; final integration input limits remain.
