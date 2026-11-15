@@ -4,9 +4,41 @@ solver lab: unclaimed
 reviewer lab: unclaimed
 id: W-gdb-013
 
-target branch: ohal/gorav @ 2112af0d (lab does not push; gdb integrator integrates)
-return: patch or full source + fixtures + test runner files
-publication check: pinned excerpts independently matched; product tests NOT_RUN by publisher; candidate open, unclaimed.
+```packet-json
+{
+ "packet_id": "W-gdb-013",
+ "writer": "gdb",
+ "code_owner": "gdb integrator (gorav lane)",
+ "product_repo": "goreda/gorav",
+ "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+ "touched_files": [
+  {
+   "path": "Sources/GorAVFFmpegAdapter/L3SampleConvert.swift",
+   "excerpt_block": "source1"
+  }
+ ],
+ "interface": {
+  "signatures": "L3SampleConverter.convert(frame:maxFrameBytes:) -> (bytes, samples)?; drain(maxFrameBytes:) -> (bytes, samples)?; resetForSeek() -> Bool; currentInputDelay(inputRate:) -> Int64; matrix checker replay -> exit 0",
+  "types": "matrix outcome converted | nil-return conversion failure (typed via conversionFailures counter); fixed output contract packed s16le stereo 44.1 kHz, no native passthrough at this pin; delay accounting, flush/reset, seek-generation reset rows",
+  "ownership_lifetime": "sample buffers borrowed per call; explicit version + lifetime rules; not an ffmpeg subprocess wrapper",
+  "caller": "FFmpegSoftwareAudioDecoder (the converter's caller)",
+  "callee": "L3SampleConverter convert/drain/resetForSeek (pinned excerpt in packet) + golden matrix checker"
+ },
+ "test": {
+  "command": "swift run l3-convert-matrix-tests",
+  "expected": "exit 0; final line matches '^l3-convert-matrix-tests: [1-9][0-9]* PASS, 0 FAIL$'; matrix replays green against the pinned converter; one mutated expected row fails; swift run audio-interrupt-tests stays 23 PASS, 0 FAIL",
+  "fixture_block": "fixtures1"
+ },
+ "target": {
+  "branch": "ohal/gorav",
+  "paths": [
+   "Sources/GorAVFFmpegAdapter/L3SampleConvert.swift",
+   "kits/l3-matrix/"
+  ],
+  "return_form": "patch"
+ }
+}
+```
 
 ## problem (what fails for the user)
 audio format/rate conversion rides L3SampleConvert; layout/sample-format negotiation, delay accounting, flush/reset and seek-generation reset have no golden matrix, so a negotiation bug ships as channel-mapped-wrong or drifted audio.
@@ -17,10 +49,10 @@ audio format/rate conversion rides L3SampleConvert; layout/sample-format negotia
 - real test command: the returned matrix checker runs portable on Linux; existing audio suites (swift run audio-interrupt-tests, 23 PASS) stay green.
 
 ## expected behaviour
-a reusable converter module boundary with a golden negotiation matrix: layouts x sample formats x rates -> expected outcome (native, converted, typed-refusal), delay accounting, flush/reset, seek-generation reset with timestamps; synthetic rate/layout cases accompany the implementation.
+a reusable converter module boundary with a golden matrix: layouts x sample formats x rates -> expected outcome (converted, or nil-return typed failure counted in conversionFailures) under the fixed s16le stereo 44.1 kHz output contract, delay accounting, flush/reset, seek-generation reset with timestamps; synthetic rate/layout cases accompany the implementation.
 
 ## exact call site and interface
-L3SampleConvert's convert/negotiate entry (pinned file) and its caller in FFmpegSoftwareAudioDecoder; the matrix + checker are the deliverable.
+L3SampleConverter's convert/drain/resetForSeek entries (pinned file) and its caller in FFmpegSoftwareAudioDecoder; the matrix + checker are the deliverable.
 
 ## behaviour that must not change
 existing audio checks stay green; explicit dependency version and lifetime rules; not an ffmpeg subprocess wrapper.
@@ -30,7 +62,7 @@ the matrix replays green against the pinned converter; one mutated expected row 
 
 ## pinned excerpts (gorav-src @ 2112af0d60df16c5473173b664903f76ce54173e)
 ### Sources/GorAVFFmpegAdapter/L3SampleConvert.swift (sha256 7910337a, lines 1-116 of 116)
-```swift
+```swift id=source1
 // AUTHORED NEW (2026-10-25, L3 formats/hardware-decode lane).
 // swresample-backed conversion of any L3-admitted decoded audio frame to the
 // audio sink contract: packed s16le stereo 44.1 kHz. M1 admission is AAC
@@ -153,3 +185,7 @@ public final class L3SampleConverter {
 solver lab: unclaimed. reviewer lab: unclaimed (writes failure cases first, blind to the fix). neither approval is product acceptance; the owner's eyes close it.
 
 secret scan: clean
+
+```json id=fixtures1
+[{"layout":"stereo","inFormat":"f32le","inRate":48000,"outRate":44100,"expect":"converted"},{"layout":"5.1","inFormat":"s16le","inRate":48000,"outRate":44100,"expect":"converted (downmix to the stereo contract)"},{"op":"seek-generation-reset","expect":"zero pre-reset samples witnessed"}]
+```

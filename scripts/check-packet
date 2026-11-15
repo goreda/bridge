@@ -31,12 +31,17 @@ def check(text):
  need(value(test.get('command')) and '\n' not in test.get('command',''),'d: one executable test command required')
  need(value(test.get('expected')),'d: expected output/exit required')
  need(content(blocks.get(test.get('fixture_block'))),'d: inline fixture or complete generator block required')
+ for lang,bid,body in re.findall(r'```([\w+-]+)\s+id=([\w.-]+)\n(.*?)\n```',text,re.S):
+  if lang=='json' and bid==test.get('fixture_block'):
+   try:json.loads(body)
+   except (ValueError,TypeError):errors.append('d: fixture JSON must parse')
  target=m.get('target',{});target=target if isinstance(target,dict) else {}
  need(value(target.get('branch')),'e: target branch required')
  need(isinstance(target.get('paths'),list) and len(target['paths'])>0 and all(value(p) and not p.startswith('/') and '..' not in p.split('/') for p in target['paths']),'e: target relative paths required')
  need(target.get('return_form') in ('patch','module','full-files'),'e: return_form must be patch/module/full-files')
  need(m.get('scope')!='research' and not re.search(r'\bresearch[ -]only\b|\(research\)',text,re.I),'research-scope packets retired')
- need(not re.search(r'gh[pousr]_[A-Za-z0-9]{16,}|github_pat_|AKIA[0-9A-Z]{16}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY|agent-01|phonemsg-|todo-01',text),'secret/private identifier pattern found')
+ patterns=[r'gh[pousr]_'+r'[A-Za-z0-9]{16,}', 'github_'+'pat_', 'AK'+'IA'+r'[0-9A-Z]{16}', '-'*5+'BEGIN '+r'(?:RSA |EC |OPENSSH )?'+'PRIVATE '+'KEY', 'agent-'+'01', 'phone'+'msg-', 'todo-'+'01']
+ need(not re.search('|'.join(patterns),text),'secret/private identifier pattern found')
  return errors
 
 def main():
