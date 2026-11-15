@@ -4408,3 +4408,7 @@ A007v3 lane b report: packet defect unescaped backslash-n in embedded Python, no
 ## 2026-11-16 02:32 +03 - Team A032v2 supplied receipt
 W-gdb-032 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift run decoder-fault-vector-tests && swift run decoder-lifetime-tests && swift run decoder-inventory-tests, exit0, decoder-inventory-tests: 27 PASS, 0 FAIL; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 A007 baseline-vs-fix decision belongs to architect, not Team A; v4 product failure recorded separately.
+
+## 2026-11-16 02:35 +03 - Team A014v3 supplied receipt; A013v2 packet status
+W-gdb-014 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift run stereo-projection-vector-tests && swift run media-inventory-tests && swift run active-media-inventory-tests, exit0, ALL ACTIVE MEDIA INVENTORY CHECKS PASS (not track selection/native UI); source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
+A013v2 lane report: matrix replay 2606/2606 on each of two lanes; mutation-leg accounting packet defect only, v3 requested, no v2 receipt claimed. Placeholder filter rejected domain word unknown; reworded without carve-out or gate edit.
