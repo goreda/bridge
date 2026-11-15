@@ -4002,3 +4002,13 @@ W-gdb-041 | narrowed RPU metadata profile-transform only | ohal/gorav @2112af0d 
 W-gdb-043 | W-0278-pin | ohal/gorav @2112af0d | v3 explicit additive module scope only; prospective reopen remains; hardware/sink/clock integration not accepted
 W-gdb-052 | W-0287-pin | ohal/gorav @2112af0d | v3 identity/classification only; attached picture excluded from video disqualifier; artwork byte extraction OUT OF SCOPE
 New-series stock46gorav +2gor=48publisher-gated (041/052 added;043 revision not new stock). Not lab-accepted runnable occupancy. W0276/W-gdb009 withdrawal stands; original6withdrawal history preserved,043alone prospectively reopened. Full product suites publisher NOT_RUN.
+
+## Decoder owner packets semantic gate - 2026-11-15 11:36 Europe/Istanbul
+W-gdb-d53 | decoder lane | goreda/gorav engine @8eaffc75b331a9d65ddce404266738a9d42043ed | gated open, target lane/gdb-196p-decoder; original author bytes; portable/additive module only; not native or wired product acceptance
+W-gdb-d55 | decoder lane | goreda/gorav engine @8eaffc75b331a9d65ddce404266738a9d42043ed | gated open, target lane/gdb-196p-decoder; original author bytes; portable/additive module only; not native or wired product acceptance
+W-gdb-d59 | decoder lane | goreda/gorav engine @8eaffc75b331a9d65ddce404266738a9d42043ed | gated open, target lane/gdb-196p-decoder; original author bytes; portable/additive module only; not native or wired product acceptance
+W-gdb-d54 | HOLD | D9 can PASS if reader ended before interrupt; no proof of stalled read; D8 nextEvent loop lacks independent watchdog
+W-gdb-d61 | HOLD | still-codec plus <=0.5s heuristic can alter genuine short video; no pinned image-demuxer evidence or approved rule
+W-gdb-d62 | HOLD | elapsed assertion only after open returns; stalled regression requires independent watchdog for bounded failure
+W-gdb-d64 | HOLD | H18 rejects contract-permitted nil; H19 permits vacuous success without proving revision fence exercised
+New-series49gorav +2gor=51publisher-gated, not per-lab accepted/runnable occupancy. These3are new decoder packets; prior48remain. Full Swift/product suites publisher NOT_RUN.
