@@ -10,7 +10,7 @@ id: W-gdb-012
   "writer": "gdb",
   "code_owner": "gdb integrator (gorav lane)",
   "product_repo": "goreda/gorav",
-  "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
+  "product_sha": "91a8b69abe9ce61e31188e3d426477a3f8528ede",
   "touched_files": [
     {
       "path": "Sources/GorAVPlaybackCore/TapCropDetector.swift",
@@ -45,17 +45,18 @@ id: W-gdb-012
     "inline_files": [
       {
         "path": "Sources/crop-tests/main.swift",
-        "block": "rf0"
+        "block": "rf0",
+        "content": "import Foundation\nimport GorAVPlaybackCore\nimport GorAVNativeProbeKit\n\n// Witness for the R8 crop stage: geometry resolution, bounds, minimum-size\n// refusal, detector seam (stub + scripted), confidence threshold, session\n// fencing.\n\nvar passed = 0, failed = 0\nfunc check(_ label: String, _ ok: Bool) { if ok { passed += 1 } else { failed += 1; print(\"FAIL \\(label)\") } }\n\nfunc frame(_ session: UInt64, _ w: Int, _ h: Int) -> NativeFrame {\n    NativeFrame(session: session, handle: 1, pts: 0, duration: 33_333,\n                width: w, height: h, pixelFormatName: \"yuv420p\", isKeyFrame: true)\n}\n\n// T1: full frame on 1920x1080\nswitch CropStage.resolve(.full, frameWidth: 1920, frameHeight: 1080) {\ncase .success(let g):\n    check(\"T1-full-geom\", g == CropGeometry(x: 0, y: 0, width: 1920, height: 1080, aspect: Double(1920)/1080))\ncase .failure(let e):\n    check(\"T1-full-geom \\(e)\", false)\n}\n\n// T2: centered half crop\nlet half = NormalizedRect(x: 0.25, y: 0.25, w: 0.5, h: 0.5)!\nswitch CropStage.resolve(half, frameWidth: 1920, frameHeight: 1080) {\ncase .success(let g):\n    check(\"T2-half-geom\", g.x == 480 && g.y == 270 && g.width == 960 && g.height == 540)\n    check(\"T2-half-aspect\", abs(g.aspect - 16.0/9.0) < 0.01)\ncase .failure: check(\"T2-half-geom\", false)\n}\n\n// T3: small valid crops are retained\nlet tiny = NormalizedRect(x: 0, y: 0, w: 0.005, h: 0.01)!\ncheck(\"T3-small-valid\", CropStage.resolve(tiny, frameWidth: 1920, frameHeight: 1080) != .failure(.belowMinimum))\n\n// T4: tiny frame refused\ncheck(\"T4-small-frame\", CropStage.resolve(.full, frameWidth: 0, frameHeight: 8) == .failure(.frameTooSmall))\n\n// T5: detector stub never suggests; autoApply leaves crop at full\nvar c5 = CropController(session: 7, autoThreshold: 0.9)!\ncheck(\"T5-stub-no-suggestion\", c5.autoApply(frame: frame(7, 1920, 1080)) == .noSuggestion)\ncheck(\"T5-still-full\", c5.current == .full)\n\n// T6: scripted detector above threshold applies\nstruct Scripted: CropDetecting {\n    let s: CropSuggestion?\n    func suggest(frame: NativeFrame) -> CropSuggestion? { s }\n}\nlet sg = CropSuggestion(rect: half, confidence: 0.95)!\nvar c6 = CropController(session: 7, detector: Scripted(s: sg), autoThreshold: 0.9)!\nif case .applied(let g) = c6.autoApply(frame: frame(7, 1920, 1080)) {\n    check(\"T6-applied\", g.width == 960 && c6.current == half)\n} else { check(\"T6-applied\", false) }\n\n// T7: below threshold leaves crop untouched\nlet weak = CropSuggestion(rect: half, confidence: 0.5)!\nvar c7 = CropController(session: 7, detector: Scripted(s: weak), autoThreshold: 0.9)!\ncheck(\"T7-below-threshold\", c7.autoApply(frame: frame(7, 1920, 1080)) == .noSuggestion && c7.current == .full)\n\n// T8: small suggestion stays valid\nlet badSug = CropSuggestion(rect: tiny, confidence: 0.99)!\nvar c8 = CropController(session: 7, detector: Scripted(s: badSug), autoThreshold: 0.9)!\ncheck(\"T8-small-applied\", c8.autoApply(frame: frame(7, 1920, 1080)) == .applied(CropGeometry(x: 0, y: 0, width: 10, height: 11, aspect: Double(10)/11)) && c8.current == tiny)\n\n// T9: session fencing on both paths\nvar c9 = CropController(session: 7, autoThreshold: 0.9)!\ncheck(\"T9-geometry-fenced\", c9.geometry(frame: frame(8, 1920, 1080)) == nil)\ncheck(\"T9-auto-fenced\", c9.autoApply(frame: frame(8, 1920, 1080)) == .refusedStaleSession)\n\n// T10: manual set/clear + geometry path\nc9.set(half)\nif let r = c9.geometry(frame: frame(7, 1920, 1080)), case .success(let g) = r {\n    check(\"T10-manual\", g.width == 960)\n} else { check(\"T10-manual\", false) }\nc9.clear()\ncheck(\"T10-clear\", c9.current == .full)\n\n// T11: invalid suggestion confidence cannot be constructed\ncheck(\"T11-confidence-guard\", CropSuggestion(rect: half, confidence: 0) == nil\n      && CropSuggestion(rect: half, confidence: 1.5) == nil\n      && CropSuggestion(rect: half, confidence: .nan) == nil)\n\ncheck(\"T12-invalid-threshold-refused\", CropController(session: 7, autoThreshold: .nan) == nil && CropController(session: 7, autoThreshold: -0.1) == nil)\nif case .success(let g) = CropStage.resolve(.full, frameWidth: Int.max, frameHeight: Int.max) {\n    check(\"T13-huge-frame-no-overflow\", g.width == Int.max && g.height == Int.max)\n} else { check(\"T13-huge-frame-no-overflow\", false) }\nlet fractional = NormalizedRect(x: 0, y: 0, w: 0.101, h: 0.101)!\nif case .success(let g) = CropStage.resolve(fractional, frameWidth: 100, frameHeight: 100) {\n    check(\"T14-ceil-edge\", g.width == 11 && g.height == 11)\n} else { check(\"T14-ceil-edge\", false) }\n// R8 (arch-195l): tap-consuming crop detection (TapCropDetector + pump).\n// Luma builder: stride padded with 0xFF sentinels; padding must never be read.\nfunc luma(_ w: Int, _ h: Int, strideExtra: Int = 0, fill: UInt8 = 120,\n          bars: (top: Int, bottom: Int, left: Int, right: Int) = (0, 0, 0, 0),\n          barValue: UInt8 = 4) -> LumaPlane {\n    let strideB = w + strideExtra\n    var b = [UInt8](repeating: 0xFF, count: strideB * h)\n    for y in 0..<h { for x in 0..<w {\n        let inBar = y < bars.top || y >= h - bars.bottom || x < bars.left || x >= w - bars.right\n        b[y * strideB + x] = inBar ? barValue : fill\n    } }\n    return LumaPlane(bytes: b, width: w, height: h, strideBytes: strideB)!\n}\n\n// T15: letterbox detection, exact rect\nif let s = TapCropDetector.detect(luma(320, 180, bars: (20, 20, 0, 0))) {\n    check(\"T15-letterbox\", abs(s.rect.y - 20.0/180.0) < 1e-9 && s.rect.x == 0\n          && abs(s.rect.h - 140.0/180.0) < 1e-9 && s.rect.w == 1\n          && s.confidence > 0.5 && s.confidence <= 1)\n} else { check(\"T15-letterbox\", false) }\n// T16: pillarbox\nif let s = TapCropDetector.detect(luma(320, 180, bars: (0, 0, 30, 30))) {\n    check(\"T16-pillarbox\", abs(s.rect.x - 30.0/320.0) < 1e-9 && abs(s.rect.w - 260.0/320.0) < 1e-9 && s.rect.y == 0 && s.rect.h == 1)\n} else { check(\"T16-pillarbox\", false) }\n// T17: both bar kinds at once\nif let s = TapCropDetector.detect(luma(320, 180, bars: (10, 10, 16, 16))) {\n    check(\"T17-both\", abs(s.rect.x - 16.0/320.0) < 1e-9 && abs(s.rect.y - 10.0/180.0) < 1e-9)\n} else { check(\"T17-both\", false) }\n// T18: no bars -> nil\ncheck(\"T18-nobars\", TapCropDetector.detect(luma(320, 180)) == nil)\n// T19: fully dark frame is dark content, not a crop\ncheck(\"T19-darkframe\", TapCropDetector.detect(luma(320, 180, fill: 4)) == nil)\n// T20: bars beyond maxBarFraction refused\ncheck(\"T20-overcrop\", TapCropDetector.detect(luma(320, 180, bars: (85, 85, 0, 0))) == nil)\n// T21: 1px edge noise below minBarPx is not a bar\ncheck(\"T21-thinbar\", TapCropDetector.detect(luma(320, 180, bars: (1, 1, 1, 1))) == nil)\n// T22: padded stride gives the same result as packed\nlet packed = TapCropDetector.detect(luma(320, 180, bars: (20, 20, 0, 0)))\nlet padded = TapCropDetector.detect(luma(320, 180, strideExtra: 13, bars: (20, 20, 0, 0)))\ncheck(\"T22-stride\", packed?.rect == padded?.rect && padded != nil)\n// T23: invalid plane init refused\ncheck(\"T23-plane-init\", LumaPlane(bytes: [1, 2], width: 10, height: 10, strideBytes: 10) == nil\n      && LumaPlane(bytes: [UInt8](repeating: 0, count: 100), width: 10, height: 10, strideBytes: 9) == nil)\n// T24: pump - rate limit, agreement window, emit once, rect change resets\nvar pump = CropDetectionPump(minInterval: 1.0, requiredAgreement: 3)!\ncheck(\"T24-rate\", pump.poll(clock: 0.0, plane: luma(320, 180, bars: (20, 20, 0, 0))) == nil\n      && pump.poll(clock: 0.5, plane: luma(320, 180, bars: (20, 20, 0, 0))) == nil\n      && pump.counters.suppressedRate == 1)\n// clock 0.0 already counted as detection #1, so the third agreeing tick is clock 2.0\nlet e1 = pump.poll(clock: 1.0, plane: luma(320, 180, bars: (20, 20, 0, 0)))\nlet e2 = pump.poll(clock: 2.0, plane: luma(320, 180, bars: (20, 20, 0, 0)))\nlet e3 = pump.poll(clock: 3.0, plane: luma(320, 180, bars: (20, 20, 0, 0)))\ncheck(\"T24-agreement\", e1 == nil && e2 != nil && pump.counters.emitted == 1)\ncheck(\"T24-stable-no-reemit\", e3 == nil && pump.counters.emitted == 1)\n// T25: changing bars need a fresh agreement run\nlet c1 = pump.poll(clock: 5.0, plane: luma(320, 180, bars: (40, 40, 0, 0)))\nlet c2 = pump.poll(clock: 6.0, plane: luma(320, 180, bars: (40, 40, 0, 0)))\nlet c3 = pump.poll(clock: 7.0, plane: luma(320, 180, bars: (40, 40, 0, 0)))\ncheck(\"T25-change\", c1 == nil && c2 == nil && c3 != nil\n      && c3 != nil && abs(c3!.rect.y - 40.0/180.0) < 1e-9)\n// T26: bars gone -> clear to .full only after the agreement run\nlet n1 = pump.poll(clock: 8.0, plane: luma(320, 180))\nlet n2 = pump.poll(clock: 9.0, plane: luma(320, 180))\nlet n3 = pump.poll(clock: 10.0, plane: luma(320, 180))\ncheck(\"T26-clear\", n1 == nil && n2 == nil && n3?.rect == .full && pump.counters.emittedClears == 1)\n// T27: nil plane (tap empty this tick) neither emits nor disturbs pending\nvar pump2 = CropDetectionPump(minInterval: 0, requiredAgreement: 2)!\n_ = pump2.poll(clock: 0, plane: luma(320, 180, bars: (20, 20, 0, 0)))\n_ = pump2.poll(clock: 1, plane: nil)\nlet afterNil = pump2.poll(clock: 2, plane: luma(320, 180, bars: (20, 20, 0, 0)))\ncheck(\"T27-nil-plane\", afterNil != nil && pump2.counters.framesSeen == 2)\n// T28: invalid pump config refused\ncheck(\"T28-pump-init\", CropDetectionPump(minInterval: .nan) == nil\n      && CropDetectionPump(minInterval: 0, requiredAgreement: 0) == nil\n      && CropDetectionPump(minInterval: 0, requiredAgreement: 1, tolerance: 0) == nil)\n// T29: noisy bar above barMaxPeak is content, not a bar\nvar noisyBytes = [UInt8](repeating: 120, count: 320 * 180)\nfor y in 0..<20 { for x in 0..<320 { noisyBytes[y * 320 + x] = 4 } }\nfor y in 160..<180 { for x in 0..<320 { noisyBytes[y * 320 + x] = 4 } }\nfor y in 0..<20 { noisyBytes[y * 320] = 200 }                       // one bright pixel per bar row\nfor y in 160..<180 { noisyBytes[y * 320] = 200 }                     // same for the bottom bar\nlet noisyPlane = LumaPlane(bytes: noisyBytes, width: 320, height: 180, strideBytes: 320)!\ncheck(\"T29-noisy-bar\", TapCropDetector.detect(noisyPlane) == nil)\n\nprint(\"crop-tests: \\(passed) PASS, \\(failed) FAIL\")\nexit(failed == 0 ? 0 : 1)\n"
       }
     ]
   },
   "run_proof": {
     "version": 1,
-    "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
+    "product_sha": "91a8b69abe9ce61e31188e3d426477a3f8528ede",
     "command": "swift run crop-tests",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-15T22:30:17.896005+00:00",
+    "ran_at": "2026-11-15T23:01:59.496693+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -68,15 +69,15 @@ id: W-gdb-012
       }
     ],
     "log_block": "actual_run_log",
-    "log_sha256": "81f7b1d8d848ed73db76e0b034bcb3d4b4556940ce58b2ba1bae1600230c0830",
+    "log_sha256": "cd2b5a7bf5f65e832c5b79f7575e4f00f61b2df84eb167886a2a20e7286375b5",
     "last_5_lines": [
       "[69/72] Wrapping AST for crop-tests for debugging",
       "[70/72] Write Objects.LinkFileList",
       "[71/72] Linking crop-tests",
-      "Build complete! (7.41s)",
+      "Build complete! (7.21s)",
       "crop-tests: 35 PASS, 0 FAIL"
     ],
-    "receipt_sha256": "217eb4b4da3e8ef19b05876c289250e63b77817282373ad2910aa138221ded69"
+    "receipt_sha256": "ae260b7c671ecde2427c4691c30ca17d0d1a3d7f734b87f99812a8c492d70f0d"
   }
 }
 ```
@@ -85,7 +86,7 @@ id: W-gdb-012
 auto-crop decisions come from TapCropDetector feeding CropStage; the detector exists but has no synthetic threshold atlas proving its black-bar/noise behavior, so a threshold regression ships as visible crop jitter or wrong crop on letterboxed content.
 
 ## reproducer
-- repo: ohal/gorav @ 2112af0d60df16c5473173b664903f76ce54173e (branch ohal/gorav; PR #3 head).
+- repo: goreda/gorav @ 91a8b69abe9ce61e31188e3d426477a3f8528ede (branch main).
 - real source: Sources/GorAVPlaybackCore/TapCropDetector.swift (sha256 648d03d4, 11343B) - the detector; Sources/GorAVPlaybackCore/CropStage.swift (sha256 f42207d0, 5541B) - the consuming stage; Sources/crop-tests/main.swift (same pin) - the existing 18-check suite.
 - real test command: swift run crop-tests (18 PASS on Linux, Swift 6.1.2).
 
@@ -481,41 +482,41 @@ exit(failed == 0 ? 0 : 1)
 
 ```text id=actual_run_log
 warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/ASSTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/ASSTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-7wtqj2as/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
 warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-h_jlx8fk/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
+    /tmp/packet-proof-7wtqj2as/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
 Building for debugging...
 [0/12] Write sources
 [4/12] Compiling GorAVCAtomics gorav_atomics.c
 [5/12] Write swift-version--9C6B84B6E025C5B.txt
-[7/15] Emitting module GorAVCore
-[8/15] Compiling GorAVCore AdmissionTable.swift
-[9/15] Compiling GorAVCore Boundary.swift
+[7/15] Compiling GorAVCore AdmissionTable.swift
+[8/15] Compiling GorAVCore Boundary.swift
+[9/15] Emitting module GorAVCore
 [10/16] Compiling GorAVCore OpenURLRouter.swift
 [11/17] Wrapping AST for GorAVCore for debugging
 [13/21] Emitting module GorAVNativeProbeKit
@@ -548,99 +549,99 @@ Building for debugging...
 [41/68] Compiling GorAVPlaybackCore UniformPacking.swift
 [42/68] Compiling GorAVPlaybackCore WindowModePlan.swift
 [43/68] Compiling GorAVPlaybackCore AudioTrackPlan.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [44/68] Compiling GorAVPlaybackCore ColorStage.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [45/68] Compiling GorAVPlaybackCore ControlBus.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [46/68] Compiling GorAVPlaybackCore CoreSeekDriver.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [47/68] Compiling GorAVPlaybackCore CropStage.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [48/68] Compiling GorAVPlaybackCore DecodeHeartbeat.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [49/68] Compiling GorAVPlaybackCore DecodedFrameLeaseBridge.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [50/68] Compiling GorAVPlaybackCore DecodedFrameTap.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [51/68] Compiling GorAVPlaybackCore DecoderInventory.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [52/68] Compiling GorAVPlaybackCore FrameLeaseStore.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [53/68] Compiling GorAVPlaybackCore FrameUniformABI.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [54/68] Compiling GorAVPlaybackCore HostTransform.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [55/68] Compiling GorAVPlaybackCore LabColorCurves.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [56/68] Compiling GorAVPlaybackCore LabCropEngine.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [57/68] Compiling GorAVPlaybackCore LabHLSPlaylist.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [58/68] Compiling GorAVPlaybackCore LabMarginOracle.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [59/68] Compiling GorAVPlaybackCore LabMusicMode.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [60/68] Compiling GorAVPlaybackCore LabPGSDecoder.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [61/68] Compiling GorAVPlaybackCore LabPTSDuration.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [62/68] Compiling GorAVPlaybackCore LabStereoResolver.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [63/68] Compiling GorAVPlaybackCore LabSwrConverter.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [64/68] Compiling GorAVPlaybackCore LabVobSubDecoder.swift
-/tmp/packet-proof-h_jlx8fk/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-7wtqj2as/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [65/69] Wrapping AST for GorAVPlaybackCore for debugging
-[67/71] Compiling crop_tests main.swift
-[68/71] Emitting module crop_tests
+[67/71] Emitting module crop_tests
+[68/71] Compiling crop_tests main.swift
 [69/72] Wrapping AST for crop-tests for debugging
 [70/72] Write Objects.LinkFileList
 [71/72] Linking crop-tests
-Build complete! (7.41s)
+Build complete! (7.21s)
 crop-tests: 35 PASS, 0 FAIL
 ```

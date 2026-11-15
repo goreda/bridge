@@ -10,7 +10,7 @@ id: W-gdb-004
   "writer": "gdb",
   "code_owner": "gdb integrator (gorav lane)",
   "product_repo": "goreda/gorav",
-  "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
+  "product_sha": "91a8b69abe9ce61e31188e3d426477a3f8528ede",
   "touched_files": [
     {
       "path": "Sources/uniform-packing-tests/main.swift",
@@ -45,17 +45,18 @@ id: W-gdb-004
     "inline_files": [
       {
         "path": "Sources/uniform-packing-tests/main.swift",
-        "block": "rf0"
+        "block": "rf0",
+        "content": "import Foundation\nimport GorAVPlaybackCore\n\n// Witness for 195c-N6 uniform packing: exact 64-byte stream, field offsets,\n// little-endian encoding, Float bit patterns - the contract the Metal upload\n// and the MSL struct both follow.\n\nvar passed = 0, failed = 0\nfunc check(_ label: String, _ ok: Bool) { if ok { passed += 1 } else { failed += 1; print(\"FAIL \\(label)\") } }\n\nfunc readF(_ b: [UInt8], _ off: Int) -> Float {\n    let v = UInt32(b[off]) | UInt32(b[off+1]) << 8 | UInt32(b[off+2]) << 16 | UInt32(b[off+3]) << 24\n    return Float(bitPattern: v)\n}\nfunc readU(_ b: [UInt8], _ off: Int) -> UInt32 {\n    UInt32(b[off]) | UInt32(b[off+1]) << 8 | UInt32(b[off+2]) << 16 | UInt32(b[off+3]) << 24\n}\n\nvar u = FrameUniforms()\nu.frameWidth = 1920; u.frameHeight = 1080; u.fitModeID = 7\nu.cropX = 0.25; u.cropY = 0.125; u.cropW = 0.5; u.cropH = 0.75\nu.panX = -0.5; u.panY = 0.25; u.log2Zoom = 2; u.flags = 3\nu.toneCurveID = 2; u.srcPeakNits = 4000; u.dstPeakNits = 100; u.saturation = 0.8\nlet b = u.packedBytes()\n\ncheck(\"T1-count\", b.count == 64)\ncheck(\"T2-control\", readF(b, 0) == 1920 && readF(b, 4) == 1080 && readU(b, 8) == 7 && readU(b, 12) == 0)\ncheck(\"T3-crop\", readF(b, 16) == 0.25 && readF(b, 20) == 0.125 && readF(b, 24) == 0.5 && readF(b, 28) == 0.75)\ncheck(\"T4-host\", readF(b, 32) == -0.5 && readF(b, 36) == 0.25 && readF(b, 40) == 2 && readU(b, 44) == 3)\ncheck(\"T5-color\", readU(b, 48) == 2 && readF(b, 52) == 4000 && readF(b, 56) == 100 && abs(readF(b, 60) - 0.8) < 1e-6)\n\n// T6: offsets table matches the packer (guard against drift)\ncheck(\"T6-offsets\", FrameUniforms.Offsets.cropX == 16 && FrameUniforms.Offsets.panX == 32\n      && FrameUniforms.Offsets.flags == 44 && FrameUniforms.Offsets.saturation == 60)\n\n// T7: identity block packs deterministically (two packs equal)\ncheck(\"T7-deterministic\", FrameUniforms().packedBytes() == FrameUniforms().packedBytes()\n      && FrameUniforms().packedBytes().count == 64)\n\n// T8: little-endian sanity on a known value: 1.0f = 0x3F800000 -> bytes 00 00 80 3F\nvar u8 = FrameUniforms(); u8.frameWidth = 1\nlet b8 = u8.packedBytes()\ncheck(\"T8-endian\", b8[0] == 0x00 && b8[1] == 0x00 && b8[2] == 0x80 && b8[3] == 0x3F)\n\n// T9: flags bits survive (software fallback bit0, gamut bit1)\nvar u9 = FrameUniforms(); u9.flags = 1\ncheck(\"T9-flags\", readU(u9.packedBytes(), 44) == 1)\n\nprint(\"uniform-packing-tests: \\(passed) PASS, \\(failed) FAIL\")\nexit(failed == 0 ? 0 : 1)\n"
       }
     ]
   },
   "run_proof": {
     "version": 1,
-    "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
+    "product_sha": "91a8b69abe9ce61e31188e3d426477a3f8528ede",
     "command": "swift run uniform-packing-tests",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-15T22:30:00.980988+00:00",
+    "ran_at": "2026-11-15T23:01:42.959549+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -68,15 +69,15 @@ id: W-gdb-004
       }
     ],
     "log_block": "actual_run_log",
-    "log_sha256": "9b1badfe604e931b31d90c8b041f5c46a6a7343c44cb464f638cff2e8efddb63",
+    "log_sha256": "56cb4a77e3fad32c94ebc1ad9d1eb2c55d7b147d5bead7d2dafd5ee166ec3c98",
     "last_5_lines": [
       "[69/72] Wrapping AST for uniform-packing-tests for debugging",
       "[70/72] Write Objects.LinkFileList",
       "[71/72] Linking uniform-packing-tests",
-      "Build complete! (7.37s)",
+      "Build complete! (7.14s)",
       "uniform-packing-tests: 9 PASS, 0 FAIL"
     ],
-    "receipt_sha256": "72f29eae540261c92769a9ea318283b4b976c232f3fe00de84ed30607eb44741"
+    "receipt_sha256": "7ed013a5e6a96baf679452ebc907ee9757d50856f1627acd9c03b2829ae3fa6c"
   }
 }
 ```
@@ -85,7 +86,7 @@ id: W-gdb-004
 live parameters reach the renderer through a typed per-frame uniform block (195b-52 "validated uniform-consumer boundary"). the block's byte layout has no external golden fixtures: a layout drift (alignment, size, field order) silently corrupts every rendered frame.
 
 ## reproducer
-- repo: ohal/gorav @ 2112af0d60df16c5473173b664903f76ce54173e (branch ohal/gorav).
+- repo: goreda/gorav @ 91a8b69abe9ce61e31188e3d426477a3f8528ede (branch main).
 - real source: Sources/uniform-packing-tests/main.swift (sha256 11bbe1cc, 2415B) - the existing 37-check packing suite entry; the uniform block types it imports (GorAVMetalPresenter, same pin).
 - real test command: swift run uniform-packing-tests (currently 37 PASS on Linux, Swift 6.1.2).
 
@@ -290,38 +291,38 @@ exit(failed == 0 ? 0 : 1)
 
 ```text id=actual_run_log
 warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/ASSTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-pvjrwh59/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
 warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-mq4ie9zf/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
+    /tmp/packet-proof-pvjrwh59/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
 Building for debugging...
+[0/12] Compiling GorAVCAtomics gorav_atomics.c
+[0/12] Write swift-version--9C6B84B6E025C5B.txt
 [0/12] Write sources
-[4/12] Compiling GorAVCAtomics gorav_atomics.c
-[5/12] Write swift-version--9C6B84B6E025C5B.txt
 [7/15] Emitting module GorAVCore
 [8/15] Compiling GorAVCore AdmissionTable.swift
 [9/15] Compiling GorAVCore Boundary.swift
@@ -357,91 +358,91 @@ Building for debugging...
 [41/68] Compiling GorAVPlaybackCore UniformPacking.swift
 [42/68] Compiling GorAVPlaybackCore WindowModePlan.swift
 [43/68] Compiling GorAVPlaybackCore AudioTrackPlan.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [44/68] Compiling GorAVPlaybackCore ColorStage.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [45/68] Compiling GorAVPlaybackCore ControlBus.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [46/68] Compiling GorAVPlaybackCore CoreSeekDriver.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [47/68] Compiling GorAVPlaybackCore CropStage.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [48/68] Compiling GorAVPlaybackCore DecodeHeartbeat.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [49/68] Compiling GorAVPlaybackCore DecodedFrameLeaseBridge.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [50/68] Compiling GorAVPlaybackCore DecodedFrameTap.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [51/68] Compiling GorAVPlaybackCore DecoderInventory.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [52/68] Compiling GorAVPlaybackCore FrameLeaseStore.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [53/68] Compiling GorAVPlaybackCore FrameUniformABI.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [54/68] Compiling GorAVPlaybackCore HostTransform.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [55/68] Compiling GorAVPlaybackCore LabColorCurves.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [56/68] Compiling GorAVPlaybackCore LabCropEngine.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [57/68] Compiling GorAVPlaybackCore LabHLSPlaylist.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [58/68] Compiling GorAVPlaybackCore LabMarginOracle.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [59/68] Compiling GorAVPlaybackCore LabMusicMode.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [60/68] Compiling GorAVPlaybackCore LabPGSDecoder.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [61/68] Compiling GorAVPlaybackCore LabPTSDuration.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [62/68] Compiling GorAVPlaybackCore LabStereoResolver.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [63/68] Compiling GorAVPlaybackCore LabSwrConverter.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [64/68] Compiling GorAVPlaybackCore LabVobSubDecoder.swift
-/tmp/packet-proof-mq4ie9zf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-pvjrwh59/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [65/69] Wrapping AST for GorAVPlaybackCore for debugging
@@ -450,6 +451,6 @@ Building for debugging...
 [69/72] Wrapping AST for uniform-packing-tests for debugging
 [70/72] Write Objects.LinkFileList
 [71/72] Linking uniform-packing-tests
-Build complete! (7.37s)
+Build complete! (7.14s)
 uniform-packing-tests: 9 PASS, 0 FAIL
 ```

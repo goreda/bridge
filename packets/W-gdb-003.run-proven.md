@@ -10,7 +10,7 @@ id: W-gdb-003
   "writer": "gdb",
   "code_owner": "gdb integrator (gorav lane)",
   "product_repo": "goreda/gorav",
-  "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
+  "product_sha": "91a8b69abe9ce61e31188e3d426477a3f8528ede",
   "touched_files": [
     {
       "path": "Sources/GorAVPlaybackCore/WindowModePlan.swift",
@@ -41,17 +41,18 @@ id: W-gdb-003
     "inline_files": [
       {
         "path": "Sources/window-mode-tests/main.swift",
-        "block": "rf0"
+        "block": "rf0",
+        "content": "// G3 (arch-195l, dispatch L6) window-mode policy tests. Pure Swift, runs on\n// Linux. One check() counter style like crop-tests / audio-delay-tests.\nimport Foundation\nimport GorAVPlaybackCore\n\nvar pass = 0, fail = 0\nfunc check(_ cond: Bool, _ name: String) {\n    if cond { pass += 1; print(\"PASS \\(name)\") }\n    else { fail += 1; print(\"FAIL \\(name)\") }\n}\n\nlet frame = WindowFrame(x: 200, y: 200, width: 640, height: 480)\n\n// W1-W3: windowed -> fullscreen saves the restore frame and enters.\nvar s = WindowModeState()\nlet w1 = s.transition(to: .fullscreen, currentWindowedFrame: frame)\ncheck({ if case .success(.enterFullscreen(let f)) = w1 { return f == frame } else { return false } }(),\n      \"W1 windowed->fullscreen returns enterFullscreen with the saved frame\")\ncheck(s.mode == .fullscreen, \"W2 state advances to fullscreen\")\ncheck(s.windowedRestore == frame, \"W3 restore frame recorded\")\n\n// W4-W5: fullscreen -> windowed restores.\nlet w4 = s.transition(to: .windowed, currentWindowedFrame: nil)\ncheck({ if case .success(.exitFullscreen(let r)) = w4 { return r == frame } else { return false } }(),\n      \"W4 fullscreen->windowed returns exitFullscreen with the recorded frame\")\ncheck(s.mode == .windowed, \"W5 state back to windowed\")\n\n// W6: same-mode request is a typed no-op refusal, state untouched.\nvar s6 = WindowModeState()\nlet w6 = s6.transition(to: .windowed, currentWindowedFrame: nil)\ncheck({ if case .failure(.alreadyInMode(.windowed)) = w6 { return true } else { return false } }(),\n      \"W6 windowed->windowed refused as alreadyInMode\")\n\n// W7-W8: fullscreen <-> PiP direct hops are refused, state untouched.\nvar s7 = WindowModeState()\n_ = s7.transition(to: .fullscreen, currentWindowedFrame: frame)\nlet w7 = s7.transition(to: .pictureInPicture, currentWindowedFrame: nil,\n                       contentSize: (1920, 1080))\ncheck({ if case .failure(.requiresWindowedFirst(.fullscreen, .pictureInPicture)) = w7 { return true } else { return false } }(),\n      \"W7 fullscreen->pip refused requiresWindowedFirst\")\ncheck(s7.mode == .fullscreen, \"W8 state stays fullscreen after refusal\")\n\n// W9: PiP -> fullscreen refused the other way.\nvar s9 = WindowModeState()\n_ = s9.transition(to: .pictureInPicture, currentWindowedFrame: frame, contentSize: (1920, 1080))\nlet w9 = s9.transition(to: .fullscreen, currentWindowedFrame: nil)\ncheck({ if case .failure(.requiresWindowedFirst(.pictureInPicture, .fullscreen)) = w9 { return true } else { return false } }(),\n      \"W9 pip->fullscreen refused requiresWindowedFirst\")\n\n// W10-W12: windowed -> PiP fits 16:9 into the 480x270 box exactly.\nvar s10 = WindowModeState()\nlet w10 = s10.transition(to: .pictureInPicture, currentWindowedFrame: frame,\n                         contentSize: (1920, 1080))\ncheck({ if case .success(.enterPiP(let p, let f)) = w10 {\n            return p.width == 480 && p.height == 270 && f == frame }\n        else { return false } }(),\n      \"W10 16:9 content fits the 480x270 PiP box\")\ncheck(s10.mode == .pictureInPicture, \"W11 state advances to pictureInPicture\")\ncheck(s10.windowedRestore == frame, \"W12 restore frame recorded at PiP entry\")\n\n// W13: PiP -> windowed restores.\nlet w13 = s10.transition(to: .windowed, currentWindowedFrame: nil)\ncheck({ if case .success(.exitPiP(let r)) = w13 { return r == frame } else { return false } }(),\n      \"W13 pip->windowed returns exitPiP with the recorded frame\")\n\n// W14: leaving windowed without a current frame is a typed refusal.\nvar s14 = WindowModeState()\nlet w14 = s14.transition(to: .fullscreen, currentWindowedFrame: nil)\ncheck({ if case .failure(.noRestoreFrame) = w14 { return true } else { return false } }(),\n      \"W14 fullscreen without a current frame refused noRestoreFrame\")\n\n// W15: PiP entry without content size is a typed refusal.\nvar s15 = WindowModeState()\nlet w15 = s15.transition(to: .pictureInPicture, currentWindowedFrame: frame, contentSize: nil)\ncheck({ if case .failure(.noRestoreFrame) = w15 { return true } else { return false } }(),\n      \"W15 pip without content size refused\")\n\n// W16: degenerate content size is a typed refusal, never a guessed size.\nvar s16 = WindowModeState()\nlet w16 = s16.transition(to: .pictureInPicture, currentWindowedFrame: frame,\n                         contentSize: (0, 1080))\ncheck({ if case .failure(.degenerateContentSize) = w16 { return true } else { return false } }(),\n      \"W16 zero-width content refused degenerateContentSize\")\n\n// W17: 4:3 content fits by height, width follows aspect.\nif case .success(let p) = PipSize.fit(contentWidth: 1440, contentHeight: 1080) {\n    check(p.height == 270 && abs(p.width - 360) < 0.01, \"W17 4:3 content fits to 360x270\")\n} else { check(false, \"W17 4:3 content fits to 360x270\") }\n\n// W18: content already at the box aspect fills the box exactly.\nif case .success(let p) = PipSize.fit(contentWidth: 160, contentHeight: 90) {\n    check(p.width == 480 && p.height == 270, \"W18 box-aspect content fills the PiP box\")\n} else { check(false, \"W18 box-aspect content fills the PiP box\") }\n\n// W19: very tall content is capped by height, narrow width, aspect kept\n// (no minimum-width bump - it would either overflow the box or be\n// unreachable under max-bounds scaling).\nif case .success(let p) = PipSize.fit(contentWidth: 90, contentHeight: 1600) {\n    let aspect = p.width / p.height\n    check(p.height == 270 && abs(aspect - (90.0 / 1600.0)) < 0.01,\n          \"W19 tall content capped by height, aspect kept\")\n} else { check(false, \"W19 tall content capped by height, aspect kept\") }\n\n// W20: non-finite content refused.\nif case .failure(.degenerateContentSize) = PipSize.fit(contentWidth: .nan, contentHeight: 100) {\n    check(true, \"W20 NaN content refused\")\n} else { check(false, \"W20 NaN content refused\") }\n\n// W21: rounding is stable to 3 decimals (480.0 not 479.9999...).\nif case .success(let p) = PipSize.fit(contentWidth: 1920, contentHeight: 1080) {\n    check(p.width * 1000 == (p.width * 1000).rounded(), \"W21 pip size rounded to 3 decimals\")\n} else { check(false, \"W21 pip size rounded to 3 decimals\") }\n\nprint(\"window-mode-tests: \\(pass) PASS, \\(fail) FAIL\")\nexit(fail == 0 ? 0 : 1)\n"
       }
     ]
   },
   "run_proof": {
     "version": 1,
-    "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
+    "product_sha": "91a8b69abe9ce61e31188e3d426477a3f8528ede",
     "command": "swift run window-mode-tests",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-15T22:29:40.432205+00:00",
+    "ran_at": "2026-11-15T23:01:34.586684+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -64,7 +65,7 @@ id: W-gdb-003
       }
     ],
     "log_block": "actual_run_log",
-    "log_sha256": "ba745ae80f5ac1c8c0083692a058b3031104d947c47bdd7152bfbd9086364b49",
+    "log_sha256": "1c985eef41392d6bfdeacaee78e20038b3ad244de2d5b58c44bcf42829781783",
     "last_5_lines": [
       "PASS W18 box-aspect content fills the PiP box",
       "PASS W19 tall content capped by height, aspect kept",
@@ -72,7 +73,7 @@ id: W-gdb-003
       "PASS W21 pip size rounded to 3 decimals",
       "window-mode-tests: 21 PASS, 0 FAIL"
     ],
-    "receipt_sha256": "6fc28aa3c863574ed7796bd63eaea0876073beade4081a4846f52e4a56739400"
+    "receipt_sha256": "780396f0c84edc2ca5ced9296b84de3b73843e5a79d8636bb3f160c5f7d54489"
   }
 }
 ```
@@ -81,7 +82,7 @@ id: W-gdb-003
 window-mode transitions (windowed/fullscreen variants) are planned by WindowModeState.transition (GorAVPlaybackCore, Linux-testable) and only applied to AppKit by WindowModeController; edge inputs - toggle storms, display disconnect mid-fullscreen, zero-size/minimized source, multi-screen move, stale plan applied after abort - have no fixture coverage, so a bad plan ships as a lost or flickering window.
 
 ## reproducer
-- repo: ohal/gorav @ 2112af0d60df16c5473173b664903f76ce54173e (branch ohal/gorav).
+- repo: goreda/gorav @ 91a8b69abe9ce61e31188e3d426477a3f8528ede (branch main).
 - real source: Sources/GorAVPlaybackCore/WindowModePlan.swift (sha256 cce8e9b8, 163 lines) - WindowModeState.transition, the planner; Sources/window-mode-tests/main.swift (sha256 09640617, 6136B) - the existing suite to extend.
 - real test command: swift run window-mode-tests (macOS target; Linux runs the portable model below).
 
@@ -303,34 +304,34 @@ exit(fail == 0 ? 0 : 1)
 
 ```text id=actual_run_log
 warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-da1msuxb/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/SRTTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/SRTTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/SRTTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-da1msuxb/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-zto6v8mp/tree/Sources/subtitle-tests/SRTTests.swift
 warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-da1msuxb/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
+    /tmp/packet-proof-zto6v8mp/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
 Building for debugging...
 [0/12] Write sources
 [4/12] Compiling GorAVCAtomics gorav_atomics.c
@@ -370,91 +371,91 @@ Building for debugging...
 [41/68] Compiling GorAVPlaybackCore UniformPacking.swift
 [42/68] Compiling GorAVPlaybackCore WindowModePlan.swift
 [43/68] Compiling GorAVPlaybackCore AudioTrackPlan.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [44/68] Compiling GorAVPlaybackCore ColorStage.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [45/68] Compiling GorAVPlaybackCore ControlBus.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [46/68] Compiling GorAVPlaybackCore CoreSeekDriver.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [47/68] Compiling GorAVPlaybackCore CropStage.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [48/68] Compiling GorAVPlaybackCore DecodeHeartbeat.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [49/68] Compiling GorAVPlaybackCore DecodedFrameLeaseBridge.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [50/68] Compiling GorAVPlaybackCore DecodedFrameTap.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [51/68] Compiling GorAVPlaybackCore DecoderInventory.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [52/68] Compiling GorAVPlaybackCore FrameLeaseStore.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [53/68] Compiling GorAVPlaybackCore FrameUniformABI.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [54/68] Compiling GorAVPlaybackCore HostTransform.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [55/68] Compiling GorAVPlaybackCore LabColorCurves.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [56/68] Compiling GorAVPlaybackCore LabCropEngine.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [57/68] Compiling GorAVPlaybackCore LabHLSPlaylist.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [58/68] Compiling GorAVPlaybackCore LabMarginOracle.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [59/68] Compiling GorAVPlaybackCore LabMusicMode.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [60/68] Compiling GorAVPlaybackCore LabPGSDecoder.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [61/68] Compiling GorAVPlaybackCore LabPTSDuration.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [62/68] Compiling GorAVPlaybackCore LabStereoResolver.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [63/68] Compiling GorAVPlaybackCore LabSwrConverter.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [64/68] Compiling GorAVPlaybackCore LabVobSubDecoder.swift
-/tmp/packet-proof-da1msuxb/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-zto6v8mp/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [65/69] Wrapping AST for GorAVPlaybackCore for debugging
@@ -463,7 +464,7 @@ Building for debugging...
 [69/72] Wrapping AST for window-mode-tests for debugging
 [70/72] Write Objects.LinkFileList
 [71/72] Linking window-mode-tests
-Build complete! (7.19s)
+Build complete! (7.15s)
 PASS W1 windowed->fullscreen returns enterFullscreen with the saved frame
 PASS W2 state advances to fullscreen
 PASS W3 restore frame recorded

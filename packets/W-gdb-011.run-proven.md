@@ -10,7 +10,7 @@ id: W-gdb-011
   "writer": "gdb",
   "code_owner": "gdb integrator (gorav lane)",
   "product_repo": "goreda/gorav",
-  "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
+  "product_sha": "91a8b69abe9ce61e31188e3d426477a3f8528ede",
   "touched_files": [
     {
       "path": "Sources/GorAVMetalPresenter/core/StagePass.swift",
@@ -45,17 +45,18 @@ id: W-gdb-011
     "inline_files": [
       {
         "path": "Sources/color-stage-tests/main.swift",
-        "block": "rf0"
+        "block": "rf0",
+        "content": "import Foundation\nimport GorAVPlaybackCore\n\n// Witness for the R9 color stage policy: curve selection, peak defaults,\n// overrides, software fallback, receipts, input guards.\n\nvar passed = 0, failed = 0\nfunc check(_ label: String, _ ok: Bool) { if ok { passed += 1 } else { failed += 1; print(\"FAIL \\(label)\") } }\n\n// T1: sdr to sdr = no tone map, no fallback\nlet p1 = ColorStage.plan(source: SourceSignal(trc: .bt709), target: .sdr100, hardwareToneMapper: false)\ncheck(\"T1\", p1.curve == .none && !p1.softwareFallback && p1.receipts.contains(\"sdr-to-sdr:no-tone-map\"))\n\n// T2: hdr10 to sdr, no hw = mobius + software fallback, default peak 1000\nlet p2 = ColorStage.plan(source: SourceSignal(trc: .bt2020PQ), target: .sdr100, hardwareToneMapper: false)\ncheck(\"T2\", p2.curve == .mobius && p2.softwareFallback && p2.sourcePeakNits == 1000\n      && p2.receipts.contains(\"hdr-to-sdr:mobius-default\")\n      && p2.receipts.contains(\"no-hw-tone-mapper:software-fallback\"))\n\n// T3: same with hw tone mapper = no fallback\nlet p3 = ColorStage.plan(source: SourceSignal(trc: .bt2020PQ), target: .sdr100, hardwareToneMapper: true)\ncheck(\"T3\", p3.curve == .mobius && !p3.softwareFallback)\n\n// T4: signalled mastering peak wins over default; invalid signalled peak ignored\nlet p4 = ColorStage.plan(source: SourceSignal(trc: .bt2020PQ, sourcePeakNits: 4000), target: .sdr100, hardwareToneMapper: true)\ncheck(\"T4\", p4.sourcePeakNits == 4000 && !p4.receipts.contains { $0.hasPrefix(\"src-peak-default\") })\ncheck(\"T4b\", SourceSignal(trc: .bt2020PQ, sourcePeakNits: -5).sourcePeakNits == nil\n      && SourceSignal(trc: .bt2020PQ, sourcePeakNits: .nan).sourcePeakNits == nil)\n\n// T5: hlg to sdr\nlet p5 = ColorStage.plan(source: SourceSignal(trc: .hlg), target: .sdr100, hardwareToneMapper: false)\ncheck(\"T5\", p5.curve == .mobius && p5.sourcePeakNits == 1000)\n\n// T6: dv without hw forces software even when curve is none (sdr-to-hdr path cannot occur for dv, use hdr target)\nlet dvTarget = DisplayTarget(targetTRC: .bt2020PQ, peakNits: 1000)!\nlet p6 = ColorStage.plan(source: SourceSignal(trc: .dolbyVision), target: dvTarget, hardwareToneMapper: false)\ncheck(\"T6\", p6.softwareFallback && p6.receipts.contains(\"dv-without-hw:software-fallback\"))\n\n// T7: sdr to hdr = passthrough, no inverse tone map\nlet p7 = ColorStage.plan(source: SourceSignal(trc: .bt709), target: dvTarget, hardwareToneMapper: false)\ncheck(\"T7\", p7.curve == .none && p7.receipts.contains(\"sdr-to-hdr:passthrough-no-inverse-tone-map\"))\n\n// T8: hdr to hdr, peak fits = none; exceeds = mobius\nlet p8a = ColorStage.plan(source: SourceSignal(trc: .bt2020PQ, sourcePeakNits: 600), target: dvTarget, hardwareToneMapper: true)\nlet p8b = ColorStage.plan(source: SourceSignal(trc: .bt2020PQ, sourcePeakNits: 4000), target: dvTarget, hardwareToneMapper: true)\ncheck(\"T8\", p8a.curve == .none && p8a.receipts.contains(\"hdr-to-hdr:peak-fits\")\n      && p8b.curve == .mobius && p8b.receipts.contains(\"hdr-to-hdr:mobius-down-map\"))\n\n// T9: curve override wins, receipt names it\nlet p9 = ColorStage.plan(source: SourceSignal(trc: .bt2020PQ),\n                         target: DisplayTarget(targetTRC: .bt709, peakNits: 100, curveOverride: .hable)!,\n                         hardwareToneMapper: true)\ncheck(\"T9\", p9.curve == .hable && p9.receipts.contains(\"curve-override:hable\"))\n\n// T10: target guards - bad peak/saturation refused\ncheck(\"T10\", DisplayTarget(targetTRC: .bt709, peakNits: 0) == nil\n      && DisplayTarget(targetTRC: .bt709, peakNits: 100, saturation: 2.5) == nil\n      && DisplayTarget(targetTRC: .bt709, peakNits: 100, saturation: -1) == nil\n      && DisplayTarget(targetTRC: .bt709, peakNits: 100, saturation: 2.0) != nil)\n\n// T11: saturation and gamut carried into the plan\nlet p11 = ColorStage.plan(source: SourceSignal(trc: .bt2020PQ),\n                          target: DisplayTarget(targetTRC: .bt709, peakNits: 100, saturation: 0.8, gamut: .relativeColorimetric)!,\n                          hardwareToneMapper: true)\ncheck(\"T11\", p11.saturation == 0.8 && p11.gamut == .relativeColorimetric)\n\nprint(\"color-stage-tests: \\(passed) PASS, \\(failed) FAIL\")\nexit(failed == 0 ? 0 : 1)\n"
       }
     ]
   },
   "run_proof": {
     "version": 1,
-    "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
+    "product_sha": "91a8b69abe9ce61e31188e3d426477a3f8528ede",
     "command": "swift run color-stage-tests",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-15T22:30:09.376638+00:00",
+    "ran_at": "2026-11-15T23:01:51.048058+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -68,15 +69,15 @@ id: W-gdb-011
       }
     ],
     "log_block": "actual_run_log",
-    "log_sha256": "40ae925bbcbb50b40dabceede0e14cecde7275333e43dc3a899d96787cb7d32e",
+    "log_sha256": "8c7021ef98842d7e13a8a9b8f4da5d64544fcf1a9f4b12cf00f1f1d37e0746f9",
     "last_5_lines": [
       "[69/72] Wrapping AST for color-stage-tests for debugging",
       "[70/72] Write Objects.LinkFileList",
       "[71/72] Linking color-stage-tests",
-      "Build complete! (7.28s)",
+      "Build complete! (6.89s)",
       "color-stage-tests: 12 PASS, 0 FAIL"
     ],
-    "receipt_sha256": "d57836cf2baefe4ad4e799e64254491ed882a39fb9abf3d29ff80a4bf7acbf98"
+    "receipt_sha256": "921ef01badd00efd58839543edb56811b7f483f19fc6526adc2a94717f78391a"
   }
 }
 ```
@@ -85,7 +86,7 @@ id: W-gdb-011
 HDR tone mapping is on the render graph's color stage, but the mobius->BT.1886/perceptual-gamut pass exists only as an open request with no generator-compatible implementation bound to the stage; wrong tone mapping shows as blown highlights or washed HDR for the user.
 
 ## reproducer
-- repo: ohal/gorav @ 2112af0d60df16c5473173b664903f76ce54173e (branch ohal/gorav; PR #3 head).
+- repo: goreda/gorav @ 91a8b69abe9ce61e31188e3d426477a3f8528ede (branch main).
 - real source: Sources/GorAVMetalPresenter/core/StagePass.swift (sha256 9d3a46b3, 6249B) - the stage-pass seam; Sources/color-stage-tests/main.swift (sha256 76de7b53, 4131B) - the existing 12-check color-stage suite; Sources/render-graph-tests/main.swift (same pin) - graph routing.
 - real test command: swift run color-stage-tests (12 PASS on Linux, Swift 6.1.2).
 
@@ -415,41 +416,41 @@ exit(failed == 0 ? 0 : 1)
 
 ```text id=actual_run_log
 warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/ASSTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/ASSTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/ASSTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/ASSTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
 warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-ajkbwdhf/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
+    /tmp/packet-proof-l3pg8wo2/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
 Building for debugging...
 [0/12] Write sources
 [4/12] Compiling GorAVCAtomics gorav_atomics.c
 [5/12] Write swift-version--9C6B84B6E025C5B.txt
-[7/15] Compiling GorAVCore AdmissionTable.swift
-[8/15] Compiling GorAVCore Boundary.swift
-[9/15] Emitting module GorAVCore
+[7/15] Emitting module GorAVCore
+[8/16] Compiling GorAVCore AdmissionTable.swift
+[9/16] Compiling GorAVCore Boundary.swift
 [10/16] Compiling GorAVCore OpenURLRouter.swift
 [11/17] Wrapping AST for GorAVCore for debugging
 [13/21] Emitting module GorAVNativeProbeKit
@@ -482,91 +483,91 @@ Building for debugging...
 [41/68] Compiling GorAVPlaybackCore UniformPacking.swift
 [42/68] Compiling GorAVPlaybackCore WindowModePlan.swift
 [43/68] Compiling GorAVPlaybackCore AudioTrackPlan.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [44/68] Compiling GorAVPlaybackCore ColorStage.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [45/68] Compiling GorAVPlaybackCore ControlBus.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [46/68] Compiling GorAVPlaybackCore CoreSeekDriver.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [47/68] Compiling GorAVPlaybackCore CropStage.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [48/68] Compiling GorAVPlaybackCore DecodeHeartbeat.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [49/68] Compiling GorAVPlaybackCore DecodedFrameLeaseBridge.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [50/68] Compiling GorAVPlaybackCore DecodedFrameTap.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [51/68] Compiling GorAVPlaybackCore DecoderInventory.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [52/68] Compiling GorAVPlaybackCore FrameLeaseStore.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [53/68] Compiling GorAVPlaybackCore FrameUniformABI.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [54/68] Compiling GorAVPlaybackCore HostTransform.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [55/68] Compiling GorAVPlaybackCore LabColorCurves.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [56/68] Compiling GorAVPlaybackCore LabCropEngine.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [57/68] Compiling GorAVPlaybackCore LabHLSPlaylist.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [58/68] Compiling GorAVPlaybackCore LabMarginOracle.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [59/68] Compiling GorAVPlaybackCore LabMusicMode.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [60/68] Compiling GorAVPlaybackCore LabPGSDecoder.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [61/68] Compiling GorAVPlaybackCore LabPTSDuration.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [62/68] Compiling GorAVPlaybackCore LabStereoResolver.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [63/68] Compiling GorAVPlaybackCore LabSwrConverter.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [64/68] Compiling GorAVPlaybackCore LabVobSubDecoder.swift
-/tmp/packet-proof-ajkbwdhf/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-l3pg8wo2/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [65/69] Wrapping AST for GorAVPlaybackCore for debugging
@@ -575,6 +576,6 @@ Building for debugging...
 [69/72] Wrapping AST for color-stage-tests for debugging
 [70/72] Write Objects.LinkFileList
 [71/72] Linking color-stage-tests
-Build complete! (7.28s)
+Build complete! (6.89s)
 color-stage-tests: 12 PASS, 0 FAIL
 ```
