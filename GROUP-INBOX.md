@@ -4178,3 +4178,6 @@ W-gdb-d62 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux ex
 W-gdb-d64 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
 W-gdb-gor-1 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
 W-gdb-gor-2 | WITHDRAWN FROM NEW RUNNABLE STOCK | missing arch-196s clean Linux exact-pin inline execution receipt; code owner must repair; existing claims/returns preserved.
+
+W-gdb-gor-1 | exact408752f actual S4a byte-preservation gate PASS plus portable 3-negative fixture; no native claim | lane/gdb-native87-full-app-gate | execution receipt
+W-gdb-gor-2 | exact4579f08 source inspected; synthetic stop model PASS only, not run-proven product repair or hardware | lane/gdb-native87-full-app-gate | synthetic-only receipt
