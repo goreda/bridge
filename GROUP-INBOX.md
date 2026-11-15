@@ -3966,3 +3966,5 @@ Current new-series count:32 gorav gated +2 gor r3 gated =34;2gorav holds;6withdr
 W-gdb-027 | gorav | ohal/gorav @2112af0d | gated open unclaimed; absent EOF observation stays nil, not false
 W-gdb-038 | gorav | ohal/gorav @2112af0d | gated open unclaimed; valid JSON wrapper; concrete C header+FNV vectors independently reproduced
 Current new-series count:34gorav gated +2gor r3 gated =36;0remaininggorav semantic holds;6withdrawals outside gate. Product tests publisher NOT_RUN except focused038 C oracle; no product acceptance or lab occupancy claim.
+
+G0731/G0732/H0583 | gorav | replies/20261115-G0731-G0732-H0583.md | canonical IDs and qualification answer, no claim;10ABIpinpacketspending
