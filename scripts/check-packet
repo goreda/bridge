@@ -44,7 +44,20 @@ def check(text):
  need(not re.search('|'.join(patterns),text),'secret/private identifier pattern found')
  return errors
 
+def allocation_check(path):
+ try:
+  snapshot=json.loads(pathlib.Path(path).read_text())
+  assert snapshot.get('read_at') and isinstance(snapshot.get('claims'),list) and isinstance(snapshot.get('allocations'),list)
+  claimed={c['packet'] for c in snapshot['claims']}
+  conflicts=claimed.intersection(snapshot['allocations'])
+  for packet in sorted(conflicts):print('FAIL claimed packet cannot receive allocation tag: '+packet)
+  if not conflicts:print('PASS allocation: no claimed packets tagged; earlier claims remain authoritative')
+  return int(bool(conflicts))
+ except (OSError,ValueError,KeyError,AssertionError,TypeError) as e:
+  print('FAIL allocation snapshot: read_at, claims, allocations required; '+str(e));return 1
+
 def main():
+ if len(sys.argv)==3 and sys.argv[1]=='--allocation-check':return allocation_check(sys.argv[2])
  if len(sys.argv)<2:print('usage: scripts/check-packet PACKET.md [...]',file=sys.stderr);return 1
  failed=False
  for name in sys.argv[1:]:
