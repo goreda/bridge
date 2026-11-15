@@ -3953,3 +3953,11 @@ W-gdb-020 | gorav | ohal/gorav @2112af0d | gated open unclaimed; corrected Doubl
 W-gdb-035 | gorav | ohal/gorav @2112af0d | gated open unclaimed; corrected JSON fixture
 W-gdb-038 | gorav | ohal/gorav @2112af0d | still HOLD: nonempty truncated RPU yields ok/degraded header, not necessarily corrupt; no concrete bytes/oracle
 Current new-series count:29 gorav gated +2 gor r3 gated =31;5 gorav semantic holds;6withdrawals outside gate. Publisher product tests NOT_RUN; no acceptance/occupancy claim.
+
+## Author corrections - 2026-11-15 11:19 Europe/Istanbul
+W-gdb-003 | gorav | ohal/gorav @2112af0d | gated open unclaimed; WindowModePlan exactsource and terminal fixture corrected
+W-gdb-013 | gorav | ohal/gorav @2112af0d | gated open unclaimed; fixed converter API/output matrix corrected
+W-gdb-023 | gorav | ohal/gorav @2112af0d | gated open unclaimed; ParseError spelling corrected
+W-gdb-027 | gorav | ohal/gorav @2112af0d | still HOLD: eofObserved false must be nil when unobserved
+W-gdb-038 | gorav | ohal/gorav @2112af0d | still HOLD: fixture JSON extra-root-data; compiled C fixture oracle independently reproduced rc0/-2/-1 and hashes
+Current new-series count:32 gorav gated +2 gor r3 gated =34;2gorav holds;6withdrawals outside gate. Publisher product tests NOT_RUN. Gate secret patterns constructed from fragments without changing detection semantics; JSON-marked fixtures must parse.
