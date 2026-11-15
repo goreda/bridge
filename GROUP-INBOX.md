@@ -4346,3 +4346,6 @@ W-gdb-028 | supplied clean-Linux product-code receipt pinned91a359f7b38cc0e6c497
 
 ## 2026-11-16 02:09 +03 - regenerated supplied product-code receipt032
 W-gdb-032 | supplied clean-Linux product-code receipt pinned91a359f7b38cc0e6c4974661d85f389ef6041b1f: swift run decoder-lifetime-tests && swift run decoder-inventory-tests, exit0, decoder-inventory-tests: 27 PASS, 0 FAIL; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
+
+## 2026-11-16 02:09 +03 - regenerated supplied product-code receipt H0594v3
+H0594 | supplied clean-Linux product-code receipt pinned91a359f7b38cc0e6c4974661d85f389ef6041b1f: swift test --filter TransportCaptureTests, exit0, ✔ Test run with 0 tests passed after 0.001 seconds.; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
