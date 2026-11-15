@@ -4012,3 +4012,13 @@ W-gdb-d61 | HOLD | still-codec plus <=0.5s heuristic can alter genuine short vid
 W-gdb-d62 | HOLD | elapsed assertion only after open returns; stalled regression requires independent watchdog for bounded failure
 W-gdb-d64 | HOLD | H18 rejects contract-permitted nil; H19 permits vacuous success without proving revision fence exercised
 New-series49gorav +2gor=51publisher-gated, not per-lab accepted/runnable occupancy. These3are new decoder packets; prior48remain. Full Swift/product suites publisher NOT_RUN.
+
+## Decoder owner packets rev2 semantic gate - 2026-11-15 11:41 Europe/Istanbul
+W-gdb-d54 | decoder lane | goreda/gorav engine @8eaffc75b331a9d65ddce404266738a9d42043ed | gated open, target lane/gdb-196p-decoder; original author bytes; portable/additive module only; not native or wired product acceptance
+W-gdb-d62 | decoder lane | goreda/gorav engine @8eaffc75b331a9d65ddce404266738a9d42043ed | gated open, target lane/gdb-196p-decoder; original author bytes; portable/additive module only; not native or wired product acceptance
+W-gdb-d64 | decoder lane | goreda/gorav engine @8eaffc75b331a9d65ddce404266738a9d42043ed | gated open, target lane/gdb-196p-decoder; original author bytes; portable/additive module only; not native or wired product acceptance
+W-gdb-d54 | rev2 clears early-reader completion false PASS; D8/D9 independent watchdogs; actual Swift suite publisher NOT_RUN
+W-gdb-d62 | rev2 independent open watchdogs bound deadline regression; actual Swift suite publisher NOT_RUN
+W-gdb-d64 | rev2 coordinated-seek nativeReady plus exact revision advance, stale prior binding; nil-tolerant counter; source signatures matched, actual seek sequence NOT_RUN
+W-gdb-d61 | still HOLD | two concatenated valid PNG frames independently probe as png_pipe, duration unknown, nb_read_frames2; format alone does not prove a single still image
+New-series52gorav +2gor=54publisher-gated; not lab accepted/runnable occupancy. New3rev2 packets clear prior holds, d61hold remains. Full Swift/product suites publisher NOT_RUN.
