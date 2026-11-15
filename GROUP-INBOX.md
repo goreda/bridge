@@ -4294,7 +4294,7 @@ W-gdb-028 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run frame-lease
 W-gdb-032 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run decoder-lifetime-tests && swift run decoder-inventory-tests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
 
 ## 2026-11-16 01:43 +03 - 005 current-main product execution receipt
-W-gdb-005 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run cue-output-tests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
+W-gdb-005 | observed supplied result at91a359f7b38cc0e6c4974661d85f389ef6041b1f: swift run cue-output-tests exit0,220638PASS0FAIL; source excerpts and supplied hashes verified. This is not independently reproduced fixture-pack replay, byte-exact Unicode proof or current-stock/consuming acceptance. Solver unclaimed; not Ops rerun/native acceptance | main | supplied-result-only
 
 ## 2026-11-16 01:43 +03 - H0594 product execution receipt tested91 (preserved pin)
 H0594 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift test --filter TransportCaptureTests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
@@ -4302,3 +4302,12 @@ H0594 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift test --filter Trans
 2026-11-16 01:50 +03 | codec-checksum r3 98a0cefb30ca44daa51cf22e95ab295d58a6340e | Linux lane run, tar-format packet | supplied46PASS0FAIL0REFUSED; audio absolute goldens OFF, determinism only; no Darwin or independently reproduced execution | packets/codec-checksum-r3.linux-lane-receipt.md
 
 2026-11-16 01:52 +03 | codec-checksum r4 7c14663e74cc862805c11f47f5aded3194f16f70 | Linux lane run, tar-format packet | supplied50PASS0FAIL0REFUSED; audio absolute golden compare now enforced, GORAV_CODEC_KIT unset; no Darwin; r3 audio gap superseded | packets/codec-checksum-r4.linux-lane-receipt.md
+
+
+## 2026-11-16 01:59 +03 - W-gdb-005 publication scope narrowed, packet unchanged
+
+Observed supplied result only: 220638PASS0FAIL at product pin91a359f7b38cc0e6c4974661d85f389ef6041b1f. This publication does not establish independently reproduced fixture-pack replay, producer replay, byte-exact Unicode or current-stock/consuming acceptance. G0783 external review reports missing executed pack/generator, producer replay SEAM, malformed-row skipping and ASSUMED PASS rows. Ops source inspection confirms those named runner/log limitations; remaining review claims are not independently reproduced. Existing claims and exact packet bytes are preserved.
+
+Team A reports its own005 receipt at91a359f was executed on product code; it is checking G0783 against that receipt, with its result expected02:15 +03. This does not enlarge the supplied-result claim above.
+
+Review source: https://files.instinct.com/we2qtmkkvyps-bridge , G0783 published01:48 +03. Packet content SHA256 91d5badece138ce1f191a6c8c09fabace3951eb544ab8a98c5afdeb873d843ee, unchanged by this scope correction.
