@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Five-field publication gate. Syntax evidence only, never product acceptance."""
-import json,re,sys,pathlib
+"""Publication gate plus explicit clean-Linux execution. Receipts are evidence, not signed attestations or product acceptance."""
+import json,re,sys,pathlib,hashlib,subprocess,tempfile,platform,datetime,os
 
 def check(text):
  errors=[]
@@ -39,10 +39,74 @@ def check(text):
  need(value(target.get('branch')),'e: target branch required')
  need(isinstance(target.get('paths'),list) and len(target['paths'])>0 and all(value(p) and not p.startswith('/') and '..' not in p.split('/') for p in target['paths']),'e: target relative paths required')
  need(target.get('return_form') in ('patch','module','full-files'),'e: return_form must be patch/module/full-files')
+ errors.extend(proof_check(m,blocks))
  need(m.get('scope')!='research' and not re.search(r'\bresearch[ -]only\b|\(research\)',text,re.I),'research-scope packets retired')
  patterns=[r'gh[pousr]_'+r'[A-Za-z0-9]{16,}', 'github_'+'pat_', 'AK'+'IA'+r'[0-9A-Z]{16}', '-'*5+'BEGIN '+r'(?:RSA |EC |OPENSSH )?'+'PRIVATE '+'KEY', 'agent-'+'01', 'phone'+'msg-', 'todo-'+'01']
  need(not re.search('|'.join(patterns),text),'secret/private identifier pattern found')
  return errors
+
+def digest(s):return hashlib.sha256(s.encode()).hexdigest()
+def proof_check(m,blocks):
+ p=m.get('run_proof');e=[]
+ if not isinstance(p,dict):return ['f: actual Linux run_proof required (no proof = not published)']
+ def need(ok,msg):
+  if not ok:e.append('f: '+msg)
+ need(p.get('version')==1,'run_proof.version must be 1')
+ need(p.get('product_sha')==m.get('product_sha'),'proof product SHA must match packet pin')
+ need(p.get('command')==m.get('test',{}).get('command'),'proof command must match test command')
+ need(p.get('system')=='Linux' and p.get('clean_checkout') is True,'clean Linux checkout required')
+ need(bool(p.get('ran_at')),'actual run time required')
+ need(p.get('kind') in ('reproducer','module'),'proof kind must be reproducer or module')
+ rc=p.get('exit_code');need(type(rc) is int and rc==p.get('expected_exit'),'actual exit must match expected exit')
+ if p.get('kind')=='module':need(rc==0,'module must compile with exit 0')
+ if p.get('kind')=='reproducer':need(type(rc) is int and rc!=0,'reproducer baseline must fail as expected')
+ log=blocks.get(p.get('log_block'));need(isinstance(log,str) and bool(log.strip()),'full run log block required')
+ if isinstance(log,str):
+  need(p.get('log_sha256')==digest(log),'log hash mismatch')
+  need(p.get('last_5_lines')==log.splitlines()[-5:],'last 5 log lines must match actual log')
+  marker=p.get('expected_log_contains');need(isinstance(marker,str) and bool(marker) and marker in log,'expected log marker must be present')
+ files=p.get('inline_files');need(isinstance(files,list) and bool(files),'inline materialized source/fixture map required')
+ if isinstance(files,list):
+  for f in files:
+   if not isinstance(f,dict):e.append('f: invalid inline file');continue
+   path=f.get('path','');body=blocks.get(f.get('block'))
+   need(isinstance(path,str) and bool(path) and not pathlib.PurePosixPath(path).is_absolute() and '..' not in path.split('/'),'safe relative inline path required')
+   need(isinstance(body,str) and f.get('sha256')==digest(body),'inline source bytes hash mismatch: '+str(path))
+ need(p.get('receipt_sha256')==digest(json.dumps({k:v for k,v in p.items() if k!='receipt_sha256'},sort_keys=True,separators=(',',':'))),'receipt hash mismatch')
+ return e
+
+def run_proof(packet,checkout,kind,expected_exit,marker):
+ # Explicit execution only. Caller must review the packet command and inline sources first.
+ text=pathlib.Path(packet).read_text();m=json.loads(re.findall(r'```packet-json\n(.*?)\n```',text,re.S)[0])
+ blocks={bid:body for _,bid,body in re.findall(r'```([\w+-]+)\s+id=([\w.-]+)\n(.*?)\n```',text,re.S)}
+ if platform.system()!='Linux':raise ValueError('Linux required')
+ def git(*a):return subprocess.check_output(['git','-C',checkout,*a],text=True).strip()
+ if git('rev-parse','HEAD')!=m['product_sha']:raise ValueError('checkout HEAD differs from product_sha')
+ if git('status','--porcelain','--untracked-files=all'):raise ValueError('checkout must be clean')
+ recipe=m.get('run_recipe',{});files=recipe.get('inline_files',[])
+ if not files:raise ValueError('run_recipe.inline_files required: [{path,block}]')
+ with tempfile.TemporaryDirectory(prefix='packet-proof-') as tmp:
+  subprocess.run(['git','-C',checkout,'archive','HEAD'],stdout=open(tmp+'/tree.tar','wb'),check=True)
+  import tarfile
+  root=pathlib.Path(tmp)/'tree';root.mkdir()
+  with tarfile.open(tmp+'/tree.tar') as tar:tar.extractall(root,filter='data')
+  items=[]
+  for f in files:
+   rel=pathlib.PurePosixPath(f['path'])
+   if rel.is_absolute() or '..' in rel.parts:raise ValueError('unsafe inline path')
+   dest=root/str(rel)
+   if any(x.is_symlink() for x in [dest,*dest.parents]):raise ValueError('symlink inline destination')
+   body=blocks[f['block']];dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(body)
+   items.append(dict(path=str(rel),block=f['block'],sha256=digest(body)))
+  r=subprocess.run(m['test']['command'],shell=True,executable='/bin/bash',cwd=root,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=300)
+  log=r.stdout.rstrip('\n')
+  if '```' in log:raise ValueError('log contains fence delimiter; use a command that safely encodes its output')
+  bid='actual_run_log';p=dict(version=1,product_sha=m['product_sha'],command=m['test']['command'],system='Linux',clean_checkout=True,ran_at=datetime.datetime.now(datetime.timezone.utc).isoformat(),kind=kind,expected_exit=int(expected_exit),exit_code=r.returncode,expected_log_contains=marker,inline_files=items,log_block=bid,log_sha256=digest(log),last_5_lines=log.splitlines()[-5:])
+  p['receipt_sha256']=digest(json.dumps(p,sort_keys=True,separators=(',',':')));m['run_proof']=p
+  text=re.sub(r'```packet-json\n.*?\n```',lambda _: '```packet-json\n'+json.dumps(m,indent=2)+'\n```',text,count=1,flags=re.S)
+  text+='\n```text id='+bid+'\n'+log+'\n```\n';errors=check(text)
+  if errors:raise ValueError('; '.join(errors))
+  out=pathlib.Path(packet+'.run-proven.md');out.write_text(text);print(str(out));return 0
 
 def allocation_check(path):
  try:
@@ -57,6 +121,10 @@ def allocation_check(path):
   print('FAIL allocation snapshot: read_at, claims, allocations required; '+str(e));return 1
 
 def main():
+ if len(sys.argv)==7 and sys.argv[1]=='--run-proof':
+  try:return run_proof(*sys.argv[2:])
+  except (ValueError,OSError,subprocess.SubprocessError,KeyError,IndexError) as e:print('FAIL run proof: '+str(e));return 1
+
  if len(sys.argv)==3 and sys.argv[1]=='--allocation-check':return allocation_check(sys.argv[2])
  if len(sys.argv)<2:print('usage: scripts/check-packet PACKET.md [...]',file=sys.stderr);return 1
  failed=False
