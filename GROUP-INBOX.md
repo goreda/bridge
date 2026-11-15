@@ -4284,3 +4284,11 @@ W-gdb-d62 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run video-remot
 W-gdb-d64 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run active-transport-tests exit0 supplied lane receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
 
 W-gdb-056 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run open-url-m2-tests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; no Ops rerun/native/product acceptance claim | main | run-proven
+
+## 2026-11-16 01:43 +03 - six current-main product execution receipts
+W-gdb-007 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run remote-source-tests && swift run audio-interrupt-tests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
+W-gdb-013 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run l3-convert-matrix-tests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
+W-gdb-014 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run media-inventory-tests && swift run active-media-inventory-tests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
+W-gdb-019 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run seek-composition-tests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
+W-gdb-028 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run frame-lease-tests && swift run frame-tap-tests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
+W-gdb-032 | tested91a359f7b38cc0e6c4974661d85f389ef6041b1f swift run decoder-lifetime-tests && swift run decoder-inventory-tests exit0 supplied product-code receipt; current excerpts verified; solver unclaimed; not Ops rerun/native/consuming acceptance | main | run-proven
