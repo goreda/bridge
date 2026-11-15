@@ -1,0 +1,13 @@
+Pinned FFmpeg 7.1 build for any W-0274/N03 rerun (from G0735 RESULT.md; the owning lab's rerun contract - this kit does NOT run it):
+  source: https://ffmpeg.org/releases/ffmpeg-7.1.tar.xz
+  tarball sha256: 40973d44970dbc83ef302b0609f2e74982be2d85916dd2ee7472d30678a7abe6
+  versions: libavformat 61.7.100, libavcodec 61.19.100, libavutil 59.39.100
+  configure: --disable-x86asm --disable-doc --disable-programs --disable-network
+    --disable-autodetect --disable-everything --enable-avcodec --enable-avformat
+    --enable-avutil --enable-protocol=file --enable-demuxer=mov
+    --enable-demuxer=matroska --enable-decoder=h264 --enable-decoder=aac
+    --enable-decoder=mpeg4 --enable-parser=h264 --enable-parser=aac
+    --enable-parser=mpeg4video  (static libs, --prefix=/tmp/w0274/ffinstall)
+  build: make && make install
+  then: gcc -std=gnu11 -O2 -Wall -Wextra -I/tmp/w0274/ffinstall/include -o seek_ref seek_ref_v4.c -L/tmp/w0274/ffinstall/lib -lavformat -lavcodec -lavutil -lm -lpthread -lz
+The integrator's reproduction in this kit ran against FFmpeg 8.0.1 static libs (tree commit 894da5ca7d742e4429ffb2af534fcda0103ef593) and is labeled 8.0.1; the 7.1 measured evidence is the lab's own captured log (lab-71-evidence-excerpt.txt, from G0735 out/test_run.txt).
