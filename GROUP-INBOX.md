@@ -8,6 +8,106 @@ These are candidate requests, not accepted, started, tested or integrated work. 
 
 W numbering is provisional until a live tip and duplicate check immediately before publication. Prior requests remain unchanged. The entry-specific text below takes precedence over output defaults in this preamble.
 
+## W-0298 | SUB1 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| SUB1 | WebVTT portable parser model + fixtures | Implement a bounded WebVTT parser: cue timings with settings, cue identifiers, regions, comments (NOTE), style blocks skipped typed, malformed-input recovery with typed errors. Synthetic fixtures: basic cues, settings permutations, overlapping cues, unicode (Turkish dotted/dotless i, combining marks), truncated files. Define the cue output ABI for the subtitle integrator; no rendering, no font assumptions. | Subtitle integrator |
+
+secret scan: clean
+
+## W-0299 | SUB2 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| SUB2 | ASS override-tag semantics fixture atlas | Fixture atlas for ASS override tags: {\pos \an1-9 \move \fade \clip} with expected layout tables under documented fixed cell metrics; PlayRes scaling cases; nested and conflicting tags resolved by a stated precedence rule; malformed tags degrade typed, never crash. Literal .ass snippets plus expected geometry tables; document the reference renderer assumptions. | Subtitle integrator |
+
+secret scan: clean
+
+## W-0300 | INV1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| INV1 | Container inventory manifest fixtures | Textual container-manifest fixtures (JSON) describing track lists, durations, tags and chapters for synthetic MP4/MKV/MOV-like inputs, plus a validator that scores a candidate inventory reader against the manifests: exact track order, duration rounding rule, chapter timestamps, tag charset cases. Generator included; no media bytes, no container parsing required of the lab. | Media-inventory integrator |
+
+Depends on: W-0275. Scope: supporting vectors for an existing open request, separate deliverable. Do not duplicate its implementation or source-oracle work.
+
+secret scan: clean
+
+## W-0301 | DMX1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| DMX1 | Demux parity golden digest kit | Deterministic packet-order and timestamp digest kit for synthetic interleaved A/V streams: a generator emitting stream descriptions plus golden digest tables (packet sequence, pts/dts order, duration), and a checker that replays a candidate demuxer's emitted packet stream against the golden table. Cover B-frame reorder, no-timestamp packets, and corrupt-tail truncation. Synthetic streams only. | Demux integrator |
+
+Depends on: W-0275. Scope: supporting vectors for an existing open request, separate deliverable. Do not duplicate its implementation or source-oracle work.
+
+secret scan: clean
+
+## W-0302 | AUD1 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| AUD1 | Audio ring-buffer seek-reset model + property tests | Portable model of an audio ring buffer with seek generations: reset fencing (stale-generation writes rejected), underrun accounting, pause-silence synthesis counters, and resume re-arm. Property tests over randomized operation sequences (push/reset/pause/resume/read) asserting counter invariants and fence honesty. Deterministic seeds; no audio device. | Audio integrator |
+
+Depends on: W-0278. Scope: supporting vectors for an existing open request, separate deliverable. Do not duplicate its implementation or source-oracle work.
+
+secret scan: clean
+
+## W-0303 | COL1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| COL1 | Tone-map scalar golden vectors | Offline-computed scalar golden vectors for tone-map building blocks (BT.1886 EOTF and inverse, perceptual gamut compression at stated primaries): published formulas, fixed precision, stated tolerance bands, edge inputs (0, near-0, 1, HDR max). Generator script plus vector tables; supports the open tone-map implementation request without duplicating it - vectors only, no shader code. | Color integrator |
+
+Depends on: W-0277. Scope: supporting vectors for an existing open request, separate deliverable. Do not duplicate its implementation or source-oracle work.
+
+secret scan: clean
+
+## W-0304 | FPS1 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| FPS1 | Frame-rate detection model + fixtures | Portable model classifying synthetic pts streams: constant fps vs VFR bucketization, telecine/3:2 pattern detection, container-fps versus measured-fps disagreement reporting. Deterministic pts-stream generator (24/25/30/60, mixed VFR, jittered) plus expected classification tables. Output ABI for the observation integrator; no decoding. | Playback observation integrator |
+
+secret scan: clean
+
+## W-0305 | PL1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| PL1 | Multi-segment timeline boundary fixtures | Textual fixtures for segmented timelines (EDL-like): segment lists with discontinuous timestamps, gap and overlap cases, chapter-aligned and mid-GOP splits; expected tables mapping a global seek position to (segment, in-segment offset) and the exact boundary-frame ownership rule. Generator plus checker; no media bytes. | Timeline integrator |
+
+secret scan: clean
+
+## W-0306 | TR1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| TR1 | Transport snapshot truthfulness vectors | Scripted sources (local file plus loopback HTTP) with known byte behavior and a table of expected transport snapshots: bytes read, buffered bytes, and EOF state - including the honest-unknown cases that must remain unknown rather than inferred. Checker asserts a candidate snapshot surface reports exactly the table, never a guess. Python-stdlib server included; no external endpoints. | Transport integrator |
+
+secret scan: clean
+
+## W-0307 | FLT1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| FLT1 | Frame-lease adversarial vector pack | Portable model plus adversarial vectors for a decoded-frame lease/fence system: retain/release ordering, eviction while pinned, readback during eviction release, fence-after-release detection, owner-hook re-entry during eviction. Vectors assert exact lease counts and typed fence violations; the model ships with the vectors as the reference. Deterministic; no GPU, no pixels. | Frame-lease integrator |
+
+secret scan: clean
+
+---
+
+# Generic playback research and implementation requests
+
+Each entry requests its stated output type. A research table, fixture kit or test runner is not a product implementation or product acceptance. Use portable C/C++/Python and reproducible local commands as appropriate to the entry; no GPU venue assumed. Return source/generators where requested, exact dependency versions, commands, sample output, checks and limitations. The survey entry returns its cited table only.
+
+Use public sources and synthetic inputs only. No private repositories, project identifiers, real user data, accounts, captures, commercial media, licensed fonts or credentials. Do not spend, deploy, change accounts, publish repositories or retrieve private inputs. Local loopback traffic is allowed only where the entry requests it. CPU/model checks do not establish native device, GPU, real-decoder or consuming-product correctness.
+
+These are candidate requests, not accepted, started, tested or integrated work. Final integration requires the consuming integrator's actual interface and checks. Where an ABI, layout, policy, threshold, precedence rule or expected behavior is not supplied or established by a cited public specification, return BLOCKED_INPUT naming that input. A proposed model or synthetic convention must be labelled as proposed, never treated as the existing product contract. No private source pin or call site is supplied here. No same-cycle ingest or build is promised by this draft.
+
+W numbering is provisional until a live tip and duplicate check immediately before publication. Prior requests remain unchanged. The entry-specific text below takes precedence over output defaults in this preamble.
+
 ## W-0288 | BG1 | proposed research request (cited table, no code)
 
 Status: request only, not accepted/started/tested; final integration input limits remain.
