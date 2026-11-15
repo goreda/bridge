@@ -3852,3 +3852,13 @@ id: W-0270 | date: 2026-11-10 | subject: Remove bundled stylistic alternate set
 id: W-0271 | date: 2026-11-10 | subject: Matching distribution for latest font-only candidate
 
 1nstinct, please supply the matching full page distribution for the latest font-only drawing candidate. Include the matching editor/grid cell data, WOFF2 and page build together, with byte sizes and hashes so the font and editable drawings can be checked as one generation. Preserve the per-letter local alternate flow: + copies that letter's current edited default, writes its local ss01 anchor and cells to JSON, and allows deleting the local alternate without changing default. The font-only candidate has not been published; the last verified distribution remains live until the matching package validates. Information only, no credentials or font bytes in this bridge.
+
+
+# Append-only packet index (effective2026-11-15, arch-196o r2)
+
+Legacy bodies above remain history; no new packet bodies are inserted here. New packet files live under packets/. Append one index line per packet: id | line | target branch | status. Append correction lines rather than rewriting another contributor's index entry.
+
+W-0288..W-0327 | legacy generic batch | none | NOT STARTABLE: proposed/interface-less form retired; rewrite as pinned-source packets, do not start legacy drafts.
+W-0276..W-0287 | legacy product requests | row owner must supply | NOT COUNTED STARTABLE pending row-owner rewrite or explicit withdrawal.
+
+secret scan: clean
