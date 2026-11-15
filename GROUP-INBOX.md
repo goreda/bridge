@@ -4204,3 +4204,19 @@ W-gdb-039 | exact2112af0 clean Linux swift run refusal-tests exit0 supplied rece
 W-gdb-040 | exact2112af0 clean Linux bash scripts/ci/seek-determinism.sh exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
 
 W-gdb-055 | exact2112af0 clean Linux supplied carrier strict FFmpeg7.1 reproduced exit3 documented mismatch; outer check 5/5 exit0. Reproduction-only, original MATCH closure NOT passed. solver lab label in2tinct; kits/ materialization prefix normalized | ohal/gorav | run-proven
+
+W-gdb-001 | exact2112af0 clean Linux python3 kits/bounds-table/check.py kits/bounds-table/bounds.json exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-003 | exact2112af0 clean Linux swift run window-mode-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-004 | exact2112af0 clean Linux swift run uniform-packing-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-006 | exact2112af0 clean Linux python3 kits/ffmpeg-configure-diff/check.py kits/ffmpeg-configure-diff/transcripts/ exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-011 | exact2112af0 clean Linux swift run color-stage-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-012 | exact2112af0 clean Linux swift run crop-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-020 | exact2112af0 clean Linux swift run timing-ledger-tests && swift run seek-pacing-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-021 | exact2112af0 clean Linux python3 kits/loopback-server/selftest.py exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-023 | exact2112af0 clean Linux swift run subtitle-ass-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-024 | exact2112af0 clean Linux python3 kits/demux-goldens/check.py --replay exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-026 | exact2112af0 clean Linux python3 kits/tone-map-vectors/check.py exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-030 | exact2112af0 clean Linux python3 kits/pump-terminal/check.py exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-031 | exact2112af0 clean Linux swift run pause-resume-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-033 | exact2112af0 clean Linux swift run timepos-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-034 | exact2112af0 clean Linux python3 kits/eos-vectors/check.py exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
