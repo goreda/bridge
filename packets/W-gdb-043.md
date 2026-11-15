@@ -56,7 +56,7 @@ a STREAMING WSOLA module on the audio path behind the additive stateful WSOLAPro
 AudioMasterScheduler.swift (pinned excerpt) defines the clock the module must not reinterpret; the module slots between L3SampleConvert output and sink enqueue; delivery as additive Sources/GorAVPlaybackCore/ or adapter code + kits/n8-wsola-pin/ checker. This packet names the consuming pin: the W-gdb-010 withdrawal condition is closed and W-0278 reopens under it.
 
 ## behaviour that must not change
-AudioMasterClock thresholds (maxLate 0.040, tolerance 1e-9) and the s16le stereo 44.1 kHz sink contract are untouched; no second clock source.
+AudioMasterClock thresholds (maxLate 0.040, tolerance 1e-9) and the s16le stereo 44.1 kHz sink contract are untouched; no second clock source. Scope boundary (integrator ruling): this packet is an ADDITIVE MODULE pin only; hardware/sink/clock integration acceptance is NOT claimed by or closed under this packet.
 
 ## acceptance test (from the product repo)
 python3 kits/n8-wsola-pin/check.py kits/n8-wsola-pin/fixtures.json exits 0; rate rows match their golden output counts within 1 frame; the reset row witnesses zero pre-reset samples.

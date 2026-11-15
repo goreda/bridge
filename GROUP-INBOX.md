@@ -3996,3 +3996,9 @@ W-gdb-048 | W-0283-pin | ohal/gorav @2112af0d | precedence update: codec SEI > c
 W-gdb-041 | W-0276-pin | none | still HOLD: RPU profile transform is not pixel reshaping seam/oracle; unpinned full-parser dependency; W0276/W-gdb009 withdrawal remains
 W-gdb-052 | W-0287-pin | none | still HOLD: artwork extraction read API/demux lease source unresolved; author must pin extraction or narrow to identity/classification
 New-series stock44gorav +2gor=46publisher-gated; not per-lab accepted/startable occupancy. Original6withdrawal records preserved,1prospectively reopened by043,other5stillwithdrawn. Full product suites publisher NOT_RUN.
+
+## Consuming pin v3 scope corrections - 2026-11-15 11:33 Europe/Istanbul
+W-gdb-041 | narrowed RPU metadata profile-transform only | ohal/gorav @2112af0d | author v3 passes mechanical/source/semantic publication gate; FFmpeg parser source dependency commit/hash checked; no pixel-reshape oracle or N6 reopen
+W-gdb-043 | W-0278-pin | ohal/gorav @2112af0d | v3 explicit additive module scope only; prospective reopen remains; hardware/sink/clock integration not accepted
+W-gdb-052 | W-0287-pin | ohal/gorav @2112af0d | v3 identity/classification only; attached picture excluded from video disqualifier; artwork byte extraction OUT OF SCOPE
+New-series stock46gorav +2gor=48publisher-gated (041/052 added;043 revision not new stock). Not lab-accepted runnable occupancy. W0276/W-gdb009 withdrawal stands; original6withdrawal history preserved,043alone prospectively reopened. Full product suites publisher NOT_RUN.
