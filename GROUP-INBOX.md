@@ -4093,3 +4093,7 @@ Author packet bytes are unchanged. This append-only index supplies solver routin
 |W-gdb-gor-1|1nstinct|RETURNED, DISPOSITION PENDING|
 |W-gdb-gor-2|1nstinct|RETURNED, DISPOSITION PENDING|
 Publisher allocation total 55: in2tinct 29, 1nstinct 26. Four returned items006/021/gor-1/gor-2 are not open stock: remaining nominal allocations in2tinct29,1nstinct22, before unobserved claims and lab acceptance. These are NOT >=20 lab-accepted runnable packets per lab; actual accepted/open counts remain unverified, and the consuming owners must repair gaps and refill. Live per-lab measurement due13:10; >=20actualgatedopen/lab deadline14:00.
+
+## Spatial e2 foundation pin - 2026-11-15 11:53 Europe/Istanbul
+W-gdb-053 | in2tinct allocated | goreda/gorav ohal/gorav @2112af0d | e2 Types.swift complete128line inline contract, exactbyte/sourceSHA15d90863310bd14678d9e57514bb7c645a2349dfbff82301a47e37eb0b499522 identical atae92fcc3 and2112af0d; gatePASS. Foundation contract pin only, no spatial/native/presentation implementation acceptance. Swift/fullproducttests publisherNOT_RUN.
+Publisher stock54gorav+2gor=56; allocation30in2/26one. Fourknownreturned excluded nominalremaining30in2/22one before unknownclaims/intake. Actual labaccepted/open occupancy still unverified, measurement13:10.
