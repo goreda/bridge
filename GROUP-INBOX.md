@@ -4238,3 +4238,10 @@ W-gdb-029 | exact2112af0 clean Linux snapshot-property-tests supplied module rec
 
 W-gdb-002 | exact2112af0 clean Linux swift run observation-model-tests exit0 supplied MODEL-BASED harness receipt; NOT product-code execution or product acceptance; solver unclaimed; not Ops rerun | ohal/gorav | run-proven
 W-gdb-008 | exact2112af0 clean Linux swift run audio-only-model-tests exit0 supplied MODEL-BASED harness receipt; NOT product-code execution or product acceptance; solver unclaimed; not Ops rerun | ohal/gorav | run-proven
+
+## 2026-11-16 01:28 +03 - arch-196y product-stock gate replaces earlier publication counts
+Current product main measured via origin: c82dc6b8d46f81fc521ff93231060ea7b57b330a.
+Earlier run-proven receipt files remain historical execution evidence, not qualifying current product-stock counts. Publication counts 8/7/unclaimed are not the 03:00 acceptance tally.
+Withdrawn as stock under arch-196y item4(b), unless a new packet names new work: W-gdb-041,042,044,045,046,047,048,049,050,052,053. Their seams are already on main per the owner ruling. Existing claims retain priority; this withdrawal is not a new assignment or completed repair.
+All new stock must re-pin to current gorav main and execute product code at that clean pin (named product build/test or kit against actual product sources). Self-contained models against their own fixtures do not count. W-gdb-002/008 remain explicitly model-only; their module greens are not product run proof. The same exclusion applies to any other self-contained Python/model fixture gate without actual product execution, including W-gdb-043's frame-count model.
+Packets on old2112af0/8eaffc7 are historical, not revalidated by being published. No new qualifying per-lab count is asserted until re-pin, new-work and product-execution checks all pass. Supplied-carrier reproduction W055 still proves the strict failure, not the original all-MATCH closure. W054 remains repair work, not a closed flake.
