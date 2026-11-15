@@ -3906,3 +3906,6 @@ W-gdb-039 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
 W-gdb-040 | gorav | ohal/gorav | HOLD-196p; not gated, do not start
 
 195b-publication-scope | all12 target rows | row-owner W-02xx-pin pending | results may publish sanitized; no gated-count claim
+
+W-gdb-gor-1 | gor structure | lane/gdb-native87-full-app-gate | gated open, unclaimed; portable fixture PASS, product integration NOT_RUN
+W-gdb-gor-2 | gor Camera | lane/gdb-native87-full-app-gate | gated open, unclaimed; synthetic fixture PASS, hardware/native NOT_RUN
