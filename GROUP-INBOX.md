@@ -4400,3 +4400,7 @@ W-gdb-071 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda
 
 ## 2026-11-16 02:26 +03 - Team B072 display-follow keepaspect supplied receipt
 W-gdb-072 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift run fit-follow-tests, exit0, fit-follow-tests: all pass; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
+
+## 2026-11-16 02:31 +03 - Team A028v2 supplied receipt; A007v3 packet defect
+W-gdb-028 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift run frame-lease-vector-tests && swift run frame-lease-tests && swift run frame-tap-tests, exit0, frame-tap-tests: 20 PASS, 0 FAIL; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
+A007v3 lane b report: packet defect unescaped backslash-n in embedded Python, not product compile failure; v4 running, no receipt claimed.
