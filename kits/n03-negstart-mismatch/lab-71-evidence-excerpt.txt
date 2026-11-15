@@ -1,0 +1,86 @@
+=== target -1023 ms (verify mode) ===
+[video/seek] target_ms=-1023 origin_ticks=0(tb=1/1000) CLAMPED-TO-ORIGIN mode=seek
+[video/seek] raw_first_decoded_pts=0 ticks (~0.000000 ms)
+[video/seek] preroll_discarded=0
+[video/seek] selected_first_pts=0 ticks (~0.000000 ms) = first video frame at/after target (exact-compare)
+[video/seqref] target_ms=-1023 origin_ticks=0(tb=1/1000) CLAMPED-TO-ORIGIN mode=seqref-noseek
+[video/seqref] raw_first_decoded_pts=0 ticks (~0.000000 ms)
+[video/seqref] preroll_discarded=0
+[video/seqref] selected_first_pts=0 ticks (~0.000000 ms) = first video frame at/after target (exact-compare)
+[video] seek-vs-seqref: MATCH
+[audio/seek] target_ms=-1023 origin_ticks=-1023(tb=1/1000) mode=seek
+[audio/seek] raw_first_decoded_pts=22 ticks (~22.000000 ms)
+[audio/seek] preroll_discarded=0
+[audio/seek] selected_audio_frame_pts=22 ticks (~22.000000 ms) nb_samples=1024 rate=44100 retained_offset_samples=0
+[audio/seek] selected_first_sample_time=970200/44100000 s (exact rational; ~22.000000 ms)
+[audio/seqref] target_ms=-1023 origin_ticks=-1023(tb=1/1000) mode=seqref-noseek
+[audio/seqref] raw_first_decoded_pts=-1023 ticks (~-1023.000000 ms)
+[audio/seqref] preroll_discarded=0
+[audio/seqref] selected_audio_frame_pts=-1023 ticks (~-1023.000000 ms) nb_samples=1024 rate=44100 retained_offset_samples=0
+[audio/seqref] selected_first_sample_time=-45114300/44100000 s (exact rational; ~-1023.000000 ms)
+[audio] seek-vs-seqref: MISMATCH
+=== target -500 ms (verify mode) ===
+[video/seek] target_ms=-500 origin_ticks=0(tb=1/1000) CLAMPED-TO-ORIGIN mode=seek
+[video/seek] raw_first_decoded_pts=0 ticks (~0.000000 ms)
+[video/seek] preroll_discarded=0
+[video/seek] selected_first_pts=0 ticks (~0.000000 ms) = first video frame at/after target (exact-compare)
+[video/seqref] target_ms=-500 origin_ticks=0(tb=1/1000) CLAMPED-TO-ORIGIN mode=seqref-noseek
+[video/seqref] raw_first_decoded_pts=0 ticks (~0.000000 ms)
+[video/seqref] preroll_discarded=0
+[video/seqref] selected_first_pts=0 ticks (~0.000000 ms) = first video frame at/after target (exact-compare)
+[video] seek-vs-seqref: MATCH
+[audio/seek] target_ms=-500 origin_ticks=-1023(tb=1/1000) mode=seek
+[audio/seek] raw_first_decoded_pts=22 ticks (~22.000000 ms)
+[audio/seek] preroll_discarded=0
+[audio/seek] selected_audio_frame_pts=22 ticks (~22.000000 ms) nb_samples=1024 rate=44100 retained_offset_samples=0
+[audio/seek] selected_first_sample_time=970200/44100000 s (exact rational; ~22.000000 ms)
+[audio/seqref] target_ms=-500 origin_ticks=-1023(tb=1/1000) mode=seqref-noseek
+[audio/seqref] raw_first_decoded_pts=-1023 ticks (~-1023.000000 ms)
+[audio/seqref] preroll_discarded=22
+[audio/seqref] selected_audio_frame_pts=-513 ticks (~-513.000000 ms) nb_samples=1024 rate=44100 retained_offset_samples=574
+[audio/seqref] selected_first_sample_time=-22049300/44100000 s (exact rational; ~-499.984127 ms)
+[audio] seek-vs-seqref: MISMATCH
+=== target 500 ms (verify mode) ===
+[video/seek] target_ms=500 origin_ticks=0(tb=1/1000) mode=seek
+[video/seek] raw_first_decoded_pts=0 ticks (~0.000000 ms)
+[video/seek] preroll_discarded=13
+[video/seek] selected_first_pts=520 ticks (~520.000000 ms) = first video frame at/after target (exact-compare)
+[video/seqref] target_ms=500 origin_ticks=0(tb=1/1000) mode=seqref-noseek
+[video/seqref] raw_first_decoded_pts=0 ticks (~0.000000 ms)
+[video/seqref] preroll_discarded=13
+[video/seqref] selected_first_pts=520 ticks (~520.000000 ms) = first video frame at/after target (exact-compare)
+[video] seek-vs-seqref: MATCH
+[audio/seek] target_ms=500 origin_ticks=-1023(tb=1/1000) mode=seek
+[audio/seek] raw_first_decoded_pts=486 ticks (~486.000000 ms)
+[audio/seek] preroll_discarded=0
+[audio/seek] selected_audio_frame_pts=486 ticks (~486.000000 ms) nb_samples=1024 rate=44100 retained_offset_samples=618
+[audio/seek] selected_first_sample_time=22050600/44100000 s (exact rational; ~500.013605 ms)
+[audio/seqref] target_ms=500 origin_ticks=-1023(tb=1/1000) mode=seqref-noseek
+[audio/seqref] raw_first_decoded_pts=-1023 ticks (~-1023.000000 ms)
+[audio/seqref] preroll_discarded=65
+[audio/seqref] selected_audio_frame_pts=486 ticks (~486.000000 ms) nb_samples=1024 rate=44100 retained_offset_samples=618
+[audio/seqref] selected_first_sample_time=22050600/44100000 s (exact rational; ~500.013605 ms)
+[audio] seek-vs-seqref: MATCH
+=== target -5000 ms (verify mode) ===
+[video/seek] target_ms=-5000 origin_ticks=0(tb=1/1000) CLAMPED-TO-ORIGIN mode=seek
+[video/seek] raw_first_decoded_pts=0 ticks (~0.000000 ms)
+[video/seek] preroll_discarded=0
+[video/seek] selected_first_pts=0 ticks (~0.000000 ms) = first video frame at/after target (exact-compare)
+[video/seqref] target_ms=-5000 origin_ticks=0(tb=1/1000) CLAMPED-TO-ORIGIN mode=seqref-noseek
+[video/seqref] raw_first_decoded_pts=0 ticks (~0.000000 ms)
+[video/seqref] preroll_discarded=0
+[video/seqref] selected_first_pts=0 ticks (~0.000000 ms) = first video frame at/after target (exact-compare)
+[video] seek-vs-seqref: MATCH
+[audio/seek] target_ms=-5000 origin_ticks=-1023(tb=1/1000) CLAMPED-TO-ORIGIN mode=seek
+[audio/seek] raw_first_decoded_pts=22 ticks (~22.000000 ms)
+[audio/seek] preroll_discarded=0
+[audio/seek] selected_audio_frame_pts=22 ticks (~22.000000 ms) nb_samples=1024 rate=44100 retained_offset_samples=0
+[audio/seek] selected_first_sample_time=970200/44100000 s (exact rational; ~22.000000 ms)
+[audio/seqref] target_ms=-5000 origin_ticks=-1023(tb=1/1000) CLAMPED-TO-ORIGIN mode=seqref-noseek
+[audio/seqref] raw_first_decoded_pts=-1023 ticks (~-1023.000000 ms)
+[audio/seqref] preroll_discarded=0
+[audio/seqref] selected_audio_frame_pts=-1023 ticks (~-1023.000000 ms) nb_samples=1024 rate=44100 retained_offset_samples=0
+[audio/seqref] selected_first_sample_time=-45114300/44100000 s (exact rational; ~-1023.000000 ms)
+[audio] seek-vs-seqref: MISMATCH
+exit=3
+
