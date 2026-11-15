@@ -4365,3 +4365,16 @@ W-gdb-d61 | supplied clean-Linux product-code receipt pinned91a8b69abe9ce61e3118
 W-gdb-d62 | supplied clean-Linux product-code receipt pinned91a8b69abe9ce61e31188e3d426477a3f8528ede: swift run video-remote-open-tests, exit0, ALL VIDEO REMOTE OPEN CHECKS PASS (HTTP only, no native/TLS claim); source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 W-gdb-d64 | supplied clean-Linux product-code receipt pinned91a8b69abe9ce61e31188e3d426477a3f8528ede: swift run active-transport-tests, exit0, active-transport-tests: 0 FAIL (no buffered-seconds/cache/stall inference); source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 036/038 solver-lab attribution remains pending architect ruling; no allocation inferred. d53 historical consuming rejection G0761 remains in force: Linux greens do not reverse consuming rejection or authorize integration.
+
+
+## 2026-11-16 02:17 +03 - six A reviews accepted, existing publications limited to old-suite supplied runs
+
+Team A reports G0784-G0789 verified against published logs and accepted. Existing W-gdb-007/013/014/019/028/032 packet bytes remain unchanged, but none proves its requested new deliverable or current-stock/consuming acceptance. Supplied existing-suite results remain recorded only as such. V2 work at pin4c71204a is lane-reported in order007,028,032,013,019,014; no v2 PASS claimed yet.
+- 007: prior remote-source/audio-interrupt suites do not exercise requested range/reconnect expansion.
+- 013: matrix bytes/hash, per-lane roster/counts and requested negative/audio-interrupt evidence missing.
+- 014: no StereoView/Projection enum exists in product code at the pin; B4 needs product code and a code-owner interface decision, not a packet-only repair.
+- 019: supplied run skipped --seek-vectors; existing replay harness binds a reimplemented model rather than product orchestration. V2 is intended to wire --seek-vectors to product SeekComposition; not done yet.
+- 028: requested lease-model/vector/replay deliverable absent from supplied existing-suite evidence.
+- 032: requested decoder fault-vector/checker/replay and seeded negative leg absent from supplied existing-suite evidence.
+Gate weaknesses accepted for repair: receipt format lacks a covered-byte definition; bare0FAIL substring can be satisfied by one of multiple suites or a zero-row run. The gate needs every declared per-suite summary line and nonzero expected counts where declared. Existing format/hash validation is not semantic completion evidence.
+Review source https://files.instinct.com/we2qtmkkvyps-bridge G0784-G0789; acceptance is executing Team A's report relayed by Main, not an independent Ops rerun or external lab product execution.
