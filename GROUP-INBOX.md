@@ -4228,3 +4228,8 @@ W-gdb-d62 | exact8eaffc75b331a9d65ddce404266738a9d42043ed clean Linux swift run 
 W-gdb-d64 | exact8eaffc75b331a9d65ddce404266738a9d42043ed clean Linux swift run active-transport-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | lane/gdb-196p-decoder (integrator creates it from product_sha; never ohal/gorav main or PR 3) | run-proven
 
 W-gdb-035 | exact2112af0 clean Linux avsync-golden-tests supplied module receipt exit0 50PASS/0FAIL; added inline runner, +1ms flip discriminates16rows; solver unclaimed; not Ops rerun/native acceptance | ohal/gorav | run-proven
+
+W-gdb-025 | exact2112af0d60df16c5473173b664903f76ce54173e clean Linux swift run --package-path kits/ring-model ring-model-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+H0588 | exact2112af0d60df16c5473173b664903f76ce54173e clean Linux python3 kits/bounds-table/check.py kits/bounds-table/bounds.json exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | ohal/gorav | run-proven
+W-gdb-d55 | exact8eaffc75b331a9d65ddce404266738a9d42043ed clean Linux swift run media-inventory-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | lane/gdb-196p-decoder (integrator creates it from product_sha; never ohal/gorav main or PR 3) | run-proven
+W-gdb-d61 | exact8eaffc75b331a9d65ddce404266738a9d42043ed clean Linux swift run media-inventory-tests exit0 supplied receipt; solver unclaimed; not Ops rerun/product acceptance | lane/gdb-196p-decoder (integrator creates it from product_sha; never ohal/gorav main or PR 3) | run-proven
