@@ -4,12 +4,44 @@ solver lab: unclaimed
 reviewer lab: unclaimed
 id: W-gdb-027
 
-target branch: ohal/gorav @ 2112af0d (lab does not push; gdb integrator integrates)
-return: patch or full source + fixtures + test runner files
-publication check: pinned excerpts independently matched; product tests NOT_RUN by publisher; candidate open, unclaimed.
+```packet-json
+{
+ "packet_id": "W-gdb-027",
+ "writer": "gdb",
+ "code_owner": "gdb integrator (gorav lane)",
+ "product_repo": "goreda/gorav",
+ "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+ "touched_files": [
+  {
+   "path": "Sources/GorAVFFmpegAdapter/ActiveTransportSnapshot.swift",
+   "excerpt_block": "source1"
+  }
+ ],
+ "interface": {
+  "signatures": "snapshot producer -> ActiveTransportSnapshot (fields per excerpt in packet)",
+  "types": "bytesRead: Int64? / bufferAvailableBytes: Int? / eofObserved: Bool?; a not-reported value stays nil, never inferred",
+  "ownership_lifetime": "value snapshot; a not-reported value stays typed-absent, never inferred",
+  "caller": "transport vector checker",
+  "callee": "ActiveTransportSnapshot producer (42-line type excerpted in packet): bytesRead/bufferAvailableBytes/eofObserved fields"
+ },
+ "test": {
+  "command": "swift run active-transport-tests",
+  "expected": "exit 0; final line 'active-transport-tests: N PASS, 0 FAIL' with N >= 16; vector rows replay green; a seeded inferred value fails with its row id",
+  "fixture_block": "fixtures1"
+ },
+ "target": {
+  "branch": "ohal/gorav",
+  "paths": [
+   "kits/transport-vectors/",
+   "Sources/active-transport-tests/"
+  ],
+  "return_form": "patch"
+ }
+}
+```
 
 ## problem (what fails for the user)
-transport snapshots (bytes read, buffered, EOF) must be truthful - an inferred percentage or guessed EOF shows the user a lying progress/buffer display. the snapshot type exists; there is no independent truthfulness vector set.
+transport snapshots (bytesRead, bufferAvailableBytes, eofObserved) must be truthful - an inferred percentage or guessed EOF shows the user a lying progress/buffer display. the snapshot type exists; there is no independent truthfulness vector set.
 
 ## reproducer
 - repo: ohal/gorav @ 2112af0d60df16c5473173b664903f76ce54173e (branch ohal/gorav; PR #3 head).
@@ -30,7 +62,7 @@ the vector set replays green against the pinned snapshot producer; a seeded infe
 
 ## pinned excerpts (gorav-src @ 2112af0d60df16c5473173b664903f76ce54173e)
 ### Sources/GorAVFFmpegAdapter/ActiveTransportSnapshot.swift (sha256 5f0ea2a1, lines 1-42 of 42)
-```swift
+```swift id=source1
 import Foundation
 import GorAVNativeProbeKit
 import CFFmpeg
@@ -79,3 +111,8 @@ public enum ActiveTransportRefusal: Error, Equatable, Sendable {
 solver lab: unclaimed. reviewer lab: unclaimed (writes failure cases first, blind to the fix). neither approval is product acceptance; the owner's eyes close it.
 
 secret scan: clean
+
+```json id=fixtures1
+[{"source":"local-file-1000B, 3 sequential reads 400+400+200","expect":{"bytesRead":"cumulative per-read sum 1000","bufferAvailableBytes":"last-read reported value","eofObserved":true},"rule":"bytesRead asserted per read event and as a cumulative sum, not from file size alone"},
+ {"source":"loopback-no-length","expect":{"bytesRead":"measured","bufferAvailableBytes":"<not reported by source, stays nil>","eofObserved":"<not reported by source, stays nil>"},"rule":"honest absence, never inferred; capture() maps eof_reached==0 to nil, never false"}]
+```

@@ -3961,3 +3961,8 @@ W-gdb-023 | gorav | ohal/gorav @2112af0d | gated open unclaimed; ParseError spel
 W-gdb-027 | gorav | ohal/gorav @2112af0d | still HOLD: eofObserved false must be nil when unobserved
 W-gdb-038 | gorav | ohal/gorav @2112af0d | still HOLD: fixture JSON extra-root-data; compiled C fixture oracle independently reproduced rc0/-2/-1 and hashes
 Current new-series count:32 gorav gated +2 gor r3 gated =34;2gorav holds;6withdrawals outside gate. Publisher product tests NOT_RUN. Gate secret patterns constructed from fragments without changing detection semantics; JSON-marked fixtures must parse.
+
+## Author corrections - 2026-11-15 11:20 Europe/Istanbul
+W-gdb-027 | gorav | ohal/gorav @2112af0d | gated open unclaimed; absent EOF observation stays nil, not false
+W-gdb-038 | gorav | ohal/gorav @2112af0d | gated open unclaimed; valid JSON wrapper; concrete C header+FNV vectors independently reproduced
+Current new-series count:34gorav gated +2gor r3 gated =36;0remaininggorav semantic holds;6withdrawals outside gate. Product tests publisher NOT_RUN except focused038 C oracle; no product acceptance or lab occupancy claim.
