@@ -10,7 +10,7 @@ id: W-gdb-020
   "writer": "gdb",
   "code_owner": "gdb integrator (gorav lane)",
   "product_repo": "goreda/gorav",
-  "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+  "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
   "touched_files": [
     {
       "path": "Sources/GorAVPlaybackCore/PlaybackCore.swift",
@@ -30,7 +30,7 @@ id: W-gdb-020
     "fixture_block": "fixtures1"
   },
   "target": {
-    "branch": "ohal/gorav",
+    "branch": "main",
     "paths": [
       "kits/clock-scenarios/",
       "Sources/timing-ledger-tests/",
@@ -41,6 +41,10 @@ id: W-gdb-020
   "run_recipe": {
     "inline_files": [
       {
+        "path": "Sources/timing-ledger-tests/ClockScenarioReplay.swift",
+        "block": "rf0"
+      },
+      {
         "path": "Sources/timing-ledger-tests/SPSCTests.swift",
         "block": "rf1"
       },
@@ -49,23 +53,32 @@ id: W-gdb-020
         "block": "rf2"
       },
       {
-        "path": "Sources/seek-pacing-tests/SeekPacingTests.swift",
+        "path": "Sources/seek-pacing-tests/ClockScenarioReplay.swift",
         "block": "rf3"
+      },
+      {
+        "path": "Sources/seek-pacing-tests/SeekPacingTests.swift",
+        "block": "rf4"
       }
     ]
   },
   "run_proof": {
     "version": 1,
-    "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+    "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
     "command": "swift run timing-ledger-tests && swift run seek-pacing-tests",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-15T22:17:56.500604+00:00",
+    "ran_at": "2026-11-15T22:30:49.074909+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
     "expected_log_contains": "ALL_CHECKS_PASS",
     "inline_files": [
+      {
+        "path": "Sources/timing-ledger-tests/ClockScenarioReplay.swift",
+        "block": "rf0",
+        "sha256": "4ed363dac797ddaaf2909c2817394d83ede7369f1890b8f2acf22a344b30aecd"
+      },
       {
         "path": "Sources/timing-ledger-tests/SPSCTests.swift",
         "block": "rf1",
@@ -77,13 +90,18 @@ id: W-gdb-020
         "sha256": "df7a440efc069f3ab3aebf01c0862bd80fe33fee2686cc22f96cfd4b068f514e"
       },
       {
-        "path": "Sources/seek-pacing-tests/SeekPacingTests.swift",
+        "path": "Sources/seek-pacing-tests/ClockScenarioReplay.swift",
         "block": "rf3",
+        "sha256": "4ed363dac797ddaaf2909c2817394d83ede7369f1890b8f2acf22a344b30aecd"
+      },
+      {
+        "path": "Sources/seek-pacing-tests/SeekPacingTests.swift",
+        "block": "rf4",
         "sha256": "da6f453c40c4770d2130e036076ad22df7e32a901f63b8d9c8dd9514330b4f9c"
       }
     ],
     "log_block": "actual_run_log",
-    "log_sha256": "ccca1666fc0044bac942dd873c10244347aa894f223a50c3ebfb2987b47de1cb",
+    "log_sha256": "ec580cf54b432085f295b2b8450fdfe6cc7956e967e3376617b11deabcdd547a",
     "last_5_lines": [
       "ALL_CHECKS_PASS",
       "DIGEST anchor canonical=2.0 plus100ms=2.0999999999999996 keyframe03=2.3",
@@ -91,7 +109,7 @@ id: W-gdb-020
       "DIGEST backward shown=[0.0, 0.04, 0.02, 0.06, 0.1] drops=0",
       "DIGEST keyframeGap shown=[0.0, 5.3] stalePulls=1"
     ],
-    "receipt_sha256": "b4b86fbfee5cf73de1921ff576c381d26df914f23a6c3f500c14914164d2b5d5"
+    "receipt_sha256": "3ff794ac7cfbbe210a010c3aacd5d6e0d062f5af4dc5d7636427af97800c5bd8"
   }
 }
 ```
@@ -192,6 +210,69 @@ secret scan: clean
 
 ```json id=fixtures1
 {"scenario":"sustained-drift","ticks":[{"pts":1.000,"now":0.990,"frameDuration":0.04,"expect":"show"},{"pts":1.000,"now":0.980,"frameDuration":0.04,"expect":"wait(0.020000000000000018)"},{"pts":1.040,"now":1.071,"frameDuration":0.04,"expect":"drop"},{"pts":1.125,"now":1.000,"frameDuration":0.04,"expect":"wait(0.125)"}],"masterSeam":"clock-only; audioNotImplemented never selected","boundaryNote":"1.0-0.98 is 0.020000000000000018 in Double, strictly greater than frameDuration/2, so the pinned decide table waits; the exact half-frame tick is kept as a documented boundary row"}
+```
+
+
+
+
+```text id=rf0
+import Foundation
+import GorAVPlaybackCore
+
+// Replays kits/clock-scenarios/scenarios.json against the production AVSyncDecider.
+// Virtual clock only: every tick carries its own pts/now; no sleeps, no wall reads.
+// Negative control: --perturb-drift-ms N shifts every tick's `now` by N ms and MUST produce FAIL rows.
+func bitsDouble(_ v: Any?) -> Double { Double(bitPattern: UInt64(v as? String ?? "", radix: 16) ?? 0x7ff8000000000000) }
+struct ClockScenarioResult { var pass = 0; var fail = 0 }
+
+func clockScenarioDecisionString(_ d: FrameDecision) -> String {
+    switch d { case .show: return "show"; case .drop: return "drop"; case .wait(let w): return "wait(\(w))" }
+}
+func clockScenarioExpectString(_ e: [String: Any]) -> String {
+    switch e["decision"] as? String ?? "" {
+    case "wait": return "wait(\(bitsDouble(e["waitBits"])))"
+    case let s: return s
+    }
+}
+
+func replayClockScenarios(path: String, classes: Set<String>, perturbDriftMs: Double) -> ClockScenarioResult {
+    var r = ClockScenarioResult()
+    guard let data = FileManager.default.contents(atPath: path),
+          let root = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+          let maxWait = (root["maxWaitSeconds"] as? NSNumber)?.doubleValue,
+          let scenarios = root["scenarios"] as? [[String: Any]] else {
+        print("FAIL cannot load \(path)"); r.fail += 1; return r
+    }
+    let decider = AVSyncDecider(maxWaitSeconds: maxWait) // master defaults to .clock, fixed at init
+    for sc in scenarios {
+        let name = sc["name"] as? String ?? "?"
+        guard classes.contains(sc["class"] as? String ?? "") else { continue }
+        if sc["class"] as? String == "master" {
+            if decider.master == .clock { r.pass += 1 } else { r.fail += 1; print("FAIL \(name): master is not .clock") }
+        }
+        for (i, t) in (sc["ticks"] as? [[String: Any]] ?? []).enumerated() {
+            let pts = bitsDouble(t["ptsBits"])
+            let now = bitsDouble(t["nowBits"]) + perturbDriftMs / 1000.0
+            let fd = bitsDouble(t["fdBits"])
+            let got = clockScenarioDecisionString(decider.decide(ptsSeconds: pts, nowSeconds: now, frameDuration: fd))
+            let want = clockScenarioExpectString(t["expect"] as! [String: Any])
+            if got == want { r.pass += 1 } else {
+                r.fail += 1
+                print("FAIL \(name) tick \(i): pts=\(pts) now=\(now) fd=\(fd) want=\(want) got=\(got)")
+            }
+        }
+    }
+    return r
+}
+
+/// Master-seam honesty (static): decide() body must not read `master`.
+func clockScenarioDecideIgnoresMaster(sourcePath: String) -> Bool {
+    guard let s = try? String(contentsOfFile: sourcePath, encoding: .utf8),
+          let a = s.range(of: "public func decide("),
+          let b = s.range(of: "return .show", range: a.upperBound..<s.endIndex) else { return false }
+    return !s[a.lowerBound..<b.upperBound].contains("master")
+}
+
 ```
 
 ```text id=rf1
@@ -831,6 +912,66 @@ struct TimingLedgerTests {
 ```
 
 ```text id=rf3
+import Foundation
+import GorAVPlaybackCore
+
+// Replays kits/clock-scenarios/scenarios.json against the production AVSyncDecider.
+// Virtual clock only: every tick carries its own pts/now; no sleeps, no wall reads.
+// Negative control: --perturb-drift-ms N shifts every tick's `now` by N ms and MUST produce FAIL rows.
+func bitsDouble(_ v: Any?) -> Double { Double(bitPattern: UInt64(v as? String ?? "", radix: 16) ?? 0x7ff8000000000000) }
+struct ClockScenarioResult { var pass = 0; var fail = 0 }
+
+func clockScenarioDecisionString(_ d: FrameDecision) -> String {
+    switch d { case .show: return "show"; case .drop: return "drop"; case .wait(let w): return "wait(\(w))" }
+}
+func clockScenarioExpectString(_ e: [String: Any]) -> String {
+    switch e["decision"] as? String ?? "" {
+    case "wait": return "wait(\(bitsDouble(e["waitBits"])))"
+    case let s: return s
+    }
+}
+
+func replayClockScenarios(path: String, classes: Set<String>, perturbDriftMs: Double) -> ClockScenarioResult {
+    var r = ClockScenarioResult()
+    guard let data = FileManager.default.contents(atPath: path),
+          let root = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+          let maxWait = (root["maxWaitSeconds"] as? NSNumber)?.doubleValue,
+          let scenarios = root["scenarios"] as? [[String: Any]] else {
+        print("FAIL cannot load \(path)"); r.fail += 1; return r
+    }
+    let decider = AVSyncDecider(maxWaitSeconds: maxWait) // master defaults to .clock, fixed at init
+    for sc in scenarios {
+        let name = sc["name"] as? String ?? "?"
+        guard classes.contains(sc["class"] as? String ?? "") else { continue }
+        if sc["class"] as? String == "master" {
+            if decider.master == .clock { r.pass += 1 } else { r.fail += 1; print("FAIL \(name): master is not .clock") }
+        }
+        for (i, t) in (sc["ticks"] as? [[String: Any]] ?? []).enumerated() {
+            let pts = bitsDouble(t["ptsBits"])
+            let now = bitsDouble(t["nowBits"]) + perturbDriftMs / 1000.0
+            let fd = bitsDouble(t["fdBits"])
+            let got = clockScenarioDecisionString(decider.decide(ptsSeconds: pts, nowSeconds: now, frameDuration: fd))
+            let want = clockScenarioExpectString(t["expect"] as! [String: Any])
+            if got == want { r.pass += 1 } else {
+                r.fail += 1
+                print("FAIL \(name) tick \(i): pts=\(pts) now=\(now) fd=\(fd) want=\(want) got=\(got)")
+            }
+        }
+    }
+    return r
+}
+
+/// Master-seam honesty (static): decide() body must not read `master`.
+func clockScenarioDecideIgnoresMaster(sourcePath: String) -> Bool {
+    guard let s = try? String(contentsOfFile: sourcePath, encoding: .utf8),
+          let a = s.range(of: "public func decide("),
+          let b = s.range(of: "return .show", range: a.upperBound..<s.endIndex) else { return false }
+    return !s[a.lowerBound..<b.upperBound].contains("master")
+}
+
+```
+
+```text id=rf4
 // M4 seek pacing re-anchor test (Linux): proves the post-seek pace preserves
 // the measured late-start gap in ACTUAL pace - the first post-seek frame
 // shows on arrival and later frames pace by pts deltas - instead of the
@@ -1011,38 +1152,42 @@ final class ScriptedSource: FrameSource, @unchecked Sendable {
 ```
 
 ```text id=actual_run_log
+warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/ASSTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
 Building for debugging...
 [0/12] Write sources
 [4/12] Compiling GorAVCAtomics gorav_atomics.c
 [5/12] Write swift-version--9C6B84B6E025C5B.txt
-[7/15] Emitting module GorAVCore
-[8/15] Compiling GorAVCore AdmissionTable.swift
-[9/15] Compiling GorAVCore Boundary.swift
+[7/15] Compiling GorAVCore AdmissionTable.swift
+[8/15] Compiling GorAVCore Boundary.swift
+[9/15] Emitting module GorAVCore
 [10/16] Compiling GorAVCore OpenURLRouter.swift
 [11/17] Wrapping AST for GorAVCore for debugging
 [13/21] Emitting module GorAVNativeProbeKit
@@ -1052,159 +1197,188 @@ Building for debugging...
 [17/23] Compiling GorAVNativeProbeKit GorAVSeekContract.swift
 [18/23] Compiling GorAVNativeProbeKit LeaseTable.swift
 [19/24] Wrapping AST for GorAVNativeProbeKit for debugging
-[21/41] Emitting module GorAVPlaybackCore
-[22/57] Compiling GorAVPlaybackCore AudioTrackPlan.swift
-/tmp/packet-proof-thv5soje/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[21/47] Emitting module GorAVPlaybackCore
+[22/68] Compiling GorAVPlaybackCore LabYtdlpAdapter.swift
+[23/68] Compiling GorAVPlaybackCore Lane0Contract.swift
+[24/68] Compiling GorAVPlaybackCore LifetimeRegistry.swift
+[25/68] Compiling GorAVPlaybackCore ObservationSurface.swift
+[26/68] Compiling GorAVPlaybackCore PlayArguments.swift
+[27/68] Compiling GorAVPlaybackCore PlaybackCore.swift
+[28/68] Compiling GorAVPlaybackCore PlayerControlPlane.swift
+[29/68] Compiling GorAVPlaybackCore PlayheadObservers.swift
+[30/68] Compiling GorAVPlaybackCore PlayheadPosition.swift
+[31/68] Compiling GorAVPlaybackCore PreparedAdoption.swift
+[32/68] Compiling GorAVPlaybackCore PreparedShotSession.swift
+[33/68] Compiling GorAVPlaybackCore PreparedVideoFrameSource.swift
+[34/68] Compiling GorAVPlaybackCore ReadinessAnchorSession.swift
+[35/68] Compiling GorAVPlaybackCore RenderGraph.swift
+[36/68] Compiling GorAVPlaybackCore SPSC.swift
+[37/68] Compiling GorAVPlaybackCore ShellSeekBridge.swift
+[38/68] Compiling GorAVPlaybackCore StageGeometry.swift
+[39/68] Compiling GorAVPlaybackCore TapCropDetector.swift
+[40/68] Compiling GorAVPlaybackCore TimingLedger.swift
+[41/68] Compiling GorAVPlaybackCore UniformPacking.swift
+[42/68] Compiling GorAVPlaybackCore WindowModePlan.swift
+[43/68] Compiling GorAVPlaybackCore AudioTrackPlan.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[23/57] Compiling GorAVPlaybackCore ColorStage.swift
-/tmp/packet-proof-thv5soje/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[44/68] Compiling GorAVPlaybackCore ColorStage.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[24/57] Compiling GorAVPlaybackCore ControlBus.swift
-/tmp/packet-proof-thv5soje/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[45/68] Compiling GorAVPlaybackCore ControlBus.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[25/57] Compiling GorAVPlaybackCore CoreSeekDriver.swift
-/tmp/packet-proof-thv5soje/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[46/68] Compiling GorAVPlaybackCore CoreSeekDriver.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[26/57] Compiling GorAVPlaybackCore CropStage.swift
-/tmp/packet-proof-thv5soje/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[47/68] Compiling GorAVPlaybackCore CropStage.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[27/57] Compiling GorAVPlaybackCore DecodeHeartbeat.swift
-/tmp/packet-proof-thv5soje/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[48/68] Compiling GorAVPlaybackCore DecodeHeartbeat.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[28/57] Compiling GorAVPlaybackCore DecodedFrameLeaseBridge.swift
-/tmp/packet-proof-thv5soje/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[49/68] Compiling GorAVPlaybackCore DecodedFrameLeaseBridge.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[29/57] Compiling GorAVPlaybackCore DecodedFrameTap.swift
-/tmp/packet-proof-thv5soje/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[50/68] Compiling GorAVPlaybackCore DecodedFrameTap.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[30/57] Compiling GorAVPlaybackCore DecoderInventory.swift
-/tmp/packet-proof-thv5soje/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[51/68] Compiling GorAVPlaybackCore DecoderInventory.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[31/57] Compiling GorAVPlaybackCore FrameLeaseStore.swift
-/tmp/packet-proof-thv5soje/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[52/68] Compiling GorAVPlaybackCore FrameLeaseStore.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[32/57] Compiling GorAVPlaybackCore FrameUniformABI.swift
-/tmp/packet-proof-thv5soje/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[53/68] Compiling GorAVPlaybackCore FrameUniformABI.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[33/57] Compiling GorAVPlaybackCore HostTransform.swift
-/tmp/packet-proof-thv5soje/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[54/68] Compiling GorAVPlaybackCore HostTransform.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[34/57] Compiling GorAVPlaybackCore Lane0Contract.swift
-/tmp/packet-proof-thv5soje/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[55/68] Compiling GorAVPlaybackCore LabColorCurves.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[35/57] Compiling GorAVPlaybackCore LifetimeRegistry.swift
-/tmp/packet-proof-thv5soje/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[56/68] Compiling GorAVPlaybackCore LabCropEngine.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[36/57] Compiling GorAVPlaybackCore ObservationSurface.swift
-/tmp/packet-proof-thv5soje/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[57/68] Compiling GorAVPlaybackCore LabHLSPlaylist.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[37/57] Compiling GorAVPlaybackCore PlayArguments.swift
-/tmp/packet-proof-thv5soje/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[58/68] Compiling GorAVPlaybackCore LabMarginOracle.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[38/57] Compiling GorAVPlaybackCore PlaybackCore.swift
-[39/57] Compiling GorAVPlaybackCore PlayerControlPlane.swift
-[40/57] Compiling GorAVPlaybackCore PlayheadObservers.swift
-[41/57] Compiling GorAVPlaybackCore PlayheadPosition.swift
-[42/57] Compiling GorAVPlaybackCore PreparedAdoption.swift
-[43/57] Compiling GorAVPlaybackCore PreparedShotSession.swift
-[44/57] Compiling GorAVPlaybackCore PreparedVideoFrameSource.swift
-[45/57] Compiling GorAVPlaybackCore ReadinessAnchorSession.swift
-[46/57] Compiling GorAVPlaybackCore RenderGraph.swift
-[47/57] Compiling GorAVPlaybackCore SPSC.swift
-[48/57] Compiling GorAVPlaybackCore ShellSeekBridge.swift
-[49/57] Compiling GorAVPlaybackCore StageGeometry.swift
-[50/57] Compiling GorAVPlaybackCore TapCropDetector.swift
-[51/57] Compiling GorAVPlaybackCore TimingLedger.swift
-[52/57] Compiling GorAVPlaybackCore UniformPacking.swift
-[53/57] Compiling GorAVPlaybackCore WindowModePlan.swift
-[54/58] Wrapping AST for GorAVPlaybackCore for debugging
-[56/60] Compiling timing_ledger_tests SPSCTests.swift
-/tmp/packet-proof-thv5soje/tree/Sources/timing-ledger-tests/SPSCTests.swift:24:17: warning: variable 'bytes' was never mutated; consider changing to 'let' constant
+[59/68] Compiling GorAVPlaybackCore LabMusicMode.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+        catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
+                                                                                                      ^
+[60/68] Compiling GorAVPlaybackCore LabPGSDecoder.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+        catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
+                                                                                                      ^
+[61/68] Compiling GorAVPlaybackCore LabPTSDuration.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+        catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
+                                                                                                      ^
+[62/68] Compiling GorAVPlaybackCore LabStereoResolver.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+        catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
+                                                                                                      ^
+[63/68] Compiling GorAVPlaybackCore LabSwrConverter.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+        catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
+                                                                                                      ^
+[64/68] Compiling GorAVPlaybackCore LabVobSubDecoder.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+        catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
+                                                                                                      ^
+[65/69] Wrapping AST for GorAVPlaybackCore for debugging
+[67/71] Compiling timing_ledger_tests SPSCTests.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/SPSCTests.swift:24:17: warning: variable 'bytes' was never mutated; consider changing to 'let' constant
             var bytes = [UInt8](repeating: 0xAB, count: 10) // 2 frames + 2-byte tail
             ~~~ ^
             let
-/tmp/packet-proof-thv5soje/tree/Sources/timing-ledger-tests/SPSCTests.swift:40:17: warning: variable 'extra' was never mutated; consider changing to 'let' constant
+/tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/SPSCTests.swift:40:17: warning: variable 'extra' was never mutated; consider changing to 'let' constant
             var extra = frame(99) + frame(98)
             ~~~ ^
             let
-/tmp/packet-proof-thv5soje/tree/Sources/timing-ledger-tests/SPSCTests.swift:52:17: warning: variable 'two' was never mutated; consider changing to 'let' constant
+/tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/SPSCTests.swift:52:17: warning: variable 'two' was never mutated; consider changing to 'let' constant
             var two = [UInt8](repeating: 7, count: 8)
             ~~~ ^
             let
-/tmp/packet-proof-thv5soje/tree/Sources/timing-ledger-tests/SPSCTests.swift:152:21: warning: variable 'pcm' was never mutated; consider changing to 'let' constant
+/tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/SPSCTests.swift:152:21: warning: variable 'pcm' was never mutated; consider changing to 'let' constant
                 var pcm = [UInt8](repeating: 5, count: 4 * 16)
                 ~~~ ^
                 let
-/tmp/packet-proof-thv5soje/tree/Sources/timing-ledger-tests/SPSCTests.swift:181:17: warning: variable 'b3' was never mutated; consider changing to 'let' constant
+/tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/SPSCTests.swift:181:17: warning: variable 'b3' was never mutated; consider changing to 'let' constant
             var b3: [UInt8] = [1, 2, 3]
             ~~~ ^
             let
-/tmp/packet-proof-thv5soje/tree/Sources/timing-ledger-tests/SPSCTests.swift:186:17: warning: variable 'full' was never mutated; consider changing to 'let' constant
+/tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/SPSCTests.swift:186:17: warning: variable 'full' was never mutated; consider changing to 'let' constant
             var full: [UInt8] = [UInt8](repeating: 9, count: 20) // 5 frames > cap 4
             ~~~ ^
             let
-[57/60] Emitting module timing_ledger_tests
-/tmp/packet-proof-thv5soje/tree/Sources/timing-ledger-tests/SPSCTests.swift:24:17: warning: variable 'bytes' was never mutated; consider changing to 'let' constant
+[68/72] Emitting module timing_ledger_tests
+/tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/SPSCTests.swift:24:17: warning: variable 'bytes' was never mutated; consider changing to 'let' constant
             var bytes = [UInt8](repeating: 0xAB, count: 10) // 2 frames + 2-byte tail
             ~~~ ^
             let
-/tmp/packet-proof-thv5soje/tree/Sources/timing-ledger-tests/SPSCTests.swift:40:17: warning: variable 'extra' was never mutated; consider changing to 'let' constant
+/tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/SPSCTests.swift:40:17: warning: variable 'extra' was never mutated; consider changing to 'let' constant
             var extra = frame(99) + frame(98)
             ~~~ ^
             let
-/tmp/packet-proof-thv5soje/tree/Sources/timing-ledger-tests/SPSCTests.swift:52:17: warning: variable 'two' was never mutated; consider changing to 'let' constant
+/tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/SPSCTests.swift:52:17: warning: variable 'two' was never mutated; consider changing to 'let' constant
             var two = [UInt8](repeating: 7, count: 8)
             ~~~ ^
             let
-/tmp/packet-proof-thv5soje/tree/Sources/timing-ledger-tests/SPSCTests.swift:152:21: warning: variable 'pcm' was never mutated; consider changing to 'let' constant
+/tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/SPSCTests.swift:152:21: warning: variable 'pcm' was never mutated; consider changing to 'let' constant
                 var pcm = [UInt8](repeating: 5, count: 4 * 16)
                 ~~~ ^
                 let
-/tmp/packet-proof-thv5soje/tree/Sources/timing-ledger-tests/SPSCTests.swift:181:17: warning: variable 'b3' was never mutated; consider changing to 'let' constant
+/tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/SPSCTests.swift:181:17: warning: variable 'b3' was never mutated; consider changing to 'let' constant
             var b3: [UInt8] = [1, 2, 3]
             ~~~ ^
             let
-/tmp/packet-proof-thv5soje/tree/Sources/timing-ledger-tests/SPSCTests.swift:186:17: warning: variable 'full' was never mutated; consider changing to 'let' constant
+/tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/SPSCTests.swift:186:17: warning: variable 'full' was never mutated; consider changing to 'let' constant
             var full: [UInt8] = [UInt8](repeating: 9, count: 20) // 5 frames > cap 4
             ~~~ ^
             let
-/tmp/packet-proof-thv5soje/tree/Sources/timing-ledger-tests/TimingLedgerTests.swift:188:17: warning: variable 't' was never mutated; consider changing to 'let' constant
+/tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/TimingLedgerTests.swift:188:17: warning: variable 't' was never mutated; consider changing to 'let' constant
             var t = 50.0
             ~~~ ^
             let
-/tmp/packet-proof-thv5soje/tree/Sources/timing-ledger-tests/TimingLedgerTests.swift:376:17: warning: variable 's0' was never mutated; consider changing to 'let' constant
+/tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/TimingLedgerTests.swift:376:17: warning: variable 's0' was never mutated; consider changing to 'let' constant
             var s0 = CloseActorStamp()
             ~~~ ^
             let
-[58/61] Compiling timing_ledger_tests TimingLedgerTests.swift
-/tmp/packet-proof-thv5soje/tree/Sources/timing-ledger-tests/TimingLedgerTests.swift:188:17: warning: variable 't' was never mutated; consider changing to 'let' constant
+[69/72] Compiling timing_ledger_tests TimingLedgerTests.swift
+/tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/TimingLedgerTests.swift:188:17: warning: variable 't' was never mutated; consider changing to 'let' constant
             var t = 50.0
             ~~~ ^
             let
-/tmp/packet-proof-thv5soje/tree/Sources/timing-ledger-tests/TimingLedgerTests.swift:376:17: warning: variable 's0' was never mutated; consider changing to 'let' constant
+/tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/TimingLedgerTests.swift:376:17: warning: variable 's0' was never mutated; consider changing to 'let' constant
             var s0 = CloseActorStamp()
             ~~~ ^
             let
-[59/62] Wrapping AST for timing-ledger-tests for debugging
-[60/62] Write Objects.LinkFileList
-[61/62] Linking timing-ledger-tests
-Build complete! (7.77s)
+[70/73] Wrapping AST for timing-ledger-tests for debugging
+[71/73] Write Objects.LinkFileList
+[72/73] Linking timing-ledger-tests
+Build complete! (8.57s)
 PASS T1 lifecycle order
 PASS T1 seq monotonic
 PASS T1 tRel non-decreasing
@@ -1360,41 +1534,46 @@ PASS T23 retired flag set
 PASS T23 MUTANT-NEGATIVE: enter after retire REFUSED
 PASS T23 retire idempotent
 PASS T23 still refused after retire (retire is terminal)
+warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-thv5soje/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/packet-proof-1_h2o2tq/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
 [0/1] Planning build
 Building for debugging...
 [0/4] Write sources
 [1/8] Write swift-version--9C6B84B6E025C5B.txt
-[3/7] Emitting module seek_pacing_tests
-[4/7] Compiling seek_pacing_tests SeekPacingTests.swift
-[5/8] Wrapping AST for seek-pacing-tests for debugging
-[6/8] Write Objects.LinkFileList
-[7/8] Linking seek-pacing-tests
-Build complete! (0.86s)
+[3/7] Compiling seek_pacing_tests ClockScenarioReplay.swift
+[4/7] Emitting module seek_pacing_tests
+[5/8] Compiling seek_pacing_tests SeekPacingTests.swift
+[6/9] Wrapping AST for seek-pacing-tests for debugging
+[7/9] Write Objects.LinkFileList
+[8/9] Linking seek-pacing-tests
+Build complete! (1.00s)
 forward: shown=[0.0, 0.04, 0.08, 5.0, 5.04, 5.08] drops=0 waits=4
 backward: shown=[0.0, 0.04, 0.02, 0.06, 0.1] drops=0 waits=3
 landingDrop: shown=[0.0, 5.0, 5.04] drops=2 waits=1

@@ -10,7 +10,7 @@ id: W-gdb-035
   "writer": "gdb",
   "code_owner": "gdb integrator (gorav lane)",
   "product_repo": "goreda/gorav",
-  "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+  "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
   "touched_files": [
     {
       "path": "Sources/GorAVPlaybackCore/PlaybackCore.swift",
@@ -30,7 +30,7 @@ id: W-gdb-035
     "fixture_block": "fixtures1"
   },
   "target": {
-    "branch": "ohal/gorav",
+    "branch": "main",
     "paths": [
       "kits/avsync-goldens/"
     ],
@@ -39,58 +39,49 @@ id: W-gdb-035
   "run_recipe": {
     "inline_files": [
       {
-        "path": "Package.swift",
+        "path": "Sources/avsync-golden-tests/AVSyncGoldenChecker.swift",
         "block": "rf0"
       },
       {
-        "path": "Sources/avsync-golden-tests/AVSyncGoldenChecker.swift",
+        "path": "kits/avsync-goldens/goldens.json",
         "block": "rf1"
       },
       {
-        "path": "kits/avsync-goldens/goldens.json",
+        "path": "Sources/avsync-golden-tests/Runner.swift",
         "block": "rf2"
-      },
-      {
-        "path": "Sources/avsync-golden-tests/main.swift",
-        "block": "rfR"
       }
     ]
   },
   "run_proof": {
     "version": 1,
-    "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+    "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
     "command": "swift run avsync-golden-tests",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-15T22:22:01.688915+00:00",
+    "ran_at": "2026-11-15T22:30:57.451200+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
     "expected_log_contains": "avsync-golden-tests: 50 PASS, 0 FAIL",
     "inline_files": [
       {
-        "path": "Package.swift",
-        "block": "rf0",
-        "sha256": "3139ba775088cf2276d8dfb4e4661a175622eea1bfb0424ad0e98bac37a4b452"
-      },
-      {
         "path": "Sources/avsync-golden-tests/AVSyncGoldenChecker.swift",
-        "block": "rf1",
+        "block": "rf0",
         "sha256": "e25b3551ed80f29ffd3be01ddc69508d97839b8e052f9cc9adf0d071acc79abe"
       },
       {
         "path": "kits/avsync-goldens/goldens.json",
-        "block": "rf2",
+        "block": "rf1",
         "sha256": "aa4da74996c132d50b9111ea5d5dc32f5c16d7d4748e2f592a1709bc7fed77e9"
       },
       {
-        "path": "Sources/avsync-golden-tests/main.swift",
-        "block": "rfR",
-        "sha256": "0747e0321183cb597e81f9a8182e1cc73c502de1431068b8c6a8d180f5cac297"
+        "path": "Sources/avsync-golden-tests/Runner.swift",
+        "block": "rf2",
+        "sha256": "78d0ae9ff548d52fb3893c8effd972d017423fe7b84dad68b90b66e25f90ed7f"
       }
     ],
     "log_block": "actual_run_log",
-    "log_sha256": "565bcd837b2c3aa4ad01bbba95f2240b5996a17a1486ed52b24856733d253f9f",
+    "log_sha256": "7730c3b9336f1b06168202ace54d887b811c218c481045a3527044f79ba8a884",
     "last_5_lines": [
       "FAIL late-edge+early-edge[11] early edge +1ms: pts=1.0 now=0.98 fd=0.04 want=wait(0.02100000000000002) got=wait(0.020000000000000018)",
       "FAIL late-edge+early-edge[12] early edge +2ms: pts=1.0 now=0.979 fd=0.04 want=wait(0.02200000000000002) got=wait(0.02100000000000002)",
@@ -98,7 +89,7 @@ id: W-gdb-035
       "FAIL drop-burst-recovery[8] lag 20ms: pts=4.32 now=4.341 fd=0.04 want=show got=drop",
       "negative-control +1ms flip caught 16 row(s) as required"
     ],
-    "receipt_sha256": "c261f2b2184739c9f5322555f66011fbd9e99e2f71ec8ad6ad53ec483b1a3be0"
+    "receipt_sha256": "e9f1a5a14ade169d26def59f0ce0fbb55a5e769c420d5ff23980014db0cda841"
   }
 }
 ```
@@ -199,7 +190,11 @@ secret scan: clean
 ## repair note (arch-196x item 4)
 run_recipe.inline_files added by the code owner: avsync-golden-tests target sources + kits/avsync-goldens fixtures vendored on gorav main (arch-196s disposition 3/15, H0593), plus Package.swift from the pin with the product+target wiring lines for avsync-golden-tests added (same wiring as the integrator applied on main).
 
-```text id=rf1
+
+
+
+
+```text id=rf0
 import Foundation
 import GorAVPlaybackCore
 
@@ -246,7 +241,7 @@ func runAVSyncGoldens(path: String, flipMs: Double) -> (pass: Int, fail: Int) {
 
 ```
 
-```text id=rf2
+```text id=rf1
 {
  "dropBurstRecovery": [
   {
@@ -917,255 +912,59 @@ func runAVSyncGoldens(path: String, flipMs: Double) -> (pass: Int, fail: Int) {
 
 ```
 
-```text id=rf0
-// swift-tools-version: 5.9
-// SOURCE-ONLY PROPOSAL. Isolated decoder tree, NOT a production replacement.
-// Locked include/library search paths must come from a verified provider lock.
-import PackageDescription
-
-let package = Package(
-    name: "GorAVDecoderOnlyCandidate",
-    platforms: [.macOS(.v13)],
-    products: [.executable(name: "frame-lease-tests", targets: ["frame-lease-tests"]), .executable(name: "audio-interrupt-tests", targets: ["audio-interrupt-tests"]), .executable(name: "cue-output-tests", targets: ["cue-output-tests"]), .executable(name: "render-graph-tests", targets: ["render-graph-tests"]), .executable(name: "decoder-inventory-tests", targets: ["decoder-inventory-tests"]), .executable(name: "color-stage-tests", targets: ["color-stage-tests"]), .executable(name: "crop-tests", targets: ["crop-tests"]), .executable(name: "frame-tap-tests", targets: ["frame-tap-tests"]), .executable(name: "media-inventory-tests", targets: ["media-inventory-tests"]), .executable(name: "remote-source-tests", targets: ["remote-source-tests"]), .executable(name: "prepared-shot-tests", targets: ["prepared-shot-tests"]), .executable(name: "hosttransform-tests", targets: ["hosttransform-tests"]), .executable(name: "timepos-tests", targets: ["timepos-tests"]), .executable(name: "avsync-golden-tests", targets: ["avsync-golden-tests"]), .executable(name: "controlbus-tests", targets: ["controlbus-tests"]), .executable(name: "gorav-probe", targets: ["gorav-probe"]), .library(name: "BridgeVTDecode", targets: ["BridgeVTDecode"]), .library(name: "AudioMasterScheduler", targets: ["AudioMasterScheduler"]), .executable(name: "gorav-sink-check", targets: ["gorav-sink-check"]), .executable(name: "gorav-first-frame", targets: ["gorav-first-frame"]), .executable(name: "refusal-tests", targets: ["refusal-tests"]), .executable(name: "playback-test", targets: ["playback-test"]), .executable(name: "audio-test", targets: ["audio-test"]), .executable(name: "seek-test", targets: ["seek-test"]), .executable(name: "audio-refusal-tests", targets: ["audio-refusal-tests"]), .executable(name: "video-refusal-tests", targets: ["video-refusal-tests"]), .executable(name: "coexist-test", targets: ["coexist-test"]), .executable(name: "isolation-test", targets: ["isolation-test"]), .executable(name: "trace-dump", targets: ["trace-dump"]), .executable(name: "core-seek-tests", targets: ["core-seek-tests"]), .executable(name: "real-seek-tests", targets: ["real-seek-tests"]), .executable(name: "seek-ring-reset-tests", targets: ["seek-ring-reset-tests"]), .executable(name: "seek-pacing-tests", targets: ["seek-pacing-tests"]), .executable(name: "seek-composition-tests", targets: ["seek-composition-tests"]), .executable(name: "audio-seek-tests", targets: ["audio-seek-tests"]), .executable(name: "audio-baseline-tests", targets: ["audio-baseline-tests"]), .executable(name: "demux-parity-tests", targets: ["demux-parity-tests"]), .executable(name: "seek-contract-tests", targets: ["seek-contract-tests"]), .executable(name: "adversarial-seek-tests", targets: ["adversarial-seek-tests"]), .executable(name: "shell-seek-bridge-tests", targets: ["shell-seek-bridge-tests"]), .executable(name: "k9-adversarial", targets: ["k9-adversarial"]), .executable(name: "shell-mac-test", targets: ["shell-mac-test"]), .executable(name: "frame-dump", targets: ["frame-dump"]), .executable(name: "gorav-play", targets: ["gorav-play"]), .executable(name: "l4-hwdecode-tests", targets: ["l4-hwdecode-tests"]), .executable(name: "timing-ledger-tests", targets: ["timing-ledger-tests"]), .executable(name: "race-witness-tests", targets: ["race-witness-tests"]), .executable(name: "gorav-metal-check", targets: ["gorav-metal-check"]), .library(name: "GorAVFFmpegAdapter", targets: ["GorAVFFmpegAdapter"]), .library(name: "GorAVAudioClockSwift", targets: ["GorAVAudioClockSwift"]), .library(name: "GorAVSubtitles", targets: ["GorAVSubtitles"]), .executable(name: "subtitle-srt-tests", targets: ["subtitle-srt-tests"]), .executable(name: "subtitle-ass-tests", targets: ["subtitle-ass-tests"]), .executable(name: "subtitle-track-tests", targets: ["subtitle-track-tests"]), .library(name: "GorAVEmbeddedShell", targets: ["GorAVEmbeddedShell"]), .executable(name: "admission-tests", targets: ["admission-tests"]), .executable(name: "session-venue-tests", targets: ["session-venue-tests"]), .executable(name: "b-gate-tests", targets: ["b-gate-tests"]), .executable(name: "seek-restart-probe", targets: ["seek-restart-probe"])],
-    targets: [
-        .executableTarget(name: "n6-native-tests", dependencies: ["GorAVMetalPresenter", "GorAVPlaybackCore", "GorAVSubtitles"], path: "Sources/n6-native-tests"),
-        .executableTarget(name: "uniform-packing-tests", dependencies: ["GorAVPlaybackCore"], path: "Sources/uniform-packing-tests"),
-        .executableTarget(name: "active-transport-tests", dependencies: ["GorAVCore", "GorAVFFmpegAdapter", "GorAVNativeProbeKit", "CFFmpeg"], path: "Sources/active-transport-tests"),
-        .executableTarget(name: "frame-lease-tests", dependencies: ["GorAVPlaybackCore", "GorAVNativeProbeKit", "GorAVCore"], path: "Sources/frame-lease-tests"),
-        .executableTarget(name: "audio-interrupt-tests", dependencies: ["GorAVCore", "GorAVFFmpegAdapter"], path: "Sources/audio-interrupt-tests"),
-        .executableTarget(name: "cue-output-tests", dependencies: ["GorAVSubtitles", "GorAVPlaybackCore"], path: "Sources/cue-output-tests"),
-        .executableTarget(name: "render-graph-tests", dependencies: ["GorAVPlaybackCore", "GorAVNativeProbeKit"], path: "Sources/render-graph-tests"),
-        .executableTarget(name: "decoder-lifetime-tests", dependencies: ["GorAVPlaybackCore", "GorAVFFmpegAdapter", "GorAVCore"], path: "Sources/decoder-lifetime-tests"),
-        .executableTarget(name: "decoder-inventory-tests", dependencies: ["GorAVPlaybackCore"], path: "Sources/decoder-inventory-tests"),
-        .testTarget(name: "PreparedVideoSwapTests", dependencies: ["GorAVPlaybackCore"], path: "Tests/PreparedVideoSwapTests"),
-        .testTarget(name: "EmbeddedPreparedShotTests", dependencies: [.target(name: "GorAVEmbeddedShell", condition: .when(platforms: [.macOS])), "GorAVPlaybackCore", "GorAVNativeProbeKit"], path: "Tests/EmbeddedPreparedShotTests"),
-        .executableTarget(name: "color-stage-tests", dependencies: ["GorAVPlaybackCore"], path: "Sources/color-stage-tests"),
-        .executableTarget(name: "crop-tests", dependencies: ["GorAVPlaybackCore", "GorAVNativeProbeKit"], path: "Sources/crop-tests"),
-        .executableTarget(name: "frame-tap-tests", dependencies: ["GorAVPlaybackCore", "GorAVNativeProbeKit"], path: "Sources/frame-tap-tests"),
-        .executableTarget(name: "active-media-inventory-tests", dependencies: ["GorAVCore", "GorAVFFmpegAdapter"], path: "Sources/active-media-inventory-tests"),
-        .executableTarget(name: "media-inventory-tests", dependencies: ["GorAVCore", "GorAVFFmpegAdapter"], path: "Sources/media-inventory-tests"),
-        .executableTarget(name: "video-remote-open-tests", dependencies: ["GorAVCore", "GorAVFFmpegAdapter"], path: "Sources/video-remote-open-tests"),
-        .executableTarget(name: "remote-source-tests", dependencies: ["GorAVCore", "GorAVFFmpegAdapter"], path: "Sources/remote-source-tests"),
-        .executableTarget(name: "subtitle-controller-tests", dependencies: ["GorAVSubtitles"], path: "Sources/subtitle-tests", sources: ["SubtitleControllerTests.swift"]),
-        .executableTarget(name: "prepared-shot-tests", dependencies: ["GorAVPlaybackCore"], path: "Sources/prepared-shot-tests"),
-        .executableTarget(name: "hosttransform-tests", dependencies: ["GorAVPlaybackCore"], path: "Sources/hosttransform-tests"),
-        .executableTarget(name: "timepos-tests", dependencies: ["GorAVPlaybackCore"], path: "Sources/timepos-tests"),
-        .executableTarget(name: "avsync-golden-tests", dependencies: ["GorAVPlaybackCore"], path: "Sources/avsync-golden-tests"),
-        .executableTarget(name: "controlbus-tests", dependencies: ["GorAVPlaybackCore"], path: "Sources/controlbus-tests"),
-        .target(name: "BridgeDemux", path: "Tests/labs/p-a1-r2/Sources/BridgeDemux"),
-        .target(name: "BridgeVTDecode", dependencies: ["BridgeDemux"], path: "Sources/BridgeVTDecode"),
-        .target(name: "AudioMasterScheduler", path: "Sources/AudioMasterScheduler"),
-        .testTarget(name: "EngineContractTests", dependencies: ["BridgeVTDecode", "BridgeDemux", "AudioMasterScheduler"], path: "Tests/EngineContractTests"),
-        .executableTarget(name: "e1-headless-tests", dependencies: ["BridgeDemux", "AudioMasterScheduler", "CFFmpeg", "GorAVPlaybackCore", "GorAVMetalPresenter"], path: "Sources/e1-headless-tests"),
-        .executableTarget(name: "gorav-probe", dependencies: ["GorAVCore", "GorAVFFmpegAdapter"], path: "Sources/gorav-probe"),
-
-
-        .target(name: "GorAVCore", dependencies: ["GorAVCAtomics"], path: "Sources/GorAVCore", sources: ["Boundary.swift", "AdmissionTable.swift", "OpenURLRouter.swift"]),
-        // L5/L6 u7 wiring candidate (coordinator-owned landing): parser/model library +
-        // three SEPARATE @main consumer suites (one file each, never one merged target).
-        .target(name: "GorAVSubtitles", path: "Sources/GorAVSubtitles", sources: ["ASSParser.swift", "SRTParser.swift", "SubtitleCue.swift", "SubtitlePlan.swift", "SubtitleSchedule.swift", "SubtitleTrack.swift", "SubtitleAutoLoad.swift", "SubtitleController.swift", "SubtitleCueOutput.swift", "SubtitleCueDelivery.swift", "SubtitleSidecarSession.swift"]),
-        .executableTarget(name: "subtitle-srt-tests", dependencies: ["GorAVSubtitles"],
-                          path: "Sources/subtitle-tests", sources: ["SRTTests.swift"]),
-        .executableTarget(name: "subtitle-ass-tests", dependencies: ["GorAVSubtitles"],
-                          path: "Sources/subtitle-tests", sources: ["ASSTests.swift"]),
-        .executableTarget(name: "subtitle-track-tests", dependencies: ["GorAVSubtitles"],
-                          path: "Sources/subtitle-tests", sources: ["SubtitleTrackTests.swift"]),
-        .executableTarget(name: "subtitle-plan-tests", dependencies: ["GorAVSubtitles"],
-                          path: "Sources/subtitle-tests", sources: ["SubtitlePlanTests.swift"]),
-        .target(name: "GorAVNativeProbeKit", dependencies: ["GorAVCore"],
-                path: "Sources/GorAVNativeProbeKit",
-                sources: ["GorAVSeekContract.swift", "NativeProbe.swift", "LeaseTable.swift", "PacketFeedMachine.swift", "DemuxerPolicy.swift"]),
-        .systemLibrary(name: "CFFmpeg", path: "Sources/CFFmpeg"),
-        // L6 Dolby Vision lane (block 78d L6; new lane dirs only, milestone-gated M4)
-        .target(name: "GorAVDVRPU",
-                path: "Sources/GorAVDVRPU",
-                sources: ["src"],
-                publicHeadersPath: "include"),
-        .target(name: "GorAVDolbyVision",
-                dependencies: ["GorAVDVRPU", "CFFmpeg", "GorAVCore",
-                               "GorAVFFmpegAdapter"],
-                path: "Sources/GorAVDolbyVision"),
-        .executableTarget(name: "dovi-selftest",
-                dependencies: ["GorAVDVRPU"],
-                path: "Sources/dovi-selftest",
-                exclude: ["swift"]),
-        .executableTarget(name: "dovi-hdrtest",
-                dependencies: ["GorAVDVRPU"],
-                path: "Sources/dovi-hdrtest",
-                exclude: ["gen_ref_fields.py"]),
-        .executableTarget(name: "dovi-vectest",
-                dependencies: ["GorAVDVRPU"],
-                path: "Sources/dovi-vectest"),
-        .executableTarget(name: "dovi-fuzz",
-                dependencies: ["GorAVDVRPU"],
-                path: "Sources/dovi-fuzz"),
-        .target(name: "GorAVFFmpegAdapter", dependencies: ["CFFmpeg", "GorAVCore", "GorAVNativeProbeKit", "GorAVPlaybackCore"],
-                path: "Sources/GorAVFFmpegAdapter", sources: ["FFmpegSoftwareDecoder.swift", "SnapshotInput.swift", "SnapshotAVIOOwner.swift", "FrameObservation.swift", "FFmpegSoftwareAudioDecoder.swift", "L3Admission.swift", "L3SampleConvert.swift", "L3PixelConvert.swift", "L3HardwareDecode.swift", "L3AVCoordinator.swift", "SourceOpenOptions.swift", "MediaInventory.swift", "ActiveTransportSnapshot.swift"]),        .executableTarget(name: "l4-hwdecode-tests", dependencies: ["GorAVFFmpegAdapter", "GorAVCore", "CFFmpeg"],
-                path: "Sources/l4-hwdecode-tests", sources: ["L4HWDecodeTests.swift"]),
-
-        .executableTarget(name: "gorav-first-frame", dependencies: ["GorAVFFmpegAdapter", "GorAVCore", "GorAVNativeProbeKit"],
-                path: "Sources/gorav-first-frame", sources: ["FirstFrame.swift"]),
-        .executableTarget(name: "refusal-tests", dependencies: ["GorAVFFmpegAdapter", "GorAVCore", "GorAVNativeProbeKit"],
-                path: "Sources/refusal-tests", sources: ["RefusalTests.swift"]),
-        .executableTarget(name: "playback-test", dependencies: ["GorAVFFmpegAdapter", "GorAVCore", "GorAVNativeProbeKit", "GorAVPlaybackCore"],
-                path: "Sources/playback-test", sources: ["PlaybackTest.swift"]),
-        .executableTarget(name: "audio-test", dependencies: ["GorAVFFmpegAdapter", "GorAVCore", "GorAVNativeProbeKit", "GorAVPlaybackCore"],
-                path: "Sources/audio-test", sources: ["AudioTest.swift"]),
-        .executableTarget(name: "seek-test", dependencies: ["GorAVFFmpegAdapter", "GorAVCore", "GorAVNativeProbeKit"],
-                path: "Sources/seek-test", sources: ["SeekTest.swift"]),
-        .executableTarget(name: "seek-restart-probe", dependencies: ["GorAVFFmpegAdapter", "GorAVCore", "GorAVNativeProbeKit"],
-                path: "Sources/seek-restart-probe", sources: ["main.swift"]),
-        .executableTarget(name: "audio-refusal-tests", dependencies: ["GorAVFFmpegAdapter", "GorAVCore", "GorAVNativeProbeKit"],
-                path: "Sources/audio-refusal-tests", sources: ["AudioRefusalTests.swift"]),
-        .executableTarget(name: "video-refusal-tests", dependencies: ["GorAVFFmpegAdapter", "GorAVCore", "GorAVNativeProbeKit"],
-                path: "Sources/video-refusal-tests", sources: ["VideoRefusalTests.swift"]),
-        .executableTarget(name: "coexist-test", dependencies: ["GorAVFFmpegAdapter", "GorAVCore", "GorAVNativeProbeKit"],
-                path: "Sources/coexist-test", sources: ["CoexistTest.swift"]),
-        .executableTarget(name: "isolation-test", dependencies: ["GorAVFFmpegAdapter", "GorAVCore", "GorAVNativeProbeKit"],
-                path: "Sources/isolation-test", sources: ["IsolationTest.swift"]),
-        .executableTarget(name: "trace-dump", dependencies: ["GorAVFFmpegAdapter", "GorAVCore", "GorAVNativeProbeKit"],
-                path: "Sources/trace-dump", sources: ["TraceDump.swift"]),
-        .executableTarget(name: "core-seek-tests", dependencies: ["GorAVPlaybackCore", "GorAVCore", "GorAVNativeProbeKit"], path: "Sources/core-seek-tests"),
-        .executableTarget(name: "real-seek-tests", dependencies: ["GorAVPlaybackCore", "GorAVCore", "GorAVNativeProbeKit", "GorAVFFmpegAdapter"], path: "Sources/real-seek-tests"),
-        .executableTarget(name: "seek-ring-reset-tests", dependencies: ["GorAVPlaybackCore"], path: "Sources/seek-ring-reset-tests"),
-        .target(name: "GorAVSeekComposition", dependencies: ["GorAVPlaybackCore", "GorAVFFmpegAdapter", "GorAVCore", "GorAVNativeProbeKit"], path: "Sources/GorAVSeekComposition"),
-        .executableTarget(name: "seek-pacing-tests", dependencies: ["GorAVPlaybackCore"], path: "Sources/seek-pacing-tests"),
-        .executableTarget(name: "seek-composition-tests", dependencies: ["GorAVSeekComposition", "GorAVPlaybackCore", "GorAVFFmpegAdapter", "GorAVCore", "GorAVNativeProbeKit"], path: "Sources/seek-composition-tests"),
-        .executableTarget(name: "audio-seek-tests", dependencies: ["GorAVFFmpegAdapter", "GorAVCore", "GorAVNativeProbeKit"], path: "Sources/audio-seek-tests"),
-        .executableTarget(name: "demux-parity-tests", dependencies: ["BridgeDemux", "CFFmpeg"], path: "Sources/demux-parity-tests"),
-        .executableTarget(name: "audio-baseline-tests", dependencies: ["GorAVFFmpegAdapter", "GorAVCore", "GorAVNativeProbeKit"], path: "Sources/audio-baseline-tests"),
-        .executableTarget(name: "seek-contract-tests", dependencies: ["GorAVNativeProbeKit", "GorAVCore", "GorAVFFmpegAdapter"], path: "Sources/seek-contract-tests"),
-        .executableTarget(name: "adversarial-seek-tests", dependencies: ["GorAVPlaybackCore", "GorAVCore", "GorAVNativeProbeKit", "GorAVFFmpegAdapter"], path: "Sources/adversarial-seek-tests"),
-        .executableTarget(name: "shell-seek-bridge-tests", dependencies: ["GorAVPlaybackCore", "GorAVCore", "GorAVNativeProbeKit", "GorAVFFmpegAdapter"], path: "Sources/shell-seek-bridge-tests"),
-        .executableTarget(name: "k9-adversarial", dependencies: ["GorAVPlaybackCore"],
-                path: "Sources/k9-adversarial", sources: ["K9Adversarial.swift"]),
-        .executableTarget(name: "shell-mac-test", dependencies: ["GorAVMacShell", "GorAVPlaybackCore"],
-                path: "Sources/shell-mac-test", sources: ["ShellMacTest.swift"]),
-        .executableTarget(name: "frame-dump", dependencies: ["GorAVFFmpegAdapter", "GorAVCore", "GorAVNativeProbeKit", "GorAVPlaybackCore"],
-                path: "Sources/frame-dump", sources: ["FrameDump.swift", "ConverterVariants.swift", "RawPlaneDump.swift"]),
-        .target(name: "GorAVCAtomics", path: "Sources/GorAVCAtomics", publicHeadersPath: "."),
-        .target(name: "GorAVAudioClock",
-                path: "Sources/GorAVAudioClock",
-                sources: ["src"],
-                publicHeadersPath: "include"),
-        .target(name: "GorAVAudioClockSwift",
-                dependencies: ["GorAVAudioClock", "GorAVCAtomics", "GorAVPlaybackCore"],
-                path: "Sources/GorAVAudioClockSwift"),
-        // r3 (architect r2 BLOCKER): NO explicit sources list - an explicit
-        // list silently omitted Lane0Contract.swift + LifetimeRegistry.swift
-        // (AudioSink/AudioStopResult/PlaybackRegistry unresolved in a real
-        // package build; manual swiftc had masked it). Default = every file.
-        .target(name: "GorAVPlaybackCore", dependencies: ["GorAVCAtomics", "GorAVCore", "GorAVNativeProbeKit"], path: "Sources/GorAVPlaybackCore"),
-        .executableTarget(name: "session-venue-tests",
-                          dependencies: ["GorAVPlaybackCore", .target(name: "GorAVEmbeddedShell", condition: .when(platforms: [.macOS]))],
-                          path: "Sources/session-venue-tests"),
-        // native87 Stage B entrypoint (B1-B3): pause-hold counter witnesses,
-        // parked seek, close-from-paused report on the REAL embedded session.
-        // macOS legs only; UNRUN (exit 77) elsewhere.
-        .executableTarget(name: "b-gate-tests",
-                          dependencies: ["GorAVPlaybackCore", .target(name: "GorAVEmbeddedShell", condition: .when(platforms: [.macOS]))],
-                          path: "Sources/b-gate-tests"),
-        .testTarget(name: "GorAVAudioClockTests",
-                    dependencies: ["GorAVAudioClockSwift"],
-                    path: "Tests/GorAVAudioClockTests"),
-        .testTarget(name: "ReadinessAnchorTests",
-                    dependencies: ["GorAVPlaybackCore"],
-                    path: "Tests/ReadinessAnchorTests"),
-        .testTarget(name: "AudioPacingTests",
-                    dependencies: ["GorAVAudioClockSwift", "GorAVPlaybackCore"],
-                    path: "Tests/AudioPacingTests"),
-        .testTarget(name: "J3AudioControlTests",
-                    dependencies: ["GorAVAudioClockSwift", "GorAVPlaybackCore"],
-                    path: "Tests/J3AudioControlTests"),
-        .testTarget(name: "DecodeHeartbeatTests",
-                    dependencies: ["GorAVPlaybackCore"],
-                    path: "Tests/DecodeHeartbeatTests"),
-        .testTarget(name: "PlayerControlPlaneTests",
-                    dependencies: ["GorAVPlaybackCore"],
-                    path: "Tests/PlayerControlPlaneTests"),
-        .executableTarget(name: "pause-resume-tests", dependencies: ["GorAVPlaybackCore"], path: "Sources/pause-resume-tests"),
-        .executableTarget(name: "race-witness-tests", dependencies: ["GorAVPlaybackCore"],
-                          path: "Sources/race-witness-tests"),
-        .executableTarget(name: "admission-tests", dependencies: ["GorAVCore", "GorAVNativeProbeKit", "GorAVFFmpegAdapter"],
-                          path: "Sources/admission-tests"),
-        .executableTarget(name: "open-url-tests", dependencies: ["GorAVCore"], path: "Sources/open-url-tests"),
-        .executableTarget(name: "audio-delay-tests", dependencies: ["GorAVPlaybackCore", "GorAVAudioClockSwift"], path: "Sources/audio-delay-tests"),
-        .executableTarget(name: "window-mode-tests", dependencies: ["GorAVPlaybackCore"], path: "Sources/window-mode-tests"),
-        .executableTarget(name: "observation-tests", dependencies: ["GorAVPlaybackCore"], path: "Sources/observation-tests"),
-        .executableTarget(name: "timing-ledger-tests", dependencies: ["GorAVPlaybackCore"],
-                path: "Sources/timing-ledger-tests", sources: ["TimingLedgerTests.swift", "SPSCTests.swift"]),
-        .executableTarget(name: "gorav-sink-check", dependencies: ["GorAVMacShell"], path: "Sources/gorav-sink-check", sources: ["SinkCheck.swift"]),
-        .executableTarget(name: "gorav-play", dependencies: ["GorAVMacShell", "GorAVMetalPresenter", "GorAVPlaybackCore"], path: "Sources/gorav-play", sources: ["GorAVPlay.swift"]),
-        // L7 embedded shell (block 168 factory gap): the E1 host-NSView embed
-        // session. Whole body is canImport(AppKit)-gated - compiles empty
-        // off-Mac; a Linux build is NOT a Mac compile claim. Explicit
-        // sources pin: exactly the reviewed session file; a stray file
-        // dropped into the dir is uncompiled, never silently wired.
-        .target(name: "GorAVEmbeddedShell",
-                dependencies: ["GorAVSubtitles", "GorAVCore", "GorAVPlaybackCore", "GorAVNativeProbeKit", "GorAVMacShell", "GorAVMetalPresenter", "GorAVFFmpegAdapter", "GorAVSeekComposition", "GorAVAudioClockSwift"],
-                path: "Sources/GorAVEmbeddedShell", sources: ["GorAVEmbeddedSession.swift"]),
-        .target(name: "GorAVMacShell", dependencies: ["GorAVFFmpegAdapter", "GorAVCore", "GorAVPlaybackCore", "GorAVNativeProbeKit", "GorAVSeekComposition", "GorAVAudioClockSwift"],
-                path: "Sources/GorAVMacShell", sources: ["ShellClock.swift", "DisplaySink.swift", "AudioUnitSink.swift", "ShellFrameSource.swift", "FrameTap.swift", "TappedFrameLuma.swift", "WindowModeController.swift"]),
-        // L2 Metal presenter lane, r7 landing (block 168 L3): new target dir
-        // only; every Metal/AppKit source is canImport-gated so off-Mac
-        // builds compile the target empty. GorAVMetalShellApp mirrors the
-        // trunk shell contract (owner-issued session, shared CancelCommit,
-        // audio-master pacing).
-        .target(name: "GorAVMetalPresenter",
-                dependencies: ["GorAVMacShell", "GorAVPlaybackCore", "GorAVFFmpegAdapter", "GorAVCore", "GorAVSubtitles"],
-                path: "Sources/GorAVMetalPresenter/core",
-                sources: ["AspectFit.swift", "MetalPresenterTelemetry.swift", "SurfaceContract.swift", "MetalRenderer.swift", "MetalPresenter.swift", "GorAVMetalShellApp.swift", "StagePass.swift", "CVPixelBufferTap.swift"]),
-        .executableTarget(name: "gorav-metal-check", dependencies: ["GorAVMetalPresenter", "GorAVMacShell", "GorAVPlaybackCore"],
-                path: "Sources/GorAVMetalPresenter/cli", sources: ["MetalCheck.swift"])
-    ]
-)
-
-```
-
-```text id=rfR
+```text id=rf2
 import Foundation
 
-// Runner for the vendored AVSyncGoldenChecker (arch-196x item 4 repair):
+// Runner for the vendored AVSyncGoldenChecker (arch-196y item 4 re-pin):
 // replays the pinned goldens, then proves the +/-1ms negative control bites.
-let goldensPath = "kits/avsync-goldens/goldens.json"
-let base = runAVSyncGoldens(path: goldensPath, flipMs: 0)
-print("avsync-golden-tests: \(base.pass) PASS, \(base.fail) FAIL")
-let flipped = runAVSyncGoldens(path: goldensPath, flipMs: 1)
-if flipped.fail == 0 {
-    print("NEGATIVE-CONTROL-ERROR: +1ms flip did not fail any boundary row")
-    exit(1)
+@main
+struct AVSyncGoldenRunner {
+    static func main() {
+        let goldensPath = "kits/avsync-goldens/goldens.json"
+        let base = runAVSyncGoldens(path: goldensPath, flipMs: 0)
+        print("avsync-golden-tests: \(base.pass) PASS, \(base.fail) FAIL")
+        let flipped = runAVSyncGoldens(path: goldensPath, flipMs: 1)
+        if flipped.fail == 0 {
+            print("NEGATIVE-CONTROL-ERROR: +1ms flip did not fail any boundary row")
+            Foundation.exit(1)
+        }
+        print("negative-control +1ms flip caught \(flipped.fail) row(s) as required")
+        Foundation.exit(base.fail == 0 ? 0 : 1)
+    }
 }
-print("negative-control +1ms flip caught \(flipped.fail) row(s) as required")
-exit(base.fail == 0 ? 0 : 1)
 
 ```
 
 ```text id=actual_run_log
+warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/packet-proof-oaihkknu/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SRTTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SRTTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SRTTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-hawy90gs/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SRTTests.swift
+warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/packet-proof-oaihkknu/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
 Building for debugging...
 [0/12] Write sources
 [4/12] Compiling GorAVCAtomics gorav_atomics.c
@@ -1182,95 +981,124 @@ Building for debugging...
 [17/23] Compiling GorAVNativeProbeKit GorAVSeekContract.swift
 [18/23] Compiling GorAVNativeProbeKit LeaseTable.swift
 [19/24] Wrapping AST for GorAVNativeProbeKit for debugging
-[21/41] Emitting module GorAVPlaybackCore
-[22/57] Compiling GorAVPlaybackCore AudioTrackPlan.swift
-/tmp/packet-proof-hawy90gs/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[21/47] Emitting module GorAVPlaybackCore
+[22/68] Compiling GorAVPlaybackCore LabYtdlpAdapter.swift
+[23/68] Compiling GorAVPlaybackCore Lane0Contract.swift
+[24/68] Compiling GorAVPlaybackCore LifetimeRegistry.swift
+[25/68] Compiling GorAVPlaybackCore ObservationSurface.swift
+[26/68] Compiling GorAVPlaybackCore PlayArguments.swift
+[27/68] Compiling GorAVPlaybackCore PlaybackCore.swift
+[28/68] Compiling GorAVPlaybackCore PlayerControlPlane.swift
+[29/68] Compiling GorAVPlaybackCore PlayheadObservers.swift
+[30/68] Compiling GorAVPlaybackCore PlayheadPosition.swift
+[31/68] Compiling GorAVPlaybackCore PreparedAdoption.swift
+[32/68] Compiling GorAVPlaybackCore PreparedShotSession.swift
+[33/68] Compiling GorAVPlaybackCore PreparedVideoFrameSource.swift
+[34/68] Compiling GorAVPlaybackCore ReadinessAnchorSession.swift
+[35/68] Compiling GorAVPlaybackCore RenderGraph.swift
+[36/68] Compiling GorAVPlaybackCore SPSC.swift
+[37/68] Compiling GorAVPlaybackCore ShellSeekBridge.swift
+[38/68] Compiling GorAVPlaybackCore StageGeometry.swift
+[39/68] Compiling GorAVPlaybackCore TapCropDetector.swift
+[40/68] Compiling GorAVPlaybackCore TimingLedger.swift
+[41/68] Compiling GorAVPlaybackCore UniformPacking.swift
+[42/68] Compiling GorAVPlaybackCore WindowModePlan.swift
+[43/68] Compiling GorAVPlaybackCore AudioTrackPlan.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[23/57] Compiling GorAVPlaybackCore ColorStage.swift
-/tmp/packet-proof-hawy90gs/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[44/68] Compiling GorAVPlaybackCore ColorStage.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[24/57] Compiling GorAVPlaybackCore ControlBus.swift
-/tmp/packet-proof-hawy90gs/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[45/68] Compiling GorAVPlaybackCore ControlBus.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[25/57] Compiling GorAVPlaybackCore CoreSeekDriver.swift
-/tmp/packet-proof-hawy90gs/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[46/68] Compiling GorAVPlaybackCore CoreSeekDriver.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[26/57] Compiling GorAVPlaybackCore CropStage.swift
-/tmp/packet-proof-hawy90gs/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[47/68] Compiling GorAVPlaybackCore CropStage.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[27/57] Compiling GorAVPlaybackCore DecodeHeartbeat.swift
-/tmp/packet-proof-hawy90gs/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[48/68] Compiling GorAVPlaybackCore DecodeHeartbeat.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[28/57] Compiling GorAVPlaybackCore DecodedFrameLeaseBridge.swift
-/tmp/packet-proof-hawy90gs/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[49/68] Compiling GorAVPlaybackCore DecodedFrameLeaseBridge.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[29/57] Compiling GorAVPlaybackCore DecodedFrameTap.swift
-/tmp/packet-proof-hawy90gs/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[50/68] Compiling GorAVPlaybackCore DecodedFrameTap.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[30/57] Compiling GorAVPlaybackCore DecoderInventory.swift
-/tmp/packet-proof-hawy90gs/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[51/68] Compiling GorAVPlaybackCore DecoderInventory.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[31/57] Compiling GorAVPlaybackCore FrameLeaseStore.swift
-/tmp/packet-proof-hawy90gs/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[52/68] Compiling GorAVPlaybackCore FrameLeaseStore.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[32/57] Compiling GorAVPlaybackCore FrameUniformABI.swift
-/tmp/packet-proof-hawy90gs/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[53/68] Compiling GorAVPlaybackCore FrameUniformABI.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[33/57] Compiling GorAVPlaybackCore HostTransform.swift
-/tmp/packet-proof-hawy90gs/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[54/68] Compiling GorAVPlaybackCore HostTransform.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[34/57] Compiling GorAVPlaybackCore Lane0Contract.swift
-/tmp/packet-proof-hawy90gs/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[55/68] Compiling GorAVPlaybackCore LabColorCurves.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[35/57] Compiling GorAVPlaybackCore LifetimeRegistry.swift
-/tmp/packet-proof-hawy90gs/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[56/68] Compiling GorAVPlaybackCore LabCropEngine.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[36/57] Compiling GorAVPlaybackCore ObservationSurface.swift
-/tmp/packet-proof-hawy90gs/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[57/68] Compiling GorAVPlaybackCore LabHLSPlaylist.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[37/57] Compiling GorAVPlaybackCore PlayArguments.swift
-/tmp/packet-proof-hawy90gs/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+[58/68] Compiling GorAVPlaybackCore LabMarginOracle.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
-[38/57] Compiling GorAVPlaybackCore PlaybackCore.swift
-[39/57] Compiling GorAVPlaybackCore PlayerControlPlane.swift
-[40/57] Compiling GorAVPlaybackCore PlayheadObservers.swift
-[41/57] Compiling GorAVPlaybackCore PlayheadPosition.swift
-[42/57] Compiling GorAVPlaybackCore PreparedAdoption.swift
-[43/57] Compiling GorAVPlaybackCore PreparedShotSession.swift
-[44/57] Compiling GorAVPlaybackCore PreparedVideoFrameSource.swift
-[45/57] Compiling GorAVPlaybackCore ReadinessAnchorSession.swift
-[46/57] Compiling GorAVPlaybackCore RenderGraph.swift
-[47/57] Compiling GorAVPlaybackCore SPSC.swift
-[48/57] Compiling GorAVPlaybackCore ShellSeekBridge.swift
-[49/57] Compiling GorAVPlaybackCore StageGeometry.swift
-[50/57] Compiling GorAVPlaybackCore TapCropDetector.swift
-[51/57] Compiling GorAVPlaybackCore TimingLedger.swift
-[52/57] Compiling GorAVPlaybackCore UniformPacking.swift
-[53/57] Compiling GorAVPlaybackCore WindowModePlan.swift
-[54/58] Wrapping AST for GorAVPlaybackCore for debugging
-[56/60] Compiling avsync_golden_tests AVSyncGoldenChecker.swift
-[57/60] Emitting module avsync_golden_tests
-[58/61] Compiling avsync_golden_tests main.swift
-[59/62] Wrapping AST for avsync-golden-tests for debugging
-[60/62] Write Objects.LinkFileList
-[61/62] Linking avsync-golden-tests
-Build complete! (6.19s)
+[59/68] Compiling GorAVPlaybackCore LabMusicMode.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+        catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
+                                                                                                      ^
+[60/68] Compiling GorAVPlaybackCore LabPGSDecoder.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+        catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
+                                                                                                      ^
+[61/68] Compiling GorAVPlaybackCore LabPTSDuration.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+        catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
+                                                                                                      ^
+[62/68] Compiling GorAVPlaybackCore LabStereoResolver.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+        catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
+                                                                                                      ^
+[63/68] Compiling GorAVPlaybackCore LabSwrConverter.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+        catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
+                                                                                                      ^
+[64/68] Compiling GorAVPlaybackCore LabVobSubDecoder.swift
+/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+        catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
+                                                                                                      ^
+[65/69] Wrapping AST for GorAVPlaybackCore for debugging
+[67/71] Emitting module avsync_golden_tests
+[68/71] Compiling avsync_golden_tests AVSyncGoldenChecker.swift
+[69/72] Compiling avsync_golden_tests Runner.swift
+[70/73] Wrapping AST for avsync-golden-tests for debugging
+[71/73] Write Objects.LinkFileList
+[72/73] Linking avsync-golden-tests
+Build complete! (7.24s)
 avsync-golden-tests: 50 PASS, 0 FAIL
 FAIL threshold[4] threshold-early 0ms: pts=1.0 now=0.981 fd=0.04 want=wait(0.020000000000000018) got=show
 FAIL threshold[5] threshold-early 1ms: pts=1.0 now=0.98 fd=0.04 want=wait(0.02100000000000002) got=wait(0.020000000000000018)
