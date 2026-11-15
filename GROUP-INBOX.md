@@ -4412,3 +4412,7 @@ A007 baseline-vs-fix decision belongs to architect, not Team A; v4 product failu
 ## 2026-11-16 02:35 +03 - Team A014v3 supplied receipt; A013v2 packet status
 W-gdb-014 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift run stereo-projection-vector-tests && swift run media-inventory-tests && swift run active-media-inventory-tests, exit0, ALL ACTIVE MEDIA INVENTORY CHECKS PASS (not track selection/native UI); source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 A013v2 lane report: matrix replay 2606/2606 on each of two lanes; mutation-leg accounting packet defect only, v3 requested, no v2 receipt claimed. Placeholder filter rejected domain word unknown; reworded without carve-out or gate edit.
+
+## 2026-11-16 02:36 +03 - Team A013v4 supplied receipt supersedes v2 packet status
+W-gdb-013 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift run l3-convert-matrix-tests, exit0, l3-convert-matrix-tests: 5212 PASS, 0 FAIL; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
+A013v4 reference2606/0 provider2606/0 aggregate5212PASS0FAIL mutationC-0003caught as required supersedes v2 mutation-leg accounting defect. A007 remains held for architect baseline-vs-fix ruling.
