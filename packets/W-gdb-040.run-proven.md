@@ -10,7 +10,7 @@ id: W-gdb-040
   "writer": "gdb",
   "code_owner": "gdb integrator (gorav lane)",
   "product_repo": "goreda/gorav",
-  "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+  "product_sha": "91a359f7b38cc0e6c4974661d85f389ef6041b1f",
   "touched_files": [
     {
       "path": "scripts/ci/seek-determinism.sh",
@@ -47,11 +47,11 @@ id: W-gdb-040
   },
   "run_proof": {
     "version": 1,
-    "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+    "product_sha": "91a359f7b38cc0e6c4974661d85f389ef6041b1f",
     "command": "bash scripts/ci/seek-determinism.sh",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-15T22:15:02.315158+00:00",
+    "ran_at": "2026-11-15T22:38:31.422226+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -64,11 +64,15 @@ id: W-gdb-040
       }
     ],
     "log_block": "actual_run_log",
-    "log_sha256": "788e22c330650fbb89ec22ea74454e01db7f089b827a626b4c273ef2896a77a7",
+    "log_sha256": "072465e4093d166a98e9bcb8b52f5dfeb3fa5a63732416061243e85702d3afcc",
     "last_5_lines": [
-      "SEEK-DETERMINISM PASS digests=125 byte-identical"
+      "FAIL drift step=2 field=resume run1=2000000 run2=1500000",
+      "FAIL drift hash run1=['DIGEST-HASH v1 sha256=6d99793078a0a8f7fbba5094ba89f36afde09fb9f0882ff28f63aa387fe4acbf'] run2=['DIGEST-HASH v1 sha256=5f4c432bd7bdc4b62e2cedc44650ddfd078bf4fd46e3ee8b85a567834cfe7a01']",
+      "KIT PASS (negative control detected)",
+      "SEEK-DETERMINISM PASS digests=125 byte-identical",
+      "REAL_LEG rc=0"
     ],
-    "receipt_sha256": "6cf11d563877850551177df529faeecdb25b25b7dd4310d309dfc26832266ef1"
+    "receipt_sha256": "9c137df4490d6565d3d184cbe26f69ead54b38a3f58031f67e0c3c7a4e7f5676"
   }
 }
 ```
@@ -108,8 +112,16 @@ two runs produce identical digests; a seeded rng in the pipeline produces a fiel
 # (default: "swift run real-seek-tests"); GORAV_KIT passes through.
 # Exit 0 = digest logs byte-identical; 1 = drift or a failing test run;
 # 2 = typed NOT_RUN (unrunnable command, test-side NOT_RUN, no DIGEST lines).
+#
+# Kit (kits/seek-determinism/, spec DIGEST-SPEC.md):
+#   --kit                   synthetic pipeline twice + seeded-rng negative control
+# With GORAV_REAL_SEEK_CMD UNSET the default mode runs the kit leg (measured) and
+# then tries the real leg (swift run real-seek-tests); an absent real binary is
+# printed as "REAL_LEG NOT_RUN" and does not change the exit code unless
+# GORAV_REQUIRE_REAL=1 (then exit 2). With GORAV_REAL_SEEK_CMD SET behaviour is the
+# original strict one.
 set -euo pipefail
-exec python3 - "$@" <<'PY'
+SEEK_SELF="${BASH_SOURCE[0]}" exec python3 - "$@" <<'PY'
 import os, re, subprocess, sys
 
 DIGEST = re.compile(r'^DIGEST ')
@@ -162,7 +174,37 @@ def run(cmd, env):
         sys.exit(1)
     return p.stdout
 
+KIT = os.path.join(os.environ.get('GORAV_KIT') or os.path.join(
+    os.path.dirname(os.path.abspath(os.environ.get('SEEK_SELF', ''))), '..', '..', 'kits', 'seek-determinism'))
+
+def kit_leg(root):
+    pipe, cmp_ = os.path.join(root, 'pipeline.py'), os.path.join(root, 'compare.py')
+    import tempfile
+    d = tempfile.mkdtemp()
+    def go(name, extra=None):
+        e = dict(os.environ); e.pop('KIT_RNG_SEED', None); e.update(extra or {})
+        p = subprocess.run([sys.executable, pipe], capture_output=True, text=True, env=e)
+        if p.returncode:
+            print('FAIL kit pipeline rc=%d %s' % (p.returncode, p.stderr.strip())); return None
+        f = os.path.join(d, name); open(f, 'w').write(p.stdout); return f
+    r1, r2 = go('run1.digest'), go('run2.digest')
+    n1, n2 = go('neg1.digest'), go('neg2.digest', {'KIT_RNG_SEED': '7'})
+    if not all((r1, r2, n1, n2)):
+        return 1
+    c = subprocess.run([sys.executable, cmp_, r1, r2], capture_output=True, text=True)
+    print('KIT run1 vs run2: ' + c.stdout.strip())
+    if c.returncode != 0:
+        return 1
+    c = subprocess.run([sys.executable, cmp_, n1, n2], capture_output=True, text=True)
+    print('KIT negative control (seeded rng, expect drift):\n' + c.stdout.rstrip())
+    if c.returncode != 1 or 'field=' not in c.stdout:
+        print('FAIL negative control did not produce a field-by-field diff'); return 1
+    print('KIT PASS (negative control detected)')
+    return 0
+
 args = sys.argv[1:]
+if args[:1] == ['--kit']:
+    sys.exit(kit_leg(KIT))
 if args[:1] == ['--compare']:
     if len(args) != 3:
         print('usage: seek-determinism.sh [--compare LOG1 LOG2]')
@@ -175,11 +217,25 @@ if args[:1] == ['--compare']:
 if args:
     print('usage: seek-determinism.sh [--compare LOG1 LOG2]')
     sys.exit(2)
-cmd = os.environ.get('GORAV_REAL_SEEK_CMD', 'swift run real-seek-tests')
 env = dict(os.environ)
-first = run(cmd, env)
-second = run(cmd, env)
-sys.exit(compare(first, second))
+if 'GORAV_REAL_SEEK_CMD' in os.environ:
+    cmd = os.environ['GORAV_REAL_SEEK_CMD']
+    first = run(cmd, env)
+    second = run(cmd, env)
+    sys.exit(compare(first, second))
+rc = kit_leg(KIT)
+if rc != 0:
+    sys.exit(rc)
+# real leg: only meaningful where swift exists; never faked
+import shutil
+if shutil.which('swift') is None:
+    print('REAL_LEG NOT_RUN swift_not_found qualification=unproven')
+    sys.exit(2 if os.environ.get('GORAV_REQUIRE_REAL') == '1' else 0)
+first = run('swift run real-seek-tests', env)
+second = run('swift run real-seek-tests', env)
+rrc = compare(first, second)
+print('REAL_LEG rc=%d' % rrc)
+sys.exit(rrc)
 PY
 ```
 
@@ -193,5 +249,13 @@ secret scan: clean
 ```
 
 ```text id=actual_run_log
+KIT run1 vs run2: SEEK-DETERMINISM PASS digests=4 byte-identical
+KIT negative control (seeded rng, expect drift):
+FAIL drift step=2 field=anchor run1=2000000 run2=1500000
+FAIL drift step=2 field=reset run1=1 run2=0
+FAIL drift step=2 field=resume run1=2000000 run2=1500000
+FAIL drift hash run1=['DIGEST-HASH v1 sha256=6d99793078a0a8f7fbba5094ba89f36afde09fb9f0882ff28f63aa387fe4acbf'] run2=['DIGEST-HASH v1 sha256=5f4c432bd7bdc4b62e2cedc44650ddfd078bf4fd46e3ee8b85a567834cfe7a01']
+KIT PASS (negative control detected)
 SEEK-DETERMINISM PASS digests=125 byte-identical
+REAL_LEG rc=0
 ```
