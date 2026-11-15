@@ -3878,3 +3878,13 @@ W-gdb-027 | gorav | ohal/gorav @ 2112af0d | open-startable, unclaimed; tests pub
 W-gdb-030 | gorav | ohal/gorav @ 2112af0d | open-startable, unclaimed; tests publisher NOT_RUN
 W-gdb-031 | gorav | ohal/gorav @ 2112af0d | open-startable, unclaimed; tests publisher NOT_RUN
 W-gdb-009 | gorav | none | correction: DV metadata exists; withdrawal is absent reshaping seam; remains not startable
+
+## Packet index update - 2026-11-15
+W-gdb-035 | gorav | ohal/gorav @ 2112af0d | open-startable, unclaimed; tests publisher NOT_RUN
+W-gdb-037 | gorav | ohal/gorav @ 2112af0d | open-startable, unclaimed; tests publisher NOT_RUN
+W-gdb-039 | gorav | ohal/gorav @ 2112af0d | open-startable, unclaimed; tests publisher NOT_RUN
+W-gdb-040 | gorav | ohal/gorav @ 2112af0d | open-startable, unclaimed; tests publisher NOT_RUN
+W-gdb-015 | gorav | ohal/gorav @ 2112af0d | withdrawn; not startable
+W-gdb-016 | gorav | ohal/gorav @ 2112af0d | withdrawn; not startable
+W-gdb-017 | gorav | ohal/gorav @ 2112af0d | withdrawn; not startable
+W-gdb-018 | gorav | ohal/gorav @ 2112af0d | withdrawn; not startable
