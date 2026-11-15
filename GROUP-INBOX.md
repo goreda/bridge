@@ -8,6 +8,100 @@ These are candidate requests, not accepted, started, tested or integrated work. 
 
 W numbering is provisional until a live tip and duplicate check immediately before publication. Prior requests remain unchanged. The entry-specific text below takes precedence over output defaults in this preamble.
 
+## W-0308 | CRP1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| CRP1 | Crop-detection threshold fixture atlas | Synthetic bar/noise pattern atlas for crop detection: hard black bars, noisy near-black at stated sigma, letterbox plus pillarbox combined, animated crop mid-stream, single-frame flashes that must NOT change the stabilized crop. Expected crop rectangles per pattern with documented threshold parameters. Supports the open crop-detection implementation request - patterns and expected tables only, no detector code. | Crop integrator |
+
+secret scan: clean
+
+## W-0309 | HDR1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| HDR1 | HDR metadata round-trip fixtures | Textual HDR side-data fixtures (HDR10 static metadata, HLG parameters, dynamic-metadata blocks in a documented TLV text form) with parse-to-serialize round-trip goldens: every field preserved bit-exactly or the difference typed and named. Malformed/truncated blocks degrade to typed errors. No pixel data, no licensed test streams. | Color/metadata integrator |
+
+secret scan: clean
+
+## W-0310 | AN1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| AN1 | Audio format-negotiation golden matrix | Golden tables for audio format negotiation: channel layouts crossed with sample formats and rates, expected negotiated output per pair (native, converted, typed-refusal), including delay accounting and flush/reset semantics. Checker replays a candidate negotiator against the matrix. Covers the same ground a swresample-class converter consumes; tables and checker only, no converter implementation. | Audio-format integrator |
+
+Depends on: W-0279. Scope: supporting vectors for an existing open request, separate deliverable. Do not duplicate its implementation or source-oracle work.
+
+secret scan: clean
+
+## W-0311 | PR1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| PR1 | Pause/resume atomic receipt vectors | Vectors for an atomic resume-receipt contract: each operation sequence (pause, resume, repeated resume, cancel-while-paused, seek-while-paused then resume) carries the expected receipt fields (state-changed, old-anchor-cleared) and the exact anchor re-establishment point. Deterministic model clock; checker scores a candidate implementation's receipts. | Playback clock integrator |
+
+secret scan: clean
+
+## W-0312 | DL1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| DL1 | Decoder-lifetime fault vector pack | Fault vectors for decoder lifetime and registry honesty: open/fail/close/reopen sequences, abort mid-open, double-close typed no-op, registration after abort forbidden, generation counters across reopen. Expected registry/lifetime state tables per sequence; checker replays a candidate adapter. Synthetic decoder stub included; no real codec. | Decoder-lifetime integrator |
+
+secret scan: clean
+
+## W-0313 | TTP1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| TTP1 | Time-position tracker vector pack | Vectors for a playback time-position tracker: anchor re-arm at first presented frame, freeze while paused, bounded drift correction (correction cap per interval), seek repositioning, EOF clamp. Each scenario carries the expected time-pos sequence at stated sample instants; checker scores a candidate tracker. Virtual clock only. | Playback clock integrator |
+
+secret scan: clean
+
+## W-0314 | EOS1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| EOS1 | End-of-stream signaling vectors | EOS event-ordering vectors: video-only EOF, audio-only EOF, joint EOF, late packets after one stream's EOF, EOF during pause (must not signal early), EOF exactly at a seek target. Expected event sequences with typed reasons; checker replays a candidate pipeline log. Synthetic streams only. | Playback lifecycle integrator |
+
+secret scan: clean
+
+## W-0315 | AB1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| AB1 | A/V sync boundary decision goldens | Boundary-precision decision goldens: video pts sequences placed at +/-1ms around the wait/present/drop thresholds against a virtual audio master, including back-to-back threshold straddling and drop-burst recovery. Expected decision per frame (wait/present/drop) with the tolerance constant named explicitly. JSON fixtures plus checker; no physical devices. | A/V clock integrator |
+
+secret scan: clean
+
+## W-0316 | SUB3 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| SUB3 | Subtitle sidecar discovery and selection fixtures | Fixture trees for sidecar discovery: naming-convention matches (exact, language-suffixed, case variants), directory-order determinism, multi-track priority by language tag, stale-selection fencing when files change mid-session. Expected discovery order and selection outcome per tree; generator builds the trees in a temp dir. Text files only. | Subtitle integrator |
+
+secret scan: clean
+
+## W-0317 | NET1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| NET1 | Redirect credential-redaction vectors | Loopback redirect vectors asserting header hygiene: authorization and cookie headers must NOT cross to a different host on redirect, must survive same-host redirects, and diagnostics must redact credential values. Expected header tables per hop; python-stdlib server chain included. Loopback only; no real credentials, no external endpoints. | Transport integrator |
+
+secret scan: clean
+
+---
+
+# Generic playback research and implementation requests
+
+Each entry requests its stated output type. A research table, fixture kit or test runner is not a product implementation or product acceptance. Use portable C/C++/Python and reproducible local commands as appropriate to the entry; no GPU venue assumed. Return source/generators where requested, exact dependency versions, commands, sample output, checks and limitations. The survey entry returns its cited table only.
+
+Use public sources and synthetic inputs only. No private repositories, project identifiers, real user data, accounts, captures, commercial media, licensed fonts or credentials. Do not spend, deploy, change accounts, publish repositories or retrieve private inputs. Local loopback traffic is allowed only where the entry requests it. CPU/model checks do not establish native device, GPU, real-decoder or consuming-product correctness.
+
+These are candidate requests, not accepted, started, tested or integrated work. Final integration requires the consuming integrator's actual interface and checks. Where an ABI, layout, policy, threshold, precedence rule or expected behavior is not supplied or established by a cited public specification, return BLOCKED_INPUT naming that input. A proposed model or synthetic convention must be labelled as proposed, never treated as the existing product contract. No private source pin or call site is supplied here. No same-cycle ingest or build is promised by this draft.
+
+W numbering is provisional until a live tip and duplicate check immediately before publication. Prior requests remain unchanged. The entry-specific text below takes precedence over output defaults in this preamble.
+
 ## W-0298 | SUB1 | proposed product implementation request
 
 Status: request only, not accepted/started/tested; final integration input limits remain.
