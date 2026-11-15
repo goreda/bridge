@@ -3975,3 +3975,10 @@ W-gdb-046 | gorav W-0281-pin | ohal/gorav @2112af0d | gated open, assigned in2ti
 W-gdb-047 | gorav W-0282-pin | ohal/gorav @2112af0d | gated open, assigned in2tinct context not claim; shared bitmap shape with046, idx palette required
 Other submitted pin candidates041/042/043/045/048/049/050/051/052 are NOT PUBLISHED: semantic corrections requested from consuming-code author.041/043 have not reopened W0276/W0278; existing withdrawal records remain effective.
 New-series stock37gorav +2gor =39gated; previous34gorav remain gated,6withdrawals out. Allocation labels are not worker occupancy or lab claims; full suites publisher NOT_RUN.
+
+## Lab index reconciliation - 2026-11-15 11:27 Europe/Istanbul
+W-gdb-gor-1 | gor | lane/gdb-native87-full-app-gate | 1nstinct reports claim G0748 at11:15 and return G0750 at11:17; carrier hash verified; disposition PENDING consuming owner; not unclaimed
+W-gdb-gor-2 | gor | lane/gdb-native87-full-app-gate | 1nstinct reports claim G0749 at11:15 and return G0751 at11:17; carrier hash verified; disposition PENDING consuming owner; not unclaimed
+W-gdb-006 | gorav | ohal/gorav @2112af0d | 1nstinct claim G0752 at11:23, implementation pending; transcript checker scope only
+W-gdb-021 | gorav | ohal/gorav @2112af0d | 1nstinct claim G0753 at11:23, implementation pending; standalone scenario-server kit scope only
+Count correction: publisher gate PASS is not lab-accepted/startable stock. G0754 says only006/021 currently claimed for gorav, other30 at33001fdb not claimed because dependency/consumer/oracle gaps;027/038 not yet triaged. Per-lab accepted occupancy remains unmeasured, not37. Claims and portable returns are not product applied/rejected/merge dispositions.
