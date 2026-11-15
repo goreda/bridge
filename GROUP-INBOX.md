@@ -4331,3 +4331,8 @@ W-gdb-023 | supplied clean-Linux product-code receipt pinned91a8b69abe9ce61e3118
 W-gdb-031 | supplied clean-Linux product-code receipt pinned91a8b69abe9ce61e31188e3d426477a3f8528ede: swift run pause-resume-tests, exit0, ALL_CHECKS_PASS; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 W-gdb-033 | supplied clean-Linux product-code receipt pinned91a8b69abe9ce61e31188e3d426477a3f8528ede: swift run timepos-tests, exit0, timepos-tests: all pass; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 W-gdb-035 | supplied clean-Linux product-code receipt pinned91a8b69abe9ce61e31188e3d426477a3f8528ede: swift run avsync-golden-tests, exit0, negative-control +1ms flip caught 16 row(s) as required; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
+
+
+## 2026-11-16 02:07 +03 - W-gdb-005 v2 supplied receipt, scope remains narrowed
+
+W-gdb-005 v2 | pin91a359f7b38cc0e6c4974661d85f389ef6041b1f | observed supplied cue-output-tests220638PASS0FAIL/exit0; publication gate, secret scan, exact product excerpts and inline/log hashes verified. This is not an Ops rerun or independently reproduced fixture-pack/producer replay, byte-exact Unicode proof, current-stock or consuming acceptance. Exact-count marker is held. Team A is checking G0783 review against its product-code run; result expected02:15. This replacement does not erase the01:59 scope correction; previous packet bytes preserved in history.
