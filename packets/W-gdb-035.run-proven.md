@@ -10,7 +10,7 @@ id: W-gdb-035
   "writer": "gdb",
   "code_owner": "gdb integrator (gorav lane)",
   "product_repo": "goreda/gorav",
-  "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
+  "product_sha": "91a8b69abe9ce61e31188e3d426477a3f8528ede",
   "touched_files": [
     {
       "path": "Sources/GorAVPlaybackCore/PlaybackCore.swift",
@@ -40,11 +40,13 @@ id: W-gdb-035
     "inline_files": [
       {
         "path": "Sources/avsync-golden-tests/AVSyncGoldenChecker.swift",
-        "block": "rf0"
+        "block": "rf0",
+        "content": "import Foundation\nimport GorAVPlaybackCore\n\nfunc bitsDouble(_ v: Any?) -> Double { Double(bitPattern: UInt64(v as? String ?? \"\", radix: 16) ?? 0x7ff8000000000000) }\n\n/// Named tolerance constant: the goldens sit at +/-AVSYNC_TOLERANCE_MS around each half-frame threshold.\nlet AVSYNC_TOLERANCE_MS: Double = 1\n\nfunc avsyncDecisionString(_ d: FrameDecision) -> String {\n    switch d { case .show: return \"show\"; case .drop: return \"drop\"; case .wait(let w): return \"wait(\\(w))\" }\n}\nfunc avsyncExpectString(_ e: [String: Any]) -> String {\n    switch e[\"decision\"] as? String ?? \"\" {\n    case \"wait\": return \"wait(\\(bitsDouble(e[\"waitBits\"])))\"\n    case let s: return s\n    }\n}\n\n/// flipMs: negative control. Shifts every `now` by flipMs; a shift of +/-AVSYNC_TOLERANCE_MS must flip boundary rows.\nfunc runAVSyncGoldens(path: String, flipMs: Double) -> (pass: Int, fail: Int) {\n    var pass = 0, fail = 0\n    guard let data = FileManager.default.contents(atPath: path),\n          let root = try? JSONSerialization.jsonObject(with: data) as? [String: Any],\n          let maxWait = (root[\"maxWaitSeconds\"] as? NSNumber)?.doubleValue,\n          let tol = (root[\"toleranceMs\"] as? NSNumber)?.doubleValue else { print(\"FAIL cannot load \\(path)\"); return (0, 1) }\n    if tol != AVSYNC_TOLERANCE_MS { print(\"FAIL toleranceMs \\(tol) != AVSYNC_TOLERANCE_MS\"); fail += 1 }\n    let decider = AVSyncDecider(maxWaitSeconds: maxWait)\n    func check(_ label: String, _ t: [String: Any]) {\n        let pts = bitsDouble(t[\"ptsBits\"])\n        let now = bitsDouble(t[\"nowBits\"]) + flipMs / 1000.0\n        let fd = bitsDouble(t[\"fdBits\"])\n        let got = avsyncDecisionString(decider.decide(ptsSeconds: pts, nowSeconds: now, frameDuration: fd))\n        let want = avsyncExpectString(t[\"expect\"] as! [String: Any])\n        if got == want { pass += 1 } else { fail += 1; print(\"FAIL \\(label): pts=\\(pts) now=\\(now) fd=\\(fd) want=\\(want) got=\\(got)\") }\n    }\n    for (i, t) in (root[\"thresholdRows\"] as? [[String: Any]] ?? []).enumerated() { check(\"threshold[\\(i)] \\(t[\"group\"] ?? \"\") \\(t[\"offsetMs\"] ?? \"\")ms\", t) }\n    for key in [\"straddlingSequences\", \"dropBurstRecovery\"] {\n        for s in root[key] as? [[String: Any]] ?? [] {\n            for (i, t) in (s[\"ticks\"] as? [[String: Any]] ?? []).enumerated() { check(\"\\(s[\"name\"] ?? \"?\")[\\(i)] \\(t[\"note\"] ?? \"\")\", t) }\n        }\n    }\n    return (pass, fail)\n}\n"
       },
       {
         "path": "kits/avsync-goldens/goldens.json",
-        "block": "rf1"
+        "block": "rf1",
+        "content": "{\n \"dropBurstRecovery\": [\n  {\n   \"name\": \"drop-burst-recovery\",\n   \"ticks\": [\n    {\n     \"expect\": {\n      \"decision\": \"drop\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"lag 100ms\",\n     \"now\": 4.1,\n     \"nowBits\": \"4010666666666666\",\n     \"pts\": 4.0,\n     \"ptsBits\": \"4010000000000000\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"drop\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"lag 90ms\",\n     \"now\": 4.13,\n     \"nowBits\": \"4010851eb851eb85\",\n     \"pts\": 4.04,\n     \"ptsBits\": \"401028f5c28f5c29\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"drop\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"lag 80ms\",\n     \"now\": 4.16,\n     \"nowBits\": \"4010a3d70a3d70a4\",\n     \"pts\": 4.08,\n     \"ptsBits\": \"401051eb851eb852\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"drop\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"lag 70ms\",\n     \"now\": 4.19,\n     \"nowBits\": \"4010c28f5c28f5c3\",\n     \"pts\": 4.12,\n     \"ptsBits\": \"40107ae147ae147b\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"drop\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"lag 60ms\",\n     \"now\": 4.22,\n     \"nowBits\": \"4010e147ae147ae1\",\n     \"pts\": 4.16,\n     \"ptsBits\": \"4010a3d70a3d70a4\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"drop\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"lag 50ms\",\n     \"now\": 4.25,\n     \"nowBits\": \"4011000000000000\",\n     \"pts\": 4.2,\n     \"ptsBits\": \"4010cccccccccccd\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"drop\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"lag 40ms\",\n     \"now\": 4.28,\n     \"nowBits\": \"40111eb851eb851f\",\n     \"pts\": 4.24,\n     \"ptsBits\": \"4010f5c28f5c28f6\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"drop\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"lag 30ms\",\n     \"now\": 4.3100000000000005,\n     \"nowBits\": \"40113d70a3d70a3e\",\n     \"pts\": 4.28,\n     \"ptsBits\": \"40111eb851eb851f\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"show\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"lag 20ms\",\n     \"now\": 4.34,\n     \"nowBits\": \"40115c28f5c28f5c\",\n     \"pts\": 4.32,\n     \"ptsBits\": \"401147ae147ae148\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"show\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"lag 10ms\",\n     \"now\": 4.37,\n     \"nowBits\": \"40117ae147ae147b\",\n     \"pts\": 4.36,\n     \"ptsBits\": \"401170a3d70a3d71\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"show\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"lag 0ms\",\n     \"now\": 4.4,\n     \"nowBits\": \"401199999999999a\",\n     \"pts\": 4.4,\n     \"ptsBits\": \"401199999999999a\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"show\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"lag -10ms\",\n     \"now\": 4.430000000000001,\n     \"nowBits\": \"4011b851eb851eb9\",\n     \"pts\": 4.44,\n     \"ptsBits\": \"4011c28f5c28f5c3\"\n    }\n   ]\n  }\n ],\n \"maxWaitSeconds\": 1.0,\n \"straddlingSequences\": [\n  {\n   \"name\": \"late-edge+early-edge\",\n   \"ticks\": [\n    {\n     \"expect\": {\n      \"decision\": \"show\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"late edge -3ms\",\n     \"now\": 1.0170000000000001,\n     \"nowBits\": \"3ff045a1cac08313\",\n     \"pts\": 1.0,\n     \"ptsBits\": \"3ff0000000000000\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"show\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"late edge -2ms\",\n     \"now\": 1.018,\n     \"nowBits\": \"3ff049ba5e353f7d\",\n     \"pts\": 1.0,\n     \"ptsBits\": \"3ff0000000000000\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"show\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"late edge -1ms\",\n     \"now\": 1.0190000000000001,\n     \"nowBits\": \"3ff04dd2f1a9fbe8\",\n     \"pts\": 1.0,\n     \"ptsBits\": \"3ff0000000000000\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"drop\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"late edge +0ms\",\n     \"now\": 1.02,\n     \"nowBits\": \"3ff051eb851eb852\",\n     \"pts\": 1.0,\n     \"ptsBits\": \"3ff0000000000000\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"drop\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"late edge +1ms\",\n     \"now\": 1.021,\n     \"nowBits\": \"3ff05604189374bc\",\n     \"pts\": 1.0,\n     \"ptsBits\": \"3ff0000000000000\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"drop\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"late edge +2ms\",\n     \"now\": 1.022,\n     \"nowBits\": \"3ff05a1cac083127\",\n     \"pts\": 1.0,\n     \"ptsBits\": \"3ff0000000000000\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"drop\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"late edge +3ms\",\n     \"now\": 1.023,\n     \"nowBits\": \"3ff05e353f7ced91\",\n     \"pts\": 1.0,\n     \"ptsBits\": \"3ff0000000000000\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"show\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"early edge -3ms\",\n     \"now\": 0.983,\n     \"nowBits\": \"3fef74bc6a7ef9db\",\n     \"pts\": 1.0,\n     \"ptsBits\": \"3ff0000000000000\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"show\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"early edge -2ms\",\n     \"now\": 0.982,\n     \"nowBits\": \"3fef6c8b43958106\",\n     \"pts\": 1.0,\n     \"ptsBits\": \"3ff0000000000000\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"show\"\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"early edge -1ms\",\n     \"now\": 0.981,\n     \"nowBits\": \"3fef645a1cac0831\",\n     \"pts\": 1.0,\n     \"ptsBits\": \"3ff0000000000000\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"wait\",\n      \"waitBits\": \"3f947ae147ae1480\",\n      \"waitSeconds\": 0.020000000000000018\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"early edge +0ms\",\n     \"now\": 0.98,\n     \"nowBits\": \"3fef5c28f5c28f5c\",\n     \"pts\": 1.0,\n     \"ptsBits\": \"3ff0000000000000\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"wait\",\n      \"waitBits\": \"3f95810624dd2f20\",\n      \"waitSeconds\": 0.02100000000000002\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"early edge +1ms\",\n     \"now\": 0.979,\n     \"nowBits\": \"3fef53f7ced91687\",\n     \"pts\": 1.0,\n     \"ptsBits\": \"3ff0000000000000\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"wait\",\n      \"waitBits\": \"3f96872b020c49c0\",\n      \"waitSeconds\": 0.02200000000000002\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"early edge +2ms\",\n     \"now\": 0.978,\n     \"nowBits\": \"3fef4bc6a7ef9db2\",\n     \"pts\": 1.0,\n     \"ptsBits\": \"3ff0000000000000\"\n    },\n    {\n     \"expect\": {\n      \"decision\": \"wait\",\n      \"waitBits\": \"3f978d4fdf3b6460\",\n      \"waitSeconds\": 0.02300000000000002\n     },\n     \"fdBits\": \"3fa47ae147ae147b\",\n     \"frameDuration\": 0.04,\n     \"note\": \"early edge +3ms\",\n     \"now\": 0.977,\n     \"nowBits\": \"3fef4395810624dd\",\n     \"pts\": 1.0,\n     \"ptsBits\": \"3ff0000000000000\"\n    }\n   ]\n  }\n ],\n \"thresholdRows\": [\n  {\n   \"expect\": {\n    \"decision\": \"show\"\n   },\n   \"fdBits\": \"3fa47ae147ae147b\",\n   \"frameDuration\": 0.04,\n   \"group\": \"threshold-late\",\n   \"now\": 1.019,\n   \"nowBits\": \"3ff04dd2f1a9fbe7\",\n   \"offsetMs\": -1,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"drop\"\n   },\n   \"fdBits\": \"3fa47ae147ae147b\",\n   \"frameDuration\": 0.04,\n   \"group\": \"threshold-late\",\n   \"now\": 1.02,\n   \"nowBits\": \"3ff051eb851eb852\",\n   \"offsetMs\": 0,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"drop\"\n   },\n   \"fdBits\": \"3fa47ae147ae147b\",\n   \"frameDuration\": 0.04,\n   \"group\": \"threshold-late\",\n   \"now\": 1.021,\n   \"nowBits\": \"3ff05604189374bc\",\n   \"offsetMs\": 1,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"show\"\n   },\n   \"fdBits\": \"3fa47ae147ae147b\",\n   \"frameDuration\": 0.04,\n   \"group\": \"threshold-early\",\n   \"now\": 0.981,\n   \"nowBits\": \"3fef645a1cac0831\",\n   \"offsetMs\": -1,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"wait\",\n    \"waitBits\": \"3f947ae147ae1480\",\n    \"waitSeconds\": 0.020000000000000018\n   },\n   \"fdBits\": \"3fa47ae147ae147b\",\n   \"frameDuration\": 0.04,\n   \"group\": \"threshold-early\",\n   \"now\": 0.98,\n   \"nowBits\": \"3fef5c28f5c28f5c\",\n   \"offsetMs\": 0,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"wait\",\n    \"waitBits\": \"3f95810624dd2f20\",\n    \"waitSeconds\": 0.02100000000000002\n   },\n   \"fdBits\": \"3fa47ae147ae147b\",\n   \"frameDuration\": 0.04,\n   \"group\": \"threshold-early\",\n   \"now\": 0.979,\n   \"nowBits\": \"3fef53f7ced91687\",\n   \"offsetMs\": 1,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"show\"\n   },\n   \"fdBits\": \"3fa5555555555555\",\n   \"frameDuration\": 0.041666666666666664,\n   \"group\": \"threshold-late\",\n   \"now\": 1.0198333333333334,\n   \"nowBits\": \"3ff0513cc1e098eb\",\n   \"offsetMs\": -1,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"show\"\n   },\n   \"fdBits\": \"3fa5555555555555\",\n   \"frameDuration\": 0.041666666666666664,\n   \"group\": \"threshold-late\",\n   \"now\": 1.0208333333333333,\n   \"nowBits\": \"3ff0555555555555\",\n   \"offsetMs\": 0,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"drop\"\n   },\n   \"fdBits\": \"3fa5555555555555\",\n   \"frameDuration\": 0.041666666666666664,\n   \"group\": \"threshold-late\",\n   \"now\": 1.0218333333333334,\n   \"nowBits\": \"3ff0596de8ca11c0\",\n   \"offsetMs\": 1,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"show\"\n   },\n   \"fdBits\": \"3fa5555555555555\",\n   \"frameDuration\": 0.041666666666666664,\n   \"group\": \"threshold-early\",\n   \"now\": 0.9801666666666666,\n   \"nowBits\": \"3fef5d867c3ece2a\",\n   \"offsetMs\": -1,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"wait\",\n    \"waitBits\": \"3f95555555555560\",\n    \"waitSeconds\": 0.02083333333333337\n   },\n   \"fdBits\": \"3fa5555555555555\",\n   \"frameDuration\": 0.041666666666666664,\n   \"group\": \"threshold-early\",\n   \"now\": 0.9791666666666666,\n   \"nowBits\": \"3fef555555555555\",\n   \"offsetMs\": 0,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"wait\",\n    \"waitBits\": \"3f965b7a32847000\",\n    \"waitSeconds\": 0.02183333333333337\n   },\n   \"fdBits\": \"3fa5555555555555\",\n   \"frameDuration\": 0.041666666666666664,\n   \"group\": \"threshold-early\",\n   \"now\": 0.9781666666666666,\n   \"nowBits\": \"3fef4d242e6bdc80\",\n   \"offsetMs\": 1,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"show\"\n   },\n   \"fdBits\": \"3fa1111111111111\",\n   \"frameDuration\": 0.03333333333333333,\n   \"group\": \"threshold-late\",\n   \"now\": 1.0156666666666667,\n   \"nowBits\": \"3ff0402bb0cf87da\",\n   \"offsetMs\": -1,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"show\"\n   },\n   \"fdBits\": \"3fa1111111111111\",\n   \"frameDuration\": 0.03333333333333333,\n   \"group\": \"threshold-late\",\n   \"now\": 1.0166666666666666,\n   \"nowBits\": \"3ff0444444444444\",\n   \"offsetMs\": 0,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"drop\"\n   },\n   \"fdBits\": \"3fa1111111111111\",\n   \"frameDuration\": 0.03333333333333333,\n   \"group\": \"threshold-late\",\n   \"now\": 1.0176666666666667,\n   \"nowBits\": \"3ff0485cd7b900af\",\n   \"offsetMs\": 1,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"show\"\n   },\n   \"fdBits\": \"3fa1111111111111\",\n   \"frameDuration\": 0.03333333333333333,\n   \"group\": \"threshold-early\",\n   \"now\": 0.9843333333333333,\n   \"nowBits\": \"3fef7fa89e60f04c\",\n   \"offsetMs\": -1,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"wait\",\n    \"waitBits\": \"3f91111111111120\",\n    \"waitSeconds\": 0.01666666666666672\n   },\n   \"fdBits\": \"3fa1111111111111\",\n   \"frameDuration\": 0.03333333333333333,\n   \"group\": \"threshold-early\",\n   \"now\": 0.9833333333333333,\n   \"nowBits\": \"3fef777777777777\",\n   \"offsetMs\": 0,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"wait\",\n    \"waitBits\": \"3f921735ee402bc0\",\n    \"waitSeconds\": 0.01766666666666672\n   },\n   \"fdBits\": \"3fa1111111111111\",\n   \"frameDuration\": 0.03333333333333333,\n   \"group\": \"threshold-early\",\n   \"now\": 0.9823333333333333,\n   \"nowBits\": \"3fef6f46508dfea2\",\n   \"offsetMs\": 1,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"show\"\n   },\n   \"fdBits\": \"3f91111111111111\",\n   \"frameDuration\": 0.016666666666666666,\n   \"group\": \"threshold-late\",\n   \"now\": 1.0073333333333334,\n   \"nowBits\": \"3ff01e098ead65b8\",\n   \"offsetMs\": -1,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"show\"\n   },\n   \"fdBits\": \"3f91111111111111\",\n   \"frameDuration\": 0.016666666666666666,\n   \"group\": \"threshold-late\",\n   \"now\": 1.0083333333333333,\n   \"nowBits\": \"3ff0222222222222\",\n   \"offsetMs\": 0,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"drop\"\n   },\n   \"fdBits\": \"3f91111111111111\",\n   \"frameDuration\": 0.016666666666666666,\n   \"group\": \"threshold-late\",\n   \"now\": 1.0093333333333334,\n   \"nowBits\": \"3ff0263ab596de8d\",\n   \"offsetMs\": 1,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"show\"\n   },\n   \"fdBits\": \"3f91111111111111\",\n   \"frameDuration\": 0.016666666666666666,\n   \"group\": \"threshold-early\",\n   \"now\": 0.9926666666666667,\n   \"nowBits\": \"3fefc3ece2a53491\",\n   \"offsetMs\": -1,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"show\"\n   },\n   \"fdBits\": \"3f91111111111111\",\n   \"frameDuration\": 0.016666666666666666,\n   \"group\": \"threshold-early\",\n   \"now\": 0.9916666666666667,\n   \"nowBits\": \"3fefbbbbbbbbbbbc\",\n   \"offsetMs\": 0,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  },\n  {\n   \"expect\": {\n    \"decision\": \"wait\",\n    \"waitBits\": \"3f831d5acb6f4640\",\n    \"waitSeconds\": 0.009333333333333305\n   },\n   \"fdBits\": \"3f91111111111111\",\n   \"frameDuration\": 0.016666666666666666,\n   \"group\": \"threshold-early\",\n   \"now\": 0.9906666666666667,\n   \"nowBits\": \"3fefb38a94d242e7\",\n   \"offsetMs\": 1,\n   \"pts\": 1.0,\n   \"ptsBits\": \"3ff0000000000000\"\n  }\n ],\n \"toleranceConstant\": \"AVSYNC_TOLERANCE_MS\",\n \"toleranceMs\": 1\n}\n"
       },
       {
         "path": "Sources/avsync-golden-tests/Runner.swift",
@@ -54,11 +56,11 @@ id: W-gdb-035
   },
   "run_proof": {
     "version": 1,
-    "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
+    "product_sha": "91a8b69abe9ce61e31188e3d426477a3f8528ede",
     "command": "swift run avsync-golden-tests",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-15T22:30:57.451200+00:00",
+    "ran_at": "2026-11-15T23:04:03.971297+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -81,7 +83,7 @@ id: W-gdb-035
       }
     ],
     "log_block": "actual_run_log",
-    "log_sha256": "7730c3b9336f1b06168202ace54d887b811c218c481045a3527044f79ba8a884",
+    "log_sha256": "52ebe5246c18695babfcd4047549ecb4eaf4ce4a1f9ad6a33b9feb7fd033a5d1",
     "last_5_lines": [
       "FAIL late-edge+early-edge[11] early edge +1ms: pts=1.0 now=0.98 fd=0.04 want=wait(0.02100000000000002) got=wait(0.020000000000000018)",
       "FAIL late-edge+early-edge[12] early edge +2ms: pts=1.0 now=0.979 fd=0.04 want=wait(0.02200000000000002) got=wait(0.02100000000000002)",
@@ -89,7 +91,7 @@ id: W-gdb-035
       "FAIL drop-burst-recovery[8] lag 20ms: pts=4.32 now=4.341 fd=0.04 want=show got=drop",
       "negative-control +1ms flip caught 16 row(s) as required"
     ],
-    "receipt_sha256": "e9f1a5a14ade169d26def59f0ce0fbb55a5e769c420d5ff23980014db0cda841"
+    "receipt_sha256": "f3ebb03869440946bab1a27977bd084591e154faad55b9c2bbc3280ea9f4542a"
   }
 }
 ```
@@ -98,7 +100,7 @@ id: W-gdb-035
 wait/present/drop decisions at the tolerance boundary are where frame-drop and desync bugs live; the decision function exists but lacks boundary-precision goldens.
 
 ## reproducer
-- repo: ohal/gorav @ 2112af0d60df16c5473173b664903f76ce54173e (branch ohal/gorav; PR #3 head).
+- repo: goreda/gorav @ 91a8b69abe9ce61e31188e3d426477a3f8528ede (branch main).
 - real source: Sources/GorAVPlaybackCore/PlaybackCore.swift (sha256 0a128f51; FrameDecision + AVSyncDecider.decide below, lines 17-75).
 - real test command: the returned checker runs on Linux; existing ledger/pacing suites stay green.
 
@@ -937,41 +939,41 @@ struct AVSyncGoldenRunner {
 
 ```text id=actual_run_log
 warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-oaihkknu/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-oaihkknu/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
 warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-oaihkknu/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
+    /tmp/packet-proof-1n9n9_j8/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
 Building for debugging...
 [0/12] Write sources
 [4/12] Compiling GorAVCAtomics gorav_atomics.c
 [5/12] Write swift-version--9C6B84B6E025C5B.txt
-[7/15] Emitting module GorAVCore
-[8/15] Compiling GorAVCore AdmissionTable.swift
-[9/15] Compiling GorAVCore Boundary.swift
+[7/15] Compiling GorAVCore AdmissionTable.swift
+[8/15] Compiling GorAVCore Boundary.swift
+[9/15] Emitting module GorAVCore
 [10/16] Compiling GorAVCore OpenURLRouter.swift
 [11/17] Wrapping AST for GorAVCore for debugging
 [13/21] Emitting module GorAVNativeProbeKit
@@ -1004,101 +1006,101 @@ Building for debugging...
 [41/68] Compiling GorAVPlaybackCore UniformPacking.swift
 [42/68] Compiling GorAVPlaybackCore WindowModePlan.swift
 [43/68] Compiling GorAVPlaybackCore AudioTrackPlan.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [44/68] Compiling GorAVPlaybackCore ColorStage.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [45/68] Compiling GorAVPlaybackCore ControlBus.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [46/68] Compiling GorAVPlaybackCore CoreSeekDriver.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [47/68] Compiling GorAVPlaybackCore CropStage.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [48/68] Compiling GorAVPlaybackCore DecodeHeartbeat.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [49/68] Compiling GorAVPlaybackCore DecodedFrameLeaseBridge.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [50/68] Compiling GorAVPlaybackCore DecodedFrameTap.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [51/68] Compiling GorAVPlaybackCore DecoderInventory.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [52/68] Compiling GorAVPlaybackCore FrameLeaseStore.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [53/68] Compiling GorAVPlaybackCore FrameUniformABI.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [54/68] Compiling GorAVPlaybackCore HostTransform.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [55/68] Compiling GorAVPlaybackCore LabColorCurves.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [56/68] Compiling GorAVPlaybackCore LabCropEngine.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [57/68] Compiling GorAVPlaybackCore LabHLSPlaylist.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [58/68] Compiling GorAVPlaybackCore LabMarginOracle.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [59/68] Compiling GorAVPlaybackCore LabMusicMode.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [60/68] Compiling GorAVPlaybackCore LabPGSDecoder.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [61/68] Compiling GorAVPlaybackCore LabPTSDuration.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [62/68] Compiling GorAVPlaybackCore LabStereoResolver.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [63/68] Compiling GorAVPlaybackCore LabSwrConverter.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [64/68] Compiling GorAVPlaybackCore LabVobSubDecoder.swift
-/tmp/packet-proof-oaihkknu/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
+/tmp/packet-proof-1n9n9_j8/tree/Sources/GorAVPlaybackCore/CoreSeekDriver.swift:80:103: warning: code after 'return' will never be executed
         catch SeekRefusal.legacyRejected(let r) { return .admissionRefused(reason: .legacyRejected) ; _ = r }
                                                                                                       ^
 [65/69] Wrapping AST for GorAVPlaybackCore for debugging
-[67/71] Emitting module avsync_golden_tests
-[68/71] Compiling avsync_golden_tests AVSyncGoldenChecker.swift
+[67/71] Compiling avsync_golden_tests AVSyncGoldenChecker.swift
+[68/71] Emitting module avsync_golden_tests
 [69/72] Compiling avsync_golden_tests Runner.swift
 [70/73] Wrapping AST for avsync-golden-tests for debugging
 [71/73] Write Objects.LinkFileList
 [72/73] Linking avsync-golden-tests
-Build complete! (7.24s)
+Build complete! (7.12s)
 avsync-golden-tests: 50 PASS, 0 FAIL
 FAIL threshold[4] threshold-early 0ms: pts=1.0 now=0.981 fd=0.04 want=wait(0.020000000000000018) got=show
 FAIL threshold[5] threshold-early 1ms: pts=1.0 now=0.98 fd=0.04 want=wait(0.02100000000000002) got=wait(0.020000000000000018)

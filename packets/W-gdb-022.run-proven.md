@@ -10,7 +10,7 @@ id: W-gdb-022
   "writer": "gdb",
   "code_owner": "gdb integrator (gorav lane)",
   "product_repo": "goreda/gorav",
-  "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
+  "product_sha": "91a8b69abe9ce61e31188e3d426477a3f8528ede",
   "touched_files": [
     {
       "path": "Sources/GorAVSubtitles/SRTParser.swift",
@@ -46,17 +46,18 @@ id: W-gdb-022
     "inline_files": [
       {
         "path": "Sources/vtt-parser-tests/main.swift",
-        "block": "rf0"
+        "block": "rf0",
+        "content": "import Foundation\nimport GorAVSubtitles\n\n// Portable tests for VTTParser. Run from the package root: swift run vtt-parser-tests\n// Fixture dir: env VTT_FIXTURES or ./kits/vtt-fixtures. A missing fixture dir is a FAIL, never a skip.\n\nvar pass = 0\nvar fail = 0\nfunc check(_ ok: Bool, _ name: String, _ detail: @autoclosure () -> String = \"\") {\n    if ok { pass += 1 } else { fail += 1; if !name.hasPrefix(\"NEGCTL-selftest\") { print(\"FAIL \\(name) \\(detail())\") } }\n}\ntypealias E = VTTParser.VTTError\n\nfunc errTag(_ e: E) -> String {\n    switch e {\n    case .emptyDocument: return \"emptyDocument\"\n    case .inputTooLarge: return \"inputTooLarge\"\n    case .tooManyLines: return \"tooManyLines\"\n    case .lineTooLong(let l, _): return \"lineTooLong@\\(l)\"\n    case .tooManyCues: return \"tooManyCues\"\n    case .missingSignature(let l): return \"missingSignature@\\(l)\"\n    case .badHeader(let l): return \"badHeader@\\(l)\"\n    case .badTimingLine(let l): return \"badTimingLine@\\(l)\"\n    case .badTimestamp(let l): return \"badTimestamp@\\(l)\"\n    case .endNotAfterStart(let l): return \"endNotAfterStart@\\(l)\"\n    case .missingText(let l): return \"missingText@\\(l)\"\n    case .textContainsArrow(let l): return \"textContainsArrow@\\(l)\"\n    case .badSetting(let l): return \"badSetting@\\(l)\"\n    case .duplicateSetting(let l): return \"duplicateSetting@\\(l)\"\n    case .unknownRegion(let l): return \"unknownRegion@\\(l)\"\n    case .badRegion(let l): return \"badRegion@\\(l)\"\n    case .misplacedBlock(let l): return \"misplacedBlock@\\(l)\"\n    case .noteContainsArrow(let l): return \"noteContainsArrow@\\(l)\"\n    }\n}\nfunc outcome(_ r: Result<[SubtitleCue], E>) -> String {\n    switch r {\n    case .success(let c): return \"ok:\\(c.count)\"\n    case .failure(let e): return \"err:\" + errTag(e)\n    }\n}\nfunc doc(_ s: String) -> VTTParser.Document? { try? VTTParser.parseDocument(s) }\n\n// ---- manifest-driven fixtures\nlet dir = ProcessInfo.processInfo.environment[\"VTT_FIXTURES\"] ?? \"kits/vtt-fixtures\"\nfunc bytes(_ name: String) -> String? {\n    guard let d = FileManager.default.contents(atPath: dir + \"/\" + name) else { return nil }\n    return String(decoding: d, as: UTF8.self)\n}\nif let manifest = bytes(\"expect.tsv\") {\n    var n = 0\n    for row in manifest.split(separator: \"\\n\") {\n        let f = row.split(separator: \"\\t\").map(String.init)\n        guard f.count == 2 else { check(false, \"manifest row\", String(row)); continue }\n        n += 1\n        guard let text = bytes(f[0]) else { check(false, \"fixture readable \\(f[0])\"); continue }\n        let got = outcome(VTTParser.parse(text))\n        check(got == f[1], \"fixture \\(f[0])\", \"expected \\(f[1]) got \\(got)\")\n    }\n    check(n >= 30, \"manifest has >= 30 rows\", \"rows \\(n)\")\n} else {\n    check(false, \"fixtures dir readable\", dir)\n}\n\n// ---- detailed content assertions (fixtures re-read)\nif let t = bytes(\"ok-basic.vtt\"), let d = doc(t) {\n    check(d.cues.count == 2, \"basic count\")\n    check(d.cues[0].startSeconds == 1.0 && d.cues[0].endSeconds == 3.0, \"basic timing\")\n    check(d.cues[0].lines == [\"Merhaba dunya\"], \"basic text\")\n    check(d.cues[0].index == 1 && d.cues[1].index == 2, \"basic indices\")\n    check(d.cueInfo[0].settings.line == .percent(90), \"basic line:90%\")\n    check(d.cueInfo[1].settings == VTTParser.CueSettings(), \"basic no settings\")\n    check(d.cueInfo[0].identifier == nil, \"basic no id\")\n    check(d.cues[0].styleName == nil, \"styleName nil\")\n}\nif let t = bytes(\"ok-header-text-notes-style.vtt\"), let d = doc(t) {\n    check(d.headerText == \"- demo file\", \"header text\", d.headerText)\n    check(d.skipped.map { $0.kind } == [.note, .style, .note], \"skipped kinds typed\")\n    check(d.skipped[0].lines == [\"NOTE this is a comment\", \"over two lines\"], \"note lines kept\")\n    check(d.cueInfo[0].identifier == \"1\", \"numeric id kept\")\n    check(d.cues[0].startSeconds == 1.0 && d.cues[0].endSeconds == 2.5, \"mm:ss.ttt short form\")\n    check(d.cues[1].startSeconds == 3600.0, \"hh form\")\n    check(d.cueInfo[0].timingLine == 11, \"timing line number\", \"\\(d.cueInfo[0].timingLine)\")\n}\nif let t = bytes(\"ok-settings-permutations.vtt\"), let d = doc(t) {\n    check(d.regions.count == 1 && d.regions[0].id == \"r1\" && d.regions[0].width == 40 && d.regions[0].lines == 3 && d.regions[0].scrollUp, \"region parsed\")\n    check(d.regions[0].regionAnchor?.x == 0 && d.regions[0].regionAnchor?.y == 100, \"region anchor\")\n    let a = d.cueInfo[0].settings\n    check(a.vertical == .rl && a.line == .number(-1) && a.position == 10 && a.positionAlign == .lineLeft && a.size == 50 && a.align == .start, \"settings a\", \"\\(a)\")\n    let b = d.cueInfo[1].settings\n    check(b.align == .end && b.line == .percent(0) && b.lineAlign == .center, \"settings b (tab separated)\", \"\\(b)\")\n    let c = d.cueInfo[2].settings\n    check(c.region == \"r1\" && c.position == 50.5 && c.positionAlign == .center && c.align == .left, \"settings c\", \"\\(c)\")\n    let e = d.cueInfo[3].settings\n    check(e.vertical == .lr && e.line == .number(3) && e.size == 100 && e.align == .right && e.position == 0, \"settings d\", \"\\(e)\")\n    check(d.cueInfo.map { $0.identifier } == [\"a\", \"b\", \"c\", \"d\"], \"ids\")\n}\nif let t = bytes(\"ok-overlap.vtt\"), let d = doc(t) {\n    check(d.cues.map { $0.startSeconds } == [1, 2, 2] && d.cues.map { $0.endSeconds } == [5, 3, 5], \"overlap kept in file order\")\n    check(d.cues[0].contains(seconds: 2.5) && d.cues[1].contains(seconds: 2.5) && d.cues[2].contains(seconds: 2.5), \"overlap membership\")\n}\nif let t = bytes(\"ok-unicode-turkish.vtt\"), let d = doc(t) {\n    check(d.cueInfo[0].identifier == \"kimlik-\\u{130}\", \"turkish id verbatim\")\n    check(d.cues[0].lines[0] == \"\\u{130}stanbul \\u{131}\\u{15F}\\u{131}k I\\u{15E}IK iI \\u{131}\\u{130}\", \"turkish text verbatim\")\n    check(Array(d.cues[0].lines[1].unicodeScalars).prefix(2) == [Unicode.Scalar(0x49)!, Unicode.Scalar(0x307)!], \"combining dot preserved, not folded to U+0130\")\n    check(d.cues[1].lines[0].unicodeScalars.contains(Unicode.Scalar(0x1F600)!), \"emoji kept\")\n    check(d.cues[1].lines[0].unicodeScalars.contains(Unicode.Scalar(0x301)!), \"combining acute kept (no NFC)\")\n}\nif let t = bytes(\"ok-crlf-bom.vtt\"), let d = doc(t) {\n    check(d.cues[0].lines == [\"A\", \"B\"] && d.cues[1].lines == [\"C\"], \"crlf/cr lines\")\n}\nif let t = bytes(\"ok-whitespace-line-is-text.vtt\"), let d = doc(t) {\n    check(d.cues[0].lines == [\"A\", \" \", \"B\"], \"whitespace-only line stays cue text\")\n}\nif let t = bytes(\"ok-note-lowercase-is-cue-id.vtt\"), let d = doc(t) {\n    check(d.skipped.isEmpty && d.cueInfo[0].identifier == \"note\" && d.cueInfo[1].identifier == \"NOTES\", \"NOTE keyword is case-sensitive and word-bounded\")\n}\n\n// ---- inline: bounds\nlet tiny = VTTParser.Limits(maxBytes: 20, maxLines: 5, maxLineScalars: 10, maxCues: 1)\ncheck(outcome(VTTParser.parse(\"WEBVTT\\n\\n00:00:01.000 --> 00:00:02.000\\nA\\n\", limits: tiny)) == \"err:inputTooLarge\", \"maxBytes\")\nlet big = VTTParser.Limits(maxBytes: 1000, maxLines: 4, maxLineScalars: 100, maxCues: 100)\ncheck(outcome(VTTParser.parse(\"WEBVTT\\n\\na\\n\\nb\\n\\nc\\n\\nd\\n\", limits: big)) == \"err:tooManyLines\", \"maxLines\")\nlet ll = VTTParser.Limits(maxBytes: 1000, maxLines: 100, maxLineScalars: 10, maxCues: 100)\ncheck(outcome(VTTParser.parse(\"WEBVTT\\n\\n\" + String(repeating: \"x\", count: 11), limits: ll)) == \"err:lineTooLong@3\", \"maxLineScalars\")\nlet one = VTTParser.Limits(maxBytes: 1000, maxLines: 100, maxLineScalars: 100, maxCues: 1)\ncheck(outcome(VTTParser.parse(\"WEBVTT\\n\\n00:00:01.000 --> 00:00:02.000\\nA\\n\\n00:00:03.000 --> 00:00:04.000\\nB\\n\", limits: one)) == \"err:tooManyCues\", \"maxCues\")\ncheck(outcome(VTTParser.parse(\"WEBVTT\\n\\n00:00:01.000 --> 00:00:02.000\\nA\\n\", limits: one)) == \"ok:1\", \"at limit ok\")\n// a large valid document stays fast and exact\nvar bigDoc = \"WEBVTT\\n\\n\"\nfor k in 0..<5000 { bigDoc += \"00:00:\\(String(format: \"%02d\", k % 60)).000 --> 01:00:00.000\\ncue \\(k)\\n\\n\" }\nif case .success(let c) = VTTParser.parse(bigDoc) { check(c.count == 5000 && c[4999].lines == [\"cue 4999\"], \"5000 cues\") } else { check(false, \"5000 cues parse\") }\n// throwing form agrees with Result form\ncheck((try? VTTParser.parseThrowing(\"WEBVTT\\n\\n00:00:01.000 --> 00:00:02.000\\nA\\n\"))?.count == 1, \"parseThrowing ok\")\ndo { _ = try VTTParser.parseThrowing(\"\"); check(false, \"parseThrowing empty must throw\") } catch { check((error as? E) == .emptyDocument, \"parseThrowing empty typed\") }\n// partial adoption never happens: one bad block voids the whole parse\ncheck(outcome(VTTParser.parse(\"WEBVTT\\n\\n00:00:01.000 --> 00:00:02.000\\nA\\n\\n00:00:03.000 --> 00:00:02.000\\nB\\n\")) == \"err:endNotAfterStart@6\", \"no partial adoption\")\nif let t = bytes(\"ok-style-region-heads-exact.vtt\"), let d = doc(t) {\n    check(d.skipped.count == 1 && d.skipped[0].kind == .style && d.skipped[0].line == 3, \"exact STYLE skipped, 'STYLE foo' is not\", \"\\(d.skipped)\")\n    check(d.regions.isEmpty, \"'REGION x' is not a region block\")\n    check(d.cueInfo.map { $0.identifier } == [\"STYLE foo\", \"REGION x\"], \"keyword-like identifiers kept\", \"\\(d.cueInfo.map { $0.identifier })\")\n}\n\n// ---- negative controls on the harness itself\n// (1) a wrong expectation must be detected as a mismatch\ncheck(outcome(VTTParser.parse(\"WEBVTT\\n\\n00:00:01,000 --> 00:00:02,000\\nA\\n\")) != \"ok:1\", \"NEGCTL comma timestamp must not parse as ok\")\ncheck(outcome(VTTParser.parse(\"WEBVTT\\n\\n00:00:01.000 --> 00:00:02.000\\nA\\n\")) != \"err:emptyDocument\", \"NEGCTL valid input must not error\")\n// (2) check() really records failures\nlet before = fail\ncheck(false, \"NEGCTL-selftest (expected to fail once)\")\nlet recorded = fail == before + 1\nfail = before // remove the deliberate failure\ncheck(recorded, \"NEGCTL check() records failures\")\n// (3) parse results differ between inputs (parser is not a constant)\ncheck(outcome(VTTParser.parse(\"WEBVTT\\n\\n00:00:01.000 --> 00:00:02.000\\nA\\n\")) != outcome(VTTParser.parse(\"\")), \"NEGCTL parser not constant\")\n\nprint(\"vtt-parser-tests: \\(pass) PASS, \\(fail) FAIL\")\nexit(fail == 0 ? 0 : 1)\n"
       }
     ]
   },
   "run_proof": {
     "version": 1,
-    "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
+    "product_sha": "91a8b69abe9ce61e31188e3d426477a3f8528ede",
     "command": "swift run vtt-parser-tests",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-15T22:31:51.592466+00:00",
+    "ran_at": "2026-11-15T23:02:14.916970+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -69,15 +70,15 @@ id: W-gdb-022
       }
     ],
     "log_block": "actual_run_log",
-    "log_sha256": "603cd9146ea5165159680ff91e423ea1e28f4891b374066bbd93ee112a45319e",
+    "log_sha256": "dc5dc78cb34d7496a4996e486a7c4a6835c0c8cde2d060baaa89c624bf42d6db",
     "last_5_lines": [
       "[21/24] Wrapping AST for vtt-parser-tests for debugging",
       "[22/24] Write Objects.LinkFileList",
       "[23/24] Linking vtt-parser-tests",
-      "Build complete! (3.14s)",
+      "Build complete! (3.15s)",
       "vtt-parser-tests: 87 PASS, 0 FAIL"
     ],
-    "receipt_sha256": "d372992450e34574ce926abe22bb275512ed576d0d40596cf465bc2ab220b4bb"
+    "receipt_sha256": "ae4ec7d63a0a9c29fe5c89582762adce048b75b73337f0d42e4d58c0705cedf4"
   }
 }
 ```
@@ -86,7 +87,7 @@ id: W-gdb-022
 the subtitle line parses SRT and ASS only; WebVTT (the web standard sidecar) has no parser, so VTT sidecars are silently unusable.
 
 ## reproducer
-- repo: ohal/gorav @ 2112af0d60df16c5473173b664903f76ce54173e (branch ohal/gorav; PR #3 head).
+- repo: goreda/gorav @ 91a8b69abe9ce61e31188e3d426477a3f8528ede (branch main).
 - real source: Sources/GorAVSubtitles/SRTParser.swift (sha256 49ab4d12, 94 lines, whole file below) - the parser ABI to mirror; Sources/GorAVSubtitles/SubtitleCue.swift (sha256 2311ed30) - the cue type.
 - real test command: swift run subtitle-srt-tests stays green; the returned parser runs its own portable tests.
 
@@ -464,34 +465,34 @@ exit(fail == 0 ? 0 : 1)
 
 ```text id=actual_run_log
 warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-g0oms77j/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
 warning: 'tree': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-g0oms77j/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-09h65du6/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
 warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-g0oms77j/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
+    /tmp/packet-proof-09h65du6/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
 Building for debugging...
 [0/7] Write sources
 [2/7] Write swift-version--9C6B84B6E025C5B.txt
@@ -514,6 +515,6 @@ Building for debugging...
 [21/24] Wrapping AST for vtt-parser-tests for debugging
 [22/24] Write Objects.LinkFileList
 [23/24] Linking vtt-parser-tests
-Build complete! (3.14s)
+Build complete! (3.15s)
 vtt-parser-tests: 87 PASS, 0 FAIL
 ```

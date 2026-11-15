@@ -10,7 +10,7 @@ id: W-gdb-023
   "writer": "gdb",
   "code_owner": "gdb integrator (gorav lane)",
   "product_repo": "goreda/gorav",
-  "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
+  "product_sha": "91a8b69abe9ce61e31188e3d426477a3f8528ede",
   "touched_files": [
     {
       "path": "Sources/GorAVSubtitles/ASSParser.swift",
@@ -41,11 +41,13 @@ id: W-gdb-023
     "inline_files": [
       {
         "path": "Sources/subtitle-tests/ASSTests.swift",
-        "block": "rf0"
+        "block": "rf0",
+        "content": "import Foundation\nimport GorAVSubtitles\n\n// L6-u1 ASS parser contract tests (Linux model tests; no FFmpeg, no native\n// display). 1 positive document (8 assertions) + 6 negative vectors, typed\n// refusals only. Convention: ALL_CHECKS_PASS on success, exit 0/1.\n@main\nstruct ASSTests {\n    static var failures = 0\n    static func log(_ m: String) { FileHandle.standardError.write(Data((m + \"\\n\").utf8)) }\n    static func expect(_ c: Bool, _ m: String) { if !c { failures += 1; log(\"FAIL \\(m)\") } }\n\n    static func expectThrows(_ m: String, _ want: ASSParser.ParseError, _ body: String) {\n        do {\n            _ = try ASSParser.parse(body)\n            expect(false, \"\\(m): malformed input accepted\")\n        } catch let e as ASSParser.ParseError {\n            expect(e == want, \"\\(m): got \\(e), want \\(want)\")\n        } catch {\n            expect(false, \"\\(m): foreign error \\(error)\")\n        }\n    }\n\n    static let sample = \"\"\"\n    [Script Info]\n    Title: sample\n    PlayResX: 384\n    PlayResY: 288\n\n    [V4+ Styles]\n    Format: Name, Fontname, Fontsize, PrimaryColour\n    Style: Default,Arial,20,&H00FFFFFF\n\n    [Events]\n    Format: Layer, Start, End, Style, Text\n    Dialogue: 0,0:00:01.00,0:00:02.50,Default,Hello, world\n    Comment: 0,0:00:00.00,0:00:00.10,Default,ignored\n    Dialogue: 0,0:00:03.00,0:00:04.00,Default,{\\\\i1}Styled\\\\Nline2\n    \"\"\"\n\n    static func main() {\n        // p1: minimal document - style table, PlayRes, dialogue cues, comment skipped.\n        do {\n            let doc = try ASSParser.parse(sample)\n            expect(doc.playResX == 384 && doc.playResY == 288, \"p1: PlayRes\")\n            expect(doc.styles.count == 1, \"p1: style count \\(doc.styles.count)\")\n            if let s = doc.styles.first {\n                expect(s.name == \"Default\" && s.fontName == \"Arial\" && s.fontSize == 20, \"p1: style fields\")\n                expect(s.primaryColourARGB == 0x00FFFFFF, \"p1: colour decode \\(String(s.primaryColourARGB, radix: 16))\")\n            }\n            expect(doc.cues.count == 2, \"p1: cue count \\(doc.cues.count) (comment must be skipped)\")\n            if doc.cues.count == 2 {\n                let c0 = doc.cues[0]\n                expect(c0.index == 1 && c0.startSeconds == 1.0 && c0.endSeconds == 2.5, \"p1: cue0 timing\")\n                expect(c0.text == \"Hello, world\", \"p1: cue0 text [\\(c0.text)]\")\n                let c1 = doc.cues[1]\n                expect(c1.index == 2 && c1.startSeconds == 3.0 && c1.endSeconds == 4.0, \"p1: cue1 timing\")\n                expect(c0.styleName == \"Default\" && c1.styleName == \"Default\", \"p1: style association preserved \\(c0.styleName ?? \"nil\")\")\n                expect(c1.lines == [\"Styled\", \"line2\"], \"p1: override strip + \\\\N split \\(c1.lines)\")\n                expect(doc.unsupportedOverrides == [ASSParser.OverrideReport(cueIndex: 2, tags: [\"\\\\i\"])],\n                       \"p1: override reported UNSUPPORTED \\(doc.unsupportedOverrides)\")\n            }\n        } catch { expect(false, \"p1: threw \\(error)\") }\n\n        // p1b: asymmetric colour vector - a BGR/RGB swap bug cannot pass.\n        do {\n            let d = try ASSParser.parse(\"[V4+ Styles]\\nFormat: Name, Fontname, Fontsize, PrimaryColour\\nStyle: Asym,Arial,20,&H80112233\\n[Events]\\nFormat: Layer, Start, End, Text\\nDialogue: 0,0:00:01.00,0:00:02.00,x\\n\")\n            expect(d.styles.first?.primaryColourARGB == 0x80332211, \"p1b: &H80112233 -> 80332211 got \\(String(d.styles.first?.primaryColourARGB ?? 0, radix: 16))\")\n        } catch { expect(false, \"p1b: threw \\(error)\") }\n\n        // p1c: invalid colour length (5 hex digits) refuses - style skipped, no positional misdecode.\n        do {\n            let d = try ASSParser.parse(\"[V4+ Styles]\\nFormat: Name, Fontname, Fontsize, PrimaryColour\\nStyle: Bad,Arial,20,&H12345\\n[Events]\\nFormat: Layer, Start, End, Text\\nDialogue: 0,0:00:01.00,0:00:02.00,x\\n\")\n            expect(d.styles.isEmpty, \"p1c: 5-hex colour refused (style skipped)\")\n            expect(d.skippedStyles == [ASSParser.SkippedStyle(line: 3, reason: \"bad colour\")],\n                   \"p1c: skip is caller-visible \\(d.skippedStyles)\")\n        } catch { expect(false, \"p1c: threw \\(error)\") }\n\n        // p1d: stray \"}\" outside any block is preserved as text.\n        do {\n            let d = try ASSParser.parse(\"[Events]\\nFormat: Layer, Start, End, Text\\nDialogue: 0,0:00:01.00,0:00:02.00,a}b\\n\")\n            expect(d.cues.first?.text == \"a}b\", \"p1d: stray } preserved got [\\(d.cues.first?.text ?? \"\")]\")\n        } catch { expect(false, \"p1d: threw \\(error)\") }\n\n        // p2: a document with no override blocks reports none.\n        do {\n            let clean = try ASSParser.parse(\"[Events]\\nFormat: Layer, Start, End, Text\\nDialogue: 0,0:00:01.00,0:00:02.00,plain\\n\")\n            expect(clean.unsupportedOverrides.isEmpty, \"p2: no overrides -> empty report\")\n            expect(clean.cues.count == 1, \"p2: plain cue parsed\")\n        } catch { expect(false, \"p2: threw \\(error)\") }\n\n        // p3: unterminated override block still reported UNSUPPORTED.\n        do {\n            let d = try ASSParser.parse(\"[Events]\\nFormat: Layer, Start, End, Text\\nDialogue: 0,0:00:01.00,0:00:02.00,tail {\\\\pos(3,4)\\n\")\n            expect(d.unsupportedOverrides == [ASSParser.OverrideReport(cueIndex: 1, tags: [\"\\\\pos\"])],\n                   \"p3: unterminated block reported \\(d.unsupportedOverrides)\")\n        } catch { expect(false, \"p3: threw \\(error)\") }\n\n        // n1: Dialogue before any Format in [Events].\n        expectThrows(\"n1\", .dialogueBeforeFormat(line: 2), \"[Events]\\nDialogue: 0,0:00:01.00,0:00:02.00,Default,x\\n\")\n        // n2: no [Events] section at all.\n        expectThrows(\"n2\", .missingEventsSection, \"[Script Info]\\nTitle: x\\n\")\n        // n3: seconds out of range.\n        expectThrows(\"n3\", .badTimestamp(line: 3), \"[Events]\\nFormat: Layer, Start, End, Text\\nDialogue: 0,0:00:61.00,0:00:02.00,x\\n\")\n        // n4: end before start.\n        expectThrows(\"n4\", .endNotAfterStart(line: 3), \"[Events]\\nFormat: Layer, Start, End, Text\\nDialogue: 0,0:00:02.00,0:00:01.00,x\\n\")\n        // n5: fewer fields than the Format declares.\n        expectThrows(\"n5\", .badDialogueFieldCount(line: 3), \"[Events]\\nFormat: Layer, Start, End, Style, Text\\nDialogue: 0,0:00:01.00\\n\")\n        // n7: pure override-only event -> explicit typed refusal (evidence kept).\n        expectThrows(\"n7\", .overrideOnlyText(line: 3), \"[Events]\\nFormat: Layer, Start, End, Text\\nDialogue: 0,0:00:01.00,0:00:02.00,{\\\\pos(10,10)}\\n\")\n        // n6: empty text field.\n        expectThrows(\"n6\", .missingText(line: 3), \"[Events]\\nFormat: Layer, Start, End, Style, Text\\nDialogue: 0,0:00:01.00,0:00:02.00,Default,\\n\")\n\n        if failures == 0 { log(\"ALL_CHECKS_PASS\") } else { log(\"FAILURES=\\(failures)\") }\n        exit(failures == 0 ? 0 : 1)\n    }\n}\n"
       },
       {
         "path": "Package.swift",
-        "block": "rf1"
+        "block": "rf1",
+        "content": "// swift-tools-version: 5.9\n// SOURCE-ONLY PROPOSAL. Isolated decoder tree, NOT a production replacement.\n// Locked include/library search paths must come from a verified provider lock.\nimport PackageDescription\n\nlet package = Package(\n    name: \"GorAVDecoderOnlyCandidate\",\n    platforms: [.macOS(.v13)],\n    products: [.executable(name: \"frame-lease-tests\", targets: [\"frame-lease-tests\"]), .executable(name: \"audio-interrupt-tests\", targets: [\"audio-interrupt-tests\"]), .executable(name: \"cue-output-tests\", targets: [\"cue-output-tests\"]), .executable(name: \"render-graph-tests\", targets: [\"render-graph-tests\"]), .executable(name: \"decoder-inventory-tests\", targets: [\"decoder-inventory-tests\"]), .executable(name: \"color-stage-tests\", targets: [\"color-stage-tests\"]), .executable(name: \"crop-tests\", targets: [\"crop-tests\"]), .executable(name: \"frame-tap-tests\", targets: [\"frame-tap-tests\"]), .executable(name: \"media-inventory-tests\", targets: [\"media-inventory-tests\"]), .executable(name: \"remote-source-tests\", targets: [\"remote-source-tests\"]), .executable(name: \"prepared-shot-tests\", targets: [\"prepared-shot-tests\"]), .executable(name: \"hosttransform-tests\", targets: [\"hosttransform-tests\"]), .executable(name: \"timepos-tests\", targets: [\"timepos-tests\"]), .executable(name: \"timepos-vector-tests\", targets: [\"timepos-vector-tests\"]), .executable(name: \"controlbus-tests\", targets: [\"controlbus-tests\"]), .executable(name: \"gorav-probe\", targets: [\"gorav-probe\"]), .library(name: \"BridgeVTDecode\", targets: [\"BridgeVTDecode\"]), .library(name: \"AudioMasterScheduler\", targets: [\"AudioMasterScheduler\"]), .executable(name: \"gorav-sink-check\", targets: [\"gorav-sink-check\"]), .executable(name: \"gorav-first-frame\", targets: [\"gorav-first-frame\"]), .executable(name: \"refusal-tests\", targets: [\"refusal-tests\"]), .executable(name: \"playback-test\", targets: [\"playback-test\"]), .executable(name: \"audio-test\", targets: [\"audio-test\"]), .executable(name: \"seek-test\", targets: [\"seek-test\"]), .executable(name: \"audio-refusal-tests\", targets: [\"audio-refusal-tests\"]), .executable(name: \"video-refusal-tests\", targets: [\"video-refusal-tests\"]), .executable(name: \"coexist-test\", targets: [\"coexist-test\"]), .executable(name: \"isolation-test\", targets: [\"isolation-test\"]), .executable(name: \"trace-dump\", targets: [\"trace-dump\"]), .executable(name: \"core-seek-tests\", targets: [\"core-seek-tests\"]), .executable(name: \"real-seek-tests\", targets: [\"real-seek-tests\"]), .executable(name: \"seek-ring-reset-tests\", targets: [\"seek-ring-reset-tests\"]), .executable(name: \"seek-pacing-tests\", targets: [\"seek-pacing-tests\"]), .executable(name: \"seek-composition-tests\", targets: [\"seek-composition-tests\"]), .executable(name: \"audio-seek-tests\", targets: [\"audio-seek-tests\"]), .executable(name: \"audio-baseline-tests\", targets: [\"audio-baseline-tests\"]), .executable(name: \"demux-parity-tests\", targets: [\"demux-parity-tests\"]), .executable(name: \"seek-contract-tests\", targets: [\"seek-contract-tests\"]), .executable(name: \"adversarial-seek-tests\", targets: [\"adversarial-seek-tests\"]), .executable(name: \"shell-seek-bridge-tests\", targets: [\"shell-seek-bridge-tests\"]), .executable(name: \"k9-adversarial\", targets: [\"k9-adversarial\"]), .executable(name: \"shell-mac-test\", targets: [\"shell-mac-test\"]), .executable(name: \"frame-dump\", targets: [\"frame-dump\"]), .executable(name: \"gorav-play\", targets: [\"gorav-play\"]), .executable(name: \"l4-hwdecode-tests\", targets: [\"l4-hwdecode-tests\"]), .executable(name: \"timing-ledger-tests\", targets: [\"timing-ledger-tests\"]), .executable(name: \"race-witness-tests\", targets: [\"race-witness-tests\"]), .executable(name: \"gorav-metal-check\", targets: [\"gorav-metal-check\"]), .library(name: \"GorAVFFmpegAdapter\", targets: [\"GorAVFFmpegAdapter\"]), .library(name: \"GorAVAudioClockSwift\", targets: [\"GorAVAudioClockSwift\"]), .library(name: \"GorAVSubtitles\", targets: [\"GorAVSubtitles\"]), .executable(name: \"subtitle-srt-tests\", targets: [\"subtitle-srt-tests\"]), .executable(name: \"vtt-parser-tests\", targets: [\"vtt-parser-tests\"]), .executable(name: \"l3-convert-matrix-tests\", targets: [\"l3-convert-matrix-tests\"]), .executable(name: \"avsync-golden-tests\", targets: [\"avsync-golden-tests\"]), .executable(name: \"transport-vector-tests\", targets: [\"transport-vector-tests\"]), .executable(name: \"subtitle-ass-tests\", targets: [\"subtitle-ass-tests\"]), .executable(name: \"subtitle-track-tests\", targets: [\"subtitle-track-tests\"]), .library(name: \"GorAVEmbeddedShell\", targets: [\"GorAVEmbeddedShell\"]), .executable(name: \"admission-tests\", targets: [\"admission-tests\"]), .executable(name: \"session-venue-tests\", targets: [\"session-venue-tests\"]), .executable(name: \"b-gate-tests\", targets: [\"b-gate-tests\"]), .executable(name: \"seek-restart-probe\", targets: [\"seek-restart-probe\"]), .executable(name: \"e1-shapes-tests\", targets: [\"e1-shapes-tests\"]), .executable(name: \"parity-pixel-tests\", targets: [\"parity-pixel-tests\"]), .executable(name: \"untagged-color-tests\", targets: [\"untagged-color-tests\"])],\n    targets: [\n        .executableTarget(name: \"n6-native-tests\", dependencies: [\"GorAVMetalPresenter\", \"GorAVPlaybackCore\", \"GorAVSubtitles\"], path: \"Sources/n6-native-tests\"),\n        .executableTarget(name: \"uniform-packing-tests\", dependencies: [\"GorAVPlaybackCore\"], path: \"Sources/uniform-packing-tests\"),\n        .executableTarget(name: \"active-transport-tests\", dependencies: [\"GorAVCore\", \"GorAVFFmpegAdapter\", \"GorAVNativeProbeKit\", \"CFFmpeg\"], path: \"Sources/active-transport-tests\"),\n        .executableTarget(name: \"frame-lease-tests\", dependencies: [\"GorAVPlaybackCore\", \"GorAVNativeProbeKit\", \"GorAVCore\"], path: \"Sources/frame-lease-tests\"),\n        .executableTarget(name: \"audio-interrupt-tests\", dependencies: [\"GorAVCore\", \"GorAVFFmpegAdapter\"], path: \"Sources/audio-interrupt-tests\"),\n        .executableTarget(name: \"cue-output-tests\", dependencies: [\"GorAVSubtitles\", \"GorAVPlaybackCore\"], path: \"Sources/cue-output-tests\"),\n        .executableTarget(name: \"render-graph-tests\", dependencies: [\"GorAVPlaybackCore\", \"GorAVNativeProbeKit\"], path: \"Sources/render-graph-tests\"),\n        .executableTarget(name: \"decoder-lifetime-tests\", dependencies: [\"GorAVPlaybackCore\", \"GorAVFFmpegAdapter\", \"GorAVCore\"], path: \"Sources/decoder-lifetime-tests\"),\n        .executableTarget(name: \"decoder-inventory-tests\", dependencies: [\"GorAVPlaybackCore\"], path: \"Sources/decoder-inventory-tests\"),\n        .testTarget(name: \"PreparedVideoSwapTests\", dependencies: [\"GorAVPlaybackCore\"], path: \"Tests/PreparedVideoSwapTests\"),\n        .testTarget(name: \"EmbeddedPreparedShotTests\", dependencies: [.target(name: \"GorAVEmbeddedShell\", condition: .when(platforms: [.macOS])), \"GorAVPlaybackCore\", \"GorAVNativeProbeKit\"], path: \"Tests/EmbeddedPreparedShotTests\"),\n        .executableTarget(name: \"color-stage-tests\", dependencies: [\"GorAVPlaybackCore\"], path: \"Sources/color-stage-tests\"),\n        .executableTarget(name: \"crop-tests\", dependencies: [\"GorAVPlaybackCore\", \"GorAVNativeProbeKit\"], path: \"Sources/crop-tests\"),\n        .executableTarget(name: \"frame-tap-tests\", dependencies: [\"GorAVPlaybackCore\", \"GorAVNativeProbeKit\"], path: \"Sources/frame-tap-tests\"),\n        .executableTarget(name: \"active-media-inventory-tests\", dependencies: [\"GorAVCore\", \"GorAVFFmpegAdapter\"], path: \"Sources/active-media-inventory-tests\"),\n        .executableTarget(name: \"media-inventory-tests\", dependencies: [\"GorAVCore\", \"GorAVFFmpegAdapter\"], path: \"Sources/media-inventory-tests\"),\n        .executableTarget(name: \"video-remote-open-tests\", dependencies: [\"GorAVCore\", \"GorAVFFmpegAdapter\"], path: \"Sources/video-remote-open-tests\"),\n        .executableTarget(name: \"remote-source-tests\", dependencies: [\"GorAVCore\", \"GorAVFFmpegAdapter\"], path: \"Sources/remote-source-tests\"),\n        .executableTarget(name: \"subtitle-controller-tests\", dependencies: [\"GorAVSubtitles\"], path: \"Sources/subtitle-tests\", sources: [\"SubtitleControllerTests.swift\"]),\n        .executableTarget(name: \"prepared-shot-tests\", dependencies: [\"GorAVPlaybackCore\"], path: \"Sources/prepared-shot-tests\"),\n        .executableTarget(name: \"hosttransform-tests\", dependencies: [\"GorAVPlaybackCore\"], path: \"Sources/hosttransform-tests\"),\n        .executableTarget(name: \"timepos-tests\", dependencies: [\"GorAVPlaybackCore\"], path: \"Sources/timepos-tests\"),\n        .executableTarget(name: \"timepos-vector-tests\", dependencies: [\"GorAVPlaybackCore\"], path: \"Sources/timepos-vector-tests\"),\n        .executableTarget(name: \"controlbus-tests\", dependencies: [\"GorAVPlaybackCore\"], path: \"Sources/controlbus-tests\"),\n        .target(name: \"BridgeDemux\", path: \"Tests/labs/p-a1-r2/Sources/BridgeDemux\"),\n        .target(name: \"BridgeVTDecode\", dependencies: [\"BridgeDemux\"], path: \"Sources/BridgeVTDecode\"),\n        .target(name: \"AudioMasterScheduler\", path: \"Sources/AudioMasterScheduler\"),\n        .testTarget(name: \"EngineContractTests\", dependencies: [\"BridgeVTDecode\", \"BridgeDemux\", \"AudioMasterScheduler\"], path: \"Tests/EngineContractTests\"),\n        .executableTarget(name: \"e1-headless-tests\", dependencies: [\"BridgeDemux\", \"AudioMasterScheduler\", \"CFFmpeg\", \"GorAVPlaybackCore\", \"GorAVMetalPresenter\"], path: \"Sources/e1-headless-tests\"),\n        .executableTarget(name: \"gorav-probe\", dependencies: [\"GorAVCore\", \"GorAVFFmpegAdapter\"], path: \"Sources/gorav-probe\"),\n\n\n        .target(name: \"GorAVCore\", dependencies: [\"GorAVCAtomics\"], path: \"Sources/GorAVCore\", sources: [\"Boundary.swift\", \"AdmissionTable.swift\", \"OpenURLRouter.swift\"]),\n        // L5/L6 u7 wiring candidate (coordinator-owned landing): parser/model library +\n        // three SEPARATE @main consumer suites (one file each, never one merged target).\n        .target(name: \"GorAVSubtitles\", path: \"Sources/GorAVSubtitles\", sources: [\"ASSParser.swift\", \"SRTParser.swift\", \"VTTParser.swift\", \"SubtitleCue.swift\", \"SubtitlePlan.swift\", \"SubtitleSchedule.swift\", \"SubtitleTrack.swift\", \"SubtitleAutoLoad.swift\", \"SubtitleController.swift\", \"SubtitleCueOutput.swift\", \"SubtitleCueDelivery.swift\", \"SubtitleSidecarSession.swift\"]),\n        .executableTarget(name: \"vtt-parser-tests\", dependencies: [\"GorAVSubtitles\"],\n                          path: \"Sources/vtt-parser-tests\"),\n        .executableTarget(name: \"avsync-golden-tests\", dependencies: [\"GorAVPlaybackCore\"], path: \"Sources/avsync-golden-tests\"),\n        .executableTarget(name: \"transport-vector-tests\", path: \"Sources/transport-vector-tests\"),\n        .executableTarget(name: \"parity-pixel-tests\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\", \"GorAVPlaybackCore\"],\n                          path: \"Sources/parity-pixel-tests\"),\n        .executableTarget(name: \"untagged-color-tests\", dependencies: [\"GorAVPlaybackCore\"], path: \"Sources/untagged-color-tests\"),\n        .executableTarget(name: \"l3-convert-matrix-tests\", dependencies: [\"GorAVFFmpegAdapter\"],\n                          path: \"Sources/l3-convert-matrix-tests\",\n                          swiftSettings: [.define(\"L3_PROVIDER\")]),\n        .executableTarget(name: \"subtitle-srt-tests\", dependencies: [\"GorAVSubtitles\"],\n                          path: \"Sources/subtitle-tests\", sources: [\"SRTTests.swift\"]),\n        .executableTarget(name: \"subtitle-ass-tests\", dependencies: [\"GorAVSubtitles\"],\n                          path: \"Sources/subtitle-tests\", sources: [\"ASSTests.swift\"]),\n        .executableTarget(name: \"subtitle-track-tests\", dependencies: [\"GorAVSubtitles\"],\n                          path: \"Sources/subtitle-tests\", sources: [\"SubtitleTrackTests.swift\"]),\n        .executableTarget(name: \"subtitle-plan-tests\", dependencies: [\"GorAVSubtitles\"],\n                          path: \"Sources/subtitle-tests\", sources: [\"SubtitlePlanTests.swift\"]),\n        .target(name: \"GorAVNativeProbeKit\", dependencies: [\"GorAVCore\"],\n                path: \"Sources/GorAVNativeProbeKit\",\n                sources: [\"GorAVSeekContract.swift\", \"NativeProbe.swift\", \"LeaseTable.swift\", \"PacketFeedMachine.swift\", \"DemuxerPolicy.swift\"]),\n        .systemLibrary(name: \"CFFmpeg\", path: \"Sources/CFFmpeg\"),\n        // L6 Dolby Vision lane (block 78d L6; new lane dirs only, milestone-gated M4)\n        .target(name: \"GorAVDVRPU\",\n                path: \"Sources/GorAVDVRPU\",\n                sources: [\"src\"],\n                publicHeadersPath: \"include\"),\n        .target(name: \"GorAVDolbyVision\",\n                dependencies: [\"GorAVDVRPU\", \"CFFmpeg\", \"GorAVCore\",\n                               \"GorAVFFmpegAdapter\"],\n                path: \"Sources/GorAVDolbyVision\"),\n        .executableTarget(name: \"dovi-selftest\",\n                dependencies: [\"GorAVDVRPU\"],\n                path: \"Sources/dovi-selftest\",\n                exclude: [\"swift\"]),\n        .executableTarget(name: \"dovi-hdrtest\",\n                dependencies: [\"GorAVDVRPU\"],\n                path: \"Sources/dovi-hdrtest\",\n                exclude: [\"gen_ref_fields.py\"]),\n        .executableTarget(name: \"dovi-vectest\",\n                dependencies: [\"GorAVDVRPU\"],\n                path: \"Sources/dovi-vectest\"),\n        .executableTarget(name: \"dovi-fuzz\",\n                dependencies: [\"GorAVDVRPU\"],\n                path: \"Sources/dovi-fuzz\"),\n        .target(name: \"GorAVFFmpegAdapter\", dependencies: [\"CFFmpeg\", \"GorAVCore\", \"GorAVNativeProbeKit\", \"GorAVPlaybackCore\"],\n                path: \"Sources/GorAVFFmpegAdapter\", sources: [\"FFmpegSoftwareDecoder.swift\", \"SnapshotInput.swift\", \"SnapshotAVIOOwner.swift\", \"FrameObservation.swift\", \"FFmpegSoftwareAudioDecoder.swift\", \"L3Admission.swift\", \"L3SampleConvert.swift\", \"L3PixelConvert.swift\", \"L3HardwareDecode.swift\", \"L3AVCoordinator.swift\", \"SourceOpenOptions.swift\", \"MediaInventory.swift\", \"ActiveTransportSnapshot.swift\"]),        .executableTarget(name: \"l4-hwdecode-tests\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"CFFmpeg\"],\n                path: \"Sources/l4-hwdecode-tests\", sources: [\"L4HWDecodeTests.swift\"]),\n\n        .executableTarget(name: \"gorav-first-frame\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\"],\n                path: \"Sources/gorav-first-frame\", sources: [\"FirstFrame.swift\"]),\n        .executableTarget(name: \"refusal-tests\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\"],\n                path: \"Sources/refusal-tests\", sources: [\"RefusalTests.swift\"]),\n        .executableTarget(name: \"playback-test\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\", \"GorAVPlaybackCore\"],\n                path: \"Sources/playback-test\", sources: [\"PlaybackTest.swift\"]),\n        .executableTarget(name: \"audio-test\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\", \"GorAVPlaybackCore\"],\n                path: \"Sources/audio-test\", sources: [\"AudioTest.swift\"]),\n        .executableTarget(name: \"seek-test\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\"],\n                path: \"Sources/seek-test\", sources: [\"SeekTest.swift\"]),\n        .executableTarget(name: \"e1-shapes-tests\", dependencies: [.target(name: \"GorAVEmbeddedShell\", condition: .when(platforms: [.macOS])), .target(name: \"GorAVMetalPresenter\", condition: .when(platforms: [.macOS])), .target(name: \"GorAVPlaybackCore\", condition: .when(platforms: [.macOS]))], path: \"Sources/e1-shapes-tests\"),\n        .executableTarget(name: \"seek-restart-probe\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\"],\n                path: \"Sources/seek-restart-probe\", sources: [\"main.swift\"]),\n        .executableTarget(name: \"audio-refusal-tests\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\"],\n                path: \"Sources/audio-refusal-tests\", sources: [\"AudioRefusalTests.swift\"]),\n        .executableTarget(name: \"video-refusal-tests\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\"],\n                path: \"Sources/video-refusal-tests\", sources: [\"VideoRefusalTests.swift\"]),\n        .executableTarget(name: \"coexist-test\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\"],\n                path: \"Sources/coexist-test\", sources: [\"CoexistTest.swift\"]),\n        .executableTarget(name: \"isolation-test\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\"],\n                path: \"Sources/isolation-test\", sources: [\"IsolationTest.swift\"]),\n        .executableTarget(name: \"trace-dump\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\"],\n                path: \"Sources/trace-dump\", sources: [\"TraceDump.swift\"]),\n        .executableTarget(name: \"core-seek-tests\", dependencies: [\"GorAVPlaybackCore\", \"GorAVCore\", \"GorAVNativeProbeKit\"], path: \"Sources/core-seek-tests\"),\n        .executableTarget(name: \"real-seek-tests\", dependencies: [\"GorAVPlaybackCore\", \"GorAVCore\", \"GorAVNativeProbeKit\", \"GorAVFFmpegAdapter\"], path: \"Sources/real-seek-tests\"),\n        .executableTarget(name: \"seek-ring-reset-tests\", dependencies: [\"GorAVPlaybackCore\"], path: \"Sources/seek-ring-reset-tests\"),\n        .target(name: \"GorAVSeekComposition\", dependencies: [\"GorAVPlaybackCore\", \"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\"], path: \"Sources/GorAVSeekComposition\"),\n        .executableTarget(name: \"seek-pacing-tests\", dependencies: [\"GorAVPlaybackCore\"], path: \"Sources/seek-pacing-tests\"),\n        .executableTarget(name: \"seek-composition-tests\", dependencies: [\"GorAVSeekComposition\", \"GorAVPlaybackCore\", \"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\"], path: \"Sources/seek-composition-tests\"),\n        .executableTarget(name: \"audio-seek-tests\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\"], path: \"Sources/audio-seek-tests\"),\n        .executableTarget(name: \"demux-parity-tests\", dependencies: [\"BridgeDemux\", \"CFFmpeg\"], path: \"Sources/demux-parity-tests\"),\n        .executableTarget(name: \"audio-baseline-tests\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\"], path: \"Sources/audio-baseline-tests\"),\n        .executableTarget(name: \"seek-contract-tests\", dependencies: [\"GorAVNativeProbeKit\", \"GorAVCore\", \"GorAVFFmpegAdapter\"], path: \"Sources/seek-contract-tests\"),\n        .executableTarget(name: \"adversarial-seek-tests\", dependencies: [\"GorAVPlaybackCore\", \"GorAVCore\", \"GorAVNativeProbeKit\", \"GorAVFFmpegAdapter\"], path: \"Sources/adversarial-seek-tests\"),\n        .executableTarget(name: \"shell-seek-bridge-tests\", dependencies: [\"GorAVPlaybackCore\", \"GorAVCore\", \"GorAVNativeProbeKit\", \"GorAVFFmpegAdapter\"], path: \"Sources/shell-seek-bridge-tests\"),\n        .executableTarget(name: \"k9-adversarial\", dependencies: [\"GorAVPlaybackCore\"],\n                path: \"Sources/k9-adversarial\", sources: [\"K9Adversarial.swift\"]),\n        .executableTarget(name: \"shell-mac-test\", dependencies: [\"GorAVMacShell\", \"GorAVPlaybackCore\"],\n                path: \"Sources/shell-mac-test\", sources: [\"ShellMacTest.swift\"]),\n        .executableTarget(name: \"frame-dump\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVNativeProbeKit\", \"GorAVPlaybackCore\"],\n                path: \"Sources/frame-dump\", sources: [\"FrameDump.swift\", \"ConverterVariants.swift\", \"RawPlaneDump.swift\"]),\n        .target(name: \"GorAVCAtomics\", path: \"Sources/GorAVCAtomics\", publicHeadersPath: \".\"),\n        .target(name: \"GorAVAudioClock\",\n                path: \"Sources/GorAVAudioClock\",\n                sources: [\"src\"],\n                publicHeadersPath: \"include\"),\n        .target(name: \"GorAVAudioClockSwift\",\n                dependencies: [\"GorAVAudioClock\", \"GorAVCAtomics\", \"GorAVPlaybackCore\"],\n                path: \"Sources/GorAVAudioClockSwift\"),\n        // r3 (architect r2 BLOCKER): NO explicit sources list - an explicit\n        // list silently omitted Lane0Contract.swift + LifetimeRegistry.swift\n        // (AudioSink/AudioStopResult/PlaybackRegistry unresolved in a real\n        // package build; manual swiftc had masked it). Default = every file.\n        .target(name: \"GorAVPlaybackCore\", dependencies: [\"GorAVCAtomics\", \"GorAVCore\", \"GorAVNativeProbeKit\"], path: \"Sources/GorAVPlaybackCore\"),\n        .executableTarget(name: \"session-venue-tests\",\n                          dependencies: [\"GorAVPlaybackCore\", .target(name: \"GorAVEmbeddedShell\", condition: .when(platforms: [.macOS]))],\n                          path: \"Sources/session-venue-tests\"),\n        // native87 Stage B entrypoint (B1-B3): pause-hold counter witnesses,\n        // parked seek, close-from-paused report on the REAL embedded session.\n        // macOS legs only; UNRUN (exit 77) elsewhere.\n        .executableTarget(name: \"b-gate-tests\",\n                          dependencies: [\"GorAVPlaybackCore\", .target(name: \"GorAVEmbeddedShell\", condition: .when(platforms: [.macOS]))],\n                          path: \"Sources/b-gate-tests\"),\n        .testTarget(name: \"GorAVAudioClockTests\",\n                    dependencies: [\"GorAVAudioClockSwift\"],\n                    path: \"Tests/GorAVAudioClockTests\"),\n        .testTarget(name: \"ReadinessAnchorTests\",\n                    dependencies: [\"GorAVPlaybackCore\"],\n                    path: \"Tests/ReadinessAnchorTests\"),\n        .testTarget(name: \"AudioPacingTests\",\n                    dependencies: [\"GorAVAudioClockSwift\", \"GorAVPlaybackCore\"],\n                    path: \"Tests/AudioPacingTests\"),\n        .testTarget(name: \"J3AudioControlTests\",\n                    dependencies: [\"GorAVAudioClockSwift\", \"GorAVPlaybackCore\"],\n                    path: \"Tests/J3AudioControlTests\"),\n        .testTarget(name: \"DecodeHeartbeatTests\",\n                    dependencies: [\"GorAVPlaybackCore\"],\n                    path: \"Tests/DecodeHeartbeatTests\"),\n        .testTarget(name: \"PlayerControlPlaneTests\",\n                    dependencies: [\"GorAVPlaybackCore\"],\n                    path: \"Tests/PlayerControlPlaneTests\"),\n        .executableTarget(name: \"pause-resume-tests\", dependencies: [\"GorAVPlaybackCore\"], path: \"Sources/pause-resume-tests\"),\n        .executableTarget(name: \"race-witness-tests\", dependencies: [\"GorAVPlaybackCore\"],\n                          path: \"Sources/race-witness-tests\"),\n        .executableTarget(name: \"admission-tests\", dependencies: [\"GorAVCore\", \"GorAVNativeProbeKit\", \"GorAVFFmpegAdapter\"],\n                          path: \"Sources/admission-tests\"),\n        .executableTarget(name: \"open-url-tests\", dependencies: [\"GorAVCore\"], path: \"Sources/open-url-tests\"),\n        .executableTarget(name: \"audio-delay-tests\", dependencies: [\"GorAVPlaybackCore\", \"GorAVAudioClockSwift\"], path: \"Sources/audio-delay-tests\"),\n        .executableTarget(name: \"window-mode-tests\", dependencies: [\"GorAVPlaybackCore\"], path: \"Sources/window-mode-tests\"),\n        .executableTarget(name: \"observation-tests\", dependencies: [\"GorAVPlaybackCore\"], path: \"Sources/observation-tests\"),\n        .executableTarget(name: \"timing-ledger-tests\", dependencies: [\"GorAVPlaybackCore\"],\n                path: \"Sources/timing-ledger-tests\", sources: [\"TimingLedgerTests.swift\", \"SPSCTests.swift\"]),\n        .executableTarget(name: \"gorav-sink-check\", dependencies: [\"GorAVMacShell\"], path: \"Sources/gorav-sink-check\", sources: [\"SinkCheck.swift\"]),\n        .executableTarget(name: \"gorav-play\", dependencies: [\"GorAVMacShell\", \"GorAVMetalPresenter\", \"GorAVPlaybackCore\"], path: \"Sources/gorav-play\", sources: [\"GorAVPlay.swift\"]),\n        // L7 embedded shell (block 168 factory gap): the E1 host-NSView embed\n        // session. Whole body is canImport(AppKit)-gated - compiles empty\n        // off-Mac; a Linux build is NOT a Mac compile claim. Explicit\n        // sources pin: exactly the reviewed session file; a stray file\n        // dropped into the dir is uncompiled, never silently wired.\n        .target(name: \"GorAVEmbeddedShell\",\n                dependencies: [\"GorAVSubtitles\", \"GorAVCore\", \"GorAVPlaybackCore\", \"GorAVNativeProbeKit\", \"GorAVMacShell\", \"GorAVMetalPresenter\", \"GorAVFFmpegAdapter\", \"GorAVSeekComposition\", \"GorAVAudioClockSwift\"],\n                path: \"Sources/GorAVEmbeddedShell\", sources: [\"GorAVEmbeddedSession.swift\"]),\n        .target(name: \"GorAVMacShell\", dependencies: [\"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVPlaybackCore\", \"GorAVNativeProbeKit\", \"GorAVSeekComposition\", \"GorAVAudioClockSwift\"],\n                path: \"Sources/GorAVMacShell\", sources: [\"ShellClock.swift\", \"DisplaySink.swift\", \"AudioUnitSink.swift\", \"ShellFrameSource.swift\", \"FrameTap.swift\", \"TappedFrameLuma.swift\", \"WindowModeController.swift\"]),\n        // L2 Metal presenter lane, r7 landing (block 168 L3): new target dir\n        // only; every Metal/AppKit source is canImport-gated so off-Mac\n        // builds compile the target empty. GorAVMetalShellApp mirrors the\n        // trunk shell contract (owner-issued session, shared CancelCommit,\n        // audio-master pacing).\n        .target(name: \"GorAVMetalPresenter\",\n                dependencies: [\"GorAVMacShell\", \"GorAVPlaybackCore\", \"GorAVFFmpegAdapter\", \"GorAVCore\", \"GorAVSubtitles\"],\n                path: \"Sources/GorAVMetalPresenter/core\",\n                sources: [\"AspectFit.swift\", \"MetalPresenterTelemetry.swift\", \"SurfaceContract.swift\", \"MetalRenderer.swift\", \"MetalPresenter.swift\", \"GorAVMetalShellApp.swift\", \"StagePass.swift\", \"CVPixelBufferTap.swift\"]),\n        .executableTarget(name: \"gorav-metal-check\", dependencies: [\"GorAVMetalPresenter\", \"GorAVMacShell\", \"GorAVPlaybackCore\"],\n                path: \"Sources/GorAVMetalPresenter/cli\", sources: [\"MetalCheck.swift\"])\n    ]\n)\n"
       },
       {
         "path": "Sources/subtitle-tests/ASSAtlasTests.swift",
@@ -55,11 +57,11 @@ id: W-gdb-023
   },
   "run_proof": {
     "version": 1,
-    "product_sha": "c82dc6b8d46f81fc521ff93231060ea7b57b330a",
+    "product_sha": "91a8b69abe9ce61e31188e3d426477a3f8528ede",
     "command": "swift run subtitle-ass-tests && swift run subtitle-ass-atlas-tests",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-15T22:31:09.890739+00:00",
+    "ran_at": "2026-11-15T23:03:55.621261+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -82,15 +84,15 @@ id: W-gdb-023
       }
     ],
     "log_block": "actual_run_log",
-    "log_sha256": "ab2fe2e8142db2f0285473a088fe82c3780dd067eaa2d6abb7fcfa385b28380a",
+    "log_sha256": "d4c685ec75ae956de2fc572d65179d3c7eda37810be89161ad5bc0534dff56be",
     "last_5_lines": [
       "[5/8] Wrapping AST for subtitle-ass-atlas-tests for debugging",
       "[6/8] Write Objects.LinkFileList",
       "[7/8] Linking subtitle-ass-atlas-tests",
-      "Build complete! (0.71s)",
+      "Build complete! (0.73s)",
       "ass-atlas-tests: 32 PASS, 0 FAIL"
     ],
-    "receipt_sha256": "4542167a8bca7f9a95fb1b5960317a9f5135f205f0533db03f7a0d02a8de8c12"
+    "receipt_sha256": "c2f20d3b3c1466e516e79bc8c547762b565c6038a7763b87e6971ffee04c618a"
   }
 }
 ```
@@ -99,7 +101,7 @@ id: W-gdb-023
 ASS override tags (pos, an, move, fade, clip) are detected, reported as UNSUPPORTED and stripped by ASSParser, but there is no fixture atlas of that reporting/stripping behavior, so a regression in the typed reporting ships silently (an override block left in rendered text, or a lost OverrideReport).
 
 ## reproducer
-- repo: ohal/gorav @ 2112af0d60df16c5473173b664903f76ce54173e (branch ohal/gorav; PR #3 head).
+- repo: goreda/gorav @ 91a8b69abe9ce61e31188e3d426477a3f8528ede (branch main).
 - real source: Sources/GorAVSubtitles/ASSParser.swift (sha256 4c16b99f, 301 lines; first 60 below) - the tag surface; Sources/GorAVSubtitles/SubtitlePlan.swift (same pin) - the layout consumer.
 - real test command: swift run subtitle-ass-tests stays green.
 
@@ -632,118 +634,118 @@ exit(failed == 0 ? 0 : 1)
 
 ```text id=actual_run_log
 warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
 warning: 'tree': found 5 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSAtlasTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSAtlasTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
 warning: 'tree': found 5 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSAtlasTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSAtlasTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
 warning: 'tree': found 5 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSAtlasTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSAtlasTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
 warning: 'tree': found 5 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSAtlasTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSAtlasTests.swift
 warning: 'tree': found 5 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSAtlasTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSAtlasTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
 warning: 'tree': found 5 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SRTTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
 warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
+    /tmp/packet-proof-464pwefh/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
 Building for debugging...
 [0/7] Write sources
 [2/7] Write swift-version--9C6B84B6E025C5B.txt
 [4/14] Emitting module GorAVSubtitles
-[5/20] Compiling GorAVSubtitles SubtitleCueOutput.swift
-[6/20] Compiling GorAVSubtitles SubtitlePlan.swift
-[7/20] Compiling GorAVSubtitles SubtitleSchedule.swift
-[8/20] Compiling GorAVSubtitles SubtitleSidecarSession.swift
-[9/20] Compiling GorAVSubtitles SubtitleTrack.swift
-[10/20] Compiling GorAVSubtitles VTTParser.swift
-[11/20] Compiling GorAVSubtitles ASSParser.swift
-[12/20] Compiling GorAVSubtitles SRTParser.swift
-[13/20] Compiling GorAVSubtitles SubtitleAutoLoad.swift
-[14/20] Compiling GorAVSubtitles SubtitleController.swift
-[15/20] Compiling GorAVSubtitles SubtitleCue.swift
-[16/20] Compiling GorAVSubtitles SubtitleCueDelivery.swift
+[5/20] Compiling GorAVSubtitles ASSParser.swift
+[6/20] Compiling GorAVSubtitles SRTParser.swift
+[7/20] Compiling GorAVSubtitles SubtitleAutoLoad.swift
+[8/20] Compiling GorAVSubtitles SubtitleController.swift
+[9/20] Compiling GorAVSubtitles SubtitleCue.swift
+[10/20] Compiling GorAVSubtitles SubtitleCueDelivery.swift
+[11/20] Compiling GorAVSubtitles SubtitleCueOutput.swift
+[12/20] Compiling GorAVSubtitles SubtitlePlan.swift
+[13/20] Compiling GorAVSubtitles SubtitleSchedule.swift
+[14/20] Compiling GorAVSubtitles SubtitleSidecarSession.swift
+[15/20] Compiling GorAVSubtitles SubtitleTrack.swift
+[16/20] Compiling GorAVSubtitles VTTParser.swift
 [17/21] Wrapping AST for GorAVSubtitles for debugging
 [19/23] Compiling subtitle_ass_tests ASSTests.swift
 [20/23] Emitting module subtitle_ass_tests
 [21/24] Wrapping AST for subtitle-ass-tests for debugging
 [22/24] Write Objects.LinkFileList
 [23/24] Linking subtitle-ass-tests
-Build complete! (2.85s)
+Build complete! (2.81s)
 ALL_CHECKS_PASS
 warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/timing-ledger-tests/ClockScenarioReplay.swift
 warning: 'tree': found 5 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSAtlasTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSAtlasTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
 warning: 'tree': found 5 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSAtlasTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSAtlasTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
 warning: 'tree': found 5 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSAtlasTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSAtlasTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SRTTests.swift
 warning: 'tree': found 5 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSAtlasTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSAtlasTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
 warning: 'tree': found 5 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSAtlasTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSAtlasTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
 warning: 'tree': found 5 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/ASSTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SRTTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/ASSTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/packet-proof-464pwefh/tree/Sources/subtitle-tests/SubtitlePlanTests.swift
 warning: 'tree': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /tmp/packet-proof-x5hbbmdp/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
+    /tmp/packet-proof-464pwefh/tree/Sources/seek-composition-tests/README-SEEKVECTORS.md
 [0/1] Planning build
 Building for debugging...
 [0/6] Write sources
 [1/6] Write swift-version--9C6B84B6E025C5B.txt
-[3/7] Compiling subtitle_ass_atlas_tests ASSAtlasTests.swift
-[4/7] Emitting module subtitle_ass_atlas_tests
+[3/7] Emitting module subtitle_ass_atlas_tests
+[4/7] Compiling subtitle_ass_atlas_tests ASSAtlasTests.swift
 [5/8] Wrapping AST for subtitle-ass-atlas-tests for debugging
 [6/8] Write Objects.LinkFileList
 [7/8] Linking subtitle-ass-atlas-tests
-Build complete! (0.71s)
+Build complete! (0.73s)
 ass-atlas-tests: 32 PASS, 0 FAIL
 ```
