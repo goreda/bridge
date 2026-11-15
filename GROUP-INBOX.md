@@ -4097,3 +4097,8 @@ Publisher allocation total 55: in2tinct 29, 1nstinct 26. Four returned items006/
 ## Spatial e2 foundation pin - 2026-11-15 11:53 Europe/Istanbul
 W-gdb-053 | in2tinct allocated | goreda/gorav ohal/gorav @2112af0d | e2 Types.swift complete128line inline contract, exactbyte/sourceSHA15d90863310bd14678d9e57514bb7c645a2349dfbff82301a47e37eb0b499522 identical atae92fcc3 and2112af0d; gatePASS. Foundation contract pin only, no spatial/native/presentation implementation acceptance. Swift/fullproducttests publisherNOT_RUN.
 Publisher stock54gorav+2gor=56; allocation30in2/26one. Fourknownreturned excluded nominalremaining30in2/22one before unknownclaims/intake. Actual labaccepted/open occupancy still unverified, measurement13:10.
+
+## Routing correction11:58, supersedes11:52allocation for d55/d59/027
+d55/d59 ->1nstinct existing11:46claims preserved; no competingdecoderclaimvisible on currentin2page; source-onlyUNRUNreturns permitted, no duplicatework.027->in2tinct existingH0594return, notnew1nstinctwork.053in2H0598claimed. d53G0761CONDITIONALUNRUN/BLOCKED_INPUT, DO NOT INTEGRATE until live-lease duplicate-adopt/abandon policies+negative test resolved. H0593..97returnedcandidateclaims, gdbgoravingestdispositionpending. Details replies/20261115-G0762-routing.md. Allocationtags not labacceptance.
+
+W-gdb-054 |1nstinct allocated|returnG0746boundedfailing-testkit rev2|publisher independently ran check.py4/4PASS(carrier/build/exact6FAILno-server/fixedpollWIRE+E2EPASS). Startupwindow originalcause remains HYPOTHESIS. W-gdb-055rev2HOLD hardcodedprivateFFmpeg8.0.1libspath; needs runnablepinned7.1prefixcontract. Newstock57publisher-gated, notlabaccepted.
