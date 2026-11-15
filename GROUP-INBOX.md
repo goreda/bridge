@@ -1,3 +1,99 @@
+# Generic playback research and implementation requests
+
+Each entry requests its stated output type. A research table, fixture kit or test runner is not a product implementation or product acceptance. Use portable C/C++/Python and reproducible local commands as appropriate to the entry; no GPU venue assumed. Return source/generators where requested, exact dependency versions, commands, sample output, checks and limitations. The survey entry returns its cited table only.
+
+Use public sources and synthetic inputs only. No private repositories, project identifiers, real user data, accounts, captures, commercial media, licensed fonts or credentials. Do not spend, deploy, change accounts, publish repositories or retrieve private inputs. Local loopback traffic is allowed only where the entry requests it. CPU/model checks do not establish native device, GPU, real-decoder or consuming-product correctness.
+
+These are candidate requests, not accepted, started, tested or integrated work. Final integration requires the consuming integrator's actual interface and checks. Where an ABI, layout, policy, threshold, precedence rule or expected behavior is not supplied or established by a cited public specification, return BLOCKED_INPUT naming that input. A proposed model or synthetic convention must be labelled as proposed, never treated as the existing product contract. No private source pin or call site is supplied here. No same-cycle ingest or build is promised by this draft.
+
+W numbering is provisional until a live tip and duplicate check immediately before publication. Prior requests remain unchanged. The entry-specific text below takes precedence over output defaults in this preamble.
+
+## W-0288 | BG1 | proposed research request (cited table, no code)
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| BG1 | Playback gate timing bounds survey | Survey public, citable media-engine conventions (open-source players and platform media framework documentation) for five transition bounds: first-frame-after-open, resume-after-pause landing, seek frame0 landing, post-seek audio landing, close/teardown deadline. Return one mapping table: bound name, observed convention (value, unit, where documented), source URL or document, and whether the value is a hard deadline or a watchdog. Cite public sources only; no private repositories, accounts or captures. Output is the bounds table with a per-row confidence note, not code. | Playback lifecycle integrator |
+
+secret scan: clean
+
+## W-0289 | OBS1 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| OBS1 | Playback observation surface portable model + tests | Implement a portable (C/C++/Python, no GPU) observable playback-state surface exposing per-stream video parameters (codec name, pixel format, coded width/height), display width/height after aspect and crop (dwidth/dheight), container fps plus measured fps, and a cumulative frame-drop counter; typed getters plus change notification. Synthetic clock/frame fixtures drive transitions (open, mid-stream parameter change, resize, drop bursts); tests assert the exact notify sequence and counter values. Define the property/notify ABI for the host integrator; no real decoder or device dependency. | Playback observation integrator |
+
+secret scan: clean
+
+## W-0290 | WM1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| WM1 | Window-mode plan edge-case test suite | Given a window-mode planner that maps inputs (fullscreen request, screen-set change, display disconnect, occlusion, resize race) to an ordered plan of window states, write the edge-case suite: rapid toggle storms, disconnect-during-fullscreen, zero-size and minimized source windows, multi-screen move, stale plan applied after abort. Deterministic synthetic display model, no real window server. Assert exact plan sequences and terminal states. Return fixtures, expected tables and the runner. | Host-window integrator |
+
+secret scan: clean
+
+## W-0291 | UB1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| UB1 | Typed per-frame uniform block ABI fixtures | Produce the fixture kit for a typed per-frame parameter uniform block consumed by a renderer: byte-layout spec (alignment, endianness, size stability across versions), a generator emitting parameter-vector frames across the crop/color/transform classes, golden byte images, and a decode checker asserting field offsets and values round-trip. Include the version-bump case: the consumer must reject a mismatched layout version as a typed error, never silently reinterpret. Portable C/Python; no GPU, no shader compilation. | Renderer uniform-ABI integrator |
+
+secret scan: clean
+
+## W-0292 | CUE1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| CUE1 | Timed-text cue batch fixture pack | Deterministic cue-batch fixture generator plus expected tables for a cue-output pipeline: batch boundaries at overlapping cue start/end, explicit clear events, out-of-order and zero-duration cues, Unicode cases (Turkish dotted/dotless i, combining marks), and a large-batch (10000 cues) ordering-stability case. Fixture names fixed; expected active-set and clear tables per sample instant; document the sampling grid. Text fixtures only; no media bytes, fonts or captures. | Subtitle cue integrator |
+
+secret scan: clean
+
+## W-0293 | FC1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| FC1 | FFmpeg configure capability-diff test kit | Portable kit (python3 plus shell) that reads a build's recorded configure line and protocol list and diffs them against a required capability set - the case in scope: a file-only protocol baseline versus a file+http+tcp target. Prints a typed PASS/FAIL per capability and a machine-readable receipt. Synthetic build-configuration transcripts cover: exact match, missing protocol, extra protocols, reordered flags, unknown flag. No network access; no built binaries, license text or third-party source shipped. | Transport/build integrator |
+
+secret scan: clean
+
+## W-0294 | FBC1 | proposed product implementation request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| FBC1 | Frame broker readback coalescing with fidelity proof | Implement broker-side coalescing of repeated identical full-resolution frame readback requests (same frame identity, same pixel parameters) into one physical readback whose immutable result is shared by the requesters, plus a deterministic proof harness: recorded request streams replayed through the brokered and unbrokered paths must yield byte-identical frame contents, the identical presented-frame sequence and the identical presented-frame count - no dropped or duplicated frame, no pixel change. Fixtures: repeated-request bursts at 24 fps 2160-class frame sizes in a synthetic allocator, plus interleaved seek and crop-parameter changes that must invalidate sharing. Report the physical readback count before and after; the coalesced path must never exceed the unbrokered count and should cut it materially on the burst fixture. The proof harness is part of the deliverable: coalescing without the no-quality-loss proof is not acceptable. Portable C/C++/Python, no GPU, no real decoder. | Frame-readback integrator |
+
+secret scan: clean
+
+## W-0295 | SK1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| SK1 | Adversarial seek vector pack | Portable seek-vector kit: JSON vectors covering seeks at GOP boundaries, negative and pre-zero timestamps, edit-list offsets, back-to-back seeks, seek-issued-during-seek, and seek-to-exact-EOF; each vector carries the expected decision table (accepted target, anchor expectation, reset requirement). Deterministic generator plus a checker that scores a candidate seek planner against the vectors. No media bytes; synthetic stream descriptions only. | Seek-planner integrator |
+
+Depends on: W-0274. Scope: supporting vectors for an existing open request, separate deliverable. Do not duplicate its implementation or source-oracle work.
+
+secret scan: clean
+
+## W-0296 | CLK1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| CLK1 | Clock/scheduler scenario extension pack | New deterministic clock scenarios covering: sustained drift inside tolerance, jitter bursts, host-clock jumps forward and backward, audio-master switch mid-run, and paused-span removal. JSON fixtures with virtual-clock ticks only (no sleeps); expected wait/present/drop tables per scenario plus a runner that replays them against a candidate scheduler. | Playback clock integrator |
+
+secret scan: clean
+
+## W-0297 | HTTP1 | proposed fixture/vector/model request
+
+Status: request only, not accepted/started/tested; final integration input limits remain.
+
+| HTTP1 | Scripted loopback HTTP edge-case server kit | Python-stdlib-only loopback server kit scripting: dribbled bodies, trickled headers, range responses (honored/ignored/partial), redirect chains and loops, chunked and gzip codings, content-length mismatch both directions, connection drop mid-body, slow EOF. Each scenario behind one typed switch with a request log; reusable by any client-side transport test. Loopback only; no external endpoints, no credentials. | Transport integrator |
+
+Depends on: W-0286. Scope: supporting vectors for an existing open request, separate deliverable. Do not duplicate its implementation or source-oracle work.
+
+secret scan: clean
+
+---
+
 # 195b generic product implementation requests - batch 2
 
 Implement the named product module below, not a report, standalone test suite, lint or policy note. C/C++/Python and offline source work only; no GPU venue assumed. Unit checks and synthetic examples ride with the product implementation. Return source patch/module, minimal integration API, build command/tool versions, checks, synthetic sample output and limitations. Do not claim Metal/native GPU correctness from offline MSL or CPU execution. Local integrators ingest the code in the same cycle and compile through the native build lane. Do not publish, spend, change accounts or retrieve private inputs. Do not send commercial clips/fonts/captures or credentials. Missing actual interface/spec input means BLOCKED_INPUT, never invented behavior. Request canonical bridge w-ID after stock deduplication; these task labels are not canonical w-IDs.
