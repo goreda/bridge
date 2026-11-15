@@ -1,12 +1,49 @@
-# W-gdb-001 b-gate B1/B2 bound grounding (research)
+# W-gdb-001 b-gate B1/B2 cited bounds table + harness swap
 state: candidate
 solver lab: unclaimed
 reviewer lab: unclaimed
 id: W-gdb-001
 
-target branch: ohal/gorav @ 2112af0d (lab does not push; gdb integrator integrates)
-return: patch or full source + fixtures + test runner files; research001: table + cited source lines
-publication check: pinned excerpts independently matched; product tests NOT_RUN by publisher; candidate open, unclaimed.
+```packet-json
+{
+ "packet_id": "W-gdb-001",
+ "writer": "gdb",
+ "code_owner": "gdb integrator (gorav lane)",
+ "product_repo": "goreda/gorav",
+ "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+ "touched_files": [
+  {
+   "path": "Sources/b-gate-tests/main.swift",
+   "excerpt_block": "source1"
+  },
+  {
+   "path": "Sources/GorAVSeekComposition/SeekComposition.swift",
+   "excerpt_block": "source2"
+  }
+ ],
+ "interface": {
+  "signatures": "check.py bounds.json -> exit 0; row keys {name,value,unit,kind,citation,confidence}; harness B1/B2 waitFor bounds read named constants sourced from kits/bounds-table/bounds.json, never inline uncited literals",
+  "types": "bounds row schema (fixture block); b-gate bounds entries PROPOSED vs GROUNDED; scope product",
+  "ownership_lifetime": "bounds.json + check.py owned by kits/bounds-table; the harness consumes the table read-only",
+  "caller": "b-gate harness (Sources/b-gate-tests/main.swift bounds block: B1 resume waitFor, B2 audio-landing waitFor)",
+  "callee": "kits/bounds-table/bounds.json cited table + kits/bounds-table/check.py row verifier"
+ },
+ "scope": "product",
+ "test": {
+  "command": "python3 kits/bounds-table/check.py kits/bounds-table/bounds.json",
+  "expected": "exit 0; stdout 'bounds-check: 2/2 rows cited, 0 uncited PASS'; a row missing value+unit+public citation prints its name and exits 1 (negative control in fixture); the swapped harness stays swiftc -parse clean",
+  "fixture_block": "fixtures1"
+ },
+ "target": {
+  "branch": "ohal/gorav",
+  "paths": [
+   "kits/bounds-table/",
+   "Sources/b-gate-tests/main.swift"
+  ],
+  "return_form": "full-files"
+ }
+}
+```
 
 ## problem (what fails for the user)
 the native87 b-gate harness asserts pause-hold resume landing within 5s and post-seek audio landing within 10s. both bounds are marked PROPOSED in the harness header because no source-grounded value exists; a wrong bound either passes a real hang (too loose) or flakes a healthy player (too tight). the gate cannot go native with ungrounded bounds.
@@ -17,20 +54,20 @@ the native87 b-gate harness asserts pause-hold resume landing within 5s and post
 - current bounds and grounds are quoted in the b-gate main.swift header block "Bounds and their grounds".
 
 ## expected behaviour
-a cited bound table replaces the two PROPOSED values: for each of resume-after-pause landing and post-seek audio landing, a value + unit + public source (player documentation, platform media framework docs, or open-source player code) + whether it is a hard deadline or a watchdog, plus a per-row confidence note. research only: cited table, no code.
+an implementation in two parts. (1) kits/bounds-table/: bounds.json carrying one row per PROPOSED bound (resume-after-pause landing, post-seek audio landing), each row = value + unit + kind (hard-deadline or watchdog) + public citation (player documentation, platform media framework docs, or open-source player code) + confidence, plus check.py (stdlib only) validating every row. (2) Sources/b-gate-tests/main.swift: the B1 resume waitFor and B2 audio-landing waitFor read their bounds from the table (via named constants generated or loaded from bounds.json); the two PROPOSED header lines become cited entries. The solver picks the cited values from public sources; uncited rows are rejected by check.py, not shipped.
 
 ## exact call site and interface
-Sources/b-gate-tests/main.swift header (bounds block) and the B1 resume waitFor (5s) and B2 audio-landing waitFor (10s) call sites. output rides back as a replacement bounds table the integrator applies to the harness.
+Sources/b-gate-tests/main.swift header (bounds block) and the B1 resume waitFor (5s) and B2 audio-landing waitFor (10s) call sites - those two call sites consume the table. Deliverables: kits/bounds-table/bounds.json, kits/bounds-table/check.py, and the patched main.swift.
 
 ## behaviour that must not change
-the GROUNDED bounds (frame0 anchor 10s, close_ms < 300) stay as they are; no harness behavior change in this packet beyond the two PROPOSED values.
+the GROUNDED bounds (frame0 anchor 10s, close_ms < 300) stay as they are; no harness behavior change beyond the two PROPOSED values moving to cited table rows.
 
 ## acceptance test (from the product repo)
-the integrator swaps the returned bounds into b-gate-tests, the harness still compiles (swiftc -parse clean) and every table row carries a public citation; rows without a citation stay PROPOSED explicitly.
+python3 kits/bounds-table/check.py kits/bounds-table/bounds.json exits 0 with both rows cited; the negative-control row exits 1; the patched harness stays swiftc -parse clean.
 
 ## pinned excerpts (gorav-src @ 2112af0d60df16c5473173b664903f76ce54173e)
 ### Sources/b-gate-tests/main.swift (sha256 28ff620c, lines 1-33 of 211)
-```swift
+```swift id=source1
 // B-GATE (native87 Stage B, arch spec 00-gate-spec-native87): T3 pause gate
 // on the REAL embedded session - the same GorAVEmbeddedSession call surface
 // gor's GorAVPlayerHost drives (open / setPaused / seek / close), asserted
@@ -67,7 +104,7 @@ the integrator swaps the returned bounds into b-gate-tests, the harness still co
 ```
 
 ### Sources/GorAVSeekComposition/SeekComposition.swift (sha256 6c43336c, lines 232-285 of 312)
-```swift
+```swift id=source2
     public static func coordinateSeekAudio(
         audioBinding: AudioSourceBinding,
         audioCorrelation: UInt64?,
@@ -128,3 +165,7 @@ the integrator swaps the returned bounds into b-gate-tests, the harness still co
 solver lab: unclaimed. reviewer lab: unclaimed. neither approval is product acceptance; the owner's eyes close it.
 
 secret scan: clean
+
+```json id=fixtures1
+{"schema":{"name":"str","value":"number","unit":"s|ms","kind":"hard-deadline|watchdog","citation":"public url","confidence":"low|medium|high"},"deliverableRows":["resume-after-pause landing","post-seek audio landing"],"negativeControl":{"row":{"name":"uncited example","value":5,"unit":"s","kind":"watchdog","citation":"","confidence":"low"},"expect":"check.py prints 'uncited example' and exits 1"}}
+```

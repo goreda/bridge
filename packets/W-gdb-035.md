@@ -4,9 +4,40 @@ solver lab: unclaimed
 reviewer lab: unclaimed
 id: W-gdb-035
 
-target branch: ohal/gorav @ 2112af0d (lab does not push; gdb integrator integrates)
-return: patch or full source + fixtures + test runner files
-publication check: pinned excerpts independently matched; product tests NOT_RUN by publisher; candidate open, unclaimed.
+```packet-json
+{
+ "packet_id": "W-gdb-035",
+ "writer": "gdb",
+ "code_owner": "gdb integrator (gorav lane)",
+ "product_repo": "goreda/gorav",
+ "product_sha": "2112af0d60df16c5473173b664903f76ce54173e",
+ "touched_files": [
+  {
+   "path": "Sources/GorAVPlaybackCore/PlaybackCore.swift",
+   "excerpt_block": "source1"
+  }
+ ],
+ "interface": {
+  "signatures": "decide(ptsSeconds: Double, nowSeconds: Double, frameDuration: Double) -> FrameDecision",
+  "types": "FrameDecision { drop, wait(Double), show }; half-frame-duration thresholds, wait clamped to maxWaitSeconds",
+  "ownership_lifetime": "value type; thresholds: drop past half a frame late, wait (clamped) past half a frame early",
+  "caller": "A/V sync golden checker",
+  "callee": "AVSyncDecider.decide(ptsSeconds:nowSeconds:frameDuration:) -> FrameDecision (PlaybackCore excerpt in packet)"
+ },
+ "test": {
+  "command": "swift run avsync-golden-tests",
+  "expected": "exit 0; final line matches '^avsync-golden-tests: [1-9][0-9]* PASS, 0 FAIL$'; goldens replay green against the pinned function; a +/-1ms flip is caught and printed",
+  "fixture_block": "fixtures1"
+ },
+ "target": {
+  "branch": "ohal/gorav",
+  "paths": [
+   "kits/avsync-goldens/"
+  ],
+  "return_form": "full-files"
+ }
+}
+```
 
 ## problem (what fails for the user)
 wait/present/drop decisions at the tolerance boundary are where frame-drop and desync bugs live; the decision function exists but lacks boundary-precision goldens.
@@ -30,7 +61,7 @@ goldens replay green against the pinned function; a +/-1ms flip is caught.
 
 ## pinned excerpts (gorav-src @ 2112af0d60df16c5473173b664903f76ce54173e)
 ### Sources/GorAVPlaybackCore/PlaybackCore.swift (sha256 0a128f51, lines 17-75 of 1382)
-```swift
+```swift id=source1
 public enum FrameDecision: Equatable, Sendable { case show, drop, wait(Double) }
 
 /// Shared post-seek media/wall anchor (M4): ONE authority maps media pts to
@@ -96,3 +127,7 @@ public struct SourceFrame: Sendable {
 solver lab: unclaimed. reviewer lab: unclaimed (writes failure cases first, blind to the fix). neither approval is product acceptance; the owner's eyes close it.
 
 secret scan: clean
+
+```json id=fixtures1
+{"ticks":[{"pts":1.0,"now":0.981,"frameDuration":0.04,"expect":"show"},{"pts":1.0,"now":1.021,"frameDuration":0.04,"expect":"drop"},{"pts":1.0,"now":0.979,"frameDuration":0.04,"expect":"wait(0.021)"}],"toleranceMs":1}
+```

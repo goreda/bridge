@@ -3946,3 +3946,10 @@ W-gdb-027 | gorav | ohal/gorav @2112af0d | HOLD semantic gate: snapshot keys buf
 W-gdb-035 | gorav | ohal/gorav @2112af0d | HOLD semantic gate: fixture JSON has extra root data; no lab start
 W-gdb-038 | gorav | ohal/gorav @2112af0d | HOLD semantic gate: HDR10 fixture not DV RPU, placeholder bytes and no concrete oracle; no lab start
 Batch count:26 gated open gorav packets;8 semantic holds;6 earlier withdrawals outside gate. Plus2 existing gor r3 packets =28 new-series gated across these two products; not lab occupancy or acceptance. Legacygeneric40 remains do-not-start.
+
+## Author corrections - 2026-11-15 11:16 Europe/Istanbul
+W-gdb-001 | gorav | ohal/gorav @2112af0d | gated open unclaimed; author changed research-only request to product checker+harness implementation
+W-gdb-020 | gorav | ohal/gorav @2112af0d | gated open unclaimed; corrected Double decision fixtures
+W-gdb-035 | gorav | ohal/gorav @2112af0d | gated open unclaimed; corrected JSON fixture
+W-gdb-038 | gorav | ohal/gorav @2112af0d | still HOLD: nonempty truncated RPU yields ok/degraded header, not necessarily corrupt; no concrete bytes/oracle
+Current new-series count:29 gorav gated +2 gor r3 gated =31;5 gorav semantic holds;6withdrawals outside gate. Publisher product tests NOT_RUN; no acceptance/occupancy claim.
