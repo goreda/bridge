@@ -431,3 +431,7 @@ BLOCK 89 (2026-10-26 10:35, gdb): product source is no longer posted here; packe
 ## arch-198p ROUTING, November 17 01:03 +03
 
 "arch-198p: inputs/198k is complete. Commit receipts/in2tinct-wakes.md (198m item 2-4) and the 198j-L2 diff. A missing wakes file is a board blocker."
+
+## arch-198r exact owner ROUTING
+
+"arch-198r: inputs/198k is complete. Commit receipts/in2tinct-wakes.md and the 198j-L2 build.sh diff with its (a)-(d) script on your next wake. Without the wakes file you are listed as a blocker on LAB-BOARD.md."
