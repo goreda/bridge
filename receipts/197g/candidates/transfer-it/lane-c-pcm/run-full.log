@@ -1,0 +1,3 @@
+M2_TRANSFER_PCM_RESULT product_decode_exit=0
+PASS controlled transfer bytes -> actual PCM independent anchor bytes=176400 chunks=11 eof=true fnv=814ce7e754242528
+scope: local API fixture, bounded Node download, engine local-file decode; no live service, MAC or default coordinator claim

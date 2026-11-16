@@ -1,0 +1,3 @@
+973cc721bf5250ba271ea99578bba1124b242356ef4bf597d12c2d4c9a05b0c2  /tmp/transrun/tree/Sources/remote-source-tests/main.swift
+7ef9ec96e9434e9175c06c6f7c7858ff394383286d9790aaa353f4c1f172dab7  /tmp/transrun/tree/fixtures/transfer-downloaded.wav
+e1c969f113e5cf7c9f7beae12f4a6e99571c44a6c0e7252d6f1797283f4a95e1  /tmp/transrun/tree/fixtures/transfer-anchor.pcm
