@@ -1,0 +1,48 @@
+#version 330
+uniform sampler2D sourceTexture;
+uniform vec4 pictureRect;
+uniform float cellOutPixels;
+uniform float ownerAmount;
+uniform float ownerStrength;
+uniform float compressionFactor;
+uniform float minimumAddedFraction;
+uniform float lumaKnots[8];
+uniform float targetSigmaKnots[8];
+uniform float sourceSigmaKnots[8];
+uniform uint seed;
+uniform uint frameBucket;
+uniform int enabled;
+in vec2 uv;
+out vec4 color;
+uint mix32(uint x) { x^=x>>16; x*=0x7feb352du; x^=x>>15; x*=0x846ca68bu; return x^(x>>16); }
+float gaussian(ivec2 p) {
+ uint h=mix32(uint(p.x)^mix32(uint(p.y))^mix32(seed)^mix32(frameBucket));
+ float a=(float(h&0xffffu)+0.5)/65536.0;
+ float b=(float(h>>16)+0.5)/65536.0;
+ return sqrt(-2.0*log(a))*cos(6.28318530718*b);
+}
+// Bilinear lattice normalized by its exact weight-squared variance.
+// Scalar field intentionally mono in this first calibration variant.
+float field(vec2 p) {
+ vec2 q=p/max(0.6,cellOutPixels); ivec2 k=ivec2(floor(q)); vec2 f=fract(q);
+ vec4 w=vec4((1.0-f.x)*(1.0-f.y), f.x*(1.0-f.y), (1.0-f.x)*f.y, f.x*f.y);
+ vec4 z=vec4(gaussian(k),gaussian(k+ivec2(1,0)),gaussian(k+ivec2(0,1)),gaussian(k+ivec2(1,1)));
+ return dot(w,z)/sqrt(dot(w,w));
+}
+float curve(float y, bool src) {
+ float a=src?sourceSigmaKnots[0]:targetSigmaKnots[0];
+ if(y<=lumaKnots[0])return a;
+ for(int i=1;i<8;i++) {
+  float b=src?sourceSigmaKnots[i]:targetSigmaKnots[i];
+  if(y<=lumaKnots[i])return mix(a,b,(y-lumaKnots[i-1])/(lumaKnots[i]-lumaKnots[i-1])); a=b;
+ }
+ return a;
+}
+void main() {
+ color=texture(sourceTexture,uv); vec2 p=gl_FragCoord.xy;
+ if(enabled==0 || ownerAmount==0.0 || ownerStrength==0.0 || any(lessThan(p,pictureRect.xy)) || any(greaterThanEqual(p,pictureRect.xy+pictureRect.zw)))return;
+ float y=dot(color.rgb,vec3(0.2126,0.7152,0.0722));
+ float t=curve(y,false)*compressionFactor, s=curve(y,true);
+ float sigma=sqrt(max(t*t-s*s,minimumAddedFraction*minimumAddedFraction*t*t))*ownerAmount*ownerStrength;
+ color.rgb+=vec3(field(p-pictureRect.xy)*sigma);
+}
