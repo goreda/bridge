@@ -1,0 +1,1003 @@
+diff --git a/archive/gor/Sources/gor/AppDelegate.swift b/archive/gor/Sources/gor/AppDelegate.swift
+index b275feebc..1465bd7cb 100644
+--- a/archive/gor/Sources/gor/AppDelegate.swift
++++ b/archive/gor/Sources/gor/AppDelegate.swift
+@@ -1348,6 +1348,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
+                     _ = BoundedDiskWriter.append(record, to: URL(fileURLWithPath: StagedRunPaths.tmp("/tmp/gor_diag.log")), cap: SharedDiagnosticRecord.cap)
+                 }
+                 print("[mpv] \(rawLine)")
++                GorRuntimeDump.recordMpvLine(line)
+                 if line.contains(SharedDiagnosticRecord.marker) { continue }
+                 if line.contains("3D-REJECTED ") || line.contains("3D-LUA ") {Diag.mediaRecord(line)}
+ 
+@@ -1423,6 +1424,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
+         }
+ 
+         do { try MPVLifeline.run(p) } catch { return }
++        // arch-198k: in-app runtime reporter; inert without --gor-dump-runtime.
++        if GorRuntimeDump.requested { GorRuntimeDump.install(ipcPath: ipcPath, configDir: configDir) }
+         ScreenCaptureEngine.shared.stopAudioCapture()
+         mpvProcess = p
+         ScreenCaptureEngine.shared.mpvPID = p.processIdentifier
+diff --git a/archive/gor/Sources/gor/GorRuntimeDump.swift b/archive/gor/Sources/gor/GorRuntimeDump.swift
+new file mode 100644
+index 000000000..99bf436f3
+--- /dev/null
++++ b/archive/gor/Sources/gor/GorRuntimeDump.swift
+@@ -0,0 +1,370 @@
++// ================================================================
++//  GorRuntimeDump.swift - arch-198k in-app reporter, AppKit adapter
++//  Owns: --gor-dump-runtime=<path> collection: NSApp.mainMenu walk,
++//  live-panel inventory, mpv IPC reads (bindings / glsl-shaders /
++//  script-opts), executable SHA256, photon shader warn/error capture
++//  (arch-198l + Ops 198k review (c)), and runtime script-message
++//  round-trip probes (Ops 198k review (1)): each probe sends a
++//  harmless toggle over IPC and watches an IPC-visible witness
++//  (user-data property flip or mpv log line), then restores the
++//  original state. Handlers with no safe probe are reported UNPROBED
++//  and stay out of features.script_messages. Pure assembly lives in
++//  GorRuntimeDumpCore.swift. Contract: active only with the flag;
++//  normal launch is untouched. macOS-only; Mac not verified here.
++// ================================================================
++#if canImport(AppKit)
++import AppKit
++import CryptoKit
++
++final class GorRuntimeDump {
++    static let outputPath = GorRuntimeDumpCore.outputPath(arguments: CommandLine.arguments)
++    static let requested = outputPath != nil
++
++    private static let lock = NSLock()
++    /// Raw mpv stderr lines (pre-classification; classified at dump time).
++    private static var mpvLines: [String] = []
++    private static let mpvLinesCap = 4000
++    private static var didRun = false
++
++    static func recordMpvLine(_ line: String) {
++        guard requested else { return }
++        lock.lock()
++        if mpvLines.count < mpvLinesCap { mpvLines.append(line) }
++        lock.unlock()
++    }
++
++    private static func lineSnapshot() -> Int {
++        lock.lock()
++        defer { lock.unlock() }
++        return mpvLines.count
++    }
++
++    private static func linesSince(_ mark: Int) -> [String] {
++        lock.lock()
++        defer { lock.unlock() }
++        guard mpvLines.count > mark else { return [] }
++        return Array(mpvLines[mark...])
++    }
++
++    static func install(ipcPath: String, configDir: String) {
++        guard requested, !didRun else { return }
++        DispatchQueue.global(qos: .utility).async {
++            let shaderDir = configDir + "/shader"
++            let markers = ["photon-chrome.glsl", "photon-grain.glsl"]
++            var ready = false
++            for _ in 0..<60 {
++                let ipcUp = !IPCClient(path: ipcPath).queryBatch(#"{"command":["get_property","mpv-version"],"request_id":1}"# + "\n", timeout: 0.5).isEmpty
++                let scriptsUp = markers.allSatisfy { FileManager.default.fileExists(atPath: shaderDir + "/" + $0) }
++                if ipcUp && scriptsUp { ready = true; break }
++                Thread.sleep(forTimeInterval: 0.5)
++            }
++            if ready { Thread.sleep(forTimeInterval: 1.0) }  // settle: first PARAM pushes land
++            let client = IPCClient(path: ipcPath)
++            let probes = ready ? runProbes(client: client) : []
++            collect(ipcPath: ipcPath, configDir: configDir, partial: !ready, probes: probes)
++        }
++    }
++
++    // MARK: - runtime script-message probes (Ops 198k review (1))
++
++    /// Probe witness kinds. propertyFlip: a user-data property's rendered
++    /// value flips to a new non-nil value and later returns to the exact
++    /// original. logMarkers: the mpv log gains the explicit enabled/on line
++    /// on one leg and the explicit disabled/off line on the other (never
++    /// "any marker twice"). stateSnapshot: target-peak, gamma or the
++    /// glsl-shaders list changes, then returns to the exact original.
++    private enum Witness {
++        case propertyFlip(String)
++        case logMarkers(on: String, off: String)
++        case stateSnapshot
++    }
++
++    private struct ProbeSpec {
++        let message: String
++        let scriptTarget: String
++        let witness: Witness
++        /// Minimum seconds between the trigger and its restore message
++        /// (photon-toggle has a 1.5s storm guard that ignores fast repeats).
++        let restoreSpacing: Double
++        let method: String
++    }
++
++    private static let probeSpecs: [ProbeSpec] = [
++        ProbeSpec(message: "photon-chrome-toggle", scriptTarget: "photon_chrome",
++                  witness: .propertyFlip("user-data/gor/chrome"), restoreSpacing: 0.3,
++                  method: "toggle round-trip; witness user-data/gor/chrome string flip (handler writes it on every toggle)"),
++        ProbeSpec(message: "photon-negativ-toggle", scriptTarget: "photon_negativ",
++                  witness: .propertyFlip("user-data/gor/negativ"), restoreSpacing: 0.3,
++                  method: "toggle round-trip; witness user-data/gor/negativ string flip (handler writes it on every toggle)"),
++        ProbeSpec(message: "photon-bright-toggle", scriptTarget: "photon",
++                  witness: .propertyFlip("user-data/adaptive-brightness-enabled"), restoreSpacing: 0.3,
++                  method: "toggle round-trip; witness user-data/adaptive-brightness-enabled bool flip (handler set_property_native on every toggle)"),
++        ProbeSpec(message: "photon-grain-toggle", scriptTarget: "photon_grain",
++                  witness: .logMarkers(on: "photon-grain: enabled", off: "photon-grain: disabled"), restoreSpacing: 0.3,
++                  method: "toggle round-trip; witness mp.msg.info 'photon-grain: enabled|disabled' in the mpv log stream"),
++        ProbeSpec(message: "photon-sharp-toggle", scriptTarget: "photon_sharp",
++                  witness: .logMarkers(on: "photon-sharp: on", off: "photon-sharp: off"), restoreSpacing: 0.3,
++                  method: "toggle round-trip; witness mp.msg.info 'photon-sharp: on|off' in the mpv log stream"),
++        ProbeSpec(message: "photon-toggle", scriptTarget: "photon",
++                  witness: .stateSnapshot, restoreSpacing: 1.6,
++                  method: "toggle round-trip; witness change in target-peak / gamma / glsl-shaders over IPC (handler body sets these; storm guard needs 1.6s spacing)"),
++    ]
++
++    private static func ipcGetAny(_ client: IPCClient, _ property: String) -> Any? {
++        let payload = "{\"command\":[\"get_property\",\"" + property + "\"],\"request_id\":1}\n"
++        guard let first = client.queryBatch(payload, timeout: 0.8).first,
++              let obj = try? JSONSerialization.jsonObject(with: Data(first.utf8)) as? [String: Any] else { return nil }
++        return obj["data"]
++    }
++
++    private static func sendScriptMessage(_ client: IPCClient, target: String, message: String) {
++        let payload = "{\"command\":[\"script-message-to\",\"" + target + "\",\"" + message + "\"],\"request_id\":1}\n"
++        _ = client.queryBatch(payload, timeout: 0.8)
++    }
++
++    private static func stateSnapshotString(_ client: IPCClient) -> String {
++        let peak = ipcGetAny(client, "target-peak").map { String(describing: $0) } ?? "nil"
++        let gamma = ipcGetAny(client, "gamma").map { String(describing: $0) } ?? "nil"
++        let shaders = (ipcGetAny(client, "glsl-shaders") as? [Any])?.compactMap { $0 as? String }.joined(separator: ",") ?? "nil"
++        return peak + "|" + gamma + "|" + shaders
++    }
++
++    /// The value a witness leg must reach: the flipped state (any non-nil
++    /// value different from the original) or the exact original on restore.
++    private enum LegExpectation {
++        case flippedFrom(String)
++        case original(String)
++        case logOn
++        case logOff
++    }
++
++    /// Polls up to `seconds` for the witness to reach the expected state.
++    /// Marks are captured BEFORE the send, so a synchronous effect is seen.
++    private static func waitForWitness(_ client: IPCClient, witness: Witness, expect: LegExpectation, logMark: Int, seconds: Double) -> Bool {
++        var waited = 0.0
++        while waited < seconds {
++            Thread.sleep(forTimeInterval: 0.25)
++            waited += 0.25
++            switch (witness, expect) {
++            case (.propertyFlip(let property), .flippedFrom(let original)):
++                guard let raw = ipcGetAny(client, property) else { continue }  // error-free reply required
++                let now = String(describing: raw)
++                if now != "nil", now != original { return true }
++            case (.propertyFlip(let property), .original(let original)):
++                guard let raw = ipcGetAny(client, property) else { continue }
++                if String(describing: raw) == original { return true }
++            case (.stateSnapshot, .flippedFrom(let original)):
++                if stateSnapshotString(client) != original { return true }
++            case (.stateSnapshot, .original(let original)):
++                if stateSnapshotString(client) == original { return true }
++            case (.logMarkers(let on, _), .logOn):
++                if linesSince(logMark).contains(where: { $0.contains(on) }) { return true }
++            case (.logMarkers(_, let off), .logOff):
++                if linesSince(logMark).contains(where: { $0.contains(off) }) { return true }
++            default:
++                return false
++            }
++        }
++        return false
++    }
++
++    private static func runProbes(client: IPCClient) -> [[String: Any]] {
++        var results: [[String: Any]] = []
++        for spec in probeSpecs {
++            // Capture the witness BEFORE the send so a synchronous effect
++            // cannot be missed (Ops review of 8cabab72).
++            let mark1 = lineSnapshot()
++            let original: String
++            switch spec.witness {
++            case .propertyFlip(let property):
++                original = ipcGetAny(client, property).map { String(describing: $0) } ?? "nil"
++            case .logMarkers:
++                original = ""
++            case .stateSnapshot:
++                original = stateSnapshotString(client)
++            }
++            sendScriptMessage(client, target: spec.scriptTarget, message: spec.message)
++            var flipped = false
++            var wentOn = true  // which direction the flip leg took (log witnesses)
++            switch spec.witness {
++            case .propertyFlip, .stateSnapshot:
++                flipped = waitForWitness(client, witness: spec.witness, expect: .flippedFrom(original), logMark: mark1, seconds: 3.0)
++            case .logMarkers(let on, _):
++                flipped = waitForWitness(client, witness: spec.witness, expect: .logOn, logMark: mark1, seconds: 3.0)
++                if !flipped {
++                    // The handler may have started enabled: look for the
++                    // explicit disabled/off line in the same window.
++                    flipped = waitForWitness(client, witness: spec.witness, expect: .logOff, logMark: mark1, seconds: 0.25)
++                    wentOn = false
++                }
++                _ = on
++            }
++            Thread.sleep(forTimeInterval: spec.restoreSpacing)
++            let mark2 = lineSnapshot()  // before the restore send
++            sendScriptMessage(client, target: spec.scriptTarget, message: spec.message)
++            let restored: Bool
++            switch spec.witness {
++            case .propertyFlip, .stateSnapshot:
++                restored = waitForWitness(client, witness: spec.witness, expect: .original(original), logMark: mark2, seconds: 3.0)
++            case .logMarkers:
++                restored = waitForWitness(client, witness: spec.witness, expect: wentOn ? .logOff : .logOn, logMark: mark2, seconds: 3.0)
++            }
++            let result: String
++            let detail: String
++            if flipped && restored {
++                result = "ATTESTED"
++                detail = "handler fired on send and restore; witness reached the flipped state, then the exact original"
++            } else if flipped {
++                result = "FAILED"
++                detail = "handler fired but the witness did not return to the original value"
++            } else {
++                result = "FAILED"
++                detail = "no witness change within 3s of send"
++            }
++            results.append(GorRuntimeDumpCore.probeRecord(message: spec.message, method: spec.method, result: result, detail: detail))
++        }
++        return results
++    }
++
++    // MARK: - collection
++
++    private static func collect(ipcPath: String, configDir: String, partial: Bool, probes: [[String: Any]]) {
++        lock.lock()
++        if didRun { lock.unlock(); return }
++        didRun = true
++        let lines = mpvLines
++        lock.unlock()
++
++        let client = IPCClient(path: ipcPath)
++        func ipcGet(_ property: String) -> Any? { ipcGetAny(client, property) }
++
++        // ── IPC reads ──
++        let glslShaders = (ipcGet("glsl-shaders") as? [Any])?.compactMap { $0 as? String } ?? []
++        let activeShaderNames = glslShaders.map { ($0 as NSString).lastPathComponent }
++        let generatedShaders = ((try? FileManager.default.contentsOfDirectory(atPath: configDir + "/shader")) ?? [])
++            .filter { $0.hasPrefix("photon") && $0.hasSuffix(".glsl") }.sorted()
++        let allShaderNames = Array(Set(activeShaderNames + generatedShaders)).sorted()
++        let scriptOptions = ipcGet("script-opts") as? [String: Any] ?? [:]
++        let inputBindings: [Any] = {
++            if let native = ipcGet("input-bindings") as? [Any], !native.isEmpty { return native }
++            let confPath = configDir + "/input.conf"
++            guard let text = try? String(contentsOfFile: confPath, encoding: .utf8) else { return [] }
++            return GorRuntimeDumpCore.parseInputConf(text).map { $0 as [String: Any] }
++        }()
++
++        // ── Script messages: source scan is PROVENANCE ONLY (Ops 198k
++        // review (1)): registered handlers enter features.script_messages
++        // only via a runtime probe result of ATTESTED.
++        let scriptsDir = configDir + "/scripts"
++        var registered: Set<String> = []
++        if let files = try? FileManager.default.contentsOfDirectory(atPath: scriptsDir) {
++            for file in files where file.hasSuffix(".lua") {
++                if let source = try? String(contentsOfFile: scriptsDir + "/" + file, encoding: .utf8) {
++                    registered.formUnion(GorRuntimeDumpCore.registeredScriptMessages(in: source))
++                }
++            }
++        }
++        var invoked: Set<String> = []
++        if let text = try? String(contentsOfFile: configDir + "/input.conf", encoding: .utf8) {
++            invoked.formUnion(GorRuntimeDumpCore.bindingMessageTargets(in: text))
++        }
++        let attested = probes.filter { ($0["result"] as? String) == "ATTESTED" }
++            .compactMap { $0["message"] as? String }
++        let probedNames = Set(probes.compactMap { $0["message"] as? String })
++        var allProbes = probes
++        for name in registered.sorted() where !probedNames.contains(name) {
++            allProbes.append(GorRuntimeDumpCore.probeRecord(
++                message: name, method: "none",
++                result: "UNPROBED", detail: GorRuntimeDumpCore.unprobedReason(name)))
++        }
++        let unprobed = allProbes.filter { ($0["result"] as? String) == "UNPROBED" }
++            .compactMap { $0["message"] as? String }
++
++        // ── arch-198l + Ops (c): every shader-related warn/error line,
++        // bucketed per shader when attributable, else "unattributed" ──
++        var buckets: [String: [String]] = [:]
++        for name in allShaderNames { buckets[name] = [] }
++        for line in lines {
++            GorRuntimeDumpCore.appendShaderLogLine(&buckets, line: line, shaderNames: allShaderNames)
++        }
++        let photonShaderLog = buckets.filter { !$0.value.isEmpty }
++
++        // ── Executable identity ──
++        var executableSha = "unavailable"
++        if let exe = Bundle.main.executableURL, let bytes = try? Data(contentsOf: exe) {
++            executableSha = SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined()
++        }
++
++        // ── Menus + live panels on the main thread ──
++        DispatchQueue.main.sync {
++            let menus = dumpMenuTree(NSApp.mainMenu)
++            let livePanels = NSApp.windows.filter { $0 is NSPanel }.map { panel -> [String: Any] in
++                [
++                    "class": String(describing: type(of: panel)),
++                    "title": panel.title,
++                    "level": panel.level.rawValue,
++                    "visible": panel.isVisible,
++                ]
++            }
++            // Static panel class inventory: provenance only, never merged
++            // with the live list (Ops 198k review (2)).
++            let staticCatalog = [
++                "URLPanel", "FileBrowserPanel", "MusicPanel", "IPTVPanel",
++                "ArchiveBrowserPanel", "MagnetResultsPanel", "MagnetBrowserController",
++                "SpineUI dropdown/HUD panels",
++            ]
++            let object = GorRuntimeDumpCore.assemble(
++                executableSha256: executableSha,
++                menuTree: menus,
++                livePanels: livePanels,
++                staticPanelCatalog: staticCatalog,
++                attestedMessages: attested,
++                unprobedMessages: unprobed,
++                registeredScan: registered.sorted(),
++                invokedScan: invoked.sorted(),
++                probes: allProbes,
++                inputBindingsRaw: inputBindings,
++                activeShaderPaths: glslShaders,
++                generatedShaderInventory: generatedShaders,
++                scriptOptionsRaw: scriptOptions,
++                photonShaderLog: photonShaderLog,
++                partial: partial)
++            write(object)
++        }
++    }
++
++    private static func dumpMenuTree(_ menu: NSMenu?) -> [[String: Any]] {
++        guard let menu else { return [] }
++        return menu.items.map { item -> [String: Any] in
++            var record: [String: Any] = [
++                "title": item.title,
++                "enabled": item.isEnabled,
++                "separator": item.isSeparatorItem,
++                "key_equivalent": item.keyEquivalent,
++                "key_equivalent_modifier_mask": item.keyEquivalentModifierMask.rawValue,
++                "tag": item.tag,
++            ]
++            if let action = item.action { record["action"] = NSStringFromSelector(action) }
++            if let submenu = item.submenu { record["submenu"] = dumpMenuTree(submenu) }
++            return record
++        }
++    }
++
++    private static func write(_ object: [String: Any]) {
++        guard let path = outputPath, let data = GorRuntimeDumpCore.jsonData(object) else {
++            NSLog("[gor] runtime dump: assembly failed")
++            return
++        }
++        let url = URL(fileURLWithPath: path)
++        let tmp = url.appendingPathExtension("tmp-\(ProcessInfo.processInfo.processIdentifier)")
++        do {
++            try data.write(to: tmp)
++            try? FileManager.default.removeItem(at: url)
++            try FileManager.default.moveItem(at: tmp, to: url)
++            NSLog("[gor] runtime dump written: %@", path)
++        } catch {
++            NSLog("[gor] runtime dump write failed: %@", "\(error)")
++        }
++    }
++}
++#endif
+diff --git a/archive/gor/Sources/gor/GorRuntimeDumpCore.swift b/archive/gor/Sources/gor/GorRuntimeDumpCore.swift
+new file mode 100644
+index 000000000..5fd0c4508
+--- /dev/null
++++ b/archive/gor/Sources/gor/GorRuntimeDumpCore.swift
+@@ -0,0 +1,262 @@
++// ================================================================
++//  GorRuntimeDumpCore.swift - arch-198k in-app reporter, pure core
++//  Owns: output-path parse, photon shader warn/error bucketing
++//  (arch-198l + Ops 198k review: keep every shader-related warn/error
++//  line, bucketed per shader when attributable, else "unattributed"),
++//  checker-compatible features string arrays (schema
++//  bridge inputs/198k/feature-runtime.schema.json: every features.*
++//  value is a string array; the rich records move to
++//  features_provenance), and JSON assembly. Foundation-only; the
++//  AppKit adapter lives in GorRuntimeDump.swift. Linux-tested via
++//  Tests/Harness/RuntimeDump.
++// ================================================================
++import Foundation
++
++enum GorRuntimeDumpCore {
++
++    static func outputPath(arguments: [String]) -> String? {
++        for arg in arguments where arg.hasPrefix("--gor-dump-runtime=") {
++            let path = String(arg.dropFirst("--gor-dump-runtime=".count))
++            return path.isEmpty ? nil : path
++        }
++        return nil
++    }
++
++    // MARK: - photon shader log bucketing (arch-198l, Ops review (c))
++
++    /// A warn/error line counts when it is shader-related, with or without
++    /// a filename: parse failures like "Failed to parse user shader" and
++    /// generic libplacebo/glsl errors must not be dropped.
++    static func isShaderLogLine(_ line: String) -> Bool {
++        let lower = line.lowercased()
++        let isWarnOrError = lower.contains("error") || lower.contains("warn") || lower.contains("failed")
++        guard isWarnOrError else { return false }
++        return lower.contains("shader") || lower.contains("libplacebo") || lower.contains("glsl")
++            || lower.contains("hook") || lower.contains("[gpu")
++    }
++
++    static func shaderLogBucket(_ line: String, shaderNames: [String]) -> String {
++        for name in shaderNames where line.contains(name) { return name }
++        return "unattributed"
++    }
++
++    /// Buckets every shader-related warn/error line. Unattributable lines
++    /// land in "unattributed", never silently dropped (Ops 198k review (c)).
++    static func appendShaderLogLine(_ buckets: inout [String: [String]], line: String, shaderNames: [String]) {
++        guard isShaderLogLine(line) else { return }
++        buckets[shaderLogBucket(line, shaderNames: shaderNames), default: []].append(line)
++    }
++
++    // MARK: - script message source scan (provenance only)
++
++    /// Names registered via mp.register_script_message("name", ...) in a Lua
++    /// source. The scanned file is the byte-exact script mpv loaded.
++    static func registeredScriptMessages(in luaSource: String) -> [String] {
++        var out: [String] = []
++        for line in luaSource.split(separator: "\n") {
++            // Lua line comments never register anything.
++            if line.drop(while: { $0 == " " || $0 == "\t" }).hasPrefix("--") { continue }
++            var rest = Substring(line)
++            while let range = rest.range(of: "register_script_message(\"") {
++                let after = rest[range.upperBound...]
++                if let end = after.firstIndex(of: "\"") {
++                    out.append(String(after[..<end]))
++                }
++                rest = after
++            }
++        }
++        return out
++    }
++
++    /// input.conf parse (IPC input-bindings fallback): key + full command,
++    /// comment and empty lines skipped.
++    static func parseInputConf(_ text: String) -> [[String: String]] {
++        var out: [[String: String]] = []
++        for line in text.split(separator: "\n") {
++            let trimmed = line.trimmingCharacters(in: .whitespaces)
++            if trimmed.isEmpty || trimmed.hasPrefix("#") { continue }
++            let parts = trimmed.split(maxSplits: 1, whereSeparator: { $0 == " " || $0 == "\t" })
++            guard let key = parts.first else { continue }
++            let command = parts.count > 1 ? parts[1].trimmingCharacters(in: .whitespaces) : ""
++            out.append(["key": String(key), "command": command])
++        }
++        return out
++    }
++
++    static func bindingMessageTargets(in inputConf: String) -> [String] {
++        var out: [String] = []
++        for line in inputConf.split(separator: "\n") {
++            let trimmed = line.trimmingCharacters(in: .whitespaces)
++            if trimmed.isEmpty || trimmed.hasPrefix("#") { continue }
++            var rest = Substring(trimmed)
++            while let range = rest.range(of: "script-message-to ") {
++                var after = rest[range.upperBound...]
++                if after.hasPrefix("\"") { after = after.dropFirst() }
++                let target = after.split(whereSeparator: { $0 == " " || $0 == "\"" }).first.map(String.init)
++                if let target { out.append(target) }
++                rest = after
++            }
++        }
++        return out
++    }
++
++    // MARK: - features string arrays (checker-compatible)
++
++    /// Nested menu records -> "menuTitle/itemTitle" strings (one per item,
++    /// submenu paths joined with "/"). Separators are omitted.
++    static func menuStrings(_ items: [[String: Any]], prefix: String = "") -> [String] {
++        var out: [String] = []
++        for item in items {
++            guard let title = item["title"] as? String, !title.isEmpty else { continue }
++            let path = prefix.isEmpty ? title : prefix + "/" + title
++            if let submenu = item["submenu"] as? [[String: Any]], !submenu.isEmpty {
++                out.append(contentsOf: menuStrings(submenu, prefix: path))
++            } else if (item["separator"] as? Bool) != true {
++                out.append(path)
++            }
++        }
++        return out
++    }
++
++    /// Raw input binding records -> "key: full command" strings.
++    static func inputBindingStrings(_ bindings: [Any]) -> [String] {
++        bindings.compactMap { raw -> String? in
++            guard let b = raw as? [String: Any] else { return nil }
++            let key = (b["key"] as? String) ?? "?"
++            let cmd = (b["cmd"] as? String) ?? (b["command"] as? String) ?? ""
++            return key + ": " + cmd
++        }
++    }
++
++    /// script-opts dictionary -> "name=value" strings.
++    static func scriptOptionStrings(_ options: [String: Any]) -> [String] {
++        options.map { name, value in name + "=" + String(describing: value) }.sorted()
++    }
++
++    // MARK: - probe records
++
++    /// One runtime script-message probe outcome (Ops 198k review (1)).
++    /// result: ATTESTED (flip + restore observed over IPC), FAILED (probe
++    /// ran, effect not observed), UNPROBED (no safe probe exists).
++    static func probeRecord(message: String, method: String, result: String, detail: String) -> [String: Any] {
++        ["message": message, "method": method, "result": result, "detail": detail]
++    }
++
++    /// Unprobed classification for a registered message that has no safe
++    /// IPC-observable probe. Reasons are data, not authority.
++    static func unprobedReason(_ message: String) -> String {
++        if message.hasSuffix("-hud-state") || message == "photon-scene-feed"
++            || message == "photon-grain-measure-status" || message == "photon-grain-size-evidence"
++            || message == "photon-grain-size-trim-state" || message == "photon-adaptive-program-state" {
++            return "payload ingress (subscriber publishes nothing IPC-readable back); no safe read-only probe"
++        }
++        if message == "photon-hud-toggle-fold" || message == "photon-hud-force-redraw"
++            || message == "photon-grain-doc" || message == "photon-grain-debug-visualize" {
++            return "effect is OSD/VM-internal only; no IPC-visible witness"
++        }
++        if message == "set-user-enabled" || message == "set-chrome-user-enabled"
++            || message == "set-negativ-user-enabled" || message == "set-live"
++            || message == "photon-adaptive-program-toggle" {
++            return "synchronizes an internal flag; no IPC-visible effect to round-trip"
++        }
++        if message == "photon-chrome-filter-toggle" || message == "photon-chrome-set-mono-grain"
++            || message.hasPrefix("photon-chrome-set-target") {
++            return "effect is conditional on chrome being enabled; probing it changes playback state"
++        }
++        if message == "photon-look-reset" {
++            return "mutates user tuning state with no reversible observable"
++        }
++        return "requires argument payload that mutates tuning state; no safe read-only probe"
++    }
++
++    // MARK: - photon_v4_replacement (NOT_RUN placeholders per Ops (d))
++
++    static func photonV4ReplacementSection(executableSha256: String) -> [String: Any] {
++        [
++            "executable_sha256": executableSha256,
++            "result": "NOT_RUN",
++            "lua_swift_twin_byte_equal": "NOT_RUN",
++            "v7_invariants": "NOT_RUN",
++            "manual_recall_sequence": "NOT_RUN",
++            "implemented": [
++                "V1": "NOT_RUN", "V2": "NOT_RUN", "V3": "NOT_RUN", "V4": "NOT_RUN",
++                "V5": "NOT_RUN", "V6": "NOT_RUN", "V7": "NOT_RUN",
++            ],
++            "note": "checker-side placeholders; the in-app reporter does not execute the v4 replacement suites",
++        ]
++    }
++
++    // MARK: - assembly
++
++    static func assemble(
++        executableSha256: String,
++        menuTree: [[String: Any]],
++        livePanels: [[String: Any]],
++        staticPanelCatalog: [String],
++        attestedMessages: [String],
++        unprobedMessages: [String],
++        registeredScan: [String],
++        invokedScan: [String],
++        probes: [[String: Any]],
++        inputBindingsRaw: [Any],
++        activeShaderPaths: [String],
++        generatedShaderInventory: [String],
++        scriptOptionsRaw: [String: Any],
++        photonShaderLog: [String: [String]],
++        partial: Bool
++    ) -> [String: Any] {
++        let activeShaderNames = activeShaderPaths.map { ($0 as NSString).lastPathComponent }.sorted()
++        let features: [String: Any] = [
++            // Checker contract (bridge inputs/198k/feature-runtime.schema.json):
++            // every features.* value is a flat string array; the checker set()s
++            // it. Rich records live in features_provenance.
++            "menus": menuStrings(menuTree).sorted(),
++            "panels": livePanels.compactMap { $0["class"] as? String }.sorted(),
++            "script_messages": attestedMessages.sorted(),
++            "input_bindings": inputBindingStrings(inputBindingsRaw).sorted(),
++            "shader_names": activeShaderNames,
++            "script_options": scriptOptionStrings(scriptOptionsRaw),
++        ]
++        let featuresProvenance: [String: Any] = [
++            "menus": ["format": "menuTitle/itemTitle path strings", "tree": menuTree],
++            "panels": [
++                "live": livePanels,
++                "static_catalog": staticPanelCatalog,
++                "note": "live = open NSPanel instances at dump time (runtime); static_catalog = source inventory of panel classes (not runtime availability); the two are never merged (Ops 198k review (2))",
++            ],
++            "script_messages": [
++                "attested_runtime": attestedMessages.sorted(),
++                "unprobed": unprobedMessages.sorted(),
++                "registered_source_scan": registeredScan,
++                "invoked_in_bindings_source_scan": invokedScan,
++                "note": "features.script_messages contains ONLY runtime-ATTESTED handlers; source scans are provenance, never merged into the runtime list (Ops 198k review (1))",
++            ],
++            "input_bindings": ["raw": inputBindingsRaw],
++            "shader_names": [
++                "active_glsl_shaders": activeShaderPaths.sorted(),
++                "generated_inventory": generatedShaderInventory,
++                "note": "features.shader_names = the ACTIVE glsl-shaders list only; the generated file inventory is kept separate (Ops 198k review (b))",
++            ],
++            "script_options": ["raw": scriptOptionsRaw],
++        ]
++        return [
++            "executable_sha256": executableSha256,
++            "features": features,
++            "features_provenance": featuresProvenance,
++            "script_message_probes": probes,
++            "probe_coverage_note": "probes cover only the six toggle handlers with a safe IPC round-trip witness; every other registered handler is UNPROBED. This is not a full feature baseline and ATTESTED applies per handler, never to the feature set as a whole.",
++            "photon_shader_log": photonShaderLog,
++            "photon_v4_replacement": photonV4ReplacementSection(executableSha256: executableSha256),
++            "partial": partial,
++        ]
++    }
++
++    static func jsonData(_ object: [String: Any]) -> Data? {
++        guard JSONSerialization.isValidJSONObject(object),
++              var data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted, .sortedKeys]) else {
++            return nil
++        }
++        data.append(0x0A)
++        return data
++    }
++}
+diff --git a/archive/gor/Tests/Harness/RuntimeDump/run.sh b/archive/gor/Tests/Harness/RuntimeDump/run.sh
+new file mode 100755
+index 000000000..ee1824488
+--- /dev/null
++++ b/archive/gor/Tests/Harness/RuntimeDump/run.sh
+@@ -0,0 +1,20 @@
++#!/bin/bash
++# arch-198k runtime-dump core witness: compile core+suite, expect FAILS 0
++# (same GorFit harness pattern as Tests/Harness/HDRHandoff).
++set -u
++HERE="$(cd "$(dirname "$0")" && pwd)"
++WORK="$(mktemp -d /tmp/gor-runtime-dump-witness.XXXXXX)"
++swiftc -O "$HERE/../../../Sources/gor/GorRuntimeDumpCore.swift" "$HERE/suite/main.swift" \
++  -o "$WORK/runtime-dump-witness" 2>"$WORK/build.log"
++if [ $? -ne 0 ]; then
++  echo "BUILD FAIL"; cat "$WORK/build.log"; exit 1
++fi
++"$WORK/runtime-dump-witness" | tee "$WORK/run.log"
++grep -q '^FAILS 0$' "$WORK/run.log"
++RC=$?
++if [ $RC -eq 0 ]; then
++  echo "PASS: runtime dump core witness; logs retained at $WORK"
++else
++  echo "FAIL: runtime dump core witness; logs retained at $WORK"
++fi
++exit $RC
+diff --git a/archive/gor/Tests/Harness/RuntimeDump/suite/main.swift b/archive/gor/Tests/Harness/RuntimeDump/suite/main.swift
+new file mode 100644
+index 000000000..339991688
+--- /dev/null
++++ b/archive/gor/Tests/Harness/RuntimeDump/suite/main.swift
+@@ -0,0 +1,157 @@
++// arch-198k/198l runtime-dump core witness (GorFit harness pattern:
++// swiftc -O core+suite, expect FAILS 0). Pins the pure behavior of
++// GorRuntimeDumpCore, now extended per Ops 198k review: flag parsing,
++// shader-related warn/error capture with per-shader buckets plus
++// "unattributed" (review (c)), checker-compatible features string arrays
++// with rich records in features_provenance (review (a)), active-only
++// shader_names (review (b)), live/static panel separation (review (2)),
++// probe records with ATTESTED/UNPROBED discipline (review (1)),
++// Lua message extraction, input.conf parsing, deterministic assembly.
++import Foundation
++
++var fails = 0
++func check(_ cond: Bool, _ label: String) {
++    if !cond { fails += 1; print("FAIL: \(label)") }
++}
++
++// ── flag parsing ──
++check(GorRuntimeDumpCore.outputPath(arguments: ["gor", "--gor-dump-runtime=/tmp/out.json"]) == "/tmp/out.json", "flag path")
++check(GorRuntimeDumpCore.outputPath(arguments: ["gor", "--other"]) == nil, "flag absent")
++check(GorRuntimeDumpCore.outputPath(arguments: ["gor", "--gor-dump-runtime="]) == nil, "empty path rejected")
++check(GorRuntimeDumpCore.outputPath(arguments: ["gor"]) == nil, "normal launch untouched")
++
++// ── shader log capture + buckets (arch-198l + Ops review (c)) ──
++let shaders = ["photon-grain.glsl", "photon-sharp.glsl", "photon-chrome.glsl"]
++check(GorRuntimeDumpCore.isShaderLogLine("[shader] warn: photon-grain.glsl: some warning"), "grain warn kept")
++check(GorRuntimeDumpCore.isShaderLogLine("[shader] error: failed to compile photon-sharp.glsl"), "sharp error kept")
++check(!GorRuntimeDumpCore.isShaderLogLine("[shader] info: loaded photon-grain.glsl"), "info dropped")
++check(!GorRuntimeDumpCore.isShaderLogLine("[ffmpeg] error: decode failed"), "non-shader error dropped")
++// Ops review (c): generic lines with no filename or "[shader" prefix stay.
++check(GorRuntimeDumpCore.isShaderLogLine("Failed to parse user shader"), "bare parse failure kept")
++check(GorRuntimeDumpCore.isShaderLogLine("[libplacebo] error: shader link failed"), "libplacebo error kept")
++check(!GorRuntimeDumpCore.isShaderLogLine("[libplacebo] info: shader linked"), "libplacebo info dropped")
++check(GorRuntimeDumpCore.shaderLogBucket("[shader] warn: photon-grain.glsl: x", shaderNames: shaders) == "photon-grain.glsl", "grain bucketed as grain")
++check(GorRuntimeDumpCore.shaderLogBucket("[shader] error: photon-sharp.glsl failed", shaderNames: shaders) == "photon-sharp.glsl", "sharp bucketed as sharp")
++check(GorRuntimeDumpCore.shaderLogBucket("Failed to parse user shader", shaderNames: shaders) == "unattributed", "unnamed line unattributed")
++
++var buckets: [String: [String]] = [:]
++for s in shaders { buckets[s] = [] }
++GorRuntimeDumpCore.appendShaderLogLine(&buckets, line: "[shader] warn: photon-grain.glsl: g1", shaderNames: shaders)
++GorRuntimeDumpCore.appendShaderLogLine(&buckets, line: "[shader] error: photon-sharp.glsl: s1", shaderNames: shaders)
++GorRuntimeDumpCore.appendShaderLogLine(&buckets, line: "[shader] warn: photon-grain.glsl: g2", shaderNames: shaders)
++GorRuntimeDumpCore.appendShaderLogLine(&buckets, line: "[shader] info: noise", shaderNames: shaders)
++GorRuntimeDumpCore.appendShaderLogLine(&buckets, line: "Failed to parse user shader", shaderNames: shaders)
++check(buckets["photon-grain.glsl"]?.count == 2, "grain bucket has 2, order kept")
++check(buckets["photon-grain.glsl"]?[0].hasSuffix("g1") == true && buckets["photon-grain.glsl"]?[1].hasSuffix("g2") == true, "grain bucket order")
++check(buckets["photon-sharp.glsl"]?.count == 1, "sharp bucket separate from grain")
++check(buckets["photon-chrome.glsl"]?.isEmpty == true, "chrome bucket empty")
++check(buckets["unattributed"]?.count == 1, "unattributed bucket holds bare failure")
++
++// ── Lua registered-message extraction (source scan = provenance only) ──
++let lua = """
++mp.register_script_message("photon-scene-feed", function(payload)
++mp.register_script_message("photon-chrome-toggle", function()
++-- mp.register_script_message("commented-out", handler)
++"""
++let msgs = GorRuntimeDumpCore.registeredScriptMessages(in: lua)
++check(msgs == ["photon-scene-feed", "photon-chrome-toggle"], "registered messages extracted, got \(msgs)")
++
++// ── input.conf parsing ──
++let conf = """
++# comment
++c script-message-to photon_chrome photon-chrome-toggle
++C script-message-to photon_chrome photon-chrome-filter-toggle
++
++F9 script-message-to photon toggle
++"""
++let bindings = GorRuntimeDumpCore.parseInputConf(conf)
++check(bindings.count == 3, "3 bindings parsed, got \(bindings.count)")
++check(bindings[0]["key"] == "c" && bindings[0]["command"] == "script-message-to photon_chrome photon-chrome-toggle", "binding 0")
++let targets = GorRuntimeDumpCore.bindingMessageTargets(in: conf)
++check(targets == ["photon_chrome", "photon_chrome", "photon"], "binding targets, got \(targets)")
++
++// ── features string arrays (checker-compatible, Ops review (a)) ──
++let menuTree: [[String: Any]] = [
++    ["title": "File", "enabled": true, "submenu": [
++        ["title": "Open", "enabled": true],
++        ["title": "", "separator": true],
++        ["title": "Recent", "enabled": true, "submenu": [["title": "clip.mkv", "enabled": true]]],
++    ]],
++]
++let menuStrings = GorRuntimeDumpCore.menuStrings(menuTree)
++check(menuStrings.contains("File/Open"), "menu path flattened")
++check(menuStrings.contains("File/Recent/clip.mkv"), "nested menu path flattened")
++check(!menuStrings.contains { $0.contains("separator") || $0.hasSuffix("/") }, "separators omitted")
++let bindingStrings = GorRuntimeDumpCore.inputBindingStrings(bindings)
++check(bindingStrings.first == "c: script-message-to photon_chrome photon-chrome-toggle", "binding string format, got \(bindingStrings)")
++let optionStrings = GorRuntimeDumpCore.scriptOptionStrings(["photon-scriptdir": "/x", "photon-grain_floor_480p": 12])
++check(optionStrings == ["photon-grain_floor_480p=12", "photon-scriptdir=/x"], "option strings sorted, got \(optionStrings)")
++
++// ── probe discipline (Ops review (1)) ──
++let att = GorRuntimeDumpCore.probeRecord(message: "photon-chrome-toggle", method: "m", result: "ATTESTED", detail: "d")
++check(att["result"] as? String == "ATTESTED", "probe record shape")
++check(GorRuntimeDumpCore.unprobedReason("photon-scene-feed").contains("ingress"), "feed classed as payload ingress")
++check(GorRuntimeDumpCore.unprobedReason("photon-hud-toggle-fold").contains("OSD"), "fold classed as OSD-only")
++check(GorRuntimeDumpCore.unprobedReason("set-user-enabled").contains("internal flag"), "user-enabled classed as internal sync")
++check(GorRuntimeDumpCore.unprobedReason("photon-grain-set-amount").contains("payload"), "set-* classed as tuning mutation")
++
++// ── deterministic assembly with the checker shape ──
++let object = GorRuntimeDumpCore.assemble(
++    executableSha256: "deadbeef",
++    menuTree: menuTree,
++    livePanels: [["class": "URLPanel", "title": "Open URL"]],
++    staticPanelCatalog: ["URLPanel", "MusicPanel"],
++    attestedMessages: ["photon-chrome-toggle"],
++    unprobedMessages: ["photon-scene-feed"],
++    registeredScan: ["photon-chrome-toggle", "photon-scene-feed"],
++    invokedScan: ["photon_chrome"],
++    probes: [att],
++    inputBindingsRaw: bindings.map { $0 as [String: Any] },
++    activeShaderPaths: ["/cfg/shader/photon-grain.glsl"],
++    generatedShaderInventory: ["photon-chrome.glsl", "photon-grain.glsl"],
++    scriptOptionsRaw: ["photon-scriptdir": "/x"],
++    photonShaderLog: ["photon-grain.glsl": ["[shader] warn: g1"], "unattributed": ["Failed to parse user shader"]],
++    partial: false)
++guard let features = object["features"] as? [String: Any] else {
++    fails += 1; print("FAIL: features missing"); print("FAILS \(fails)"); exit(1)
++}
++check(features["menus"] is [String], "features.menus is a string array")
++check(features["panels"] is [String], "features.panels is a string array")
++check(features["script_messages"] is [String], "features.script_messages is a string array")
++check(features["input_bindings"] is [String], "features.input_bindings is a string array")
++check(features["shader_names"] is [String], "features.shader_names is a string array")
++check(features["script_options"] is [String], "features.script_options is a string array")
++check((features["panels"] as? [String]) == ["URLPanel"], "features.panels = live panels only")
++check((features["script_messages"] as? [String]) == ["photon-chrome-toggle"], "features.script_messages = ATTESTED only")
++check((features["shader_names"] as? [String]) == ["photon-grain.glsl"], "features.shader_names = active list only")
++let prov = object["features_provenance"] as? [String: Any]
++let provPanels = prov?["panels"] as? [String: Any]
++check((provPanels?["static_catalog"] as? [String]) == ["URLPanel", "MusicPanel"], "static catalog kept separate")
++let provMsgs = prov?["script_messages"] as? [String: Any]
++check((provMsgs?["registered_source_scan"] as? [String])?.count == 2, "scan kept as provenance")
++check((provMsgs?["unprobed"] as? [String]) == ["photon-scene-feed"], "unprobed listed in provenance")
++let provShaders = prov?["shader_names"] as? [String: Any]
++var genInvCount = -1
++if let ps = provShaders, let gi = ps["generated_inventory"] as? [String] { genInvCount = gi.count }
++check(genInvCount == 2, "generated inventory kept separate")
++var probeListCount = -1
++if let pl = object["script_message_probes"] as? [[String: Any]] { probeListCount = pl.count }
++check(probeListCount == 1, "probe list assembled")
++
++guard let d1 = GorRuntimeDumpCore.jsonData(object), let d2 = GorRuntimeDumpCore.jsonData(object),
++      let s1 = String(data: d1, encoding: .utf8) else {
++    fails += 1; print("FAIL: jsonData nil")
++    print("FAILS \(fails)")
++    exit(1)
++}
++check(d1 == d2, "assembly deterministic")
++check(s1.hasSuffix("}\n"), "trailing newline")
++check(s1.contains("\"executable_sha256\" : \"deadbeef\""), "executable sha present")
++check(s1.contains("\"photon_v4_replacement\""), "v4 section present")
++check(s1.contains("\"photon_shader_log\""), "per-shader log section present")
++check(s1.contains("\"result\" : \"NOT_RUN\""), "v4 placeholder NOT_RUN")
++check(s1.contains("\"V7\" : \"NOT_RUN\""), "implemented.V1-V7 NOT_RUN placeholders")
++check(s1.contains("probe_coverage_note"), "coverage honesty note present")
++
++print("FAILS \(fails)")
++exit(fails == 0 ? 0 : 1)
+diff --git a/archive/gor/architecture/arch-baseline.tsv b/archive/gor/architecture/arch-baseline.tsv
+index 52a9a9666..b9a3352c0 100644
+--- a/archive/gor/architecture/arch-baseline.tsv
++++ b/archive/gor/architecture/arch-baseline.tsv
+@@ -930,3 +930,12 @@ Packages/gorav/Sources/parity-pixel-tests/main.swift	gorav-internal:GorAVNativeP
+ Packages/gorav/Sources/parity-pixel-tests/main.swift	gorav-internal:GorAVPlaybackCore	1	gorav-vendor-2026-11-16	queue item complete; remove debt row			
+ Packages/gorav/Sources/untagged-color-tests/main.swift	edge:GorAVPlaybackCore	1	gorav-vendor-2026-11-16	queue item complete; remove debt row			
+ Packages/gorav/Sources/untagged-color-tests/main.swift	gorav-internal:GorAVPlaybackCore	1	gorav-vendor-2026-11-16	queue item complete; remove debt row			
++Sources/gor/GorRuntimeDump.swift	mpv:5049fe1da1a62da1	2	arch-198k	queue item complete; remove debt row				
++Sources/gor/GorRuntimeDump.swift	mpv:6e77d3ae2503b92e	1	arch-198k	queue item complete; remove debt row				
++Sources/gor/GorRuntimeDump.swift	mpv:770924b3f70c4431	1	arch-198k	queue item complete; remove debt row				
++Sources/gor/GorRuntimeDump.swift	mpv:8d4c7ab6a9a842f2	1	arch-198k	queue item complete; remove debt row				
++Sources/gor/GorRuntimeDump.swift	mpv:103643a88f2fcd88	1	arch-198k	queue item complete; remove debt row				
++Sources/gor/GorRuntimeDump.swift	mpv:71fe036cff06245c	1	arch-198k	queue item complete; remove debt row				
++Sources/gor/GorRuntimeDump.swift	mpv:44c36b2df69e7bc4	1	arch-198k	queue item complete; remove debt row				
++Sources/gor/GorRuntimeDump.swift	mpv:a965082e4c27616f	1	arch-198k	queue item complete; remove debt row				
++Sources/gor/GorRuntimeDump.swift	mpv:89ecea0d4a30516d	1	arch-198k	queue item complete; remove debt row				
+diff --git a/archive/gor/architecture/delivery.tsv b/archive/gor/architecture/delivery.tsv
+index 32966151a..4880d7ad2 100644
+--- a/archive/gor/architecture/delivery.tsv
++++ b/archive/gor/architecture/delivery.tsv
+@@ -507,7 +507,7 @@ Resources/vendor/wt_server/bounded_log.mjs	b0b2c45e9838260a02cdc59ff2dc05a0caa18
+ Resources/vendor/wt_server/diagnostics.mjs	72e0b2bb4a08a81ccd0040ba0d4f3e1fd875f2ea6ad1daee1d916e2616911ab1	0o644
+ Resources/vendor/wt_server/wt_server.mjs	b6b918d0d67bb447a1cecd4b2160858cbffc76c871c8e5f1b5f3b956a3fea4c9	0o644
+ Sources/gor/AdaptiveColor.swift	2fd63b55e52d7e97a5b21a21856583137373c4fa8bfa52f167133d08bb5be1d6	0o644
+-Sources/gor/AppDelegate.swift	cef1a286194036dd0d08c2cd619b907ffb01da57ae62d084c8cc950991678095	0o644
++Sources/gor/AppDelegate.swift	12f1020e590517d3ab103ba3b6c4bcbd6c1517420d2c7651e7d62edac4747ede	0o644
+ Sources/gor/ArchiveBrowser.swift	25472e0eb5da384cda6b5823dc851c8471e002c9223e1949937055b9e98608bb	0o644
+ Sources/gor/ArchiveLibrary.swift	772942f9057fe2486eac455c145f544e7101238dc52e1693e0aee32cf5a6f1a3	0o644
+ Sources/gor/ArchiveRandom.swift	d06654d43b0d6688beddf28e069826baaf864855e8f044c0e5363923ef98ee96	0o644
+@@ -534,6 +534,8 @@ Sources/gor/GorAVLocalOffer.swift	7af57f2ed18b7a64f250fe2f21f0f7d6351a3bd03b8837
+ Sources/gor/GorAVNativeGate.swift	8c0c6abc1e60ac8b45c1ef6e607b76095c2edd81920c28251f43c9bb6d8e5c83	0o644
+ Sources/gor/GorAVPlayerHost.swift	102ff8b4a3a28d6d8293de6b0e0c2a9a29d6c428ddccfc18dbdd8f38665c20c8	0o644
+ Sources/gor/GorAVStreamAdmission.swift	e3d95e54dd3c87a7c30864165d54c2e76d058f02ff1fc85a5de8d7170337c773	0o644
++Sources/gor/GorRuntimeDump.swift	f7a30a79b6ca90ad1c8f12bd27c40f57897654834aa866ba29204ec854d5b401	0o644
++Sources/gor/GorRuntimeDumpCore.swift	0b937c5fb39f684bb38da591f5d334399c09a11e160e6dab4c6dcfb9106de5cd	0o644
+ Sources/gor/IPTV.swift	d3c1ed6bf012926e74425437d2b62270c39f1e209f293960a4909719ebc0e0e8	0o644
+ Sources/gor/IconBarFit.swift	be45ac1c02481bda9e17b4a7d36702d0ecaafcb6654ecdb685d141c0ac6a3eb5	0o644
+ Sources/gor/LiveCaptionController.swift	d749b6d29a80423faa9e66d8b274b7103b4ce477c57ee3c54c7ed861c4c04da3	0o644
+@@ -1104,6 +1106,8 @@ Tests/Harness/ProviderRouting/manifest.json	804b8def9b2f063a82c26ca1611c6e1220fe
+ Tests/Harness/ProviderRouting/results.json	b06552281e7fe5383adcea857cf4d1af71875a485fc24f8c3fbb07bedfa2cd2e	0o644
+ Tests/Harness/ProviderRouting/run.sh	bf61e58f4674d53c9b60e8de901e2c54279b0a57009d0abe62ebd88b564721d0	0o644
+ Tests/Harness/ProviderRouting/test_routes.py	5a63c79cba469704b3c08b958cb857e5f9cd54113e113e1d0e3d970c0014cddc	0o644
++Tests/Harness/RuntimeDump/run.sh	7cf35a2695b600751b780ce9ff38ae77c1e0eb188e30c6694ec39d99230097ac	0o755
++Tests/Harness/RuntimeDump/suite/main.swift	5185323205efc4ba815fb23cddd1a77a5d93173bc2900df03eb4b652cfa5af78	0o644
+ Tests/Harness/SURVEY-SWEEP-2026-10-01.json	b555fdf480c37c80c086d799b7adb8e06a84ce2192811efcd33987c66802501a	0o644
+ Tests/Harness/ScreenCamera/README.md	f8cf67836d6aa0a1a1e8067728a791d96341bc70a6bcd679a89942e96d9d82cd	0o644
+ Tests/Harness/ScreenCamera/ambient_worker_native.py	ddc9314d8a3d5c84b091aa104dabbdb7e34481290f661d4b4f7bda17aa4c1f60	0o644
+@@ -1560,11 +1564,11 @@ Tests/_retired-195q/privacy_test.py	e6d50ab052b9b113303880cd58e75e7aec97bde9192b
+ Tests/gorTests/GorAVStreamAdmissionTests.swift	e96989de74e634cf851bb2eb165641206aa239d1b563e2e2da38684f3a765f1d	0o644
+ Tests/gorTests/ThreeDRouteMachineTests.swift	5b69bcf90efb2afeb248f8bf9476c0c496fe88ca09683f7ce726d631a4a031d8	0o644
+ VENDOR.md	fc34a8f675fe047f47276febe0fb04d94c6b28e2847ad340b271e3b8b8f4e393	0o644
+-architecture/arch-baseline.tsv	9dfa9e81a08f575c1f4431dd30c9a00dedeb1d82fac131ceefe2981e3e45d893	0o644
++architecture/arch-baseline.tsv	8b776fbb8aab5b3033aa3a359c9e17770150257cd9fdb0da28c97f8e635b12fc	0o644
+ architecture/freeze-195o.json	132f37a5f310d66bd9a795c5894c60c90d346fd53a65cfb98f88e0c99cc12740	0o644
+ architecture/freeze-195y.json	9facecb73847fef1c9e225a9b07ee7d487414f41b661fbe971b30acbd47ebaa1	0o644
+-architecture/manifest.tsv	69d84856e3a1c59fe4cbd76ddb24948f11ce59b4ab17821bfa893dfa676f560f	0o644
+-architecture/policy.tsv	2369a0c8201ae88dc99ca429de3e642961df166e0da01278884c5ea1a907143a	0o644
++architecture/manifest.tsv	a5f31614c7c0fb5b5b308dcd105350a945d9a4aa820a0c375bab579c438f0506	0o644
++architecture/policy.tsv	789bd053d22b4d6c802add52b2175216aa8b861f9aa0deb810c4a7c3c6722e4e	0o644
+ build.sh	acfc1657b0b7665dbe1c5c60b2cf6ea8a6dee92effba7d5244ab2e96ebfc4cf5	0o755
+ docs/190v-first-mac-log.md	014671890c84eb8b6a6434385b1331dbf504a5091d2a6ec391be6381a36cf278	0o644
+ docs/190v-first-run-risk-walk.md	aa523f38b734fc720c9f21db5138f16f28a49396734e940e36649b2cdae9c7e5	0o644
+diff --git a/archive/gor/architecture/manifest.tsv b/archive/gor/architecture/manifest.tsv
+index 0fca4c3bd..25cbbe675 100644
+--- a/archive/gor/architecture/manifest.tsv
++++ b/archive/gor/architecture/manifest.tsv
+@@ -538,7 +538,7 @@ Resources/vendor/wt_server/diagnostics.mjs	vendor	-	54
+ Resources/vendor/wt_server/wt_server.mjs	vendor	-	4979
+ STATE.md	generated	-	85
+ Sources/gor/AdaptiveColor.swift	swift	gor	128
+-Sources/gor/AppDelegate.swift	swift	gor	3865
++Sources/gor/AppDelegate.swift	swift	gor	3868
+ Sources/gor/ArchiveBrowser.swift	swift	gor	2570
+ Sources/gor/ArchiveLibrary.swift	swift	gor	426
+ Sources/gor/ArchiveRandom.swift	swift	gor	158
+@@ -565,6 +565,8 @@ Sources/gor/GorAVLocalOffer.swift	swift	gor	118
+ Sources/gor/GorAVNativeGate.swift	swift	gor	176
+ Sources/gor/GorAVPlayerHost.swift	swift	gor	350
+ Sources/gor/GorAVStreamAdmission.swift	swift	gor	37
++Sources/gor/GorRuntimeDump.swift	swift	gor	370
++Sources/gor/GorRuntimeDumpCore.swift	swift	gor	262
+ Sources/gor/IPTV.swift	swift	gor	3444
+ Sources/gor/IconBarFit.swift	swift	gor	100
+ Sources/gor/LiveCaptionController.swift	swift	gor	595
+@@ -620,6 +622,7 @@ Tests/Architecture/s1-196y-map.json	dev-tool	-	15
+ Tests/Architecture/s1_196y_preservation_test.py	dev-tool	-	67
+ Tests/Architecture/structure_freeze_test.py	dev-tool	-	14
+ Tests/Architecture/swift-fixture.py	dev-tool	-	12
++Tests/Architecture/update_integrity_path_test.py	dev-tool	-	58
+ Tests/Architecture/viewport-s4a-map.json	dev-tool	-	20
+ Tests/Architecture/viewport_s4a_preservation_test.py	dev-tool	-	59
+ Tests/Archive/random_bag_test.py	dev-tool	-	81
+@@ -1134,6 +1137,8 @@ Tests/Harness/ProviderRouting/manifest.json	dev-tool	-	20
+ Tests/Harness/ProviderRouting/results.json	dev-tool	-	53
+ Tests/Harness/ProviderRouting/run.sh	dev-tool	-	4
+ Tests/Harness/ProviderRouting/test_routes.py	dev-tool	-	62
++Tests/Harness/RuntimeDump/run.sh	dev-tool	-	20
++Tests/Harness/RuntimeDump/suite/main.swift	dev-tool	-	157
+ Tests/Harness/SURVEY-SWEEP-2026-10-01.json	dev-tool	-	130
+ Tests/Harness/ScreenCamera/README.md	dev-tool	-	5
+ Tests/Harness/ScreenCamera/ambient_worker_native.py	dev-tool	-	46
+@@ -13264,4 +13269,3 @@ zips/261023-221613-gor-font-allui-audio-tap-recovery-r1.zip.b64	generated	-	1
+ zips/261023-222310-gor-allui-font-audio-continuity-r2.zip.b64	generated	-	2300
+ zips/261023-222526-gor-allui-font-audio-continuity-r4.zip.b64	generated	-	2309
+ zips/261024-102454-gor-allui-font-audio-continuity-r5.zip.b64	generated	-	2301
+-Tests/Architecture/update_integrity_path_test.py	dev-tool	-	58
+diff --git a/archive/gor/architecture/policy.tsv b/archive/gor/architecture/policy.tsv
+index b9889d3e1..4313c69ca 100644
+--- a/archive/gor/architecture/policy.tsv
++++ b/archive/gor/architecture/policy.tsv
+@@ -3895,3 +3895,7 @@ Tests/HeadPose/test_hold_lock.py	hold-lock-test	tooling	197i: hold-lock measurem
+ tools/head_pose/synth_tilt_hold_clip.py	pose-synth-clip	tooling	197i: deterministic synthetic tilt-and-hold pose clip (fast tilt, hold, return, slow pan), LABELLED SYNTHETIC pending a real Mac pose trace	-		-	-
+ Tests/BlinkRoute/blink_cadence_replay_test.py	blink_cadence_replay_test	tooling	197i: cadence-aware double-blink replay (root-cause 2 Hz death, sampling-floor catch, negatives, boost cost, 30/10 fps parity, swift pins)	D2		-	-
+ tools/head_pose/blink_cadence.py	blink-cadence	tooling	197i: cadence-aware double-blink detector model + thermal-stride pipeline simulator; constants measured by Tests/BlinkRoute/blink_cadence_replay_test.py	-		-	-
++Sources/gor/GorRuntimeDumpCore.swift	arch-198k runtime reporter pure core (flag parse, classifiers, assembly)	gor	Inert without --gor-dump-runtime	arch-198k		-	-
++Sources/gor/GorRuntimeDump.swift	arch-198k runtime reporter AppKit adapter (menu/panel walk, mpv IPC reads, per-shader log buckets)	gor	Inert without --gor-dump-runtime; macOS-only, Mac not verified	arch-198k		-	-
++Tests/Harness/RuntimeDump/run.sh	harness runner	tooling		D2		-	-
++Tests/Harness/RuntimeDump/suite/main.swift	harness suite	tooling		D2		-	-
+diff --git a/docs/decisions/DR-198K-DUMP-001.md b/docs/decisions/DR-198K-DUMP-001.md
+new file mode 100644
+index 000000000..8468e391e
+--- /dev/null
++++ b/docs/decisions/DR-198K-DUMP-001.md
+@@ -0,0 +1,24 @@
++# DR-198K-DUMP-001: runtime reporter IPC edges (arch-198k/198l + Ops 198k review)
++
++Nine mpv-reference debt rows for Sources/gor/GorRuntimeDump.swift
++(mpv:a965082e4c27616f, mpv:5049fe1da1a62da1 x2, mpv:6e77d3ae2503b92e,
++mpv:770924b3f70c4431, mpv:8d4c7ab6a9a842f2, mpv:103643a88f2fcd88,
++mpv:71fe036cff06245c, mpv:44c36b2df69e7bc4). The reporter's mandated reads
++(glsl-shaders/bindings/script-opts) and the Ops-ordered runtime
++script-message probes (review (1): per-handler IPC round-trip witnesses with
++restore) are mpv IPC queries via the existing IPCClient/queryBatch path -
++the feature IS mpv state collection and attestation, so the references
++cannot be extracted without deleting the ordered feature. Recorded per the
++arch-198c per-edge convention (DR-198C-AUDIT-001/002): individual debt rows
++under queue id arch-198k, removal when the reporter lands in the delivery
++tree's baseline. No bulk relaxation.
++
++Extension scope (Ops 198k review of 353e61d8, relayed via Main):
++(a) features.* emitted as checker-compatible string arrays per bridge
++inputs/198k/feature-runtime.schema.json; rich records under
++features_provenance. (b) shader_names = active glsl-shaders only; generated
++file inventory separate. (c) photon_shader_log keeps every shader-related
++warn/error line, bucketed per shader when attributable, else
++"unattributed". (1) script_messages = runtime-ATTESTED handlers only;
++UNPROBED handlers named with reasons; source scans stay provenance.
++(2) live NSPanels and static catalog separate. (d) v4 placeholders NOT_RUN.
