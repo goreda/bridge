@@ -1,6 +1,6 @@
 {
   "baseline": "15acf95cec7bf0ea668b4eec1750d4f49455a82c",
-  "checker_pin": "e51efdcad24282b7aba3bc2505c425a97ddc371d",
+  "checker_pin": "4fa332ee2412dcfb6f53aae2ce8925d265d5b385",
   "files": [
     {
       "path": "build.sh",
@@ -11,44 +11,44 @@
     },
     {
       "path": "bundle-feature-gate.py",
-      "sha256": "cb6df3a380d690d82c8ae63ebc885a2e03cb5338e2253957b4d033019447d13f",
+      "sha256": "7041691a9109d71400531ad018dbddf0aa01c1a9fb6c5999aa2b918fccdff99f",
       "source": "docs/delivery/bundle-feature-gate.py",
-      "source_pin": "e51efdcad24282b7aba3bc2505c425a97ddc371d",
+      "source_pin": "4fa332ee2412dcfb6f53aae2ce8925d265d5b385",
       "modified": false
     },
     {
       "path": "test-bundle-feature-gate.py",
-      "sha256": "0da1e35964d747e1bffdc752bc6c1cc7dcd62afc3bbb980571b2b2f5a3013a1c",
+      "sha256": "d868c794bf94678da3296801439cd6a26f3361f7e6c897062e41ea34128530cc",
       "source": "docs/delivery/test-bundle-feature-gate.py",
-      "source_pin": "e51efdcad24282b7aba3bc2505c425a97ddc371d",
+      "source_pin": "4fa332ee2412dcfb6f53aae2ce8925d265d5b385",
       "modified": false
     },
     {
       "path": "REMOVALS.md",
       "sha256": "0201a551f6133f9cd05f599bd61b5f1116737c5f44796ca283bd3e35a9fac3ef",
       "source": "docs/delivery/REMOVALS.md",
-      "source_pin": "e51efdcad24282b7aba3bc2505c425a97ddc371d",
+      "source_pin": "4fa332ee2412dcfb6f53aae2ce8925d265d5b385",
       "modified": false
     },
     {
       "path": "FEATURE-PRESENCE-GATE.md",
-      "sha256": "a0a2b2f341830add775a4e3bcc1f5fe79cbcf548e7c990c8d5bab21fc5d6eb30",
+      "sha256": "2193a003b2c75531f4991f049016f1f13a233462573fd5ed213dc44852ff7a30",
       "source": "docs/delivery/FEATURE-PRESENCE-GATE.md",
-      "source_pin": "e51efdcad24282b7aba3bc2505c425a97ddc371d",
+      "source_pin": "4fa332ee2412dcfb6f53aae2ce8925d265d5b385",
       "modified": false
     },
     {
       "path": "atomic-delivery-push.py",
       "sha256": "72d17c51781a553473ded39e9e7144bc489313c22181c54635beb8edec942d1b",
       "source": "docs/delivery/atomic-delivery-push.py",
-      "source_pin": "e51efdcad24282b7aba3bc2505c425a97ddc371d",
+      "source_pin": "4fa332ee2412dcfb6f53aae2ce8925d265d5b385",
       "modified": false
     },
     {
       "path": "DELIVERED-BASELINE.json",
       "sha256": "1afc4564183edf21b5c6471c06987b7a0bf192ffbe2b928770c11ccbdbb831a4",
       "source": "docs/delivery/DELIVERED-BASELINE.json",
-      "source_pin": "e51efdcad24282b7aba3bc2505c425a97ddc371d",
+      "source_pin": "4fa332ee2412dcfb6f53aae2ce8925d265d5b385",
       "modified": false
     },
     {
@@ -136,8 +136,8 @@
   },
   "scope": "Exact bytes except explicit excluded texture payload; not runnable grain source until private Ops execution overlays original held bytes locally.",
   "support_files": {
-    "README.md": "43b358533b264ea03ff100a3d17ac7b06ddaefad97cd4da3dce00eecadcff30e",
-    "feature-runtime.schema.json": "7058827a40ab8770b39115859bf23f49964a55e4af1f2bba9c2a590d2a47af98"
+    "README.md": "f494e4f34c5a9392b48e7aeb1eba08e156f8c76d6a8f0db4886c6df8acba15d6",
+    "feature-runtime.schema.json": "98134d44d335ee9d93fc75c1ae8863186c446fee3ca0640aae25ab3e837ffa54"
   },
-  "secret_scan": "PASS: credential/private-key patterns inspected; named scripts contain credential-word detection logic but no values"
+  "secret_scan": "PASS current export credential/private-key pattern scan"
 }
