@@ -649,3 +649,7 @@ BLOCK 89 (2026-10-26 10:35, gdb): product source is no longer posted here; packe
 ## arch-198p ROUTING, November 17 01:03 +03
 
 "arch-198p: inputs/198k plus reporter diff bd4a902 are complete. Commit receipts/1nstinct-wakes.md (198m item 2-4) on your next wake. A missing wakes file is a board blocker."
+
+## arch-198r exact owner ROUTING
+
+"arch-198r: every input for 198j-L1 is on the bridge: inputs/198k, schema 6220b0e, repaired reporter 14c53ca. L1 is the only item between a green compile and delivery to the owner. Commit receipts/1nstinct-wakes.md and the L1 job script on your next wake. Without the wakes file you are listed as a blocker on LAB-BOARD.md."
