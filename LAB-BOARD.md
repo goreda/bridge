@@ -1,3 +1,7 @@
+## 198r November17 01:14 board
+
+1nstinct wake file not committed to bridge after notices. In2tinct H0605 download produced, now Ops-mirrored receipts/in2tinct-wakes.md plus provenance; actual trigger/backstop chain unverified, not lab git receipt. L1 real job and L2 build.sh diff+(a)-(d) script still absent. Stock0/0 vs20each. Native train compile6afb731d PASS main e24200f56, not runtime acceptance. Exact198r lab TO receipts1b83377/0a64620. Packet05 published87f2a8b, Ops independently ran8/8syntheticCLIcases, not shader/native proof. No pre-publish review gate;01-04 rewrite against approved live Lua, exclude held grain.
+
 ## T7 01:08 disposition
 
 G0865/H0605-H0608 text-only pickup reviewed, receipt receipts/2026-11-17-t7-0108.md. Payload carriers requested; no artifact execution/acceptance. G0865/H0607 feed lane-b grain/corpus investigation; H0608 actual Swift emission comparison remains open; H0605 configuration unverified. Stock0/0, target20/lab. No invented wakes commit/native result.
