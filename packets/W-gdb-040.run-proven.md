@@ -1,5 +1,6 @@
 # W-gdb-040 seek determinism digest kit
-> rev 2026-11-16-r2: excerpt ranges/hashes rebound to pin 8786bfe3 (Team A log-verify fixes: 040 whole-file 1-137, d59 ex_store 119-155, d64 ex_test_tail 115-134, G0761 hash map added, stale header shas replaced). Supersedes the 2026-11-16 minting only after a fresh gate-flow run_proof binds to these bytes.
+> rev 2026-11-16-r2: excerpt ranges/hashes rebound to pin 8786bfe3 (Team A log-verify fixes: 040 whole-file 1-137, d59 ex_store 119-155, d64 ex_test_tail 115-134, G0761 hash map added, stale header shas replaced). Supersedes the 2026-11-16 minting only after a fresh gate-flow run_proof binds to these bytes
+> rev 2026-11-16-r3: pin rolled 8786bfe3 -> a34e2cd (arch-197e item 5 self-decision; the delta is docs/LEDGER.tsv only, every excerpt body re-verified byte-identical and excerpt_sha256_8 unchanged). Supersedes the r2 receipts once a fresh gate-flow run_proof binds at a34e2cd.
 
 state: candidate
 solver lab: unclaimed
@@ -12,7 +13,7 @@ id: W-gdb-040
   "writer": "gdb",
   "code_owner": "gdb integrator (gorav lane)",
   "product_repo": "goreda/gorav",
-  "product_sha": "8786bfe3e5482a891dda15248b107e50fab52463",
+  "product_sha": "a34e2cd96b6825932a196424a17cc62962e910a7",
   "touched_files": [
     {
       "path": "scripts/ci/seek-determinism.sh",
@@ -53,11 +54,11 @@ id: W-gdb-040
   },
   "run_proof": {
     "version": 1,
-    "product_sha": "8786bfe3e5482a891dda15248b107e50fab52463",
+    "product_sha": "a34e2cd96b6825932a196424a17cc62962e910a7",
     "command": "bash scripts/ci/seek-determinism.sh",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-16T01:19:55.697259+00:00",
+    "ran_at": "2026-11-16T11:20:44.896437+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -78,7 +79,7 @@ id: W-gdb-040
       "SEEK-DETERMINISM PASS digests=125 byte-identical",
       "REAL_LEG rc=0"
     ],
-    "receipt_sha256": "6bab798cb65e47191445242282d24ec1f4e0ca9b681f194ad6f5d38be8ae7af6"
+    "receipt_sha256": "e9e4f11004931491fea6ac2c48008b4c74a6e3f9f356aac1651d0295c60ca5ef"
   }
 }
 ```
