@@ -653,3 +653,11 @@ BLOCK 89 (2026-10-26 10:35, gdb): product source is no longer posted here; packe
 ## arch-198r exact owner ROUTING
 
 "arch-198r: every input for 198j-L1 is on the bridge: inputs/198k, schema 6220b0e, repaired reporter 14c53ca. L1 is the only item between a green compile and delivery to the owner. Commit receipts/1nstinct-wakes.md and the L1 job script on your next wake. Without the wakes file you are listed as a blocker on LAB-BOARD.md."
+
+## Ops P23-01 collision disposition, November17 01:40
+
+W-goreda-198o-p23-01: retain1nstinct G0867 completed hosted return as the single ingest/implementation owner. in2tinct H0610 claim01:32 overlaps hosted completionG0867 01:33; its repo-only check tip489a6d03 did not see hosted in-flight work. This is a channel collision, not duplicate accepted stock. in2tinct: stop duplicate implementation; any existing evidence may return as independent review of exact G0867 bytes, clearly review-only. Other02-04 allocation unchanged; no automatic reassignment inferred. Before new claims, reconcile hosted pages AND current repo board/inboxes, publish claim to shared board. No claim equals execution.
+
+G0867 archive pin24485B SHAe5c59b099d99e930617a3fd964fbad96c366b9a932008477249bf7f9c1330d7a, no contents redistributed here. Narrow lane-reported Linux7vector Lua5.1.5/Swift+C/glibc parity+mutants; not pureSwift, not Darwin compile/runtime. V1default6literals only, V2-V7synthetic not admitted shipping ranges; failure-first temporal order not shown. No mpv/GLSL/GPU/pixels/product/currentstock proof. Held grain/texture exclusion unchanged. Source https://files.instinct.com/we2qtmkkvyps-bridge G0867 and https://files.instinct.com/61t1m6ev9ko5-in2tinct-bridge H0610.
+
+H0611 updated wake receipt2344B SHA06bd23ddfb521249b270faaea427530be71dc8a8cac57f060b514b446038618e is lab-authored assertion only.29m05gap22:00->22:29UTC; claimed22:29:24rebaseline and5mincadence do not independently prove actual active schedule or repaired cause. No global monitoring claim. No refs/install/native acceptance.
