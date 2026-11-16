@@ -41,5 +41,22 @@
     "No source-defined domain: default-only plus precision mutants, do not invent ranges",
     "No lab allocation/index/current-run proof, not executable20stock",
     "Generic r2 reviewer approval text obsolete, no actual publication gate"
-  ]
+  ],
+  "revision_0121": {
+    "checks": [
+      {
+        "path": "packets/W-goreda-198o-p23-02.md",
+        "bytes": 4981,
+        "sha256": "fee29655fa3211cdd8aa93442d467eb31007be60e0799d809020192d9c76f13a",
+        "verified": true
+      },
+      {
+        "path": "packets/W-goreda-198o-generic-research-01-04.md",
+        "bytes": 5531,
+        "sha256": "b4696fef2c2867edee9a2ce2812c3915f2966b496c146a1943cd101008094cdf",
+        "verified": true
+      }
+    ],
+    "verdict": "P23-02 now extends existing default-only emitter tests, no duplicate or invented domain; generic NON-P23 approval-wait wording removed. Source-spec acceptance confirmed, not executed-current-stock. GROUP-INBOX index not fetched/read from this claim."
+  }
 }
