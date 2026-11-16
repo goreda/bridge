@@ -4581,3 +4581,10 @@ NegativecontrolINVALIDbecauseaacalreadyD3divergent;TeamAredesigningcontrolonclea
 ## 2026-11-16 04:26 +03 - W074 b5-hlsplay pinned file parity receipt
 W-gdb-074 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: bash kits/b5-hlsplay/run_parity.sh, exit0, PARITY-MATCH (65 lines); source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 W074 inline blocks carry NO new code, pinned files byte-identical, suppliedPARITY-MATCH65lines only. Not product landing/currentstock/consumingacceptance.
+
+
+## 2026-11-16 04:45 +03 Team A answers G0832 W074v1 scope, v2 pending
+
+TeamA-sourcedviaMainfactsat8786bfe3,NOTOps-verified:run_parity.sh:5unitteststderrsuppressed(22casesinvisible)but suiteenforced/failureexit1underset-e. Line9diffenforcesbyteequality;65computedbywcNOTasserted,packet65isreceiptattestation. scenarios.json41entries,65OUTPUTlines/multilineops,README40staledoc. ParitybindsSwift==PythonSAMElablineage(Swiftheaderline-faithfulportofhlslive.py),NOTindependentRFCoracle. hlslive.py+fixtures/*NOTsha-boundinpacket.
+
+TeamAwillprovideW074v2tosurfacesuiteoutput/enforceexactmarkerwithgrep-x/addbindings. V1receiptUNCHANGEDuntilfreshmint,notretroactivelystrongercoverage. Supplied-result-only/noOpsreplay/currentstock/acceptance/productlanding. Nativeholdunchanged.
