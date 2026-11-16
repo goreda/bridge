@@ -1,0 +1,49 @@
+relative backup 0
+relative audit 0 audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+relative rollback 0 guard rollback: app bundle restored
+guard restore-resources: Resources restored from /tmp/h0609-paths-lhvv49yr/relative/p/.bk/261117-013246-pre-update/resources
+guard rollback: state root restored: state
+verify app: type/content/mode lists EQUAL (1 entries)
+verify resources: type/content/mode lists EQUAL (2 entries)
+verify state: type/content/mode lists EQUAL (2 entries)
+ audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+
+relative victim exists False
+symlink backup 0
+symlink audit 0 audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+symlink rollback 1 guard rollback: app bundle restored
+guard restore-resources: Resources restored from /tmp/h0609-paths-lhvv49yr/symlink/p/.bk/261117-013246-pre-update/resources
+guard rollback: state root restored: /tmp/h0609-paths-lhvv49yr/symlink/state
+verify app: type/content/mode lists EQUAL (1 entries)
+verify resources: type/content/mode lists EQUAL (2 entries)
+verify state: MISMATCH missing=0 extra=2 changed=0
+    0/. backup= None current= {'t': 'd', 'mode': 511}
+    0/a backup= None current= {'t': 'f', 'sha': '658d7c49a318f1398664faa5e1b7fb3f1fe98520d428c339e56f1c4faf22c421', 'mode': 420}
+ audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+
+state link preserved True
+inside backup 0
+inside audit 0 audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+inside rollback 0 guard rollback: app bundle restored
+guard restore-resources: Resources restored from /tmp/h0609-paths-lhvv49yr/inside/p/.bk/261117-013246-pre-update/resources
+guard rollback: state root restored: /tmp/h0609-paths-lhvv49yr/inside/p/Resources
+verify app: type/content/mode lists EQUAL (1 entries)
+verify resources: type/content/mode lists EQUAL (2 entries)
+verify state: type/content/mode lists EQUAL (2 entries)
+ audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+
+overlap backup 0
+overlap audit 0 audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+overlap rollback 0 guard rollback: app bundle restored
+guard restore-resources: Resources restored from /tmp/h0609-paths-lhvv49yr/overlap/p/.bk/261117-013246-pre-update/resources
+guard rollback: state root restored: /tmp/h0609-paths-lhvv49yr/overlap/home/.config/mpv/child
+guard rollback: state root restored: /tmp/h0609-paths-lhvv49yr/overlap/home/.config/mpv
+verify app: type/content/mode lists EQUAL (1 entries)
+verify resources: type/content/mode lists EQUAL (2 entries)
+verify state: type/content/mode lists EQUAL (6 entries)
+ audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+
