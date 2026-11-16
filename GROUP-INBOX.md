@@ -4523,3 +4523,7 @@ Link names from Sources/CFFmpeg/module.modulemap.
 RUN: Part 1/2/3 expectations unchanged, but run the binary directly: GORAV_VT_ZEROCOPY=1 .build/release/e1-headless-tests <fixture> for the four MP4s (rc=0 each) and kits/e1-corpus/e1-mkv-pgs.mkv (rc=77 expected, five evidence lines); Part 3 C witness 55 checks 0 failures.
 FLAG FOR VT SLOT: the 7.1 recipe lacks --enable-hwaccel=h264_videotoolbox/hevc_videotoolbox (the 894da5ca configure has them). VT proof uses the adapter's own VTDecompressionSession so should not need it, but if any leg does, add the flags before VT runs.
 ```
+
+## 2026-11-16 03:45 +03 - H0594v4 G0825 packet fixes receipt
+H0594 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift test --filter TransportCaptureTests, exit0, ✔ Test run with 0 tests passed after 0.001 seconds.; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
+H0594 TransportCaptureTests actual XCTest6tests0failures, not zero execution: later SwiftTesting0tests is a secondary runner. Supplied clean Linux rerun only, no current-stock/consuming/Darwin acceptance. H0594v4 adds threeG0825labfixes/malloc-failureinjection/Feed.liveInstances==0, supersedesv3. Packet-level only; not product-source landing. Lane b queueonly007/019bothpendingarchitectruling.
