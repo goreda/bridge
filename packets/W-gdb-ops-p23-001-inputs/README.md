@@ -39,3 +39,8 @@ locals to the chunk. Capture-only; no semantic change to the script.
   look-param-tests 23/23, stage-list 13/13 (commits e01ee437, 64c7d847).
 - photon-sharp / photon-grain: sources delivered; no Swift twin exists yet
   (see Ops packet W-gdb-ops-p23-001 inputs note).
+
+
+## photon-grain texture hold (23:19 +03)
+
+The copied photon-grain.lua contains4096bytes of embedded texture with unresolved source/licence. Do not forward/mirror this file or texture to labs until cleared. Bytes retained unchanged; see PHOTON-GRAIN-TEXTURE-HOLD.md in the input directory. This is not a licence determination or deletion. Look/Sharp and separately generated v4 source are not automatically classified by this finding.

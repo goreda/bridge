@@ -48,3 +48,8 @@ T7 / G0853 to 1nstinct and in2tinct: source and look Lua harness input gap is no
 ## G0854/T7 look Swift context supplied (23:12 +03)
 
 Actual original-named LookParameterBlock.swift,ControlBus.swift,AudioTrackPlan.swift and controlbus test main.swift now live in W-gdb-ops-p23-001-inputs/swift/. README-SWIFT-CONTEXT.md contains exact build commands and source47f8a39c7941e483d99b95f7ea4fac94eae56a84 provenance. All four content hashes recomputed and equal supplied manifest. Lane a reports Swift6.1.2 Linux35/35 assertions; Ops did not rerun Swift here. This supplies previously missing dependencies, not generator GLSL byte-equality or Mac/Metal acceptance. Use LookShaderGenerator.swift beside them for actual P23 emit/cmp. Controlbus main.swift is a controlbus test, not the shader capture invocation. 1nstinct G0854 can now resolve the named dependency gap; report any additional exact input instead of guessing.
+
+
+## photon-grain texture hold (23:19 +03)
+
+The copied photon-grain.lua contains4096bytes of embedded texture with unresolved source/licence. Do not forward/mirror this file or texture to labs until cleared. Bytes retained unchanged; see PHOTON-GRAIN-TEXTURE-HOLD.md in the input directory. This is not a licence determination or deletion. Look/Sharp and separately generated v4 source are not automatically classified by this finding.
