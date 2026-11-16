@@ -1,0 +1,5 @@
+# Reporter source, not accepted runtime evidence
+
+Exact named baseline diff 353e61d8. Linux parse-check only; no Mac verdict. Flag-less app is inert. Schema adapter needed: raw menus/bindings contain objects and panel/messages/options are objects, whereas checker features are string arrays. Do not pass raw dump directly or fabricate dynamic proof by flattening source catalogs.
+
+Static script scans/binding targets are not registered-handler execution witnesses; static panel class catalog is not live panel availability. shader_names currently unions generated files and active IPC list; a generated but rejected shader must not count as active. Keep them separate. Generic libplacebo parser failures without filename or [shader tag can be dropped by current filter. These gaps were reported to product writer via Main; preserve raw logs. NOT_RUN v4 placeholders are not filled by checker and remain unaccepted absent actual tests. Reporter does not create no-silent-bypass/corrupt/history proofs by itself. Await repaired reporter and L1 harness before baseline acceptance.

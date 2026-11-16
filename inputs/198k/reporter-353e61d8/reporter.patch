@@ -1,0 +1,638 @@
+diff --git a/archive/gor/Sources/gor/AppDelegate.swift b/archive/gor/Sources/gor/AppDelegate.swift
+index b275feebc..1465bd7cb 100644
+--- a/archive/gor/Sources/gor/AppDelegate.swift
++++ b/archive/gor/Sources/gor/AppDelegate.swift
+@@ -1348,6 +1348,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
+                     _ = BoundedDiskWriter.append(record, to: URL(fileURLWithPath: StagedRunPaths.tmp("/tmp/gor_diag.log")), cap: SharedDiagnosticRecord.cap)
+                 }
+                 print("[mpv] \(rawLine)")
++                GorRuntimeDump.recordMpvLine(line)
+                 if line.contains(SharedDiagnosticRecord.marker) { continue }
+                 if line.contains("3D-REJECTED ") || line.contains("3D-LUA ") {Diag.mediaRecord(line)}
+ 
+@@ -1423,6 +1424,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
+         }
+ 
+         do { try MPVLifeline.run(p) } catch { return }
++        // arch-198k: in-app runtime reporter; inert without --gor-dump-runtime.
++        if GorRuntimeDump.requested { GorRuntimeDump.install(ipcPath: ipcPath, configDir: configDir) }
+         ScreenCaptureEngine.shared.stopAudioCapture()
+         mpvProcess = p
+         ScreenCaptureEngine.shared.mpvPID = p.processIdentifier
+diff --git a/archive/gor/Sources/gor/GorRuntimeDump.swift b/archive/gor/Sources/gor/GorRuntimeDump.swift
+new file mode 100644
+index 000000000..d46908bee
+--- /dev/null
++++ b/archive/gor/Sources/gor/GorRuntimeDump.swift
+@@ -0,0 +1,197 @@
++// ================================================================
++//  GorRuntimeDump.swift - arch-198k in-app reporter, AppKit adapter
++//  Owns: --gor-dump-runtime=<path> collection: NSApp.mainMenu walk,
++//  panel inventory, mpv IPC reads (script messages / bindings /
++//  glsl-shaders / script-opts), executable SHA256, photon shader
++//  warn/error capture (arch-198l: per-shader buckets, grain separate
++//  from sharp). Pure assembly lives in GorRuntimeDumpCore.swift.
++//  Contract: active only with the flag; normal launch is untouched.
++//  macOS-only (AppKit); Mac not verified in this lane.
++// ================================================================
++#if canImport(AppKit)
++import AppKit
++import CryptoKit
++
++final class GorRuntimeDump {
++    static let outputPath = GorRuntimeDumpCore.outputPath(arguments: CommandLine.arguments)
++    static let requested = outputPath != nil
++
++    private static let lock = NSLock()
++    /// Raw mpv stderr lines (pre-classification; classified at dump time so
++    /// the bucket set can include every generated photon shader name).
++    private static var mpvLines: [String] = []
++    private static let mpvLinesCap = 2000
++    private static var didRun = false
++
++    /// Called from AppDelegate's mpv stderr line handler. Cheap when the
++    /// flag is absent.
++    static func recordMpvLine(_ line: String) {
++        guard requested else { return }
++        lock.lock()
++        if mpvLines.count < mpvLinesCap { mpvLines.append(line) }
++        lock.unlock()
++    }
++
++    /// Install after mpv launch. Polls until the player answers IPC and the
++    /// photon scripts have written their load-time shaders, then dumps once.
++    /// On timeout it dumps anyway with partial=true.
++    static func install(ipcPath: String, configDir: String) {
++        guard requested, !didRun else { return }
++        DispatchQueue.global(qos: .utility).async {
++            let shaderDir = configDir + "/shader"
++            let markers = ["photon-chrome.glsl", "photon-grain.glsl"]
++            var ready = false
++            for _ in 0..<60 {
++                let ipcUp = !IPCClient(path: ipcPath).queryBatch(#"{"command":["get_property","mpv-version"],"request_id":1}"# + "\n", timeout: 0.5).isEmpty
++                let scriptsUp = markers.allSatisfy { FileManager.default.fileExists(atPath: shaderDir + "/" + $0) }
++                if ipcUp && scriptsUp { ready = true; break }
++                Thread.sleep(forTimeInterval: 0.5)
++            }
++            if ready { Thread.sleep(forTimeInterval: 1.0) }  // settle: first PARAM pushes land
++            collect(ipcPath: ipcPath, configDir: configDir, partial: !ready)
++        }
++    }
++
++    private static func collect(ipcPath: String, configDir: String, partial: Bool) {
++        lock.lock()
++        if didRun { lock.unlock(); return }
++        didRun = true
++        let lines = mpvLines
++        lock.unlock()
++
++        let client = IPCClient(path: ipcPath)
++        func ipcGet(_ property: String) -> Any? {
++            let payload = "{\"command\":[\"get_property\",\"" + property + "\"],\"request_id\":1}\n"
++            let replies = client.queryBatch(payload, timeout: 0.8)
++            guard let first = replies.first,
++                  let obj = try? JSONSerialization.jsonObject(with: Data(first.utf8)) as? [String: Any] else { return nil }
++            return obj["data"]
++        }
++
++        // ── IPC reads ──
++        let glslShaders = (ipcGet("glsl-shaders") as? [Any])?.compactMap { $0 as? String } ?? []
++        let shaderNames = glslShaders.map { ($0 as NSString).lastPathComponent }
++        let generatedShaders = ((try? FileManager.default.contentsOfDirectory(atPath: configDir + "/shader")) ?? [])
++            .filter { $0.hasPrefix("photon") && $0.hasSuffix(".glsl") }.sorted()
++        let allShaderNames = Array(Set(shaderNames + generatedShaders)).sorted()
++        let scriptOptions = ipcGet("script-opts") as? [String: Any] ?? [:]
++        let inputBindings: [Any] = {
++            if let native = ipcGet("input-bindings") as? [Any], !native.isEmpty { return native }
++            let confPath = configDir + "/input.conf"
++            guard let text = try? String(contentsOfFile: confPath, encoding: .utf8) else { return [] }
++            return GorRuntimeDumpCore.parseInputConf(text).map { $0 as [String: Any] }
++        }()
++
++        // ── Script messages: the running scripts' registered names (the
++        // scripts directory holds byte-exact what mpv loaded) plus the
++        // script-message-to targets named by input bindings. mpv exposes no
++        // registered-message enumeration over IPC; provenance is recorded.
++        let scriptsDir = configDir + "/scripts"
++        var registered: Set<String> = []
++        if let files = try? FileManager.default.contentsOfDirectory(atPath: scriptsDir) {
++            for file in files where file.hasSuffix(".lua") {
++                if let source = try? String(contentsOfFile: scriptsDir + "/" + file, encoding: .utf8) {
++                    registered.formUnion(GorRuntimeDumpCore.registeredScriptMessages(in: source))
++                }
++            }
++        }
++        var invoked: Set<String> = []
++        if let text = try? String(contentsOfFile: configDir + "/input.conf", encoding: .utf8) {
++            invoked.formUnion(GorRuntimeDumpCore.bindingMessageTargets(in: text))
++        }
++        let scriptMessages: [String: Any] = [
++            "registered": registered.sorted(),
++            "invoked_in_bindings": invoked.sorted(),
++            "source": "scripts-dir-scan+input.conf (mpv exposes no registered-message enumeration over IPC)",
++        ]
++
++        // ── arch-198l: per-shader warn/error buckets (grain vs sharp) ──
++        var buckets: [String: [String]] = [:]
++        for name in allShaderNames { buckets[name] = [] }
++        for line in lines {
++            GorRuntimeDumpCore.appendShaderLogLine(&buckets, line: line, shaderNames: allShaderNames)
++        }
++        let photonShaderLog = buckets.filter { !$0.value.isEmpty }
++
++        // ── Executable identity ──
++        var executableSha = "unavailable"
++        if let exe = Bundle.main.executableURL, let bytes = try? Data(contentsOf: exe) {
++            executableSha = SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined()
++        }
++
++        // ── Menus + panels on the main thread ──
++        DispatchQueue.main.sync {
++            let menus = dumpMenuTree(NSApp.mainMenu)
++            let panels = dumpPanels()
++            let object = GorRuntimeDumpCore.assemble(
++                executableSha256: executableSha,
++                menus: menus,
++                panels: panels,
++                scriptMessages: scriptMessages,
++                inputBindings: inputBindings,
++                shaderNames: allShaderNames,
++                scriptOptions: scriptOptions,
++                photonShaderLog: photonShaderLog,
++                partial: partial)
++            write(object)
++        }
++    }
++
++    private static func dumpMenuTree(_ menu: NSMenu?) -> [Any] {
++        guard let menu else { return [] }
++        return menu.items.map { item -> [String: Any] in
++            var record: [String: Any] = [
++                "title": item.title,
++                "enabled": item.isEnabled,
++                "separator": item.isSeparatorItem,
++                "key_equivalent": item.keyEquivalent,
++                "key_equivalent_modifier_mask": item.keyEquivalentModifierMask.rawValue,
++                "tag": item.tag,
++            ]
++            if let action = item.action { record["action"] = NSStringFromSelector(action) }
++            if let submenu = item.submenu { record["submenu"] = dumpMenuTree(submenu) }
++            return record
++        }
++    }
++
++    /// Panels: the live NSPanel instances plus the static inventory of the
++    /// app's panel features (the app keeps no runtime panel registry; the
++    /// catalog names the panel classes and their owners).
++    private static func dumpPanels() -> [String: Any] {
++        let live = NSApp.windows.filter { $0 is NSPanel }.map { panel -> [String: Any] in
++            [
++                "class": String(describing: type(of: panel)),
++                "title": panel.title,
++                "level": panel.level.rawValue,
++                "visible": panel.isVisible,
++            ]
++        }
++        return [
++            "live": live,
++            "available": [
++                "URLPanel", "FileBrowserPanel", "MusicPanel", "IPTVPanel",
++                "ArchiveBrowserPanel", "MagnetResultsPanel", "MagnetBrowserController",
++                "SpineUI dropdown/HUD panels",
++            ],
++            "note": "no runtime panel registry exists; 'available' is the static class inventory, 'live' the open NSPanel instances at dump time",
++        ]
++    }
++
++    private static func write(_ object: [String: Any]) {
++        guard let path = outputPath, let data = GorRuntimeDumpCore.jsonData(object) else {
++            NSLog("[gor] runtime dump: assembly failed")
++            return
++        }
++        let url = URL(fileURLWithPath: path)
++        let tmp = url.appendingPathExtension("tmp-\(ProcessInfo.processInfo.processIdentifier)")
++        do {
++            try data.write(to: tmp)
++            try? FileManager.default.removeItem(at: url)
++            try FileManager.default.moveItem(at: tmp, to: url)
++            NSLog("[gor] runtime dump written: %@", path)
++        } catch {
++            NSLog("[gor] runtime dump write failed: %@", "\(error)")
++        }
++    }
++}
++#endif
+diff --git a/archive/gor/Sources/gor/GorRuntimeDumpCore.swift b/archive/gor/Sources/gor/GorRuntimeDumpCore.swift
+new file mode 100644
+index 000000000..86d267a72
+--- /dev/null
++++ b/archive/gor/Sources/gor/GorRuntimeDumpCore.swift
+@@ -0,0 +1,159 @@
++// ================================================================
++//  GorRuntimeDumpCore.swift - arch-198k in-app reporter, pure core
++//  Owns: flag parsing, mpv line classification, payload extraction,
++//        feature-runtime.json assembly (Foundation only; compiles on
++//        Linux so the witness harness can pin behavior). The AppKit
++//        adapter lives in GorRuntimeDump.swift.
++//  Contract: runs only under --gor-dump-runtime=<path>; normal launch
++//  is untouched. Output is deterministic (sorted keys, stable order).
++// ================================================================
++import Foundation
++
++enum GorRuntimeDumpCore {
++    static let flagPrefix = "--gor-dump-runtime="
++
++    /// The dump output path, or nil when the flag is absent (normal launch).
++    static func outputPath(arguments: [String]) -> String? {
++        for arg in arguments where arg.hasPrefix(flagPrefix) {
++            let path = String(arg.dropFirst(flagPrefix.count))
++            if !path.isEmpty { return path }
++        }
++        return nil
++    }
++
++    /// mpv stderr line classifier: keep warn/error lines that concern any
++    /// photon shader (the shader module's own [shader] lines, or any line
++    /// naming a photon shader file). msg-level shader=v is set at launch.
++    static func isPhotonShaderLogLine(_ line: String, shaderNames: [String]) -> Bool {
++        let lowered = line.lowercased()
++        guard lowered.contains("warn") || lowered.contains("error") || lowered.contains("failed") else { return false }
++        if lowered.contains("[shader") { return true }
++        return shaderNames.contains { line.contains($0) }
++    }
++
++    /// arch-198l: bucket one kept line by the shader it names (grain and
++    /// sharp must be separable - the "sometimes no grain" cause is not
++    /// established). Lines naming no shader land in "unattributed".
++    static func shaderLogBucket(_ line: String, shaderNames: [String]) -> String {
++        for name in shaderNames where line.contains(name) { return name }
++        return "unattributed"
++    }
++
++    /// Append a line to per-shader buckets (one bucket per known shader name
++    /// plus "unattributed"), preserving arrival order per bucket.
++    static func appendShaderLogLine(_ buckets: inout [String: [String]], line: String, shaderNames: [String]) {
++        guard isPhotonShaderLogLine(line, shaderNames: shaderNames) else { return }
++        let bucket = shaderLogBucket(line, shaderNames: shaderNames)
++        buckets[bucket, default: []].append(line)
++    }
++
++    /// Names registered via mp.register_script_message("name", ...) in a Lua
++    /// source. The scanned file is the byte-exact script mpv loaded.
++    static func registeredScriptMessages(in luaSource: String) -> [String] {
++        var out: [String] = []
++        for line in luaSource.split(separator: "\n") {
++            // Lua line comments never register anything.
++            if line.drop(while: { $0 == " " || $0 == "\t" }).hasPrefix("--") { continue }
++            var rest = Substring(line)
++            while let range = rest.range(of: "register_script_message(\"") {
++                let after = rest[range.upperBound...]
++                if let end = after.firstIndex(of: "\"") {
++                    out.append(String(after[..<end]))
++                }
++                rest = after
++            }
++        }
++        return out
++    }
++
++    /// script-message-to <target> names appearing in input.conf text.
++    static func bindingMessageTargets(in inputConf: String) -> [String] {
++        var out: [String] = []
++        for line in inputConf.split(separator: "\n") {
++            let trimmed = line.trimmingCharacters(in: .whitespaces)
++            if trimmed.isEmpty || trimmed.hasPrefix("#") { continue }
++            var rest = Substring(trimmed)
++            while let range = rest.range(of: "script-message-to ") {
++                var after = rest[range.upperBound...]
++                if after.hasPrefix("\"") { after = after.dropFirst() }
++                let target = after.split(whereSeparator: { $0 == " " || $0 == "\"" }).first.map(String.init)
++                if let target { out.append(target) }
++                rest = after
++            }
++        }
++        return out
++    }
++
++    /// input.conf parse (IPC input-bindings fallback): key + full command,
++    /// comments and blank lines skipped, inline order preserved.
++    static func parseInputConf(_ text: String) -> [[String: String]] {
++        var out: [[String: String]] = []
++        for line in text.split(separator: "\n") {
++            let trimmed = line.trimmingCharacters(in: .whitespaces)
++            if trimmed.isEmpty || trimmed.hasPrefix("#") { continue }
++            let parts = trimmed.split(maxSplits: 1, whereSeparator: { $0 == " " || $0 == "\t" })
++            guard let key = parts.first else { continue }
++            let command = parts.count > 1 ? parts[1].trimmingCharacters(in: .whitespaces) : ""
++            out.append(["key": String(key), "command": command])
++        }
++        return out
++    }
++
++    /// The photon_v4_replacement section: checker-side comparison fields are
++    /// emitted in schema shape with NOT_RUN placeholders (arch-198k; the
++    /// reporter records the build, the bridge checker compares it).
++    static func photonV4ReplacementSection(executableSha256: String) -> [String: Any] {
++        return [
++            "executable_sha256": executableSha256,
++            "result": "NOT_RUN",
++            "lua_swift_twin_byte_equal": NSNull(),
++            "v7_invariants": [String](),
++            "manual_recall_sequence": "NOT_RUN",
++            "implemented": [
++                "V1": false, "V2": false, "V3": false, "V4": false,
++                "V5": false, "V6": false, "V7": false,
++            ],
++            "note": "checker-side fields emitted in schema shape only (arch-198k); filled by the bridge checker",
++        ]
++    }
++
++    /// Assemble the full feature-runtime object. Every collection is passed
++    /// in by the adapter so the assembly is platform-free and testable.
++    static func assemble(
++        executableSha256: String,
++        menus: [Any],
++        panels: [String: Any],
++        scriptMessages: [String: Any],
++        inputBindings: [Any],
++        shaderNames: [String],
++        scriptOptions: [String: Any],
++        photonShaderLog: [String: [String]],
++        partial: Bool
++    ) -> [String: Any] {
++        return [
++            "schema": "feature-runtime/1 (arch-198k)",
++            "partial": partial,
++            "executable_sha256": executableSha256,
++            "features": [
++                "menus": menus,
++                "panels": panels,
++                "script_messages": scriptMessages,
++                "input_bindings": inputBindings,
++                "shader_names": shaderNames,
++                "script_options": scriptOptions,
++            ],
++            "photon_shader_log": photonShaderLog,
++            "photon_v4_replacement": photonV4ReplacementSection(executableSha256: executableSha256),
++        ]
++    }
++
++    /// Deterministic JSON: sorted keys, pretty printed, trailing newline.
++    static func jsonData(_ object: [String: Any]) -> Data? {
++        guard JSONSerialization.isValidJSONObject(object),
++              var data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted, .sortedKeys]) else {
++            return nil
++        }
++        data.append(0x0A)
++        return data
++    }
++}
+diff --git a/archive/gor/Tests/Harness/RuntimeDump/run.sh b/archive/gor/Tests/Harness/RuntimeDump/run.sh
+new file mode 100755
+index 000000000..ee1824488
+--- /dev/null
++++ b/archive/gor/Tests/Harness/RuntimeDump/run.sh
+@@ -0,0 +1,20 @@
++#!/bin/bash
++# arch-198k runtime-dump core witness: compile core+suite, expect FAILS 0
++# (same GorFit harness pattern as Tests/Harness/HDRHandoff).
++set -u
++HERE="$(cd "$(dirname "$0")" && pwd)"
++WORK="$(mktemp -d /tmp/gor-runtime-dump-witness.XXXXXX)"
++swiftc -O "$HERE/../../../Sources/gor/GorRuntimeDumpCore.swift" "$HERE/suite/main.swift" \
++  -o "$WORK/runtime-dump-witness" 2>"$WORK/build.log"
++if [ $? -ne 0 ]; then
++  echo "BUILD FAIL"; cat "$WORK/build.log"; exit 1
++fi
++"$WORK/runtime-dump-witness" | tee "$WORK/run.log"
++grep -q '^FAILS 0$' "$WORK/run.log"
++RC=$?
++if [ $RC -eq 0 ]; then
++  echo "PASS: runtime dump core witness; logs retained at $WORK"
++else
++  echo "FAIL: runtime dump core witness; logs retained at $WORK"
++fi
++exit $RC
+diff --git a/archive/gor/Tests/Harness/RuntimeDump/suite/main.swift b/archive/gor/Tests/Harness/RuntimeDump/suite/main.swift
+new file mode 100644
+index 000000000..f98293b2e
+--- /dev/null
++++ b/archive/gor/Tests/Harness/RuntimeDump/suite/main.swift
+@@ -0,0 +1,89 @@
++// arch-198k/198l runtime-dump core witness (GorFit harness pattern:
++// swiftc -O core+suite, expect FAILS 0). Pins the pure behavior of
++// GorRuntimeDumpCore: flag parsing, mpv line classification with per-shader
++// buckets (grain separate from sharp), Lua message extraction, input.conf
++// parsing, deterministic assembly.
++import Foundation
++
++var fails = 0
++func check(_ cond: Bool, _ label: String) {
++    if !cond { fails += 1; print("FAIL: \(label)") }
++}
++
++// ── flag parsing ──
++check(GorRuntimeDumpCore.outputPath(arguments: ["gor", "--gor-dump-runtime=/tmp/out.json"]) == "/tmp/out.json", "flag path")
++check(GorRuntimeDumpCore.outputPath(arguments: ["gor", "--other"]) == nil, "flag absent")
++check(GorRuntimeDumpCore.outputPath(arguments: ["gor", "--gor-dump-runtime="]) == nil, "empty path rejected")
++check(GorRuntimeDumpCore.outputPath(arguments: ["gor"]) == nil, "normal launch untouched")
++
++// ── mpv line classification + per-shader buckets (arch-198l) ──
++let shaders = ["photon-grain.glsl", "photon-sharp.glsl", "photon-chrome.glsl"]
++check(GorRuntimeDumpCore.isPhotonShaderLogLine("[shader] warn: photon-grain.glsl: some warning", shaderNames: shaders), "grain warn kept")
++check(GorRuntimeDumpCore.isPhotonShaderLogLine("[shader] error: failed to compile photon-sharp.glsl", shaderNames: shaders), "sharp error kept")
++check(!GorRuntimeDumpCore.isPhotonShaderLogLine("[shader] info: loaded photon-grain.glsl", shaderNames: shaders), "info dropped")
++check(!GorRuntimeDumpCore.isPhotonShaderLogLine("[ffmpeg] error: decode failed", shaderNames: shaders), "non-shader error dropped")
++check(GorRuntimeDumpCore.shaderLogBucket("[shader] warn: photon-grain.glsl: x", shaderNames: shaders) == "photon-grain.glsl", "grain bucketed as grain")
++check(GorRuntimeDumpCore.shaderLogBucket("[shader] error: photon-sharp.glsl failed", shaderNames: shaders) == "photon-sharp.glsl", "sharp bucketed as sharp")
++check(GorRuntimeDumpCore.shaderLogBucket("[shader] warn: generic", shaderNames: shaders) == "unattributed", "unnamed line unattributed")
++
++var buckets: [String: [String]] = [:]
++for s in shaders { buckets[s] = [] }
++GorRuntimeDumpCore.appendShaderLogLine(&buckets, line: "[shader] warn: photon-grain.glsl: g1", shaderNames: shaders)
++GorRuntimeDumpCore.appendShaderLogLine(&buckets, line: "[shader] error: photon-sharp.glsl: s1", shaderNames: shaders)
++GorRuntimeDumpCore.appendShaderLogLine(&buckets, line: "[shader] warn: photon-grain.glsl: g2", shaderNames: shaders)
++GorRuntimeDumpCore.appendShaderLogLine(&buckets, line: "[shader] info: noise", shaderNames: shaders)
++check(buckets["photon-grain.glsl"]?.count == 2, "grain bucket has 2, order kept")
++check(buckets["photon-grain.glsl"]?[0].hasSuffix("g1") == true && buckets["photon-grain.glsl"]?[1].hasSuffix("g2") == true, "grain bucket order")
++check(buckets["photon-sharp.glsl"]?.count == 1, "sharp bucket separate from grain")
++check(buckets["photon-chrome.glsl"]?.isEmpty == true, "chrome bucket empty")
++
++// ── Lua registered-message extraction ──
++let lua = """
++mp.register_script_message("photon-scene-feed", function(payload)
++mp.register_script_message("photon-chrome-toggle", function()
++-- mp.register_script_message("commented-out", handler)
++"""
++let msgs = GorRuntimeDumpCore.registeredScriptMessages(in: lua)
++check(msgs == ["photon-scene-feed", "photon-chrome-toggle"], "registered messages extracted, got \(msgs)")
++
++// ── input.conf parsing ──
++let conf = """
++# comment
++c script-message-to photon_chrome photon-chrome-toggle
++C script-message-to photon_chrome photon-chrome-filter-toggle
++
++F9 script-message-to photon toggle
++"""
++let bindings = GorRuntimeDumpCore.parseInputConf(conf)
++check(bindings.count == 3, "3 bindings parsed, got \(bindings.count)")
++check(bindings[0]["key"] == "c" && bindings[0]["command"] == "script-message-to photon_chrome photon-chrome-toggle", "binding 0")
++let targets = GorRuntimeDumpCore.bindingMessageTargets(in: conf)
++check(targets == ["photon_chrome", "photon_chrome", "photon"], "binding targets, got \(targets)")
++
++// ── deterministic assembly ──
++let object = GorRuntimeDumpCore.assemble(
++    executableSha256: "deadbeef",
++    menus: [["title": "app", "enabled": true]],
++    panels: ["live": [Any](), "available": ["URLPanel"]],
++    scriptMessages: ["registered": ["a", "b"], "invoked_in_bindings": ["a"], "source": "test"],
++    inputBindings: [["key": "c", "command": "script-message-to photon_chrome photon-chrome-toggle"]],
++    shaderNames: shaders,
++    scriptOptions: ["photon-scriptdir": "/x"],
++    photonShaderLog: ["photon-grain.glsl": ["[shader] warn: g1"]],
++    partial: false)
++guard let d1 = GorRuntimeDumpCore.jsonData(object), let d2 = GorRuntimeDumpCore.jsonData(object),
++      let s1 = String(data: d1, encoding: .utf8) else {
++    fails += 1; print("FAIL: jsonData nil")
++    print("FAILS \(fails)")
++    exit(1)
++}
++check(d1 == d2, "assembly deterministic")
++check(s1.hasSuffix("}\n"), "trailing newline")
++check(s1.contains("\"executable_sha256\" : \"deadbeef\""), "executable sha present")
++check(s1.contains("\"photon_v4_replacement\""), "v4 section present")
++check(s1.contains("\"photon_shader_log\""), "per-shader log section present")
++check(s1.contains("\"result\" : \"NOT_RUN\""), "v4 placeholder NOT_RUN")
++check(s1.contains("\"V7\" : false"), "implemented.V1-V7 shape")
++
++print("FAILS \(fails)")
++exit(fails == 0 ? 0 : 1)
+diff --git a/archive/gor/architecture/arch-baseline.tsv b/archive/gor/architecture/arch-baseline.tsv
+index 52a9a9666..052b134b4 100644
+--- a/archive/gor/architecture/arch-baseline.tsv
++++ b/archive/gor/architecture/arch-baseline.tsv
+@@ -930,3 +930,5 @@ Packages/gorav/Sources/parity-pixel-tests/main.swift	gorav-internal:GorAVNativeP
+ Packages/gorav/Sources/parity-pixel-tests/main.swift	gorav-internal:GorAVPlaybackCore	1	gorav-vendor-2026-11-16	queue item complete; remove debt row			
+ Packages/gorav/Sources/untagged-color-tests/main.swift	edge:GorAVPlaybackCore	1	gorav-vendor-2026-11-16	queue item complete; remove debt row			
+ Packages/gorav/Sources/untagged-color-tests/main.swift	gorav-internal:GorAVPlaybackCore	1	gorav-vendor-2026-11-16	queue item complete; remove debt row			
++Sources/gor/GorRuntimeDump.swift	mpv:a965082e4c27616f	1	arch-198k	queue item complete; remove debt row				
++Sources/gor/GorRuntimeDump.swift	mpv:5049fe1da1a62da1	1	arch-198k	queue item complete; remove debt row				
+diff --git a/archive/gor/architecture/delivery.tsv b/archive/gor/architecture/delivery.tsv
+index 32966151a..876353462 100644
+--- a/archive/gor/architecture/delivery.tsv
++++ b/archive/gor/architecture/delivery.tsv
+@@ -507,7 +507,7 @@ Resources/vendor/wt_server/bounded_log.mjs	b0b2c45e9838260a02cdc59ff2dc05a0caa18
+ Resources/vendor/wt_server/diagnostics.mjs	72e0b2bb4a08a81ccd0040ba0d4f3e1fd875f2ea6ad1daee1d916e2616911ab1	0o644
+ Resources/vendor/wt_server/wt_server.mjs	b6b918d0d67bb447a1cecd4b2160858cbffc76c871c8e5f1b5f3b956a3fea4c9	0o644
+ Sources/gor/AdaptiveColor.swift	2fd63b55e52d7e97a5b21a21856583137373c4fa8bfa52f167133d08bb5be1d6	0o644
+-Sources/gor/AppDelegate.swift	cef1a286194036dd0d08c2cd619b907ffb01da57ae62d084c8cc950991678095	0o644
++Sources/gor/AppDelegate.swift	12f1020e590517d3ab103ba3b6c4bcbd6c1517420d2c7651e7d62edac4747ede	0o644
+ Sources/gor/ArchiveBrowser.swift	25472e0eb5da384cda6b5823dc851c8471e002c9223e1949937055b9e98608bb	0o644
+ Sources/gor/ArchiveLibrary.swift	772942f9057fe2486eac455c145f544e7101238dc52e1693e0aee32cf5a6f1a3	0o644
+ Sources/gor/ArchiveRandom.swift	d06654d43b0d6688beddf28e069826baaf864855e8f044c0e5363923ef98ee96	0o644
+@@ -534,6 +534,8 @@ Sources/gor/GorAVLocalOffer.swift	7af57f2ed18b7a64f250fe2f21f0f7d6351a3bd03b8837
+ Sources/gor/GorAVNativeGate.swift	8c0c6abc1e60ac8b45c1ef6e607b76095c2edd81920c28251f43c9bb6d8e5c83	0o644
+ Sources/gor/GorAVPlayerHost.swift	102ff8b4a3a28d6d8293de6b0e0c2a9a29d6c428ddccfc18dbdd8f38665c20c8	0o644
+ Sources/gor/GorAVStreamAdmission.swift	e3d95e54dd3c87a7c30864165d54c2e76d058f02ff1fc85a5de8d7170337c773	0o644
++Sources/gor/GorRuntimeDump.swift	f7bdf3230364aa355030315a560fe0d806985845990e0df1b9f74442487c5726	0o644
++Sources/gor/GorRuntimeDumpCore.swift	7a6af06f08443e8221b4dda68e6c7933370e665e7143fd1c9103bccb1c3ad03e	0o644
+ Sources/gor/IPTV.swift	d3c1ed6bf012926e74425437d2b62270c39f1e209f293960a4909719ebc0e0e8	0o644
+ Sources/gor/IconBarFit.swift	be45ac1c02481bda9e17b4a7d36702d0ecaafcb6654ecdb685d141c0ac6a3eb5	0o644
+ Sources/gor/LiveCaptionController.swift	d749b6d29a80423faa9e66d8b274b7103b4ce477c57ee3c54c7ed861c4c04da3	0o644
+@@ -1104,6 +1106,8 @@ Tests/Harness/ProviderRouting/manifest.json	804b8def9b2f063a82c26ca1611c6e1220fe
+ Tests/Harness/ProviderRouting/results.json	b06552281e7fe5383adcea857cf4d1af71875a485fc24f8c3fbb07bedfa2cd2e	0o644
+ Tests/Harness/ProviderRouting/run.sh	bf61e58f4674d53c9b60e8de901e2c54279b0a57009d0abe62ebd88b564721d0	0o644
+ Tests/Harness/ProviderRouting/test_routes.py	5a63c79cba469704b3c08b958cb857e5f9cd54113e113e1d0e3d970c0014cddc	0o644
++Tests/Harness/RuntimeDump/run.sh	7cf35a2695b600751b780ce9ff38ae77c1e0eb188e30c6694ec39d99230097ac	0o755
++Tests/Harness/RuntimeDump/suite/main.swift	0cf1148ddb1f9d2eb135f0297fc77c553c964a86534c4a8b5e9ecdd63fadce86	0o644
+ Tests/Harness/SURVEY-SWEEP-2026-10-01.json	b555fdf480c37c80c086d799b7adb8e06a84ce2192811efcd33987c66802501a	0o644
+ Tests/Harness/ScreenCamera/README.md	f8cf67836d6aa0a1a1e8067728a791d96341bc70a6bcd679a89942e96d9d82cd	0o644
+ Tests/Harness/ScreenCamera/ambient_worker_native.py	ddc9314d8a3d5c84b091aa104dabbdb7e34481290f661d4b4f7bda17aa4c1f60	0o644
+@@ -1560,11 +1564,11 @@ Tests/_retired-195q/privacy_test.py	e6d50ab052b9b113303880cd58e75e7aec97bde9192b
+ Tests/gorTests/GorAVStreamAdmissionTests.swift	e96989de74e634cf851bb2eb165641206aa239d1b563e2e2da38684f3a765f1d	0o644
+ Tests/gorTests/ThreeDRouteMachineTests.swift	5b69bcf90efb2afeb248f8bf9476c0c496fe88ca09683f7ce726d631a4a031d8	0o644
+ VENDOR.md	fc34a8f675fe047f47276febe0fb04d94c6b28e2847ad340b271e3b8b8f4e393	0o644
+-architecture/arch-baseline.tsv	9dfa9e81a08f575c1f4431dd30c9a00dedeb1d82fac131ceefe2981e3e45d893	0o644
++architecture/arch-baseline.tsv	915a09071f2ffab3d1c12f6de2db5315fed9e300f1bc3d85ec7ef29f997a6efb	0o644
+ architecture/freeze-195o.json	132f37a5f310d66bd9a795c5894c60c90d346fd53a65cfb98f88e0c99cc12740	0o644
+ architecture/freeze-195y.json	9facecb73847fef1c9e225a9b07ee7d487414f41b661fbe971b30acbd47ebaa1	0o644
+-architecture/manifest.tsv	69d84856e3a1c59fe4cbd76ddb24948f11ce59b4ab17821bfa893dfa676f560f	0o644
+-architecture/policy.tsv	2369a0c8201ae88dc99ca429de3e642961df166e0da01278884c5ea1a907143a	0o644
++architecture/manifest.tsv	efa429eb296c7d88b4593e96055f4366e7487df1eb0cfe8f704caad0c6b2513d	0o644
++architecture/policy.tsv	789bd053d22b4d6c802add52b2175216aa8b861f9aa0deb810c4a7c3c6722e4e	0o644
+ build.sh	acfc1657b0b7665dbe1c5c60b2cf6ea8a6dee92effba7d5244ab2e96ebfc4cf5	0o755
+ docs/190v-first-mac-log.md	014671890c84eb8b6a6434385b1331dbf504a5091d2a6ec391be6381a36cf278	0o644
+ docs/190v-first-run-risk-walk.md	aa523f38b734fc720c9f21db5138f16f28a49396734e940e36649b2cdae9c7e5	0o644
+diff --git a/archive/gor/architecture/manifest.tsv b/archive/gor/architecture/manifest.tsv
+index 0fca4c3bd..ed71ecde0 100644
+--- a/archive/gor/architecture/manifest.tsv
++++ b/archive/gor/architecture/manifest.tsv
+@@ -538,7 +538,7 @@ Resources/vendor/wt_server/diagnostics.mjs	vendor	-	54
+ Resources/vendor/wt_server/wt_server.mjs	vendor	-	4979
+ STATE.md	generated	-	85
+ Sources/gor/AdaptiveColor.swift	swift	gor	128
+-Sources/gor/AppDelegate.swift	swift	gor	3865
++Sources/gor/AppDelegate.swift	swift	gor	3868
+ Sources/gor/ArchiveBrowser.swift	swift	gor	2570
+ Sources/gor/ArchiveLibrary.swift	swift	gor	426
+ Sources/gor/ArchiveRandom.swift	swift	gor	158
+@@ -565,6 +565,8 @@ Sources/gor/GorAVLocalOffer.swift	swift	gor	118
+ Sources/gor/GorAVNativeGate.swift	swift	gor	176
+ Sources/gor/GorAVPlayerHost.swift	swift	gor	350
+ Sources/gor/GorAVStreamAdmission.swift	swift	gor	37
++Sources/gor/GorRuntimeDump.swift	swift	gor	197
++Sources/gor/GorRuntimeDumpCore.swift	swift	gor	159
+ Sources/gor/IPTV.swift	swift	gor	3444
+ Sources/gor/IconBarFit.swift	swift	gor	100
+ Sources/gor/LiveCaptionController.swift	swift	gor	595
+@@ -620,6 +622,7 @@ Tests/Architecture/s1-196y-map.json	dev-tool	-	15
+ Tests/Architecture/s1_196y_preservation_test.py	dev-tool	-	67
+ Tests/Architecture/structure_freeze_test.py	dev-tool	-	14
+ Tests/Architecture/swift-fixture.py	dev-tool	-	12
++Tests/Architecture/update_integrity_path_test.py	dev-tool	-	58
+ Tests/Architecture/viewport-s4a-map.json	dev-tool	-	20
+ Tests/Architecture/viewport_s4a_preservation_test.py	dev-tool	-	59
+ Tests/Archive/random_bag_test.py	dev-tool	-	81
+@@ -1134,6 +1137,8 @@ Tests/Harness/ProviderRouting/manifest.json	dev-tool	-	20
+ Tests/Harness/ProviderRouting/results.json	dev-tool	-	53
+ Tests/Harness/ProviderRouting/run.sh	dev-tool	-	4
+ Tests/Harness/ProviderRouting/test_routes.py	dev-tool	-	62
++Tests/Harness/RuntimeDump/run.sh	dev-tool	-	20
++Tests/Harness/RuntimeDump/suite/main.swift	dev-tool	-	89
+ Tests/Harness/SURVEY-SWEEP-2026-10-01.json	dev-tool	-	130
+ Tests/Harness/ScreenCamera/README.md	dev-tool	-	5
+ Tests/Harness/ScreenCamera/ambient_worker_native.py	dev-tool	-	46
+@@ -13264,4 +13269,3 @@ zips/261023-221613-gor-font-allui-audio-tap-recovery-r1.zip.b64	generated	-	1
+ zips/261023-222310-gor-allui-font-audio-continuity-r2.zip.b64	generated	-	2300
+ zips/261023-222526-gor-allui-font-audio-continuity-r4.zip.b64	generated	-	2309
+ zips/261024-102454-gor-allui-font-audio-continuity-r5.zip.b64	generated	-	2301
+-Tests/Architecture/update_integrity_path_test.py	dev-tool	-	58
+diff --git a/archive/gor/architecture/policy.tsv b/archive/gor/architecture/policy.tsv
+index b9889d3e1..4313c69ca 100644
+--- a/archive/gor/architecture/policy.tsv
++++ b/archive/gor/architecture/policy.tsv
+@@ -3895,3 +3895,7 @@ Tests/HeadPose/test_hold_lock.py	hold-lock-test	tooling	197i: hold-lock measurem
+ tools/head_pose/synth_tilt_hold_clip.py	pose-synth-clip	tooling	197i: deterministic synthetic tilt-and-hold pose clip (fast tilt, hold, return, slow pan), LABELLED SYNTHETIC pending a real Mac pose trace	-		-	-
+ Tests/BlinkRoute/blink_cadence_replay_test.py	blink_cadence_replay_test	tooling	197i: cadence-aware double-blink replay (root-cause 2 Hz death, sampling-floor catch, negatives, boost cost, 30/10 fps parity, swift pins)	D2		-	-
+ tools/head_pose/blink_cadence.py	blink-cadence	tooling	197i: cadence-aware double-blink detector model + thermal-stride pipeline simulator; constants measured by Tests/BlinkRoute/blink_cadence_replay_test.py	-		-	-
++Sources/gor/GorRuntimeDumpCore.swift	arch-198k runtime reporter pure core (flag parse, classifiers, assembly)	gor	Inert without --gor-dump-runtime	arch-198k		-	-
++Sources/gor/GorRuntimeDump.swift	arch-198k runtime reporter AppKit adapter (menu/panel walk, mpv IPC reads, per-shader log buckets)	gor	Inert without --gor-dump-runtime; macOS-only, Mac not verified	arch-198k		-	-
++Tests/Harness/RuntimeDump/run.sh	harness runner	tooling		D2		-	-
++Tests/Harness/RuntimeDump/suite/main.swift	harness suite	tooling		D2		-	-
+diff --git a/docs/decisions/DR-198K-DUMP-001.md b/docs/decisions/DR-198K-DUMP-001.md
+new file mode 100644
+index 000000000..cc12caed6
+--- /dev/null
++++ b/docs/decisions/DR-198K-DUMP-001.md
+@@ -0,0 +1,10 @@
++# DR-198K-DUMP-001: runtime reporter IPC edges (arch-198k/198l)
++
++Two mpv-reference debt rows for Sources/gor/GorRuntimeDump.swift
++(mpv:a965082e4c27616f, mpv:5049fe1da1a62da1). The reporter's mandated reads
++(script messages/bindings/glsl-shaders/script-opts) are mpv IPC queries via
++the existing IPCClient/queryBatch path - the feature IS mpv state collection,
++so the references cannot be extracted without deleting the ordered feature.
++Recorded per the arch-198c per-edge convention (DR-198C-AUDIT-001/002): two
++individual debt rows under queue id arch-198k, removal when the reporter
++lands in the delivery tree's baseline. No bulk relaxation.

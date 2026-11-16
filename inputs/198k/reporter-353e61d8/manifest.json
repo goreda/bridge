@@ -1,0 +1,47 @@
+{
+  "source_pin": "353e61d8b053803eca7efb4856770faf1c1d96d5",
+  "base": "15acf95cec7bf0ea668b4eec1750d4f49455a82c",
+  "patch_sha256": "7fedbd56b08a0d8e78407437f60214a2fe42e2c4e436827c21b12f0f5ae88ddd",
+  "files": [
+    {
+      "path": "files/archive/gor/Sources/gor/AppDelegate.swift",
+      "sha256": "12f1020e590517d3ab103ba3b6c4bcbd6c1517420d2c7651e7d62edac4747ede"
+    },
+    {
+      "path": "files/archive/gor/Sources/gor/GorRuntimeDump.swift",
+      "sha256": "f7bdf3230364aa355030315a560fe0d806985845990e0df1b9f74442487c5726"
+    },
+    {
+      "path": "files/archive/gor/Sources/gor/GorRuntimeDumpCore.swift",
+      "sha256": "7a6af06f08443e8221b4dda68e6c7933370e665e7143fd1c9103bccb1c3ad03e"
+    },
+    {
+      "path": "files/archive/gor/Tests/Harness/RuntimeDump/run.sh",
+      "sha256": "7cf35a2695b600751b780ce9ff38ae77c1e0eb188e30c6694ec39d99230097ac"
+    },
+    {
+      "path": "files/archive/gor/Tests/Harness/RuntimeDump/suite/main.swift",
+      "sha256": "0cf1148ddb1f9d2eb135f0297fc77c553c964a86534c4a8b5e9ecdd63fadce86"
+    },
+    {
+      "path": "files/archive/gor/architecture/arch-baseline.tsv",
+      "sha256": "915a09071f2ffab3d1c12f6de2db5315fed9e300f1bc3d85ec7ef29f997a6efb"
+    },
+    {
+      "path": "files/archive/gor/architecture/delivery.tsv",
+      "sha256": "b9decbdb1a849a36e60ab0e5ad16726499dc1a49039aafeb971fa7f53628cd54"
+    },
+    {
+      "path": "files/archive/gor/architecture/manifest.tsv",
+      "sha256": "efa429eb296c7d88b4593e96055f4366e7487df1eb0cfe8f704caad0c6b2513d"
+    },
+    {
+      "path": "files/archive/gor/architecture/policy.tsv",
+      "sha256": "789bd053d22b4d6c802add52b2175216aa8b861f9aa0deb810c4a7c3c6722e4e"
+    },
+    {
+      "path": "files/docs/decisions/DR-198K-DUMP-001.md",
+      "sha256": "8859933548d9c59464b56a79f820d867aba5b16fd8f8441d495741d440fa3e95"
+    }
+  ]
+}
