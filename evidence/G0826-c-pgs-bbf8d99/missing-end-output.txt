@@ -1,0 +1,7 @@
+C side (fixed carrier):
+feed rc=0 err=''
+err after=''
+
+Swift side (missing-end-test.swift, in tar):
+feed(complete-set-minus-END) rc=true events=0 (expect rc=true, 0 events: no END -> display set pending, never emitted)
+feed(full stream after) rc=true events=1 type=display pts90k=2070 (expect rc=true, 1 display)
