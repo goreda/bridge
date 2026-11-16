@@ -1,0 +1,14 @@
+INTEGRATED ROLLBACK corrupt backup rc= 1 source removed before failed audit= False
+audit-backup: resources MISMATCH missing=0 extra=0 changed=1
+    a
+rollback: backup audit refused before source mutation
+
+DIRECT TOKEN audit bypass rc= 1 resource= original
+NEWLY PRESENT CANDIDATE same-ts rc= 0 reuses= False manifest roots= ['/tmp/H0614-review-y4amy8yv/home/.config/mpv']
+guard backup: state root [0] /tmp/H0614-review-y4amy8yv/home/.config/mpv
+guard backup: state root [1] /tmp/H0614-review-y4amy8yv/home/.local/state/mpv
+guard backup: app 4 entries, resources 2 entries, state 4 entries across 2 roots
+BACKUP_DIR=/tmp/H0614-review-y4amy8yv/new-candidate/.bk/same-pre-update-1
+
+ROLLBACK OLD-DIR SWEEP rc= 0 unrelated old-dir deleted= False
+repro root= /tmp/H0614-review-y4amy8yv
