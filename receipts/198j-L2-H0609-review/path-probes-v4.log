@@ -1,0 +1,38 @@
+relative backup 0
+relative audit 0 audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+relative rollback 0 guard rollback: app bundle restored
+guard restore-resources: Resources restored from /tmp/h0609-paths-h77im8jy/relative/p/.bk/261117-013454-pre-update/resources
+guard rollback: state root restored: /tmp/h0609-paths-h77im8jy/relative/state
+verify app: type/content/mode lists EQUAL (1 entries)
+verify resources: type/content/mode lists EQUAL (2 entries)
+verify state: type/content/mode lists EQUAL (2 entries)
+ audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+
+relative victim exists True
+symlink backup 1
+guard: GOR_STATE_DIR is a symlink (/tmp/h0609-paths-h77im8jy/symlink/state); symlinked state roots unsupported
+
+inside backup 0
+inside audit 0 audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+inside rollback 0 guard rollback: app bundle restored
+guard restore-resources: Resources restored from /tmp/h0609-paths-h77im8jy/inside/p/.bk/261117-013455-pre-update/resources
+guard rollback: state root restored: /tmp/h0609-paths-h77im8jy/inside/p/Resources
+verify app: type/content/mode lists EQUAL (1 entries)
+verify resources: type/content/mode lists EQUAL (2 entries)
+verify state: type/content/mode lists EQUAL (2 entries)
+ audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+
+overlap backup 0
+overlap audit 0 audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+overlap rollback 0 guard rollback: app bundle restored
+guard restore-resources: Resources restored from /tmp/h0609-paths-h77im8jy/overlap/p/.bk/261117-013455-pre-update/resources
+guard rollback: state root restored: /tmp/h0609-paths-h77im8jy/overlap/home/.config/mpv/child
+guard rollback: state root restored: /tmp/h0609-paths-h77im8jy/overlap/home/.config/mpv
+verify app: type/content/mode lists EQUAL (1 entries)
+verify resources: type/content/mode lists EQUAL (2 entries)
+verify state: type/content/mode lists EQUAL (6 entries)
+ audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+
