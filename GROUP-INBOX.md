@@ -4635,3 +4635,29 @@ Lane b W075v2at8786bfe3 actualexit0,gatePASS. OutputSwift6.1.2RELEASE/Targetx86_
 2026-11-16 23:19 +03 | W-gdb-ops-p23-001 photon-grain source/licence hold | embedded4096byte texture confirmed, provenance beyond transferred-source import unresolved; do not forward/mirror photon-grain.lua or texture pending clearance, no deletion | Ops/Main source review | PHOTON-GRAIN-TEXTURE-HOLD.md
 
 2026-11-16 23:24 +03 | W-gdb-ops-photon-v4-001..007 information update | real-content-v1 manifest URL/excerpt hashes + runner/report supplied; lane21 EGL rows144PASS24UNOBSERVED,worst2.132percent; five source families,rights/class/HDR/autocorr/native pending; no media,not acceptance | photon lane b main0e82f0e | informational source custody only
+
+## W-gdb-ops-198f-05 | 1nstinct | Darwin photon smoke gate
+
+Owner-verified capability rows: 0. Capability rows moved since the previous wake: 0. M1 delivered: no.
+
+Requested by owner instruction phonemsg-01M7K1G2HNK7WB49MP39B6583T, November 16, 2026. Request only, not accepted or started. Priority: P23 shader-family packets, then V7 corpus, then VT/HDR kits; generic fixture requests do not outrun P23/V7 returns.
+
+Implement a Darwin smoke job for the built gor app. Dependency chain: delivered baseline (Ops item 2) -> bundle gate, updater and smoke (items 3, 4, 5) -> candidate evidence (item 6). Candidate is the last owner-delivered tree 15acf95c plus named diffs, never a fresh engine tree. Do not remove, stub or disable any delivered feature to pass a compile or test.
+
+Interface required: runner accepts `--app PATH --fixture PATH --out DIRECTORY`. Input app is the actual built bundle, fixture is a locally generated synthetic clip. Output smoke.json records exact bundle file inventory hash, command, exit, each photon Lua load result, Lua errors, grain and sharp shader compilation, both shader names in glsl-shaders, and one script-message request/reply witness. Preserve the raw log. Fail closed if any check or interface is unavailable; never substitute source inspection for a running check. Launch headless with an isolated temporary config/state directory; do not touch user state. Post the smoke log and result to the work queue through the requesting coordinator. Ops will supply the generated delivered baseline and built-bundle gate input before acceptance can be claimed. No native result is currently supplied.
+
+No media, held texture bytes, secrets or account access included. Existing unresolved texture provenance hold remains: no forwarding or mirroring affected source to labs. If actual app access requires that source, report the input restriction; a synthetic protocol test is not the actual smoke PASS.
+
+Secret scan: clean.
+
+## W-gdb-ops-198f-04 | in2tinct | updater refusal and full rollback state test
+
+Owner-verified capability rows: 0. Capability rows moved since the previous wake: 0. M1 delivered: no.
+
+Requested by the same owner instruction. Request only, not accepted or started. Dependency chain and no-removal rule above apply.
+
+Design and implement the build.sh update/rollback regression with isolated temporary fixture bundles and state. Ops owns the baseline and shared built-bundle loss detector; consume its interface, do not invent a weaker source-only replacement. Expected checker call: `python3 bundle-feature-gate.py --baseline DELIVERED-BASELINE.json --bundle CANDIDATE.app --installed INSTALLED.app --removals REMOVALS.md --out REPORT.json`. The baseline artifact and gate implementation follow from Ops item 2; report that exact dependency if not yet available, not a generic BLOCKED_INPUT.
+
+Acceptance table: complete bundle -> pass; missing photon Lua, shader, input binding, script-message, menu/panel entry -> refuse update and retain old bundle; a removal without an owner instruction id -> refuse; pre-update backup required; rollback restores the complete previous bundle and state including gor_look.txt and all learned look data. Update itself must leave state bytes unchanged. Use synthetic fixture state only. Return source patch, commands, exit codes, a deliberate update-refusal transcript, and byte-hash comparisons before/after update refusal and rollback. No stub, disable or removal may be used to pass. A model-only test does not establish production build.sh acceptance.
+
+No media, private state, held texture bytes or credentials included. Secret scan: clean.
