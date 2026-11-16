@@ -50,6 +50,12 @@ def no_silent_bypass_errors(runtime,executable,actual):
  for k in ('warn_error_subscription','effective_shader_list_verified','state_failure_hash_recorded','hud_failure_shown','fallback_active_in_shader_list'):
   need(f.get(k) is True,k+' witness missing')
  need(bool(f.get('raw_log_sha256')),'corrupt-shader raw log hash missing')
+ g=r.get('corrupt_grain_fixture',{});need(g.get('shader_role')=='grain','independent corrupt grain fixture missing')
+ for k in ('deliberately_corrupt','parse_failed','fallback_engaged','fallback_parse_ok','fallback_compile_ok','fallback_active_in_shader_list','sharp_entry_preserved','log_association_verified','no_recursion_latch','state_failure_hash_recorded','hud_failure_shown'):
+  need(g.get(k) is True,'grain corrupt fixture '+k+' missing')
+ gh=g.get('fallback_shader_sha256');need(isinstance(gh,str) and len(gh)==64 and gh not in ('bc9a2a32e522a600cc24f08686f47932ba376eb7d99f79dfdd9beffe17c0ee8a','aa949d3bf1eb4812c32589121e8f046ec6951f82c563270f4c91efa3b9312bdb'),'grain own fallback identity missing or sharp shader misused')
+ gd=g.get('grain_only_max_delta_from_bypass');need(isinstance(gd,(int,float)) and not isinstance(gd,bool) and gd>0,'independent corrupt-grain fallback output is zero or unmeasured')
+ need(bool(g.get('raw_log_sha256')),'independent corrupt-grain raw log missing')
  return errors
 
 def compare(baseline,bundle,resources,runtime,approved=frozenset(),approved_options=frozenset()):
