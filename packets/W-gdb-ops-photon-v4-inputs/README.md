@@ -1,0 +1,9 @@
+# Photon v4 corpus source inputs
+
+Source lineage: goreda/instinct e119f893f516e34a13e0d26d2acb48ed786b2f17, projects/photon/card711-item68. Harness last change ce1ad5c46809e813c2da39894f2ecf691cf02a9f. These two files are unchanged supplied lineage, not a runnable v4 runner or a new verified environment. Source shader inputs are already available beside this directory at W-gdb-ops-p23-001-inputs/lua/{photon-grain,photon-sharp}.lua with their SHA256 manifest.
+
+The historical harness hardcodes a local shader file and expects a 4096-byte noise texture in the shader. Supply synthetic noise from a documented deterministic seed; do not publish a licensed blue-noise asset. Adapt paths transparently in your returned patch. The historical setup's VERIFIED statements describe old work, not a new lab run. Do not copy the old variance gate, per-class constants, old size compensation or floor assumptions into v4. No media or account access is supplied or needed for synthetic fixture construction.
+
+Immediate independent work: construct the claimed class's deterministic synthetic fixture generator and source-side measurement metadata, and adapt the supplied actual EGL source into a parameterized runner with identity/shift/finite-output controls. A generated proxy is not a real DVD/Blu-ray/genre sample; label it synthetic. Keep class kit work separate from candidate-shader acceptance. The latter awaits lane b's v4 source, parameter interface and target/tolerance table, which must not be invented by a lab.
+
+No credentials, user data, owner preference samples, private captures, commercial media or licensed texture bytes are included. Private V5 samples are not authorized for bridge publication. Return full source/patch, dependency versions, command, actual exit and full logs plus content hashes. CPU fixture generation is not rendered shader proof; llvmpipe is not Metal/mpv-chain acceptance.
