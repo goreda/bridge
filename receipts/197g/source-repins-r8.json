@@ -1,0 +1,18 @@
+{
+  "scope": "source packet only, no new receipt mint or replay; old run-proven packets retain a34e2cd, not superseded by this source repin",
+  "note": "FFmpegSoftwareDecoder.swift grew again (native96-102/VT-PRODUCER port). d61 ex_format_name_precedent 798-798 -> 840-840; d62 ex_deadline_arm 739-741 -> 781-783, ex_deadline_clear 997-1006 -> 1039-1048. All byte-identical, hashes unchanged (15571fec, 4323c114, 26a032ad).",
+  "checked": [
+    {
+      "packet": "W-gdb-d61",
+      "file_sha256": "ad95e59ecc1babc2f439ff331dc980416212817a3a87c49ebcc108a580540241",
+      "pin": "5b448b89394709decd046d5bea214ac19c05f11f",
+      "excerpt_checks": 6
+    },
+    {
+      "packet": "W-gdb-d62",
+      "file_sha256": "dfddbd81cb76804343fe2d1a901095c553386393c943e66e486bb5eea3a513a4",
+      "pin": "5b448b89394709decd046d5bea214ac19c05f11f",
+      "excerpt_checks": 4
+    }
+  ]
+}

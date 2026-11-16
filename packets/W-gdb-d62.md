@@ -1,4 +1,6 @@
 # W-gdb-d62: 195b-62 follow-on: video remote open deadline witness for a dribbled body (rev 2)
+> rev 2026-11-17-r6: pin rolled dbd96d4 -> 5b448b8 (same file growth); ex_deadline_arm re-located 739-741 -> 781-783 (hash unchanged 4323c114), ex_deadline_clear 997-1006 -> 1039-1048 (hash unchanged 26a032ad); all excerpts re-verified byte-identical at 5b448b8.
+
 > rev 2026-11-16-r5: pin rolled bb49fc6 -> dbd96d4 (VT-PRODUCER/HDR work grew FFmpegSoftwareDecoder.swift); ex_deadline_clear re-located 985-994 -> 997-1006, byte-identical, hash unchanged (26a032ad); all excerpts re-verified byte-identical at dbd96d4.
 
 > rev 2026-11-16-r4: pin rolled a34e2cd -> bb49fc6 (VT zero-copy/product merges moved FFmpegSoftwareDecoder.swift); the stale excerpts were re-located to identical content at new line ranges and their hashes recomputed; every other excerpt re-verified byte-identical at bb49fc6.
@@ -18,7 +20,7 @@ Not in scope: HTTPS/TLS provider, stuck-decode interruption, cache state, audio 
   "scope": "implementation",
   "product_repo": "goreda/gorav",
   "product_branch": "engine",
-  "product_sha": "dbd96d4cf3309d4c31d2f2d96bfbf49f918047b2",
+  "product_sha": "5b448b89394709decd046d5bea214ac19c05f11f",
   "touched_files": [
     {
       "path": "Sources/video-remote-open-tests/main.swift",
@@ -33,12 +35,12 @@ Not in scope: HTTPS/TLS provider, stuck-decode interruption, cache state, audio 
     {
       "path": "Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift",
       "excerpt_block": "ex_deadline_arm",
-      "lines": "739-741"
+      "lines": "781-783"
     },
     {
       "path": "Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift",
       "excerpt_block": "ex_deadline_clear",
-      "lines": "997-1006"
+      "lines": "1039-1048"
     }
   ],
   "excerpt_sha256_8": {
@@ -82,7 +84,7 @@ Not in scope: HTTPS/TLS provider, stuck-decode interruption, cache state, audio 
 ## Excerpt ex_server
 
 ```swift id=ex_server
-// Sources/video-remote-open-tests/main.swift lines 17-44 @ dbd96d4cf3309d4c31d2f2d96bfbf49f918047b2
+// Sources/video-remote-open-tests/main.swift lines 17-44 @ 5b448b89394709decd046d5bea214ac19c05f11f
         try """
         import http.server,sys,time,threading
         data=open(sys.argv[1],'rb').read(); lock=threading.Lock(); count=0
@@ -116,7 +118,7 @@ Not in scope: HTTPS/TLS provider, stuck-decode interruption, cache state, audio 
 ## Excerpt ex_stall_test
 
 ```swift id=ex_stall_test
-// Sources/video-remote-open-tests/main.swift lines 76-84 @ dbd96d4cf3309d4c31d2f2d96bfbf49f918047b2
+// Sources/video-remote-open-tests/main.swift lines 76-84 @ 5b448b89394709decd046d5bea214ac19c05f11f
         let deadline=FFmpegSoftwareDecoder()
         deadline.remoteOpenOptions=SourceOpenOptions(openDeadlineSeconds:0.1)
         let began=ProcessInfo.processInfo.systemUptime
@@ -131,7 +133,7 @@ Not in scope: HTTPS/TLS provider, stuck-decode interruption, cache state, audio 
 ## Excerpt ex_deadline_arm
 
 ```swift id=ex_deadline_arm
-// Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift lines 739-741 @ dbd96d4cf3309d4c31d2f2d96bfbf49f918047b2
+// Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift lines 781-783 @ 5b448b89394709decd046d5bea214ac19c05f11f
                     interruptBox.reset(deadlineNanos:remoteOptions?.openDeadlineNanos())
                     usedEpochs.insert(sid) // spent at first fence exposure (r8 ruling)
                     interruptSlot.install(session: sid) { [weak self] in self?.interruptBox.set() }
@@ -140,7 +142,7 @@ Not in scope: HTTPS/TLS provider, stuck-decode interruption, cache state, audio 
 ## Excerpt ex_deadline_clear
 
 ```swift id=ex_deadline_clear
-// Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift lines 997-1006 @ dbd96d4cf3309d4c31d2f2d96bfbf49f918047b2
+// Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift lines 1039-1048 @ 5b448b89394709decd046d5bea214ac19c05f11f
                     // Register only after open committed. Hardware-backed lifetime
                     // tracking is a separate row; do not mislabel it as software.
                     if self.l3HW == nil || self.l3HW?.receipt.attempted == false || self.l3HW?.receipt.attachResult != 0 || self.l3HW?.receipt.fallbackArmed == true {

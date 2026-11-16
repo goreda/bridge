@@ -1,4 +1,6 @@
 # W-gdb-d61: 195b-61 follow-on: record the container format name in MediaInventory (capture only, rev 4)
+> rev 2026-11-17-r5: pin rolled bb49fc6 -> 5b448b8 (native96-102/VT-PRODUCER work grew FFmpegSoftwareDecoder.swift); ex_format_name_precedent re-located 798-798 -> 840-840, byte-identical, hash unchanged (15571fec); all excerpts re-verified byte-identical at 5b448b8.
+
 > rev 2026-11-16-r4: pin rolled a34e2cd -> bb49fc6 (VT zero-copy/product merges moved FFmpegSoftwareDecoder.swift); the stale excerpts were re-located to identical content at new line ranges and their hashes recomputed; every other excerpt re-verified byte-identical at bb49fc6.
 
 > rev 2026-11-16-r2: excerpt ranges/hashes rebound to pin 8786bfe3 (Team A log-verify fixes: 040 whole-file 1-137, d59 ex_store 119-155, d64 ex_test_tail 115-134, G0761 hash map added, stale header shas replaced). Supersedes the 2026-11-16 minting only after a fresh gate-flow run_proof binds to these bytes
@@ -18,7 +20,7 @@ Not in scope: any change to effectiveDurationSeconds or the image-duration rule,
   "scope": "implementation",
   "product_repo": "goreda/gorav",
   "product_branch": "engine",
-  "product_sha": "bb49fc662158f07782baab1c8e8acc940dd07068",
+  "product_sha": "5b448b89394709decd046d5bea214ac19c05f11f",
   "touched_files": [
     {
       "path": "Sources/GorAVFFmpegAdapter/MediaInventory.swift",
@@ -38,7 +40,7 @@ Not in scope: any change to effectiveDurationSeconds or the image-duration rule,
     {
       "path": "Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift",
       "excerpt_block": "ex_format_name_precedent",
-      "lines": "798-798"
+      "lines": "840-840"
     },
     {
       "path": "Sources/media-inventory-tests/main.swift",
@@ -101,7 +103,7 @@ Not in scope: any change to effectiveDurationSeconds or the image-duration rule,
 ## Excerpt ex_inventory_fields_init
 
 ```swift id=ex_inventory_fields_init
-// Sources/GorAVFFmpegAdapter/MediaInventory.swift lines 62-78 @ bb49fc662158f07782baab1c8e8acc940dd07068
+// Sources/GorAVFFmpegAdapter/MediaInventory.swift lines 62-78 @ 5b448b89394709decd046d5bea214ac19c05f11f
     public let tracks: [Track]
     public let chapters: [Chapter]
     /// Format-level tags, untrusted container text. Do not treat as log-safe.
@@ -124,7 +126,7 @@ Not in scope: any change to effectiveDurationSeconds or the image-duration rule,
 ## Excerpt ex_effective_duration_unchanged
 
 ```swift id=ex_effective_duration_unchanged
-// Sources/GorAVFFmpegAdapter/MediaInventory.swift lines 79-90 @ bb49fc662158f07782baab1c8e8acc940dd07068
+// Sources/GorAVFFmpegAdapter/MediaInventory.swift lines 79-90 @ 5b448b89394709decd046d5bea214ac19c05f11f
     public static let defaultImageDurationSeconds = 2.0
 
     /// Effective playback duration: the container duration when known; for a
@@ -142,7 +144,7 @@ Not in scope: any change to effectiveDurationSeconds or the image-duration rule,
 ## Excerpt ex_extract_tail
 
 ```swift id=ex_extract_tail
-// Sources/GorAVFFmpegAdapter/MediaInventory.swift lines 187-190 @ bb49fc662158f07782baab1c8e8acc940dd07068
+// Sources/GorAVFFmpegAdapter/MediaInventory.swift lines 187-190 @ 5b448b89394709decd046d5bea214ac19c05f11f
         let inv = MediaInventory(tracks: tracks, chapters: chapters, metadata: metadata,
                                  durationSeconds: duration,
                                  durationProvenance: duration == nil ? .unknown : .container)
@@ -152,14 +154,14 @@ Not in scope: any change to effectiveDurationSeconds or the image-duration rule,
 ## Excerpt ex_format_name_precedent
 
 ```swift id=ex_format_name_precedent
-// Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift lines 798-798 @ bb49fc662158f07782baab1c8e8acc940dd07068
+// Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift lines 840-840 @ 5b448b89394709decd046d5bea214ac19c05f11f
                     let container = String(cString: fmtCtx.pointee.iformat.pointee.name)
 ```
 
 ## Excerpt ex_existing_image_tests
 
 ```swift id=ex_existing_image_tests
-// Sources/media-inventory-tests/main.swift lines 43-58 @ bb49fc662158f07782baab1c8e8acc940dd07068
+// Sources/media-inventory-tests/main.swift lines 43-58 @ 5b448b89394709decd046d5bea214ac19c05f11f
 // I-series: image-duration rule (pure behavior on typed tracks)
 func fakeTrack(pic: Bool) -> MediaInventory.Track {
     MediaInventory.Track(index: 0, kind: .video, codec: "mjpeg", language: nil, title: nil, isDefault: true, isAttachedPicture: pic, durationSeconds: nil)
@@ -181,7 +183,7 @@ do {
 ## Excerpt ex_test_tail
 
 ```swift id=ex_test_tail
-// Sources/media-inventory-tests/main.swift lines 76-79 @ bb49fc662158f07782baab1c8e8acc940dd07068
+// Sources/media-inventory-tests/main.swift lines 76-79 @ 5b448b89394709decd046d5bea214ac19c05f11f
 check("I5 shipped image default is two seconds", MediaInventory.defaultImageDurationSeconds == 2)
 check("I6 invalid image duration stays unknown", picInv.effectiveDurationSeconds(imageDuration: .nan).seconds == nil)
 print(failures == 0 ? "media-inventory-tests: all pass" : "media-inventory-tests: \(failures) FAIL")
