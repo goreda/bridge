@@ -1,0 +1,27 @@
+{
+  "executor": "lane c own rerun via Main",
+  "base": "a34e2cd96b6825932a196424a17cc62962e910a7",
+  "provider": "FFmpeg7.1+GnuTLS no-dav1d",
+  "result": "RED inventory0product1",
+  "pass": "redaction,budgetvariant,segmentprep,livetypedgap,playlistcap,fetchcancel",
+  "fail": [
+    "preparedopen rejected outside pinned roots",
+    "localreference decode-failed -35 bytes3700chunks1eoffalsefnva2dacde57847f24d"
+  ],
+  "execution_adjustment": "nested hls-fixture/hls-fixture tar,3fixturefilescopiedinto fixtures perscriptintent",
+  "next": "TeamA clarify missing pinned-root env/fixturepath; independent reference decode failure also needs investigation, do not waive root security or alter fixture merely to green",
+  "files": [
+    {
+      "path": "run.log",
+      "sha256": "974b9ec02340bce3899bcaabadd8cc1733f72b1b3beec5bddd89b8cce17b993e"
+    },
+    {
+      "path": "sha256.txt",
+      "sha256": "1e9cd1324af5b471ce1655a676a50f253a2c1568fe97eac0b00172f24859bf27"
+    },
+    {
+      "path": "sha256-as-run.txt",
+      "sha256": "722755a322493a6407cf9d4818a4a5e497b3c48b6377d39aca8b1064a920ad75"
+    }
+  ]
+}
