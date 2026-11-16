@@ -28,6 +28,7 @@ try {
   const at = Buffer.concat([cipher.update(padded), cipher.final()]).toString('base64url');
   let corrupt = false, slow = false, unknown = false;
   server = http.createServer(async (req, res) => {
+   try {
     if (slow) await new Promise(resolve => setTimeout(resolve, 1500));
     if (req.url.startsWith('/cs')) {
       const parts = [];for await (const c of req) parts.push(c);
@@ -40,6 +41,12 @@ try {
       const bytes = Buffer.from(ciphertext); if (corrupt) bytes[bytes.length - 1] ^= 1;
       res.end(bytes);
     }
+   } catch (error) {
+    // A cancelled client can abort while the async fixture is reading its
+    // request. Do not turn that expected disconnect into an unhandled promise.
+    if (error.code === 'ECONNRESET' && req.aborted) return;
+    throw error;
+   }
   });
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   const testGateway = `http://127.0.0.1:${server.address().port}/`;
