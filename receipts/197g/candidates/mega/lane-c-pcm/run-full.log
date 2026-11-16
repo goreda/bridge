@@ -1,0 +1,14 @@
+M2_MEGA_PCM_RESULT product_decode_exit=0
+PHASE encrypt fixture
+PHASE encryption complete
+PHASE resolve/decrypt
+PASS MEGAJS actual ciphertext download+decrypt+MAC into exact owned source bytes
+PASS resolve_or_integrity refusal and cache cleanup
+PASS resolve_or_integrity refusal and cache cleanup
+PASS resolve_or_integrity refusal and cache cleanup
+PASS size_limit refusal and cache cleanup
+PASS timeout refusal and cache cleanup
+PASS cancelled refusal and cache cleanup
+m2-mega-crypto-source: all pass
+PASS controlled MEGA verified bytes -> actual PCM independent anchor bytes=176400 chunks=11 eof=true fnv=7f932ffa1aff93b4
+scope: local API fixture, full MEGAJS MAC-verified download, engine local-file decode; no live service or default coordinator claim
