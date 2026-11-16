@@ -1,0 +1,10 @@
+ROOT DIRECTORY0755to0700 verify 0 verify app: type/content/mode lists EQUAL (0 entries)
+verify resources: type/content/mode lists EQUAL (1 entries)
+verify state: type/content/mode lists EQUAL (0 entries)
+
+FILE MODE0644to0755 verify 1
+LEGACY/CORRUPTED BACKUP gate 1 Resources= CORRUPTED-BACKUP guard gate: bundle-feature-gate.py not found (set GOR_GATE_DIR); update refused
+guard gate: restoring sibling Resources to pre-update bytes
+guard restore-resources: Resources restored from /tmp/h0609-fixreview-5uezi5oe/p/.bk/261117-012903-pre-update/resources
+guard gate: installed app untouched (no swap happened); update refused
+

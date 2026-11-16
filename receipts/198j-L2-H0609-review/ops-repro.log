@@ -1,0 +1,7 @@
+backup 0
+missing-checker refusal 1 Resources= old-resource
+repeat backup 0 same dir True nested app exists False nested Resources exists False
+symlink changed verify 1 verify app: type/content/mode lists EQUAL (0 entries)
+verify resources: MISMATCH missing=0 extra=0 changed=1
+    link backup= {'mode': 511, 't': 'l', 'target': 'a'} current= {'t': 'l', 'target': 'MISSING', 'mode': 511}
+verify state: type/content/mode lists EQUAL (0 entries)
