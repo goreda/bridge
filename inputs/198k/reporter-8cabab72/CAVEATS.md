@@ -1,0 +1,5 @@
+# Reporter 8cabab72, exact named diff on delivered15acf95c
+
+This supersedes reporter353e61d8 for inspection, not a runtime attestation. Flat string arrays now match schema; static scans/catalog and generated shaders are separate provenance; generic shader parse logs retained. Native compile/runtime NOT_RUN. Only six toggles have attempted runtime probes; all other source-discovered handlers remain honestly UNPROBED. Open NSPanel list does not enumerate closed-but-available panels. v4 suites NOT_RUN, not checker-filled automatically.
+
+Ops review: runProbes captures restore log mark and current witness AFTER sending restore. Synchronous restore effects can be missed; any changed value is accepted without equality to original. Required fix: pre-restore snapshot+mark, non-nil/error-free IPC, exact original restoration; grain/sharp logs need explicit opposite and restored state rather than generic marker. Dynamic changes must not attest photon-toggle incidentally. Current probe ATTESTED cannot alone authorize a baseline attestation. Main was sent finding November17 01:05.
