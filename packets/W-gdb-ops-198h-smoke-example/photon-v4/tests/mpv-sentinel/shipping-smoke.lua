@@ -1,0 +1,20 @@
+local mp=require('mp');local utils=require('mp.utils')
+local out=mp.get_opt('photon-smoke-out');local rows={};local hud={}
+mp.register_script_message('photon-grain-hud-state',function(...)hud={...}end)
+local function capture(kind)
+ local s=mp.command_native({'screenshot-raw','video'});assert(s and s.data,'no raw shot')
+ local f=assert(io.open(out..'-'..kind..'.raw','wb'));f:write(s.data);f:close()
+ rows[#rows+1]={kind=kind,shaders=mp.get_property_native('glsl-shaders'),opts=mp.get_property_native('glsl-shader-opts'),w=s.w,h=s.h,format=s.format,hud=hud}
+end
+mp.add_timeout(2,function()
+ capture('grain')
+ mp.commandv('script-message','photon-grain-set-strength','0')
+ mp.add_timeout(1,function()
+  capture('zero')
+  mp.commandv('script-message','photon-grain-set-strength','12')
+  mp.add_timeout(1,function()
+   capture('double')
+   local f=assert(io.open(out..'.json','w'));f:write((utils.format_json(rows)));f:close();mp.commandv('quit',0)
+  end)
+ end)
+end)

@@ -1,0 +1,15 @@
+{
+  "claimed_source_commit": "313a726b",
+  "original_archive_sha256": "75d160818c72cc3704e9f748277cebe3e601b6aa6589086e5e3713c0c119d0aa",
+  "files": {
+    "photon-v4/tests/mpv041-shipping-smoke.py": "6d999847165b0637d157011f26fe2b9cb2239cd53bbe7aa133fb394705c87b67",
+    "photon-v4/tests/mpv-sentinel/shipping-smoke.lua": "cbf27cfd8589c1e692d5ec768f9785d455a6f4ad5579587bb18f123e984fc0dc",
+    "photon-v4/docs/MPV041-SHIPPING-SMOKE.md": "d4ac23401e1fddab05e0037ba292cff465fbe69d3df9b759e2a996fa39f15e95",
+    "photon-v4/docs/mpv041-binary.json": "1d96958c8d6791da366e0647dee9a25433760c0ed9bdeeab81430e6e39ee9f33",
+    "photon-v4/docs/mpv041-source-proof.json": "9828cbe2f21990c459178054b30553dd42994b3ccd5089c349a3eb3596fad4aa",
+    "photon-v4/docs/mpv041-shipping-proof.json": "7d3047f6bc74da6c683a354f3f2d930a684786033cbc3f5d2ff762767b7c2282",
+    "photon-v4/docs/mpv041-stock-proof.json": "1e80f3b35f467dcfa00bac896c1d2e120076bccaac8d6e77e671c5adedb6732b"
+  },
+  "scope": "Sanitized Linux mpv 0.41 smoke harness example; source overlay, texture and cache deliberately omitted. Not Darwin/built-app baseline evidence.",
+  "secret_scan": "clean"
+}

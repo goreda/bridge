@@ -1,0 +1,241 @@
+{
+  "scope": "actual mpv0.41.0 SDR host source path, shader-bypass sentinel; no shader PARAM/Metal/HDR acceptance",
+  "rows": [
+    {
+      "renderedMean": 0.389577,
+      "packet": {
+        "generation": 1,
+        "serial": 1,
+        "adaptive": true,
+        "epoch": "1:0",
+        "values": {
+          "size": 0.6,
+          "size_trim": 1,
+          "strength": 6,
+          "amount": 1
+        },
+        "auto": {
+          "size": 0.6,
+          "size_trim": 1,
+          "strength": 6,
+          "amount": 1
+        },
+        "sigma": [
+          0,
+          0,
+          0,
+          0.011683,
+          0,
+          0,
+          0,
+          0
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          14884,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rect": {
+          "height": 128,
+          "x": 0,
+          "y": 0,
+          "width": 128
+        },
+        "sourceWidth": 128,
+        "sourceHeight": 128,
+        "status": "LOOK sourceCell=unknown confidence=0 SDR bins=1/8 / encoded bitrate/fps unknown; omitted from regression distance",
+        "hud": "learned x1.000 n=0"
+      },
+      "source": {
+        "mean_luma": 0.389602,
+        "domain": "software-converted-SDR-RGB",
+        "featureStatus": {
+          "mono": "unclassified",
+          "animation": "unclassified",
+          "est_src": "unmeasured"
+        },
+        "file": "/tmp/photon-host-source-azqiu9d_/src.mp4",
+        "capturePosition": {
+          "after": 4.125,
+          "before": 3.916667
+        },
+        "frameBinding": "periodic capture within exact document/seek epoch; no exact decoded frame serial from mpv",
+        "features": {
+          "hdr": 0,
+          "mono": 0,
+          "animation": 0,
+          "mean_luma": 0.389602,
+          "codec": "unknown",
+          "scale": 1,
+          "bpp": 0,
+          "known": {
+            "bpp": false,
+            "mono": false,
+            "animation": false,
+            "est_src": false
+          },
+          "src_h": 128,
+          "sigma_src": 0.011683,
+          "est_src": 0
+        },
+        "rectStatus": "full-picture",
+        "height": 128,
+        "cellConfidence": 0,
+        "epoch": "1:0",
+        "binding": "1:0",
+        "sigma": [
+          0,
+          0,
+          0,
+          0.011683,
+          0,
+          0,
+          0,
+          0
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          14884,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rect": {
+          "height": 128,
+          "x": 0,
+          "y": 0,
+          "width": 128
+        },
+        "width": 128,
+        "contextWarning": "encoded bitrate/fps unknown; omitted from regression distance"
+      },
+      "status": "LOOK sourceCell=unknown confidence=0 SDR bins=1/8 / encoded bitrate/fps unknown; omitted from regression distance"
+    },
+    {
+      "packet": {
+        "sigma": [
+          0,
+          0,
+          0,
+          0.011683,
+          0,
+          0,
+          0,
+          0
+        ],
+        "counts": [
+          0,
+          0,
+          0,
+          14884,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rect": {
+          "width": 128,
+          "x": 0,
+          "y": 0,
+          "height": 128
+        },
+        "auto": {
+          "size_trim": 1,
+          "strength": 6,
+          "amount": 1,
+          "size": 0.6
+        },
+        "sourceHeight": 128,
+        "hud": "learned x1.000 n=0",
+        "generation": 1,
+        "serial": 1,
+        "status": "LOOK sourceCell=unknown confidence=0 SDR bins=1/8 / encoded bitrate/fps unknown; omitted from regression distance",
+        "adaptive": true,
+        "epoch": "1:0",
+        "sourceWidth": 128,
+        "values": {
+          "size_trim": 1,
+          "strength": 6,
+          "amount": 1,
+          "size": 0.6
+        }
+      },
+      "source": {
+        "sigma": [
+          0,
+          0,
+          0,
+          0.011683,
+          0,
+          0,
+          0,
+          0
+        ],
+        "contextWarning": "encoded bitrate/fps unknown; omitted from regression distance",
+        "rect": {
+          "height": 128,
+          "x": 0,
+          "y": 0,
+          "width": 128
+        },
+        "width": 128,
+        "mean_luma": 0.389602,
+        "domain": "software-converted-SDR-RGB",
+        "featureStatus": {
+          "est_src": "unmeasured",
+          "mono": "unclassified",
+          "animation": "unclassified"
+        },
+        "capturePosition": {
+          "before": 3.916667,
+          "after": 4.166667
+        },
+        "frameBinding": "periodic capture within exact document/seek epoch; no exact decoded frame serial from mpv",
+        "features": {
+          "bpp": 0,
+          "animation": 0,
+          "sigma_src": 0.011683,
+          "src_h": 128,
+          "hdr": 0,
+          "mono": 0,
+          "scale": 1,
+          "mean_luma": 0.389602,
+          "codec": "unknown",
+          "est_src": 0,
+          "known": {
+            "bpp": false,
+            "est_src": false,
+            "mono": false,
+            "animation": false
+          }
+        },
+        "rectStatus": "full-picture",
+        "height": 128,
+        "binding": "1:0",
+        "file": "/tmp/photon-host-source-azqiu9d_/src.mp4",
+        "epoch": "1:0",
+        "counts": [
+          0,
+          0,
+          0,
+          14884,
+          0,
+          0,
+          0,
+          0
+        ],
+        "cellConfidence": 0
+      },
+      "renderedMean": 0.589576,
+      "status": "LOOK sourceCell=unknown confidence=0 SDR bins=1/8 / encoded bitrate/fps unknown; omitted from regression distance"
+    }
+  ]
+}
