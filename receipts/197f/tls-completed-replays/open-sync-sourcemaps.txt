@@ -1,0 +1,108 @@
+SOURCE_MAP open
+   310	                        catch { throw AudioOpenError.rejected("invalid remote open options") }
+   311	                        // Interrupt plumbing BEFORE any blocking provider
+   312	                        // call: the slot is OPEN-ATTEMPT-LOCAL until commit.
+   313	                        // The sessionBusy rejection above throws before this
+   314	                        // point, so this fence install cannot shadow a live
+   315	                        // session.
+   316	                        interruptBox.reset(deadlineNanos: options.openDeadlineNanos())
+   317	                        interruptSlot.install(session: session.epoch) { [weak self] in self?.interruptBox.set() }
+   318	                        attemptFenceInstalled = true
+   319	                        let attemptSlot = UnsafeMutablePointer<GorAVInterruptSlot>.allocate(capacity: 1)
+   320	                        attemptSlotForTeardown = attemptSlot
+   321	                        attemptSlot.initialize(to: GorAVInterruptSlot(
+   322	                            poll: { opaque in
+   323	                                guard let opaque = opaque else { return 0 }
+   324	                                return Unmanaged<AudioInterruptBox>.fromOpaque(opaque).takeUnretainedValue().shouldAbort ? 1 : 0
+   325	                            },
+   326	                            opaque: Unmanaged.passUnretained(interruptBox).toOpaque()))
+   327	                        // Pre-allocated context: the interrupt callback is
+   328	                        // armed BEFORE the URL open itself, so remote open
+   329	                        // AND stream info are both interruptible. The video
+   330	                        // adapter's remote path installs the callback after
+   331	                        // open and only covers later reads; audio closes
+   332	                        // that gap.
+   333	                        guard let allocated = avformat_alloc_context() else {
+   334	                            throw AudioOpenError.rejected("format context allocation failed")
+   335	                        }
+   336	                        allocated.pointee.interrupt_callback = AVIOInterruptCB(
+   337	                            callback: gorav_avio_interrupt_thunk,
+   338	                            opaque: UnsafeMutableRawPointer(attemptSlot))
+   339	                        f = allocated
+   340	                        rc = goravR3OpenInput(&f, url: openPath, options: options)
+   341	                        guard rc >= 0, let opened = f else {
+   342	                            // Open failure frees the context and NULLs the
+   343	                            // pointer; defensive cleanup for any remainder.
+   344	                            if let remaining = f { avformat_free_context(remaining); f = nil }
+   345	                            throw remoteOpenFailure("open", rc, openPath)
+   490	                    // session-owned so requestInterrupt reaches streaming
+   491	                    // reads. The deadline bounds open + stream-info only;
+   492	                    // later reads answer cancellation, not a stale clock.
+   493	                    if attemptFenceInstalled {
+   494	                        self.interruptSlotPtr = attemptSlotForTeardown
+   495	                        attemptSlotForTeardown = nil
+   496	                    }
+   497	                    interruptBox.clearDeadline()
+   498	                    // Successful sync return completes the async API.
+   499	                } catch {
+   500	                    // 195b-54: a failed attempt tears down ONLY its own fence
+   501	                    // and slot storage; a rejection before install (e.g.
+   502	                    // sessionBusy) must not touch another session's live
+   503	                    // interrupt route.
+   504	                    if attemptFenceInstalled { interruptSlot.clear() }
+   505	                    if let slot = attemptSlotForTeardown {
+   506	                        slot.deinitialize(count: 1)
+   507	                        slot.deallocate()
+   508	                    }
+   509	                    interruptBox.clearDeadline()
+   510	                    throw error
+   511	                }
+   512	        }
+   513	    }
+   514	
+   515	    // M1 consumes the existing bounded L3 converter without replacing NH6's
+SOURCE_MAP close
+   810	    public func close(session: SessionID) async {
+   811	        await withCheckedContinuation { (cont: CheckedContinuation<Void, Never>) in
+   812	            nativeQueue.sync {
+   813	                guard session.epoch == self.activeSid else { cont.resume(); return }
+   814	                self.deregisterDecoderOnQueue()
+   815	                // Fence new requests now, but keep callback storage alive until
+   816	                // provider teardown completes. Nested protocol contexts may
+   817	                // hold copies of AVIOInterruptCB, including TLS shutdown.
+   818	                if let ctx = self.fmt {
+   819	                    ctx.pointee.interrupt_callback = AVIOInterruptCB(callback: nil, opaque: nil)
+   820	                }
+   821	                self.interruptSlot.clear()
+   822	                self.activeSid = nil; self.pendingOpened = nil
+   823	                self.sourceUUID = nil; self.descriptor = nil; self.landingTarget = nil; self.lastTiming = nil
+   824	                self.feedState = .terminal; self.packetPending = false
+   825	                if let pkt = self.packet { var p: UnsafeMutablePointer<AVPacket>? = pkt; av_packet_free(&p); self.packet = nil }
+   826	                if let fr = self.frame { var f: UnsafeMutablePointer<AVFrame>? = fr; av_frame_free(&f); self.frame = nil }
+   827	                if let cc = self.codec { var c: UnsafeMutablePointer<AVCodecContext>? = cc; avcodec_free_context(&c); self.codec = nil }
+   828	                if let fc = self.fmt { var f: UnsafeMutablePointer<AVFormatContext>? = fc; avformat_close_input(&f); self.fmt = nil }
+   829	                self.teardownInterruptLocked()
+   830	                self.m1Converter = nil; self.m1TailDrained = false; self.m1OutputCursor = nil; self.m1InputCursor = nil
+   831	                self.active = false
+   832	                cont.resume()
+   833	            }
+   834	        }
+   835	    }
+   836	    deinit {
+   837	        // No queued native operation can outlive the reference it retains.
+   838	        // Mirror explicit-close resource teardown for abandoned instances.
+   839	        func cleanup() {
+   840	            self.deregisterDecoderOnQueue()
+   841	            if let ctx = self.fmt { ctx.pointee.interrupt_callback = AVIOInterruptCB(callback: nil, opaque: nil) }
+   842	            self.interruptSlot.clear()
+   843	            if let pkt=self.packet { var p:UnsafeMutablePointer<AVPacket>?=pkt; av_packet_free(&p) }
+   844	            if let fr=self.frame { var f:UnsafeMutablePointer<AVFrame>?=fr; av_frame_free(&f) }
+   845	            if let cc=self.codec { var c:UnsafeMutablePointer<AVCodecContext>?=cc; avcodec_free_context(&c) }
+   846	            if let fc=self.fmt { var f:UnsafeMutablePointer<AVFormatContext>?=fc; avformat_close_input(&f) }
+   847	            self.teardownInterruptLocked()
+   848	        }
+   849	        if DispatchQueue.getSpecific(key:decoderQueueKey) != nil { cleanup() }
+   850	        else { nativeQueue.sync(execute:cleanup) }
+   851	    }
+   852	
+   853	}

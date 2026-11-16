@@ -1,0 +1,39 @@
+{
+  "type": "execution evidence, not generated canonical gate receipt",
+  "executor": "lane c own rerun confirmed via Main",
+  "authenticated_tls": {
+    "base": "a34e2cd96b6825932a196424a17cc62962e910a7",
+    "overlay": "close-order b89e3b16 + verification b731baa9, full input hashes included",
+    "result": "plain run reported exit0; allpass; localPCM+certificate rejection scopes",
+    "provider": "lane-c7.1+GnuTLSnativeAV1,notdav1dequivalence",
+    "missing": "packet.md/product.patch bytes requested, hashes are provenance but not Ops content validation"
+  },
+  "open_sync_asan": {
+    "base": "gdb-lane7cb60dd0,close-orderkept",
+    "source_sha256": "916f006030e982f8c2a5f228fe5b269e95db73d21f4050372fce2cbc215b77be",
+    "result": "functionalPASS,32byte1allocationLeakSanitizerproductrc1",
+    "finding": "removing continuation wrapper does not eliminate leak; allocation symbol moves to open closure, retention cause not established"
+  },
+  "files": [
+    {
+      "path": "authenticated-tls.log",
+      "sha256": "90f6004822fa3e7bda5508adebcee0b34c9ada10cb35db9313455d4745992ab0"
+    },
+    {
+      "path": "authenticated-tls-input-hashes.txt",
+      "sha256": "360c0f8971a078091ebb794d4159d4517713d36ce99969346960bfb884313f6d"
+    },
+    {
+      "path": "open-sync-asan.log",
+      "sha256": "d586f9c872629ff5625978dbef3ef7bcd686a757dbf28a5871ba7786a1ed3626"
+    },
+    {
+      "path": "open-sync-symbolized.txt",
+      "sha256": "13025a028afb89536e6158b5f609a3e67b8dae6e387fe127ffa4e689b64f6531"
+    },
+    {
+      "path": "open-sync-sourcemaps.txt",
+      "sha256": "0882b9adef680d023789fbb73528ccb95a15d12bd246f957d4684e7ee7fa9b02"
+    }
+  ]
+}
