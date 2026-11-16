@@ -1,0 +1,37 @@
+M2_ARCHIVE_PCM_02_RESULT product_exit=0 (m2-archive-pcm-v2: all pass)
+PASS U1 userinfo redacted
+PASS U2 query values and keys redacted
+PASS U3 fragment and path redacted
+PASS U4 local path not exposed
+PASS U6 malformed credential redacted
+PASS U7 encoded credential redacted
+PASS U5 summary counts only
+PASS S0 server started on 127.0.0.1:46447
+PASS archive exact metadata file resolved to bounded download path
+PASS missing file
+PASS traversal
+PASS identifier
+PASS bad metadata
+PASS bad metadata
+PASS duplicate
+PASS private
+PASS dark
+PASS nodownload
+PASS huge exact cap
+PASS unknown-length exact cap
+PASS HTTP503 typed
+PASS cancel exact URLError.cancelled not timeout
+[http @ 0x7fc04401de00] HTTP error 403 Forbidden
+PASS S1 remote open without credentials is refused by the server
+[http @ 0x7fc044040480] HTTP error 404 Not Found
+PASS wrong item authenticated request refused not same media
+archive-resolved-remote: pcm_s16le 44100Hz x2 bytes=176400 chunks=11 eof=true fnv=7f932ffa1aff93b4
+reference-local: pcm_s16le 44100Hz x2 bytes=176400 chunks=11 eof=true fnv=7f932ffa1aff93b4
+PASS archive metadata-to-download actual product PCM equals local product decode
+PASS stored remote PCM equals independent integer-sample anchor
+PASS stored PCM byte-array identity
+PASS S2b header newline injection refused
+[tcp @ 0x7fc03c003e40] Connection to tcp://127.0.0.1:1 failed: Connection refused
+PASS S3 error redacts userinfo and query
+PASS S4 non-admitted scheme refused
+m2-archive-pcm-v2: all pass
