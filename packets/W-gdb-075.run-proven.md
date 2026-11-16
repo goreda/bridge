@@ -29,8 +29,8 @@ id: W-gdb-075
     "callee": "Sources/GorAVPlaybackCore/LabPTSDuration.swift (product PTS/duration model, GorAVPlaybackCore)"
   },
   "test": {
-    "command": "cd kits/n4-ptsdur && set -o pipefail && SWIFTC=${SWIFTC:-swiftc} bash run_parity.sh | tee /tmp/n4-075-out.txt && grep -qx 'PARITY OK: 16 scenarios, 273 lines byte-identical' /tmp/n4-075-out.txt",
-    "expected": "exit 0. run_parity.sh compiles the REAL product LabPTSDuration.swift standalone (swiftc -O) and diffs its scenario digests against the vendored python oracle; tee surfaces the output and grep -qx enforces the exact marker 'PARITY OK: 16 scenarios, 273 lines byte-identical' - attested from a run of the pinned tree 2026-11-16 04:55 +03 (swiftc 5.10.1, python3, Linux x86_64). A digest drift, a scenario/line-count drift, or a compile failure each exit non-zero.",
+    "command": "cd kits/n4-ptsdur && set -o pipefail && export SWIFTC=${SWIFTC:-swiftc} && \"$SWIFTC\" --version && bash run_parity.sh | tee /tmp/n4-075-out.txt && grep -qx 'PARITY OK: 16 scenarios, 273 lines byte-identical' /tmp/n4-075-out.txt",
+    "expected": "exit 0. The selected compiler prints its version before compiling the REAL product LabPTSDuration.swift standalone. run_parity.sh diffs the compiled model's scenario output against the vendored python oracle; tee surfaces the output and grep -qx enforces the unchanged exact marker 'PARITY OK: 16 scenarios, 273 lines byte-identical'. The original local run was reported with Swift 5.10.1; lane b reports its v1 run used Swift 6.1.2, but the v1 log did not print a compiler version. v2 records the selected compiler version in its own fresh run log rather than inferring it. A digest drift, output-count drift, compiler-version command failure or compile failure exits non-zero.",
     "fixture_block": "fixtures1"
   },
   "target": {
@@ -44,10 +44,10 @@ id: W-gdb-075
   "run_proof": {
     "version": 1,
     "product_sha": "8786bfe3e5482a891dda15248b107e50fab52463",
-    "command": "cd kits/n4-ptsdur && set -o pipefail && SWIFTC=${SWIFTC:-swiftc} bash run_parity.sh | tee /tmp/n4-075-out.txt && grep -qx 'PARITY OK: 16 scenarios, 273 lines byte-identical' /tmp/n4-075-out.txt",
+    "command": "cd kits/n4-ptsdur && set -o pipefail && export SWIFTC=${SWIFTC:-swiftc} && \"$SWIFTC\" --version && bash run_parity.sh | tee /tmp/n4-075-out.txt && grep -qx 'PARITY OK: 16 scenarios, 273 lines byte-identical' /tmp/n4-075-out.txt",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-16T01:58:11.200009+00:00",
+    "ran_at": "2026-11-16T02:17:33.946516+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -65,11 +65,13 @@ id: W-gdb-075
       }
     ],
     "log_block": "actual_run_log",
-    "log_sha256": "fee968ecfe9c7cfce0353f29d61bc3ff2a74b9e79267adfb6cd3ea41199bdf24",
+    "log_sha256": "0e407252c973a1efd23fa7ce2028e0ba2b3c80b7f61f6e3f96d7598fab1a6dff",
     "last_5_lines": [
+      "Swift version 6.1.2 (swift-6.1.2-RELEASE)",
+      "Target: x86_64-unknown-linux-gnu",
       "PARITY OK: 16 scenarios, 273 lines byte-identical"
     ],
-    "receipt_sha256": "87f7071c2bbfcb61e78dcbf142750911867836aaa80739e3bfa04059c76002c7"
+    "receipt_sha256": "fc9382549d390d847eb6c492e716832602c2528d49f366e174af4b026e8c893a"
   }
 }
 ```
@@ -119,7 +121,7 @@ scenarios; parity.py (sha256 981f95b5) is the python side; run_parity.sh
 
 ## pinned excerpts (gorav @ 8786bfe3e5482a891dda15248b107e50fab52463)
 
-### Sources/GorAVPlaybackCore/LabPTSDuration.swift (sha256 40f58920, lines 161-183 of 404)
+### Sources/GorAVPlaybackCore/LabPTSDuration.swift (sha256 40f58920, lines 161-183 of 404; 22 excerpt lines, trailing blank omitted)
 
 ```swift id=source1
     public struct TimeHeader {
@@ -172,6 +174,14 @@ rebuild); no user data, no licensed content.
 
 ## repair note (arch-196x item 4)
 
+v2 (G0836): print the selected compiler version before the parity run.
+Lane b reports Swift 6.1.2 for its v1 run; the v1 receipt log did not
+record a version. The original local 5.10.1 report does not describe the
+lane compiler. Product digest now uses HASH  PATH order like the kit
+manifest. Excerpt count is 22 lines, excluding the trailing blank.
+The parity assertion and marker are unchanged. v1 receipt is preserved;
+v2 requires a fresh run and receipt.
+
 Pin 8786bfe3 with prose bullets; on-main files excerpted byte-exact, never
 edited. Marker attested from a real run of the pinned tree (2026-11-16
 04:55 +03), not a build line. n2-margin stays out (HDR/colour hold,
@@ -210,7 +220,7 @@ it to $HOME/swift/usr/bin/swiftc, the command overrides to PATH swiftc).
 ### fixtures2: byte-binding attestation (whole-file sha256 at pin 8786bfe3)
 
 ```text id=fixtures2
-Sources/GorAVPlaybackCore/LabPTSDuration.swift  40f589209ab29070e8d3ded2f8ca2deea87fd0070697d81456bd1be84a7cd690
+40f589209ab29070e8d3ded2f8ca2deea87fd0070697d81456bd1be84a7cd690  Sources/GorAVPlaybackCore/LabPTSDuration.swift
 c6f5ec513b8bc98881156571e6c2d887921b51fce96d6c95bc993495864b6d8a  kits/n4-ptsdur/README-LAB.md
 fb51f573791f36e0058fa92b857ed25e0e67519c028b49958c6190cc776d69c3  kits/n4-ptsdur/README.md
 8f33f87dfcec9a6ab6a158a625cc9c6bdfd05b5fa90a91dae5d324efda4aa666  kits/n4-ptsdur/SHA256SUMS
@@ -277,6 +287,9 @@ cf54c61278971ba1c4bddcf6cf9daf3158c61258b761347cf0aaf8dbe4787241  kits/n4-ptsdur
 1b995c70bcdec67c26362643f89fd923af7a264e385f9fde1cdff5e708ab2e8a  kits/n4-ptsdur/src/test_oracle.py
 ```
 
+
 ```text id=actual_run_log
+Swift version 6.1.2 (swift-6.1.2-RELEASE)
+Target: x86_64-unknown-linux-gnu
 PARITY OK: 16 scenarios, 273 lines byte-identical
 ```
