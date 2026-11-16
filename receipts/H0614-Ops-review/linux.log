@@ -1,0 +1,115 @@
+===== (h) checker's own suite (real test-bundle-feature-gate.py) =====
+PROOF-PASS: checker suite
+EXPECTED FAIL no-silent-bypass own-grain-zero
+EXPECTED FAIL no-silent-bypass own-grain-is-sharp
+PASS synthetic no-silent-bypass receipt validator mutants; no native evidence created
+===== (a) normal update passes =====
+backup: /tmp/h0614-review/linux/project/.gor-backups/261117-015540-pre-update
+PROOF-PASS: (a) gate PASS on clean candidate
+PROOF-PASS: (a) swap installed the candidate
+PROOF-PASS: (a) Resources unchanged by passing update
+===== (b) photon script removal refused =====
+PROOF-PASS: (b) removal refused (non-zero exit)
+  "errors": [],
+  "removed": {
+guard gate: checker exit 1; missing/removed items:
+PROOF-PASS: (b) installed app byte-identical after refusal
+PROOF-PASS: (b) Resources byte-identical after refusal
+PROOF-PASS: (b) deleted script restored
+note (documented MINOR-2): refusal restores Resources only; the rest of the source overlay would stay at the new version (mixed tree) until --rollback; post-overlay Resources copy is deleted here, recoverable from sidecar/changes.txt
+===== (c) input binding removal refused =====
+PROOF-PASS: (c) binding removal refused
+  "errors": [],
+  "removed": {
+guard gate: checker exit 1; missing/removed items:
+PROOF-PASS: (c) installed app + Resources byte-identical after refusal
+===== (d) rollback restores bundle, Resources and state byte-equal =====
+PROOF-PASS: (d) rollback verify EQUAL
+verify app: type/content/mode lists EQUAL (6 entries)
+verify resources: type/content/mode lists EQUAL (15 entries)
+verify state: type/content/mode lists EQUAL (4 entries)
+===== (e) kill-during-swap recovery (198m) =====
+PROOF-PASS: (e-old) old app recovered complete
+PROOF-PASS: (e-old) markers cleared
+PROOF-PASS: (e-new) staged candidate completed
+PROOF-PASS: (e-new) markers cleared
+===== (f) disk-full refusal before swap (198m) =====
+PROOF-PASS: (f) backup refused on disk-full before any write
+guard backup: disk too full: need ~778K (+margin) in /tmp/h0614-review/linux/project-f/.gor-backups, have 1664396K; update refused before any write
+PROOF-PASS: (f) nothing written
+PROOF-PASS: (f) swap refused on disk-full
+PROOF-PASS: (f) installed app untouched
+===== (g) real DELIVERED-BASELINE.json refuses closed (source-only) =====
+PROOF-PASS: (g) source-only baseline refused
+  "errors": [
+    "Baseline source-only; complete built/runtime baseline required"
+===== (R1) approved removal + complete v4 replacement receipt passes =====
+PROOF-PASS: (R1) approved removal with v4 receipt passes
+===== (R1b) same approved removal WITHOUT v4 receipt refused =====
+PROOF-PASS: (R1b) removal refused without v4 receipt
+      "photon-grain-set-strength-hint"
+PROOF-PASS: (R1b) refusal names the message
+===== (R2) non-approved removal refused even with v4 receipt =====
+PROOF-PASS: (R2) non-approved removal refused despite v4 receipt
+      "photon-grain-strength-resume"
+PROOF-PASS: (R2) refusal names photon-grain-strength-resume
+===== (R3) kill after stage->installed mv: recovery keeps new, parks old =====
+PROOF-PASS: (R3) new app kept, complete
+PROOF-PASS: (R3) old app parked at gor.app.last
+PROOF-PASS: (R3) markers cleared
+===== (s) multi-root state coverage (mpv ~~state candidates) =====
+guard backup: state root [0] /tmp/h0614-review/linux/home/.config/mpv
+guard backup: state root [1] /tmp/h0614-review/linux/home/Library/Application Support/gor
+PROOF-PASS: (s) multi-root state backup+rollback byte-equal
+verify state: type/content/mode lists EQUAL (6 entries)
+===== (i) H0609: missing-checker refusal restores mutated overlay Resources =====
+PROOF-PASS: (i) missing checker refused
+PROOF-PASS: (i) Resources restored to pre-update bytes after refusal
+===== (ii) H0609: same-ts repeat backup reuses dir, no nesting =====
+PROOF-PASS: (ii) repeat backup returns same dir
+PROOF-PASS: (ii) second backup is an explicit reuse, no re-copy
+PROOF-PASS: (ii) no nested app/Resources
+PROOF-PASS: (ii) backup content intact
+===== (iii) H0609: symlink target + file mode changes detected =====
+PROOF-PASS: (iii) symlink retarget detected (verify rc=1)
+    changed link-test backup= {'mode': 511, 't': 'l', 'target': 'vendor/mpv/input.conf'} current= {'t': 'l', 'target': 'vendor/mpv/mpv.conf', 'mode': 511}
+PROOF-PASS: (iii) file mode change detected (verify rc=1)
+    changed vendor/mpv/mpv.conf backup= {'mode': 420, 'sha': 'b7f7e571f43c67cbda1439ee2c5bd713825a9011b1c67b3901ac6cd587d397cd', 't': 'f'} current= {'t': 'f', 'sha': 'b7f7e571f43c67cbda1439ee2c5bd713825a9011b1c67b3901ac6cd587d397cd', 'mode': 493}
+===== (iv) H0609: root-directory mode change detected =====
+PROOF-PASS: (iv) root dir mode change detected (verify rc=1)
+    changed . backup= {'mode': 493, 't': 'd'} current= {'t': 'd', 'mode': 448}
+PROOF-PASS: (iv) clean tree verifies EQUAL again
+===== (v) H0609: legacy/corrupted backup shape refused before any restore =====
+PROOF-PASS: (v) gate refused corrupt backup
+PROOF-PASS: (v) corrupted backup NOT restored (project untouched)
+PROOF-PASS: (v) rollback refused corrupt backup
+PROOF-PASS: (v) still untouched after rollback refusal
+===== (F1) state-roots redirect to a victim dir refused, victim intact =====
+PROOF-PASS: (F1) redirected state root refused
+PROOF-PASS: (F1) victim directory intact
+PROOF-PASS: (F1) refusal reason logged
+===== (F2) tampered backup bytes + hand-crafted spoof refused before restore =====
+PROOF-PASS: (F2) gate refused
+PROOF-PASS: (F2) tampered backup bytes NOT restored
+PROOF-PASS: (F2) refusal cites byte-level audit
+PROOF-PASS: (F2) hand-crafted spoofed manifest refused by audit
+===== (F3) pre-planted same-ts dir is not reused unless it equals current state =====
+PROOF-PASS: (F3) same-ts dir differing from current state refused, not reused
+PROOF-PASS: (F3) refusal reason logged
+===== (F4) relative GOR_STATE_DIR refused =====
+PROOF-PASS: (F4) relative GOR_STATE_DIR refused
+PROOF-PASS: (F4) refusal reason logged
+===== (F5) symlinked state root policy: resolved at backup, refused through-link at rollback =====
+PROOF-PASS: (F5) symlinked root canonicalized to real path at backup
+PROOF-PASS: (F5) rollback through current symlink refused
+PROOF-PASS: (F5) victim intact
+===== (N1) default multi-candidate config, absent candidate: same-ts reuse works =====
+PROOF-PASS: (N1) first backup rc=0, same-ts second backup rc=0 (reused)
+PROOF-PASS: (N1) reuse message logged
+PROOF-PASS: (N1) only the existing candidate captured
+===== (N2) exported env flag can no longer skip the audit =====
+PROOF-PASS: (N2) exported env flag does NOT skip audit (restore refused)
+PROOF-PASS: (N2) Resources untouched by refused restore
+PROOF-PASS: (N2) refusal cites audit
+==============================================
+PROOF SUMMARY: 63 passed, 0 failed

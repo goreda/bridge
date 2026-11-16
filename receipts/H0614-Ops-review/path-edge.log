@@ -1,0 +1,18 @@
+'space dir' backup 0 
+ state_roots ['/tmp/h0609-path-edge-rwnmttpp/space dir/space dir'] entries 2
+ audit 0 guard audit: backup bytes match manifest (1 app, 1 resources, 2 state entries)
+'line\nbreak' backup 0 
+ state_roots [] entries 0
+ audit 0 guard audit: backup bytes match manifest (1 app, 1 resources, 0 state entries)
+'tab\tpath' backup 0 
+ state_roots ['/tmp/h0609-path-edge-rwnmttpp/tabTpath/tab\tpath'] entries 2
+ audit 0 guard audit: backup bytes match manifest (1 app, 1 resources, 2 state entries)
+'ancestor' backup 0 
+ state_roots ['/tmp/h0609-path-edge-rwnmttpp/ancestor/ancestor'] entries 2
+ audit 0 guard audit: backup bytes match manifest (1 app, 1 resources, 2 state entries)
+'trailing' backup 0 
+ state_roots ['/tmp/h0609-path-edge-rwnmttpp/trailing/trailing'] entries 2
+ audit 0 guard audit: backup bytes match manifest (1 app, 1 resources, 2 state entries)
+'relative-mpv-link' backup 0 
+ state_roots ['/tmp/h0609-path-edge-rwnmttpp/relative-mpv-link/relative-mpv-link'] entries 2
+ audit 0 guard audit: backup bytes match manifest (1 app, 1 resources, 2 state entries)
