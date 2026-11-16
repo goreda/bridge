@@ -1,0 +1,7 @@
+exact integrated rollback rc= 1
+audit-backup: resources MISMATCH missing=0 extra=0 changed=1
+    a
+rollback: backup audit refused before source mutation
+
+current guard replaced= False
+root= /tmp/H0616-oldguard-aeeuki5h

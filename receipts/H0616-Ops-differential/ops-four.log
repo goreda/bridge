@@ -1,0 +1,19 @@
+PASS audit-before-source audit-backup: resources MISMATCH missing=0 extra=0 changed=1
+    a
+rollback: backup audit refused before source mutation
+
+PASS token-cannot-skip-audit audit-backup: resources MISMATCH missing=0 extra=0 changed=1
+    a
+guard restore-resources: backup failed integrity audit; nothing restored
+
+PASS new-root-captured /tmp/ops-updater-four-wsvr2784/new-root/.bk/same-pre-update-1
+PASS unrelated-sibling-preserved guard rollback: app bundle restored
+guard restore-resources: Resources restored from /tmp/ops-updater-four-wsvr2784/wildcard/.bk/261117-024101-pre-update/resources
+guard rollback: state root restored: /tmp/ops-updater-four-wsvr2784/state
+verify app: type/content/mode lists EQUAL (1 entries)
+verify resources: type/content/mode lists EQUAL (2 entries)
+verify state: type/content/mode lists EQUAL (2 entries)
+audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+
+SUMMARY failures=0 fixtures=/tmp/ops-updater-four-wsvr2784

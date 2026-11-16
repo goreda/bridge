@@ -1,0 +1,9 @@
+exact integrated rollback rc= 0
+rollback: restoring from /tmp/H0616-oldguard-r4z0d6yq/project/.bk/261117-024105-pre-update
+      restored tools/gor-update-guard.sh
+      pre-rollback state saved at /tmp/H0616-oldguard-r4z0d6yq/project/.bk/261117-024105-pre-rollback
+RESTORED EARLIER GUARD EXECUTED: rollback /tmp/H0616-oldguard-r4z0d6yq/project /tmp/H0616-oldguard-r4z0d6yq/project/.bk/261117-024105-pre-update
+rollback: app, Resources and state restored byte-equal; done (no rebuild).
+
+current guard replaced= True
+root= /tmp/H0616-oldguard-r4z0d6yq

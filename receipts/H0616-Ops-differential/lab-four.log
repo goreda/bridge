@@ -1,0 +1,19 @@
+FAIL audit-before-source rollback: restoring from /tmp/ops-updater-four-tak73afp/integrated/.bk/261117-024101-pre-update
+      moved aside (was added) new.swift
+      pre-rollback state saved at /tmp/ops-updater-four-tak73afp/integrated/.bk/261117-024101-pre-rollback
+    audit diff resources 'a' manifest= {'mode': 420, 'sha': '0682c5f2076f099c34cfdd15a9e063849ed437a49677e6fcc5b4198c76575be5', 't': 'f'} backup-bytes= {'t': 'f', 'sha': '11d510e067d2cdcd7559bd86d27a2f4c20babd43670346b97af99b522c1f0075', 'mode': 420}
+guard: backup audit FAILED, bytes do not match manifest: resources: missing=0 extra=0 changed=1
+guard rollback: backup failed audit; refusing to restore from it
+
+FAIL token-cannot-skip-audit 
+FAIL new-root-captured /tmp/ops-updater-four-tak73afp/new-root/.bk/same-pre-update
+FAIL unrelated-sibling-preserved guard audit: backup bytes match manifest (1 app, 2 resources, 2 state entries)
+guard rollback: 1 state roots preflighted OK
+guard rollback: app bundle restored
+guard restore-resources: Resources restored from /tmp/ops-updater-four-tak73afp/wildcard/.bk/261117-024101-pre-update/resources
+guard rollback: state root restored: /tmp/ops-updater-four-tak73afp/state
+verify app: type/content/mode lists EQUAL (1 entries)
+verify resources: type/content/mode lists EQUAL (2 entries)
+verify state: type/content/mode lists EQUAL (2 entries)
+
+SUMMARY failures=4 fixtures=/tmp/ops-updater-four-tak73afp
