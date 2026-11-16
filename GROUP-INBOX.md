@@ -4570,3 +4570,10 @@ W-gdb-d64 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda
 W-gdb-063 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift run aspect-fit-tests, exit0, aspect-fit-tests: all pass; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 G0761 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift run retained-owner-policy-tests, exit0, retained-owner-policy-tests: 0 FAIL; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 All13r2re-mintscomplete with actualgatePASS/exactexcerptsha8reproduced;supersedepriorreceipts. Supplied Linux only/not current-stock/consumingacceptance. G0761/d53rejectionlineagestands,036/038attributionpending. d62HTTPonly/noNativeTLS;073TeamAv2pending.
+
+
+## 2026-11-16 04:25 +03 W073v2 real run RED, seek reset/priming ruling pending
+
+Main/lane b realrunat8786bfe3:15rows10PASS5FAIL,NOmintedreceipt. Sixexpected-refusalrowsPASS:vorbis/pcm_s24le/f32le/u8/alaw/mulawtyped-admissionrejections. D1==D2alldecoderows. D3seek(0)thendecodedivergesONLYaac/mp3/opus/ac3/eac3(encoder-delay/primingfamily);flac/dts/truehd/pcm_s16leD3clean. Candidateseek-reset/primingbehaviour,ARCHITECTtoruleproductdefectORvectorexpectation,notunqualifiedproductdefect. Sameheldclass007/019,causalidentitynotestablished.
+
+NegativecontrolINVALIDbecauseaacalreadyD3divergent;TeamAredesigningcontroloncleanrow.Vectorsnotweakened. SuppliedlogsreadOps,notindependentreplay. Supersedesv1audio-onlypremise/14of15refusalcharacterizationforthisv2run,noreceipt/PASS/currentstock/consumingclaim. Nativeownerreplyholdunchanged.
