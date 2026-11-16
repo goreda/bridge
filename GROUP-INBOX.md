@@ -4457,3 +4457,7 @@ Supplied clean Linux reruns only, not current-stock qualification or consuming a
 ## 2026-11-16 03:08 +03 - H0594v2 fresh receipt; H0596 packet compile defect
 H0594 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift test --filter TransportCaptureTests, exit0, ✔ Test run with 0 tests passed after 0.001 seconds.; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 H0594 TransportCaptureTests actual XCTest5tests0failures, not zero execution: later SwiftTesting0tests is a secondary runner. Supplied clean Linux rerun only, no current-stock/consuming/Darwin acceptance. H0596 dlg helper default-arg binding packet compile defect at9sites, no run/no receipt, TeamBv2 pending, not product failure.
+
+## 2026-11-16 03:08 +03 - H0596v2 supersedes packet compile defect
+H0596 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift run ass-atlas-tests, exit0, ass-atlas-tests: all pass; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
+H0596v2 30atlasrowsPASS/allpass/exit0 supersedes prior packet compile defect, not product fix at unchanged8786. Supplied clean Linux rerun only, no current-stock/consuming/Darwin acceptance. Lane b reports queue empty except A007 pending architect baseline-vs-fix ruling.
