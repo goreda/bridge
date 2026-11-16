@@ -4669,3 +4669,21 @@ The owner correction phonemsg-01M7K1J2TWFQ97D6HENP27MAW6 removes the claim that 
 ### W-gdb-ops-198f checker interface now available
 
 Ops committed docs/delivery/bundle-feature-gate.py on instinct main. Updated interface adds required `--resources RESOLVED/Resources` and optional `--installed-resources INSTALLED/Resources --runtime feature-runtime.json` to the earlier request. It compares actual closure files/static registrations plus runtime menu/panel/shader feature lists bound to the executable SHA256. Current delivered baseline is source-only, therefore production correctly refuses until baseline built/runtime attestation exists. 1nstinct: collect the delivered 15acf95c built-bundle inventory and actual runtime menus/panels/messages/shaders as baseline witness, in addition to candidate smoke, when authorized exact inputs are available. Do not invent runtime feature lists from source lines. in2tinct: consume this checker for production update refusal; synthetic tests of it are not production acceptance. Deliberate file/binding/message/shader/menu removal tests already fail as expected in docs/delivery/removal-mutant-test.log. No source/media/texture/state bytes forwarded. Secret scan: clean.
+
+## W-gdb-ops-198h-01-02 | 1nstinct | exact delivered witness capture and both photon smoke runs
+
+Owner-verified capability rows: 0. Capability rows moved since the previous wake: 0. M1 delivered: no.
+
+Owner execution check phonemsg-01M7K2FRXFBQ11PBBA6XE0KDBG. Request only, not accepted or executed. Deliver the capture harness immediately for shared-provisioning Codemagic use. Ops dispatches exact delivered 15acf95c independently of train carrier f61829c. Runner interface: `--app PATH --resources RESOLVED/Resources --fixture SYNTHETIC_CLIP --out DIRECTORY`. Do not copy vendor/fonts into the app. Capture actual built app inventory, sibling resource closure, runtime menu/panel entries, registered script-messages and injected shaders, bound to the exact executable SHA256. Source regex inventory is not runtime evidence. Do not attest missing captures.
+
+Same harness must smoke both witness and train: every photon Lua loads with no Lua error; grain and sharp shaders compile and appear in glsl-shaders; one photon script-message round-trips. Return raw commands, exits, logs, exact executable hash and artifact inventory. No signing/install/TCC or user-state mutation. Temporary isolated config and synthetic fixture only. No feature may be removed, stubbed or disabled. Existing texture hold prohibits source/texture forwarding; this request supplies no affected bytes. If required exact inputs are unavailable, name the interface/input precisely. Ops will merge actual witness into baseline only after evidence inspection, never promote source-only status to attested.
+
+Secret scan: clean.
+
+## W-gdb-ops-198h-03 | in2tinct | production updater refusal and full state rollback
+
+Owner-verified capability rows: 0. Capability rows moved since the previous wake: 0. M1 delivered: no.
+
+Same owner source. Request only. Wire the current docs/delivery/bundle-feature-gate.py checker into actual build.sh --update before any swap, comparing installed app plus sibling Resources. Current checker requires --baseline, --bundle, --resources, --runtime, --removals, --out; installed comparisons add --installed and --installed-resources. Do not replace this with source-only comparison. Use isolated fixture Applications/project/state roots, no real user data. Show a removed-resource refusal transcript with installed app and state hashes unchanged, and actual --rollback restoring the complete bundle plus gor_look.txt and learned look data byte-equal. Return exact source patch, commands, exits, raw transcripts and state-hash tables. Ops merges as a named diff onto delivered ancestry. No automatic removal exemption, no stubbing/disabling. Four internal transport and two option allowances apply only with the v4 replacement in that same exact candidate. No other file/menu/manual/key/shader removal rides on them.
+
+Secret scan: clean. No media, secrets, texture bytes or user state supplied.
