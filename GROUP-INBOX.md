@@ -4539,3 +4539,10 @@ Lab404branch/baseaccess: repositoryprivate, perMain/lane; evidencebundledhere,so
 ## 2026-11-16 04:10 +03 Team A verification of thirteen Team B earlier-stock receipts
 
 MainrelaysTeamAlogverification: noneof13areTeamAstock(063TeamBattributionINFERRED);gatesPASS13/13,contentintegrityholds. W040headingstale85vs137lines, notchangedrunresult. excerpt_sha256_8 conventionNOTreproducible;TeamBaskedto state exact convention. DoNOTsayallhashconventionsindependentlyreproduced. Supplied-result-only, noOpsindependentreplay/productlanding/consumingacceptance/currentstockqualification. ThisreviewdoesnotreverseG0761/d53consumingrejectionor036/038architectattributionhold. Nativeownerreplyholdunchanged.
+
+
+## 2026-11-16 04:16 +03 revised thirteen packets exact excerpt hashes PASS, receipt gate REFUSED
+
+Ops checked all13revisions036/037/039/040/d53/d54/d55/d59/d61/d62/d64/063/G0761:excerptbytesEXACTpinned8786linesa-b,sha256_8=SHA256(linesjoinednewline,NOtrailingnewline,provenancecommentexcluded)reproduces13/13;secretscanclear. 040heading1-137/hash31adea08correct,d59ex_store119-155correct,G0761hashmappresent/reproduced. Earlierhashconventiongapsettledforrevisions.
+
+All13revisedfilesOMITrun_proof, actualgateREFUSES'f: actual Linux run_proof required (no proof = not published)'. No revisedreceiptpublication/replacement. Existingmintedrun-provenreceiptsUNCHANGED. Mainnotifiedtolane b/TeamBforactualgate-flowrebind, noOpssyntheticproofmerge. Statusonlyhere,supplied-result-only/notacceptance/currentstock/productlanding;packetwriterfieldsmetadataNOTownerauthority.
