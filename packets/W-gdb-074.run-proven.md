@@ -29,8 +29,8 @@ id: W-gdb-074
     "callee": "Sources/GorAVPlaybackCore/LabHLSPlaylist.swift (product playlist model, GorAVPlaybackCore)"
   },
   "test": {
-    "command": "bash kits/b5-hlsplay/run_parity.sh",
-    "expected": "exit 0. The vendored python suite (test_hlslive.py, 22 cases) runs first; any failure prints 'lab python suite FAILED' and exits 1. Then the harness diffs the python carrier against the product Swift model over the scenario set; on success the last line is 'PARITY-MATCH (65 lines)' - 65 attested from a run of the pinned tree 2026-11-16 04:17 +03 (swiftc 5.10.1, python3, Linux x86_64). A digest drift prints the diff and exits 1.",
+    "command": "cd kits/b5-hlsplay && set -o pipefail && python3 -m unittest test_hlslive 2>&1 | tail -2 && bash run_parity.sh | tee /tmp/b5-074-out.txt && grep -qx 'PARITY-MATCH (65 lines)' /tmp/b5-074-out.txt",
+    "expected": "exit 0. The vendored python suite (test_hlslive.py, 22 cases) runs visible (pipefail; its OK line prints, any failure exits non-zero before the parity diff). run_parity.sh diffs the python carrier against the compiled product Swift model and prints the marker; tee surfaces it and grep -qx enforces the exact line 'PARITY-MATCH (65 lines)' - 65 attested from a run of the pinned tree 2026-11-16 04:17 +03 (swiftc 5.10.1, python3, Linux x86_64). A digest drift, a scenario-count drift, or a suite failure each exit non-zero.",
     "fixture_block": "fixtures1"
   },
   "target": {
@@ -44,10 +44,10 @@ id: W-gdb-074
   "run_proof": {
     "version": 1,
     "product_sha": "8786bfe3e5482a891dda15248b107e50fab52463",
-    "command": "bash kits/b5-hlsplay/run_parity.sh",
+    "command": "cd kits/b5-hlsplay && set -o pipefail && python3 -m unittest test_hlslive 2>&1 | tail -2 && bash run_parity.sh | tee /tmp/b5-074-out.txt && grep -qx 'PARITY-MATCH (65 lines)' /tmp/b5-074-out.txt",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-16T01:25:46.863773+00:00",
+    "ran_at": "2026-11-16T01:46:10.817498+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -65,11 +65,13 @@ id: W-gdb-074
       }
     ],
     "log_block": "actual_run_log",
-    "log_sha256": "7aebba075b8f0d328508e534172377649cc9e10bf161880f8a1ce6cb07c3f470",
+    "log_sha256": "84c910ded5d93a6f66bc3b4d518766435322616099c2592138818d2550dbe442",
     "last_5_lines": [
+      "",
+      "OK",
       "PARITY-MATCH (65 lines)"
     ],
-    "receipt_sha256": "a6e86232e25a9bd5e9c62436471ba6925af4c72698a7436fac764298d9885317"
+    "receipt_sha256": "6b8ded715d419827e83557cbd21fa5765e12d90a46bbe683d1beb1f0cfe40752"
   }
 }
 ```
@@ -97,11 +99,14 @@ HLS/IPTV lane).
 
 ## expected behaviour
 
-`bash kits/b5-hlsplay/run_parity.sh` exits 0 with last line
-`PARITY-MATCH (65 lines)`; the 22-case vendored python suite runs first and
-any failure exits 1 before the parity diff. The avformat transport driver is
-NOT part of this seam (stays in the lab lane, RET-W0284-avformat-einval);
-the model consumes playlist TEXT only.
+The compound test.command exits 0: the 22-case vendored python suite runs
+visible (OK line printed; failure exits non-zero via pipefail), the parity
+diff passes byte-exact, and grep -qx enforces the exact marker
+`PARITY-MATCH (65 lines)` (v2, per lab G0832 review: suite no longer
+stderr-suppressed in the gate path; the 65-line count asserted, not just
+printed). The avformat transport driver is NOT part of this seam (stays in
+the lab lane, RET-W0284-avformat-einval); the model consumes playlist TEXT
+only.
 
 ## exact call site and interface
 
@@ -161,6 +166,10 @@ licensed content.
 
 ## repair note (arch-196x item 4)
 
+v2 (2026-11-16 04:4x, lab G0832 review): compound test.command surfaces
+the python suite and enforces the exact marker; hlslive.py and fixtures/*
+byte-bound in fixtures2. The v1 minted receipt stands unchanged.
+
 Pin 8786bfe3 with prose bullets; on-main files excerpted byte-exact, never
 edited. Marker attested from a real run of the pinned tree (2026-11-16
 04:17 +03), not a build line. Mac/Metal NOT_TESTED (pure value-type model,
@@ -168,8 +177,47 @@ no Metal involvement - per the product file header).
 
 ## how to run
 
-Clean checkout at the pin, then `bash kits/b5-hlsplay/run_parity.sh`
-(needs python3 + swiftc on PATH; SWIFTC env overrides the compiler).
+Clean checkout at the pin, then the packet's compound test.command (needs
+python3 + swiftc on PATH; SWIFTC env overrides the compiler). The raw kit
+entry point remains `bash kits/b5-hlsplay/run_parity.sh`; the packet's
+command wraps it with the visible suite and the exact-marker assertion.
+
+### fixtures2: byte-binding attestation (whole-file sha256 at pin 8786bfe3)
+
+```text id=fixtures2
+Sources/GorAVPlaybackCore/LabHLSPlaylist.swift  69d3253200aa3a241193fffec4134abfa1c7b80c41d24aa245f3789b41a090a0
+kits/b5-hlsplay/main.swift  3b86d157fb9805f4d3a75b019849ebcf96c1bf3c9f9c7ecb9264935a734ba6e1
+kits/b5-hlsplay/parity.py  5ddf534b713b2d0d3e4b37409cb7c8a765eb7ec7b192e6ebce4db52a0141b5ec
+kits/b5-hlsplay/run_parity.sh  857731aaa0961564be7970c06874a7486fcf33bd9f34de02dfe5c6fdcaf787b3
+kits/b5-hlsplay/scenarios.json  d6a927f7b063189bece157a07ec3fc8ab2131092e782d23ee27144b2fcc0d389
+kits/b5-hlsplay/hlslive.py  72c0912ab5a890c2fe88bef13aee52ccefeac3688de51bfc644f06035adb6f2f
+kits/b5-hlsplay/test_hlslive.py  f0003dce9dc5fb9e3fbdedc6de19df9966b8a666fa38318291698529e29ba1b0
+kits/b5-hlsplay/gen_fixtures.py  cdffdef44eda1afb07a7bc3e2bde08b6c3882eecdcd082f177fbc720c45e3907
+kits/b5-hlsplay/fixtures/live_100.m3u8  135c07d354e222766a7bb6c8251c7836f0589e60aa5fafa466fe157ec5990ba8
+kits/b5-hlsplay/fixtures/live_104.m3u8  f73b1362509fcfbdf96a6475febc53fa9b0559120c55382e2e81480c1a0b7c35
+kits/b5-hlsplay/fixtures/master.m3u8  9702e4544b75252c40e57f330d8e52624c29e164fe5127c6145099f436875cf3
+kits/b5-hlsplay/fixtures/vod.m3u8  c4b4ec11020e31c3e2b646a6b4d6668111e10277c93199663c506a6d8064002f
+```
+
+## lab-review note (G0832), bridge-ready
+
+(1) Python suite visibility: run_parity.sh:5 `python3 -m unittest
+test_hlslive 2>/dev/null || { echo "lab python suite FAILED"; exit 1; }` -
+stderr (unittest's result channel) was suppressed, so the 22-case detail was
+invisible, but the suite was always enforced: any failure exits 1 before the
+parity diff (set -e, line 2). v2's gate path runs the suite visibly with
+pipefail. (2) Line count: run_parity.sh:9 computes the count (`$(wc -l ...)`)
+from the run and only prints it; a scenario-set drift on both sides would
+still print PARITY-MATCH. v2 enforces the exact marker line with grep -qx.
+(3) Counts: scenarios.json at pin holds 41 scenario entries across 15 ops;
+the kit README's "40 scenarios" is stale documentation (named follow-up,
+kit edit is an architect call). 65 is output lines, not scenarios -
+multi-line ops emit M+S lines per segment (parity.py fmt_media). (4) Oracle
+scope: parity binds the Swift product model to its vendored python carrier
+(same lab lineage; the product file header states the line-faithful port)
+over the scenario set; it is not an RFC-8216-independent oracle. v2 binds
+every harness/fixture byte by sha256 (fixtures2), including hlslive.py and
+fixtures/* that v1 covered only behaviorally.
 
 ### fixtures1: scenario set (`kits/b5-hlsplay/scenarios.json` at pin)
 
@@ -220,5 +268,7 @@ Clean checkout at the pin, then `bash kits/b5-hlsplay/run_parity.sh`
 ```
 
 ```text id=actual_run_log
+
+OK
 PARITY-MATCH (65 lines)
 ```
