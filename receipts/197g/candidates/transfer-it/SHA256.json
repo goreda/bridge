@@ -1,5 +1,8 @@
 {
-  "SCOPE.md": "7fffc8612e4c575d01137d1411a55aa46b4eabb07bca4768263085fede67c850",
+  "SCOPE.md": "4fcdcb0d266d4694f0799be0856b7ee5fd381576cf5b2ee9ed8b94a2dd837824",
+  "TransferItDownload.mjs": "c35dffc59081a8e9df5797482334a384302b1ecfc80b9f11beefba767f8ed0ce",
   "TransferItSource.mjs": "38606c97af1394ef05fc0cd961766b1b480704be995771d59a400674f1bd4179",
+  "download-test.log": "1b8791b34252f697bdc3b987730541f2140a0241626dc60c676664e41dbecb9e",
+  "test-transfer-download.mjs": "500ed59195171c53d233c5600770779763da457499eeffe95cc17cb7b846e80a",
   "test-transfer-source.mjs": "9f954647b1d72aeb28d0ab27a9dd27348aa1272011c7f3838735d210797ce7fb"
 }
