@@ -1,4 +1,6 @@
 # W-gdb-d62: 195b-62 follow-on: video remote open deadline witness for a dribbled body (rev 2)
+> rev 2026-11-16-r5: pin rolled bb49fc6 -> dbd96d4 (VT-PRODUCER/HDR work grew FFmpegSoftwareDecoder.swift); ex_deadline_clear re-located 985-994 -> 997-1006, byte-identical, hash unchanged (26a032ad); all excerpts re-verified byte-identical at dbd96d4.
+
 > rev 2026-11-16-r4: pin rolled a34e2cd -> bb49fc6 (VT zero-copy/product merges moved FFmpegSoftwareDecoder.swift); the stale excerpts were re-located to identical content at new line ranges and their hashes recomputed; every other excerpt re-verified byte-identical at bb49fc6.
 
 > rev 2026-11-16-r2: excerpt ranges/hashes rebound to pin 8786bfe3 (Team A log-verify fixes: 040 whole-file 1-137, d59 ex_store 119-155, d64 ex_test_tail 115-134, G0761 hash map added, stale header shas replaced). Supersedes the 2026-11-16 minting only after a fresh gate-flow run_proof binds to these bytes
@@ -16,7 +18,7 @@ Not in scope: HTTPS/TLS provider, stuck-decode interruption, cache state, audio 
   "scope": "implementation",
   "product_repo": "goreda/gorav",
   "product_branch": "engine",
-  "product_sha": "bb49fc662158f07782baab1c8e8acc940dd07068",
+  "product_sha": "dbd96d4cf3309d4c31d2f2d96bfbf49f918047b2",
   "touched_files": [
     {
       "path": "Sources/video-remote-open-tests/main.swift",
@@ -36,7 +38,7 @@ Not in scope: HTTPS/TLS provider, stuck-decode interruption, cache state, audio 
     {
       "path": "Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift",
       "excerpt_block": "ex_deadline_clear",
-      "lines": "985-994"
+      "lines": "997-1006"
     }
   ],
   "excerpt_sha256_8": {
@@ -80,7 +82,7 @@ Not in scope: HTTPS/TLS provider, stuck-decode interruption, cache state, audio 
 ## Excerpt ex_server
 
 ```swift id=ex_server
-// Sources/video-remote-open-tests/main.swift lines 17-44 @ bb49fc662158f07782baab1c8e8acc940dd07068
+// Sources/video-remote-open-tests/main.swift lines 17-44 @ dbd96d4cf3309d4c31d2f2d96bfbf49f918047b2
         try """
         import http.server,sys,time,threading
         data=open(sys.argv[1],'rb').read(); lock=threading.Lock(); count=0
@@ -114,7 +116,7 @@ Not in scope: HTTPS/TLS provider, stuck-decode interruption, cache state, audio 
 ## Excerpt ex_stall_test
 
 ```swift id=ex_stall_test
-// Sources/video-remote-open-tests/main.swift lines 76-84 @ bb49fc662158f07782baab1c8e8acc940dd07068
+// Sources/video-remote-open-tests/main.swift lines 76-84 @ dbd96d4cf3309d4c31d2f2d96bfbf49f918047b2
         let deadline=FFmpegSoftwareDecoder()
         deadline.remoteOpenOptions=SourceOpenOptions(openDeadlineSeconds:0.1)
         let began=ProcessInfo.processInfo.systemUptime
@@ -129,7 +131,7 @@ Not in scope: HTTPS/TLS provider, stuck-decode interruption, cache state, audio 
 ## Excerpt ex_deadline_arm
 
 ```swift id=ex_deadline_arm
-// Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift lines 739-741 @ bb49fc662158f07782baab1c8e8acc940dd07068
+// Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift lines 739-741 @ dbd96d4cf3309d4c31d2f2d96bfbf49f918047b2
                     interruptBox.reset(deadlineNanos:remoteOptions?.openDeadlineNanos())
                     usedEpochs.insert(sid) // spent at first fence exposure (r8 ruling)
                     interruptSlot.install(session: sid) { [weak self] in self?.interruptBox.set() }
@@ -138,7 +140,7 @@ Not in scope: HTTPS/TLS provider, stuck-decode interruption, cache state, audio 
 ## Excerpt ex_deadline_clear
 
 ```swift id=ex_deadline_clear
-// Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift lines 985-994 @ bb49fc662158f07782baab1c8e8acc940dd07068
+// Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift lines 997-1006 @ dbd96d4cf3309d4c31d2f2d96bfbf49f918047b2
                     // Register only after open committed. Hardware-backed lifetime
                     // tracking is a separate row; do not mislabel it as software.
                     if self.l3HW == nil || self.l3HW?.receipt.attempted == false || self.l3HW?.receipt.attachResult != 0 || self.l3HW?.receipt.fallbackArmed == true {

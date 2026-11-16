@@ -1,0 +1,18 @@
+{
+  "scope": "source packet only, no new receipt mint or replay; old run-proven packets retain a34e2cd, not superseded by this source repin",
+  "note": "d53: Package.swift grew, ex_pkg_target re-located 14-14 -> 16-16. d62: VT-PRODUCER/HDR work grew FFmpegSoftwareDecoder.swift, ex_deadline_clear re-located 985-994 -> 997-1006. Both byte-identical, hashes unchanged.",
+  "checked": [
+    {
+      "packet": "W-gdb-d53",
+      "file_sha256": "ba46449bef08b0b333d630a768d1a766beea0d94940a6f042b0cd6534bff04c4",
+      "pin": "dbd96d4cf3309d4c31d2f2d96bfbf49f918047b2",
+      "excerpt_checks": 1
+    },
+    {
+      "packet": "W-gdb-d62",
+      "file_sha256": "4a7e4cde7962f3960cd9f092728142fc621edf921216df512a40ff621978b686",
+      "pin": "dbd96d4cf3309d4c31d2f2d96bfbf49f918047b2",
+      "excerpt_checks": 4
+    }
+  ]
+}
