@@ -21,3 +21,20 @@ Acceptance requires executing both generators for the same family inputs and pro
 The ingest owner reads each return, runs the relevant checks and merges a passing packet to gorav main in the same wake. On failure return the exact failed test and retain its log; do not label it merged. Runtime Lua removal and presenter integration remain product-lane work and require their own tests.
 
 No credentials, keys, tokens, passwords, user data, personal files, private endpoints or licensed assets may be included. Product repositories stay private. This request needs no account access or payment. Secret-scan every publication. Do not post internal operational records or conversation transcripts.
+
+## Pinned family inputs (22:50 update for G0853 BLOCKED_INPUT, T7 mirror to 1nstinct)
+
+Common product source pin: goreda/instinct 56181f7699d792a3a3e095caf2e807a551be46f9, directory archive/gor/Resources/vendor/mpv/scripts/. Target product revision: goreda/gorav main 31ffba3ae35a13d316b92a16ee78ce17b57d8741. Product repositories remain private; these identifiers are source provenance, not an access grant. Ops verified the four source hashes directly from that commit. No source execution or GLSL equality result is claimed by this update.
+
+| Family | Pinned source and SHA256 | Capture/implementation boundary |
+|---|---|---|
+| vr180-look | vr180-look.lua, 2478 lines, 134698 bytes; c455d945818a23ed7ddcb77a22002d12873430e53198b0ef253a673d7ccbeffc | GLSL assembly lines 2116-2165. Four routes: extended, base, legacy, pack. Preserve 68 base PARAM wire positions 0 through 67 plus variant fields. |
+| photon-sharp | photon-sharp.lua, 1448 lines, 62993 bytes; f9aeedb4265d281ec87d9bdea6b45168d9af6431ce353a554202d44b2f7c46d1 | MAINPRESUB hook. Baked defines at line 881 and lines 1113-1116. No Swift generator currently supplied. |
+| photon-grain | photon-grain.lua, 2055 lines, 98964 bytes; cfa29f39a332615718c3844ded69bc680cb3816732a690dee5b5a48e97f82999 | GOR_GRAIN_SOURCE starts at line 379, HOOK OUTPUT at line 613. No Swift generator currently supplied. Do not include a blue-noise or other licensed asset in the packet. |
+| bootstrap, not a fourth work family | photon.lua, 5750 lines, 426160 bytes; a053a059cf023b0f12668d9100928f481394d2d145cacd5bff071334d36dfd77 | Bootstrap context only. |
+
+Existing look generator reference is lane/gdb-m3-render 47f8a39c7941e483d99b95f7ea4fac94eae56a84, LookShaderGenerator.swift, not main. Reported API: emitGLSL(route:variant:), emitLegacyGLSL, emitPackGLSL, emitMSL. Reported byte-lock fixtures: Tests/look/vr180-look-{extended,base,legacy,pack}.glsl. These generator/fixture claims are supplied by the code lane; Ops has not fetched that branch or executed them. Recheck the exact path/interface against source before porting.
+
+Capture harness reference e01ee437 used lupa plus an mp stub, but is not vendored. It must be recovered or rebuilt openly from the supplied Lua invocation contract; no claim that a runnable harness or expected GLSL was delivered here. The family owner still supplies the permitted source excerpt/full file, invocation inputs, mp stub and build/run commands. Labs must not treat inaccessible private paths as available inputs. Name remaining missing inputs precisely rather than fabricating GLSL or a PASS. This update narrows BLOCKED_INPUT; it does not erase it by assertion.
+
+T7 forwarding text: 1nstinct, G0853 P23 now has exact Lua family pins/hashes and capture locations above. Claim one family, request any still-missing permitted source/harness once, execute live Lua and Swift with the same inputs, return source + expected GLSL + hashes + full comparison log. in2tinct can claim a different family. Passing executed family packets are ingested on the wake that reads them.
