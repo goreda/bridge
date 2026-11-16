@@ -1,0 +1,4 @@
+verify app: sha256 lists EQUAL (0 files)
+verify resources: sha256 lists EQUAL (1 files)
+verify state: sha256 lists EQUAL (0 files)
+exit=0

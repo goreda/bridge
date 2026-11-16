@@ -1,0 +1,66 @@
+===== (h) checker's own suite (real test-bundle-feature-gate.py) =====
+PROOF-PASS: checker suite
+EXPECTED FAIL no-silent-bypass own-grain-zero
+EXPECTED FAIL no-silent-bypass own-grain-is-sharp
+PASS synthetic no-silent-bypass receipt validator mutants; no native evidence created
+===== (a) normal update passes =====
+backup: /tmp/h0609-suite/run-linux/project/.gor-backups/261117-012452-pre-update
+PROOF-PASS: (a) gate PASS on clean candidate
+PROOF-PASS: (a) swap installed the candidate
+PROOF-PASS: (a) Resources unchanged by passing update
+===== (b) photon script removal refused =====
+PROOF-PASS: (b) removal refused (non-zero exit)
+  "errors": [],
+  "removed": {
+guard gate: REFUSAL (checker exit 1); missing/removed items:
+PROOF-PASS: (b) installed app byte-identical after refusal
+PROOF-PASS: (b) Resources byte-identical after refusal
+PROOF-PASS: (b) deleted script restored
+note (documented MINOR-2): refusal restores Resources only; the rest of the source overlay would stay at the new version (mixed tree) until --rollback; post-overlay Resources copy is deleted here, recoverable from sidecar/changes.txt
+===== (c) input binding removal refused =====
+PROOF-PASS: (c) binding removal refused
+  "errors": [],
+  "removed": {
+guard gate: REFUSAL (checker exit 1); missing/removed items:
+PROOF-PASS: (c) installed app + Resources byte-identical after refusal
+===== (d) rollback restores bundle, Resources and state byte-equal =====
+PROOF-PASS: (d) rollback verify EQUAL
+verify app: sha256 lists EQUAL (2 files)
+verify resources: sha256 lists EQUAL (11 files)
+verify state: sha256 lists EQUAL (2 files)
+===== (e) kill-during-swap recovery (198m) =====
+PROOF-PASS: (e-old) old app recovered complete
+PROOF-PASS: (e-old) markers cleared
+PROOF-PASS: (e-new) staged candidate completed
+PROOF-PASS: (e-new) markers cleared
+===== (f) disk-full refusal before swap (198m) =====
+PROOF-PASS: (f) backup refused on disk-full before any write
+guard backup: disk too full: need ~778K (+margin) in /tmp/h0609-suite/run-linux/project-f/.gor-backups, have 1427816K; update refused before any write
+PROOF-PASS: (f) nothing written
+PROOF-PASS: (f) swap refused on disk-full
+PROOF-PASS: (f) installed app untouched
+===== (g) real DELIVERED-BASELINE.json refuses closed (source-only) =====
+PROOF-PASS: (g) source-only baseline refused
+  "errors": [
+    "Baseline source-only; complete built/runtime baseline required"
+===== (R1) approved removal + complete v4 replacement receipt passes =====
+PROOF-PASS: (R1) approved removal with v4 receipt passes
+===== (R1b) same approved removal WITHOUT v4 receipt refused =====
+PROOF-PASS: (R1b) removal refused without v4 receipt
+      "photon-grain-set-strength-hint"
+PROOF-PASS: (R1b) refusal names the message
+===== (R2) non-approved removal refused even with v4 receipt =====
+PROOF-PASS: (R2) non-approved removal refused despite v4 receipt
+      "photon-grain-strength-resume"
+PROOF-PASS: (R2) refusal names photon-grain-strength-resume
+===== (R3) kill after stage->installed mv: recovery keeps new, parks old =====
+PROOF-PASS: (R3) new app kept, complete
+PROOF-PASS: (R3) old app parked at gor.app.last
+PROOF-PASS: (R3) markers cleared
+===== (s) multi-root state coverage (mpv ~~state candidates) =====
+guard backup: state root [0] /tmp/h0609-suite/run-linux/home/.config/mpv
+guard backup: state root [1] /tmp/h0609-suite/run-linux/home/Library/Application Support/gor
+PROOF-PASS: (s) multi-root state backup+rollback byte-equal
+verify state: sha256 lists EQUAL (3 files)
+==============================================
+PROOF SUMMARY: 29 passed, 0 failed
