@@ -1,0 +1,30 @@
+{
+  "executor": "lane c own measured tree, report relayed Main",
+  "base": "a34e2cd96b6825932a196424a17cc62962e910a7",
+  "overlay_patch_sha256": "b89e3b1654c42a11b6c3963f53ffce4a119e8ce4c76905e132ffe49606dfded0",
+  "result": "functionalPASS,LeakSanitizer32bytes1allocation,productrc1",
+  "symbol_scope": "audio open nested nativeQueue closure allocation/partial apply; exact line unresolved; retained continuation causal hypothesis only",
+  "provider_scope": "inventory7.1+GnuTLShttp/tcp/https; configure does not show libdav1d, not verified equivalent to baseline7.1+dav1d",
+  "files": [
+    {
+      "path": "lifecycle.log",
+      "sha256": "406097161fab8253b086d4218d27322d4b56cf07a42acb59999bf33cd55e05fb"
+    },
+    {
+      "path": "symbolized.txt",
+      "sha256": "e8051a84e482cdea2036494a1a636e75804c3e1f7b9e0ac1723e27b456df1077"
+    },
+    {
+      "path": "sourcemap-open.txt",
+      "sha256": "8ade3cee3fce70ff465bff8efc50fbb0eedd6757e6710e2d0d934871c0079e3d"
+    },
+    {
+      "path": "sourcemap-close.txt",
+      "sha256": "0aebc1084470f77b0c7217ebc134e1f5a5c10a083195ec9a365f794bea998d65"
+    },
+    {
+      "path": "inventory.log",
+      "sha256": "1b8cb430fd820c6308d6f3a9f481b3580f0dca37166a1caddb3c9f52b42e7424"
+    }
+  ]
+}

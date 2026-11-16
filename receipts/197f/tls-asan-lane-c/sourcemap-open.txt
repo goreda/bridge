@@ -1,0 +1,62 @@
+   310	                        do { options = try remoteOpenOptions.validatedForOpen() }
+   311	                        catch { throw AudioOpenError.rejected("invalid remote open options") }
+   312	                        // Interrupt plumbing BEFORE any blocking provider
+   313	                        // call: the slot is OPEN-ATTEMPT-LOCAL until commit.
+   314	                        // The sessionBusy rejection above throws before this
+   315	                        // point, so this fence install cannot shadow a live
+   316	                        // session.
+   317	                        interruptBox.reset(deadlineNanos: options.openDeadlineNanos())
+   318	                        interruptSlot.install(session: session.epoch) { [weak self] in self?.interruptBox.set() }
+   319	                        attemptFenceInstalled = true
+   320	                        let attemptSlot = UnsafeMutablePointer<GorAVInterruptSlot>.allocate(capacity: 1)
+   321	                        attemptSlotForTeardown = attemptSlot
+   322	                        attemptSlot.initialize(to: GorAVInterruptSlot(
+   323	                            poll: { opaque in
+   324	                                guard let opaque = opaque else { return 0 }
+   325	                                return Unmanaged<AudioInterruptBox>.fromOpaque(opaque).takeUnretainedValue().shouldAbort ? 1 : 0
+   326	                            },
+   327	                            opaque: Unmanaged.passUnretained(interruptBox).toOpaque()))
+   328	                        // Pre-allocated context: the interrupt callback is
+   329	                        // armed BEFORE the URL open itself, so remote open
+   330	                        // AND stream info are both interruptible. The video
+   331	                        // adapter's remote path installs the callback after
+   332	                        // open and only covers later reads; audio closes
+   333	                        // that gap.
+   334	                        guard let allocated = avformat_alloc_context() else {
+   335	                            throw AudioOpenError.rejected("format context allocation failed")
+   336	                        }
+   337	                        allocated.pointee.interrupt_callback = AVIOInterruptCB(
+   338	                            callback: gorav_avio_interrupt_thunk,
+   339	                            opaque: UnsafeMutableRawPointer(attemptSlot))
+   340	                        f = allocated
+   341	                        rc = goravR3OpenInput(&f, url: openPath, options: options)
+   342	                        guard rc >= 0, let opened = f else {
+   343	                            // Open failure frees the context and NULLs the
+   344	                            // pointer; defensive cleanup for any remainder.
+   345	                            if let remaining = f { avformat_free_context(remaining); f = nil }
+   490	                    // 195b-54 commit: the attempt-local slot becomes
+   491	                    // session-owned so requestInterrupt reaches streaming
+   492	                    // reads. The deadline bounds open + stream-info only;
+   493	                    // later reads answer cancellation, not a stale clock.
+   494	                    if attemptFenceInstalled {
+   495	                        self.interruptSlotPtr = attemptSlotForTeardown
+   496	                        attemptSlotForTeardown = nil
+   497	                    }
+   498	                    interruptBox.clearDeadline()
+   499	                    cont.resume()
+   500	                } catch {
+   501	                    // 195b-54: a failed attempt tears down ONLY its own fence
+   502	                    // and slot storage; a rejection before install (e.g.
+   503	                    // sessionBusy) must not touch another session's live
+   504	                    // interrupt route.
+   505	                    if attemptFenceInstalled { interruptSlot.clear() }
+   506	                    if let slot = attemptSlotForTeardown {
+   507	                        slot.deinitialize(count: 1)
+   508	                        slot.deallocate()
+   509	                    }
+   510	                    interruptBox.clearDeadline()
+   511	                    cont.resume(throwing: error)
+   512	                }
+   513	            }
+   514	        }
+   515	    }
