@@ -1,0 +1,89 @@
+===== (h) checker's own suite (real test-bundle-feature-gate.py) =====
+PROOF-PASS: checker suite
+EXPECTED FAIL no-silent-bypass own-grain-zero
+EXPECTED FAIL no-silent-bypass own-grain-is-sharp
+PASS synthetic no-silent-bypass receipt validator mutants; no native evidence created
+===== (a) normal update passes =====
+backup: /tmp/h0609-fixed/linux-v4/project/.gor-backups/261117-013446-pre-update
+PROOF-PASS: (a) gate PASS on clean candidate
+PROOF-PASS: (a) swap installed the candidate
+PROOF-PASS: (a) Resources unchanged by passing update
+===== (b) photon script removal refused =====
+PROOF-PASS: (b) removal refused (non-zero exit)
+  "errors": [],
+  "removed": {
+guard gate: REFUSAL (checker exit 1); missing/removed items:
+PROOF-PASS: (b) installed app byte-identical after refusal
+PROOF-PASS: (b) Resources byte-identical after refusal
+PROOF-PASS: (b) deleted script restored
+note (documented MINOR-2): refusal restores Resources only; the rest of the source overlay would stay at the new version (mixed tree) until --rollback; post-overlay Resources copy is deleted here, recoverable from sidecar/changes.txt
+===== (c) input binding removal refused =====
+PROOF-PASS: (c) binding removal refused
+  "errors": [],
+  "removed": {
+guard gate: REFUSAL (checker exit 1); missing/removed items:
+PROOF-PASS: (c) installed app + Resources byte-identical after refusal
+===== (d) rollback restores bundle, Resources and state byte-equal =====
+PROOF-PASS: (d) rollback verify EQUAL
+verify app: type/content/mode lists EQUAL (6 entries)
+verify resources: type/content/mode lists EQUAL (15 entries)
+verify state: type/content/mode lists EQUAL (4 entries)
+===== (e) kill-during-swap recovery (198m) =====
+PROOF-PASS: (e-old) old app recovered complete
+PROOF-PASS: (e-old) markers cleared
+PROOF-PASS: (e-new) staged candidate completed
+PROOF-PASS: (e-new) markers cleared
+===== (f) disk-full refusal before swap (198m) =====
+PROOF-PASS: (f) backup refused on disk-full before any write
+guard backup: disk too full: need ~778K (+margin) in /tmp/h0609-fixed/linux-v4/project-f/.gor-backups, have 1400132K; update refused before any write
+PROOF-PASS: (f) nothing written
+PROOF-PASS: (f) swap refused on disk-full
+PROOF-PASS: (f) installed app untouched
+===== (g) real DELIVERED-BASELINE.json refuses closed (source-only) =====
+PROOF-PASS: (g) source-only baseline refused
+  "errors": [
+    "Baseline source-only; complete built/runtime baseline required"
+===== (R1) approved removal + complete v4 replacement receipt passes =====
+PROOF-PASS: (R1) approved removal with v4 receipt passes
+===== (R1b) same approved removal WITHOUT v4 receipt refused =====
+PROOF-PASS: (R1b) removal refused without v4 receipt
+      "photon-grain-set-strength-hint"
+PROOF-PASS: (R1b) refusal names the message
+===== (R2) non-approved removal refused even with v4 receipt =====
+PROOF-PASS: (R2) non-approved removal refused despite v4 receipt
+      "photon-grain-strength-resume"
+PROOF-PASS: (R2) refusal names photon-grain-strength-resume
+===== (R3) kill after stage->installed mv: recovery keeps new, parks old =====
+PROOF-PASS: (R3) new app kept, complete
+PROOF-PASS: (R3) old app parked at gor.app.last
+PROOF-PASS: (R3) markers cleared
+===== (s) multi-root state coverage (mpv ~~state candidates) =====
+guard backup: state root [0] /tmp/h0609-fixed/linux-v4/home/.config/mpv
+guard backup: state root [1] /tmp/h0609-fixed/linux-v4/home/Library/Application Support/gor
+PROOF-PASS: (s) multi-root state backup+rollback byte-equal
+verify state: type/content/mode lists EQUAL (6 entries)
+===== (i) H0609: missing-checker refusal restores overlaid Resources =====
+PROOF-PASS: (i) missing-checker refusal restored sibling Resources
+===== (j) H0609: repeated backup never reuses a completed backup =====
+PROOF-PASS: (j) repeated backup allocated a fresh dir, no nesting
+===== (k) H0609: symlink retarget is a verify mismatch =====
+PROOF-PASS: (k) symlink retarget is a verify mismatch
+===== (l) H0609: mode-only change is a verify mismatch =====
+PROOF-PASS: (l) mode-only change is a verify mismatch
+===== (m) H0609: root-dir mode change is a verify mismatch =====
+PROOF-PASS: (m) root-dir mode change is a verify mismatch naming the root entry
+===== (n) H0609: tampered/truncated backup is refused before any restore =====
+PROOF-PASS: (n) tampered backup refused before any restore; live tree untouched
+===== (o) H0609: retargeted state-roots sidecar never redirects rollback =====
+PROOF-PASS: (o) retargeted sidecar refused by audit; victim dir untouched
+===== (p) H0609: relative GOR_STATE_DIR canonicalized or rejected =====
+PROOF-PASS: (p) relative GOR_STATE_DIR canonicalized to absolute
+PROOF-PASS: (p) manifest binds the absolute root
+PROOF-PASS: (p) rollback from another cwd restored the bound root, decoy untouched
+PROOF-PASS: (p) relative nonexistent root rejected before any copy
+===== (q) H0609: symlinked state root refused before any copy =====
+PROOF-PASS: (q) symlinked state root refused before any copy
+===== (r) H0609: state root inside Resources (plain dirs) round-trips =====
+PROOF-PASS: (r) Resources-contained state root restored byte- and link-exact
+==============================================
+PROOF SUMMARY: 42 passed, 0 failed

@@ -453,3 +453,7 @@ Ops original3+filemode+rootmode+legacy/corrupted-backup cases repaired,35/0Linux
 ### Candidate886668d2 follow-up01:33
 
 Ops36/0Linux+36/0BSDargumentmodel and all earlier counterexamples repaired; still DISPUTED/FAIL, no merge/install. Requested probes: relative GOR_STATE_DIR stores relative destination, different-cwd rollback overwrites other cwd/state and verifyPASS. Symlink state root backup0/audit0 but dangling copied relative link inventories empty, rollback1 after app/Resources mutation. Must absolute-bind/reject relative, explicitly support/reject symlink roots before writes; never accept unrestorable state backup. Basic parent-child overlap and inside-Resources plain-directory cases passed, no broad claim. Runnable path-probes.py/raw logs retained. Main routing writer fixes.
+
+### Candidatec57653d7 follow-up01:35
+
+Ops42/0Linux+42/0BSDargumentmodel and all prior repros repaired. Still FAIL/merge held: valid newline-containing GOR_STATE_DIR silently omitted (backup0/audit0, manifest.state_roots empty). Need lossless path transport or pre-write reject unsupported separator. Spaces/tabs/trailing/ancestor canonicalization passed bounded fixture. Relative MPV_HOME symlink is canonicalized/accepted, unlike GOR_STATE_DIR symlink refusal; align stated policy. Root='/' NOT executed for safety, no source refusal seen; reject root/backup-containing state before recursive copy. New path-edge-probes.py/log+42-case proofs retained. Main owns writer routing; no live app/ref touched.

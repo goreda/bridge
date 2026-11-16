@@ -1,0 +1,18 @@
+'space dir' backup 0 
+ state_roots ['/tmp/h0609-path-edge-s67lmt7k/space dir/space dir'] entries 2
+ audit 0 audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+'line\nbreak' backup 0 
+ state_roots [] entries 0
+ audit 0 audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+'tab\tpath' backup 0 
+ state_roots ['/tmp/h0609-path-edge-s67lmt7k/tabTpath/tab\tpath'] entries 2
+ audit 0 audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+'ancestor' backup 0 
+ state_roots ['/tmp/h0609-path-edge-s67lmt7k/ancestor/ancestor'] entries 2
+ audit 0 audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+'trailing' backup 0 
+ state_roots ['/tmp/h0609-path-edge-s67lmt7k/trailing/trailing'] entries 2
+ audit 0 audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
+'relative-mpv-link' backup 0 
+ state_roots ['/tmp/h0609-path-edge-s67lmt7k/relative-mpv-link/relative-mpv-link'] entries 2
+ audit 0 audit-backup: manifest matches backup bytes (v2 inventory) and sidecar binds to manifest roots
