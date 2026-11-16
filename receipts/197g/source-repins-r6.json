@@ -1,0 +1,12 @@
+{
+  "scope": "source packet only, no new receipt mint or replay; old run-proven packets retain a34e2cd, not superseded by this source repin",
+  "note": "d54 second move this window (W073 D3 pre-origin head packet filter landed in FFmpegSoftwareAudioDecoder.swift); excerpts re-located 217-237 and 246-248, bytes and hashes unchanged (45ea6926, 6f43191f).",
+  "checked": [
+    {
+      "packet": "W-gdb-d54",
+      "file_sha256": "281ff2904c3dfafef3a243cff7e2e20194a04fb6e9615212b2cf253be2ea6cd9",
+      "pin": "8d11f781fe1f2e780e08a024e82fda1a1ee4296d",
+      "excerpt_checks": 4
+    }
+  ]
+}

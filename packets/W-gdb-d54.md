@@ -1,4 +1,6 @@
 # W-gdb-d54: 195b-54 follow-on: audio witnesses for deadline-ends-at-open and mid-stream interrupt (rev 2)
+> rev 2026-11-16-r5: pin rolled 8de6dc2 -> 8d11f78 (W073 D3 pre-origin head packet filter added to FFmpegSoftwareAudioDecoder.swift); ex_interrupt_box re-located 201-221 -> 217-237 and ex_request_interrupt 230-232 -> 246-248, byte-identical, hashes unchanged (45ea6926, 6f43191f); all excerpts re-verified byte-identical at 8d11f78.
+
 > rev 2026-11-16-r4: pin rolled a34e2cd -> 8de6dc2 (interrupt/box work moved FFmpegSoftwareAudioDecoder.swift); ex_interrupt_box re-located 195-215 -> 201-221 and ex_request_interrupt 224-226 -> 230-232, byte-identical, hashes unchanged (45ea6926, 6f43191f); all excerpts re-verified byte-identical at 8de6dc2.
 
 > rev 2026-11-16-r2: excerpt ranges/hashes rebound to pin 8786bfe3 (Team A log-verify fixes: 040 whole-file 1-137, d59 ex_store 119-155, d64 ex_test_tail 115-134, G0761 hash map added, stale header shas replaced). Supersedes the 2026-11-16 minting only after a fresh gate-flow run_proof binds to these bytes
@@ -16,7 +18,7 @@ Not in scope: video decoder, HTTPS/TLS, cache state, hardware audio. Excerpts ar
   "scope": "implementation",
   "product_repo": "goreda/gorav",
   "product_branch": "engine",
-  "product_sha": "8de6dc28db51468ded8c8e6e447feb7315dd3893",
+  "product_sha": "8d11f781fe1f2e780e08a024e82fda1a1ee4296d",
   "touched_files": [
     {
       "path": "Sources/audio-interrupt-tests/main.swift",
@@ -31,12 +33,12 @@ Not in scope: video decoder, HTTPS/TLS, cache state, hardware audio. Excerpts ar
     {
       "path": "Sources/GorAVFFmpegAdapter/FFmpegSoftwareAudioDecoder.swift",
       "excerpt_block": "ex_interrupt_box",
-      "lines": "201-221"
+      "lines": "217-237"
     },
     {
       "path": "Sources/GorAVFFmpegAdapter/FFmpegSoftwareAudioDecoder.swift",
       "excerpt_block": "ex_request_interrupt",
-      "lines": "230-232"
+      "lines": "246-248"
     }
   ],
   "excerpt_sha256_8": {
@@ -80,7 +82,7 @@ Not in scope: video decoder, HTTPS/TLS, cache state, hardware audio. Excerpts ar
 ## Excerpt ex_test_head
 
 ```swift id=ex_test_head
-// Sources/audio-interrupt-tests/main.swift lines 1-21 @ 8de6dc28db51468ded8c8e6e447feb7315dd3893
+// Sources/audio-interrupt-tests/main.swift lines 1-21 @ 8d11f781fe1f2e780e08a024e82fda1a1ee4296d
 import Foundation
 import GorAVCore
 import GorAVFFmpegAdapter
@@ -107,7 +109,7 @@ func validationError(_ o: SourceOpenOptions) -> SourceOpenOptionsError? {
 ## Excerpt ex_d3
 
 ```swift id=ex_d3
-// Sources/audio-interrupt-tests/main.swift lines 139-151 @ 8de6dc28db51468ded8c8e6e447feb7315dd3893
+// Sources/audio-interrupt-tests/main.swift lines 139-151 @ 8d11f781fe1f2e780e08a024e82fda1a1ee4296d
 // D3: deadline aborts an open stalled mid-body (dribbled bytes).
 do {
     let d = FFmpegSoftwareAudioDecoder()
@@ -126,7 +128,7 @@ do {
 ## Excerpt ex_interrupt_box
 
 ```swift id=ex_interrupt_box
-// Sources/GorAVFFmpegAdapter/FFmpegSoftwareAudioDecoder.swift lines 201-221 @ 8de6dc28db51468ded8c8e6e447feb7315dd3893
+// Sources/GorAVFFmpegAdapter/FFmpegSoftwareAudioDecoder.swift lines 217-237 @ 8d11f781fe1f2e780e08a024e82fda1a1ee4296d
     private final class AudioInterruptBox {
         private let lock = NSLock()
         private var flag = false
@@ -153,7 +155,7 @@ do {
 ## Excerpt ex_request_interrupt
 
 ```swift id=ex_request_interrupt
-// Sources/GorAVFFmpegAdapter/FFmpegSoftwareAudioDecoder.swift lines 230-232 @ 8de6dc28db51468ded8c8e6e447feb7315dd3893
+// Sources/GorAVFFmpegAdapter/FFmpegSoftwareAudioDecoder.swift lines 246-248 @ 8d11f781fe1f2e780e08a024e82fda1a1ee4296d
     public func requestInterrupt(session: SessionID) {
         interruptSlot.request(session: session.epoch)
     }
