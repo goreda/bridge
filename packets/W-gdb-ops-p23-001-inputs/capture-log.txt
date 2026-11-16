@@ -1,0 +1,6 @@
+Ops independent capture: Python3 + lupa2.8. Full supplied harness reviewed before execution. Actual Lua script executed with disclosed load-time instrumentation.
+base 1bace86d9c4f44e49bcb30599c6afa31991e1d772aab3333347d6e36495c8601 captured/vr180-look-base.glsl
+extended cbeb9f593cf1b5ab654a82293ec99fdfb5b22b9d312c9b51ecf54b762fa39cc7 captured/vr180-look-extended.glsl
+legacy 04f432983f8d166e486d739e7602e08bfb8fca44208bd18a861b481572f893a4 captured/vr180-look-legacy.glsl
+pack 287bd5a07ad751aea77405fa4cd6e16ad29495fade3da9ae11dc0b7b4cfed9c1 captured/vr180-look-pack.glsl
+All four actual live Lua captures byte-equal supplied expected files. Swift generator execution NOT_RUN here; branch dependencies still required. No GPU/mpv/native run.
