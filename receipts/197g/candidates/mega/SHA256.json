@@ -1,5 +1,10 @@
 {
-  "SCOPE.md": "a7346713016c87093a1012e268a1cfd9cc7fda33cb4183fad2a84d3fa622be4e",
+  "SCOPE.md": "8ea25c86887ee6853f313f190dab4ddaf18ecc68fde16bbc2a7e506c1bbeb113",
   "bounded-128-test-v2.log": "ad2ce9bfd03b75239d94d90c31fc66be516b4b3912fd023642a9d18268fb9126",
+  "lane-c-pcm/SCOPE.md": "6ca0ce3ef90760df67e482a9879d9c6b343fcc67fce2539f26c013701b727301",
+  "lane-c-pcm/SHA256.json": "e47b0379c00744952f3af80e629e4c7ef9b9dd2e1bac83b86bf90b10a35412b4",
+  "lane-c-pcm/run-full.log": "2008b9905b111926af4758d2a3efd9e1c98048a9faedbe21bda546576125c768",
+  "lane-c-pcm/sha256-as-run.txt": "376401b0362217b44d6b5c8933efafd66a002d42b2def98add8d897722c00ee6",
+  "lane-c-pcm/sha256.txt": "7f0512862fd6b1721e5587130356933559fd1a120c2e6b335c699f6141e01ed8",
   "test-mega-source.mjs": "b466eb6e33266163993b6195a1477b7e84bd0c24aac689b8bc29184ce1f30b21"
 }

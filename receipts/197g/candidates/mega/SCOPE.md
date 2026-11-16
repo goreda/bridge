@@ -11,3 +11,7 @@ The first 128-byte full-pipeline diagnostic was RED, exit 1, because the fixture
 MegaVerifiedSource.mjs and a resolved megajs dependency closure remain absent from this directory. This is a supplied harness plus reported-result candidate, not a complete runnable bundle. No live service, product integration, acceptance or size-general claim. Ephemeral fixture keys are generated at run time, not included as saved values.
 
 secret scan: clean
+
+## Later lane c controlled full-size GREEN
+
+See lane-c-pcm/ for subsequently supplied Linux TEST evidence on a 176444-byte fixture: lane c reports full ciphertext download/decrypt/MAC and actual Swift local-file decode equal to the independent PCM anchor, with no SIGKILL in that run. This supersedes the earlier unproven full-size status only for that specific later controlled run; earlier failure cause remains unexplained. No size-general, ranges, live-service or coordinator claim. This ingest did not replay the run. Bundle sources/dependency closure are still absent from this directory.
