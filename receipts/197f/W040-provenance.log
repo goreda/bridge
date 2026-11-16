@@ -1,0 +1,14 @@
+runner HEAD=a34e2cd96b6825932a196424a17cc62962e910a7
+runner git status --porcelain --untracked-files=all: ''
+runner command=bash scripts/ci/seek-determinism.sh
+KIT run1 vs run2: SEEK-DETERMINISM PASS digests=4 byte-identical
+KIT negative control (seeded rng, expect drift):
+FAIL drift step=2 field=anchor run1=2000000 run2=1500000
+FAIL drift step=2 field=reset run1=1 run2=0
+FAIL drift step=2 field=resume run1=2000000 run2=1500000
+FAIL drift hash run1=['DIGEST-HASH v1 sha256=6d99793078a0a8f7fbba5094ba89f36afde09fb9f0882ff28f63aa387fe4acbf'] run2=['DIGEST-HASH v1 sha256=5f4c432bd7bdc4b62e2cedc44650ddfd078bf4fd46e3ee8b85a567834cfe7a01']
+KIT PASS (negative control detected)
+SEEK-DETERMINISM PASS digests=125 byte-identical
+REAL_LEG rc=0
+
+runner rc=0

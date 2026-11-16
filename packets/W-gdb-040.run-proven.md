@@ -58,11 +58,11 @@ id: W-gdb-040
     "command": "bash scripts/ci/seek-determinism.sh",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-16T11:20:44.896437+00:00",
+    "ran_at": "2026-11-16T11:33:26.019732+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
-    "expected_log_contains": "PASS",
+    "expected_log_contains": "REAL_LEG rc=0",
     "inline_files": [
       {
         "path": "kits/seek-determinism/fixtures.json",
@@ -71,15 +71,15 @@ id: W-gdb-040
       }
     ],
     "log_block": "actual_run_log",
-    "log_sha256": "072465e4093d166a98e9bcb8b52f5dfeb3fa5a63732416061243e85702d3afcc",
+    "log_sha256": "81f4df9450e939c6cff41d2a7a7034716c69973c6142522871c0f60726b988e0",
     "last_5_lines": [
-      "FAIL drift step=2 field=resume run1=2000000 run2=1500000",
-      "FAIL drift hash run1=['DIGEST-HASH v1 sha256=6d99793078a0a8f7fbba5094ba89f36afde09fb9f0882ff28f63aa387fe4acbf'] run2=['DIGEST-HASH v1 sha256=5f4c432bd7bdc4b62e2cedc44650ddfd078bf4fd46e3ee8b85a567834cfe7a01']",
       "KIT PASS (negative control detected)",
       "SEEK-DETERMINISM PASS digests=125 byte-identical",
-      "REAL_LEG rc=0"
+      "REAL_LEG rc=0",
+      "",
+      "runner rc=0"
     ],
-    "receipt_sha256": "e9e4f11004931491fea6ac2c48008b4c74a6e3f9f356aac1651d0295c60ca5ef"
+    "receipt_sha256": "ab6b256255a547ac0f2bace383d7fd692bd00bb20242ddaa82d4e1addf7aa8df"
   }
 }
 ```
@@ -256,6 +256,9 @@ secret scan: clean
 ```
 
 ```text id=actual_run_log
+runner HEAD=a34e2cd96b6825932a196424a17cc62962e910a7
+runner git status --porcelain --untracked-files=all: ''
+runner command=bash scripts/ci/seek-determinism.sh
 KIT run1 vs run2: SEEK-DETERMINISM PASS digests=4 byte-identical
 KIT negative control (seeded rng, expect drift):
 FAIL drift step=2 field=anchor run1=2000000 run2=1500000
@@ -265,4 +268,6 @@ FAIL drift hash run1=['DIGEST-HASH v1 sha256=6d99793078a0a8f7fbba5094ba89f36afde
 KIT PASS (negative control detected)
 SEEK-DETERMINISM PASS digests=125 byte-identical
 REAL_LEG rc=0
+
+runner rc=0
 ```
