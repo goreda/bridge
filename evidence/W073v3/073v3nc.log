@@ -1,0 +1,55 @@
+warning: 'proof-073v3': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/proof-073v3/Sources/seek-composition-tests/README-SEEKVECTORS.md
+warning: 'proof-073v3': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/proof-073v3/Sources/timing-ledger-tests/ClockScenarioReplay.swift
+warning: 'proof-073v3': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/proof-073v3/Sources/subtitle-tests/ASSTests.swift
+    /tmp/proof-073v3/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/proof-073v3/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/proof-073v3/Sources/subtitle-tests/SubtitlePlanTests.swift
+warning: 'proof-073v3': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/proof-073v3/Sources/subtitle-tests/SRTTests.swift
+    /tmp/proof-073v3/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/proof-073v3/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/proof-073v3/Sources/subtitle-tests/SubtitlePlanTests.swift
+warning: 'proof-073v3': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/proof-073v3/Sources/subtitle-tests/SRTTests.swift
+    /tmp/proof-073v3/Sources/subtitle-tests/ASSTests.swift
+    /tmp/proof-073v3/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/proof-073v3/Sources/subtitle-tests/SubtitlePlanTests.swift
+warning: 'proof-073v3': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/proof-073v3/Sources/subtitle-tests/SRTTests.swift
+    /tmp/proof-073v3/Sources/subtitle-tests/ASSTests.swift
+    /tmp/proof-073v3/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/proof-073v3/Sources/subtitle-tests/SubtitleControllerTests.swift
+warning: 'proof-073v3': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/proof-073v3/Sources/subtitle-tests/SRTTests.swift
+    /tmp/proof-073v3/Sources/subtitle-tests/ASSTests.swift
+    /tmp/proof-073v3/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/proof-073v3/Sources/subtitle-tests/SubtitlePlanTests.swift
+[0/1] Planning build
+Building for debugging...
+[0/2] Write swift-version--6630B1A18289934C.txt
+Build of product 'codec-decode-matrix-tests' complete! (0.66s)
+aac	aac	digest=6c3ea173d42c75bd	frames=180636	bytes=180636	FAIL
+  FAIL aac: D3 digest 575ce60b5a402fb5 != expected 6c3ea173d42c75bd
+mp3	mp3	digest=3f4c411ab37b751	frames=180464	bytes=180464	FAIL
+  FAIL mp3: D3 digest a5318c69ccc64391 != expected 3f4c411ab37b751
+opus	opus	digest=2e90aaaeccf247ad	frames=176400	bytes=176400	FAIL
+  FAIL opus: D3 digest 7e5ea0d89977a595 != expected 2e90aaaeccf247ad
+flac	flac	digest=3e6826b5d3060781	frames=176400	bytes=176400	FAIL
+  FAIL flac: D3 digest 3e6826b5d3060781 != expected 3e6826b5d3060780
+ac3	ac3	digest=e197a650889b6075	frames=180636	bytes=180636	FAIL
+  FAIL ac3: D3 digest 93f5e3affee9f84d != expected e197a650889b6075
+eac3	eac3	digest=d4addf560ea5d57d	frames=180636	bytes=180636	FAIL
+  FAIL eac3: D3 digest 59eae20fc511cc45 != expected d4addf560ea5d57d
+dts	dts	digest=edee9eede8a7614d	frames=176868	bytes=176868	PASS
+truehd	truehd	digest=a5e60c9b7e5a6d2d	frames=174048	bytes=174048	PASS
+pcm_s16le	pcm_s16le	digest=2609d858999f18c6	frames=176400	bytes=176400	PASS
+vorbis	vorbis	refusal=rejected("admission: container=ogg audio=1 video=0 other=0 subtitles=0 codec=vorbis videoCodec=none")	PASS
+pcm_s24le	pcm_s24le	refusal=rejected("admission: container=wav audio=1 video=0 other=0 subtitles=0 codec=pcm_s24le videoCodec=none")	PASS
+pcm_f32le	pcm_f32le	refusal=rejected("admission: container=wav audio=1 video=0 other=0 subtitles=0 codec=pcm_f32le videoCodec=none")	PASS
+pcm_u8	pcm_u8	refusal=rejected("admission: container=wav audio=1 video=0 other=0 subtitles=0 codec=pcm_u8 videoCodec=none")	PASS
+pcm_alaw	pcm_alaw	refusal=rejected("admission: container=wav audio=1 video=0 other=0 subtitles=0 codec=pcm_alaw videoCodec=none")	PASS
+pcm_mulaw	pcm_mulaw	refusal=rejected("admission: container=wav audio=1 video=0 other=0 subtitles=0 codec=pcm_mulaw videoCodec=none")	PASS
+negative-control: flipped D3 expectation for flac -> correctly FAILED with codec id
