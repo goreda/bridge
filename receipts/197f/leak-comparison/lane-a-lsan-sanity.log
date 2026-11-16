@@ -1,0 +1,11 @@
+
+=================================================================
+==25596==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 64 byte(s) in 1 object(s) allocated from:
+    #0 0x564f6509112f  (/tmp/leakprov2+0xdd12f) (BuildId: 9ef8df72ed08884d6c44d4ef93f9426b82e65da7)
+    #1 0x564f650ce0a1  (/tmp/leakprov2+0x11a0a1) (BuildId: 9ef8df72ed08884d6c44d4ef93f9426b82e65da7)
+    #2 0x564f650ce21c  (/tmp/leakprov2+0x11a21c) (BuildId: 9ef8df72ed08884d6c44d4ef93f9426b82e65da7)
+    #3 0x7f9491c29d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 095c7ba148aeca81668091f718047078d57efddb)
+
+SUMMARY: AddressSanitizer: 64 byte(s) leaked in 1 allocation(s).

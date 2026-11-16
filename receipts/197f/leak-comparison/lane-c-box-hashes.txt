@@ -1,0 +1,5 @@
+13332846d1fbbe4aefc5fe6ed7c8b9ae7d994a33403751dbaf28596d3d20396e  audio-interrupt-box-capture-only-7cb-823739f5.patch
+eff953d06c99b34c0b710069ecbf7de61951ed98dbb35a349d02ff196a1cbcc2  patch-audio-interrupt-box-capture.py
+c80e91605b2f07beffa8be447e13d483b1481e23ed36d652fb8f11a8535f7e18  protocol-inventory.c
+e25f9b3a1090c7cdcea7ae71268040955d1024eeabf5d0a259c6ebc9ea17e4c0  run.sh
+21d0508361b6d52bccf73c0de17b12aae9c9cb0983c29dd23bbbff887446d009  tls-lifecycle-main.swift
