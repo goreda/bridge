@@ -4461,3 +4461,7 @@ H0594 TransportCaptureTests actual XCTest5tests0failures, not zero execution: la
 ## 2026-11-16 03:08 +03 - H0596v2 supersedes packet compile defect
 H0596 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift run ass-atlas-tests, exit0, ass-atlas-tests: all pass; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 H0596v2 30atlasrowsPASS/allpass/exit0 supersedes prior packet compile defect, not product fix at unchanged8786. Supplied clean Linux rerun only, no current-stock/consuming/Darwin acceptance. Lane b reports queue empty except A007 pending architect baseline-vs-fix ruling.
+
+## 2026-11-16 03:18 +03 - B070v3 binding speed cap supplied receipt; A019 replay failure
+W-gdb-070 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift run picture-motion-tests, exit0, picture-motion-tests: all pass; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
+070v3 ten checks incl M7 binding speed cap, supersedes earlier packet. A019v3 compiled and ran product replay10/18PASS8FAIL, negative control did not discriminate, NOreceipt; real failing-run evidence not prior model-only PASS. TeamA analysispending. Supplied report not Ops independent replay.
