@@ -1,0 +1,25 @@
+{
+  "scope": "mpv0.41 gpu-next unadapted shader hooks/default PARAMs; not live parameter mutation, Metal or HDR",
+  "rows": [
+    {
+      "kind": "identity",
+      "mean": 100.0,
+      "sigma": 0.0
+    },
+    {
+      "kind": "grain",
+      "mean": 99.94204203287761,
+      "sigma": 0.01000731025509016
+    },
+    {
+      "kind": "zero",
+      "mean": 100.0,
+      "sigma": 0.0
+    },
+    {
+      "kind": "source-bin-centers",
+      "mean": 99.93661499023438,
+      "sigma": 0.003600527283618265
+    }
+  ]
+}

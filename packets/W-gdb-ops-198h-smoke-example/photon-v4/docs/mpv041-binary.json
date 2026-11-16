@@ -1,0 +1,6 @@
+{
+  "source": "https://github.com/pkgforge-dev/mpv-AppImage/releases/tag/v0.41.0%402026-05-01_1777638833",
+  "asset": "https://github.com/pkgforge-dev/mpv-AppImage/releases/download/v0.41.0%402026-05-01_1777638833/mpv-v0.41.0-anylinux-x86_64.AppImage",
+  "sha256": "c3fd80ee9b7c385d115ec2f8d80e7a364b94c14140c3dd4c1bc5f6b088bd8d7f",
+  "build": "mpv v0.41.0 May 1 2026; libplacebo v7.363.0; Linux AppImage softpipe, not owner Mac binary"
+}
