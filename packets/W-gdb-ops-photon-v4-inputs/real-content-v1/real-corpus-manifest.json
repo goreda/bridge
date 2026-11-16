@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "rows": [
+    {
+      "id": "johnny720",
+      "source_url": "https://media.xiph.org/video/derf/webm/Johnny_1280x720_60.webm",
+      "file": "johnny-720.webm",
+      "source_sha256": "58e58fb9d7f980b241123b04146058b12f386f59a6a56db6f293199824772ace",
+      "timepoint_seconds": 2,
+      "class_name": "720p",
+      "license_url": "https://media.xiph.org/video/derf/",
+      "license_note": "Xiph page explicitly labels Johnny public domain",
+      "scope": "full lossy source file, native720p",
+      "bytes": 6654698,
+      "actual_fixture_sha256": "58e58fb9d7f980b241123b04146058b12f386f59a6a56db6f293199824772ace"
+    },
+    {
+      "id": "nocturneHDR",
+      "source_url": "https://s3.amazonaws.com/download.opencontent.netflix.com/Nocturne/nocturne_filmgrain/nocturne_60fps_uhd_filmgrain_hdr.mov",
+      "file": "nocturne-hdr-t60.mkv",
+      "excerpt_sha256": "533111ceb1ebf2c2f8d28e43ad6e879e129e527d53c4170dd794e1d679a5cb64",
+      "timepoint_seconds": 0,
+      "excerpt_duration_seconds": 0.1,
+      "class_name": "4K HDR",
+      "license_url": "https://s3.amazonaws.com/download.opencontent.netflix.com/Nocturne/creative-commons-attribution-4-intl-public-license.txt",
+      "readme_url": "https://s3.amazonaws.com/download.opencontent.netflix.com/Nocturne/nocturne_filmgrain/readme.txt",
+      "attribution": "Netflix Inc., Nocturne (2018), filmgrain asset2026, CC BY4.0",
+      "scope": "packet-copy0.1s excerpt, source full-file SHA NOT computed; PQ/P3D65 tags verified; added synthetic Filmbox grain explicitly documented; t20 candidate was near-black and replaced after pixel inspection with t60 dancers scene; source packet timebinding remains requested60/excerptframe0",
+      "bytes": 13508627,
+      "actual_fixture_sha256": "533111ceb1ebf2c2f8d28e43ad6e879e129e527d53c4170dd794e1d679a5cb64",
+      "fixture_timepoint_seconds": 0,
+      "requested_source_seek_seconds": 60
+    },
+    {
+      "id": "animation",
+      "file": "bbb-animation.mp4",
+      "class_name": "animation",
+      "source_url": "https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4.zip",
+      "license_url": "https://peach.blender.org/about/",
+      "timepoint_seconds": 120,
+      "fixture_timepoint_seconds": 120,
+      "actual_fixture_sha256": "f78f39603e6774907f2faafabf26a667f4a6fc31769ec304a8a8f7c62d280508",
+      "bytes": 64657027,
+      "scope": "Original320x180animation, not a high-res master; source ZIP SHA109e3ede8790bd633f374ca311d9cc61dce8d7f98f5b0797ca98199c9fbceedf"
+    },
+    {
+      "id": "cleanHD",
+      "file": "tos-clean.mov",
+      "class_name": "clean1080-class digital",
+      "source_url": "https://download.blender.org/demo/movies/ToS/tears_of_steel_1080p.mov.zip",
+      "license_url": "https://mango.blender.org/sharing/",
+      "timepoint_seconds": 120,
+      "fixture_timepoint_seconds": 120,
+      "actual_fixture_sha256": "99486359be7e3681168a0fe94e1cbb0284c48b57b2a3ce7df4fa75e185987a15",
+      "bytes": 583774083,
+      "scope": "Source titled1080p but probed1920x800 active picture, not1080 active height; ZIP SHAd87a41de040d3814dbde143e9ab85ef122caf22265f660b0bebf476cd8b357a5"
+    },
+    {
+      "id": "dvd480",
+      "file": "night-dvd-t70.mkv",
+      "class_name": "480p DVD-quality MPEG2",
+      "source_url": "https://archive.org/download/Night.Of.The.Living.Dead_1080p/NightOfTheLivingDead_DVD5.mpg",
+      "license_url": "https://archive.org/details/Night.Of.The.Living.Dead_1080p",
+      "fixture_timepoint_seconds": 0,
+      "actual_fixture_sha256": "865de0946720c17cc1fb875cc67fb92c64d1036a92efe062315ebd2eac0e6f00",
+      "bytes": 118018,
+      "scope": "Uploader claims public domain; DVD-quality derivative of stated Blu-ray rip, NOT independently authenticated disc; source full SHA NOT computed; exact source first-packet PTS after input seek not authenticated; fixture decode time0 is exact by pinned bytes",
+      "requested_source_seek_seconds": 70,
+      "timepoint_seconds": 0
+    },
+    {
+      "id": "grain1080",
+      "file": "night-grain1080-t300.mkv",
+      "class_name": "grainy1080 Blu-ray-origin encode",
+      "source_url": "https://archive.org/download/Night.Of.The.Living.Dead_1080p/NightOfTheLivingDead_1080p.mkv",
+      "license_url": "https://archive.org/details/Night.Of.The.Living.Dead_1080p",
+      "fixture_timepoint_seconds": 0,
+      "actual_fixture_sha256": "020952d17879b32c7e4d7813f345644d0c636248541104673e109f9b9706bcc2",
+      "bytes": 2123499,
+      "scope": "Uploader claims public domain and Blu-ray origin; grain morphology and source provenance not independently authenticated; source full SHA NOT computed; exact source first-packet PTS after input seek not authenticated; fixture decode time0 is exact by pinned bytes",
+      "requested_source_seek_seconds": 300,
+      "timepoint_seconds": 0
+    },
+    {
+      "id": "mono",
+      "file": "night-mono-t1200.mkv",
+      "class_name": "B&W",
+      "source_url": "https://archive.org/download/Night.Of.The.Living.Dead_1080p/NightOfTheLivingDead_1080p.mkv",
+      "license_url": "https://archive.org/details/Night.Of.The.Living.Dead_1080p",
+      "fixture_timepoint_seconds": 0,
+      "actual_fixture_sha256": "f0bac8710089caf3129577e13eb00c7d165f3826b8eff2a84472d2c3e973dbbe",
+      "bytes": 3947617,
+      "scope": "Different excerpt of SAME movie as grain/DVD, not an independent title; uploader public domain claim; source full SHA NOT computed; exact source first-packet PTS after input seek not authenticated; fixture decode time0 is exact by pinned bytes",
+      "requested_source_seek_seconds": 1200,
+      "timepoint_seconds": 0
+    }
+  ],
+  "pending": [
+    "Native Mac/mpv execution",
+    "Film source provenance independently authenticated",
+    "Autocorr absolute target calibration",
+    "Owner taste/samples",
+    "CleanHD native1080active-picture source",
+    "HDR sigma domain target acceptance"
+  ],
+  "notice": "Archive uploader public-domain/provenance labels are source claims, not independently verified rights or disc authentication. Night excerpts must not be redistributed as cleared assets on this evidence alone."
+}

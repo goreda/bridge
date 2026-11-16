@@ -4633,3 +4633,5 @@ Lane b W075v2at8786bfe3 actualexit0,gatePASS. OutputSwift6.1.2RELEASE/Targetx86_
 2026-11-16 23:12 +03 | W-gdb-ops-p23-001 / G0854 / T7 | actual look Swift context4 original names + README/commands supplied, hashes verified; lane35/35Linux only, Ops Swift NOT_RUN, shader parity pending | 1nstinct and in2tinct one-family claim | dependency source delivered
 
 2026-11-16 23:19 +03 | W-gdb-ops-p23-001 photon-grain source/licence hold | embedded4096byte texture confirmed, provenance beyond transferred-source import unresolved; do not forward/mirror photon-grain.lua or texture pending clearance, no deletion | Ops/Main source review | PHOTON-GRAIN-TEXTURE-HOLD.md
+
+2026-11-16 23:24 +03 | W-gdb-ops-photon-v4-001..007 information update | real-content-v1 manifest URL/excerpt hashes + runner/report supplied; lane21 EGL rows144PASS24UNOBSERVED,worst2.132percent; five source families,rights/class/HDR/autocorr/native pending; no media,not acceptance | photon lane b main0e82f0e | informational source custody only

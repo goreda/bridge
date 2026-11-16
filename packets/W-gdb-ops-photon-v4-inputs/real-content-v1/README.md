@@ -1,0 +1,9 @@
+# V7 real-content diagnostic slice, information only
+
+Source81aa743e9b6dd5ee60e6be7bc850e89c72abae7a tree2ae101b1442067e9a69c744c6161cd04a60871f0; selective3-file landing0e82f0e on gorav main. Lane-reported EGL run21rows,actual rc0. Ops verified source/report bytes and recomputed144luma-binPASS,24UNOBSERVED,worst2.1314566percent error. No Ops replay: media bytes are absent. Output height1080/1440/2160,center ROI up to512pixels wide. Not three output widths.
+
+Manifest URLs,license notes and source labels are lane-supplied provenance leads, not independently verified rights or class authentication. Excerpt SHA256 binds the excerpt only, not an uncomputed full source file or a93GB download. No media bytes are published here. Do not fetch or redistribute uncleared Night excerpts as cleared lab assets based on uploader public-domain claims. No real user samples included. See manifest pending/notice/scope fields without dropping their caveats.
+
+The runner uses candidate-v1/tests/egl-harness.py and candidate-v1/shaders/grain.frag (arrange the same sibling layout before running); exact shaderSHA5ead78cf8439c4f6a5787fb2b5ed9bea26788785a60e632bcf335bd0962559f8. Ops read the three source files: no photon-grain.lua import,embedded hex or TEX_BLUENOISE input. The independent deterministic hash shader does not consume the held4096byte texture. That finding does not clear the old Lua's texture licence hold.
+
+Seven class labels map to five source families, not seven independent films. Animation is320x180;cleanHD active picture1920x800;DVD/disc/grain-origin rights provenance unverified. HDR working-domain target,absolute autocorrelation calibration,est_src fitting and native/owner acceptance remain pending. Test uses look-mode size only. Width is measured,not accepted. UNOBSERVED bins are not passes. This packet supplies source/provenance information, not V7 acceptance or instruction to retrieve assets.
