@@ -1,0 +1,24 @@
+{
+  "scope": "source packet only, no new receipt mint or replay; old run-proven packets retain a34e2cd, not superseded by this source repin",
+  "note": "066/067 correct an ex_effective_video_rect header range off-by-one (67-76 -> 67-75) present since original lane mint; bytes and hash unchanged. d54 re-locates two moved excerpts (201-221, 230-232); bytes and hashes unchanged.",
+  "checked": [
+    {
+      "packet": "W-gdb-066",
+      "file_sha256": "051b49664c58dc9b741f642701725b54bdc6c1060db5be973017d900ccdc7f27",
+      "pin": "8de6dc28db51468ded8c8e6e447feb7315dd3893",
+      "excerpt_checks": 1
+    },
+    {
+      "packet": "W-gdb-067",
+      "file_sha256": "08809a7de1348e36e9041e4cd8f6ed82471911a348e24699efd1221e32a5255f",
+      "pin": "8de6dc28db51468ded8c8e6e447feb7315dd3893",
+      "excerpt_checks": 1
+    },
+    {
+      "packet": "W-gdb-d54",
+      "file_sha256": "e195b73c6b20221dd4e2bb1368a7b1dea83cde799c23e14fc3f3153094ec0b6b",
+      "pin": "8de6dc28db51468ded8c8e6e447feb7315dd3893",
+      "excerpt_checks": 4
+    }
+  ]
+}
