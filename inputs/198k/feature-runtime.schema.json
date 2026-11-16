@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Actual runtime capture consumed by bundle-feature-gate.py",
+  "type": "object",
+  "required": ["executable_sha256", "features", "photon_no_silent_bypass"],
+  "properties": {
+    "executable_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "features": {"type": "object", "properties": {
+      "menus": {"$ref": "#/$defs/stringArray"}, "panels": {"$ref": "#/$defs/stringArray"},
+      "script_messages": {"$ref": "#/$defs/stringArray"}, "input_bindings": {"$ref": "#/$defs/stringArray"},
+      "shader_names": {"$ref": "#/$defs/stringArray"}, "script_options": {"$ref": "#/$defs/stringArray"}
+    }},
+    "photon_v4_replacement": {"type": "object", "description": "Optional. Without every exact PASS and same executable the four internal transport/two-option removal allowances are disabled.", "properties": {
+      "executable_sha256": {"type": "string"}, "result": {"const": "PASS"}, "lua_swift_twin_byte_equal": {"const": true},
+      "v7_invariants": {"const": "PASS"}, "manual_recall_sequence": {"const": "PASS"},
+      "implemented": {"type": "object", "required": ["V1","V2","V3","V4","V5","V6","V7"], "properties": {
+        "V1": {"const": true}, "V2": {"const": true}, "V3": {"const": true}, "V4": {"const": true}, "V5": {"const": true}, "V6": {"const": true}, "V7": {"const": true}
+      }}
+    }},
+    "photon_no_silent_bypass": {"type": "object", "required": ["result","executable_sha256","resource_files_sha256","shipped_path","all_photon_shader_hashes","shader_results","glsl_shaders_after_load","changing_frame_fixture_sha256","history_result","lua_swift_twins","corrupt_shader_fixture"], "properties": {
+      "result": {"const": "PASS"}, "executable_sha256": {"type": "string"}, "resource_files_sha256": {"type": "string"},
+      "shipped_path": {"type": "object", "required": ["source_pin","platform","mpv_sha256","vo","gpu_api","mpv_conf_sha256"], "properties": {
+        "source_pin": {"const": "15acf95cec7bf0ea668b4eec1750d4f49455a82c"}, "platform": {"const": "Darwin"},
+        "mpv_sha256": {"type": "string"}, "vo": {"type": "string"}, "gpu_api": {"type": "string"}, "mpv_conf_sha256": {"type": "string"}
+      }},
+      "all_photon_shader_hashes": {"$ref": "#/$defs/stringArray"},
+      "shader_results": {"type": "array", "items": {"type": "object", "required": ["shader_sha256","parse_ok","compile_ok","max_delta_from_bypass"], "properties": {
+        "shader_sha256": {"type": "string"}, "parse_ok": {"type": "boolean"}, "compile_ok": {"type": "boolean"}, "max_delta_from_bypass": {"type": "number"}
+      }}},
+      "glsl_shaders_after_load": {"$ref": "#/$defs/stringArray"}, "changing_frame_fixture_sha256": {"type": "string"},
+      "history_result": {"enum": ["PREVIOUS_FRAME_PROVEN","CURRENT_FRAME_REUSE","NOT_PROVEN"]}, "lua_swift_twins": {"const": "PASS"},
+      "corrupt_shader_fixture": {"type": "object", "required": ["deliberately_corrupt","parse_failed","fallback_engaged","fallback_role","fallback_shader_sha256","max_delta_from_bypass","warn_error_subscription","effective_shader_list_verified","state_failure_hash_recorded","hud_failure_shown","fallback_active_in_shader_list","raw_log_sha256","log_association_verified","no_recursion_latch","grain"], "properties": {
+        "deliberately_corrupt": {"const": true}, "parse_failed": {"const": true}, "fallback_engaged": {"const": true}, "fallback_role": {"const": "sharp"},
+        "fallback_shader_sha256": {"const": "aa949d3bf1eb4812c32589121e8f046ec6951f82c563270f4c91efa3b9312bdb"}, "max_delta_from_bypass": {"type": "number", "exclusiveMinimum": 0},
+        "warn_error_subscription": {"const": true}, "effective_shader_list_verified": {"const": true}, "state_failure_hash_recorded": {"const": true}, "hud_failure_shown": {"const": true},
+        "fallback_active_in_shader_list": {"const": true}, "raw_log_sha256": {"type": "string"}, "log_association_verified": {"const": true}, "no_recursion_latch": {"const": true},
+        "grain": {"type": "object", "required": ["shader_role","shader_sha256","parse_ok","compile_ok","entry_preserved_after_shared_set","max_delta_from_bypass"], "properties": {
+          "shader_role": {"const": "grain"}, "shader_sha256": {"type": "string"}, "parse_ok": {"const": true}, "compile_ok": {"const": true}, "entry_preserved_after_shared_set": {"const": true}, "max_delta_from_bypass": {"type": "number", "exclusiveMinimum": 0}
+        }}
+      }}
+    }}
+  },
+  "$defs": {"stringArray": {"type": "array", "items": {"type": "string"}}}
+}
