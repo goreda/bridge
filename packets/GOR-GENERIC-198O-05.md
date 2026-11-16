@@ -86,7 +86,21 @@ with tempfile.TemporaryDirectory() as d:
  r['photon_no_silent_bypass']=factory(exe,resources)
  out=m.compare(b,bundle,resources,r);assert out['result']=='FAIL';cases.append(dict(id='FR02-valid-shader-whitespace',actual='FAIL',expected='PASS',removed=out['removed']))
  (resources/'photon.lua').write_text(original)
+ for label,text in [('X1-string-registration','local s=\'mp.register_script_message("demo", handler)\'\n'),('X2-long-comment','--[[ mp.register_script_message("demo", handler) ]]\n')]:
+  (resources/'photon.lua').write_text(text);b=copy.deepcopy(base);b['script_messages']={'photon.lua':['demo']};r=copy.deepcopy(runtime);r['photon_no_silent_bypass']=factory(exe,resources);out=m.compare(b,bundle,resources,r);assert out['result']=='PASS';cases.append(dict(id=label,actual='PASS',expected='FAIL'))
+ (resources/'photon.lua').write_text('local rsm=mp.register_script_message; rsm("demo", function() end)\n');b=copy.deepcopy(base);b['script_messages']={'photon.lua':['demo']};r=copy.deepcopy(runtime);r['photon_no_silent_bypass']=factory(exe,resources);out=m.compare(b,bundle,resources,r);assert out['result']=='FAIL';cases.append(dict(id='X4-alias-boundary-needs-runtime',actual='FAIL',expected='runtime-witness-required'))
+ (resources/'photon.lua').write_text(original)
+ for val,name in [(math.nan,'nan'),(math.inf,'inf')]:
+  run('X6-main-'+name,lambda b,r:r['photon_no_silent_bypass']['shader_results'][1].update(max_delta_from_bypass=val))
+ for site in ['sharp-fallback','preserved-grain','own-grain-fallback']:
+  def change(b,r):
+   t=r['photon_no_silent_bypass']
+   if site=='sharp-fallback':t['corrupt_shader_fixture']['max_delta_from_bypass']=math.inf
+   elif site=='preserved-grain':t['corrupt_shader_fixture']['grain']['max_delta_from_bypass']=math.inf
+   else:t['corrupt_grain_fixture']['grain_only_max_delta_from_bypass']=math.inf
+  run('X6-'+site+'-inf',change)
  print(json.dumps(cases,indent=2))
+
 ```
 
 The requester observed existing suite rc0 and all nine false-accept fixtures PASS with empty errors, plus both false-refusal fixtures FAIL with the named removed item. These are observed defects/policy questions in an isolated checker, not actual product/native results. The review runner intentionally succeeds only while these exact current findings reproduce; after a fix, change expectations into failing-before/passing-after assertions and retain the original raw log.
@@ -96,3 +110,11 @@ The requester observed existing suite rc0 and all nine false-accept fixtures PAS
 Target branch: `lane/review-gate-198o-05-r2` in the shared bridge. Return full files or a named patch, extended actual `test-bundle-feature-gate.py`, commands, exit codes, before/after raw output, per-file SHA256 and each case's decision. Do not edit the pinned input in place. Mark FA01/FA02 policy decisions unresolved if required completeness cannot be derived; continue the mechanically provable cases.
 
 Required: existing suite still passes; each accepted fix kills its corresponding mutant; no removal exemption widens; malformed inputs either produce a typed structured refusal or an explicitly documented process-error boundary. Additional eight CLI cases from r1 are useful supplemental tests, not substitutes for this actual-suite review. No native, Mac, shader-output, complete-runtime or delivery acceptance follows from a Python fixture PASS. Secret scan: no private state, credentials, user data, held texture or licensed bytes included.
+
+## r3 bounded review additions
+
+Peer reproduction: lane-c reviewer reports9/9false accepts and2/2false refusals at the r2 pin. These are reviewer-attributed, not native results. Add exact fixtures for registration text inside an ordinary string literal and a Lua long comment (FA09 class). Main-row delta NaN and positive infinity are accepted by the current type-only check; extend finite-number mutants to every numeric delta site, including the three greater-than-zero sites. Require actual finite numbers, excluding bool, at every measurement site.
+
+Aliased callee boundary: `local rsm = mp.register_script_message; rsm("demo", handler)` is valid Lua but cannot be established by a shallow static call tokenizer. Do not promise that a tokenizer alone makes this complete: require runtime registration witness for aliases/dynamic dispatch, or an explicit conservative unknown classification with the actual witness as the acceptance path. Preserve both spaced-call positive fixtures and comment/string negatives in the same suite. A newline before a call parenthesis is not a claimed Lua5.1positive case here; do not add it as a false refusal. No unreviewed removal allowance follows from inability to statically resolve a call.
+
+Requester locally reproduced the added X1/X2/X4/X6 cases against the same pinned actual module; X4 is a runtime-witness boundary, not a waiver or a tokenizer-only acceptance claim.
