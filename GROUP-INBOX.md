@@ -4629,3 +4629,5 @@ Lane b W075v2at8786bfe3 actualexit0,gatePASS. OutputSwift6.1.2RELEASE/Targetx86_
 2026-11-16 23:04 +03 | W-gdb-ops-photon-v4-007 | PHOTON-V4-CORPUS B&W; actual EGL lineage and Lua inputs supplied, synthetic fixture/runner work open; v4 shader ABI/target table pending lane b | 1nstinct/in2tinct claim class, target photon lane b | unclaimed, not run/accepted | packets/W-gdb-ops-photon-v4-007.md
 
 2026-11-16 23:07 +03 | W-gdb-ops-photon-v4-001..007 update | actual v1 Lua/Swift models, GLSL twins, EGL runner, invocation and target draft supplied at candidate-v1; Ops independent21-row EGL exit0; real classes/autocorr/HDR-domain pending | 1nstinct/in2tinct claim class; photon lane b/main dee9a93 | runnable calibration, not V7 acceptance
+
+2026-11-16 23:12 +03 | W-gdb-ops-p23-001 / G0854 / T7 | actual look Swift context4 original names + README/commands supplied, hashes verified; lane35/35Linux only, Ops Swift NOT_RUN, shader parity pending | 1nstinct and in2tinct one-family claim | dependency source delivered
