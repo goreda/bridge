@@ -1,4 +1,9 @@
 # W-gdb-d64: 195b-64 follow-on: transport snapshot witness across a coordinated seek (rev 2)
+> rev 2026-11-16-r4: pin rolled a34e2cd -> bb49fc6 (VT zero-copy/product merges moved FFmpegSoftwareDecoder.swift); the stale excerpts were re-located to identical content at new line ranges and their hashes recomputed; every other excerpt re-verified byte-identical at bb49fc6.
+
+> rev 2026-11-16-r2: excerpt ranges/hashes rebound to pin 8786bfe3 (Team A log-verify fixes: 040 whole-file 1-137, d59 ex_store 119-155, d64 ex_test_tail 115-134, G0761 hash map added, stale header shas replaced). Supersedes the 2026-11-16 minting only after a fresh gate-flow run_proof binds to these bytes
+> rev 2026-11-16-r3: pin rolled 8786bfe3 -> a34e2cd (arch-197e item 5 self-decision; the delta is docs/LEDGER.tsv only, every excerpt body re-verified byte-identical and excerpt_sha256_8 unchanged). Supersedes the r2 receipts once a fresh gate-flow run_proof binds at a34e2cd.
+
 
 Rev 2 after the ops semantic gate. active-transport-tests H1..H16 never seek. Rev 2 drives the coordinated seek (SeekRequest, tryBegin, execute, completion), which advances the revision only on nativeReady (GorAVSeekContract.swift), so the revision fence is witnessed non-vacuously: H17 requires nativeReady, H18 requires the new revision to equal expected.advanced() and the receipt's nextRevision, H19 requires the pre-seek revision to be refused stale. H21 no longer fails when the byte counter is unknown before the seek (the contract allows nil); when it is known, it must stay known and not decrease. A 20 s watchdog bounds a seek that never completes. If a check fails, fix ActiveTransportSnapshot.capture or the binding fence in FFmpegSoftwareDecoder.activeTransportSnapshot and return it with the patch.
 
@@ -6,99 +11,107 @@ Not in scope: cache percentage, seconds buffered, paused-for-cache or stall infe
 
 ```packet-json
 {
- "packet": "W-gdb-d64",
- "code_owner": "gdb gorav integrator (decoder lane), owner of Sources/GorAVPlaybackCore and Sources/GorAVFFmpegAdapter on gorav/engine",
- "scope": "implementation",
- "product_repo": "goreda/gorav",
- "product_branch": "engine",
- "product_sha": "8eaffc75b331a9d65ddce404266738a9d42043ed",
- "touched_files": [
-  {
-   "path": "Sources/active-transport-tests/main.swift",
-   "excerpt_block": "ex_test_setup",
-   "lines": "75-78"
-  },
-  {
-   "path": "Sources/active-transport-tests/main.swift",
-   "excerpt_block": "ex_test_tail",
-   "lines": "115-140"
-  },
-  {
-   "path": "Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift",
-   "excerpt_block": "ex_snapshot_api",
-   "lines": "89-101"
-  },
-  {
-   "path": "Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift",
-   "excerpt_block": "ex_trybegin",
-   "lines": "306-311"
-  },
-  {
-   "path": "Sources/GorAVNativeProbeKit/GorAVSeekContract.swift",
-   "excerpt_block": "ex_seek_request",
-   "lines": "279-303"
-  },
-  {
-   "path": "Sources/GorAVNativeProbeKit/GorAVSeekContract.swift",
-   "excerpt_block": "ex_seek_transaction",
-   "lines": "534-547"
-  },
-  {
-   "path": "Sources/GorAVNativeProbeKit/GorAVSeekContract.swift",
-   "excerpt_block": "ex_seek_outcome",
-   "lines": "470-492"
-  },
-  {
-   "path": "Sources/GorAVNativeProbeKit/GorAVSeekContract.swift",
-   "excerpt_block": "ex_seek_admission",
-   "lines": "723-732"
-  },
-  {
-   "path": "Sources/GorAVFFmpegAdapter/ActiveTransportSnapshot.swift",
-   "excerpt_block": "ex_snapshot_type",
-   "lines": "10-43"
-  }
- ],
- "excerpt_sha256_8": {
-  "ex_test_setup": "6f18d4dc",
-  "ex_test_tail": "38123e75",
-  "ex_snapshot_api": "f62cd5f6",
-  "ex_trybegin": "91b388fd",
-  "ex_seek_request": "6f8dc560",
-  "ex_seek_transaction": "51c176fc",
-  "ex_seek_outcome": "f23ffe3e",
-  "ex_seek_admission": "ede5e398",
-  "ex_snapshot_type": "2f8dd79c"
- },
- "interface": {
-  "signatures": "No new product API. Used: FFmpegSoftwareDecoder.tryBegin(_ request: SeekRequest) throws -> any SeekTransaction; SeekTransaction.execute() throws and completion() async -> SeekReceipt; SeekRequest(correlationID:session:source:target:expectedRevision:); SeekTarget(position:rounding:requestedFlags:); SeekCorrelationID(rawValue:queueTurn:) throws; RationalTime(value:timescale:) throws; SeekRevision.advanced() throws; currentBinding(); activeTransportSnapshot(source:session:revision:).",
-  "types": "ActiveTransportSnapshot(bytesRead: Int64?, bufferAvailableBytes: Int?, eofObserved: Bool?, errorCode: Int32?), ActiveTransportRefusal.notOpen / .staleBinding, SeekReceipt.Outcome.nativeReady(facts:), SeekRevision Equatable, as in the excerpts. Admission requires rounding .floorToKeyframe, requestedFlags & ~1 == 0, position.value >= 0, correlation rawValue greater than the last one.",
-  "ownership_lifetime": "The snapshot is a value copy taken in one native-queue turn and never retains the AVIOContext. A fresh open (session 9603) chooses coordinated mode via tryBegin, and the legacy seek(toSeconds:) is not mixed in. The watchdog is cancelled after completion.",
-  "caller": "active-transport-tests top-level script.",
-  "callee": "FFmpegSoftwareDecoder.tryBegin/performSeek on the native queue, then activeTransportSnapshot reading AVIOContext.bytes_read, eof_reached and error via ActiveTransportSnapshot.capture."
- },
- "test": {
-  "command": "swift run active-transport-tests",
-  "expected": "Exit 0. Output has PASS H1 through PASS H16 as before, then PASS H17 through PASS H23, and ends with a line starting \"active-transport-tests: 0 FAIL\". If the seek never completes, the line \"FAIL H17: coordinated seek never completed within 20 s\" is printed and the exit code is 1. Requires the repo fixture fixtures/e1-h264-aac-10s.mp4 and python3.",
-  "fixture_block": "fx_transport_seek_tests",
-  "note": "Run by the integrator on Linux with the pinned provider; a lab without the repo returns the patch and states \"unrun\"."
- },
- "target": {
-  "branch": "lane/gdb-196p-decoder (integrator creates it from product_sha; never ohal/gorav main or PR 3)",
-  "paths": [
-   "Sources/active-transport-tests/main.swift",
-   "Sources/GorAVFFmpegAdapter/ActiveTransportSnapshot.swift",
-   "Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift"
+  "packet": "W-gdb-d64",
+  "code_owner": "gdb gorav integrator (decoder lane), owner of Sources/GorAVPlaybackCore and Sources/GorAVFFmpegAdapter on gorav/engine",
+  "scope": "implementation",
+  "product_repo": "goreda/gorav",
+  "product_branch": "engine",
+  "product_sha": "bb49fc662158f07782baab1c8e8acc940dd07068",
+  "touched_files": [
+    {
+      "path": "Sources/active-transport-tests/main.swift",
+      "excerpt_block": "ex_test_setup",
+      "lines": "75-78"
+    },
+    {
+      "path": "Sources/active-transport-tests/main.swift",
+      "excerpt_block": "ex_test_tail",
+      "lines": "115-134"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift",
+      "excerpt_block": "ex_snapshot_api",
+      "lines": "92-104"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift",
+      "excerpt_block": "ex_trybegin",
+      "lines": "309-314"
+    },
+    {
+      "path": "Sources/GorAVNativeProbeKit/GorAVSeekContract.swift",
+      "excerpt_block": "ex_seek_request",
+      "lines": "279-303"
+    },
+    {
+      "path": "Sources/GorAVNativeProbeKit/GorAVSeekContract.swift",
+      "excerpt_block": "ex_seek_transaction",
+      "lines": "534-546"
+    },
+    {
+      "path": "Sources/GorAVNativeProbeKit/GorAVSeekContract.swift",
+      "excerpt_block": "ex_seek_outcome",
+      "lines": "470-492"
+    },
+    {
+      "path": "Sources/GorAVNativeProbeKit/GorAVSeekContract.swift",
+      "excerpt_block": "ex_seek_admission",
+      "lines": "723-732"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/ActiveTransportSnapshot.swift",
+      "excerpt_block": "ex_snapshot_type",
+      "lines": "10-43"
+    }
   ],
-  "return_form": "patch"
- }
+  "excerpt_sha256_8": {
+    "ex_test_setup": "6f18d4dc",
+    "ex_test_tail": "3cc2357a",
+    "ex_snapshot_api": "f62cd5f6",
+    "ex_trybegin": "91b388fd",
+    "ex_seek_request": "6f8dc560",
+    "ex_seek_transaction": "c64fac28",
+    "ex_seek_outcome": "f23ffe3e",
+    "ex_seek_admission": "ede5e398",
+    "ex_snapshot_type": "97f51e08"
+  },
+  "interface": {
+    "signatures": "No new product API. Used: FFmpegSoftwareDecoder.tryBegin(_ request: SeekRequest) throws -> any SeekTransaction; SeekTransaction.execute() throws and completion() async -> SeekReceipt; SeekRequest(correlationID:session:source:target:expectedRevision:); SeekTarget(position:rounding:requestedFlags:); SeekCorrelationID(rawValue:queueTurn:) throws; RationalTime(value:timescale:) throws; SeekRevision.advanced() throws; currentBinding(); activeTransportSnapshot(source:session:revision:).",
+    "types": "ActiveTransportSnapshot(bytesRead: Int64?, bufferAvailableBytes: Int?, eofObserved: Bool?, errorCode: Int32?), ActiveTransportRefusal.notOpen / .staleBinding, SeekReceipt.Outcome.nativeReady(facts:), SeekRevision Equatable, as in the excerpts. Admission requires rounding .floorToKeyframe, requestedFlags & ~1 == 0, position.value >= 0, correlation rawValue greater than the last one.",
+    "ownership_lifetime": "The snapshot is a value copy taken in one native-queue turn and never retains the AVIOContext. A fresh open (session 9603) chooses coordinated mode via tryBegin, and the legacy seek(toSeconds:) is not mixed in. The watchdog is cancelled after completion.",
+    "caller": "active-transport-tests top-level script.",
+    "callee": "FFmpegSoftwareDecoder.tryBegin/performSeek on the native queue, then activeTransportSnapshot reading AVIOContext.bytes_read, eof_reached and error via ActiveTransportSnapshot.capture."
+  },
+  "test": {
+    "command": "swift run active-transport-tests",
+    "expected": "Exit 0. Output has PASS H1 through PASS H16 as before, then PASS H17 through PASS H23, and ends with a line starting \"active-transport-tests: 0 FAIL\". If the seek never completes, the line \"FAIL H17: coordinated seek never completed within 20 s\" is printed and the exit code is 1. Requires the repo fixture fixtures/e1-h264-aac-10s.mp4 and python3.",
+    "fixture_block": "fx_transport_seek_tests",
+    "note": "Run by the integrator on Linux with the pinned provider; a lab without the repo returns the patch and states \"unrun\"."
+  },
+  "target": {
+    "branch": "lane/gdb-196p-decoder (integrator creates it from product_sha; never ohal/gorav main or PR 3)",
+    "paths": [
+      "Sources/active-transport-tests/main.swift",
+      "Sources/GorAVFFmpegAdapter/ActiveTransportSnapshot.swift",
+      "Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift"
+    ],
+    "return_form": "patch"
+  },
+  "run_recipe": {
+    "inline_files": [
+      {
+        "path": "Sources/active-transport-tests/main.swift",
+        "block": "merged_main"
+      }
+    ]
+  }
 }
 ```
 
 ## Excerpt ex_test_setup
 
 ```swift id=ex_test_setup
-// Sources/active-transport-tests/main.swift lines 75-78 @ 8eaffc75b331a9d65ddce404266738a9d42043ed
+// Sources/active-transport-tests/main.swift lines 75-78 @ bb49fc662158f07782baab1c8e8acc940dd07068
 let decoder = FFmpegSoftwareDecoder()
 try decoder.pinLocalRoots([root])
 decoder.remoteOpenOptions = SourceOpenOptions(openDeadlineSeconds: 5)
@@ -108,7 +121,7 @@ let sid = SessionID(uncheckedEpoch: 9601)
 ## Excerpt ex_test_tail
 
 ```swift id=ex_test_tail
-// Sources/active-transport-tests/main.swift lines 115-140 @ 8eaffc75b331a9d65ddce404266738a9d42043ed
+// Sources/active-transport-tests/main.swift lines 115-134 @ bb49fc662158f07782baab1c8e8acc940dd07068
 check("H10 real decoded frames and end", frames > 0 && ended)
 if case .success(let final) = snapshot() {
     check("H11 cumulative observed reads", final.bytesRead != nil && final.bytesRead! >= first.bytesRead!)
@@ -129,14 +142,12 @@ stopServer()
 try? FileManager.default.removeItem(at: directory)
 print("active-transport-tests: \(failures) FAIL (no buffered-seconds/cache/stall inference)")
 exit(failures == 0 ? 0 : 1)
-
-
 ```
 
 ## Excerpt ex_snapshot_api
 
 ```swift id=ex_snapshot_api
-// Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift lines 89-101 @ 8eaffc75b331a9d65ddce404266738a9d42043ed
+// Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift lines 92-104 @ bb49fc662158f07782baab1c8e8acc940dd07068
     public func activeTransportSnapshot(source: SourceToken, session: SeekSessionID,
                                         revision: SeekRevision) -> Result<ActiveTransportSnapshot, ActiveTransportRefusal> {
         l3OnQueue {
@@ -155,7 +166,7 @@ exit(failures == 0 ? 0 : 1)
 ## Excerpt ex_trybegin
 
 ```swift id=ex_trybegin
-// Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift lines 306-311 @ 8eaffc75b331a9d65ddce404266738a9d42043ed
+// Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift lines 309-314 @ bb49fc662158f07782baab1c8e8acc940dd07068
     public func tryBegin(_ request: SeekRequest) throws -> any SeekTransaction {
         try seekState.tryBegin(request) { [self] record in
             nativeQueue.async { [self] in performSeek(record) }
@@ -167,7 +178,7 @@ exit(failures == 0 ? 0 : 1)
 ## Excerpt ex_seek_request
 
 ```swift id=ex_seek_request
-// Sources/GorAVNativeProbeKit/GorAVSeekContract.swift lines 279-303 @ 8eaffc75b331a9d65ddce404266738a9d42043ed
+// Sources/GorAVNativeProbeKit/GorAVSeekContract.swift lines 279-303 @ bb49fc662158f07782baab1c8e8acc940dd07068
 public struct SeekTarget: Sendable {
     public let position: RationalTime      // media-timeline seconds (the ONE coordinate)
     public let rounding: SeekRounding
@@ -198,7 +209,7 @@ public struct SeekRequest: Sendable {
 ## Excerpt ex_seek_transaction
 
 ```swift id=ex_seek_transaction
-// Sources/GorAVNativeProbeKit/GorAVSeekContract.swift lines 534-547 @ 8eaffc75b331a9d65ddce404266738a9d42043ed
+// Sources/GorAVNativeProbeKit/GorAVSeekContract.swift lines 534-546 @ bb49fc662158f07782baab1c8e8acc940dd07068
 public protocol SeekTransaction: Sendable {
     var identity: SeekEventIdentity { get }
     var correlationID: SeekCorrelationID { get }
@@ -212,13 +223,12 @@ public protocol SeekTransaction: Sendable {
     func completion() async -> SeekReceipt
     func requestCancellation()
 }
-
 ```
 
 ## Excerpt ex_seek_outcome
 
 ```swift id=ex_seek_outcome
-// Sources/GorAVNativeProbeKit/GorAVSeekContract.swift lines 470-492 @ 8eaffc75b331a9d65ddce404266738a9d42043ed
+// Sources/GorAVNativeProbeKit/GorAVSeekContract.swift lines 470-492 @ bb49fc662158f07782baab1c8e8acc940dd07068
     public enum Outcome: Sendable {
         /// Provider completion evidence ONLY: native reposition + flush promised, revision advances,
         /// new output permitted. NOT target attainment, NOT a decoded PTS, NOT a global commit/ACK.
@@ -247,7 +257,7 @@ public protocol SeekTransaction: Sendable {
 ## Excerpt ex_seek_admission
 
 ```swift id=ex_seek_admission
-// Sources/GorAVNativeProbeKit/GorAVSeekContract.swift lines 723-732 @ 8eaffc75b331a9d65ddce404266738a9d42043ed
+// Sources/GorAVNativeProbeKit/GorAVSeekContract.swift lines 723-732 @ bb49fc662158f07782baab1c8e8acc940dd07068
             guard request.expectedRevision == b.2 else { throw SeekRefusal.stale(expected: request.expectedRevision, actual: b.2) }
             guard request.correlationID.rawValue > lastCorrelation else { throw SeekRefusal.unsupported("replayed correlation") }
             guard capabilityValue.seekable, capabilityValue.originKnown,
@@ -263,7 +273,7 @@ public protocol SeekTransaction: Sendable {
 ## Excerpt ex_snapshot_type
 
 ```swift id=ex_snapshot_type
-// Sources/GorAVFFmpegAdapter/ActiveTransportSnapshot.swift lines 10-43 @ 8eaffc75b331a9d65ddce404266738a9d42043ed
+// Sources/GorAVFFmpegAdapter/ActiveTransportSnapshot.swift lines 10-43 @ bb49fc662158f07782baab1c8e8acc940dd07068
     public let revision: SeekRevision
     /// FFmpeg AVIO bytes_read counter, cumulative for this open. Includes probe
     /// reads and rereads; not network-only unique bytes or file position.
@@ -297,7 +307,6 @@ public protocol SeekTransaction: Sendable {
 public enum ActiveTransportRefusal: Error, Equatable, Sendable {
     case notOpen, staleBinding
 }
-
 ```
 
 ## Fixture fx_transport_seek_tests
@@ -346,4 +355,185 @@ check("H22 after a seek EOF is true or unknown, never a manufactured false, and 
       (afterSnap?.eofObserved == nil || afterSnap?.eofObserved == true) && afterSnap?.errorCode == nil)
 _ = await decoder.closeAndReport(session: seekSID)
 check("H23 close clears the post-seek snapshot", decoder.activeTransportSnapshot(source: b1.token, session: b1.session, revision: b1.revision) == .failure(.notOpen))
+```
+
+```swift id=merged_main
+import Foundation
+#if os(Linux)
+import Glibc
+#else
+import Darwin
+#endif
+import GorAVCore
+import GorAVNativeProbeKit
+import GorAVFFmpegAdapter
+
+// Real local HTTP -> active decoder AVIO counter. Requires pinned provider with
+// http/tcp + mov/h264 support; never silently skip a failed/missing provider.
+var failures = 0
+func check(_ name: String, _ value: Bool) {
+    print("\(value ? "PASS" : "FAIL") \(name)")
+    if !value { failures += 1 }
+}
+let root = FileManager.default.currentDirectoryPath
+let fixture = root + "/fixtures/e1-h264-aac-10s.mp4"
+guard FileManager.default.fileExists(atPath: fixture) else {
+    print("FAIL missing local fixture"); exit(2)
+}
+let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+defer { try? FileManager.default.removeItem(at: directory) }
+let script = directory.appendingPathComponent("server.py")
+let portFile = directory.appendingPathComponent("port")
+let countFile = directory.appendingPathComponent("requests")
+try #"""
+import http.server, sys, threading
+fixture, portfile, counterfile = sys.argv[1:]
+lock = threading.Lock()
+requests = 0
+class Handler(http.server.BaseHTTPRequestHandler):
+    def do_GET(self):
+        global requests
+        with lock:
+            requests += 1
+            with open(counterfile, 'w') as f: f.write(str(requests))
+        with open(fixture, 'rb') as f: data = f.read()
+        begin = 0
+        header = self.headers.get('Range', '')
+        if header.startswith('bytes='):
+            begin = int(header[6:].split('-')[0] or 0)
+        if begin >= len(data):
+            self.send_response(416); self.end_headers(); return
+        self.send_response(206 if begin else 200)
+        self.send_header('Accept-Ranges', 'bytes')
+        self.send_header('Content-Length', str(len(data)-begin))
+        if begin: self.send_header('Content-Range', 'bytes %d-%d/%d' % (begin,len(data)-1,len(data)))
+        self.end_headers()
+        try: self.wfile.write(data[begin:])
+        except (BrokenPipeError, ConnectionResetError): pass
+    def log_message(self, *args): pass
+server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), Handler)
+with open(portfile, 'w') as f: f.write(str(server.server_address[1]))
+server.serve_forever()
+"""#.write(to: script, atomically: true, encoding: .utf8)
+let server = Process()
+server.executableURL = URL(fileURLWithPath: "/usr/bin/python3")
+server.arguments = [script.path, fixture, portFile.path, countFile.path]
+try server.run()
+func stopServer() { if server.isRunning { kill(server.processIdentifier, SIGKILL); server.waitUntilExit() } }
+defer { stopServer() }
+var port: String?
+for _ in 0..<200 {
+    if let p = try? String(contentsOf: portFile), !p.isEmpty { port = p; break }
+    try await Task.sleep(nanoseconds: 10_000_000)
+}
+guard let port else { print("FAIL server startup"); stopServer(); exit(2) }
+func requests() -> Int? {
+    (try? String(contentsOf: countFile)).flatMap { Int($0.trimmingCharacters(in: .whitespacesAndNewlines)) }
+}
+let url = "http://127.0.0.1:\(port)/video.mp4"
+let decoder = FFmpegSoftwareDecoder()
+try decoder.pinLocalRoots([root])
+decoder.remoteOpenOptions = SourceOpenOptions(openDeadlineSeconds: 5)
+let sid = SessionID(uncheckedEpoch: 9601)
+try await decoder.open(source: SourceDescriptor(id: url, kind: .remote, seekable: true), session: sid)
+guard let binding = decoder.currentBinding() else { print("FAIL no active binding"); stopServer(); exit(2) }
+func snapshot() -> Result<ActiveTransportSnapshot, ActiveTransportRefusal> {
+    decoder.activeTransportSnapshot(source: binding.token, session: binding.session, revision: binding.revision)
+}
+guard case .success(let first) = snapshot() else { print("FAIL no transport snapshot"); stopServer(); exit(2) }
+check("H1 real HTTP read count", (first.bytesRead ?? -1) > 0)
+check("H2 current-buffer occupancy known", first.bufferAvailableBytes != nil && first.bufferAvailableBytes! >= 0)
+check("H3 no invented error", first.errorCode == nil)
+check("H4 source identity", first.source == binding.token && first.session == binding.session && first.revision == binding.revision)
+let requestCount = requests()
+check("H5 server saw real request", (requestCount ?? 0) > 0)
+var stable = true
+for _ in 0..<100 {
+    if case .success(let value) = snapshot() { stable = stable && value == first }
+    else { stable = false }
+}
+check("H6 snapshot no I/O or reopen", stable && requests() == requestCount)
+let wrongRevision = try binding.revision.advanced()
+check("H7 stale revision refused", decoder.activeTransportSnapshot(source: binding.token, session: binding.session, revision: wrongRevision) == .failure(.staleBinding))
+let wrongSession = try SeekSessionID(rawValue: binding.session.rawValue + 1)
+check("H8 foreign session refused", decoder.activeTransportSnapshot(source: binding.token, session: wrongSession, revision: binding.revision) == .failure(.staleBinding))
+let wrongSource = try SourceToken(instanceID: binding.token.instanceID, openGeneration: binding.token.openGeneration + 1)
+check("H9 foreign source refused", decoder.activeTransportSnapshot(source: wrongSource, session: binding.session, revision: binding.revision) == .failure(.staleBinding))
+var frames = 0, ended = false
+for _ in 0..<2000 {
+    guard let event = await decoder.nextEvent(session: sid) else { break }
+    switch event {
+    case .frameDecoded(let frame):
+        frames += 1; await decoder.releaseFrame(handle: frame.handle, session: sid)
+    case .endOfStream: ended = true
+    case .failed: failures += 1; print("FAIL real decode failed")
+    default: break
+    }
+    if ended { break }
+}
+check("H10 real decoded frames and end", frames > 0 && ended)
+if case .success(let final) = snapshot() {
+    check("H11 cumulative observed reads", final.bytesRead != nil && final.bytesRead! >= first.bytesRead!)
+    // EOF may be reached through demux semantics without AVIO observing it.
+    // Only true or unknown is permitted, never manufactured false/zero.
+    check("H12 EOF no prediction", final.eofObserved == nil || final.eofObserved == true)
+} else { check("H11 active at EOF", false) }
+_ = await decoder.closeAndReport(session: sid)
+check("H13 close clears snapshot", snapshot() == .failure(.notOpen))
+let newSID = SessionID(uncheckedEpoch: 9602)
+try await decoder.open(source: SourceDescriptor(id: url, kind: .remote, seekable: true), session: newSID)
+check("H14 old binding after reopen refused", snapshot() == .failure(.staleBinding))
+guard let reopened = decoder.currentBinding() else { print("FAIL reopen binding"); stopServer(); exit(2) }
+check("H15 new open generation", reopened.token != binding.token)
+_ = await decoder.closeAndReport(session: newSID)
+check("H16 close new binding", decoder.activeTransportSnapshot(source: reopened.token, session: reopened.session, revision: reopened.revision) == .failure(.notOpen))
+// Insert in Sources/active-transport-tests/main.swift after the line:
+//   check("H16 close new binding", ...)
+// and before: stopServer()
+// Uses the COORDINATED seek path (tryBegin/execute/completion), which advances the seek revision only on nativeReady.
+let seekWatchdog = DispatchWorkItem { print("FAIL H17: coordinated seek never completed within 20 s"); fflush(stdout); exit(1) }
+DispatchQueue.global().asyncAfter(deadline: .now() + 20, execute: seekWatchdog)
+let seekSID = SessionID(uncheckedEpoch: 9603)
+try await decoder.open(source: SourceDescriptor(id: url, kind: .remote, seekable: true), session: seekSID)
+guard let b0 = decoder.currentBinding() else { print("FAIL no binding before seek"); stopServer(); exit(2) }
+guard case .success(let before) = decoder.activeTransportSnapshot(source: b0.token, session: b0.session, revision: b0.revision) else {
+    print("FAIL no snapshot before seek"); stopServer(); exit(2)
+}
+let seekRequest = SeekRequest(
+    correlationID: try SeekCorrelationID(rawValue: 1, queueTurn: 1),
+    session: b0.session, source: b0.token,
+    target: SeekTarget(position: try RationalTime(value: 5, timescale: 1), rounding: .floorToKeyframe, requestedFlags: 0),
+    expectedRevision: b0.revision)
+let transaction = try decoder.tryBegin(seekRequest)
+try transaction.execute()
+let receipt = await transaction.completion()
+seekWatchdog.cancel()
+var nativeReady = false
+if case .nativeReady = receipt.outcome { nativeReady = true }
+check("H17 coordinated seek reached nativeReady outcome=\(receipt.outcome) (otherwise this witness is invalid)", nativeReady)
+guard let b1 = decoder.currentBinding() else { print("FAIL no binding after seek"); stopServer(); exit(2) }
+let expectedNextRevision = try b0.revision.advanced()
+check("H18 revision advanced by exactly one step and matches the receipt",
+      b1.revision != b0.revision && b1.revision == receipt.nextRevision && b1.revision == expectedNextRevision)
+check("H19 pre-seek revision is refused as stale after the seek",
+      decoder.activeTransportSnapshot(source: b0.token, session: b0.session, revision: b0.revision) == .failure(.staleBinding))
+let afterResult = decoder.activeTransportSnapshot(source: b1.token, session: b1.session, revision: b1.revision)
+var afterSnap: ActiveTransportSnapshot? = nil
+if case .success(let s) = afterResult { afterSnap = s }
+check("H20 snapshot served for the post-seek binding", afterSnap != nil)
+// Contract: nil means unknown. If the counter was unknown before the seek no ordering is asserted;
+// if it was known it must stay known and must not decrease (cumulative AVIO counter).
+let bytesOK: Bool
+if let b = before.bytesRead { bytesOK = (afterSnap?.bytesRead).map { $0 >= b } ?? false } else { bytesOK = true }
+check("H21 cumulative byte counter not lost or decreased by a seek (unknown-before allowed)", bytesOK)
+check("H22 after a seek EOF is true or unknown, never a manufactured false, and no invented error",
+      (afterSnap?.eofObserved == nil || afterSnap?.eofObserved == true) && afterSnap?.errorCode == nil)
+_ = await decoder.closeAndReport(session: seekSID)
+check("H23 close clears the post-seek snapshot", decoder.activeTransportSnapshot(source: b1.token, session: b1.session, revision: b1.revision) == .failure(.notOpen))
+stopServer()
+try? FileManager.default.removeItem(at: directory)
+print("active-transport-tests: \(failures) FAIL (no buffered-seconds/cache/stall inference)")
+exit(failures == 0 ? 0 : 1)
+
 ```

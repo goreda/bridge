@@ -1,0 +1,23 @@
+{
+  "scope": "source packet only, no new receipt mint or replay; old run-proven packets retain a34e2cd, not superseded by this source repin",
+  "checked": [
+    {
+      "packet": "W-gdb-d61",
+      "file_sha256": "4875546d339bf7abd14ef21e952adcc2db339609a96a9583b6e3e3cc3df20628",
+      "pin": "bb49fc662158f07782baab1c8e8acc940dd07068",
+      "excerpt_checks": 6
+    },
+    {
+      "packet": "W-gdb-d62",
+      "file_sha256": "83e44027dcd41a4451ec1613ef211d4e7be2cf0e220419098c9b4b2ff6e41556",
+      "pin": "bb49fc662158f07782baab1c8e8acc940dd07068",
+      "excerpt_checks": 4
+    },
+    {
+      "packet": "W-gdb-d64",
+      "file_sha256": "12ed12e46ebe972cac66738b74eaec4f4c0173a00e04510c0c6f7afa9b0cea1e",
+      "pin": "bb49fc662158f07782baab1c8e8acc940dd07068",
+      "excerpt_checks": 9
+    }
+  ]
+}
