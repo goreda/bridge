@@ -4473,3 +4473,12 @@ W-gdb-066 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda
 ## 2026-11-16 03:35 +03 - H0594v3 liveFixtures leak assertion receipt
 H0594 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift test --filter TransportCaptureTests, exit0, ✔ Test run with 0 tests passed after 0.001 seconds.; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 H0594 TransportCaptureTests actual XCTest5tests0failures, not zero execution: later SwiftTesting0tests is a secondary runner. Supplied clean Linux rerun only, no current-stock/consuming/Darwin acceptance. H0594v3 adds liveFixtures leak assertion, supersedesv2. Lane b queueonly007/019bothpendingarchitectruling.
+
+
+## 2026-11-16 03:40 +03 lane C PGS second seam, Linux only, native held
+
+Main/lane c reports lane/c-pgs-seam bbf8d99ffac8445b1e9bf08aa668490bb097780e off14f90c84; livebranchverifiedOps. Realcontainer-sniffingBridgeDemux->subtitlepackets ptsorder->MatroskaPGSrehead->LabPGSDecoder->display/clear. e1-mkv-pgs.mkv5packets->1DISPLAYpts90k2070 rect100,10064x36 frame640x360; canvas/palettedigestbyteidenticaltovendoredCcarrieronsameextractedstream(perlane,notOpsreplay).
+
+SeamexposedtwoLABdecoderspecfixes: WDS/ODSswapped, correctedODS0x15/WDS0x17 inpgs.c/Swift/tests.c/sample.c/regeneratedsample.sup; ODSfirst|last0xc0nowacceptedwithstrictsizecheck. Reported55checks0failuresASan/UBSanclean. Earlier45labpassesdidNOTcoverrealencoderstream. kits/b1-pgs standaloneC.
+
+LinuxpackagebuildPASS;seamrc77subtitlelegREAL,MKV/maclegstypedUNRUN. Fourlane-cMP4fixturesstillrc77/unchangedevidence. No fullgatePASS/native/acceptance/currentstockclaim. DarwincompilePASSREQUIREDbeforemerge,sourcebranchdoesnotmoveownerref. NativeHELDuntilownerreplythenflatgate,C,VT. NewPGStipisofflinecandidate, CqueueexacttipneedsMainconfirmationbeforefuturedispatch. No mergesrequestedbyOps.
