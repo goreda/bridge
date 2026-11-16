@@ -1,0 +1,30 @@
+{
+  "executor": "lane a, reports relayed Main; not Ops rerun",
+  "source_branch": "gdb-lane",
+  "source_sha": "fe2f535bf039a10a3f9ab974c2f7f53e19931005",
+  "provider": "minimal ff-min FFmpeg7.1, not GnuTLS/full-codec/native",
+  "scope": "v2 local metadata/PCM exact arrays+independent anchor, discriminating faults; plain and reportedTSan300cancel completions",
+  "tsan_caveat": "zero warning observed in supplied logs; instrumentation identity attributed lane a, command not echoed in these build logs",
+  "files": [
+    {
+      "path": "runner.log",
+      "sha256": "9ceb1692921d6f87b700cb4fabf5400b013c1dbe1a9d5905444396e24c0d5d35"
+    },
+    {
+      "path": "cancel-stress-plain.log",
+      "sha256": "3652d2816bd05850a42e08c58ec55de2edfd84787556653a306b7cd9a44bafe0"
+    },
+    {
+      "path": "cancel-stress-tsan.log",
+      "sha256": "99d4436dc384a1f0ce33b3d041c9b8d3ceaebf4b61ea597552713b77f2ba3385"
+    },
+    {
+      "path": "v1-harness-v2-source-tsan.log",
+      "sha256": "fb618a9ca34d8052355e7c93841726af6ba4382cd573985e21167aa57c050fab"
+    },
+    {
+      "path": "canonical.log",
+      "sha256": "89c9d1d34fe67b98b332178ca6b06de377d6c6cf6ad71267a6cb6457bc49dc26"
+    }
+  ]
+}
