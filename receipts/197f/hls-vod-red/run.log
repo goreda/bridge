@@ -1,0 +1,24 @@
+avformat_version=3999588
+configuration=--disable-x86asm --disable-doc --disable-programs --disable-autodetect --disable-everything --enable-network --enable-avcodec --enable-avformat --enable-avutil --enable-swscale --enable-swresample --enable-gnutls --enable-protocol=file --enable-protocol=http --enable-protocol=tcp --enable-protocol=https --enable-protocol=tls --enable-demuxer=matroska --enable-demuxer=mov --enable-demuxer=mpegts --enable-demuxer=wav --enable-demuxer=image2pipe --enable-demuxer=ogg --enable-demuxer=flac --enable-demuxer=mp3 --enable-demuxer=aac --enable-demuxer=ac3 --enable-demuxer=dts --enable-demuxer=truehd --enable-decoder=h264 --enable-decoder=hevc --enable-decoder=av1 --enable-decoder=vp9 --enable-decoder=mpeg2video --enable-decoder=mpeg4 --enable-decoder=aac --enable-decoder=ac3 --enable-decoder=eac3 --enable-decoder=dca --enable-decoder=truehd --enable-decoder=opus --enable-decoder=flac --enable-decoder=mp3 --enable-decoder=mp3float --enable-decoder=vorbis --enable-decoder=pcm_s16le --enable-decoder=pcm_s16be --enable-decoder=pcm_s24le --enable-decoder=pcm_s24be --enable-decoder=pcm_s32le --enable-decoder=pcm_s32be --enable-decoder=pcm_f32le --enable-decoder=pcm_f32be --enable-decoder=pcm_f64le --enable-decoder=pcm_f64be --enable-decoder=pcm_u8 --enable-decoder=pcm_alaw --enable-decoder=pcm_mulaw --enable-decoder=pgssub --enable-decoder=dvdsub --enable-decoder=webvtt --enable-decoder=ass --enable-parser=h264 --enable-parser=hevc --enable-parser=av1 --enable-parser=vp9 --enable-parser=mpeg4video --enable-parser=mpegvideo --enable-parser=aac --enable-parser=ac3 --enable-parser=dca --enable-parser=flac --enable-parser=opus --enable-parser=vorbis --enable-parser=mpegaudio --prefix=/tmp/ff71/install
+input_protocol=file
+input_protocol=http
+input_protocol=https
+input_protocol=tcp
+input_protocol=tls
+provider-required: http=1 tcp=1 https=1
+PASS U1 userinfo redacted
+PASS U2 query values and keys redacted
+PASS U3 fragment and path redacted
+PASS U4 local path not exposed
+PASS U6 malformed credential redacted
+PASS U7 encoded credential redacted
+PASS U5 summary counts only
+PASS S0 server started on 127.0.0.1:36567
+PASS HLS chooses budget-admitted low variant and prepares segment
+PASS live typed gap
+PASS playlist cap
+PASS HLS fetch cancellation
+HLS engine-prepared: open-error: rejected("outside pinned roots")
+reference-local: decode-failed: -35 bytes=3700 chunks=1 eof=false fnv=a2dacde57847f24d
+FAIL HLS chosen fMP4 init+segment fetch into product PCM equals local decode open-error: rejected("outside pinned roots")
+remote-source-tests: 1 FAIL
