@@ -1,0 +1,49 @@
+{
+  "source_pin": "8cabab7223ba099203da2497758a9bbf0fbe1529",
+  "base": "15acf95cec7bf0ea668b4eec1750d4f49455a82c",
+  "patch_sha256": "655860540521b57b805e7814d9509af9bba173f6725e09c2db90244c0d889afa",
+  "files": [
+    {
+      "path": "files/archive/gor/Sources/gor/AppDelegate.swift",
+      "sha256": "12f1020e590517d3ab103ba3b6c4bcbd6c1517420d2c7651e7d62edac4747ede"
+    },
+    {
+      "path": "files/archive/gor/Sources/gor/GorRuntimeDump.swift",
+      "sha256": "7ebf10c8deecd6d27da538c01e068e8d2ca703b9d029d7b46b7fda780dbcc2be"
+    },
+    {
+      "path": "files/archive/gor/Sources/gor/GorRuntimeDumpCore.swift",
+      "sha256": "d9d4cd0fa39f2eed8776c2702681666d3ee860b95c4f8096c0f0b7420e9903fe"
+    },
+    {
+      "path": "files/archive/gor/Tests/Harness/RuntimeDump/run.sh",
+      "sha256": "7cf35a2695b600751b780ce9ff38ae77c1e0eb188e30c6694ec39d99230097ac"
+    },
+    {
+      "path": "files/archive/gor/Tests/Harness/RuntimeDump/suite/main.swift",
+      "sha256": "7312c35a64c7c799bab8b378577a9473643a45a25223ab57d764506976130b11"
+    },
+    {
+      "path": "files/archive/gor/architecture/arch-baseline.tsv",
+      "sha256": "99d2f003e427bf2d93a34c98aa3457bc5f86986c29eb16d818a1b17897edd5f1"
+    },
+    {
+      "path": "files/archive/gor/architecture/delivery.tsv",
+      "sha256": "55f724ab99f4af2037089e613f5d85edfe2286b92b7aefe1aa616b38f6309949"
+    },
+    {
+      "path": "files/archive/gor/architecture/manifest.tsv",
+      "sha256": "4d66ba9118efbdc2a5839b1175098e900465176377910754960739aea89e08f6"
+    },
+    {
+      "path": "files/archive/gor/architecture/policy.tsv",
+      "sha256": "789bd053d22b4d6c802add52b2175216aa8b861f9aa0deb810c4a7c3c6722e4e"
+    },
+    {
+      "path": "files/docs/decisions/DR-198K-DUMP-001.md",
+      "sha256": "4a36557bbbe488d4566ad27c54b8d560389c2c8809967d0acd891c68411f3511"
+    }
+  ],
+  "secret_scan": "PASS current export credential/private-key pattern scan",
+  "runtime_status": "NOT_RUN; core tests do not attest AppKit/mpv adapter"
+}
