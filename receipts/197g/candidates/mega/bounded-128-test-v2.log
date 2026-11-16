@@ -1,0 +1,11 @@
+PHASE encrypt fixture
+PHASE encryption complete
+PHASE resolve/decrypt
+PASS MEGAJS actual ciphertext download+decrypt+MAC into exact owned source bytes
+PASS resolve_or_integrity refusal and cache cleanup
+PASS resolve_or_integrity refusal and cache cleanup
+PASS resolve_or_integrity refusal and cache cleanup
+PASS size_limit refusal and cache cleanup
+PASS timeout refusal and cache cleanup
+PASS cancelled refusal and cache cleanup
+m2-mega-crypto-source: all pass
