@@ -449,3 +449,7 @@ Original3repros now repaired, file chmod verify mismatches. Original33-case proo
 ### Candidate1acf10b8 follow-up01:31
 
 Ops original3+filemode+rootmode+legacy/corrupted-backup cases repaired,35/0Linux and35/0BSD-sed argument model. Still DISPUTED/FAIL, merge held: audit-backup does not bind state-roots.txt destinations to manifest.state_roots. Isolated temp repro altered sidecar index0 to unrelated temp/other: audit0, rollback0, other's important deleted and state substituted, final verifyPASS because it checks original untouched manifest root. Writer routed through Main, must bind sidecar or use validated manifest destinations and reject duplicates/missing/extra before ANY mutation. Raw extra-repro.py/log andv2proof logs in receipt directory. No real user files/ref touched.
+
+### Candidate886668d2 follow-up01:33
+
+Ops36/0Linux+36/0BSDargumentmodel and all earlier counterexamples repaired; still DISPUTED/FAIL, no merge/install. Requested probes: relative GOR_STATE_DIR stores relative destination, different-cwd rollback overwrites other cwd/state and verifyPASS. Symlink state root backup0/audit0 but dangling copied relative link inventories empty, rollback1 after app/Resources mutation. Must absolute-bind/reject relative, explicitly support/reject symlink roots before writes; never accept unrestorable state backup. Basic parent-child overlap and inside-Resources plain-directory cases passed, no broad claim. Runnable path-probes.py/raw logs retained. Main routing writer fixes.

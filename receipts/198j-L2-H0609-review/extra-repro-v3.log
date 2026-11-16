@@ -1,0 +1,10 @@
+ROOT_DIRECTORY_REPLACED_SYMLINK verify 1 verify app: type/content/mode lists EQUAL (1 entries)
+verify resources: MISMATCH missing=0 extra=0 changed=1
+    . backup= {'mode': 493, 't': 'd'} current= {'t': 'd', 'mode': 511}
+verify state: type/content/mode lists EQUAL (2 entries)
+
+ALTERED_STATE_ROOT_SIDECAR audit 1 audit-backup: state-roots.txt does not bind to the manifest roots (sidecar=[(0, '/tmp/h0609-extra-qx0wlkh9/other')] expected=[(0, '/tmp/h0609-extra-qx0wlkh9/state')])
+
+rollback 1 OTHER_IMPORTANT_EXISTS True OTHER_STATE_EXISTS False  audit-backup: state-roots.txt does not bind to the manifest roots (sidecar=[(0, '/tmp/h0609-extra-qx0wlkh9/other')] expected=[(0, '/tmp/h0609-extra-qx0wlkh9/state')])
+guard rollback: backup failed integrity audit; nothing restored
+
