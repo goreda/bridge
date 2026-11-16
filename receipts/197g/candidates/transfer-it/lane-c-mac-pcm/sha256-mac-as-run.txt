@@ -1,0 +1,3 @@
+46d0961e758f496a7db265cc9efd648f216b00d6d708707c37404701e7b8c44e  /tmp/transmac/tree/Sources/remote-source-tests/main.swift
+7ef9ec96e9434e9175c06c6f7c7858ff394383286d9790aaa353f4c1f172dab7  /tmp/transmac/tree/fixtures/transfer-downloaded.wav
+e1c969f113e5cf7c9f7beae12f4a6e99571c44a6c0e7252d6f1797283f4a95e1  /tmp/transmac/tree/fixtures/transfer-anchor.pcm
