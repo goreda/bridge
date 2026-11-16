@@ -1,0 +1,12 @@
+PASS actual bounded download equals independent integer PCM WAV anchor 176444B SHA256 7ef9ec96e9434e9175c06c6f7c7858ff394383286d9790aaa353f4c1f172dab7; whole-file MAC verified against independent synthetic nodekey
+PASS existing destination preserved
+PASS integrity_mismatch cleanup
+PASS file_limit cleanup
+PASS not_media cleanup
+PASS insecure_redirect cleanup
+PASS redirect_limit cleanup
+PASS file_limit cleanup
+PASS size_mismatch cleanup
+PASS timeout cleanup
+PASS inflight cancel cleanup
+m2-transfer-verified-download: all pass; controlled network only, whole-fileMAC, no live-service claim

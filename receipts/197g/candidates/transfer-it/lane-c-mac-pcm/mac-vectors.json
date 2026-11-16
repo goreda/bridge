@@ -1,0 +1,85 @@
+{
+  "scope": "synthetic non-secret keys; documented Go/transfer protocol oracle, not service vectors",
+  "vectors": [
+    {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fileKeyHex": "101010101010101008090a0b0c0d0e0f10111213141516170000000000000000"
+    },
+    {
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+      "fileKeyHex": "1010101010101010c203d9510253e6bf1011121314151617ca0ad35a0e5ee8b0"
+    },
+    {
+      "size": 15,
+      "sha256": "2f642c0031f0025676059011a1976756805b74de321c7abf0229c7d893eb3599",
+      "fileKeyHex": "1010101010101010fe432d9e15c4e7ab1011121314151617f64a279519c9e9a4"
+    },
+    {
+      "size": 16,
+      "sha256": "856b54d693e0306bf449d3607b353cade7802eb46988981f211bb479ac399d47",
+      "fileKeyHex": "1010101010101010845dd6b448e7e18d10111213141516178c54dcbf44eaef82"
+    },
+    {
+      "size": 17,
+      "sha256": "ed542e2cd4a7aec2f25252a5378bf5ded25b29d85b01e679ec89f4a741f3b62f",
+      "fileKeyHex": "1010101010101010348fec386a41633110111213141516173c86e633664c6d3e"
+    },
+    {
+      "size": 131056,
+      "sha256": "0a3e50b335c57fbeb8d60155d1ea77dd4c72eecb40a58974da20412940beb2f0",
+      "fileKeyHex": "1010101010101010cb99dc9c3a9dafb91011121314151617c390d6973690a1b6"
+    },
+    {
+      "size": 131057,
+      "sha256": "76d71b0f5d7df8628ec86c9f9bedf3bc3abd960786a9d56812ff13c9b0824dd0",
+      "fileKeyHex": "1010101010101010c5b6b46d34fc15681011121314151617cdbfbe6638f11b67"
+    },
+    {
+      "size": 131071,
+      "sha256": "c9a9992ce3bff35aaafde698c44c7e39f71c48ec3ddbc50a13b5c8fd82ebd1b2",
+      "fileKeyHex": "10101010101010100edbf2c4566acbc0101112131415161706d2f8cf5a67c5cf"
+    },
+    {
+      "size": 131072,
+      "sha256": "f658c7a1a4472256ecd09249d0d405af19a43ceed0f21aca31d83aab97f1d8e7",
+      "fileKeyHex": "1010101010101010ddd329c0e2a9c3ce1011121314151617d5da23cbeea4cdc1"
+    },
+    {
+      "size": 131073,
+      "sha256": "2d36469e2af4a1a560ecfb78ec6ab41cbc214b59ca8fcde33270f1b6ed976f64",
+      "fileKeyHex": "1010101010101010f0655cde7fa933771011121314151617f86c56d573a43d78"
+    },
+    {
+      "size": 176444,
+      "sha256": "3d2ae6aecc744321cb22188f97cb44702925f141e6e7c41f1f84bf9177047564",
+      "fileKeyHex": "10101010101010109d349b940b760af51011121314151617953d919f077b04fa"
+    },
+    {
+      "size": 393216,
+      "sha256": "8563deab38dbdab743a9ccd82b3e112c1b9addef6c6898034d5901f7e0a4b5fd",
+      "fileKeyHex": "1010101010101010d2e11051b64cfdca1011121314151617dae81a5aba41f3c5"
+    },
+    {
+      "size": 393217,
+      "sha256": "2f82be3078ceb10393f41aa73ba5996ee8bd7cf3f5b1646d50a72049cf341f2d",
+      "fileKeyHex": "101010101010101079bf66d712ad8e28101112131415161771b66cdc1ea08027"
+    },
+    {
+      "size": 1048577,
+      "sha256": "91bea714fafcec821503310245eb7677af0affd88827a852e1c0d8fa46c6bead",
+      "fileKeyHex": "101010101010101034e2f5e93bee2d1910111213141516173cebffe237e32316"
+    },
+    {
+      "size": 5767169,
+      "sha256": "493743508a825aa95a10182e77304dee91fbaaee3b45166b80566f39ef3fe229",
+      "fileKeyHex": "10101010101010105e30aaa41d5b9f1510111213141516175639a0af1156911a"
+    }
+  ],
+  "wavAnchor": {
+    "size": 176444,
+    "sha256": "7ef9ec96e9434e9175c06c6f7c7858ff394383286d9790aaa353f4c1f172dab7",
+    "fileKeyHex": "1010101010101010b6d6f95570add9e91011121314151617bedff35e7ca0d7e6"
+  }
+}

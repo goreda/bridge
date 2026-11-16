@@ -1,0 +1,16 @@
+PASS independent Python batch oracle/Node streaming plaintextMAC, size=0
+PASS independent Python batch oracle/Node streaming plaintextMAC, size=1
+PASS independent Python batch oracle/Node streaming plaintextMAC, size=15
+PASS independent Python batch oracle/Node streaming plaintextMAC, size=16
+PASS independent Python batch oracle/Node streaming plaintextMAC, size=17
+PASS independent Python batch oracle/Node streaming plaintextMAC, size=131056
+PASS independent Python batch oracle/Node streaming plaintextMAC, size=131057
+PASS independent Python batch oracle/Node streaming plaintextMAC, size=131071
+PASS independent Python batch oracle/Node streaming plaintextMAC, size=131072
+PASS independent Python batch oracle/Node streaming plaintextMAC, size=131073
+PASS independent Python batch oracle/Node streaming plaintextMAC, size=176444
+PASS independent Python batch oracle/Node streaming plaintextMAC, size=393216
+PASS independent Python batch oracle/Node streaming plaintextMAC, size=393217
+PASS independent Python batch oracle/Node streaming plaintextMAC, size=1048577
+PASS independent Python batch oracle/Node streaming plaintextMAC, size=5767169
+transfer-plaintext-mac: all documented-protocol vectors pass; no network or service

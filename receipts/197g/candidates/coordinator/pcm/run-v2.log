@@ -1,0 +1,3 @@
+M2_COORDINATOR_PCM_V2_RESULT product_decode_exit=0
+prepared local cache bytes=176444 integrity=node-key-mac
+PASS Swift process -> real controlled API -> node-key-MAC bytes -> actual PCM independent anchor bytes=176400 chunks=11 eof=true fnv=814ce7e754242528

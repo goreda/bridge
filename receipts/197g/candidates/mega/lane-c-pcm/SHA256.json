@@ -1,5 +1,12 @@
 {
-  "SCOPE.md": "6ca0ce3ef90760df67e482a9879d9c6b343fcc67fce2539f26c013701b727301",
+  "SCOPE.md": "9d6dde79f0a6f37da430285758891f5a18a051311c816227a79b5972e03c8d7e",
+  "mega-candidate/MegaVerifiedSource.mjs": "30c2d8190e1b9e6d101c2a4c45773e7c17e52fa3f3579e0534dd25579f979f75",
+  "mega-candidate/generate-archive-anchor.py": "268e6cc90b30b07a43699899e90f9b965de05bf0d59428969de8d136663c2ad0",
+  "mega-candidate/mega-pcm-main.swift": "028e0e8df860f3e41f71b9d21a488fe0cc5f1c3318ef0368e7cc7426caece28e",
+  "mega-candidate/package-lock.json": "174ddc303eb556900d9ec6149c18dbec69736816daa12cd75525f1b3db144bca",
+  "mega-candidate/package.json": "ca3dce4668d8000e724cdc41896775b0b44c2cf8b660e7c177be8598590f46ba",
+  "mega-candidate/run-mega-pcm.sh": "4cda57bae6fd23a5c9f73657a983401e4a9a483703eaccea7b85595f7b03ec0b",
+  "mega-candidate/test-mega-source.mjs": "23ad01516efefeb498f204fe83b9b5de847b4278d03244e899aa18e6de7ea8bc",
   "run-full.log": "2008b9905b111926af4758d2a3efd9e1c98048a9faedbe21bda546576125c768",
   "sha256-as-run.txt": "376401b0362217b44d6b5c8933efafd66a002d42b2def98add8d897722c00ee6",
   "sha256.txt": "7f0512862fd6b1721e5587130356933559fd1a120c2e6b335c699f6141e01ed8"
