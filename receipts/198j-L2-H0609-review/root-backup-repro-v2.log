@@ -1,0 +1,9 @@
+ROOT DIRECTORY0755to0700 verify 1 verify app: type/content/mode lists EQUAL (1 entries)
+verify resources: MISMATCH missing=0 extra=0 changed=1
+    . backup= {'mode': 493, 't': 'd'} current= {'t': 'd', 'mode': 448}
+verify state: type/content/mode lists EQUAL (0 entries)
+
+FILE MODE0644to0755 verify 1
+LEGACY/CORRUPTED BACKUP gate 1 Resources= overlay audit-backup: manifest_version None unsupported (legacy or tampered); backup not trustworthy
+guard gate: pre-update backup failed integrity audit; update refused, nothing restored
+

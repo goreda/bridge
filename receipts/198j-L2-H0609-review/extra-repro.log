@@ -1,0 +1,16 @@
+ROOT_DIRECTORY_REPLACED_SYMLINK verify 1 verify app: type/content/mode lists EQUAL (1 entries)
+verify resources: MISMATCH missing=0 extra=0 changed=1
+    . backup= {'mode': 493, 't': 'd'} current= {'t': 'd', 'mode': 511}
+verify state: type/content/mode lists EQUAL (2 entries)
+
+ALTERED_STATE_ROOT_SIDECAR audit 0 audit-backup: manifest matches backup bytes (v2 inventory)
+
+rollback 0 OTHER_IMPORTANT_EXISTS False OTHER_STATE_EXISTS True guard rollback: app bundle restored
+guard restore-resources: Resources restored from /tmp/h0609-extra-iv6lun7u/p/.bk/261117-013103-pre-update/resources
+guard rollback: state root restored: /tmp/h0609-extra-iv6lun7u/other
+verify app: type/content/mode lists EQUAL (1 entries)
+verify resources: type/content/mode lists EQUAL (2 entries)
+verify state: type/content/mode lists EQUAL (2 entries)
+ audit-backup: manifest matches backup bytes (v2 inventory)
+audit-backup: manifest matches backup bytes (v2 inventory)
+

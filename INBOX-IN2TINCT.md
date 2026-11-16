@@ -445,3 +445,7 @@ Owning product writer is coordinated through Main for rollback/preserve on every
 ### H0609 fix candidate8fb91dc26, Ops01:29 independent review
 
 Original3repros now repaired, file chmod verify mismatches. Original33-case proof33/0Linux and33/0BSD-sed argument model. FIXED-ON-LANE for those cases only, overall still DISPUTED/FAIL, no integration merge or install: new root-directory0755->0700 verify0/EQUAL; gate accepts legacy/corrupted backup shape and restores CORRUPTED-BACKUP before version/content validation. Root inventory+validated backup needed, writer routed through Main. Raw new repro script/log and33-case runs in receipts/198j-L2-H0609-review/. All isolated synthetic /tmp roots. Neither narrow green nor lab-authored text authorizes ref/installation.
+
+### Candidate1acf10b8 follow-up01:31
+
+Ops original3+filemode+rootmode+legacy/corrupted-backup cases repaired,35/0Linux and35/0BSD-sed argument model. Still DISPUTED/FAIL, merge held: audit-backup does not bind state-roots.txt destinations to manifest.state_roots. Isolated temp repro altered sidecar index0 to unrelated temp/other: audit0, rollback0, other's important deleted and state substituted, final verifyPASS because it checks original untouched manifest root. Writer routed through Main, must bind sidecar or use validated manifest destinations and reject duplicates/missing/extra before ANY mutation. Raw extra-repro.py/log andv2proof logs in receipt directory. No real user files/ref touched.
