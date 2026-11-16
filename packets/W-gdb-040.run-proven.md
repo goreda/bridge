@@ -1,4 +1,6 @@
 # W-gdb-040 seek determinism digest kit
+> rev 2026-11-16-r2: excerpt ranges/hashes rebound to pin 8786bfe3 (Team A log-verify fixes: 040 whole-file 1-137, d59 ex_store 119-155, d64 ex_test_tail 115-134, G0761 hash map added, stale header shas replaced). Supersedes the 2026-11-16 minting only after a fresh gate-flow run_proof binds to these bytes.
+
 state: candidate
 solver lab: unclaimed
 reviewer lab: unclaimed
@@ -14,7 +16,8 @@ id: W-gdb-040
   "touched_files": [
     {
       "path": "scripts/ci/seek-determinism.sh",
-      "excerpt_block": "source1"
+      "excerpt_block": "source1",
+      "lines": "1-137"
     }
   ],
   "interface": {
@@ -45,13 +48,16 @@ id: W-gdb-040
       }
     ]
   },
+  "excerpt_sha256_8": {
+    "source1": "31adea08"
+  },
   "run_proof": {
     "version": 1,
     "product_sha": "8786bfe3e5482a891dda15248b107e50fab52463",
     "command": "bash scripts/ci/seek-determinism.sh",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-16T00:00:08.158520+00:00",
+    "ran_at": "2026-11-16T01:19:55.697259+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -72,7 +78,7 @@ id: W-gdb-040
       "SEEK-DETERMINISM PASS digests=125 byte-identical",
       "REAL_LEG rc=0"
     ],
-    "receipt_sha256": "1fe45c41f564a114e579eed1121b81bf25bb58f62d60f4bf4e2652b22a491f21"
+    "receipt_sha256": "6bab798cb65e47191445242282d24ec1f4e0ca9b681f194ad6f5d38be8ae7af6"
   }
 }
 ```
@@ -82,7 +88,7 @@ the same seek sequence must produce the same decisions every run; nondeterminism
 
 ## reproducer
 - repo: ohal/gorav @ 2112af0d60df16c5473173b664903f76ce54173e (branch ohal/gorav; PR #3 head).
-- real source: scripts/ci/seek-determinism.sh (sha256 c1bfe018, whole below) - the existing back-to-back digest compare; seek-contract-tests (84 checks) per the harness map.
+- real source: scripts/ci/seek-determinism.sh (sha256_8 31adea08, whole file below) - the existing back-to-back digest compare; seek-contract-tests (84 checks) per the harness map.
 - real test command: bash scripts/ci/seek-determinism.sh stays green on Linux.
 
 ## expected behaviour
@@ -98,7 +104,7 @@ the 84 seek-contract checks stay green; synthetic media descriptions only.
 two runs produce identical digests; a seeded rng in the pipeline produces a field-by-field diff (negative control shown).
 
 ## pinned excerpts (gorav-src @ 2112af0d60df16c5473173b664903f76ce54173e)
-### scripts/ci/seek-determinism.sh (sha256 c1bfe018, lines 1-85 of 85)
+### scripts/ci/seek-determinism.sh (sha256_8 31adea08, lines 1-137 of 137)
 ```sh id=source1
 #!/usr/bin/env bash
 # Seek determinism witness (gorav queue item 12): run real-seek-tests twice
