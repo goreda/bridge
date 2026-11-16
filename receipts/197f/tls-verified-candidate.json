@@ -1,0 +1,12 @@
+{
+  "type": "attributed-execution-record-not-canonical-gate-receipt",
+  "base_product_sha": "a34e2cd96b6825932a196424a17cc62962e910a7",
+  "overlay": "close-order plus verification candidates; exactpatchhashesnotyetprovided",
+  "provider": "separate GnuTLS candidate, not default provider",
+  "executor": "lane b ingest owner, reported via Main",
+  "reported_exit": 0,
+  "observed_result": "inventory_exit=0 product_open_exit=0",
+  "log_sha256": "39df97677ffff4da978c79df45a40c318c19969b6be25ea2b7536d12a049d8a3",
+  "scope": "controlled local authenticated TLS/PCM and rejection cases; not Darwin or ASAN leak closure",
+  "canonical_packet": "requested with exact overlay/recipe/provider hashes"
+}
