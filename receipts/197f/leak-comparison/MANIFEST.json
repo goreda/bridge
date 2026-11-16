@@ -1,0 +1,31 @@
+{
+  "lane_a": "fe2f535bcontentSwift6.1.2,ff-minplaintext,nognutls,functional0/zeroleak,sanity64Bleakcaught. Differentrecipe,notclosureoflane-crepro",
+  "lane_c": "7cbbase,FFmpeg7.1GnuTLS,ASANdwarf4,one-lineweakself->interruptBoxcapture,source9f899f23,allfunctionalPASS/exit0/zeroLSanreported; ownrunnerconfirmed. Natural-maincontrolpending",
+  "disposition": "candidateboxcapturechosenformeasuredlocalrepair, noopen-hunkfixclaim,noenvironmentalartifactconclusionfromconstantcount",
+  "files": [
+    {
+      "path": "lane-a-plaintext.log",
+      "sha256": "b6177e8bbb6f0549fe03468057c8d898c4595592d2fa1f27227ff5a9aa2c57cd"
+    },
+    {
+      "path": "lane-a-lsan-sanity.log",
+      "sha256": "f31342f2609f81d8d063987779cb32a8159dd41975cb4817fd67697e1e5e9637"
+    },
+    {
+      "path": "lane-a-main.swift",
+      "sha256": "5c0c6b4fa38b7f460c0c6ec6aa9ec0971198ba5e1dfc201ca939f16d110c0a59"
+    },
+    {
+      "path": "lane-c-box-capture.log",
+      "sha256": "d6e5fb6d6d15da4c0b3171a1a9aa594a082b17b51494481c5706fa3cd0c67694"
+    },
+    {
+      "path": "lane-c-box-hashes.txt",
+      "sha256": "f79ec821e91b45b938995ac7551491d63a247b7367590decef6ab5bc337289d2"
+    },
+    {
+      "path": "lane-c-box-as-run-hashes.txt",
+      "sha256": "fae1ed3d39ed335e3e655906d3aa315bb79d10d215d230423b8e59b34a53a861"
+    }
+  ]
+}
