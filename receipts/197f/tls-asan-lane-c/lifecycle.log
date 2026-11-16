@@ -1,0 +1,65 @@
+PASS U1 userinfo redacted
+PASS U2 query values and keys redacted
+PASS U3 fragment and path redacted
+PASS U4 local path not exposed
+PASS U6 malformed credential redacted
+PASS U7 encoded credential redacted
+PASS U5 summary counts only
+PASS S0 server started on 127.0.0.1:36309
+[https @ 0x511000014400] HTTP error 403 Forbidden
+PASS S1 remote open without credentials is refused by the server
+PASS TLS product audio open with header+cookie identifies wav
+PASS S2b header newline injection refused
+[tcp @ 0x510000010940] Connection to tcp://127.0.0.1:1 failed: Connection refused
+PASS S3 error redacts userinfo and query
+PASS S4 non-admitted scheme refused
+PASS L explicit close iteration 0
+PASS L abandon/deinit iteration 0
+PASS L explicit close iteration 1
+PASS L abandon/deinit iteration 1
+PASS L explicit close iteration 2
+PASS L abandon/deinit iteration 2
+PASS L explicit close iteration 3
+PASS L abandon/deinit iteration 3
+PASS L explicit close iteration 4
+PASS L abandon/deinit iteration 4
+PASS L explicit close iteration 5
+PASS L abandon/deinit iteration 5
+PASS L explicit close iteration 6
+PASS L abandon/deinit iteration 6
+PASS L explicit close iteration 7
+PASS L abandon/deinit iteration 7
+PASS L explicit close iteration 8
+PASS L abandon/deinit iteration 8
+PASS L explicit close iteration 9
+PASS L abandon/deinit iteration 9
+[https @ 0x51100002afc0] HTTP error 403 Forbidden
+PASS L failed open iteration 0
+[https @ 0x5110000359c0] HTTP error 403 Forbidden
+PASS L failed open iteration 1
+[https @ 0x51100002bec0] HTTP error 403 Forbidden
+PASS L failed open iteration 2
+PASS L TLS blocked open deadline
+PASS L TLS blocked open cancel
+PASS L recovery after cancel/deadline
+m2-tls-open: all pass
+
+=================================================================
+==27120==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x562df55d4617  (/tmp/tlsrun1/tree/.build/x86_64-unknown-linux-gnu/debug/remote-source-tests+0x1a5617) (BuildId: b3ab76790cee4282e7bf8b0873a60d8d114f778e)
+    #1 0x7f1e2c83758a  (/home/sandbox/toolchain/swift-6.1.2-RELEASE-ubuntu22.04/usr/lib/swift/linux/libswiftCore.so+0x43758a) (BuildId: 930483926c3b2184ab3fb8d3f5cf1d6959835505)
+    #2 0x7f1e2c8834ac  (/home/sandbox/toolchain/swift-6.1.2-RELEASE-ubuntu22.04/usr/lib/swift/linux/libswiftCore.so+0x4834ac) (BuildId: 930483926c3b2184ab3fb8d3f5cf1d6959835505)
+    #3 0x7f1e2c839709  (/home/sandbox/toolchain/swift-6.1.2-RELEASE-ubuntu22.04/usr/lib/swift/linux/libswiftCore.so+0x439709) (BuildId: 930483926c3b2184ab3fb8d3f5cf1d6959835505)
+    #4 0x562df56327d2  (/tmp/tlsrun1/tree/.build/x86_64-unknown-linux-gnu/debug/remote-source-tests+0x2037d2) (BuildId: b3ab76790cee4282e7bf8b0873a60d8d114f778e)
+    #5 0x562df566aaad  (/tmp/tlsrun1/tree/.build/x86_64-unknown-linux-gnu/debug/remote-source-tests+0x23baad) (BuildId: b3ab76790cee4282e7bf8b0873a60d8d114f778e)
+    #6 0x7f1e2caef86b  (/home/sandbox/toolchain/swift-6.1.2-RELEASE-ubuntu22.04/usr/lib/swift/linux/libswiftDispatch.so+0x1e86b) (BuildId: 300ad3b1e07483868c20570e374a9f98eb83a2f5)
+    #7 0x562df562ef68  (/tmp/tlsrun1/tree/.build/x86_64-unknown-linux-gnu/debug/remote-source-tests+0x1fff68) (BuildId: b3ab76790cee4282e7bf8b0873a60d8d114f778e)
+    #8 0x7f1e2c38eab1  (/home/sandbox/toolchain/swift-6.1.2-RELEASE-ubuntu22.04/usr/lib/swift/linux/libswift_Concurrency.so+0x25ab1) (BuildId: bb1b856b1871525557cbb41c5cac3df5b44fec22)
+    #9 0x7f1e2c38ea41  (/home/sandbox/toolchain/swift-6.1.2-RELEASE-ubuntu22.04/usr/lib/swift/linux/libswift_Concurrency.so+0x25a41) (BuildId: bb1b856b1871525557cbb41c5cac3df5b44fec22)
+    #10 0x7f1e2c3d036f  (/home/sandbox/toolchain/swift-6.1.2-RELEASE-ubuntu22.04/usr/lib/swift/linux/libswift_Concurrency.so+0x6736f) (BuildId: bb1b856b1871525557cbb41c5cac3df5b44fec22)
+    #11 0x7f1e2c3d0f24  (/home/sandbox/toolchain/swift-6.1.2-RELEASE-ubuntu22.04/usr/lib/swift/linux/libswift_Concurrency.so+0x67f24) (BuildId: bb1b856b1871525557cbb41c5cac3df5b44fec22)
+    #12 0x7f1e2c160b8a  (/home/sandbox/toolchain/swift-6.1.2-RELEASE-ubuntu22.04/usr/lib/swift/linux/libdispatch.so+0x2bb8a) (BuildId: 0ac0dadc87db1b7e819ea64fc788db26b2781388)
+
+SUMMARY: AddressSanitizer: 32 byte(s) leaked in 1 allocation(s).

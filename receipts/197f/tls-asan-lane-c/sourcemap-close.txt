@@ -1,0 +1,46 @@
+   810	    }
+   811	
+   812	    public func close(session: SessionID) async {
+   813	        await withCheckedContinuation { (cont: CheckedContinuation<Void, Never>) in
+   814	            nativeQueue.sync {
+   815	                guard session.epoch == self.activeSid else { cont.resume(); return }
+   816	                self.deregisterDecoderOnQueue()
+   817	                // Fence new requests now, but keep callback storage alive until
+   818	                // provider teardown completes. Nested protocol contexts may
+   819	                // hold copies of AVIOInterruptCB, including TLS shutdown.
+   820	                if let ctx = self.fmt {
+   821	                    ctx.pointee.interrupt_callback = AVIOInterruptCB(callback: nil, opaque: nil)
+   822	                }
+   823	                self.interruptSlot.clear()
+   824	                self.activeSid = nil; self.pendingOpened = nil
+   825	                self.sourceUUID = nil; self.descriptor = nil; self.landingTarget = nil; self.lastTiming = nil
+   826	                self.feedState = .terminal; self.packetPending = false
+   827	                if let pkt = self.packet { var p: UnsafeMutablePointer<AVPacket>? = pkt; av_packet_free(&p); self.packet = nil }
+   828	                if let fr = self.frame { var f: UnsafeMutablePointer<AVFrame>? = fr; av_frame_free(&f); self.frame = nil }
+   829	                if let cc = self.codec { var c: UnsafeMutablePointer<AVCodecContext>? = cc; avcodec_free_context(&c); self.codec = nil }
+   830	                if let fc = self.fmt { var f: UnsafeMutablePointer<AVFormatContext>? = fc; avformat_close_input(&f); self.fmt = nil }
+   831	                self.teardownInterruptLocked()
+   832	                self.m1Converter = nil; self.m1TailDrained = false; self.m1OutputCursor = nil; self.m1InputCursor = nil
+   833	                self.active = false
+   834	                cont.resume()
+   835	            }
+   836	        }
+   837	    }
+   838	    deinit {
+   839	        // No queued native operation can outlive the reference it retains.
+   840	        // Mirror explicit-close resource teardown for abandoned instances.
+   841	        func cleanup() {
+   842	            self.deregisterDecoderOnQueue()
+   843	            if let ctx = self.fmt { ctx.pointee.interrupt_callback = AVIOInterruptCB(callback: nil, opaque: nil) }
+   844	            self.interruptSlot.clear()
+   845	            if let pkt=self.packet { var p:UnsafeMutablePointer<AVPacket>?=pkt; av_packet_free(&p) }
+   846	            if let fr=self.frame { var f:UnsafeMutablePointer<AVFrame>?=fr; av_frame_free(&f) }
+   847	            if let cc=self.codec { var c:UnsafeMutablePointer<AVCodecContext>?=cc; avcodec_free_context(&c) }
+   848	            if let fc=self.fmt { var f:UnsafeMutablePointer<AVFormatContext>?=fc; avformat_close_input(&f) }
+   849	            self.teardownInterruptLocked()
+   850	        }
+   851	        if DispatchQueue.getSpecific(key:decoderQueueKey) != nil { cleanup() }
+   852	        else { nativeQueue.sync(execute:cleanup) }
+   853	    }
+   854	
+   855	}
