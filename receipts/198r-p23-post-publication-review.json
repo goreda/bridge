@@ -1,0 +1,45 @@
+{
+  "source_ref": "12b6eb6",
+  "input_ref": "14c53ca",
+  "input_pins": "PASS source+helper blob/hash/size and actual template/write symbols",
+  "security": "credential/private-key pattern scan PASS; TEX_BLUENOISE explicitly excluded; no texture/userstate needed",
+  "packets": [
+    {
+      "path": "packets/W-goreda-198o-p23-01.md",
+      "size": 4847,
+      "sha256": "d671dd0131ec50e6e030ab1be968820a173d50c206d1be27f87fafcf81fa2846",
+      "verdict": "STARTABLE_SOURCE_SPEC_NOT_RUN_PROVEN"
+    },
+    {
+      "path": "packets/W-goreda-198o-p23-02.md",
+      "size": 4884,
+      "sha256": "7f54e2ae20f22f0e294b82119984527e11a7bcd4e5051684e167e8ea7f5d15ee",
+      "verdict": "STARTABLE_SOURCE_SPEC_NOT_RUN_PROVEN"
+    },
+    {
+      "path": "packets/W-goreda-198o-p23-03.md",
+      "size": 4850,
+      "sha256": "d76d35d848ed2e578e03a2446f892a69ae1e6f94bb1a95772ee036e13353d954",
+      "verdict": "STARTABLE_SOURCE_SPEC_NOT_RUN_PROVEN"
+    },
+    {
+      "path": "packets/W-goreda-198o-p23-04.md",
+      "size": 4838,
+      "sha256": "7ada7554b080aa002d1c3eed3c06e3224a00c5086e835c330debfa71933e17d1",
+      "verdict": "STARTABLE_SOURCE_SPEC_NOT_RUN_PROVEN"
+    },
+    {
+      "path": "packets/W-goreda-198o-generic-research-01-04.md",
+      "size": 5540,
+      "sha256": "e6a7092a5768837bada8dcf7c60b0b7e01ab02a684cfb27cf4fb2a75edd343b1",
+      "verdict": "NON_P23_RESEARCH_NOT_STOCK"
+    }
+  ],
+  "caveats": [
+    "02 overlaps H0608: extend precision/negative witness not duplicate implementation",
+    "Lua+Swift execution dependency; labb Swift absent",
+    "No source-defined domain: default-only plus precision mutants, do not invent ranges",
+    "No lab allocation/index/current-run proof, not executable20stock",
+    "Generic r2 reviewer approval text obsolete, no actual publication gate"
+  ]
+}
