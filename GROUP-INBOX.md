@@ -4482,3 +4482,27 @@ Main/lane c reports lane/c-pgs-seam bbf8d99ffac8445b1e9bf08aa668490bb097780e off
 SeamexposedtwoLABdecoderspecfixes: WDS/ODSswapped, correctedODS0x15/WDS0x17 inpgs.c/Swift/tests.c/sample.c/regeneratedsample.sup; ODSfirst|last0xc0nowacceptedwithstrictsizecheck. Reported55checks0failuresASan/UBSanclean. Earlier45labpassesdidNOTcoverrealencoderstream. kits/b1-pgs standaloneC.
 
 LinuxpackagebuildPASS;seamrc77subtitlelegREAL,MKV/maclegstypedUNRUN. Fourlane-cMP4fixturesstillrc77/unchangedevidence. No fullgatePASS/native/acceptance/currentstockclaim. DarwincompilePASSREQUIREDbeforemerge,sourcebranchdoesnotmoveownerref. NativeHELDuntilownerreplythenflatgate,C,VT. NewPGStipisofflinecandidate, CqueueexacttipneedsMainconfirmationbeforefuturedispatch. No mergesrequestedbyOps.
+
+
+## 2026-11-16 03:41 +03 C PGS Darwin preflight verbatim, execution held
+
+Lane c preflight via Main, preserved verbatim below. MainroutingCslotbbf8d99supersedes14f90c84,4MP4+PGSinONEjob;orderflatgate,C,VT. Nativeholduntilownerreply. OpsOPENvalidation: SETUP894da5caolderprovider conflicts current7.1recipe/U1;no mixedheaders/libsallowed. NeedMain/laneresolvebeforeexecution. macos15notverifiedonrunner,xcode latestservedXcode26.6/macOS26.5SDKinU1;donotclaimmacos15withoutactualOScheck.
+
+```text
+SETUP: Codemagic macOS (M2, macos-15), repo at bbf8d99, FF=pinned ffmpeg prefix 894da5ca7d742e4429ffb2af534fcda0103ef593 per scripts/ci/native-harness-map-195b.md. scripts/ci/e1-headless-mac.sh builds e1-headless-tests release with -DE1_WITH_VT -DE1_WITH_EMBED -DE1_WITH_AUDIO_OUT and GORAV_VT_ZEROCOPY=1.
+PART 1, four MP4 shapes, expect rc=0 each:
+FF=<prefix> scripts/ci/e1-headless-mac.sh fixtures/e1-h264-aac-10s.mp4 fixtures/e1-h264-aac44k1-10s.mp4 fixtures/e1-h264-aac51-10s.mp4 fixtures/e1-h264-aacmono-10s.mp4
+Evidence per fixture: "audio_pcm ... oracle_bytediff=IDENTICAL discontinuities=0", "E1-HEADLESS PASS: all six legs real", close_ms < 300; 44.1k line says RESAMPLE-REAL; suite line "E1-HEADLESS-MAC rc=0".
+PART 2, PGS shape, expect rc=77 (typed UNRUN is the honest outcome, run the binary directly, not the driver script):
+GORAV_VT_ZEROCOPY=1 .build/release/e1-headless-tests kits/e1-corpus/e1-mkv-pgs.mkv
+Required lines (any absent = FAIL):
+"E1-HEADLESS demux tracks=video:h264,audio:aac,subtitle:s_hdmv/pgs"
+"E1-HEADLESS pgs evt type=1 pts90k=2070 ptsms=23 rects=1 isum=11703373549476155392 psum=3354854972892648383"
+"E1-HEADLESS pgs   rect 100 100 64 36"
+"E1-HEADLESS subtitle pinned=e1-mkv-pgs OK (byte-identical to the C carrier)"
+"E1-HEADLESS UNRUN leg=AUDIO-PCM (Matroska: no esds via MP4 box walk; e1-shapes-tests covers the product path)"
+PART 3, C witness:
+cd kits/b1-pgs && cc -std=c99 -Wall -Wextra -O1 -g -fsanitize=address,undefined pgs.c tests.c -o /tmp/pgs_tests && /tmp/pgs_tests
+Required "checks: 55, failures: 0".
+Caller-site: LabPGSDecoder public API unchanged, no other consumer. NOT PROVEN: MKV video/audio decode legs in the harness, Metal subtitle presentation.
+```
