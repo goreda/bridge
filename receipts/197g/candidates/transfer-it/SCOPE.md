@@ -13,3 +13,7 @@ secret scan: clean
 ## Lane c PCM receipt
 
 See lane-c-pcm/ for the subsequently supplied Linux TEST receipt: lane c reports actual Swift local-file decode equal to the independent PCM anchor after bounded fixture download. No replay by this ingest. Earlier source-only and local Node limits still apply to those earlier records; this receipt adds controlled decode evidence only, no live service, MAC or coordinator claim.
+
+## Later lane c whole-file MAC receipt
+
+See lane-c-mac-pcm/ for a later controlled whole-file node-key MAC and actual Swift PCM receipt, reported GREEN by lane c. Earlier integrity=unverified records remain scoped to their original bytes and runs; the newer receipt does not upgrade those sources. Boundary disagreement mac-megajs-disagreement.log remains RED and NOT closed. No live-service, coordinator, or general compatibility claim. Source bundle not supplied here; no replay by this ingest.
