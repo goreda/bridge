@@ -1,0 +1,60 @@
+PASS U1 userinfo redacted
+PASS U2 query values and keys redacted
+PASS U3 fragment and path redacted
+PASS U4 local path not exposed
+PASS U6 malformed credential redacted
+PASS U7 encoded credential redacted
+PASS U5 summary counts only
+PASS S0 server started on 127.0.0.1:33633
+[https @ 0x511000014400] HTTP error 403 Forbidden
+PASS S1 remote open without credentials is refused by the server
+PASS TLS product audio open with header+cookie identifies wav
+PASS S2b header newline injection refused
+[tcp @ 0x510000013340] Connection to tcp://127.0.0.1:1 failed: Connection refused
+PASS S3 error redacts userinfo and query
+PASS S4 non-admitted scheme refused
+PASS L explicit close iteration 0
+PASS L abandon/deinit iteration 0
+PASS L explicit close iteration 1
+PASS L abandon/deinit iteration 1
+PASS L explicit close iteration 2
+PASS L abandon/deinit iteration 2
+PASS L explicit close iteration 3
+PASS L abandon/deinit iteration 3
+PASS L explicit close iteration 4
+PASS L abandon/deinit iteration 4
+PASS L explicit close iteration 5
+PASS L abandon/deinit iteration 5
+PASS L explicit close iteration 6
+PASS L abandon/deinit iteration 6
+PASS L explicit close iteration 7
+PASS L abandon/deinit iteration 7
+PASS L explicit close iteration 8
+PASS L abandon/deinit iteration 8
+PASS L explicit close iteration 9
+PASS L abandon/deinit iteration 9
+[https @ 0x51100002d900] HTTP error 403 Forbidden
+PASS L failed open iteration 0
+[https @ 0x511000033080] HTTP error 403 Forbidden
+PASS L failed open iteration 1
+[https @ 0x51100002e800] HTTP error 403 Forbidden
+PASS L failed open iteration 2
+PASS L TLS blocked open deadline
+PASS L TLS blocked open cancel
+PASS L recovery after cancel/deadline
+m2-tls-open: all pass
+
+=================================================================
+==27933==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x559bbde0fd87  (/tmp/syncrun/tree/.build/x86_64-unknown-linux-gnu/debug/remote-source-tests+0x1a8d87) (BuildId: d067ba35bf3e930080f75f57517b8c44c37be13c)
+    #1 0x7fe6fdc3758a  (/home/sandbox/toolchain/swift-6.1.2-RELEASE-ubuntu22.04/usr/lib/swift/linux/libswiftCore.so+0x43758a) (BuildId: 930483926c3b2184ab3fb8d3f5cf1d6959835505)
+    #2 0x7fe6fdc834ac  (/home/sandbox/toolchain/swift-6.1.2-RELEASE-ubuntu22.04/usr/lib/swift/linux/libswiftCore.so+0x4834ac) (BuildId: 930483926c3b2184ab3fb8d3f5cf1d6959835505)
+    #3 0x7fe6fdc39709  (/home/sandbox/toolchain/swift-6.1.2-RELEASE-ubuntu22.04/usr/lib/swift/linux/libswiftCore.so+0x439709) (BuildId: 930483926c3b2184ab3fb8d3f5cf1d6959835505)
+    #4 0x559bbde6c975  (/tmp/syncrun/tree/.build/x86_64-unknown-linux-gnu/debug/remote-source-tests+0x205975) (BuildId: d067ba35bf3e930080f75f57517b8c44c37be13c)
+    #5 0x559bbde7f5b8  (/tmp/syncrun/tree/.build/x86_64-unknown-linux-gnu/debug/remote-source-tests+0x2185b8) (BuildId: d067ba35bf3e930080f75f57517b8c44c37be13c)
+    #6 0x7fe6fd5bae0b  (/home/sandbox/toolchain/swift-6.1.2-RELEASE-ubuntu22.04/usr/lib/swift/linux/libswiftDispatch.so+0x1be0b) (BuildId: 300ad3b1e07483868c20570e374a9f98eb83a2f5)
+    #7 0x7fe6fd5bae29  (/home/sandbox/toolchain/swift-6.1.2-RELEASE-ubuntu22.04/usr/lib/swift/linux/libswiftDispatch.so+0x1be29) (BuildId: 300ad3b1e07483868c20570e374a9f98eb83a2f5)
+
+SUMMARY: AddressSanitizer: 32 byte(s) leaked in 1 allocation(s).
