@@ -1,0 +1,71 @@
+[CONFIRMED] T01 changed resource bytes pass: baseline hash value never read
+    baseline pins sha256 b5209c67317c67b9...; actual bytes hash 7b185f1a04bfc206...; compare()=PASS removed={}; CLI exit=0 verdict=PASS. Lines 63-65 test only `n not in actual['files']`; the pinned digest is never compared.
+[CONFIRMED] T02 photon receipt trigger evaded by renaming the lua file
+    photon.lua: verdict=FAIL (no bypass receipt supplied)
+    shader.lua: verdict=PASS (no bypass receipt supplied)
+    PHOTON.lua: verdict=PASS (no bypass receipt supplied)
+    Line 85: any('photon' in name and name.endswith('.lua')). The witness branch keys on the filename substring, not on detected photon shader usage; case variant PHOTON.lua also evades.
+[CONFIRMED] T03 commented-out message/shader/option still count as present
+    all three features exist only inside Lua comments; verdict=PASS removed={}. Lines 12-14 regex-scan raw text with no comment/string context: presence is textual, not semantic.
+[CONFIRMED] T04 symlink target bytes and mode changes verify EQUAL; symlinked executable binds
+    regular==symlink-to-external: True; 0755==0644: True; exe-as-symlink verdict=PASS. Line 8 hashes only content bytes (is_file/read_bytes follow symlinks); type, mode and link target are unrepresented, so the closure digest (line 27) validates EQUAL across all of these.
+[CONFIRMED] T05 Infinity passes delta>0 proof; NaN refused (asymmetric)
+    Infinity deltas -> errors=[]; NaN -> first error=['Photon no-silent-bypass: corrupt SHARP fallback output is bypass or unmeasured']. Lines 43/48/57 check isinstance((int,float)) and delta>0; float('inf') satisfies both. Python json.loads (line 90) accepts the nonstandard literal Infinity, so a receipt can carry it.
+[CONFIRMED] T06 row max_delta_from_bypass=True (bool) accepted as numeric
+    errors=[]. Line 36 lacks the not-isinstance(...,bool) guard lines 43/48/57 apply to fixture deltas.
+[CONFIRMED] T07 malformed input types raise exceptions (no structured FAIL)
+    runtime = JSON list: AttributeError
+    baseline missing resource_files: KeyError
+    baseline missing input_bindings: KeyError
+    runtime feature list unhashable element: TypeError
+    receipt is a string: AttributeError
+    shader_results null: TypeError
+    shader_results row is string: AttributeError
+    inventory unhashable element: TypeError
+    8/8 cases crash; result JSON is only written at line 108, so these abort with a traceback.
+[CONFIRMED] T08 non-UTF8 .lua/input.conf crashes with UnicodeDecodeError
+    bad.lua: UnicodeDecodeError
+    input.conf: UnicodeDecodeError
+    read_text() defaults to UTF-8 at lines 12/14; binary resources abort the run.
+[CONFIRMED] T09 resource directory replaced by symlink: contents invisible
+    verdict=FAIL removed={'resource_files': ['Resources/sub/fixture.txt']}. On Python 3.10 rglob lists the symlink 'sub' but does not descend and is_file() is False: symlinked-in content reads as removed (false REFUSE).
+[CONFIRMED] T10 baseline built_bundle_files "../escape.txt" verifies an out-of-tree file
+    verdict=PASS. Line 75 (bundle/name).is_file() has no normalization/containment check. Baseline is a trusted input, so this is containment hygiene, not a remote exploit.
+[CONFIRMED] T11 out.json records no digest of removals doc, runtime receipt or resources
+    digest-like keys: ['executable_sha256', 'baseline_sha256']; identical across different removals.md contents. Only baseline_sha256 is recorded (line 108); the approvals document and runtime receipt that shaped the verdict are unbound.
+[CONFIRMED] T12 executable hashed 2-4x per run; PASS can carry an unverified recorded digest
+    sha(executable) calls in one compare() without photon receipt: 2 (lines 78,87; receipt paths add lines 26 and 95). With read 1 matching and read 2 differing: verdict=PASS, recorded executable_sha256=ffffffff... - a digest never verified against anything. A swap between reads yields a PASS whose recorded identity is not the checked bytes. Resources are also read twice (hash line 8, text line 14).
+[CONFIRMED] T13 duplicate runtime feature IDs accepted without detection
+    features.menus=['m','m','m'] vs baseline ['m']: verdict=PASS. Lines 66/83 compare sets; duplicates invisible, unlike the shader inventory duplicate check (line 32).
+[CONFIRMED] T14 unreadable resource file raises PermissionError
+    chmod 000 resource -> PermissionError; no error handling at line 8.
+[REFUTED] T15 missing --resources / --bundle dirs: structured FAIL (control)
+    missing resources -> FAIL removed={'resource_files': ['Resources/fixture.txt']}; missing bundle -> FAIL errors=['Built executable missing']. Fail-closed as required; hole REFUTED.
+[CONFIRMED] T16 built_bundle_files presence-only: tampered non-executable bytes pass
+    libx.dylib bytes changed post-baseline: verdict=PASS. Lines 74-75 call is_file() only; baseline schema is a list (no digests); only Contents/MacOS/gor gets a receipt binding (line 78).
+[REFUTED] T17 approved-name removal without v4 replacement receipt is refused (control)
+    CLI exit=1 removed={'script_messages': ['photon-grain-set-strength-hint']}. Lines 93-96 zero the approval sets unless a full v4 replacement receipt binds the executable; hole REFUTED.
+[REFUTED] T18 stale source_pin in shipped_path is refused (control)
+    errors=['Photon no-silent-bypass: shipped-path reference is not exact delivered baseline']. Line 29 pins the exact delivered baseline commit; stale candidate binding REFUTED.
+
+=== SUMMARY ===
+T01 CONFIRMED changed resource bytes pass: baseline hash value never read
+T02 CONFIRMED photon receipt trigger evaded by renaming the lua file
+T03 CONFIRMED commented-out message/shader/option still count as present
+T04 CONFIRMED symlink target bytes and mode changes verify EQUAL; symlinked executable binds
+T05 CONFIRMED Infinity passes delta>0 proof; NaN refused (asymmetric)
+T06 CONFIRMED row max_delta_from_bypass=True (bool) accepted as numeric
+T07 CONFIRMED malformed input types raise exceptions (no structured FAIL)
+T08 CONFIRMED non-UTF8 .lua/input.conf crashes with UnicodeDecodeError
+T09 CONFIRMED resource directory replaced by symlink: contents invisible
+T10 CONFIRMED baseline built_bundle_files "../escape.txt" verifies an out-of-tree file
+T11 CONFIRMED out.json records no digest of removals doc, runtime receipt or resources
+T12 CONFIRMED executable hashed 2-4x per run; PASS can carry an unverified recorded digest
+T13 CONFIRMED duplicate runtime feature IDs accepted without detection
+T14 CONFIRMED unreadable resource file raises PermissionError
+T15 REFUTED missing --resources / --bundle dirs: structured FAIL (control)
+T16 CONFIRMED built_bundle_files presence-only: tampered non-executable bytes pass
+T17 REFUTED approved-name removal without v4 replacement receipt is refused (control)
+T18 REFUTED stale source_pin in shipped_path is refused (control)
+checker=/tmp/05-ops-r3/bundle-feature-gate.py
+checker_sha256=7041691a9109d71400531ad018dbddf0aa01c1a9fb6c5999aa2b918fccdff99f
