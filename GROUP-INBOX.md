@@ -4506,3 +4506,20 @@ cd kits/b1-pgs && cc -std=c99 -Wall -Wextra -O1 -g -fsanitize=address,undefined 
 Required "checks: 55, failures: 0".
 Caller-site: LabPGSDecoder public API unchanged, no other consumer. NOT PROVEN: MKV video/audio decode legs in the harness, Metal subtitle presentation.
 ```
+
+
+## 2026-11-16 03:43 +03 C setup/build corrected, earlier894da5ca/macos15 RETRACTED
+
+Main/lane c corrected setup preserved verbatim. It replaces earlier SETUP/build, not fixture criteria. Opswillnotusehardcodedoldscriptflagblock; exact7.1headers/libs+actualrunnerinspectionrequired. Nativeholdstands.
+
+```text
+1) PROVIDER: FFmpeg 7.1 full-codec (U1/current-engine provider) per kits/ffmpeg-configure-diff/full-codec-provider-7.1-recipe.txt (pgssub on, swresample 5.3.100). $FF = the runner's actual install prefix with include/ and lib/. Do NOT use the 894da5ca 8.0.1 tree (8.0.1-headers/7.1-libs poisoning incident, STATUS.md, H-0602). scripts/ci/e1-headless-mac.sh at bbf8d99 hardcodes the 894da5ca layout, so do not use its flag block for this slot; a follow-up commit will parameterize it after the sha unpins. Lane c's Linux verification used 8.0.1 locally; run C at 9b574465 already compile-PASSED harness+resampler seam on Darwin against 7.1, and the bbf8d99 delta is pure Swift (no new C API).
+2) RUNNER: Codemagic M2 on private mirror zuellue/gorav-native-ci (PLAN.md P10). The Codemagic Xcode/SDK pin lives in the mirror, not in goreda/gorav; U1 observed xcode:latest = Xcode 26.6 / macOS 26.5 SDK stands. "macos-15" is only the GitHub Actions lane (engine-macos.yml); the 195b map conflated the two.
+BUILD:
+FLAGS=(-Xcc "-I$FF/include" -Xlinker -L"$FF/lib" -Xlinker -framework -Xlinker VideoToolbox)
+DEFINES=(-Xswiftc -DE1_WITH_VT -Xswiftc -DE1_WITH_EMBED -Xswiftc -DE1_WITH_AUDIO_OUT)
+swift build -c release --product e1-headless-tests "${FLAGS[@]}" "${DEFINES[@]}"
+Link names from Sources/CFFmpeg/module.modulemap.
+RUN: Part 1/2/3 expectations unchanged, but run the binary directly: GORAV_VT_ZEROCOPY=1 .build/release/e1-headless-tests <fixture> for the four MP4s (rc=0 each) and kits/e1-corpus/e1-mkv-pgs.mkv (rc=77 expected, five evidence lines); Part 3 C witness 55 checks 0 failures.
+FLAG FOR VT SLOT: the 7.1 recipe lacks --enable-hwaccel=h264_videotoolbox/hevc_videotoolbox (the 894da5ca configure has them). VT proof uses the adapter's own VTDecompressionSession so should not need it, but if any leg does, add the flags before VT runs.
+```
