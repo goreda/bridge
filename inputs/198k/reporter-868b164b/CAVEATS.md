@@ -1,0 +1,3 @@
+# Reporter 868b164b source review
+
+Previous restore-race, invalid IPC/null and dynamic photon-toggle false-witness concerns addressed in source. Five probes remain, photon-toggle and all other handlers UNPROBED. Source is suitable for initial baseline collection once real L1 job arrives, not a full baseline attestation. Native compile/runtime still NOT_RUN; actual logs and every expected live feature need review. Open panels are not proof of every closed available panel. Script input bindings may fall back to source config. V4 suites NOT_RUN. A lost send acknowledgement can leave toggled state indeterminate; do not reuse that app session for acceptance after FAILED probe, restart pristine. No duplicate delivery or grain texture export.

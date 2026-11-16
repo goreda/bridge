@@ -1,0 +1,1 @@
+Lab-authored H0605 download,1369B,SHA2560c1426c74e757b9d2017936809eae2fd34ebf81ce92563d9f997a9a74a20c9d7. Ops mirror, not lab git push or independently verified schedule.198m citation not owner-original archive. Inputs-blocked text stale. Actual trigger/backstop chain unverified. No schedule created by mirroring.
