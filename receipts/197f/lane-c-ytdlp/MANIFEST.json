@@ -1,0 +1,29 @@
+{
+  "executor": "lane c own execution confirmed via Main",
+  "pin": "a34e2cd96b6825932a196424a17cc62962e910a7",
+  "process": "cleanbase, scriptunchanged, result0descendant0",
+  "process_pcm": "base+packetoverlay, FFmpeg7.1GnuTLSnotdav1d,inventory0product0,loopbackfakeextractor,PCMmatchsameproductdecoderbothlegs,notindependentoracle",
+  "scope": "additionalrawexecutionevidence, no newledgerrow, noexternalYouTube/liveprovider/native/higheracceptance",
+  "files": [
+    {
+      "path": "process.log",
+      "sha256": "75e56248a7b474cd4c0501bdfbb6951fc43dad295a72f6d679eef8c8a16020e1"
+    },
+    {
+      "path": "process-sha256.txt",
+      "sha256": "d8e01f1ceddb05fa4bd5fa75d5328fc8fcb0f5f9f2bc0a4832ce4fa806f5b371"
+    },
+    {
+      "path": "process-pcm.log",
+      "sha256": "ffde0754a6b38da96cd8c094ad54eb954b148112a8b9c1f08a259aacfdf008a3"
+    },
+    {
+      "path": "process-pcm-sha256.txt",
+      "sha256": "e7a9db1d728c02f292b626001e54fe9f8b1847f6a88e40f11a1e0a7af5cf9888"
+    },
+    {
+      "path": "process-pcm-as-run-sha256.txt",
+      "sha256": "360f2a8de873b6cbf6a01c5dc0dcc321f2b403aadffe9c7856bcc9731ecc9775"
+    }
+  ]
+}

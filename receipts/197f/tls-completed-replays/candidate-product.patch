@@ -1,0 +1,135 @@
+--- a/Sources/GorAVFFmpegAdapter/FFmpegSoftwareAudioDecoder.swift
++++ b/Sources/GorAVFFmpegAdapter/FFmpegSoftwareAudioDecoder.swift
+@@ -814,14 +814,13 @@
+             nativeQueue.sync {
+                 guard session.epoch == self.activeSid else { cont.resume(); return }
+                 self.deregisterDecoderOnQueue()
+-                // 195b-54: close retires the session-owned interrupt route
+-                // BEFORE provider teardown: the provider callback is disarmed
+-                // and a delayed requestInterrupt can never reach a later
+-                // session through stale storage.
++                // Fence new requests now, but keep callback storage alive until
++                // provider teardown completes. Nested protocol contexts may
++                // hold copies of AVIOInterruptCB, including TLS shutdown.
+                 if let ctx = self.fmt {
+                     ctx.pointee.interrupt_callback = AVIOInterruptCB(callback: nil, opaque: nil)
+                 }
+-                self.teardownInterruptLocked()
++                self.interruptSlot.clear()
+                 self.activeSid = nil; self.pendingOpened = nil
+                 self.sourceUUID = nil; self.descriptor = nil; self.landingTarget = nil; self.lastTiming = nil
+                 self.feedState = .terminal; self.packetPending = false
+@@ -829,6 +828,7 @@
+                 if let fr = self.frame { var f: UnsafeMutablePointer<AVFrame>? = fr; av_frame_free(&f); self.frame = nil }
+                 if let cc = self.codec { var c: UnsafeMutablePointer<AVCodecContext>? = cc; avcodec_free_context(&c); self.codec = nil }
+                 if let fc = self.fmt { var f: UnsafeMutablePointer<AVFormatContext>? = fc; avformat_close_input(&f); self.fmt = nil }
++                self.teardownInterruptLocked()
+                 self.m1Converter = nil; self.m1TailDrained = false; self.m1OutputCursor = nil; self.m1InputCursor = nil
+                 self.active = false
+                 cont.resume()
+@@ -841,11 +841,12 @@
+         func cleanup() {
+             self.deregisterDecoderOnQueue()
+             if let ctx = self.fmt { ctx.pointee.interrupt_callback = AVIOInterruptCB(callback: nil, opaque: nil) }
+-            self.teardownInterruptLocked()
++            self.interruptSlot.clear()
+             if let pkt=self.packet { var p:UnsafeMutablePointer<AVPacket>?=pkt; av_packet_free(&p) }
+             if let fr=self.frame { var f:UnsafeMutablePointer<AVFrame>?=fr; av_frame_free(&f) }
+             if let cc=self.codec { var c:UnsafeMutablePointer<AVCodecContext>?=cc; avcodec_free_context(&c) }
+             if let fc=self.fmt { var f:UnsafeMutablePointer<AVFormatContext>?=fc; avformat_close_input(&f) }
++            self.teardownInterruptLocked()
+         }
+         if DispatchQueue.getSpecific(key:decoderQueueKey) != nil { cleanup() }
+         else { nativeQueue.sync(execute:cleanup) }
+--- a/Sources/GorAVFFmpegAdapter/SourceOpenOptions.swift
++++ b/Sources/GorAVFFmpegAdapter/SourceOpenOptions.swift
+@@ -19,10 +19,14 @@
+     /// 195b-54: optional per-open deadline in seconds, bounding the remote
+     /// open + stream-info phase only (streaming reads answer cancellation
+     /// instead). nil means no deadline. Must be finite, > 0 and <= 86400.
++    /// Optional absolute PEM trust-root path, owned by caller. nil uses system
++    /// trust. Verification and hostname matching are always enabled.
++    public var tlsCAFile: String?
+     public var openDeadlineSeconds: Double?
+-    public init(headers: [String: String] = [:], cookies: [String: String] = [:], openDeadlineSeconds: Double? = nil) {
++    public init(headers: [String: String] = [:], cookies: [String: String] = [:], openDeadlineSeconds: Double? = nil, tlsCAFile: String? = nil) {
+         self.headers = headers
+         self.cookies = cookies
++        self.tlsCAFile = tlsCAFile
+         self.openDeadlineSeconds = openDeadlineSeconds
+     }
+     /// Log-safe description: counts and presence only, never keys or values.
+@@ -43,6 +47,7 @@
+     case cookieInjection
+     case cookieHeaderConflict
+     case deadlineInvalid
++    case tlsTrustInvalid
+ }
+ 
+ extension SourceOpenOptions {
+@@ -62,6 +67,11 @@
+         if !cookies.isEmpty {
+             guard !headers.keys.contains(where: { $0.lowercased() == "cookie" }) else {
+                 throw SourceOpenOptionsError.cookieHeaderConflict
++            }
++        }
++        if let path = tlsCAFile {
++            guard path.hasPrefix("/"), !path.unicodeScalars.contains(where: { CharacterSet.controlCharacters.contains($0) }) else {
++                throw SourceOpenOptionsError.tlsTrustInvalid
+             }
+         }
+         if let deadline = openDeadlineSeconds {
+@@ -106,7 +116,9 @@
+     return url.withCString { urlC in
+         withOpt(headers) { hC in
+             withOpt(cookies) { cC in
+-                gorav_r3_open_input(ctx, urlC, hC, cC)
++                withOpt(options.tlsCAFile) { caC in
++                    gorav_r3_open_input_verified(ctx, urlC, hC, cC, caC)
++                }
+             }
+         }
+     }
+--- a/Sources/CFFmpeg/shim.h
++++ b/Sources/CFFmpeg/shim.h
+@@ -626,15 +626,33 @@
+  * importable by Swift, so the dictionary is built, passed and freed entirely
+  * on the C side; Swift only supplies the already-joined strings (or NULL).
+  * Returns the avformat_open_input result code. */
++static inline int gorav_r3_open_input_verified(AVFormatContext **ctx, const char *url,
++                                      const char *headers, const char *cookies,
++                                      const char *ca_file) {
++    AVDictionary *d = NULL;
++    int rc = av_dict_set(&d, "tls_verify", "1", 0);
++    if (rc < 0) goto cleanup;
++    if (ca_file && ca_file[0]) {
++        rc = av_dict_set(&d, "ca_file", ca_file, 0);
++        if (rc < 0) goto cleanup;
++    }
++    if (headers && headers[0]) {
++        rc = av_dict_set(&d, "headers", headers, 0);
++        if (rc < 0) goto cleanup;
++    }
++    if (cookies && cookies[0]) {
++        rc = av_dict_set(&d, "cookies", cookies, 0);
++        if (rc < 0) goto cleanup;
++    }
++    rc = avformat_open_input(ctx, url, NULL, &d);
++cleanup:
++    av_dict_free(&d);
++    return rc;
++}
++/* Existing C callers also use authenticated transport with system trust. */
+ static inline int gorav_r3_open_input(AVFormatContext **ctx, const char *url,
+                                       const char *headers, const char *cookies) {
+-    AVDictionary *d = NULL;
+-    int rc;
+-    if (headers != NULL && headers[0] != '\0') { av_dict_set(&d, "headers", headers, 0); }
+-    if (cookies != NULL && cookies[0] != '\0') { av_dict_set(&d, "cookies", cookies, 0); }
+-    rc = avformat_open_input(ctx, url, NULL, d != NULL ? &d : NULL);
+-    av_dict_free(&d);
+-    return rc;
++    return gorav_r3_open_input_verified(ctx, url, headers, cookies, NULL);
+ }
+ 
+ /* =================== AUTHORED_R10 section begins ===================

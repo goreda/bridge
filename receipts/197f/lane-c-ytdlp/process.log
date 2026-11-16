@@ -1,0 +1,31 @@
+RETAINED_YTDLP_TREE=/tmp/tmp.Aaah6Zk0Hn
+PASS selected1080 not2160
+PASS badjson typed
+PASS badjson redacted
+PASS badjson bounded
+PASS private typed
+PASS private redacted
+PASS private bounded
+PASS overcap typed
+PASS overcap redacted
+PASS overcap bounded
+PASS stdout typed
+PASS stdout redacted
+PASS stdout bounded
+PASS stderr typed
+PASS stderr redacted
+PASS stderr bounded
+PASS timeout typed
+PASS timeout redacted
+PASS timeout bounded
+PASS ignoreterm typed
+PASS ignoreterm redacted
+PASS ignoreterm bounded
+PASS descendant typed
+PASS descendant redacted
+PASS descendant bounded
+PASS pre-cancelled
+PASS inflight cancel
+m2-ytdlp-process: failures=0
+PASS descendant gone
+M2_YTDLP_PROCESS result=0 descendant=0
