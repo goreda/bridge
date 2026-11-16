@@ -4465,3 +4465,7 @@ H0596v2 30atlasrowsPASS/allpass/exit0 supersedes prior packet compile defect, no
 ## 2026-11-16 03:18 +03 - B070v3 binding speed cap supplied receipt; A019 replay failure
 W-gdb-070 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift run picture-motion-tests, exit0, picture-motion-tests: all pass; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 070v3 ten checks incl M7 binding speed cap, supersedes earlier packet. A019v3 compiled and ran product replay10/18PASS8FAIL, negative control did not discriminate, NOreceipt; real failing-run evidence not prior model-only PASS. TeamA analysispending. Supplied report not Ops independent replay.
+
+## 2026-11-16 03:31 +03 - B066v3 PiP escape packet coverage receipt
+W-gdb-066 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift run host-geometry-tests, exit0, host-geometry-tests: all pass; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
+066v3 sixteen checks inclH15/H16PiPescape, supersedes earlier packet, closes reported lab coverage gap at PACKET level only. No product-source landing/current-stock/consuming acceptance. 019v5/H0594v3 running per lane b.
