@@ -1,6 +1,9 @@
 {
-  "SCOPE.md": "c31e3ab9c7cde2a1ce4248d409421cdf3d16d67b5e4ed3762c9b27682e22f755",
+  "SCOPE.md": "046ca3f205ae29ff113c8ca7219dc6e1231b760c1637d7e2c9ecc7f564a0faad",
   "run-full.log": "44db1fb6f5df4a4b772dc38793be04778a0722ff2e653aa36a2903dca3c5bcfe",
+  "run-transfer-pcm.sh": "86ef8e5c8125c5a9be323998f764acdc1cbff4d3abd9268d76276879ca984668",
   "sha256-as-run.txt": "964f3c39f5e84bbdf8ed1a18e2d4ae434e306c8bf024e1f899ee11731158411d",
-  "sha256.txt": "6f36b7b45c00b3c8acb619dbfa709cac2a27dcbb8b3ccd2742ae6b231fa93255"
+  "sha256.txt": "6f36b7b45c00b3c8acb619dbfa709cac2a27dcbb8b3ccd2742ae6b231fa93255",
+  "test-transfer-download.mjs": "bbae6e84c08f8765e56677ea4a7fb0f74ce447be3cef09f189f549fa47b2a36f",
+  "transfer-pcm-main.swift": "973cc721bf5250ba271ea99578bba1124b242356ef4bf597d12c2d4c9a05b0c2"
 }

@@ -1,0 +1,22 @@
+{
+  "NodeSourcePreparation.swift": "d8292cd6fa0a43e0aeef228e8dd384653cc22046d3788db26e78e6d399e9251c",
+  "OpenURLRouter.swift": "0f3fa4238a8d7d9e3cff41bf625b20b1f9da28027667720f81f8424bf8c6ead6",
+  "README.md": "a990268a5ff0f9dbae0826727853e9d9669c1bbc224926b8ec8c46bb9b59c58c",
+  "SCOPE.md": "a7cdd1376ef2f300afe33e6ea6ae321f668ac6e6023e341caa37acafc5928034",
+  "SourcePreparationDispatch.mjs": "c41be4df0c793e5c5cd44be442d89713ae014bf06959aaa39323c6c89bf6e46f",
+  "coordinator-pcm-main-v2.swift": "76331ccba6b01363b938b74989c934d83ba30dc32f103f6bd7aeef4568586713",
+  "coordinator-pcm-main.swift": "dd8dec16cb7b14938cc925942af8282b2d1b2518f35269746287d77f1c761aef",
+  "embedded-source-preparation.patch": "63e662354dd7218fe0d77cf6ee84a3248a96aaf4175940c567bbe8c5f4412575",
+  "fixture-prepare-source.mjs": "0214108433a1ddb8a3d9b74623484a082eca07d0bab15da13d7434e903b5bab5",
+  "patch-embedded-source-preparation.py": "4416afb0e39314112df037cec3a6e3058fd5c88f06cc3ac982a82faeebc19530",
+  "patch-tls-close-order.py": "b89e3b1654c42a11b6c3963f53ffce4a119e8ce4c76905e132ffe49606dfded0",
+  "prepare-source.mjs": "590f94debd0d23f7c93e322508f465d9a770f73bff1def5252697e24d45dadf6",
+  "run-coordinator-pcm.sh": "9d8526a02772a7b41ad21eca2ea78e702bb381d9f75f3d5b54a98c59d33804a8",
+  "run-full.log": "c59f664a80a5cf4a98c51cc900cf1d828fd5c2980a3dcdbc4446c6d90b1258ad",
+  "run-v2-dead-gateway.log": "50ee581252ac2f3088f61a16e83b3bbf9624dced2303795ea9168363905e6663",
+  "run-v2.log": "f599b7d6964b6b22d3bb8d900dce694d3b7daafbb9aec1328e0343fb7bc065a0",
+  "sha256-as-run.txt": "94a1936b9ce352160b094cb642b564ec5f8b1763e36764c4899b893879407169",
+  "sha256.txt": "15d9f7e6906799489f0db7738c7cc2ca3ef62e06032cafbb14aaf1d30bab65d8",
+  "transfer-api-fixture.mjs": "795e0b6d6e398d8faaff86c4c475f4f2b59c7ada4fe39e15e83ab58d84a773ad",
+  "transfer-candidate/mac-vectors.json": "d5077540776bec9815aa47532501af9ef13ffa9afc4616a8585d9577fa34fb17"
+}

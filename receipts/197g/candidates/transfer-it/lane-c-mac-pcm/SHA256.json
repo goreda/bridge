@@ -1,6 +1,20 @@
 {
-  "SCOPE.md": "4cb615310f99422dc4d2c441c02e89dc559cdb782bb891702ae6645301983d69",
+  "MAC-CANDIDATE.md": "c45eb726244a6b30eae8d3c3da6e3da8fd058b5766a65b8156cf5279d9831637",
+  "SCOPE.md": "b3a212bbc8b529ff51761fee3dbfdf06ff3df00530d579130ffce27baf1561b9",
+  "TransferItVerifiedDownload.mjs": "ab4bb1f085c385356c99a1d443fb8755ed3989f139813b606a23a9f356a154bd",
+  "TransferItVerifiedSource.mjs": "a0100117a9b52c1b6cd028674fe14334530419c2f968cde68acff74e1ac1c7b3",
+  "TransferPlainMAC.mjs": "41e27a75f185b109cc891d983bfb1222303b168bea02a7cd6e418f1ff49b24e4",
+  "diagnose-megajs-boundary.mjs": "9992b0a5eb46d0b4c408a01a9bfb2dcd790effe45d8b3d6d31e17117b0f05916",
+  "generate-mac-vectors.py": "6560c068c1f5c8e5e79a6c45351bcaa96d9769bfc02597230e9a26415b714399",
+  "mac-megajs-disagreement.log": "02dff19473e35bde7b2097663d8fe4d3b6da74dd843086803e48919331ee153a",
   "mac-sha256.txt": "c786f42983c7872ef26f15f0752798f7ba2870c125cb332b6ab48dc0e6c7372b",
+  "mac-test-protocol.log": "015f2556931354572b4d41b7c405a20b1b5569d4c30fa30e62b52aa2dee2bc90",
+  "mac-vectors.json": "d5077540776bec9815aa47532501af9ef13ffa9afc4616a8585d9577fa34fb17",
   "run-full.log": "812b3eccbd9e9fab606a408aaabccd90da20ca490dbd82e5b47b49c7b04eaeb6",
-  "sha256-mac-as-run.txt": "aa063e416d0bf70581cf5e811b43ad80ce9ba5387ba9e6c22a810fce7f7d7231"
+  "run-transfer-verified-pcm.sh": "940a39cb6a4a93dc14178c5d63edc5d87ed844ef31b24b48c8a99214f8ab47bf",
+  "sha256-mac-as-run.txt": "aa063e416d0bf70581cf5e811b43ad80ce9ba5387ba9e6c22a810fce7f7d7231",
+  "test-transfer-mac.mjs": "f4bd788dbb420940bba2c1f97acb55a4284af20e90245bcb9e1e5fc7dd0844a2",
+  "test-transfer-verified-download.mjs": "892f0d70a749c0cb9ce559fc1deea8d7b3d6c19de6dfbd068d9ce61fdb1cdaf8",
+  "transfer-verified-pcm-main.swift": "46d0961e758f496a7db265cc9efd648f216b00d6d708707c37404701e7b8c44e",
+  "verified-download-test.log": "9bacce462c53dad14dab8ccec84e99d6cc0e9c3c1cb57b4bb9391e9749293820"
 }

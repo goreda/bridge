@@ -1,0 +1,109 @@
+--- a/Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift
++++ b/Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift
+@@ -186,6 +186,13 @@
+     /// caller-CAMetalLayer shape). The session never creates an NSWindow.
+     private let hostView: NSView
+     private let runID: String
++    /// Host explicitly registers the preparation implementation. No implicit
++    /// browser/player fallback. Linux process backend is not Darwin support.
++    public typealias SourcePreparer = @Sendable (String, String?, SourcePreparationCancellation) async throws -> PreparedLocalMedia
++    private let sourcePreparer: SourcePreparer?
++    private var sourcePreparationCancellation: SourcePreparationCancellation?
++    private var preparingSource = false
++    private var preparedMedia: PreparedLocalMedia?
+ 
+     // MARK: Real state (PlayerControlPlane, coordinator r2)
+ 
+@@ -323,9 +330,10 @@
+     public var lifecycleState: PlayerLifecycleState { plane.state }
+     public var generation: UInt64 { plane.generation }
+ 
+-    public init(hostView: NSView, runID: String) {
++    public init(hostView: NSView, runID: String, sourcePreparer: SourcePreparer? = nil) {
+         self.hostView = hostView
+         self.runID = runID
++        self.sourcePreparer = sourcePreparer
+     }
+ 
+     /// Cheap availability probe for the L8 switch's isAvailable path:
+@@ -373,6 +381,7 @@
+     // MARK: - Open (mirrors runMuxedBody's proven sequence)
+ 
+     public func open(path: String) async throws {
++        guard !preparingSource else { throw EmbeddedRefusal.alreadyOpen }
+         guard !tornDown, !fenced else { throw EmbeddedRefusal.illegalState("tornDownOrFenced") }
+         guard plane.state == .idle, session == nil else { throw EmbeddedRefusal.alreadyOpen }
+         guard FileManager.default.fileExists(atPath: path), !path.contains("://") else {
+@@ -644,16 +653,50 @@
+     // kinds refuse typed until their bridge/resolver produces an admitted
+     // http(s) URL; direct remotes (transfer.it, generic http(s)) open here.
+ 
+-    public func open(url: String) async throws {
++    public func open(url: String, selectedFilename: String? = nil) async throws {
++        guard !preparingSource else { throw EmbeddedRefusal.alreadyOpen }
+         switch OpenURLRouter.route(url) {
+         case .directRemote(let id, let seekable):
+             try await openRemote(id: id, seekable: seekable)
+-        case .needsMegaResolver:
+-            throw EmbeddedRefusal.unsupportedSource("mega link: the external mega resolve/decrypt step must produce an admitted http(s) URL first (R3)")
++        case .needsTransferResolver, .needsMegaResolver:
++            try await openPreparedSource(url: url, selectedFilename: selectedFilename)
+         case .needsWebTorrentBridge:
+             throw EmbeddedRefusal.unsupportedSource("torrent/magnet: the wt_server bridge must produce an admitted http(s) URL first (R3)")
+         case .refused(let reason):
+             throw EmbeddedRefusal.unsupportedSource("open(url:) refused: \(reason.rawValue)")
++        }
++    }
++
++    /// Preparation is fenced before any local decoder opens. The cache lease
++    /// survives until cleanupLegs has closed every decoder and audio handle.
++    private func openPreparedSource(url: String, selectedFilename: String?) async throws {
++        guard !tornDown, !fenced else { throw EmbeddedRefusal.illegalState("tornDownOrFenced") }
++        guard plane.state == .idle, session == nil, !preparingSource else { throw EmbeddedRefusal.alreadyOpen }
++        guard let sourcePreparer else { throw EmbeddedRefusal.unsupportedSource("sourcePreparerNotRegistered") }
++        let cancellation = SourcePreparationCancellation()
++        sourcePreparationCancellation = cancellation
++        preparingSource = true
++        defer { preparingSource = false; sourcePreparationCancellation = nil }
++        let media: PreparedLocalMedia
++        do {
++            media = try await withTaskCancellationHandler(operation: {
++                try await sourcePreparer(url, selectedFilename, cancellation)
++            }, onCancel: { cancellation.cancel() })
++        } catch {
++            // Never forward an external exception or URL/key to the UI.
++            throw EmbeddedRefusal.unsupportedSource("sourcePreparationRefused")
++        }
++        guard !tornDown, !fenced, !Task.isCancelled, plane.state == .idle, session == nil else {
++            do { try media.release() } catch { onEvent?(.failed("sourceCacheCleanupFailed")) }
++            throw EmbeddedRefusal.illegalState("preparedSourceStale")
++        }
++        preparedMedia = media
++        preparingSource = false
++        do { try await open(path: media.path) }
++        catch {
++            // open(path:) owns partial decoder cleanup before throwing.
++            do { try media.release(); preparedMedia = nil } catch { onEvent?(.failed("sourceCacheCleanupFailed")) }
++            throw error
+         }
+     }
+ 
+@@ -997,6 +1040,7 @@
+     private func tearDownInternal(reason: String) async {
+         guard !tornDown else { return }
+         tornDown = true
++        sourcePreparationCancellation?.cancel()
+         closeSubtitleDelivery()
+         if plane.state != .closing { _ = plane.apply(.close) }
+         firstFrameTask?.cancel()
+@@ -1045,6 +1089,10 @@
+         preparedShot = nil; preparedReceipt = nil; openedPath = nil
+         pump = nil; source = nil; bridge = nil; commit = nil
+         audioTask = nil; pumpTask = nil; audioBinding = nil; audioCorrelation = nil
++        if let media = preparedMedia {
++            do { try media.release(); preparedMedia = nil }
++            catch { onEvent?(.failed("sourceCacheCleanupFailed")) }
++        }
+     }
+ 
+     private func closeLegsAfterSeekFailure(videoOnly: Bool) async {

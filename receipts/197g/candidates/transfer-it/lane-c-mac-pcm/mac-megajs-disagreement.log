@@ -1,0 +1,16 @@
+DISAGREEMENT documented batchMAC vs MEGAJS1.3.10 encrypt size=0
+MATCH documented batchMAC vs MEGAJS1.3.10 encrypt size=1
+MATCH documented batchMAC vs MEGAJS1.3.10 encrypt size=15
+MATCH documented batchMAC vs MEGAJS1.3.10 encrypt size=16
+MATCH documented batchMAC vs MEGAJS1.3.10 encrypt size=17
+MATCH documented batchMAC vs MEGAJS1.3.10 encrypt size=131056
+DISAGREEMENT documented batchMAC vs MEGAJS1.3.10 encrypt size=131057
+DISAGREEMENT documented batchMAC vs MEGAJS1.3.10 encrypt size=131071
+DISAGREEMENT documented batchMAC vs MEGAJS1.3.10 encrypt size=131072
+MATCH documented batchMAC vs MEGAJS1.3.10 encrypt size=131073
+MATCH documented batchMAC vs MEGAJS1.3.10 encrypt size=176444
+DISAGREEMENT documented batchMAC vs MEGAJS1.3.10 encrypt size=393216
+MATCH documented batchMAC vs MEGAJS1.3.10 encrypt size=393217
+MATCH documented batchMAC vs MEGAJS1.3.10 encrypt size=1048577
+MATCH documented batchMAC vs MEGAJS1.3.10 encrypt size=5767169
+MEGAJS/documented protocol discrepancies=5; no service resolution

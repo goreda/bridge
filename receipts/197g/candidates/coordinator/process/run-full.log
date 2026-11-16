@@ -1,0 +1,41 @@
+product_sha=a34e2cd96b6825932a196424a17cc62962e910a7
+provider_prefix=/tmp/ff71/install (lane-c FFmpeg 7.1 + GnuTLS)
+node v22.23.4
+Swift version 6.1.2 (swift-6.1.2-RELEASE)
+libavformat 61.7.100 libavcodec 61.19.100 libavutil 59.39.100 libswresample 5.3.100
+M2_COORDINATOR_PROCESS_RESULT product_decode_exit=0
+PASS share explicit prepare
+PASS invalid transfer never rawmedia
+PASS invalid transfer never rawmedia
+PASS invalid transfer never rawmedia
+PASS invalid transfer never rawmedia
+PASS invalid transfer never rawmedia
+PASS invalid transfer never rawmedia
+PASS registered source yields validated local cache
+PASS private source cache
+PASS request removed before handoff
+PASS lease release idempotent
+PASS registered source yields validated local cache
+PASS private source cache
+PASS request removed before handoff
+PASS lease release idempotent
+PASS typed bad_result redacted
+PASS failed preparation removes cache
+PASS typed bad_cache redacted
+PASS failed preparation removes cache
+PASS typed bad_cache redacted
+PASS failed preparation removes cache
+PASS typed bad_result redacted
+PASS failed preparation removes cache
+PASS typed stdout_limit redacted
+PASS failed preparation removes cache
+PASS typed source_refused redacted
+PASS failed preparation removes cache
+PASS typed timeout redacted
+PASS failed preparation removes cache
+PASS precancel typed
+PASS inflight cancel typed
+PASS filename required typed
+PASS no orphan cache
+source-coordinator-process: all pass controlled process fixture only; no service or Darwin
+scope: controlled process fixture only; no service or Darwin

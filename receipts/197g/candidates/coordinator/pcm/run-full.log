@@ -1,0 +1,9 @@
+product_sha=a34e2cd96b6825932a196424a17cc62962e910a7
+provider_prefix=/tmp/ff71/install (lane-c FFmpeg 7.1 + GnuTLS)
+node v22.23.4
+Swift version 6.1.2 (swift-6.1.2-RELEASE)
+libavformat 61.7.100 libavcodec 61.19.100 libavutil 59.39.100 libswresample 5.3.100
+M2_COORDINATOR_PCM_RESULT product_decode_exit=0
+prepared local cache bytes=176444 integrity=node-key-mac
+PASS Swift process -> real controlled API -> node-key-MAC bytes -> actual PCM independent anchor bytes=176400 chunks=11 eof=true fnv=814ce7e754242528
+scope: controlled API fixture, node-key MAC, local-file decode; no live service or Darwin
