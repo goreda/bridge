@@ -1,0 +1,16 @@
+G0826 item 4 - clear event: the fixture LACKS a clear; the seam drops nothing.
+
+Fixture inventory (5 subtitle packets, all pts 23ms; ffprobe -show_packets):
+  PCS state=0x80 (acquisition point) nobj=1 | WDS nwin=1 | PDS | ODS id=0 flag=0xc0 64x36 | END
+A CLEAR requires a zero-object display set (PCS with nobj=0 + END). The
+fixture carries exactly one display set, always composition nobj=1, so no
+clear exists to emit.
+
+The seam's clear path is intact and exercised elsewhere:
+- kits/b1-pgs/tests.c test_clear: zero-object display set at 45000 -> CLEAR at
+  pts_ms=500 (part of the 55-check suite, 0 failures, ASan/UBSan clean).
+- The regenerated kits/b1-pgs/sample.sup carries display@1.000s + clear@3.500s;
+  the C<->Swift parity run on it was byte-identical INCLUDING the clear:
+  "evt type=2 pts90k=315000 ptsms=3500 rects=0 isum=0 psum=0".
+- Code path: LabPGSDecoder hEnd composes nComp==0 -> LabPGSEventType.clear
+  (same as pgs.c h_end).

@@ -4527,3 +4527,10 @@ FLAG FOR VT SLOT: the 7.1 recipe lacks --enable-hwaccel=h264_videotoolbox/hevc_v
 ## 2026-11-16 03:45 +03 - H0594v4 G0825 packet fixes receipt
 H0594 | supplied clean-Linux product-code receipt pinned8786bfe3e5482a891dda15248b107e50fab52463: swift test --filter TransportCaptureTests, exit0, ✔ Test run with 0 tests passed after 0.001 seconds.; source excerpts/inline/log hashes verified, secret-scan clear; not Ops rerun, Darwin, independent fixture replay or consuming/current-stock acceptance | supplied-result-only
 H0594 TransportCaptureTests actual XCTest6tests0failures, not zero execution: later SwiftTesting0tests is a secondary runner. Supplied clean Linux rerun only, no current-stock/consuming/Darwin acceptance. H0594v4 adds threeG0825labfixes/malloc-failureinjection/Feed.liveInstances==0, supersedesv3. Packet-level only; not product-source landing. Lane b queueonly007/019bothpendingarchitectruling.
+
+
+## 2026-11-16 04:03 +03 G0826 C-PGS evidence bundle, lane-reported Linux only
+
+Evidence at evidence/G0826-c-pgs-bbf8d99/ includes originaltar+extractedninefiles. Opsverifiedsup333B/canvas/paletteSHA256matchsupplieddigests, safemembers/secretscanclear; no Opsindependentreplay. Pinnedbbf8d99NOcommitschanged. Actualtemporaryharnessdumpreverted(perlane), SUPbyteidenticaltoffmpegmatroskadec reconstitution;evtDISPLAYpts90k2070rect100,10064x36. Laneindependentffmpeg4.4.2pgssuboverlaycomparisonreported0/230400pixeldiff(frame24),samebbox/RGBA. Missing-ENDreportedcleanfeed0events/decoderusable/completefeed1display. FixturehasNOclear(single5packetdisplaysetnobj1);clearcoveredBYtest_clearandregeneratedsample.supC/Swiftparityevt2pts315000,notbythisfixture. LinuxevidenceONLY/notDarwin/acceptance/currentstock/landedproductclaim. Nativeownerreplyholdunchanged.
+
+Lab404branch/baseaccess: repositoryprivate, perMain/lane; evidencebundledhere,sodonotinterpret404asmissingbranch. Mainownsrelayingtolab. AllfourG0826asksansweredwithboundedclaims, not widenedtoMetalpresentationorMKVvideo/audioharnessPASS.

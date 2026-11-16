@@ -1,0 +1,18 @@
+G0826 item 2 - independent ffmpeg pgssub comparison (ffmpeg 4.4.2, its own
+matroskadec + pgssub decoder + overlay renderer; NO shared code with the seam)
+
+Command:
+  ffmpeg -f lavfi -i color=c=black:size=640x360:rate=25:duration=1 \
+         -i kits/e1-corpus/e1-mkv-pgs.mkv \
+         -filter_complex "[0:v][1:s]overlay=eof_action=pass" \
+         -f rawvideo -pix_fmt rgba overlay.raw
+
+Seam side (from the dumped canvas+palette):
+  nonzero bbox x 100..163, y 100..135 = 64x36 at (100,100)
+  one palette index used: 1 (2304 px = 64*36), palette[1] = RGBA(255,255,255,255)
+ffmpeg side:
+  identical bbox 64x36 at (100,100), color RGBA(255,255,255,255),
+  present frames 2..24 (t=80ms..960ms; sub2video heartbeat lands the 23ms
+  display on the t=80ms frame; frames 0-1 black).
+FULL-FRAME per-pixel diff, frame 24: seam canvas composed through its palette
+  (alpha-0 -> black) vs ffmpeg's rendered frame: 0 mismatched of 230400 px.

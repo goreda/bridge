@@ -1,0 +1,17 @@
+G0826 item 1 - post-rehead SUP bytes + exact digests (lane/c-pgs-seam bbf8d99ffac8445b1e9bf08aa668490bb097780e)
+
+e1pgs-reheaded.sup (333 bytes): the seam's ACTUAL reheaded stream, dumped from
+the harness (temporary uncommitted E1_PGS_DUMP patch, reverted after; branch
+tree untouched). The harness rehead == ffmpeg matroskadec's own header
+reconstitution: byte-identical to `ffmpeg -c copy` extraction of the fixture.
+
+sha256:
+f9b2f0ac9a5b10ad8332f689197504fd00e6923829abec924291957efaa52317  e1pgs-reheaded.sup
+e73b89033af9ae805fc81154ac3b371a229d2f0633ff81f919880765010ca47b  e1pgs.canvas.raw   (640x360 palette indices, row-major tight)
+73d4a9039a65f4cef9c6c8d25b5f6833aec22c3fe8ea42967b703998a2d4cb57  e1pgs.palette.raw  (256 x 0xRRGGBBAA, big-endian bytes)
+
+Harness event line (pinned in the harness, asserted every run):
+E1-HEADLESS pgs evt type=1 pts90k=2070 ptsms=23 rects=1 isum=11703373549476155392 psum=3354854972892648383
+E1-HEADLESS pgs   rect 100 100 64 36
+(isum = fold *31+b over the 230400 canvas bytes; psum = same over 256 palette words;
+ identical recipe in kits/b1-pgs/pgs_parity.c and the Swift port's main.swift)
