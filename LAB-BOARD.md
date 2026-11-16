@@ -1,3 +1,7 @@
+## November17 01:08 review delta
+
+Current gorav main38811041 independently fetched. LIVE-CONTROL inert model TEST, Python-derived vectors not Lua execution. Next proposed lane-c proof: exact-Lua reference runner and provenance correction, coordinated with goreda; no shell writer. Goreda HUD dce7439a off15acf95c adds one Swift file, no Lua/delivery edits, native NOT_RUN. Draft01-04 generic templates rejected as P23 stock;05 pinned checker review can start using stdlib-generated synthetic fixtures but is not published/run-proven stock. Stock remains0/0. Reporter d5c6a9e exported with IPC/dynamic-state probe caveats; no native result claimed.
+
 # Lab board, November 17 2026 00:59 +03
 
 | Lab | Verified startable open packets | Required | Blocker |
