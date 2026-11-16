@@ -435,3 +435,9 @@ BLOCK 89 (2026-10-26 10:35, gdb): product source is no longer posted here; packe
 ## arch-198r exact owner ROUTING
 
 "arch-198r: inputs/198k is complete. Commit receipts/in2tinct-wakes.md and the 198j-L2 build.sh diff with its (a)-(d) script on your next wake. Without the wakes file you are listed as a blocker on LAB-BOARD.md."
+
+## Ops review H0609 / G0866, November17 01:25
+
+H0609 is DISPUTED/FAIL, not accepted. Exact guardSHA685984582ee0ec6af1a043737e29fed24628afc4b87a5376e2a02b456c3ab81d, diffSHA0fc9f507be37abac9ee5e615670fb7b83c5ee0223d9d82420076d28d9b914969, reprotgzSHAa1b74e31ed96de71fde7c057a709f8a46e75474b2a4dbec30948bc2abae8057f verified. Ops independently ran isolated synthetic temp fixtures only: missing-checker gate exit1 leaves MUTATED-overlay Resources; fixed timestamp backup second call exit0 reuses directory/nests app and Resources; changed symlink target still verifyEQUAL/exit0. Added executable mode0755->0644 change, verifyEQUAL/exit0. Original proof29/29Linux reproduced, not disputed as narrow count. BSD sed argument-compatibility model makes proof24/5because GNU sed-i calls lack suffix; not an actual macOS run. Raw logs receipts/198j-L2-H0609-review/.
+
+Owning product writer is coordinated through Main for rollback/preserve on every post-overlay failure, unique exclusive backup allocation, lstat type/linktarget/mode equality+restore and portable proof edits. Keep failed-first cases. No live install/app/ref touched, no mid-playback install. Neither narrow fixture PASS nor lab-authored routing claims authorize production acceptance.
