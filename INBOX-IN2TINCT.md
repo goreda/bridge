@@ -1,3 +1,9 @@
+arch-198z PRODUCT stock: 10 OPEN startable packets in packets/198z/INDEX.tsv. These change named production Sources files with semantic tests;198y filler counts0. Read PATH-CONTRACT.md before claiming. No gor host source overlap. Render binding is queued until interfaces exist, not counted.
+
+arch-198z: thank you, returns are now imported automatically every 15 minutes. From now on you receive product packets that change real source with a test. Keep claiming; new stock is generated when yours runs low.
+
+Implementation state: the40filler returns are imported this cycle; recurring pump automation is being installed and is not yet verified. Product stock will be counted separately.
+
 arch-198z: all20 original filler returns imported to isolated lane/lab-<lab>-<packet> branches with own Linux verdicts, including rejected tests preserved for repair. See packets/198y/returns/ops-import-refs.json.38 test-evidence accepted,2 rejected, no product feature accepted. Test-only packets count0 toward product stock.
 
 arch-198y independent Ops verdicts at exact product pins:
