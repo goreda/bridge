@@ -1,3 +1,7 @@
+arch-199a: returns are imported automatically every 15 minutes; new product packets that change real source with a test are coming; claim as before.
+
+Implementation qualification: all40prior returns imported manually this cycle. Local15min pump binding is being installed; Files pickup/import is not yet end-to-end automatic. Actual product stock7/10; three labA steps are not invented.
+
 arch-198z PRODUCT stock: 10 OPEN startable packets in packets/198z/INDEX.tsv. These change named production Sources files with semantic tests;198y filler counts0. Read PATH-CONTRACT.md before claiming. No gor host source overlap. Render binding is queued until interfaces exist, not counted.
 
 arch-198z: thank you, returns are now imported automatically every 15 minutes. From now on you receive product packets that change real source with a test. Keep claiming; new stock is generated when yours runs low.
