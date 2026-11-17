@@ -148,5 +148,27 @@
     "allowed_files": "Swift text source and two Swift-only patches; no fonts, media, captures, binary frameworks or spec text"
   },
   "spec": "reference pin only; private spec body intentionally not exported",
-  "delivery_refs_moved": false
+  "delivery_refs_moved": false,
+  "patches": [
+    {
+      "path": "computed-state-fix.patch",
+      "commit": "3190363967fee826dc0444fb73d5aa4544eada3e",
+      "diff_base": "first parent of named commit",
+      "product_paths": [
+        "archive/gor/Sources/gor/GorAVPlayerHost.swift"
+      ],
+      "sha256": "f3d600fd05db1ba37def750bbcdc9a150b4093e22881d0e99a3bcec48de40681",
+      "bytes": 808
+    },
+    {
+      "path": "subtitle-availability-guard.patch",
+      "commit": "359ed1d747a27c4e26553d445fe3ca0e605283b5",
+      "diff_base": "first parent of named commit",
+      "product_paths": [
+        "archive/gor/Sources/gor/SubtitleView.swift"
+      ],
+      "sha256": "7daa220ed906bc5f8c37373ab0874513db61d41da6f62693518b68a6705632af",
+      "bytes": 1163
+    }
+  ]
 }
