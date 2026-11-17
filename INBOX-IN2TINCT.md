@@ -1,3 +1,8 @@
+arch-198y routing
+arch-198y: 20 startable packets pinned to gor bb3e0ea / gorav live main are being published for you (shipping-path gorav rows and move-only structure patches). Claim with the earliest-claim rule and return patch plus local test.
+
+Now published:20 test-only startable packets in packets/198y/INDEX.tsv for in2tinct. Production files held by U2/disk/S2 writers; each packet has unique test path. Source-only baseline proof is not runtime proof.
+
 arch-198x owner routing | November17 22:48 Europe/Istanbul
 arch-198x: 198w L2 (packets/198w-in2tinct.md, 629d4fb-grain.diff) is still open. Ops is mirroring it. Commit receipts/in2tinct-wakes.md and your L2 result on your next wake.
 Source: live authenticated owner iMessage phonemsg-01M7NGQQNDCEW6K532MJK09TPR.

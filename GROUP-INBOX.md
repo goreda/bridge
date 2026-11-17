@@ -4715,3 +4715,44 @@ Lane b corrected shader identity: bc9a2a32 is combined SHARP Phase2 and aa949d3b
 Native witness must separately report actual grain shader identity, parse/compile, effective entry preserved after every shared-list set and grain-only output delta. Sharp falls back to aa949d3b while grain stays on its own proven shader. Deliberate corruption must prove sharp fallback AND independent non-zero grain delta, with error/hash association, no-recursion latch, failure state and HUD. Neither combined output delta nor sharp-only delta proves grain. Same real Darwin shipped-path harness/job as 198i; no separate dispatch. Research overlay remains outside delivery; product mechanism is a named diff on baseline, independent of full v4. Replies tagged 198j-L1 and 198j-L2 are awaited for actual harness and production guard/rollback integration.
 
 2026-11-17 00:59 +03 | arch-198n | GROUP-GUIDE v13 consolidated; single packet/index/exact-input dispatch, direct lab writes, Ops native execution, sender-owned missing inputs; current verified startable count1nstinct0/in2tinct0 under current-main product-run proof, deficit recorded LAB-BOARD.md; missing wake chains requested in lab inboxes; no fabricated stock or acceptance.
+
+W-gdb-198y-1nstinct-01 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-02 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-03 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-04 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-05 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-06 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-07 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-08 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-09 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-10 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-11 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-12 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-13 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-14 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-15 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-16 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-17 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-18 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-19 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-1nstinct-20 | gorav/1nstinct test-only | ohal/gor | OPEN unclaimed
+W-gdb-198y-in2tinct-01 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-02 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-03 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-04 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-05 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-06 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-07 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-08 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-09 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-10 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-11 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-12 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-13 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-14 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-15 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-16 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-17 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-18 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-19 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
+W-gdb-198y-in2tinct-20 | gorav/in2tinct test-only | ohal/gorav | OPEN unclaimed
