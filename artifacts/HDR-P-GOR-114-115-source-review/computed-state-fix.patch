@@ -1,0 +1,13 @@
+diff --git a/archive/gor/Sources/gor/GorAVPlayerHost.swift b/archive/gor/Sources/gor/GorAVPlayerHost.swift
+index 393720562..339097295 100644
+--- a/archive/gor/Sources/gor/GorAVPlayerHost.swift
++++ b/archive/gor/Sources/gor/GorAVPlayerHost.swift
+@@ -22,7 +22,7 @@ final class GorAVPlayerHost: NSWindowController {
+     /// negotiator (lane c). gor configures no EDR surface; until the lane c
+     /// negotiator attaches, the receipt is sdrFallback(presenterSeamUnavailable).
+     private let hdrHandoff = HDRSurfaceHandoff()
+-    private(set) var hdrSurfaceState: HDRSurfaceState { hdrHandoff.state }
++    var hdrSurfaceState: HDRSurfaceState { hdrHandoff.state }
+     private(set) var observed = EngineObservedState()
+     private(set) var sourceURL: URL?
+     var currentTime: Double? { observed.timePos }

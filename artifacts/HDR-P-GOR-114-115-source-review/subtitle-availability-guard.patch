@@ -1,0 +1,21 @@
+diff --git a/archive/gor/Sources/gor/SubtitleView.swift b/archive/gor/Sources/gor/SubtitleView.swift
+index 53edca4a0..74a0031a2 100644
+--- a/archive/gor/Sources/gor/SubtitleView.swift
++++ b/archive/gor/Sources/gor/SubtitleView.swift
+@@ -516,9 +516,13 @@ final class SubtitleView: NSView {
+         // presentation owner; this pin keeps every cue layer out of the
+         // extended dynamic range. Presenter-side cue labels carry the same
+         // invariant on the gorav lane.
+-        layer?.wantsExtendedDynamicRangeContent = false
+-        vrSubtitleContainer.wantsExtendedDynamicRangeContent = false
+-        textLayer.wantsExtendedDynamicRangeContent = false
++        // wantsExtendedDynamicRangeContent is macOS 14+; on macOS 13 the
++        // property does not exist, so the SDR pin holds trivially there.
++        if #available(macOS 14.0, *) {
++            layer?.wantsExtendedDynamicRangeContent = false
++            vrSubtitleContainer.wantsExtendedDynamicRangeContent = false
++            textLayer.wantsExtendedDynamicRangeContent = false
++        }
+         
+         textLayer.alignmentMode   = .left
+         textLayer.isWrapped       = true
