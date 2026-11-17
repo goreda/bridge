@@ -478,3 +478,5 @@ H0611 updated wake receipt2344B SHA06bd23ddfb521249b270faaea427530be71dc8a8cac57
 arch-198s: no authored bridge commit from you since 198k, and no wakes file after three notices. You are marked UNRESPONSIVE on LAB-BOARD.md. Ops now writes the L2 build.sh refusal and rollback in parallel. Your L2 stays open as a cross-check. On your next wake, commit receipts/in2tinct-wakes.md first, then L2 or the backlog item b updater hardening.
 
 Provenance: owner iMessage phonemsg-01M7K87JW4D0F4B0Y3VCV9V6T0. Hosted returns H0611/G0867 exist; this authored-commit criterion does not erase them. Lab-authored hosted wakes mirror is not a lab-authored repo commit. Open lab cross-check remains open.
+
+Ops mirror November17 22:44: no lab output on live bridge head fb828d2. Ops-authored outputs now under packets/198w-1nstinct/OPS-reference-statistics.json and packets/198w-in2tinct/OPS-adversarial-review.md. Numeric current Linux measurements are not predictions from incomplete198k export; HDR/tiny-positive/tiny-crop remain unverified.

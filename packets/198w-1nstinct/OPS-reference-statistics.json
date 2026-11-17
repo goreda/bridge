@@ -1,0 +1,219 @@
+{
+  "authorship": "Ops-authored mirror, not a lab result",
+  "reason": "Live bridge fetch on November17 22:43 Europe/Istanbul found no lab output after fb828d2.",
+  "input_boundary": "inputs/198k omits licensed embedded grain texture and is not a standalone runnable renderer. Exact expected grain sigma/autocorrelation cannot honestly be calculated from that export. Input-only statistics and independent c736 reference measurements are separated below.",
+  "runtime": "Linux mpv0.41 AppImage executable SHA256 82d20350cf41030f2cd1b0b08f9efc4f1751a6c6592da207f9e206174404eba8; Xvfb x11egl gpu-next Mesa software; 256x144 whole image; OFF/OFF exact stable.",
+  "product": "c73650542460c96b928711e54ff5a61899d62a9e",
+  "fixture_definition": "flat levels32/128/224; near-flat deterministic x17+y31 mod3 +/-1; gradient rounded horizontal +/-12, RGB identical",
+  "autocorrelation_definition": "mean centered adjacent product divided by full-frame population variance; constant images undefined/null",
+  "fixtures": [
+    {
+      "kind": "flat",
+      "luma": "low",
+      "input_sha256": "b7e20da64df2d691bfd472df1bb3e18f4222eb22b9a62cfef111244fde709809",
+      "input_luma": {
+        "sigma": 0.0,
+        "autocorrelation_x_lag1": 1.0,
+        "autocorrelation_y_lag1": 1.0,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_luma": {
+        "sigma": 2.5640955958617178,
+        "autocorrelation_x_lag1": 0.21177414103276024,
+        "autocorrelation_y_lag1": 0.21521965575225602,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_rgb_sigma": 2.8011548445875163,
+      "expected_acceptance": {
+        "added_rgb_sigma": "strictly greater than zero",
+        "added_luma_sigma": "strictly greater than zero"
+      },
+      "expected_exact_grain_sigma_from_198k": null
+    },
+    {
+      "kind": "near-flat",
+      "luma": "low",
+      "input_sha256": "2473a76c5ac14fe689e3f04ed2024afda1fdfabee25a847fc00548b9be201344",
+      "input_luma": {
+        "sigma": 0.8164965809277276,
+        "autocorrelation_x_lag1": -0.49999999999999994,
+        "autocorrelation_y_lag1": -0.4999726835664335,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_luma": {
+        "sigma": 2.564683637410181,
+        "autocorrelation_x_lag1": 0.211604593468085,
+        "autocorrelation_y_lag1": 0.21524575209159494,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_rgb_sigma": 2.8017321033301195,
+      "expected_acceptance": {
+        "added_rgb_sigma": "strictly greater than zero",
+        "added_luma_sigma": "strictly greater than zero"
+      },
+      "expected_exact_grain_sigma_from_198k": null
+    },
+    {
+      "kind": "gradient",
+      "luma": "low",
+      "input_sha256": "5aec5da3299a0890cf8f1c5944f963d48c831a180203e172fb8ee657b8c6406c",
+      "input_luma": {
+        "sigma": 6.965876649783572,
+        "autocorrelation_x_lag1": 0.9913139559478598,
+        "autocorrelation_y_lag1": 1.0,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_luma": {
+        "sigma": 2.5878921014934826,
+        "autocorrelation_x_lag1": 0.2115210844924659,
+        "autocorrelation_y_lag1": 0.2150321086597393,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_rgb_sigma": 2.8268786231220373,
+      "expected_acceptance": {
+        "added_rgb_sigma": "strictly greater than zero",
+        "added_luma_sigma": "strictly greater than zero"
+      },
+      "expected_exact_grain_sigma_from_198k": null
+    },
+    {
+      "kind": "flat",
+      "luma": "mid",
+      "input_sha256": "49b0814bb736f6602c6a5fe6e9eec87c867c0dfacb416cd2c01c5ecba378741d",
+      "input_luma": {
+        "sigma": 0.0,
+        "autocorrelation_x_lag1": 1.0,
+        "autocorrelation_y_lag1": 1.0,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_luma": {
+        "sigma": 3.0957011376632084,
+        "autocorrelation_x_lag1": 0.21324504753756818,
+        "autocorrelation_y_lag1": 0.21521330187402937,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_rgb_sigma": 3.3789722385337626,
+      "expected_acceptance": {
+        "added_rgb_sigma": "strictly greater than zero",
+        "added_luma_sigma": "strictly greater than zero"
+      },
+      "expected_exact_grain_sigma_from_198k": null
+    },
+    {
+      "kind": "near-flat",
+      "luma": "mid",
+      "input_sha256": "dc1e28be32eb6a4c74504cd4d921dc971110e87f6844b0f501be3fb64c78af40",
+      "input_luma": {
+        "sigma": 0.8164965809277319,
+        "autocorrelation_x_lag1": -0.49999999999999994,
+        "autocorrelation_y_lag1": -0.49997268356643354,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_luma": {
+        "sigma": 3.097783846204441,
+        "autocorrelation_x_lag1": 0.21304656867341204,
+        "autocorrelation_y_lag1": 0.21468306755594008,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_rgb_sigma": 3.381381156557347,
+      "expected_acceptance": {
+        "added_rgb_sigma": "strictly greater than zero",
+        "added_luma_sigma": "strictly greater than zero"
+      },
+      "expected_exact_grain_sigma_from_198k": null
+    },
+    {
+      "kind": "gradient",
+      "luma": "mid",
+      "input_sha256": "70d85d4415ab1f71d350009aec96911e0c93a56d7ec203861c08b3ffa0a224ff",
+      "input_luma": {
+        "sigma": 6.965876649783571,
+        "autocorrelation_x_lag1": 0.9913139559478598,
+        "autocorrelation_y_lag1": 1.0,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_luma": {
+        "sigma": 3.1234877910229244,
+        "autocorrelation_x_lag1": 0.21302274416812048,
+        "autocorrelation_y_lag1": 0.21553065496606988,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_rgb_sigma": 3.408860097924698,
+      "expected_acceptance": {
+        "added_rgb_sigma": "strictly greater than zero",
+        "added_luma_sigma": "strictly greater than zero"
+      },
+      "expected_exact_grain_sigma_from_198k": null
+    },
+    {
+      "kind": "flat",
+      "luma": "high",
+      "input_sha256": "b293e82fe039f6aa807842992d6553b9f9d41a0993d3bef429b555afa15576ac",
+      "input_luma": {
+        "sigma": 0.0,
+        "autocorrelation_x_lag1": null,
+        "autocorrelation_y_lag1": null,
+        "zero_variance_autocorrelation": "undefined"
+      },
+      "measured_c736_added_luma": {
+        "sigma": 1.737636485999974,
+        "autocorrelation_x_lag1": 0.21000976512518713,
+        "autocorrelation_y_lag1": 0.21278796926401358,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_rgb_sigma": 1.903912991616947,
+      "expected_acceptance": {
+        "added_rgb_sigma": "strictly greater than zero",
+        "added_luma_sigma": "strictly greater than zero"
+      },
+      "expected_exact_grain_sigma_from_198k": null
+    },
+    {
+      "kind": "near-flat",
+      "luma": "high",
+      "input_sha256": "9c39f99f49762e0e9f97075fec7a5174f1caf22cfcf20f18eb71a015d6f7d1a9",
+      "input_luma": {
+        "sigma": 0.8164965809277376,
+        "autocorrelation_x_lag1": -0.5,
+        "autocorrelation_y_lag1": -0.49997268356643365,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_luma": {
+        "sigma": 1.7393552219188761,
+        "autocorrelation_x_lag1": 0.20936434468251094,
+        "autocorrelation_y_lag1": 0.21174738342505775,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_rgb_sigma": 1.9056761177455843,
+      "expected_acceptance": {
+        "added_rgb_sigma": "strictly greater than zero",
+        "added_luma_sigma": "strictly greater than zero"
+      },
+      "expected_exact_grain_sigma_from_198k": null
+    },
+    {
+      "kind": "gradient",
+      "luma": "high",
+      "input_sha256": "43628e1e96b9970f385c421655a13a26f7cfb73359eefaf11c877d9d74ace571",
+      "input_luma": {
+        "sigma": 6.965876649783569,
+        "autocorrelation_x_lag1": 0.9913139559478598,
+        "autocorrelation_y_lag1": 1.0,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_luma": {
+        "sigma": 1.7499264613543788,
+        "autocorrelation_x_lag1": 0.2136746801745636,
+        "autocorrelation_y_lag1": 0.21305769679997386,
+        "zero_variance_autocorrelation": null
+      },
+      "measured_c736_added_rgb_sigma": 1.9162835020387687,
+      "expected_acceptance": {
+        "added_rgb_sigma": "strictly greater than zero",
+        "added_luma_sigma": "strictly greater than zero"
+      },
+      "expected_exact_grain_sigma_from_198k": null
+    }
+  ],
+  "limits": "Reference measurements, not universal expected values. No Darwin, physical GPU, full app, HDR or 16-bit proof. No licensed texture bytes redistributed."
+}
