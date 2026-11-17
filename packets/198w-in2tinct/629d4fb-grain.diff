@@ -1,0 +1,184 @@
+commit 629d4fb9421066402b5df410faa138653b5e2358
+Author: Instinct Agent <agent@instinct.com>
+Date:   Tue Nov 17 03:19:23 2026 +0300
+
+    U-G1 Class S: preserve interior flat grain, nonzero floor and visible amount
+    
+    Owner authority: phonemsg-01M7KDD9WFMH11DT0V8PHBJNXA
+    
+    Co-authored-by: Instinct Agent <agent@instinct.com>
+
+diff --git a/archive/gor/Resources/vendor/mpv/scripts/photon-grain.lua b/archive/gor/Resources/vendor/mpv/scripts/photon-grain.lua
+index 46e2c2aa0..45b351e4f 100644
+--- a/archive/gor/Resources/vendor/mpv/scripts/photon-grain.lua
++++ b/archive/gor/Resources/vendor/mpv/scripts/photon-grain.lua
+@@ -612,6 +612,68 @@ de84ebe8fd64ee3784a2d82069ce49dd1bc5d3ac1a77e791736c5914975a791caf385607d80d
+ 
+ //!HOOK OUTPUT
+ //!BIND HOOKED
++//!SAVE ug1_row_black
++//!WIDTH 1
++//!HEIGHT HOOKED.h
++//!DESC U-G1 exact black row reduction
++vec4 hook() {
++ bool black=true;
++ for(int i=0;i<int(HOOKED_size.x);i++){
++  vec3 c=texelFetch(HOOKED_raw,ivec2(i,int(HOOKED_pos.y*HOOKED_size.y)),0).rgb;
++  if(any(notEqual(c,vec3(0.0)))){black=false;break;}
++ }
++ return vec4(black?1.0:0.0);
++}
++
++//!HOOK OUTPUT
++//!BIND HOOKED
++//!SAVE ug1_col_black
++//!WIDTH HOOKED.w
++//!HEIGHT 1
++//!DESC U-G1 exact black col reduction
++vec4 hook() {
++ bool black=true;
++ for(int i=0;i<int(HOOKED_size.y);i++){
++  vec3 c=texelFetch(HOOKED_raw,ivec2(int(HOOKED_pos.x*HOOKED_size.x),i),0).rgb;
++  if(any(notEqual(c,vec3(0.0)))){black=false;break;}
++ }
++ return vec4(black?1.0:0.0);
++}
++
++//!HOOK OUTPUT
++//!BIND HOOKED
++//!BIND ug1_row_black
++//!SAVE ug1_row_edge
++//!WIDTH 1
++//!HEIGHT HOOKED.h
++//!DESC U-G1 edge-connected black row mask
++vec4 hook() {
++ int at=int(HOOKED_pos.y*HOOKED_size.y);
++ int n=int(HOOKED_size.y);bool lo=true,hi=true;
++ for(int i=0;i<=at;i++){if(texelFetch(ug1_row_black_raw,ivec2(0,i),0).r<.5){lo=false;break;}}
++ for(int i=at;i<n;i++){if(texelFetch(ug1_row_black_raw,ivec2(0,i),0).r<.5){hi=false;break;}}
++ return vec4(lo||hi?1.0:0.0);
++}
++
++//!HOOK OUTPUT
++//!BIND HOOKED
++//!BIND ug1_col_black
++//!SAVE ug1_col_edge
++//!WIDTH HOOKED.w
++//!HEIGHT 1
++//!DESC U-G1 edge-connected black col mask
++vec4 hook() {
++ int at=int(HOOKED_pos.x*HOOKED_size.x);
++ int n=int(HOOKED_size.x);bool lo=true,hi=true;
++ for(int i=0;i<=at;i++){if(texelFetch(ug1_col_black_raw,ivec2(i,0),0).r<.5){lo=false;break;}}
++ for(int i=at;i<n;i++){if(texelFetch(ug1_col_black_raw,ivec2(i,0),0).r<.5){hi=false;break;}}
++ return vec4(lo||hi?1.0:0.0);
++}
++
++//!HOOK OUTPUT
++//!BIND HOOKED
++//!BIND ug1_row_edge
++//!BIND ug1_col_edge
+ //!BIND TEX_BLUENOISE
+ //!DESC photon-grain v3.2.0 Halide — hybrid blue-noise tile film grain
+ 
+@@ -821,21 +883,15 @@ vec4 hook() {
+     float luma = dot(color.rgb, vec3(0.299, 0.587, 0.114));
+     float luma_gain = luma_adapt(luma) * zone_sensitivity(luma);
+ 
+-    // Letterbox/pillarbox gate
+-    {
+-        vec2 d = 1.0 / HOOKED_size;
+-        float l00 = luma;
+-        float l10 = dot(HOOKED_tex(HOOKED_pos + vec2(d.x, 0.0)).rgb, vec3(0.299, 0.587, 0.114));
+-        float l01 = dot(HOOKED_tex(HOOKED_pos + vec2(0.0, d.y)).rgb, vec3(0.299, 0.587, 0.114));
+-        float l11 = dot(HOOKED_tex(HOOKED_pos + d).rgb, vec3(0.299, 0.587, 0.114));
+-        float mean = (l00 + l10 + l01 + l11) * 0.25;
+-        float var  = 0.25 * ((l00-mean)*(l00-mean) + (l10-mean)*(l10-mean) + (l01-mean)*(l01-mean) + (l11-mean)*(l11-mean));
+-        luma_gain *= smoothstep(0.0, 1e-30, var);
+-    }
++    // U-G1: only full pure-black rows/columns connected to an image edge
++    // are letterbox. Interior flat black/gray/white keeps its original gain.
++    if (all(equal(color.rgb,vec3(0.0))) &&
++        (ug1_row_edge_tex(vec2(.5,HOOKED_pos.y)).r>.5 ||
++         ug1_col_edge_tex(vec2(HOOKED_pos.x,.5)).r>.5)) luma_gain=0.0;
+ 
+     float adapt = amount;
+     adapt *= 1.0 + 0.8 * (1.0 - peak);
+-    adapt *= 1.0 - smoothstep(0.05, 0.35, noise) * 0.5;
++    // U-G1: source-noise attenuation is applied once, by Lua.
+     adapt *= mix(0.80, 1.20, motion);
+     float is_hdr = step(1.0, max(max(color.r, color.g), color.b));
+     adapt *= mix(1.0, 0.55, is_hdr);
+@@ -943,9 +999,10 @@ local gr_anim_pos = nil
+ local gr_last_feed_pos = nil
+ local gr_anim_offset = 0.0
+ 
++local gr_effective_overlay=mp.create_osd_overlay('ass-events')
+ local function gr_push_params()
+     gr_refresh_adaptive()
+-    common.push_params("photon-grain", {
++    common.push_params(common.recovery and common.recovery.prefix or "photon-grain", {
+         {"GR_FRAME_PEAK", gr_frame_peak, "f"},
+         {"GR_SCENE_CONTRAST", gr_scene_contrast, "f"},
+         {"GR_NOISE_LEVEL", gr_noise_level, "f"},
+@@ -1216,8 +1273,15 @@ local function gr_add_shader()
+     for _, p in ipairs(shaders) do
+         if p ~= path then table.insert(filtered, p) end
+     end
+-    table.insert(filtered, 1, path)
+-    mp.set_property_native("glsl-shaders", filtered)
++    local raw=mp.get_property_native("glsl-shaders")or {}
++    if common.recovery then common.recovery.suspended=true end
++    for _,p in ipairs(raw)do
++        local keep=false;for _,q in ipairs(shaders)do if p==q then keep=true;break end end
++        if not keep then mp.commandv("change-list","glsl-shaders","remove",p)end
++    end
++    mp.commandv("change-list","glsl-shaders","remove",path)
++    mp.commandv("change-list","glsl-shaders","pre",path)
++    if common.recovery then common.recovery.suspended=false;common.recovery.started=true;common.recovery:verify()end
+ end
+ 
+ -- Enable ordering: file on disk first, params pushed second, path added
+@@ -1249,7 +1313,14 @@ local function gr_remove_shader()
+         if p == gr_shader_path then changed = true
+         else table.insert(filtered, p) end
+     end
+-    if changed then mp.set_property_native("glsl-shaders", filtered) end
++    if changed then
++        if common.recovery then common.recovery.suspended=true end
++        for _,p in ipairs(shaders) do
++            local keep=false;for _,q in ipairs(filtered) do if p==q then keep=true;break end end
++            if not keep then mp.commandv("change-list","glsl-shaders","remove",p) end
++        end
++        if common.recovery then common.recovery.suspended=false end
++    end
+ end
+ 
+ -- ================================================================
+@@ -1264,6 +1335,13 @@ end
+ -- (smoothed scene hue, whether modulation is active) added to the HUD. The
+ local gr_publish_serial = 0
+ local function gr_publish_hud_state()
++    if enabled then
++        local amount=math.min(math.max(gr_amount_rendered,0.0),10.0)*(GRAIN_BASE_STRENGTH/10.0)
++        local size=gr_size_coefficient>0 and string.format('%.3fpx',GRAIN_SIZE*gr_size_coefficient*(gr_is_hdr and .75 or 1))or string.format('%.3f (legacy scale)',GRAIN_SIZE)
++        gr_effective_overlay.res_x=1280;gr_effective_overlay.res_y=720
++        gr_effective_overlay.data=string.format('{\\an7\\pos(12,124)\\fs20}grain effective amount %.4f | size %s',amount,size)
++        gr_effective_overlay:update()
++    else gr_effective_overlay:remove()end
+     gr_publish_serial = gr_publish_serial + 1
+     mp.commandv("script-message", "photon-grain-hud-state",
+         tostring(enabled), string.format("%.6f", gr_amount_rendered), string.format("%.0f", gr_fps),
+@@ -2044,6 +2122,12 @@ local function gr_delete_legacy_files()
+     os.remove(dir .. "photon-grain-shader-b.glsl")
+ end
+ gr_delete_legacy_files()
++common.recovery=require('photon-shader-recovery').new(mp,require('mp.utils'),{
++ kind='grain',prefix='photon-grain',directory=common.shader_dir(),source='\n'..GOR_GRAIN_SOURCE,
++ sourceSHA256='5b96daf329ca73d09536519bf0ce79d48a994e3269e04bd6e77c6fcbe06f9e61',enabled=function()return enabled end,
++ active=function()return gr_ensure_path()end,
++ owns=function(p)return p==gr_shader_path or p==common.shader_dir()..'photon-grain.glsl' end,
++ activate=function(path)gr_shader_path=path;gr_shader_written=true end,parameters=gr_push_params})
+ gr_write_shader()
+ 
+ -- toggles, but it's only pushed + added to glsl-shaders (i.e. actually

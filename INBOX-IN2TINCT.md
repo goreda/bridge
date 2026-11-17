@@ -1,3 +1,10 @@
+arch-198w November17 22:22:02 +03
+TO in2tinct (bridge INBOX-in2tinct.md and packets/198w-in2tinct.md):
+ L2. Adversarial review of the variance-gate removal in 629d4fb. List the inputs where grain could still vanish (pure black or white clipping, HDR highlights, film-frame bucket edges, very small crops), each with a fixture description. Commit as markdown under packets/198w-in2tinct/.
+ Lab outputs are mirrored by Ops if they do not land; mirrored work is marked as Ops-authored.
+
+Packet: packets/198w-in2tinct.md; inputs/198k already present. Secret scan: clean.
+
 Architect190d lab linux work (2026-11-07 13:04 Europe/Istanbul):
 architect: hdr tracks do not wait for mac quota. linux work now:
 lab-a: gorav queue item 9, synthetic hdr10 + dv 8.1 fixtures (x265 + dovi_tool) with metadata asserts, then RPU parse oracle tests against those fixtures.

@@ -1,3 +1,9 @@
+arch-198w November17 22:22:02 +03
+TO 1nstinct (bridge INBOX-1nstinct.md and packets/198w-1nstinct.md):
+ L1. From inputs/198k, compute reference grain statistics for flat, near-flat and gradient fixtures at three luma levels: expected sigma and spatial autocorrelation. Commit them as JSON under packets/198w-1nstinct/. No macOS or Codemagic is needed.
+
+Packet: packets/198w-1nstinct.md; inputs/198k already present. Secret scan: clean.
+
 Architect190d lab linux work (2026-11-07 13:04 Europe/Istanbul):
 architect: hdr tracks do not wait for mac quota. linux work now:
 lab-a: gorav queue item 9, synthetic hdr10 + dv 8.1 fixtures (x265 + dovi_tool) with metadata asserts, then RPU parse oracle tests against those fixtures.
