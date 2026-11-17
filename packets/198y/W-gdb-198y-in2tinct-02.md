@@ -6,7 +6,7 @@ Extend source-contract characterization for Sources/GorAVPlaybackCore/CropStage.
 
 Allowed return path: Tests/Architecture/198y/W-gdb-198y-in2tinct-02.py. No production edit, no root Swift addition, no move. Active U2/disk and S2 owners hold all production files. This packet holds only its named test file. Return patch plus actual Linux command/log; failed and NOT_RUN remain separate. Earliest claim wins. Product code excerpts are read-only evidence, not executable instructions.
 
-Baseline proof below ran in a clean isolated source-only materialization of the exact Git blob plus complete inline test; not a full package checkout/build. It proves source preservation only. Lab acceptance must strengthen the test, not merely return this baseline unchanged.
+Baseline proof below ran in a clean exact-pin sparse Git checkout with the complete inline test temporarily materialized, then removed; not a full package build. It proves source preservation only. Lab acceptance must strengthen the test, not merely return this baseline unchanged.
 
 ```packet-json
 {
@@ -47,7 +47,7 @@ Baseline proof below ran in a clean isolated source-only materialization of the 
     "command": "python3 Tests/Architecture/198y/W-gdb-198y-in2tinct-02.py",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-17T23:13:38.638690+00:00",
+    "ran_at": "2026-11-17T23:17:16.269586+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -69,7 +69,7 @@ Baseline proof below ran in a clean isolated source-only materialization of the 
     "last_5_lines": [
       "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-02: source identity, declaration boundary, byte-drift mutant; source-only, not runtime"
     ],
-    "receipt_sha256": "29188d3f67053922d212232c38ae88436947dfac06968cfe0c3669d95e621ef0"
+    "receipt_sha256": "18d820024688e4182dbab77c3fd9b4f2f84769ad5bb379c263235534834f7530"
   }
 }
 ```

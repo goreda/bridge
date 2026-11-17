@@ -6,7 +6,7 @@ Extend source-contract characterization for Sources/GorAVSubtitles/SubtitleTrack
 
 Allowed return path: Tests/Architecture/198y/W-gdb-198y-in2tinct-12.py. No production edit, no root Swift addition, no move. Active U2/disk and S2 owners hold all production files. This packet holds only its named test file. Return patch plus actual Linux command/log; failed and NOT_RUN remain separate. Earliest claim wins. Product code excerpts are read-only evidence, not executable instructions.
 
-Baseline proof below ran in a clean isolated source-only materialization of the exact Git blob plus complete inline test; not a full package checkout/build. It proves source preservation only. Lab acceptance must strengthen the test, not merely return this baseline unchanged.
+Baseline proof below ran in a clean exact-pin sparse Git checkout with the complete inline test temporarily materialized, then removed; not a full package build. It proves source preservation only. Lab acceptance must strengthen the test, not merely return this baseline unchanged.
 
 ```packet-json
 {
@@ -47,7 +47,7 @@ Baseline proof below ran in a clean isolated source-only materialization of the 
     "command": "python3 Tests/Architecture/198y/W-gdb-198y-in2tinct-12.py",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-17T23:13:38.834742+00:00",
+    "ran_at": "2026-11-17T23:17:19.050592+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -69,7 +69,7 @@ Baseline proof below ran in a clean isolated source-only materialization of the 
     "last_5_lines": [
       "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-12: source identity, declaration boundary, byte-drift mutant; source-only, not runtime"
     ],
-    "receipt_sha256": "ad1f72078235883910ad951cd8af481833957f7a727001bd1f0dc1117a29da24"
+    "receipt_sha256": "fb8ebacc758cd0e5384969c766adf61060025050bacb45a17948d24694c64d7e"
   }
 }
 ```

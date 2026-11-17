@@ -6,7 +6,7 @@ Characterize this exact S1 policy row before its future move: Sources/gor/PPCont
 
 Allowed return path: archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-17.py. No production edit, no root Swift addition, no move. Active U2/disk and S2 owners hold all production files. This packet holds only its named test file. Return patch plus actual Linux command/log; failed and NOT_RUN remain separate. Earliest claim wins. Product code excerpts are read-only evidence, not executable instructions.
 
-Baseline proof below ran in a clean isolated source-only materialization of the exact Git blob plus complete inline test; not a full package checkout/build. It proves source preservation only. Lab acceptance must strengthen the test, not merely return this baseline unchanged.
+Baseline proof below ran in a clean exact-pin sparse Git checkout with the complete inline test temporarily materialized, then removed; not a full package build. It proves source preservation only. Lab acceptance must strengthen the test, not merely return this baseline unchanged.
 
 ```packet-json
 {
@@ -47,7 +47,7 @@ Baseline proof below ran in a clean isolated source-only materialization of the 
     "command": "python3 archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-17.py",
     "system": "Linux",
     "clean_checkout": true,
-    "ran_at": "2026-11-17T23:13:38.537425+00:00",
+    "ran_at": "2026-11-17T23:17:15.615279+00:00",
     "kind": "module",
     "expected_exit": 0,
     "exit_code": 0,
@@ -69,7 +69,7 @@ Baseline proof below ran in a clean isolated source-only materialization of the 
     "last_5_lines": [
       "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-17: source identity, declaration boundary, byte-drift mutant; source-only, not runtime"
     ],
-    "receipt_sha256": "d821f27bdb5579eacd736c7889f7662f99187e8e2c7ef581304933ae928eafa1"
+    "receipt_sha256": "5a0311179074e092da738285a24029746a0b16aecbf948919e0c85f4174fb16b"
   }
 }
 ```
