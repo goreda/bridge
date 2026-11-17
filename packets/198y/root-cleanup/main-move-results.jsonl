@@ -1,0 +1,15 @@
+{"index": 0, "source": "fixtures", "destination": "Tests/Fixtures", "full_clean_build_exit": 0, "runtime_path_proof": {"fixed_runtime_lookup": "fixtures/corpus/clock-parity.json", "expected_path_exists": false, "moved_path_exists": true, "consumer": "Tests/parity/run-clock-parity.py", "line": 47}}
+{"index": 1, "source": "kits", "destination": "archive/kits", "full_clean_build_exit": 0}
+{"index": 2, "source": "scripts", "destination": "tools/scripts", "full_clean_build_exit": 0}
+{"index": 3, "source": "plan", "destination": "archive/20261118-plan", "full_package_incremental_build_exit": 0}
+{"index": 4, "source": "photon-v4", "destination": "archive/photon-v4", "full_package_incremental_build_exit": 0}
+{"index": 5, "source": "lane", "destination": "archive/lane", "full_package_incremental_build_exit": 0}
+{"index": 6, "source": "lanes", "destination": "archive/lanes", "full_package_incremental_build_exit": 0}
+{"index": 7, "source": "inputs/2026-10-19", "destination": "archive/20261019-inputs", "full_package_incremental_build_exit": 0}
+{"index": 8, "source": "notes/reading", "destination": "archive/20261118-notes-reading", "full_package_incremental_build_exit": 0}
+{"index": 9, "source": "patches", "destination": "archive/20261118-patches", "full_package_incremental_build_exit": 0}
+{"index": 10, "source": "architect-custody", "destination": "archive/architect-custody", "full_package_incremental_build_exit": 0}
+{"index": 11, "source": "Documentation/kni-ocr-desk", "destination": "archive/kni-ocr-desk", "full_package_incremental_build_exit": 0}
+{"index": 12, "source": "ffmpeg-894da5ca-refetch.tar.xz", "destination": "archive/ffmpeg-894da5ca-refetch.tar.xz", "full_package_incremental_build_exit": 0}
+{"index": 13, "source": "tests/timing", "destination": "Tests/timing", "full_package_incremental_build_exit": 0}
+{"index": 14, "source": "run.py", "destination": "archive/20261118-root-scripts/run.py", "full_package_incremental_build_exit": 0}

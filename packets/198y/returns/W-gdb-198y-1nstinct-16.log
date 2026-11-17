@@ -1,0 +1,19 @@
+MUTATION_PASS old-only ACCEPT
+MUTATION_PASS station-only ACCEPT
+MUTATION_PASS old-and-new REJECT
+MUTATION_PASS both-missing REJECT
+MUTATION_PASS wrong-station-only REJECT
+MUTATION_PASS wrong-station-extra REJECT
+MUTATION_PASS renamed-duplicate REJECT
+MUTATION_PASS moved-plus-renamed-old-duplicate REJECT
+MUTATION_PASS trailing-byte-drift REJECT
+MUTATION_PASS line-ending-drift REJECT
+MUTATION_PASS declaration-rename REJECT
+MUTATION_PASS truncated-file REJECT
+MUTATION_PASS same-file-declaration-duplicate REJECT
+MUTATION_PASS directory-as-source REJECT
+MUTATION_PASS symlink-source REJECT
+MUTATION_PASS comments-and-strings-not-declarations ACCEPT
+MUTATION_PASS duplicate-declaration-0 REJECT
+MUTATION_TOTAL 17
+CHARACTERIZATION_PASS W-gdb-198y-1nstinct-16: station=archive/gor/Sources/gor/OverlaySpaceGate.swift; pinned_bytes=PASS; declarations=PASS; duplicates=PASS; mutations=17; source-only; Swift_runtime=NOT_RUN; package_build=NOT_RUN

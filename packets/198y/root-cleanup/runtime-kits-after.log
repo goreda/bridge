@@ -1,0 +1,2 @@
+FAIL fixtures dir readable kits/vtt-fixtures
+vtt-parser-tests: 13 PASS, 1 FAIL

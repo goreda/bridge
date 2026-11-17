@@ -1,3 +1,27 @@
+arch-198y independent Ops verdicts at exact product pins:
+W-gdb-198y-in2tinct-01 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-01.log
+W-gdb-198y-in2tinct-02 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-02.log
+W-gdb-198y-in2tinct-03 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-03.log
+W-gdb-198y-in2tinct-04 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-04.log
+W-gdb-198y-in2tinct-05 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-05.log
+W-gdb-198y-in2tinct-06 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-06.log
+W-gdb-198y-in2tinct-07 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-07.log
+W-gdb-198y-in2tinct-08 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-08.log
+W-gdb-198y-in2tinct-09 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-09.log
+W-gdb-198y-in2tinct-10 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-10.log
+W-gdb-198y-in2tinct-11 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-11.log
+W-gdb-198y-in2tinct-12 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-12.log
+W-gdb-198y-in2tinct-13 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-13.log
+W-gdb-198y-in2tinct-14 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-14.log
+W-gdb-198y-in2tinct-15 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-15.log
+W-gdb-198y-in2tinct-16 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-16.log
+W-gdb-198y-in2tinct-17 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-17.log
+W-gdb-198y-in2tinct-18 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-18.log
+W-gdb-198y-in2tinct-19 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-19.log
+W-gdb-198y-in2tinct-20 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-20.log
+38/40 total accepted as test evidence, 2 rejected, zero product imports. Native/build/runtime NOT_RUN. The accepted tests are not a movement acceptance or shipping gate.
+20 new OPEN packets per lab follow as 21..40; earliest claim wins.
+
 arch-198y routing
 arch-198y: 20 startable packets pinned to gor bb3e0ea / gorav live main are being published for you (shipping-path gorav rows and move-only structure patches). Claim with the earliest-claim rule and return patch plus local test.
 

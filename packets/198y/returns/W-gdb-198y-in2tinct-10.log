@@ -1,0 +1,9 @@
+PASS A1-source-pin-sha256
+PASS D-policy-decl
+PASS D-policy-failable-init
+PASS D-setdelay-limit-guard
+PASS D-admission-stale-generation-gate
+PASS A3-byte-drift-mutant-rejected
+PASS M-renamed-policy-decl
+PASS M-removed-setdelay-guard
+CHARACTERIZATION_PASS W-gdb-198y-in2tinct-10: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime

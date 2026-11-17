@@ -1,0 +1,342 @@
+warning: 'main': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/gorav-build-audit/main/Sources/seek-composition-tests/README-SEEKVECTORS.md
+warning: 'main': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/gorav-build-audit/main/Sources/timing-ledger-tests/ClockScenarioReplay.swift
+warning: 'main': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/ASSTests.swift
+warning: 'main': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/SRTTests.swift
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'main': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/SRTTests.swift
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/ASSTests.swift
+warning: 'main': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/SRTTests.swift
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/ASSTests.swift
+warning: 'main': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/SRTTests.swift
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /tmp/gorav-build-audit/main/Sources/subtitle-tests/ASSTests.swift
+warning: 'main': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/gorav-build-audit/main/Sources/photon-sharp-tests/fixtures/photon-sharp.glsl
+    /tmp/gorav-build-audit/main/Sources/photon-sharp-tests/fixtures/photon-sharp-temporal.glsl
+warning: 'main': found 7 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/gorav-build-audit/main/Sources/live-control-tests/lua-reference/run-live-control.lua
+    /tmp/gorav-build-audit/main/Sources/live-control-tests/lua-reference/vendor/photon-live-control.lua
+    /tmp/gorav-build-audit/main/Sources/live-control-tests/generate-vectors.py
+    /tmp/gorav-build-audit/main/Sources/live-control-tests/lua-reference/README.md
+    /tmp/gorav-build-audit/main/Sources/live-control-tests/lua-reference/regenerate-reference.sh
+    /tmp/gorav-build-audit/main/Sources/live-control-tests/lua-reference/live-control-lua-reference.json
+    /tmp/gorav-build-audit/main/Sources/live-control-tests/live-control-vectors.json
+warning: 'main': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/gorav-build-audit/main/Sources/hud-state-tests/generate-vectors.py
+    /tmp/gorav-build-audit/main/Sources/hud-state-tests/hud-vectors.json
+warning: 'main': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /tmp/gorav-build-audit/main/Sources/chrome-state-tests/chrome-vectors.json
+    /tmp/gorav-build-audit/main/Sources/chrome-state-tests/generate-vectors.py
+[0/1] Planning build
+Building for debugging...
+[0/27] Write sources
+[9/121] Write swift-version-392E02BD66E9A76.txt
+[11/32] Emitting module ReadinessAnchorTests
+[12/32] Compiling ReadinessAnchorTests ReadinessAnchorTests.swift
+[13/33] Compiling ReadinessAnchorTests SeekPresentedAnchorTests.swift
+[15/34] Emitting module PreparedVideoSwapTests
+[16/34] Compiling PreparedVideoSwapTests PreparedVideoSwapTests.swift
+[18/39] Emitting module PlayerControlPlaneTests
+[19/39] Compiling PlayerControlPlaneTests PlayerControlPlaneTests.swift
+[21/40] Emitting module J3AudioControlTests
+[22/40] Compiling J3AudioControlTests ControlTests.swift
+[23/43] Compiling J3AudioControlTests IdempotentLockTests.swift
+[25/44] Emitting module GorAVAudioClockTests
+[26/44] Compiling GorAVAudioClockTests AudioClockTests.swift
+[28/49] Compiling EmbeddedPreparedShotTests EmbeddedPreparedShotTests.swift
+[29/49] Emitting module EmbeddedPreparedShotTests
+[31/50] Emitting module EngineContractTests
+[32/50] Compiling EngineContractTests ContractTests.swift
+[34/53] Emitting module DecodeHeartbeatTests
+[35/53] Compiling DecodeHeartbeatTests DecodeHeartbeatTests.swift
+[37/56] Emitting module AudioPacingTests
+[37/56] Wrapping AST for ReadinessAnchorTests for debugging
+[38/56] Wrapping AST for PreparedVideoSwapTests for debugging
+[39/56] Wrapping AST for PlayerControlPlaneTests for debugging
+[40/56] Wrapping AST for J3AudioControlTests for debugging
+[41/56] Wrapping AST for GorAVAudioClockTests for debugging
+[42/56] Wrapping AST for EngineContractTests for debugging
+[43/56] Wrapping AST for EmbeddedPreparedShotTests for debugging
+[44/56] Wrapping AST for DecodeHeartbeatTests for debugging
+[45/56] Wrapping AST for BridgeVTDecode for debugging
+[47/56] Compiling AudioPacingTests AudioPacingTests.swift
+/tmp/gorav-build-audit/main/Tests/AudioPacingTests/AudioPacingTests.swift:381:59: warning: reference to captured var 'fence' in concurrently-executing code; this is an error in the Swift 6 language mode
+379 |             while stopFlag.load() == 0 {
+380 |                 state.admissionLock.lock()
+381 |                 let decision = state.refusal(fenceActive: fence, expectedGeneration: fence)
+    |                                                           `- warning: reference to captured var 'fence' in concurrently-executing code; this is an error in the Swift 6 language mode
+382 |                 if state.isPaused {
+383 |                     if decision != .paused { violations.fetchAdd(1) }
+
+/tmp/gorav-build-audit/main/Tests/AudioPacingTests/AudioPacingTests.swift:381:86: warning: reference to captured var 'fence' in concurrently-executing code; this is an error in the Swift 6 language mode
+379 |             while stopFlag.load() == 0 {
+380 |                 state.admissionLock.lock()
+381 |                 let decision = state.refusal(fenceActive: fence, expectedGeneration: fence)
+    |                                                                                      `- warning: reference to captured var 'fence' in concurrently-executing code; this is an error in the Swift 6 language mode
+382 |                 if state.isPaused {
+383 |                     if decision != .paused { violations.fetchAdd(1) }
+
+/tmp/gorav-build-audit/main/Tests/AudioPacingTests/AudioPacingTests.swift:386:47: warning: reference to captured var 'fence' in concurrently-executing code; this is an error in the Swift 6 language mode
+384 |                 } else if decision != nil { violations.fetchAdd(1) }
+385 |                 // A stale expectation must ALWAYS refuse, paused or not.
+386 |                 if state.refusal(fenceActive: fence, expectedGeneration: fence &+ 1) != .staleGeneration {
+    |                                               `- warning: reference to captured var 'fence' in concurrently-executing code; this is an error in the Swift 6 language mode
+387 |                     violations.fetchAdd(1)
+388 |                 }
+
+/tmp/gorav-build-audit/main/Tests/AudioPacingTests/AudioPacingTests.swift:386:74: warning: reference to captured var 'fence' in concurrently-executing code; this is an error in the Swift 6 language mode
+384 |                 } else if decision != nil { violations.fetchAdd(1) }
+385 |                 // A stale expectation must ALWAYS refuse, paused or not.
+386 |                 if state.refusal(fenceActive: fence, expectedGeneration: fence &+ 1) != .staleGeneration {
+    |                                                                          `- warning: reference to captured var 'fence' in concurrently-executing code; this is an error in the Swift 6 language mode
+387 |                     violations.fetchAdd(1)
+388 |                 }
+
+/tmp/gorav-build-audit/main/Tests/AudioPacingTests/AudioPacingTests.swift:399:19: warning: 'fence' mutated after capture by sendable closure
+397 |             state.pausedCell?.store(1)
+398 |             state.pausedCell?.store(0)
+399 |             fence &+= 1
+    |                   `- warning: 'fence' mutated after capture by sendable closure
+400 |             state.admissionLock.unlock()
+401 |         }
+[48/57] /tmp/gorav-build-audit/main/.build/x86_64-unknown-linux-gnu/debug/GorAVDecoderOnlyCandidatePackageDiscoveredTests.derived/all-discovered-tests.swift
+[49/57] Write sources
+[50/57] Wrapping AST for AudioPacingTests for debugging
+[52/63] Emitting module GorAVDecoderOnlyCandidatePackageDiscoveredTests
+[53/63] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests AudioPacingTests.swift
+[54/63] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests DecodeHeartbeatTests.swift
+[55/63] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests EmbeddedPreparedShotTests.swift
+[56/63] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests EngineContractTests.swift
+[57/63] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests GorAVAudioClockTests.swift
+[58/68] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests J3AudioControlTests.swift
+[59/68] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests PlayerControlPlaneTests.swift
+[60/68] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests PreparedVideoSwapTests.swift
+[61/68] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests ReadinessAnchorTests.swift
+[62/68] Compiling GorAVDecoderOnlyCandidatePackageDiscoveredTests all-discovered-tests.swift
+[63/69] /tmp/gorav-build-audit/main/.build/x86_64-unknown-linux-gnu/debug/GorAVDecoderOnlyCandidatePackageTests.derived/runner.swift
+[64/69] Write sources
+[65/69] Wrapping AST for GorAVDecoderOnlyCandidatePackageDiscoveredTests for debugging
+[67/71] Emitting module GorAVDecoderOnlyCandidatePackageTests
+[68/71] Compiling GorAVDecoderOnlyCandidatePackageTests runner.swift
+[69/72] Wrapping AST for GorAVDecoderOnlyCandidatePackageTests for debugging
+[70/72] Write Objects.LinkFileList
+[71/72] Linking GorAVDecoderOnlyCandidatePackageTests.xctest
+Build complete! (4.81s)
+Test Suite 'All tests' started at 2026-11-18 02:39:01.808
+Test Suite 'debug.xctest' started at 2026-11-18 02:39:01.845
+Test Suite 'GorAVAudioClockTests' started at 2026-11-18 02:39:01.845
+Test Case 'GorAVAudioClockTests.test01_noMasterRefusesAllQueries' started at 2026-11-18 02:39:01.845
+Test Case 'GorAVAudioClockTests.test01_noMasterRefusesAllQueries' passed (0.001 seconds)
+Test Case 'GorAVAudioClockTests.test02_anchorAndExactMapping' started at 2026-11-18 02:39:01.845
+Test Case 'GorAVAudioClockTests.test02_anchorAndExactMapping' passed (0.101 seconds)
+Test Case 'GorAVAudioClockTests.test03_staleGenerationRejected' started at 2026-11-18 02:39:01.946
+Test Case 'GorAVAudioClockTests.test03_staleGenerationRejected' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test04_sameGenerationReanchor' started at 2026-11-18 02:39:01.946
+Test Case 'GorAVAudioClockTests.test04_sameGenerationReanchor' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test05_rateChangeIsTimelineReset' started at 2026-11-18 02:39:01.946
+Test Case 'GorAVAudioClockTests.test05_rateChangeIsTimelineReset' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test06_latencyUnknownStaysUnknown' started at 2026-11-18 02:39:01.946
+Test Case 'GorAVAudioClockTests.test06_latencyUnknownStaysUnknown' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test07_driftMeasurement' started at 2026-11-18 02:39:01.947
+Test Case 'GorAVAudioClockTests.test07_driftMeasurement' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test08_classify' started at 2026-11-18 02:39:01.947
+Test Case 'GorAVAudioClockTests.test08_classify' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test08b_classifyRejectsInvalidThresholds' started at 2026-11-18 02:39:01.947
+Test Case 'GorAVAudioClockTests.test08b_classifyRejectsInvalidThresholds' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test09_invalidArguments' started at 2026-11-18 02:39:01.947
+Test Case 'GorAVAudioClockTests.test09_invalidArguments' passed (0.0 seconds)
+Test Case 'GorAVAudioClockTests.test10_fenceLosesMasterUntilReanchor' started at 2026-11-18 02:39:01.947
+Test Case 'GorAVAudioClockTests.test10_fenceLosesMasterUntilReanchor' passed (0.0 seconds)
+Test Suite 'GorAVAudioClockTests' passed at 2026-11-18 02:39:01.947
+	 Executed 11 tests, with 0 failures (0 unexpected) in 0.102 (0.102) seconds
+Test Suite 'DecodeHeartbeatTests' started at 2026-11-18 02:39:01.947
+Test Case 'DecodeHeartbeatTests.testCounterAdvancesAndFilePublishesEveryValue' started at 2026-11-18 02:39:01.947
+Test Case 'DecodeHeartbeatTests.testCounterAdvancesAndFilePublishesEveryValue' passed (0.002 seconds)
+Test Case 'DecodeHeartbeatTests.testDisabledWhenPathNilOrEmpty' started at 2026-11-18 02:39:01.949
+Test Case 'DecodeHeartbeatTests.testDisabledWhenPathNilOrEmpty' passed (0.0 seconds)
+Test Case 'DecodeHeartbeatTests.testFreshInstanceResetsCounterPerRun' started at 2026-11-18 02:39:01.949
+Test Case 'DecodeHeartbeatTests.testFreshInstanceResetsCounterPerRun' passed (0.001 seconds)
+Test Case 'DecodeHeartbeatTests.testNoTmpLitterOnSuccess' started at 2026-11-18 02:39:01.950
+Test Case 'DecodeHeartbeatTests.testNoTmpLitterOnSuccess' passed (0.0 seconds)
+Test Case 'DecodeHeartbeatTests.testStallMeansUnchangedValue' started at 2026-11-18 02:39:01.950
+Test Case 'DecodeHeartbeatTests.testStallMeansUnchangedValue' passed (0.001 seconds)
+Test Case 'DecodeHeartbeatTests.testUnwritablePathCountsFailureNeverThrows' started at 2026-11-18 02:39:01.951
+Test Case 'DecodeHeartbeatTests.testUnwritablePathCountsFailureNeverThrows' passed (0.0 seconds)
+Test Suite 'DecodeHeartbeatTests' passed at 2026-11-18 02:39:01.951
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.004 (0.004) seconds
+Test Suite 'AudioPacingTests' started at 2026-11-18 02:39:01.951
+Test Case 'AudioPacingTests.test01_sessionStartAnchorIsWallContinuous' started at 2026-11-18 02:39:01.951
+Test Case 'AudioPacingTests.test01_sessionStartAnchorIsWallContinuous' passed (0.1 seconds)
+Test Case 'AudioPacingTests.test02_driftMeasuredAndReanchorContinuous' started at 2026-11-18 02:39:02.051
+Test Case 'AudioPacingTests.test02_driftMeasuredAndReanchorContinuous' passed (0.1 seconds)
+Test Case 'AudioPacingTests.test03_beyondToleranceReanchorRefused' started at 2026-11-18 02:39:02.152
+Test Case 'AudioPacingTests.test03_beyondToleranceReanchorRefused' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test04_pauseFreezeResumeNewGeneration' started at 2026-11-18 02:39:02.152
+Test Case 'AudioPacingTests.test04_pauseFreezeResumeNewGeneration' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test05_seekResetKeepsValueContinuous' started at 2026-11-18 02:39:02.152
+Test Case 'AudioPacingTests.test05_seekResetKeepsValueContinuous' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test06_masterLostFailsStopNeverSubstitutes' started at 2026-11-18 02:39:02.152
+Test Case 'AudioPacingTests.test06_masterLostFailsStopNeverSubstitutes' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test07_rateChangeRefusedWithinGeneration' started at 2026-11-18 02:39:02.152
+Test Case 'AudioPacingTests.test07_rateChangeRefusedWithinGeneration' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test08_sinkCounterDrivesRealPumpDecisions' started at 2026-11-18 02:39:02.153
+Test Case 'AudioPacingTests.test08_sinkCounterDrivesRealPumpDecisions' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test09_stalledCounterWaitsNotSubstitutes' started at 2026-11-18 02:39:02.153
+Test Case 'AudioPacingTests.test09_stalledCounterWaitsNotSubstitutes' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test10_pausedSeekResumeStaysContinuous' started at 2026-11-18 02:39:02.153
+Test Case 'AudioPacingTests.test10_pausedSeekResumeStaysContinuous' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test11_concurrentReadsDuringSessionMutations' started at 2026-11-18 02:39:02.153
+Test Case 'AudioPacingTests.test11_concurrentReadsDuringSessionMutations' passed (0.012 seconds)
+Test Case 'AudioPacingTests.test12_admissionCoreContention' started at 2026-11-18 02:39:02.165
+Test Case 'AudioPacingTests.test12_admissionCoreContention' passed (0.003 seconds)
+Test Case 'AudioPacingTests.test13_sessionStartClearsOrphanedPause' started at 2026-11-18 02:39:02.168
+Test Case 'AudioPacingTests.test13_sessionStartClearsOrphanedPause' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test14_pauseRequiresLiveMaster' started at 2026-11-18 02:39:02.168
+Test Case 'AudioPacingTests.test14_pauseRequiresLiveMaster' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test15_startAnchorVsStopFenceBarrier' started at 2026-11-18 02:39:02.168
+Test Case 'AudioPacingTests.test15_startAnchorVsStopFenceBarrier' passed (0.0 seconds)
+Test Case 'AudioPacingTests.test16_pauseRefusedWhenFreezeUnreadable' started at 2026-11-18 02:39:02.169
+Test Case 'AudioPacingTests.test16_pauseRefusedWhenFreezeUnreadable' passed (0.0 seconds)
+Test Suite 'AudioPacingTests' passed at 2026-11-18 02:39:02.169
+	 Executed 16 tests, with 0 failures (0 unexpected) in 0.218 (0.218) seconds
+Test Suite 'ReadinessAnchorSessionTests' started at 2026-11-18 02:39:02.169
+Test Case 'ReadinessAnchorSessionTests.testClockStartRefusedBeforeAnchor' started at 2026-11-18 02:39:02.169
+Test Case 'ReadinessAnchorSessionTests.testClockStartRefusedBeforeAnchor' passed (0.0 seconds)
+Test Case 'ReadinessAnchorSessionTests.testClockStartsOnlyAfterAnchorPresented' started at 2026-11-18 02:39:02.169
+Test Case 'ReadinessAnchorSessionTests.testClockStartsOnlyAfterAnchorPresented' passed (0.0 seconds)
+Test Case 'ReadinessAnchorSessionTests.testLateFrameAfterAnchorStillDrops' started at 2026-11-18 02:39:02.169
+Test Case 'ReadinessAnchorSessionTests.testLateFrameAfterAnchorStillDrops' passed (0.0 seconds)
+Test Case 'ReadinessAnchorSessionTests.testPostSeekLateFrameStillDrops' started at 2026-11-18 02:39:02.169
+Test Case 'ReadinessAnchorSessionTests.testPostSeekLateFrameStillDrops' passed (0.0 seconds)
+Test Case 'ReadinessAnchorSessionTests.testSeekRestartsReadinessCycle' started at 2026-11-18 02:39:02.169
+Test Case 'ReadinessAnchorSessionTests.testSeekRestartsReadinessCycle' passed (0.0 seconds)
+Test Suite 'ReadinessAnchorSessionTests' passed at 2026-11-18 02:39:02.169
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'SeekPresentedAnchorTests' started at 2026-11-18 02:39:02.169
+Test Case 'SeekPresentedAnchorTests.testRefusedShowsNeverPublishReadiness' started at 2026-11-18 02:39:02.169
+Test Case 'SeekPresentedAnchorTests.testRefusedShowsNeverPublishReadiness' passed (0.101 seconds)
+Test Case 'SeekPresentedAnchorTests.testSeekWakesAlreadyParkedPauseForExactlyOneArrivalFrame' started at 2026-11-18 02:39:02.270
+Test Case 'SeekPresentedAnchorTests.testSeekWakesAlreadyParkedPauseForExactlyOneArrivalFrame' passed (0.042 seconds)
+Test Suite 'SeekPresentedAnchorTests' passed at 2026-11-18 02:39:02.312
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.142 (0.142) seconds
+Test Suite 'PreparedVideoSwapTests' started at 2026-11-18 02:39:02.312
+Test Case 'PreparedVideoSwapTests.testAudioBindingLossAtBoundaryDoesNotPublishCandidate' started at 2026-11-18 02:39:02.312
+Test Case 'PreparedVideoSwapTests.testAudioBindingLossAtBoundaryDoesNotPublishCandidate' passed (0.005 seconds)
+Test Case 'PreparedVideoSwapTests.testCancelledSwapDoesNotPublishOrReplace' started at 2026-11-18 02:39:02.317
+Test Case 'PreparedVideoSwapTests.testCancelledSwapDoesNotPublishOrReplace' passed (0.0 seconds)
+Test Case 'PreparedVideoSwapTests.testLateFirstSwapAdoptionReleasePreservesAnchorAndSource' started at 2026-11-18 02:39:02.317
+Test Case 'PreparedVideoSwapTests.testLateFirstSwapAdoptionReleasePreservesAnchorAndSource' passed (0.0 seconds)
+Test Case 'PreparedVideoSwapTests.testLateTargetRefusesWithoutChangingSource' started at 2026-11-18 02:39:02.317
+Test Case 'PreparedVideoSwapTests.testLateTargetRefusesWithoutChangingSource' passed (0.0 seconds)
+Test Case 'PreparedVideoSwapTests.testMappedSourcePreservesSpacingAndBufferedFirstFrame' started at 2026-11-18 02:39:02.317
+Test Case 'PreparedVideoSwapTests.testMappedSourcePreservesSpacingAndBufferedFirstFrame' passed (0.0 seconds)
+Test Case 'PreparedVideoSwapTests.testMappedSourceRejectsNonfinitePTS' started at 2026-11-18 02:39:02.317
+Test Case 'PreparedVideoSwapTests.testMappedSourceRejectsNonfinitePTS' passed (0.0 seconds)
+Test Case 'PreparedVideoSwapTests.testOldInFlightPullIsFencedAndAnchorPreserved' started at 2026-11-18 02:39:02.318
+Test Case 'PreparedVideoSwapTests.testOldInFlightPullIsFencedAndAnchorPreserved' passed (0.0 seconds)
+Test Case 'PreparedVideoSwapTests.testRefusedValidationIsAtomic' started at 2026-11-18 02:39:02.318
+Test Case 'PreparedVideoSwapTests.testRefusedValidationIsAtomic' passed (0.0 seconds)
+Test Case 'PreparedVideoSwapTests.testRevisionExhaustionIsAtomic' started at 2026-11-18 02:39:02.318
+Test Case 'PreparedVideoSwapTests.testRevisionExhaustionIsAtomic' passed (0.0 seconds)
+Test Case 'PreparedVideoSwapTests.testScheduledBoundaryUsesExistingClockAndRejectsOverlap' started at 2026-11-18 02:39:02.318
+Test Case 'PreparedVideoSwapTests.testScheduledBoundaryUsesExistingClockAndRejectsOverlap' passed (0.016 seconds)
+Test Case 'PreparedVideoSwapTests.testScheduledSwapWithoutFilmAnchorRefuses' started at 2026-11-18 02:39:02.334
+Test Case 'PreparedVideoSwapTests.testScheduledSwapWithoutFilmAnchorRefuses' passed (0.0 seconds)
+Test Case 'PreparedVideoSwapTests.testScheduledTaskCancellationHasNoSourceMutation' started at 2026-11-18 02:39:02.334
+Test Case 'PreparedVideoSwapTests.testScheduledTaskCancellationHasNoSourceMutation' passed (0.002 seconds)
+Test Case 'PreparedVideoSwapTests.testSwapActuallyPullsReplacementAndKeepsClockAnchor' started at 2026-11-18 02:39:02.337
+Test Case 'PreparedVideoSwapTests.testSwapActuallyPullsReplacementAndKeepsClockAnchor' passed (0.0 seconds)
+Test Case 'PreparedVideoSwapTests.testUncommittedAdoptionReleaseAfterRefusalLeavesRealPumpUsable' started at 2026-11-18 02:39:02.337
+Test Case 'PreparedVideoSwapTests.testUncommittedAdoptionReleaseAfterRefusalLeavesRealPumpUsable' passed (0.0 seconds)
+Test Suite 'PreparedVideoSwapTests' passed at 2026-11-18 02:39:02.337
+	 Executed 14 tests, with 0 failures (0 unexpected) in 0.025 (0.025) seconds
+Test Suite 'PlayerControlPlaneTests' started at 2026-11-18 02:39:02.337
+Test Case 'PlayerControlPlaneTests.testDerivedFlags' started at 2026-11-18 02:39:02.337
+Test Case 'PlayerControlPlaneTests.testDerivedFlags' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testFailFromAnyNonTerminalState' started at 2026-11-18 02:39:02.337
+Test Case 'PlayerControlPlaneTests.testFailFromAnyNonTerminalState' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testHappyPathToClosed' started at 2026-11-18 02:39:02.337
+Test Case 'PlayerControlPlaneTests.testHappyPathToClosed' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testIllegalEarlyControls' started at 2026-11-18 02:39:02.337
+Test Case 'PlayerControlPlaneTests.testIllegalEarlyControls' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testLoadFailureFromLoading' started at 2026-11-18 02:39:02.338
+Test Case 'PlayerControlPlaneTests.testLoadFailureFromLoading' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testReentrantBeginSeekRefused_stateAndGenerationUntouched' started at 2026-11-18 02:39:02.338
+Test Case 'PlayerControlPlaneTests.testReentrantBeginSeekRefused_stateAndGenerationUntouched' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testRefusedControlDoesNotAdvanceGeneration_staleFence' started at 2026-11-18 02:39:02.338
+Test Case 'PlayerControlPlaneTests.testRefusedControlDoesNotAdvanceGeneration_staleFence' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testSeekFromPausedCommittedReturnsPaused_originPreserved' started at 2026-11-18 02:39:02.338
+Test Case 'PlayerControlPlaneTests.testSeekFromPausedCommittedReturnsPaused_originPreserved' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testSeekFromPausedRefusedReturnsPaused' started at 2026-11-18 02:39:02.338
+Test Case 'PlayerControlPlaneTests.testSeekFromPausedRefusedReturnsPaused' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testSeekFromPlayingCommittedReturnsPlaying' started at 2026-11-18 02:39:02.338
+Test Case 'PlayerControlPlaneTests.testSeekFromPlayingCommittedReturnsPlaying' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testSeekRequiresCloseGoesClosing' started at 2026-11-18 02:39:02.338
+Test Case 'PlayerControlPlaneTests.testSeekRequiresCloseGoesClosing' passed (0.0 seconds)
+Test Case 'PlayerControlPlaneTests.testTerminalStatesRefuseEverything' started at 2026-11-18 02:39:02.338
+Test Case 'PlayerControlPlaneTests.testTerminalStatesRefuseEverything' passed (0.0 seconds)
+Test Suite 'PlayerControlPlaneTests' passed at 2026-11-18 02:39:02.338
+	 Executed 12 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'ContractTests' started at 2026-11-18 02:39:02.338
+Test Case 'ContractTests.testConfigurationBytesPreserved' started at 2026-11-18 02:39:02.338
+Test Case 'ContractTests.testConfigurationBytesPreserved' passed (0.0 seconds)
+Test Case 'ContractTests.testConvenienceUsesInBand' started at 2026-11-18 02:39:02.338
+Test Case 'ContractTests.testConvenienceUsesInBand' passed (0.0 seconds)
+Test Case 'ContractTests.testE2DefaultedFrameFlowsThroughSeekQueueIntact' started at 2026-11-18 02:39:02.339
+Test Case 'ContractTests.testE2DefaultedFrameFlowsThroughSeekQueueIntact' passed (0.0 seconds)
+Test Case 'ContractTests.testE2DefaultsRoundTrip' started at 2026-11-18 02:39:02.339
+Test Case 'ContractTests.testE2DefaultsRoundTrip' passed (0.0 seconds)
+Test Case 'ContractTests.testE2DoviConfigurationTypedRefusal' started at 2026-11-18 02:39:02.339
+Test Case 'ContractTests.testE2DoviConfigurationTypedRefusal' passed (0.0 seconds)
+Test Case 'ContractTests.testE2FourArgInitWitness' started at 2026-11-18 02:39:02.339
+Test Case 'ContractTests.testE2FourArgInitWitness' passed (0.0 seconds)
+Test Case 'ContractTests.testE2PresentationFrameShape' started at 2026-11-18 02:39:02.339
+Test Case 'ContractTests.testE2PresentationFrameShape' passed (0.0 seconds)
+Test Case 'ContractTests.testFailedProviderFlushDoesNotReviveFrames' started at 2026-11-18 02:39:02.339
+Test Case 'ContractTests.testFailedProviderFlushDoesNotReviveFrames' passed (0.0 seconds)
+Test Case 'ContractTests.testMalformedConfigurationIsTyped' started at 2026-11-18 02:39:02.339
+Test Case 'ContractTests.testMalformedConfigurationIsTyped' passed (0.0 seconds)
+Test Case 'ContractTests.testSeekFlushesAndInvalidatesRepeatedPTS' started at 2026-11-18 02:39:02.339
+Test Case 'ContractTests.testSeekFlushesAndInvalidatesRepeatedPTS' passed (0.0 seconds)
+Test Case 'ContractTests.testStubStillRefusesRatherThanInvents' started at 2026-11-18 02:39:02.339
+Test Case 'ContractTests.testStubStillRefusesRatherThanInvents' passed (0.0 seconds)
+Test Suite 'ContractTests' passed at 2026-11-18 02:39:02.339
+	 Executed 11 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'IdempotentLockTests' started at 2026-11-18 02:39:02.339
+Test Case 'IdempotentLockTests.testConcurrentTerminalLatchAndCounter' started at 2026-11-18 02:39:02.339
+Test Case 'IdempotentLockTests.testConcurrentTerminalLatchAndCounter' passed (0.001 seconds)
+Test Suite 'IdempotentLockTests' passed at 2026-11-18 02:39:02.340
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'J3AudioControlTests' started at 2026-11-18 02:39:02.340
+Test Case 'J3AudioControlTests.testActualFrozenMasterResumeNoDoubleCount' started at 2026-11-18 02:39:02.340
+Test Case 'J3AudioControlTests.testActualFrozenMasterResumeNoDoubleCount' passed (0.0 seconds)
+Test Case 'J3AudioControlTests.testActualFrozenSeekWhilePausedValue' started at 2026-11-18 02:39:02.340
+Test Case 'J3AudioControlTests.testActualFrozenSeekWhilePausedValue' passed (0.0 seconds)
+Test Case 'J3AudioControlTests.testActualMasterLossFailsClosed' started at 2026-11-18 02:39:02.340
+Test Case 'J3AudioControlTests.testActualMasterLossFailsClosed' passed (0.0 seconds)
+Test Suite 'J3AudioControlTests' passed at 2026-11-18 02:39:02.341
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'debug.xctest' passed at 2026-11-18 02:39:02.341
+	 Executed 81 tests, with 0 failures (0 unexpected) in 0.495 (0.495) seconds
+Test Suite 'All tests' passed at 2026-11-18 02:39:02.341
+	 Executed 81 tests, with 0 failures (0 unexpected) in 0.495 (0.495) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+✔ Test run with 0 tests passed after 0.001 seconds.

@@ -1,3 +1,28 @@
+arch-198y independent Ops verdicts at exact product pins:
+W-gdb-198y-1nstinct-01 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-01.log
+W-gdb-198y-1nstinct-02 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-02.log
+W-gdb-198y-1nstinct-03 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-03.log
+W-gdb-198y-1nstinct-04 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-04.log
+W-gdb-198y-1nstinct-05 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-05.log
+W-gdb-198y-1nstinct-06 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-06.log
+W-gdb-198y-1nstinct-07 | REJECTED_FULL_TREE_FALSE_POSITIVE | rc=1 | evidence packets/198y/returns/W-gdb-198y-1nstinct-07.log
+W-gdb-198y-1nstinct-08 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-08.log
+W-gdb-198y-1nstinct-09 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-09.log
+W-gdb-198y-1nstinct-10 | REJECTED_FULL_TREE_FALSE_POSITIVE | rc=1 | evidence packets/198y/returns/W-gdb-198y-1nstinct-10.log
+W-gdb-198y-1nstinct-11 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-11.log
+W-gdb-198y-1nstinct-12 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-12.log
+W-gdb-198y-1nstinct-13 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-13.log
+W-gdb-198y-1nstinct-14 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-14.log
+W-gdb-198y-1nstinct-15 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-15.log
+W-gdb-198y-1nstinct-16 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-16.log
+W-gdb-198y-1nstinct-17 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-17.log
+W-gdb-198y-1nstinct-18 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-18.log
+W-gdb-198y-1nstinct-19 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-19.log
+W-gdb-198y-1nstinct-20 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-1nstinct-20.log
+07 and 10 require lexical ownership/scope correction: FileEntry in TransferResolver and nested Config in SubtitleView are distinct qualified declarations, not duplicate top-level owners. Rerun the corrected tests against the full pinned Sources tree, not excerpt-only fixtures. No production edit.
+38/40 total accepted as test evidence, 2 rejected, zero product imports. Native/build/runtime NOT_RUN. The accepted tests are not a movement acceptance or shipping gate.
+20 new OPEN packets per lab follow as 21..40; earliest claim wins.
+
 arch-198y routing
 arch-198y: 20 startable packets pinned to gor bb3e0ea / gorav live main are being published for you (shipping-path gorav rows and move-only structure patches). Claim with the earliest-claim rule and return patch plus local test.
 

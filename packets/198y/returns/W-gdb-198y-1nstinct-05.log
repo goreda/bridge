@@ -1,0 +1,12 @@
+{"case": "legacy-exact", "expected": "PASS", "observed": "PASS"}
+{"case": "station-exact", "expected": "PASS", "observed": "PASS"}
+{"case": "missing-owner", "expected": "REJECT", "observed": "REJECT"}
+{"case": "byte-drift", "expected": "REJECT", "observed": "REJECT"}
+{"case": "same-size-byte-drift", "expected": "REJECT", "observed": "REJECT"}
+{"case": "wrong-station-only", "expected": "REJECT", "observed": "REJECT"}
+{"case": "wrong-station-extra-copy", "expected": "REJECT", "observed": "REJECT"}
+{"case": "old-new-double-owner", "expected": "NOT_APPLICABLE_station_is_gor", "observed": "NOT_APPLICABLE_station_is_gor"}
+{"case": "owner-symlink", "expected": "REJECT", "observed": "REJECT"}
+{"case": "nominal-duplicate-0-BuildID", "expected": "REJECT", "observed": "REJECT"}
+{"case": "comments-strings-nested-nominal-0", "expected": "PASS", "observed": "PASS"}
+CHARACTERIZATION_PASS W-gdb-198y-1nstinct-05: archive/gor/Sources/gor/BuildID.swift; filesystem cases=11; source-only; Swift compile/runtime NOT_RUN; clean_checkout not asserted

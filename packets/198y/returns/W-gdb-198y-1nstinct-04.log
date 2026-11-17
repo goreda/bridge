@@ -1,0 +1,14 @@
+{"case": "legacy-exact", "expected": "PASS", "observed": "PASS"}
+{"case": "station-exact", "expected": "PASS", "observed": "PASS"}
+{"case": "missing-owner", "expected": "REJECT", "observed": "REJECT"}
+{"case": "byte-drift", "expected": "REJECT", "observed": "REJECT"}
+{"case": "same-size-byte-drift", "expected": "REJECT", "observed": "REJECT"}
+{"case": "wrong-station-only", "expected": "REJECT", "observed": "REJECT"}
+{"case": "wrong-station-extra-copy", "expected": "REJECT", "observed": "REJECT"}
+{"case": "old-new-double-owner", "expected": "REJECT", "observed": "REJECT"}
+{"case": "owner-symlink", "expected": "REJECT", "observed": "REJECT"}
+{"case": "nominal-duplicate-0-ArchiveRandom", "expected": "REJECT", "observed": "REJECT"}
+{"case": "comments-strings-nested-nominal-0", "expected": "PASS", "observed": "PASS"}
+{"case": "nominal-duplicate-1-ArchiveRandom", "expected": "REJECT", "observed": "REJECT"}
+{"case": "comments-strings-nested-nominal-1", "expected": "PASS", "observed": "PASS"}
+CHARACTERIZATION_PASS W-gdb-198y-1nstinct-04: archive/gor/Sources/gor/ArchiveRandom.swift; filesystem cases=13; source-only; Swift compile/runtime NOT_RUN; clean_checkout not asserted

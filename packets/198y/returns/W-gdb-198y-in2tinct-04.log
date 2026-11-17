@@ -1,0 +1,9 @@
+PASS A1-source-pin-sha256
+PASS D-sourceref-decl
+PASS D-sourceref-equality
+PASS D-preparedshot-decl
+PASS D-hash-six-kind-buckets
+PASS A3-byte-drift-mutant-rejected
+PASS M-renamed-sourceref-decl
+PASS M-removed-sourceref-equality
+CHARACTERIZATION_PASS W-gdb-198y-in2tinct-04: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime
