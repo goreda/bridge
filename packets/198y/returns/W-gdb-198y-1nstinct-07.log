@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/tmp/198y-gor-packets/archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-07.py", line 76, in <module>
+    check_tree_duplicates(ROOT)
+  File "/tmp/198y-gor-packets/archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-07.py", line 61, in check_tree_duplicates
+    assert hits == [REL], 'duplicate-type rejection (old/new): %s declarations at %s, expected only %s' % (ty, hits, REL)
+AssertionError: duplicate-type rejection (old/new): FileEntry declarations at ['archive/gor/Sources/gor/FileBrowser.swift', 'archive/gor/Sources/gor/TransferResolver.swift'], expected only archive/gor/Sources/gor/FileBrowser.swift

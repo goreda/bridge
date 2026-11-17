@@ -1,0 +1,18 @@
+STATION_LOCATOR archive/gor/Sources/gor/LookToolsRoute.swift station=GorUI
+BYTE_IDENTITY sha256=3208c01f3c9831bc4b97b5221f20a48e4e9e063fa208bdb89bde19b52d91ca13
+DECLARATION_BOUNDARY 12 tokens, 3 top-level types declared exactly once
+DUPLICATE_TYPE_REJECTION old/new scan clean
+MUTANT_REJECTED append_comment_byte_drift
+MUTANT_REJECTED truncate_half
+MUTANT_REJECTED flip_byte_midfile
+MUTANT_REJECTED drop_decl_keyword
+MUTANT_REJECTED rename_decl
+MUTANT_REJECTED intra_file_duplicate_decl
+MUTANT_REJECTED whitespace_drift_trailing_space
+MUTANT_CONTROL clean_fixture_passes
+MUTANT_REJECTED duplicate_copy_at_new_station
+MUTANT_REJECTED same_basename_shadow_copy
+MUTANT_REJECTED duplicate_type_second_file
+MUTATION_BATTERY 10 mutants rejected, clean fixture passes
+RUNTIME_NOT_RUN source-only characterization, no runtime execution
+CHARACTERIZATION_PASS W-gdb-198y-1nstinct-11: station locator, byte identity, declaration boundary, old/new duplicate-type rejection, 10 mutation cases rejected; source-only, not runtime

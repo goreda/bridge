@@ -1,0 +1,9 @@
+PASS A1-source-pin-sha256
+PASS D-normalizedrect-decl
+PASS D-normalizedrect-full
+PASS D-routeplan-pack-guard
+PASS D-stale-revision-refusal
+PASS A3-byte-drift-mutant-rejected
+PASS M-renamed-normalizedrect-decl
+PASS M-removed-routeplan-guard
+CHARACTERIZATION_PASS W-gdb-198y-in2tinct-19: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime

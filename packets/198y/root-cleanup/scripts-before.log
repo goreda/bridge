@@ -1,0 +1,9 @@
+test_failure_surfaces_git_stderr (__main__.ContinuityTest) ... ok
+test_merge_counts_integrated_delta_once (__main__.ContinuityTest) ... ok
+test_quoted_and_exotic_paths_classify_product (__main__.ContinuityTest) ... ok
+test_synthetic_history (__main__.ContinuityTest) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.271s
+
+OK

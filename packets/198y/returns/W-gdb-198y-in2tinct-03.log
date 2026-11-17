@@ -1,0 +1,9 @@
+PASS A1-source-pin-sha256
+PASS D-observationvalue-decl
+PASS D-property-rawvalue-timepos
+PASS D-property-rawvalue-hwdec
+PASS D-property-enum-string-raw
+PASS A3-byte-drift-mutant-rejected
+PASS M-renamed-observationvalue-decl
+PASS M-removed-timepos-property
+CHARACTERIZATION_PASS W-gdb-198y-in2tinct-03: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime

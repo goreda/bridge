@@ -1,0 +1,9 @@
+PASS A1-source-pin-sha256
+PASS D-subtitletrack-decl
+PASS D-load-signature
+PASS D-format-allowlist-guard
+PASS D-track-decl
+PASS A3-byte-drift-mutant-rejected
+PASS M-renamed-track-decl
+PASS M-removed-load-func
+CHARACTERIZATION_PASS W-gdb-198y-in2tinct-12: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime

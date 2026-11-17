@@ -1,0 +1,553 @@
+[
+  {
+    "packet": "W-gdb-198y-1nstinct-01",
+    "return_sha256": "92f8556bd6b12e34c17a5053c8a133cb0bbfb483dd0b39093b4d89f95037dba7",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-01.py",
+    "rc": 0,
+    "last": [
+      "{\"case\": \"unrelated-extension-1\", \"expected\": \"PASS\", \"observed\": \"PASS\"}",
+      "{\"case\": \"distinct-extension-overload-1\", \"expected\": \"PASS\", \"observed\": \"PASS\"}",
+      "{\"case\": \"comment-and-string-extension-1\", \"expected\": \"PASS\", \"observed\": \"PASS\"}",
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-01: archive/gor/Sources/gor/AdaptiveColor.swift; filesystem cases=25; source-only; Swift compile/runtime NOT_RUN; clean_checkout not asserted"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-02",
+    "return_sha256": "05242a10c67e69634d6bf8e57d9cb3579f6dae7aec5168e083b2b9b2d7fcf2e0",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-02.py",
+    "rc": 0,
+    "last": [
+      "{\"case\": \"nominal-duplicate-1-ArchiveBrowserPanel\", \"expected\": \"REJECT\", \"observed\": \"REJECT\"}",
+      "{\"case\": \"nominal-duplicate-1-ArchiveTopBar\", \"expected\": \"REJECT\", \"observed\": \"REJECT\"}",
+      "{\"case\": \"comments-strings-nested-nominal-1\", \"expected\": \"PASS\", \"observed\": \"PASS\"}",
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-02: archive/gor/Sources/gor/ArchiveBrowser.swift; filesystem cases=35; source-only; Swift compile/runtime NOT_RUN; clean_checkout not asserted"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-03",
+    "return_sha256": "4fb8807cf7036d96dc55e3da81bea3ed1f9ea062f8c0722d95873933af67ecd6",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-03.py",
+    "rc": 0,
+    "last": [
+      "{\"case\": \"comments-strings-nested-nominal-0\", \"expected\": \"PASS\", \"observed\": \"PASS\"}",
+      "{\"case\": \"nominal-duplicate-1-ArchiveLibrary\", \"expected\": \"REJECT\", \"observed\": \"REJECT\"}",
+      "{\"case\": \"comments-strings-nested-nominal-1\", \"expected\": \"PASS\", \"observed\": \"PASS\"}",
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-03: archive/gor/Sources/gor/ArchiveLibrary.swift; filesystem cases=13; source-only; Swift compile/runtime NOT_RUN; clean_checkout not asserted"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-04",
+    "return_sha256": "09e60d504b9717cf89d02a26c4761c1d5064d04cace71075557d8f511b1081fe",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-04.py",
+    "rc": 0,
+    "last": [
+      "{\"case\": \"comments-strings-nested-nominal-0\", \"expected\": \"PASS\", \"observed\": \"PASS\"}",
+      "{\"case\": \"nominal-duplicate-1-ArchiveRandom\", \"expected\": \"REJECT\", \"observed\": \"REJECT\"}",
+      "{\"case\": \"comments-strings-nested-nominal-1\", \"expected\": \"PASS\", \"observed\": \"PASS\"}",
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-04: archive/gor/Sources/gor/ArchiveRandom.swift; filesystem cases=13; source-only; Swift compile/runtime NOT_RUN; clean_checkout not asserted"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-05",
+    "return_sha256": "df394d00335184b22a3aff71b9f9baaa299c105b594f981a40984b8f365377f1",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-05.py",
+    "rc": 0,
+    "last": [
+      "{\"case\": \"owner-symlink\", \"expected\": \"REJECT\", \"observed\": \"REJECT\"}",
+      "{\"case\": \"nominal-duplicate-0-BuildID\", \"expected\": \"REJECT\", \"observed\": \"REJECT\"}",
+      "{\"case\": \"comments-strings-nested-nominal-0\", \"expected\": \"PASS\", \"observed\": \"PASS\"}",
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-05: archive/gor/Sources/gor/BuildID.swift; filesystem cases=11; source-only; Swift compile/runtime NOT_RUN; clean_checkout not asserted"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-06",
+    "return_sha256": "c196f2f7ef0c6efa09cd6c19488721dea7a237e6dd193581dd576d71d2c2c9b6",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-06.py",
+    "rc": 0,
+    "last": [
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-06: station gor located for archive/gor/Sources/gor/Diag.swift (planned move to GorPlatformMac not yet applied), source identity pinned, 11 boundary tokens, 2 types duplicate-clean, 9 mutation cases rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-07",
+    "return_sha256": "142037d0db726147a657048e2ccac88433da5c62042895221de43a00c94dcd27",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-07.py",
+    "rc": 1,
+    "last": [
+      "    check_tree_duplicates(ROOT)",
+      "  File \"/tmp/198y-gor-packets/archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-07.py\", line 61, in check_tree_duplicates",
+      "    assert hits == [REL], 'duplicate-type rejection (old/new): %s declarations at %s, expected only %s' % (ty, hits, REL)",
+      "AssertionError: duplicate-type rejection (old/new): FileEntry declarations at ['archive/gor/Sources/gor/FileBrowser.swift', 'archive/gor/Sources/gor/TransferResolver.swift'], expected only archive/gor/Sources/gor/FileBrowser.swift"
+    ],
+    "verdict": "REJECTED_FULL_TREE_FALSE_POSITIVE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-08",
+    "return_sha256": "1266cbc92de0fb67fc7e59e6501697e3b5d4173b10e5932a6e47fc94d653dd0b",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-08.py",
+    "rc": 0,
+    "last": [
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-08: station gor located for archive/gor/Sources/gor/GORResources.swift (planned move to GorPlatformMac not yet applied), source identity pinned, 12 boundary tokens, 2 types duplicate-clean, 9 mutation cases rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-09",
+    "return_sha256": "ed2a977073f6a85b413049e3f8ee744cecf6dfbf18fd5e8228543bacc98314e9",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-09.py",
+    "rc": 0,
+    "last": [
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-09: station gor located for archive/gor/Sources/gor/IPTV.swift (planned move to GorSources not yet applied), source identity pinned, 12 boundary tokens, 6 types duplicate-clean, 9 mutation cases rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-10",
+    "return_sha256": "567b7d62c1e0651f9df8cf85dd504f0b6459328f5a90fa545a9149626c1789bf",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-10.py",
+    "rc": 1,
+    "last": [
+      "    check_tree_duplicates(ROOT)",
+      "  File \"/tmp/198y-gor-packets/archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-10.py\", line 61, in check_tree_duplicates",
+      "    assert hits == [REL], 'duplicate-type rejection (old/new): %s declarations at %s, expected only %s' % (ty, hits, REL)",
+      "AssertionError: duplicate-type rejection (old/new): Config declarations at ['archive/gor/Sources/gor/LiveCaptionController.swift', 'archive/gor/Sources/gor/SubtitleView.swift'], expected only archive/gor/Sources/gor/LiveCaptionController.swift"
+    ],
+    "verdict": "REJECTED_FULL_TREE_FALSE_POSITIVE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-11",
+    "return_sha256": "3bbb692acd952c5796a11c79c46ef4fa1b143a54a7b22299f3a6dc178df3af01",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-11.py",
+    "rc": 0,
+    "last": [
+      "MUTANT_REJECTED duplicate_type_second_file",
+      "MUTATION_BATTERY 10 mutants rejected, clean fixture passes",
+      "RUNTIME_NOT_RUN source-only characterization, no runtime execution",
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-11: station locator, byte identity, declaration boundary, old/new duplicate-type rejection, 10 mutation cases rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-12",
+    "return_sha256": "e90816439f747935d758773fcba3806a1b3b0fa230113e315f4d187fd2b36681",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-12.py",
+    "rc": 0,
+    "last": [
+      "MUTANT_REJECTED duplicate_type_second_file",
+      "MUTATION_BATTERY 10 mutants rejected, clean fixture passes",
+      "RUNTIME_NOT_RUN source-only characterization, no runtime execution",
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-12: station locator, byte identity, declaration boundary, old/new duplicate-type rejection, 10 mutation cases rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-13",
+    "return_sha256": "bddbdded438416af32837250308df5007dc953072a0e69d1f92cfbbc07f43152",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-13.py",
+    "rc": 0,
+    "last": [
+      "MUTANT_REJECTED duplicate_type_second_file",
+      "MUTATION_BATTERY 10 mutants rejected, clean fixture passes",
+      "RUNTIME_NOT_RUN source-only characterization, no runtime execution",
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-13: station locator, byte identity, declaration boundary, old/new duplicate-type rejection, 10 mutation cases rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-14",
+    "return_sha256": "6cded07ab4cf0b86a7a5e55576f891ec042e47b4cfa9b4b30575ef49be0ad0c2",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-14.py",
+    "rc": 0,
+    "last": [
+      "MUTANT_REJECTED duplicate_type_second_file",
+      "MUTATION_BATTERY 10 mutants rejected, clean fixture passes",
+      "RUNTIME_NOT_RUN source-only characterization, no runtime execution",
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-14: station locator, byte identity, declaration boundary, old/new duplicate-type rejection, 10 mutation cases rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-15",
+    "return_sha256": "66e485b972eb68debb8c3fdd626493cf05c848eb38fa2cb6acf8ae197fcdc0dd",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-15.py",
+    "rc": 0,
+    "last": [
+      "MUTANT_REJECTED duplicate_type_second_file",
+      "MUTATION_BATTERY 10 mutants rejected, clean fixture passes",
+      "RUNTIME_NOT_RUN source-only characterization, no runtime execution",
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-15: station locator, byte identity, declaration boundary, old/new duplicate-type rejection, 10 mutation cases rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-16",
+    "return_sha256": "7ecb59918230b50406403d10e1160a2fe7abebd240b68aaf4b1e01ac5103a6de",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-16.py",
+    "rc": 0,
+    "last": [
+      "MUTATION_PASS comments-and-strings-not-declarations ACCEPT",
+      "MUTATION_PASS duplicate-declaration-0 REJECT",
+      "MUTATION_TOTAL 17",
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-16: station=archive/gor/Sources/gor/OverlaySpaceGate.swift; pinned_bytes=PASS; declarations=PASS; duplicates=PASS; mutations=17; source-only; Swift_runtime=NOT_RUN; package_build=NOT_RUN"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-17",
+    "return_sha256": "6cfd6301f40db5421576be43000adfd057b12eec06ee81fd05fa7d9ca9d5e352",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-17.py",
+    "rc": 0,
+    "last": [
+      "MUTATION_PASS duplicate-declaration-3 REJECT",
+      "MUTATION_PASS duplicate-declaration-4 REJECT",
+      "MUTATION_TOTAL 21",
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-17: station=archive/gor/Sources/gor/PPControllerMenuQueries.swift; pinned_bytes=PASS; declarations=PASS; duplicates=PASS; mutations=21; source-only; Swift_runtime=NOT_RUN; package_build=NOT_RUN"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-18",
+    "return_sha256": "80191af61fba53567ce4c72c0451fe77c0020a6bf6a5dcec28b3067467016b89",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-18.py",
+    "rc": 0,
+    "last": [
+      "MUTATION_PASS comments-and-strings-not-declarations ACCEPT",
+      "MUTATION_PASS duplicate-declaration-0 REJECT",
+      "MUTATION_TOTAL 17",
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-18: station=archive/gor/Sources/gor/PanelFocus.swift; pinned_bytes=PASS; declarations=PASS; duplicates=PASS; mutations=17; source-only; Swift_runtime=NOT_RUN; package_build=NOT_RUN"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-19",
+    "return_sha256": "88579d304a26bede998ff6c27e05cb145ff5d42fb5e9d3288f7f8923a33afd54",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-19.py",
+    "rc": 0,
+    "last": [
+      "MUTATION_PASS duplicate-declaration-1 REJECT",
+      "MUTATION_PASS duplicate-declaration-2 REJECT",
+      "MUTATION_TOTAL 19",
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-19: station=archive/gor/Sources/gor/PanelFocusTraversal.swift; pinned_bytes=PASS; declarations=PASS; duplicates=PASS; mutations=19; source-only; Swift_runtime=NOT_RUN; package_build=NOT_RUN"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-1nstinct-20",
+    "return_sha256": "13cdd53145a3a4438aca2f24bb83b659fd1bd364fb2047826381a2f4ae05a449",
+    "path": "archive/gor/Tests/Architecture/198y/W-gdb-198y-1nstinct-20.py",
+    "rc": 0,
+    "last": [
+      "MUTATION_PASS duplicate-declaration-0 REJECT",
+      "MUTATION_PASS duplicate-declaration-1 REJECT",
+      "MUTATION_TOTAL 18",
+      "CHARACTERIZATION_PASS W-gdb-198y-1nstinct-20: station=archive/gor/Sources/gor/PhotonFont.swift; pinned_bytes=PASS; declarations=PASS; duplicates=PASS; mutations=18; source-only; Swift_runtime=NOT_RUN; package_build=NOT_RUN"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-01",
+    "return_sha256": "8f3e9acfa023df8f3174e8b745cb8be722bbd67e39b307e85aacdc0bbdf9695e",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-01.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-audiotrackinfo-decl",
+      "PASS M-removed-audiodelay-limit",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-01: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-02",
+    "return_sha256": "6a9ffa73c2ff6a2183bb96f57cc5936075850da7e6caa8f8de58d11237ca6c1b",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-02.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-cropgeometry-decl",
+      "PASS M-removed-minimum-edge",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-02: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-03",
+    "return_sha256": "1c08f75800872667905a116fff0ff8eb34dbccb18750bfa4535e938bf51b3752",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-03.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-observationvalue-decl",
+      "PASS M-removed-timepos-property",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-03: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-04",
+    "return_sha256": "3d2177ed872e6ec22868f1fb027252fbb6489ebd72c8f65562e85ab7d3c19284",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-04.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-sourceref-decl",
+      "PASS M-removed-sourceref-equality",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-04: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-05",
+    "return_sha256": "63fc13e7452c052034c911297584b0b1b83d05bc141a3059b344233d8531b1b5",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-05.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-session-decl",
+      "PASS M-removed-clockstart-gate",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-05: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-06",
+    "return_sha256": "f862e8ed91907ae673697587de350dbd88d582a2077df6ab50e8e99c0ea2d1c6",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-06.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-lumaplane-decl",
+      "PASS M-removed-bar-max-luma",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-06: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-07",
+    "return_sha256": "830f6fbd6f637aec8cbb026acee2e405781f951662ac5502af973054fa03d5b6",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-07.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-admissiontable-decl",
+      "PASS M-removed-video-codecs",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-07: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-08",
+    "return_sha256": "7359849e48e1f73bcbae993a4970fde77311aa472efb5eb84ca65e0ccf9cf163",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-08.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-pixelclass-decl",
+      "PASS M-removed-classification-func",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-08: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-09",
+    "return_sha256": "86f64456cd9fad1a16d5e3d4474a8ac36752cae5ac088ac0b975d6d20e0c5569",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-09.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-coordinator-decl",
+      "PASS M-removed-decide-func",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-09: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-10",
+    "return_sha256": "d7c85357f871b97036428e070ca0e45f563f1e374aeb1dc5730642d392173812",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-10.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-policy-decl",
+      "PASS M-removed-setdelay-guard",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-10: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-11",
+    "return_sha256": "d6cb77a7fbe2074ea2b26b8ffc87f08414fc14ab97595cc6af308c6fbfa569c4",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-11.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-session-decl",
+      "PASS M-removed-local-path-guard",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-11: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-12",
+    "return_sha256": "ad5e87d1af43c76c3554e71b377d820047ee2e9bf78030c6e5d2ff64adf0cbb0",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-12.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-track-decl",
+      "PASS M-removed-load-func",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-12: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-13",
+    "return_sha256": "e4d90d60db64739e66cdfb3812910b77b77a8213d68b5a12ddc50cbf05fba90a",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-13.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-frameobservation-decl",
+      "PASS M-removed-observationrefusal-enum",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-13: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-14",
+    "return_sha256": "9f2f8064d3258639a927de1280a360eac0a6d99f008c68cebbb5965d5be26adb",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-14.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-sessionid-decl",
+      "PASS M-removed-kind-enum",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-14: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-15",
+    "return_sha256": "b0430845a215b943ddb93bafc425147c658d74922fa4b829329e36bc806c5c81",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-15.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-openurlroute-decl",
+      "PASS M-removed-route-func",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-15: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-16",
+    "return_sha256": "d6bf68e82f0de0aee86355a34452c2ea4a252dcb2010f8a047be09074c5e6436",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-16.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-archiveitemsource-decl",
+      "PASS M-removed-max-metadata-cap",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-16: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-17",
+    "return_sha256": "8880398cd82882ac772c4a7bfec15acb1e2e83308beab564f5d32c6b6fdf578c",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-17.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-chromestatemodel-decl",
+      "PASS M-removed-filter-names",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-17: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-18",
+    "return_sha256": "5a7f2390612673fea9254f5a80abe3c2f445b615cbcb3301b5092f99c95496d2",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-18.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-sourcetrc-decl",
+      "PASS M-removed-sdr100-target",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-18: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-19",
+    "return_sha256": "187fa07164ac997f63b8c87487b87b7313591a62bffdcb94d25f9356dc789ca7",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-19.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-normalizedrect-decl",
+      "PASS M-removed-routeplan-guard",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-19: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  },
+  {
+    "packet": "W-gdb-198y-in2tinct-20",
+    "return_sha256": "4256a9eb599924f624e2687b423820af7700ef77c976b2a4239665da67a6f325",
+    "path": "Tests/Architecture/198y/W-gdb-198y-in2tinct-20.py",
+    "rc": 0,
+    "last": [
+      "PASS A3-byte-drift-mutant-rejected",
+      "PASS M-renamed-driver-decl",
+      "PASS M-removed-nosource-gate",
+      "CHARACTERIZATION_PASS W-gdb-198y-in2tinct-20: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime"
+    ],
+    "verdict": "ACCEPTED_TEST_EVIDENCE",
+    "scope": "Linux Python source characterization only; Swift/native/runtime NOT_RUN; no product import"
+  }
+]

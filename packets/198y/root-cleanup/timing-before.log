@@ -1,0 +1,65 @@
+tree: /tmp/gorav-build-audit/main
+objects: /tmp/gorav-timing-tests.TlrrQy (removed on exit)
+/tmp/gorav-build-audit/main/Sources/GorAVNativeProbeKit/DemuxerPolicy.swift:38:36: error: cannot find 'AdmissionTable' in scope
+36 |         // Queue 30: when the caller supplies the source class, a non-admitted
+37 |         // class is a loud rejection naming the kind (P14).
+38 |         if let kind = sourceKind, !AdmissionTable.isAdmittedSource(kind: kind) {
+   |                                    `- error: cannot find 'AdmissionTable' in scope
+39 |             return .reject(reason: "source kind not admitted: \(kind)")
+40 |         }
+
+/tmp/gorav-build-audit/main/Sources/GorAVNativeProbeKit/DemuxerPolicy.swift:42:35: error: cannot find 'AdmissionTable' in scope
+40 |         }
+41 |         // Queue 31/32: a remote or iptv source needs an admitted scheme; rejection names it.
+42 |         if let kind = sourceKind, AdmissionTable.schemeGatedKinds.contains(kind) {
+   |                                   `- error: cannot find 'AdmissionTable' in scope
+43 |             guard let url = sourceURL else { return .reject(reason: "\(kind) source without a URL") }
+44 |             guard AdmissionTable.isAdmittedRemoteURL(url) else {
+
+/tmp/gorav-build-audit/main/Sources/GorAVNativeProbeKit/DemuxerPolicy.swift:44:19: error: cannot find 'AdmissionTable' in scope
+42 |         if let kind = sourceKind, AdmissionTable.schemeGatedKinds.contains(kind) {
+43 |             guard let url = sourceURL else { return .reject(reason: "\(kind) source without a URL") }
+44 |             guard AdmissionTable.isAdmittedRemoteURL(url) else {
+   |                   `- error: cannot find 'AdmissionTable' in scope
+45 |                 return .reject(reason: "\(kind) scheme not admitted: \(AdmissionTable.remoteScheme(of: url) ?? "(none)")")
+46 |             }
+
+/tmp/gorav-build-audit/main/Sources/GorAVNativeProbeKit/DemuxerPolicy.swift:45:72: error: cannot find 'AdmissionTable' in scope
+43 |             guard let url = sourceURL else { return .reject(reason: "\(kind) source without a URL") }
+44 |             guard AdmissionTable.isAdmittedRemoteURL(url) else {
+45 |                 return .reject(reason: "\(kind) scheme not admitted: \(AdmissionTable.remoteScheme(of: url) ?? "(none)")")
+   |                                                                        `- error: cannot find 'AdmissionTable' in scope
+46 |             }
+47 |         }
+
+/tmp/gorav-build-audit/main/Sources/GorAVNativeProbeKit/DemuxerPolicy.swift:48:15: error: cannot find 'AdmissionTable' in scope
+46 |             }
+47 |         }
+48 |         guard AdmissionTable.probeContainers.contains(containerName) else {
+   |               `- error: cannot find 'AdmissionTable' in scope
+49 |             return .reject(reason: "container not admitted: \(containerName)")
+50 |         }
+
+/tmp/gorav-build-audit/main/Sources/GorAVNativeProbeKit/DemuxerPolicy.swift:68:19: error: cannot find 'AdmissionTable' in scope
+66 |             // L3 audio set across the mov family and matroska. Conversion to
+67 |             // the sink contract is owned by FFmpegSoftwareAudioDecoder.
+68 |             guard AdmissionTable.muxedContainers.contains(containerName),
+   |                   `- error: cannot find 'AdmissionTable' in scope
+69 |                   let audio = audioCodecName, AdmissionTable.audioCodecs.contains(audio) else {
+70 |                 return .reject(reason: "mixed-media audio profile not admitted (container=\(containerName) audioCodec=\(audioCodecName ?? "none"))")
+
+/tmp/gorav-build-audit/main/Sources/GorAVNativeProbeKit/DemuxerPolicy.swift:69:47: error: cannot find 'AdmissionTable' in scope
+67 |             // the sink contract is owned by FFmpegSoftwareAudioDecoder.
+68 |             guard AdmissionTable.muxedContainers.contains(containerName),
+69 |                   let audio = audioCodecName, AdmissionTable.audioCodecs.contains(audio) else {
+   |                                               `- error: cannot find 'AdmissionTable' in scope
+70 |                 return .reject(reason: "mixed-media audio profile not admitted (container=\(containerName) audioCodec=\(audioCodecName ?? "none"))")
+71 |             }
+
+/tmp/gorav-build-audit/main/Sources/GorAVNativeProbeKit/DemuxerPolicy.swift:78:43: error: cannot find 'AdmissionTable' in scope
+76 |             return .reject(reason: "expected exactly one video stream, found \(videoStreamCount)")
+77 |         }
+78 |         guard let codec = videoCodecName, AdmissionTable.videoCodecs.contains(codec) else {
+   |                                           `- error: cannot find 'AdmissionTable' in scope
+79 |             return .reject(reason: "video codec not admitted: \(videoCodecName ?? "none")")
+80 |         }

@@ -1,0 +1,9 @@
+PASS A1-source-pin-sha256
+PASS D-coordinator-decl
+PASS D-decide-signature
+PASS D-seekqueueerror-invalidtarget
+PASS D-finite-nonnegative-guard
+PASS A3-byte-drift-mutant-rejected
+PASS M-renamed-coordinator-decl
+PASS M-removed-decide-func
+CHARACTERIZATION_PASS W-gdb-198y-in2tinct-09: source identity, 4 named declaration assertions, 2 removed/renamed-declaration mutants rejected; source-only, not runtime

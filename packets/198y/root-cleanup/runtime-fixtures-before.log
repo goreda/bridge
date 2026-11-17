@@ -1,0 +1,20 @@
+PASS M1 two tracks
+PASS M2 video track h264 default
+PASS M3 audio track aac
+PASS M4 duration about 10s from container
+PASS M5 duration provenance container
+PASS M6 no chapters is a fact
+PASS M7 metadata map is typed (may be empty)
+PASS A1 one audio track pcm_s16le
+PASS A2 wav has a container duration
+PASS A3 effective duration is the container one
+PASS I1 picture-only source gets the image duration
+PASS I2 image duration configurable
+PASS I3 non-picture source without duration stays unknown
+PASS I4 container duration wins over the rule
+PASS X1 outside pinned roots refused
+PASS X2 non-admitted scheme refused
+PASS X3 error redacts credentials
+PASS I5 shipped image default is two seconds
+PASS I6 invalid image duration stays unknown
+media-inventory-tests: all pass

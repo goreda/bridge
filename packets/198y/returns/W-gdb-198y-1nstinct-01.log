@@ -1,0 +1,26 @@
+{"case": "legacy-exact", "expected": "PASS", "observed": "PASS"}
+{"case": "station-exact", "expected": "PASS", "observed": "PASS"}
+{"case": "missing-owner", "expected": "REJECT", "observed": "REJECT"}
+{"case": "byte-drift", "expected": "REJECT", "observed": "REJECT"}
+{"case": "same-size-byte-drift", "expected": "REJECT", "observed": "REJECT"}
+{"case": "wrong-station-only", "expected": "REJECT", "observed": "REJECT"}
+{"case": "wrong-station-extra-copy", "expected": "REJECT", "observed": "REJECT"}
+{"case": "old-new-double-owner", "expected": "REJECT", "observed": "REJECT"}
+{"case": "owner-symlink", "expected": "REJECT", "observed": "REJECT"}
+{"case": "extension-duplicate-0-SpineUI.applyAdaptiveColor", "expected": "REJECT", "observed": "REJECT"}
+{"case": "extension-duplicate-0-SidebarUI.applyAdaptiveColor", "expected": "REJECT", "observed": "REJECT"}
+{"case": "extension-duplicate-0-PPController.setupAdaptiveColor", "expected": "REJECT", "observed": "REJECT"}
+{"case": "extension-duplicate-0-MusicPanel.applyAdaptiveColor", "expected": "REJECT", "observed": "REJECT"}
+{"case": "extension-duplicate-0-MusicPanel.applyColorRecursive", "expected": "REJECT", "observed": "REJECT"}
+{"case": "unrelated-extension-0", "expected": "PASS", "observed": "PASS"}
+{"case": "distinct-extension-overload-0", "expected": "PASS", "observed": "PASS"}
+{"case": "comment-and-string-extension-0", "expected": "PASS", "observed": "PASS"}
+{"case": "extension-duplicate-1-SpineUI.applyAdaptiveColor", "expected": "REJECT", "observed": "REJECT"}
+{"case": "extension-duplicate-1-SidebarUI.applyAdaptiveColor", "expected": "REJECT", "observed": "REJECT"}
+{"case": "extension-duplicate-1-PPController.setupAdaptiveColor", "expected": "REJECT", "observed": "REJECT"}
+{"case": "extension-duplicate-1-MusicPanel.applyAdaptiveColor", "expected": "REJECT", "observed": "REJECT"}
+{"case": "extension-duplicate-1-MusicPanel.applyColorRecursive", "expected": "REJECT", "observed": "REJECT"}
+{"case": "unrelated-extension-1", "expected": "PASS", "observed": "PASS"}
+{"case": "distinct-extension-overload-1", "expected": "PASS", "observed": "PASS"}
+{"case": "comment-and-string-extension-1", "expected": "PASS", "observed": "PASS"}
+CHARACTERIZATION_PASS W-gdb-198y-1nstinct-01: archive/gor/Sources/gor/AdaptiveColor.swift; filesystem cases=25; source-only; Swift compile/runtime NOT_RUN; clean_checkout not asserted

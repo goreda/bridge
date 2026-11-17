@@ -1,0 +1,12 @@
+FAIL M1 load threw failed(-2, "avformat_open_input failed for local")
+FAIL A1 wav load threw failed(-2, "avformat_open_input failed for local")
+PASS I1 picture-only source gets the image duration
+PASS I2 image duration configurable
+PASS I3 non-picture source without duration stays unknown
+PASS I4 container duration wins over the rule
+PASS X1 outside pinned roots refused
+PASS X2 non-admitted scheme refused
+PASS X3 error redacts credentials
+PASS I5 shipped image default is two seconds
+PASS I6 invalid image duration stays unknown
+media-inventory-tests: 2 FAIL
