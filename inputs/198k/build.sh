@@ -981,7 +981,7 @@ GOR_ROLLBACK_DIAG
     if [ "$selftest_mode" = full ] && [ -f "$project_root/tools/owner_action_acceptance.py" ]; then
         st_note "KNOWN-RESIDUAL base02004a518: cinema_pose ShiftR pin; preview_pack two text pins; row_wiring ShiftD pin; old onBack2D test API; gpu_pose D3_TITLE_tex; surface_anchor old output pin; axes_gpu killed on base and candidate, incomplete"; st_quit || true; if st_wait_gone 30; then for owner_kind in ordinary native; do owner_rc=0; owner_arg=""; [ "$owner_kind" != native ] || owner_arg="--native"; owner_out=$(GOR_STEP_LIMIT=90 /usr/bin/python3 "$project_root/tools/gor_step.py" "owner action $owner_kind" /usr/bin/python3 "$project_root/tools/owner_action_acceptance.py" "$project_root" $owner_arg 2>&1) || owner_rc=$?; printf '%s\n' "$owner_out" | while IFS= read -r line; do st_note "$line"; done; st_note "3D-OWNER-ACTION leg=$owner_kind rc=$owner_rc"; if [ "$owner_rc" = 2 ]; then store_not_run=true; elif [ "$owner_rc" != 0 ]; then st_fail "owner-action-$owner_kind" "applied-state acceptance failed; see receipts"; fi; done; else st_note "NOT_RUN owner-actions prior interactive process still running"; store_not_run=true; fi
     fi
-    if [ "$selftest_mode" != full ]; then st_note "3D kabul: calistirilmadi"; fi
+    if [ "$selftest_mode" != full ]; then st_note "3D acceptance: NOT_RUN"; fi
     st_quit || true; if st_wait_gone 30; then st_note "RELAUNCH prior_exact_path_processes=gone requested_epoch=$(date +%s)"; open -g -n "$app" --args --gor-background-start 2>/dev/null || st_fail t1-relaunch-open "explicit app launch failed"; else st_fail t1-relaunch-fresh "prior exact-path process did not quit"; fi
     if st_wait_running 60; then for fresh_pid in $(/usr/bin/python3 "$project_root/tools/axes_acceptance.py" --list-interactive "$bin"); do st_note "RELAUNCH pid=$fresh_pid started=$(ps -p "$fresh_pid" -o lstart=) $(tr '\n' ' ' < "$app/Contents/Resources/build-id.txt")"; done; echo "gor left running."; else st_fail t1-relaunch-stay "app not running after final relaunch"; fi
     if [ "$fail" -eq 0 ] && [ "$store_not_run" = true ]; then st_note "SELFTEST PARTIAL $pass passed; store-acceptance NOT_RUN"; elif [ "$fail" -eq 0 ]; then
@@ -1077,7 +1077,7 @@ $caption_evidence"
     detail="$detail
 $subtitle_evidence"
     else
-        detail="$detail"$'\n'"3D kabul: calistirilmadi; feature probes explicit only"
+        detail="$detail"$'\n'"3D acceptance: NOT_RUN; feature probes explicit only"
     fi
     if [ -f "$project_root/tools/owner_action_capture_grep.py" ]; then detail="$detail"$'\n'"$(/usr/bin/python3 "$project_root/tools/owner_action_capture_grep.py" /tmp/gor_diag.log /tmp/gor_direct.log 2>&1 || echo 'NOT_RUN routing_grep_unavailable')"; fi
     # Failure custody travels in the same empty result commit. Never require
