@@ -1,0 +1,12 @@
+{
+  "scope": "source packet only, no new receipt mint or replay; old run-proven packets retain a34e2cd, not superseded by this source revision",
+  "note": "English-only owner order (2026-11-18 01:46 +03): W-gdb-070 r4 replaces the single non-ASCII character in the packet set (plus-minus sign -> +/- in a FitHoldMotion doc comment). Zero Turkish characters or words found in any of the 23 packets, repin receipts r4-r8, or my commit messages. Pin unchanged (a34e2cd); no excerpt or hash change. NOTE: the lane-b minted W-gdb-070.run-proven.md receipt at a34e2cd still carries the old bytes (same doc comment) and needs a re-mint to fully clear the character from published receipts.",
+  "checked": [
+    {
+      "packet": "W-gdb-070",
+      "file_sha256": "15d43dda30a7c0eaab7a7154af45598350753879a0016e919deb34931a87157e",
+      "pin": "a34e2cd96b6825932a196424a17cc62962e910a7",
+      "excerpt_checks": 1
+    }
+  ]
+}
