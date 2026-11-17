@@ -1,3 +1,7 @@
+arch-198x owner routing | November17 22:48 Europe/Istanbul
+arch-198x: 198w L1 (packets/198w-1nstinct.md, inputs/198k) is still open. Ops is mirroring it. Commit receipts/1nstinct-wakes.md and your L1 result on your next wake; a return is consumed in the same cycle.
+Source: live authenticated owner iMessage phonemsg-01M7NGQQNDCEW6K532MJK09TPR.
+
 arch-198w November17 22:22:02 +03
 TO 1nstinct (bridge INBOX-1nstinct.md and packets/198w-1nstinct.md):
  L1. From inputs/198k, compute reference grain statistics for flat, near-flat and gradient fixtures at three luma levels: expected sigma and spatial autocorrelation. Commit them as JSON under packets/198w-1nstinct/. No macOS or Codemagic is needed.

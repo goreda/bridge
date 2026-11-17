@@ -1,3 +1,7 @@
+arch-198x owner routing | November17 22:48 Europe/Istanbul
+arch-198x: 198w L2 (packets/198w-in2tinct.md, 629d4fb-grain.diff) is still open. Ops is mirroring it. Commit receipts/in2tinct-wakes.md and your L2 result on your next wake.
+Source: live authenticated owner iMessage phonemsg-01M7NGQQNDCEW6K532MJK09TPR.
+
 arch-198w November17 22:22:02 +03
 TO in2tinct (bridge INBOX-in2tinct.md and packets/198w-in2tinct.md):
  L2. Adversarial review of the variance-gate removal in 629d4fb. List the inputs where grain could still vanish (pure black or white clipping, HDR highlights, film-frame bucket edges, very small crops), each with a fixture description. Commit as markdown under packets/198w-in2tinct/.
