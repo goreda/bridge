@@ -1,0 +1,152 @@
+{
+  "scope": "source-review-only export; not a patch application, native build, runtime or SDR-white pixel acceptance",
+  "product_repo": "goreda/instinct",
+  "pins": {
+    "shell-handoff": "3af4a273e4c6cb1680436c58735f2153460a1b51",
+    "gor-candidate": "94e453ef6c0755865667a1939ec80be9a19f0b24",
+    "subtitle-availability-guard": "359ed1d747a27c4e26553d445fe3ca0e605283b5",
+    "computed-state-fix": "3190363967fee826dc0444fb73d5aa4544eada3e",
+    "spec-reference-only": "8ed9cfcf2ad9e865acc3e3a04059a0939e3998ca"
+  },
+  "files": [
+    {
+      "path": "shell-handoff/GorAVHDRHandoff.swift",
+      "product_path": "archive/gor/Sources/gor/GorAVHDRHandoff.swift",
+      "commit": "3af4a273e4c6cb1680436c58735f2153460a1b51",
+      "git_blob": "a82c2aa8dfc67bd85be6c686bc1d8d649f73ed10",
+      "sha256": "9aba2981f67f16150da2af698794f218b2d51595befb8d71be48c9280cf95b4a",
+      "bytes": 11263
+    },
+    {
+      "path": "shell-handoff/GorAVHostWindow.swift",
+      "product_path": "archive/gor/Sources/gor/GorAVHostWindow.swift",
+      "commit": "3af4a273e4c6cb1680436c58735f2153460a1b51",
+      "git_blob": "9857bfcf931347bc346c6a6ed7b9e09376ecfc93",
+      "sha256": "e92e93962c2dcf4f6d6a35d925d3312d92930070a538d2e084b55e892458350a",
+      "bytes": 11317
+    },
+    {
+      "path": "shell-handoff/GorAVPlayerHost.swift",
+      "product_path": "archive/gor/Sources/gor/GorAVPlayerHost.swift",
+      "commit": "3af4a273e4c6cb1680436c58735f2153460a1b51",
+      "git_blob": "3937205628d41f9fdca1773560d72891226cf1d5",
+      "sha256": "fc9f77e9b9dfe4969beb6dd6b448e009c60439c1d96c77f14e5c86b8afddd068",
+      "bytes": 19446
+    },
+    {
+      "path": "shell-handoff/SubtitleView.swift",
+      "product_path": "archive/gor/Sources/gor/SubtitleView.swift",
+      "commit": "3af4a273e4c6cb1680436c58735f2153460a1b51",
+      "git_blob": "53edca4a0151dbca10e4e8e1fd5102a6da0a4e40",
+      "sha256": "b314f8e8146c1251c3dbe08cc2ce0c85d04c0c74b5e2aeea0de1dd6d5622ddf9",
+      "bytes": 115946
+    },
+    {
+      "path": "gor-candidate/GorAVHDRHandoff.swift",
+      "product_path": "archive/gor/Sources/gor/GorAVHDRHandoff.swift",
+      "commit": "94e453ef6c0755865667a1939ec80be9a19f0b24",
+      "git_blob": "a82c2aa8dfc67bd85be6c686bc1d8d649f73ed10",
+      "sha256": "9aba2981f67f16150da2af698794f218b2d51595befb8d71be48c9280cf95b4a",
+      "bytes": 11263
+    },
+    {
+      "path": "gor-candidate/GorAVHostWindow.swift",
+      "product_path": "archive/gor/Sources/gor/GorAVHostWindow.swift",
+      "commit": "94e453ef6c0755865667a1939ec80be9a19f0b24",
+      "git_blob": "9857bfcf931347bc346c6a6ed7b9e09376ecfc93",
+      "sha256": "e92e93962c2dcf4f6d6a35d925d3312d92930070a538d2e084b55e892458350a",
+      "bytes": 11317
+    },
+    {
+      "path": "gor-candidate/GorAVPlayerHost.swift",
+      "product_path": "archive/gor/Sources/gor/GorAVPlayerHost.swift",
+      "commit": "94e453ef6c0755865667a1939ec80be9a19f0b24",
+      "git_blob": "3937205628d41f9fdca1773560d72891226cf1d5",
+      "sha256": "fc9f77e9b9dfe4969beb6dd6b448e009c60439c1d96c77f14e5c86b8afddd068",
+      "bytes": 19446
+    },
+    {
+      "path": "gor-candidate/SubtitleView.swift",
+      "product_path": "archive/gor/Sources/gor/SubtitleView.swift",
+      "commit": "94e453ef6c0755865667a1939ec80be9a19f0b24",
+      "git_blob": "53edca4a0151dbca10e4e8e1fd5102a6da0a4e40",
+      "sha256": "b314f8e8146c1251c3dbe08cc2ce0c85d04c0c74b5e2aeea0de1dd6d5622ddf9",
+      "bytes": 115946
+    },
+    {
+      "path": "subtitle-availability-guard/GorAVHDRHandoff.swift",
+      "product_path": "archive/gor/Sources/gor/GorAVHDRHandoff.swift",
+      "commit": "359ed1d747a27c4e26553d445fe3ca0e605283b5",
+      "git_blob": "a82c2aa8dfc67bd85be6c686bc1d8d649f73ed10",
+      "sha256": "9aba2981f67f16150da2af698794f218b2d51595befb8d71be48c9280cf95b4a",
+      "bytes": 11263
+    },
+    {
+      "path": "subtitle-availability-guard/GorAVHostWindow.swift",
+      "product_path": "archive/gor/Sources/gor/GorAVHostWindow.swift",
+      "commit": "359ed1d747a27c4e26553d445fe3ca0e605283b5",
+      "git_blob": "9857bfcf931347bc346c6a6ed7b9e09376ecfc93",
+      "sha256": "e92e93962c2dcf4f6d6a35d925d3312d92930070a538d2e084b55e892458350a",
+      "bytes": 11317
+    },
+    {
+      "path": "subtitle-availability-guard/GorAVPlayerHost.swift",
+      "product_path": "archive/gor/Sources/gor/GorAVPlayerHost.swift",
+      "commit": "359ed1d747a27c4e26553d445fe3ca0e605283b5",
+      "git_blob": "33909729582085394820cd868a848882e70d9751",
+      "sha256": "fcfcc0c20a456b5c3eb6391a63bf45e63ad1024f6c9771b65c2ab261203ac60b",
+      "bytes": 19433
+    },
+    {
+      "path": "subtitle-availability-guard/SubtitleView.swift",
+      "product_path": "archive/gor/Sources/gor/SubtitleView.swift",
+      "commit": "359ed1d747a27c4e26553d445fe3ca0e605283b5",
+      "git_blob": "74a0031a25fbbbd041372c4d0b64b1a88a85e515",
+      "sha256": "f20c41215f672f28422a6cbcb636eceddc147ab40ef8b31bb33b97bbbdd57b6e",
+      "bytes": 116155
+    },
+    {
+      "path": "computed-state-fix/GorAVHDRHandoff.swift",
+      "product_path": "archive/gor/Sources/gor/GorAVHDRHandoff.swift",
+      "commit": "3190363967fee826dc0444fb73d5aa4544eada3e",
+      "git_blob": "a82c2aa8dfc67bd85be6c686bc1d8d649f73ed10",
+      "sha256": "9aba2981f67f16150da2af698794f218b2d51595befb8d71be48c9280cf95b4a",
+      "bytes": 11263
+    },
+    {
+      "path": "computed-state-fix/GorAVHostWindow.swift",
+      "product_path": "archive/gor/Sources/gor/GorAVHostWindow.swift",
+      "commit": "3190363967fee826dc0444fb73d5aa4544eada3e",
+      "git_blob": "9857bfcf931347bc346c6a6ed7b9e09376ecfc93",
+      "sha256": "e92e93962c2dcf4f6d6a35d925d3312d92930070a538d2e084b55e892458350a",
+      "bytes": 11317
+    },
+    {
+      "path": "computed-state-fix/GorAVPlayerHost.swift",
+      "product_path": "archive/gor/Sources/gor/GorAVPlayerHost.swift",
+      "commit": "3190363967fee826dc0444fb73d5aa4544eada3e",
+      "git_blob": "33909729582085394820cd868a848882e70d9751",
+      "sha256": "fcfcc0c20a456b5c3eb6391a63bf45e63ad1024f6c9771b65c2ab261203ac60b",
+      "bytes": 19433
+    },
+    {
+      "path": "computed-state-fix/SubtitleView.swift",
+      "product_path": "archive/gor/Sources/gor/SubtitleView.swift",
+      "commit": "3190363967fee826dc0444fb73d5aa4544eada3e",
+      "git_blob": "53edca4a0151dbca10e4e8e1fd5102a6da0a4e40",
+      "sha256": "b314f8e8146c1251c3dbe08cc2ce0c85d04c0c74b5e2aeea0de1dd6d5622ddf9",
+      "bytes": 115946
+    }
+  ],
+  "scan": {
+    "result": "PASS",
+    "categories": [
+      "credential formats",
+      "contact identifiers",
+      "private endpoints"
+    ],
+    "allowed_files": "Swift text source and two Swift-only patches; no fonts, media, captures, binary frameworks or spec text"
+  },
+  "spec": "reference pin only; private spec body intentionally not exported",
+  "delivery_refs_moved": false
+}
