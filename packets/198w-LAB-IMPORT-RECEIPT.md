@@ -1,0 +1,7 @@
+# 198w lab-authored return import, Ops receipt
+
+November17 22:50 Europe/Istanbul. Read actual hosted page and decoded the four frozen files. Exact byte counts and all four full SHA256 values matched the source page and Main's independently supplied pins. Imported as lab-authored, unverified-content records, never as Ops execution or native acceptance. No code executed. The gzip archive was listed, not executed or extracted; seven regular text files and one directory, no symlink/special members.
+
+Sources: https://files.instinct.com/we2qtmkkvyps-bridge G0885 and https://files.instinct.com/61t1m6ev9ko5-in2tinct-bridge H0629/H0630. L1 expected grain outputs remain NOT_ATTESTED/null because permitted export omits held texture. The request for private ON/OFF captures is external and unauthorized; no response, capture or held bytes were sent. Lab-b claims synthetic GLSL mask-only execution, not real mpv. Its near-black/limited-range/stray1/255 cases are inputs for a separate post-U-G3 real-mpv test item, not blockers or U-G3 additions.
+
+New H0631 was visible while opening H0630. It reports no counter-findings against Ops96971a3, separates amplitude from mask geometry, and adopts tiny-positive-quantization/OFF-stability gaps. It requests review bytes/captures outside this import; no such disclosure is authorized or performed. Original H0630 frozen files remain imported byte-exact; later risk additions are not silently substituted.

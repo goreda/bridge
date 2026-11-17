@@ -1,0 +1,445 @@
+{
+  "schema": "198w-L1-grain-reference-v1",
+  "verdict": "BLOCKED_REFERENCE_UNAVAILABLE_FROM_ALLOWED_INPUTS",
+  "status": "NOT_ATTESTED",
+  "acceptance": false,
+  "clean_checkout": false,
+  "pins_changed": false,
+  "bridge_commit_verified": "fb828d25d5d1910f08e0c43c0b983d2d28ce1b32",
+  "allowed_input_files_at_pin": 73,
+  "consumer_delivered_pin_sender_reported": "c7365054",
+  "consumer_binary_or_checkout_verified": false,
+  "provenance": {
+    "grain_sanitized_sha256": "79484d7f696dda78eb8f500c2a314c77d5a765a4acfb051e8b27472856d74365",
+    "grain_sanitized_git_blob_verified": "31d63e1652b91bf02329e829b55691f268976653",
+    "texture_sha256_sender_manifest": "bf425971ca9aeb49b676ab2c8f4bb9ebebc7d116ab2923a237fbbb2eea278d53",
+    "texture_bytes_sender_manifest": 4096,
+    "texture_present": false,
+    "texture_read_or_reconstructed": false,
+    "grain_source_or_patch_in_output": false,
+    "held_material_status": "HOLD338421ea unchanged",
+    "sources": [
+      {
+        "url": "https://api.github.com/repos/goreda/bridge/git/trees/fb828d25?recursive=1",
+        "purpose": "resolved commit and73-entry input inventory"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/goreda/bridge/fb828d25d5d1910f08e0c43c0b983d2d28ce1b32/inputs/198k/README.md",
+        "purpose": "texture omission and non-runnable grain caveat"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/goreda/bridge/fb828d25d5d1910f08e0c43c0b983d2d28ce1b32/inputs/198k/manifest.json",
+        "purpose": "sanitized source and omitted texture hashes"
+      }
+    ]
+  },
+  "blocker": {
+    "reason": "The pinned export omits its required4096-byte grain texture. Its missing empirical distribution and spatial arrangement prevent identification of actual grain variance and autocorrelation. A SHA256 is an identity, not statistical data. No substitute texture or renderer was introduced.",
+    "missing_execution_inputs": [
+      "authorized original runtime resource available privately to its permitted executor",
+      "frozen actual grain runtime parameters, raster, SDR/HDR/output encoding and playback bucket identities",
+      "aligned grain-on/off captures from that same actual renderer"
+    ],
+    "numeric_expectations_are_null_not_zero": true,
+    "unblocking_requires_new_authorized_private_execution_not_publication_of_texture": true
+  },
+  "fixture_spec": {
+    "origin": "reviewer-defined synthetic fixtures, not supplied calibration targets",
+    "width": 256,
+    "height": 256,
+    "channels": "achromatic R=G=B=luma",
+    "representation": "float64 for fixture sanity checks only; no output encoding equivalence claimed",
+    "center_luma_levels": [
+      0.1,
+      0.4,
+      0.85
+    ],
+    "flat": "I[y,x]=L",
+    "near_flat_checker": "I[y,x]=L+(2*((x+y)%2)-1)/1024",
+    "horizontal_gradient": "I[y,x]=L+0.025*(2*x/255-1)",
+    "coordinate_convention": "zero-based x,y; dx horizontal, dy vertical; no wrap; overlaps only",
+    "these_inputs_alone_do_not_determine_adaptive_scene_state": true
+  },
+  "grain_statistic_contract": {
+    "residual": "aligned actual grain-on luma minus grain-off luma, holding source/crop/transform/bucket and non-grain state fixed",
+    "units": "same normalized scalar luma domain for both captures, to be specified by actual executor",
+    "sigma": "population standard deviation of residual after subtracting its ROI mean",
+    "autocorrelation": "Pearson correlation of two overlap-only residual windows offset by dx,dy; each window separately mean-centered",
+    "lags_pixels": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        8,
+        0
+      ],
+      [
+        0,
+        8
+      ]
+    ],
+    "zero_variance_autocorrelation": null,
+    "measurement_roi": "full256x256 only if capture alignment and output raster match; otherwise redefine before measuring",
+    "raw_output_autocorrelation_is_not_grain_autocorrelation": true,
+    "expected_sigma_is_not_input_sigma": true,
+    "do_not_infer_white_noise_or_independent_layers": true,
+    "no_tolerance_or_acceptance_threshold_calibrated": true,
+    "ensemble_estimation": "No ensemble sampled. Future executor must declare frame/bucket count and sampling rule; report per-bucket statistics and uncertainty, not pretend one frame is an expectation."
+  },
+  "reviewer_measured": {
+    "input_fixture_count": 9,
+    "grain_output_frames": 0,
+    "grain_runtime_executed": false,
+    "platform": "Linux",
+    "numpy": "2.2.6"
+  },
+  "fixtures": [
+    {
+      "fixture_id": "flat_L0.10",
+      "family": "flat",
+      "center_luma": 0.1,
+      "input_luma_statistics": {
+        "mean": 0.1,
+        "sigma_population": 0.0,
+        "spatial_autocorrelation": {
+          "1,0": null,
+          "0,1": null,
+          "1,1": null,
+          "2,0": null,
+          "0,2": null,
+          "4,0": null,
+          "0,4": null,
+          "8,0": null,
+          "0,8": null
+        }
+      },
+      "input_f64le_sha256": "75379795f9e47229fe79c1a355871918ad6e63e75090708ba0ad827ad42583d3",
+      "grain_measurement_status": "NOT_ATTESTED",
+      "expected_grain_sigma": null,
+      "expected_grain_spatial_autocorrelation": {
+        "1,0": null,
+        "0,1": null,
+        "1,1": null,
+        "2,0": null,
+        "0,2": null,
+        "4,0": null,
+        "0,4": null,
+        "8,0": null,
+        "0,8": null
+      },
+      "grain_frames_measured": 0
+    },
+    {
+      "fixture_id": "flat_L0.40",
+      "family": "flat",
+      "center_luma": 0.4,
+      "input_luma_statistics": {
+        "mean": 0.4,
+        "sigma_population": 0.0,
+        "spatial_autocorrelation": {
+          "1,0": null,
+          "0,1": null,
+          "1,1": null,
+          "2,0": null,
+          "0,2": null,
+          "4,0": null,
+          "0,4": null,
+          "8,0": null,
+          "0,8": null
+        }
+      },
+      "input_f64le_sha256": "bab7030c1202568fd5cfed16774c2418ca1d3bdcf347ea2d927dd1801dc789ab",
+      "grain_measurement_status": "NOT_ATTESTED",
+      "expected_grain_sigma": null,
+      "expected_grain_spatial_autocorrelation": {
+        "1,0": null,
+        "0,1": null,
+        "1,1": null,
+        "2,0": null,
+        "0,2": null,
+        "4,0": null,
+        "0,4": null,
+        "8,0": null,
+        "0,8": null
+      },
+      "grain_frames_measured": 0
+    },
+    {
+      "fixture_id": "flat_L0.85",
+      "family": "flat",
+      "center_luma": 0.85,
+      "input_luma_statistics": {
+        "mean": 0.85,
+        "sigma_population": 0.0,
+        "spatial_autocorrelation": {
+          "1,0": null,
+          "0,1": null,
+          "1,1": null,
+          "2,0": null,
+          "0,2": null,
+          "4,0": null,
+          "0,4": null,
+          "8,0": null,
+          "0,8": null
+        }
+      },
+      "input_f64le_sha256": "d9bf1294c47d09cbec9fe9a68facf7049f90484cab431eed1165a5b534987de5",
+      "grain_measurement_status": "NOT_ATTESTED",
+      "expected_grain_sigma": null,
+      "expected_grain_spatial_autocorrelation": {
+        "1,0": null,
+        "0,1": null,
+        "1,1": null,
+        "2,0": null,
+        "0,2": null,
+        "4,0": null,
+        "0,4": null,
+        "8,0": null,
+        "0,8": null
+      },
+      "grain_frames_measured": 0
+    },
+    {
+      "fixture_id": "near_flat_checker_L0.10",
+      "family": "near_flat_checker",
+      "center_luma": 0.1,
+      "input_luma_statistics": {
+        "mean": 0.10000000000000006,
+        "sigma_population": 0.0009765625,
+        "spatial_autocorrelation": {
+          "1,0": -0.9999999999999434,
+          "0,1": -0.9999999999999434,
+          "1,1": 1.0,
+          "2,0": 1.0,
+          "0,2": 1.0,
+          "4,0": 1.0,
+          "0,4": 1.0,
+          "8,0": 1.0,
+          "0,8": 1.0
+        }
+      },
+      "input_f64le_sha256": "58c0bee863900bdff5f654dd676fedb28296594a82487dc8af5e2308aeb0eb86",
+      "grain_measurement_status": "NOT_ATTESTED",
+      "expected_grain_sigma": null,
+      "expected_grain_spatial_autocorrelation": {
+        "1,0": null,
+        "0,1": null,
+        "1,1": null,
+        "2,0": null,
+        "0,2": null,
+        "4,0": null,
+        "0,4": null,
+        "8,0": null,
+        "0,8": null
+      },
+      "grain_frames_measured": 0
+    },
+    {
+      "fixture_id": "near_flat_checker_L0.40",
+      "family": "near_flat_checker",
+      "center_luma": 0.4,
+      "input_luma_statistics": {
+        "mean": 0.40000000000000024,
+        "sigma_population": 0.0009765625,
+        "spatial_autocorrelation": {
+          "1,0": -1.0,
+          "0,1": -1.0,
+          "1,1": 1.0,
+          "2,0": 1.0,
+          "0,2": 1.0,
+          "4,0": 1.0,
+          "0,4": 1.0,
+          "8,0": 1.0,
+          "0,8": 1.0
+        }
+      },
+      "input_f64le_sha256": "28c4bdc3c88396e5b9674d929fc95ef5a0efe865b0fb1f04b811cb45a04311bc",
+      "grain_measurement_status": "NOT_ATTESTED",
+      "expected_grain_sigma": null,
+      "expected_grain_spatial_autocorrelation": {
+        "1,0": null,
+        "0,1": null,
+        "1,1": null,
+        "2,0": null,
+        "0,2": null,
+        "4,0": null,
+        "0,4": null,
+        "8,0": null,
+        "0,8": null
+      },
+      "grain_frames_measured": 0
+    },
+    {
+      "fixture_id": "near_flat_checker_L0.85",
+      "family": "near_flat_checker",
+      "center_luma": 0.85,
+      "input_luma_statistics": {
+        "mean": 0.8499999999999998,
+        "sigma_population": 0.0009765625,
+        "spatial_autocorrelation": {
+          "1,0": -1.0,
+          "0,1": -1.0,
+          "1,1": 1.0,
+          "2,0": 1.0,
+          "0,2": 1.0,
+          "4,0": 1.0,
+          "0,4": 1.0,
+          "8,0": 1.0,
+          "0,8": 1.0
+        }
+      },
+      "input_f64le_sha256": "40f627d2555be42fb1458fe65cf4f4a2f6e65aa6b561709774e3ad78d5b99376",
+      "grain_measurement_status": "NOT_ATTESTED",
+      "expected_grain_sigma": null,
+      "expected_grain_spatial_autocorrelation": {
+        "1,0": null,
+        "0,1": null,
+        "1,1": null,
+        "2,0": null,
+        "0,2": null,
+        "4,0": null,
+        "0,4": null,
+        "8,0": null,
+        "0,8": null
+      },
+      "grain_frames_measured": 0
+    },
+    {
+      "fixture_id": "horizontal_gradient_L0.10",
+      "family": "horizontal_gradient",
+      "center_luma": 0.1,
+      "input_luma_statistics": {
+        "mean": 0.09999999999999999,
+        "sigma_population": 0.014490249144215496,
+        "spatial_autocorrelation": {
+          "1,0": 1.0000000000000002,
+          "0,1": 1.0,
+          "1,1": 1.0,
+          "2,0": 1.0000000000000004,
+          "0,2": 1.0,
+          "4,0": 1.0000000000000002,
+          "0,4": 1.0,
+          "8,0": 0.9999999999999999,
+          "0,8": 1.0
+        }
+      },
+      "input_f64le_sha256": "0c4c15d2a07992e7b502e015f580239d3d11a330886e8ec0dc3498a5760bd2d1",
+      "grain_measurement_status": "NOT_ATTESTED",
+      "expected_grain_sigma": null,
+      "expected_grain_spatial_autocorrelation": {
+        "1,0": null,
+        "0,1": null,
+        "1,1": null,
+        "2,0": null,
+        "0,2": null,
+        "4,0": null,
+        "0,4": null,
+        "8,0": null,
+        "0,8": null
+      },
+      "grain_frames_measured": 0
+    },
+    {
+      "fixture_id": "horizontal_gradient_L0.40",
+      "family": "horizontal_gradient",
+      "center_luma": 0.4,
+      "input_luma_statistics": {
+        "mean": 0.39999999999999997,
+        "sigma_population": 0.014490249144215496,
+        "spatial_autocorrelation": {
+          "1,0": 1.0000000000000002,
+          "0,1": 1.0,
+          "1,1": 0.9999999999999992,
+          "2,0": 0.9999999999999991,
+          "0,2": 1.0,
+          "4,0": 0.9999999999999999,
+          "0,4": 1.0,
+          "8,0": 1.0000000000000007,
+          "0,8": 1.0
+        }
+      },
+      "input_f64le_sha256": "0582806bc8fe79ef3ce130eb6b7efc5c508736f349b8d8aaf3a95082de2a356e",
+      "grain_measurement_status": "NOT_ATTESTED",
+      "expected_grain_sigma": null,
+      "expected_grain_spatial_autocorrelation": {
+        "1,0": null,
+        "0,1": null,
+        "1,1": null,
+        "2,0": null,
+        "0,2": null,
+        "4,0": null,
+        "0,4": null,
+        "8,0": null,
+        "0,8": null
+      },
+      "grain_frames_measured": 0
+    },
+    {
+      "fixture_id": "horizontal_gradient_L0.85",
+      "family": "horizontal_gradient",
+      "center_luma": 0.85,
+      "input_luma_statistics": {
+        "mean": 0.8499999999999999,
+        "sigma_population": 0.014490249144215496,
+        "spatial_autocorrelation": {
+          "1,0": 0.9999999999999999,
+          "0,1": 1.0,
+          "1,1": 1.000000000000002,
+          "2,0": 1.000000000000001,
+          "0,2": 1.0,
+          "4,0": 1.0000000000000004,
+          "0,4": 1.0,
+          "8,0": 1.0000000000000004,
+          "0,8": 1.0
+        }
+      },
+      "input_f64le_sha256": "0b1a0b9be29baf5163d00317e5257f88c7f13cec9163c3bff139ffb9f3b9a43a",
+      "grain_measurement_status": "NOT_ATTESTED",
+      "expected_grain_sigma": null,
+      "expected_grain_spatial_autocorrelation": {
+        "1,0": null,
+        "0,1": null,
+        "1,1": null,
+        "2,0": null,
+        "0,2": null,
+        "4,0": null,
+        "0,4": null,
+        "8,0": null,
+        "0,8": null
+      },
+      "grain_frames_measured": 0
+    }
+  ],
+  "secret_scan": {
+    "status": "PASS_GENERATED_OUTPUT_PATTERN_SCAN",
+    "scope": "delivered JSON, README, fixture-statistics helper and execution log only",
+    "report": "scan.json",
+    "limitations": "pattern scan, not proof of absence of every possible secret; all73 input files not rescanned",
+    "held_content_included": false
+  }
+}
