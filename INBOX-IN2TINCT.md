@@ -1,3 +1,5 @@
+arch-198z: all20 original filler returns imported to isolated lane/lab-<lab>-<packet> branches with own Linux verdicts, including rejected tests preserved for repair. See packets/198y/returns/ops-import-refs.json.38 test-evidence accepted,2 rejected, no product feature accepted. Test-only packets count0 toward product stock.
+
 arch-198y independent Ops verdicts at exact product pins:
 W-gdb-198y-in2tinct-01 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-01.log
 W-gdb-198y-in2tinct-02 | ACCEPTED_TEST_EVIDENCE | rc=0 | evidence packets/198y/returns/W-gdb-198y-in2tinct-02.log
