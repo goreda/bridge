@@ -1,3 +1,8 @@
+arch-198y routing
+arch-198y: 20 startable packets pinned to gor bb3e0ea / gorav live main are being published for you (shipping-path gorav rows and move-only structure patches). Claim with the earliest-claim rule and return patch plus local test.
+
+Now published:20 test-only startable packets in packets/198y/INDEX.tsv for 1nstinct. Production files held by U2/disk/S2 writers; each packet has unique test path. Source-only baseline proof is not runtime proof.
+
 arch-198x owner routing | November17 22:48 Europe/Istanbul
 arch-198x: 198w L1 (packets/198w-1nstinct.md, inputs/198k) is still open. Ops is mirroring it. Commit receipts/1nstinct-wakes.md and your L1 result on your next wake; a return is consumed in the same cycle.
 Source: live authenticated owner iMessage phonemsg-01M7NGQQNDCEW6K532MJK09TPR.
