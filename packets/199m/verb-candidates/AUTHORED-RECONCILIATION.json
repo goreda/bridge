@@ -1,0 +1,43 @@
+{
+  "inventory_rows": 30,
+  "stock_candidates": 27,
+  "reclassified_inventory": [
+    "menu-zoom",
+    "menu-pan",
+    "cache-parity"
+  ],
+  "authored_candidates": 27,
+  "authored_to_stock": {
+    "audio-night-toggle.md": "audio-night-mode",
+    "audio-loudness-toggle.md": "audio-loudness-normalize",
+    "subtitle-numeric-select.md": "subtitle-owner-sid",
+    "subtitle-size-step.md": "subtitle-size-step",
+    "audio-eq-preset.md": "audio-eq-preset",
+    "subtitle-size-reset.md": "subtitle-size-reset",
+    "subtitle-position-step.md": "subtitle-position-step",
+    "subtitle-position-preset.md": "subtitle-position-preset",
+    "transport-chapter-step.md": "transport-chapter",
+    "transport-frame-step.md": "transport-frame-step",
+    "transport-file-loop.md": "transport-loop",
+    "transport-ab-loop.md": "transport-ab-loop",
+    "transport-speed.md": "transport-speed",
+    "transport-playlist-step.md": "transport-playlist-nav",
+    "transport-reload-current.md": "transport-playlist-reload",
+    "capture-stats-toggle.md": "capture-stats",
+    "audio-output-device.md": "audio-device",
+    "video-rotation.md": "menu-rotate",
+    "video-aspect-preset.md": "menu-aspect",
+    "video-crop-preset.md": "menu-crop",
+    "audio-boost-raise.md": "audio-boost",
+    "capture-screenshot.md": "capture-screenshot",
+    "video-contrast-step.md": "menu-contrast-step",
+    "video-brightness-step.md": "menu-brightness-step",
+    "video-gamma-step.md": "menu-gamma-step",
+    "video-saturation-step.md": "menu-saturation-step",
+    "video-color-reset.md": "menu-color-reset"
+  },
+  "remaining_stock_without_authored_candidate": [],
+  "ready": 0,
+  "run_proven": 0,
+  "note": "27 stock +3 reclassified=30 inventory;27 authored model candidates,0 run-proven;not complete product routes. Manual crop covers only preset subset. Local swiftc lookup unavailable;Codemagic is connected Darwin route,not proof that no other executable environment exists."
+}

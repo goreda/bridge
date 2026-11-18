@@ -1,0 +1,91 @@
+{
+  "result": "NOT_READY",
+  "inventory_count": 30,
+  "candidate_count": 27,
+  "reclassified_count": 3,
+  "ready_count": 0,
+  "run_proven": 0,
+  "packets": {
+    "transport-frame-step.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "transport-ab-loop.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "audio-device.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "audio-boost.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "menu-color-reset.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "menu-rotate.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "audio-loudness-normalize.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "menu-saturation-step.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "transport-speed.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "subtitle-position-step.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "subtitle-position-preset.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "capture-stats.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "transport-playlist-reload.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "audio-night-mode.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "subtitle-size-step.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "menu-aspect.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "menu-contrast-step.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "subtitle-size-reset.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "subtitle-owner-sid.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "capture-screenshot.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "menu-gamma-step.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "audio-eq-preset.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "menu-crop.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "transport-chapter.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "menu-brightness-step.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "transport-playlist-nav.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "transport-loop.txt": [
+      "exactly one packet-json manifest required"
+    ]
+  }
+}
