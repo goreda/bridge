@@ -1,6 +1,6 @@
-packet: audio-eq-filter-remove
-verb (owner-visible): af remove @goreq
-parent row: AUDIO-FILTERS eq-filter removal (@goreq); lab: 1nstinct (per owner order)
+packet: audio-eq-preset
+verb (owner-visible): apply equalizer preset: af remove @goreq + optional af add @goreq:lavfi=[curve]
+parent row: AUDIO-FILTERS equalizer preset apply (af remove @goreq, then af add @goreq only if the preset has a curve); lab: 1nstinct (per owner order)
 status: CANDIDATE, NOT READY (grounded refusal and call-path evidence only; no typed operation interface, no Linux test, no Darwin fixture supplied)
 repository gor, source_pin 55e11d70ee6bad7d7d7373a275eeebd0a5157eee; repository gorav, source_pin cf3e3f1772033dbc8465b19689e93f53c60006ce
 
@@ -51,7 +51,7 @@ Other gorav files matching the probe (0); nearest candidates only, not a verifie
 Presenter/sink hop: not established for this verb; named as missing until an interface exists.
 
 ## E. Notes
-The same menu action (menuAudioEqualizer) also issues af add @goreq:lavfi=[curve]. The add is the other half of one owner-visible preset change; goreda asked for the removal as its own packet. Whether add is a separate verb is an open question, not counted.
+One owner-visible action (menuAudioEqualizer): the callback always queues af remove @goreq and queues af add only when AppDelegate.audioEqualizerPresets has a curve for the name, batched through batchIPC. Per goreda (via Main 01:04), the add is not its own verb; the removal and the optional add are folded into this one packet. Both lines refuse through the same host default branch (detail "af").
 
 ## F. Not supplied
 Typed operation interface; supported/refused boundary; Linux-runnable test; Darwin fixture; full-file return scope. Executed results: none. No PASS inherited across pins.

@@ -1,14 +1,15 @@
 {
-  "scope": "r2 candidate stock only",
+  "scope": "r3 candidate stock only",
+  "result": "PASS",
   "files": [
     {
       "path": "INDEX.tsv",
-      "sha256": "8011df391bc75dab93d8e470848b9af95a0cbab4c52199bc0a5a7b55b4314475",
+      "sha256": "7bf348e2036696b3c20957bc594b5c1a5ace2b86cb447f831599f46013903ced",
       "hits": []
     },
     {
       "path": "SHA256SUMS",
-      "sha256": "3722706e74438d671f753a9a043176e2bcd70c13ae575f1a4385697e2c8fd50c",
+      "sha256": "969a0f79748d233707c9a1194a85b193f33f1b89cbe4b29569137fd5ac00fe08",
       "hits": []
     },
     {
@@ -37,11 +38,6 @@
       "hits": []
     },
     {
-      "path": "packets/audio-eq-filter-remove.txt",
-      "sha256": "75b5ebcd3eab5782ab19bb080fe62b0e2bab3b0ff591c208a637f110357c2dcd",
-      "hits": []
-    },
-    {
       "path": "packets/audio-loudness-normalize.txt",
       "sha256": "6501f9af139409897c5d3c28ed4d8e15575e0c40fe1c7c8a699067cc9bb2e63e",
       "hits": []
@@ -53,7 +49,7 @@
     },
     {
       "path": "packets/subtitle-position-step.txt",
-      "sha256": "0207c60c5239264634bf9a75a3e886ef402e1078efe45a5080d3ee35a223c55a",
+      "sha256": "f008302bb7a57606b497e05828487202b94f6174542cb00f2c6661bea2afe2ca",
       "hits": []
     },
     {
@@ -63,7 +59,7 @@
     },
     {
       "path": "packets/subtitle-position-preset.txt",
-      "sha256": "7bd3b0b848960203bc29ac22eea6dc2cce177a7d4e1f2e98078ae2c7b7487f54",
+      "sha256": "fd1f0b2c97aec1360ef23ec24992bf4b194a22042f83aabc816fa2b64da16dd0",
       "hits": []
     },
     {
@@ -107,6 +103,11 @@
       "hits": []
     },
     {
+      "path": "packets/audio-eq-preset.txt",
+      "sha256": "bbc18623d0d79268f6659ca7285bf18fd025b2fd2b858349c0e968eb340edad1",
+      "hits": []
+    },
+    {
       "path": "packets/menu-eq.txt",
       "sha256": "95a1080bf3b1d6eba5e6c4e799dc441603a2d229e73db777a335ca1f5b8e71c7",
       "hits": []
@@ -136,7 +137,5 @@
       "sha256": "4e4c8cca4bf2e0dd91ad7c0cde01f407afe8f9336ca62a27500ea68e19482822",
       "hits": []
     }
-  ],
-  "result": "PASS",
-  "excludes": "whole pinned input files checked separately; source excerpts manually reviewed r1, changed r2 next"
+  ]
 }

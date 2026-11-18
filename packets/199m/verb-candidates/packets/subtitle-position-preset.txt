@@ -55,7 +55,7 @@ Other gorav files matching the probe (0); nearest candidates only, not a verifie
 Presenter/sink hop: not established for this verb; named as missing until an interface exists.
 
 ## E. Notes
-This path does not go through embeddedCommand or refuseEmbedded: it calls ipcClient.queryBatch on the mpv socket directly, so under gorav the read-back has no mpv to answer and the only visible result is the OSD text "subtitle control unavailable". There is no typed refusal at this point. The get_property sub-pos query has no separate owner-visible call site and is part of this packet.
+This path does not go through embeddedCommand or refuseEmbedded: it calls ipcClient.queryBatch on the mpv socket directly, so under gorav the read-back has no mpv to answer and the only visible result is the OSD text "subtitle control unavailable". There is no typed refusal at this point. The get_property sub-pos query has no independent owner call site and is folded into this packet (per goreda, via Main 01:04).
 
 ## F. Not supplied
 Typed operation interface; supported/refused boundary; Linux-runnable test; Darwin fixture; full-file return scope. Executed results: none. No PASS inherited across pins.

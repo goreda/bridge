@@ -18,9 +18,6 @@
     "menu-rotate.txt": [
       "exactly one packet-json manifest required"
     ],
-    "audio-eq-filter-remove.txt": [
-      "exactly one packet-json manifest required"
-    ],
     "audio-loudness-normalize.txt": [
       "exactly one packet-json manifest required"
     ],
@@ -58,6 +55,9 @@
       "exactly one packet-json manifest required"
     ],
     "capture-screenshot.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "audio-eq-preset.txt": [
       "exactly one packet-json manifest required"
     ],
     "menu-eq.txt": [
