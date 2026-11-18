@@ -746,3 +746,5 @@ A24/A25 boundary follow-up fix requests, not accepted rejects: packets/199e/0435
 199jA45 assigned OPEN, fifth of ten, DZC index-offset/raster-size conversion hardening. Further13 attribution-reference lines per variant neutralized before publication; no production statement changes. Exactb603baselinecodechecked, newcopyhashesbound, runnerexit0notGREEN/readsemantic_exit. Metal/lzfse/native NOT_RUN. 2h without-progress lease.
 
 199jA41-A44 imported isolated NONQUALIFIED, fix requests at packets/199j/0518-imports/FOLLOWUP-1NSTINCT.md: A41 container segment identity and A43 strict numeric parsing. A42 truth table PASS, A44 CR/LF checks PASS with downstream limits. No host adoption.
+
+A45 isolated NONQUALIFIED import and four remaining parser fix requests: packets/199j/0520-A45-import. Offset+8 overflow, full multiply overflow, frame-origin conversions, zero-plane sentinel admitted as valid frame. Broad malformed safety NOT established; native/Metal/lzfse NOT_RUN.
