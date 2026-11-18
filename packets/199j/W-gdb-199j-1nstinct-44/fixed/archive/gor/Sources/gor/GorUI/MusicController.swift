@@ -292,7 +292,7 @@ final class MusicController {
         currentAlbumIdx = -1
         currentSource = "local"
         send("play_local \(path)")
-        // The backend consumes stdin commands in order. Append once, from one
+// [attribution comment elided]
 // [attribution comment elided]
         for track in tracks.dropFirst(trackN + 1) {
             if let nextPath = track["local_path"] as? String { send("queue_local \(nextPath)") }

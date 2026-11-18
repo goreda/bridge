@@ -11,7 +11,7 @@ CALLER SCOPE: every command builder routes through send, e.g. search at MusicCon
 
 ## Extraction
 Extracted func send and func sendRaw verbatim as free functions; the two referenced instance members (isRunning, stdinPipe) are supplied by the driver as top-level bindings backed by a real Pipe, so the bytes written can be read back. Compiled standalone.
-Attribution comment lines elided from the packet source copy: 1; sha256 below covers the elided copy.
+Comment lines carrying attribution or provenance identifiers elided from the packet source copy: 2 (trigger lines plus their continuation lines; string-aware, code untouched); sha256 below covers the elided copy.
 
 ## Verification (Swift 6.0.3, Linux)
 
@@ -139,8 +139,8 @@ exit(0)
 
 ## fix diff
 ```diff
---- /tmp/packets_199j/W-gdb-199j-1nstinct-44/source/archive/gor/Sources/gor/GorUI/MusicController.swift	2026-11-18 05:13:50.812859692 +0300
-+++ /tmp/packets_199j/W-gdb-199j-1nstinct-44/fixed/archive/gor/Sources/gor/GorUI/MusicController.swift	2026-11-18 05:13:50.812859692 +0300
+--- /tmp/packets_199j/W-gdb-199j-1nstinct-44/source/archive/gor/Sources/gor/GorUI/MusicController.swift	2026-11-18 05:24:32.515598778 +0300
++++ /tmp/packets_199j/W-gdb-199j-1nstinct-44/fixed/archive/gor/Sources/gor/GorUI/MusicController.swift	2026-11-18 05:24:32.515598778 +0300
 @@ -305,7 +305,8 @@
      // MARK: - Private
  
@@ -188,4 +188,4 @@ OK
 semantic_exit=0
 ```
 
-Publication: NONQUALIFIED, four of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease.
+Privacy revision 0526: whole comment runs removed. Non-comment statements string-aware compared equal to previously independently replayed adapted versions. Previous Linux proof binds OLD source hashes; new writer re-verification is separately attributed, Ops did not rerun Swift binaries for this comment-only revision. NONQUALIFIED; all prior boundary failures and native/full-host exclusions remain. Canonical runner discovery adaptation remains not executed.

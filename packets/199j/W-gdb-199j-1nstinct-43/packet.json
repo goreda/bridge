@@ -64,10 +64,10 @@
   "classification": "defensive malformed-input hardening (no live incident observed): the quit-token file is written by the app itself, but a corrupted or hand-edited file crashes the next launch instead of falling back to the default arbitration.",
   "fix": {
     "summary": "Guard the JSON ints before the narrowing conversions: pid must be in 1...pid_t.max and epoch must be non-negative, otherwise the token is treated as absent (nil). Previously pid_t(2^40) or UInt64(-1) trapped.",
-    "diff": "--- /tmp/packets_199j/W-gdb-199j-1nstinct-43/source/archive/gor/Sources/gor/AppDelegate.swift\t2026-11-18 05:13:48.956846646 +0300\n+++ /tmp/packets_199j/W-gdb-199j-1nstinct-43/fixed/archive/gor/Sources/gor/AppDelegate.swift\t2026-11-18 05:13:48.956846646 +0300\n@@ -3251,6 +3251,7 @@\n               let pid = obj[\"pid\"] as? Int,\n               let epoch = (obj[\"epoch\"] as? Int) ?? (obj[\"epoch\"] as? NSNumber)?.intValue,\n               let wall = (obj[\"wall\"] as? Double) ?? (obj[\"wall\"] as? NSNumber)?.doubleValue else { return nil }\n+        guard pid > 0, pid <= Int(pid_t.max), epoch >= 0 else { return nil }\n         return QuitToken(pid: pid_t(pid), epoch: UInt64(epoch), wall: wall)\n     }\n     static func consumeQuitToken() { try? FileManager.default.removeItem(at: quitTokenURL) }\n",
-    "diff_sha256": "4804156f626fc6413814df9998e524b1db2708c9ed38877d90a5348bbf9a4ce3",
-    "fixed_sha256": "e8927ff51520e9aca855fa2a0d297b41e820ada74b048336203a4906cdc0fce8",
-    "pinned_sha256": "2e7607228dcc467306f36c166f7c415424a094670020e304b282272e54f728b5",
-    "pinned_extraction": "goreda/instinct @ b60352dabc87fe8519832999b4af639f37d786f8; 17 attribution comment line(s) elided before hashing"
+    "diff": "--- /tmp/packets_199j/W-gdb-199j-1nstinct-43/source/archive/gor/Sources/gor/AppDelegate.swift\t2026-11-18 05:24:30.691585692 +0300\n+++ /tmp/packets_199j/W-gdb-199j-1nstinct-43/fixed/archive/gor/Sources/gor/AppDelegate.swift\t2026-11-18 05:24:30.691585692 +0300\n@@ -3251,6 +3251,7 @@\n               let pid = obj[\"pid\"] as? Int,\n               let epoch = (obj[\"epoch\"] as? Int) ?? (obj[\"epoch\"] as? NSNumber)?.intValue,\n               let wall = (obj[\"wall\"] as? Double) ?? (obj[\"wall\"] as? NSNumber)?.doubleValue else { return nil }\n+        guard pid > 0, pid <= Int(pid_t.max), epoch >= 0 else { return nil }\n         return QuitToken(pid: pid_t(pid), epoch: UInt64(epoch), wall: wall)\n     }\n     static func consumeQuitToken() { try? FileManager.default.removeItem(at: quitTokenURL) }\n",
+    "diff_sha256": "d5e812f148a21f5ccefddd2f03b3878be47031c2cc96ff33e564edfef3e4b3e8",
+    "fixed_sha256": "0979fdae8f3fa84b352b9553547721112baa078a42107678509dc40b98c7024d",
+    "pinned_sha256": "ffefaec29da33df8828623f51e4c42412ce9a94021f724d5a177deef250f6491",
+    "pinned_extraction": "goreda/instinct @ b60352dabc87fe8519832999b4af639f37d786f8; 68 attribution/provenance comment line(s) elided before hashing (run-aware strip: trigger plus continuation lines)"
   }
 }

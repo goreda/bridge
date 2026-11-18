@@ -65,10 +65,10 @@
   "classification": "defensive malformed-input hardening (no live incident observed): inputs are the user's own search text, playlist names and file paths, all of which can carry newlines via paste or unusual file names.",
   "fix": {
     "summary": "Replace CR and LF with spaces at the single choke point (send), so all ~20 command builders are covered. Previously a newline inside a search query, playlist name or local file path produced additional protocol lines that mus2.py executed as commands.",
-    "diff": "--- /tmp/packets_199j/W-gdb-199j-1nstinct-44/source/archive/gor/Sources/gor/GorUI/MusicController.swift\t2026-11-18 05:13:50.812859692 +0300\n+++ /tmp/packets_199j/W-gdb-199j-1nstinct-44/fixed/archive/gor/Sources/gor/GorUI/MusicController.swift\t2026-11-18 05:13:50.812859692 +0300\n@@ -305,7 +305,8 @@\n     // MARK: - Private\n \n     func send(_ command: String) {\n-        guard isRunning, let data = (command + \"\\n\").data(using: .utf8) else { return }\n+        let line = command.replacingOccurrences(of: \"\\r\", with: \" \").replacingOccurrences(of: \"\\n\", with: \" \")\n+        guard isRunning, let data = (line + \"\\n\").data(using: .utf8) else { return }\n         stdinPipe?.fileHandleForWriting.write(data)\n     }\n \n",
-    "diff_sha256": "375ef8144c006fb66cd03b56095e60f9727b445cf25362b84e64e5bb53ea465d",
-    "fixed_sha256": "73ba14656206abb4fb944a8752e6de8cea46a87f9660805f1db9f036034fce40",
-    "pinned_sha256": "377216824190913db165b879e2f8967ed08d5b57e8be5160e7c488f351eb8698",
-    "pinned_extraction": "goreda/instinct @ b60352dabc87fe8519832999b4af639f37d786f8; 1 attribution comment line(s) elided before hashing"
+    "diff": "--- /tmp/packets_199j/W-gdb-199j-1nstinct-44/source/archive/gor/Sources/gor/GorUI/MusicController.swift\t2026-11-18 05:24:32.515598778 +0300\n+++ /tmp/packets_199j/W-gdb-199j-1nstinct-44/fixed/archive/gor/Sources/gor/GorUI/MusicController.swift\t2026-11-18 05:24:32.515598778 +0300\n@@ -305,7 +305,8 @@\n     // MARK: - Private\n \n     func send(_ command: String) {\n-        guard isRunning, let data = (command + \"\\n\").data(using: .utf8) else { return }\n+        let line = command.replacingOccurrences(of: \"\\r\", with: \" \").replacingOccurrences(of: \"\\n\", with: \" \")\n+        guard isRunning, let data = (line + \"\\n\").data(using: .utf8) else { return }\n         stdinPipe?.fileHandleForWriting.write(data)\n     }\n \n",
+    "diff_sha256": "9849ba10a5b0288e7c90ecdc1026c334b9f1a5b09201f3235f40612daeec3a3e",
+    "fixed_sha256": "873b9a3f9df8e0b623c794aaa8651a8b24544457dac61d59e447bc7cc7c57e93",
+    "pinned_sha256": "defeb53352a310b9ce2a7334b489e4342eb3b9c16e546d69adab7ad07e633d80",
+    "pinned_extraction": "goreda/instinct @ b60352dabc87fe8519832999b4af639f37d786f8; 2 attribution/provenance comment line(s) elided before hashing (run-aware strip: trigger plus continuation lines)"
   }
 }

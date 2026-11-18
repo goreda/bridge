@@ -64,10 +64,10 @@
   "classification": "correctness defect found by code inspection (no live incident observed): the ignored parameter starts the blink camera consumer outside VR.",
   "fix": {
     "summary": "Conjoin vrEnabled into the blink decision. The doc comment states the intent (frames whenever blink is on in VR) and the caller passes vrModeEnabled, but the parameter was dropped from the body, so the blink camera consumer started with VR off whenever blink logging and a loaded video coincided.",
-    "diff": "--- /tmp/packets_199j/W-gdb-199j-1nstinct-42/source/archive/gor/Sources/gor/gor/PPController_Features.swift\t2026-11-18 05:13:47.824838680 +0300\n+++ /tmp/packets_199j/W-gdb-199j-1nstinct-42/fixed/archive/gor/Sources/gor/gor/PPController_Features.swift\t2026-11-18 05:13:47.824838680 +0300\n@@ -543,7 +543,7 @@\n     /// Blink leg: needs frames whenever blink is on in VR with a file loaded - pause must NOT\n     /// stop it (loadedVideoActive, not playbackActive), or the pause toggle could never resume.\n     static func blinkShouldRun(blinkOn: Bool, vrEnabled: Bool, loadedVideoActive: Bool, cameraAllowed: Bool) -> Bool {\n-        blinkOn && loadedVideoActive && cameraAllowed\n+        blinkOn && vrEnabled && loadedVideoActive && cameraAllowed\n     }\n }\n \n",
-    "diff_sha256": "e86e8f9bc56fe50f9ea872d8bce000add4303ca753eddd929acf1c86afd4bfee",
-    "fixed_sha256": "d288f26ef6e1602d7d9fd0c7c90b8817b588a0478dbd73c558e6b03dcadf439d",
-    "pinned_sha256": "8d81761d0928069fe40a1acaed4148f1a06dbb3d1ed61790a65d3abb9388cf12",
-    "pinned_extraction": "goreda/instinct @ b60352dabc87fe8519832999b4af639f37d786f8; 6 attribution comment line(s) elided before hashing"
+    "diff": "--- /tmp/packets_199j/W-gdb-199j-1nstinct-42/source/archive/gor/Sources/gor/gor/PPController_Features.swift\t2026-11-18 05:24:29.587577925 +0300\n+++ /tmp/packets_199j/W-gdb-199j-1nstinct-42/fixed/archive/gor/Sources/gor/gor/PPController_Features.swift\t2026-11-18 05:24:29.587577925 +0300\n@@ -543,7 +543,7 @@\n     /// Blink leg: needs frames whenever blink is on in VR with a file loaded - pause must NOT\n     /// stop it (loadedVideoActive, not playbackActive), or the pause toggle could never resume.\n     static func blinkShouldRun(blinkOn: Bool, vrEnabled: Bool, loadedVideoActive: Bool, cameraAllowed: Bool) -> Bool {\n-        blinkOn && loadedVideoActive && cameraAllowed\n+        blinkOn && vrEnabled && loadedVideoActive && cameraAllowed\n     }\n }\n \n",
+    "diff_sha256": "9af8401e5b339d8c03801d01d0f9d9aaec0f57655e01df3d21040a277e47fca5",
+    "fixed_sha256": "17465937b1ab358c37e369902593e3fccc1b08217ae8d4b299634c06933674a4",
+    "pinned_sha256": "592f72625ed50bd4ffd8a600d269aaf2c6a3c55530eea12840bcbe03a7a339cf",
+    "pinned_extraction": "goreda/instinct @ b60352dabc87fe8519832999b4af639f37d786f8; 18 attribution/provenance comment line(s) elided before hashing (run-aware strip: trigger plus continuation lines)"
   }
 }

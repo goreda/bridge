@@ -11,7 +11,7 @@ CALLER SCOPE: the 2D-to-3D prepare/render pipeline in the same file: DZCFile.isC
 
 ## Extraction
 Extracted enum DZC (header/index helpers), final class DZCWriter, final class DZCFile and enum DepthQuant verbatim from the pinned file. The lzfse codec is behind canImport(Compression) and compiles to a nil-returning stub on Linux; the test drives the container format directly through the same entry points the pipeline uses.
-Attribution comment lines elided from the packet source copy: 147; sha256 below covers the elided copy.
+Comment lines carrying attribution or provenance identifiers elided from the packet source copy: 438 (trigger lines plus their continuation lines; string-aware, code untouched); sha256 below covers the elided copy.
 
 ## Verification (Swift 6.0.3, Linux)
 
@@ -331,8 +331,8 @@ exit(0)
 
 ## fix diff
 ```diff
---- /tmp/packets_199j/W-gdb-199j-1nstinct-45/source/archive/gor/Sources/gor/gor/ThreeD.swift	2026-11-18 05:16:44.074070342 +0300
-+++ /tmp/packets_199j/W-gdb-199j-1nstinct-45/fixed/archive/gor/Sources/gor/gor/ThreeD.swift	2026-11-18 05:16:44.074070342 +0300
+--- /tmp/packets_199j/W-gdb-199j-1nstinct-45/source/archive/gor/Sources/gor/gor/ThreeD.swift	2026-11-18 05:24:34.035609642 +0300
++++ /tmp/packets_199j/W-gdb-199j-1nstinct-45/fixed/archive/gor/Sources/gor/gor/ThreeD.swift	2026-11-18 05:24:34.035609642 +0300
 @@ -2928,7 +2928,7 @@
      struct Meta: Equatable {
          var shot: UInt32, fpsNum: UInt32, fpsDen: UInt32, startFrame: UInt64
@@ -391,4 +391,4 @@ OK
 semantic_exit=0
 ```
 
-Publication: NONQUALIFIED, fifth of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease.
+Privacy revision 0526: whole comment runs removed. Non-comment statements string-aware compared equal to previously independently replayed adapted versions. Previous Linux proof binds OLD source hashes; new writer re-verification is separately attributed, Ops did not rerun Swift binaries for this comment-only revision. NONQUALIFIED; all prior boundary failures and native/full-host exclusions remain. Canonical runner discovery adaptation remains not executed.
