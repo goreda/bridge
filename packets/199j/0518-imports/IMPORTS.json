@@ -1,0 +1,46 @@
+[
+  {
+    "id": "W-gdb-199j-1nstinct-41",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "c22fcce7f19db539402e2a09b130a510e24e8b0e",
+    "branch": "lane/lab-1nstinct-W-gdb-199j-1nstinct-41",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Adapted attribution-neutralized complete file, same tested declaration. Absolute diff headers normalized only; all semantic statements exact. Supplied runner process0 on RED: proof is parsed semantic_exit and direct binary, not harness status. Container encoded slash loses path segment identity; encoded dotdot prefix emitted literally. Fix request pending, no exploit claim. No host adoption/full native acceptance.",
+    "source_sha256": {
+      "archive/gor/Sources/gor/GorUI/MenuActions.swift": "6325c30537d3a31a5b9cb29d805294777543dd4263d126cbea1417ecce502273"
+    }
+  },
+  {
+    "id": "W-gdb-199j-1nstinct-42",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "8259962f3d61596834aa9c6300e7e1c4fa5fb57f",
+    "branch": "lane/lab-1nstinct-W-gdb-199j-1nstinct-42",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Adapted attribution-neutralized complete file, same tested declaration. Absolute diff headers normalized only; all semantic statements exact. Supplied runner process0 on RED: proof is parsed semantic_exit and direct binary, not harness status. All16 pure truth table combinations PASS, native camera NOT_RUN. No host adoption/full native acceptance.",
+    "source_sha256": {
+      "archive/gor/Sources/gor/gor/PPController_Features.swift": "d288f26ef6e1602d7d9fd0c7c90b8817b588a0478dbd73c558e6b03dcadf439d"
+    }
+  },
+  {
+    "id": "W-gdb-199j-1nstinct-43",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "15a48e04832ab38d9f2fcdf3b1188536d92629c8",
+    "branch": "lane/lab-1nstinct-W-gdb-199j-1nstinct-43",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Adapted attribution-neutralized complete file, same tested declaration. Absolute diff headers normalized only; all semantic statements exact. Supplied runner process0 on RED: proof is parsed semantic_exit and direct binary, not harness status. Baseline and mutant signal4 traps. NSNumber fallback still wraps2^64/truncates fractions/admits booleans; strict exact integer parsing pending, no process quit executed. No host adoption/full native acceptance.",
+    "source_sha256": {
+      "archive/gor/Sources/gor/AppDelegate.swift": "e8927ff51520e9aca855fa2a0d297b41e820ada74b048336203a4906cdc0fce8"
+    }
+  },
+  {
+    "id": "W-gdb-199j-1nstinct-44",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "846232beda5a81434599aff7a171fc254f1e2205",
+    "branch": "lane/lab-1nstinct-W-gdb-199j-1nstinct-44",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Adapted attribution-neutralized complete file, same tested declaration. Absolute diff headers normalized only; all semantic statements exact. Supplied runner process0 on RED: proof is parsed semantic_exit and direct binary, not harness status. CR/LF\u2192spaces plus oneLF verified; NUL/U+2028 literal downstream behavior untested, actual music process NOT_RUN. No host adoption/full native acceptance.",
+    "source_sha256": {
+      "archive/gor/Sources/gor/GorUI/MusicController.swift": "73ba14656206abb4fb944a8752e6de8cea46a87f9660805f1db9f036034fce40"
+    }
+  }
+]
