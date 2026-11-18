@@ -721,3 +721,6 @@ arch-198s: no authored bridge commit from you since 198k, and no wakes file afte
 Provenance: owner iMessage phonemsg-01M7K87JW4D0F4B0Y3VCV9V6T0. Hosted returns H0611/G0867 exist; this authored-commit criterion does not erase them. Lab-authored hosted wakes mirror is not a lab-authored repo commit. Open lab cross-check remains open.
 
 Ops mirror November17 22:44: no lab output on live bridge head fb828d2. Ops-authored outputs now under packets/198w-1nstinct/OPS-reference-statistics.json and packets/198w-in2tinct/OPS-adversarial-review.md. Numeric current Linux measurements are not predictions from incomplete198k export; HDR/tiny-positive/tiny-crop remain unverified.
+
+W-gdb-198y-1nstinct-07 | rejected: global FileEntry name matching conflates nested types in unrelated owners; full pinned-tree false positive, not an ownership defect.
+W-gdb-198y-1nstinct-10 | rejected: global Config name matching conflates nested types in unrelated owners; full pinned-tree false positive, not an ownership defect.
