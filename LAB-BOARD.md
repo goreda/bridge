@@ -5,7 +5,7 @@
 | 1nstinct | 10 (arch-199h D5 shared stock) + 7 (arch-198z) | 10 | none for D5 |
 | in2tinct | 10 (arch-199h D5 shared stock) + 10 (arch-198z) | 10 | none for D5 |
 
-D5 stock: packets/199h/d5/INDEX.tsv, 10 packets, shared across labs, earliest claim wins. Pins goreda/instinct bb3e0ea0 (mac-source-sync-20261103) and goreda/bridge fbb0932 (D1 emitter). Baseline source-pin proofs executed on clean sparse checkouts. Writer items (grain vendor binding, manual grain range, installed BuildID read) queued next per owner block arch-199h. The arch-198s audit below is historical.
+D5 stock: packets/199h/d5/INDEX.tsv, 10 packets, shared across labs, earliest claim wins. Pins goreda/instinct bb3e0ea0 (mac-source-sync-20261103) and goreda/bridge fbb0932 (D1 emitter). Baseline source-pin proofs executed on clean sparse checkouts. Writer stock published: packets/199h/writer/INDEX.tsv (3 shared-stock packets: grain vendor binding, manual grain range, installed BuildID read), baseline pin proofs executed. The arch-198s audit below is historical.
 
 ## arch-198s authored-commit status, audited November17 01:41
 
