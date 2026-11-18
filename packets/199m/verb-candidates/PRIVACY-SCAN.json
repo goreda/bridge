@@ -20,6 +20,11 @@
     "privacy": "PASS scoped scan"
   },
   {
+    "file": "packets/menu-color-reset.txt",
+    "sha256": "b2f00031a449cd6a2cbf07d0577b90926a9bacdb41bca5743b530491e797d3a7",
+    "privacy": "PASS scoped scan"
+  },
+  {
     "file": "packets/menu-rotate.txt",
     "sha256": "614ff568aeb17e23b4f6a8f42a4cd957d5caea8fdb80a63769dc69086d0738e3",
     "privacy": "PASS scoped scan"
@@ -27,6 +32,11 @@
   {
     "file": "packets/audio-loudness-normalize.txt",
     "sha256": "6501f9af139409897c5d3c28ed4d8e15575e0c40fe1c7c8a699067cc9bb2e63e",
+    "privacy": "PASS scoped scan"
+  },
+  {
+    "file": "packets/menu-saturation-step.txt",
+    "sha256": "79ab07c5cee404e6c1aa0b5a8facd36e4801baf4ac697da3237aa8d97e55b488",
     "privacy": "PASS scoped scan"
   },
   {
@@ -70,6 +80,11 @@
     "privacy": "PASS scoped scan"
   },
   {
+    "file": "packets/menu-contrast-step.txt",
+    "sha256": "7773ce697d8464bd348f2290816dba0cadd0cc54632050a7469dda21fece6166",
+    "privacy": "PASS scoped scan"
+  },
+  {
     "file": "packets/subtitle-size-reset.txt",
     "sha256": "50d40933ea510d65839bb7fef2ea61fe32dfb507d15b98bfefea2f43f71c7f65",
     "privacy": "PASS scoped scan"
@@ -85,13 +100,13 @@
     "privacy": "PASS scoped scan"
   },
   {
-    "file": "packets/audio-eq-preset.txt",
-    "sha256": "bbc18623d0d79268f6659ca7285bf18fd025b2fd2b858349c0e968eb340edad1",
+    "file": "packets/menu-gamma-step.txt",
+    "sha256": "811b5c517ccdca49add7d478b2850cad9598cbf2bc030c337833228da81176cc",
     "privacy": "PASS scoped scan"
   },
   {
-    "file": "packets/menu-eq.txt",
-    "sha256": "95a1080bf3b1d6eba5e6c4e799dc441603a2d229e73db777a335ca1f5b8e71c7",
+    "file": "packets/audio-eq-preset.txt",
+    "sha256": "bbc18623d0d79268f6659ca7285bf18fd025b2fd2b858349c0e968eb340edad1",
     "privacy": "PASS scoped scan"
   },
   {
@@ -102,6 +117,11 @@
   {
     "file": "packets/transport-chapter.txt",
     "sha256": "7cc8e6c0bda7a0a61ffacb313215b0da23c28c9f5aeb55e23a7cb7a9ea9fcd60",
+    "privacy": "PASS scoped scan"
+  },
+  {
+    "file": "packets/menu-brightness-step.txt",
+    "sha256": "af793d262a31267986091c4a08a7d5b9650defab0812a5ca7c4e096dd160d845",
     "privacy": "PASS scoped scan"
   },
   {
