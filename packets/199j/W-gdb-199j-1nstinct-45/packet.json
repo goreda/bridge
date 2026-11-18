@@ -1,0 +1,75 @@
+{
+  "packet_id": "W-gdb-199j-1nstinct-45",
+  "lab": "1nstinct",
+  "product_repo": "goreda/instinct",
+  "product_sha": "b60352dabc87fe8519832999b4af639f37d786f8",
+  "scope": "archive/gor/Sources/gor/gor/ThreeD.swift",
+  "touched_files": [
+    "archive/gor/Sources/gor/gor/ThreeD.swift"
+  ],
+  "interface": {
+    "signatures": [
+      "static func isComplete(_ url: URL) -> Bool",
+      "init?(url: URL)",
+      "static func scanValid(_ f: [UInt8], decompress: ([UInt8], Int) -> [UInt8]?) -> (frames: Int, end: Int, meta: DZC.Meta)?"
+    ],
+    "ownership_lifetime": "DZCFile holds an immutable Data snapshot; value-type helpers",
+    "caller": "ThreeD.swift:3144/:4455/:5386/:6208 readiness gates, :3173/:4126/:9172 plane reads, :5722 resume",
+    "callee": "Foundation Data/FileHandle; codec closure"
+  },
+  "test": {
+    "command": "SWIFTC=$SWIFTC python3 run_packet.py (GOR_SOURCE_ROOT selects source/ vs fixed/; SWIFTFLAGS=-O for optimized runs)",
+    "fixture_block": "fixtures1.json",
+    "config_block": "fixtures2.json",
+    "expected": "pinned RED trap semantic_exit=-4, fixed GREEN exit=0"
+  },
+  "target": {
+    "branch": "host",
+    "paths": [
+      "archive/gor/Sources/gor/gor/ThreeD.swift"
+    ],
+    "return_form": "unified diff + fixed full copy"
+  },
+  "run_proof": {
+    "version": 1,
+    "kind": "swiftc two-variant compile+run",
+    "inline_files": [
+      "run_packet.py",
+      "fixtures1.json",
+      "fixtures2.json"
+    ],
+    "log_block": "actual_run_log.txt",
+    "verification": {
+      "red_Onone": {
+        "compile_exit": 0,
+        "semantic_exit": -4,
+        "pass": true
+      },
+      "red_O": {
+        "compile_exit": 0,
+        "semantic_exit": -4,
+        "pass": true
+      },
+      "green_Onone": {
+        "compile_exit": 0,
+        "semantic_exit": 0,
+        "pass": true
+      },
+      "green_O": {
+        "compile_exit": 0,
+        "semantic_exit": 0,
+        "pass": true
+      }
+    }
+  },
+  "state": "VERIFIED",
+  "classification": "defensive malformed-input hardening (no live incident observed): containers are app-written cache files, but an interrupted write, a partial sync or an older build leaves bytes the completeness gate was designed to reject; the two narrowing conversions crash before the gate can reject.",
+  "fix": {
+    "summary": "Two guards on untrusted container bytes. (1) Meta.planeBytes multiplies width*height*2 in UInt64 and yields 0 when the product exceeds UInt32, instead of trapping on absurd header dimensions. (2) DZCFile.layout validates each index offset fits Int before converting, instead of trapping on an entry >= 2^63.",
+    "diff": "--- /tmp/packets_199j/W-gdb-199j-1nstinct-45/source/archive/gor/Sources/gor/gor/ThreeD.swift\t2026-11-18 05:16:44.074070342 +0300\n+++ /tmp/packets_199j/W-gdb-199j-1nstinct-45/fixed/archive/gor/Sources/gor/gor/ThreeD.swift\t2026-11-18 05:16:44.074070342 +0300\n@@ -2928,7 +2928,7 @@\n     struct Meta: Equatable {\n         var shot: UInt32, fpsNum: UInt32, fpsDen: UInt32, startFrame: UInt64\n         var width: UInt32, height: UInt32, depthWidth: UInt32, depthHeight: UInt32, nFrames: UInt32\n-        var planeBytes: UInt32 { width * height * 2 }\n+        var planeBytes: UInt32 { let p = UInt64(width) * UInt64(height) * 2; return p <= UInt64(UInt32.max) ? UInt32(p) : 0 }\n     }\n     static func fpsPair(_ fps: Double) -> (UInt32, UInt32) { fps == fps.rounded() ? (UInt32(fps), 1) : (UInt32((fps * 1000).rounded()), 1000) }\n \n@@ -3073,7 +3073,12 @@\n         let n = Int(m.nFrames), tail = n * 8 + 8\n         guard d.count >= DZC.headerSize + tail, Array(d.suffix(8)) == DZC.trailer else { return nil }\n         let idx = [UInt8](d[(d.count - tail)..<(d.count - 8)])\n-        let offs = (0..<n).map { Int(DZC.rd(idx, $0 * 8, 8)) }\n+        var offs: [Int] = []\n+        for k in 0..<n {\n+            let v = DZC.rd(idx, k * 8, 8)\n+            guard v <= UInt64(Int.max) else { return nil }\n+            offs.append(Int(v))\n+        }\n         guard offs.allSatisfy({ $0 >= DZC.headerSize && $0 + 8 <= d.count - tail }) else { return nil }\n         return (m, d, offs)\n     }\n",
+    "diff_sha256": "28c703d6ec059cb23b14612cd85c81e9b59753b126abc16b811dd6257f7a4373",
+    "fixed_sha256": "cab7c5e123f3deaea297441b8265a09fe2e926ad9071cdf673a7f2d44e439b4c",
+    "pinned_sha256": "9e1bb60fa5f6ca7dea4f8cda8c8e1c0876d73ce8e7fafadd6dfde8f3732ebf8c",
+    "pinned_extraction": "goreda/instinct @ b60352dabc87fe8519832999b4af639f37d786f8; 147 attribution comment line(s) elided before hashing"
+  }
+}
