@@ -1,0 +1,9 @@
+compile_exit=0
+
+
+semantic_exit=1
+FAIL finite inputs never yield nonfinite sample
+PASS normal measurement preserved
+semantic failures=1
+
+

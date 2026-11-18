@@ -1,0 +1,5 @@
+# W-gdb-198z-1nstinct-03-fix executable RED starter
+
+A03 reproduces the existing content-only method accepting an old request after same-content source replacement. It is a defect reproducer, not the final generation API acceptance test. The fix packet preserves the legacy content-only method, so the writer MUST bind this scenario to the new explicit generation-bearing API and add seek/reset and primary/secondary isolation checks. Do not change legacy semantics merely to make this reproducer green. Source/session producer wiring remains a separate, unverified integration boundary.
+
+Run `python3 run.py` from this folder, or use the archive-root argv in binding.json. Set SWIFTC if needed. Set PRODUCT_ROOT to test the same runner against a writer checkout; otherwise the bundled exact-source pin is used. No automatic fetch occurs. Missing compiler is exit77 NOT_RUN. Expected imported baseline exit1, not acceptance PASS. The full provider package build required by the original fix packet is NOT_RUN.

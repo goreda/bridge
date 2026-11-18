@@ -1,0 +1,17 @@
+{
+  "packet_id": "W-gdb-198z-1nstinct-01-fix",
+  "product_sha": "2cdc620c77d2822c5ded1b4ada1f5b0c7c60b3ed",
+  "source": "Sources/GorAVFFmpegAdapter/MediaInventory.swift",
+  "source_sha256": "0dcc9f13ee805361ca3de292ddd36cab2bc0163d4cbdf8a8c0cb2717a5feee35",
+  "bridge_sha": "893da98ff0d00584b951fb883a833aa4ac8adc50",
+  "compile_inputs": [
+    "Sources/GorAVFFmpegAdapter/MediaInventory.swift"
+  ],
+  "test_argv": "python3 fix-starters/W-gdb-198z-1nstinct-01-fix/run.py",
+  "kind": "exact-source-isolated",
+  "negative_regression": true,
+  "starter_exit": 1,
+  "starter_log_sha256": "278f6c94102b2ae668281c44d59d1dfa7afd51ebdb2e37216966e59ae450be94",
+  "provider_package_build": "NOT_RUN",
+  "install_test_path": "Tests/Architecture/198z/W-gdb-198z-1nstinct-01-fix.swift"
+}

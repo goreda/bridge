@@ -1,0 +1,28 @@
+{
+  "packet_id": "W-gdb-198z-1nstinct-03-fix",
+  "product_sha": "d30de19c87377bab5b6b0bba68d3ed3ab02f5042",
+  "source": "Sources/GorAVSubtitles/SubtitleController.swift",
+  "source_sha256": "0272a599b66f255062aaefcb541d252b10cd65818189dac237a688dc567f1144",
+  "bridge_sha": "893da98ff0d00584b951fb883a833aa4ac8adc50",
+  "compile_inputs": [
+    "Sources/GorAVSubtitles/ASSParser.swift",
+    "Sources/GorAVSubtitles/SRTParser.swift",
+    "Sources/GorAVSubtitles/SubtitleAutoLoad.swift",
+    "Sources/GorAVSubtitles/SubtitleController.swift",
+    "Sources/GorAVSubtitles/SubtitleCue.swift",
+    "Sources/GorAVSubtitles/SubtitleCueDelivery.swift",
+    "Sources/GorAVSubtitles/SubtitleCueOutput.swift",
+    "Sources/GorAVSubtitles/SubtitlePlan.swift",
+    "Sources/GorAVSubtitles/SubtitleSchedule.swift",
+    "Sources/GorAVSubtitles/SubtitleSidecarSession.swift",
+    "Sources/GorAVSubtitles/SubtitleTrack.swift",
+    "Sources/GorAVSubtitles/VTTParser.swift"
+  ],
+  "test_argv": "python3 fix-starters/W-gdb-198z-1nstinct-03-fix/run.py",
+  "kind": "whole-subtitle-source-set",
+  "negative_regression": true,
+  "starter_exit": 1,
+  "starter_log_sha256": "e92f26b01fe1a94b2388d99f31cdbdb83d6f99e426e04b2d357cd4149807e066",
+  "provider_package_build": "NOT_RUN",
+  "install_test_path": "Tests/Architecture/198z/W-gdb-198z-1nstinct-03-fix.swift"
+}

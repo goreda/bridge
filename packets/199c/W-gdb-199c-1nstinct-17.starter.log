@@ -1,0 +1,14 @@
+compile_exit=0
+
+
+semantic_exit=1
+FAIL invalid left gets neutral placement
+PASS invalid offset gets neutral placement
+FAIL invalid left gets neutral placement
+FAIL invalid offset gets neutral placement
+FAIL invalid left gets neutral placement
+PASS invalid offset gets neutral placement
+PASS normal placement unchanged
+semantic failures=4
+
+

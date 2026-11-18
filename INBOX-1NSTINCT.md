@@ -730,3 +730,5 @@ arch-199c: new prerequisite product packets open in packets/199c, earliest verif
 arch-199c refill: A11-A13 OPEN in packets/199c, one source each, 2h progress lease. Exact b603, archive/gor/Tests from start. RED starter defects only, not parity or native acceptance. A198z01-03 isolated source-characterization imports do not establish full integration.
 
 198z01-03 fix packets OPEN under packets/198z/fixes at exact imported pins: unambiguous audio IDs, explicit sidecar serialization, source-generation fence. Not stock-counted until executable starter; no acceptance claim.
+
+199cA14-A17 OPEN with four source-bound Swift RED starters. Three198zfix starters now runnable in packets/198z/fix-starters; A01exact-declaration only/provider-module NOT_RUN, A02diagnostic-invariance, A03baseline reproducer not final generation-API acceptance.13startable A including fixes,10B; no parity/native claims.2hprogress leases.
