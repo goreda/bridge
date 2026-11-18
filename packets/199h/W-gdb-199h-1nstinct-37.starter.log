@@ -1,0 +1,6 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL arbitrary kind remains valid JSON
+FAIL kind roundtrips as data
+

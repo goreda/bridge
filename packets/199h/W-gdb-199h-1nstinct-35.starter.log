@@ -1,0 +1,56 @@
+compile_exit=0
+
+semantic_exit=-4
+Swift/IntegerTypes.swift:14139: Fatal error: Double value cannot be converted to Int because the result would be greater than Int.max
+
+*** Signal 4: Backtracing from 0x7f57a195fd14... done ***
+
+*** Program crashed: Illegal instruction at 0x00007f57a195fd14 ***
+
+Thread 0 "test" crashed:
+
+0              0x00007f57a195fd14 closure #1 in closure #1 in closure #1 in _assertionFailure(_:_:file:line:flags:) + 308 in libswiftCore.so
+1 [ra]         0x00007f57a195fac2 closure #1 in closure #1 in _assertionFailure(_:_:file:line:flags:) + 257 in libswiftCore.so
+2 [ra]         0x00007f57a195f97d closure #1 in _assertionFailure(_:_:file:line:flags:) + 380 in libswiftCore.so
+3 [ra]         0x00007f57a1ae2e76 _assertionFailure(_:_:file:line:flags:) + 229 in libswiftCore.so
+4 [ra]         0x00005581c0a2e67c closure #1 in CropDetector.slottedPositions(count:duration:rng:headMargin:tailMargin:) + 635 in test
+5 [ra] [thunk] 0x00005581c0a2f11f partial apply for closure #1 in CropDetector.slottedPositions(count:duration:rng:headMargin:tailMargin:) + 30 in test
+6 [ra]         0x00005581c0a2ebd0 Collection.map<A, B>(_:) + 1311 in test
+7 [ra]         0x00005581c0a2e302 CropDetector.slottedPositions(count:duration:rng:headMargin:tailMargin:) + 593 in test
+8 [ra]         0x00005581c0a2df40 CropDetector.exercise() + 127 in test
+9 [ra]         0x00005581c0a2f382 main + 49 in test
+
+
+Registers:
+
+rax 0x0000000000000000  0
+rdx 0x0000000000000001  1
+rcx 0x0000000000000005  5
+rbx 0x00000005581f510b  22953283851
+rsi 0x0000000000000007  7
+rdi 0x00005581f50f9010  03 00 02 00 02 00 02 00 01 00 01 00 00 00 01 00  ················
+rbp 0x00007ffd59d06740  80 67 d0 59 fd 7f 00 00 c2 fa 95 a1 57 7f 00 00  ·gÐYý···Âú·¡W···
+rsp 0x00007ffd59d06730  58 00 00 00 00 00 00 00 3b 37 00 00 00 00 00 00  X·······;7······
+ r8 0x00005581f510bde0  0b 51 1f 58 05 00 00 00 bf 5c 17 e1 b2 08 e8 fe  ·Q·X····¿\·á²·èþ
+ r9 0x00007ffd59d06520  46 61 74 61 6c 20 65 72 72 6f 72 3a 20 44 6f 75  Fatal error: Dou
+r10 0x0000000000000000  0
+r11 0xfee808b2e1175cbf  18367940644604173503
+r12 0x0000000000000000  0
+r13 0x00007ffd59d06d98  ce 61 2f 9c 26 c1 8f 5d 40 ba 10 f5 81 55 00 00  Îa/·&Á·]@º·õ·U··
+r14 0x0000000000000001  1
+r15 0x0000000000000001  1
+rip 0x00007f57a195fd14  0f 0b 48 83 ec 08 48 8d 05 3f e0 46 00 48 8d 3d  ··H·ì·H··?àF·H·=
+
+rflags 0x0000000000010206  PF
+
+cs 0x0033  fs 0x0000  gs 0x0000
+
+
+Images (18 omitted):
+
+0x00005581c0a2c000–0x00005581c0a2fcd0 <no build ID>                            test            /tmp/tmpble8u87a/test
+0x00007f57a1800000–0x00007f57a1d95930 b9f29f81b467904a40bdaaa0b0f84468865569b7 libswiftCore.so /tmp/swift-6.0.3-RELEASE-ubuntu22.04/usr/lib/swift/linux/libswiftCore.so
+
+Backtrace took 0.01s
+
+

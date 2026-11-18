@@ -1,0 +1,72 @@
+[
+  {
+    "id": "W-gdb-199h-1nstinct-31",
+    "source": "archive/gor/Sources/gor/Camera/Sensing.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "afa5db610c9da93e497b0bf724f35096d2b0abd192a745859fffe2d95145dc50",
+    "caveat": "NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted."
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-32",
+    "source": "archive/gor/Sources/gor/Camera/Runtime.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "c3d06d6863b39ddeedd8498e932eb77ca80546dddaf09739f6613dfd240c58d6",
+    "caveat": "NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted."
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-33",
+    "source": "archive/gor/Sources/gor/GorSources/MagnetBrowser.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "96ba9de5c83272737b4b113dbf9e8316cb145897a8d01030fe0177991f941176",
+    "caveat": "NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted."
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-34",
+    "source": "archive/gor/Sources/gor/GorSources/IPTV.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "f63e2dca5bf2b1b50cb66f7ba2ca1773e3a2dd05bbfe9d668794e4e264f46e3b",
+    "caveat": "NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted."
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-35",
+    "source": "archive/gor/Sources/gor/Viewport/CropDetector.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "a12fb0269c5d648d798bea06c40f313d42d8cac9d4a38176433498903a50865a",
+    "caveat": "NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted."
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-36",
+    "source": "archive/gor/Sources/gor/GorEffectsModel/PhotonFont.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "e0ef2b0e7d7b72a4e11a6bd4bec6c43d158e7c9367237097c103ea46d1ead8c0",
+    "caveat": "NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted."
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-37",
+    "source": "archive/gor/Sources/gor/GorEffectsModel/LookToolsRoute.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "39f2f1b63ea78f37e79709b6fae13c1d3acf363e22d134eeabe42030b762dfa2",
+    "caveat": "NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted."
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-38",
+    "source": "archive/gor/Sources/gor/GorSources/TransferResolver.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "8117db77d97a9bd0b062e89fc5bf8e5ba7a00ab2e78f53bfd73da4c15fd6d4ea",
+    "caveat": "NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted."
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-39",
+    "source": "archive/gor/Sources/gor/GorPlatformMac/QuitChildKiller.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "f2bd2011372cc327e4997444bdc32351cd0ab5dd32c6fded1c1afb6cad715114",
+    "caveat": "NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted."
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-40",
+    "source": "archive/gor/Sources/gor/GorCore/Diag.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "bac6e53f6f19446f391db106d807e78f3f91668aceb495950d8d66e3c89f3860",
+    "caveat": "NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted."
+  }
+]
