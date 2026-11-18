@@ -1,0 +1,8 @@
+{
+  "markers": [
+    "enum DZC {",
+    "final class DZCWriter",
+    "final class DZCFile",
+    "enum DepthQuant"
+  ]
+}

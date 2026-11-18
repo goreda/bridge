@@ -26,5 +26,12 @@
     "source": "archive/gor/Sources/gor/GorUI/MusicController.swift",
     "queue_sha256": "0caa392b16cc57aa36147c45b3fb5e3055c2c9cf073aa419a8a527adf7fcbd7c",
     "caveat": "Publication: NONQUALIFIED, four of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease."
+  },
+  {
+    "id": "W-gdb-199j-1nstinct-45",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "source": "archive/gor/Sources/gor/gor/ThreeD.swift",
+    "queue_sha256": "8611029ae4e0c38ebbc3762e7b3583e0b962630e8488cfcca15fbf8bba2a4a6d",
+    "caveat": "Publication: NONQUALIFIED, fifth of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease."
   }
 ]
