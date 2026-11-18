@@ -6,7 +6,7 @@
     "menu-pan",
     "cache-parity"
   ],
-  "authored_candidates": 16,
+  "authored_candidates": 20,
   "authored_to_stock": {
     "audio-night-toggle.md": "audio-night-mode",
     "audio-loudness-toggle.md": "audio-loudness-normalize",
@@ -23,22 +23,22 @@
     "transport-speed.md": "transport-speed",
     "transport-playlist-step.md": "transport-playlist-nav",
     "transport-reload-current.md": "transport-playlist-reload",
-    "capture-stats-toggle.md": "capture-stats"
+    "capture-stats-toggle.md": "capture-stats",
+    "audio-output-device.md": "audio-device",
+    "video-rotation.md": "menu-rotate",
+    "video-aspect-preset.md": "menu-aspect",
+    "video-crop-preset.md": "menu-crop"
   },
   "remaining_stock_without_authored_candidate": [
     "audio-boost",
-    "audio-device",
     "capture-screenshot",
-    "menu-aspect",
     "menu-brightness-step",
     "menu-color-reset",
     "menu-contrast-step",
-    "menu-crop",
     "menu-gamma-step",
-    "menu-rotate",
     "menu-saturation-step"
   ],
   "ready": 0,
   "run_proven": 0,
-  "note": "r5 visual EQ grouped row replaced by five distinct action packets.27 stock +3 reclassified=30 inventory;16 authored models mapped one-to-one,11 stock rows not authored;0 run-proven."
+  "note": "27 stock +3 reclassified=30 inventory;20 authored models,0 run-proven;7 stock rows lack authored candidates. Manual crop covers only preset subset, not reset/detect crop. No product-complete claim."
 }
