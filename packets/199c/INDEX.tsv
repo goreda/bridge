@@ -9,6 +9,6 @@ W-gdb-199c-in2tinct-17	in2tinct	Sources/GorAVSubtitles/SubtitleAutoLoad.swift	py
 W-gdb-199c-in2tinct-18	in2tinct	Sources/GorAVSubtitles/SubtitlePlan.swift	python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-18.py	BASELINE_DEFECT_REPRODUCED	1
 W-gdb-199c-in2tinct-19	in2tinct	Sources/GorAVSubtitles/ASSParser.swift	python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-19.py	BASELINE_DEFECT_REPRODUCED	1
 W-gdb-199c-in2tinct-20	in2tinct	Sources/GorAVSubtitles/SRTParser.swift	python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-20.py	BASELINE_API_MISSING	2
-W-gdb-199c-1nstinct-08	1nstinct	archive/gor/Sources/gor/GorPlaybackModel/EngineObservation.swift	python3 Tests/Architecture/199c/W-gdb-199c-1nstinct-08.py	BASELINE_DEFECT_REPRODUCED	1
-W-gdb-199c-1nstinct-09	1nstinct	archive/gor/Sources/gor/GorAVBackend/GorAVStreamAdmission.swift	python3 Tests/Architecture/199c/W-gdb-199c-1nstinct-09.py	BASELINE_DEFECT_REPRODUCED	1
-W-gdb-199c-1nstinct-10	1nstinct	archive/gor/Sources/gor/GorCore/BuildID.swift	python3 Tests/Architecture/199c/W-gdb-199c-1nstinct-10.py	BASELINE_DEFECT_REPRODUCED	1
+W-gdb-199c-1nstinct-08	1nstinct	archive/gor/Sources/gor/GorPlaybackModel/EngineObservation.swift	python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-08.py	BASELINE_DEFECT_REPRODUCED	1
+W-gdb-199c-1nstinct-09	1nstinct	archive/gor/Sources/gor/GorAVBackend/GorAVStreamAdmission.swift	python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-09.py	BASELINE_DEFECT_REPRODUCED	1
+W-gdb-199c-1nstinct-10	1nstinct	archive/gor/Sources/gor/GorCore/BuildID.swift	python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-10.py	BASELINE_DEFECT_REPRODUCED	1
