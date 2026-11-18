@@ -1,0 +1,9 @@
+{
+  "id": "W-gdb-199h-1nstinct-31",
+  "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+  "commit": "af7482cb9dfe25d87bfeb77a6b6d8a88250cdeee",
+  "branch": "lane/lab-1nstinct-W-gdb-199h-1nstinct-31",
+  "qualification": "NONQUALIFIED",
+  "full_source_sha256": "a90e8f635c188c484aa1c1518ad5bb599d542060a89fdf53a390f2f62ffd61ae",
+  "caveat": "Full neutralized composed source independently replayed both modes baseline RED2 fixed GREEN2 compiling mutant RED2; native typecheck NOT_RUN; finite extreme samples still overflow. Full source excluded from bridge."
+}
