@@ -1,0 +1,92 @@
+[
+  {
+    "id": "W-gdb-199e-1nstinct-21",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "a5ffc1cac5ed49ab5589e6b2511d39004696c8d4",
+    "branch": "lane/lab-1nstinct-W-gdb-199e-1nstinct-21",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Selected-helper extracted scope only, no full caller or native acceptance.",
+    "source_sha256": "606c4322e6a9220dcc257e7180e1321dff37e7d1c026c31fa0c174dff82033aa"
+  },
+  {
+    "id": "W-gdb-199e-1nstinct-22",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "5eff94f0aa449d5457c8011db141b985062b66a3",
+    "branch": "lane/lab-1nstinct-W-gdb-199e-1nstinct-22",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Selected-helper extracted scope only, no full caller or native acceptance. Baseline signal4 trap, not assertion RED.",
+    "source_sha256": "5c4160740a177d1f4c0b91a1b8ef68fe515b01caa850712904f9ca13db06a285"
+  },
+  {
+    "id": "W-gdb-199e-1nstinct-23",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "f8a4127bca7d9637d4cdb9a561909ff1520278e2",
+    "branch": "lane/lab-1nstinct-W-gdb-199e-1nstinct-23",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Archived manifest empty-file self-digest invalid/excluded; no full-manifest integrity claim.",
+    "source_sha256": "fc3bac6a394353f25f7110a7365f4b107ce5e8a9d4d83a30a3c76ec1dba29661"
+  },
+  {
+    "id": "W-gdb-199e-1nstinct-24",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "6cb87d05609381ade197133a186630c4f365f974",
+    "branch": "lane/lab-1nstinct-W-gdb-199e-1nstinct-24",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Finite huge levels overflow derived AGC variance and persist out-of-range axis output. Held-zero/dt-threshold weaker mutants survive; fixed GREEN not general finite-state safety. Invalid empty-file self-digest excluded.",
+    "source_sha256": "1241e95a05c3c5b069991ba49d4f6d8bc4700fb7001965bab712228b73ffe92a"
+  },
+  {
+    "id": "W-gdb-199e-1nstinct-25",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "3aef37d69449a3ad6ccff120d74439eea80d520c",
+    "branch": "lane/lab-1nstinct-W-gdb-199e-1nstinct-25",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Finite left/width greatestFiniteMagnitude with zero ink/gap returns maxX=infinity. No broad finite-rectangle proof.",
+    "source_sha256": "980f111e914f0664b7eeb108fe06ece062a9c18dd5de39c7b74ff9a60438cd4c"
+  },
+  {
+    "id": "W-gdb-199e-1nstinct-26",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "3c9b9b1db8b9cb7f4e3c1fddb277a318c470fd92",
+    "branch": "lane/lab-1nstinct-W-gdb-199e-1nstinct-26",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Selected-helper extracted scope only, no full caller or native acceptance.",
+    "source_sha256": "33ea053a4c9c7b2333740c7b515c02dcfd71702762e6307823e428145793d162"
+  },
+  {
+    "id": "W-gdb-199e-1nstinct-27",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "59563898a53c058b3acbf39440162cb8a8e05f32",
+    "branch": "lane/lab-1nstinct-W-gdb-199e-1nstinct-27",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Thermal test support fixed false, native thermal branch unverified.",
+    "source_sha256": "412756d7d493d577ab90487a6fb6c8099a9a5426a700367a5b1e9e2048cacb25"
+  },
+  {
+    "id": "W-gdb-199f-1nstinct-28",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "6cdba7d53f4f306efa95f0068a5d8e3324b157e4",
+    "branch": "lane/lab-1nstinct-W-gdb-199f-1nstinct-28",
+    "qualification": "NONQUALIFIED",
+    "caveat": "AppKit excluded; finite-input-only guard-removal mutant survives downstream derived checks.",
+    "source_sha256": "ab80071c1c11b6b6e0ec15648fc07220cb142e9fc5ae0313d02415cffe421936"
+  },
+  {
+    "id": "W-gdb-199f-1nstinct-29",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "dd05d79819a74fb746d6b93539f6cdf12e55ce9f",
+    "branch": "lane/lab-1nstinct-W-gdb-199f-1nstinct-29",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Earlier compile-RED self-assignment control superseded by compiling semantic mutant. Empty-file self-digest invalid/excluded.",
+    "source_sha256": "4ab93d0c89bfa271bf08852c6d414ee7952d6c9b17315caf027e0da091b828e4"
+  },
+  {
+    "id": "W-gdb-199f-1nstinct-30",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "5cabc47e53813c100479346461d84250b6adf67b",
+    "branch": "lane/lab-1nstinct-W-gdb-199f-1nstinct-30",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Baseline segfault -11; valid noncyclic deep trees only; no cycle safety.",
+    "source_sha256": "cf31848fcb4ccdd91e23de1e390ed543afc4fa90963631477dc13cf0abdaa143"
+  }
+]
