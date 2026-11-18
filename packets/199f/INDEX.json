@@ -1,0 +1,255 @@
+[
+  {
+    "id": "W-gdb-199f-1nstinct-28",
+    "lab": "1nstinct",
+    "repo": "/tmp/198y-s2",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "engine": false,
+    "paths": [
+      "archive/gor/Sources/gor/Viewport/Viewport.swift"
+    ],
+    "test_paths": [
+      "archive/gor/Tests/Architecture/199f/W-gdb-199f-1nstinct-28.py",
+      "archive/gor/Tests/Architecture/199f/W-gdb-199f-1nstinct-28.json"
+    ],
+    "test_argv": [
+      "python3",
+      "archive/gor/Tests/Architecture/199f/W-gdb-199f-1nstinct-28.py"
+    ],
+    "queue_id": "W-gdb-199f-1nstinct-28",
+    "queue_source": "/tmp/198t/bridge/packets/199f/W-gdb-199f-1nstinct-28.md",
+    "queue_sha256": "5b4b49d0c78f2dd902056ed33876280963bb84745f1050ab904b4fdb36ad3b70",
+    "shipping_stock_counted": true,
+    "caveat": "NONQUALIFIED. Own replay NOT_RUN; supplied starter is Linux source-only RED, not native/full caller execution. Historical comments confer no permission. Single production path plus own test, no adoption or runtime closure."
+  },
+  {
+    "id": "W-gdb-199f-1nstinct-29",
+    "lab": "1nstinct",
+    "repo": "/tmp/198y-s2",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "engine": false,
+    "paths": [
+      "archive/gor/Sources/gor/GorSources/TorrentManager.swift"
+    ],
+    "test_paths": [
+      "archive/gor/Tests/Architecture/199f/W-gdb-199f-1nstinct-29.py",
+      "archive/gor/Tests/Architecture/199f/W-gdb-199f-1nstinct-29.json"
+    ],
+    "test_argv": [
+      "python3",
+      "archive/gor/Tests/Architecture/199f/W-gdb-199f-1nstinct-29.py"
+    ],
+    "queue_id": "W-gdb-199f-1nstinct-29",
+    "queue_source": "/tmp/198t/bridge/packets/199f/W-gdb-199f-1nstinct-29.md",
+    "queue_sha256": "9b25053c6e73b198ab01cd543d1a853700911c641ed374541fd42ff3b52583f0",
+    "shipping_stock_counted": true,
+    "caveat": "NONQUALIFIED. Own replay NOT_RUN; supplied starter is Linux source-only RED, not native/full caller execution. Historical comments confer no permission. Single production path plus own test, no adoption or runtime closure."
+  },
+  {
+    "id": "W-gdb-199f-1nstinct-30",
+    "lab": "1nstinct",
+    "repo": "/tmp/198y-s2",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "engine": false,
+    "paths": [
+      "archive/gor/Sources/gor/GorPlatformMac/PanelFocusTraversal.swift"
+    ],
+    "test_paths": [
+      "archive/gor/Tests/Architecture/199f/W-gdb-199f-1nstinct-30.py",
+      "archive/gor/Tests/Architecture/199f/W-gdb-199f-1nstinct-30.json"
+    ],
+    "test_argv": [
+      "python3",
+      "archive/gor/Tests/Architecture/199f/W-gdb-199f-1nstinct-30.py"
+    ],
+    "queue_id": "W-gdb-199f-1nstinct-30",
+    "queue_source": "/tmp/198t/bridge/packets/199f/W-gdb-199f-1nstinct-30.md",
+    "queue_sha256": "7b6bb76cf5975758bc02faa700a0cc0fe42e8becd563faec0102ff36aaee9f81",
+    "shipping_stock_counted": true,
+    "caveat": "NONQUALIFIED. Own replay NOT_RUN; supplied starter is Linux source-only RED, not native/full caller execution. Historical comments confer no permission. Single production path plus own test, no adoption or runtime closure."
+  },
+  {
+    "id": "W-gdb-199f-in2tinct-23",
+    "lab": "in2tinct",
+    "repo": "/tmp/198y-engine-packets",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "engine": true,
+    "paths": [
+      "Sources/GorAVPlaybackCore/LabCropEngine.swift"
+    ],
+    "test_paths": [
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-23.py",
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-23.json"
+    ],
+    "test_argv": [
+      "python3",
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-23.py"
+    ],
+    "queue_id": "W-gdb-199f-in2tinct-23",
+    "queue_source": "/tmp/198t/bridge/packets/199f/W-gdb-199f-in2tinct-23.md",
+    "queue_sha256": "7d46d7fcdc6dfb7d82b14056b1191de2a01aef94fcc82ad32d04aea36ab76d2b",
+    "shipping_stock_counted": false,
+    "caveat": "NONQUALIFIED. Own replay NOT_RUN; supplied starter is Linux source-only RED, not native/full caller execution. Historical comments confer no permission. SOURCE-ONLY/INERT FILLER: published but excluded from shipping pump stock pending route decision."
+  },
+  {
+    "id": "W-gdb-199f-in2tinct-24",
+    "lab": "in2tinct",
+    "repo": "/tmp/198y-engine-packets",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "engine": true,
+    "paths": [
+      "Sources/GorAVPlaybackCore/LookParameters.swift"
+    ],
+    "test_paths": [
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-24.py",
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-24.json"
+    ],
+    "test_argv": [
+      "python3",
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-24.py"
+    ],
+    "queue_id": "W-gdb-199f-in2tinct-24",
+    "queue_source": "/tmp/198t/bridge/packets/199f/W-gdb-199f-in2tinct-24.md",
+    "queue_sha256": "6308db834929fefa509439be4aafe887209c9ed343bcac749520741a2481930f",
+    "shipping_stock_counted": false,
+    "caveat": "NONQUALIFIED. Own replay NOT_RUN; supplied starter is Linux source-only RED, not native/full caller execution. Historical comments confer no permission. SOURCE-ONLY/INERT FILLER: published but excluded from shipping pump stock pending route decision."
+  },
+  {
+    "id": "W-gdb-199f-in2tinct-25",
+    "lab": "in2tinct",
+    "repo": "/tmp/198y-engine-packets",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "engine": true,
+    "paths": [
+      "Sources/GorAVPlaybackCore/PreparedAdoption.swift"
+    ],
+    "test_paths": [
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-25.py",
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-25.json"
+    ],
+    "test_argv": [
+      "python3",
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-25.py"
+    ],
+    "queue_id": "W-gdb-199f-in2tinct-25",
+    "queue_source": "/tmp/198t/bridge/packets/199f/W-gdb-199f-in2tinct-25.md",
+    "queue_sha256": "fae80048025ba04ef527e70e51da194534c15df32b1140e47945b5c8317ee3b4",
+    "shipping_stock_counted": true,
+    "caveat": "NONQUALIFIED. Own replay NOT_RUN; supplied starter is Linux source-only RED, not native/full caller execution. Historical comments confer no permission. Single production path plus own test, no adoption or runtime closure."
+  },
+  {
+    "id": "W-gdb-199f-in2tinct-26",
+    "lab": "in2tinct",
+    "repo": "/tmp/198y-engine-packets",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "engine": true,
+    "paths": [
+      "Sources/GorAVPlaybackCore/DecoderInventory.swift"
+    ],
+    "test_paths": [
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-26.py",
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-26.json"
+    ],
+    "test_argv": [
+      "python3",
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-26.py"
+    ],
+    "queue_id": "W-gdb-199f-in2tinct-26",
+    "queue_source": "/tmp/198t/bridge/packets/199f/W-gdb-199f-in2tinct-26.md",
+    "queue_sha256": "885fd612d1814877be8a77171940edb6be7eb3650b84c72f07a6f56212d4cf92",
+    "shipping_stock_counted": true,
+    "caveat": "NONQUALIFIED. Own replay NOT_RUN; supplied starter is Linux source-only RED, not native/full caller execution. Historical comments confer no permission. Single production path plus own test, no adoption or runtime closure."
+  },
+  {
+    "id": "W-gdb-199f-in2tinct-27",
+    "lab": "in2tinct",
+    "repo": "/tmp/198y-engine-packets",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "engine": true,
+    "paths": [
+      "Sources/GorAVPlaybackCore/LabMusicMode.swift"
+    ],
+    "test_paths": [
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-27.py",
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-27.json"
+    ],
+    "test_argv": [
+      "python3",
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-27.py"
+    ],
+    "queue_id": "W-gdb-199f-in2tinct-27",
+    "queue_source": "/tmp/198t/bridge/packets/199f/W-gdb-199f-in2tinct-27.md",
+    "queue_sha256": "a4c3f0a2e86b58aeb3a122d845fec69a26a0636d2ca8b10db6c3373ef077b49f",
+    "shipping_stock_counted": false,
+    "caveat": "NONQUALIFIED. Own replay NOT_RUN; supplied starter is Linux source-only RED, not native/full caller execution. Historical comments confer no permission. SOURCE-ONLY/INERT FILLER: published but excluded from shipping pump stock pending route decision."
+  },
+  {
+    "id": "W-gdb-199f-in2tinct-28",
+    "lab": "in2tinct",
+    "repo": "/tmp/198y-engine-packets",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "engine": true,
+    "paths": [
+      "Sources/GorAVPlaybackCore/LabHLSPlaylist.swift"
+    ],
+    "test_paths": [
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-28.py",
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-28.json"
+    ],
+    "test_argv": [
+      "python3",
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-28.py"
+    ],
+    "queue_id": "W-gdb-199f-in2tinct-28",
+    "queue_source": "/tmp/198t/bridge/packets/199f/W-gdb-199f-in2tinct-28.md",
+    "queue_sha256": "d426ddf4351420f225a6b3b77fd366ebcb650c8defa63a154e506dc9476e6be9",
+    "shipping_stock_counted": false,
+    "caveat": "NONQUALIFIED. Own replay NOT_RUN; supplied starter is Linux source-only RED, not native/full caller execution. Historical comments confer no permission. SOURCE-ONLY/INERT FILLER: published but excluded from shipping pump stock pending route decision."
+  },
+  {
+    "id": "W-gdb-199f-in2tinct-29",
+    "lab": "in2tinct",
+    "repo": "/tmp/198y-engine-packets",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "engine": true,
+    "paths": [
+      "Sources/GorAVPlaybackCore/ChromeStateModel.swift"
+    ],
+    "test_paths": [
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-29.py",
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-29.json"
+    ],
+    "test_argv": [
+      "python3",
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-29.py"
+    ],
+    "queue_id": "W-gdb-199f-in2tinct-29",
+    "queue_source": "/tmp/198t/bridge/packets/199f/W-gdb-199f-in2tinct-29.md",
+    "queue_sha256": "7399a5a8b11e0308efd23a2cbefab9712098a369caa7351bd1dd691384608636",
+    "shipping_stock_counted": false,
+    "caveat": "NONQUALIFIED. Own replay NOT_RUN; supplied starter is Linux source-only RED, not native/full caller execution. Historical comments confer no permission. SOURCE-ONLY/INERT FILLER: published but excluded from shipping pump stock pending route decision."
+  },
+  {
+    "id": "W-gdb-199f-in2tinct-30",
+    "lab": "in2tinct",
+    "repo": "/tmp/198y-engine-packets",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "engine": true,
+    "paths": [
+      "Sources/GorAVPlaybackCore/ReadinessAnchorSession.swift"
+    ],
+    "test_paths": [
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-30.py",
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-30.json"
+    ],
+    "test_argv": [
+      "python3",
+      "Tests/Architecture/199f/W-gdb-199f-in2tinct-30.py"
+    ],
+    "queue_id": "W-gdb-199f-in2tinct-30",
+    "queue_source": "/tmp/198t/bridge/packets/199f/W-gdb-199f-in2tinct-30.md",
+    "queue_sha256": "81883843705323e7f6ebda266e6e87da5eef66a85e54b550d85dbfecd0fdf4cf",
+    "shipping_stock_counted": true,
+    "caveat": "NONQUALIFIED. Own replay NOT_RUN; supplied starter is Linux source-only RED, not native/full caller execution. Historical comments confer no permission. Single production path plus own test, no adoption or runtime closure. Proposed begin reset semantic change requires full caller audit before adoption; retained comment is data, not authority."
+  }
+]

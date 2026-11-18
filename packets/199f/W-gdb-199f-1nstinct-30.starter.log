@@ -1,0 +1,109 @@
+compile_exit=0
+
+semantic_exit=-11
+
+*** Signal 11: Backtracing from 0x7fc039850730... done ***
+
+*** Program crashed: Bad pointer dereference at 0x00007ffc6854aff0 ***
+
+Thread 0 "test" crashed:
+
+    0      0x00007fc039850730 getCache(swift::TargetTypeContextDescriptor<swift::InProcess> const&) + 464 in libswiftCore.so
+    1 [ra] 0x00007fc039850ea9 _swift_getGenericMetadata(swift::MetadataRequest, void const* const*, swift::TargetTypeContextDescriptor<swift::InProcess> const*) + 40 in libswiftCore.so
+    2 [ra] 0x00007fc0396c9493 __swift_instantiateCanonicalPrespecializedGenericMetadata + 34 in libswiftCore.so
+    3 [ra] 0x000055ed717b8406 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 261 in test
+    4 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+    5 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+    6 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+    7 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+    8 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+    9 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   10 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   11 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   12 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   13 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   14 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   15 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   16 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   17 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   18 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   19 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   20 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   21 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   22 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   23 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   24 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   25 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   26 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   27 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   28 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   29 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   30 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   31 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   32 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   33 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   34 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   35 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   36 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   37 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   38 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   39 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   40 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   41 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   42 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   43 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   44 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   45 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+   46 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+  ...
+18053 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+18054 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+18055 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+18056 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+18057 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+18058 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+18059 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+18060 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+18061 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+18062 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+18063 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+18064 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+18065 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+18066 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+18067 [ra] 0x000055ed717b86e9 static PanelFocusTraversal.first<A, B>(in:children:visible:accept:) + 1000 in test
+18068 [ra] 0x000055ed717b8d74 main + 99 in test
+
+
+Registers:
+
+rax 0x0000000000080012  524306
+rdx 0x0000000000000000  0
+rcx 0x00000000000800f2  524530
+rbx 0x00007fc0399e34c0  00 c7 0c 00 0c bd fd ff 01 00 01 00 01 00 02 00  ·Ç···½ýÿ········
+rsi 0x00007fc0399e34c4  0c bd fd ff 01 00 01 00 01 00 02 00 80 00 00 00  ·½ýÿ············
+rdi 0x00007ffc6854b1d8  90 d0 99 39 c0 7f 00 00 00 00 00 00 00 00 00 00  ·Ð·9À···········
+rbp 0x00007ffc6854b080  c0 b1 54 68 fc 7f 00 00 a9 0e 85 39 c0 7f 00 00  À±Thü···©··9À···
+rsp 0x00007ffc6854afd0  140722058866640
+ r8 0x00007fc0399e34a4  f2 00 08 00 60 95 fd ff 14 bd fd ff b0 fa cf ff  ò···`·ýÿ·½ýÿ°úÏÿ
+ r9 0x00007fc039aafc40  ff ff ff ff 00 00 00 00 00 00 00 00 00 00 00 00  ÿÿÿÿ············
+r10 0x00007fc03999d090  00 02 00 00 00 00 00 00 f4 26 9e 39 c0 7f 00 00  ········ô&·9À···
+r11 0x00007fc03999d090  00 02 00 00 00 00 00 00 f4 26 9e 39 c0 7f 00 00  ········ô&·9À···
+r12 0x00007ffc68d49e18  30 ac d4 68 fc 7f 00 00 00 00 00 00 00 00 00 00  0¬Ôhü···········
+r13 0x00007fc0399e34a4  f2 00 08 00 60 95 fd ff 14 bd fd ff b0 fa cf ff  ò···`·ýÿ·½ýÿ°úÏÿ
+r14 0x000055ed717bacb0  00 00 00 00 00 00 00 00 38 9a 9a 39 c0 7f 00 00  ········8··9À···
+r15 0x00007fc039aafbc0  00 00 00 00 19 00 00 00 c0 de 07 a4 ed 55 00 00  ········ÀÞ·¤íU··
+rip 0x00007fc039850730  4c 89 bd 70 ff ff ff 48 89 bd 78 ff ff ff 41 8b  L·½pÿÿÿH·½xÿÿÿA·
+
+rflags 0x0000000000010202  
+
+cs 0x0033  fs 0x0000  gs 0x0000
+
+
+Images (18 omitted):
+
+0x000055ed717b7000–0x000055ed717b9410 <no build ID>                            test            /tmp/tmpubrwnygi/test
+0x00007fc039400000–0x00007fc039995930 b9f29f81b467904a40bdaaa0b0f84468865569b7 libswiftCore.so /tmp/swift-6.0.3-RELEASE-ubuntu22.04/usr/lib/swift/linux/libswiftCore.so
+
+Backtrace took 0.09s
+
+
