@@ -3,8 +3,8 @@
     "id": "W-gdb-199h-1nstinct-31",
     "source": "archive/gor/Sources/gor/Camera/Sensing.swift",
     "base": "b60352dabc87fe8519832999b4af639f37d786f8",
-    "sha256": "afa5db610c9da93e497b0bf724f35096d2b0abd192a745859fffe2d95145dc50",
-    "caveat": "NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted."
+    "sha256": "47fcc2bd13f8a8b3f9b7ad029593787180b3f832af7cf663c18bde46c45abd66",
+    "caveat": "NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted. Privacy revision: narrow OneEuro excerpt only; fresh independent replay pending."
   },
   {
     "id": "W-gdb-199h-1nstinct-32",
