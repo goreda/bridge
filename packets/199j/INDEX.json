@@ -3,35 +3,40 @@
     "id": "W-gdb-199j-1nstinct-41",
     "base": "b60352dabc87fe8519832999b4af639f37d786f8",
     "source": "archive/gor/Sources/gor/GorUI/MenuActions.swift",
-    "queue_sha256": "b8fc1fbc2ce11f320692da164709cea856d0795ba0e8387c4fb55e02e518b8bd",
-    "caveat": "Publication: NONQUALIFIED, four of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease."
+    "queue_sha256": "9279f569890002108e2df415010dfa4fdcce041e13c15e2706da8cfae3f04c7b",
+    "caveat": "Publication: NONQUALIFIED, four of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease.",
+    "privacy_revision": "Whole-run comment elision 0526; statement equality, NONQUALIFIED."
   },
   {
     "id": "W-gdb-199j-1nstinct-42",
     "base": "b60352dabc87fe8519832999b4af639f37d786f8",
     "source": "archive/gor/Sources/gor/gor/PPController_Features.swift",
-    "queue_sha256": "b8f8aa66e47b2a4a0daa55dc9585ed42d7edc47c2891a6ecee4e0d6bd86e156b",
-    "caveat": "Publication: NONQUALIFIED, four of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease."
+    "queue_sha256": "cdbf55426115b1e1e4b7dc846e88d506ae55c1b20f6e6f569ec2e51879a563c2",
+    "caveat": "Publication: NONQUALIFIED, four of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease.",
+    "privacy_revision": "Whole-run comment elision 0526; statement equality, NONQUALIFIED."
   },
   {
     "id": "W-gdb-199j-1nstinct-43",
     "base": "b60352dabc87fe8519832999b4af639f37d786f8",
     "source": "archive/gor/Sources/gor/AppDelegate.swift",
-    "queue_sha256": "b6743c3d446268e62a7157414bfa6e414c1fbdf3efe46b4b1a57c1076276a6bd",
-    "caveat": "Publication: NONQUALIFIED, four of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease."
+    "queue_sha256": "9a629f87dcdfe768fdf305845f82c71c71edb9aa91b05218590cdcbac64113fd",
+    "caveat": "Publication: NONQUALIFIED, four of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease.",
+    "privacy_revision": "Whole-run comment elision 0526; statement equality, NONQUALIFIED."
   },
   {
     "id": "W-gdb-199j-1nstinct-44",
     "base": "b60352dabc87fe8519832999b4af639f37d786f8",
     "source": "archive/gor/Sources/gor/GorUI/MusicController.swift",
-    "queue_sha256": "0caa392b16cc57aa36147c45b3fb5e3055c2c9cf073aa419a8a527adf7fcbd7c",
-    "caveat": "Publication: NONQUALIFIED, four of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease."
+    "queue_sha256": "75e97073dbd79ffb71111ad3957f0805242fe2720ccafce4c5de0d0757b5414c",
+    "caveat": "Publication: NONQUALIFIED, four of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease.",
+    "privacy_revision": "Whole-run comment elision 0526; statement equality, NONQUALIFIED."
   },
   {
     "id": "W-gdb-199j-1nstinct-45",
     "base": "b60352dabc87fe8519832999b4af639f37d786f8",
     "source": "archive/gor/Sources/gor/gor/ThreeD.swift",
-    "queue_sha256": "8611029ae4e0c38ebbc3762e7b3583e0b962630e8488cfcca15fbf8bba2a4a6d",
-    "caveat": "Publication: NONQUALIFIED, fifth of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease."
+    "queue_sha256": "f7465d6d51ed93ad8c6ac5860d41ce30a6d23c09a9dcc3a9688b53be528651bc",
+    "caveat": "Publication: NONQUALIFIED, fifth of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease.",
+    "privacy_revision": "Whole-run comment elision 0526; statement equality, NONQUALIFIED."
   }
 ]

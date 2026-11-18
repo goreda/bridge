@@ -993,7 +993,7 @@ final class VR180Controller {
             if let output=pendingChoice {pendingRouteOutput=nil;store.dispatch(.setOutput(output))}
         }
     }
-    /// GOR_VR_SIM_POSE=1 only (self-test): switch head tracking on without the camera (updateHeadTrackingCamera
+// [attribution comment elided]
 // [attribution comment elided]
     private func simulatePoseIfRequested() {
         guard ProcessInfo.processInfo.environment["GOR_VR_SIM_POSE"] == "1" else { return }
@@ -1118,7 +1118,8 @@ final class VR180Controller {
             HeadTracker.poseHoldLock = (UserDefaults.standard.object(forKey: "gor.vr.poseHoldLock") as? Bool) ?? true
             sendRaw(BlinkCommandRoute.analogIPC(IntentionalEyeClosure.analog))
             HeadTracker.shared.onBlinkIndicator = nil
-// Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
             HeadTracker.shared.onEyeClosure = { [weak self] left, right, uncertain in
                 self?.sendRaw(BlinkCommandRoute.lidsIPC(left, right, uncertain))
             }
@@ -1497,10 +1498,10 @@ final class InputController {
         return app.movePictureInPicture(direction: direction)
     }
 // [attribution comment elided]
-    /// (L/R volume, U/D seek), Shift+digit speeds, Shift+V/H/R/[/],
-    /// and Cmd+Opt+C/G/Z/X/O/F (re-emitted to mpv as Meta+Alt+*). Everything
-    /// else is forwarded to mpv via mpvKeyName. input.conf must mirror
-    /// the Swift-owned set - keep them in sync when editing either side.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     private func handleSpecialKeyCommands(event: NSEvent) -> Bool {
         if handlePictureInPictureCornerKey(event) { return true }
         let flags   = event.modifierFlags
@@ -1882,12 +1883,12 @@ final class ContentAdaptiveDimming {
     }
 
 // [attribution comment elided]
-    /// black seek/rebuffer frames. Sampling those as scene content dragged the
-    /// backlight down during every post-seek wait (field log: hunting 93/88/98
-    /// through a 153s stall, then a restore ramp). While stalled, hold the
-    /// last real-scene target: no sampling, no target updates; the actuator
-    /// converges to the held target and idles. Pause-by-user is NOT a stall;
-    /// paused-frame sampling stays intentional.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     var playbackStalled: Bool = false
 
     private func updateAmbientCameraFallback() {

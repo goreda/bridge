@@ -13,7 +13,7 @@ import Darwin
 import CryptoKit
 
 // [attribution comment elided]
-// remove only the socket inode observed after this app launched its own mpv, never a replacement path.
+// [attribution comment elided]
 private final class OwnedPlayerSocket {
     private let path: String
     private let lock = NSLock()
@@ -522,10 +522,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     }
 
 // [attribution comment elided]
-    /// playing, r is a random seek; before playback it picks a random
-    /// playlist entry so the selection starts playing (once it does, r
-    /// becomes the seek). Panels never reach this - their own monitor
-    /// presses their random button while the tap is off.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     func routeRandomKey() {
         if controller?.isPlaying == true {
             menuRandomSeek()
@@ -535,9 +535,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     }
 
 // [attribution comment elided]
-    /// no-repeat bag - 20 duration buckets, a bucket repeats only after a full
-    /// cycle; the offset inside the bucket is a uniform draw from the same crypto
-    /// source. No-ops without an active, known-duration player.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     func menuRandomSeek() {
         guard let c = controller, c.duration > 1 else { return }
         let buckets = 20
@@ -591,14 +591,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
 
                 guard type == .keyDown else { return Unmanaged.passRetained(event) }
 
-                // Cmd+F lives ONLY in the file menu's key equivalent
-                // (menuFindInPanel). A CGEvent-tap route is dead exactly when
-                // it matters: opening any browser panel sets
-                // isShowingInputPanel and disables this tap for the panel's
-                // whole lifetime, so Cmd+F fell through to AppKit and beeped
 // [attribution comment elided]
-                // keyDown dispatch, work while a panel owns keys, and toggle
-                // the search closed while its field is first responder.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 
                 if selfPtr.isShowingInputPanel || PanelKeyOwnership.shared.panelOwnsKey {
                     return Unmanaged.passRetained(event)
@@ -608,10 +608,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
                 let keyCode = event.getIntegerValueField(.keyboardEventKeycode)
 
 // [attribution comment elided]
-                // (panels press their own random button via their local
-                // monitor while this tap is off). Playing -> random seek;
-                // not playing -> random playlist entry. Plain key only;
-                // chords pass through.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
                 if !flags.contains(.maskCommand) && !flags.contains(.maskShift) && !flags.contains(.maskControl) && !flags.contains(.maskAlternate) && keyCode == 15 {
                     DispatchQueue.main.async { selfPtr.routeRandomKey() }
                     return nil
@@ -1087,10 +1087,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         engineSelectionOverride = engine
         UserDefaults.standard.set(engine.rawValue, forKey: PlayerEngine.preferenceKey)
 // [attribution comment elided]
-        // a facade switch only - it never opens the separate gorav window, its
-        // NSOpenPanel or its own buttons. The choice persists and applies to the
-        // next open; each file is then offered to gorav first and falls back to
-        // mpv in the same window with a HUD reason (r3 item 2).
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
         print("[engine] selected=\(engine.rawValue); persisted; applies to next open")
         controller?.spineUI.showMPVOSD("engine: \(engine.rawValue)", force: true)
     }
@@ -1098,10 +1098,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         let route = PlayerBackendRoute.resolve(selectedPlayerEngine)
         print("[engine] requested=\(route.requested.rawValue) active=\(route.active.rawValue)\(route.fallbackReason.map { "; " + $0 } ?? "")")
 // [attribution comment elided]
-        // the separate host window - every file is offered to gorav pre-open
-        // and falls back to mpv in the same window with a HUD reason. An
-        // explicit GOR_ENGINE=gorav environment keeps the native87 gate's dev
-        // surface (GorAVAppGate drives the normal route through the host).
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
         if route.active == .gorav && ProcessInfo.processInfo.environment["GOR_ENGINE"] != "gorav" {
             goravOfferLocalFile(file: file)
             return
@@ -1120,13 +1120,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         }, mpv: { [unowned self] file in self.launchMPVImplementation(file: file) })
     }
 // [attribution comment elided]
-    /// offer. The verdict is the engine's own DemuxerPolicy over an ffprobe
-    /// stream inventory; a refusal (or the pending in-window host) plays the
-    /// same file on mpv at once, with the HUD line "gorav: <reason> -> mpv"
-    /// and the reason recorded in the normal diagnostics collection so the
 // [attribution comment elided]
-    /// One offer at a time: while a probe is in flight a re-entrant launchMPV
-    /// (the +1.2 s mpv watchdog) must not start a second probe and a second mpv.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     private var goravOfferInFlight = false
     private func goravOfferLocalFile(file: String?) {
         guard let file, !file.isEmpty else { goravFallbackToMPV(file: file, reason: "no file"); return }
@@ -1175,9 +1175,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             return false
         case .success(let admitted):
 // [attribution comment elided]
-            // window; an admitted stream falls back to mpv until the in-window
-            // host lands (gorav integrator playback-path item). An explicit
-            // GOR_ENGINE=gorav environment keeps the dev gate surface.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
             guard ProcessInfo.processInfo.environment["GOR_ENGINE"] == "gorav" else {
                 print("[engine] gorav stream admitted; in-window host pending, mpv path unchanged")
                 Diag.mediaRecord("GORAV-FALLBACK stream admitted; in-window host pending")
@@ -2013,7 +2013,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
                        self.overlayPendingPosition == nil,
                        let frame, !frame.isAlmostEqual(to: win.frame,epsilon:0.1) {
 // [attribution comment elided]
-                        // moves the UI too, including fullscreen exit/entry animation frames.
+// [attribution comment elided]
                         self.lastFrame = frame
                         self.commitOverlayFrame(frame,window:win)
                         self.boostOverlaySync()
@@ -2212,14 +2212,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             mpvRestoreStableFrame = nil
             mpvRestoreStableSince = now
             cachedMpvPosition = nil
-            // Mode-change tick: commit this first windowed receipt to the overlay
-            // NOW, in commitOverlayFrame's no-animation transaction, so the
-            // overlay and every HUD (photon magnet, "i" stats, spine, subtitles)
-            // land on mpv's frame on the transition tick itself. The settle gate
-            // below only confirms restore bookkeeping and the one final
-            // PiP/refit intent; it must never hold the UI at the fullscreen
 // [attribution comment elided]
-            // fullscreen->PiP leaves the overlay fullscreen-sized for seconds).
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
             if let win = overlayWin, !frame.isAlmostEqual(to: win.frame, epsilon: 0.1) {
                 print("[window-sync] transition receipt exit: mpv=(\(Int(frame.minX)),\(Int(frame.minY)) \(Int(frame.width))x\(Int(frame.height))) overlay=(\(Int(win.frame.minX)),\(Int(win.frame.minY)) \(Int(win.frame.width))x\(Int(win.frame.height))) pip=\(pictureInPictureActive)")
                 lastFrame = frame
@@ -2945,8 +2945,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         fileMenu.addItem(item("archive", action: #selector(openArchive), key: "a", mods: [.command, .shift]))
         fileMenu.addItem(item("magnet", action: #selector(openMagnetSearch), key: "m"))
 // [attribution comment elided]
-        // it beeped while a panel was open). Menu equivalent, NOT the event
-        // tap - panels disable the tap for their whole lifetime.
+// [attribution comment elided]
+// [attribution comment elided]
         fileMenu.addItem(item("find in panel", action: #selector(menuFindInPanel), key: "f"))
         fileMenu.addItem(item("iptv",          action: #selector(menuIptvMode), key: "t"))
         fileMenu.addItem(item("music",    action: #selector(menuMusicMode), key: "u", mods: [.command, .control, .option]))
@@ -2990,9 +2990,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         loopMenu.addItem(item("a-b loop",           action: #selector(menuABLoop),      key: "l", mods: [.command, .control, .option]))
         let playlistMenu = group("playlist", in: playMenu)
 // [attribution comment elided]
-        // (the bare "<"/">" equivalents lost to shifted-character matching
-        // and to panels). Cmd+P opens the file browser at the playing
-        // media's folder - that folder is the playlist.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
         playlistMenu.addItem(item("next in playlist",   action: #selector(menuPlaylistNext), key: String(UnicodeScalar(NSRightArrowFunctionKey)!), mods: [.command, .shift]))
         playlistMenu.addItem(item("previous in playlist", action: #selector(menuPlaylistPrev), key: String(UnicodeScalar(NSLeftArrowFunctionKey)!), mods: [.command, .shift]))
         playlistMenu.addItem(item("open playlist folder", action: #selector(menuOpenPlaylistFolder), key: "p"))
@@ -3019,7 +3019,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         func fnShift(_ f: Int) -> String { String(UnicodeScalar(UInt32(f))!) }
         let fs: NSEvent.ModifierFlags = [.shift, .function]
 // [attribution comment elided]
-        // clip, crop directly under clip, aspect ratio directly under crop, and toggle LAST.
+// [attribution comment elided]
         let cropMenu = group("crop", in: videoMenu)
         let redetectCropItem=item("detect",action:#selector(menuCropDetect),key:"d",mods:[.command,.control,.option])
         cropMenu.addItem(redetectCropItem);cropDetectMenuItem=redetectCropItem
@@ -3141,7 +3141,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         subPosMenu.addItem(item("↑",       action: #selector(menuSubUp),       key: "r", mods: []))
         subPosMenu.addItem(item("↓",     action: #selector(menuSubDown),     key: "t", mods: []))
         subPosMenu.addItem(item("random subtitle position", action: #selector(menuSubRandomPos), key: "0", mods: [.shift]))
-        // Nine evenly spaced sub-pos presets (10..90), one row per chord
+// [attribution comment elided]
 // [attribution comment elided]
         subPosMenu.addItem(.separator())
         let sp1=item("position 10",action:#selector(menuSubPosPreset(_:)),key:"1",mods:.shift);sp1.representedObject=10;subPosMenu.addItem(sp1)

@@ -1,9 +1,9 @@
 // [attribution comment elided]
-// Swift in one file, related types colocated as before the satellite split). 67 files merged
-// byte-exact below, each in its own BEGIN/END relocated section with its original #if guards.
-// No behavior change. Section order: state/route -> models/kit -> depth backends ->
-// degrade/comfort -> prepare -> render/shot -> stereo/format/geometry -> crop -> subtitle
-// depth -> VR mirror -> menu/UI -> selftest/logs.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -235,9 +235,9 @@ enum ThreeDReducer {
         }
         let resolvedSource = film.source.format == .auto ? evidenceSource : film.source
         let nativeVR180 = resolvedSource.format == .vr180SBS || resolvedSource.format == .vr180TB
-        // 196u: a detected native flat-stereo source opens in its own presentation, the
 // [attribution comment elided]
-        // the film: an explicit Off keeps winning on every later open.
+// [attribution comment elided]
+// [attribution comment elided]
         let nativeFlatStereo: ThreeDOutput?
         switch resolvedSource.format {
         case .sbsFull: nativeFlatStereo = .sbs
@@ -415,30 +415,30 @@ enum ThreeDReducer {
 enum ThreeDRouteEnvelope {
     static let messages:Set<String> = ["vr180-look-set-projection","vr180-look-set-output","vr180-look-set-pack","vr180-look-surround-invert","vr180-look-set-enabled","vr180-look-plan-lock"]
 }
-// END relocated ThreeDState.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
-/// P24 (arch-195b), ISOLATED per arch-195c N3: a route state machine and
-/// revision store for the GORAV engine side. This component is NOT wired
-/// into the mpv path: the shipped vr180-look.lua (byte-identical to shipped
-/// 975da1d4) owns mpv-path route admission, the 3D-REJECTED record and the
-/// 3D-VERIFIED verdict, exactly as shipped. Nothing in the mpv player host
-/// calls ThreeDRouteCenter; the machine below is available to the gorav
-/// route where no Lua gate exists. Do not re-attach it to the mpv wire
 // [attribution comment elided]
-///
-/// Semantics mirror the pre-move Lua machine 1:1:
-/// - openBatch: foreign sender ignored; a lower revision ignored; a new
-///   revision clears the completed stamp; the same revision refreshes kind
-///   and context without clearing completion.
-/// - decision: reason precedence is sequential overwrite, exactly as the Lua
-///   computed it: "revision" first, then "store_kind" for a projection whose
-///   kind differs from the batch kind, then "flat_engine" when the batch is
-///   a flat engine kind.
-/// - 3D-REJECTED is recorded once per (sender, message, values) key.
-/// - The verdict is computed when the applied-state receipt's
-///   completed_revision reaches the current batch revision, once per batch.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 
 struct ThreeDRouteContext: Equatable {
     var enabled: Bool
@@ -609,14 +609,14 @@ final class ThreeDRouteCenter {
         Diag.mediaRecord(line)
     }
 }
-// END relocated ThreeDRoute.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
 // [attribution comment elided]
-/// (1) turns the real 3D pipeline on (ThreeDMenu mode full_sbs, automatic prepare + render) AND (2) keeps the old pseudo-3D (vr180-look flat_mono, depth = 0.7*y + 0.3*luma) running as a PREVIEW, labelled on the OSD,
-/// until a rendered shot is ready. When the coordinator loads a rendered shot the preview is switched off first (`onShown`, no stacking); when it falls back to the 2D film (seek to an unrendered shot) the preview
-/// is selected again (`onBack2D`). Any other vr menu choice ends the preview (`endPreview`). sbs / vr180 on a film the probe does not call stereo keep the old behaviour and get a one-line OSD hint.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 enum ThreeDAutoRoute {
     struct Plan: Equatable {
@@ -674,12 +674,12 @@ enum ThreeDAutoRoute {
         if let t = p.osd { osd(t) }
     }
 }
-// END relocated ThreeDAutoRoute.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import AppKit
 
-/// 190t I: the one place that hands the existing player plumbing to ThreeDRenderCoordinator as closures. `cmd` is AppDelegate's existing
-/// player command helper, the playhead is the controller's current time and the film path is its current file; no new socket code.
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 enum ThreeDRuntime { static var coordinator: AnyObject?;static var lastRenderState:ThreeDState? }
 
@@ -693,8 +693,8 @@ extension AppDelegate {
         ThreeDExperimentMenu.shared.send = { [weak self] in self?.cmd($0) }
         ThreeDExperimentMenu.shared.onExperimentChange = { (ThreeDRuntime.coordinator as? ThreeDRenderCoordinator)?.preferencesDidChange(force: true) }   // 195h r2-7: an experiment toggle runs the existing re-render/re-prepare refresh
 // [attribution comment elided]
-        // applied through the same setAll path as pressing the master row. One-shot:
-        // this wiring runs per player arrival and must never override a manual OFF.
+// [attribution comment elided]
+// [attribution comment elided]
         if !ThreeDExperimentMenu.launchMasterApplied { ThreeDExperimentMenu.launchMasterApplied = true; ThreeDExperimentMenu.shared.setAll(true) }
         ThreeDExperimentMenu.shared.reapplyIfEnabled()
         ThreeDStore.shared.subscribe(ownerID:"player-applier") { [weak self] state,effects in
@@ -788,22 +788,22 @@ extension AppDelegate {
         }
     }
 }
-// END relocated ThreeDWiring.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import AppKit
 import Foundation
 
 // [attribution comment elided]
-/// in-app acceptance runner for the 3D store redesign. Triggered when GOR_STORE_ACCEPTANCE_DIR is
-/// set; the Python driver (tools/store_acceptance.py) spawns the installed app, owns the deadline,
-/// and re-validates every artifact from outside.
-///
-/// Per case it: dispatches store actions AND drives the real "3D" menu row via
-/// NSMenu.performActionForItem (rows are matched by their ThreeDKeymap act rawValue - the B4 titles
-/// "SBS"/"Half SBS"/"Top/Bottom" exist in both the View and Film-is sections), snapshots the store
-/// before/after, records the applier's applied commands, grabs one frame, and writes verdict.txt.
-/// Assertions read the LIVE store (ThreeDStore.shared.snapshot.current), never text pins.
-/// One directory per case under the env dir; complete.json lands last.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 @MainActor enum StoreAcceptance {
     /// Matrix spellings: ThreeDSource.Format and ThreeDOutput case names are the B1 spellings.
     private static let sourceFormats: [ThreeDSource.Format] = ThreeDSource.Format.allCases
@@ -957,9 +957,9 @@ import Foundation
     // Sequences 1-5 from the 191b block. Timing legs (render-shot swaps, 2-minute playback,
     // close/reopen) are noted in the action log; the driver owns wall-clock and pixel checks.
     private static func sequence1(into root: URL) -> CaseResult {
-        // Plain film opens 2D; View SBS must stay SBS through 3 render-shot swaps + 2 min playback.
 // [attribution comment elided]
-        // explicit output action must replace the stale generated presentation immediately.
+// [attribution comment elided]
+// [attribution comment elided]
         runCase("seq1_open2d_sbs_stable", into: root, actions: { log in
             var ok = perform(.viewVR180, log: &log)
             if let id = ThreeDStore.shared.snapshot.currentFilm {
@@ -994,7 +994,7 @@ import Foundation
     }
     private static func sequence4(into root: URL) -> CaseResult {
 // [attribution comment elided]
-        // GOR_STORE_ACCEPTANCE_MAGNET (env override or the driver's Downloads/Movies discovery rule).
+// [attribution comment elided]
         guard ProcessInfo.processInfo.environment["GOR_STORE_ACCEPTANCE_MAGNET"] != nil else {
             let dir = root.appendingPathComponent("seq4_magnet_2d", isDirectory: true)
             try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
@@ -1029,7 +1029,7 @@ import Foundation
         }, expect: { _ in "PASS keys_match_menu" })
     }
 }
-// END relocated ThreeDStoreAcceptance.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import AppKit
 import Foundation
@@ -1177,7 +1177,7 @@ enum ThreeDRecognitionBridge {
         print("3D-DECISION migration=complete imported=\(imported.count) reason=explicit_provenance_only legacy_values_preserved=true")
     }
 }
-// END relocated ThreeDRecognitionBridge.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(CryptoKit)
@@ -1302,7 +1302,7 @@ final class ThreeDModels {
         }
     }
 }
-// END relocated ThreeDModels.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -1402,7 +1402,7 @@ enum ThreeDKit {
         #endif
     }
 }
-// END relocated ThreeDKit.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(CryptoKit)
@@ -1512,7 +1512,7 @@ enum KitHash {
         return bad
     }
 }
-// END relocated KitHash.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(CoreML)
@@ -1587,9 +1587,9 @@ enum KitCompiledCache {
     private static let loadLock = NSLock()
     private static var timedOutDevices = Set<String>()
 // [attribution comment elided]
-    /// 10 s, aned returned 3, even with gor closed) while CPU compute returns in 0.132 s. When set, every later model
-    /// load in this process tries cpuOnly first. Set by GOR_3D_CPU_FIRST=1 (known aned-broken system) or by a bounded
-    /// CoreML inference timeout on a non-CPU model (self-adaptive).
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     private static var cpuOnlyFirst = false
     static func preferCPUOnlyFirst() { loadLock.lock(); cpuOnlyFirst = true; loadLock.unlock() }
     /// Each device gets at most one timed-out call per process. Late results never enter the model cache.
@@ -1642,7 +1642,7 @@ enum KitCompiledCache {
     }
     #endif
 }
-// END relocated KitCompiledCache.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(CoreML)
@@ -1682,7 +1682,7 @@ enum ComputeUnitsProbe {
     }
 }
 #endif
-// END relocated ComputeUnitsProbe.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -1744,9 +1744,9 @@ final class CoreMLDepthRunner {
         req.imageCropAndScaleOption = .scaleFill
         let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
 // [attribution comment elided]
-        // computeDevice override - the device is fixed by the model's load-time computeUnits). 30 s like the load
-        // bound. On timeout the stuck worker thread is abandoned, this runner retires, and every later load in the
-        // process starts at cpuOnly - the chain an aned-broken system needs.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
         let attempt = BoundedLoad.attempt(seconds: 30) { () -> Bool? in (try? handler.perform([req])) != nil ? true : nil }
         if attempt.timedOut {
             deadLock.lock(); dead = true; deadLock.unlock()
@@ -1796,12 +1796,12 @@ final class DAV2Backend: ShotPrepareBackend {
 }
 #endif
 
-// BEGIN relocated DepthModelID.swift (195y G2, behavior unchanged)
-/// 195h A (Main scope-add): depth-model identity for the prepared-depth producer. The default, luma_y_prior, is the existing
-/// pipeline (unchanged: output, cache keys and paths stay byte-identical). dav2_small_coreml selects the Depth Anything V2 Small
-/// CoreML F16 package (apple/coreml-depth-anything-v2-small, Apache-2.0; fetched by tools/gor-fetch-models.sh, models.lock.tsv
-/// rows dav2-small-coreml-f16-*) through CoreMLDepthRunner, only when the mlpackage is present. The Experiments menu's A row is
-/// the single switch; prepare jobs read it through the frozen options snapshot, never live. Apple Depth Pro is never used
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 enum DepthModelID: String {
     case luma_y_prior, dav2_small_coreml
@@ -1811,8 +1811,8 @@ enum DepthModelID: String {
     static func selected() -> DepthModelID { lock.lock(); defer { lock.unlock() }; return current }
     static func select(_ m: DepthModelID) { lock.lock(); current = m; lock.unlock() }
 }
-// END relocated DepthModelID.swift
-// END relocated CoreMLDepthRunner.swift
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -2055,12 +2055,12 @@ enum NunifMath {
 }
 // END relocated NunifMath.swift
 
-// BEGIN relocated ThreeDSynthMethod.swift (195y G2, behavior unchanged)
-/// 190w W3: which view-synthesis method a render uses. Tiers (architect): mlbw_l2_inpaint_video = T1 (learned, temporal), mlbw_l2_inpaint = T2, row_flow_v3 = T3, dibr_golden = last-resort
 // [attribution comment elided]
-/// HONESTY RULE: the method named in the render key and in the log/OSD is the one that actually RUNS. A learned tier is selectable only when its weights are present AND this build has a runner
-/// for it (`implemented`). No learned runner exists in Swift yet (the weights are PyTorch .pth; a CoreML/Metal port is not written), so today every render is dibr_golden and says "fallback".
-/// Pure Foundation, Linux-tested (Tests/ThreeDSynthMethod). UNCOMPILED on a Mac only where it touches the file system paths of a real models dir (no Darwin API).
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 enum SynthMethod: String, CaseIterable {
     case mlbw_l2_inpaint_video, mlbw_l2_inpaint, row_flow_v3, dibr_golden
 
@@ -2185,8 +2185,8 @@ final class NunifCoreMLRunner {
     }
 }
 #endif
-// END relocated NunifCoreMLRunner.swift
-// END relocated NunifPipeline.swift
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(CoreML)
@@ -2330,7 +2330,7 @@ final class VDAStreamRunner {
     }
 }
 #endif
-// END relocated VDAStreamRunner.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -2575,8 +2575,8 @@ final class VDAWindowedBackend: ShotPrepareBackend {
     }
 }
 #endif
-// END relocated VDAWindowedBackend.swift
-// END relocated VDAWindowPlan.swift
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(CoreML)
@@ -2666,7 +2666,7 @@ final class MoGeKeyframeRunner {
     }
 }
 #endif
-// END relocated MoGeKeyframeRunner.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -2732,7 +2732,7 @@ enum DepthMapResize {
     /// DAV2 emits relative disparity (larger = nearer); the pipeline's depth maps store depth (larger = farther). d -> 1/max(d, eps).
     static func disparityToDepth(_ d: [Float], eps: Float = 1e-6) -> [Float] { d.map { 1 / max($0, eps) } }
 }
-// END relocated ModelDepthEMA.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(Darwin)
@@ -2786,7 +2786,7 @@ enum DepthCacheBudget {
             }
         }
     }
-    /// Call before accessing any entry. create=true is for writers; only a new
+// [attribution comment elided]
 // [attribution comment elided]
     static func pin(root: URL, key: String, create: Bool = false) throws -> Pin {
         guard validKey(key) else { throw Failure.unsafe }
@@ -2911,7 +2911,7 @@ enum DepthCacheBudget {
         }
     }
 }
-// END relocated DepthCacheBudget.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(Compression)
@@ -3194,8 +3194,8 @@ final class DepthFrameReader {
     func cancel() { stopped = true }
 }
 #endif
-// END relocated DepthFrameReader.swift
-// END relocated DepthContainerWriter.swift
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -3485,13 +3485,13 @@ final class DepthUpsampler {
 #endif
 // END relocated DepthUpsample.swift
 
-// BEGIN relocated DepthTemporalEMA.swift (195y G2, behavior unchanged)
-/// 195h B (peer B-EMA hint; scope-add via Main: "DepthTemporalEMA per-shot, shot-boundary reset, default off"): per-frame depth-range
-/// breathing (the robust min/max wanders frame to frame) shows as contrast pumping in the stereo render. This EMA-smooths the shot's
-/// depth range (1%/99% percentiles of the valid depths) and renormalises each frame onto the smoothed range. State is one value per
-/// prepare job, so it resets at every shot boundary. Default OFF: every frame passes through unchanged and flag-off output is
-/// byte-identical. The first frame of a shot primes the range and passes through unchanged. State persists next to the container
-/// (<dzc>.ema.json with lo/hi/primed/frames) so a resume continues the exact history; it is written only AFTER a successful append.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 enum DepthTemporalEMA {
     private static let lock = NSLock()
@@ -3534,9 +3534,9 @@ enum DepthTemporalEMA {
 }
 // END relocated DepthTemporalEMA.swift
 
-// BEGIN relocated TemporalDepth.swift (195y G2, behavior unchanged)
 // [attribution comment elided]
-/// (state resets at a cut: each shot is its own job), in the INVERSE-depth domain (disparity is what the eye sees), with a motion gate: a pixel whose depth changed by more than `gate` (relative) since the previous
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 enum TemporalDepth {
     static var enabled = true
@@ -3554,8 +3554,8 @@ enum TemporalDepth {
         return out
     }
 }
-// END relocated TemporalDepth.swift
-// END relocated DepthGuards.swift
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -3748,7 +3748,7 @@ enum MoGeGeometry {
         return 2 * atan(0.5 / fx) * 180 / Double.pi
     }
 }
-// END relocated DepthPrepareMath.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -3965,8 +3965,8 @@ enum DegradeTable {
         "UNAVAILABLE_FLAT|user_enable_3d": ("INIT", ["act_reprobe"], "menu toggle back on: full re-probe"),
     ]
 }
-// END relocated ThreeDDegradeTable.swift
-// END relocated ThreeDDegrade.swift
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -4131,15 +4131,15 @@ enum ShotComfortShot {
         return ShotComfort(convergenceM: c, ipdEff: span.ipdEff, depthScale: span.gain, zNear: span.nearClampM, farOverflowDeg: ShotComfort.farOverflow(zc: c, ipd: span.ipdEff))
     }
 }
-// END relocated ShotComfortShot.swift
-// END relocated ShotComfort.swift
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
-/// 190v s19: thermal duty cycle for the prepare path. Pure state machine (`ThermalDutyPolicy`, injected clock) plus a blocking gate the runner calls at
 // [attribution comment elided]
-/// the gate holds for at least 60 s and releases only after the state has stayed below .fair for a 30 s dwell. Resume is exact (no recompute).
-/// Not compiled or run on a Mac; the real thermalState behaviour is unmeasured.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 struct ThermalDutyPolicy {
     enum Action: Equatable { case run, suspend, hold, resume }
     static let suspendRank = 2, resumeRank = 1, minSuspend = 60.0, dwell = 30.0
@@ -4189,7 +4189,7 @@ final class ThreeDThermalGate {
         }
     }
 }
-// END relocated ThreeDThermalGate.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(AVFoundation) && canImport(CoreML) && canImport(VideoToolbox) && canImport(Accelerate)
@@ -4350,7 +4350,7 @@ final class NativePrepareRunner: ShotPrepareRunner {
         return out
     }
 
-    /// AVFoundation cannot demux ordinary MKV. Copy the video bitstream into
+// [attribution comment elided]
 // [attribution comment elided]
     private func prepareReadableSource(_ film: URL, entry: URL, cancelled: () -> Bool) throws -> URL {
         if AVURLAsset(url:film).tracks(withMediaType:.video).first != nil { return film }
@@ -4624,8 +4624,8 @@ enum PrepareInputRemux {
         ["-hide_banner", "-nostdin", "-y", "-i", source, "-map", "0:v:0", "-c:v", "copy", "-an", "-sn", "-dn", "-movflags", "+faststart", destination]
     }
 }
-// END relocated PrepareInputRemux.swift
-// END relocated NativePrepareRunner.swift
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(Darwin)
@@ -4788,8 +4788,8 @@ struct PrepareWorkerJob: Codable {
     }
     var request: ThreeDPrepareLauncher.Request { .init(film: URL(fileURLWithPath: film), fps: fps, nFrames: frames, startPTS: start, quality: quality, experiments: experiments) }
 }
-// END relocated PrepareWorkerJob.swift
-// END relocated PrepareSupport.swift
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -4912,7 +4912,7 @@ final class PrepareTelemetry {
         return r
     }
 }
-// END relocated PrepareTelemetry.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -5006,7 +5006,7 @@ enum PreparedRanges {
         return r
     }
 }
-// END relocated FilmPrepareStatus.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(VideoToolbox)
@@ -5065,7 +5065,7 @@ final class ThreeDPreflight {
         }
     }
 }
-// END relocated ThreeDPreflight.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -5158,7 +5158,7 @@ final class ThreeDPrepareLauncher {
         }
     }
 }
-// END relocated ThreeDPrepareLauncher.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(Darwin)
@@ -5427,7 +5427,7 @@ final class ShotSink {
         writeReady()
     }
 }
-// END relocated ThreeDPrepareSpawn.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -5817,7 +5817,7 @@ extension ShotPrepareHooks {
     }
 }
 #endif
-// END relocated ShotPrepareAssembly.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(AVFoundation) && canImport(Metal) && canImport(CoreVideo)
@@ -6269,7 +6269,7 @@ final class ThreeDRenderCoordinator {
     private func readJSON(_ u: URL) -> [String: Any]? { (try? Data(contentsOf: u)).flatMap { try? JSONSerialization.jsonObject(with: $0) as? [String: Any] } }
 }
 #endif
-// END relocated ThreeDRenderCoordinator.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -6318,7 +6318,7 @@ struct RenderedShotPlan: Equatable {
     static let ptsIsFilmTime = true, carriesAudio = false
     static func fileName(shot: Int) -> String { String(format: "render_shot_%05d.mp4", shot) }
 }
-// END relocated RenderedShotPlan.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -6367,7 +6367,7 @@ enum RenderedShotMPV {
         line(["loadfile", file.path, "replace", -1, "start=\(String(format: "%.3f", start))"])
     }
 }
-// END relocated RenderedShotMPV.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(AVFoundation) && canImport(Metal) && canImport(CoreVideo)
@@ -6499,7 +6499,7 @@ final class RenderShotWriter {
     }
 }
 #endif
-// END relocated RenderShotWriter.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(AVFoundation) && canImport(CoreVideo) && canImport(VideoToolbox)
@@ -6650,7 +6650,7 @@ final class VTShotEncoder {
     }
 }
 #endif
-// END relocated VTShotEncoder.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -6796,7 +6796,7 @@ final class PreparedShotPlayback {
         }
     }
 }
-// END relocated PreparedShotPlayback.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -6863,7 +6863,7 @@ final class RenderPrefsReader {
         return value
     }
 }
-// END relocated RenderPrefsReader.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -6916,7 +6916,7 @@ enum RenderContinuity {
         showing==next && fileExists
     }
 }
-// END relocated RenderRevision.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(Metal)
@@ -7243,7 +7243,7 @@ enum Stereo3DKernelSource {
 }
 
 // [attribution comment elided]
-/// with every switch off, render() dispatches exactly the kernels it did before this lane (flag-off output identical).
+// [attribution comment elided]
 enum Stereo3DExperiments {
     private static let lock = NSLock()
     static var floatingWindow = false, depthOfField = false, holeFillGradient = false   // mutated only through the toggles under lock; read only via snapshot()
@@ -7485,7 +7485,7 @@ final class Stereo3DRenderer {
 }
 struct S3DRemapParams { var mode: UInt32; var srcW: UInt32; var srcH: UInt32; var outW: UInt32; var outH: UInt32; var f: Float; var thetaOrHFov: Float }   // = MSL S3DRemap (7 x 4 bytes)
 #endif
-// END relocated Stereo3DKernel.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -7673,7 +7673,7 @@ enum StereoSource {
                          overBudgetFrac: Double(kept.filter { $0 * dpp > comfortBudgetDeg }.count) / Double(kept.count), coverage: Double(vals.count) / Double(total), assumeHFOVDeg: assumeHFOVDeg)
     }
 }
-// END relocated StereoSource.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(AVFoundation) && canImport(CoreGraphics)
@@ -7755,7 +7755,7 @@ final class StereoSourceGate {
     }
 }
 #endif
-// END relocated StereoSourceGate.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -7776,7 +7776,7 @@ enum StereoSourceProbe {
         return StereoSource.metadataVerdict(path: url.path, sideData: f.sideData, profile: f.profile, codecTag: f.codecTag)
     }
 }
-// END relocated StereoSourceProbe.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -7887,7 +7887,7 @@ enum SourceFormat {
         return UInt16(UInt16(v) * 4 + UInt16(v >> 6)) << 6
     }
 }
-// END relocated SourceFormat.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(AVFoundation) && canImport(CoreMedia)
@@ -7962,7 +7962,7 @@ enum SourceFormatProbe {
     static func colorProperties(url: URL) -> [String: String]? { AVURLAsset(url: url).tracks(withMediaType: .video).first.flatMap { colorProperties(track: $0) } }
 }
 #endif
-// END relocated SourceFormatProbe.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -8046,7 +8046,7 @@ enum SphericalTag {
         return (try? FileManager.default.replaceItemAt(url, withItemAt: tmp)) != nil
     }
 }
-// END relocated SphericalTag.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -8186,7 +8186,7 @@ final class SurroundGeometry {
         return g
     }
 }
-// END relocated SurroundGeometry.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -8217,7 +8217,7 @@ enum FovTrackBuilder {
         return Entry(startPTS: Double(startFrame) / fps, endPTS: Double(endFrame) / fps, hfovDeg: hfov, confidence: conf, keyframes: kf)
     }
 }
-// END relocated FovTrackBuilder.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -8261,7 +8261,7 @@ enum OutputMode: String, CaseIterable {
     func eyeW(canvasW w: Int) -> Int { self == .fullSBS ? w / 2 : w }
     func eyeH(canvasH h: Int) -> Int { self == .overUnder ? h / 2 : h }
 }
-// END relocated OutputModes.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -8298,7 +8298,7 @@ struct ThreeDPresentation: Equatable {
         return cut
     }
 }
-// END relocated ThreeDPresentation.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 import CoreGraphics
@@ -8350,15 +8350,15 @@ enum SourcePixelBounds {
         }
         return out.joined(separator: " ")
     }
-    /// Exact bounding box of every sample above `threshold` (identical result to a full per-pixel scan).
-    /// Rows are visited top-down until the first bright row and bottom-up until the last; middle rows only
-    /// look for a bright sample left of the current x0 or right of the current x1, so a full frame costs
-    /// a few rows instead of every pixel. Little-endian UInt16 samples.
-    ///
-    /// Edge rows tolerate isolated specks: when `speck` > 0 a row at the top or bottom edge is content only if more than `speck`
-    /// samples exceed `threshold`, or any sample exceeds `strong` (clearly non-black). Encode noise and stray bright pixels inside
 // [attribution comment elided]
-    /// speck 0 the result is the exact one-sample veto as before.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     static func scan(_ bytes: Data, width: Int, height: Int, threshold: UInt16, speck: Int = 0, strong: UInt16 = 0) -> Bounds? {
         guard width > 0, height > 0, bytes.count >= width * height * 2 else { return nil }
         var result: Bounds?
@@ -8582,7 +8582,7 @@ final class SourcePixelCropScanner {
                 pix=stream["pix_fmt"] as? String ?? "";range=stream["color_range"] as? String ?? ""
             } else {
 // [attribution comment elided]
-                // without installing another binary or using post-render video params.
+// [attribution comment elided]
                 guard let meta=decode(ffmpeg,["-hide_banner","-nostdin","-hwaccel","none","-rw_timeout",rwTimeout,"-i",path,"-map","0:v:0","-frames:v","0","-an","-sn","-f","null","-"],epoch:e,cap:4096,killAfter:killAfter) else { finish(nil,false,"probe and metadata open failed (timeout or no data)");return }
                 let text=String(data:meta.1,encoding:.utf8) ?? ""
                 guard let line=text.components(separatedBy:"\n").first(where:{$0.contains("Stream #") && $0.contains("Video:")}) else {finish(nil,false,"no video stream line in metadata");return}
@@ -8824,12 +8824,12 @@ enum BoundedCropFrameBatch {
 // BEGIN relocated CropAcceptPolicy.swift (195y G2, behavior unchanged)
 
 // [attribution comment elided]
-/// intro near playhead 244 s and finished with the playhead at ~1632 s, and the same rect fed the per-eye aspect into the VR180 projection).
-/// A result is dropped before anything is applied (no UI crop, no video-crop, no eye aspect) when
-///  - it comes from a stream (wt) scan and the playhead moved more than `maxPlayheadDrift` seconds since the scan began (the sampled frames
-///    belong to a different part of the film), unless the user asked for it (manual redetect), or
-///  - the film is stereo/VR and the crop would keep less than `minKeptFraction` of the frame in either direction (a real letterbox on a
-///    side-by-side or VR180 frame never removes that much; cutting it removes film pixels).
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 enum CropAcceptPolicy {
     static let maxPlayheadDrift: Double = 60
     static let minKeptFraction: Double = 0.55
@@ -8856,24 +8856,24 @@ final class CropScanGuard {
     private(set) var startPlayhead: Double?
     func begin(playhead: Double) { startPlayhead = playhead }
 }
-// END relocated CropAcceptPolicy.swift
-// END relocated SourcePixelCrop.swift
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
-/// Where the original-pixel crop scan may sample a magnet (wt server) stream.
-///
-/// A torrent stream has no complete file. The scanner used to seek 40 points spread over the whole duration
-/// (and the duration of a buffering stream is a guess), so almost every seek landed on pieces that were never
-/// downloaded: every ffmpeg sample failed, `sampled == 0`, and the result was "indecisive" forever. Only time
-/// the player itself has already read through the wt server is known to be on disk, and mpv publishes that as
-/// demuxer-cache-state seekable-ranges. Sample inside those ranges only. Pixels, thresholds and the veto are
-/// untouched: this changes which seconds are decoded, nothing about how.
-///
 // [attribution comment elided]
-/// about 130 s apart, and the menu Detect button answering "no decision yet". The live-capture path for wt
-/// playback (runWTAccumulation) is no longer called, so the file scanner is the only detector for a stream.
-/// Tests/CropDetect/wt_stream_crop_test.py measures it against a server that only has the first part of the file.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 enum WTCropSamples {
     static let sampleCount = 12
     /// Distance kept from the end of a range so the one frame decoded after the seek is also downloaded.
@@ -9009,7 +9009,7 @@ extension WTCropSamples {
         positions.allSatisfy { p in ranges.contains { p >= $0.0 && p <= $0.1 - tailMargin } }
     }
 }
-// END relocated WTCropSamples.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -9035,7 +9035,7 @@ struct SubtitleDepth {
     }
     mutating func end(event: Int) { placed.removeValue(forKey: event) }
 }
-// END relocated SubtitleDepth.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(AVFoundation)
@@ -9198,7 +9198,7 @@ final class ThreeDFilmInfo {
         return path == film.path && fps > 0 && frames > 0 ? (fps, frames) : nil
     }
 }
-// END relocated ThreeDSubtitleDepth.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import AppKit
 import Foundation
@@ -9214,10 +9214,10 @@ import QuartzCore
 /// During interaction (`noteInteraction`, held 1.5 s) every tick renders, so hover and drag stay as live as before.
 /// The Python model Tests/VRCost/vr_cost_model_test.py replays this exact decision rule.
 struct VRMirrorThrottle {
-    /// Idle re-render cap per mirror slot. Under thermal pressure the cap
 // [attribution comment elided]
-    /// content-stamp changes still render on the very next tick, only the
-    /// forced idle repaint slows.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     static var heartbeat: TimeInterval { HeatTelemetry.thermalPressure ? 2.0 : 0.5 }
     static let interactionHold: TimeInterval = 1.5
     private var last: [Int: (id: ObjectIdentifier, stamp: Int, at: TimeInterval)] = [:]
@@ -9287,15 +9287,15 @@ enum VRMirrorStamp {
 // (slot reset: see reset())
 // (slot reset: see reset())
 
-// MARK: - Main-thread load governor (2026-11-08 VR heat)
-//
-// Evidence (sample of a hot 8K60 HEVC VR session, 1971 ms): main thread 1971/1971 samples busy, 1596 of them inside
-// CA::Transaction::commit, 1419 in -[CATextLayer drawInContext:] (typesetting 1281). Every audio-driven variable-font
-// change re-typesets every visible CATextLayer, and the 60 Hz VariationBroadcaster timer only slowed down because the
-// main run loop was saturated (14.6 ticks/s, 12 fan-outs/s over 141 listeners in the log).
-// FanoutGovernor keeps the fan-out exactly as before while the main loop has headroom (gap 0 below `loadFloor`),
-// and only when the loop is busy spaces AUDIO-ONLY fan-outs apart (at most 1/maxGap per second at saturation).
-// Pointer-driven fan-outs (mouse moved) are never delayed, so hover/drag feel and the idle-light-load look are unchanged.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 struct FanoutGovernor {
     static let loadFloor = 0.45
@@ -9377,9 +9377,9 @@ final class MainLoopLoad {
 
 enum HeatTelemetry {
 // [attribution comment elided]
-    // audio-only font fan-outs once MainLoopLoad passes 0.45, so a cool or
-    // idle machine behaves exactly as before; gorHeatGovernor=false still
-    // forces it off.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     static var governorEnabled: Bool { UserDefaults.standard.object(forKey: "gorHeatGovernor") as? Bool ?? true }
     /// True while the system reports serious/critical thermal pressure. One
     /// cheap syscall per read; callers are 0.5-10 Hz timers, never per-frame.
@@ -9387,7 +9387,7 @@ enum HeatTelemetry {
     private static var last: (wall: CFTimeInterval, cpu: Double)?
 // [attribution comment elided]
 // [attribution comment elided]
-    /// keeps tracking, the Vision face-request rate drops by up to 3x. A cool machine is byte-identical.
+// [attribution comment elided]
     static var headTrackInterval: CFTimeInterval {
         let base = 1.0 / min(60, max(10, UserDefaults.standard.object(forKey: "gorHeadTrackFPS") as? Double ?? 30))
         return thermalPressureCached ? max(base, 0.1) : base
@@ -9488,19 +9488,19 @@ enum HeatShadow {
         return parts.joined(separator: " ")
     }
 }
-// END relocated VRMirrorThrottle.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 #if canImport(AppKit)
 import AppKit
 
-/// 191b B4: ONE "3d" menu - short labels, the state always visible, every row a store dispatch. The menu NEVER writes defaults,
-/// never calls setVRModeEnabled/publishProjection/select3DOutput, and reads the store only in validateMenuItem (B1). Rows and key
-/// equivalents come from ThreeDKeymap.rows (B5: one table for menu + keyboard). Numeric submenus and the Cmd+Ctrl+Opt source
 // [attribution comment elided]
-/// Quality rows: Auto always; Best/Fast only when this build has a learned runner (B4: unbuilt tiers are HIDDEN, not labelled).
-/// Store API (E-G, relayed 22:11): ThreeDStore.shared.snapshot/.dispatch/.subscribe;
-/// ThreeDEffectValue = .bool/.number/.text; steps READ the number, add the step, dispatch. ThreeDSource(_ format:, swap:).
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 @MainActor final class ThreeDMenu: NSObject, NSMenuItemValidation, NSMenuDelegate {
     static let shared = ThreeDMenu()
     private(set) var installedMenu: NSMenu?
@@ -9704,7 +9704,7 @@ import AppKit
     }
 }
 #endif
-// END relocated ThreeDMenu.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -9731,8 +9731,8 @@ import AppKit
 @MainActor final class ThreeDExperimentMenu: NSObject, NSMenuItemValidation {
     static let shared = ThreeDExperimentMenu()
 // [attribution comment elided]
-    /// installThreeDSourceResolution runs on every player wiring; the default ON
-    /// applies once and never re-fires over a manual toggle.
+// [attribution comment elided]
+// [attribution comment elided]
     static var launchMasterApplied = false
     private(set) var state = ThreeDExperimentState()
     var send: (String) -> Void = { _ in }
@@ -9818,7 +9818,7 @@ import AppKit
     }
 }
 #endif
-// END relocated ThreeDExperimentMenu.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -9865,7 +9865,7 @@ extension ThreeDExperimentOptions {
     }
 }
 #endif
-// END relocated ThreeDExperimentOptions.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -9986,8 +9986,8 @@ enum ThreeDKeymap {
     ]
 }
 
-/// 191b B4: the one-line OSD every 3D change shows. Pure function, signature agreed with E-G (the store emits .showInfo; the applier
-/// calls this builder and sends the OSD). Format per the block: "3D SBS · film 2D · converting 34%" / "3D off".
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 enum ThreeDInfo {
     static let separator = " · "
@@ -10024,11 +10024,28 @@ enum ThreeDInfo {
         return parts.joined(separator: separator)
     }
 }
-// END relocated ThreeDKeymap.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import AppKit
 
-// Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 final class ThreeDCornerTuneView: NSView {
     static let shared = ThreeDCornerTuneView()
 
@@ -10041,7 +10058,8 @@ final class ThreeDCornerTuneView: NSView {
     private var controls: [CornerTuneControl] = []
     private var layers: [CATextLayer] = []
     private var valueLayers: [String: CATextLayer] = [:]
-// Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
     private var titleLayers: [String: (layer: CATextLayer, base: CornerTuneRect)] = [:]
     private var titleAreas: [NSTrackingArea] = []
     private var hoverWord: String?
@@ -10065,9 +10083,9 @@ final class ThreeDCornerTuneView: NSView {
     }
     private var lastSignature = ""
 // [attribution comment elided]
-    /// NOT green; Main 22:17 split: A-D owns it). The shader's green calibration_mark is retired;
-    /// the marker is this same AppKit "+" cell - font-sized, hides with the UI, reacts to mouse and
-    /// sound. calibrationOnly shows ONLY the crosshair; the full overlay wins while it is open.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     private var calibrationActive = false
     private var calibrationOnly = false
     private var refreshTimer: Timer?
@@ -10080,9 +10098,9 @@ final class ThreeDCornerTuneView: NSView {
         CornerTuneLayout(charW: Double(PhotonFont.chromeCharW), lineH: Double(PhotonFont.chromeLineH), pad: Double(PhotonFont.chromePad))
     }
 
-    /// Acts keyed by corner word, far cell (second diagonal step) first, near cell second. For
 // [attribution comment elided]
-    /// screen farther: 8m -> 9.5m) then "←" (far, screen nearer).
+// [attribution comment elided]
+// [attribution comment elided]
     private static let acts: [String: (ThreeDKeymap.Act, ThreeDKeymap.Act)] = [
         "depth":  (.depthWeaker, .depthStronger),
         "ipd":    (.ipdMinus, .ipdPlus),
@@ -10127,8 +10145,8 @@ final class ThreeDCornerTuneView: NSView {
         let crosshair = CornerTuneLayout.crosshairFrame(in: full, charW: Double(PhotonFont.chromeCharW), lineH: Double(PhotonFont.chromeLineH))
 // [attribution comment elided]
 // [attribution comment elided]
-        // every click a glitch and hid what changed - now a value change retexts one layer in
-        // place and the per-click change is exactly the value text (plus the render effect).
+// [attribution comment elided]
+// [attribution comment elided]
         let signature = "\(controls.map { $0.frames })|\(crosshair)|\(bounds.size)|\(PhotonFont.chromeScale)"
         guard signature != lastSignature else {
             CATransaction.begin(); CATransaction.setDisableActions(true)
@@ -10144,9 +10162,9 @@ final class ThreeDCornerTuneView: NSView {
         titleAreas.forEach { removeTrackingArea($0) }
         titleAreas = []
         hoverTimer?.invalidate(); hoverTimer = nil; hoverWord = nil
-        // Every element gets its own layer: the title letter and value are read-only (the title
-        // only expands on hover), the two glyph cells are the buttons (their own hit areas in
-        // mouseDown below), plus the center crosshair. Values CENTER in their fixed-width fields
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
         for c in controls {
             var elementIndex = 0
@@ -10167,8 +10185,8 @@ final class ThreeDCornerTuneView: NSView {
     }
 
 // [attribution comment elided]
-    /// (MusicBtn's 0.04 s per char), the letter pinned at the corner's outer edge; leaving types it
-    /// back. Values and +/- symbols never move.
+// [attribution comment elided]
+// [attribution comment elided]
     override func mouseEntered(with event: NSEvent) {
         guard let word = event.trackingArea?.userInfo?["word"] as? String, titleLayers[word] != nil else { return }
         hoverTimer?.invalidate()
@@ -10193,7 +10211,12 @@ final class ThreeDCornerTuneView: NSView {
         }
     }
 
-    // Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     private func setTitle(layer: CATextLayer, base: CornerTuneRect, text: String) {
         let leftPinned = base.x + base.w / 2 < Double(bounds.width) / 2
         let w = Double(max(text.count, 1)) * Double(PhotonFont.chromeCharW)
@@ -10306,8 +10329,8 @@ final class ThreeDCornerTuneView: NSView {
 }
 
 // [attribution comment elided]
-/// dropdown with one "3D" row). Kept out of SpineUI.swift itself: that file is at its architecture
-/// ceiling, so only net-0 one-line hooks ride existing lines there.
+// [attribution comment elided]
+// [attribution comment elided]
 extension SpineUI {
     func showVideoDropdown() {
         activeDropdown?.removeFromSuperview(); activeDropdown = nil
@@ -10333,11 +10356,28 @@ extension SpineUI {
         activeDropdown = drop
     }
 }
-// END relocated ThreeDCornerTune.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
-// Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+
+/// Plain rect so the layout never touches CoreGraphics (Linux has none in Foundation).
 struct CornerTuneRect: Equatable {
     var x: Double, y: Double, w: Double, h: Double
     var maxX: Double { x + w }
@@ -10347,8 +10387,8 @@ struct CornerTuneRect: Equatable {
     func offsetBy(dx: Double, dy: Double) -> CornerTuneRect { CornerTuneRect(x: x + dx, y: y + dy, w: w, h: h) }
 }
 
-/// One corner control: the single-letter title, the value, and the two tappable glyph cells as
-/// separate frames, so the view can give every element its own layer and its own hit area. `word`
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
 struct CornerTuneControl: Equatable {
     var letter: String
@@ -10378,8 +10418,8 @@ struct CornerTuneLayout {
 
 // [attribution comment elided]
 // [attribution comment elided]
-    /// cells are left/right arrows, not "+" and a right arrow - near cell "→" pushes the screen
-    /// farther, far cell "←" brings it nearer; every other control stays "+/-".
+// [attribution comment elided]
+// [attribution comment elided]
     static let spec: [(corner: CornerTuneCorner, letter: String, word: String, key: String, glyphA: String, glyphB: String)] = [
         (.topLeft,     "i", "ipd",   "ipd",         "-", "+"),
         (.topRight,    "d", "depth", "strength",    "-", "+"),
@@ -10387,7 +10427,17 @@ struct CornerTuneLayout {
         (.bottomRight, "s", "size",  "screenSize",  "-", "+"),
     ]
 
-// Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     static let titleMarginPads = 0.0
     static let gridGapPads = 1.0
     static let titleReserveChars = 5   // "depth", the longest corner title
@@ -10404,8 +10454,8 @@ struct CornerTuneLayout {
         return CornerTuneRect(x:left,y:content.y,w:max(0,right-left),h:content.h)
     }
 // [attribution comment elided]
-    // the row directly below Video - top edge at Video's minY, so its bottom edge clears Video by
-    // one full typography row. Bottom-left coordinates.
+// [attribution comment elided]
+// [attribution comment elided]
     static func dropdownTop(videoMinY: Double, lineH: Double) -> Double {max(lineH,videoMinY)}
 
     // The explicitly opened control surface and the calibration marker both follow
@@ -10415,22 +10465,22 @@ struct CornerTuneLayout {
     }
 
 // [attribution comment elided]
-    /// overlay opens, a crosshair exactly at center in the current UI font and its size). One
-    /// char wide, one line high, centered on the content rect to the half point.
+// [attribution comment elided]
+// [attribution comment elided]
     static func crosshairFrame(in content: CornerTuneRect, charW: Double, lineH: Double) -> CornerTuneRect {
         CornerTuneRect(x: content.x + (content.w - charW) / 2, y: content.y + (content.h - lineH) / 2, w: charW, h: lineH)
     }
 
 // [attribution comment elided]
-    /// value changes, e.g. 0.5 -> 0.75, the buttons must NOT move). Each width covers the longest
-    /// string `format` can emit for that key's reachable set: strength 0...2 by 0.25 ("0.25"),
-    /// screenDepth 1.5 x/:/1.5 clamped 0.25...8 at %.3g ("0.667m"), screenSize 20...150 by 5
-    /// ("150\u{00B0}"), ipd +/-0.2 by 0.02 with %+.1f ("+0.2"). A stored out-of-set value
-    /// widens its own field only.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     static let valueMaxChars: [String: Int] = ["ipd": 4, "strength": 4, "screenDepth": 6, "screenSize": 4]
 // [attribution comment elided]
-    // every row, so the +/- cells form a single grid column too. This supersedes the 22:13 per-key
-    // field widths.
+// [attribution comment elided]
+// [attribution comment elided]
 
     private func control(_ entry: (corner: CornerTuneCorner, letter: String, word: String, key: String, glyphA: String, glyphB: String),
                          value: String, in content: CornerTuneRect) -> CornerTuneControl {
@@ -10445,24 +10495,24 @@ struct CornerTuneLayout {
         let gap = CornerTuneLayout.gridGapPads * pad
         let titleMargin = CornerTuneLayout.titleMarginPads * pad
         let titleReserve = Double(CornerTuneLayout.titleReserveChars) * charW
-        // Title: one letter cell, outer edge titleMarginPads from the cleared content edge
 // [attribution comment elided]
-        // it in place.
+// [attribution comment elided]
+// [attribution comment elided]
         let wordX = dx > 0 ? sideX + titleMargin
                            : sideX - titleMargin - charW
         let wordFrame = CornerTuneRect(x: wordX, y: rowY, w: charW, h: lineH)
-        // Value: ONE shared fixed-width field starting pad x 1 after the reserved title column
 // [attribution comment elided]
-        // widest value, so every row shares one value column and the +/- cells form one grid).
-        // Values center in the field (21:43); an out-of-set stored value widens only its own
-        // field (21:31).
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
         let valueW = Double(max(value.count, CornerTuneLayout.valueFieldChars)) * charW
         let valueX = dx > 0 ? sideX + titleMargin + titleReserve + gap
                             : sideX - titleMargin - titleReserve - gap - valueW
         let valueFrame = CornerTuneRect(x: valueX, y: rowY, w: valueW, h: lineH)
-        // Cells march diagonally inward after the value field with pad x 1 edge gaps
 // [attribution comment elided]
-        // (weaker, two lines in).
+// [attribution comment elided]
+// [attribution comment elided]
         let cellBX = dx > 0 ? valueFrame.maxX + gap
                             : valueFrame.x - gap - charW
         let cellB = CornerTuneRect(x: cellBX, y: rowY + lineH * dy, w: charW, h: lineH)
@@ -10506,11 +10556,11 @@ struct CornerTuneLayout {
         }
     }
 }
-// END relocated ThreeDCornerTuneLayout.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
-/// One-shot 3D self-test (Main 09:04): after an update, with 3D enabled, prepares a short synthetic clip through the real NativePrepareRunner and the real RenderShotWriter
+// [attribution comment elided]
 // [attribution comment elided]
 // [attribution comment elided]
 enum ThreeDSelfTest {
@@ -10730,7 +10780,7 @@ extension ThreeDSelfTest {
     }
 }
 #endif
-// END relocated ThreeDSelfTest.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -10817,15 +10867,15 @@ enum ThreeDSelfTestCLI {
         #endif
     }
 }
-// END relocated ThreeDSelfTestCLI.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
-/// X1 (190x, A-D request 14:41): the gor log of a played film never said which 3D render a shot was played with, so a diag pack could not be tied to
-/// a method, IPD, convergence or mode. One `gor3d-shot v1` line per shot the moment it starts showing, plus one `gor3d-osd v1` line per distinct OSD
 // [attribution comment elided]
-/// gor log the first-Mac kit uploads. Text only: no setting, pixel or timing changes. Not compiled on a Mac yet; the pure formatters are pinned on
-/// Linux by Tests/FirstMacKit (field names and order must match the render key v4 format of ThreeDRenderCoordinator.key).
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 enum ThreeDShotPlayLog {
     /// Field order of render key v4, split on "|": comfort keys carry three ipd fields (comfort|ipd..|sf..), fixed keys carry two (fixed|ipd..).
     static let keyFields = ["version", "method", "ipd", "mode", "convergence", "eye_n", "codec", "swap", "screen_deg", "surround"]
@@ -10902,7 +10952,7 @@ enum ThreeDShotPlayLog {
     /// Forgotten between films so the next film logs its first shot and its OSD lines again.
     static func reset() { lock.lock(); seenOSD.removeAll(); lastShot = nil; lock.unlock() }
 }
-// END relocated ThreeDShotPlayLog.swift
+// [attribution comment elided]
 // [attribution comment elided]
 import Foundation
 
@@ -10993,8 +11043,8 @@ enum BoundedLoad {
 import Foundation
 
 // [attribution comment elided]
-/// because the relaunch check re-hashed the film while no cache existed yet. That pinned the main thread (photon-cost frame_drop_count 102..350 per 10 s window). This memo returns the key without touching the main thread:
-/// a hit is an O(1) stat compare, a miss starts ONE background hash (utility) and returns nil; the next tick finds it. `hashRuns` counts real hashes (test).
+// [attribution comment elided]
+// [attribution comment elided]
 enum CacheKeyMemo {
     private static let lock = NSLock()
     private static var memo: [String: (sig: String, key: String)] = [:]

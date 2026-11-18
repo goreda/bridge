@@ -11,7 +11,7 @@ CALLER SCOPE: updateCaptureConsumers, PPController_Features.swift:1249-1252 pass
 
 ## Extraction
 Extracted enum CaptureConsumerRules (headShouldRun + blinkShouldRun, pure Bool functions) from the pinned file; compiled standalone with the test driver.
-Attribution comment lines elided from the packet source copy: 6; sha256 below covers the elided copy.
+Comment lines carrying attribution or provenance identifiers elided from the packet source copy: 18 (trigger lines plus their continuation lines; string-aware, code untouched); sha256 below covers the elided copy.
 
 ## Verification (Swift 6.0.3, Linux)
 
@@ -136,8 +136,8 @@ exit(0)
 
 ## fix diff
 ```diff
---- /tmp/packets_199j/W-gdb-199j-1nstinct-42/source/archive/gor/Sources/gor/gor/PPController_Features.swift	2026-11-18 05:13:47.824838680 +0300
-+++ /tmp/packets_199j/W-gdb-199j-1nstinct-42/fixed/archive/gor/Sources/gor/gor/PPController_Features.swift	2026-11-18 05:13:47.824838680 +0300
+--- /tmp/packets_199j/W-gdb-199j-1nstinct-42/source/archive/gor/Sources/gor/gor/PPController_Features.swift	2026-11-18 05:24:29.587577925 +0300
++++ /tmp/packets_199j/W-gdb-199j-1nstinct-42/fixed/archive/gor/Sources/gor/gor/PPController_Features.swift	2026-11-18 05:24:29.587577925 +0300
 @@ -543,7 +543,7 @@
      /// Blink leg: needs frames whenever blink is on in VR with a file loaded - pause must NOT
      /// stop it (loadedVideoActive, not playbackActive), or the pause toggle could never resume.
@@ -184,4 +184,4 @@ OK
 semantic_exit=0
 ```
 
-Publication: NONQUALIFIED, four of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease.
+Privacy revision 0526: whole comment runs removed. Non-comment statements string-aware compared equal to previously independently replayed adapted versions. Previous Linux proof binds OLD source hashes; new writer re-verification is separately attributed, Ops did not rerun Swift binaries for this comment-only revision. NONQUALIFIED; all prior boundary failures and native/full-host exclusions remain. Canonical runner discovery adaptation remains not executed.

@@ -93,7 +93,7 @@ final class VRStereoPanelSession {
             }
             if player(root)?.vrModeEnabled != true {
 // [attribution comment elided]
-                // not a stale full-player transparent input window when it is next shown in mono.
+// [attribution comment elided]
                 timer?.invalidate(); timer=nil
                 original.removeFromSuperview(); panel.contentView=original
                 original.frame=savedSourceFrame
@@ -285,13 +285,13 @@ extension AppDelegate {
     @objc func menuPanscanIn()        { cmd(#"{"command":["add","panscan",0.1]}"#) }
     @objc func menuPanscanOut()       { cmd(#"{"command":["add","panscan",-0.1]}"#) }
 // [attribution comment elided]
-    // Verified against the vendor mpv 0.41 over IPC: +90 from 270 clamps to 359 (a
-    // non-90-degree step hardware decode cannot show, so the picture looks stuck and
-    // every later add stays 359) and -90 from 0 selects the "no" choice (rotation
-    // off entirely, shown as a boolean false on readback). cycle-values walks the
-    // four right angles in order, wraps both directions, and self-heals from both
-    // poisoned states; set_property 0 resets. The r1-rotate-menu selftest leg
-    // replays these exact strings and checks video-rotate AND video-params/rotate.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     @objc func menuRotateCW()         { cmd(#"{"command":["cycle-values","video-rotate","90","180","270","0"]}"#) }
     @objc func menuRotateCCW()        { cmd(#"{"command":["cycle-values","video-rotate","270","180","90","0"]}"#) }
     @objc func menuRotateReset()      { cmd(#"{"command":["set_property","video-rotate",0]}"#) }
@@ -643,7 +643,7 @@ extension AppDelegate {
         let layoutRows: (CTFont) -> Void = { [weak parentWin, weak panel, weak textPanel, weak textBg, weak topLabel, weak versionLabel, weak idLabel, weak idValueLabel] font in
             guard let parentWin, let panel, let textPanel, let textBg, let topLabel, let versionLabel, let idLabel, let idValueLabel else { return }
 // [attribution comment elided]
-            // the right. Typography/row step/gap use the global UI policy.
+// [attribution comment elided]
             let rows = [topLabel, versionLabel, idLabel, idValueLabel]
             let inks = rows.map { $0.setFont(font) }
             let rowHeight = PhotonFont.chromeCharH
@@ -973,11 +973,11 @@ extension AppDelegate {
             previousOnClose?()
         }
 // [attribution comment elided]
-        // presses its random button. The event tap is disabled for the
-        // panel's lifetime, so the panel needs its own monitor. Typing in a
-        // search field is untouched: those events target the field's panel
-        // window, not the browser's window. Same remove-on-close rule as the
-        // Esc monitor.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
         var rMonitor: Any?
         rMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak browser] event in
             guard event.keyCode == 15,
@@ -994,9 +994,9 @@ extension AppDelegate {
     }
     
 // [attribution comment elided]
-    /// media's folder. That folder IS the playlist (selecting a file there
-    /// appends its playable siblings), so the browser lists the playlist.
-    /// No-ops without a playing file; internal overlay media has no folder.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     @objc func menuOpenPlaylistFolder() {
         guard let ctrl = controller else { return }
         let path = ctrl.currentFilePath
@@ -1005,9 +1005,9 @@ extension AppDelegate {
     }
 
 // [attribution comment elided]
-    /// Routed through the menu's key equivalent so it fires while a panel owns
-    /// keys and the event tap is off; a silent no-op when no searchable panel
-    /// is open.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     @objc func menuFindInPanel() {
         switch frontmostSearchablePanel() {
         case let p as FileBrowserPanel: p.toggleSearchPanelFromKey()
@@ -1095,8 +1095,8 @@ extension AppDelegate {
             previousOnClose?()
         }
 // [attribution comment elided]
-        // plain r presses this panel's random button while the tap is off;
-        // keystrokes into a search field window pass through.
+// [attribution comment elided]
+// [attribution comment elided]
         var rMonitor: Any?
         rMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak panel] event in
             guard event.keyCode == 15,
@@ -1236,17 +1236,17 @@ extension AppDelegate {
         }
 
 // [attribution comment elided]
-        // URL replaces playback and releases only after its load completes.
+// [attribution comment elided]
         TunnelForBlockedHosts.shared.willLoad(finalURL)
 
         var extraHeaders: [String] = []
         if !gofileToken.isEmpty { extraHeaders.append("Authorization: Bearer \(gofileToken)") }
         if !cookieHeader.isEmpty  { extraHeaders.append("Cookie: \(cookieHeader)") }
 
-        // T4 M1 gap 1: gorav stream route (magnet/IPTV/archive reach here as
 // [attribution comment elided]
-        // and the IPTV/archive pickers). Pre-open admission only; a refusal
-        // falls through to the mpv load below untouched.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
         let admissionStart = startPos.flatMap { $0.isFinite && $0 >= 0 ? $0 : nil }
         if goravAdmitAndOpen(url: finalURL, headerCount: extraHeaders.count,
                              subtitleCount: subtitleURLs.count, startPos: admissionStart) { return }
@@ -1873,15 +1873,15 @@ extension AppDelegate {
 import AppKit
 
 // [attribution comment elided]
-// are those the only settings video players have?"). The video-player audio
-// set mpv already supports, wired as menu rows: volume boost above 100%,
-// output device, channel layout/downmix, dynamics (night mode, loudness
-// normalize) and equalizer presets. Delay keeps its existing group.
-//
-// One-of lists and toggles are tracked in AudioMenuState: these paths have
-// no input.conf binding and no other UI, so the tracked value cannot drift
-// from what mpv was sent; checkmarks mirror it. The device list is re-read
-// from mpv itself on every menu open (MenuActions.rebuildAudioDeviceMenu).
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 extension AppDelegate {
 
     enum AudioMenuState {
@@ -1966,12 +1966,12 @@ extension AppDelegate {
 import AppKit
 
 // [attribution comment elided]
-// make that item the general update button"). The old
-// chromium-only item becomes "update": one press checks every component gor
-// can update by itself - the vendored chromium headless shell and the staged
-// yt-dlp - and is wired to include the app/repo update the moment the
-// auto-update engine is activated. The engine stays OFF: this file only reads
-// its config; nothing here enables a flag, swaps a binary or schedules a poll.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 extension AppDelegate {
 
     enum UpdateChecks {
@@ -1986,8 +1986,8 @@ extension AppDelegate {
             URL(fileURLWithPath: Bundle.main.bundlePath).deletingLastPathComponent()
         }
 
-        /// Engine state, read-only, from the exact file the Python engine
-        /// (tools/autoupdate.py Updater.config) writes. Missing or malformed
+// [attribution comment elided]
+// [attribution comment elided]
 // [attribution comment elided]
         static func appUpdateEnabled(project: URL) -> Bool {
             let config = project.appendingPathComponent(".gor-autoupdate/config.json")
@@ -2089,16 +2089,16 @@ extension AppDelegate {
 import AppKit
 
 // [attribution comment elided]
-//
-// Control-Option-Command-A steps the aspect override, Shift joins for the
-// crop. The walk runs through the shared VideoFormatCatalog list the two
-// menus show, in menu order, and wraps to "no override" (aspect default /
-// crop off) after the widest format. State is read where the menu checkmarks
-// read it - currentAspectPreset for the aspect override and the controller's
-// selectedMenuCropAspect for the crop - so clicking a format row resumes the
-// walk at that format. A manual entry or a fine-nudged value resumes at the
-// first wider format; past the widest, the walk wraps. Every step answers on
-// mpv's own OSD, like the other toggles: a repeat chord never raises a modal.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 extension AppDelegate {
     enum VideoFormatCycle {
         // -1 = no override. Same 0.005 reuse tolerance as the aspect handlers.

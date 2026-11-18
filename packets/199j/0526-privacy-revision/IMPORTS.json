@@ -1,0 +1,52 @@
+[
+  {
+    "id": "W-gdb-199j-1nstinct-41",
+    "old_commit": "c22fcce7f19db539402e2a09b130a510e24e8b0e",
+    "commit": "b50ec8f820c20658c1d60efcf46391cb7b35efe0",
+    "branch": "lane/lab-1nstinct-W-gdb-199j-1nstinct-41",
+    "qualification": "NONQUALIFIED",
+    "fixed_sha256": "05b789cbcceb095f2cd2bbcab5fd1e202f262d62cd3edd1e712765bafe2e521f",
+    "baseline_sha256": "223ff5fc7ea0469c52f66b594d545e03b4d36fa1f59c75847a083af0fe91a202",
+    "note": "Comment-only revision, old replay hashes retained as historical evidence; no new Ops execution claim."
+  },
+  {
+    "id": "W-gdb-199j-1nstinct-42",
+    "old_commit": "8259962f3d61596834aa9c6300e7e1c4fa5fb57f",
+    "commit": "567d7bba67510a8681c62363fed94c3c6cd80ed4",
+    "branch": "lane/lab-1nstinct-W-gdb-199j-1nstinct-42",
+    "qualification": "NONQUALIFIED",
+    "fixed_sha256": "17465937b1ab358c37e369902593e3fccc1b08217ae8d4b299634c06933674a4",
+    "baseline_sha256": "592f72625ed50bd4ffd8a600d269aaf2c6a3c55530eea12840bcbe03a7a339cf",
+    "note": "Comment-only revision, old replay hashes retained as historical evidence; no new Ops execution claim."
+  },
+  {
+    "id": "W-gdb-199j-1nstinct-43",
+    "old_commit": "15a48e04832ab38d9f2fcdf3b1188536d92629c8",
+    "commit": "2f1c7f28c832d97ae41a3f73456fe5cd0344f4e7",
+    "branch": "lane/lab-1nstinct-W-gdb-199j-1nstinct-43",
+    "qualification": "NONQUALIFIED",
+    "fixed_sha256": "0979fdae8f3fa84b352b9553547721112baa078a42107678509dc40b98c7024d",
+    "baseline_sha256": "ffefaec29da33df8828623f51e4c42412ce9a94021f724d5a177deef250f6491",
+    "note": "Comment-only revision, old replay hashes retained as historical evidence; no new Ops execution claim."
+  },
+  {
+    "id": "W-gdb-199j-1nstinct-44",
+    "old_commit": "846232beda5a81434599aff7a171fc254f1e2205",
+    "commit": "68fd7d873a0cf0e528ccc822cf60c18c40878de2",
+    "branch": "lane/lab-1nstinct-W-gdb-199j-1nstinct-44",
+    "qualification": "NONQUALIFIED",
+    "fixed_sha256": "873b9a3f9df8e0b623c794aaa8651a8b24544457dac61d59e447bc7cc7c57e93",
+    "baseline_sha256": "defeb53352a310b9ce2a7334b489e4342eb3b9c16e546d69adab7ad07e633d80",
+    "note": "Comment-only revision, old replay hashes retained as historical evidence; no new Ops execution claim."
+  },
+  {
+    "id": "W-gdb-199j-1nstinct-45",
+    "old_commit": "24a2f82f86bbaa395b935a644242c56129fa0b04",
+    "commit": "3883625031bba403ea390c62c38169d4c9d0b3e4",
+    "branch": "lane/lab-1nstinct-W-gdb-199j-1nstinct-45",
+    "qualification": "NONQUALIFIED",
+    "fixed_sha256": "a439097a069246e03ec57b3f8bbc5abb8a332f546fd5a8f54cde09ff36ea286e",
+    "baseline_sha256": "632d6d300c487bc2eb68ddac90d00e6a28163c01329c350c7c66365dfdace31f",
+    "note": "Comment-only revision, old replay hashes retained as historical evidence; no new Ops execution claim."
+  }
+]

@@ -11,7 +11,7 @@ CALLER SCOPE: duplicate-instance arbitration at launch, AppDelegate.swift:416 (`
 
 ## Extraction
 Extracted struct QuitToken and static func readQuitToken verbatim from the pinned file; the static-let quitTokenURL (a brace-less declaration the extractor cannot lift) is supplied by the driver as a top-level frozen path. Compiled standalone.
-Attribution comment lines elided from the packet source copy: 17; sha256 below covers the elided copy.
+Comment lines carrying attribution or provenance identifiers elided from the packet source copy: 68 (trigger lines plus their continuation lines; string-aware, code untouched); sha256 below covers the elided copy.
 
 ## Verification (Swift 6.0.3, Linux)
 
@@ -145,8 +145,8 @@ exit(0)
 
 ## fix diff
 ```diff
---- /tmp/packets_199j/W-gdb-199j-1nstinct-43/source/archive/gor/Sources/gor/AppDelegate.swift	2026-11-18 05:13:48.956846646 +0300
-+++ /tmp/packets_199j/W-gdb-199j-1nstinct-43/fixed/archive/gor/Sources/gor/AppDelegate.swift	2026-11-18 05:13:48.956846646 +0300
+--- /tmp/packets_199j/W-gdb-199j-1nstinct-43/source/archive/gor/Sources/gor/AppDelegate.swift	2026-11-18 05:24:30.691585692 +0300
++++ /tmp/packets_199j/W-gdb-199j-1nstinct-43/fixed/archive/gor/Sources/gor/AppDelegate.swift	2026-11-18 05:24:30.691585692 +0300
 @@ -3251,6 +3251,7 @@
                let pid = obj["pid"] as? Int,
                let epoch = (obj["epoch"] as? Int) ?? (obj["epoch"] as? NSNumber)?.intValue,
@@ -190,4 +190,4 @@ OK
 semantic_exit=0
 ```
 
-Publication: NONQUALIFIED, four of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease.
+Privacy revision 0526: whole comment runs removed. Non-comment statements string-aware compared equal to previously independently replayed adapted versions. Previous Linux proof binds OLD source hashes; new writer re-verification is separately attributed, Ops did not rerun Swift binaries for this comment-only revision. NONQUALIFIED; all prior boundary failures and native/full-host exclusions remain. Canonical runner discovery adaptation remains not executed.
