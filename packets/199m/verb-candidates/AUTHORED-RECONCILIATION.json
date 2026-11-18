@@ -1,0 +1,40 @@
+{
+  "inventory_rows": 26,
+  "stock_candidates": 23,
+  "reclassified_inventory": [
+    "menu-zoom",
+    "menu-pan",
+    "cache-parity"
+  ],
+  "authored_candidates": 12,
+  "authored_to_stock": {
+    "audio-night-toggle.md": "audio-night-mode",
+    "audio-loudness-toggle.md": "audio-loudness-normalize",
+    "subtitle-numeric-select.md": "subtitle-owner-sid",
+    "subtitle-size-step.md": "subtitle-size-step",
+    "audio-eq-preset.md": "audio-eq-preset",
+    "subtitle-size-reset.md": "subtitle-size-reset",
+    "subtitle-position-step.md": "subtitle-position-step",
+    "subtitle-position-preset.md": "subtitle-position-preset",
+    "transport-chapter-step.md": "transport-chapter",
+    "transport-frame-step.md": "transport-frame-step",
+    "transport-file-loop.md": "transport-loop",
+    "transport-ab-loop.md": "transport-ab-loop"
+  },
+  "remaining_stock_without_authored_candidate": [
+    "audio-boost",
+    "audio-device",
+    "capture-screenshot",
+    "capture-stats",
+    "menu-aspect",
+    "menu-crop",
+    "menu-eq",
+    "menu-rotate",
+    "transport-playlist-nav",
+    "transport-playlist-reload",
+    "transport-speed"
+  ],
+  "ready": 0,
+  "run_proven": 0,
+  "note": "25 prior stock minus zoom/pan/cache plus playlist split equals23 stock, plus3 reclassified equals26 inventory. Authored packets are uncompiled models, not live implementation."
+}
