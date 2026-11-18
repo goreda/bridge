@@ -1,0 +1,1 @@
+NONQUALIFIED isolated imports only. No native/full host acceptance. Session host adoption remains NOT_RUN. B15 detector-only and counter mutants survive, B16 end-finiteness mutant survives, B17 FIFO admitted, B18 trap baseline, B20 compile baseline and nonstreaming limits. B11/B12/A10 duplicate source returns were not imported again.
