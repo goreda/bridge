@@ -1,0 +1,4 @@
+packet_id	item	title	packet_sha256_16
+W-gdb-199h-wrr3-01	WR	Grain vendor binding (r3 re-pin)	515d0e2c70c173fa
+W-gdb-199h-wrr3-02	WR	Manual grain range (r3 re-pin)	12628530b1b86258
+W-gdb-199h-wrr3-03	WR	Installed BuildID read (r3: rollback context + candidate identity)	670356155e1272e8
