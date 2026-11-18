@@ -1,0 +1,57 @@
+packet: subtitle-position-step
+verb (owner-visible): sub-pos add -1 / +1
+parent row: SUBTITLE-TYPOGRAPHY position up/down (add sub-pos); lab: in2tinct (per owner order)
+status: CANDIDATE, NOT READY (grounded refusal and call-path evidence only; no typed operation interface, no Linux test, no Darwin fixture supplied)
+repository gor, source_pin 55e11d70ee6bad7d7d7373a275eeebd0a5157eee; repository gorav, source_pin cf3e3f1772033dbc8465b19689e93f53c60006ce
+
+## A. Owner-visible call sites at gor pin (byte-exact; file:line)
+Sources/gor/GorUI/MenuActions.swift:491:     @objc func menuSubUp()        { controller?.adjustSubtitleProperty("sub-pos",delta:-1) }
+Sources/gor/GorUI/MenuActions.swift:492:     @objc func menuSubDown()      { controller?.adjustSubtitleProperty("sub-pos",delta:1) }
+
+## B. Route to the host (byte-exact)
+This verb is resolved in the controller before any host command; see C. (host route lines for reference):
+Sources/gor/gor/PPController.swift:4067:         if embeddedBackend {embeddedCommand?(json);return}
+Sources/gor/gor/PPController.swift:4155:         if embeddedBackend {for line in rawPayload.split(separator:"\n") {embeddedCommand?(String(line))};return}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:58:             controls.embeddedCommand={ [weak self] line in self?.handleChromeCommand(line) }
+
+## C. Refusal point at gor pin (byte-exact)
+Sources/gor/gor/PPController.swift:3889:     func adjustSubtitleProperty(_ property:String,delta:Double=0,reset:Bool=false) -> Bool {
+Sources/gor/gor/PPController.swift:3890:         guard ["sub-scale","sub-delay","sub-pos","audio-delay"].contains(property) else{return false}
+Sources/gor/gor/PPController.swift:3891:         if embeddedBackend {return adjustEmbeddedSubtitleProperty(property,delta:delta,reset:reset)}
+Sources/gor/gor/PPController.swift:3892:         if refuseEmbedded("subtitle/audio property "+property) {return false}
+
+Sources/gor/gor/PPController.swift:3919:     // sub-scale and sub-pos stay explicit refusals (the Swift SubtitleView is not the displayed renderer).
+Sources/gor/gor/PPController.swift:3920:     // Delays are committed and announced only after the session accepted them. Values are session-only.
+Sources/gor/gor/PPController.swift:3921:     private var embeddedSubDelay=0.0
+Sources/gor/gor/PPController.swift:3922:     private var embeddedAudioDelay=0.0
+Sources/gor/gor/PPController.swift:3923:     private func adjustEmbeddedSubtitleProperty(_ property:String,delta:Double,reset:Bool)->Bool {
+Sources/gor/gor/PPController.swift:3924:         guard property == "sub-delay" || property == "audio-delay" else {
+Sources/gor/gor/PPController.swift:3925:             _=refuseEmbedded(property == "sub-scale" ? "subtitle font size" : "subtitle position")
+Sources/gor/gor/PPController.swift:3926:             return false
+Sources/gor/gor/PPController.swift:3927:         }
+
+Sources/gor/gor/PPController.swift:2051:     private func refuseEmbedded(_ control:String)->Bool {
+Sources/gor/gor/PPController.swift:2052:         guard embeddedBackend else {return false}
+Sources/gor/gor/PPController.swift:2053:         spineUI.showMPVOSD("gorav unavailable: "+control,force:true)
+Sources/gor/gor/PPController.swift:2054:         print("[engine] backend=gorav refusal=unsupported-control control=\(control)")
+Sources/gor/gor/PPController.swift:2055:         return true
+Sources/gor/gor/PPController.swift:2056:     }
+
+
+## D. Call path below the host at gorav pin (host -> GorAVEmbeddedSession -> presenter/sink)
+probe regex over gorav Sources (tests excluded): subPos|subtitlePosition|SubtitlePosition|marginY|bottomMargin
+GorAVEmbeddedSession.swift: NO matching method or property. MISSING body: session API for this verb. Nothing is invented here.
+Other gorav files matching the probe (0); nearest candidates only, not a verified call path:
+Presenter/sink hop: not established for this verb; named as missing until an interface exists.
+
+## E. Notes
+Position reset has no independent owner call site; it exists only inside the umbrella resetSubtitles (PPController.swift:3939-3945) and is folded into this position family (per goreda, via Main 01:04). It is not counted as its own packet.
+
+## F. Not supplied
+Typed operation interface; supported/refused boundary; Linux-runnable test; Darwin fixture; full-file return scope. Executed results: none. No PASS inherited across pins.
+
+## G. Source files and sha256
+gor@55e11d70 Sources/gor/GorAVBackend/GorAVPlayerHost.swift feeff2f4db3bbf75063f853d3eb24cfb916b401975237873d0316e1a719d9368
+gor@55e11d70 Sources/gor/GorUI/MenuActions.swift 49ad911cdd14d119a12a91ec34cd6062d6c246b018a35d5932dd00d563aaddcc
+gor@55e11d70 Sources/gor/gor/PPController.swift ba50b8c3997414e2409244c3f5db6a359502ba41cd9ebde4883f6e9cc94f85e7
+gorav@cf3e3f1 Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift a74d11a2b12ed17e0fe88f6a7926ac9a7d01a285da53c1c2318321eb1ab4d66d

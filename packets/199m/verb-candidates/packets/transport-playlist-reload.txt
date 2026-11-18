@@ -1,0 +1,57 @@
+packet: transport-playlist-reload
+verb (owner-visible): playlist-play-index current
+parent row: TRANSPORT-EXTENDED playlist reload current (File menu Reload); lab: 1nstinct (per owner order)
+status: CANDIDATE, NOT READY (grounded refusal and call-path evidence only; no typed operation interface, no Linux test, no Darwin fixture supplied)
+repository gor, source_pin 55e11d70ee6bad7d7d7373a275eeebd0a5157eee; repository gorav, source_pin cf3e3f1772033dbc8465b19689e93f53c60006ce
+
+## A. Owner-visible call sites at gor pin (byte-exact; file:line)
+Sources/gor/GorUI/MenuActions.swift:220:     // playlist-play-index takes exactly one argument in mpv 0.41; the old
+Sources/gor/GorUI/MenuActions.swift:221:     // trailing "yes" made mpv reject the whole command, so reload did nothing.
+Sources/gor/GorUI/MenuActions.swift:222:     @objc func menuReload() { cmd(#"{"command":["playlist-play-index","current"]}"#) }
+
+## B. Route to the host (byte-exact)
+PPController.ipcCommand / batchIPC embeddedBackend branch -> controls.embeddedCommand -> GorAVPlayerHost.handleChromeCommand:
+Sources/gor/gor/PPController.swift:4067:         if embeddedBackend {embeddedCommand?(json);return}
+Sources/gor/gor/PPController.swift:4155:         if embeddedBackend {for line in rawPayload.split(separator:"\n") {embeddedCommand?(String(line))};return}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:58:             controls.embeddedCommand={ [weak self] line in self?.handleChromeCommand(line) }
+
+## C. Refusal point at gor pin (byte-exact)
+No case in handleChromeCommand matches this verb, so it falls to the default branch (Sources/gor/GorAVBackend/GorAVPlayerHost.swift:377-383); detail text per the rule: "playlist-play-index" (derived, not run):
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:377:         default:
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:378:             let detail:String
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:379:             if name=="script-message-to" {detail="script "+(string(1) ?? "unknown")+" "+(string(2) ?? "unknown")}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:380:             else if ["set_property","add","cycle","get_property"].contains(name) {detail=name+" "+(string(1) ?? "unknown")}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:381:             else {detail=name}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:382:             fail(Refusal.unsupportedCapability(String(detail.prefix(96))))
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:383:         }
+then fail():
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:511:     private func fail(_ error: Error) {
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:512:         guard !postOpenFallback.wasClaimed else { return }
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:513:         gateFailureCount += 1
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:514:         // Typed tokens only: never include a source URL, cookie or private path.
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:515:         status.stringValue = "gorav refused: \(error)"
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:516:         chrome?.spineUI.showMPVOSD("gorav unavailable: "+String(String(describing:error).prefix(160)),force:true)
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:517:         print("[engine] backend=gorav refusal=\(error); no runtime replay on mpv")
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:518:     }
+
+## D. Call path below the host at gorav pin (host -> GorAVEmbeddedSession -> presenter/sink)
+probe regex over gorav Sources (tests excluded): playlistIndex|reload|Reload|reopen
+GorAVEmbeddedSession.swift: NO matching method or property. MISSING body: session API for this verb. Nothing is invented here.
+Other gorav files matching the probe (4); nearest candidates only, not a verified call path:
+Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift:1169:                             return markTerminal(.failed(code: -19, summary: "hardware decode failed (rc=\(code)); software provider reopen failed"))
+Sources/GorAVFFmpegAdapter/L3HardwareDecode.swift:29:         public var softwareFallbacks = 0    // confirmed software provider reopens
+Sources/GorAVPlaybackCore/ControlBus.swift:194:     public let generation: UInt64           // presentation generation (bumps on seek or reopen)
+Sources/GorAVPlaybackCore/LookParameters.swift:88:         LookParameter(name: "blink_reopen_l", family: .vrBase, kind: .floatUniform(dynamic: false), defaultText: "0", computedDefault: nil, offset: 34, stage: .surround),
+Presenter/sink hop: not established for this verb; named as missing until an interface exists.
+
+## E. Notes
+r4 split from the old transport-playlist packet. This is the File menu Reload action (MenuActions.swift:222), a different owner-visible verb from next/previous. The owner-row mapping to TRANSPORT-EXTENDED playlist is not confirmed; flagged for goreda. Not READY. A second reload path, PPController.reloadStream (4304), was not traced.
+
+## F. Not supplied
+Typed operation interface; supported/refused boundary; Linux-runnable test; Darwin fixture; full-file return scope. Executed results: none. No PASS inherited across pins.
+
+## G. Source files and sha256
+gor@55e11d70 Sources/gor/GorAVBackend/GorAVPlayerHost.swift feeff2f4db3bbf75063f853d3eb24cfb916b401975237873d0316e1a719d9368
+gor@55e11d70 Sources/gor/GorUI/MenuActions.swift 49ad911cdd14d119a12a91ec34cd6062d6c246b018a35d5932dd00d563aaddcc
+gor@55e11d70 Sources/gor/gor/PPController.swift ba50b8c3997414e2409244c3f5db6a359502ba41cd9ebde4883f6e9cc94f85e7
+gorav@cf3e3f1 Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift a74d11a2b12ed17e0fe88f6a7926ac9a7d01a285da53c1c2318321eb1ab4d66d
