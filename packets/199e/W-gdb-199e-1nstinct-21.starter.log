@@ -1,0 +1,7 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL CRLF records separated
+PASS LF retained
+PASS CR retained
+

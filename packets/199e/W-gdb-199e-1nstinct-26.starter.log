@@ -1,0 +1,8 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL text CRLF terminator consumed
+PASS split CR held
+FAIL byte CRLF terminator consumed
+PASS LF framing retained
+

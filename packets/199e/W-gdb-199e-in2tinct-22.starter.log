@@ -1,0 +1,7 @@
+compile_exit=0
+
+semantic_exit=1
+PASS all frames counted
+FAIL owned concurrent publications do not collide
+PASS final persisted counter is newest
+

@@ -1,0 +1,46 @@
+compile_exit=0
+
+semantic_exit=-4
+
+*** Signal 4: Backtracing from 0x56283b6b5928... done ***
+
+*** Program crashed: Illegal instruction at 0x000056283b6b5928 ***
+
+Thread 0 "test" crashed:
+
+0      0x000056283b6b5928 static SBSPairEvidence.match(_:width:height:topBottom:) + 4920 in test
+1 [ra] 0x000056283b6b618e main + 77 in test
+
+
+Registers:
+
+rax 0xffffffffffffff01  18446744073709551361
+rdx 0x0000000000000000  0
+rcx 0x0000000000000020  32
+rbx 0x0000000000000000  0
+rsi 0x0000000000000000  0
+rdi 0xc000000000000000  13835058055282163712
+rbp 0x00007ffc38dc0f10  30 10 dc 38 fc 7f 00 00 8e 61 6b 3b 28 56 00 00  0·Ü8ü····ak;(V··
+rsp 0x00007ffc38dc09d0  00 00 00 00 00 00 00 00 e0 62 be 55 8c 7f 00 00  ········àb¾U····
+ r8 0x00007ffc38dc09d0  00 00 00 00 00 00 00 00 e0 62 be 55 8c 7f 00 00  ········àb¾U····
+ r9 0x0000000000000010  16
+r10 0x00007f8c5442cf58  d1 46 00 00 12 03 0b 00 10 95 2e 00 00 00 00 00  ÑF········.·····
+r11 0x00007f8c546e9510  e9 fb 14 ea ff 66 66 2e 0f 1f 84 00 00 00 00 00  éû·êÿff.········
+r12 0x00007ffc38dc1148  3f 1c dc 38 fc 7f 00 00 00 00 00 00 00 00 00 00  ?·Ü8ü···········
+r13 0x000056283b6b6140  55 48 89 e5 48 81 ec 10 01 00 00 48 c7 05 4a 32  UH·åH·ì····HÇ·J2
+r14 0x000056283b6b8ac8  e8 d0 9d 55 8c 7f 00 00 a0 0e 9e 55 8c 7f 00 00  èÐ·U···· ··U····
+r15 0x00007f8c55be5040  e0 62 be 55 8c 7f 00 00 15 00 00 00 00 00 00 00  àb¾U············
+rip 0x000056283b6b5928  0f 0b 0f 0b 0f 0b 0f 0b 0f 0b 0f 0b 0f 0b 0f 0b  ················
+
+rflags 0x0000000000010202  
+
+cs 0x0033  fs 0x0000  gs 0x0000
+
+
+Images (19 omitted):
+
+0x000056283b6b0000–0x000056283b6b6e38 <no build ID> test /tmp/tmpyebsoz9t/test
+
+Backtrace took 0.00s
+
+
