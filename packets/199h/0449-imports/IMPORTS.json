@@ -1,0 +1,83 @@
+[
+  {
+    "id": "W-gdb-199h-1nstinct-33",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "6133f4864206a7bb5cef9e0c45fff87d1697f8ab",
+    "branch": "lane/lab-1nstinct-W-gdb-199h-1nstinct-33",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Linux Foundation bracketed IPv6 loopback rejected, uppercase HTTP rejected; compatibility only, native Foundation NOT_RUN. Full native/AppKit/process/network/camera/font rendering NOT_RUN. Selected extracted helper scope only.",
+    "source_sha256": "3dace5421d1f8ee365b04d6ffa96c9bcc271f459066837e227e4141a77c1029d"
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-32",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "53e432389878148fb58381e331b6ecd5e48dfc43",
+    "branch": "lane/lab-1nstinct-W-gdb-199h-1nstinct-32",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Defensive malformed-input hardening, not observed live incident. Full native/AppKit/process/network/camera/font rendering NOT_RUN. Selected extracted helper scope only.",
+    "source_sha256": "018c99cf8530e47fc3a79284906ee786df9552532837bbfa36278c10d95ad858"
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-34",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "643cd4dd0b390bc380635be5ee1f9dc1a4f698aa",
+    "branch": "lane/lab-1nstinct-W-gdb-199h-1nstinct-34",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Defensive malformed-input hardening, not observed live incident. Full native/AppKit/process/network/camera/font rendering NOT_RUN. Selected extracted helper scope only.",
+    "source_sha256": "ffad240bc986f6d93ec03a9498b2bbc99beb323438e3c5d95043eccf9029e2a8"
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-36",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "9358af35cc6b0cb6e1781f8eee892ba3ceebc452",
+    "branch": "lane/lab-1nstinct-W-gdb-199h-1nstinct-36",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Fixed empty-vars branch traps on greatestFiniteMagnitude size due quarter-bucket Int conversion; caller-domain bound unverified. Full native/AppKit/process/network/camera/font rendering NOT_RUN. Selected extracted helper scope only.",
+    "source_sha256": "32c2f21bf9aa703fa7de8248496851334bd2d211edbea14eaea961e441f12605"
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-35",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "79ae871dbbefd573071e0ff2c263a11b240261f9",
+    "branch": "lane/lab-1nstinct-W-gdb-199h-1nstinct-35",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Baseline traps signal4; first single-guard mutant SURVIVES, second removes both Int guards and traps4. Finite-domain limits remain. Full native/AppKit/process/network/camera/font rendering NOT_RUN. Selected extracted helper scope only.",
+    "source_sha256": "f14d750375933dc25b62f17e80c9e9663f8c95f6fc59b4b081c4e0f868cda404"
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-38",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "5107fc029fb3f04ddc3798a3e0ab84983f8ee493",
+    "branch": "lane/lab-1nstinct-W-gdb-199h-1nstinct-38",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Double-encoded dotdot and encoded NUL admitted; no demonstrated exploit or second decoder. Full native/AppKit/process/network/camera/font rendering NOT_RUN. Selected extracted helper scope only.",
+    "source_sha256": "82eb38f33fdba495ca7615f6ce6a62332d1fbb7e3024fc3d60bb0dd5a06fd4f0"
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-37",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "3a43639b97c3318796af4cdc114740b66d04cec1",
+    "branch": "lane/lab-1nstinct-W-gdb-199h-1nstinct-37",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Defensive malformed-input hardening, not observed live incident. Full native/AppKit/process/network/camera/font rendering NOT_RUN. Selected extracted helper scope only.",
+    "source_sha256": "26d42782bdce6a4fd8b72608f190204141d89700c4caa9f03671b9dde452aa7a"
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-39",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "450dc3d369eb918a98668511915037ad524774cd",
+    "branch": "lane/lab-1nstinct-W-gdb-199h-1nstinct-39",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Defensive malformed-input hardening, not observed live incident. Full native/AppKit/process/network/camera/font rendering NOT_RUN. Selected extracted helper scope only.",
+    "source_sha256": "7f36cd2d765571e37b19f47367d8af2cd75c5e1004edcfce4c18870058d454bb"
+  },
+  {
+    "id": "W-gdb-199h-1nstinct-40",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "03f842da708e84c09ae5e3444479cb39b241173d",
+    "branch": "lane/lab-1nstinct-W-gdb-199h-1nstinct-40",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Aggregate CPU sum can overflow for huge finite input; cycles terminate, normal process domain much smaller. Full native/AppKit/process/network/camera/font rendering NOT_RUN. Selected extracted helper scope only.",
+    "source_sha256": "02aaaf574207a001273f10239f3a06ea832d7e8afc630338bc3dcbba0a0cc440"
+  }
+]

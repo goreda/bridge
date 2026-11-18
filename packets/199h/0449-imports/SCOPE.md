@@ -1,0 +1,1 @@
+Nine A32-A40 isolated imports. A31 held until fresh sanitized excerpt replay. No product main/delivery refs changed. Original full-source A31 published in cd2b839 and replaced by narrow excerpt85c05bc; no history rewrite, remote visibility unresolved. Current tracked bridge exact sensitive-comment scan zero. OS-permission lifecycle comment HOLD classified benign by coordinator.
