@@ -1,6 +1,6 @@
 {
-  "inventory_rows": 26,
-  "stock_candidates": 23,
+  "inventory_rows": 30,
+  "stock_candidates": 27,
   "reclassified_inventory": [
     "menu-zoom",
     "menu-pan",
@@ -30,11 +30,15 @@
     "audio-device",
     "capture-screenshot",
     "menu-aspect",
+    "menu-brightness-step",
+    "menu-color-reset",
+    "menu-contrast-step",
     "menu-crop",
-    "menu-eq",
-    "menu-rotate"
+    "menu-gamma-step",
+    "menu-rotate",
+    "menu-saturation-step"
   ],
   "ready": 0,
   "run_proven": 0,
-  "note": "23 stock +3 reclassified =26 inventory;16 authored candidate models,0 run-proven;7 stock rows still lack authored candidate."
+  "note": "r5 visual EQ grouped row replaced by five distinct action packets.27 stock +3 reclassified=30 inventory;16 authored models mapped one-to-one,11 stock rows not authored;0 run-proven."
 }

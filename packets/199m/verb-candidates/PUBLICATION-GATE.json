@@ -1,7 +1,7 @@
 {
   "result": "NOT_READY",
-  "inventory_count": 26,
-  "candidate_count": 23,
+  "inventory_count": 30,
+  "candidate_count": 27,
   "reclassified_count": 3,
   "ready_count": 0,
   "run_proven": 0,
@@ -18,10 +18,16 @@
     "audio-boost.txt": [
       "exactly one packet-json manifest required"
     ],
+    "menu-color-reset.txt": [
+      "exactly one packet-json manifest required"
+    ],
     "menu-rotate.txt": [
       "exactly one packet-json manifest required"
     ],
     "audio-loudness-normalize.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "menu-saturation-step.txt": [
       "exactly one packet-json manifest required"
     ],
     "transport-speed.txt": [
@@ -48,6 +54,9 @@
     "menu-aspect.txt": [
       "exactly one packet-json manifest required"
     ],
+    "menu-contrast-step.txt": [
+      "exactly one packet-json manifest required"
+    ],
     "subtitle-size-reset.txt": [
       "exactly one packet-json manifest required"
     ],
@@ -57,16 +66,19 @@
     "capture-screenshot.txt": [
       "exactly one packet-json manifest required"
     ],
-    "audio-eq-preset.txt": [
+    "menu-gamma-step.txt": [
       "exactly one packet-json manifest required"
     ],
-    "menu-eq.txt": [
+    "audio-eq-preset.txt": [
       "exactly one packet-json manifest required"
     ],
     "menu-crop.txt": [
       "exactly one packet-json manifest required"
     ],
     "transport-chapter.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "menu-brightness-step.txt": [
       "exactly one packet-json manifest required"
     ],
     "transport-playlist-nav.txt": [

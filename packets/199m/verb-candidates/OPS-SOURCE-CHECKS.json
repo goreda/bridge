@@ -474,6 +474,444 @@
     "match": true
   },
   {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorUI/MenuActions.swift",
+    "line": 451,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorUI/MenuActions.swift",
+    "line": 452,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorUI/MenuActions.swift",
+    "line": 453,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorUI/MenuActions.swift",
+    "line": 454,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorUI/MenuActions.swift",
+    "line": 455,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorUI/MenuActions.swift",
+    "line": 456,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorUI/MenuActions.swift",
+    "line": 457,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorUI/MenuActions.swift",
+    "line": 458,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/gor/PPController.swift",
+    "line": 4067,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/gor/PPController.swift",
+    "line": 4155,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 58,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 377,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 378,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 379,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 380,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 381,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 382,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 383,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 511,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 512,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 513,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 514,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 515,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 516,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 517,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 518,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 377,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 378,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 379,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 380,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 381,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 382,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 383,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 511,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 512,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 513,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 514,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 515,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 516,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 517,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 518,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 377,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 378,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 379,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 380,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 381,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 382,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 383,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 511,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 512,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 513,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 514,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 515,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 516,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 517,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 518,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 377,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 378,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 379,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 380,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 381,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 382,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 383,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 511,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 512,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 513,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 514,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 515,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 516,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 517,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 518,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/GorAVPlaybackCore/ColorStage.swift",
+    "line": 70,
+    "match": true
+  },
+  {
+    "packet": "menu-color-reset.txt",
+    "path": "Sources/GorAVPlaybackCore/RenderGraph.swift",
+    "line": 145,
+    "match": true
+  },
+  {
     "packet": "menu-rotate.txt",
     "path": "Sources/gor/GorUI/MenuActions.swift",
     "line": 295,
@@ -729,6 +1167,156 @@
     "packet": "audio-loudness-normalize.txt",
     "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
     "line": 518,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorUI/MenuActions.swift",
+    "line": 449,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorUI/MenuActions.swift",
+    "line": 450,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/gor/PPController.swift",
+    "line": 4067,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/gor/PPController.swift",
+    "line": 4155,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 58,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 377,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 378,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 379,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 380,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 381,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 382,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 383,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 511,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 512,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 513,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 514,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 515,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 516,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 517,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 518,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/GorAVPlaybackCore/ChromeStateModel.swift",
+    "line": 30,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/GorAVPlaybackCore/ColorStage.swift",
+    "line": 41,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/GorAVPlaybackCore/FrameUniformABI.swift",
+    "line": 28,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/GorAVPlaybackCore/RenderGraph.swift",
+    "line": 44,
+    "match": true
+  },
+  {
+    "packet": "menu-saturation-step.txt",
+    "path": "Sources/GorAVPlaybackCore/StageGeometry.swift",
+    "line": 45,
     "match": true
   },
   {
@@ -1950,6 +2538,156 @@
     "match": true
   },
   {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorUI/MenuActions.swift",
+    "line": 443,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorUI/MenuActions.swift",
+    "line": 444,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/gor/PPController.swift",
+    "line": 4067,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/gor/PPController.swift",
+    "line": 4155,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 58,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 377,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 378,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 379,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 380,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 381,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 382,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 383,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 511,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 512,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 513,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 514,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 515,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 516,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 517,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 518,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/GorAVPlaybackCore/ChromeStateModel.swift",
+    "line": 31,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/GorAVPlaybackCore/ColorStage.swift",
+    "line": 70,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/GorAVPlaybackCore/HUDStateModel.swift",
+    "line": 159,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/GorAVPlaybackCore/LookParameters.swift",
+    "line": 101,
+    "match": true
+  },
+  {
+    "packet": "menu-contrast-step.txt",
+    "path": "Sources/GorAVPlaybackCore/PhotonSharpShaderGenerator.swift",
+    "line": 209,
+    "match": true
+  },
+  {
     "packet": "subtitle-size-reset.txt",
     "path": "Sources/gor/GorUI/MenuActions.swift",
     "line": 489,
@@ -2796,6 +3534,150 @@
     "match": true
   },
   {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorUI/MenuActions.swift",
+    "line": 447,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorUI/MenuActions.swift",
+    "line": 448,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/gor/PPController.swift",
+    "line": 4067,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/gor/PPController.swift",
+    "line": 4155,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 58,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 377,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 378,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 379,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 380,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 381,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 382,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 383,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 511,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 512,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 513,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 514,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 515,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 516,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 517,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 518,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/GorAVPlaybackCore/ColorStage.swift",
+    "line": 70,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/GorAVPlaybackCore/HUDStateModel.swift",
+    "line": 176,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/GorAVPlaybackCore/LiveControlActuator.swift",
+    "line": 94,
+    "match": true
+  },
+  {
+    "packet": "menu-gamma-step.txt",
+    "path": "Sources/GorAVPlaybackCore/RenderGraph.swift",
+    "line": 145,
+    "match": true
+  },
+  {
     "packet": "audio-eq-preset.txt",
     "path": "Sources/gor/GorUI/MenuActions.swift",
     "line": 1972,
@@ -2979,186 +3861,6 @@
     "packet": "audio-eq-preset.txt",
     "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
     "line": 518,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorUI/MenuActions.swift",
-    "line": 443,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorUI/MenuActions.swift",
-    "line": 444,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorUI/MenuActions.swift",
-    "line": 445,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorUI/MenuActions.swift",
-    "line": 446,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorUI/MenuActions.swift",
-    "line": 447,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorUI/MenuActions.swift",
-    "line": 448,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorUI/MenuActions.swift",
-    "line": 449,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorUI/MenuActions.swift",
-    "line": 450,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorUI/MenuActions.swift",
-    "line": 454,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorUI/MenuActions.swift",
-    "line": 455,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/gor/PPController.swift",
-    "line": 4067,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/gor/PPController.swift",
-    "line": 4155,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
-    "line": 58,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
-    "line": 377,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
-    "line": 378,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
-    "line": 379,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
-    "line": 380,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
-    "line": 381,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
-    "line": 382,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
-    "line": 383,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
-    "line": 511,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
-    "line": 512,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
-    "line": 513,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
-    "line": 514,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
-    "line": 515,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
-    "line": 516,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
-    "line": 517,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
-    "line": 518,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/GorAVPlaybackCore/ColorStage.swift",
-    "line": 70,
-    "match": true
-  },
-  {
-    "packet": "menu-eq.txt",
-    "path": "Sources/GorAVPlaybackCore/RenderGraph.swift",
-    "line": 145,
     "match": true
   },
   {
@@ -3495,6 +4197,138 @@
     "packet": "transport-chapter.txt",
     "path": "Sources/GorAVFFmpegAdapter/MediaInventory.swift",
     "line": 38,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorUI/MenuActions.swift",
+    "line": 445,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorUI/MenuActions.swift",
+    "line": 446,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/gor/PPController.swift",
+    "line": 4067,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/gor/PPController.swift",
+    "line": 4155,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 58,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 377,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 378,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 379,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 380,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 381,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 382,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 383,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 511,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 512,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 513,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 514,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 515,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 516,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 517,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+    "line": 518,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/GorAVPlaybackCore/ColorStage.swift",
+    "line": 70,
+    "match": true
+  },
+  {
+    "packet": "menu-brightness-step.txt",
+    "path": "Sources/GorAVPlaybackCore/RenderGraph.swift",
+    "line": 145,
     "match": true
   },
   {
