@@ -23,16 +23,29 @@ W-gdb-199h-d5r2-10	arch-199h	D1b Atomic promotion ref-race enforcement (r2)	SUPE
 W-gdb-199h-wrr2-01	arch-199h	WR Grain vendor binding (r2 re-pin)	SUPERSEDED	goreda/instinct@b570c15ac	packets/199h/writer-r2/W-gdb-199h-wrr2-01.md
 W-gdb-199h-wrr2-02	arch-199h	WR Manual grain range (r2 re-pin)	SUPERSEDED	goreda/instinct@b570c15ac	packets/199h/writer-r2/W-gdb-199h-wrr2-02.md
 W-gdb-199h-wrr2-03	arch-199h	WR Installed BuildID read (r2: current-candidate check + wiring)	SUPERSEDED	goreda/instinct@b570c15ac	packets/199h/writer-r2/W-gdb-199h-wrr2-03.md
-W-gdb-199h-d5r3-01	arch-199h	D2a RenderShotWriter film-frame map (r3: whole-loop proof)	OPEN	goreda/instinct@35f553acd	packets/199h/d5-r3/W-gdb-199h-d5r3-01.md
-W-gdb-199h-d5r3-02	arch-199h	D2b Shot stream-copy segment (r3: native50 bounded route)	OPEN	goreda/instinct@35f553acd	packets/199h/d5-r3/W-gdb-199h-d5r3-02.md
-W-gdb-199h-d5r3-03	arch-199h	D2c+d Residual source proxy retirement (r3: custody-preserving)	OPEN	goreda/instinct@35f553acd	packets/199h/d5-r3/W-gdb-199h-d5r3-03.md
-W-gdb-199h-d5r3-04	arch-199h	D2e Render retention window (r3: regression coverage)	OPEN	goreda/instinct@35f553acd	packets/199h/d5-r3/W-gdb-199h-d5r3-04.md
-W-gdb-199h-d5r3-05	arch-199h	D3a Prepared-shot session swap (r3: no host-pin dependency)	OPEN	goreda/instinct@35f553acd	packets/199h/d5-r3/W-gdb-199h-d5r3-05.md
-W-gdb-199h-d5r3-06	arch-199h	D3b PSP commit + restoration tail (r3)	OPEN	goreda/instinct@35f553acd	packets/199h/d5-r3/W-gdb-199h-d5r3-06.md
-W-gdb-199h-d5r3-07	arch-199h	D4a Seek per-origin regression (r3: real API surface)	OPEN	goreda/instinct@35f553acd	packets/199h/d5-r3/W-gdb-199h-d5r3-07.md
-W-gdb-199h-d5r3-08	arch-199h	D4b Seek session-change guard (r3: regression scope)	OPEN	goreda/instinct@35f553acd	packets/199h/d5-r3/W-gdb-199h-d5r3-08.md
-W-gdb-199h-d5r3-09	arch-199h	D1 Parameterized promotion adapter (r3: sole adapter owner)	OPEN	goreda/bridge@d65fba3	packets/199h/d5-r3/W-gdb-199h-d5r3-09.md
-W-gdb-199h-d5r3-10	arch-199h	D1b Promotion ref-race gate (r3: on the 09 interface)	OPEN	goreda/bridge@d65fba3	packets/199h/d5-r3/W-gdb-199h-d5r3-10.md
-W-gdb-199h-wrr3-01	arch-199h	WR Grain vendor binding (r3 re-pin)	OPEN	goreda/instinct@35f553acd	packets/199h/writer-r3/W-gdb-199h-wrr3-01.md
-W-gdb-199h-wrr3-02	arch-199h	WR Manual grain range (r3 re-pin)	OPEN	goreda/instinct@35f553acd	packets/199h/writer-r3/W-gdb-199h-wrr3-02.md
-W-gdb-199h-wrr3-03	arch-199h	WR Installed BuildID read (r3: rollback context + candidate identity)	OPEN	goreda/instinct@35f553acd	packets/199h/writer-r3/W-gdb-199h-wrr3-03.md
+W-gdb-199h-d5r3-01	arch-199h	D2a RenderShotWriter film-frame map (r3: whole-loop proof)	SUPERSEDED	goreda/instinct@35f553acd	packets/199h/d5-r3/W-gdb-199h-d5r3-01.md
+W-gdb-199h-d5r3-02	arch-199h	D2b Shot stream-copy segment (r3: native50 bounded route)	SUPERSEDED	goreda/instinct@35f553acd	packets/199h/d5-r3/W-gdb-199h-d5r3-02.md
+W-gdb-199h-d5r3-03	arch-199h	D2c+d Residual source proxy retirement (r3: custody-preserving)	SUPERSEDED	goreda/instinct@35f553acd	packets/199h/d5-r3/W-gdb-199h-d5r3-03.md
+W-gdb-199h-d5r3-04	arch-199h	D2e Render retention window (r3: regression coverage)	SUPERSEDED	goreda/instinct@35f553acd	packets/199h/d5-r3/W-gdb-199h-d5r3-04.md
+W-gdb-199h-d5r3-05	arch-199h	D3a Prepared-shot session swap (r3: no host-pin dependency)	SUPERSEDED	goreda/instinct@35f553acd	packets/199h/d5-r3/W-gdb-199h-d5r3-05.md
+W-gdb-199h-d5r3-06	arch-199h	D3b PSP commit + restoration tail (r3)	SUPERSEDED	goreda/instinct@35f553acd	packets/199h/d5-r3/W-gdb-199h-d5r3-06.md
+W-gdb-199h-d5r3-07	arch-199h	D4a Seek per-origin regression (r3: real API surface)	SUPERSEDED	goreda/instinct@35f553acd	packets/199h/d5-r3/W-gdb-199h-d5r3-07.md
+W-gdb-199h-d5r3-08	arch-199h	D4b Seek session-change guard (r3: regression scope)	SUPERSEDED	goreda/instinct@35f553acd	packets/199h/d5-r3/W-gdb-199h-d5r3-08.md
+W-gdb-199h-d5r3-09	arch-199h	D1 Parameterized promotion adapter (r3: sole adapter owner)	SUPERSEDED	goreda/bridge@d65fba3	packets/199h/d5-r3/W-gdb-199h-d5r3-09.md
+W-gdb-199h-d5r3-10	arch-199h	D1b Promotion ref-race gate (r3: on the 09 interface)	SUPERSEDED	goreda/bridge@d65fba3	packets/199h/d5-r3/W-gdb-199h-d5r3-10.md
+W-gdb-199h-wrr3-01	arch-199h	WR Grain vendor binding (r3 re-pin)	SUPERSEDED	goreda/instinct@35f553acd	packets/199h/writer-r3/W-gdb-199h-wrr3-01.md
+W-gdb-199h-wrr3-02	arch-199h	WR Manual grain range (r3 re-pin)	SUPERSEDED	goreda/instinct@35f553acd	packets/199h/writer-r3/W-gdb-199h-wrr3-02.md
+W-gdb-199h-wrr3-03	arch-199h	WR Installed BuildID read (r3: rollback context + candidate identity)	SUPERSEDED	goreda/instinct@35f553acd	packets/199h/writer-r3/W-gdb-199h-wrr3-03.md
+W-gdb-199h-d5r3b-01	arch-199h	D2a RenderShotWriter film-frame map (r3: whole-loop proof)	OPEN	goreda/instinct@872dcc32d	packets/199h/d5-r3b/W-gdb-199h-d5r3b-01.md
+W-gdb-199h-d5r3b-02	arch-199h	D2b Shot stream-copy segment (r3: native50 bounded route)	OPEN	goreda/instinct@872dcc32d	packets/199h/d5-r3b/W-gdb-199h-d5r3b-02.md
+W-gdb-199h-d5r3b-03	arch-199h	D2c+d Residual source proxy retirement (r3: custody-preserving)	OPEN	goreda/instinct@872dcc32d	packets/199h/d5-r3b/W-gdb-199h-d5r3b-03.md
+W-gdb-199h-d5r3b-04	arch-199h	D2e Render retention window (r3: regression coverage)	OPEN	goreda/instinct@872dcc32d	packets/199h/d5-r3b/W-gdb-199h-d5r3b-04.md
+W-gdb-199h-d5r3b-05	arch-199h	D3a Prepared-shot session swap (r3: no host-pin dependency)	OPEN	goreda/instinct@872dcc32d	packets/199h/d5-r3b/W-gdb-199h-d5r3b-05.md
+W-gdb-199h-d5r3b-06	arch-199h	D3b PSP commit + restoration tail (r3)	OPEN	goreda/instinct@872dcc32d	packets/199h/d5-r3b/W-gdb-199h-d5r3b-06.md
+W-gdb-199h-d5r3b-07	arch-199h	D4a Seek per-origin regression (r3: real API surface)	OPEN	goreda/instinct@872dcc32d	packets/199h/d5-r3b/W-gdb-199h-d5r3b-07.md
+W-gdb-199h-d5r3b-08	arch-199h	D4b Seek session-change guard (r3: regression scope)	OPEN	goreda/instinct@872dcc32d	packets/199h/d5-r3b/W-gdb-199h-d5r3b-08.md
+W-gdb-199h-d5r3b-09	arch-199h	D1 Parameterized promotion adapter (r3: sole adapter owner)	OPEN	goreda/bridge@679e165	packets/199h/d5-r3b/W-gdb-199h-d5r3b-09.md
+W-gdb-199h-d5r3b-10	arch-199h	D1b Promotion ref-race gate (r3: on the 09 interface)	OPEN	goreda/bridge@679e165	packets/199h/d5-r3b/W-gdb-199h-d5r3b-10.md
+W-gdb-199h-wrr3b-01	arch-199h	WR Grain vendor binding (r3 re-pin)	OPEN	goreda/instinct@872dcc32d	packets/199h/writer-r3b/W-gdb-199h-wrr3b-01.md
+W-gdb-199h-wrr3b-02	arch-199h	WR Manual grain range (r3 re-pin)	OPEN	goreda/instinct@872dcc32d	packets/199h/writer-r3b/W-gdb-199h-wrr3b-02.md
+W-gdb-199h-wrr3b-03	arch-199h	WR Installed BuildID read (r3: rollback context + candidate identity)	OPEN	goreda/instinct@872dcc32d	packets/199h/writer-r3b/W-gdb-199h-wrr3b-03.md
