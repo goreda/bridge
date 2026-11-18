@@ -1,0 +1,48 @@
+compile_exit=0
+
+
+semantic_exit=-4
+
+
+*** Signal 4: Backtracing from 0x560d192f3093... done ***
+
+*** Program crashed: Illegal instruction at 0x0000560d192f3093 ***
+
+Thread 0 "test" crashed:
+
+0      0x0000560d192f3093 static SBSEyeCrop.scan(_:width:height:topBottom:) + 2979 in test
+1 [ra] 0x0000560d192f4c79 main + 520 in test
+
+
+Registers:
+
+rax 0xffffffffffffff01  18446744073709551361
+rdx 0x0000000000000000  0
+rcx 0x0000000000000020  32
+rbx 0x0000000000000000  0
+rsi 0x0000000000000000  0
+rdi 0xc000000000000000  13835058055282163712
+rbp 0x00007fff69fb1640  40 18 fb 69 ff 7f 00 00 79 4c 2f 19 0d 56 00 00  @·ûiÿ···yL/··V··
+rsp 0x00007fff69fb12d0  c8 c8 c8 c8 c8 c8 c8 c8 c8 c8 c8 c8 c8 c8 c8 c8  ÈÈÈÈÈÈÈÈÈÈÈÈÈÈÈÈ
+ r8 0x0000000000000000  0
+ r9 0x80000000ffffffff  9223372041149743103
+r10 0x00007fd43e6282a8  bf 68 01 00 12 03 0b 00 e0 c6 30 00 00 00 00 00  ¿h······àÆ0·····
+r11 0x00007fd43e90c6e0  48 ba 00 00 00 00 00 00 00 c0 31 c0 c3 0f 1f 00  Hº·······À1ÀÃ···
+r12 0x00007fff69fb1958  37 2c fb 69 ff 7f 00 00 00 00 00 00 00 00 00 00  7,ûiÿ···········
+r13 0x0000560d192f4a70  55 48 89 e5 41 55 48 81 ec e8 01 00 00 48 c7 05  UH·åAUH·ìè···HÇ·
+r14 0x0000560d192f8808  68 03 be 3f d4 7f 00 00 f0 11 be 3f d4 7f 00 00  h·¾?Ô···ð·¾?Ô···
+r15 0x00007fd43fe45040  e0 62 e4 3f d4 7f 00 00 15 00 00 00 00 00 00 00  àbä?Ô···········
+rip 0x0000560d192f3093  0f 0b 0f 0b 0f 0b 0f 0b 0f 0b 0f 0b 0f 0b 0f 0b  ················
+
+rflags 0x0000000000010202  
+
+cs 0x0033  fs 0x0000  gs 0x0000
+
+
+Images (19 omitted):
+
+0x0000560d192e8000–0x0000560d192f6d00 <no build ID> test /tmp/tmpopksmw2i/test
+
+Backtrace took 0.00s
+
+
