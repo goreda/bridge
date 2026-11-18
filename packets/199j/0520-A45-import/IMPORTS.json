@@ -1,0 +1,13 @@
+[
+  {
+    "id": "W-gdb-199j-1nstinct-45",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "24a2f82f86bbaa395b935a644242c56129fa0b04",
+    "branch": "lane/lab-1nstinct-W-gdb-199j-1nstinct-45",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Attribution-neutralized adapted complete source independently replayed Swift6.0.3 -Onone/-O baseline trap4 fixed GREEN compiling guard-bypass mutant trap4. Patch reproduces adapted fixed bytes. Ops independently checked comment-stripped statements against actual b603; replay lane had no original full-file token proof. BROAD MALFORMED SAFETY NOT established: offset Int.max plus8 traps, UInt32.max dimensions overflow UInt64 multiply, startFrame UInt64.max admitted then pts traps, invalid70000x70000 sentinel planeBytes0 allows empty record as valid frame. Metal/lzfse/full native NOT_RUN; no host adoption.",
+    "source_sha256": {
+      "archive/gor/Sources/gor/gor/ThreeD.swift": "cab7c5e123f3deaea297441b8265a09fe2e926ad9071cdf673a7f2d44e439b4c"
+    }
+  }
+]
