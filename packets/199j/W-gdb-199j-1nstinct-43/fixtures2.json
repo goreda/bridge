@@ -1,0 +1,6 @@
+{
+  "markers": [
+    "struct QuitToken",
+    "static func readQuitToken"
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "test_source": "\nif CaptureConsumerRules.blinkShouldRun(blinkOn: true, vrEnabled: false, loadedVideoActive: true, cameraAllowed: true) { print(\"RED: blink camera leg starts while VR is off\"); exit(1) }\nif !CaptureConsumerRules.blinkShouldRun(blinkOn: true, vrEnabled: true, loadedVideoActive: true, cameraAllowed: true) { print(\"FAIL: blink on in VR with loaded video must run\"); exit(1) }\nif CaptureConsumerRules.blinkShouldRun(blinkOn: false, vrEnabled: true, loadedVideoActive: true, cameraAllowed: true) { print(\"FAIL: blink off must not run\"); exit(1) }\nif CaptureConsumerRules.blinkShouldRun(blinkOn: true, vrEnabled: true, loadedVideoActive: false, cameraAllowed: true) { print(\"FAIL: no loaded video must not run\"); exit(1) }\nif !CaptureConsumerRules.headShouldRun(headTrackingEnabled: true, playbackActive: true) { print(\"FAIL head leg\"); exit(1) }\nprint(\"OK\")\nexit(0)\n",
+  "support": ""
+}

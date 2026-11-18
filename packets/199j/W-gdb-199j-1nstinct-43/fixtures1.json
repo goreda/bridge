@@ -1,0 +1,4 @@
+{
+  "test_source": "\nfunc writeToken(_ s: String) { try! s.write(to: quitTokenURL, atomically: true, encoding: .utf8) }\nwriteToken(\"{\\\"pid\\\": 4301, \\\"epoch\\\": 7, \\\"wall\\\": 123.5}\")\nguard let t = A43Host.readQuitToken(), t.pid == 4301, t.epoch == 7, t.wall == 123.5 else { print(\"FAIL valid round-trip\"); exit(1) }\nwriteToken(\"{\\\"pid\\\": 1099511627776, \\\"epoch\\\": 7, \\\"wall\\\": 123.5}\")\nif A43Host.readQuitToken() != nil { print(\"FAIL hostile pid accepted\"); exit(1) }\nwriteToken(\"{\\\"pid\\\": 4301, \\\"epoch\\\": -1, \\\"wall\\\": 123.5}\")\nif A43Host.readQuitToken() != nil { print(\"FAIL negative epoch accepted\"); exit(1) }\nprint(\"OK\")\nexit(0)\n",
+  "support": "let quitTokenURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(\"gor-quit-token-test.json\")\n"
+}

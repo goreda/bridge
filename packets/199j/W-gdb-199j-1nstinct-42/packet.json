@@ -1,0 +1,73 @@
+{
+  "packet_id": "W-gdb-199j-1nstinct-42",
+  "lab": "1nstinct",
+  "product_repo": "goreda/instinct",
+  "product_sha": "b60352dabc87fe8519832999b4af639f37d786f8",
+  "scope": "archive/gor/Sources/gor/gor/PPController_Features.swift",
+  "touched_files": [
+    "archive/gor/Sources/gor/gor/PPController_Features.swift"
+  ],
+  "interface": {
+    "signatures": [
+      "static func blinkShouldRun(blinkOn: Bool, vrEnabled: Bool, loadedVideoActive: Bool, cameraAllowed: Bool) -> Bool"
+    ],
+    "ownership_lifetime": "pure function; no state",
+    "caller": "PPController_Features.swift:1249 updateCaptureConsumers",
+    "callee": "none"
+  },
+  "test": {
+    "command": "SWIFTC=$SWIFTC python3 run_packet.py (GOR_SOURCE_ROOT selects source/ vs fixed/; SWIFTFLAGS=-O for optimized runs)",
+    "fixture_block": "fixtures1.json",
+    "config_block": "fixtures2.json",
+    "expected": "pinned RED exit=1 (vrEnabled ignored), fixed GREEN exit=0"
+  },
+  "target": {
+    "branch": "host",
+    "paths": [
+      "archive/gor/Sources/gor/gor/PPController_Features.swift"
+    ],
+    "return_form": "unified diff + fixed full copy"
+  },
+  "run_proof": {
+    "version": 1,
+    "kind": "swiftc two-variant compile+run",
+    "inline_files": [
+      "run_packet.py",
+      "fixtures1.json",
+      "fixtures2.json"
+    ],
+    "log_block": "actual_run_log.txt",
+    "verification": {
+      "red_Onone": {
+        "compile_exit": 0,
+        "semantic_exit": 1,
+        "pass": true
+      },
+      "red_O": {
+        "compile_exit": 0,
+        "semantic_exit": 1,
+        "pass": true
+      },
+      "green_Onone": {
+        "compile_exit": 0,
+        "semantic_exit": 0,
+        "pass": true
+      },
+      "green_O": {
+        "compile_exit": 0,
+        "semantic_exit": 0,
+        "pass": true
+      }
+    }
+  },
+  "state": "VERIFIED",
+  "classification": "correctness defect found by code inspection (no live incident observed): the ignored parameter starts the blink camera consumer outside VR.",
+  "fix": {
+    "summary": "Conjoin vrEnabled into the blink decision. The doc comment states the intent (frames whenever blink is on in VR) and the caller passes vrModeEnabled, but the parameter was dropped from the body, so the blink camera consumer started with VR off whenever blink logging and a loaded video coincided.",
+    "diff": "--- /tmp/packets_199j/W-gdb-199j-1nstinct-42/source/archive/gor/Sources/gor/gor/PPController_Features.swift\t2026-11-18 05:13:47.824838680 +0300\n+++ /tmp/packets_199j/W-gdb-199j-1nstinct-42/fixed/archive/gor/Sources/gor/gor/PPController_Features.swift\t2026-11-18 05:13:47.824838680 +0300\n@@ -543,7 +543,7 @@\n     /// Blink leg: needs frames whenever blink is on in VR with a file loaded - pause must NOT\n     /// stop it (loadedVideoActive, not playbackActive), or the pause toggle could never resume.\n     static func blinkShouldRun(blinkOn: Bool, vrEnabled: Bool, loadedVideoActive: Bool, cameraAllowed: Bool) -> Bool {\n-        blinkOn && loadedVideoActive && cameraAllowed\n+        blinkOn && vrEnabled && loadedVideoActive && cameraAllowed\n     }\n }\n \n",
+    "diff_sha256": "e86e8f9bc56fe50f9ea872d8bce000add4303ca753eddd929acf1c86afd4bfee",
+    "fixed_sha256": "d288f26ef6e1602d7d9fd0c7c90b8817b588a0478dbd73c558e6b03dcadf439d",
+    "pinned_sha256": "8d81761d0928069fe40a1acaed4148f1a06dbb3d1ed61790a65d3abb9388cf12",
+    "pinned_extraction": "goreda/instinct @ b60352dabc87fe8519832999b4af639f37d786f8; 6 attribution comment line(s) elided before hashing"
+  }
+}

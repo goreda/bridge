@@ -1,0 +1,30 @@
+[
+  {
+    "id": "W-gdb-199j-1nstinct-41",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "source": "archive/gor/Sources/gor/GorUI/MenuActions.swift",
+    "queue_sha256": "b8fc1fbc2ce11f320692da164709cea856d0795ba0e8387c4fb55e02e518b8bd",
+    "caveat": "Publication: NONQUALIFIED, four of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease."
+  },
+  {
+    "id": "W-gdb-199j-1nstinct-42",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "source": "archive/gor/Sources/gor/gor/PPController_Features.swift",
+    "queue_sha256": "b8f8aa66e47b2a4a0daa55dc9585ed42d7edc47c2891a6ecee4e0d6bd86e156b",
+    "caveat": "Publication: NONQUALIFIED, four of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease."
+  },
+  {
+    "id": "W-gdb-199j-1nstinct-43",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "source": "archive/gor/Sources/gor/AppDelegate.swift",
+    "queue_sha256": "b6743c3d446268e62a7157414bfa6e414c1fbdf3efe46b4b1a57c1076276a6bd",
+    "caveat": "Publication: NONQUALIFIED, four of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease."
+  },
+  {
+    "id": "W-gdb-199j-1nstinct-44",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "source": "archive/gor/Sources/gor/GorUI/MusicController.swift",
+    "queue_sha256": "0caa392b16cc57aa36147c45b3fb5e3055c2c9cf073aa419a8a527adf7fcbd7c",
+    "caveat": "Publication: NONQUALIFIED, four of ten refill. Baseline copy removes attribution comments only, production statement equality checked against exact b603. Runner also placed under own canonical test path with source-root discovery adjusted only; fresh independent replay pending. Runner process exit0 does NOT prove semanticGREEN: inspect compile_exit AND semantic_exit lines. Defensive hardening/no live incident; native/fullhost NOT_RUN. Earliest verified claim with2h without-progress lease."
+  }
+]
