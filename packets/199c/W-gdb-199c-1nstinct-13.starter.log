@@ -1,0 +1,15 @@
+compile_exit=0
+
+
+semantic_exit=1
+FAIL NaN timestamp ignored
+FAIL finite sample can begin after rejected sample
+FAIL episode duration unaffected
+FAIL NaN ratio ignored
+FAIL finite recovery after ratio rejection
+PASS independent chronology episode
+FAIL backwards reopen ignored
+FAIL valid reopen retains original episode
+semantic failures=7
+
+

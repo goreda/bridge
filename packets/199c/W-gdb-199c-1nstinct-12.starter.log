@@ -1,0 +1,13 @@
+compile_exit=0
+
+
+semantic_exit=1
+FAIL stop before backward timestamp
+FAIL negative first timestamp refused
+PASS stop before nonfinite timestamp
+PASS three-frame inclusive span preserved
+PASS nondecreasing duplicates preserved
+PASS six second bound preserved
+semantic failures=2
+
+
