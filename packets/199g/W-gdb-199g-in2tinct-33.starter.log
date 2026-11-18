@@ -1,0 +1,8 @@
+compile_exit=0
+
+semantic_exit=1
+PASS valid batch
+FAIL inconsistent cue identity refused
+FAIL malformed reset preserves current cue
+FAIL refusal does not burn sequence
+

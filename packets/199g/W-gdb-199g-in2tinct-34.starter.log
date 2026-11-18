@@ -1,0 +1,6 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL negative subtitle count refused
+PASS positive subtitle count unchanged
+

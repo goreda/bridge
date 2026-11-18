@@ -1,0 +1,6 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL UTF8 note bound includes suffix
+FAIL invalid origin cannot back success
+
