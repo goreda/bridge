@@ -1,0 +1,4 @@
+{
+  "test_source": "\nsend(\"search hello\\nplay 5\")\nsend(\"pl_new my\\r\\nlist\")\nlet data = stdinPipe!.fileHandleForReading.availableData\nlet text = String(data: data, encoding: .utf8) ?? \"\"\nlet lines = text.split(separator: \"\\n\", omittingEmptySubsequences: true)\nif lines.count != 2 { print(\"RED: \\(lines.count) command lines written: \\(text.debugDescription)\"); exit(1) }\nif lines[0] != \"search hello play 5\" || lines[1] != \"pl_new my  list\" { print(\"FAIL content: \\(text.debugDescription)\"); exit(1) }\nsendRaw(\"quit\")\nlet d2 = stdinPipe!.fileHandleForReading.availableData\nif String(data: d2, encoding: .utf8) != \"quit\\n\" { print(\"FAIL sendRaw passthrough\"); exit(1) }\nprint(\"OK\")\nexit(0)\n",
+  "support": "var isRunning = true\nvar stdinPipe: Pipe? = Pipe()\n"
+}

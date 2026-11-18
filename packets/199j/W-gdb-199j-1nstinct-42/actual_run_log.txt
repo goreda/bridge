@@ -1,0 +1,19 @@
+== source -Onone ==
+compile_exit=0
+RED: blink camera leg starts while VR is off
+semantic_exit=1
+
+== source -O ==
+compile_exit=0
+RED: blink camera leg starts while VR is off
+semantic_exit=1
+
+== fixed -Onone ==
+compile_exit=0
+OK
+semantic_exit=0
+
+== fixed -O ==
+compile_exit=0
+OK
+semantic_exit=0

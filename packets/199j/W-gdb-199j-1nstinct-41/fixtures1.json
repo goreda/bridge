@@ -1,0 +1,4 @@
+{
+  "test_source": "\nlet expected = \"archive://https://archive.org/download/id/my%20item.zip|/member file.mp4\"\nlet got = A41Host.nativeArchiveEntryURL(\"https://archive.org/download/id/my%20item.zip/member%20file.mp4\")\nif got != expected { print(\"MISMATCH expected=\\(expected) got=\\(String(describing: got))\"); exit(1) }\nif A41Host.nativeArchiveEntryURL(\"https://example.com/download/id/a.zip/b.mp4\") != nil { print(\"FAIL non-archive host accepted\"); exit(1) }\nif A41Host.nativeArchiveEntryURL(\"https://archive.org/download/id/a.zip/../evil.mp4\") != nil { print(\"FAIL traversal accepted\"); exit(1) }\nprint(\"OK\")\nexit(0)\n",
+  "support": ""
+}

@@ -1,0 +1,6 @@
+{
+  "markers": [
+    "func send(_ command: String) {",
+    "func sendRaw(_ cmd: String)"
+  ]
+}

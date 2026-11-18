@@ -1,0 +1,74 @@
+{
+  "packet_id": "W-gdb-199j-1nstinct-44",
+  "lab": "1nstinct",
+  "product_repo": "goreda/instinct",
+  "product_sha": "b60352dabc87fe8519832999b4af639f37d786f8",
+  "scope": "archive/gor/Sources/gor/GorUI/MusicController.swift",
+  "touched_files": [
+    "archive/gor/Sources/gor/GorUI/MusicController.swift"
+  ],
+  "interface": {
+    "signatures": [
+      "func send(_ command: String)",
+      "func sendRaw(_ cmd: String)"
+    ],
+    "ownership_lifetime": "writes into the long-lived stdinPipe; no retained state",
+    "caller": "MusicController.swift:201/:236/:263, MusicPanel.swift:698",
+    "callee": "Pipe/FileHandle (mus2.py stdin)"
+  },
+  "test": {
+    "command": "SWIFTC=$SWIFTC python3 run_packet.py (GOR_SOURCE_ROOT selects source/ vs fixed/; SWIFTFLAGS=-O for optimized runs)",
+    "fixture_block": "fixtures1.json",
+    "config_block": "fixtures2.json",
+    "expected": "pinned RED exit=1 (4 lines from 2 commands), fixed GREEN exit=0"
+  },
+  "target": {
+    "branch": "host",
+    "paths": [
+      "archive/gor/Sources/gor/GorUI/MusicController.swift"
+    ],
+    "return_form": "unified diff + fixed full copy"
+  },
+  "run_proof": {
+    "version": 1,
+    "kind": "swiftc two-variant compile+run",
+    "inline_files": [
+      "run_packet.py",
+      "fixtures1.json",
+      "fixtures2.json"
+    ],
+    "log_block": "actual_run_log.txt",
+    "verification": {
+      "red_Onone": {
+        "compile_exit": 0,
+        "semantic_exit": 1,
+        "pass": true
+      },
+      "red_O": {
+        "compile_exit": 0,
+        "semantic_exit": 1,
+        "pass": true
+      },
+      "green_Onone": {
+        "compile_exit": 0,
+        "semantic_exit": 0,
+        "pass": true
+      },
+      "green_O": {
+        "compile_exit": 0,
+        "semantic_exit": 0,
+        "pass": true
+      }
+    }
+  },
+  "state": "VERIFIED",
+  "classification": "defensive malformed-input hardening (no live incident observed): inputs are the user's own search text, playlist names and file paths, all of which can carry newlines via paste or unusual file names.",
+  "fix": {
+    "summary": "Replace CR and LF with spaces at the single choke point (send), so all ~20 command builders are covered. Previously a newline inside a search query, playlist name or local file path produced additional protocol lines that mus2.py executed as commands.",
+    "diff": "--- /tmp/packets_199j/W-gdb-199j-1nstinct-44/source/archive/gor/Sources/gor/GorUI/MusicController.swift\t2026-11-18 05:13:50.812859692 +0300\n+++ /tmp/packets_199j/W-gdb-199j-1nstinct-44/fixed/archive/gor/Sources/gor/GorUI/MusicController.swift\t2026-11-18 05:13:50.812859692 +0300\n@@ -305,7 +305,8 @@\n     // MARK: - Private\n \n     func send(_ command: String) {\n-        guard isRunning, let data = (command + \"\\n\").data(using: .utf8) else { return }\n+        let line = command.replacingOccurrences(of: \"\\r\", with: \" \").replacingOccurrences(of: \"\\n\", with: \" \")\n+        guard isRunning, let data = (line + \"\\n\").data(using: .utf8) else { return }\n         stdinPipe?.fileHandleForWriting.write(data)\n     }\n \n",
+    "diff_sha256": "375ef8144c006fb66cd03b56095e60f9727b445cf25362b84e64e5bb53ea465d",
+    "fixed_sha256": "73ba14656206abb4fb944a8752e6de8cea46a87f9660805f1db9f036034fce40",
+    "pinned_sha256": "377216824190913db165b879e2f8967ed08d5b57e8be5160e7c488f351eb8698",
+    "pinned_extraction": "goreda/instinct @ b60352dabc87fe8519832999b4af639f37d786f8; 1 attribution comment line(s) elided before hashing"
+  }
+}

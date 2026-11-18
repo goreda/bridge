@@ -1,0 +1,19 @@
+== source -Onone ==
+compile_exit=0
+MISMATCH expected=archive://https://archive.org/download/id/my%20item.zip|/member file.mp4 got=Optional("archive://https://archive.org/download/id/my%2520item.zip|/member file.mp4")
+semantic_exit=1
+
+== source -O ==
+compile_exit=0
+MISMATCH expected=archive://https://archive.org/download/id/my%20item.zip|/member file.mp4 got=Optional("archive://https://archive.org/download/id/my%2520item.zip|/member file.mp4")
+semantic_exit=1
+
+== fixed -Onone ==
+compile_exit=0
+OK
+semantic_exit=0
+
+== fixed -O ==
+compile_exit=0
+OK
+semantic_exit=0
