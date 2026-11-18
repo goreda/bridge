@@ -1,3 +1,4 @@
+# Mirror of the arch-199h D5 rows only. Canonical work list: goreda/instinct docs/TASKS.tsv (Ops owns it).
 id	arch	item	status	pin	packet
 W-gdb-199h-d5-01	arch-199h	D5 D2a RenderShotWriter film-frame map	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-01.md
 W-gdb-199h-d5-02	arch-199h	D5 D2b MKV per-shot stream-copy segment	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-02.md
