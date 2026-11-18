@@ -1,0 +1,17 @@
+{
+  "base": "e83b0d2101a811f0a52529ee28e56699322253cc",
+  "files": [
+    {
+      "path": "archive/gor/Sources/gor/GorCore/BuildID.swift",
+      "sha256": "544881ae92b8f6b4235ed47b70c14f4997ee10a05faa06d877d5bf8f3df80365"
+    },
+    {
+      "path": "archive/gor/Tests/LaunchIdentity/launch_identity_test.py",
+      "sha256": "514d9d8db7b91388780a198a1b7b4b0ad18c2617f5df6bea809291d85bd6f3c6"
+    },
+    {
+      "path": "archive/gor/tools/gor-periodic-capture.py",
+      "sha256": "79eb060a515d594c812d3548ffa2d0e7c09dd83559d38c763413bb4f2d1f243a"
+    }
+  ]
+}

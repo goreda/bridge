@@ -1,0 +1,16 @@
+compile_exit=0
+
+
+semantic_exit=1
+FAIL bad target scale refused
+FAIL refusal preserves mode
+FAIL bad target scale refused
+FAIL refusal preserves mode
+FAIL bad target scale refused
+FAIL refusal preserves mode
+FAIL bad target scale refused
+FAIL refusal preserves mode
+PASS valid transitions retained
+semantic failures=8
+
+
