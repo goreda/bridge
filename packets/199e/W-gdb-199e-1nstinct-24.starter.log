@@ -1,0 +1,6 @@
+compile_exit=0
+
+semantic_exit=1
+PASS invalid time produces finite hold
+FAIL invalid time does not change smoother state
+

@@ -1,0 +1,8 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL infinite clock rejected
+FAIL invalid clock does not read signature
+FAIL valid initial sample remains available
+PASS valid cadence retained
+

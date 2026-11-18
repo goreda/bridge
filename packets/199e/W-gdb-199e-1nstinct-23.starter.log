@@ -1,0 +1,7 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL query value cannot impersonate download parameter
+FAIL suffix key cannot impersonate parameter
+PASS real parameter retained
+

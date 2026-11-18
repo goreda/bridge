@@ -1,0 +1,11 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL invalid slot refused
+FAIL invalid ink refused
+FAIL invalid slot refused
+FAIL invalid ink refused
+FAIL invalid slot refused
+FAIL invalid ink refused
+PASS normal frame unchanged
+

@@ -1,0 +1,65 @@
+[
+  {
+    "id": "W-gdb-199e-1nstinct-21",
+    "source": "archive/gor/Sources/gor/GorSources/ArchiveLibrary.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "fc4028bad3703ccaafec0e87655baf377ed544eaabecd1df953021526a131d4b",
+    "caveat": "NONQUALIFIED: exact-source declaration extraction, not native/full module acceptance. HeatTelemetry in A27 is an explicit test support value, not production telemetry evidence. Own compiler rerun NOT_RUN."
+  },
+  {
+    "id": "W-gdb-199e-1nstinct-22",
+    "source": "archive/gor/Sources/gor/Stereo/StereoDetection.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "a87188061fbc402fdb45559515ef54a2c2274e89f444824f3ddfe626510211b7",
+    "caveat": "NONQUALIFIED: exact-source declaration extraction, not native/full module acceptance. HeatTelemetry in A27 is an explicit test support value, not production telemetry evidence. Own compiler rerun NOT_RUN."
+  },
+  {
+    "id": "W-gdb-199e-1nstinct-23",
+    "source": "archive/gor/Sources/gor/GorSources/CDPSession.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "f860a3f750f6698a12db0a99b96fde605ef6a1e9504b2126a0f5cdc637b46eff",
+    "caveat": "NONQUALIFIED: exact-source declaration extraction, not native/full module acceptance. HeatTelemetry in A27 is an explicit test support value, not production telemetry evidence. Own compiler rerun NOT_RUN."
+  },
+  {
+    "id": "W-gdb-199e-1nstinct-24",
+    "source": "archive/gor/Sources/gor/GorEffectsModel/VariationBroadcaster.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "642793f5a6683506491ad368b5e8991d5f1661924024843266086541f43c4f36",
+    "caveat": "NONQUALIFIED: exact-source declaration extraction, not native/full module acceptance. HeatTelemetry in A27 is an explicit test support value, not production telemetry evidence. Own compiler rerun NOT_RUN."
+  },
+  {
+    "id": "W-gdb-199e-1nstinct-25",
+    "source": "archive/gor/Sources/gor/GorFit/IconBarFit.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "c16823de27d4b29a4599f59808ee6c1419cfa11666b120a3632ccb7868fb8d61",
+    "caveat": "NONQUALIFIED: exact-source declaration extraction, not native/full module acceptance. HeatTelemetry in A27 is an explicit test support value, not production telemetry evidence. Own compiler rerun NOT_RUN."
+  },
+  {
+    "id": "W-gdb-199e-1nstinct-26",
+    "source": "archive/gor/Sources/gor/GorSources/MegaStreamManager.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "399b97e859ddfed3b0695f5ee703e0572c67c7b527b5fdfe4a669bd6684f1daa",
+    "caveat": "NONQUALIFIED: exact-source declaration extraction, not native/full module acceptance. HeatTelemetry in A27 is an explicit test support value, not production telemetry evidence. Own compiler rerun NOT_RUN."
+  },
+  {
+    "id": "W-gdb-199e-1nstinct-27",
+    "source": "archive/gor/Sources/gor/GorSubtitles/SubtitleSampleGovernor.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "71f86f4a3851cb7dd4e6e3a5d878276d15b906717dff2fffb6fd8929ab84311f",
+    "caveat": "NONQUALIFIED: exact-source declaration extraction, not native/full module acceptance. HeatTelemetry in A27 is an explicit test support value, not production telemetry evidence. Own compiler rerun NOT_RUN."
+  },
+  {
+    "id": "W-gdb-199e-in2tinct-21",
+    "source": "Sources/GorAVCore/OpenURLRouter.swift",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "sha256": "9596104e0ede87e0ae6d643729578f4403b79cb2ff597bbf18d424189208da26",
+    "caveat": "NONQUALIFIED: isolated source semantics, not full package/native acceptance. B21 uses a SourceDescriptor compile-support declaration; actual Core integration remains NOT_RUN."
+  },
+  {
+    "id": "W-gdb-199e-in2tinct-22",
+    "source": "Sources/GorAVPlaybackCore/DecodeHeartbeat.swift",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "sha256": "d755f656d548ddb7cf0f39c3eeea14ae2085bb6a3443084c8b4599146d12cb91",
+    "caveat": "NONQUALIFIED race reproducer: five fresh Linux runs RED, nondeterministic. One green run proves nothing. Acceptance requires deterministic ordering/barrier test plus repeated stress, actual source fix and full package/native validation separately."
+  }
+]

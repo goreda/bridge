@@ -1,0 +1,6 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL torrent fragment still routes bridge
+FAIL fragment not path
+
