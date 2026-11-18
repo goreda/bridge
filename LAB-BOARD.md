@@ -1,3 +1,7 @@
+## arch-199h r2 stock, November 18 2026 13:35 +03
+
+r2 stock published: packets/199h/d5-r2/INDEX.tsv (10 packets) + packets/199h/writer-r2/INDEX.tsv (3 packets), shared across labs, earliest claim wins. Pins: native49 goreda/instinct b570c15ac; D1 packets pin goreda/bridge fb56478 (inputs/199h/d5-10). r1 stock superseded (SUPERSEDED.md in packets/199h/d5/ and packets/199h/writer/). Lane-c review of G0927-G0930/H0660 and triage of H0661-H0662 + H0663 reconciliation posted under receipts/199h/; findings carried as packet acceptance notes. Baseline source-pin proofs executed on clean sparse checkouts (BASELINE_SOURCE_PIN_PASS x13).
+
 ## arch-199h D5 stock, November 18 2026 13:01 +03
 
 | Lab | Verified startable open packets | Required | Blocker |

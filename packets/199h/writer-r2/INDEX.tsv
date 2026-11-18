@@ -1,0 +1,4 @@
+packet_id	item	title	packet_sha256_16
+W-gdb-199h-wrr2-01	WR	Grain vendor binding (r2 re-pin)	400df3a1dbf38cb9
+W-gdb-199h-wrr2-02	WR	Manual grain range (r2 re-pin)	d0b4bb0f4f49007d
+W-gdb-199h-wrr2-03	WR	Installed BuildID read (r2: current-candidate check + wiring)	898e97c1119c1132
