@@ -1,0 +1,16 @@
+[
+  {
+    "id": "W-gdb-199i-in2tinct-36",
+    "source": "archive/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/SourceOpenOptions.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "84ba5dfab59b7a8769feb7ea29c885f7cc4a6c064eeae3717910097b50157dae",
+    "caveat": "NONQUALIFIED. Host-vendored gorav snapshot pinned b603, NOT current gorav main cf3. Writer-reported Swift6.0.3 both-mode baseline RED/fixed GREEN; independent replay awaited. Defensive hardening, not observed live incidents. B36 cookie header boundary call sites FFmpegSoftwareDecoder759/814, AudioDecoder310/341, MediaInventory101/121; B37 subtitle schedule consumer41/48 and plan221. No native/network/fullpackage acceptance. Proposed fixes require independent mutants/boundary replay."
+  },
+  {
+    "id": "W-gdb-199i-in2tinct-37",
+    "source": "archive/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleSchedule.swift",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "d3ec15057bc251ad4457b202a8cc710447a2ce38eed499d8a714af4372a0cfa8",
+    "caveat": "NONQUALIFIED. Host-vendored gorav snapshot pinned b603, NOT current gorav main cf3. Writer-reported Swift6.0.3 both-mode baseline RED/fixed GREEN; independent replay awaited. Defensive hardening, not observed live incidents. B36 cookie header boundary call sites FFmpegSoftwareDecoder759/814, AudioDecoder310/341, MediaInventory101/121; B37 subtitle schedule consumer41/48 and plan221. No native/network/fullpackage acceptance. Proposed fixes require independent mutants/boundary replay."
+  }
+]

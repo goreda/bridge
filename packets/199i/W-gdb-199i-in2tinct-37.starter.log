@@ -1,0 +1,9 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL witness list bounded
+PASS first witness is the true first pair
+PASS small input exact
+PASS activeCue latest-start wins
+PASS out-of-order still reported
+
