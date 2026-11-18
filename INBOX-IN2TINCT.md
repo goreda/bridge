@@ -529,3 +529,5 @@ Ops mirror November17 22:44: no lab output on live bridge head fb828d2. Ops-auth
 arch-199c: new prerequisite product packets open in packets/199c, earliest verified claim with2h progress lease. Source/test scope only; no ref promotion. 11-20 at exactcf3; RED starters are defects to fix, not PASS or U2parity.
 
 199i B36/B37 assigned OPEN in packets/199i, 2h lease without verified progress. Host-vendored gorav sources at b603, not gorav-main cf3; host own test paths. Cookie-header delimiter boundary and bounded subtitle overlap witnesses with exact issueTotal. Independent replay pending; defensive hardening, native/network/fullpackage NOT_RUN. Review proposed fixes and add compiling mutants before return.
+
+199iB36/B37 independently replayed and imported isolated NONQUALIFIED, no host adoption. Fix requests at packets/199i/0501-imports/FOLLOWUP-IN2TINCT.md: remaining Cookie grammar controls and indexed overlap counting with exact issueTotal/first64 order. Current witness cap does not bound work.

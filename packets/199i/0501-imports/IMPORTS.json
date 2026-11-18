@@ -1,0 +1,20 @@
+[
+  {
+    "id": "W-gdb-199i-in2tinct-36",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "178d900f7032fffdbaa5a1e745b16c5aa285f09e",
+    "branch": "lane/lab-in2tinct-W-gdb-199i-in2tinct-36",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Cookie semicolon fix; starter misses actual backstop. Independent real-backstop extension with C shim capture RED2/GREEN8 and compiling backstop-only mutant RED2. Tab, DEL and interior quote still admitted; follow-up grammar request. No real FFmpeg/network execution. Host-vendored b603 snapshot, not current gorav main cf3. Caller/full host adoption and native NOT_RUN; isolated NONQUALIFIED.",
+    "source_sha256": "456d7f6f9ca28e9392147282885b7081d1d8ae2ccf6135efa74a6bd811100fe2"
+  },
+  {
+    "id": "W-gdb-199i-in2tinct-37",
+    "base": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "commit": "ad943fcb640b7fc17f87acd3889619818f5f08bf",
+    "branch": "lane/lab-in2tinct-W-gdb-199i-in2tinct-37",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Witness storage cap64 plus exact issueTotal independently checked109 cases/mode. Pair scan remains O(n^2), 8k3.0s Onone/0.03s O;200k means19999900000 pair tests, not measured200k runtime. Indexed count fix requested; no bounded-time claim. Host-vendored b603 snapshot, not current gorav main cf3. Caller/full host adoption and native NOT_RUN; isolated NONQUALIFIED.",
+    "source_sha256": "fb7b1a8f9b8f9a971c965bc21d005d09ff60fb4872ab089f0d3b11fb72f454c2"
+  }
+]
