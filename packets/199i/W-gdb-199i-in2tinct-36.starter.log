@@ -1,0 +1,11 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL cookie value ';' refused
+PASS serialized header would carry 2 pairs from 1 declared cookie
+PASS base64 '=' value allowed
+PASS CR value refused
+PASS key ';' refused
+PASS deadline rule intact
+PASS cookie/header conflict intact
+
