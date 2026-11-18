@@ -1,0 +1,54 @@
+{
+  "input_archive_sha256": "905c24cdf35e61dc81707abd9dc1e29dbca1c46fbe15f97e0059353c4abdf79f",
+  "A01": {
+    "source_pin": "2cdc620c77d2822c5ded1b4ada1f5b0c7c60b3ed",
+    "source_sha256": "0dcc9f13ee805361ca3de292ddd36cab2bc0163d4cbdf8a8c0cb2717a5feee35",
+    "hash_matches": "PASS",
+    "real_provider_full_build": "PASS",
+    "module_regression_compile": "PASS",
+    "module_regression_exit": 1,
+    "result": "RED_BASELINE_DEFECT_CONFIRMED",
+    "assertions": {
+      "delimiter_tuples_distinct": "FAIL",
+      "nil_empty_language_distinct": "FAIL",
+      "same_tuple_deterministic": "PASS"
+    },
+    "scope": "Actual GorAVFFmpegAdapter complete built module, actual isolated FFmpeg7.1 headers/static libs, no function extraction or provider stub."
+  },
+  "A14_A17": [
+    {
+      "packet": 14,
+      "source_pin": "b60352dabc87fe8519832999b4af639f37d786f8",
+      "inline_hashes": "PASS",
+      "exit": 1,
+      "result": "BASELINE_DEFECT_REPRODUCED",
+      "log": "compile_exit=0\n\n\nsemantic_exit=1\nFAIL finite inputs never yield nonfinite sample\nPASS normal measurement preserved\nsemantic failures=1\n\n\n"
+    },
+    {
+      "packet": 15,
+      "source_pin": "b60352dabc87fe8519832999b4af639f37d786f8",
+      "inline_hashes": "PASS",
+      "exit": 1,
+      "result": "BASELINE_DEFECT_REPRODUCED",
+      "log": "compile_exit=0\n\n\nsemantic_exit=1\nFAIL invalid metric output absent\nPASS relative measurement retained\nPASS invalid metric output absent\nPASS relative measurement retained\nFAIL invalid metric output absent\nPASS relative measurement retained\nPASS finite calibrated distance preserved\nsemantic failures=2\n\n\n"
+    },
+    {
+      "packet": 16,
+      "source_pin": "b60352dabc87fe8519832999b4af639f37d786f8",
+      "inline_hashes": "PASS",
+      "exit": 1,
+      "result": "BASELINE_DEFECT_REPRODUCED",
+      "log": "compile_exit=0\n\n\nsemantic_exit=1\nFAIL rectangle overflow refused\nFAIL landmark rectangle overflow refused\nFAIL rectangle overflow refused\nFAIL landmark rectangle overflow refused\nPASS normal box retained\nPASS reason precedence retained\nsemantic failures=4\n\n\n"
+    },
+    {
+      "packet": 17,
+      "source_pin": "b60352dabc87fe8519832999b4af639f37d786f8",
+      "inline_hashes": "PASS",
+      "exit": 1,
+      "result": "BASELINE_DEFECT_REPRODUCED",
+      "log": "compile_exit=0\n\n\nsemantic_exit=1\nFAIL invalid left gets neutral placement\nPASS invalid offset gets neutral placement\nFAIL invalid left gets neutral placement\nFAIL invalid offset gets neutral placement\nFAIL invalid left gets neutral placement\nPASS invalid offset gets neutral placement\nPASS normal placement unchanged\nsemantic failures=4\n\n\n"
+    }
+  ],
+  "caveat": "Archive contains deliberately RED starters on b603 exact inline sources, NOT fixed writer returns. No fixes/published green branches supplied. These 4 camera/subtitle sources are gor host code, not gorav package provider-module sources. Actual production files compiled, but no full host app/renderer effect claim.",
+  "authority": "Read/validation assignment only. No lease or owner approval inferred from README claims; no shared source/ref/release mutation."
+}

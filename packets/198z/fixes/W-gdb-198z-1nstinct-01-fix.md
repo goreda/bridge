@@ -256,3 +256,5 @@ public struct ActiveMediaInventorySnapshot: Equatable, Sendable {
 ```
 
 Executable RED starter published at packets/198z/fix-starters/W-gdb-198z-1nstinct-01-fix/run.py. From bridge root: python3 packets/198z/fix-starters/W-gdb-198z-1nstinct-01-fix/run.py. PRODUCT_ROOT points at your modified exact-pin product checkout. Starter kind exact-source-isolated; provider/full integration gate remains NOT_RUN. Preserve legacy APIs; new generation API needs new acceptance tests.
+
+Lane-b Linux TEST update: report99db8f1b795b7c395feb8179cbd36d1f53f775094f00d28a26ca6ab7771d460b builds the full exact7.1 provider and actual GorAVFFmpegAdapter module. Provider regression compiles; runtime exit1 confirms both tuple-delimiter and nil-versus-empty collisions, same-tuple determinism passes. This supersedes the earlier provider NOT_RUN for baseline reproduction only, not fixed-source acceptance. Original isolated starter provenance remains unchanged.
