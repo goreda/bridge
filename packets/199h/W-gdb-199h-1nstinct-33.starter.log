@@ -1,0 +1,7 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL remote port is not local torrent bridge
+FAIL credentials refused
+PASS real loopback bridge retained
+

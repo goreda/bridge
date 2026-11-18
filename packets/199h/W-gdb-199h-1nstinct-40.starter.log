@@ -1,0 +1,6 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL deep descendant included independent of row order
+PASS unrelated child excluded
+

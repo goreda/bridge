@@ -1,0 +1,6 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL media path follows option terminator
+PASS activation policy retained
+

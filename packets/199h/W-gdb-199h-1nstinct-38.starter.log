@@ -1,0 +1,6 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL encoded traversal refused
+PASS normal nested file retained
+

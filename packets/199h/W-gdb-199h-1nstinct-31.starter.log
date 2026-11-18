@@ -1,0 +1,6 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL invalid signal gives finite hold
+FAIL invalid signal does not poison history
+
