@@ -1,0 +1,53 @@
+[
+  {
+    "packet_id": "W-gdb-198z-1nstinct-01-fix",
+    "lab": "1nstinct",
+    "product_repo": "goreda/gorav",
+    "product_sha": "2cdc620c77d2822c5ded1b4ada1f5b0c7c60b3ed",
+    "paths": [
+      "Sources/GorAVFFmpegAdapter/MediaInventory.swift"
+    ],
+    "test_paths": [
+      "Tests/Architecture/198z/W-gdb-198z-1nstinct-01-fix.swift"
+    ],
+    "state": "OPEN",
+    "lease_hours": 2,
+    "scope": "product-fix",
+    "evidence": "lane-b report85e0507605cafa84a473f69dfcaf39f4ffbda27899edc710b9d844a6a76c4c53",
+    "stock_status": "NOT_COUNTED until executable exact-source starter and reviewed test binding are supplied"
+  },
+  {
+    "packet_id": "W-gdb-198z-1nstinct-02-fix",
+    "lab": "1nstinct",
+    "product_repo": "goreda/gorav",
+    "product_sha": "4c70ecfc3b03de936723a6cc65700458136690e0",
+    "paths": [
+      "Sources/GorAVSubtitles/SubtitleTrack.swift"
+    ],
+    "test_paths": [
+      "Tests/Architecture/198z/W-gdb-198z-1nstinct-02-fix.swift"
+    ],
+    "state": "OPEN",
+    "lease_hours": 2,
+    "scope": "product-fix",
+    "evidence": "lane-b report85e0507605cafa84a473f69dfcaf39f4ffbda27899edc710b9d844a6a76c4c53",
+    "stock_status": "NOT_COUNTED until executable exact-source starter and reviewed test binding are supplied"
+  },
+  {
+    "packet_id": "W-gdb-198z-1nstinct-03-fix",
+    "lab": "1nstinct",
+    "product_repo": "goreda/gorav",
+    "product_sha": "d30de19c87377bab5b6b0bba68d3ed3ab02f5042",
+    "paths": [
+      "Sources/GorAVSubtitles/SubtitleController.swift"
+    ],
+    "test_paths": [
+      "Tests/Architecture/198z/W-gdb-198z-1nstinct-03-fix.swift"
+    ],
+    "state": "OPEN",
+    "lease_hours": 2,
+    "scope": "product-fix",
+    "evidence": "lane-b report85e0507605cafa84a473f69dfcaf39f4ffbda27899edc710b9d844a6a76c4c53",
+    "stock_status": "NOT_COUNTED until executable exact-source starter and reviewed test binding are supplied"
+  }
+]

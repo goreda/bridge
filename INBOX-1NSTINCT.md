@@ -728,3 +728,5 @@ W-gdb-198y-1nstinct-10 | rejected: global Config name matching conflates nested 
 arch-199c: new prerequisite product packets open in packets/199c, earliest verified claim with2h progress lease. Source/test scope only; no ref promotion. 08-10 tests mechanically adapted under archive/gor/Tests;10BuildID must rebase launch199b before integration.
 
 arch-199c refill: A11-A13 OPEN in packets/199c, one source each, 2h progress lease. Exact b603, archive/gor/Tests from start. RED starter defects only, not parity or native acceptance. A198z01-03 isolated source-characterization imports do not establish full integration.
+
+198z01-03 fix packets OPEN under packets/198z/fixes at exact imported pins: unambiguous audio IDs, explicit sidecar serialization, source-generation fence. Not stock-counted until executable starter; no acceptance claim.
