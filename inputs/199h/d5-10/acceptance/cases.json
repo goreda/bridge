@@ -1,0 +1,72 @@
+[
+  {
+    "name": "pre-ci-positive",
+    "case": "cases/pre-ci-positive/fixture.json",
+    "expect_zero": true
+  },
+  {
+    "name": "pre-ci-wrong-candidate",
+    "case": "cases/pre-ci-wrong-candidate/fixture.json",
+    "expect_zero": false
+  },
+  {
+    "name": "pre-ci-missing-receipt",
+    "case": "cases/pre-ci-missing-receipt/fixture.json",
+    "expect_zero": false
+  },
+  {
+    "name": "pre-ci-mode-mismatch",
+    "case": "cases/pre-ci-mode-mismatch/fixture.json",
+    "expect_zero": false
+  },
+  {
+    "name": "pre-ci-hash-mismatch",
+    "case": "cases/pre-ci-hash-mismatch/fixture.json",
+    "expect_zero": false
+  },
+  {
+    "name": "pre-ci-wrong-source",
+    "case": "cases/pre-ci-wrong-source/fixture.json",
+    "expect_zero": false
+  },
+  {
+    "name": "atomic-promotion-positive",
+    "case": "cases/atomic-promotion-positive/fixture.json",
+    "expect_zero": true
+  },
+  {
+    "name": "atomic-promotion-wrong-candidate",
+    "case": "cases/atomic-promotion-wrong-candidate/fixture.json",
+    "expect_zero": false
+  },
+  {
+    "name": "atomic-promotion-missing-receipt",
+    "case": "cases/atomic-promotion-missing-receipt/fixture.json",
+    "expect_zero": false
+  },
+  {
+    "name": "atomic-promotion-mode-mismatch",
+    "case": "cases/atomic-promotion-mode-mismatch/fixture.json",
+    "expect_zero": false
+  },
+  {
+    "name": "atomic-promotion-hash-mismatch",
+    "case": "cases/atomic-promotion-hash-mismatch/fixture.json",
+    "expect_zero": false
+  },
+  {
+    "name": "atomic-promotion-wrong-source",
+    "case": "cases/atomic-promotion-wrong-source/fixture.json",
+    "expect_zero": false
+  },
+  {
+    "name": "atomic-promotion-stale-ref",
+    "case": "cases/atomic-promotion-stale-ref/fixture.json",
+    "expect_zero": false
+  },
+  {
+    "name": "atomic-promotion-ref-changes-after-precheck",
+    "case": "cases/atomic-promotion-ref-changes-after-precheck/fixture.json",
+    "expect_zero": false
+  }
+]

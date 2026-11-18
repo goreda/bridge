@@ -1,0 +1,38 @@
+{
+  "schema": "synthetic-adapter-fixture-v1",
+  "candidate": "1111111111111111111111111111111111111111",
+  "carrier": "2222222222222222222222222222222222222222",
+  "source_pin": "3333333333333333333333333333333333333333",
+  "expected_old_refs": {
+    "delivery": "4444444444444444444444444444444444444444",
+    "candidate": "5555555555555555555555555555555555555555"
+  },
+  "observed_old_refs": {
+    "delivery": "4444444444444444444444444444444444444444",
+    "candidate": "5555555555555555555555555555555555555555"
+  },
+  "phase": "atomic-promotion",
+  "receipt": {
+    "result": "PASS",
+    "candidate": "1111111111111111111111111111111111111111",
+    "carrier": "2222222222222222222222222222222222222222",
+    "source_pin": "3333333333333333333333333333333333333333",
+    "native_compile_exit": 0,
+    "manifest_tree_test": "PASS"
+  },
+  "inventory": [
+    {
+      "path": "tools/fixture.sh",
+      "sha256": "306c6ca7407560340797866e077e053627ad409277d1b9da58106fce4cf717cb",
+      "mode": "0o755"
+    }
+  ],
+  "actual_files": [
+    {
+      "path": "tools/fixture.sh",
+      "sha256": "306c6ca7407560340797866e077e053627ad409277d1b9da58106fce4cf717cb",
+      "mode": "0o755"
+    }
+  ],
+  "synthetic": true
+}
