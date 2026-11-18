@@ -1,0 +1,46 @@
+compile_exit=0
+
+semantic_exit=-4
+
+*** Signal 4: Backtracing from 0x561d23792fd6... done ***
+
+*** Program crashed: Illegal instruction at 0x0000561d23792fd6 ***
+
+Thread 0 "test" crashed:
+
+0      0x0000561d23792fd6 static LabHLSPlaylist.parseMedia(_:) + 9334 in test
+1 [ra] 0x0000561d23797de5 main + 356 in test
+
+
+Registers:
+
+rax 0x8000000000000001  9223372036854775809
+rdx 0x0000000000000000  0
+rcx 0x0000561d2379c9f8  b0 b5 78 23 1d 56 00 00 e0 b5 78 23 1d 56 00 00  °µx#·V··àµx#·V··
+rbx 0x0000000000000030  48
+rsi 0x0000561d427a8d70  61 2e 74 73 00 00 00 00 00 00 00 00 00 00 00 e4  a.ts···········ä
+rdi 0x00007ffc45307108  61 2e 74 73 00 00 00 00 00 00 00 00 00 00 00 e4  a.ts···········ä
+rbp 0x00007ffc45307430  d0 75 30 45 fc 7f 00 00 e5 7d 79 23 1d 56 00 00  Ðu0Eü···å}y#·V··
+rsp 0x00007ffc453067d0  3b 4d a3 9a 00 00 00 00 50 f2 8e 89 4c 7f 00 00  ;M£·····Pò··L···
+ r8 0x0000561d2379ca60  00 02 00 00 00 00 00 00 04 89 79 23 1d 56 00 00  ··········y#·V··
+ r9 0x0000000000000020  32
+r10 0x0000000000000027  39
+r11 0x877a594aeb4698cf  9762213320588695759
+r12 0x0000000000000000  0
+r13 0x00007ffc453072f0  50 8d 7a 42 1d 56 00 00 00 00 00 00 00 00 00 00  P·zB·V··········
+r14 0x0000561d2379c858  68 03 de 89 4c 7f 00 00 f0 11 de 89 4c 7f 00 00  h·Þ·L···ð·Þ·L···
+r15 0x00007f4c89f68040  e0 92 f6 89 4c 7f 00 00 15 00 00 00 00 00 00 00  à·ö·L···········
+rip 0x0000561d23792fd6  0f 0b 0f 0b 66 0f 1f 44 00 00 55 48 89 e5 41 55  ····f··D··UH·åAU
+
+rflags 0x0000000000010202  
+
+cs 0x0033  fs 0x0000  gs 0x0000
+
+
+Images (19 omitted):
+
+0x0000561d23784000–0x0000561d2379b510 <no build ID> test /tmp/tmpy_6qaoyi/test
+
+Backtrace took 0.00s
+
+

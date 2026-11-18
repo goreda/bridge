@@ -1,0 +1,6 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL CRLF clean protocol line
+PASS LF unchanged
+

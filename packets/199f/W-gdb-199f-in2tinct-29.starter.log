@@ -1,0 +1,6 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL nonfinite hue does not mutate model
+FAIL nonfinite clock does not mutate model
+

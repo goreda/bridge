@@ -1,0 +1,46 @@
+compile_exit=0
+
+semantic_exit=-4
+
+*** Signal 4: Backtracing from 0x563839394fdf... done ***
+
+*** Program crashed: Illegal instruction at 0x0000563839394fdf ***
+
+Thread 0 "test" crashed:
+
+0 [thunk] 0x0000563839394fdf LabCropFrame.init(planes:strides:width:height:format:range:) + 1647 in test
+1 [ra]    0x0000563839398fee main + 221 in test
+
+
+Registers:
+
+rax 0x8000000000000001  9223372036854775809
+rdx 0x0000000000000000  0
+rcx 0x0000000000000001  1
+rbx 0x0000000000000003  3
+rsi 0x0000000000000000  0
+rdi 0x000056383ca00fb0  68 38 fa a2 10 7f 00 00 03 00 00 00 00 00 00 00  h8ú¢············
+rbp 0x00007ffca2eecd60  90 ce ee a2 fc 7f 00 00 ee 8f 39 39 38 56 00 00  ·Îî¢ü···î·998V··
+rsp 0x00007ffca2eecbe0  01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ················
+ r8 0x00007f10a2e45fe0  55 48 89 e5 41 56 53 48 89 fb 4c 8b 36 4c 89 f7  UH·åAVSH·ûL·6L·÷
+ r9 0x0000000000000027  39
+r10 0x00007f10a31f85b0  ed c3 00 00 12 03 0c 00 e0 4e 03 00 00 00 00 00  íÃ······àN······
+r11 0x00007f10a3227ee0  55 48 89 e5 5d e9 26 bb ff ff 66 0f 1f 44 00 00  UH·å]é&»ÿÿf··D··
+r12 0x00007ffca2eecfa8  30 ec ee a2 fc 7f 00 00 00 00 00 00 00 00 00 00  0ìî¢ü···········
+r13 0x00007ffca2eeccf8  60 0d a0 3c 38 56 00 00 01 cd ee a2 fc 7f 00 00  `· <8V···Íî¢ü···
+r14 0x000056383939c808  fc 24 fe a2 10 7f 00 00 a8 f0 fd a2 10 7f 00 00  ü$þ¢····¨ðý¢····
+r15 0x00007f10a3272040  e0 32 27 a3 10 7f 00 00 15 00 00 00 00 00 00 00  à2'£············
+rip 0x0000563839394fdf  0f 0b 66 66 66 66 66 66 2e 0f 1f 84 00 00 00 00  ··ffffff.·······
+
+rflags 0x0000000000010202  
+
+cs 0x0033  fs 0x0000  gs 0x0000
+
+
+Images (19 omitted):
+
+0x000056383938f000–0x000056383939af90 <no build ID> test /tmp/tmpy1c97hla/test
+
+Backtrace took 0.00s
+
+

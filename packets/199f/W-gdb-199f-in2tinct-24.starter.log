@@ -1,0 +1,6 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL unrepresentable Float32 refused
+FAIL rejection does not mutate value
+

@@ -1,0 +1,7 @@
+compile_exit=0
+
+semantic_exit=1
+PASS audio inventory classified
+FAIL reset has no stale inventory presentation
+PASS explicit intent survives reset immediately
+

@@ -1,0 +1,6 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL closed remains terminal
+FAIL closed decoder never reappears active
+

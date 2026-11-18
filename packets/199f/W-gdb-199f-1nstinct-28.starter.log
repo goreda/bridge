@@ -1,0 +1,7 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL invalid video input refused
+PASS invalid video input refused
+PASS ordinary proposal unchanged
+
