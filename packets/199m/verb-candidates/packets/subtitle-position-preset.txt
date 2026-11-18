@@ -1,0 +1,68 @@
+packet: subtitle-position-preset
+verb (owner-visible): set_property sub-pos <10..90> then get_property sub-pos
+parent row: SUBTITLE-TYPOGRAPHY position preset with read-back (set + get sub-pos); lab: in2tinct (per owner order)
+status: CANDIDATE, NOT READY (grounded refusal and call-path evidence only; no typed operation interface, no Linux test, no Darwin fixture supplied)
+repository gor, source_pin 55e11d70ee6bad7d7d7373a275eeebd0a5157eee; repository gorav, source_pin cf3e3f1772033dbc8465b19689e93f53c60006ce
+
+## A. Owner-visible call sites at gor pin (byte-exact; file:line)
+Sources/gor/GorUI/MenuActions.swift:493:     @objc func menuSubPosPreset(_ sender: NSMenuItem) {
+Sources/gor/GorUI/MenuActions.swift:494:         guard let pos = sender.representedObject as? Int else { return }
+Sources/gor/GorUI/MenuActions.swift:495:         controller?.setSubtitlePositionPreset(pos)
+Sources/gor/GorUI/MenuActions.swift:496:     }
+Sources/gor/GorUI/PPControllerMenuQueries.swift:14:     /// Absolute sub-pos preset (subtitles > position, the shift+1..9 rows).
+Sources/gor/GorUI/PPControllerMenuQueries.swift:15:     /// Same set-then-read plumbing and OSD as adjustSubtitleProperty.
+Sources/gor/GorUI/PPControllerMenuQueries.swift:16:     @discardableResult
+Sources/gor/GorUI/PPControllerMenuQueries.swift:17:     func setSubtitlePositionPreset(_ pos:Int) -> Bool {
+Sources/gor/GorUI/PPControllerMenuQueries.swift:18:         let payload=MPVCommand.make(["set_property","sub-pos",pos])+"\n"+MPVCommand.make(["get_property","sub-pos"])
+Sources/gor/GorUI/PPControllerMenuQueries.swift:19:         let reply=queryMenuPayload(payload)
+Sources/gor/GorUI/PPControllerMenuQueries.swift:20:         guard let value=reply["data"] as? Double,value.isFinite else{
+Sources/gor/GorUI/PPControllerMenuQueries.swift:21:             spineUI.showMPVOSD("subtitle control unavailable",duration:1.5,force:true);return false
+Sources/gor/GorUI/PPControllerMenuQueries.swift:22:         }
+Sources/gor/GorUI/PPControllerMenuQueries.swift:23:         pendingSubtitleModePosition=nil;subtitleView.setSubtitlePosition(value,force:true)
+Sources/gor/GorUI/PPControllerMenuQueries.swift:24:         spineUI.showMPVOSD("subtitle position: "+String(format:"%.0f%%",value),duration:1.5,force:true)
+Sources/gor/GorUI/PPControllerMenuQueries.swift:25:         return true
+Sources/gor/GorUI/PPControllerMenuQueries.swift:26:     }
+
+## B. Route to the host (byte-exact)
+This verb is resolved in the controller before any host command; see C. (host route lines for reference):
+Sources/gor/gor/PPController.swift:4067:         if embeddedBackend {embeddedCommand?(json);return}
+Sources/gor/gor/PPController.swift:4155:         if embeddedBackend {for line in rawPayload.split(separator:"\n") {embeddedCommand?(String(line))};return}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:58:             controls.embeddedCommand={ [weak self] line in self?.handleChromeCommand(line) }
+
+## C. Refusal point at gor pin (byte-exact)
+Sources/gor/GorUI/PPControllerMenuQueries.swift:5:     func queryMenuPayload(_ payload:String) -> [String:Any] {
+Sources/gor/GorUI/PPControllerMenuQueries.swift:6:         let lines=ipcClient.queryBatch(payload,timeout:0.3)
+Sources/gor/GorUI/PPControllerMenuQueries.swift:7:         let reply=IPCClient.parseFirst(lines)
+Sources/gor/GorUI/PPControllerMenuQueries.swift:8:         return reply
+Sources/gor/GorUI/PPControllerMenuQueries.swift:9:     }
+
+Sources/gor/GorUI/PPControllerMenuQueries.swift:17:     func setSubtitlePositionPreset(_ pos:Int) -> Bool {
+Sources/gor/GorUI/PPControllerMenuQueries.swift:18:         let payload=MPVCommand.make(["set_property","sub-pos",pos])+"\n"+MPVCommand.make(["get_property","sub-pos"])
+Sources/gor/GorUI/PPControllerMenuQueries.swift:19:         let reply=queryMenuPayload(payload)
+Sources/gor/GorUI/PPControllerMenuQueries.swift:20:         guard let value=reply["data"] as? Double,value.isFinite else{
+Sources/gor/GorUI/PPControllerMenuQueries.swift:21:             spineUI.showMPVOSD("subtitle control unavailable",duration:1.5,force:true);return false
+Sources/gor/GorUI/PPControllerMenuQueries.swift:22:         }
+Sources/gor/GorUI/PPControllerMenuQueries.swift:23:         pendingSubtitleModePosition=nil;subtitleView.setSubtitlePosition(value,force:true)
+Sources/gor/GorUI/PPControllerMenuQueries.swift:24:         spineUI.showMPVOSD("subtitle position: "+String(format:"%.0f%%",value),duration:1.5,force:true)
+Sources/gor/GorUI/PPControllerMenuQueries.swift:25:         return true
+Sources/gor/GorUI/PPControllerMenuQueries.swift:26:     }
+
+
+## D. Call path below the host at gorav pin (host -> GorAVEmbeddedSession -> presenter/sink)
+probe regex over gorav Sources (tests excluded): subPos|subtitlePosition|SubtitlePosition|marginY|bottomMargin
+GorAVEmbeddedSession.swift: NO matching method or property. MISSING body: session API for this verb. Nothing is invented here.
+Other gorav files matching the probe (0); nearest candidates only, not a verified call path:
+Presenter/sink hop: not established for this verb; named as missing until an interface exists.
+
+## E. Notes
+This path does not go through embeddedCommand or refuseEmbedded: it calls ipcClient.queryBatch on the mpv socket directly, so under gorav the read-back has no mpv to answer and the only visible result is the OSD text "subtitle control unavailable". There is no typed refusal at this point. The get_property sub-pos query has no separate owner-visible call site and is part of this packet.
+
+## F. Not supplied
+Typed operation interface; supported/refused boundary; Linux-runnable test; Darwin fixture; full-file return scope. Executed results: none. No PASS inherited across pins.
+
+## G. Source files and sha256
+gor@55e11d70 Sources/gor/GorAVBackend/GorAVPlayerHost.swift feeff2f4db3bbf75063f853d3eb24cfb916b401975237873d0316e1a719d9368
+gor@55e11d70 Sources/gor/GorUI/MenuActions.swift 49ad911cdd14d119a12a91ec34cd6062d6c246b018a35d5932dd00d563aaddcc
+gor@55e11d70 Sources/gor/GorUI/PPControllerMenuQueries.swift e0776408c8ed4c5fd79859fe7a14c65fe632e5e9ddb6f368f0887664dcfb7bd9
+gor@55e11d70 Sources/gor/gor/PPController.swift ba50b8c3997414e2409244c3f5db6a359502ba41cd9ebde4883f6e9cc94f85e7
+gorav@cf3e3f1 Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift a74d11a2b12ed17e0fe88f6a7926ac9a7d01a285da53c1c2318321eb1ab4d66d

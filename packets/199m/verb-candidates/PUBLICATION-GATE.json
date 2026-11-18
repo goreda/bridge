@@ -1,5 +1,7 @@
 {
   "result": "NOT_READY",
+  "candidate_count": 25,
+  "ready_count": 0,
   "packets": {
     "transport-frame-step.txt": [
       "exactly one packet-json manifest required"
@@ -13,25 +15,43 @@
     "audio-boost.txt": [
       "exactly one packet-json manifest required"
     ],
-    "audio-filters.txt": [
+    "menu-rotate.txt": [
       "exactly one packet-json manifest required"
     ],
-    "menu-rotate.txt": [
+    "audio-eq-filter-remove.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "audio-loudness-normalize.txt": [
       "exactly one packet-json manifest required"
     ],
     "transport-speed.txt": [
       "exactly one packet-json manifest required"
     ],
+    "subtitle-position-step.txt": [
+      "exactly one packet-json manifest required"
+    ],
     "menu-pan.txt": [
       "exactly one packet-json manifest required"
     ],
+    "subtitle-position-preset.txt": [
+      "exactly one packet-json manifest required"
+    ],
     "capture-stats.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "audio-night-mode.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "subtitle-size-step.txt": [
       "exactly one packet-json manifest required"
     ],
     "menu-aspect.txt": [
       "exactly one packet-json manifest required"
     ],
     "cache-parity.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "subtitle-size-reset.txt": [
       "exactly one packet-json manifest required"
     ],
     "subtitle-owner-sid.txt": [
@@ -57,10 +77,6 @@
     ],
     "transport-loop.txt": [
       "exactly one packet-json manifest required"
-    ],
-    "subtitle-typography.txt": [
-      "exactly one packet-json manifest required"
     ]
-  },
-  "note": "Candidate source inventory only. No packet-json runnable contract yet; zero ready stock."
+  }
 }

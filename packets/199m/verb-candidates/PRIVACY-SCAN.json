@@ -1,27 +1,142 @@
 {
-  "result": "PASS scoped privacy scan",
-  "files": 22,
-  "findings": [],
-  "patterns": [
-    "email",
-    "userpath",
-    "privateid",
-    "credential"
+  "scope": "r2 candidate stock only",
+  "files": [
+    {
+      "path": "INDEX.tsv",
+      "sha256": "8011df391bc75dab93d8e470848b9af95a0cbab4c52199bc0a5a7b55b4314475",
+      "hits": []
+    },
+    {
+      "path": "SHA256SUMS",
+      "sha256": "3722706e74438d671f753a9a043176e2bcd70c13ae575f1a4385697e2c8fd50c",
+      "hits": []
+    },
+    {
+      "path": "packets/transport-frame-step.txt",
+      "sha256": "c5bff4316b986b833655ce04979e6978108458e9fd69c9ef20869361e61a0ee7",
+      "hits": []
+    },
+    {
+      "path": "packets/transport-ab-loop.txt",
+      "sha256": "67cfcbff78f7ee5bada67716fc99c9861973b8ca9bb31062499ae2c781347429",
+      "hits": []
+    },
+    {
+      "path": "packets/audio-device.txt",
+      "sha256": "7089036df5762af52587d96a19395ba58d7f9d75983fe1d1b4d63b966d6da171",
+      "hits": []
+    },
+    {
+      "path": "packets/audio-boost.txt",
+      "sha256": "3afed08a37f6f0c5d49bfb98070a1627121df9a73c58f5c78489fe39b2d6794d",
+      "hits": []
+    },
+    {
+      "path": "packets/menu-rotate.txt",
+      "sha256": "614ff568aeb17e23b4f6a8f42a4cd957d5caea8fdb80a63769dc69086d0738e3",
+      "hits": []
+    },
+    {
+      "path": "packets/audio-eq-filter-remove.txt",
+      "sha256": "75b5ebcd3eab5782ab19bb080fe62b0e2bab3b0ff591c208a637f110357c2dcd",
+      "hits": []
+    },
+    {
+      "path": "packets/audio-loudness-normalize.txt",
+      "sha256": "6501f9af139409897c5d3c28ed4d8e15575e0c40fe1c7c8a699067cc9bb2e63e",
+      "hits": []
+    },
+    {
+      "path": "packets/transport-speed.txt",
+      "sha256": "a7b867090becd1cae132a246a1d01ff966ebed75d015c3c48a28f571b76ecf24",
+      "hits": []
+    },
+    {
+      "path": "packets/subtitle-position-step.txt",
+      "sha256": "0207c60c5239264634bf9a75a3e886ef402e1078efe45a5080d3ee35a223c55a",
+      "hits": []
+    },
+    {
+      "path": "packets/menu-pan.txt",
+      "sha256": "50b0a9b79163e0b08a8b5cb76159a64eeb7fdfc1ddd0c3cdc7823c15b7965b00",
+      "hits": []
+    },
+    {
+      "path": "packets/subtitle-position-preset.txt",
+      "sha256": "7bd3b0b848960203bc29ac22eea6dc2cce177a7d4e1f2e98078ae2c7b7487f54",
+      "hits": []
+    },
+    {
+      "path": "packets/capture-stats.txt",
+      "sha256": "dd31eb09322d6432c255d85be874583357e4c0ea485acf3da9327b3006fe642c",
+      "hits": []
+    },
+    {
+      "path": "packets/audio-night-mode.txt",
+      "sha256": "36de6c750af18bc49ff1083e64128e70b0e8d6d4eb05173598af8bc663e5611c",
+      "hits": []
+    },
+    {
+      "path": "packets/subtitle-size-step.txt",
+      "sha256": "12096dd674628b4eee946c945b513174756ee86bbf9be7a9f4e8a941e552e5bb",
+      "hits": []
+    },
+    {
+      "path": "packets/menu-aspect.txt",
+      "sha256": "537f84d43b8fc36d2712fa50a0e1760a7f12c7a2e91c9992c51c855140f1ee93",
+      "hits": []
+    },
+    {
+      "path": "packets/cache-parity.txt",
+      "sha256": "84d8771388199f62d04541544aea5fcc49d85627d840143f022f9578fece8a4f",
+      "hits": []
+    },
+    {
+      "path": "packets/subtitle-size-reset.txt",
+      "sha256": "50d40933ea510d65839bb7fef2ea61fe32dfb507d15b98bfefea2f43f71c7f65",
+      "hits": []
+    },
+    {
+      "path": "packets/subtitle-owner-sid.txt",
+      "sha256": "ad3cbd42fa4d641d639119bfffea51e56741ffaa5c90b17525174a9ba5c355d5",
+      "hits": []
+    },
+    {
+      "path": "packets/capture-screenshot.txt",
+      "sha256": "d729c347d568b900119ab9365086ea2a00d04c1fe95b6cb59861e4b05bbac64f",
+      "hits": []
+    },
+    {
+      "path": "packets/menu-eq.txt",
+      "sha256": "95a1080bf3b1d6eba5e6c4e799dc441603a2d229e73db777a335ca1f5b8e71c7",
+      "hits": []
+    },
+    {
+      "path": "packets/transport-playlist.txt",
+      "sha256": "201128695cc1eee8659083fed67015e7e11055d3d7238f2f85edfa6e205f23c5",
+      "hits": []
+    },
+    {
+      "path": "packets/menu-crop.txt",
+      "sha256": "72f4b5fe6b923c5216d0e219e52be11948553ae1b52160d988b931783072b99a",
+      "hits": []
+    },
+    {
+      "path": "packets/transport-chapter.txt",
+      "sha256": "7cc8e6c0bda7a0a61ffacb313215b0da23c28c9f5aeb55e23a7cb7a9ea9fcd60",
+      "hits": []
+    },
+    {
+      "path": "packets/menu-zoom.txt",
+      "sha256": "f284af7f0e1b1a35a6242cf26fe900c177cbb134c04acb35017cd46131042e27",
+      "hits": []
+    },
+    {
+      "path": "packets/transport-loop.txt",
+      "sha256": "4e4c8cca4bf2e0dd91ad7c0cde01f407afe8f9336ca62a27500ea68e19482822",
+      "hits": []
+    }
   ],
-  "scope": "emails, user home paths, runtime private identifiers and credential patterns; manually reviewed code excerpts; not run-proven publication gate",
-  "ready_stock": {
-    "1nstinct": 0,
-    "in2tinct": 0
-  },
-  "candidates": {
-    "1nstinct": 12,
-    "in2tinct": 8
-  },
-  "missing": [
-    "typed interfaces",
-    "Linux tests",
-    "Darwin fixtures",
-    "full-file return scopes",
-    "reachability and row-name mapping review"
-  ]
+  "result": "PASS",
+  "excludes": "whole pinned input files checked separately; source excerpts manually reviewed r1, changed r2 next"
 }
