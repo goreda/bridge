@@ -1,3 +1,12 @@
+## arch-199h D5 stock, November 18 2026 13:01 +03
+
+| Lab | Verified startable open packets | Required | Blocker |
+| --- | ---: | ---: | --- |
+| 1nstinct | 10 (arch-199h D5 shared stock) + 7 (arch-198z) | 10 | none for D5 |
+| in2tinct | 10 (arch-199h D5 shared stock) + 10 (arch-198z) | 10 | none for D5 |
+
+D5 stock: packets/199h/d5/INDEX.tsv, 10 packets, shared across labs, earliest claim wins. Pins goreda/instinct bb3e0ea0 (mac-source-sync-20261103) and goreda/bridge fbb0932 (D1 emitter). Baseline source-pin proofs executed on clean sparse checkouts. Writer items (grain vendor binding, manual grain range, installed BuildID read) queued next per owner block arch-199h. The arch-198s audit below is historical.
+
 ## arch-198s authored-commit status, audited November17 01:41
 
 1nstinct and in2tinct UNRESPONSIVE under owner authored-bridge-commit criterion after routed198m/198p/198r notices. Live full bridge git author history has no author bound to either lab, so last lab-AUTHORED commit timestamp is NOT_FOUND/unknown, not fabricated as198k timestamp.198k input publication is not lab authorship. Hosted1nstinct G0867 completed chrome return and in2tinct H0610 claim/H0611 wakes2344B exist and are preserved as attributed hosted activity. H0611 claimed29m05gap/rebaseline is not verified schedule. This is specifically repo-write unresponsive, not a claim of no work anywhere.
