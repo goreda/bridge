@@ -1,0 +1,80 @@
+[
+  {
+    "packet": "W-gdb-199c-1nstinct-08",
+    "sha256": "87e1e67b6f8526e5a35e3b9be992a53d911aaa6b5303129d8e5fd00e7f396b2a",
+    "state": "OPEN",
+    "lease_hours": 2
+  },
+  {
+    "packet": "W-gdb-199c-1nstinct-09",
+    "sha256": "9185d930010c56963d412e731572e10aaf3abcda7105f21fcda6a018a531239f",
+    "state": "OPEN",
+    "lease_hours": 2
+  },
+  {
+    "packet": "W-gdb-199c-1nstinct-10",
+    "sha256": "d98728d4464413c695c6e2dec63004f2b2e0b4bafb7cba502d2bfd6c6acccffa",
+    "state": "OPEN",
+    "lease_hours": 2
+  },
+  {
+    "packet": "W-gdb-199c-in2tinct-11",
+    "sha256": "ce87e8afb3ef68d5e3fbf968fa2a5875253ad363539565c458a1b20ed6398155",
+    "state": "OPEN",
+    "lease_hours": 2
+  },
+  {
+    "packet": "W-gdb-199c-in2tinct-12",
+    "sha256": "e9673315cbecc4cf806b976151017152e5c6cd07ab497ab32b6736de6ba9219d",
+    "state": "OPEN",
+    "lease_hours": 2
+  },
+  {
+    "packet": "W-gdb-199c-in2tinct-13",
+    "sha256": "ceafa77805d9c660809c79028bbe64942fa9154cca6d87fe081109c075acc1bc",
+    "state": "OPEN",
+    "lease_hours": 2
+  },
+  {
+    "packet": "W-gdb-199c-in2tinct-14",
+    "sha256": "ab16897a659a6f4d85d2720d6970ccdd5a22b43d19c8edb5dab67e184e9a6e12",
+    "state": "OPEN",
+    "lease_hours": 2
+  },
+  {
+    "packet": "W-gdb-199c-in2tinct-15",
+    "sha256": "3defb6569f14e91319ee38cb2fc92a20ce659cecd65b17be3a047121ba74ca82",
+    "state": "OPEN",
+    "lease_hours": 2
+  },
+  {
+    "packet": "W-gdb-199c-in2tinct-16",
+    "sha256": "f8db6a5ce60bc699f6db93938d6d8e15749562daf00e163cf4ac5eaf863de6bc",
+    "state": "OPEN",
+    "lease_hours": 2
+  },
+  {
+    "packet": "W-gdb-199c-in2tinct-17",
+    "sha256": "90f76a452eadf71959658c57e8e328ddb33e74482b8495592fbda89856b20c5a",
+    "state": "OPEN",
+    "lease_hours": 2
+  },
+  {
+    "packet": "W-gdb-199c-in2tinct-18",
+    "sha256": "18f022589670c55bae1c5b36e1335071e57729fa7cefbb7814155e383c4825fd",
+    "state": "OPEN",
+    "lease_hours": 2
+  },
+  {
+    "packet": "W-gdb-199c-in2tinct-19",
+    "sha256": "e3a53ab20b24165551305cb7f77d63451d7aeaf0dc792ea9e5cd76a4503e4b8a",
+    "state": "OPEN",
+    "lease_hours": 2
+  },
+  {
+    "packet": "W-gdb-199c-in2tinct-20",
+    "sha256": "07db082b39ffab9e9983995ae18d46f5c09906bdb98327a00d9f2fae13e0dbbc",
+    "state": "OPEN",
+    "lease_hours": 2
+  }
+]

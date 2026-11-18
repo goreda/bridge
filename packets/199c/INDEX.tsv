@@ -1,0 +1,14 @@
+packet_id	lab	source	test_argv	starter_status	starter_exit
+W-gdb-199c-in2tinct-11	in2tinct	Sources/GorAVPlaybackCore/PlayheadPosition.swift	python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-11.py	BASELINE_DEFECT_REPRODUCED	1
+W-gdb-199c-in2tinct-12	in2tinct	Sources/GorAVPlaybackCore/WindowModePlan.swift	python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-12.py	BASELINE_DEFECT_REPRODUCED	1
+W-gdb-199c-in2tinct-13	in2tinct	Sources/GorAVPlaybackCore/HostTransform.swift	python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-13.py	BASELINE_DEFECT_REPRODUCED	1
+W-gdb-199c-in2tinct-14	in2tinct	Sources/GorAVPlaybackCore/PlayheadObservers.swift	python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-14.py	BASELINE_DEFECT_REPRODUCED	1
+W-gdb-199c-in2tinct-15	in2tinct	Sources/GorAVPlaybackCore/TapCropDetector.swift	python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-15.py	BASELINE_DEFECT_REPRODUCED	1
+W-gdb-199c-in2tinct-16	in2tinct	Sources/GorAVSubtitles/SubtitleCue.swift	python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-16.py	BASELINE_DEFECT_REPRODUCED	1
+W-gdb-199c-in2tinct-17	in2tinct	Sources/GorAVSubtitles/SubtitleAutoLoad.swift	python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-17.py	BASELINE_DEFECT_REPRODUCED	1
+W-gdb-199c-in2tinct-18	in2tinct	Sources/GorAVSubtitles/SubtitlePlan.swift	python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-18.py	BASELINE_DEFECT_REPRODUCED	1
+W-gdb-199c-in2tinct-19	in2tinct	Sources/GorAVSubtitles/ASSParser.swift	python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-19.py	BASELINE_DEFECT_REPRODUCED	1
+W-gdb-199c-in2tinct-20	in2tinct	Sources/GorAVSubtitles/SRTParser.swift	python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-20.py	BASELINE_API_MISSING	2
+W-gdb-199c-1nstinct-08	1nstinct	archive/gor/Sources/gor/GorPlaybackModel/EngineObservation.swift	python3 Tests/Architecture/199c/W-gdb-199c-1nstinct-08.py	BASELINE_DEFECT_REPRODUCED	1
+W-gdb-199c-1nstinct-09	1nstinct	archive/gor/Sources/gor/GorAVBackend/GorAVStreamAdmission.swift	python3 Tests/Architecture/199c/W-gdb-199c-1nstinct-09.py	BASELINE_DEFECT_REPRODUCED	1
+W-gdb-199c-1nstinct-10	1nstinct	archive/gor/Sources/gor/GorCore/BuildID.swift	python3 Tests/Architecture/199c/W-gdb-199c-1nstinct-10.py	BASELINE_DEFECT_REPRODUCED	1
