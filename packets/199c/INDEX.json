@@ -60,6 +60,46 @@
     "lease_hours": 2
   },
   {
+    "packet_id": "W-gdb-199c-1nstinct-14",
+    "lab": "1nstinct",
+    "source": "archive/gor/Sources/gor/Camera/BinocularGaze.swift",
+    "test_argv": "python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-14.py",
+    "product_sha": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "bafa3bd691b1d747cb4be592d76a09093869243aef4af33923f60918cb9e7473",
+    "state": "OPEN",
+    "lease_hours": 2
+  },
+  {
+    "packet_id": "W-gdb-199c-1nstinct-15",
+    "lab": "1nstinct",
+    "source": "archive/gor/Sources/gor/Camera/Pose192d.swift",
+    "test_argv": "python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-15.py",
+    "product_sha": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "0e19736e0b46e9c45dfbbb0139f10c09b9a5f21c970711428661bbcce850527f",
+    "state": "OPEN",
+    "lease_hours": 2
+  },
+  {
+    "packet_id": "W-gdb-199c-1nstinct-16",
+    "lab": "1nstinct",
+    "source": "archive/gor/Sources/gor/Camera/PoseMeasurementValidity.swift",
+    "test_argv": "python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-16.py",
+    "product_sha": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "a5f01f7a9f9f0f22315a56d90b31654f90882d254dced3f2be134b7f3640e294",
+    "state": "OPEN",
+    "lease_hours": 2
+  },
+  {
+    "packet_id": "W-gdb-199c-1nstinct-17",
+    "lab": "1nstinct",
+    "source": "archive/gor/Sources/gor/Subtitles/SubtitleTiltGeometry.swift",
+    "test_argv": "python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-17.py",
+    "product_sha": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "sha256": "79e8feca2abdec42564e24f545841b0379cae7771a9d9f4971a63681b7db0ea0",
+    "state": "OPEN",
+    "lease_hours": 2
+  },
+  {
     "packet_id": "W-gdb-199c-in2tinct-11",
     "lab": "in2tinct",
     "source": "Sources/GorAVPlaybackCore/PlayheadPosition.swift",

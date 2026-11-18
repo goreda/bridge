@@ -254,3 +254,5 @@ public struct ActiveMediaInventorySnapshot: Equatable, Sendable {
 }
 
 ```
+
+Executable RED starter published at packets/198z/fix-starters/W-gdb-198z-1nstinct-01-fix/run.py. From bridge root: python3 packets/198z/fix-starters/W-gdb-198z-1nstinct-01-fix/run.py. PRODUCT_ROOT points at your modified exact-pin product checkout. Starter kind exact-source-isolated; provider/full integration gate remains NOT_RUN. Preserve legacy APIs; new generation API needs new acceptance tests.

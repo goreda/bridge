@@ -1,0 +1,7 @@
+normal_compile_exit=0
+
+normal_id=acd811d00f544e81
+diagnostic_compile_exit=0
+
+diagnostic_id=f9364091e81398df
+FAIL identity must not depend on diagnostic description

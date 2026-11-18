@@ -1,0 +1,7 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL delimiter tuples remain distinct
+FAIL nil and empty language remain distinct
+PASS same tuple deterministic
+

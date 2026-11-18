@@ -1,0 +1,6 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL content-only API does not fence source replacement
+FAIL stale request changes nothing
+

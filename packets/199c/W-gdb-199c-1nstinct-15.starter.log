@@ -1,0 +1,14 @@
+compile_exit=0
+
+
+semantic_exit=1
+FAIL invalid metric output absent
+PASS relative measurement retained
+PASS invalid metric output absent
+PASS relative measurement retained
+FAIL invalid metric output absent
+PASS relative measurement retained
+PASS finite calibrated distance preserved
+semantic failures=2
+
+

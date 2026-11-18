@@ -5,6 +5,10 @@ W-gdb-199c-1nstinct-10	1nstinct	archive/gor/Sources/gor/GorCore/BuildID.swift	py
 W-gdb-199c-1nstinct-11	1nstinct	archive/gor/Sources/gor/Stereo/StereoGeometry.swift	python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-11.py
 W-gdb-199c-1nstinct-12	1nstinct	archive/gor/Sources/gor/GorSources/TransferTicketContext.swift	python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-12.py
 W-gdb-199c-1nstinct-13	1nstinct	archive/gor/Sources/gor/Camera/BlinkEpisodes.swift	python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-13.py
+W-gdb-199c-1nstinct-14	1nstinct	archive/gor/Sources/gor/Camera/BinocularGaze.swift	python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-14.py
+W-gdb-199c-1nstinct-15	1nstinct	archive/gor/Sources/gor/Camera/Pose192d.swift	python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-15.py
+W-gdb-199c-1nstinct-16	1nstinct	archive/gor/Sources/gor/Camera/PoseMeasurementValidity.swift	python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-16.py
+W-gdb-199c-1nstinct-17	1nstinct	archive/gor/Sources/gor/Subtitles/SubtitleTiltGeometry.swift	python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-17.py
 W-gdb-199c-in2tinct-11	in2tinct	Sources/GorAVPlaybackCore/PlayheadPosition.swift	python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-11.py
 W-gdb-199c-in2tinct-12	in2tinct	Sources/GorAVPlaybackCore/WindowModePlan.swift	python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-12.py
 W-gdb-199c-in2tinct-13	in2tinct	Sources/GorAVPlaybackCore/HostTransform.swift	python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-13.py

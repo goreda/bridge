@@ -1,0 +1,13 @@
+compile_exit=0
+
+
+semantic_exit=1
+FAIL rectangle overflow refused
+FAIL landmark rectangle overflow refused
+FAIL rectangle overflow refused
+FAIL landmark rectangle overflow refused
+PASS normal box retained
+PASS reason precedence retained
+semantic failures=4
+
+
