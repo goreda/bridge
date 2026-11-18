@@ -1,20 +1,29 @@
 packet: subtitle-owner-sid
-verb (owner-visible): set_property sid (select subtitle track by id)
-parent row: SUBTITLE-OWNER; lab: in2tinct (per owner order; ownership list in contract)
+verb (owner-visible): set_property sid <trackId> (owner track pick); NOT sid auto
+parent row: SUBTITLE-OWNER track selection by id; lab: in2tinct (per owner order)
 status: CANDIDATE, NOT READY (grounded refusal and call-path evidence only; no typed operation interface, no Linux test, no Darwin fixture supplied)
 repository gor, source_pin 55e11d70ee6bad7d7d7373a275eeebd0a5157eee; repository gorav, source_pin cf3e3f1772033dbc8465b19689e93f53c60006ce
 
 ## A. Owner-visible call sites at gor pin (byte-exact; file:line)
+Sources/gor/GorUI/SpineUI.swift:1868:                     return
+Sources/gor/GorUI/SpineUI.swift:1869:                 }
+Sources/gor/GorUI/SpineUI.swift:1870:                 
+Sources/gor/GorUI/SpineUI.swift:1871:                 let isAudio = type.lowercased().hasPrefix("aud")
+Sources/gor/GorUI/SpineUI.swift:1872:                 let prop = isAudio ? "aid" : "sid"
+Sources/gor/GorUI/SpineUI.swift:1873:                 
+Sources/gor/GorUI/SpineUI.swift:1874:                 print("🎯 [DEBUG CLICK] Tip: \(type) -> Prop: \(prop), ID: \(trackId)")
+Sources/gor/GorUI/SpineUI.swift:1875:                 
+Sources/gor/GorUI/SpineUI.swift:1876:                 let cmd = "{\"command\":[\"set_property\",\"\(prop)\",\(trackId)]}"
 Sources/gor/gor/PPController.swift:2563:             ipcCommand(#"{"command":["set_property","sid","auto"]}"#)
 
 ## B. Route to the host (byte-exact)
-Sources/gor/gor/PPController.swift ipcCommand(_:) embeddedBackend branch -> controls.embeddedCommand -> GorAVPlayerHost.handleChromeCommand:
+PPController.ipcCommand / batchIPC embeddedBackend branch -> controls.embeddedCommand -> GorAVPlayerHost.handleChromeCommand:
 Sources/gor/gor/PPController.swift:4067:         if embeddedBackend {embeddedCommand?(json);return}
 Sources/gor/gor/PPController.swift:4155:         if embeddedBackend {for line in rawPayload.split(separator:"\n") {embeddedCommand?(String(line))};return}
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:58:             controls.embeddedCommand={ [weak self] line in self?.handleChromeCommand(line) }
 
 ## C. Refusal point at gor pin (byte-exact)
-No case in handleChromeCommand matches this verb, so it falls to the default branch (Sources/gor/GorAVBackend/GorAVPlayerHost.swift:377-383):
+No case in handleChromeCommand matches this verb, so it falls to the default branch (Sources/gor/GorAVBackend/GorAVPlayerHost.swift:377-383); detail text per the rule: "set_property sid" (derived, not run):
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:377:         default:
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:378:             let detail:String
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:379:             if name=="script-message-to" {detail="script "+(string(1) ?? "unknown")+" "+(string(2) ?? "unknown")}
@@ -22,7 +31,7 @@ Sources/gor/GorAVBackend/GorAVPlayerHost.swift:380:             else if ["set_pr
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:381:             else {detail=name}
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:382:             fail(Refusal.unsupportedCapability(String(detail.prefix(96))))
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:383:         }
-then fail() (Sources/gor/GorAVBackend/GorAVPlayerHost.swift:511-518):
+then fail():
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:511:     private func fail(_ error: Error) {
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:512:         guard !postOpenFallback.wasClaimed else { return }
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:513:         gateFailureCount += 1
@@ -31,19 +40,77 @@ Sources/gor/GorAVBackend/GorAVPlayerHost.swift:515:         status.stringValue =
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:516:         chrome?.spineUI.showMPVOSD("gorav unavailable: "+String(String(describing:error).prefix(160)),force:true)
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:517:         print("[engine] backend=gorav refusal=\(error); no runtime replay on mpv")
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:518:     }
-Resulting typed refusal detail (derived from the default branch rule, not run): unsupportedCapability("<name> <arg1>") for set_property/add/cycle/get_property verbs; unsupportedCapability("<name>") for other names; script-message-to -> "script <target> <message>"; prefix(96).
 
 ## D. Call path below the host at gorav pin (host -> GorAVEmbeddedSession -> presenter/sink)
-probe regex over gorav Sources (tests excluded): selectSubtitleTrack|subtitleTrackId|setSubtitleTrack|selectTrack
-GorAVEmbeddedSession.swift lines matching the probe (may be unrelated; read before use):
-Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:70:     case unsupportedCommand(String)  // setRate/selectTrack/screenshot/replace
-Other gorav files matching the probe (0); nearest candidates only, not a verified call path:
+Existing subtitle selection point at gorav pin (byte-exact):
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:304:     /// Plaintext track input and sidecar selection share the source-bound owner.
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:305:     @discardableResult public func setTextSubtitles(_ controller: SubtitleController) -> Bool {
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:306:         subtitleSidecars?.setController(controller) ?? false
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:307:     }
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:308:     public var subtitleCandidates: [SubtitleAutoLoad.Candidate] { subtitleSidecars?.candidates ?? [] }
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:309:     public func selectSubtitle(path: String, slot: SubtitleController.Slot) async -> SubtitleSidecarSelection {
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:310:         guard let sidecars = subtitleSidecars else { return .refused(.closed) }
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:311:         return await sidecars.select(path: path, slot: slot)
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:312:     }
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:313:     @discardableResult public func setSubtitleDelay(_ seconds: Double, slot: SubtitleController.Slot) -> SubtitleSidecarRefusal? {
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:314:         guard let sidecars = subtitleSidecars else { return .closed }
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:315:         return sidecars.setDelay(seconds, slot: slot)
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:316:     }
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:317:     public func setSubtitleVisible(_ visible: Bool, slot: SubtitleController.Slot) { subtitleSidecars?.setVisible(visible, slot: slot) }
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:318:     public func resetSubtitles() { subtitleSidecars?.reset() }
+Existing host consumer at gor pin: selectTextSubtitle and cycleTextSubtitle:
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:265:     private func selectTextSubtitle(path:String,candidateIndex:Int?=nil) {
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:266:         guard let session else {fail(Refusal.missingSource);return}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:267:         guard path.lowercased().hasSuffix(".srt") else {fail(Refusal.unsupportedCapability("text subtitle: only srt"));return}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:268:         let token=identity
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:269:         Task { [weak self,weak session] in
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:270:             guard let session else {return}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:271:             let result=await session.selectSubtitle(path:path,slot:.primary)
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:272:             guard let self,self.identity==token,self.session===session else {return}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:273:             switch result {
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:274:             case .selected:
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:275:                 if session.setSubtitleVisible(true,slot:.primary) {
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:276:                     self.subtitleVisible=true
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:277:                     if let candidateIndex {self.subtitleCycleIndex=candidateIndex}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:278:                     self.osd("subtitle: "+URL(fileURLWithPath:path).lastPathComponent)
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:279:                 } else {self.fail(Refusal.unsupportedCapability("text subtitle: owner closed"))}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:280:             case .refused(let refusal):self.fail(Refusal.unsupportedCapability("text subtitle: \(refusal)"))
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:281:             case .noExactSidecar:self.fail(Refusal.unsupportedCapability("no exact text sidecar"))
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:282:             }
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:283:         }
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:284:     }
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:285:     private func cycleTextSubtitle(forward:Bool) {
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:286:         guard let session else {fail(Refusal.missingSource);return}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:287:         let candidates=session.subtitleCandidates.filter{$0.format=="srt"}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:288:         guard !candidates.isEmpty else {fail(Refusal.unsupportedCapability("no local srt sidecar to cycle"));return}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:289:         let slots=candidates.count+1
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:290:         let next=(subtitleCycleIndex+(forward ? 1 : slots-1))%slots
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:291:         if next==0 {applySubtitleVisible(false);if subtitleVisible==false {subtitleCycleIndex=0};return}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:292:         selectTextSubtitle(path:candidates[next-1].path,candidateIndex:next)
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:293:     }
+probe regex over gorav Sources (tests excluded): selectSubtitle|subtitleCandidates|SubtitleSidecar|SubtitleController\.Slot|setSubtitleVisible|setSubtitleDelay
+GorAVEmbeddedSession.swift lines matching the probe (read before use):
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:301:     private var subtitleSidecars: SubtitleSidecarSession?
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:308:     public var subtitleCandidates: [SubtitleAutoLoad.Candidate] { subtitleSidecars?.candidates ?? [] }
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:309:     public func selectSubtitle(path: String, slot: SubtitleController.Slot) async -> SubtitleSidecarSelection {
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:313:     @discardableResult public func setSubtitleDelay(_ seconds: Double, slot: SubtitleController.Slot) -> SubtitleSidecarRefusal? {
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:317:     public func setSubtitleVisible(_ visible: Bool, slot: SubtitleController.Slot) { subtitleSidecars?.setVisible(visible, slot: slot) }
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:504:             subtitleSidecars = SubtitleSidecarSession(session: issued.epoch) { [weak presenter] batch in
+Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift:817:             subtitleSidecars = SubtitleSidecarSession(session: issued.epoch) { [weak presenter] batch in
+Other gorav files matching the probe (2); nearest candidates only, not a verified call path:
+Sources/GorAVSubtitles/SubtitleCueOutput.swift:13:     case appeared(slot: SubtitleController.Slot, identity: SubtitleController.CueIdentity, cue: SubtitleCue)
+Sources/GorAVSubtitles/SubtitleSidecarSession.swift:3: public enum SubtitleSidecarRefusal: Error, Equatable, Sendable {
 Presenter/sink hop: not established for this verb; named as missing until an interface exists.
 
-## E. Not supplied
+## E. Notes
+The owner pick call site (SpineUI.swift:1872-1876) sends a numeric track id. sid auto at PPController.swift:2563 is an internal reset on file change, not the owner pick, and is listed only as context. The existing path selects a sidecar by file path (session.selectSubtitle(path:slot:)) and cycles local .srt candidates; it has no track-id entry point. Missing: id to track mapping, embedded and bitmap tracks.
+
+## F. Not supplied
 Typed operation interface; supported/refused boundary; Linux-runnable test; Darwin fixture; full-file return scope. Executed results: none. No PASS inherited across pins.
 
-## F. Source files and sha256
+## G. Source files and sha256
 gor@55e11d70 Sources/gor/GorAVBackend/GorAVPlayerHost.swift feeff2f4db3bbf75063f853d3eb24cfb916b401975237873d0316e1a719d9368
+gor@55e11d70 Sources/gor/GorUI/MenuActions.swift 49ad911cdd14d119a12a91ec34cd6062d6c246b018a35d5932dd00d563aaddcc
+gor@55e11d70 Sources/gor/GorUI/SpineUI.swift 4854f9c1379fc8a534e4ca9fbf8e208901891511b07d8f26be1d7d5806991f2d
 gor@55e11d70 Sources/gor/gor/PPController.swift ba50b8c3997414e2409244c3f5db6a359502ba41cd9ebde4883f6e9cc94f85e7
 gorav@cf3e3f1 Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift a74d11a2b12ed17e0fe88f6a7926ac9a7d01a285da53c1c2318321eb1ab4d66d
