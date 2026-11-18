@@ -1,0 +1,119 @@
+[
+  {
+    "packet_id": "W-gdb-199c-in2tinct-11",
+    "lab": "in2tinct",
+    "source": "Sources/GorAVPlaybackCore/PlayheadPosition.swift",
+    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-11.py",
+    "starter_status": "BASELINE_DEFECT_REPRODUCED",
+    "starter_exit": 1,
+    "product_sha": "cf3e3f1772033dbc8465b19689e93f53c60006ce"
+  },
+  {
+    "packet_id": "W-gdb-199c-in2tinct-12",
+    "lab": "in2tinct",
+    "source": "Sources/GorAVPlaybackCore/WindowModePlan.swift",
+    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-12.py",
+    "starter_status": "BASELINE_DEFECT_REPRODUCED",
+    "starter_exit": 1,
+    "product_sha": "cf3e3f1772033dbc8465b19689e93f53c60006ce"
+  },
+  {
+    "packet_id": "W-gdb-199c-in2tinct-13",
+    "lab": "in2tinct",
+    "source": "Sources/GorAVPlaybackCore/HostTransform.swift",
+    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-13.py",
+    "starter_status": "BASELINE_DEFECT_REPRODUCED",
+    "starter_exit": 1,
+    "product_sha": "cf3e3f1772033dbc8465b19689e93f53c60006ce"
+  },
+  {
+    "packet_id": "W-gdb-199c-in2tinct-14",
+    "lab": "in2tinct",
+    "source": "Sources/GorAVPlaybackCore/PlayheadObservers.swift",
+    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-14.py",
+    "starter_status": "BASELINE_DEFECT_REPRODUCED",
+    "starter_exit": 1,
+    "product_sha": "cf3e3f1772033dbc8465b19689e93f53c60006ce"
+  },
+  {
+    "packet_id": "W-gdb-199c-in2tinct-15",
+    "lab": "in2tinct",
+    "source": "Sources/GorAVPlaybackCore/TapCropDetector.swift",
+    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-15.py",
+    "starter_status": "BASELINE_DEFECT_REPRODUCED",
+    "starter_exit": 1,
+    "product_sha": "cf3e3f1772033dbc8465b19689e93f53c60006ce"
+  },
+  {
+    "packet_id": "W-gdb-199c-in2tinct-16",
+    "lab": "in2tinct",
+    "source": "Sources/GorAVSubtitles/SubtitleCue.swift",
+    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-16.py",
+    "starter_status": "BASELINE_DEFECT_REPRODUCED",
+    "starter_exit": 1,
+    "product_sha": "cf3e3f1772033dbc8465b19689e93f53c60006ce"
+  },
+  {
+    "packet_id": "W-gdb-199c-in2tinct-17",
+    "lab": "in2tinct",
+    "source": "Sources/GorAVSubtitles/SubtitleAutoLoad.swift",
+    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-17.py",
+    "starter_status": "BASELINE_DEFECT_REPRODUCED",
+    "starter_exit": 1,
+    "product_sha": "cf3e3f1772033dbc8465b19689e93f53c60006ce"
+  },
+  {
+    "packet_id": "W-gdb-199c-in2tinct-18",
+    "lab": "in2tinct",
+    "source": "Sources/GorAVSubtitles/SubtitlePlan.swift",
+    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-18.py",
+    "starter_status": "BASELINE_DEFECT_REPRODUCED",
+    "starter_exit": 1,
+    "product_sha": "cf3e3f1772033dbc8465b19689e93f53c60006ce"
+  },
+  {
+    "packet_id": "W-gdb-199c-in2tinct-19",
+    "lab": "in2tinct",
+    "source": "Sources/GorAVSubtitles/ASSParser.swift",
+    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-19.py",
+    "starter_status": "BASELINE_DEFECT_REPRODUCED",
+    "starter_exit": 1,
+    "product_sha": "cf3e3f1772033dbc8465b19689e93f53c60006ce"
+  },
+  {
+    "packet_id": "W-gdb-199c-in2tinct-20",
+    "lab": "in2tinct",
+    "source": "Sources/GorAVSubtitles/SRTParser.swift",
+    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-in2tinct-20.py",
+    "starter_status": "BASELINE_API_MISSING",
+    "starter_exit": 2,
+    "product_sha": "cf3e3f1772033dbc8465b19689e93f53c60006ce"
+  },
+  {
+    "packet_id": "W-gdb-199c-1nstinct-08",
+    "lab": "1nstinct",
+    "source": "archive/gor/Sources/gor/GorPlaybackModel/EngineObservation.swift",
+    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-1nstinct-08.py",
+    "starter_status": "BASELINE_DEFECT_REPRODUCED",
+    "starter_exit": 1,
+    "product_sha": "b60352dabc87fe8519832999b4af639f37d786f8"
+  },
+  {
+    "packet_id": "W-gdb-199c-1nstinct-09",
+    "lab": "1nstinct",
+    "source": "archive/gor/Sources/gor/GorAVBackend/GorAVStreamAdmission.swift",
+    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-1nstinct-09.py",
+    "starter_status": "BASELINE_DEFECT_REPRODUCED",
+    "starter_exit": 1,
+    "product_sha": "b60352dabc87fe8519832999b4af639f37d786f8"
+  },
+  {
+    "packet_id": "W-gdb-199c-1nstinct-10",
+    "lab": "1nstinct",
+    "source": "archive/gor/Sources/gor/GorCore/BuildID.swift",
+    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-1nstinct-10.py",
+    "starter_status": "BASELINE_DEFECT_REPRODUCED",
+    "starter_exit": 1,
+    "product_sha": "b60352dabc87fe8519832999b4af639f37d786f8"
+  }
+]

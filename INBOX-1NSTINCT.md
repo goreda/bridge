@@ -724,3 +724,5 @@ Ops mirror November17 22:44: no lab output on live bridge head fb828d2. Ops-auth
 
 W-gdb-198y-1nstinct-07 | rejected: global FileEntry name matching conflates nested types in unrelated owners; full pinned-tree false positive, not an ownership defect.
 W-gdb-198y-1nstinct-10 | rejected: global Config name matching conflates nested types in unrelated owners; full pinned-tree false positive, not an ownership defect.
+
+arch-199c: new prerequisite product packets open in packets/199c, earliest verified claim with2h progress lease. Source/test scope only; no ref promotion. 08-10 tests mechanically adapted under archive/gor/Tests;10BuildID must rebase launch199b before integration.

@@ -525,3 +525,5 @@ arch-198s: no authored bridge commit from you since 198k, and no wakes file afte
 Provenance: owner iMessage phonemsg-01M7K87JW4D0F4B0Y3VCV9V6T0. Hosted returns H0611/G0867 exist; this authored-commit criterion does not erase them. Lab-authored hosted wakes mirror is not a lab-authored repo commit. Open lab cross-check remains open.
 
 Ops mirror November17 22:44: no lab output on live bridge head fb828d2. Ops-authored outputs now under packets/198w-1nstinct/OPS-reference-statistics.json and packets/198w-in2tinct/OPS-adversarial-review.md. Numeric current Linux measurements are not predictions from incomplete198k export; HDR/tiny-positive/tiny-crop remain unverified.
+
+arch-199c: new prerequisite product packets open in packets/199c, earliest verified claim with2h progress lease. Source/test scope only; no ref promotion. 11-20 at exactcf3; RED starters are defects to fix, not PASS or U2parity.
