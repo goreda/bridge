@@ -20,6 +20,8 @@ Native AppKit, camera capture, network, IPC, process launch, font rendering and 
 
 REPRODUCE from the packet materialized root: set SWIFTC to a Swift compiler, then `python3 archive/gor/Tests/Architecture/199h/W-gdb-199h-1nstinct-33.py` for the pinned run, `GOR_SOURCE_ROOT=$PWD/fixed python3 archive/gor/Tests/Architecture/199h/W-gdb-199h-1nstinct-33.py` for the fixed run, adding `SWIFTFLAGS=-O` for the optimized run. Missing compiler exits77 NOT_RUN.
 
+Neutralization (re-issue): 13 comment lines carrying attribution or provenance identifiers elided from the source1 and fixed_source copies (trigger lines plus their comment-run continuations; code untouched); all shas in this packet cover the elided copies. Re-verified 4-mode after elision; test verdicts unchanged.
+
 ```packet-json
 {
   "packet_id": "W-gdb-199h-1nstinct-33",
@@ -68,14 +70,14 @@ REPRODUCE from the packet materialized root: set SWIFTC to a Swift compiler, the
       {
         "path": "archive/gor/Sources/gor/GorSources/MagnetBrowser.swift",
         "block": "source1",
-        "sha256": "cd7f2f21fb85957d24f6eefd8b17d9acb9292f99217a3d949cfb755d3c6f9211",
+        "sha256": "4078c5109e99da85494a0e053fa789c1603f46cf7c7f4b07133537d9166cf48d",
         "read_only_dependency": false,
         "role": "Pinned production source at the base pin."
       },
       {
         "path": "archive/gor/Sources/gor/GorSources/MagnetBrowser.swift (fixed)",
         "block": "fixed_source",
-        "sha256": "3dace5421d1f8ee365b04d6ffa96c9bcc271f459066837e227e4141a77c1029d",
+        "sha256": "096f234e96c6020c64f2b8bf6b8386508f653cb7a0eeff44da515d56f8270ad6",
         "role": "Same production file with only the minimal fix applied."
       },
       {
@@ -131,10 +133,10 @@ REPRODUCE from the packet materialized root: set SWIFTC to a Swift compiler, the
   "fix": {
     "summary": "Bind isTorrentStream to scheme http, port 2222, a loopback host (localhost, 127.0.0.1, ::1) and no userinfo.",
     "diff_block": "fix_diff",
-    "diff_sha256": "e82853020194c257bd57b17ca29c7d1fa89f3701fde2ce726e11810e0a6def1c",
+    "diff_sha256": "c851a2a7a6d136b9aad7fff0bd56ab33dccfe3c89df46622456b575b6f01711f",
     "fixed_block": "fixed_source",
-    "fixed_sha256": "3dace5421d1f8ee365b04d6ffa96c9bcc271f459066837e227e4141a77c1029d",
-    "pinned_sha256": "cd7f2f21fb85957d24f6eefd8b17d9acb9292f99217a3d949cfb755d3c6f9211"
+    "fixed_sha256": "096f234e96c6020c64f2b8bf6b8386508f653cb7a0eeff44da515d56f8270ad6",
+    "pinned_sha256": "4078c5109e99da85494a0e053fa789c1603f46cf7c7f4b07133537d9166cf48d"
   }
 }
 ```
@@ -608,7 +610,9 @@ final class MagnetResultsPanel: NSView, NSTextFieldDelegate {
     func setQuery(_ value: String) { queryText = value; windowPages = 1; lastContentSignature = ""; lastVerdictSignature = ""; setStatus("searching providers") }
     // Keep the panel safe even if a different caller bypasses the controller.
     fileprivate func show(_ response: SearchResponse, keepScroll: Bool = false) {
-        // Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
         lastShownResponse = response
         let filtered = (response.results + response.pendingRows).filter { !$0.hasExecutableTitle }
         let pool = MagnetNative.topBySeeds(filtered, limit: MagnetResultsPanel.windowPageSize * windowPages)
@@ -758,7 +762,8 @@ final class MagnetResultsPanel: NSView, NSTextFieldDelegate {
         closeSearch()
         if isHidden { onClose?() }
     }
-    // Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
     func toggleSearchFromKey() {
         if fieldPanel != nil { closeSearch() } else { openSearch() }
     }
@@ -1429,8 +1434,8 @@ final class MagnetBrowserController {
     // for rows that look contradicted or dead. Only both windows agreeing may
     // produce those states.
     private static let recheckDelay: TimeInterval = 600
-    // Rows verified per search (highest claims first). 25 left most rows on
-    // "pending" forever on a full result page (owner log 2026-10-17).
+// [attribution comment elided]
+// [attribution comment elided]
     private static let scrapeCap = 60
     private func verifyRows(_ rows: [MagnetResult]) {
         let token = generation
@@ -1561,13 +1566,17 @@ private enum MagnetNative {
             guard let h=r.infoHash, h.range(of:#"^[0-9a-f]{40}$"#,options:.regularExpression) != nil,
                   let u=r.magnetUri, first(#"[?&]xt=urn:btih:([0-9a-fA-F]{40})"#,u)?.lowercased()==h else { skippedRows["_merge",default:0]+=1; continue }
             if let seeds=r.seeds {claims[h,default:[:]][r.source]=max(claims[h]?[r.source] ?? 0,seeds)}
-            // Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
             let key="\(h)|\(r.source)"
             if rows[key] == nil || (rows[key]?.magnetUri?.contains("tr=") != true && r.magnetUri?.contains("tr=") == true) {rows[key]=r}
         }
         return rows.map { var r=$0.value; r.claims=claims[String($0.key.prefix(40))] ?? [:]; return r }
     }
-    // Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     static func sourceRank(_ source: String) -> Int {
         source == "uindex" ? 0 : (source == "bt4g" || source == "bt4gRecent") ? 1 : 2
     }
@@ -2690,7 +2699,9 @@ final class MagnetResultsPanel: NSView, NSTextFieldDelegate {
     func setQuery(_ value: String) { queryText = value; windowPages = 1; lastContentSignature = ""; lastVerdictSignature = ""; setStatus("searching providers") }
     // Keep the panel safe even if a different caller bypasses the controller.
     fileprivate func show(_ response: SearchResponse, keepScroll: Bool = false) {
-        // Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
         lastShownResponse = response
         let filtered = (response.results + response.pendingRows).filter { !$0.hasExecutableTitle }
         let pool = MagnetNative.topBySeeds(filtered, limit: MagnetResultsPanel.windowPageSize * windowPages)
@@ -2840,7 +2851,8 @@ final class MagnetResultsPanel: NSView, NSTextFieldDelegate {
         closeSearch()
         if isHidden { onClose?() }
     }
-    // Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
     func toggleSearchFromKey() {
         if fieldPanel != nil { closeSearch() } else { openSearch() }
     }
@@ -3511,8 +3523,8 @@ final class MagnetBrowserController {
     // for rows that look contradicted or dead. Only both windows agreeing may
     // produce those states.
     private static let recheckDelay: TimeInterval = 600
-    // Rows verified per search (highest claims first). 25 left most rows on
-    // "pending" forever on a full result page (owner log 2026-10-17).
+// [attribution comment elided]
+// [attribution comment elided]
     private static let scrapeCap = 60
     private func verifyRows(_ rows: [MagnetResult]) {
         let token = generation
@@ -3643,13 +3655,17 @@ private enum MagnetNative {
             guard let h=r.infoHash, h.range(of:#"^[0-9a-f]{40}$"#,options:.regularExpression) != nil,
                   let u=r.magnetUri, first(#"[?&]xt=urn:btih:([0-9a-fA-F]{40})"#,u)?.lowercased()==h else { skippedRows["_merge",default:0]+=1; continue }
             if let seeds=r.seeds {claims[h,default:[:]][r.source]=max(claims[h]?[r.source] ?? 0,seeds)}
-            // Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
             let key="\(h)|\(r.source)"
             if rows[key] == nil || (rows[key]?.magnetUri?.contains("tr=") != true && r.magnetUri?.contains("tr=") == true) {rows[key]=r}
         }
         return rows.map { var r=$0.value; r.claims=claims[String($0.key.prefix(40))] ?? [:]; return r }
     }
-    // Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     static func sourceRank(_ source: String) -> Int {
         source == "uindex" ? 0 : (source == "bt4g" || source == "bt4gRecent") ? 1 : 2
     }
@@ -4419,3 +4435,5 @@ PASS real loopback bridge retained
 
 Publication caveat: NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted.
 Claim lease:2hwithout verified progress, existing owner earliest-claim workflow. Single production source and own tests only.
+
+Privacy revision 0533: Ops corrected stale advertised baseline/fixed/diff pins to actual fenced-block bytes, preserving final newline. Non-comment statement equality checked against old publication and isolated fixed source. Prior independent replay remains OLD-hash evidence; writer reports new four-mode rerun, Ops did not execute new Swift binaries. NONQUALIFIED, all previous boundary failures/native exclusions unchanged.

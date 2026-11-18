@@ -20,6 +20,8 @@ Native AppKit, camera capture, network, IPC, process launch, font rendering and 
 
 REPRODUCE from the packet materialized root: set SWIFTC to a Swift compiler, then `python3 archive/gor/Tests/Architecture/199h/W-gdb-199h-1nstinct-32.py` for the pinned run, `GOR_SOURCE_ROOT=$PWD/fixed python3 archive/gor/Tests/Architecture/199h/W-gdb-199h-1nstinct-32.py` for the fixed run, adding `SWIFTFLAGS=-O` for the optimized run. Missing compiler exits77 NOT_RUN.
 
+Neutralization (re-issue): 18 comment lines carrying attribution or provenance identifiers elided from the source1 and fixed_source copies (trigger lines plus their comment-run continuations; code untouched); all shas in this packet cover the elided copies. Re-verified 4-mode after elision; test verdicts unchanged.
+
 ```packet-json
 {
   "packet_id": "W-gdb-199h-1nstinct-32",
@@ -68,14 +70,14 @@ REPRODUCE from the packet materialized root: set SWIFTC to a Swift compiler, the
       {
         "path": "archive/gor/Sources/gor/Camera/Runtime.swift",
         "block": "source1",
-        "sha256": "a01fb35f4ad5a452b75044e51029d4f4906aaa754527a935100d13045268d28a",
+        "sha256": "2c024ad8ff199eb6d3ccecc0cec1bfaa55a0f346d45930a9a1319c9634c730d7",
         "read_only_dependency": false,
         "role": "Pinned production source at the base pin."
       },
       {
         "path": "archive/gor/Sources/gor/Camera/Runtime.swift (fixed)",
         "block": "fixed_source",
-        "sha256": "018c99cf8530e47fc3a79284906ee786df9552532837bbfa36278c10d95ad858",
+        "sha256": "ad82cd22fcdd08a79a4e5c257cfe2e55226cb6220800247bc8cbcaf41c190756",
         "role": "Same production file with only the minimal fix applied."
       },
       {
@@ -131,10 +133,10 @@ REPRODUCE from the packet materialized root: set SWIFTC to a Swift compiler, the
   "fix": {
     "summary": "Throw before any IO when CameraVisionWire.read is asked for a negative count; zero and positive counts unchanged.",
     "diff_block": "fix_diff",
-    "diff_sha256": "91251a6f5d69800d0981c82d4adc51a420c1aec97bc20f29a48d4b93606e9a43",
+    "diff_sha256": "d1b5b2de2e1eff414d9e377279966d82afb587c96c0a903f349a476b349f0636",
     "fixed_block": "fixed_source",
-    "fixed_sha256": "018c99cf8530e47fc3a79284906ee786df9552532837bbfa36278c10d95ad858",
-    "pinned_sha256": "a01fb35f4ad5a452b75044e51029d4f4906aaa754527a935100d13045268d28a"
+    "fixed_sha256": "ad82cd22fcdd08a79a4e5c257cfe2e55226cb6220800247bc8cbcaf41c190756",
+    "pinned_sha256": "2c024ad8ff199eb6d3ccecc0cec1bfaa55a0f346d45930a9a1319c9634c730d7"
   }
 }
 ```
@@ -147,16 +149,16 @@ import Glibc
 import Darwin
 #endif
 
-// BEGIN camera-helper runtime (arch-195z Z3, owner-approved; arch-196b C6)
-// Same-executable camera helper: the child owns AVCaptureSession and all
-// camera Vision work; the parent (HeadTracker) keeps consumer policy,
-// pose/blink/gaze/ambient downstream math and every receipt. This file
-// holds the process boundary: the parent-side client, the wire host and
-// the child-side engine. Lifetime honesty notes from QuitChildKiller
-// apply here: SIGKILL targets only our own registered child pid while
-// it is live and unreaped; the residual TOCTOU is named, not eliminated.
-// Termination is at most one automatic relaunch per consumer
-// generation, decided by HeadTracker -- no unlimited retry loop.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 
 /// Parent side: owns the helper Process, the NDJSON pipes and the
 /// 2 s stop guarantee. All callbacks fire on a single serial queue, so
@@ -651,8 +653,8 @@ final class CameraHelperEngine: NSObject, AVCaptureVideoDataOutputSampleBufferDe
     // request stays shared, exactly as the in-process code kept it.
     private func makeFaceRequest() -> VNDetectFaceRectanglesRequest {
         let r = VNDetectFaceRectanglesRequest()
-        // Match the standalone CPU probe that returns on the owner's Mac.
-        // The old explicit revision3 was not the revision policy tested by E1.
+// [attribution comment elided]
+// [attribution comment elided]
         return r
     }
     private func makeBlinkRequest() -> VNDetectFaceLandmarksRequest {
@@ -955,8 +957,8 @@ final class CameraHelperEngine: NSObject, AVCaptureVideoDataOutputSampleBufferDe
                 ambientDiagLastRawLogTime = now
             }
         }
-        // Same throttle as the in-process code: ~30fps head rate (owner
-        // knob gorHeadTrackFPS), 2 Hz ambient post-settle, 10 Hz pre-settle.
+// [attribution comment elided]
+// [attribution comment elided]
         let frameInterval: CFTimeInterval
         if snap.ambientOnly {
             frameInterval = ambientHasSeenFirstSettledFrame
@@ -1158,10 +1160,10 @@ final class CameraHelperEngine: NSObject, AVCaptureVideoDataOutputSampleBufferDe
     }
 }
 
-/// Child-process entry: `gor --camera-helper --gor-owner-pid <pid>`.
-/// Reads NDJSON commands on stdin, runs the engine, exits with the
-/// parent (owner watch) or on the shutdown command. Returns 4 where the
-/// camera stack cannot exist (non-Darwin), like PrepareWorker.cli.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 enum CameraHelperCLI {
     static let flag = "--camera-helper"
     static func cli(arguments: [String]) -> Int32? {
@@ -1205,16 +1207,16 @@ import Glibc
 import Darwin
 #endif
 
-// BEGIN camera-helper runtime (arch-195z Z3, owner-approved; arch-196b C6)
-// Same-executable camera helper: the child owns AVCaptureSession and all
-// camera Vision work; the parent (HeadTracker) keeps consumer policy,
-// pose/blink/gaze/ambient downstream math and every receipt. This file
-// holds the process boundary: the parent-side client, the wire host and
-// the child-side engine. Lifetime honesty notes from QuitChildKiller
-// apply here: SIGKILL targets only our own registered child pid while
-// it is live and unreaped; the residual TOCTOU is named, not eliminated.
-// Termination is at most one automatic relaunch per consumer
-// generation, decided by HeadTracker -- no unlimited retry loop.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 
 /// Parent side: owns the helper Process, the NDJSON pipes and the
 /// 2 s stop guarantee. All callbacks fire on a single serial queue, so
@@ -1710,8 +1712,8 @@ final class CameraHelperEngine: NSObject, AVCaptureVideoDataOutputSampleBufferDe
     // request stays shared, exactly as the in-process code kept it.
     private func makeFaceRequest() -> VNDetectFaceRectanglesRequest {
         let r = VNDetectFaceRectanglesRequest()
-        // Match the standalone CPU probe that returns on the owner's Mac.
-        // The old explicit revision3 was not the revision policy tested by E1.
+// [attribution comment elided]
+// [attribution comment elided]
         return r
     }
     private func makeBlinkRequest() -> VNDetectFaceLandmarksRequest {
@@ -2014,8 +2016,8 @@ final class CameraHelperEngine: NSObject, AVCaptureVideoDataOutputSampleBufferDe
                 ambientDiagLastRawLogTime = now
             }
         }
-        // Same throttle as the in-process code: ~30fps head rate (owner
-        // knob gorHeadTrackFPS), 2 Hz ambient post-settle, 10 Hz pre-settle.
+// [attribution comment elided]
+// [attribution comment elided]
         let frameInterval: CFTimeInterval
         if snap.ambientOnly {
             frameInterval = ambientHasSeenFirstSettledFrame
@@ -2217,10 +2219,10 @@ final class CameraHelperEngine: NSObject, AVCaptureVideoDataOutputSampleBufferDe
     }
 }
 
-/// Child-process entry: `gor --camera-helper --gor-owner-pid <pid>`.
-/// Reads NDJSON commands on stdin, runs the engine, exits with the
-/// parent (owner watch) or on the shutdown command. Returns 4 where the
-/// camera stack cannot exist (non-Darwin), like PrepareWorker.cli.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 enum CameraHelperCLI {
     static let flag = "--camera-helper"
     static func cli(arguments: [String]) -> Int32? {
@@ -2363,3 +2365,5 @@ PASS zero count retained
 
 Publication caveat: NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted.
 Claim lease:2hwithout verified progress, existing owner earliest-claim workflow. Single production source and own tests only.
+
+Privacy revision 0533: Ops corrected stale advertised baseline/fixed/diff pins to actual fenced-block bytes, preserving final newline. Non-comment statement equality checked against old publication and isolated fixed source. Prior independent replay remains OLD-hash evidence; writer reports new four-mode rerun, Ops did not execute new Swift binaries. NONQUALIFIED, all previous boundary failures/native exclusions unchanged.
