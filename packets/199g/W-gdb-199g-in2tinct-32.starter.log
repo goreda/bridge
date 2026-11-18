@@ -1,0 +1,7 @@
+compile_exit=0
+
+semantic_exit=1
+PASS initial attach
+PASS failed attach returned
+FAIL failed attach removes prior admission fence
+

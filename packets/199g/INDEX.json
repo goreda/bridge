@@ -1,0 +1,117 @@
+[
+  {
+    "id": "W-gdb-199g-in2tinct-31",
+    "lab": "in2tinct",
+    "repo": "/tmp/198y-engine-packets",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "engine": true,
+    "paths": [
+      "Sources/GorAVPlaybackCore/TimingLedger.swift"
+    ],
+    "test_paths": [
+      "Tests/Architecture/199g/W-gdb-199g-in2tinct-31.py",
+      "Tests/Architecture/199g/W-gdb-199g-in2tinct-31.json"
+    ],
+    "test_argv": [
+      "python3",
+      "Tests/Architecture/199g/W-gdb-199g-in2tinct-31.py"
+    ],
+    "queue_id": "W-gdb-199g-in2tinct-31",
+    "queue_source": "/tmp/198t/bridge/packets/199g/W-gdb-199g-in2tinct-31.md",
+    "queue_sha256": "0ff141680708c843935efbff558e4cb9db0839a939ae8d50bccf9e8f0ae3f2c6",
+    "shipping_stock_counted": true,
+    "caveat": "NONQUALIFIED. Own replay NOT_RUN; supplied starter is Linux source-only RED, not native/full caller execution. Read-only caller bindings independently checked at cf3: ShellFrameSource ledger/bridge; MetalPresenter cue consumer; FFmpegSoftwareDecoder demux policy/lease table. B32 reduced wrapper/provider double and B31/B34 declaration extraction only, no full module claim. B33-35 malformed ingress hardening, not observed runtime incidents. Single production path plus own test, no adoption or runtime closure."
+  },
+  {
+    "id": "W-gdb-199g-in2tinct-32",
+    "lab": "in2tinct",
+    "repo": "/tmp/198y-engine-packets",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "engine": true,
+    "paths": [
+      "Sources/GorAVPlaybackCore/ShellSeekBridge.swift"
+    ],
+    "test_paths": [
+      "Tests/Architecture/199g/W-gdb-199g-in2tinct-32.py",
+      "Tests/Architecture/199g/W-gdb-199g-in2tinct-32.json"
+    ],
+    "test_argv": [
+      "python3",
+      "Tests/Architecture/199g/W-gdb-199g-in2tinct-32.py"
+    ],
+    "queue_id": "W-gdb-199g-in2tinct-32",
+    "queue_source": "/tmp/198t/bridge/packets/199g/W-gdb-199g-in2tinct-32.md",
+    "queue_sha256": "db0252f23693533eb383ca427a337af9de89b5dc020f70b3152a8dae7e4a410e",
+    "shipping_stock_counted": true,
+    "caveat": "NONQUALIFIED. Own replay NOT_RUN; supplied starter is Linux source-only RED, not native/full caller execution. Read-only caller bindings independently checked at cf3: ShellFrameSource ledger/bridge; MetalPresenter cue consumer; FFmpegSoftwareDecoder demux policy/lease table. B32 reduced wrapper/provider double and B31/B34 declaration extraction only, no full module claim. B33-35 malformed ingress hardening, not observed runtime incidents. Single production path plus own test, no adoption or runtime closure."
+  },
+  {
+    "id": "W-gdb-199g-in2tinct-33",
+    "lab": "in2tinct",
+    "repo": "/tmp/198y-engine-packets",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "engine": true,
+    "paths": [
+      "Sources/GorAVSubtitles/SubtitleCueDelivery.swift"
+    ],
+    "test_paths": [
+      "Tests/Architecture/199g/W-gdb-199g-in2tinct-33.py",
+      "Tests/Architecture/199g/W-gdb-199g-in2tinct-33.json"
+    ],
+    "test_argv": [
+      "python3",
+      "Tests/Architecture/199g/W-gdb-199g-in2tinct-33.py"
+    ],
+    "queue_id": "W-gdb-199g-in2tinct-33",
+    "queue_source": "/tmp/198t/bridge/packets/199g/W-gdb-199g-in2tinct-33.md",
+    "queue_sha256": "0494b29f932464bdd7a80b3e178c306e4ce4548ebee5f0cb69be9306e5b1185a",
+    "shipping_stock_counted": true,
+    "caveat": "NONQUALIFIED. Own replay NOT_RUN; supplied starter is Linux source-only RED, not native/full caller execution. Read-only caller bindings independently checked at cf3: ShellFrameSource ledger/bridge; MetalPresenter cue consumer; FFmpegSoftwareDecoder demux policy/lease table. B32 reduced wrapper/provider double and B31/B34 declaration extraction only, no full module claim. B33-35 malformed ingress hardening, not observed runtime incidents. Single production path plus own test, no adoption or runtime closure."
+  },
+  {
+    "id": "W-gdb-199g-in2tinct-34",
+    "lab": "in2tinct",
+    "repo": "/tmp/198y-engine-packets",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "engine": true,
+    "paths": [
+      "Sources/GorAVNativeProbeKit/DemuxerPolicy.swift"
+    ],
+    "test_paths": [
+      "Tests/Architecture/199g/W-gdb-199g-in2tinct-34.py",
+      "Tests/Architecture/199g/W-gdb-199g-in2tinct-34.json"
+    ],
+    "test_argv": [
+      "python3",
+      "Tests/Architecture/199g/W-gdb-199g-in2tinct-34.py"
+    ],
+    "queue_id": "W-gdb-199g-in2tinct-34",
+    "queue_source": "/tmp/198t/bridge/packets/199g/W-gdb-199g-in2tinct-34.md",
+    "queue_sha256": "4621bd5c88b14438f6d16ca49a6669e7ce4663c9c223d185f4112a16bd5032d8",
+    "shipping_stock_counted": true,
+    "caveat": "NONQUALIFIED. Own replay NOT_RUN; supplied starter is Linux source-only RED, not native/full caller execution. Read-only caller bindings independently checked at cf3: ShellFrameSource ledger/bridge; MetalPresenter cue consumer; FFmpegSoftwareDecoder demux policy/lease table. B32 reduced wrapper/provider double and B31/B34 declaration extraction only, no full module claim. B33-35 malformed ingress hardening, not observed runtime incidents. Single production path plus own test, no adoption or runtime closure."
+  },
+  {
+    "id": "W-gdb-199g-in2tinct-35",
+    "lab": "in2tinct",
+    "repo": "/tmp/198y-engine-packets",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "engine": true,
+    "paths": [
+      "Sources/GorAVNativeProbeKit/LeaseTable.swift"
+    ],
+    "test_paths": [
+      "Tests/Architecture/199g/W-gdb-199g-in2tinct-35.py",
+      "Tests/Architecture/199g/W-gdb-199g-in2tinct-35.json"
+    ],
+    "test_argv": [
+      "python3",
+      "Tests/Architecture/199g/W-gdb-199g-in2tinct-35.py"
+    ],
+    "queue_id": "W-gdb-199g-in2tinct-35",
+    "queue_source": "/tmp/198t/bridge/packets/199g/W-gdb-199g-in2tinct-35.md",
+    "queue_sha256": "a133e3fd3093683bccfc90f7c84124b9d789a00eff626c9c0b799a4c0f969043",
+    "shipping_stock_counted": true,
+    "caveat": "NONQUALIFIED. Own replay NOT_RUN; supplied starter is Linux source-only RED, not native/full caller execution. Read-only caller bindings independently checked at cf3: ShellFrameSource ledger/bridge; MetalPresenter cue consumer; FFmpegSoftwareDecoder demux policy/lease table. B32 reduced wrapper/provider double and B31/B34 declaration extraction only, no full module claim. B33-35 malformed ingress hardening, not observed runtime incidents. Single production path plus own test, no adoption or runtime closure."
+  }
+]

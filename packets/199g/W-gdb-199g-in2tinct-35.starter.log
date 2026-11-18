@@ -1,0 +1,9 @@
+compile_exit=0
+
+semantic_exit=1
+FAIL ownerless allocation refused
+FAIL refusal leaves accounting unchanged
+PASS real owner admitted
+FAIL ownerless transfer refused
+FAIL refused transfer retains ownership
+
