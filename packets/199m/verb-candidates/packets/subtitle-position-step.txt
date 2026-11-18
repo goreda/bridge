@@ -45,7 +45,7 @@ Other gorav files matching the probe (0); nearest candidates only, not a verifie
 Presenter/sink hop: not established for this verb; named as missing until an interface exists.
 
 ## E. Notes
-Position reset has no standalone menu item; it exists only inside the umbrella resetSubtitles (PPController.swift:3939-3945), so it is not counted as its own packet.
+Position reset has no independent owner call site; it exists only inside the umbrella resetSubtitles (PPController.swift:3939-3945) and is folded into this position family (per goreda, via Main 01:04). It is not counted as its own packet.
 
 ## F. Not supplied
 Typed operation interface; supported/refused boundary; Linux-runnable test; Darwin fixture; full-file return scope. Executed results: none. No PASS inherited across pins.
