@@ -93,27 +93,30 @@
     "packet_id": "W-gdb-199c-1nstinct-08",
     "lab": "1nstinct",
     "source": "archive/gor/Sources/gor/GorPlaybackModel/EngineObservation.swift",
-    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-1nstinct-08.py",
+    "test_argv": "python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-08.py",
     "starter_status": "BASELINE_DEFECT_REPRODUCED",
     "starter_exit": 1,
-    "product_sha": "b60352dabc87fe8519832999b4af639f37d786f8"
+    "product_sha": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "coordinator_adaptation": "test path/ROOT only; own compile NOT_RUN"
   },
   {
     "packet_id": "W-gdb-199c-1nstinct-09",
     "lab": "1nstinct",
     "source": "archive/gor/Sources/gor/GorAVBackend/GorAVStreamAdmission.swift",
-    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-1nstinct-09.py",
+    "test_argv": "python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-09.py",
     "starter_status": "BASELINE_DEFECT_REPRODUCED",
     "starter_exit": 1,
-    "product_sha": "b60352dabc87fe8519832999b4af639f37d786f8"
+    "product_sha": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "coordinator_adaptation": "test path/ROOT only; own compile NOT_RUN"
   },
   {
     "packet_id": "W-gdb-199c-1nstinct-10",
     "lab": "1nstinct",
     "source": "archive/gor/Sources/gor/GorCore/BuildID.swift",
-    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-1nstinct-10.py",
+    "test_argv": "python3 archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-10.py",
     "starter_status": "BASELINE_DEFECT_REPRODUCED",
     "starter_exit": 1,
-    "product_sha": "b60352dabc87fe8519832999b4af639f37d786f8"
+    "product_sha": "b60352dabc87fe8519832999b4af639f37d786f8",
+    "coordinator_adaptation": "test path/ROOT only; own compile NOT_RUN"
   }
 ]
