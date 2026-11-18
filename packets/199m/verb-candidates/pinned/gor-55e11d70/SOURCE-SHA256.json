@@ -1,0 +1,15 @@
+{
+  "repository": "goreda/instinct",
+  "source_prefix": "archive/gor",
+  "source_pin": "55e11d70ee6bad7d7d7373a275eeebd0a5157eee",
+  "files": {
+    "Sources/gor/GorAVBackend/GorAVPlayerHost.swift": "feeff2f4db3bbf75063f853d3eb24cfb916b401975237873d0316e1a719d9368",
+    "Sources/gor/GorUI/MenuActions.swift": "49ad911cdd14d119a12a91ec34cd6062d6c246b018a35d5932dd00d563aaddcc",
+    "Sources/gor/GorUI/PPControllerMenuQueries.swift": "e0776408c8ed4c5fd79859fe7a14c65fe632e5e9ddb6f368f0887664dcfb7bd9",
+    "Sources/gor/gor/PPController.swift": "ba50b8c3997414e2409244c3f5db6a359502ba41cd9ebde4883f6e9cc94f85e7"
+  },
+  "not_disclosed": [
+    "Sources/gor/AppDelegate.swift: historical private message ID in a comment",
+    "Sources/gor/GorSources/TorrentManager.swift: historical user home path"
+  ]
+}

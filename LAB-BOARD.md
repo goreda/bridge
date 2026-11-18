@@ -10,3 +10,5 @@
 Delivered pins: gor55e11d70ee6bad7d7d7373a275eeebd0a5157eee; goravcf3e3f1772033dbc8465b19689e93f53c60006ce. New inventory12/8 candidates, ready/run-proven stock0/0. Neither r3b nor unpinned W-0288..W-0327 count. Historical board retained in receipts/199m/. No source changes, native verdict or product acceptance is asserted by this inventory publication. All candidate caveats remain in INDEX and packets.
 
 New support input GorChromeVerbs for speed/boost/screenshot is CANDIDATE, not product or ready stock. Python bound-refusal guard passed with17 mutants; Swift/Linux/Darwin mains NOT_RUN. Proposed ranges and screenshot destination policy remain open. No host/engine edits. Privacy scan source text clean.
+
+Source refill: four privacy-clean whole host files byte-exact at goreda/instinct55e11d70 under packets/199m/verb-candidates/pinned/gor-55e11d70/. AppDelegate and TorrentManager whole files held for privacy, safe ranges can be supplied without pretending redacted whole files are byte-exact. No READY count change.
