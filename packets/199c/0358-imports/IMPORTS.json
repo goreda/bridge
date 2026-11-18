@@ -1,0 +1,82 @@
+[
+  {
+    "id": "W-gdb-199c-1nstinct-14",
+    "base": "c5f851abda90f7dd247dc02ee46cb651b2010fdc",
+    "commit": "11a171d2bf2149951fdc91bacc80b026f620b57c",
+    "branch": "lane/lab-1nstinct-W-gdb-199c-1nstinct-14",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Lane-b independent Linux source tests only, fullhost/native NOT_RUN; manifest unchanged."
+  },
+  {
+    "id": "W-gdb-199c-1nstinct-15",
+    "base": "c5f851abda90f7dd247dc02ee46cb651b2010fdc",
+    "commit": "b2181e16d30387e2686c385f00e3a0d11c59169c",
+    "branch": "lane/lab-1nstinct-W-gdb-199c-1nstinct-15",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Lane-b independent Linux source tests only, fullhost/native NOT_RUN; manifest unchanged."
+  },
+  {
+    "id": "W-gdb-199c-1nstinct-18",
+    "base": "c5f851abda90f7dd247dc02ee46cb651b2010fdc",
+    "commit": "b5b5818bf12e18ae313b6df5111a77023c758ca1",
+    "branch": "lane/lab-1nstinct-W-gdb-199c-1nstinct-18",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Lane-b independent Linux source tests only, fullhost/native NOT_RUN; manifest unchanged."
+  },
+  {
+    "id": "W-gdb-199c-1nstinct-19",
+    "base": "c5f851abda90f7dd247dc02ee46cb651b2010fdc",
+    "commit": "979c4cfe4ee4f5f32c7e26a2e56909c43454bbee",
+    "branch": "lane/lab-1nstinct-W-gdb-199c-1nstinct-19",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Lane-b independent Linux source tests only, fullhost/native NOT_RUN; manifest unchanged."
+  },
+  {
+    "id": "W-gdb-199c-1nstinct-20",
+    "base": "c5f851abda90f7dd247dc02ee46cb651b2010fdc",
+    "commit": "2cdd65745ec95a87f3c2ead47fa5515ad57766fe",
+    "branch": "lane/lab-1nstinct-W-gdb-199c-1nstinct-20",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Lane-b independent Linux source tests only, fullhost/native NOT_RUN; manifest unchanged."
+  },
+  {
+    "id": "W-gdb-198z-1nstinct-01-fix",
+    "base": "2cdc620c77d2822c5ded1b4ada1f5b0c7c60b3ed",
+    "commit": "7057b095d9b57a8776f2bdd1f04643c2348e3083",
+    "branch": "lane/lab-1nstinct-W-gdb-198z-1nstinct-01-fix",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Provider-linked actual-module evidence only, not fresh full-package/native acceptance; ID framing intentionally migrates once."
+  },
+  {
+    "id": "W-gdb-198z-1nstinct-02-fix",
+    "base": "4c70ecfc3b03de936723a6cc65700458136690e0",
+    "commit": "c0bc34b01d4d3a57af58245b009f96fd29fc4069",
+    "branch": "lane/lab-1nstinct-W-gdb-198z-1nstinct-02-fix",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Provider-linked actual-module evidence only, not fresh full-package/native acceptance; ID framing intentionally migrates once."
+  },
+  {
+    "id": "W-gdb-198z-1nstinct-03-fix",
+    "base": "d30de19c87377bab5b6b0bba68d3ed3ab02f5042",
+    "commit": "0a1e0b2fc904ee38ba25f28132f1a1872a1aef77",
+    "branch": "lane/lab-1nstinct-W-gdb-198z-1nstinct-03-fix",
+    "qualification": "NONQUALIFIED",
+    "caveat": "stale selection NOT fixed; legacy content-only regression RED; new context API only, session receipt and host wiring OPEN."
+  },
+  {
+    "id": "W-gdb-199c-in2tinct-11",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "commit": "1edfc8b29f3859bb59514fc99f55ea5e1deacd38",
+    "branch": "lane/lab-in2tinct-W-gdb-199c-in2tinct-11",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Actual source tests only; full host/native/UI NOT_RUN."
+  },
+  {
+    "id": "W-gdb-199c-in2tinct-12",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "commit": "1b6799d3e8407c22af9fd20a303c1e445bfcd3ce",
+    "branch": "lane/lab-in2tinct-W-gdb-199c-in2tinct-12",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Actual source tests only; full host/native/UI NOT_RUN."
+  }
+]
