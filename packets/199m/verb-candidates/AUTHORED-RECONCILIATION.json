@@ -6,7 +6,7 @@
     "menu-pan",
     "cache-parity"
   ],
-  "authored_candidates": 20,
+  "authored_candidates": 27,
   "authored_to_stock": {
     "audio-night-toggle.md": "audio-night-mode",
     "audio-loudness-toggle.md": "audio-loudness-normalize",
@@ -27,18 +27,17 @@
     "audio-output-device.md": "audio-device",
     "video-rotation.md": "menu-rotate",
     "video-aspect-preset.md": "menu-aspect",
-    "video-crop-preset.md": "menu-crop"
+    "video-crop-preset.md": "menu-crop",
+    "audio-boost-raise.md": "audio-boost",
+    "capture-screenshot.md": "capture-screenshot",
+    "video-contrast-step.md": "menu-contrast-step",
+    "video-brightness-step.md": "menu-brightness-step",
+    "video-gamma-step.md": "menu-gamma-step",
+    "video-saturation-step.md": "menu-saturation-step",
+    "video-color-reset.md": "menu-color-reset"
   },
-  "remaining_stock_without_authored_candidate": [
-    "audio-boost",
-    "capture-screenshot",
-    "menu-brightness-step",
-    "menu-color-reset",
-    "menu-contrast-step",
-    "menu-gamma-step",
-    "menu-saturation-step"
-  ],
+  "remaining_stock_without_authored_candidate": [],
   "ready": 0,
   "run_proven": 0,
-  "note": "27 stock +3 reclassified=30 inventory;20 authored models,0 run-proven;7 stock rows lack authored candidates. Manual crop covers only preset subset, not reset/detect crop. No product-complete claim."
+  "note": "27 stock +3 reclassified=30 inventory;27 authored model candidates,0 run-proven;not complete product routes. Manual crop covers only preset subset. Local swiftc lookup unavailable;Codemagic is connected Darwin route,not proof that no other executable environment exists."
 }
