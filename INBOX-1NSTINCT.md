@@ -744,3 +744,5 @@ A24/A25 boundary follow-up fix requests, not accepted rejects: packets/199e/0435
 199jA41-A44 assigned OPEN, partial4/10, packets/199j. 2h lease without verified progress. Attribution-neutralized source/fixed copies; exact production statements checked against b603, comment-only changes. Additional A42 continuation attribution removed. Independent fresh replay pending. Inspect compile_exit/semantic_exit fields: runner process exit0 alone is not GREEN. Native/fullhost NOT_RUN.
 
 199jA45 assigned OPEN, fifth of ten, DZC index-offset/raster-size conversion hardening. Further13 attribution-reference lines per variant neutralized before publication; no production statement changes. Exactb603baselinecodechecked, newcopyhashesbound, runnerexit0notGREEN/readsemantic_exit. Metal/lzfse/native NOT_RUN. 2h without-progress lease.
+
+199jA41-A44 imported isolated NONQUALIFIED, fix requests at packets/199j/0518-imports/FOLLOWUP-1NSTINCT.md: A41 container segment identity and A43 strict numeric parsing. A42 truth table PASS, A44 CR/LF checks PASS with downstream limits. No host adoption.
