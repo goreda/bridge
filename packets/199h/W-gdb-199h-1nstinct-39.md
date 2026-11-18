@@ -20,6 +20,8 @@ Native AppKit, camera capture, network, IPC, process launch, font rendering and 
 
 REPRODUCE from the packet materialized root: set SWIFTC to a Swift compiler, then `python3 archive/gor/Tests/Architecture/199h/W-gdb-199h-1nstinct-39.py` for the pinned run, `GOR_SOURCE_ROOT=$PWD/fixed python3 archive/gor/Tests/Architecture/199h/W-gdb-199h-1nstinct-39.py` for the fixed run, adding `SWIFTFLAGS=-O` for the optimized run. Missing compiler exits77 NOT_RUN.
 
+Neutralization (re-issue): 94 comment lines carrying attribution or provenance identifiers elided from the source1 and fixed_source copies (trigger lines plus their comment-run continuations; code untouched); all shas in this packet cover the elided copies. Re-verified 4-mode after elision; test verdicts unchanged.
+
 ```packet-json
 {
   "packet_id": "W-gdb-199h-1nstinct-39",
@@ -68,14 +70,14 @@ REPRODUCE from the packet materialized root: set SWIFTC to a Swift compiler, the
       {
         "path": "archive/gor/Sources/gor/GorPlatformMac/QuitChildKiller.swift",
         "block": "source1",
-        "sha256": "f35f0fe74cf75a2d4ccefffd66dffb32dd1cadebc31fbd57bbfb3f36b9a99657",
+        "sha256": "faf4ea40ff5758315eee79ce78df6787ea7b6e2662abcb2c2dbb3bec9fc04e65",
         "read_only_dependency": false,
         "role": "Pinned production source at the base pin."
       },
       {
         "path": "archive/gor/Sources/gor/GorPlatformMac/QuitChildKiller.swift (fixed)",
         "block": "fixed_source",
-        "sha256": "7f36cd2d765571e37b19f47367d8af2cd75c5e1004edcfce4c18870058d454bb",
+        "sha256": "379ea2d6178d3dff50e3d031fd4d7a8fbec4d8cbc3ec5922b0d4368cfb5c2cee",
         "role": "Same production file with only the minimal fix applied."
       },
       {
@@ -131,63 +133,63 @@ REPRODUCE from the packet materialized root: set SWIFTC to a Swift compiler, the
   "fix": {
     "summary": "Insert the mpv option terminator \"--\" immediately before the media path in PreviewGuard.arguments.",
     "diff_block": "fix_diff",
-    "diff_sha256": "0cd22ce883342097b7272124d43f4a7ac438cc596a2351e26776fa76dec3d38c",
+    "diff_sha256": "91977afe2e5b7290e99d6017f7b2c9fc96b34abc2bdec1372b8ffe65506cae61",
     "fixed_block": "fixed_source",
-    "fixed_sha256": "7f36cd2d765571e37b19f47367d8af2cd75c5e1004edcfce4c18870058d454bb",
-    "pinned_sha256": "f35f0fe74cf75a2d4ccefffd66dffb32dd1cadebc31fbd57bbfb3f36b9a99657"
+    "fixed_sha256": "379ea2d6178d3dff50e3d031fd4d7a8fbec4d8cbc3ec5922b0d4368cfb5c2cee",
+    "pinned_sha256": "faf4ea40ff5758315eee79ce78df6787ea7b6e2662abcb2c2dbb3bec9fc04e65"
   }
 }
 ```
 
 ```swift id=source1
-// ================================================================
-//  QuitChildKiller.swift - quit-time owned-child cleanup (176a/176c)
-//  Target: macOS (Foundation). Dual-compiles on Linux for host tests.
-//
-//  Contract (176a, amended by 176c):
-//  - ONE shared function for applicationWillTerminate, the approved
-//    chain and the quit watchdog. Own registered PIDs only.
-//    No pkill/pgrep/orphan sweeps, no exit(), no quit-machinery state
-//    writes, no restart logic in here. Exit ownership is unchanged:
-//    only the watchdog _exit()s; AppKit exits after willTerminate
-//    returns.
-//  - PID REGISTRY (176c): lock-protected set of owned child pids,
-//    registered on the main thread AFTER run() succeeds. A handle
-//    assigned before run() (peerflix) simply has no pid yet - a child
-//    that was never started cannot be orphaned, so nothing is skipped
-//    and nothing needs a pid<=0 special case at kill time.
-//  - PROVEN-GONE removal: an entry is dropped only when the child is
-//    proven reaped-and-gone (kill(pid,0) == ESRCH), discovered either
-//    by the chained terminationHandler (registry removal on
-//    termination) or by the capture-time probe. Clearing the owning
-//    property (nil/detach) removes a handle only when already gone;
-//    a nil-ed but LIVE child stays registered so it cannot escape the
-//    quit-time kill set. An unreaped zombie stays registered by
-//    design: its pid cannot be reused while unreaped, and a SIGKILL
-//    on it is a harmless no-op. IDENTITY-RACE HONESTY: the residual
-//    TOCTOU between the kill(pid,0) probe and the SIGKILL is named,
-//    not eliminated; the registry design shrinks it to pids that were
-//    ours and unreaped at probe time.
-//  - ONE-SHOT + COMPLETED (176c): the graceful sequence (SIGTERM to
-//    all owned pids, ONE shared 300ms poll budget via kill(pid,0)
-//    liveness, then SIGKILL for survivors) runs at most once; the
-//    completion flag is set only when the sequence FINISHES. A caller
-//    arriving mid-sequence WAITS - bounded by the same absolute
-//    deadline plus a 100ms margin - and returns the observed outcome
-//    (completed / timeout). It never restarts or extends the grace.
-//  - EMERGENCY ESCALATION IS EXEMPT FROM RUN-ONCE (documented
-//    deviation from the literal "runs once" wording): a watchdog
-//    caller ALWAYS finishes with an idempotent SIGKILL-only floor
-//    pass inside this same function, so no watchdog exit can land
-//    after an incomplete sequence without the watchdog's own kill
-//    attempt. Escalation may repeat (signals are idempotent); the
-//    300ms grace never does.
-//  - All signaling uses kill(2) directly (SIGTERM / SIGKILL / the
-//    signal-0 liveness probe), not Process.terminate()/isRunning:
-//    no Foundation termination semantics in the body, no main-thread
-//    dependency, matches the watchdog's pre-existing kill(2) idiom.
-//    Every attempt logs pid, signal name, rc and errno.
-// ================================================================
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 
 import Foundation
 #if os(Linux)
@@ -423,10 +425,10 @@ final class MPVLifeline {
         let drain: DispatchSourceRead
     }
 
-    // mpv treats --input-ipc-client as a full IPC client and writes its event stream to it. With no
-    // reader the socket buffer fills and mpv's ipc/ipc thread spins in ipc_write_str -> sendto
-    // (owner sample 02:56: 1502 of 1527 samples, mpv 100% CPU with no video loaded). The parent end
-    // is read and discarded; EOF-on-close stays mpv's lifeline. Close only after the source is cancelled.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     private static func makeDrain(_ fd: Int32) -> DispatchSourceRead {
         let source = DispatchSource.makeReadSource(fileDescriptor: fd, queue: DispatchQueue(label: "gor.mpv-lifeline-drain", qos: .background))
         source.setEventHandler {
@@ -519,14 +521,14 @@ final class MPVLifeline {
 }
 
 #if !os(Linux)
-/// Owner block 176e: at launch, before the first mpv spawn, end leftover
-/// vendor mpv/node processes from an earlier gor run. A process is a target
-/// only if ALL three hold: its executable path resolved through symlinks is
-/// one of this gor's vendor executables (proc_pidpath, never the process
-/// name), its parent is gone (ppid == 1), and it belongs to the current
-/// user. Each target gets SIGTERM, then SIGKILL after 300 ms only if the
-/// SAME identity is still alive (path + start time + ppid + uid re-checked,
-/// so a reused pid is never signaled). One log line per target pid.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 enum OrphanSweep {
 
     private struct Target {
@@ -662,7 +664,41 @@ enum OrphanSweep {
 #endif
 
 
-// Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+
 import Foundation
 #if os(Linux)
 import Glibc
@@ -851,54 +887,54 @@ final class PreviewWork {
 ```
 
 ```swift id=fixed_source
-// ================================================================
-//  QuitChildKiller.swift - quit-time owned-child cleanup (176a/176c)
-//  Target: macOS (Foundation). Dual-compiles on Linux for host tests.
-//
-//  Contract (176a, amended by 176c):
-//  - ONE shared function for applicationWillTerminate, the approved
-//    chain and the quit watchdog. Own registered PIDs only.
-//    No pkill/pgrep/orphan sweeps, no exit(), no quit-machinery state
-//    writes, no restart logic in here. Exit ownership is unchanged:
-//    only the watchdog _exit()s; AppKit exits after willTerminate
-//    returns.
-//  - PID REGISTRY (176c): lock-protected set of owned child pids,
-//    registered on the main thread AFTER run() succeeds. A handle
-//    assigned before run() (peerflix) simply has no pid yet - a child
-//    that was never started cannot be orphaned, so nothing is skipped
-//    and nothing needs a pid<=0 special case at kill time.
-//  - PROVEN-GONE removal: an entry is dropped only when the child is
-//    proven reaped-and-gone (kill(pid,0) == ESRCH), discovered either
-//    by the chained terminationHandler (registry removal on
-//    termination) or by the capture-time probe. Clearing the owning
-//    property (nil/detach) removes a handle only when already gone;
-//    a nil-ed but LIVE child stays registered so it cannot escape the
-//    quit-time kill set. An unreaped zombie stays registered by
-//    design: its pid cannot be reused while unreaped, and a SIGKILL
-//    on it is a harmless no-op. IDENTITY-RACE HONESTY: the residual
-//    TOCTOU between the kill(pid,0) probe and the SIGKILL is named,
-//    not eliminated; the registry design shrinks it to pids that were
-//    ours and unreaped at probe time.
-//  - ONE-SHOT + COMPLETED (176c): the graceful sequence (SIGTERM to
-//    all owned pids, ONE shared 300ms poll budget via kill(pid,0)
-//    liveness, then SIGKILL for survivors) runs at most once; the
-//    completion flag is set only when the sequence FINISHES. A caller
-//    arriving mid-sequence WAITS - bounded by the same absolute
-//    deadline plus a 100ms margin - and returns the observed outcome
-//    (completed / timeout). It never restarts or extends the grace.
-//  - EMERGENCY ESCALATION IS EXEMPT FROM RUN-ONCE (documented
-//    deviation from the literal "runs once" wording): a watchdog
-//    caller ALWAYS finishes with an idempotent SIGKILL-only floor
-//    pass inside this same function, so no watchdog exit can land
-//    after an incomplete sequence without the watchdog's own kill
-//    attempt. Escalation may repeat (signals are idempotent); the
-//    300ms grace never does.
-//  - All signaling uses kill(2) directly (SIGTERM / SIGKILL / the
-//    signal-0 liveness probe), not Process.terminate()/isRunning:
-//    no Foundation termination semantics in the body, no main-thread
-//    dependency, matches the watchdog's pre-existing kill(2) idiom.
-//    Every attempt logs pid, signal name, rc and errno.
-// ================================================================
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 
 import Foundation
 #if os(Linux)
@@ -1134,10 +1170,10 @@ final class MPVLifeline {
         let drain: DispatchSourceRead
     }
 
-    // mpv treats --input-ipc-client as a full IPC client and writes its event stream to it. With no
-    // reader the socket buffer fills and mpv's ipc/ipc thread spins in ipc_write_str -> sendto
-    // (owner sample 02:56: 1502 of 1527 samples, mpv 100% CPU with no video loaded). The parent end
-    // is read and discarded; EOF-on-close stays mpv's lifeline. Close only after the source is cancelled.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     private static func makeDrain(_ fd: Int32) -> DispatchSourceRead {
         let source = DispatchSource.makeReadSource(fileDescriptor: fd, queue: DispatchQueue(label: "gor.mpv-lifeline-drain", qos: .background))
         source.setEventHandler {
@@ -1230,14 +1266,14 @@ final class MPVLifeline {
 }
 
 #if !os(Linux)
-/// Owner block 176e: at launch, before the first mpv spawn, end leftover
-/// vendor mpv/node processes from an earlier gor run. A process is a target
-/// only if ALL three hold: its executable path resolved through symlinks is
-/// one of this gor's vendor executables (proc_pidpath, never the process
-/// name), its parent is gone (ppid == 1), and it belongs to the current
-/// user. Each target gets SIGTERM, then SIGKILL after 300 ms only if the
-/// SAME identity is still alive (path + start time + ppid + uid re-checked,
-/// so a reused pid is never signaled). One log line per target pid.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
 enum OrphanSweep {
 
     private struct Target {
@@ -1373,7 +1409,41 @@ enum OrphanSweep {
 #endif
 
 
-// Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+
 import Foundation
 #if os(Linux)
 import Glibc
@@ -1669,3 +1739,5 @@ PASS activation policy retained
 
 Publication caveat: NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted.
 Claim lease:2hwithout verified progress, existing owner earliest-claim workflow. Single production source and own tests only.
+
+Privacy revision 0533: Ops corrected stale advertised baseline/fixed/diff pins to actual fenced-block bytes, preserving final newline. Non-comment statement equality checked against old publication and isolated fixed source. Prior independent replay remains OLD-hash evidence; writer reports new four-mode rerun, Ops did not execute new Swift binaries. NONQUALIFIED, all previous boundary failures/native exclusions unchanged.

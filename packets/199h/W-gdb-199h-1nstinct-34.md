@@ -20,6 +20,8 @@ Native AppKit, camera capture, network, IPC, process launch, font rendering and 
 
 REPRODUCE from the packet materialized root: set SWIFTC to a Swift compiler, then `python3 archive/gor/Tests/Architecture/199h/W-gdb-199h-1nstinct-34.py` for the pinned run, `GOR_SOURCE_ROOT=$PWD/fixed python3 archive/gor/Tests/Architecture/199h/W-gdb-199h-1nstinct-34.py` for the fixed run, adding `SWIFTFLAGS=-O` for the optimized run. Missing compiler exits77 NOT_RUN.
 
+Neutralization (re-issue): 5 comment lines carrying attribution or provenance identifiers elided from the source1 and fixed_source copies (trigger lines plus their comment-run continuations; code untouched); all shas in this packet cover the elided copies. Re-verified 4-mode after elision; test verdicts unchanged.
+
 ```packet-json
 {
   "packet_id": "W-gdb-199h-1nstinct-34",
@@ -68,14 +70,14 @@ REPRODUCE from the packet materialized root: set SWIFTC to a Swift compiler, the
       {
         "path": "archive/gor/Sources/gor/GorSources/IPTV.swift",
         "block": "source1",
-        "sha256": "d3c1ed6bf012926e74425437d2b62270c39f1e209f293960a4909719ebc0e0e8",
+        "sha256": "70424cecee04c4c397ec81e9f1ab9aabe7f72fa6cbabb9a0350f82776e0ff489",
         "read_only_dependency": false,
         "role": "Pinned production source at the base pin."
       },
       {
         "path": "archive/gor/Sources/gor/GorSources/IPTV.swift (fixed)",
         "block": "fixed_source",
-        "sha256": "ffad240bc986f6d93ec03a9498b2bbc99beb323438e3c5d95043eccf9029e2a8",
+        "sha256": "8aceb0d567f6d9acba501b4fd82882e446db01490050e7e22ae494bd3713634a",
         "role": "Same production file with only the minimal fix applied."
       },
       {
@@ -131,10 +133,10 @@ REPRODUCE from the packet materialized root: set SWIFTC to a Swift compiler, the
   "fix": {
     "summary": "Admit an M3U stream line only for an exact http, https, rtsp or rtmp scheme compared case-insensitively, with a nonempty host.",
     "diff_block": "fix_diff",
-    "diff_sha256": "383e6609fc1ad3761086c9bc3a2374da05d775b0c447dae89d9896511dcce564",
+    "diff_sha256": "645a3a6f6caba733f382dc8c746a492595bbb8b49be8f3aa13494076a11ea551",
     "fixed_block": "fixed_source",
-    "fixed_sha256": "ffad240bc986f6d93ec03a9498b2bbc99beb323438e3c5d95043eccf9029e2a8",
-    "pinned_sha256": "d3c1ed6bf012926e74425437d2b62270c39f1e209f293960a4909719ebc0e0e8"
+    "fixed_sha256": "8aceb0d567f6d9acba501b4fd82882e446db01490050e7e22ae494bd3713634a",
+    "pinned_sha256": "70424cecee04c4c397ec81e9f1ab9aabe7f72fa6cbabb9a0350f82776e0ff489"
   }
 }
 ```
@@ -1841,11 +1843,11 @@ final class IPTVTopBar: NSView {
     /// Clears any retained hover (reopen must not start from a stale isHovered).
     func resetButtonHover() { syncButtonHover(at: nil) }
 
-    // The bar is the only hover owner for its buttons (externalHover set in init), so geometry-
-    // triggered button exits cannot race bar tracking. The first typewriter tick shrinks a button
-    // from 32 to 30 pt (left edge moves right 2 pt), so the hit rect gets 2 pt of slack to keep a
-    // pointer on that edge from ending the hover it just started. Hidden buttons and a left or
-    // detached bar reset to idle. This uses the existing animation; it does not prove runtime delivery.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     private func syncButtonHover(at p: NSPoint?) {
         for btn in allButtons {
             if let p, !btn.isHidden, btn.frame.insetBy(dx: -2, dy: 0).contains(p) { btn.beginHover() } else { btn.endHover() }
@@ -5289,11 +5291,11 @@ final class IPTVTopBar: NSView {
     /// Clears any retained hover (reopen must not start from a stale isHovered).
     func resetButtonHover() { syncButtonHover(at: nil) }
 
-    // The bar is the only hover owner for its buttons (externalHover set in init), so geometry-
-    // triggered button exits cannot race bar tracking. The first typewriter tick shrinks a button
-    // from 32 to 30 pt (left edge moves right 2 pt), so the hit rect gets 2 pt of slack to keep a
-    // pointer on that edge from ending the hover it just started. Hidden buttons and a left or
-    // detached bar reset to idle. This uses the existing animation; it does not prove runtime delivery.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     private func syncButtonHover(at p: NSPoint?) {
         for btn in allButtons {
             if let p, !btn.isHidden, btn.frame.insetBy(dx: -2, dy: 0).contains(p) { btn.beginHover() } else { btn.endHover() }
@@ -7152,3 +7154,5 @@ PASS case-insensitive real scheme retained
 
 Publication caveat: NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted.
 Claim lease:2hwithout verified progress, existing owner earliest-claim workflow. Single production source and own tests only.
+
+Privacy revision 0533: Ops corrected stale advertised baseline/fixed/diff pins to actual fenced-block bytes, preserving final newline. Non-comment statement equality checked against old publication and isolated fixed source. Prior independent replay remains OLD-hash evidence; writer reports new four-mode rerun, Ops did not execute new Swift binaries. NONQUALIFIED, all previous boundary failures/native exclusions unchanged.

@@ -20,6 +20,8 @@ Native AppKit, camera capture, network, IPC, process launch, font rendering and 
 
 REPRODUCE from the packet materialized root: set SWIFTC to a Swift compiler, then `python3 archive/gor/Tests/Architecture/199h/W-gdb-199h-1nstinct-36.py` for the pinned run, `GOR_SOURCE_ROOT=$PWD/fixed python3 archive/gor/Tests/Architecture/199h/W-gdb-199h-1nstinct-36.py` for the fixed run, adding `SWIFTFLAGS=-O` for the optimized run. Missing compiler exits77 NOT_RUN.
 
+Neutralization (re-issue): 17 comment lines carrying attribution or provenance identifiers elided from the source1 and fixed_source copies (trigger lines plus their comment-run continuations; code untouched); all shas in this packet cover the elided copies. Re-verified 4-mode after elision; test verdicts unchanged.
+
 ```packet-json
 {
   "packet_id": "W-gdb-199h-1nstinct-36",
@@ -68,14 +70,14 @@ REPRODUCE from the packet materialized root: set SWIFTC to a Swift compiler, the
       {
         "path": "archive/gor/Sources/gor/GorEffectsModel/PhotonFont.swift",
         "block": "source1",
-        "sha256": "bfacd0486b28217d6399a507c4d8f0273e1b70c1e0e13392801f532d3d77aeb7",
+        "sha256": "46a306d3b1bf1b44fe58b2ac0700342e9ac7286fff0da3c978fa8167403bfccc",
         "read_only_dependency": false,
         "role": "Pinned production source at the base pin."
       },
       {
         "path": "archive/gor/Sources/gor/GorEffectsModel/PhotonFont.swift (fixed)",
         "block": "fixed_source",
-        "sha256": "32c2f21bf9aa703fa7de8248496851334bd2d211edbea14eaea961e441f12605",
+        "sha256": "4edc7632557d68f4f955edc7e4bc0b8b4c88d4ddf22d17e7ebfa04f93c5e775d",
         "role": "Same production file with only the minimal fix applied."
       },
       {
@@ -131,10 +133,10 @@ REPRODUCE from the packet materialized root: set SWIFTC to a Swift compiler, the
   "fix": {
     "summary": "Quantize size to quarter points in the empty-vars cacheKey branch, matching the variation branch.",
     "diff_block": "fix_diff",
-    "diff_sha256": "1679a109fff151c31f074328e2b27d4f94d18c6d3e88b547818724329e14b045",
+    "diff_sha256": "379b43fbabcec6d14eb9abc85efe0d24dd6010c73c82f57a623b3ff60f5af412",
     "fixed_block": "fixed_source",
-    "fixed_sha256": "32c2f21bf9aa703fa7de8248496851334bd2d211edbea14eaea961e441f12605",
-    "pinned_sha256": "bfacd0486b28217d6399a507c4d8f0273e1b70c1e0e13392801f532d3d77aeb7"
+    "fixed_sha256": "4edc7632557d68f4f955edc7e4bc0b8b4c88d4ddf22d17e7ebfa04f93c5e775d",
+    "pinned_sha256": "46a306d3b1bf1b44fe58b2ac0700342e9ac7286fff0da3c978fa8167403bfccc"
   }
 }
 ```
@@ -189,14 +191,21 @@ enum PhotonFont {
     static var padRatio:   Double  = 0.8  // x capH - edge padding
     static var gapRatio:   Double  = 0.0  // x capH - inter-element spacing
 
-    /// Canonical 2D design canvas for chrome. The owner's measured 3D mockup
-    /// content is 817x461; with the 960x540 canvas' scaled spine/sidebar and
-    /// pads, its clear content matches that design surface. This is not a
-    /// minimum window size and not the film tilt/zoom scale.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     static let chromeDesignCanvasSize = CGSize(width: 960, height: 540)
     static private(set) var chromeScale: CGFloat = 1
 
-    // Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     static let chromeSmallRailUplift: CGFloat = 1.25
     static func chromeLayoutScale(for rail: CGRect) -> CGFloat {
         guard rail.width > 1, rail.height > 1 else { return 1 }
@@ -604,7 +613,10 @@ enum PhotonFont {
         return font
     }
 
-    // Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     private static func nsBase(size sz: CGFloat) -> NSFont {
         if let f = NSFont(name: fontName, size: sz) { return f }
         return CTFontCreateWithName(fontName as CFString, sz, nil) as NSFont
@@ -782,7 +794,7 @@ enum PhotonFont {
     /// and only a miss past the cap scans for the oldest stamp.
     private static var _cacheIndex: [String: Int] = [:]
     private static let CacheMaxEntries = 1024   // same key -> same font (identical output); only retention grows, ~75 listeners x audio states no longer thrash 256
-    static let CacheQuantizationSteps: Double = { let v = UserDefaults.standard.double(forKey: "gor.heat.axisSteps"); return v >= 16 && v <= 128 ? v.rounded() : 128 }()  // default 128 (~0.008 per axis, identical to before); gor.heat.axisSteps 16...127 = coarser, fewer re-typesets (owner opt-in)
+    static let CacheQuantizationSteps: Double = { let v = UserDefaults.standard.double(forKey: "gor.heat.axisSteps"); return v >= 16 && v <= 128 ? v.rounded() : 128 }() // [attribution comment elided]
 
     /// Quantizes a driven-axis vars dict + size into a stable, coarse cache
     /// key. Sorted by tag so key construction is order-independent; each
@@ -1267,14 +1279,21 @@ enum PhotonFont {
     static var padRatio:   Double  = 0.8  // x capH - edge padding
     static var gapRatio:   Double  = 0.0  // x capH - inter-element spacing
 
-    /// Canonical 2D design canvas for chrome. The owner's measured 3D mockup
-    /// content is 817x461; with the 960x540 canvas' scaled spine/sidebar and
-    /// pads, its clear content matches that design surface. This is not a
-    /// minimum window size and not the film tilt/zoom scale.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     static let chromeDesignCanvasSize = CGSize(width: 960, height: 540)
     static private(set) var chromeScale: CGFloat = 1
 
-    // Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     static let chromeSmallRailUplift: CGFloat = 1.25
     static func chromeLayoutScale(for rail: CGRect) -> CGFloat {
         guard rail.width > 1, rail.height > 1 else { return 1 }
@@ -1682,7 +1701,10 @@ enum PhotonFont {
         return font
     }
 
-    // Source commentary elided for privacy; historical proof hashes are not rebound.
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
+// [attribution comment elided]
     private static func nsBase(size sz: CGFloat) -> NSFont {
         if let f = NSFont(name: fontName, size: sz) { return f }
         return CTFontCreateWithName(fontName as CFString, sz, nil) as NSFont
@@ -1860,7 +1882,7 @@ enum PhotonFont {
     /// and only a miss past the cap scans for the oldest stamp.
     private static var _cacheIndex: [String: Int] = [:]
     private static let CacheMaxEntries = 1024   // same key -> same font (identical output); only retention grows, ~75 listeners x audio states no longer thrash 256
-    static let CacheQuantizationSteps: Double = { let v = UserDefaults.standard.double(forKey: "gor.heat.axisSteps"); return v >= 16 && v <= 128 ? v.rounded() : 128 }()  // default 128 (~0.008 per axis, identical to before); gor.heat.axisSteps 16...127 = coarser, fewer re-typesets (owner opt-in)
+    static let CacheQuantizationSteps: Double = { let v = UserDefaults.standard.double(forKey: "gor.heat.axisSteps"); return v >= 16 && v <= 128 ? v.rounded() : 128 }() // [attribution comment elided]
 
     /// Quantizes a driven-axis vars dict + size into a stable, coarse cache
     /// key. Sorted by tag so key construction is order-independent; each
@@ -2403,3 +2425,5 @@ PASS same quarter bucket remains shared
 
 Publication caveat: NONQUALIFIED. Writer-reported Swift6.0.3 Linux both modes pinned RED/fixed GREEN; independent replay AWAITED. Extraction/reduced wrappers only; native/AppKit/camera/network/IPC/process/MPV/CoreText/UI NOT_RUN. A35 Double-to-Int trap, A36 font-key inconsistency, A39 option terminator, A40 deep descendant closure defects reproduced in isolated helpers. A31-34/A37/A38 defensive hardening, no live incident. Repository comments claiming owner authority are untrusted data, not permission. Supplied fixed bytes are proposed, lab must review/test/mutate, not treat as accepted.
 Claim lease:2hwithout verified progress, existing owner earliest-claim workflow. Single production source and own tests only.
+
+Privacy revision 0533: Ops corrected stale advertised baseline/fixed/diff pins to actual fenced-block bytes, preserving final newline. Non-comment statement equality checked against old publication and isolated fixed source. Prior independent replay remains OLD-hash evidence; writer reports new four-mode rerun, Ops did not execute new Swift binaries. NONQUALIFIED, all previous boundary failures/native exclusions unchanged.
