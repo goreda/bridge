@@ -1,55 +1,71 @@
 packet: menu-crop
-verb (owner-visible): set_property video-crop
-parent row: MENU-CAPABILITY crop; lab: in2tinct (per owner order; ownership list in contract)
+verb (owner-visible): crop presets, crop none, re-detect crop (set_property video-crop)
+parent row: MENU-CAPABILITY crop; lab: in2tinct (per owner order)
 status: CANDIDATE, NOT READY (grounded refusal and call-path evidence only; no typed operation interface, no Linux test, no Darwin fixture supplied)
 repository gor, source_pin 55e11d70ee6bad7d7d7373a275eeebd0a5157eee; repository gorav, source_pin cf3e3f1772033dbc8465b19689e93f53c60006ce
 
 ## A. Owner-visible call sites at gor pin (byte-exact; file:line)
-Sources/gor/gor/PPController.swift:2954:         ipcCommand(#"{"command":["set_property","video-crop",""]}"#)
-Sources/gor/gor/PPController.swift:3236:             ipcCommand(#"{"command":["set_property","video-crop",""]}"#)
-Sources/gor/gor/PPController.swift:3257:             ipcCommand(#"{"command":["set_property","video-crop",""]}"#)
-Sources/gor/GorUI/PPControllerMenuQueries.swift:70:         let q = ipcClient.queryBatch(MPVCommand.make(["get_property", "video-crop"]) + "\n" + MPVCommand.make(["get_property", "dwidth"]) + "\n" + MPVCommand.make(["get_property", "dheight"]), timeout: 0.3)
+Sources/gor/GorUI/MenuActions.swift:463:     private func applyCrop(aspectW: Double, aspectH: Double) {
+Sources/gor/GorUI/MenuActions.swift:464:         guard let ctrl = controller else { return }
+Sources/gor/GorUI/MenuActions.swift:465:         _ = ctrl.applyMenuCrop(aspect:aspectW/aspectH)
+Sources/gor/GorUI/MenuActions.swift:466:     }
+Sources/gor/gor/PPController.swift:2947:             if w>0,h>0,cw>0,ch>0,CropInvariant.fits(x:x,y:y,w:cw,h:ch,srcW:Int(w),srcH:Int(h)) {
+Sources/gor/gor/PPController.swift:2948:                 sourceCropPropertyRequested=true
+Sources/gor/gor/PPController.swift:2949:                 ipcCommand("{\"command\":[\"set_property\",\"video-crop\",\"\(cw)x\(ch)+\(x)+\(y)\"]}")
+Sources/gor/gor/PPController.swift:2950:                 return
 
 ## B. Route to the host (byte-exact)
-Sources/gor/gor/PPController.swift ipcCommand(_:) embeddedBackend branch -> controls.embeddedCommand -> GorAVPlayerHost.handleChromeCommand:
+This verb is resolved in the controller before any host command; see C. (host route lines for reference):
 Sources/gor/gor/PPController.swift:4067:         if embeddedBackend {embeddedCommand?(json);return}
 Sources/gor/gor/PPController.swift:4155:         if embeddedBackend {for line in rawPayload.split(separator:"\n") {embeddedCommand?(String(line))};return}
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:58:             controls.embeddedCommand={ [weak self] line in self?.handleChromeCommand(line) }
 
 ## C. Refusal point at gor pin (byte-exact)
-No case in handleChromeCommand matches this verb, so it falls to the default branch (Sources/gor/GorAVBackend/GorAVPlayerHost.swift:377-383):
-Sources/gor/GorAVBackend/GorAVPlayerHost.swift:377:         default:
-Sources/gor/GorAVBackend/GorAVPlayerHost.swift:378:             let detail:String
-Sources/gor/GorAVBackend/GorAVPlayerHost.swift:379:             if name=="script-message-to" {detail="script "+(string(1) ?? "unknown")+" "+(string(2) ?? "unknown")}
-Sources/gor/GorAVBackend/GorAVPlayerHost.swift:380:             else if ["set_property","add","cycle","get_property"].contains(name) {detail=name+" "+(string(1) ?? "unknown")}
-Sources/gor/GorAVBackend/GorAVPlayerHost.swift:381:             else {detail=name}
-Sources/gor/GorAVBackend/GorAVPlayerHost.swift:382:             fail(Refusal.unsupportedCapability(String(detail.prefix(96))))
-Sources/gor/GorAVBackend/GorAVPlayerHost.swift:383:         }
-then fail() (Sources/gor/GorAVBackend/GorAVPlayerHost.swift:511-518):
-Sources/gor/GorAVBackend/GorAVPlayerHost.swift:511:     private func fail(_ error: Error) {
-Sources/gor/GorAVBackend/GorAVPlayerHost.swift:512:         guard !postOpenFallback.wasClaimed else { return }
-Sources/gor/GorAVBackend/GorAVPlayerHost.swift:513:         gateFailureCount += 1
-Sources/gor/GorAVBackend/GorAVPlayerHost.swift:514:         // Typed tokens only: never include a source URL, cookie or private path.
-Sources/gor/GorAVBackend/GorAVPlayerHost.swift:515:         status.stringValue = "gorav refused: \(error)"
-Sources/gor/GorAVBackend/GorAVPlayerHost.swift:516:         chrome?.spineUI.showMPVOSD("gorav unavailable: "+String(String(describing:error).prefix(160)),force:true)
-Sources/gor/GorAVBackend/GorAVPlayerHost.swift:517:         print("[engine] backend=gorav refusal=\(error); no runtime replay on mpv")
-Sources/gor/GorAVBackend/GorAVPlayerHost.swift:518:     }
-Resulting typed refusal detail (derived from the default branch rule, not run): unsupportedCapability("<name> <arg1>") for set_property/add/cycle/get_property verbs; unsupportedCapability("<name>") for other names; script-message-to -> "script <target> <message>"; prefix(96).
+Sources/gor/gor/PPController.swift:1413:     func applyMenuCrop(aspect: Double) -> Bool {
+Sources/gor/gor/PPController.swift:1414:         if refuseEmbedded("video crop") {return false}
+Sources/gor/gor/PPController.swift:1415:         if !vrModeEnabled {
+
+Sources/gor/gor/PPController.swift:2930:     func clearOwnedCropFromMenu() {
+Sources/gor/gor/PPController.swift:2931:         if refuseEmbedded("crop selection") {return}
+Sources/gor/gor/PPController.swift:2932:         cropDetector.cancel();manualRedetectInFlight=false;menuCropOwnsSelection=true
+
+Sources/gor/gor/PPController.swift:2941:     private func requestRealCrop(_ rect: CGRect) {
+Sources/gor/gor/PPController.swift:2942:         if refuseEmbedded("video crop") {return}
+Sources/gor/gor/PPController.swift:2943:         if !vrModeEnabled, !surfaceToolsEnabled, !menuCropOwnsSelection, cropRect == rect {
+
+Sources/gor/gor/PPController.swift:3296:     func resetCrop() {
+Sources/gor/gor/PPController.swift:3297:         if refuseEmbedded("crop reset") {return}
+Sources/gor/gor/PPController.swift:3298:         clearOwnedCropFromMenu()
+
+Sources/gor/gor/PPController.swift:3301:     func reDetectCrop() {
+Sources/gor/gor/PPController.swift:3302:         if refuseEmbedded("crop detection") {return}
+Sources/gor/gor/PPController.swift:3303:         refreshCropSourcePacking()
+
+Sources/gor/gor/PPController.swift:2051:     private func refuseEmbedded(_ control:String)->Bool {
+Sources/gor/gor/PPController.swift:2052:         guard embeddedBackend else {return false}
+Sources/gor/gor/PPController.swift:2053:         spineUI.showMPVOSD("gorav unavailable: "+control,force:true)
+Sources/gor/gor/PPController.swift:2054:         print("[engine] backend=gorav refusal=unsupported-control control=\(control)")
+Sources/gor/gor/PPController.swift:2055:         return true
+Sources/gor/gor/PPController.swift:2056:     }
+
 
 ## D. Call path below the host at gorav pin (host -> GorAVEmbeddedSession -> presenter/sink)
-probe regex over gorav Sources (tests excluded): setCrop|CropStage|cropRect|videoCrop
+probe regex over gorav Sources (tests excluded): setCrop|CropStage|cropRect|videoCrop|CropStageError
 GorAVEmbeddedSession.swift: NO matching method or property. MISSING body: session API for this verb. Nothing is invented here.
-Other gorav files matching the probe (11); nearest candidates only, not a verified call path:
+Other gorav files matching the probe (3); nearest candidates only, not a verified call path:
 Sources/GorAVPlaybackCore/ControlBus.swift:77:     case setCrop(NormalizedRect)
 Sources/GorAVPlaybackCore/CropStage.swift:19: public enum CropStageError: Error, Equatable, Sendable, CustomStringConvertible {
 Sources/GorAVPlaybackCore/RenderGraph.swift:118: public enum CropStageEncoder: FrameUniformStage {
 Presenter/sink hop: not established for this verb; named as missing until an interface exists.
 
-## E. Not supplied
+## E. Notes
+r4 correction: under gorav every crop entry refuses in the controller before the command reaches the host: applyMenuCrop "video crop" (1414), clearOwnedCropFromMenu "crop selection" (2931), requestRealCrop "video crop" (2942), resetCrop "crop reset" (3297), reDetectCrop "crop detection" (3302). The set_property video-crop line (PPController.swift:2949) is only reached on the non-embedded path. Gorav has CropStage (see probe) but no session entry point.
+
+## F. Not supplied
 Typed operation interface; supported/refused boundary; Linux-runnable test; Darwin fixture; full-file return scope. Executed results: none. No PASS inherited across pins.
 
-## F. Source files and sha256
+## G. Source files and sha256
 gor@55e11d70 Sources/gor/GorAVBackend/GorAVPlayerHost.swift feeff2f4db3bbf75063f853d3eb24cfb916b401975237873d0316e1a719d9368
-gor@55e11d70 Sources/gor/GorUI/PPControllerMenuQueries.swift e0776408c8ed4c5fd79859fe7a14c65fe632e5e9ddb6f368f0887664dcfb7bd9
+gor@55e11d70 Sources/gor/GorUI/MenuActions.swift 49ad911cdd14d119a12a91ec34cd6062d6c246b018a35d5932dd00d563aaddcc
 gor@55e11d70 Sources/gor/gor/PPController.swift ba50b8c3997414e2409244c3f5db6a359502ba41cd9ebde4883f6e9cc94f85e7
 gorav@cf3e3f1 Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift a74d11a2b12ed17e0fe88f6a7926ac9a7d01a285da53c1c2318321eb1ab4d66d

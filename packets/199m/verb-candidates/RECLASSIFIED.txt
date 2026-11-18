@@ -1,0 +1,55 @@
+RECLASSIFIED (r4): inventory rows that are NOT stock candidates, with the bytes that decide it. Pin gor 55e11d70ee6bad7d7d7373a275eeebd0a5157eee.
+
+1. menu-zoom and menu-pan: the owner-visible zoom and pan verbs go to the host through gor_fit and are handled there, so they are not host-default-refused and not new stock.
+Menu call sites (zoom, pan):
+Sources/gor/GorUI/MenuActions.swift:261:     @objc func menuZoomIn()           { cmd(#"{"command":["script-message-to","gor_fit","zoom","1"]}"#) }
+Sources/gor/GorUI/MenuActions.swift:262:     @objc func menuZoomOut()          { cmd(#"{"command":["script-message-to","gor_fit","zoom","-1"]}"#) }
+Sources/gor/GorUI/MenuActions.swift:281:     @objc func menuPanVideoLeft()     { cmd(#"{"command":["script-message-to","gor_fit","move","-1","0"]}"#) }
+Sources/gor/GorUI/MenuActions.swift:282:     @objc func menuPanVideoRight()    { cmd(#"{"command":["script-message-to","gor_fit","move","1","0"]}"#) }
+Sources/gor/GorUI/MenuActions.swift:283:     @objc func menuPanVideoUp()       { cmd(#"{"command":["script-message-to","gor_fit","move","0","-1"]}"#) }
+Sources/gor/GorUI/MenuActions.swift:284:     @objc func menuPanVideoDown()     { cmd(#"{"command":["script-message-to","gor_fit","move","0","1"]}"#) }
+Host cases (handled, not refused):
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:350:         case "script-message-to" where string(1)=="gor_fit":
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:351:             switch string(2) {
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:352:             case "zoom":if let value=number(3) {hostWindow?.zoom(value)}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:353:             case "move":if let x=number(3),let y=number(4) {hostWindow?.move(dx:x,dy:y)}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:354:             case "hold":
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:355:                 if let x=number(3),let y=number(4),let z=number(5),
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:356:                    x.isFinite,y.isFinite,z.isFinite {hostWindow?.hold(dx:x,dy:y,dz:z)}
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:357:             case "reset":hostWindow?.resetPicture()
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:358:             case "fit":hostWindow?.fit()
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:359:             default:fail(Refusal.unsupportedCapability("fit command"))
+Sources/gor/GorAVBackend/GorAVPlayerHost.swift:360:             }
+The set_property video-zoom / video-pan-x / video-pan-y / panscan literals sit only in the else branch of menuZoomReset, reached when PPController.gorFitScriptActive is false:
+Sources/gor/GorUI/MenuActions.swift:268:     @objc func menuZoomReset() {
+Sources/gor/GorUI/MenuActions.swift:269:         if PPController.gorFitScriptActive {
+Sources/gor/GorUI/MenuActions.swift:270:             cmd(#"{"command":["script-message-to","gor_fit","reset"]}"#)
+Sources/gor/GorUI/MenuActions.swift:271:         } else {
+Sources/gor/GorUI/MenuActions.swift:272:             cmd(#"{"command":["set_property","video-zoom",0]}"#)
+Sources/gor/GorUI/MenuActions.swift:273:             cmd(#"{"command":["set_property","video-pan-x",0]}"#)
+Sources/gor/GorUI/MenuActions.swift:274:             cmd(#"{"command":["set_property","video-pan-y",0]}"#)
+Sources/gor/GorUI/MenuActions.swift:275:             cmd(#"{"command":["set_property","panscan",0]}"#)
+Sources/gor/GorUI/MenuActions.swift:276:         }
+Sources/gor/GorUI/MenuActions.swift:277:     }
+Whether hostWindow.zoom/move/hold/reset/fit behave correctly was not checked; this only shows they are not refused. panscan in/out (menuPanscanIn/Out) is a separate command that falls to the host default; it has no row in the owner list and is NOT counted:
+Sources/gor/GorUI/MenuActions.swift:285:     @objc func menuPanscanIn()        { cmd(#"{"command":["add","panscan",0.1]}"#) }
+Sources/gor/GorUI/MenuActions.swift:286:     @objc func menuPanscanOut()       { cmd(#"{"command":["add","panscan",-0.1]}"#) }
+
+2. cache-parity: the cache and demuxer sets are source-profile plumbing (per goreda), consistent with the bytes: they are written per source inside the playMedia profile builder, not from a menu action:
+Sources/gor/GorUI/MenuActions.swift:1284:             cmds.append(#"{"command":["set_property","network-timeout","240"]}"#)
+Sources/gor/GorUI/MenuActions.swift:1285:         } else {
+Sources/gor/GorUI/MenuActions.swift:1286:             // Per-file baseline first (pass-5 #7), then branch overrides.
+Sources/gor/GorUI/MenuActions.swift:1287:             restoreDefaultProfile()
+Sources/gor/GorUI/MenuActions.swift:1288:             if finalURL.contains("pixeldrain.com") {
+Sources/gor/GorUI/MenuActions.swift:1289:                 cmds.append(#"{"command":["set_property","cache","yes"]}"#)
+Sources/gor/GorUI/MenuActions.swift:1290:                 cmds.append(#"{"command":["set_property","cache-secs","3600"]}"#)
+Sources/gor/GorUI/MenuActions.swift:1291:                 cmds.append(#"{"command":["set_property","cache-pause-initial","yes"]}"#)
+Sources/gor/GorUI/MenuActions.swift:1292:                 cmds.append(#"{"command":["set_property","cache-pause-wait","600"]}"#)
+Sources/gor/GorUI/MenuActions.swift:1293:                 cmds.append(#"{"command":["set_property","cache-on-disk","yes"]}"#)
+Sources/gor/GorUI/MenuActions.swift:1294:                 cmds.append(#"{"command":["set_property","demuxer-max-bytes","4096M"]}"#)
+Sources/gor/GorUI/MenuActions.swift:1295:                 cmds.append(#"{"command":["set_property","demuxer-max-back-bytes","1024M"]}"#)
+Sources/gor/GorUI/MenuActions.swift:1296:                 cmds.append(#"{"command":["set_property","demuxer-readahead-secs","3600"]}"#)
+Sources/gor/GorUI/MenuActions.swift:1297:                 cmds.append(#"{"command":["set_property","demuxer-seekable-cache","yes"]}"#)
+Sources/gor/GorUI/MenuActions.swift:1298:                 cmds.append(#"{"command":["set_property","prefetch-playlist","no"]}"#)
+The IPTV profile bursts are in AppDelegate.swift (3807-3841). No menu item or owner action maps to a cache verb.
+

@@ -1,7 +1,10 @@
 {
   "result": "NOT_READY",
-  "candidate_count": 25,
+  "inventory_count": 26,
+  "candidate_count": 23,
+  "reclassified_count": 3,
   "ready_count": 0,
+  "run_proven": 0,
   "packets": {
     "transport-frame-step.txt": [
       "exactly one packet-json manifest required"
@@ -27,13 +30,13 @@
     "subtitle-position-step.txt": [
       "exactly one packet-json manifest required"
     ],
-    "menu-pan.txt": [
-      "exactly one packet-json manifest required"
-    ],
     "subtitle-position-preset.txt": [
       "exactly one packet-json manifest required"
     ],
     "capture-stats.txt": [
+      "exactly one packet-json manifest required"
+    ],
+    "transport-playlist-reload.txt": [
       "exactly one packet-json manifest required"
     ],
     "audio-night-mode.txt": [
@@ -43,9 +46,6 @@
       "exactly one packet-json manifest required"
     ],
     "menu-aspect.txt": [
-      "exactly one packet-json manifest required"
-    ],
-    "cache-parity.txt": [
       "exactly one packet-json manifest required"
     ],
     "subtitle-size-reset.txt": [
@@ -63,16 +63,13 @@
     "menu-eq.txt": [
       "exactly one packet-json manifest required"
     ],
-    "transport-playlist.txt": [
-      "exactly one packet-json manifest required"
-    ],
     "menu-crop.txt": [
       "exactly one packet-json manifest required"
     ],
     "transport-chapter.txt": [
       "exactly one packet-json manifest required"
     ],
-    "menu-zoom.txt": [
+    "transport-playlist-nav.txt": [
       "exactly one packet-json manifest required"
     ],
     "transport-loop.txt": [

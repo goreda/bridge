@@ -23,6 +23,21 @@ Sources/gor/gor/PPController.swift:4155:         if embeddedBackend {for line in
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:58:             controls.embeddedCommand={ [weak self] line in self?.handleChromeCommand(line) }
 
 ## C. Refusal point at gor pin (byte-exact)
+Sources/gor/gor/PPController.swift:3962:     func nativeTrackSnapshot() -> (path:String,tracks:[[String:Any]]) {
+Sources/gor/gor/PPController.swift:3963:         if refuseEmbedded("audio/subtitle track snapshot") {return (currentFilePath,[])}
+Sources/gor/gor/PPController.swift:3964:         let path=IPCClient.parseFirst(ipcClient.queryBatch(#"{"command":["get_property","path"]}"#,timeout:0.15))["data"] as? String ?? ""
+
+Sources/gor/gor/PPController.swift:3970:     func fetchTrackList(type: String, completion: @escaping ([(id: Int, title: String)]) -> Void) {
+Sources/gor/gor/PPController.swift:3971:         if refuseEmbedded(type == "sub" ? "embedded subtitle track selection":"audio track selection") {completion([]);return}
+Sources/gor/gor/PPController.swift:3972:         print("[fetchTrackList] type: \(type), ipcPath exists: \(FileManager.default.fileExists(atPath: ipcPath))")
+
+Sources/gor/gor/PPController.swift:2051:     private func refuseEmbedded(_ control:String)->Bool {
+Sources/gor/gor/PPController.swift:2052:         guard embeddedBackend else {return false}
+Sources/gor/gor/PPController.swift:2053:         spineUI.showMPVOSD("gorav unavailable: "+control,force:true)
+Sources/gor/gor/PPController.swift:2054:         print("[engine] backend=gorav refusal=unsupported-control control=\(control)")
+Sources/gor/gor/PPController.swift:2055:         return true
+Sources/gor/gor/PPController.swift:2056:     }
+
 No case in handleChromeCommand matches this verb, so it falls to the default branch (Sources/gor/GorAVBackend/GorAVPlayerHost.swift:377-383); detail text per the rule: "set_property sid" (derived, not run):
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:377:         default:
 Sources/gor/GorAVBackend/GorAVPlayerHost.swift:378:             let detail:String
@@ -103,7 +118,7 @@ Sources/GorAVSubtitles/SubtitleSidecarSession.swift:3: public enum SubtitleSidec
 Presenter/sink hop: not established for this verb; named as missing until an interface exists.
 
 ## E. Notes
-The owner pick call site (SpineUI.swift:1872-1876) sends a numeric track id. sid auto at PPController.swift:2563 is an internal reset on file change, not the owner pick, and is listed only as context. The existing path selects a sidecar by file path (session.selectSubtitle(path:slot:)) and cycles local .srt candidates; it has no track-id entry point. Missing: id to track mapping, embedded and bitmap tracks.
+r4 correction: under gorav the track list that feeds the owner pick is refused before any host command: PPController.nativeTrackSnapshot refuses "audio/subtitle track snapshot" (3962) and fetchTrackList refuses "embedded subtitle track selection" / "audio track selection" (3970), both through refuseEmbedded (2051-2056). The host default branch is the second layer for the sid command itself. The owner pick call site (SpineUI.swift:1872-1876) sends a numeric track id. sid auto at PPController.swift:2563 is an internal reset on file change, not the owner pick, and is listed only as context. The existing path selects a sidecar by file path (session.selectSubtitle(path:slot:)) and cycles local .srt candidates; it has no track-id entry point. Missing: id to track mapping, embedded and bitmap tracks.
 
 ## F. Not supplied
 Typed operation interface; supported/refused boundary; Linux-runnable test; Darwin fixture; full-file return scope. Executed results: none. No PASS inherited across pins.
