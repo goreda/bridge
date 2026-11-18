@@ -1,0 +1,8 @@
+{
+  "id": "W-gdb-199c-1nstinct-10",
+  "branch": "lane/lab-1nstinct-W-gdb-199c-1nstinct-10",
+  "commit": "d4e07ee853653e902ac5713b1a0cc5d19f68df1c",
+  "base": "e83b0d2101a811f0a52529ee28e56699322253cc",
+  "test": "lane-b Linux debug+optimized semantic/capture PASS, launch identity PASS, baseline14RED",
+  "qualification": "NONQUALIFIED full host/native NOT_RUN manifest not regenerated"
+}
