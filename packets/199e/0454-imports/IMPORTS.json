@@ -1,0 +1,24 @@
+[
+  {
+    "id": "W-gdb-199e-in2tinct-21",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "commit": "968c19c390081f3d161491888335d24ed6c3de82",
+    "branch": "lane/lab-in2tinct-W-gdb-199e-in2tinct-21",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Source diff unchanged; fixture diff normalized hunk lengths and missing final newline explicitly, advertised SHA exact. Actual3-sourceCore both-mode baseline RED/fixed GREEN/compiling mutant RED. Prevents torrent fragment generic-remote bypass, does not implement WebTorrent bridge; native open NOT_RUN.",
+    "source_sha256": {
+      "Sources/GorAVCore/OpenURLRouter.swift": "0fcc70bdf63c0bc9f334a73f07c137ca843182e9036d7b7f99ed864e385c0409"
+    }
+  },
+  {
+    "id": "W-gdb-199e-in2tinct-22",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "commit": "b86b951bd4f631d9d531a1baf6a6a9028ce0acc9",
+    "branch": "lane/lab-in2tinct-W-gdb-199e-in2tinct-22",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Source diff unchanged; fixture diff normalized hunk lengths and missing final newline explicitly, advertised SHA exact. Actual58-sourcePlaybackCore both-mode baseline RED/fixed GREEN/compiling mutant RED with existing debug dependency objects. Extended stress baseline7/7 RED per mode, fixed10/10 GREEN per mode,240000 publications. Strong scheduling stress, NOT mathematical determinism. Starter outcome varies by venue. Instance lock includes disk IO, no throughput claim. Multi-instance/process shared-path ownership excluded; per-run exclusive path required. Native callback wiring NOT_RUN.",
+    "source_sha256": {
+      "Sources/GorAVPlaybackCore/DecodeHeartbeat.swift": "5cd518a3433c965ae9ac1846ca0796e14535570fffbce8d205019b130f18d0c1"
+    }
+  }
+]
