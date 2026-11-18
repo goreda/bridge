@@ -1,0 +1,171 @@
+# W-gdb-199h-d5r3b-10 - Promotion ref-race gate (r3: on the 09 interface)
+state: OPEN / unclaimed
+lab: shared stock (1nstinct + in2tinct; earliest claim wins, one holder)
+
+arch-199h D1b (r3b, pinned to native50 872dcc32d). Atomic-promotion ref-race enforcement built ON d5r3b-09's adapter interface (single-owner rule: 09 owns the adapter; this packet adds only the expected-old-ref revalidation-at-mutation path). Injected ref reads; recheck immediately before mutation; a single earlier check is insufficient. Read-only on Linux; never run as a promotion.
+
+Re-pin note: r3b moves the pin 35f553acd -> 872dcc32d; all excerpt bytes are identical to r3 at the recorded ranges (the only shift is +3 lines before the sess_replace excerpt, now carved at 1660-1720).
+
+Required acceptance: atomic-promotion-ref-changes-after-precheck and atomic-promotion-stale-ref refuse for the intended reason; positive promotion case exits0.
+
+Outcomes: a production change with executed semantic tests, or 'verified-not-needed with evidence' where this packet says so. The executed starter proof is a clean source-only materialization of exact pinned excerpts, not a full Swift package build. Full excerpts below are read-only input until this packet is claimed. Earliest claim wins across both labs; 2h lease expiry without holder commit. No product ref or billing changes. Return patch and exact logs, or the evidence document. Preserve all existing supported behavior. Native compile queues after Linux verification (through the D1 route); native/UI/runtime NOT_RUN unless actually executed. No licensed bytes, no credentials.
+
+```packet-json
+{
+ "packet_id": "W-gdb-199h-d5r3b-10",
+ "lab": "shared",
+ "writer": "1nstinct or in2tinct (earliest claim wins)",
+ "code_owner": "Claiming lab owns only the listed production files for this packet; integrator owns host wiring and move composition",
+ "product_repo": "goreda/bridge",
+ "product_sha": "679e165324fe3ce67841e7be4c258e8e7316b632",
+ "touched_files": [
+  {
+   "path": "inputs/199h/d5-10/",
+   "excerpt_block": "finalizer (lines 1-48)"
+  }
+ ],
+ "interface": {
+  "signatures": "Atomic-promotion ref-race enforcement built ON d5r3b-09's adapter interface (single-owner rule: 09 owns the adapter; this packet adds only the expected-old-ref revalidation-at-mutation path). Injected",
+  "types": "Existing declarations in exact pinned excerpts below; retain public APIs",
+  "ownership_lifetime": "One writer per listed source file; 2h lease expires without holder commit; no gor U2/S2 host edits beyond the listed files",
+  "caller": "atomic-promotion-ref-changes-after-precheck and atomic-promotion-stale-ref refuse for the intended reason; positive promotion case exits0.",
+  "callee": "inputs/199h/d5-10/"
+ },
+ "scope": "product",
+ "test": {
+  "command": "python3 packets/199h/d5-r3b/fixtures/W-gdb-199h-d5r3b-10.py",
+  "expected": "Baseline source-pin proof exit0 only. Acceptance additionally requires: atomic-promotion-ref-changes-after-precheck and atomic-promotion-stale-ref refuse for the intended reason; positive promotion case exits0.",
+  "fixture_block": "fixtures1"
+ },
+ "target": {
+  "branch": "lane/lab-<claiming-lab>-W-gdb-199h-d5r3b-10",
+  "paths": [
+   "inputs/199h/d5-10/",
+   "packets/199h/d5-r3b/fixtures/W-gdb-199h-d5r3b-10.py"
+  ],
+  "return_form": "patch"
+ },
+ "run_proof": {
+  "version": 1,
+  "product_repo": "goreda/bridge",
+  "product_sha": "679e165324fe3ce67841e7be4c258e8e7316b632",
+  "command": "python3 packets/199h/d5-r3b/fixtures/W-gdb-199h-d5r3b-10.py",
+  "system": "Linux",
+  "clean_checkout": true,
+  "ran_at": "2026-11-18T11:50:59.768384+00:00",
+  "kind": "module",
+  "expected_exit": 0,
+  "exit_code": 0,
+  "expected_log_contains": "BASELINE_SOURCE_PIN_PASS",
+  "inline_files": [
+   {
+    "path": "inputs/199h/d5-10/native48-finalizer.py",
+    "lines": "1-48",
+    "block": "inputs/199h/d5-10/native48-finalizer.py:1-48",
+    "sha256": "d94c442950fc09f05bea451a78110a166d4c7d53ef32a47143b73cf24547c350"
+   },
+   {
+    "path": "inputs/199h/d5-10/production-integrity-gate.py",
+    "lines": "1-6",
+    "block": "inputs/199h/d5-10/production-integrity-gate.py:1-6",
+    "sha256": "cba3f632818e0809fbf252f13b6bf2dbe0d7882be29a9b4d088278d658d35046"
+   },
+   {
+    "path": "packets/199h/d5-r3b/fixtures/W-gdb-199h-d5r3b-10.py",
+    "block": "fixtures1",
+    "sha256": "0d6e038b85267a8989e264f756265d9daa7ad2ad89d7a0a2f1850f599b2255e9"
+   }
+  ],
+  "log_block": "actual_run_log",
+  "log_sha256": "0ee4e0723a94feb855390b3ebd3bc7873eeb01bd3dd7315065dd13d4bc3a75dc",
+  "last_5_lines": [
+   "BASELINE_SOURCE_PIN_PASS W-gdb-199h-d5r3b-10; baseline only, product change and semantic test still required"
+  ],
+  "receipt_sha256": "57eafc037131a9c1baa6dd5668cf98f3206f05592cf483537c89a90454393c45"
+ }
+}
+```
+
+```python id=inputs/199h/d5-10/native48-finalizer.py:1-48
+"""Build exact manifest-only candidate and evidence from native48 downloaded artifacts.
+Does not promote delivery refs. Run only after authenticated live terminal PASS.
+"""
+from pathlib import Path
+import argparse,json,subprocess,os,hashlib,tempfile,csv,io
+p=argparse.ArgumentParser();p.add_argument('--artifacts',type=Path,required=True);p.add_argument('--build-id',required=True);p.add_argument('--build-url',required=True);p.add_argument('--live-carrier',required=True);a=p.parse_args()
+P=Path('/tmp/198y-s2');D=Path('/tmp/199g-ledger/docs/delivery');A=a.artifacts;env={**os.environ,'GIT_TERMINAL_PROMPT':'0'}
+def git(*args,**kw):return subprocess.check_output(['git','-C',str(P),*args],env=kw.pop('env',env),**kw)
+sha=lambda b:hashlib.sha256(b).hexdigest()
+r=json.loads((A/'native48-result.json').read_text());assert r['result']=='PASS' and r['full_product_compile_exit']==0 and r['static_preinstall_exit']==0
+source=r['source_pin'];assert source=='a198aee6be6bb2ce52ddf90c3c83da2a16359ab5';assert r['live_carrier_sha']==a.live_carrier
+em=json.loads((A/'native48-native-manifest.json').read_text());assert em['result']=='PASS' and em['manifest_tree_test']=='PASS' and em['source_pin']==source
+with tempfile.TemporaryDirectory() as td:
+ e={**env,'GIT_INDEX_FILE':td+'/index'};git('read-tree',source,env=e)
+ for name in ('delivery.tsv','manifest.tsv'):
+  b=(A/('native48-'+name)).read_bytes();assert sha(b)==em['files']['architecture/'+name]
+  oid=git('hash-object','-w','--stdin',input=b).decode().strip();git('update-index','--cacheinfo','100644',oid,'archive/gor/architecture/'+name,env=e)
+ tree=git('write-tree',env=e).decode().strip();candidate=git('commit-tree',tree,'-p',source,input=b'delivery: automatic native48 emitted manifests for exact D1 cut\n').decode().strip()
+ git('update-ref','refs/heads/candidate/ops/native48-delivery',candidate)
+actual=json.loads((A/'native48-actual-product-source-map.json').read_text());assert actual['source_pin']==source and actual['live_carrier_sha']==a.live_carrier
+alltree={row.split('\t')[1]:row.split()[2] for row in git('ls-tree','-r',candidate).decode().splitlines()}
+assert len(actual['files'])>1800 and all(alltree.get(path)==blob for path,blob in actual['files'].items()),'CI compiler input differs from final product candidate'
+# Validate every committed delivery row, not just the carrier's inventory.
+for row in csv.DictReader(io.StringIO(git('show',candidate+':archive/gor/architecture/delivery.tsv').decode()),delimiter='\t'):
+ assert sha(git('show',candidate+':archive/gor/'+row['path']))==row['sha256'],row['path']
+s=json.loads((A/'native48-static-preinstall.json').read_text());script=json.loads((A/'native48-manifest.json').read_text());identity='source-manifest-sha256:'+sha(json.dumps(actual['files'],sort_keys=True,separators=(',',':')).encode());assert s['candidate']==script['candidate']==identity
+assert script['compiled_executable_sha256']==s['executable_sha256']
+# Carry the transport identity, never mislabel the original receipt as GitSHA.
+for item in (s,script):item['transport_candidate']=item['candidate'];item['candidate']=candidate
+carrier_baseline=subprocess.check_output(['git','-C','/tmp/198t/carrier','show',a.live_carrier+':ci/198t/DELIVERED-BASELINE.json'])
+assert carrier_baseline==(D/'DELIVERED-BASELINE.json').read_bytes(),'CI baseline mismatch'
+s['baseline_sha256']=sha(carrier_baseline);s['baseline_binding_source']='authenticated live carrier verified envelope and readback exact baseline bytes'
+compile={'candidate':candidate,'result':'PASS','rows':[{'name':'exact-product-Darwin-compile','exit':0}]}
+base=json.loads((D/'DELIVERED-BASELINE.json').read_text());buildhash=sha(git('show',candidate+':archive/gor/build.sh'))
+build_source=git('show',candidate+':archive/gor/build.sh').decode()
+assert 'gor_update_restore_current_swap() {' in build_source
+assert 'gor_update_restore_current_swap || true' in build_source
+assert 'gor_selftest\n    update_stage=result' in build_source
+assert 'open -g -n "$app" --args --gor-no-activate' in build_source
+assert 'st_wait_running 120' in build_source
+assert '"$project_root/gor-selftest.sh" --lifeline-only' in build_source
+assert build_source.rstrip().endswith('gor_update_finish\nfi')
+assert s['result']=='PASS' and not s.get('removed') and not s.get('errors')
+l2=json.loads((A/'native48-L2-results.json').read_text());fixed=[x for x in l2 if x['variant']=='fixed'];assert len(fixed)==18 and all(x['pass_'] for x in fixed);assert all(any(not x['pass_'] for x in l2 if x['variant']==v) for v in ('baseline','mutant-no-token','mutant-no-backup-identity','mutant-not-own-swap'))
+check={'candidate':candidate,'result':'VERIFIED_SOURCE','build_sh_sha256':buildhash,'launch_after_build':True,'restore_this_run_on_failure':True,'runtime_attestation':'DEFERRED_TO_OWNER_INSTALL',**{k:{'candidate':candidate,'result':'PASS','exit':0,'build_sh_sha256':buildhash}for k in ('launch_check_test','L2_restore_test')}}
+receipt={'candidate':candidate,'delivery_class':'E','authority':'phonemsg-01M7Q04ZD5EQBBCXXNJ0KECKKC','verification_source':'authenticated Codemagic live UI/API','build_url':a.build_url,'build_id':a.build_id,'terminal_status':'finished','carrier_sha':a.live_carrier,'live_carrier_sha':a.live_carrier,'static_preinstall':s,'compile':compile,'manifest':script,'native_manifest':{**em,'candidate':candidate},'updater_integrity':{'candidate':candidate,'result':'PASS','mismatches':0,'actual_build_sh_branch':True,'manifest_tree_test':True},'product_source_map':{'all_git_blobs_match_product':True,'files':actual['files']},'owner_install_check':check}
+proof={'candidate':candidate,'baseline':base['source_commit'],'named_diffs':git('diff','--name-only',base['source_commit'],candidate).decode().splitlines(),'darwin_compile':compile,'manifest_regeneration':{**script,'result':'PASS'},'updater_integrity':receipt['updater_integrity']}
+(A/'class-e-receipt.json').write_text(json.dumps(receipt,indent=2)+'\n');(A/'promotion-proof.json').write_text(json.dumps(proof,indent=2)+'\n');print('EXACT_CANDIDATE',candidate,'TRANSPORT',identity)
+```
+
+```python id=inputs/199h/d5-10/production-integrity-gate.py:1-6
+#!/usr/bin/env python3
+"""Run the exact fail-closed preinstall integrity branch from production build.sh.
+Only this read-only branch is extracted; no fetch, source copy, install or launch.
+"""
+import pathlib,subprocess,argparse,json
+p=argparse.ArgumentParser();p.add_argument('--root',type=pathlib.Path,required=True);a=p.parse_args();r=a.root.resolve();s=(r/'build.sh').read_text();start=s.index('    if ! /usr/bin/python3 "$src_root/tools/architecture.py" --root "$src_root" --integrity-only; then');end=s.index('\n    fi',s.index('manifest_tree_test.py" >/dev/null',start))+len('\n    fi');block=s[start:end];q=subprocess.run(['bash','-c','src_root="$1"\n'+block,'production-integrity-gate',str(r)]);print('PRODUCTION_BUILD_SH_INTEGRITY_BRANCH '+json.dumps({'exit':q.returncode,'root':str(r),'no_install':True}));raise SystemExit(q.returncode)
+```
+
+```python id=fixtures1
+from pathlib import Path
+import hashlib, os, sys
+sys.dont_write_bytecode = True
+ROOT = Path(os.environ.get("PRODUCT_ROOT", Path(__file__).resolve().parents[3]))
+CHECKS = [["inputs/199h/d5-10/native48-finalizer.py", 1, 48, "d94c442950fc09f05bea451a78110a166d4c7d53ef32a47143b73cf24547c350"], ["inputs/199h/d5-10/production-integrity-gate.py", 1, 6, "cba3f632818e0809fbf252f13b6bf2dbe0d7882be29a9b4d088278d658d35046"]]
+bad = []
+for rel, a, b, want in CHECKS:
+    lines = (ROOT / rel).read_text().splitlines(keepends=True)
+    data = "".join(lines[a-1:b]).encode()
+    got = hashlib.sha256(data).hexdigest()
+    if got != want:
+        bad.append((rel, a, b, got))
+if bad:
+    for rel, a, b, got in bad:
+        print("PIN_MISMATCH " + rel + ":" + str(a) + "-" + str(b) + " got=" + got)
+    sys.exit(1)
+print("BASELINE_SOURCE_PIN_PASS W-gdb-199h-d5r3b-10; baseline only, product change and semantic test still required")
+```
+
+```text id=actual_run_log
+BASELINE_SOURCE_PIN_PASS W-gdb-199h-d5r3b-10; baseline only, product change and semantic test still required
+```
