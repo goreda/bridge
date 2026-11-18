@@ -1,0 +1,10 @@
+compile_exit=0
+
+
+semantic_exit=1
+FAIL overflow endpoint rectangle refused
+PASS unrepresentable fit refused
+PASS normal fit retained
+semantic failures=1
+
+

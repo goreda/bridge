@@ -1,0 +1,13 @@
+compile_exit=0
+
+
+semantic_exit=1
+FAIL invalid first sample returns finite neutral
+PASS finite recovery initializes
+FAIL invalid value ignored
+FAIL invalid clock ignored
+FAIL backwards clock ignored
+PASS later valid sample recovers
+semantic failures=4
+
+
