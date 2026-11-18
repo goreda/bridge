@@ -1,12 +1,25 @@
 # Mirror of the arch-199h D5 rows only. Canonical work list: goreda/instinct docs/TASKS.tsv (Ops owns it).
 id	arch	item	status	pin	packet
-W-gdb-199h-d5-01	arch-199h	D5 D2a RenderShotWriter film-frame map	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-01.md
-W-gdb-199h-d5-02	arch-199h	D5 D2b MKV per-shot stream-copy segment	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-02.md
-W-gdb-199h-d5-03	arch-199h	D5 D2c Delete prepare step 2b and source_shot readiness conditions	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-03.md
-W-gdb-199h-d5-04	arch-199h	D5 D2d Migration: delete source_shot inside owned entries	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-04.md
-W-gdb-199h-d5-05	arch-199h	D5 D2e Render retention window	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-05.md
-W-gdb-199h-d5-06	arch-199h	D5 D3-session Session replacePreparedVideo cancellation	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-06.md
-W-gdb-199h-d5-07	arch-199h	D5 D3-coordinator PreparedShotPlayback commit order and coordinator stale-token recovery	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-07.md
-W-gdb-199h-d5-08	arch-199h	D5 D4-repro Seek stream-origin repro fixture and test	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-08.md
-W-gdb-199h-d5-09	arch-199h	D5 D4-fix Convert seek targets per stream origin	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-09.md
-W-gdb-199h-d5-10	arch-199h	D5 D1-emitter Native manifest emitter automation per candidate	OPEN	goreda/bridge@fbb0932e	packets/199h/d5/W-gdb-199h-d5-10.md
+W-gdb-199h-d5-01	arch-199h	D5 D2a RenderShotWriter film-frame map	SUPERSEDED	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-01.md
+W-gdb-199h-d5-02	arch-199h	D5 D2b MKV per-shot stream-copy segment	SUPERSEDED	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-02.md
+W-gdb-199h-d5-03	arch-199h	D5 D2c Delete prepare step 2b and source_shot readiness conditions	SUPERSEDED	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-03.md
+W-gdb-199h-d5-04	arch-199h	D5 D2d Migration: delete source_shot inside owned entries	SUPERSEDED	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-04.md
+W-gdb-199h-d5-05	arch-199h	D5 D2e Render retention window	SUPERSEDED	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-05.md
+W-gdb-199h-d5-06	arch-199h	D5 D3-session Session replacePreparedVideo cancellation	SUPERSEDED	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-06.md
+W-gdb-199h-d5-07	arch-199h	D5 D3-coordinator PreparedShotPlayback commit order and coordinator stale-token recovery	SUPERSEDED	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-07.md
+W-gdb-199h-d5-08	arch-199h	D5 D4-repro Seek stream-origin repro fixture and test	SUPERSEDED	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-08.md
+W-gdb-199h-d5-09	arch-199h	D5 D4-fix Convert seek targets per stream origin	SUPERSEDED	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-09.md
+W-gdb-199h-d5-10	arch-199h	D5 D1-emitter Native manifest emitter automation per candidate	SUPERSEDED	goreda/bridge@fbb0932e	packets/199h/d5/W-gdb-199h-d5-10.md
+W-gdb-199h-d5r2-01	arch-199h	D2a RenderShotWriter film-frame map (r2: verify landed map, close witness gap)	OPEN	goreda/instinct@b570c15ac	packets/199h/d5-r2/W-gdb-199h-d5r2-01.md
+W-gdb-199h-d5r2-02	arch-199h	D2b Shot segment extraction (r2: rebase onto arch-199g original-film map)	OPEN	goreda/instinct@b570c15ac	packets/199h/d5-r2/W-gdb-199h-d5r2-02.md
+W-gdb-199h-d5r2-03	arch-199h	D2c+d Retire source proxy readiness and storage (r2: residual paths only)	OPEN	goreda/instinct@b570c15ac	packets/199h/d5-r2/W-gdb-199h-d5r2-03.md
+W-gdb-199h-d5r2-04	arch-199h	D2e Render retention window (r2: reentry + unknown-playhead protection)	OPEN	goreda/instinct@b570c15ac	packets/199h/d5-r2/W-gdb-199h-d5r2-04.md
+W-gdb-199h-d5r2-05	arch-199h	D3a Prepared-shot session swap guards (r2: r3 cachePin capture)	OPEN	goreda/instinct@b570c15ac	packets/199h/d5-r2/W-gdb-199h-d5r2-05.md
+W-gdb-199h-d5r2-06	arch-199h	D3b PreparedShotPlayback commit + coordinator continuity (r2: r3 cachePin capture)	OPEN	goreda/instinct@b570c15ac	packets/199h/d5-r2/W-gdb-199h-d5r2-06.md
+W-gdb-199h-d5r2-07	arch-199h	D4a Seek regression fixture against the real seek API (r2)	OPEN	goreda/instinct@b570c15ac	packets/199h/d5-r2/W-gdb-199h-d5r2-07.md
+W-gdb-199h-d5r2-08	arch-199h	D4b Seek session-change guard regression (r2)	OPEN	goreda/instinct@b570c15ac	packets/199h/d5-r2/W-gdb-199h-d5r2-08.md
+W-gdb-199h-d5r2-09	arch-199h	D1 Emitter automation: parameterized promotion adapter (r2 reshape)	OPEN	goreda/bridge@fb56478	packets/199h/d5-r2/W-gdb-199h-d5r2-09.md
+W-gdb-199h-d5r2-10	arch-199h	D1b Atomic promotion ref-race enforcement (r2)	OPEN	goreda/bridge@fb56478	packets/199h/d5-r2/W-gdb-199h-d5r2-10.md
+W-gdb-199h-wrr2-01	arch-199h	WR Grain vendor binding (r2 re-pin)	OPEN	goreda/instinct@b570c15ac	packets/199h/writer-r2/W-gdb-199h-wrr2-01.md
+W-gdb-199h-wrr2-02	arch-199h	WR Manual grain range (r2 re-pin)	OPEN	goreda/instinct@b570c15ac	packets/199h/writer-r2/W-gdb-199h-wrr2-02.md
+W-gdb-199h-wrr2-03	arch-199h	WR Installed BuildID read (r2: current-candidate check + wiring)	OPEN	goreda/instinct@b570c15ac	packets/199h/writer-r2/W-gdb-199h-wrr2-03.md

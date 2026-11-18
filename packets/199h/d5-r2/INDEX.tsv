@@ -1,0 +1,11 @@
+packet_id	item	title	packet_sha256_16
+W-gdb-199h-d5r2-01	D2a	RenderShotWriter film-frame map (r2: verify landed map, close witness gap)	32d06bf3be2baaf0
+W-gdb-199h-d5r2-02	D2b	Shot segment extraction (r2: rebase onto arch-199g original-film map)	e9c2940b33c0abbf
+W-gdb-199h-d5r2-03	D2c+d	Retire source proxy readiness and storage (r2: residual paths only)	3154a29db7fd0e8d
+W-gdb-199h-d5r2-04	D2e	Render retention window (r2: reentry + unknown-playhead protection)	1030bda26a9fbb4c
+W-gdb-199h-d5r2-05	D3a	Prepared-shot session swap guards (r2: r3 cachePin capture)	ade962c73b9a23e3
+W-gdb-199h-d5r2-06	D3b	PreparedShotPlayback commit + coordinator continuity (r2: r3 cachePin capture)	20d8d5fc6b3e5075
+W-gdb-199h-d5r2-07	D4a	Seek regression fixture against the real seek API (r2)	c46a2dfb6811eee3
+W-gdb-199h-d5r2-08	D4b	Seek session-change guard regression (r2)	6c8d3beb0e309387
+W-gdb-199h-d5r2-09	D1	Emitter automation: parameterized promotion adapter (r2 reshape)	aa1bf7377a045c99
+W-gdb-199h-d5r2-10	D1b	Atomic promotion ref-race enforcement (r2)	da6b9cfa34f256d5
