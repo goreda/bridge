@@ -1,0 +1,27 @@
+{
+  "result": "PASS scoped privacy scan",
+  "files": 22,
+  "findings": [],
+  "patterns": [
+    "email",
+    "userpath",
+    "privateid",
+    "credential"
+  ],
+  "scope": "emails, user home paths, runtime private identifiers and credential patterns; manually reviewed code excerpts; not run-proven publication gate",
+  "ready_stock": {
+    "1nstinct": 0,
+    "in2tinct": 0
+  },
+  "candidates": {
+    "1nstinct": 12,
+    "in2tinct": 8
+  },
+  "missing": [
+    "typed interfaces",
+    "Linux tests",
+    "Darwin fixtures",
+    "full-file return scopes",
+    "reachability and row-name mapping review"
+  ]
+}
