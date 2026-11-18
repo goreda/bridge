@@ -6,7 +6,7 @@
     "menu-pan",
     "cache-parity"
   ],
-  "authored_candidates": 12,
+  "authored_candidates": 16,
   "authored_to_stock": {
     "audio-night-toggle.md": "audio-night-mode",
     "audio-loudness-toggle.md": "audio-loudness-normalize",
@@ -19,22 +19,22 @@
     "transport-chapter-step.md": "transport-chapter",
     "transport-frame-step.md": "transport-frame-step",
     "transport-file-loop.md": "transport-loop",
-    "transport-ab-loop.md": "transport-ab-loop"
+    "transport-ab-loop.md": "transport-ab-loop",
+    "transport-speed.md": "transport-speed",
+    "transport-playlist-step.md": "transport-playlist-nav",
+    "transport-reload-current.md": "transport-playlist-reload",
+    "capture-stats-toggle.md": "capture-stats"
   },
   "remaining_stock_without_authored_candidate": [
     "audio-boost",
     "audio-device",
     "capture-screenshot",
-    "capture-stats",
     "menu-aspect",
     "menu-crop",
     "menu-eq",
-    "menu-rotate",
-    "transport-playlist-nav",
-    "transport-playlist-reload",
-    "transport-speed"
+    "menu-rotate"
   ],
   "ready": 0,
   "run_proven": 0,
-  "note": "25 prior stock minus zoom/pan/cache plus playlist split equals23 stock, plus3 reclassified equals26 inventory. Authored packets are uncompiled models, not live implementation."
+  "note": "23 stock +3 reclassified =26 inventory;16 authored candidate models,0 run-proven;7 stock rows still lack authored candidate."
 }
