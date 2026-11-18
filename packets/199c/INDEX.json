@@ -228,5 +228,15 @@
     "sha256": "07db082b39ffab9e9983995ae18d46f5c09906bdb98327a00d9f2fae13e0dbbc",
     "state": "OPEN",
     "lease_hours": 2
+  },
+  {
+    "packet_id": "W-gdb-199c-1nstinct-02-session-fix",
+    "lab": "1nstinct",
+    "source": "Sources/GorAVSubtitles/SubtitleSidecarSession.swift",
+    "test_argv": "python3 Tests/Architecture/199c/W-gdb-199c-1nstinct-02-session-fix.py",
+    "product_sha": "4c70ecfc3b03de936723a6cc65700458136690e0",
+    "sha256": "5e5ae81ce0a7921b7e5c7b2531bc49068a4a361df575f8a3ff70661aac1117d9",
+    "state": "OPEN",
+    "lease_hours": 2
   }
 ]
