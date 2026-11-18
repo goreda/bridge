@@ -1,0 +1,39 @@
+{
+  "base": "e83b0d2101a811f0a52529ee28e56699322253cc",
+  "manifest_sha256": "ALL_MATCH",
+  "patch_apply_check_exit": 0,
+  "production_scope": "Only parseCommit method bytes changed; all other BuildID bytes identical",
+  "launch_identity_and_periodic_capture_scripts": "BYTE_IDENTICAL",
+  "compiler": "Swift version 6.0.3 (swift-6.0.3-RELEASE)\nTarget: x86_64-unknown-linux-gnu\n",
+  "environment": "SWIFT_MODE unset; SWIFTC=/tmp/depth-swift/usr/bin/swiftc",
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-10.py"
+      ],
+      "exit": 0,
+      "debug_compile": 0,
+      "debug_semantics": 0,
+      "optimized_compile": 0,
+      "optimized_semantics": 0,
+      "real_emitted_capture_route": "PASS 2 actual emitted lines in each mode"
+    },
+    {
+      "argv": [
+        "python3",
+        "archive/gor/Tests/LaunchIdentity/launch_identity_test.py"
+      ],
+      "exit": 0,
+      "optimization": "-O as unchanged existing script",
+      "swift_failures": 0,
+      "failures": 0
+    }
+  ],
+  "baseline_regression_exit": 1,
+  "baseline_regression_failures": 14,
+  "full_host_package_build": "NOT_RUN_BOUNDED_INPUT",
+  "Darwin_app_callsite": "NOT_RUN_LINUX",
+  "ref_mutations": "NONE",
+  "patch_sha256": "4512c59f098d2ac09011653f348635adc64a730ca7a3319084d763c5073a3504"
+}

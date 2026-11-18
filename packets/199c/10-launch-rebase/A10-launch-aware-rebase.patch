@@ -1,0 +1,50 @@
+--- a/archive/gor/Sources/gor/GorCore/BuildID.swift
++++ b/archive/gor/Sources/gor/GorCore/BuildID.swift
+@@ -14,14 +14,16 @@
+     /// Pure parser (no I/O). Returns the source identity value, or nil when the text has
+     /// no usable `commit=` line (empty value or value containing whitespace).
+     static func parseCommit(_ text: String) -> String? {
+-        for rawLine in text.split(whereSeparator: { $0 == "\n" || $0 == "\r" }) {
++        var identity: String?
++        for rawLine in text.split(whereSeparator: { $0.isNewline }) {
+             let line = rawLine.trimmingCharacters(in: .whitespaces)
+             guard line.hasPrefix("commit=") else { continue }
+             let value = String(line.dropFirst("commit=".count)).trimmingCharacters(in: .whitespaces)
+             if value.isEmpty || value.contains(where: { $0.isWhitespace }) { return nil }
+-            return value
++            if let identity, identity != value { return nil }
++            identity = value
+         }
+-        return nil
++        return identity
+     }
+ 
+     /// Value for display and log: the source identity, or "unknown".
+--- a/archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-10.py
++++ b/archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-10.py
+@@ -21,4 +21,16 @@
+   c=subprocess.run([str(exe)],capture_output=True,text=True,timeout=15)
+   print('semantic_exit='+str(c.returncode));print(c.stdout);print(c.stderr,flush=True)
+   if c.returncode:sys.exit(1)
++  import importlib.util
++  spec=importlib.util.spec_from_file_location('capture',ROOT/'archive/gor/tools/gor-periodic-capture.py')
++  capture=importlib.util.module_from_spec(spec);spec.loader.exec_module(capture)
++  emitted=[line.removeprefix('EMITTED:') for line in c.stdout.splitlines() if line.startswith('EMITTED:')]
++  assert len(emitted)==2, 'real Swift emitted lines missing'
++  expected_builds=['a'*64,'unknown'];expected_trees=['b'*40,'unknown']
++  for line,build,tree in zip(emitted,expected_builds,expected_trees):
++   rows=capture.extract('gor_diag.log','noise before\n'+line+'\nnoise after\n')
++   want='1970-01-01T00:00:00Z GOR-LAUNCH v1 build='+build+' tree='+tree+' launch=1970-01-01T00:00:00Z'
++   assert rows==[want], (mode,rows,want)
++   print('PASS actual emitted Swift launch line through real capture.extract '+mode)
++
+  print('PASS_EXCERPT_SWIFT_SEMANTICS debug+optimized clean_checkout:false native_runtime:NOT_RUN package_build:NOT_RUN')
+--- a/archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-10.json
++++ b/archive/gor/Tests/Architecture/199c/W-gdb-199c-1nstinct-10.json
+@@ -2,5 +2,5 @@
+   "sources": [
+     "archive/gor/Sources/gor/GorCore/BuildID.swift"
+   ],
+-  "test_source": "import Foundation\n\nvar failures=0\nfunc check(_ ok: Bool,_ name: String) { print((ok ? \"PASS \" : \"FAIL \")+name); if !ok { failures += 1 } }\ncheck(BuildID.parseCommit(\"commit=abc\\ncommit=def\") == nil,\"conflicting identities refused\")\ncheck(BuildID.parseCommit(\"commit=abc\\ncommit=\") == nil,\"later malformed entry refused\")\ncheck(BuildID.parseCommit(\"commit=abc\\ncommit=abc\") == \"abc\",\"same duplicate accepted\")\ncheck(BuildID.parseCommit(\"other=x\\ncommit=abc\") == \"abc\",\"legacy grammar retained\")\n\nfor text in [\"commit=abc\\ncommit=def\",\"commit=def\\ncommit=abc\",\"commit=abc\\ncommit=\",\"commit=\\ncommit=abc\",\"commit=abc\\ncommit=a b\",\"commit=a\\tb\\ncommit=abc\",\"commit=abc\\r\\ncommit=def\",\"commit=abc\\ncommit=abc\\ncommit=def\"] {\n check(BuildID.parseCommit(text) == nil,\"all entries scanned conflicts/malformed fail closed\")\n}\nfor text in [\"commit=abc\",\" commit=abc \",\"\\tcommit= abc\\t\",\"\\ncommit=abc\\r\\ncommit=abc\\r\",\"other=x\\ncommit=abc\\nignored=y\"] {\n check(BuildID.parseCommit(text) == \"abc\",\"legacy whitespace and duplicate grammar\")\n}\nfor opaque in [\"not-a-git-hash\",\"1234567\",\"abc=def\",\"!opaque!?\",\"\u00e7\u0131\u011f\"] {\n check(BuildID.parseCommit(\"commit=\"+opaque+\"\\ncommit=\"+opaque) == opaque,\"opaque identity preserved\")\n}\nfor text in [\"\",\"other=x\",\"commit=\",\"commit=  \",\"Commit=abc\",\"commit =abc\"] {\n check(BuildID.parseCommit(text) == nil,\"no usable exact commit key\")\n}\ncheck(BuildID.shortValue(\"1234567890\") == \"1234567\" && BuildID.shortValue(\"abc\") == \"abc\" && BuildID.shortValue(BuildID.unknown) == \"unknown\",\"short format preserved\")\ncheck(BuildID.logLine(\"opaque\") == \"[GOR] build-id opaque\",\"launch log format preserved\")\nlet emptyBundlePath=FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString+\".bundle\")\ntry! FileManager.default.createDirectory(at:emptyBundlePath,withIntermediateDirectories:true)\ndefer { try? FileManager.default.removeItem(at:emptyBundlePath) }\nif let bundle=Bundle(path:emptyBundlePath.path) {check(BuildID.value(bundle:bundle) == BuildID.unknown,\"missing bundle identity unknown\")} else {check(false,\"test bundle created\")}\n\nprint(\"semantic failures=\\(failures)\")\nexit(failures == 0 ? 0 : 1)\n"
++  "test_source": "import Foundation\n\nvar failures=0\nfunc check(_ ok: Bool,_ name: String) { print((ok ? \"PASS \" : \"FAIL \")+name); if !ok { failures += 1 } }\ncheck(BuildID.parseCommit(\"commit=abc\\ncommit=def\") == nil,\"conflicting identities refused\")\ncheck(BuildID.parseCommit(\"commit=abc\\ncommit=\") == nil,\"later malformed entry refused\")\ncheck(BuildID.parseCommit(\"commit=abc\\ncommit=abc\") == \"abc\",\"same duplicate accepted\")\ncheck(BuildID.parseCommit(\"other=x\\ncommit=abc\") == \"abc\",\"legacy grammar retained\")\n\nfor text in [\"commit=abc\\ncommit=def\",\"commit=def\\ncommit=abc\",\"commit=abc\\ncommit=\",\"commit=\\ncommit=abc\",\"commit=abc\\ncommit=a b\",\"commit=a\\tb\\ncommit=abc\",\"commit=abc\\r\\ncommit=def\",\"commit=abc\\ncommit=abc\\ncommit=def\"] {\n check(BuildID.parseCommit(text) == nil,\"all entries scanned conflicts/malformed fail closed\")\n}\nfor text in [\"commit=abc\",\" commit=abc \",\"\\tcommit= abc\\t\",\"\\ncommit=abc\\r\\ncommit=abc\\r\",\"other=x\\ncommit=abc\\nignored=y\"] {\n check(BuildID.parseCommit(text) == \"abc\",\"legacy whitespace and duplicate grammar\")\n}\nfor opaque in [\"not-a-git-hash\",\"1234567\",\"abc=def\",\"!opaque!?\",\"\u00e7\u0131\u011f\"] {\n check(BuildID.parseCommit(\"commit=\"+opaque+\"\\ncommit=\"+opaque) == opaque,\"opaque identity preserved\")\n}\nfor text in [\"\",\"other=x\",\"commit=\",\"commit=  \",\"Commit=abc\",\"commit =abc\"] {\n check(BuildID.parseCommit(text) == nil,\"no usable exact commit key\")\n}\ncheck(BuildID.shortValue(\"1234567890\") == \"1234567\" && BuildID.shortValue(\"abc\") == \"abc\" && BuildID.shortValue(BuildID.unknown) == \"unknown\",\"short format preserved\")\nlet fixedDate = Date(timeIntervalSince1970: 0)\nlet validTree = String(repeating: \"b\", count: 40)\nlet validBuild = String(repeating: \"a\", count: 64)\nlet knownLine = BuildID.launchLine(value: validBuild, tree: validTree, at: fixedDate)\ncheck(knownLine == \"[GOR] build-id \\(validBuild) tree=\\(validTree) launch=1970-01-01T00:00:00Z\", \"current launchLine exact composition\")\ncheck(BuildID.launchTimestamp(fixedDate) == \"1970-01-01T00:00:00Z\", \"UTC launch timestamp\")\ncheck(BuildID.parseTree(\"tree=\" + validTree) == validTree, \"current tree parser preserved\")\nlet unknownLine = BuildID.launchLine(value: \"\", tree: \"bad tree\", at: fixedDate)\ncheck(unknownLine == \"[GOR] build-id unknown tree=unknown launch=1970-01-01T00:00:00Z\", \"whitespace and empty launch fallback\")\nfor separator in [\"\\r\\n\", \"\\r\", \"\\n\", \"\\u{85}\", \"\\u{2028}\", \"\\u{2029}\"] {\n check(BuildID.parseCommit(\"commit=abc\" + separator + \"commit=def\") == nil, \"all newline conflicts rejected\")\n check(BuildID.parseCommit(\"commit=abc\" + separator + \"commit=abc\") == \"abc\", \"all newline identical duplicates accepted\")\n}\nprint(\"EMITTED:\" + knownLine)\nprint(\"EMITTED:\" + unknownLine)\nlet emptyBundlePath=FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString+\".bundle\")\ntry! FileManager.default.createDirectory(at:emptyBundlePath,withIntermediateDirectories:true)\ndefer { try? FileManager.default.removeItem(at:emptyBundlePath) }\nif let bundle=Bundle(path:emptyBundlePath.path) {check(BuildID.value(bundle:bundle) == BuildID.unknown,\"missing bundle identity unknown\")} else {check(false,\"test bundle created\")}\n\nprint(\"semantic failures=\\(failures)\")\nexit(failures == 0 ? 0 : 1)\n"
+ }
