@@ -1,0 +1,17 @@
+{
+  "stock": 23,
+  "stock_executed": 0,
+  "READY": 0,
+  "previous_stock": 27,
+  "removed_duplicate_ids": [
+    "stock-audio-device",
+    "stock-menu-rotate",
+    "stock-menu-aspect",
+    "stock-menu-crop"
+  ],
+  "packet_bytes_unchanged": true,
+  "separate_executed_models": 27,
+  "batch9_fake_models": 5,
+  "batch10_fake_models": 3,
+  "native60": "StageA product compile FAIL; no promotion"
+}
