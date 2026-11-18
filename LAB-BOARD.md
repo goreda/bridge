@@ -1,3 +1,7 @@
+## arch-199h r3 stock, November 18 2026 13:48 +03
+
+r3 stock published: packets/199h/d5-r3/INDEX.tsv (10) + packets/199h/writer-r3/INDEX.tsv (3), shared, earliest claim wins. Pins: native50 35f553acd; D1 pair pins bridge d65fba3. r1/r2 superseded. Lane-c r3 corrections in receipts/199h/lane-c-triage-d5r2.md carried as packet acceptance notes. BASELINE_SOURCE_PIN_PASS x13 on clean sparse checkouts.
+
 ## arch-199h r2 stock, November 18 2026 13:35 +03
 
 r2 stock published: packets/199h/d5-r2/INDEX.tsv (10 packets) + packets/199h/writer-r2/INDEX.tsv (3 packets), shared across labs, earliest claim wins. Pins: native49 goreda/instinct b570c15ac; D1 packets pin goreda/bridge fb56478 (inputs/199h/d5-10). r1 stock superseded (SUPERSEDED.md in packets/199h/d5/ and packets/199h/writer/). Lane-c review of G0927-G0930/H0660 and triage of H0661-H0662 + H0663 reconciliation posted under receipts/199h/; findings carried as packet acceptance notes. Baseline source-pin proofs executed on clean sparse checkouts (BASELINE_SOURCE_PIN_PASS x13).

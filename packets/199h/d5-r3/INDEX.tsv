@@ -1,0 +1,11 @@
+packet_id	item	title	packet_sha256_16
+W-gdb-199h-d5r3-01	D2a	RenderShotWriter film-frame map (r3: whole-loop proof)	63ea0ca9f34a420f
+W-gdb-199h-d5r3-02	D2b	Shot stream-copy segment (r3: native50 bounded route)	f344a460a9ddb37c
+W-gdb-199h-d5r3-03	D2c+d	Residual source proxy retirement (r3: custody-preserving)	1ad183b41c349efd
+W-gdb-199h-d5r3-04	D2e	Render retention window (r3: regression coverage)	72cabc74c6ba75b3
+W-gdb-199h-d5r3-05	D3a	Prepared-shot session swap (r3: no host-pin dependency)	08af67b7e366f48d
+W-gdb-199h-d5r3-06	D3b	PSP commit + restoration tail (r3)	dabd5806cd9d1a20
+W-gdb-199h-d5r3-07	D4a	Seek per-origin regression (r3: real API surface)	942b2d8f2d608619
+W-gdb-199h-d5r3-08	D4b	Seek session-change guard (r3: regression scope)	0f3e396bfbe3babb
+W-gdb-199h-d5r3-09	D1	Parameterized promotion adapter (r3: sole adapter owner)	e7a8b14f03e5e540
+W-gdb-199h-d5r3-10	D1b	Promotion ref-race gate (r3: on the 09 interface)	fc9aadc42ee8f172
