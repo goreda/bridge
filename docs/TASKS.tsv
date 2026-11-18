@@ -1,0 +1,11 @@
+id	arch	item	status	pin	packet
+W-gdb-199h-d5-01	arch-199h	D5 D2a RenderShotWriter film-frame map	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-01.md
+W-gdb-199h-d5-02	arch-199h	D5 D2b MKV per-shot stream-copy segment	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-02.md
+W-gdb-199h-d5-03	arch-199h	D5 D2c Delete prepare step 2b and source_shot readiness conditions	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-03.md
+W-gdb-199h-d5-04	arch-199h	D5 D2d Migration: delete source_shot inside owned entries	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-04.md
+W-gdb-199h-d5-05	arch-199h	D5 D2e Render retention window	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-05.md
+W-gdb-199h-d5-06	arch-199h	D5 D3-session Session replacePreparedVideo cancellation	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-06.md
+W-gdb-199h-d5-07	arch-199h	D5 D3-coordinator PreparedShotPlayback commit order and coordinator stale-token recovery	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-07.md
+W-gdb-199h-d5-08	arch-199h	D5 D4-repro Seek stream-origin repro fixture and test	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-08.md
+W-gdb-199h-d5-09	arch-199h	D5 D4-fix Convert seek targets per stream origin	OPEN	goreda/instinct@bb3e0ea0	packets/199h/d5/W-gdb-199h-d5-09.md
+W-gdb-199h-d5-10	arch-199h	D5 D1-emitter Native manifest emitter automation per candidate	OPEN	goreda/bridge@fbb0932e	packets/199h/d5/W-gdb-199h-d5-10.md
