@@ -1,0 +1,123 @@
+[
+  {
+    "id": "W-gdb-199c-1nstinct-16",
+    "base": "c5f851abda90f7dd247dc02ee46cb651b2010fdc",
+    "commit": "b68734d0c7f121b8d7de8a79fa98f29ee42f99ec",
+    "branch": "lane/lab-1nstinct-W-gdb-199c-1nstinct-16",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Manifest unchanged; not install candidate. A17 finite valid geometry trace only, no UI acceptance.",
+    "source_sha256": {
+      "archive/gor/Sources/gor/Camera/PoseMeasurementValidity.swift": "c9491aca5576d6959899a69158b32525d15ab83d596ceded7a83999dbf7c5578"
+    }
+  },
+  {
+    "id": "W-gdb-199c-1nstinct-17",
+    "base": "c5f851abda90f7dd247dc02ee46cb651b2010fdc",
+    "commit": "d46364f5eaf17aed865106cd098cffb46888b695",
+    "branch": "lane/lab-1nstinct-W-gdb-199c-1nstinct-17",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Manifest unchanged; not install candidate. A17 finite valid geometry trace only, no UI acceptance.",
+    "source_sha256": {
+      "archive/gor/Sources/gor/Subtitles/SubtitleTiltGeometry.swift": "57a9b6061533d079b00d00814e3aff92471a6d0aee2ef8a3394d15cf9f4cab40"
+    }
+  },
+  {
+    "id": "W-gdb-199c-in2tinct-13",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "commit": "5e58a3d824d37ef140ff2741f0701387db370c02",
+    "branch": "lane/lab-in2tinct-W-gdb-199c-in2tinct-13",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Actual source semantics only; full package/provider/host acceptance NOT_RUN.",
+    "source_sha256": {
+      "Sources/GorAVPlaybackCore/HostTransform.swift": "4128fafd085333d179344280ec3910784f8a11b2424767c50550a9e8c26b2d77"
+    }
+  },
+  {
+    "id": "W-gdb-199c-in2tinct-14",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "commit": "467e97cc64873859b681002ab28f93d4c6438186",
+    "branch": "lane/lab-in2tinct-W-gdb-199c-in2tinct-14",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Actual source semantics only; full package/provider/host acceptance NOT_RUN.",
+    "source_sha256": {
+      "Sources/GorAVPlaybackCore/PlayheadObservers.swift": "0bea4f57d3bf8d5bcab290c68a7cb676e55f52a06c72b505cb96c1ecb3013f0e"
+    }
+  },
+  {
+    "id": "W-gdb-199c-in2tinct-15",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "commit": "6aa8b9271d7dcec038da611e16c186181d0f6ba8",
+    "branch": "lane/lab-in2tinct-W-gdb-199c-in2tinct-15",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Actual58-source PlaybackCore replay with existing debug dependency objects; detector-only guard and invalid-counter mutants survive supplied tests.",
+    "source_sha256": {
+      "Sources/GorAVPlaybackCore/TapCropDetector.swift": "c3207bc44b8ffaa8cdce507b8cc567214f9f7a5afd21f1a5b14b8a4c1684c2d8"
+    }
+  },
+  {
+    "id": "W-gdb-199c-in2tinct-16",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "commit": "731c849398fb08af8c35502ecd1398c41849f286",
+    "branch": "lane/lab-in2tinct-W-gdb-199c-in2tinct-16",
+    "qualification": "NONQUALIFIED",
+    "caveat": "End-finiteness-only bypass survives supplied tests; full endpoint bypass killed.",
+    "source_sha256": {
+      "Sources/GorAVSubtitles/SubtitleCue.swift": "b962a8796406d482913b2acd0814eee861250d32339704b7b1497762d591258d"
+    }
+  },
+  {
+    "id": "W-gdb-199c-in2tinct-17",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "commit": "7d105718994960df9f49444bd1b9f962d09cd377",
+    "branch": "lane/lab-in2tinct-W-gdb-199c-in2tinct-17",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Excludes directories and broken links, but actual FIFO remains discovered in both modes; regular-file safety NOT established.",
+    "source_sha256": {
+      "Sources/GorAVSubtitles/SubtitleAutoLoad.swift": "61d805b2f9621045746e11a8d4278bb5e9c82445295512735ad4cbfd4137dd17"
+    }
+  },
+  {
+    "id": "W-gdb-199c-in2tinct-18",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "commit": "013a471ee7b835da8c6898c7fb9a4d2e8675e8c0",
+    "branch": "lane/lab-in2tinct-W-gdb-199c-in2tinct-18",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Baseline compiled then signal4 trap, not assertion RED. Finite goldens preserved, no collision-freedom proof.",
+    "source_sha256": {
+      "Sources/GorAVSubtitles/SubtitlePlan.swift": "1e41a4960c8e1a92901c1c4e6674384818b287a154ebcd914a81c69708d47705"
+    }
+  },
+  {
+    "id": "W-gdb-199c-in2tinct-19",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "commit": "8033edf6965b306688dca4fb847d92ce206d5055",
+    "branch": "lane/lab-in2tinct-W-gdb-199c-in2tinct-19",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Actual source semantics only; full package/provider/host acceptance NOT_RUN.",
+    "source_sha256": {
+      "Sources/GorAVSubtitles/ASSParser.swift": "768c65811b053427622f34a461cc9c568b4b694ae2c31679da194952c598a967"
+    }
+  },
+  {
+    "id": "W-gdb-199c-in2tinct-20",
+    "base": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+    "commit": "0336314103737d6dd35a2a43dcd94ebb4d9e6ff4",
+    "branch": "lane/lab-in2tinct-W-gdb-199c-in2tinct-20",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Baseline new Limits API compile RED by design; line/scalar checks after byte-bounded split, not streaming.",
+    "source_sha256": {
+      "Sources/GorAVSubtitles/SRTParser.swift": "a623cc15385ac0122a3104b1c175f1bbd133cb3b3bcf074e995aff5ff70741fd"
+    }
+  },
+  {
+    "id": "W-gdb-199c-1nstinct-02-session-fix",
+    "base": "4c70ecfc3b03de936723a6cc65700458136690e0",
+    "commit": "aa159b0c8cd021f4c52f2b8bedda78fecbfa0c86",
+    "branch": "lane/lab-1nstinct-W-gdb-199c-1nstinct-02-session-fix",
+    "qualification": "NONQUALIFIED",
+    "caveat": "Atomic origin/currentness API only; host adoption NOT_RUN. Baseline new API compile RED; adapted actual legacy regression semantic RED baseline/GREEN fixed. Legacy restamping deliberately unproven. No host stale-selection closure.",
+    "source_sha256": {
+      "Sources/GorAVSubtitles/SubtitleSidecarSession.swift": "0b693768f8752b7064b9796725ef0effb5448c9a8d6cecb5542fe3437376704f"
+    }
+  }
+]
