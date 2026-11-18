@@ -732,3 +732,5 @@ arch-199c refill: A11-A13 OPEN in packets/199c, one source each, 2h progress lea
 198z01-03 fix packets OPEN under packets/198z/fixes at exact imported pins: unambiguous audio IDs, explicit sidecar serialization, source-generation fence. Not stock-counted until executable starter; no acceptance claim.
 
 199cA14-A17 OPEN with four source-bound Swift RED starters. Three198zfix starters now runnable in packets/198z/fix-starters; A01exact-declaration only/provider-module NOT_RUN, A02diagnostic-invariance, A03baseline reproducer not final generation-API acceptance.13startable A including fixes,10B; no parity/native claims.2hprogress leases.
+
+A01baseline now provider-linked confirmed: actual7.1/full module build PASS, regression compile PASS/runtimeRED with both delimiter and nil-empty collisions. Fixed-source acceptance stillOPEN. A14-A17 independent Linux RED reproduced(1,2,4,4defects), not fixes.
