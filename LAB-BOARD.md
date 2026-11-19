@@ -1,5 +1,13 @@
 # Live product board
 
+## Native91 actual full Darwin PASS but later binding FAIL, Nov19 16:08 +03
+
+Build6afef0218f52ca275128dc6e UI finished7m08, machinequeueduntil15:59. StageAactualPASS/provider147.80s/fullDarwin133.26s/gorTests30with1hardware-skip0fail/actualhost2.655sPASS. Source06c018dad95d5d38586bcf18bac8c4bf026615b6/carrier55f06d49152c50a2b80e6842c40936fabb00b97b/run34e45f81-b942-4080-989c-c8d23da5761e. NativeemitterPASS16.95s/graph_errors=[]/actualproductionintegrity0. All4emittedTSVs byte-equal candidate inputs. Emitter makes allow-empty localcommit, binding then requires changed AND changed<=metadata. Empty changed set wronglyfails with misleading outside-metadata error. Structure/static receiptsFAIL125/nullbindings/NOT_RUN; no acceptance, no promotion. BothrefsremainDELIVERED90 042c4524. RawSHA8fcb1e397597c97228687e5a323011ed50b39d8da460e69abe88fe3b2f3c131d. Livebilling176/500used324free/subscriptionOFF/no transactions.
+
+Native92carrieronlyfix12b74d665ca4a16157d5d6d49baece7d0ebb8049 preparedonunchangedsource06c018da: remove nonemptysetrequirement, retainancestor+metadataonlyrestriction. Actual91emptycommitRED/GREEN/allowedmetadataGREEN/nonmetadatasourceeditRED;existingbinding14negativecontrolsPASS/envelope/modes/physicalbindings/retainedidentityPASS. Lane creviewrequested. No second candidate product, one isolated retrypending. Evidence docs/receipts/native91-terminal/.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6afef0218f52ca275128dc6e
+
+
 ## Native91 ThreeD five-station r2 dispatched alone, Nov19 15:48 +03
 
 Build6afef0218f52ca275128dc6e/index21 dispatched15:48:31+03; actual dispatch screenshot waiting/freeMacminiM2/carrier55f06d4. Source06c018dad95d5d38586bcf18bac8c4bf026615b6/tree12c30ff9b662d9a7550ad12efdb7d9a94230170f on delivered90 042c4524; carrier55f06d49152c50a2b80e6842c40936fabb00b97b. Lane c actual source commit-bound SCOPED PASS; full Darwin NOT_RUN until this run. One candidate alone, no combined labs. Billing live169/500used331free/subscriptionOFF/no transactions. Expected13min/max15machine, bounded terminal check16:06-16:07 wakeschedule-01M7SXMDHBDQVG0YYH9MXG30RZ, no polling, leaseclosed.
