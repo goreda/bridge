@@ -1,0 +1,26 @@
+[
+  {
+    "pin": "4d8ba0c63a1d3d3a7f3e3b90832e088bc479a0a2",
+    "path": "archive/gor/Resources/vendor/webtorrent-cli/node_modules/webtorrent/lib/torrent.js",
+    "sha256": "6045d5bebe067132dc5f7e481e79e08e023c20b378eb58fd9831711068a34989",
+    "mode": "100644"
+  },
+  {
+    "pin": "4d8ba0c63a1d3d3a7f3e3b90832e088bc479a0a2",
+    "path": "archive/gor/Resources/vendor/wt_server/wt_server.mjs",
+    "sha256": "b6b918d0d67bb447a1cecd4b2160858cbffc76c871c8e5f1b5f3b956a3fea4c9",
+    "mode": "100644"
+  },
+  {
+    "pin": "7f44c42073ea9b14f4e04ac09769ee8e1a428469",
+    "path": "archive/gor/Resources/vendor/webtorrent-cli/node_modules/webtorrent/lib/torrent.js",
+    "sha256": "6045d5bebe067132dc5f7e481e79e08e023c20b378eb58fd9831711068a34989",
+    "mode": "100644"
+  },
+  {
+    "pin": "7f44c42073ea9b14f4e04ac09769ee8e1a428469",
+    "path": "archive/gor/Resources/vendor/wt_server/wt_server.mjs",
+    "sha256": "b87f730e93733c15fb408c44aa76d61f6191f4c6b57617ba388ece9eaad32235",
+    "mode": "100644"
+  }
+]
