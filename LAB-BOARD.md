@@ -1,5 +1,16 @@
 # Live product board
 
+## Native84 audio-device Stage A r2 dispatched, Nov19 12:25 +03
+
+Build6afec078d133a39c4a13121c DISPATCHED12:25:12 freeM2 alone on delivered83 91d6539d6e0cd0f21f13001bfd29217fc128c72b. Source843c3d5805adb091e39549a5d07ce4d70188f723/carrierb9d63159c83f66d5a1ae02b30b8ee9e150f92584 remoteCIpush/readback verified. Both delivery refs remain83 pending actual4boundreceipts and independent final commit-bound review. Fresh12:24billing83/500used417free/subscriptionOFF/no transactions. Expected12min/cap15/hardcap12:40:13 wakeschedule-01M7SJ023N6MGZ39KNXKZZ3RN4/no polling/leaseclosed. Configpixelsinspected.
+
+StageA only: opt-in sink device enumeration/transaction/readback/checked rollback and fixed HAL output. No host/session/menu/default mpv changes; StageB CLOSED. Hardwareopt-in test remains NOT_RUN absent explicit environment; source tests are not audible routing proof.11 full files +932/-5 baseline/current hashes/blobs/modes checked; source-lock exact current400files. Native emitter authoritative:4021existing raw policy rows+8 explicit paths/arch-baseline unchanged/manifest13424->13432/delivery1901->1909. Portable actual production build.sh integrity0/manifest mutants/retirement174 PASS;19portable emitted witnesses PASS11nativecompiler NOT_RUN.14638envelopehashes2007payload4006physicalbindings/modes PASS;retained actual83 complete semantic schema+fourreceipts and45stale mutants PASS. Local predispatch comparator used actual initial82 staged executable against unchanged83 semantic inventories/resources, not actual84 evidence; terminal must replay actual84 staged app. Native witness added actual production transaction/adapter source copied with SHA checks to scratch, compiling/executing semantic mutants without dirtying deployment; raw logs and input hashes retained in artifact glob. Native full Darwin compile/API typechecks+30witnesses+4receipts pending. Independent Lane c source/carrier scoped PASS2e3c3f48; no delivery approval inferred from artifact authority fields.
+
+preview-fold-test is independent baseline RED since P01 0c91c3ca, exact parent39a19074 GREEN; delivered79/80/81/82/83 all same stale exact741line fold fixture vs744line helper containing P01-P04 fixes. Do not revert fixes. Separate tests-only repair8282163a/98lines queued after AudioA, latest delivered base, own run/source-carrier review. Provider-marker follows independently. Existing GoravPhotonvisible BLOCKED/no producer/provider marker+1preexisting/15pycadvisory/ffprobePENDING unchanged.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6afec078d133a39c4a13121c
+Evidence docs/receipts/native84-dispatched/.
+
+
 ## Native83 subtitle typography r2e delivered, Nov19 12:15 +03
 
 DELIVERED83 91d6539d6e0cd0f21f13001bfd29217fc128c72b bothrefsatomicleasedpush/readback12:15:25+03. Samecommandinstallsnewest. Embeddedsubtitlefontscaleaddresetrealcuepresenterplumbing+OSDparity. ActualMetalcuepixels/audioownerMacNOT_RUN/positiontiltanimationrefusalsretained/GoravPhotonvisibleheaderBLOCKEDnoproducer/provider-marker+1preexisting/15committedpycadvisoryunchanged. No mpvdefaultsbindingsrefusalchange. FulltypographyoutcomeOPEN.
