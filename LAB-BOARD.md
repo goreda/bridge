@@ -1,5 +1,14 @@
 # Live product board
 
+## Native94 r5 external scratch isolation DISPATCHED, Nov19 20:25 +03
+
+Single free M2 run20:24:52/build6aff30e58f52ca275128f972/index28, carrier d28e8abe4b96909a4ccb665acebdfb4569d9d10a, source0fc5d157cefc4ac249340a6944cf8726ee2a91e6 direct parent delivered96 4d8ba0c63a1d3d3a7f3e3b90832e088bc479a0a2. Exact live CI branch readback and UI M2/commit/workflow confirmed. Lane c scoped by-value PASS, parent GO20:23:12. Free286min/subscriptionOFF before submit, cap20min. One actual-start cap check20:45 exact wakeschedule-01M7TDEC1AVS9V3SK4W6VGMVS4, no polling. Return actual preflight raw and real window PNGs to parent for Lane c direct pixel review. No acceptance/promotion before review; prerequisite fail stops lane, raw reported, no further retry authorized. Both delivery refs remain delivered96.
+
+All brew commands explicit cwd owned external scratch; cache/TMPDIR below scratch; no posthoc checkout deletion/no lint exemption. Whole scratch+OUT+newCellar shared512MiB sampled guard, shared180s/5srollbackreserve/4MiB log/processgroup; scratch/prefix/OUT freefloor2GiB. Scratch finally cleanup after version/fixtureJSON retained, checkout inventory guard. Not mutation-free, guards sampled not OSquota. Recovery22controlsPASS and9new isolationcontrolsPASS, independent full actual-carrier child-to-unchanged-plan seamPASS, product symlinkRED,14919envelope/2028closure/modesPASS. Actual r5 brew/probe/Darwin/window NOT_RUN at dispatch. Observation assertions and fixture bytes unchanged,96 staged updater fix and95retirement preserved. Prior r4 realprobePASS then preparelintFAIL on escaped brewcache/rootliteral artifacts, no appPNGs existed. Historical receipts retained.
+
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6aff30e58f52ca275128f972
+
+
 ## Native94 r4 terminal preparation artifact-isolation FAIL, Nov19 20:17 +03
 
 Build6aff25758f52ca275128f484/index27/carriera88457b40feb1674f40bb15657bbc7e3404aef8b/source4903a71e/base95. Machine19:55/terminalFAILED2m40/prerequisitestep1m52. ActualrealprobePASS: same-keg recovery/retry99.7663s, /opt/homebrew/bin/ffprobe9.0.2 SHA164f45a3fadaea9918848f57786d2c0f274697a18e13bbc8e33a58b92bb57f0a; actualfixtureH264/AAC12sec JSON. Actualhelp/info/linkprestate/recovery/version/fixture/RESULTretained. No syntheticfacts.
