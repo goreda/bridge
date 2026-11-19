@@ -1,5 +1,16 @@
 # Live product board
 
+## Native82 chapter session API r2 dispatched, Nov19 11:12 +03
+
+Native82 build6afeaf63d133a39c4a130bac DISPATCHED11:12:19 onefreeM2 frozen carrier2ed6382369b65589aff9fb76c869155ff96df981 remote CI readback/source0095d215a8a06e1b38b155875279bef5c7096461 exact4files190+/2- on DELIVERED81 0993c6e2b72f752089c6ca3d95145fc830c6aa98. Both delivery refs remain81 until actual independent commit-bound verdict. Expected10min cap15 hardcap11:27:20 wakeschedule-01M7SDTGE32G4BQ6RJ96XRP0ST/no polling/allleasesclosed. Fresh11:12billing60/500used440free/subscriptionOFF/no transactions. Configuration pixels inspected. Four bound receipts/fullcompile/gorTests28witnessrows pending, no native82 acceptance claimed.
+
+Chapter inventory + next/previous session API, no host dispatcher wiring/add-chapter remains refused. Real-source helper/session control-flow test uses explicit fake decoder/seek boundaries. Independent Linux Swift6 strict concurrency Onone/O PASS; Ops missing compiler means local offline graph NOT_RUN after397 locked hashes PASS. Native real decoder/seek/playback/pixels NOT_RUN. Source-lock exactly2 paths in files/preserved_local.files. Retirement174 unaffected and rollbackPASS. Explicit2 new policy additions only; actual native emitter required. Portable emitted replay4016policysequencepreserved+2adds/debt942unchanged/manifest13419+2/delivery1898allhashesmodescurrent;18portablewitnessesPASS10compilerNOT_RUN. Strict full envelope14582 hashes1996payloadpaths3990bindings/modes/historical91/binding14negative/metadata6mutants/retained81+35stalebytemutantsPASS. Historical79 header witness explicitly retains accepted80fivefiles for incompatible old signatures; fallback81 remains current. Source/carrier Lane c scopedPASS a8f7fde66e84ba158b71e9b83fe76d40fd3cd6ec41fce120790560b8094ef00c. Gorav Photon visible BLOCKED noproducer/ownerMacNOT_RUN/provider-marker+1preexisting/15pycadvisory unchanged. Preservempvdefaults/bindings/refusals/playlistdebt/ffprobePENDING/Exposurewarning.
+
+Next subtitleStructure-r2d/deviceAr2/provider-marker one candidate per run rebase on latest delivery. Full both-engine chapter UI outcome remains open.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6afeaf63d133a39c4a130bac
+Evidence docs/receipts/native82-dispatched/.
+
+
 ## Native81 existing Photon fallback reason header delivered, Nov19 11:03 +03
 
 DELIVERED81 0993c6e2b72f752089c6ca3d95145fc830c6aa98 bothrefsatomicleasedpush/readback11:03:35+03. Samecommandinstallsnewest. CurrentroutefallbackreasoninexistingmpvPhotonfirstrow,clearsonnewsourcegeneration;noextraHUDrows/OSD/default/refusalchange. GoravvisibleBLOCKEDnoproducer,pixels/clipping/readability/ownerMacNOT_RUN,provider-marker+1preexisting,15committedpycadvisoryunchanged.
