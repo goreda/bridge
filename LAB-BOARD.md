@@ -1,5 +1,10 @@
 # Live product board
 
+## Owner96 build succeeded; magnet crop follow-up, Nov19 20:36 +03
+
+Owner source phonemsg-01M7TE2TF2TVVYT6Y429SB97W8 confirms build succeeded on Mac. Native96 delivered4d8ba0c6 updater bootstrap owner execution now successful, not evidence that native94 window observation passed. Owner log uses UTC, owner+03. New rows GOR-MAGNET-AUTO-CROP and GOR-CROP-SMOOTH-TRANSITION: automatic magnet crop detection without manual trigger; explicit existing menu must still detect; every detected application smooth rather than intermittent snap; both mpv and gorav per parent route. Lane c diagnosis first from owner log and actual source; source writer route through main after finding scheduling/menu and geometry/application ownership. No speculative code fix or acceptance recorded. Same owner update command only after reviewed delivery. Native94 r5 run/index28 remains independent and unaccepted, its20:45actual-start cap check unchanged.
+
+
 ## Native94 r5 external scratch isolation DISPATCHED, Nov19 20:25 +03
 
 Single free M2 run20:24:52/build6aff30e58f52ca275128f972/index28, carrier d28e8abe4b96909a4ccb665acebdfb4569d9d10a, source0fc5d157cefc4ac249340a6944cf8726ee2a91e6 direct parent delivered96 4d8ba0c63a1d3d3a7f3e3b90832e088bc479a0a2. Exact live CI branch readback and UI M2/commit/workflow confirmed. Lane c scoped by-value PASS, parent GO20:23:12. Free286min/subscriptionOFF before submit, cap20min. One actual-start cap check20:45 exact wakeschedule-01M7TDEC1AVS9V3SK4W6VGMVS4, no polling. Return actual preflight raw and real window PNGs to parent for Lane c direct pixel review. No acceptance/promotion before review; prerequisite fail stops lane, raw reported, no further retry authorized. Both delivery refs remain delivered96.
