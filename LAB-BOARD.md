@@ -1,5 +1,13 @@
 # Live product board
 
+## Native92 ThreeD same-source retry dispatched, Nov19 16:10 +03
+
+Build6afef5438f52ca275128dec3/index22 dispatched16:10:25 freeM2alone. Carrier12b74d665ca4a16157d5d6d49baece7d0ebb8049 livebranchreadbackexact, source06c018dad95d5d38586bcf18bac8c4bf026615b6/tree12c30ff9 unchangedon90 042c4524. Lane ccarrier-envelopeSCOPEDPASS16:09:43;4carrierpathsonly, productunchanged, emptydescendantGREEN/allowedmetadataGREEN/unrelatededitRED/ancestryRED. Existing23portablewitnessPASS13nativeNOT_RUN plus actual91empty-emission testGREEN; envelope2027payload/modes/physicalbindings/historicalpredispatchPASS. No source changes after reviewed native91. Expected13min/max15machine, boundedsinglecheck16:28-16:29 wakeschedule-01M7SYWH3DCXYZXST2ZV9BYS57, no polling,leasesclosed. Livebilling176/500used324free/subscriptionOFF/no transactions.
+
+Native91 overallFAIL remainshistorical: actualStageAfullDarwin+gorTests+emitterPASS, laterempty-diffassertionfailed;notpromoted. Native92mustobtainall4source/carrier/runboundreceipts/36actualwitness0exit/nativegraph+staticclosure/exactfinalintegrity+L2+retirement+ClassE/Lane cactualfinalcommitboundPASSbeforeatomicnormalFF. Bothproductrefsremain90. Publisher/window/header actualvisualobservationstaysseparatenextrow. mpvdefaultbindingsrefusalsunchanged. Evidence docs/receipts/native92-dispatched/.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6afef5438f52ca275128dec3
+
+
 ## Native91 actual full Darwin PASS but later binding FAIL, Nov19 16:08 +03
 
 Build6afef0218f52ca275128dc6e UI finished7m08, machinequeueduntil15:59. StageAactualPASS/provider147.80s/fullDarwin133.26s/gorTests30with1hardware-skip0fail/actualhost2.655sPASS. Source06c018dad95d5d38586bcf18bac8c4bf026615b6/carrier55f06d49152c50a2b80e6842c40936fabb00b97b/run34e45f81-b942-4080-989c-c8d23da5761e. NativeemitterPASS16.95s/graph_errors=[]/actualproductionintegrity0. All4emittedTSVs byte-equal candidate inputs. Emitter makes allow-empty localcommit, binding then requires changed AND changed<=metadata. Empty changed set wronglyfails with misleading outside-metadata error. Structure/static receiptsFAIL125/nullbindings/NOT_RUN; no acceptance, no promotion. BothrefsremainDELIVERED90 042c4524. RawSHA8fcb1e397597c97228687e5a323011ed50b39d8da460e69abe88fe3b2f3c131d. Livebilling176/500used324free/subscriptionOFF/no transactions.
