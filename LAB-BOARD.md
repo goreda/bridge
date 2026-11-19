@@ -1,5 +1,16 @@
 # Live product board
 
+## Native84 audio-device Stage A r2 delivered, Nov19 12:44 +03
+
+DELIVERED84 71b624dfd824a3f8245c292bf8fa6e7803418742 bothrefs gor/gorav-integration and mac-source-sync-20261103 atomicleasedpush/readback12:44:32+03. Same command installs newest. StageAopt-in sink inventory/select/readback/checkedrollback API qualified; no host/session/menu activation, StageB CLOSED. No-selection/default mpv behavior preserved. Hardware test skipped explicitNOT_RUN; no audible/hotplug/race acceptance or full row completion. Existing GoravPhotonvisibleBLOCKED/no producer/provider-marker+1preexisting/15pycadvisory unchanged.
+
+Source843c3d5805adb091e39549a5d07ce4d70188f723 on83 91d6539d/carrierb9d63159c83f66d5a1ae02b30b8ee9e150f92584/rund85b5eef-062b-467c-81fa-b6ad87e331e7/tree04b8936bbac20779c5bef834f4b2a5e621175cdd. Build6afec078terminal9m54/actualDarwincompile101.49s/gorTests29executed1hardware-skipped0fail/30witnessrows/fourboundreceipts/latest83staticPASS. Actual production transaction+adapter source tested8greenconfigurations+48compilingsemanticmutants killed.2007compiledfilesexactfinal/only3nativeemittedTSVs differpostcompile:policy8append/manifest10+2-/delivery12+4-.4021rawpolicyrowspreservedto4029/debtunchanged/manifest13424to13432/delivery1901to1909zero mismatches. Source-locksource-onlyunchangedenrollmentpolicy. Exactproductionintegritymanifestmutants/retirement174rollback/L2fixed18+3shellmutants/ClassEdryrunexecutePASS. Lane ccommit-boundbyvalueSCOPEDPASS12:44:22 via parent/audit67b28cd7filed. Actual84stagedappdownloaded/exe4b6f60935046e44b2d8f9bf13a52415b8e5c362b646f3cc3b6a138e83e3cdd07 boundtostage/static; localcomparatorusingactual84not82PASSzeroerrors/removals. RawZIP3e8a22a5845197f35b617f343adbdb45a2a3f4a962c7dd5f20ec14ca91f81ddb/proof6fc15f91600e4e50c5830330df7839437a7e17e0dc242b3719849b7a1087944c/bundleae5579f41ec23b120dcf4916667ffbaaca29219382f9d4fa175b48faffdfec9c/identity889cbff5ecef4dd6510fa3f33d6932631f52ae078504b52c593cf3b7cddd990f.
+
+Fresh12:41billing93/500used407free/subscriptionOFF/no transactions. Allleasesclosed/noactiverun. NextPREVIEW-FOLD-TEST-REPAIR8282163a98lines latest84rebase/sourcecarrierreview thenownnative run; baseline RED sinceP01 separatefromaudio. Thenprovider-marker own run. ffprobePENDING/Exposurewarning/playlistdebtunwaived.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6afec078d133a39c4a13121c
+Evidence docs/receipts/native84-delivered/.
+
+
 ## Native84 audio-device Stage A r2 dispatched, Nov19 12:25 +03
 
 Build6afec078d133a39c4a13121c DISPATCHED12:25:12 freeM2 alone on delivered83 91d6539d6e0cd0f21f13001bfd29217fc128c72b. Source843c3d5805adb091e39549a5d07ce4d70188f723/carrierb9d63159c83f66d5a1ae02b30b8ee9e150f92584 remoteCIpush/readback verified. Both delivery refs remain83 pending actual4boundreceipts and independent final commit-bound review. Fresh12:24billing83/500used417free/subscriptionOFF/no transactions. Expected12min/cap15/hardcap12:40:13 wakeschedule-01M7SJ023N6MGZ39KNXKZZ3RN4/no polling/leaseclosed. Configpixelsinspected.
