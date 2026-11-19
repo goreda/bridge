@@ -1,5 +1,17 @@
 # Live product board
 
+## Native65 delivered, native66 magnet alone dispatched, Nov19 04:55 +03
+
+DELIVERED bd23517ed49b503c53219a00ce214452f29c7143 atomically to both refs, readback PASS at 04:53:19. Multi-audio fallback is now retained as one plain short HUD line. Same command installs latest; owner informed. Native65 finished 4m23, full provider/product compile and 23 gorTests with zero failures, including native raster/OCR test 5.138s. Fallback fonts were used because Exposure-VAR.ttf was unavailable in the test environment. No pixels exported or own visual inspection, no owner-Mac acceptance. All four TSVs independently reviewed: 3984 original policy rows exact plus 2 HUD rows, 931 debt rows unchanged, 13387 old manifest paths retained, all 1864 prior delivery paths plus 2, 1866 hashes/modes PASS. Real build.sh integrity exit0, manifest tree PASS, L2 fixed18 PASS and baseline/3 mutants RED, Class E atomic promotion PASS, independent actual scoped review PASS. Two known Architecture baseline FAILs remain explicit debt, not all gates green.
+
+Native66 magnet clicked-row alone on this new delivery: product 2fa2e60e, carrier 6e76b58b, build 6afe5700d133a39c4a12f49b dispatched 04:55:12. Live free 447/500 used, 53 left; expected 4 minutes, cap15. Full carrier plan/bindings/modes/completeness PASS; 3986 policy values preserved plus 2 magnet rows, 1866 delivery paths retained plus2, 1868 total; all6 metadata mutants RED and all historical controls PASS. Retained65 native baseline avoids identical baseline compile; immediate65 static closure added without removing older closures. Actual terminal and independent review pending. Checkpoint05:04:30, hard05:10:30. Next host heat r1, then archive r2, hunks rebased on latest delivery. Failed carriers63pyc/64policykeys remain quarantined, failed84d4 never delivered.
+
+Stock r6 unchanged23 candidates,0 stockexecuted,READY0;27 separate models unchanged. Portable effects/audio/stereo/legacy-scene packets are SUPPORT only, after six owner rows, separate gorav pin bump. Legacy-scene partial packet does not close producer integration, capture/probe/cache ownership, strict6wholecore or native gates. No paid plan.
+
+https://codemagic.io/app/6afafc22c4b78bd16d33ca9b/build/6afe5700d133a39c4a12f49b
+Evidence docs/receipts/native65-delivered66-dispatch/.
+
+
 ## Native64 rejected, native65 HUD alone dispatched, Nov19 04:42 +03
 
 Native64 finished 3m46. Full product and 22 gorTests passed, as did scoped native steps, but independent actual review rejected emitted metadata: all 3986 policy rows were dict keys instead of values. Ten prior delivery paths were then omitted and 202 manifest classifications changed. arch-baseline bytes were unchanged. Candidate 84d4a19e is on a review branch only, NOT DELIVERED. Carrier 4b6945dc quarantined alongside native63 carrier 01ebc39 (tracked pyc). Product magnet fix remains queued after one clean repaired-emitter HUD run, parent routing decision, not an owner rule change.
