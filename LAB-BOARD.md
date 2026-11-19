@@ -1,5 +1,14 @@
 # Live product board
 
+## Native94 r4 terminal preparation artifact-isolation FAIL, Nov19 20:17 +03
+
+Build6aff25758f52ca275128f484/index27/carriera88457b40feb1674f40bb15657bbc7e3404aef8b/source4903a71e/base95. Machine19:55/terminalFAILED2m40/prerequisitestep1m52. ActualrealprobePASS: same-keg recovery/retry99.7663s, /opt/homebrew/bin/ffprobe9.0.2 SHA164f45a3fadaea9918848f57786d2c0f274697a18e13bbc8e33a58b92bb57f0a; actualfixtureH264/AAC12sec JSON. Actualhelp/info/linkprestate/recovery/version/fixture/RESULTretained. No syntheticfacts.
+
+AfterrealprovisionPASS, product-first-prepare.py30 invokes predisptach plan, whose blanketsymlinklintrefuses realbrew cachesymlinks underout/native94-probe/brew-cache plusliteralroot {{pkgetc}}/cert.pem. SourcebindingsPASS. ThisispreparationartifactisolationFAIL, notprobe/admission/windowfailure. StageA/productDarwin/allfourboundreceipts/window/PNGsobservationNOT_RUN absent. Noheaderverdict/noacceptance/nopromotion. Fourthwindowattemptends;no r5withoutparent. Bothproductrefsnow96 4d8ba0c63a1d3d3a7f3e3b90832e088bc479a0a2, delivered20:14updater-onlyrepair; runremains95-basedobservation. Billing214/500used286free/subscriptionOFF. Noremainingnativewatch/lease. ParenthasactualoutputandterminalPNGforLane creview, noactualapppixels.
+Raw107552249bytes SHA25667e833cad2b56d660d1d6ac430aa461efaf9040c021d5ef9ad2ed9a86485a6d3 splitraw.zip.part-00/01 concatenateordered. Evidence docs/receipts/native94-r4-terminal-failed/.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6aff25758f52ca275128f484
+
+
 ## Native96 staged architecture helper repair DELIVERED, Nov19 20:14 +03
 
 DELIVERED4d8ba0c63a1d3d3a7f3e3b90832e088bc479a0a2 atomic normalFF both gor/gorav-integration and mac-source-sync-20261103, exactlive readback20:14:08. Base95 168da8ca. Owner20:05 provenancePASS but architecture bootstrapfailed: staged scripts/arch_check.py4 -> tools/architecture.py446/main374/menu365/_threed_split10 missing Tests/Structure/threed_split.py. Original source proper, staged top-levelassetlist omitted Tests entirely. M3 authored6staginglines+helperreadback/newbaretempregression; Ops metadataregisterednewtest5pathsonly; Lane cindependentbyvaluePASS. NoSwift/defaults/bindings/vendor/retirementchanges.
