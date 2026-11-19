@@ -1,5 +1,17 @@
 # Live product board
 
+## Native67 heat delivered, native68 archive alone dispatched, Nov19 05:28 +03
+
+DELIVERED639e47e9aaf954ccaa1a1dc4ec51b0d3f83621c0 bothrefsatomic/readback05:24:54. Same overlay geometry no longer rewritten; blink-enabled gate added before Vision inference. No measured CPU reduction claim. Same command installs latest; main informed. Native67 5m42 fullproduct/provider/gorTests PASS, heat22green Swift5/6Onone/O, original/blink/dirtymutantsRED. Actual4receipts bindsourcea50ed70d/baseb2288d83/carrier835ad273/runa5681bc1. Independent4TSVsbyvaluePASS3988policyexact,931debtunchanged,13391manifestpaths,1868deliveryhashesmodes. TWOpostcompileblobschanged(manifest+delivery), THREEdeliveryrowsupdated(AppDelegate/CameraRuntime/manifest),policyunchanged. Finaltreeee03f8e6 verified notcommitobject. Actualbuild.shintegrity0/manifesttree/retirement160/L2fixed18+baseline3mutants/ClassEatomicPASS. NoAppKit/camera/CPU/owneracceptance. PriorHUDfallbackfonts/noexportedpixels;twoArchitecturebaselineFAILdebtremain,notallgatesgreen.
+
+Native68 ARCHIVE QUARANTINE r2 alone on639e47e9: product11ede7e3/carrier5b0d564/build6afe5e9ad133a39c4a12f684 dispatched05:27:28. Livefree459/500used41left,expected6cap15. Fourfiles238+/5-,build100755. QuarantineGREEN7behavior+4writesafetymutantsRED/fullprovenanceGREEN35mutantsRED/exactchangedbuildL2PASS;metadata3988oldpolicy+1test/931debtunchanged/13391oldmanifest/1868delivery+1=1869preserved. Fullplan,modes,completeness,historical61/62andimportcontrolsPASS. InapplicableStructure-onlytestwasinvoked/refusedunsplitownerrow;correcthistoricalseedscriptthenPASS,noapplicablegatewaived. Lane csourceandactualreviewpending;actualraw4TSVverdictgatesdelivery. Checkpoint05:38:30/hard05:42:30;browserreleased. Nextcontinuationr2 thenVB,Structurelastalone. No paidplan/accountaction.
+
+Stockr6 unchanged23candidates,0stockexecuted,READY0;27modelsunchanged. Portable SUPPORT only aftersixownerrows.
+
+https://codemagic.io/app/6afafc22c4b78bd16d33ca9b/build/6afe5e9ad133a39c4a12f684
+Evidence docs/receipts/native67-delivered68-dispatch/.
+
+
 ## Native66 magnet delivered, native67 heat alone dispatched, Nov19 05:12 +03
 
 DELIVERED b2288d83843dd30f5fb743abd5d1a31741a8c2df atomically to both delivery refs, readback PASS 05:08:18. Clicking a visible magnet row now retains that row identity. Same command installs latest; main informed. Native66 finished6m11 full product/provider compile and23gorTests0fail. Four receipts bind exact run a73e0e7d/source2fa2e60e/basebd23517e/carrier6e76b58b. Actual four TSVs independently read by value:3986oldpolicyrows exact+2magnet,931debtunchanged,13389oldmanifestrows+2devtools,1866olddeliverypaths+2=1868 everysha/modePASS. Exactfinalbuild.sh integrity0,manifesttreePASS,retirement160PASS,L2fixed18PASS baseline3mutantsRED,ClassEatomicPASS. Lane c finaltree c358b584 reconstructed and verified,commitobject not supplied. AppKitclick/pixels/owneracceptance NOT_RUN; priorHUD test fallbackfonts/noexportedpixels. TwoArchitecturebaselineFAILs remain explicitdebt,notallgatesgreen.
