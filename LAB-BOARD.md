@@ -1,5 +1,17 @@
 # Live product board
 
+## Native69 continuation delivered, native70 VB-NOOP alone dispatched, Nov19 05:58 +03
+
+DELIVERED cca998ddd2962c1210c481a8fbce0bcf8b5a8ab9 bothrefsatomic/readback05:55:12. Older updater continuation verifies delivery identity before build, records missing/stale identity only after source validation, refuses mismatches. Same command installs latest; main informed. Native69finished6m15,fullproduct/provider/23gorTests0fail PASS. Actualcontinuation10mutantsRED,provenance35RED,archive7behavior+4writesafetyRED. Fourreceiptsbindrunf2dbe777-4660-4ec3-8164-9e46c1547e90,source d761231f/base0d6762ef/carrier684f325. FourTSVs independentlybyvaluePASS3989oldpolicy+1test/931debtunchanged/13392manifest+1/1869delivery+1=1870allhashesmodes. Exactly3postcompilemetadatablobs(policy/manifest/delivery);finaltreebad73063 reconstructednotcommitobject. Realbuild.shintegrity0/manifesttree/retirement160/exactchangedbuildL2fixed18+baseline3mutantsRED/ClassEatomicPASS. Fetched-tipmeanslocalfetchedrefnotfreshremotequery;fullshellupdater/ownerMac/AppKit/playbackNOT_RUN,noZIPidentitycombined,twoArchitecturebaselineFAILdebtremain,notallgatesgreen. Raw896cd15d57f90851efab1ab6664a564a2b4228a60a86af217b7a0f5dd6ff2410, reviewda9c70e9afd12a2daae01dfdb505e93a121476f4396b1b73bdf7ef550f062a46.
+
+Native70 VB-NOOP r1 alone oncca998dd source01821d3837a262da16601e170a67a3a457e13f2f/carrierfe389ff609a3f5a2bd3a37a4183ee9ecaf7275b2/build6afe6591d133a39c4a12f820 dispatched05:57:18. Livefree471/500used29left,expected6cap15. OneSwift4+/4- plusretirementhash1/1; candidateSidebarbytesmatchpriorpacket/importsunchanged. Nativeexactsource8setterchecks600fanouts+5mutantsOnone/Oqueued. Fakeslayer/font,notCATextLayerdisplay/CPUevidence. Allpreflighthistorical/fullplan/modes/completeness/integritymanifestretirementPASS;3990policyunchanged/931debtunchanged/13393manifestpaths/1870delivery,noadditions. Lane cinitialsource/carrier scopedPASS,actualTSVnativependinggatesdelivery. Checkpoint06:08:20/hard06:12:20,browserreleased. SixownerrowscompleteonlyafterVBdelivery. MainaskednextroutingpreparedArchitecturedebt/ZIPidentity/portableintegration;Structurelastalone. No paidplan/accountaction.
+
+Stockr6 unchanged23candidates,0stockexecuted,READY0;27modelsunchanged. Portable SUPPORT only,notlive.
+
+https://codemagic.io/app/6afafc22c4b78bd16d33ca9b/build/6afe6591d133a39c4a12f820
+Evidence docs/receipts/native69-delivered70-dispatch/.
+
+
 ## Native68 archive delivered, native69 continuation alone dispatched, Nov19 05:42 +03
 
 DELIVERED0d6762ef55bca316f1f41544b39b0f316e804bd7 bothrefsatomic/readback05:40:05. Unowned archive-root refusal is terminal quarantined metadata, no per-launch retry and original root untouched. Same command installs latest; main informed. Native68 finished5m34 fullproduct/provider/23gorTests0fail PASS. Quarantine7behavior+4writesafetymutantsRED,Provenance35mutantsRED actualDarwin. Fourreceipts bindsource11ede7e3/base639e47e9/carrier5b0d564/run828c6a04. Independent4TSVsbyvaluePASS3988oldpolicy+1,931debtunchanged,13391manifest+1,1868delivery+1=1869allhashesmodes. Exactly3postcompilemetadata blobs policy/manifest/delivery. Finaltreee5a3f13d reconstructed notcommitobject. Exactbuild.shintegrity0/manifesttree/retirement160/changedbuildL2fixed18+baseline3mutants/ClassEatomicPASS. OwnerMac/archivepublicationNOT_RUN;twoArchitecturebaselineFAILdebtremain,notallgatesgreen. Raw6201c73d,reviewc3ae8660 filed.
