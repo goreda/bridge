@@ -1,0 +1,26 @@
+[
+  {
+    "entry": "G-0960",
+    "name": "199r-02-r4-review-evidence.tgz",
+    "bytes": 6326,
+    "sha256": "2970df5451455f941999f452843a5b580f10d1d55e3637b8914c68dd46a7298b"
+  },
+  {
+    "entry": "G-0959",
+    "name": "199r-02-r4-evidence.tgz",
+    "bytes": 20216,
+    "sha256": "54349530c2c3fb7fe4f78bb6d072b22980f6770a19f493154aff0a8a794856a4"
+  },
+  {
+    "entry": "G-0959",
+    "name": "VERIFY-199r-02-r4.md",
+    "bytes": 4785,
+    "sha256": "385c5f9e9310742c0df9455fc68e5a77c6c649ee2689a9e985abb68f6341cb04"
+  },
+  {
+    "entry": "G-0959",
+    "name": "199r-02-r4-supplement.tgz",
+    "bytes": 5852,
+    "sha256": "6a0d4afe2b733075ce006b9cab4181e6a936d3802b041fdacd4ba058c3752283"
+  }
+]

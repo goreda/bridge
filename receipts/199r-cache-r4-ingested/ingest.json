@@ -1,0 +1,39 @@
+{
+  "candidate": "5e7b7f42667715eab4de00e19c531080ccda79de",
+  "tree": "bc8aa9c1f97056e643e39cfc28ba9c17fc56300b",
+  "base": "f8bcd542c1ff15e6494ce95fc94389c2e0021e96",
+  "branch": "refs/heads/lane/199r/cache-accounting-r4-ingested",
+  "files": [
+    {
+      "path": "Sources/GorAVPlaybackCore/CacheAccounting.swift",
+      "sha256": "fd0eabc795e6b8b8c1a72309f26db0c4b2e557bab224517e2581830a4038241e",
+      "mode": "100644"
+    },
+    {
+      "path": "kits/199r/1nstinct-02/Package.swift",
+      "sha256": "1e91e610d13174f73c2f6e28eefb4ce781f944fadf4275ae9af00429f892121b",
+      "mode": "100644"
+    },
+    {
+      "path": "kits/199r/1nstinct-02/Sources/GorAVPlaybackCore/ArchiveItemSource.swift",
+      "sha256": "b3ceab524aed7067e6744c6885cf14f343cf52b09300bb87e6a676ae4c5781bd",
+      "mode": "100644"
+    },
+    {
+      "path": "kits/199r/1nstinct-02/Sources/GorAVPlaybackCore/CacheAccounting.swift",
+      "sha256": "fd0eabc795e6b8b8c1a72309f26db0c4b2e557bab224517e2581830a4038241e",
+      "mode": "100644"
+    },
+    {
+      "path": "kits/199r/1nstinct-02/Tests/GorAVPlaybackCoreTests/CacheAccountingTests.swift",
+      "sha256": "eea60527e2e531d4c62475634574ada7688f23a8ee4c271b482e0a46e49bf47f",
+      "mode": "100644"
+    },
+    {
+      "path": "kits/199r/1nstinct-02/tools/verify-pinned.sh",
+      "sha256": "76d680690ab79bb8e1c85838e25308e6ce80d0ac38168d950a55998d4d890f02",
+      "mode": "100755"
+    }
+  ],
+  "review": "Parent Lane c independent Swift6.0.3 scoped PASS;14 XCTest debug/release, strict2sources+11harness+5mutantsRED; full-kit strict discoveryFAIL/macOS13deploymentNOT_RUN"
+}
