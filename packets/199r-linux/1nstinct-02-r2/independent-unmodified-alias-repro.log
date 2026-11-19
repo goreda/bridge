@@ -1,0 +1,3 @@
+tokA=CacheToken(generation: 0, id: 0) tokB=CacheToken(generation: 0, id: 0)  equal=true
+ALIAS_REPRODUCED: instance B accepted and released instance A's token; b.reservedBytes=0 (expected 200 if B had refused)
+b.accountedBytes=0 a.accountedBytes=100

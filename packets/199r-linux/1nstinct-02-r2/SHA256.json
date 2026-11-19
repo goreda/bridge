@@ -1,0 +1,11 @@
+{
+  "independent-unmodified-alias-repro.log": "09a9079b9be716798f33c99406fae051d211851e3f0f1e39167a3c91cf4a7aa3",
+  "PACKET.md": "3defe088b5a9cd31ae2b7e655468912cd75246e4d61254767d367ea99db46071",
+  "candidate-input/kits/199r/1nstinct-02/Package.swift": "1e91e610d13174f73c2f6e28eefb4ce781f944fadf4275ae9af00429f892121b",
+  "candidate-input/kits/199r/1nstinct-02/tools/verify-pinned.sh": "76d680690ab79bb8e1c85838e25308e6ce80d0ac38168d950a55998d4d890f02",
+  "candidate-input/kits/199r/1nstinct-02/Tests/GorAVPlaybackCoreTests/CacheAccountingTests.swift": "01401db3e10dc3d267c1a07693ac2cfacf36bda0992b5a578d39b2f4a2be34e9",
+  "candidate-input/kits/199r/1nstinct-02/Sources/GorAVPlaybackCore/ArchiveItemSource.swift": "b3ceab524aed7067e6744c6885cf14f343cf52b09300bb87e6a676ae4c5781bd",
+  "candidate-input/kits/199r/1nstinct-02/Sources/GorAVPlaybackCore/CacheAccounting.swift": "0ed9b572793e868db6638c908e46c687cfe4af7a4f29eb5ef91838ce505f613c",
+  "candidate-input/Sources/GorAVPlaybackCore/ArchiveItemSource.swift": "b3ceab524aed7067e6744c6885cf14f343cf52b09300bb87e6a676ae4c5781bd",
+  "candidate-input/Sources/GorAVPlaybackCore/CacheAccounting.swift": "0ed9b572793e868db6638c908e46c687cfe4af7a4f29eb5ef91838ce505f613c"
+}

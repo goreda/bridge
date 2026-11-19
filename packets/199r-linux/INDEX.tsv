@@ -3,3 +3,4 @@ W-gdb-199r-1nstinct-01	1nstinct	OPEN reserved, unclaimed	Sources/GorAVPlaybackCo
 W-gdb-199r-in2tinct-01	in2tinct	OPEN reserved, unclaimed	Sources/GorAVSubtitles/ASSParser.swift	in2tinct-01/PACKET.md
 W-gdb-199r-in2tinct-02	in2tinct	OPEN reserved, unclaimed	Sources/GorAVPlaybackCore/ChapterNavigation.swift	in2tinct-02/PACKET.md
 W-gdb-199r-1nstinct-02	1nstinct	OPEN reserved, unclaimed	Sources/GorAVPlaybackCore/CacheAccounting.swift	1nstinct-02/PACKET.md
+W-gdb-199r-1nstinct-02-r2	1nstinct	OPEN reserved, unclaimed; G0951 HELD	Sources/GorAVPlaybackCore/CacheAccounting.swift	1nstinct-02-r2/PACKET.md
