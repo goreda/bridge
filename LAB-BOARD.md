@@ -1,5 +1,17 @@
 # Live product board
 
+## Native91 ThreeD five-station r2 dispatched alone, Nov19 15:48 +03
+
+Build6afef0218f52ca275128dc6e/index21 dispatched15:48:31+03; actual dispatch screenshot waiting/freeMacminiM2/carrier55f06d4. Source06c018dad95d5d38586bcf18bac8c4bf026615b6/tree12c30ff9b662d9a7550ad12efdb7d9a94230170f on delivered90 042c4524; carrier55f06d49152c50a2b80e6842c40936fabb00b97b. Lane c actual source commit-bound SCOPED PASS; full Darwin NOT_RUN until this run. One candidate alone, no combined labs. Billing live169/500used331free/subscriptionOFF/no transactions. Expected13min/max15machine, bounded terminal check16:06-16:07 wakeschedule-01M7SXMDHBDQVG0YYH9MXG30RZ, no polling, leaseclosed.
+
+Move-only five ThreeD stations 1688/3582/2173/2499/2732 lines, full18moduleimportunion;68 top-level sections and25nested spans retained; old12441line file deleted. r1 quarantined before dispatch after Lane c found missing retirement row. r2 adds exact2b06e395 retirement with5stationpins and seeded real monolith overlay+13mutants. Owner f0691de86 and all native55+delivered finals share2b06e395; no extra accepted hashes added. Earlier native52-54 delivery ancestors differ, historical evidence retained. Menu witness fixture closure repaired after portable replay caught missing threed helper+manifest+5stations; real subprocess traceback now fails visibly, two menu mutantsRED. Production station bytes unchanged.
+
+All23portable carrier witnessesPASS/13nativecompilerNOT_RUN/0FAIL; full paired119entry sweep no candidate-only failing exit after baselineGit+modes corrected and two timeouts rerunPASS. Compiler-dependent and historical stale-path failures not calledPASS. Exact source and carrier realbuild.shintegrity0/manifest_tree0 with wronghash+missingrowmutantsRED/187replacementclosure/153oldoverlay/PP12mutants/provider3mutantsPASS. Envelope2027payload/14876fullpaths/modes/actualpreparephysicalbinding/historical91lint/retained75stalebytemutants/metadata6mutantsPASS. 4049policy/13452manifest/1929delivery; one oldpolicy retired+8new; two debt pathmoves count/ruleunchanged;7mpvcallsite paths+line numbers rebound against identical source lines. Candidate source contains reviewed metadata migration; Darwin owns final native graph emission, preserving all current raw policy rows.
+
+No promotion until all4actualsource/carrier/runboundreceipts, fullDarwin/gorTests/witnesses/nativeemitter/staticclosure, finalexactintegrity/ClassE/L2, and Lane cactualfinalcommitboundPASS. Both delivery refs remain90. Visible publisher/window/header observation stays next after ThreeD, not claimed by qualification test. mpvdefaults/bindings/refusals unchanged. Native91 evidence docs/receipts/native91-dispatched/.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6afef0218f52ca275128dc6e
+
+
 ## Native90 explicit host qualification delivered, Nov19 15:26 +03
 
 DELIVERED90 042c4524b8ddd3f1985f8af920d703f057dd7564 both refs atomic normal fast-forward/no force15:26:37/live exact readback. Lane c actual commit-bound scopedPASS15:26:21/tree8f5d7900f1d07183f3f526b64c095497e6854dc7 exact. Current ClassE dryrunPASS immediately before push. Owner originals D1 and standing Mac-test-after-delivery todo inspected, artifact authority fields not used as user authority.
