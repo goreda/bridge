@@ -1,5 +1,17 @@
 # Live product board
 
+## Native66 magnet delivered, native67 heat alone dispatched, Nov19 05:12 +03
+
+DELIVERED b2288d83843dd30f5fb743abd5d1a31741a8c2df atomically to both delivery refs, readback PASS 05:08:18. Clicking a visible magnet row now retains that row identity. Same command installs latest; main informed. Native66 finished6m11 full product/provider compile and23gorTests0fail. Four receipts bind exact run a73e0e7d/source2fa2e60e/basebd23517e/carrier6e76b58b. Actual four TSVs independently read by value:3986oldpolicyrows exact+2magnet,931debtunchanged,13389oldmanifestrows+2devtools,1866olddeliverypaths+2=1868 everysha/modePASS. Exactfinalbuild.sh integrity0,manifesttreePASS,retirement160PASS,L2fixed18PASS baseline3mutantsRED,ClassEatomicPASS. Lane c finaltree c358b584 reconstructed and verified,commitobject not supplied. AppKitclick/pixels/owneracceptance NOT_RUN; priorHUD test fallbackfonts/noexportedpixels. TwoArchitecturebaselineFAILs remain explicitdebt,notallgatesgreen.
+
+Native67 HOST HEAT r1 alone on delivered66: producta50ed70d,carrier835ad273,build6afe5ae7d133a39c4a12f5a3 dispatched05:11:51. Livefree453/500used47left,expected6min,cap15. ExactlyAppDelegate4+/2- CameraRuntime1+/1-,nootherproductrow. Allhistorical/fullcarrierplan/bindings/modes/completeness/integrity/manifest/retirement/4TSVpreservation PASS. No policy additions;1966exactblobs. Native heat sourceextraction matrix22checks Swift5/6Onone/O + original/blink/dirtymutants; notactualAppKit/CPU evidence. Lane c initialsource/carrierPASS,actualterminalbyvaluepending. Checkpoint05:22:50,hard05:26:50. Browserreleased. Nextarchive r2 thencontinuation/VB;Structurelastalone. No paidplan/accountaction. Failed63pyc/64policykeyscarriers stayquarantined,notproductfix.
+
+Stockr6 unchanged23candidates,0stockexecuted,READY0;27separatemodels unchanged. Portableeffects/audio/stereo/legacyscene SUPPORT only aftersixownerrows,notlive.
+
+https://codemagic.io/app/6afafc22c4b78bd16d33ca9b/build/6afe5ae7d133a39c4a12f5a3
+Evidence docs/receipts/native66-delivered67-dispatch/.
+
+
 ## Native65 delivered, native66 magnet alone dispatched, Nov19 04:55 +03
 
 DELIVERED bd23517ed49b503c53219a00ce214452f29c7143 atomically to both refs, readback PASS at 04:53:19. Multi-audio fallback is now retained as one plain short HUD line. Same command installs latest; owner informed. Native65 finished 4m23, full provider/product compile and 23 gorTests with zero failures, including native raster/OCR test 5.138s. Fallback fonts were used because Exposure-VAR.ttf was unavailable in the test environment. No pixels exported or own visual inspection, no owner-Mac acceptance. All four TSVs independently reviewed: 3984 original policy rows exact plus 2 HUD rows, 931 debt rows unchanged, 13387 old manifest paths retained, all 1864 prior delivery paths plus 2, 1866 hashes/modes PASS. Real build.sh integrity exit0, manifest tree PASS, L2 fixed18 PASS and baseline/3 mutants RED, Class E atomic promotion PASS, independent actual scoped review PASS. Two known Architecture baseline FAILs remain explicit debt, not all gates green.
