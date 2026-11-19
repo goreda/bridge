@@ -4,3 +4,4 @@ W-gdb-199r-in2tinct-01	in2tinct	OPEN reserved, unclaimed	Sources/GorAVSubtitles/
 W-gdb-199r-in2tinct-02	in2tinct	OPEN reserved, unclaimed	Sources/GorAVPlaybackCore/ChapterNavigation.swift	in2tinct-02/PACKET.md
 W-gdb-199r-1nstinct-02	1nstinct	OPEN reserved, unclaimed	Sources/GorAVPlaybackCore/CacheAccounting.swift	1nstinct-02/PACKET.md
 W-gdb-199r-1nstinct-02-r2	1nstinct	OPEN reserved, unclaimed; G0951 HELD	Sources/GorAVPlaybackCore/CacheAccounting.swift	1nstinct-02-r2/PACKET.md
+W-gdb-199r-1nstinct-02-r4	1nstinct	SUPPORT INGESTED lane5e7b7f42 main unchanged	Sources/GorAVPlaybackCore/CacheAccounting.swift	../../receipts/199r-cache-r4-ingested/SUMMARY.md
