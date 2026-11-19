@@ -1,5 +1,10 @@
 # Live product board
 
+## Owner arch-199t filed, Nov19 21:33 +03
+
+Native94 STOP/noR6/no carrierwork. CropA result -> reviewedcropB -> PHOTON-LIVE, onefreeM2 atonce, parentGOrequired.15ownerrowsadded/refreshed coveringStep0/A0,8orderedmovegroups,A3docs/gates,B1ownership,B2stop,PHOTON/STEREO,B4labpulse. Exact A1map/A2order retained docs/owner-orders/arch-199t.txt. EveryStructuregroup alone with ownerinstalledstatelegacyupdaterreplay beforedispatch. M3/Laneb goravonly, ownerbugsroutedOps. Magnetexcessdownloadrow alreadyfiled.
+
+
 ## Native94 r5 failed test; Crop A dispatched separately, Nov19 21:06 +03
 
 R5 build6aff30e58f52ca275128f972/index28/carrierd28e8abe/source0fc5d157/base96 terminal UI finished6m52, actual machine20:43 after18minqueue. Realprobe/provision/fixtureJSONPASS, preparationPASS2m27 with external scratch; providerPASS87.25s, fullDarwinproductcompilePASS99.4s. gorTestsFAIL31tests1skip1failure: testActualWindowPublishedGoravHeader caught InvalidTransition phase idle -> failed(deinit),1.427s. Actual source integrityPASS unchanged. No window PNGs or observation, no visual verdict. StageB all boundguardFAIL after StageAFAIL. Raw250650bytes SHA25662efb1c5ea63e345bf92f11571a0048673cd3b9c1cac5114db14670a3b609ed6 retained. Parent has fullraw, no r6 without new go. Font warnings present but not proven causal. Evidence docs/receipts/native94-r5-terminal-failed/.
