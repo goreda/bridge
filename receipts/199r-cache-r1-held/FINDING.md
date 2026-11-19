@@ -1,0 +1,9 @@
+# G0954 CACHE r1 independent return finding, Nov19 14:07 +03
+
+Disposition: HELD, not landable. Do not ingest r1 onto any gorav branch. This is a review result for the existing 1nstinct r2 writer/claim G0955, not a competing new packet or writer.
+
+Independent Lane c execution reported through parent:12 XCTest pass debug/release; cross-instance foreign token probe now refuses; tokens from different instances are distinct; no current callers found broken by newly throwing reset. These passes do not close all boundaries.
+
+Blocking results: process-global nextInstanceID uses unchecked += and simulated exhaustion traps rather than typed refusal. Strict Swift6 complete-concurrency typecheck fails on nonisolated mutable static nextInstanceID. Need checked non-wrapping issuer allocation and a concurrency-safe owner of that state, no silent unsafe waiver. Preserve issuer binding, foreign release/commit failure atomicity, reset exhaustion refusal and alias regressions. Keep the unmodified G0951 two-instance baseline RED separate from internal boundary instrumentation. Add explicit allocator exhaustion and strict Swift6 concurrency typecheck regression controls, capture exact compiler commands/exit/logs. Continue r2 in its owned CacheAccounting path/kit only; do not edit root Package.swift or other packet sources.
+
+Same acceptance: Linux Swift6.0.3 isolated kit builds actual byte-verified production source, debug/release + all old/new regressions, full file return/patch/SHA/logs, identify synthetic/materialized scope honestly. Integration only to SUPPORT lane branch under199qsection4 after independent passing review, never main. Preserve G0954 history; no acceptance or native/live cache claim. Native88 remains ahead on Darwin. Detailed independent evidence archive will be filed when received, this finding records parent-delivered verdict now.
