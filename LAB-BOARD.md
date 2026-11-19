@@ -1,5 +1,18 @@
 # Live product board
 
+## Native62 terminal and native63 owner-row isolation, Nov19 04:10 +03
+
+Ownerarch199o phonemsg-01M7RNCBP2YP2WN4Q43PF7MZPY supersedes the earlier combined plan. One owner candidate per run with delivered baseline, each own native StageA/StageB and D1 ClassE; sequential delivery rebases on last delivered source. Structure last and alone; final compositions retired. Delivery remainsf069, owner has02:02command. M2 nowmagnetclicked-row, nextmulti-audioHUD.
+
+Native62 build6afe3e69 finished15m20: ALL10 fullDarwin/provider/sourceintegrity/gorTestsPASS,22/0 each exceptmulti-audio/final23/0. Native4TSVemission reached1957modeparity, then realbuild.shintegrity failed off/off-wins-route stale required-menu Features paths. No promotion. Subsequent Linux wholecombinedwitness rehearsal found two more failures for relevantfutureStructure/continuationrows: capturehelpererrorprivacy and missinggor_provenancefixture. No waiver; these are parked outsideownerrow.
+
+Native63 MAGNET CLICKED-ROW ALONE build6afe4c4dd133a39c4a12f1db dispatched04:09:33, carrier01ebc39b375e072af664713682a2815c561cb9e4 sourcecf062a17a9b9b8ea14bc83cb74d202b0fabd5dc9 on delivered59f069. Baseline+onecandidate only, noThreeD/PP/popular. Free438/500used,62left,expected6-8min/cap15. OwnLinuxactualbuild.shintegrityPASS,manifest1856rowsPASS,retirement260refsPASS, exactGitcompleteness1962/1964PASS, source/modes/bindingcontrolsPASS. Actualnativegates/fourTSVs/ClassE/L2/Lane csecondreviewpending. Ownerclick/pixels/audio/CPU acceptanceNOT_RUN. Hardcapcheckpoint04:25. LegacyStageBcomposedlabels/casenames retained asdriver identifiers, not extra cases.
+
+https://codemagic.io/app/6afafc22c4b78bd16d33ca9b/build/6afe4c4dd133a39c4a12f1db
+
+Evidence docs/receipts/native62-terminal63-dispatch/. r6stock23/0stockexecuted/READY0 and27separatemodels unchanged. CurrentThreeD/PP/directconsumerrepairpacketsparked untilnoownerrowready. Empty-popularpartial4servicescandidate remainsseparateaftermagnet, notallprovidercompletion.
+
+
 | instinct | current TASKS row | packet/branch | last verified product commit sha+time | next row queued |
 | --- | --- | --- | --- | --- |
 | gdb | OPS-THROUGHPUT independent native integration | native62 e767d7f/source5409db67 in flight03:10 | f0691de86f delivered02:01:43; native61 nativePASS/emitterFAIL | native62 ten independent StageA cases, final metadata/secondreview pending |
