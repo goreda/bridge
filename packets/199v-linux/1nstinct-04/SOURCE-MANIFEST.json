@@ -1,0 +1,16 @@
+{
+  "commit": "c14319061ef70a0a65caed32c78b8c84bb46922e",
+  "tree": "be30d703287a114efd8da96bdd4791b6237a7da0",
+  "files": [
+    {
+      "path": "Package.swift",
+      "sha256": "44d0eb4f641b336ace30ddca66ca333871a2c5d77c208fe1775d783a71a9d570",
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/AudioTrackPlan.swift",
+      "sha256": "f8b7d8d18e3e81ffcb36245a2472f4f82bb8d765e98dc21c330339b1740bd380",
+      "mode": "100644"
+    }
+  ]
+}
