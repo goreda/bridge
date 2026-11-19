@@ -1,0 +1,5 @@
+packet	lab	state	production_path	packet_file
+W-gdb-199r-1nstinct-01	1nstinct	OPEN reserved, unclaimed	Sources/GorAVPlaybackCore/AudioTrackPlan.swift	1nstinct-01/PACKET.md
+W-gdb-199r-in2tinct-01	in2tinct	OPEN reserved, unclaimed	Sources/GorAVSubtitles/ASSParser.swift	in2tinct-01/PACKET.md
+W-gdb-199r-in2tinct-02	in2tinct	OPEN reserved, unclaimed	Sources/GorAVPlaybackCore/ChapterNavigation.swift	in2tinct-02/PACKET.md
+W-gdb-199r-1nstinct-02	1nstinct	OPEN reserved, unclaimed	Sources/GorAVPlaybackCore/CacheAccounting.swift	1nstinct-02/PACKET.md

@@ -1,0 +1,7 @@
+{
+  "gorav_main": "cf3e3f1772033dbc8465b19689e93f53c60006ce",
+  "files": {
+    "pinned/Sources/GorAVSubtitles/ASSParser.swift": "4c16b99f1e1e78c7bd84346b35b0be6d670dff2df193bc9f69ac2a0ddc7d18f6",
+    "pinned/Sources/GorAVSubtitles/SubtitleCue.swift": "2311ed3052c4a66f2d7942d23624b693faa52dc509354e22fbff148aa3abaa40"
+  }
+}
