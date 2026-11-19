@@ -1,5 +1,14 @@
 # Live product board
 
+## Native85 preview-fold test repair dispatched, Nov19 12:50 +03
+
+Build6afec675d133a39c4a13144f DISPATCHED12:50:43 freeM2 alone on DELIVERED84 71b624dfd824a3f8245c292bf8fa6e7803418742. Source3f858b58a82656923d39c347d6d11a80f17decab/carrierb90bdf994ff33d605aea5c9a225626f8c84f0da4 remoteCIpush/readback. Bothdeliveryrefsremain84pendingfouractualsame-runreceipts31witnesses/exactfinalcommitLanecverdict. Expected12cap15hardcap13:05:44 wakeschedule-01M7SKEH6W7X66MQJT2MPGXBK2/nopolling/leaseclosed. Billing12:41 93/500used407free/subscriptionOFF/no transactions. Configurationpixelsinspected.
+
+Tests-onlyrepair8282163a98lines0644+47/-2,helper744linesffbea2ba unchanged. HistoricalbaselineREDsinceP01 dueold741lineexactfold;repairappliesexactP01-P04transforms/hashbound/drop-transformnegativechecksretainingold2inputretirementbackuprollback/idempotence.20portableemittedwitnessPASS11nativecompilerNOT_RUN/integrity1909zero mismatches/manifestmutants/174retirementreferencesPASS. Policy4029/debt942/manifest13432/delivery1909countsunchanged;nativeemitterauthoritativeonlytestmanifest53->98/testdeliveryhash8282163a/architecturemanifestdeliveryhashrefresh. Lane csourcecarrierPASSthenHOLDstale83built_bundle_filesinretained84schema,correctedactual84exe4b6f6093/buildmanifest8dc675a7,identity/envelope+semanticguardrefreshed. Actualstaged84comparatorcorrectedbaselinePASS.50stale-bytemutants+actualstalebaselineREDcorrect84GREEN. Git-historydependencyforactualmutantremoved:ci/native85-stale83-built-baseline.jsonbyteequalc390dd2fixture80567d67;guardrunsno.git. FinalLanecc285e959SCOPEDPASS14656envelopehashes/2007paths. Noadditionalgate/dispatchuntilfinalPASS. AudioDeviceAStageBclosed/hardwareNOT_RUN/mpvdefaultsunchanged/GoravPhotonvisibleBLOCKEDnoproducer/provider-marker+1preexisting/15pycadvisoryunchanged. Provider-markerqueuednextownrunlatestdelivery.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6afec675d133a39c4a13144f
+Evidence docs/receipts/native85-dispatched/.
+
+
 ## Native84 audio-device Stage A r2 delivered, Nov19 12:44 +03
 
 DELIVERED84 71b624dfd824a3f8245c292bf8fa6e7803418742 bothrefs gor/gorav-integration and mac-source-sync-20261103 atomicleasedpush/readback12:44:32+03. Same command installs newest. StageAopt-in sink inventory/select/readback/checkedrollback API qualified; no host/session/menu activation, StageB CLOSED. No-selection/default mpv behavior preserved. Hardware test skipped explicitNOT_RUN; no audible/hotplug/race acceptance or full row completion. Existing GoravPhotonvisibleBLOCKED/no producer/provider-marker+1preexisting/15pycadvisory unchanged.
