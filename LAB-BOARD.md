@@ -1,5 +1,10 @@
 # Live product board
 
+## Crop diagnosis and writer route, Nov19 20:38 +03
+
+Main relays Lane c diagnosis: stream crop scan stalled at1/12samples in266s because decode internals lack deadline enforcement; manual menu joins stale scan. Snap cause: single mpv crop command applies picture immediately, separate window ease does not animate picture. Gorav currently refuses crop outright. M3 assigned writer for GOR-MAGNET-AUTO-CROP and GOR-CROP-SMOOTH-TRANSITION in separate commits, both engines; Lane c independent by-value review. Owner told cause20:37. Diagnosis not a fix or acceptance. Native94r5 remains its independent current observation run.
+
+
 ## Owner96 build succeeded; magnet crop follow-up, Nov19 20:36 +03
 
 Owner source phonemsg-01M7TE2TF2TVVYT6Y429SB97W8 confirms build succeeded on Mac. Native96 delivered4d8ba0c6 updater bootstrap owner execution now successful, not evidence that native94 window observation passed. Owner log uses UTC, owner+03. New rows GOR-MAGNET-AUTO-CROP and GOR-CROP-SMOOTH-TRANSITION: automatic magnet crop detection without manual trigger; explicit existing menu must still detect; every detected application smooth rather than intermittent snap; both mpv and gorav per parent route. Lane c diagnosis first from owner log and actual source; source writer route through main after finding scheduling/menu and geometry/application ownership. No speculative code fix or acceptance recorded. Same owner update command only after reviewed delivery. Native94 r5 run/index28 remains independent and unaccepted, its20:45actual-start cap check unchanged.
