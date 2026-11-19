@@ -1,5 +1,17 @@
 # Live product board
 
+## Native68 archive delivered, native69 continuation alone dispatched, Nov19 05:42 +03
+
+DELIVERED0d6762ef55bca316f1f41544b39b0f316e804bd7 bothrefsatomic/readback05:40:05. Unowned archive-root refusal is terminal quarantined metadata, no per-launch retry and original root untouched. Same command installs latest; main informed. Native68 finished5m34 fullproduct/provider/23gorTests0fail PASS. Quarantine7behavior+4writesafetymutantsRED,Provenance35mutantsRED actualDarwin. Fourreceipts bindsource11ede7e3/base639e47e9/carrier5b0d564/run828c6a04. Independent4TSVsbyvaluePASS3988oldpolicy+1,931debtunchanged,13391manifest+1,1868delivery+1=1869allhashesmodes. Exactly3postcompilemetadata blobs policy/manifest/delivery. Finaltreee5a3f13d reconstructed notcommitobject. Exactbuild.shintegrity0/manifesttree/retirement160/changedbuildL2fixed18+baseline3mutants/ClassEatomicPASS. OwnerMac/archivepublicationNOT_RUN;twoArchitecturebaselineFAILdebtremain,notallgatesgreen. Raw6201c73d,reviewc3ae8660 filed.
+
+Native69 CONTINUATION r2 alone on0d6762ef source d761231f/carrier684f325/build6afe61f3d133a39c4a12f75f dispatched05:41:50. Livefree465/500used35left,expected6cap15. Threeproductfiles142+/1-,noZIPidentityrowcombined. Local10continuation35provenance7+4archiveREDmutants,changedbuildL2PASS. Allcarrierhistorical/fullplan/modes/completeness/integrity/manifestPASS;3989oldpolicy+1test/931debtunchanged/13392manifest+1/1869delivery+1=1870preserved. Lane cinitialsource/carrier scopedPASS,actualterminalbyvaluependinggatesdelivery. Checkpoint05:52:50/hard05:56:50,browserreleased. NextVB-NOOP r1,Structurelastalone. No paidplan/accountaction.
+
+Stockr6 unchanged23candidates,0stockexecuted,READY0;27modelsunchanged. Portable SUPPORT only aftersixownerrows.
+
+https://codemagic.io/app/6afafc22c4b78bd16d33ca9b/build/6afe61f3d133a39c4a12f75f
+Evidence docs/receipts/native68-delivered69-dispatch/.
+
+
 ## Native67 heat delivered, native68 archive alone dispatched, Nov19 05:28 +03
 
 DELIVERED639e47e9aaf954ccaa1a1dc4ec51b0d3f83621c0 bothrefsatomic/readback05:24:54. Same overlay geometry no longer rewritten; blink-enabled gate added before Vision inference. No measured CPU reduction claim. Same command installs latest; main informed. Native67 5m42 fullproduct/provider/gorTests PASS, heat22green Swift5/6Onone/O, original/blink/dirtymutantsRED. Actual4receipts bindsourcea50ed70d/baseb2288d83/carrier835ad273/runa5681bc1. Independent4TSVsbyvaluePASS3988policyexact,931debtunchanged,13391manifestpaths,1868deliveryhashesmodes. TWOpostcompileblobschanged(manifest+delivery), THREEdeliveryrowsupdated(AppDelegate/CameraRuntime/manifest),policyunchanged. Finaltreeee03f8e6 verified notcommitobject. Actualbuild.shintegrity0/manifesttree/retirement160/L2fixed18+baseline3mutants/ClassEatomicPASS. NoAppKit/camera/CPU/owneracceptance. PriorHUDfallbackfonts/noexportedpixels;twoArchitecturebaselineFAILdebtremain,notallgatesgreen.
