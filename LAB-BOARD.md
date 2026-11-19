@@ -1,5 +1,13 @@
 # Live product board
 
+## Native94 terminal FAIL at real fixture admission, Nov19 18:16 +03
+
+Build6aff0a108f52ca275128e81a/index24 UI FINISHED5m33, not acceptance. Machine17:54 after15minqueue, source5d90a8ed/base95/carrierb4675c19/runa8826431-88f7-43ca-8134-40cf2a914830. Exact four receipts same-run pins confirmed: stage-aFAIL because gorTests exit1; provider93.98s/fullDarwin95.61s/sourceintegrityPASS. New testActualWindowPublishedGoravHeader line76 failed real fixture admission before AppDelegate/window/capture. Existing actualHostCompletionAndHUDPublisherPASS4.730s.31tests/1hardware skip/1failure. All three StageB gates correctly refuse125/NOT_RUN. No PNG, observation.json or native94RESULT exists; no pixel/window/header acceptance and no promotion. Both deliveryrefs remain95 168da8ca.
+
+Actual admission probe searches only /opt/homebrew/bin/ffprobe and /usr/local/bin/ffprobe. Carrier locks decoder libraries but has no ffprobe installation/check. Missing executable is strong hypothesis only: generic failing assertion discarded actual Outcome. Fixture independently observed real H264/AAC onevideo/oneaudio12seconds. Next author should expose actual Outcome and verify/provision real probe at supported path, never fake facts or relax admission. No retry dispatched. Parent received raw and terminal screenshot for Lane c review. RawSHA25645bfd1d42522da5d6769b0b1d9b3dd61c89a964031044d046a1ee60abc887296. Billing207/500used293free/subscriptionOFF/no transactions. Leases released, no remaining native watch. Evidence docs/receipts/native94-terminal-failed/.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6aff0a108f52ca275128e81a
+
+
 ## Native94 actual visible header observation DISPATCHED, Nov19 17:39 +03
 
 One free M2 run build6aff0a108f52ca275128e81a/index24 dispatched17:39:11. Source5d90a8edcdc83a415c49b222d15d50ce2a182d8e based on updater-fixed delivered95 168da8ca, carrierb4675c1990c65125d8da3eb3c9ebd5312b5b308e exact live CIbranch readback. Lane c final source/carrier SCOPEDPASS parent17:37:40, archive retained. Expected11min plus queue/cap20, free298min before run, subscriptionOFF/no prior transactions. One status check17:56-17:57/wakeschedule-01M7T3YZSWAMB5TD9XKFCP1MF7, no polling. Browserlease released.
