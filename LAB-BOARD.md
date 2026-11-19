@@ -1,5 +1,13 @@
 # Live product board
 
+## Native94 actual visible header observation DISPATCHED, Nov19 17:39 +03
+
+One free M2 run build6aff0a108f52ca275128e81a/index24 dispatched17:39:11. Source5d90a8edcdc83a415c49b222d15d50ce2a182d8e based on updater-fixed delivered95 168da8ca, carrierb4675c1990c65125d8da3eb3c9ebd5312b5b308e exact live CIbranch readback. Lane c final source/carrier SCOPEDPASS parent17:37:40, archive retained. Expected11min plus queue/cap20, free298min before run, subscriptionOFF/no prior transactions. One status check17:56-17:57/wakeschedule-01M7T3YZSWAMB5TD9XKFCP1MF7, no polling. Browserlease released.
+
+Observation only, no push authorized. Must retain both actual native94-window/before.png and published.png plus observation/RESULT, four bound receipts, all37actualwitness and named XCTest non-skipped. Parent and Lane c inspect real pixels; validator alone cannot accept visible header. Native94 env/fixture real AppDelegate localfile route/process-local GOR_ENGINE override, actual publisher CATextLayer/real window-server screencapture/Vision OCR, close clears. Missing display/capture permission/OCR is failure, never synthetic substitute. No ordinary startup/default changes. 2027maps/modes/store/physical/envelope exact, portable23PASS/14nativeNOT_RUN;10validator negatives; production integrity/committed manifestPASS. Historical pack expanded to actual93 stations/f069 ThreeD for updated retirement fixture. Workflow label corrected from93 to actual95 base. Resource/Swift/provider unchanged in Python-only95, actual93 retained static receipts used with explicit equivalence JSON. Both delivery refs remain168da8ca; owner sameupdate command sent by parent after95 repair. Evidence docs/receipts/native94-dispatched/.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6aff0a108f52ca275128e81a
+
+
 ## Native95 updater ThreeD retirement repair DELIVERED, Nov19 17:33 +03
 
 DELIVERED 168da8ca866ae92e09e45914c5771e417c05f70d, atomic normal FF both gor/gorav-integration and mac-source-sync-20261103, exact live readback17:33:16+03. Base delivered93 c1c5da27. Python updater + existing test + generated manifest/delivery rows only; no production Swift/defaults/bindings change. Parent reports independent by-value M3 and Lane c PASS17:30:28. No native run consumed.
