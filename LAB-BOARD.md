@@ -546,3 +546,5 @@ Stock r3 supersedes r2: same 25 candidates (14/11), READY 0/0. audio-eq-preset i
 199r14:06triage:G0954CACHEr1HELDindependentreview/globalinstancecounterexhaustion;G0955r2claimseparate.H0683SSAbehaviorUNSATISFIEDnoingest;Chapterexactportreviewafter88.No main changes.Evidence receipts/199r-second-returns/SUMMARY.md.
 
 199r CACHEr1G0954independentHELD14:07:12XCTestdebug/releasePASS/aliasfixed;allocatoruncheckedoverflowtrap+strictSwift6mutable-staticFAIL. Findingpublished1nstinctforcurrentr2writer,no r1branch.
+
+199r CACHEr3HELD14:21:Linux strict6/14XCTest/11harnessPASS,MutexmacOS15+vsproduct13deploymentblock.1nstinctnotifiedcompatibleallocator/noOSraise;r3noingest.Native88priority.
