@@ -1,5 +1,17 @@
 # Live product board
 
+## Native64 rejected, native65 HUD alone dispatched, Nov19 04:42 +03
+
+Native64 finished 3m46. Full product and 22 gorTests passed, as did scoped native steps, but independent actual review rejected emitted metadata: all 3986 policy rows were dict keys instead of values. Ten prior delivery paths were then omitted and 202 manifest classifications changed. arch-baseline bytes were unchanged. Candidate 84d4a19e is on a review branch only, NOT DELIVERED. Carrier 4b6945dc quarantined alongside native63 carrier 01ebc39 (tracked pyc). Product magnet fix remains queued after one clean repaired-emitter HUD run, parent routing decision, not an owner rule change.
+
+Native65 multi-audio HUD r3 alone on delivered f069: source 2fba7598, carrier 0791aa08, build 6afe53dcd133a39c4a12f3af dispatched 04:41:47. Free 443/500 used, 57 left; expected 4 minutes, cap 15. Repaired emitter preserves all 3984 original policy rows and adds only the HUD extension and native pixel test; unchanged arch-baseline; all 1864 previous delivery paths retained, 1866 total. Exact native64 corrupt policy and five more mutations RED. Full actual carrier plan, historical lints, source bindings/modes/completeness PASS. Lane c initial scoped review PASS. Actual full native compile, 23 gorTests including pixel witness, four TSVs, exact integrity/static/Class E and final second review pending. Checkpoint 04:51, hard cap 04:57. Two baseline Architecture FAILs remain explicit debt, not all gates green.
+
+Last delivered f069 remains unchanged. Owner already ran the update; unknown identity is not an absent install. Stock r6 unchanged, 23 candidates, 0 stock executed, READY 0; 27 separate models unchanged. No paid plan.
+
+https://codemagic.io/app/6afafc22c4b78bd16d33ca9b/build/6afe53dcd133a39c4a12f3af
+Evidence docs/receipts/native64-rejected65-dispatch/.
+
+
 ## Native63 terminal and native64 correction, Nov19 04:25 +03
 
 Native63 failed in preparation after47s: existing native54 generated-file lint rejected three tracked ci/__pycache__/*.pyc. No StageA ran and no executable/artifact was published. Product did not reach compile. Native64 removes these files and refreshes the envelope; full actual carrier plan PASS, historical50/54/55/56/57/58/60/61/62 RED/GREEN and real build.sh integrity/manifest rehearsal PASS.
