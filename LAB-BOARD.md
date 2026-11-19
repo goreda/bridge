@@ -1,5 +1,12 @@
 # Live product board
 
+## Native94 r2 terminal prerequisite FAIL, Nov19 18:44 +03
+
+Build6aff14a58f52ca275128ecce/index25/carrier63c5ab9f/source4903a71e99ecbf7ccb25db07e19cd5ff9f8150f1/base95. Machine18:41,UI FAILED1m7. Real brew ffmpeg prerequisite failed: ca-certificates same-version existing link conflict. Actual RESULT FAIL; ffmpeg/ffprobe provision did not complete, real version and fixture JSON NOT_RUN. StageA product/Darwin and all four receipts NOT_RUN/absent; no observation or actual window PNGs. No window/header verdict, no acceptance, no promotion. This is second window attempt, held with no further dispatch. Original94 failure history preserved. Both deliveryrefs95 168da8ca unchanged. Billing208/500used292free/subscriptionOFF/no transactions. Terminal screenshot pixels inspected: index25/M2/63c5ab9/red prerequisite20s. Parent received actual RESULT+complete brew log+live page/billing and screenshot for Lane c review. No remaining native watch/browserlease.
+Raw107533812bytes SHA25644cd9c9c558c27d28b4fea32906cb602b96ba4399ad564f14549afec72c6b3f6 split into raw.zip.part-00/01, concatenate ordered to recover. Cache is real brew downloads, not product output. Evidence docs/receipts/native94-r2-terminal-failed/.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6aff14a58f52ca275128ecce
+
+
 ## Native94 r2 real probe diagnostic retry DISPATCHED, Nov19 18:24 +03
 
 Build6aff14a58f52ca275128ecce/index25 singlefreeM2 cap20 dispatched18:24:21; source4903a71e99ecbf7ccb25db07e19cd5ff9f8150f1/base95 168da8ca/carrier63c5ab9f9315d3d967ea34a1415572b493fa7d98 exactliveCIbranchreadback. Lane ccarrierSCOPEDPASS18:23:21. Onecheck18:43-18:44 wakeschedule-01M7T6HNKERQQKNVTCW63F2K9N/no polling/293freeOFF before run. Real ffprobe fixedpaths first; otherwise real brew bounded independent180s kill/512MiB OUT+newCellar/4MiBlog/recurring2GiBfloor; TMPDIR/HOMEBREW_TEMP underOUT. Disk guards polling not OSquota. Readonly real probe checker after provision before prepare/StageA; actual version+fixture JSON retained out/native94-probe. FourdisposableboundnegativecontrolsPASS, not actualrunner evidence. TypedrealOutcome diagnostics test-only source; alloriginalwindowassertions/37witness retained. Initial94failed atfixtureadmission, genericreason discarded; noPNG then. Thisretry actualprobe/window/Darwin NOT_RUN atdispatch, noacceptance/promotion. Return both realPNGs+raw toparentandLane cforpixelreview. Bothdeliveryrefs168da8ca unchanged. Evidence docs/receipts/native94-r2-dispatched/.
