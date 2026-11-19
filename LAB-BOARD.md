@@ -1,5 +1,14 @@
 # Live product board
 
+## Native87 terminal FAIL, Nov19 14:00 +03
+
+Build6afed237d133a39c4a1318f8 UI finished12m31 but actual structure-witnesses FAIL. No delivery or promotion. Both delivery refs remain86 62c0b16d586708bed0d6f887bedeee6f91c4bb57. Source575c4478/carrier53c9c930/run1e0859a5-83bc-4c68-9c95-644c07dcc23b exact bound. StageA fullDarwin/gorTests PASS, native-manifest PASS, static-preinstall PASS;32of33witnesses PASS. Sole failed Tests/Provenance/update_retirement_test.py exact-green after baseline-red: retire_update_sources rejects symlink ancestor while checking CameraPrivacyGate path. Current guard walks all absolute ancestors except one root.parent, so macOS /tmp OS symlink is a plausible source; actual offending ancestor not printed. This is not yet proved from pixels alone. Needs scoped root-relative ancestor handling plus an executable Linux OS-parent-symlink fixture, retaining inside-project symlink refusal. Parent alerted with raw ZIP SHA896edb3406890641d00f87e8bdc218b2f1db0108e7e187a59e3bb4164f497924 and exact error, Lane c r3 author requested.
+
+Live14:00billing135/500used365free/subscriptionOFF/no transactions. No active CI run, leaseclosed, firedhardcaphandled. No owner retry command or owner acceptance claim. Exact real owner journal completeness and crash recovery remain unverified, regardless of this fixture fix. Owner update repair stays highest priority ahead of Photon and ThreeD. Cache r2 refill published; Audio lane-only ingest unchanged.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6afed237d133a39c4a1318f8
+Evidence docs/receipts/native87-terminal-fail/.
+
+
 ## Native87 owner update retirement repair dispatched, Nov19 13:40 +03
 
 Build6afed237d133a39c4a1318f8 DISPATCHED13:40:53freeM2aloneonDELIVERED86 62c0b16d586708bed0d6f887bedeee6f91c4bb57. Source575c447808ec3984f4266ab432dbe0d8e90c0821/carrier53c9c93049fef94cd43dc2ec752d1a07f9d90f42 remoteCIpush/readback. Expected15minplusqueuehardcap13:59wakeschedule-01M7SPACHN215T3NP39D1ZBRWP/no polling. Lastlivebilling122/500used378free/subscriptionOFF/no transactions. Branch/current87workflow/SSHoff/priorityoffpixelsinspected; leaseclosed. Both delivery refs remain86 until exact terminal proof and commit-bound independent verdict.
