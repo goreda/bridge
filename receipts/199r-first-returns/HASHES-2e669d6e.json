@@ -1,0 +1,44 @@
+[
+  {
+    "entry": "G-0953",
+    "name": "199r-02-review-evidence.tgz",
+    "bytes": 5276,
+    "sha256": "2e2909662a82b027fdf45b984d8a03e3c8f4df1246f075158abcd474bc5f5939"
+  },
+  {
+    "entry": "G-0952",
+    "name": "199r-01-review-evidence.tgz",
+    "bytes": 3922,
+    "sha256": "510a4648f523547ad7e16a4bf556c37fd359fed0bf58ae1c5397209edc514612"
+  },
+  {
+    "entry": "G-0951",
+    "name": "199r-02-evidence.tgz",
+    "bytes": 13344,
+    "sha256": "65d5e744e7c14a874bc26f2f48210b96ea275dca8e3132b9f8431b87e2d35f2f"
+  },
+  {
+    "entry": "G-0951",
+    "name": "VERIFY-199r-02.md",
+    "bytes": 4692,
+    "sha256": "7cfeb6dc1da31983ee552a5f484d4bb1d5ebfbb0093ff46dea37fcb2b0cb5d5c"
+  },
+  {
+    "entry": "G-0950",
+    "name": "199r-01-return.tgz",
+    "bytes": 8377,
+    "sha256": "2a5026b97912df1542e9bcfc38a6486ed3e88f2e9fd2064649e24c8b4d8c51a9"
+  },
+  {
+    "entry": "G-0948",
+    "name": "D5r3b-01-patch-chain.tgz",
+    "bytes": 1635,
+    "sha256": "b16d8fc717f23b9f874b0b5f2865ca0751354216a377a0bb26bff0d3bd6e55f4"
+  },
+  {
+    "entry": "G-0948",
+    "name": "D5r3b-01-02-03-04-06-evidence.tgz",
+    "bytes": 102889,
+    "sha256": "97ee102481b5fb66fc5e4744c5b7adb7f3a4417f7ecc11aa091e73d3d8a1a11f"
+  }
+]

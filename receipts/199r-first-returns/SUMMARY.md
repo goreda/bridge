@@ -1,0 +1,9 @@
+# First arch-199r returns received, Nov19 13:50 +03
+
+G0950 MULTIAUDIO returned13:38, G0951 CACHE returned13:40; received from parent13:50, two-hour ingest targets15:38/15:40. Original carrier byte hashes independently matched; lab synthetic test claims are not integration execution. Current gorav main live f8bcd542c1ff15e6494ce95fc94389c2e0021e96. Full Source/Tests consumer grep of AudioTrackRefusal and existing refusal cases finds no exhaustive current client outside the definition. External exhaustive consumers can be source-incompatible with new duplicateIndex case; preserve caveat.
+
+MULTIAUDIO current preimage24d8e9f53b044811f39268299767fad5a2bf788982133439138f5269c5678c31 matches returned patch baseline. Full files and isolated real-source Swift kit prepared for independent Swift runner through parent. Integration swift test and existing audio-delay-tests pending; no applied/merged/ingested claim yet. Local Swift unavailable.
+
+CACHE new production path absent current main; ArchiveItemSource preimageb3ceab524aed7067e6744c6885cf14f343cf52b09300bb87e6a676ae4c5781bd exact. Source-review HOLD: tokens have generation/id but no issuing instance binding, so same counters across instances alias. G0953 separate lab repro supports it; Ops source inspection confirms the missing issuer check but no local Swift execution. Requested fix direction: instance-bound tokens and cross-instance RED regression before acceptance, reset exhaustion explicit. Existing wrap repro used instrumentation to jump the setter, not real2^64 resets. No cache merge or live wiring claim. Parent routes Swift execution and lab response; Ops owns evidence/ingest.
+
+in2tinct two packets claimed13:39 per forwarded H0682, no completed returns supplied in this batch. Old G0948 archived D5 excerpt-only stock separately recovered, not adopted into current ThreeD or counted as199r delivery. Native87 owner updater repair remains sole Darwin run; terminal13:59, no extra polling.
