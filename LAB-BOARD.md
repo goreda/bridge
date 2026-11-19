@@ -1,5 +1,14 @@
 # Live product board
 
+## Native94 r5 failed test; Crop A dispatched separately, Nov19 21:06 +03
+
+R5 build6aff30e58f52ca275128f972/index28/carrierd28e8abe/source0fc5d157/base96 terminal UI finished6m52, actual machine20:43 after18minqueue. Realprobe/provision/fixtureJSONPASS, preparationPASS2m27 with external scratch; providerPASS87.25s, fullDarwinproductcompilePASS99.4s. gorTestsFAIL31tests1skip1failure: testActualWindowPublishedGoravHeader caught InvalidTransition phase idle -> failed(deinit),1.427s. Actual source integrityPASS unchanged. No window PNGs or observation, no visual verdict. StageB all boundguardFAIL after StageAFAIL. Raw250650bytes SHA25662efb1c5ea63e345bf92f11571a0048673cd3b9c1cac5114db14670a3b609ed6 retained. Parent has fullraw, no r6 without new go. Font warnings present but not proven causal. Evidence docs/receipts/native94-r5-terminal-failed/.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6aff30e58f52ca275128f972
+
+Crop A source585c26181eb8e860f8f66e722baaf5f42a98c81f/tree f7849694 directparent delivered96 4d8ba0c6,22paths. Final Lane c scopedPASS of committed exactbytes/integrity1934rows0mismatch,17crop suite14green3inheritedred; Darwin test-only import correction included. Dispatch21:05:27 ONCE freeM2 build6aff3a678f52ca275128fd3e/index29, isolatedcarriere5dbda8c1981c79eedbf7ada42beafd41d41ed7a, exactremote/UIreadback. ParentGO after r5terminal.279free/subscriptionOFF before submit, cap20min, soleactualstartcapcheck21:25:45 wakeschedule-01M7TFRPHZ5W06DBG5G2VSGVB2/nopolling. Carrier14946hashes/2032closure/modes/unchangedpredispatchplanPASS; onlynative94window-specificwitness removed, two new boundedrunner/retryfencing native regressions added. No B/r6/acceptance/promotion. All four bound receipts/raw logs required on return. Both delivery refs remain96, owner96 Mac build succeeded. Evidence docs/receipts/crop-a-dispatched/.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6aff3a678f52ca275128fd3e
+
+
 ## Crop diagnosis and writer route, Nov19 20:38 +03
 
 Main relays Lane c diagnosis: stream crop scan stalled at1/12samples in266s because decode internals lack deadline enforcement; manual menu joins stale scan. Snap cause: single mpv crop command applies picture immediately, separate window ease does not animate picture. Gorav currently refuses crop outright. M3 assigned writer for GOR-MAGNET-AUTO-CROP and GOR-CROP-SMOOTH-TRANSITION in separate commits, both engines; Lane c independent by-value review. Owner told cause20:37. Diagnosis not a fix or acceptance. Native94r5 remains its independent current observation run.
