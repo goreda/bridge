@@ -1,0 +1,101 @@
+=== CLEAN BUILD in2tinct-02: .build/.swiftpm removed immediately prior ===
+production cca7eafbe8bfae8bf5b87b4e0d751f963c65b77ca487f4390c4fe31452c1614a  /tmp/199r/gorav/Sources/GorAVPlaybackCore/ChapterNavigation.swift
+staged     cca7eafbe8bfae8bf5b87b4e0d751f963c65b77ca487f4390c4fe31452c1614a  /tmp/199r/gorav/kits/199r/in2tinct-02/Sources/GorAVPlaybackCore/ChapterNavigation.swift
+byte equality verified; building and testing actual production bytes
+Swift version 6.0.3 (swift-6.0.3-RELEASE)
+Target: x86_64-unknown-linux-gnu
+Building for debugging...
+[0/13] Write swift-version-411BFFA3241C6A41.txt
+[0/13] Write sources
+[4/14] Emitting module GorAVPlaybackCore
+[5/15] Compiling GorAVPlaybackCore ChapterNavigation.swift
+[6/16] Wrapping AST for GorAVPlaybackCore for debugging
+[8/17] Emitting module ChapterNavigationTests
+[9/18] Compiling ChapterNavigationTests ChapterNavigationTests.swift
+[10/19] /tmp/199r/gorav/kits/199r/in2tinct-02/.build/x86_64-unknown-linux-gnu/debug/in2tinct-02-chapter-navigationPackageDiscoveredTests.derived/all-discovered-tests.swift
+[11/19] Write sources
+[13/20] Emitting module in2tinct_02_chapter_navigationPackageDiscoveredTests
+[14/22] Compiling in2tinct_02_chapter_navigationPackageDiscoveredTests ChapterNavigationTests.swift
+[15/22] Compiling in2tinct_02_chapter_navigationPackageDiscoveredTests all-discovered-tests.swift
+[16/23] Wrapping AST for ChapterNavigationTests for debugging
+[17/23] Wrapping AST for in2tinct-02-chapter-navigationPackageDiscoveredTests for debugging
+[17/23] /tmp/199r/gorav/kits/199r/in2tinct-02/.build/x86_64-unknown-linux-gnu/debug/in2tinct-02-chapter-navigationPackageTests.derived/runner.swift
+[19/23] Write sources
+[21/24] Emitting module in2tinct_02_chapter_navigationPackageTests
+[22/25] Compiling in2tinct_02_chapter_navigationPackageTests runner.swift
+[23/26] Wrapping AST for in2tinct-02-chapter-navigationPackageTests for debugging
+[24/26] Write Objects.LinkFileList
+[25/26] Linking in2tinct-02-chapter-navigationPackageTests.xctest
+Build complete! (4.73s)
+Test Suite 'All tests' started at 2026-11-19 10:52:28.029
+Test Suite 'debug.xctest' started at 2026-11-19 10:52:28.030
+Test Suite 'ChapterNavigationTests' started at 2026-11-19 10:52:28.030
+Test Case 'ChapterNavigationTests.testDuplicateIndicesRefuseInvalidInventory' started at 2026-11-19 10:52:28.030
+Test Case 'ChapterNavigationTests.testDuplicateIndicesRefuseInvalidInventory' passed (0.001 seconds)
+Test Case 'ChapterNavigationTests.testEmptyInventoryRefusesUnavailable' started at 2026-11-19 10:52:28.031
+Test Case 'ChapterNavigationTests.testEmptyInventoryRefusesUnavailable' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testEndBeforeStartRefusesInvalidInventory' started at 2026-11-19 10:52:28.031
+Test Case 'ChapterNavigationTests.testEndBeforeStartRefusesInvalidInventory' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testEqualStartsRefuseInvalidInventory' started at 2026-11-19 10:52:28.031
+Test Case 'ChapterNavigationTests.testEqualStartsRefuseInvalidInventory' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testInt64MaxOver1000RoundsUpAndRefusesInvalidInventory' started at 2026-11-19 10:52:28.031
+Test Case 'ChapterNavigationTests.testInt64MaxOver1000RoundsUpAndRefusesInvalidInventory' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testLargeRepresentableMillisecondStartValidatesThenHitsBoundary' started at 2026-11-19 10:52:28.031
+Test Case 'ChapterNavigationTests.testLargeRepresentableMillisecondStartValidatesThenHitsBoundary' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testNaNPositionRefusesUnknown' started at 2026-11-19 10:52:28.031
+Test Case 'ChapterNavigationTests.testNaNPositionRefusesUnknown' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testNegativeEntryIndexRefusesInvalidInventory' started at 2026-11-19 10:52:28.031
+Test Case 'ChapterNavigationTests.testNegativeEntryIndexRefusesInvalidInventory' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testNegativeInfinitePositionRefusesUnknown' started at 2026-11-19 10:52:28.031
+Test Case 'ChapterNavigationTests.testNegativeInfinitePositionRefusesUnknown' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testNegativePositionRefusesUnknown' started at 2026-11-19 10:52:28.031
+Test Case 'ChapterNavigationTests.testNegativePositionRefusesUnknown' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testNegativeStartRefusesInvalidInventory' started at 2026-11-19 10:52:28.031
+Test Case 'ChapterNavigationTests.testNegativeStartRefusesInvalidInventory' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testNegativeZeroPositionEqualsZeroAndIsValid' started at 2026-11-19 10:52:28.031
+Test Case 'ChapterNavigationTests.testNegativeZeroPositionEqualsZeroAndIsValid' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testNextAtExactChapterStartCountsAsInsideThatChapter' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testNextAtExactChapterStartCountsAsInsideThatChapter' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testNextAtLastChapterRefusesBoundaryNoWrap' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testNextAtLastChapterRefusesBoundaryNoWrap' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testNextExactlyAtLastStartRefusesBoundary' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testNextExactlyAtLastStartRefusesBoundary' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testNextFromBeforeFirstReturnsFirstEntry' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testNextFromBeforeFirstReturnsFirstEntry' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testNextFromMiddleReturnsFollowingEntry' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testNextFromMiddleReturnsFollowingEntry' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testNilPositionRefusesUnknown' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testNilPositionRefusesUnknown' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testNonfiniteEntryTimesRefuseInvalidInventory' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testNonfiniteEntryTimesRefuseInvalidInventory' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testNonmonotonicStartsRefuseInvalidInventory' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testNonmonotonicStartsRefuseInvalidInventory' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testOverflowingStartRefusesInvalidInventoryBeforeConversion' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testOverflowingStartRefusesInvalidInventoryBeforeConversion' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testPositiveInfinitePositionRefusesUnknown' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testPositiveInfinitePositionRefusesUnknown' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testPreviousAtFirstChapterRefusesBoundaryNoWrap' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testPreviousAtFirstChapterRefusesBoundaryNoWrap' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testPreviousBeforeFirstRefusesBoundary' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testPreviousBeforeFirstRefusesBoundary' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testPreviousFromMiddleReturnsPrecedingEntry' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testPreviousFromMiddleReturnsPrecedingEntry' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testPreviousFromSecondReturnsFirst' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testPreviousFromSecondReturnsFirst' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testSingleEntryNextAndPreviousBothRefuseBoundary' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testSingleEntryNextAndPreviousBothRefuseBoundary' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testSparseIndicesArePreservedNotRenumbersed' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testSparseIndicesArePreservedNotRenumbersed' passed (0.0 seconds)
+Test Case 'ChapterNavigationTests.testZeroPositionIsValid' started at 2026-11-19 10:52:28.032
+Test Case 'ChapterNavigationTests.testZeroPositionIsValid' passed (0.0 seconds)
+Test Suite 'ChapterNavigationTests' passed at 2026-11-19 10:52:28.032
+	 Executed 29 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'debug.xctest' passed at 2026-11-19 10:52:28.032
+	 Executed 29 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'All tests' passed at 2026-11-19 10:52:28.032
+	 Executed 29 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+✔ Test run with 0 tests passed after 0.001 seconds.
+swift test exit: 0
+RUNNER EXIT: 0

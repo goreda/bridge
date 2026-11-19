@@ -542,3 +542,5 @@ Stock r3 supersedes r2: same 25 candidates (14/11), READY 0/0. audio-eq-preset i
 199r FIRST INGEST13:54:09: Audio G0950 -> gorav lane/199r/audio-track-plan-ingested debb495c55815e03205caefc9520486c7d5bc93c; main remainsf8bcd542. Independent Swift6.0.3 isolated11+existing29PASS, not full checkout. CACHE HELD issuer-token alias, no merge. Evidence receipts/199r-audio-ingested/SUMMARY.md.
 
 2026-11-19 13:56 +03 | CACHE G0951 HELD issuer alias; r2 refill published reserved OPEN to1nstinct | packets/199r-linux/1nstinct-02-r2/PACKET.md | unmodified2instanceRED/fixGREEN/resetexhaustioncontract/Swift6.0.3debug+release | SUPPORT lane-branch ingest only, main unchanged.
+
+199r14:06triage:G0954CACHEr1HELDindependentreview/globalinstancecounterexhaustion;G0955r2claimseparate.H0683SSAbehaviorUNSATISFIEDnoingest;Chapterexactportreviewafter88.No main changes.Evidence receipts/199r-second-returns/SUMMARY.md.
