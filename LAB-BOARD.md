@@ -515,3 +515,5 @@ Stock r3 supersedes r2: same 25 candidates (14/11), READY 0/0. audio-eq-preset i
 2026-11-19 13:30 +03 | arch-199r Linux refill | gorav main cf3e3f1772033dbc8465b19689e93f53c60006ce | 1nstinct: MULTIAUDIO policy + CACHE accounting; in2tinct: SSA V4 parser + ChapterNavigation API port | 4 OPEN reserved, unclaimed; 0 returned/ingested | packets/199r-linux/INDEX.tsv | swift test required; SUPPORT not native delivery; ingest within 2h of return; prior stock parked.
 
 199r returns13:50: G0950 MULTIAUDIO integration Swift replay pending on currentgoravf8bcd542; G0951 CACHE source-review HOLD issuer-token alias, no merge.2hingestdeadline15:38/15:40. Native87 unchanged. Evidence receipts/199r-first-returns/SUMMARY.md.
+
+199r FIRST INGEST13:54:09: Audio G0950 -> gorav lane/199r/audio-track-plan-ingested debb495c55815e03205caefc9520486c7d5bc93c; main remainsf8bcd542. Independent Swift6.0.3 isolated11+existing29PASS, not full checkout. CACHE HELD issuer-token alias, no merge. Evidence receipts/199r-audio-ingested/SUMMARY.md.
