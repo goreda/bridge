@@ -1,5 +1,17 @@
 # Live product board
 
+## Native95 updater ThreeD retirement repair DELIVERED, Nov19 17:33 +03
+
+DELIVERED 168da8ca866ae92e09e45914c5771e417c05f70d, atomic normal FF both gor/gorav-integration and mac-source-sync-20261103, exact live readback17:33:16+03. Base delivered93 c1c5da27. Python updater + existing test + generated manifest/delivery rows only; no production Swift/defaults/bindings change. Parent reports independent by-value M3 and Lane c PASS17:30:28. No native run consumed.
+
+Owner17:22 update refused after source overlay, before build/launch. Delivered93 Structure ledger had the exact nested Sources/gor/gor/ThreeD.swift hash2b06e395, but actual gor_provenance.py record-delivery registry only knew CameraPrivacyGate and PPController_Features. Added exactly nested ThreeD hash proved in delivered59 f0691de86 and delivered90 Git objects, with all five station replacements required. Unknown/edited extras remain refusals. Retry journal now seeks each PP/ThreeD introduction foundation when those old extras exist, so latest small retry does not lose first-overlay rollback. Existing journals preserved, composed journal includes exact historical monolith backup and original prestate.
+
+Actual legacy gor_update_run shell replay: exact1960-file f069 project -> delivered93 identical unknown-extra refusal -> new retry -> real verified receipt168da8ca (2039committed files) -> expected --update-build reexec argv. Unchanged production rollback function restored all1960 original bytes/modes exactly through323-row composed journal. External fetch/capture upload and native build excluded from local shell replay; cp-c clonefile Linux shim only. Earlier expanded updater16cases PASS including editedThreeD/wrongstation/missingfoundation, exactproductionbuild.sh integrity0/committed manifest0mismatch/mutantsPASS. Native93 earlier claim of safe updater retirement was incomplete: Structure replay did not exercise actual old-runner registry. Owner device result awaits same normal command, no rollback first/no manual deletion: cd ~/Downloads/gor && bash build.sh --update.
+
+Native94 visiblewindow/header candidate paused before any carrier commit/dispatch. Must rebase source from93 onto95 and regenerate all bindings before review/run. Its actual window/publisher pixels NOT_RUN. Source overlay/refusal did not replace installed app; no new owner runtime acceptance claimed. Evidence docs/receipts/native95-updater-delivered/.
+https://github.com/goreda/instinct.git
+
+
 ## Native93 ThreeD five-station split DELIVERED, Nov19 17:16 +03
 
 DELIVERED c1c5da2781d7c6e195ff444130808f2b84ca9dd0 atomic normalfastforward/no force BOTHrefs gor/gorav-integration and mac-source-sync-20261103;liveexactreadback17:16:59+03. Lane cactualfinalcommitboundSCOPEDPASS17:16:49; unchangedcanonicalClassEdryrunPASSimmediatelybeforepush. Owner199r/199s/D1originalsandstandingdeliverthenownerMactesttodoinspected;authorityneverinferredfromreceipts. Sameownercommandinstalls latest.
