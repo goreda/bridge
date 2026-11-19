@@ -1,5 +1,17 @@
 # Live product board
 
+## Native63 terminal and native64 correction, Nov19 04:25 +03
+
+Native63 failed in preparation after47s: existing native54 generated-file lint rejected three tracked ci/__pycache__/*.pyc. No StageA ran and no executable/artifact was published. Product did not reach compile. Native64 removes these files and refreshes the envelope; full actual carrier plan PASS, historical50/54/55/56/57/58/60/61/62 RED/GREEN and real build.sh integrity/manifest rehearsal PASS.
+
+Native64 build6afe5002d133a39c4a12f2c9 dispatched04:25:22, carrier4b6945dc34aebd41a739a8309d62b9c7e7b94daf. Unchanged clicked magnet sourcecf062a17a9b9b8ea14bc83cb74d202b0fabd5dc9 on deliveredf069. One candidate compile; retained59 native receipts instead of identical baseline compile. Exactf069resources checked by new latest-delivered static closure, alongside both older closures. Free439/500used,61left; expected4min, hardcap15. Checkpoint04:34:30, hardcap04:40:30. Lane c actual verdict and bound native receipts pending. Two known baseline Architecture FAILs remain explicit debt, not all-gates-green. Independent narrow witness repair89fe87bd and identity/header3ac1f461 prepared, native NOT_RUN.
+
+Owner confirmed the02:02update ran. Its logs have unverified build identity; do not describe this as an absent install. Last delivery remainsf069. Next owner row multi-audio HUD r3. Stockr6 unchanged23/CANDIDATE,0stockexecuted,READY0;27separate models unchanged.
+
+https://codemagic.io/app/6afafc22c4b78bd16d33ca9b/build/6afe5002d133a39c4a12f2c9
+Evidence docs/receipts/native63-terminal64-dispatch/.
+
+
 ## Native62 terminal and native63 owner-row isolation, Nov19 04:10 +03
 
 Ownerarch199o phonemsg-01M7RNCBP2YP2WN4Q43PF7MZPY supersedes the earlier combined plan. One owner candidate per run with delivered baseline, each own native StageA/StageB and D1 ClassE; sequential delivery rebases on last delivered source. Structure last and alone; final compositions retired. Delivery remainsf069, owner has02:02command. M2 nowmagnetclicked-row, nextmulti-audioHUD.
