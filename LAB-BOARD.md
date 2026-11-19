@@ -1,5 +1,14 @@
 # Live product board
 
+## Native82 initial retained81 baseline schema harness failure, Nov19 11:29 +03
+
+Native82 initialbuild6afeaf63d133a39c4a130bac/carrier2ed6382369b65589aff9fb76c869155ff96df981 terminal6m42. ProductfullcompilePASS/28gorTests0fail/all28witnessrowsPASS/nativeemitterPASS. First3boundreceiptsPASS; fourthstaticFAIL. Rootcause retained81 STATIC-BASELINE omitted semantic inventories input_bindings/script_messages/photon_injected_shader_names/script_options; final81baselinecall raises KeyError input_bindings. No productfailure/no promotion. Delivered81 0993c6e2 bothrefsunchanged. Rawf8d4511daa00d7045bfd01fc89f9b757a9634a5ae9ddcd6736d57e947111f212,runb449a924-428b-403e-9a1f-0fbce1e4043a.
+
+Singlecorrectedretry carrier209ceb814189d3375a329b81cd74d235305f0f34/source0095d215unchanged. Complete81 semantic inventory reconstructed from exact81resource bytes matching actual81static resource map, also equal80semanticvalues, completebuiltinventoryfrom81actualreceipt. ActualfailedschemaRED/currentGREEN/4semanticlossmutantsrejected, executespredispatchbeforecompile. Actual82stagedapp comparator locallyPASS with executable09436d8887813adf122fc05d3d3afe6fc19b0be3830938f8fd4f193375db7c6d matchingraw82. Fullplan/envelope1996/sourcepin/retained35mutantsPASS. TransientgeneratedPythoncachecaughtbyexistinglint/removedbeforefinalenvelope;net5fileharnessdeltaonly. ParentrouteLanecreviewpendingbeforeonecorrecteddispatch. Fresh11:28billing66/500used434freeminutes/subscriptionOFF/no transactions. Noactivelease/run. Hardcapresolved. Expectretry10mincap15fitsbudget. NoUI/audio/pixelclaims.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6afeaf63d133a39c4a130bac
+Evidence docs/receipts/native82-initial-baseline-schema-failed/.
+
+
 ## Native82 chapter session API r2 dispatched, Nov19 11:12 +03
 
 Native82 build6afeaf63d133a39c4a130bac DISPATCHED11:12:19 onefreeM2 frozen carrier2ed6382369b65589aff9fb76c869155ff96df981 remote CI readback/source0095d215a8a06e1b38b155875279bef5c7096461 exact4files190+/2- on DELIVERED81 0993c6e2b72f752089c6ca3d95145fc830c6aa98. Both delivery refs remain81 until actual independent commit-bound verdict. Expected10min cap15 hardcap11:27:20 wakeschedule-01M7SDTGE32G4BQ6RJ96XRP0ST/no polling/allleasesclosed. Fresh11:12billing60/500used440free/subscriptionOFF/no transactions. Configuration pixels inspected. Four bound receipts/fullcompile/gorTests28witnessrows pending, no native82 acceptance claimed.
