@@ -1,5 +1,12 @@
 # Live product board
 
+## Native78 r2 actual native-manifest FAIL, Nov19 08:52 +03
+
+Build6afe8ac1d133a39c4a1300e6 finished3m27,NOT acceptance. StageA PASS fullDarwinproductcompile68.45s/gorTests17.65s/sourceintegrityunchanged. Native-manifest FAIL: pp78_metadata invokes inventory.py whose archived root locator resolves archive/gor while physicalCIproduct is payload/gor. FileNotFoundError archive/gor/Resources/vendor/mpv/input.conf. Structure-witnesses and static-preinstall failclosed correctly on native-manifest gate. No23witnessrows/no7emittedmetadataoutputs accepted. Delivered77 bothrefs90d47dcd remain. Productsource5a9469d5/base90d47dcd/carriered5a7a14/run4efed9d6-d3a0-454d-b746-3f85565693a0. RawSHA3c4f9e402c57b53d402e325f06a5916ff41eba04bce7364c95ec98611cfc0ce9. Hardcapfired,allleasesreleased,nofuturemonitor. Narrow carrierrootrepairunderreplay,norerundispatched. Sourceunchanged. Portablearchiverehearsalmaskedphysicalrootdefect. Actualevidenceretained,noPASSclaim/OwnerMacNOT_RUN.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6afe8ac1d133a39c4a1300e6
+Evidence docs/receipts/native78-r2-terminal-fail/.
+
+
 ## Native78 r2 repaired carrier dispatched, Nov19 08:36 +03
 
 DELIVERED77 90d47dcd bothrefsunchanged. Previousnative786afe89bbcanceled1m9for4rawpolicyoverwrites,nooutcome/promotionaccepted. Repairedcarriered5a7a14590507dc1316735ce52edcf39e9e6ac1pushedGitCIcandidatebranch/readbackexact3958physicalGitblobmodepairs,source5a9469d5same149puremovepatchon77. Native78r2build6afe8ac1d133a39c4a1300e6 dispatched08:36:01onefreeM2,camusofmenlive25/500used475freeleft,subscriptionOFF,expected12cap15. Correctcarrier/workflowscreenshotinspected. Singlehardcap08:51:01wakeschedule-01M7S4WFC8NJM8KXVQKANHKD0C,allleasesclosed/nopolling. SourcecarrierindependentPASS43f666f3422b733a0b10ef62ef1618809ead7459dafb62710ec681fe08a2e323includesreplaybyteequality/4lostrowsrestored/4historicalmutantsRED,fullpaircheckPASS. ProductsourcepuremovePASSretained.
