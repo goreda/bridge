@@ -1,5 +1,16 @@
 # Live product board
 
+## Native89 selective producer port dispatched, Nov19 14:38 +03
+
+Build6afedfc116a4e9e15494d28d DISPATCHED14:38:41 freeM2alone on DELIVERED88 1f6f296540853db17ff7311ca908bfec0baf7b1b. Sourceb6f84bfb7e02c3c67a22e606bbb5a6ed2e1ee32f/treecc6575c38535da4634a40004022b264e93ae0195/carrier6b775b57f0fd6d2c63e8fbbd1ec664cb5158e39d. Lane c source+portable scoped PASS on identical tree39100a48 relayed14:31:51. Hardcap14:56 wakeschedule-01M7SSMJXAYFBRS5X88WASKGWM/no polling. Billing144/500used356free/subscriptionOFF/no transactions. Branch/native89workflow/SSHoff/priorityoffpixels inspected. Both delivery refs stay88 pending actual terminal and Lane c exact actual commit-bound verdict.
+
+Selective f8bcd542 producer closure port preserves all delivered Session/Presenter lines, current subtitle font scale API and both reapplications, changes only bounded producer integration in Renderer and test target/source list.15files,10new. Provider cf3 base/marker52a2blob and lock prefix unchanged, source-lock records selective imports, no whole-treef8 relabel, no provider rebuild. No host/AppDelegate/retirement/default/menu changes or activation caller. mpv defaults/bindings/refusals stay. Full product/gorTests plus new separate exact3producerXCTest (actual offscreen pixels enabled differs/disabled restores/no fabricated onscreen telemetry) required. Native89support only, not live header/window/owner acceptance. Host wiring next after this independent native delivery.
+
+Preflight22portablePASS12nativeNOT_RUN/2019payload/4031existingpolicy+10new/942debtunchanged/13434manifest+10/1911delivery+10=1921mismatches0/174retirementrollbackPASS/currentproductionbuild.shintegrity0/manifestmutantsPASS. Git modes/physicalstore/sourcepin/envelope2019/currentretained88 complete semantic inventory+same-run built_bundle values65mutantsPASS. Initial local portable retirement fixture path typo failed, corrected to existing88 historical-only object repo; full clean replay22PASS, no native source changes. Dedicated producer XCTest row added to34 expected actual witnesses. CACHEr4returnedG0959, Lane c scopedPASS14XCTestdebug/release/strict2productiontypes5mutantsRED, FoundationNSLock noSynchronization; macOS13deploymenttypecheckNOT_RUN/fullkitstrictdiscoveryFAIL. Lane-only support ingest after89dispatch, nevergoravmain. Await actualr4sourcekit from parent.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6afedfc116a4e9e15494d28d
+Evidence docs/receipts/native89-dispatched/.
+
+
 ## Native88 updater retirement repair delivered, Nov19 14:25 +03
 
 DELIVERED88 1f6f296540853db17ff7311ca908bfec0baf7b1b both refs atomic normal fast-forward, no force, push and live readback14:25:04. Lane c commit-bound PASS relayed by main14:24:42, exact final tree17e8f390b8e2ea7a9af0cbe8be9d2086fc75f35a. Class E current dryrun PASS immediately before push. Parent sent owner latest-ref install command14:25.
