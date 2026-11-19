@@ -1,0 +1,26 @@
+{
+  "commit": "c14319061ef70a0a65caed32c78b8c84bb46922e",
+  "tree": "be30d703287a114efd8da96bdd4791b6237a7da0",
+  "files": [
+    {
+      "path": "Package.swift",
+      "sha256": "44d0eb4f641b336ace30ddca66ca333871a2c5d77c208fe1775d783a71a9d570",
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSubtitles/SubtitleTrack.swift",
+      "sha256": "d0e635a1ec87e20d75cfdb59dd75fb4f9aec24f7c54a2f88f84dab154518b969",
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSubtitles/SubtitlePlan.swift",
+      "sha256": "ab71ef7425c33dfbbe93e558b8797139260fa1aff449369724fcad45b9dce696",
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSubtitles/SubtitleCue.swift",
+      "sha256": "2311ed3052c4a66f2d7942d23624b693faa52dc509354e22fbff148aa3abaa40",
+      "mode": "100644"
+    }
+  ]
+}
