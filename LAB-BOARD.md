@@ -768,3 +768,6 @@ Stock r3 supersedes r2: same 25 candidates (14/11), READY 0/0. audio-eq-preset i
 
 ## 199v lab refill Nov19 21:40
 Four packets OPEN reserved/unclaimed from TASKS at goravmainc1431906: 1nstinct03 AudioChannelMix,04 AudioEqualizer; in2tinct03 ABLoopPolicy,04 SubtitleSelectionPolicy. No Darwinwait, no duplicate priorfile ownership. Audio+Cache merged main, earlier SSA unmet/Chapter29 independent review pending. Every lab has two new rows available; no lab left without a row.
+
+## Current Nov19 21:55
+Owner199uPartA13orderedrowsfiled, replacesonly199tA. CropAterminalfailurefiled, no promotion. Audio/Cachemainc1431906. Fourlab199vrowsOPENunclaimed; SSAunmet/ChapterstaticGOexecutionNOT_RUN; Chapterrunnernotavailablelocally(noSwift). FullcompositioncarrierheldonlyLane cstaleWTpayloadmetricfixturefix, no nativejobactive. Alladditivereturnsqueuedseparately, notclaimedmerged.
