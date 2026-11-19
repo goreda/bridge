@@ -1,5 +1,16 @@
 # Live product board
 
+## Native86 provider marker provenance delivered, Nov19 13:39 +03
+
+DELIVERED86 62c0b16d586708bed0d6f887bedeee6f91c4bb57 bothrefs atomicClassEpush13:39:08/readback13:39:16. Root ffmpeg-provider.lock marker8786->cf3 plus54line real provider_errors regression test. Two source paths55+/1-, no Package/source-lock/recipes/retirement changes, no FFmpeg8.0.1/provider rebuild/VT runtime or performance claim. Provider gate current GREEN, wrong revision/blob/recipe RED. Prior mpv defaults/bindings/refusals and StageA audio inventory preserved, StageB closed.
+
+Source2d554f6a1d2188bc1912e212f693bed2bc602927/base85e04a3000/carrier0c3f61c1f5342781ed3b2bff5e90f475f7c9a48b/run174647fa-3942-4282-b230-6c5977834413/treef1aebabddf20971924675424bebe9c1fd53199c4. Build6afecccbd133a39c4a1316bb finished14m52/fullDarwin187.37s/provider185.45s/29gorTests1hardware skip0fail/32actualwitnesses0exit/fourboundreceipts/latest85staticPASS.2008compiledfilesexact,postcompileonlynativepolicy1+/manifest1+/delivery4+/3-. Policy4030(4029existing+1test)/debt942unchanged/manifest13433/delivery1910mismatches0. Exactproductionbuild.shintegrity0/manifestmutants/174retirementrollback/L2fixed18+baseline3shellmutants/ClassEdryrunexecutePASS. Lane c commit-boundbyvalueSCOPEDPASS/audit6c9b84e0filed. RawSHA2f1dc67414ffeca803a74f6014d80d6bb44d881350d83e330d7000e0656c1a5e/proof5399da77816d47063c147be056b72f32ad8a5150c3b4f0e79e673e223b286a73/bundle6d6995a37f13c4728941a019a291bad816634e5610b9e8076245d378728dd722/exe98194164dbe8712f7aabdb0317e36053277b87f8d13bb6210775fea1aaf9d913/identity3a9a2946e10fc811950269602004f2c292da5027c820ee9dd811766c076f91dd.
+
+Live13:35billing122/500used378free/subscriptionOFF/no transactions. Hardcapdeleted/allleasesclosed. Owner85sourceoverlaywasREFUSEDbeforebuildbythreeextraoldinputs; native86 does NOT fix this. Next isolated87backup-first update retirement repair, M3 scoped source PASS with100755preserved, full2021overlay replayPASS. Actual owner journal completeness and crash recovery remain unverified. GoravPhotonvisible producer next after updater; ThreeD last alone per199s. Four Linuxlabpacketsbridge936bde30OPEN/unclaimed, hourly returns/2hingestwatch. ffprobePENDING/Exposurewarning/playlistdebtunwaived.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6afecccbd133a39c4a1316bb
+Evidence docs/receipts/native86-delivered/.
+
+
 ## Native86 provider marker provenance dispatched, Nov19 13:17 +03
 
 Build6afecccbd133a39c4a1316bb DISPATCHED13:17:48freeM2aloneonDELIVERED85e04a3000fd4181ffbe8a2ee56a11c580293c35f8. Source2d554f6a1d2188bc1912e212f693bed2bc602927/carrier0c3f61c1f5342781ed3b2bff5e90f475f7c9a48b remoteCIpush/readback. Bothdeliveryrefsremain85untilfouractualboundreceipts32witnesses/independentfinalcommit-boundreview. Expected15minCIcap+queueallowancewake13:35wakeschedule-01M7SN00Q6VWS1702M4WJRPCZD/no polling/leaseclosed. Lastlivebilling107/500used393free/subscriptionOFF/no transactions. Configurationpixelsinspected.
