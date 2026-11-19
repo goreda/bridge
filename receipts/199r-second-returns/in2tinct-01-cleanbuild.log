@@ -1,0 +1,98 @@
+=== CLEAN BUILD in2tinct-01: .build/.swiftpm removed immediately prior ===
+production 31b45ecd5f05b75f96c33a79b4729d14792249fc36a81e81a9a2a84b1d89162d  /tmp/199r/gorav/Sources/GorAVSubtitles/ASSParser.swift
+staged     31b45ecd5f05b75f96c33a79b4729d14792249fc36a81e81a9a2a84b1d89162d  /tmp/199r/gorav/kits/199r/in2tinct-01/Sources/GorAVSubtitles/ASSParser.swift
+production 2311ed3052c4a66f2d7942d23624b693faa52dc509354e22fbff148aa3abaa40  /tmp/199r/gorav/Sources/GorAVSubtitles/SubtitleCue.swift
+staged     2311ed3052c4a66f2d7942d23624b693faa52dc509354e22fbff148aa3abaa40  /tmp/199r/gorav/kits/199r/in2tinct-01/Sources/GorAVSubtitles/SubtitleCue.swift
+byte equality verified for all staged production files
+Swift version 6.0.3 (swift-6.0.3-RELEASE)
+Target: x86_64-unknown-linux-gnu
+Building for debugging...
+[0/13] Write swift-version-411BFFA3241C6A41.txt
+[0/13] Write sources
+[4/14] Emitting module GorAVSubtitles
+[5/16] Compiling GorAVSubtitles ASSParser.swift
+[6/16] Compiling GorAVSubtitles SubtitleCue.swift
+[8/18] Emitting module ASSParserV4Tests
+[9/19] Compiling ASSParserV4Tests ASSParserV4Tests.swift
+[10/20] Wrapping AST for GorAVSubtitles for debugging
+[11/20] /tmp/199r/gorav/kits/199r/in2tinct-01/.build/x86_64-unknown-linux-gnu/debug/in2tinct-01-assparser-v4PackageDiscoveredTests.derived/all-discovered-tests.swift
+[12/20] Write sources
+[14/21] Emitting module in2tinct_01_assparser_v4PackageDiscoveredTests
+[15/23] Compiling in2tinct_01_assparser_v4PackageDiscoveredTests ASSParserV4Tests.swift
+[16/23] Compiling in2tinct_01_assparser_v4PackageDiscoveredTests all-discovered-tests.swift
+[17/24] Wrapping AST for ASSParserV4Tests for debugging
+[18/24] Wrapping AST for in2tinct-01-assparser-v4PackageDiscoveredTests for debugging
+[18/24] /tmp/199r/gorav/kits/199r/in2tinct-01/.build/x86_64-unknown-linux-gnu/debug/in2tinct-01-assparser-v4PackageTests.derived/runner.swift
+[20/24] Write sources
+[22/25] Emitting module in2tinct_01_assparser_v4PackageTests
+[23/26] Compiling in2tinct_01_assparser_v4PackageTests runner.swift
+[24/27] Wrapping AST for in2tinct-01-assparser-v4PackageTests for debugging
+[25/27] Write Objects.LinkFileList
+[26/27] Linking in2tinct-01-assparser-v4PackageTests.xctest
+Build complete! (5.09s)
+Test Suite 'All tests' started at 2026-11-19 10:52:40.635
+Test Suite 'debug.xctest' started at 2026-11-19 10:52:40.636
+Test Suite 'ASSParserV4Tests' started at 2026-11-19 10:52:40.636
+Test Case 'ASSParserV4Tests.testBOMAndCRLFAreNormalized' started at 2026-11-19 10:52:40.636
+Test Case 'ASSParserV4Tests.testBOMAndCRLFAreNormalized' passed (0.001 seconds)
+Test Case 'ASSParserV4Tests.testBadColourIsSkippedNotRefused' started at 2026-11-19 10:52:40.637
+Test Case 'ASSParserV4Tests.testBadColourIsSkippedNotRefused' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testBothStyleSectionsCoexist' started at 2026-11-19 10:52:40.637
+Test Case 'ASSParserV4Tests.testBothStyleSectionsCoexist' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testColourConversionMatrix' started at 2026-11-19 10:52:40.638
+Test Case 'ASSParserV4Tests.testColourConversionMatrix' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testContentErrorRefusesWholeDocument' started at 2026-11-19 10:52:40.638
+Test Case 'ASSParserV4Tests.testContentErrorRefusesWholeDocument' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testCosmeticStyleErrorDoesNotBlockContent' started at 2026-11-19 10:52:40.638
+Test Case 'ASSParserV4Tests.testCosmeticStyleErrorDoesNotBlockContent' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testDialogueBeforeFormatRefuses' started at 2026-11-19 10:52:40.638
+Test Case 'ASSParserV4Tests.testDialogueBeforeFormatRefuses' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testDialogueWithFewerFieldsRefuses' started at 2026-11-19 10:52:40.638
+Test Case 'ASSParserV4Tests.testDialogueWithFewerFieldsRefuses' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testDrawingOnlyBlockReportsAsBlock' started at 2026-11-19 10:52:40.638
+Test Case 'ASSParserV4Tests.testDrawingOnlyBlockReportsAsBlock' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testEmptyTextFieldRefuses' started at 2026-11-19 10:52:40.638
+Test Case 'ASSParserV4Tests.testEmptyTextFieldRefuses' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testEndNotAfterStartRefuses' started at 2026-11-19 10:52:40.638
+Test Case 'ASSParserV4Tests.testEndNotAfterStartRefuses' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testEscapes' started at 2026-11-19 10:52:40.639
+Test Case 'ASSParserV4Tests.testEscapes' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testEventsFormatWithoutRequiredFieldsRefuses' started at 2026-11-19 10:52:40.639
+Test Case 'ASSParserV4Tests.testEventsFormatWithoutRequiredFieldsRefuses' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testExplicitFormatColumnOrderIsHonored' started at 2026-11-19 10:52:40.639
+Test Case 'ASSParserV4Tests.testExplicitFormatColumnOrderIsHonored' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testMalformedTimestampsRefuse' started at 2026-11-19 10:52:40.639
+Test Case 'ASSParserV4Tests.testMalformedTimestampsRefuse' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testMissingEventsSectionRefuses' started at 2026-11-19 10:52:40.639
+Test Case 'ASSParserV4Tests.testMissingEventsSectionRefuses' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testOverrideBlocksAreReportedAndStrippedNeverInterpreted' started at 2026-11-19 10:52:40.639
+Test Case 'ASSParserV4Tests.testOverrideBlocksAreReportedAndStrippedNeverInterpreted' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testOverrideOnlyTextRefusesExplicitly' started at 2026-11-19 10:52:40.639
+Test Case 'ASSParserV4Tests.testOverrideOnlyTextRefusesExplicitly' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testStyleFormatMissingRequiredColumnIsSkippedOnRecord' started at 2026-11-19 10:52:40.639
+Test Case 'ASSParserV4Tests.testStyleFormatMissingRequiredColumnIsSkippedOnRecord' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testStyleRowBeforeAnyFormatIsSkippedOnRecord' started at 2026-11-19 10:52:40.639
+Test Case 'ASSParserV4Tests.testStyleRowBeforeAnyFormatIsSkippedOnRecord' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testStyleRowWithFewerFieldsIsSkippedOnRecord' started at 2026-11-19 10:52:40.639
+Test Case 'ASSParserV4Tests.testStyleRowWithFewerFieldsIsSkippedOnRecord' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testSubtitleCueIntervalSemantics' started at 2026-11-19 10:52:40.639
+Test Case 'ASSParserV4Tests.testSubtitleCueIntervalSemantics' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testUnterminatedOverrideBlockIsReported' started at 2026-11-19 10:52:40.639
+Test Case 'ASSParserV4Tests.testUnterminatedOverrideBlockIsReported' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testV4CuesCarryTextAndStyleAssociation' started at 2026-11-19 10:52:40.640
+Test Case 'ASSParserV4Tests.testV4CuesCarryTextAndStyleAssociation' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testV4PlusStylesAndCuesUnchanged' started at 2026-11-19 10:52:40.640
+Test Case 'ASSParserV4Tests.testV4PlusStylesAndCuesUnchanged' passed (0.0 seconds)
+Test Case 'ASSParserV4Tests.testV4StylesParseIntoStyleModel' started at 2026-11-19 10:52:40.640
+Test Case 'ASSParserV4Tests.testV4StylesParseIntoStyleModel' passed (0.0 seconds)
+Test Suite 'ASSParserV4Tests' passed at 2026-11-19 10:52:40.640
+	 Executed 26 tests, with 0 failures (0 unexpected) in 0.004 (0.004) seconds
+Test Suite 'debug.xctest' passed at 2026-11-19 10:52:40.640
+	 Executed 26 tests, with 0 failures (0 unexpected) in 0.004 (0.004) seconds
+Test Suite 'All tests' passed at 2026-11-19 10:52:40.640
+	 Executed 26 tests, with 0 failures (0 unexpected) in 0.004 (0.004) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+✔ Test run with 0 tests passed after 0.001 seconds.
+swift test exit: 0
+RUNNER EXIT: 0
