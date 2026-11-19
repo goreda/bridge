@@ -1,5 +1,11 @@
 # Live product board
 
+## Native94 r2 real probe diagnostic retry DISPATCHED, Nov19 18:24 +03
+
+Build6aff14a58f52ca275128ecce/index25 singlefreeM2 cap20 dispatched18:24:21; source4903a71e99ecbf7ccb25db07e19cd5ff9f8150f1/base95 168da8ca/carrier63c5ab9f9315d3d967ea34a1415572b493fa7d98 exactliveCIbranchreadback. Lane ccarrierSCOPEDPASS18:23:21. Onecheck18:43-18:44 wakeschedule-01M7T6HNKERQQKNVTCW63F2K9N/no polling/293freeOFF before run. Real ffprobe fixedpaths first; otherwise real brew bounded independent180s kill/512MiB OUT+newCellar/4MiBlog/recurring2GiBfloor; TMPDIR/HOMEBREW_TEMP underOUT. Disk guards polling not OSquota. Readonly real probe checker after provision before prepare/StageA; actual version+fixture JSON retained out/native94-probe. FourdisposableboundnegativecontrolsPASS, not actualrunner evidence. TypedrealOutcome diagnostics test-only source; alloriginalwindowassertions/37witness retained. Initial94failed atfixtureadmission, genericreason discarded; noPNG then. Thisretry actualprobe/window/Darwin NOT_RUN atdispatch, noacceptance/promotion. Return both realPNGs+raw toparentandLane cforpixelreview. Bothdeliveryrefs168da8ca unchanged. Evidence docs/receipts/native94-r2-dispatched/.
+https://codemagic.io/app/6afe76c39ad62e7dcdcacd53/build/6aff14a58f52ca275128ecce
+
+
 ## Native94 terminal FAIL at real fixture admission, Nov19 18:16 +03
 
 Build6aff0a108f52ca275128e81a/index24 UI FINISHED5m33, not acceptance. Machine17:54 after15minqueue, source5d90a8ed/base95/carrierb4675c19/runa8826431-88f7-43ca-8134-40cf2a914830. Exact four receipts same-run pins confirmed: stage-aFAIL because gorTests exit1; provider93.98s/fullDarwin95.61s/sourceintegrityPASS. New testActualWindowPublishedGoravHeader line76 failed real fixture admission before AppDelegate/window/capture. Existing actualHostCompletionAndHUDPublisherPASS4.730s.31tests/1hardware skip/1failure. All three StageB gates correctly refuse125/NOT_RUN. No PNG, observation.json or native94RESULT exists; no pixel/window/header acceptance and no promotion. Both deliveryrefs remain95 168da8ca.
