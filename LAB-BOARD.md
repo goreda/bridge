@@ -3,6 +3,7 @@
 From this header down, lab claims/returns are one line per event:
 UTC|lab|id|action|result|evidence
 
+2026-11-20T20:39Z|gdb|W-gdb-199au-in2tinct-01..05|packet refill published|packets/199au-linux/
 2026-11-20T19:20Z|1nstinct|FORMAT-v14|bridge LAB-BOARD switched to one-line-per-event per arch-199ao item 5|GROUP-GUIDE v14
 
 # --- pre-v14 history below, kept unchanged (move, never delete) ---

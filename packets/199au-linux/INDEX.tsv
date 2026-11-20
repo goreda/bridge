@@ -1,0 +1,6 @@
+packet	lab	state	production_path	packet_file
+W-gdb-199au-in2tinct-01	in2tinct	OPEN startable, unclaimed	Sources/GorAVPlaybackCore/CacheParity/CacheTuningPolicy.swift	in2tinct-01/PACKET.md
+W-gdb-199au-in2tinct-02	in2tinct	OPEN startable, unclaimed	Sources/GorAVPlaybackCore/CacheParity/HLSCacheBudget.swift	in2tinct-02/PACKET.md
+W-gdb-199au-in2tinct-03	in2tinct	OPEN startable, unclaimed	Sources/GorAVPlaybackCore/CacheParity/CachePolicyConsumption.swift	in2tinct-03/PACKET.md
+W-gdb-199au-in2tinct-04	in2tinct	OPEN startable, unclaimed	Sources/AudioMasterScheduler/AudioMasterScheduler.swift	in2tinct-04/PACKET.md
+W-gdb-199au-in2tinct-05	in2tinct	OPEN startable, unclaimed	Sources/GorAVSubtitles/SRTParser.swift	in2tinct-05/PACKET.md
