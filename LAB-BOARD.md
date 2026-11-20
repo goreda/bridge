@@ -1,3 +1,12 @@
+# LAB-BOARD (v14 one-line-per-event format, arch-199ao item 5, 2026-11-20)
+
+From this header down, lab claims/returns are one line per event:
+UTC|lab|id|action|result|evidence
+
+2026-11-20T19:20Z|1nstinct|FORMAT-v14|bridge LAB-BOARD switched to one-line-per-event per arch-199ao item 5|GROUP-GUIDE v14
+
+# --- pre-v14 history below, kept unchanged (move, never delete) ---
+
 # Live product board
 
 ## Owner arch-199t filed, Nov19 21:33 +03
