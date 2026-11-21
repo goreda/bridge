@@ -54,3 +54,26 @@ GPU, build sha, command lines, raw captures path. Verdict PASS/FAIL vs 1px.
   (PASS on the ported math; run: python3 test-191c-roll-invariant.py, exit=0)
 - Note: the pre-199u test-vr-flat-glsl.py no longer exists in the current tree;
   this packet replaces it for the roll-fusion acceptance.
+
+
+GO: 1nstinct, 199bd item 4, November 21 2026 18:52 +03.
+Start the following three code tasks now on b3/191c-r-fusion. This is a coding assignment, not a capacity question. Return executable code and tests, not a plan or receipt. The three files below are new files to add under packets/191c-roll-fusion/; keep their interfaces together on this branch. Product consumer: 191c R4 roll-fusion acceptance. These tasks turn the existing manual protocol into a reproducible real-mpv test, so the product lane can fix measured fusion defects rather than rely on a static model.
+
+Task 1: synthetic marker generator.
+file: packets/191c-roll-fusion/generate_roll_markers.py
+change: implement deterministic synthetic SBS, half-SBS, top-bottom and mono marker fixtures. Emit paired marker IDs, eye-local coordinates, signed disparity, dimensions and content hashes in a machine-readable manifest. Use only generated pixels, no user captures or licensed assets. Build the protocol's 3x3 grid with -2%, zero and +2% disparity, and a synthetic native VR180 case with its coordinate mapping stated. Keep generation independent from the capture/scoring implementation.
+test: add test_generate_roll_markers.py. Assert reproducible byte hashes; correct dimensions and marker correspondences; both disparity signs and zero present; half-SBS/TB coordinate conversion correct; invalid sizes and overlapping/unresolvable markers rejected. Run tests in this return. A model-generated PASS is not a real-mpv PASS.
+
+Task 2: production-input mpv capture runner.
+file: packets/191c-roll-fusion/run_roll_capture.py
+change: implement a Linux mpv runner using the actual vr180-look.lua at zuellue/gorav-native-ci 2ca10de8ab767d8a24d8c3f4b481e5d6984701e0, path payload/gor/Resources/vendor/mpv/scripts/vr180-look.lua. Verify its hash. Inspect and use the actual registered production pose input, do not invent or directly set a different transform. Capture 2560x1600 frames at -30,-15,-5,0,5,15,30 degrees and crossed +/-15 for the fixture modes. Record injected pose, effective shader options, actual renderer/GPU, mpv version, command, source hash, capture hashes and explicit errors. Synchronize on frames/options rather than a fixed sleep. Keep the zero-roll baseline separate and bind it to the exact baseline shader. Do not start Codemagic or mutate the owner's machine.
+test: add test_run_roll_capture.py for protocol serialization, angle/mode completeness, timeout/nonzero mpv/missing capture/stale option refusal. Then run the real Linux mpv path when available. If renderer support is absent, return the runnable code and exact error, never synthetic captures presented as rendered output. Software rendering must be labeled software, not Mac/GPU acceptance.
+
+Task 3: measured pixel scorer and fusion regression.
+file: packets/191c-roll-fusion/score_roll_fusion.py
+change: implement marker matching from captured pixels with explicit image-y versus screen-y convention, eye assignment and a_perp sign. Compute per-marker e_v, mode/angle maxima, unmatched/clipped counts and zero-roll pixel diff. Consume the generator manifest and capture index. Missing markers, malformed metadata or incomplete angles cannot pass. Produce a nonzero exit on failed acceptance, not merely a report field. Expose native results separately from preview results. If the real run reveals a production defect, return the smallest named diff to stereo_pair_uv / stereo_partition / stereo_disparity_axis or the flat preview sampling in vr180-look.lua, backed by that failing capture and a fixed run; do not change working native geometry speculatively.
+test: add test_score_roll_fusion.py with known pixel-space pairs along the eye axis at every angle, a deliberate screen-horizontal mutant that fails under roll, crossed-sign and image-y mutants, >1px vertical error, missing marker, duplicate marker, incomplete angle set and changed zero-roll pixel. Run this scorer on the actual captures from Task 2. Preview limit is max abs(e_v)<=1px; zero-roll comparison is exact. Native baked-disparity measurements are a regression result, not a new all-path 1px approval.
+
+Source correction for implementation: the pinned source was read before this GO. Actual flat preview sampling is 1822-1827, native optical-centre rotation is 1919-1928, and native split remains screen-aligned. The older packet's line descriptions and static all-path PASS are not evidence of current rendered behavior. The referenced 191c plan distinguishes native residual disparity from synthetic-preview fusion. Report native raw measurements and preserve its existing behavior; do not silently make the packet's blanket 1px line a new native design requirement.
+Return: branch commit plus code patch/full files, exact test commands/exits and real capture/scorer outputs. No capacity questions, heartbeat or receipt-only commit. No deployment, pipeline dispatch, native acceptance or release permission is added by this GO.
+secret scan: clean
