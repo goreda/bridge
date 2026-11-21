@@ -555,3 +555,5 @@ arch-199c: new prerequisite product packets open in packets/199c, earliest verif
 199i B36/B37 assigned OPEN in packets/199i, 2h lease without verified progress. Host-vendored gorav sources at b603, not gorav-main cf3; host own test paths. Cookie-header delimiter boundary and bounded subtitle overlap witnesses with exact issueTotal. Independent replay pending; defensive hardening, native/network/fullpackage NOT_RUN. Review proposed fixes and add compiling mutants before return.
 
 199iB36/B37 independently replayed and imported isolated NONQUALIFIED, no host adoption. Fix requests at packets/199i/0501-imports/FOLLOWUP-IN2TINCT.md: remaining Cookie grammar controls and indexed overlap counting with exact issueTotal/first64 order. Current witness cap does not bound work.
+
+- Start three gorav M1 window/control code tasks: packets/W-gdb-199bd-M1.md at commit 1cb98ec703e667df3d37aef09f01fd210f47a5b2. Current c874 WindowModePlan and WindowModeController source pins match the supplied bases. Implement code and tests on receipt, no capacity questionnaire.
