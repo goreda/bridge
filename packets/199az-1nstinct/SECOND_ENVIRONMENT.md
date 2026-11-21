@@ -31,7 +31,8 @@ State: request only, not accepted or started. This independent validation supple
 **Candidate**
 - Branch: `blink/b4-normal-playback`
 - Parent: `644b9e088813ab101cb41abdc1efd60043c55514`
-- Candidate: `3f82344838cf6f582eaa049ab1061e3cb4160df5`
+- Candidate: `dcdf2610421858b26c8d9bf14d1cbbb1a49519ed`
+- Superseded candidate: `3f82344838cf6f582eaa049ab1061e3cb4160df5` (historical reference only; do not use for current validation).
 - Five-path patch with targeted delivery emit.
 
 **Acceptance gates**
