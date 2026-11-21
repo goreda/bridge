@@ -1,3 +1,5 @@
+W-gdb-e0-qualification-01 | generic one-shot Linux/Node capacity gate OFFER | packets/W-gdb-e0-qualification-01.md | AWAITING_EXPLICIT_ACCEPTANCE then integrator GO; no execution/source export, NOT runnable product stock
+
 W-gdb-capacity-e0-01 | Linux executor capacity/input-route questionnaire | packets/W-gdb-capacity-e0-01.md | AWAITING_REPLY; coordination notice only, NOT executable stock; no run/source supplied
 
 CACHE21A source-binding research request (leg A): packets/cache21a-source-bound/REQUEST.md. Exact base bc71c85ec; scope recovery and actual-product test preparation. NOT runnable stock, unclaimed, no execution asserted. Claim/return via this bridge.
