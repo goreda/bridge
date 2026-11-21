@@ -4815,3 +4815,4 @@ W-gdb-198z-in2tinct-07 | in2tinct | Sources/timepos-vector-tests/main.swift | OP
 W-gdb-198z-in2tinct-08 | in2tinct | Sources/l3-convert-matrix-tests/main.swift | OPEN unclaimed
 W-gdb-198z-in2tinct-09 | in2tinct | Sources/b-gate-tests/BoundsTable.swift | OPEN unclaimed
 W-gdb-198z-in2tinct-10 | in2tinct | Sources/active-transport-tests/main.swift | OPEN unclaimed
+W-gdb-capacity-e0-01 | Linux executor capacity/input-route questionnaire | packets/W-gdb-capacity-e0-01.md | AWAITING_REPLY; coordination notice only, NOT executable stock; no run/source supplied
