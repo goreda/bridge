@@ -1,0 +1,16 @@
+{
+  "base": "374c2b9e14bfbf1614091767c83ce4ce3f07bac8",
+  "revision": "r4",
+  "source_path": "Sources/gor/ThreeD/Source.swift",
+  "post_source_sha256": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53",
+  "extract_sha256": "89515d871d33ab4c29c27dd167384a1a0b14db1413b327b04e0d953643beea78",
+  "extract_bytes": 55875,
+  "extract_lines": 713,
+  "regions": [
+    "SourcePixelBounds",
+    "SourcePixelCropScanner",
+    "WTCropSamples"
+  ],
+  "status": "REVIEW_ONLY; Ops actual Swift execution and architect review PENDING, not accepted",
+  "scope": "Product extract only. No complete controller/async lifecycle proof. Local writer owns implementation."
+}

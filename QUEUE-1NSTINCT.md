@@ -43,3 +43,5 @@ Q3/G7 actual peer files now at packets/199by-standing-queues/g7-peer-repair/. Di
 G7 qualification update supersedes prior baseline-unresolved notes: Ops matched/applied/tested actual priorv2repair and found no original3harness defectRED. Historical peer/baseline notes remain provenance, not current blockers. Only separate capacity scope evidence may remain; no global capacityPASS.
 
 G7 latest filtered-log check supersedes earlier raw-receipt-gap note for the listed observed fields only. Bounded repair row complete; globalcapacity is not claimed or an invented follow-up requirement.
+
+Q4 CURRENT REVIEW SUCCESSOR: packets/199by-standing-queues/autocrop-v3-r4-review/ has713-line r4extract+binding. Ops actualSwift/architect review PENDING, not accepted. r3 remains knownRED archive. Local writer owns patch; lab/Goreda review partner only. PP async/generation proof exceeds extract evidence; request scoped projection if needed. No2ddshipgate.
