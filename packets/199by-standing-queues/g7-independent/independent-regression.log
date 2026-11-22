@@ -1,0 +1,5 @@
+PASS actual fireRange body: variable chunk debit, independent timer resume, close cleanup
+KILLED runtime constant-debit debits actual 1.1MB chunk
+KILLED runtime missing-resume independent tick resumes without another data event
+PASS actual extractor: sampled peak versus final RSS, per-process peak, 96 connected capacity fields, throttle counts
+BOUNDARY deterministic local body/extractor regression only. No live peer replay or benchmark rerun.
