@@ -1,0 +1,14 @@
+{
+  "base": "374c2b9e14bfbf1614091767c83ce4ce3f07bac8",
+  "revision": "r3",
+  "source_path": "Sources/gor/ThreeD/Source.swift",
+  "post_source_sha256": "24d52ffea02f6462f548ccc083530349f3f72f0cf6df590aa3638acf705d201a",
+  "extract_sha256": "75c8c51bdd439bb46d70074c9a45c128a5c5a99d3c1e675987628de7efaa471c",
+  "extract_lines": 701,
+  "regions": [
+    "SourcePixelBounds",
+    "SourcePixelCropScanner",
+    "WTCropSamples"
+  ],
+  "scope": "Reference product extract only;125 unrelated intervening lines omitted. Not whole-source closure, not native acceptance."
+}

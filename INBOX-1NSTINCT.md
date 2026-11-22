@@ -1,3 +1,5 @@
+199by current-source correction: Q1R2 already integrated before2dd; actual source/tests/probe at packets/199by-standing-queues/191c-actual2dd/ compare remaining gaps, no blindR2patch. Q4review-safe701extract at packets/199by-standing-queues/autocrop-v3-r3-review/; local writer owns patch,1nstinct/Goreda review only, Ops actualSwift pending. No GPU/acceptance claim.
+
 199byQ1 returned191c source/tests are available at packets/199by-standing-queues/191c-r4-source-input/. NewR2 partition successor only; historical scorer delivered,112refused/0scored NOTPASS. Projection excludes PNGs/indexes/logs and production shader; exact production binding/renderer gap remains. No per-packet GO wait, return precise input gap or nonduplicated code.
 
 199by REPLACES199bx: QUEUE-1NSTINCT.md has exact new standing GO. Completed station-script rows deleted from active queue; do not repeat stations. Pull existing real nonstation work, return code+test log, no per-packet GO. AutocropQ4 coordinates with active local writer/Goreda;701-line extract disclosure not expanded. Q1/Q2/Q3 available subject to exact inputs/claim reconciliation.

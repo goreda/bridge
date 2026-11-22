@@ -1,0 +1,37 @@
+{
+  "base": "2ddfc14e381ea308d68b38e8a81b583dd1ffc3e8",
+  "files": [
+    {
+      "path": "Resources/vendor/mpv/scripts/vr180-look.lua",
+      "sha256": "be74e78f7b9f9819fe62ea5bdb89d9b601ed3e2d76c42abdb0edf36afaba3bcc",
+      "bytes": 135806
+    },
+    {
+      "path": "tools/vr_pack_probe.py",
+      "sha256": "88dfb3b5850f8e905b0b3c554c4ec8f8cbc2083a65e7c5fbd42df86f11e1b5c3",
+      "bytes": 7452
+    },
+    {
+      "path": "Tests/VR191CRoll/run.py",
+      "sha256": "7ca15fe025814704d1c7ca51b744a206953ec53b8463650c1308728c34e7b835",
+      "bytes": 1511
+    },
+    {
+      "path": "Tests/VR191CRoll/test_world_horizon.py",
+      "sha256": "a330889111687f45ee7cdea99d152bd5abb25da62c3b081d3009d0b294bc8f81",
+      "bytes": 5946
+    },
+    {
+      "path": "Tests/VR191CRoll/test_roll_r4.py",
+      "sha256": "6bab2167820013df853ca6670c1512940b6a30d59cd650fb730488e4edd015d9",
+      "bytes": 18911
+    },
+    {
+      "path": "Tests/VR191CRoll/test_generated_sources.py",
+      "sha256": "a2294e275ffe8ce7a712293f9b472dc5eefa588bdb190383d3007d78ba32a882",
+      "bytes": 2825
+    }
+  ],
+  "existing_integration": "0e6e32b7a includes191cR2 rollcompensatedpartition +Tests/VR191CRoll from qualified22f1048; do not reapply blindly",
+  "runtime": "tools/vr_pack_probe.py requires actualsupportedmpv/GPU notincluded, Lua itself generatesGLSL, portableanalytic tests are not renderproof"
+}
