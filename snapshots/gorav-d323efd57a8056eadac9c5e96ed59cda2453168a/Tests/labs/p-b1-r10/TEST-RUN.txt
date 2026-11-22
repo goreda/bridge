@@ -1,0 +1,272 @@
+Public copy of the reviewer-local test log: the original path prefix /tmp/pb1/MediaFacadeKit/ was rewritten to a relative path; no commands, diagnostics, results or exit codes were altered.
+
+Commands and environment:
+  $ swift --version
+  Swift version 5.10.1 (swift-5.10.1-RELEASE)
+  Target: x86_64-unknown-linux-gnu
+  $ swift test        # from a clean checkout of this package (no .build carried over)
+  exit code: 0
+  Result: 75 tests, 0 failures, 0 skips
+  Run at: 2026-11-06T22:11Z (UTC)
+
+Swift version 5.10.1 (swift-5.10.1-RELEASE)
+Target: x86_64-unknown-linux-gnu
+Building for debugging...
+[0/14] Write swift-version--6040B813AC8AD1FC.txt
+[0/14] Copying Fixtures
+[0/14] Write sources
+[5/15] Emitting module MediaFacadeKit
+[6/21] Compiling MediaFacadeKit Facade.swift
+[7/21] Compiling MediaFacadeKit FakeEngine.swift
+[8/21] Compiling MediaFacadeKit MediaEngine.swift
+[9/21] Compiling MediaFacadeKit MediaError.swift
+[10/21] Compiling MediaFacadeKit MediaValue.swift
+[11/21] Compiling MediaFacadeKit RowTable.swift
+[13/23] Emitting module MediaFacadeKitTests
+[14/29] Compiling MediaFacadeKitTests E1RowTests.swift
+Tests/MediaFacadeKitTests/E1RowTests.swift:273:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("loadfile", arguments: [.text("clip.mp4"), .text("replace"), .number(2)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tests/MediaFacadeKitTests/E1RowTests.swift:284:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("seek", arguments: [.number(.nan)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tests/MediaFacadeKitTests/E1RowTests.swift:285:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("seek", arguments: [.number(.infinity)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[15/29] Compiling MediaFacadeKitTests E2RowTests.swift
+Tests/MediaFacadeKitTests/E1RowTests.swift:273:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("loadfile", arguments: [.text("clip.mp4"), .text("replace"), .number(2)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tests/MediaFacadeKitTests/E1RowTests.swift:284:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("seek", arguments: [.number(.nan)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tests/MediaFacadeKitTests/E1RowTests.swift:285:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("seek", arguments: [.number(.infinity)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[16/29] Compiling MediaFacadeKitTests FacadeContractTests.swift
+Tests/MediaFacadeKitTests/E1RowTests.swift:273:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("loadfile", arguments: [.text("clip.mp4"), .text("replace"), .number(2)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tests/MediaFacadeKitTests/E1RowTests.swift:284:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("seek", arguments: [.number(.nan)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tests/MediaFacadeKitTests/E1RowTests.swift:285:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("seek", arguments: [.number(.infinity)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[17/29] Compiling MediaFacadeKitTests FacadeR1Tests.swift
+Tests/MediaFacadeKitTests/E1RowTests.swift:273:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("loadfile", arguments: [.text("clip.mp4"), .text("replace"), .number(2)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tests/MediaFacadeKitTests/E1RowTests.swift:284:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("seek", arguments: [.number(.nan)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tests/MediaFacadeKitTests/E1RowTests.swift:285:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("seek", arguments: [.number(.infinity)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[18/29] Compiling MediaFacadeKitTests RowTableTests.swift
+Tests/MediaFacadeKitTests/E1RowTests.swift:273:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("loadfile", arguments: [.text("clip.mp4"), .text("replace"), .number(2)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tests/MediaFacadeKitTests/E1RowTests.swift:284:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("seek", arguments: [.number(.nan)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tests/MediaFacadeKitTests/E1RowTests.swift:285:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("seek", arguments: [.number(.infinity)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[19/29] Compiling MediaFacadeKitTests resource_bundle_accessor.swift
+Tests/MediaFacadeKitTests/E1RowTests.swift:273:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("loadfile", arguments: [.text("clip.mp4"), .text("replace"), .number(2)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tests/MediaFacadeKitTests/E1RowTests.swift:284:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("seek", arguments: [.number(.nan)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tests/MediaFacadeKitTests/E1RowTests.swift:285:20: warning: result of call to 'command(_:arguments:)' is unused
+        try facade.command("seek", arguments: [.number(.infinity)])
+                   ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[20/30] Wrapping AST for MediaFacadeKit for debugging
+[21/30] Wrapping AST for MediaFacadeKitTests for debugging
+[22/30] .build/x86_64-unknown-linux-gnu/debug/MediaFacadeKitPackageDiscoveredTests.derived/all-discovered-tests.swift
+[23/30] Write sources
+[25/31] Emitting module MediaFacadeKitPackageDiscoveredTests
+[26/33] Compiling MediaFacadeKitPackageDiscoveredTests MediaFacadeKitTests.swift
+[27/33] Compiling MediaFacadeKitPackageDiscoveredTests all-discovered-tests.swift
+[28/34] .build/x86_64-unknown-linux-gnu/debug/MediaFacadeKitPackageTests.derived/runner.swift
+[29/34] Wrapping AST for MediaFacadeKitPackageDiscoveredTests for debugging
+[30/34] Write sources
+[32/35] Emitting module MediaFacadeKitPackageTests
+[33/36] Compiling MediaFacadeKitPackageTests runner.swift
+[34/37] Wrapping AST for MediaFacadeKitPackageTests for debugging
+[35/37] Write Objects.LinkFileList
+[36/37] Linking MediaFacadeKitPackageTests.xctest
+Build complete! (7.06s)
+Test Suite 'All tests' started at 2026-11-06 22:11:21.149
+Test Suite 'debug.xctest' started at 2026-11-06 22:11:21.150
+Test Suite 'E1RowTests' started at 2026-11-06 22:11:21.150
+Test Case 'E1RowTests.testDomain_audioEnum' started at 2026-11-06 22:11:21.150
+Test Case 'E1RowTests.testDomain_audioEnum' passed (0.002 seconds)
+Test Case 'E1RowTests.testDomain_loadfileIntegerIndex' started at 2026-11-06 22:11:21.153
+Test Case 'E1RowTests.testDomain_loadfileIntegerIndex' passed (0.001 seconds)
+Test Case 'E1RowTests.testDomain_plainNumberFinitenessUnspecified' started at 2026-11-06 22:11:21.154
+Test Case 'E1RowTests.testDomain_plainNumberFinitenessUnspecified' passed (0.001 seconds)
+Test Case 'E1RowTests.testDomain_rejectedValuesDoNotReachEngine' started at 2026-11-06 22:11:21.155
+Test Case 'E1RowTests.testDomain_rejectedValuesDoNotReachEngine' passed (0.001 seconds)
+Test Case 'E1RowTests.testDomain_sidEnum' started at 2026-11-06 22:11:21.156
+Test Case 'E1RowTests.testDomain_sidEnum' passed (0.001 seconds)
+Test Case 'E1RowTests.testDomain_speedMutateBounds' started at 2026-11-06 22:11:21.157
+Test Case 'E1RowTests.testDomain_speedMutateBounds' passed (0.001 seconds)
+Test Case 'E1RowTests.testDomain_speedSetBounds' started at 2026-11-06 22:11:21.158
+Test Case 'E1RowTests.testDomain_speedSetBounds' passed (0.001 seconds)
+Test Case 'E1RowTests.testDomain_subEnum' started at 2026-11-06 22:11:21.159
+Test Case 'E1RowTests.testDomain_subEnum' passed (0.001 seconds)
+Test Case 'E1RowTests.testDomain_volumePercentIsUnitNotRange' started at 2026-11-06 22:11:21.160
+Test Case 'E1RowTests.testDomain_volumePercentIsUnitNotRange' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow01_command_loadfile' started at 2026-11-06 22:11:21.161
+Test Case 'E1RowTests.testRow01_command_loadfile' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow02_command_seek' started at 2026-11-06 22:11:21.162
+Test Case 'E1RowTests.testRow02_command_seek' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow03_command_stop' started at 2026-11-06 22:11:21.163
+Test Case 'E1RowTests.testRow03_command_stop' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow04_propertyGet_pause' started at 2026-11-06 22:11:21.164
+Test Case 'E1RowTests.testRow04_propertyGet_pause' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow05_propertyGet_timePos' started at 2026-11-06 22:11:21.165
+Test Case 'E1RowTests.testRow05_propertyGet_timePos' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow06_propertyGet_duration' started at 2026-11-06 22:11:21.166
+Test Case 'E1RowTests.testRow06_propertyGet_duration' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow07_propertyGet_trackList' started at 2026-11-06 22:11:21.167
+Test Case 'E1RowTests.testRow07_propertyGet_trackList' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow08_propertySet_pause' started at 2026-11-06 22:11:21.168
+Test Case 'E1RowTests.testRow08_propertySet_pause' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow09_propertySet_speed' started at 2026-11-06 22:11:21.169
+Test Case 'E1RowTests.testRow09_propertySet_speed' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow10_propertySet_volume' started at 2026-11-06 22:11:21.170
+Test Case 'E1RowTests.testRow10_propertySet_volume' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow11_propertySet_sid' started at 2026-11-06 22:11:21.171
+Test Case 'E1RowTests.testRow11_propertySet_sid' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow12_propertyMutate_pause' started at 2026-11-06 22:11:21.172
+Test Case 'E1RowTests.testRow12_propertyMutate_pause' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow13_propertyMutate_mute' started at 2026-11-06 22:11:21.173
+Test Case 'E1RowTests.testRow13_propertyMutate_mute' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow14_propertyMutate_speed' started at 2026-11-06 22:11:21.174
+Test Case 'E1RowTests.testRow14_propertyMutate_speed' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow15_propertyMutate_volume' started at 2026-11-06 22:11:21.175
+Test Case 'E1RowTests.testRow15_propertyMutate_volume' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow16_propertyMutate_audio' started at 2026-11-06 22:11:21.176
+Test Case 'E1RowTests.testRow16_propertyMutate_audio' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow17_propertyMutate_sub' started at 2026-11-06 22:11:21.177
+Test Case 'E1RowTests.testRow17_propertyMutate_sub' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow18_propertyObserve_pause' started at 2026-11-06 22:11:21.178
+Test Case 'E1RowTests.testRow18_propertyObserve_pause' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow19_propertyObserve_timePos' started at 2026-11-06 22:11:21.179
+Test Case 'E1RowTests.testRow19_propertyObserve_timePos' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow20_propertyObserve_duration' started at 2026-11-06 22:11:21.180
+Test Case 'E1RowTests.testRow20_propertyObserve_duration' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow21_propertyObserve_mute' started at 2026-11-06 22:11:21.181
+Test Case 'E1RowTests.testRow21_propertyObserve_mute' passed (0.001 seconds)
+Test Case 'E1RowTests.testRow22_propertyObserve_volume' started at 2026-11-06 22:11:21.182
+Test Case 'E1RowTests.testRow22_propertyObserve_volume' passed (0.001 seconds)
+Test Case 'E1RowTests.testUnapprovedNamesThrowWithRowsInstalled' started at 2026-11-06 22:11:21.183
+Test Case 'E1RowTests.testUnapprovedNamesThrowWithRowsInstalled' passed (0.001 seconds)
+Test Suite 'E1RowTests' passed at 2026-11-06 22:11:21.185
+	 Executed 32 tests, with 0 failures (0 unexpected) in 0.034 (0.034) seconds
+Test Suite 'E2RowTests' started at 2026-11-06 22:11:21.185
+Test Case 'E2RowTests.testE2Row01_command_cycle' started at 2026-11-06 22:11:21.185
+Test Case 'E2RowTests.testE2Row01_command_cycle' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2Row01_command_cycle_enginePolicy' started at 2026-11-06 22:11:21.186
+Test Case 'E2RowTests.testE2Row01_command_cycle_enginePolicy' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2Row02_command_add' started at 2026-11-06 22:11:21.187
+Test Case 'E2RowTests.testE2Row02_command_add' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2Row03_command_frameStep' started at 2026-11-06 22:11:21.188
+Test Case 'E2RowTests.testE2Row03_command_frameStep' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2Row04_command_frameBackStep' started at 2026-11-06 22:11:21.189
+Test Case 'E2RowTests.testE2Row04_command_frameBackStep' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2Row05_propertySet_timePos' started at 2026-11-06 22:11:21.190
+Test Case 'E2RowTests.testE2Row05_propertySet_timePos' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2Row06_propertyGet_volume' started at 2026-11-06 22:11:21.191
+Test Case 'E2RowTests.testE2Row06_propertyGet_volume' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2Row07_propertySet_vid' started at 2026-11-06 22:11:21.192
+Test Case 'E2RowTests.testE2Row07_propertySet_vid' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2Row08_propertyMutate_vid' started at 2026-11-06 22:11:21.193
+Test Case 'E2RowTests.testE2Row08_propertyMutate_vid' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2Row09_propertyGet_aid' started at 2026-11-06 22:11:21.194
+Test Case 'E2RowTests.testE2Row09_propertyGet_aid' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2Row10_propertyGet_sid' started at 2026-11-06 22:11:21.195
+Test Case 'E2RowTests.testE2Row10_propertyGet_sid' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2Row11_propertyGet_vid' started at 2026-11-06 22:11:21.196
+Test Case 'E2RowTests.testE2Row11_propertyGet_vid' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2Row12_propertyObserve_trackList' started at 2026-11-06 22:11:21.197
+Test Case 'E2RowTests.testE2Row12_propertyObserve_trackList' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2_engineErrorPreserved_aidSidVid' started at 2026-11-06 22:11:21.198
+Test Case 'E2RowTests.testE2_engineErrorPreserved_aidSidVid' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2_exactValueForwarding_aidSidVid' started at 2026-11-06 22:11:21.199
+Test Case 'E2RowTests.testE2_exactValueForwarding_aidSidVid' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2_installsAdditivelyBesideE1' started at 2026-11-06 22:11:21.200
+Test Case 'E2RowTests.testE2_installsAdditivelyBesideE1' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2_rejectedCallsNeverReachEngine' started at 2026-11-06 22:11:21.201
+Test Case 'E2RowTests.testE2_rejectedCallsNeverReachEngine' passed (0.001 seconds)
+Test Case 'E2RowTests.testE2_trackListObserverLifecycleTwoTokens' started at 2026-11-06 22:11:21.202
+Test Case 'E2RowTests.testE2_trackListObserverLifecycleTwoTokens' passed (0.001 seconds)
+Test Suite 'E2RowTests' passed at 2026-11-06 22:11:21.203
+	 Executed 18 tests, with 0 failures (0 unexpected) in 0.018 (0.018) seconds
+Test Suite 'FacadeContractTests' started at 2026-11-06 22:11:21.203
+Test Case 'FacadeContractTests.testApprovedE1RowsPresentSchemaValidAndComplete' started at 2026-11-06 22:11:21.203
+Test Case 'FacadeContractTests.testApprovedE1RowsPresentSchemaValidAndComplete' passed (0.001 seconds)
+Test Case 'FacadeContractTests.testCommandForwardsExactNameAndTypedArguments' started at 2026-11-06 22:11:21.204
+Test Case 'FacadeContractTests.testCommandForwardsExactNameAndTypedArguments' passed (0.0 seconds)
+Test Case 'FacadeContractTests.testFakeEngineEventsFixtureSequence' started at 2026-11-06 22:11:21.204
+Test Case 'FacadeContractTests.testFakeEngineEventsFixtureSequence' passed (0.002 seconds)
+Test Case 'FacadeContractTests.testGetAndSetPropertyForwarding' started at 2026-11-06 22:11:21.206
+Test Case 'FacadeContractTests.testGetAndSetPropertyForwarding' passed (0.0 seconds)
+Test Case 'FacadeContractTests.testInstalledRowsGateNamesTypesAndAccess' started at 2026-11-06 22:11:21.207
+Test Case 'FacadeContractTests.testInstalledRowsGateNamesTypesAndAccess' passed (0.0 seconds)
+Test Case 'FacadeContractTests.testObserveGatingWithInstalledRows' started at 2026-11-06 22:11:21.207
+Test Case 'FacadeContractTests.testObserveGatingWithInstalledRows' passed (0.0 seconds)
+Test Case 'FacadeContractTests.testObserverRegistrationCallbackAndRemoval' started at 2026-11-06 22:11:21.207
+Test Case 'FacadeContractTests.testObserverRegistrationCallbackAndRemoval' passed (0.0 seconds)
+Test Case 'FacadeContractTests.testScriptedErrorSequenceSurfaces' started at 2026-11-06 22:11:21.207
+Test Case 'FacadeContractTests.testScriptedErrorSequenceSurfaces' passed (0.0 seconds)
+Test Case 'FacadeContractTests.testUnobserveUnknownTokenIsRecordedNoOp' started at 2026-11-06 22:11:21.207
+Test Case 'FacadeContractTests.testUnobserveUnknownTokenIsRecordedNoOp' passed (0.0 seconds)
+Test Case 'FacadeContractTests.testUnsupportedCommandThrowsThroughFacadeAndEngine' started at 2026-11-06 22:11:21.207
+Test Case 'FacadeContractTests.testUnsupportedCommandThrowsThroughFacadeAndEngine' passed (0.0 seconds)
+Test Suite 'FacadeContractTests' passed at 2026-11-06 22:11:21.207
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.004 (0.004) seconds
+Test Suite 'FacadeR1Tests' started at 2026-11-06 22:11:21.207
+Test Case 'FacadeR1Tests.testR1_exactObserverTokens' started at 2026-11-06 22:11:21.207
+Test Case 'FacadeR1Tests.testR1_exactObserverTokens' passed (0.001 seconds)
+Test Case 'FacadeR1Tests.testR1_fixtureSharedAndSingleRowNamesForward' started at 2026-11-06 22:11:21.209
+Test Case 'FacadeR1Tests.testR1_fixtureSharedAndSingleRowNamesForward' passed (0.001 seconds)
+Test Case 'FacadeR1Tests.testR1_kindSeparatedDispatchOnSharedNames' started at 2026-11-06 22:11:21.210
+Test Case 'FacadeR1Tests.testR1_kindSeparatedDispatchOnSharedNames' passed (0.001 seconds)
+Test Case 'FacadeR1Tests.testR1_removalProofValidTypedMutation' started at 2026-11-06 22:11:21.211
+Test Case 'FacadeR1Tests.testR1_removalProofValidTypedMutation' passed (0.001 seconds)
+Test Suite 'FacadeR1Tests' passed at 2026-11-06 22:11:21.212
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.004 (0.004) seconds
+Test Suite 'RowTableTests' started at 2026-11-06 22:11:21.212
+Test Case 'RowTableTests.testApprovedFixtureParsesAllRows' started at 2026-11-06 22:11:21.212
+Test Case 'RowTableTests.testApprovedFixtureParsesAllRows' passed (0.001 seconds)
+Test Case 'RowTableTests.testBadArgumentSpecThrows' started at 2026-11-06 22:11:21.213
+Test Case 'RowTableTests.testBadArgumentSpecThrows' passed (0.0 seconds)
+Test Case 'RowTableTests.testCRLFTerminatedTableParsesLikeLF' started at 2026-11-06 22:11:21.213
+Test Case 'RowTableTests.testCRLFTerminatedTableParsesLikeLF' passed (0.0 seconds)
+Test Case 'RowTableTests.testDuplicateKindNameRowRejected' started at 2026-11-06 22:11:21.213
+Test Case 'RowTableTests.testDuplicateKindNameRowRejected' passed (0.0 seconds)
+Test Case 'RowTableTests.testEmptyTableWithHeaderOnlyIsValid' started at 2026-11-06 22:11:21.214
+Test Case 'RowTableTests.testEmptyTableWithHeaderOnlyIsValid' passed (0.0 seconds)
+Test Case 'RowTableTests.testKindAccessMismatchThrows' started at 2026-11-06 22:11:21.214
+Test Case 'RowTableTests.testKindAccessMismatchThrows' passed (0.0 seconds)
+Test Case 'RowTableTests.testMergedFixtureBytePinnedSlices' started at 2026-11-06 22:11:21.214
+Test Case 'RowTableTests.testMergedFixtureBytePinnedSlices' passed (0.001 seconds)
+Test Case 'RowTableTests.testMissingHeaderThrows' started at 2026-11-06 22:11:21.215
+Test Case 'RowTableTests.testMissingHeaderThrows' passed (0.0 seconds)
+Test Case 'RowTableTests.testSetRowWithoutValueSpecIsMalformed' started at 2026-11-06 22:11:21.215
+Test Case 'RowTableTests.testSetRowWithoutValueSpecIsMalformed' passed (0.0 seconds)
+Test Case 'RowTableTests.testUnknownKindAndAccessThrow' started at 2026-11-06 22:11:21.215
+Test Case 'RowTableTests.testUnknownKindAndAccessThrow' passed (0.0 seconds)
+Test Case 'RowTableTests.testWrongColumnCountThrows' started at 2026-11-06 22:11:21.215
+Test Case 'RowTableTests.testWrongColumnCountThrows' passed (0.0 seconds)
+Test Suite 'RowTableTests' passed at 2026-11-06 22:11:21.215
+	 Executed 11 tests, with 0 failures (0 unexpected) in 0.003 (0.003) seconds
+Test Suite 'debug.xctest' passed at 2026-11-06 22:11:21.215
+	 Executed 75 tests, with 0 failures (0 unexpected) in 0.064 (0.064) seconds
+Test Suite 'All tests' passed at 2026-11-06 22:11:21.215
+	 Executed 75 tests, with 0 failures (0 unexpected) in 0.064 (0.064) seconds

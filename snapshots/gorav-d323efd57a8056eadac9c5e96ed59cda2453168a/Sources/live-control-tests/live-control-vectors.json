@@ -1,0 +1,1206 @@
+{
+ "source": "photon-live-control.lua M.VERSION=1 SHA256 4b8ec6a5b8e2f23be36900fc95e9c34a87705673bf2bef4fec69789401da6b76",
+ "derivation": "python-model-replay (MODEL-ONLY cross-check; NOT authoritative - authoritative reference is lua-reference/live-control-lua-reference.json)",
+ "status": "landed-inert (model; Lua authoritative; no behaviour swap authorized)",
+ "vectors": [
+  {
+   "name": "LC1-happy-path",
+   "steps": [
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "a",
+      "id": 1,
+      "t": 0.0,
+      "pts": 0.0,
+      "pbs": 100.0
+     },
+     "nowUs": 0,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": 1.0,
+      "feed_calls": 1,
+      "returned": true
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "a",
+      "id": 2,
+      "t": 0.1,
+      "pts": 0.1,
+      "pbs": 103.0
+     },
+     "nowUs": 100000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 30.0,
+      "target": 1.03,
+      "feed_calls": 2,
+      "returned": true
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "a",
+      "id": 3,
+      "t": 0.2,
+      "pts": 0.2,
+      "pbs": 106.0
+     },
+     "nowUs": 200000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 30.0,
+      "target": 1.06,
+      "feed_calls": 3,
+      "returned": true
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 200000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 30.0,
+      "target": 1.06,
+      "feed_calls": 3,
+      "returned": null
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 241667,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0208335,
+      "velocity": 30.0,
+      "target": 1.06,
+      "feed_calls": 3,
+      "returned": 1.0208335
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 283333,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0404165328136032,
+      "velocity": 30.0,
+      "target": 1.06,
+      "feed_calls": 3,
+      "returned": 1.0404165328136032
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 325000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0502083207035513,
+      "velocity": 30.0,
+      "target": 1.06,
+      "feed_calls": 3,
+      "returned": 1.0502083207035513
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 366667,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0551041875,
+      "velocity": 30.0,
+      "target": 1.06,
+      "feed_calls": 3,
+      "returned": 1.0551041875
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 408333,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0575520666017004,
+      "velocity": 30.0,
+      "target": 1.06,
+      "feed_calls": 3,
+      "returned": 1.0575520666017004
+     }
+    }
+   ]
+  },
+  {
+   "name": "LC2-hold-ladder",
+   "steps": [
+    {
+     "op": "observeRaw",
+     "profile": {
+      "doc": null,
+      "id": 1,
+      "t": 0.0,
+      "pts": 0.0,
+      "pbs": 100.0
+     },
+     "nowUs": 0,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "invalid-profile",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 0,
+      "returned": false
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "a",
+      "id": 1,
+      "t": 0.0,
+      "pts": 0.0,
+      "pbs": 100.0
+     },
+     "nowUs": 0,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": 1.0,
+      "feed_calls": 1,
+      "returned": true
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "a",
+      "id": 2,
+      "t": 0.1,
+      "pts": 0.1,
+      "pbs": 103.0
+     },
+     "nowUs": 100000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 30.0,
+      "target": 1.03,
+      "feed_calls": 2,
+      "returned": true
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "a",
+      "id": 2,
+      "t": 0.1,
+      "pts": 0.1,
+      "pbs": 103.0
+     },
+     "nowUs": 100000,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "repeated-profile",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 2,
+      "returned": false
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "a",
+      "id": 3,
+      "t": 0.2,
+      "pts": 0.2,
+      "pbs": 106.0
+     },
+     "nowUs": 200000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": 1.06,
+      "feed_calls": 3,
+      "returned": true
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "a",
+      "id": 4,
+      "t": 0.9,
+      "pts": 0.9,
+      "pbs": 110.0
+     },
+     "nowUs": 900000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": 1.1,
+      "feed_calls": 4,
+      "returned": true
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 900000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": 1.1,
+      "feed_calls": 4,
+      "returned": null
+     }
+    },
+    {
+     "op": "tickRaw",
+     "now": "NaN",
+     "nowUs": 0,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "invalid-clock",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 4,
+      "returned": null
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 1000000,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "invalid-clock",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 4,
+      "returned": null
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "a",
+      "id": 5,
+      "t": 1.0,
+      "pts": 1.0,
+      "pbs": 111.0
+     },
+     "nowUs": 1000000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": 1.11,
+      "feed_calls": 5,
+      "returned": true
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 1050000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.025,
+      "velocity": 0.0,
+      "target": 1.11,
+      "feed_calls": 5,
+      "returned": 1.025
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 1700000,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "callback-gap",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.025,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 5,
+      "returned": null
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 1800000,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "stale",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.025,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 5,
+      "returned": null
+     }
+    }
+   ]
+  },
+  {
+   "name": "LC3-cut-lifecycle",
+   "steps": [
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "d",
+      "id": 1,
+      "t": 0.0,
+      "pts": 0.0,
+      "pbs": 100.0
+     },
+     "nowUs": 0,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": 1.0,
+      "feed_calls": 1,
+      "returned": true
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "d",
+      "id": 2,
+      "t": 0.1,
+      "pts": 0.1,
+      "pbs": 102.0
+     },
+     "nowUs": 100000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 20.0,
+      "target": 1.02,
+      "feed_calls": 2,
+      "returned": true
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "d",
+      "id": 3,
+      "t": 0.2,
+      "pts": 0.2,
+      "pbs": 104.0
+     },
+     "nowUs": 200000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 20.0,
+      "target": 1.04,
+      "feed_calls": 3,
+      "returned": true
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "d",
+      "id": 4,
+      "t": 0.3,
+      "pts": 0.3,
+      "pbs": 140.0
+     },
+     "nowUs": 300000,
+     "expect": {
+      "state": "CUT_HOLD",
+      "reason": null,
+      "cut_pending": true,
+      "settlement_samples": 1,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 4,
+      "returned": false
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "d",
+      "id": 5,
+      "t": 0.4,
+      "pts": 0.4,
+      "pbs": 150.0
+     },
+     "nowUs": 400000,
+     "expect": {
+      "state": "CUT_HOLD",
+      "reason": "settlement-unresolved",
+      "cut_pending": true,
+      "settlement_samples": 2,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 5,
+      "returned": false
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "d",
+      "id": 6,
+      "t": 0.5,
+      "pts": 0.5,
+      "pbs": 140.0
+     },
+     "nowUs": 500000,
+     "expect": {
+      "state": "CUT_HOLD",
+      "reason": "settlement-unresolved",
+      "cut_pending": true,
+      "settlement_samples": 3,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 6,
+      "returned": false
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "d",
+      "id": 7,
+      "t": 0.6,
+      "pts": 0.6,
+      "pbs": 150.0
+     },
+     "nowUs": 600000,
+     "expect": {
+      "state": "CUT_HOLD",
+      "reason": "settlement-unresolved",
+      "cut_pending": true,
+      "settlement_samples": 3,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 7,
+      "returned": false
+     }
+    },
+    {
+     "op": "tickRaw",
+     "now": "NaN",
+     "nowUs": 0,
+     "expect": {
+      "state": "CUT_HOLD_UNKNOWN",
+      "reason": "invalid-clock",
+      "cut_pending": true,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 7,
+      "returned": null
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "d",
+      "id": 8,
+      "t": 0.7,
+      "pts": 0.7,
+      "pbs": 142.0
+     },
+     "nowUs": 700000,
+     "expect": {
+      "state": "CUT_HOLD",
+      "reason": "settlement-unresolved",
+      "cut_pending": true,
+      "settlement_samples": 1,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 8,
+      "returned": false
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "d",
+      "id": 9,
+      "t": 0.8,
+      "pts": 0.8,
+      "pbs": 141.0
+     },
+     "nowUs": 800000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": -9.999999999999991,
+      "target": 1.41,
+      "feed_calls": 9,
+      "returned": true
+     }
+    }
+   ]
+  },
+  {
+   "name": "LC4-step-math",
+   "config": {
+    "rate": 0.02
+   },
+   "steps": [
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "e",
+      "id": 1,
+      "t": 0.0,
+      "pts": 0.0,
+      "pbs": 180.0
+     },
+     "nowUs": 0,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": 1.8,
+      "feed_calls": 1,
+      "returned": true
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 0,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": 1.8,
+      "feed_calls": 1,
+      "returned": null
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 41667,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.00083334,
+      "velocity": 0.0,
+      "target": 1.8,
+      "feed_calls": 1,
+      "returned": 1.00083334
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 83333,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.00166666,
+      "velocity": 0.0,
+      "target": 1.8,
+      "feed_calls": 1,
+      "returned": 1.00166666
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 125000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0025,
+      "velocity": 0.0,
+      "target": 1.8,
+      "feed_calls": 1,
+      "returned": 1.0025
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 166667,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.00333334,
+      "velocity": 0.0,
+      "target": 1.8,
+      "feed_calls": 1,
+      "returned": 1.00333334
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 208333,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0041666599999999,
+      "velocity": 0.0,
+      "target": 1.8,
+      "feed_calls": 1,
+      "returned": 1.0041666599999999
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 250000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.005,
+      "velocity": 0.0,
+      "target": 1.8,
+      "feed_calls": 1,
+      "returned": 1.005
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 291667,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.00583334,
+      "velocity": 0.0,
+      "target": 1.8,
+      "feed_calls": 1,
+      "returned": 1.00583334
+     }
+    }
+   ]
+  },
+  {
+   "name": "LC5-invalid-target-unqualified-document",
+   "steps": [
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "f",
+      "id": 1,
+      "t": 0.0,
+      "pts": 0.0,
+      "pbs": 100.0
+     },
+     "nowUs": 0,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": 1.0,
+      "feed_calls": 1,
+      "returned": true
+     }
+    },
+    {
+     "op": "setTargetNaN",
+     "nowUs": 50000
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "f",
+      "id": 2,
+      "t": 0.1,
+      "pts": 0.1,
+      "pbs": 105.0
+     },
+     "nowUs": 100000,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "invalid-target",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 2,
+      "returned": false
+     },
+     "note": "config target swapped to NaN externally; non-cut step reaches READY -> invalid-target"
+    },
+    {
+     "op": "freshUnqualified",
+     "profile": {
+      "doc": "f",
+      "id": 1,
+      "t": 0.0,
+      "pts": 0.0,
+      "pbs": 100.0
+     },
+     "nowUs": 0,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "unqualified",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 1,
+      "returned": false
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "g",
+      "id": 1,
+      "t": 0.2,
+      "pts": 0.2,
+      "pbs": 100.0
+     },
+     "nowUs": 200000,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "invalid-target",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 3,
+      "returned": false
+     },
+     "note": "config still NaN-target -> invalid-target after document recovery reaches READY"
+    }
+   ]
+  },
+  {
+   "name": "LC6-negative-controls",
+   "steps": [
+    {
+     "op": "observeNaN",
+     "nanField": "t",
+     "profile": {
+      "doc": "n",
+      "id": 1,
+      "t": 0.0,
+      "pts": 0.0,
+      "pbs": 100.0
+     },
+     "nowUs": 0,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "invalid-profile",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 0,
+      "returned": false
+     }
+    },
+    {
+     "op": "observeNaN",
+     "nanField": "pts",
+     "profile": {
+      "doc": "n",
+      "id": 1,
+      "t": 0.0,
+      "pts": 0.0,
+      "pbs": 100.0
+     },
+     "nowUs": 0,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "invalid-profile",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 0,
+      "returned": false
+     }
+    },
+    {
+     "op": "observeNaN",
+     "nanField": "pbs",
+     "profile": {
+      "doc": "n",
+      "id": 1,
+      "t": 0.0,
+      "pts": 0.0,
+      "pbs": 100.0
+     },
+     "nowUs": 0,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "invalid-profile",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 0,
+      "returned": false
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "n",
+      "id": 1,
+      "t": 0.0,
+      "pts": 0.0,
+      "pbs": 100.0
+     },
+     "nowUs": 0,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": 1.0,
+      "feed_calls": 1,
+      "returned": true
+     }
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "n",
+      "id": 0,
+      "t": 0.1,
+      "pts": 0.1,
+      "pbs": 101.0
+     },
+     "nowUs": 100000,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "repeated-profile",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 1,
+      "returned": false
+     },
+     "note": "id regresses -> repeated-profile"
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "n",
+      "id": 2,
+      "t": 0.1,
+      "pts": 0.05,
+      "pbs": 101.0
+     },
+     "nowUs": 100000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": 1.01,
+      "feed_calls": 2,
+      "returned": true
+     },
+     "note": "pts regresses -> repeated-profile"
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "n",
+      "id": 2,
+      "t": 0.05,
+      "pts": 0.2,
+      "pbs": 101.0
+     },
+     "nowUs": 50000,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "repeated-profile",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 2,
+      "returned": false
+     },
+     "note": "t regresses -> repeated-profile"
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "n",
+      "id": 2,
+      "t": 0.2,
+      "pts": 0.2,
+      "pbs": 101.0
+     },
+     "nowUs": 200000,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "repeated-profile",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 2,
+      "returned": false
+     }
+    },
+    {
+     "op": "tick",
+     "nowUs": 200000,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "repeated-profile",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 2,
+      "returned": null
+     },
+     "note": "first tick: last_tick primed, nil return, no hold"
+    },
+    {
+     "op": "tick",
+     "nowUs": 200000,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "callback-gap",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 2,
+      "returned": null
+     },
+     "note": "dt == 0 -> callback-gap"
+    },
+    {
+     "op": "tick",
+     "nowUs": 400000,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "callback-gap",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 2,
+      "returned": null
+     },
+     "note": "dt ok, fresh last_t, but state UNKNOWN -> nil, no hold"
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "m",
+      "id": 1,
+      "t": 0.5,
+      "pts": 0.5,
+      "pbs": 100.0
+     },
+     "nowUs": 500000,
+     "expect": {
+      "state": "READY",
+      "reason": null,
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": 1.0,
+      "feed_calls": 3,
+      "returned": true
+     },
+     "note": "document reset: id 1 accepted again on the new doc (fence restored)"
+    },
+    {
+     "op": "observe",
+     "profile": {
+      "doc": "m",
+      "id": 1,
+      "t": 0.6,
+      "pts": 0.6,
+      "pbs": 100.0
+     },
+     "nowUs": 600000,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "repeated-profile",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 3,
+      "returned": false
+     },
+     "note": "fence rebuilt after restore -> repeated-profile"
+    },
+    {
+     "op": "freshStaleTick",
+     "nowUs": 500000,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "stale",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 0,
+      "returned": null
+     },
+     "note": "no observe yet: second tick -> stale (last_t nil)"
+    },
+    {
+     "op": "freshUnqualifiedTick",
+     "profile": {
+      "doc": "u",
+      "id": 1,
+      "t": 0.0,
+      "pts": 0.0,
+      "pbs": 100.0
+     },
+     "nowUs": 100000,
+     "expect": {
+      "state": "UNKNOWN",
+      "reason": "unqualified",
+      "cut_pending": false,
+      "settlement_samples": 0,
+      "held_gamma": 1.0,
+      "velocity": 0.0,
+      "target": null,
+      "feed_calls": 1,
+      "returned": null
+     },
+     "note": "unqualified: observe holds, tick holds unqualified again"
+    }
+   ]
+  }
+ ]
+}

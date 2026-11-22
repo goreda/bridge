@@ -1,0 +1,162 @@
+{
+  "clock-600s-25fps": {
+    "drops": 0,
+    "fixture": "clock-600s-25fps",
+    "maxAbsOffset": 0.0010000000000047748,
+    "presentations": 15000,
+    "seeks": [],
+    "segmentDrifts": [
+      0
+    ],
+    "ticks": 600001,
+    "waits": 600001
+  },
+  "clock-600s-25fps-tagged": {
+    "drops": 0,
+    "fixture": "clock-600s-25fps-tagged",
+    "maxAbsOffset": 0.0010000000000047748,
+    "presentations": 15000,
+    "seeks": [],
+    "segmentDrifts": [
+      0
+    ],
+    "ticks": 600001,
+    "waits": 600001
+  },
+  "clock-five-seeks": {
+    "drops": 5,
+    "fixture": "clock-five-seeks",
+    "maxAbsOffset": 0.0010000000000331966,
+    "presentations": 14995,
+    "seeks": [
+      {
+        "after": 10,
+        "before": 59.999,
+        "newGeneration": 2,
+        "next": 10.000999999999998,
+        "oldGeneration": 1,
+        "pendingPTS": 60.123,
+        "target": 10,
+        "tick": 60000
+      },
+      {
+        "after": 300,
+        "before": 99.99899999999998,
+        "newGeneration": 3,
+        "next": 300.001,
+        "oldGeneration": 2,
+        "pendingPTS": 100.12399999999998,
+        "target": 300,
+        "tick": 150000
+      },
+      {
+        "after": 20,
+        "before": 389.999,
+        "newGeneration": 4,
+        "next": 20.001000000000005,
+        "oldGeneration": 3,
+        "pendingPTS": 390.125,
+        "target": 20,
+        "tick": 240000
+      },
+      {
+        "after": 500,
+        "before": 139.99900000000002,
+        "newGeneration": 5,
+        "next": 500.001,
+        "oldGeneration": 4,
+        "pendingPTS": 140.126,
+        "target": 500,
+        "tick": 360000
+      },
+      {
+        "after": 100,
+        "before": 619.999,
+        "newGeneration": 6,
+        "next": 100.00099999999998,
+        "oldGeneration": 5,
+        "pendingPTS": 620.127,
+        "target": 100,
+        "tick": 480000
+      }
+    ],
+    "segmentDrifts": [
+      0,
+      0.000999999999990564,
+      0,
+      0,
+      0,
+      0.0009999999999052989
+    ],
+    "ticks": 600001,
+    "waits": 600001
+  },
+  "clock-five-seeks-tagged": {
+    "drops": 0,
+    "fixture": "clock-five-seeks-tagged",
+    "maxAbsOffset": 0.0010000000000331966,
+    "presentations": 15000,
+    "seeks": [
+      {
+        "after": 10,
+        "before": 59.999,
+        "newGeneration": 2,
+        "next": 10.000999999999998,
+        "oldGeneration": 1,
+        "pendingPTS": 60.123,
+        "target": 10,
+        "tick": 60000
+      },
+      {
+        "after": 300,
+        "before": 99.99899999999998,
+        "newGeneration": 3,
+        "next": 300.001,
+        "oldGeneration": 2,
+        "pendingPTS": 100.12399999999998,
+        "target": 300,
+        "tick": 150000
+      },
+      {
+        "after": 20,
+        "before": 389.999,
+        "newGeneration": 4,
+        "next": 20.001000000000005,
+        "oldGeneration": 3,
+        "pendingPTS": 390.125,
+        "target": 20,
+        "tick": 240000
+      },
+      {
+        "after": 500,
+        "before": 139.99900000000002,
+        "newGeneration": 5,
+        "next": 500.001,
+        "oldGeneration": 4,
+        "pendingPTS": 140.126,
+        "target": 500,
+        "tick": 360000
+      },
+      {
+        "after": 100,
+        "before": 619.999,
+        "newGeneration": 6,
+        "next": 100.00099999999998,
+        "oldGeneration": 5,
+        "pendingPTS": 620.127,
+        "target": 100,
+        "tick": 480000
+      }
+    ],
+    "segmentDrifts": [
+      0,
+      0.000999999999990564,
+      0,
+      0,
+      0,
+      0.0009999999999195097
+    ],
+    "ticks": 600001,
+    "waits": 600001
+  }
+}

@@ -52,3 +52,7 @@ Selected safe AutoLoad v2 regular-file and bounded symlink resolution fixes land
 ## Gor targeted Stereo facade source event
 
 Source lane a8153e1a6654b3c6143a6669b77055cef88b3b69 parent37a220b9c2fec0e7f523337f7b8897b05e44e15f at snapshots/a8153e1a6654b3c6143a6669b77055cef88b3b69. Targeted vendor05 plus app06 and four metadata files,18 changed paths in this event. Existing e789/c050/F4 preserved. Committed2110 delivery rows and284 retirement refs PASS; actual root/vendor package graph qualified. No native/release, full app compile or entire vendor equality. Separate canonical safe AutoLoadv2 not bundled into this gor lane. LATEST gor2dd baseline remains assigned, not silently rebound.
+
+## Isolated M1 EmbeddedSession candidate
+
+Gorav d323efd57a8056eadac9c5e96ed59cda2453168a on lane/gdb/m1-embedded-session-three-ports, base 07091c9c06f7d036f8776d18458429a947b70b92, separate snapshots/gorav-d323efd57a8056eadac9c5e96ed59cda2453168a. One file lifecycle/inventory port. Parse/guard inspection and portable80/29/17 only; changed shell TYPECHECK NOT_RUN due CFFmpeg header, runtime gates77. Must enter existing next daily combined native batch before delivery. No carrier dispatch, no release/native/owner acceptance. Canonical LATEST/gorav remains07091. Combined subtitle/Cue on safeAutoLoadv2 currently times out both toolchains under investigation; Controller22+boundaries remains narrow valid evidence, no fullcombinedgreen or confirmedregression.

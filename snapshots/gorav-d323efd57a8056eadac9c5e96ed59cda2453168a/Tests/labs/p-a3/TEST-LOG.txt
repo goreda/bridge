@@ -1,0 +1,52 @@
+P-A3-SubtitleLayout test run
+toolchain: Swift version 5.10.1 (swift-5.10.1-RELEASE) (Target: x86_64-unknown-linux-gnu)
+platform: Linux 7.2.14 x86_64 GNU/Linux
+command: swift test
+
+[0/1] Planning build
+Building for debugging...
+[0/4] Write swift-version--6040B813AC8AD1FC.txt
+Build complete! (0.35s)
+Test Suite 'All tests' started at 2026-11-06 21:01:29.287
+Test Suite 'debug.xctest' started at 2026-11-06 21:01:29.288
+Test Suite 'SubtitleLayoutTests' started at 2026-11-06 21:01:29.288
+Test Case 'SubtitleLayoutTests.testActiveHalfOpenIntervals' started at 2026-11-06 21:01:29.288
+Test Case 'SubtitleLayoutTests.testActiveHalfOpenIntervals' passed (0.002 seconds)
+Test Case 'SubtitleLayoutTests.testEmptyInputThrowsNamedError' started at 2026-11-06 21:01:29.289
+Test Case 'SubtitleLayoutTests.testEmptyInputThrowsNamedError' passed (0.0 seconds)
+Test Case 'SubtitleLayoutTests.testEndNotAfterStartThrowsMalformedTimeRange' started at 2026-11-06 21:01:29.290
+Test Case 'SubtitleLayoutTests.testEndNotAfterStartThrowsMalformedTimeRange' passed (0.0 seconds)
+Test Case 'SubtitleLayoutTests.testInvalidViewportThrowsNamedError' started at 2026-11-06 21:01:29.290
+Test Case 'SubtitleLayoutTests.testInvalidViewportThrowsNamedError' passed (0.0 seconds)
+Test Case 'SubtitleLayoutTests.testLayoutASSAnchors' started at 2026-11-06 21:01:29.290
+Test Case 'SubtitleLayoutTests.testLayoutASSAnchors' passed (0.001 seconds)
+Test Case 'SubtitleLayoutTests.testLayoutASSMultiLine' started at 2026-11-06 21:01:29.291
+Test Case 'SubtitleLayoutTests.testLayoutASSMultiLine' passed (0.001 seconds)
+Test Case 'SubtitleLayoutTests.testLayoutASSPlayResScaling' started at 2026-11-06 21:01:29.292
+Test Case 'SubtitleLayoutTests.testLayoutASSPlayResScaling' passed (0.001 seconds)
+Test Case 'SubtitleLayoutTests.testLayoutBasicSRTBottomCenter' started at 2026-11-06 21:01:29.292
+Test Case 'SubtitleLayoutTests.testLayoutBasicSRTBottomCenter' passed (0.0 seconds)
+Test Case 'SubtitleLayoutTests.testLayoutBoxesFiniteAndNonnegative' started at 2026-11-06 21:01:29.293
+Test Case 'SubtitleLayoutTests.testLayoutBoxesFiniteAndNonnegative' passed (0.002 seconds)
+Test Case 'SubtitleLayoutTests.testLayoutOverlapStacksUpward' started at 2026-11-06 21:01:29.295
+Test Case 'SubtitleLayoutTests.testLayoutOverlapStacksUpward' passed (0.0 seconds)
+Test Case 'SubtitleLayoutTests.testMalformedTimeRangeThrowsNamedError' started at 2026-11-06 21:01:29.296
+Test Case 'SubtitleLayoutTests.testMalformedTimeRangeThrowsNamedError' passed (0.0 seconds)
+Test Case 'SubtitleLayoutTests.testParseAlignmentASSStripsOverrides' started at 2026-11-06 21:01:29.296
+Test Case 'SubtitleLayoutTests.testParseAlignmentASSStripsOverrides' passed (0.001 seconds)
+Test Case 'SubtitleLayoutTests.testParseBasicASSCommasAndHardBreak' started at 2026-11-06 21:01:29.297
+Test Case 'SubtitleLayoutTests.testParseBasicASSCommasAndHardBreak' passed (0.001 seconds)
+Test Case 'SubtitleLayoutTests.testParseBasicSRT' started at 2026-11-06 21:01:29.298
+Test Case 'SubtitleLayoutTests.testParseBasicSRT' passed (0.0 seconds)
+Test Case 'SubtitleLayoutTests.testParseOverlapSRT' started at 2026-11-06 21:01:29.298
+Test Case 'SubtitleLayoutTests.testParseOverlapSRT' passed (0.0 seconds)
+Test Case 'SubtitleLayoutTests.testUnicodeRoundTrip' started at 2026-11-06 21:01:29.299
+Test Case 'SubtitleLayoutTests.testUnicodeRoundTrip' passed (0.0 seconds)
+Test Case 'SubtitleLayoutTests.testUnsupportedFormatThrowsNamedError' started at 2026-11-06 21:01:29.299
+Test Case 'SubtitleLayoutTests.testUnsupportedFormatThrowsNamedError' passed (0.0 seconds)
+Test Suite 'SubtitleLayoutTests' passed at 2026-11-06 21:01:29.299
+	 Executed 17 tests, with 0 failures (0 unexpected) in 0.011 (0.011) seconds
+Test Suite 'debug.xctest' passed at 2026-11-06 21:01:29.299
+	 Executed 17 tests, with 0 failures (0 unexpected) in 0.011 (0.011) seconds
+Test Suite 'All tests' passed at 2026-11-06 21:01:29.299
+	 Executed 17 tests, with 0 failures (0 unexpected) in 0.011 (0.011) seconds

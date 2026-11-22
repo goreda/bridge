@@ -1,0 +1,75 @@
+P-A3-R1-SubtitleLayout test run
+toolchain: Swift version 5.10.1 (swift-5.10.1-RELEASE) (Target: x86_64-unknown-linux-gnu)
+platform: Linux 7.2.14 x86_64 GNU/Linux
+command: swift test
+
+Building for debugging...
+[0/16] Write swift-version--6040B813AC8AD1FC.txt
+[1/16] Write sources
+[4/16] Copying Fixtures
+[6/17] Emitting module SubtitleLayout
+[7/22] Compiling SubtitleLayout ASSParser.swift
+[8/22] Compiling SubtitleLayout Anchors.swift
+[9/22] Compiling SubtitleLayout Core.swift
+[10/22] Compiling SubtitleLayout FixedCellSubtitleLayout.swift
+[11/22] Compiling SubtitleLayout SRTParser.swift
+[13/24] Emitting module SubtitleLayoutStrict
+[14/25] Compiling SubtitleLayoutStrict StrictSubtitleLayout.swift
+[15/26] Wrapping AST for SubtitleLayout for debugging
+[17/27] Emitting module SubtitleLayoutStrictTests
+[18/30] Compiling SubtitleLayoutStrictTests FixtureLoading.swift
+[19/30] Compiling SubtitleLayoutStrictTests StrictSubtitleLayoutTests.swift
+[20/30] Compiling SubtitleLayoutStrictTests resource_bundle_accessor.swift
+[21/31] Wrapping AST for SubtitleLayoutStrict for debugging
+[22/31] Wrapping AST for SubtitleLayoutStrictTests for debugging
+[23/31] /home/sandbox/pa3/P-A3-R1-SubtitleLayout/.build/x86_64-unknown-linux-gnu/debug/P-A3-R1-SubtitleLayoutPackageDiscoveredTests.derived/all-discovered-tests.swift
+[24/31] Write sources
+[26/32] Emitting module P_A3_R1_SubtitleLayoutPackageDiscoveredTests
+[27/34] Compiling P_A3_R1_SubtitleLayoutPackageDiscoveredTests SubtitleLayoutStrictTests.swift
+[28/34] Compiling P_A3_R1_SubtitleLayoutPackageDiscoveredTests all-discovered-tests.swift
+[29/35] Wrapping AST for P-A3-R1-SubtitleLayoutPackageDiscoveredTests for debugging
+[30/35] /home/sandbox/pa3/P-A3-R1-SubtitleLayout/.build/x86_64-unknown-linux-gnu/debug/P-A3-R1-SubtitleLayoutPackageTests.derived/runner.swift
+[31/35] Write sources
+[33/36] Emitting module P_A3_R1_SubtitleLayoutPackageTests
+[34/37] Compiling P_A3_R1_SubtitleLayoutPackageTests runner.swift
+[35/38] Wrapping AST for P-A3-R1-SubtitleLayoutPackageTests for debugging
+[36/38] Write Objects.LinkFileList
+[37/38] Linking P-A3-R1-SubtitleLayoutPackageTests.xctest
+Build complete! (5.89s)
+Test Suite 'All tests' started at 2026-11-06 21:37:17.181
+Test Suite 'debug.xctest' started at 2026-11-06 21:37:17.182
+Test Suite 'StrictSubtitleLayoutTests' started at 2026-11-06 21:37:17.182
+Test Case 'StrictSubtitleLayoutTests.testBaseEngineSilentlyFallsBackOnNonfinitePlayRes' started at 2026-11-06 21:37:17.182
+Test Case 'StrictSubtitleLayoutTests.testBaseEngineSilentlyFallsBackOnNonfinitePlayRes' passed (0.002 seconds)
+Test Case 'StrictSubtitleLayoutTests.testCrossParseAnchorMetadataDropped' started at 2026-11-06 21:37:17.184
+Test Case 'StrictSubtitleLayoutTests.testCrossParseAnchorMetadataDropped' passed (0.001 seconds)
+Test Case 'StrictSubtitleLayoutTests.testCrossParsePlayResScalingDropped' started at 2026-11-06 21:37:17.186
+Test Case 'StrictSubtitleLayoutTests.testCrossParsePlayResScalingDropped' passed (0.001 seconds)
+Test Case 'StrictSubtitleLayoutTests.testForeignCueArrayUsesDefaults' started at 2026-11-06 21:37:17.187
+Test Case 'StrictSubtitleLayoutTests.testForeignCueArrayUsesDefaults' passed (0.0 seconds)
+Test Case 'StrictSubtitleLayoutTests.testNonFiniteCellSizeThrows' started at 2026-11-06 21:37:17.187
+Test Case 'StrictSubtitleLayoutTests.testNonFiniteCellSizeThrows' passed (0.0 seconds)
+Test Case 'StrictSubtitleLayoutTests.testNonFinitePlayResThrowsNamedError' started at 2026-11-06 21:37:17.187
+Test Case 'StrictSubtitleLayoutTests.testNonFinitePlayResThrowsNamedError' passed (0.001 seconds)
+Test Case 'StrictSubtitleLayoutTests.testNonFiniteSafeAreaFractionThrows' started at 2026-11-06 21:37:17.188
+Test Case 'StrictSubtitleLayoutTests.testNonFiniteSafeAreaFractionThrows' passed (0.0 seconds)
+Test Case 'StrictSubtitleLayoutTests.testNonPositiveCellSizeThrows' started at 2026-11-06 21:37:17.188
+Test Case 'StrictSubtitleLayoutTests.testNonPositiveCellSizeThrows' passed (0.0 seconds)
+Test Case 'StrictSubtitleLayoutTests.testNonPositivePlayResThrowsNamedError' started at 2026-11-06 21:37:17.188
+Test Case 'StrictSubtitleLayoutTests.testNonPositivePlayResThrowsNamedError' passed (0.001 seconds)
+Test Case 'StrictSubtitleLayoutTests.testOutOfRangeSafeAreaFractionThrows' started at 2026-11-06 21:37:17.188
+Test Case 'StrictSubtitleLayoutTests.testOutOfRangeSafeAreaFractionThrows' passed (0.0 seconds)
+Test Case 'StrictSubtitleLayoutTests.testOwningInstanceStillUsesMetadata' started at 2026-11-06 21:37:17.188
+Test Case 'StrictSubtitleLayoutTests.testOwningInstanceStillUsesMetadata' passed (0.001 seconds)
+Test Case 'StrictSubtitleLayoutTests.testSeparateInstanceHasNoMetadata' started at 2026-11-06 21:37:17.189
+Test Case 'StrictSubtitleLayoutTests.testSeparateInstanceHasNoMetadata' passed (0.001 seconds)
+Test Case 'StrictSubtitleLayoutTests.testStrictMatchesBaseOnValidInput' started at 2026-11-06 21:37:17.190
+Test Case 'StrictSubtitleLayoutTests.testStrictMatchesBaseOnValidInput' passed (0.0 seconds)
+Test Case 'StrictSubtitleLayoutTests.testValidConfigurationsPass' started at 2026-11-06 21:37:17.191
+Test Case 'StrictSubtitleLayoutTests.testValidConfigurationsPass' passed (0.0 seconds)
+Test Suite 'StrictSubtitleLayoutTests' passed at 2026-11-06 21:37:17.191
+	 Executed 14 tests, with 0 failures (0 unexpected) in 0.008 (0.008) seconds
+Test Suite 'debug.xctest' passed at 2026-11-06 21:37:17.191
+	 Executed 14 tests, with 0 failures (0 unexpected) in 0.008 (0.008) seconds
+Test Suite 'All tests' passed at 2026-11-06 21:37:17.191
+	 Executed 14 tests, with 0 failures (0 unexpected) in 0.008 (0.008) seconds

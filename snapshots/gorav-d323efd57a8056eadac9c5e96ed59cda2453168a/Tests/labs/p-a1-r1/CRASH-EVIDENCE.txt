@@ -1,0 +1,42 @@
+CRASH EVIDENCE - P-A1-R1
+
+Probe: Sources/BridgeDemuxProbe (demux FILE / reopen GOOD BAD [DRAIN]).
+Malformed fixtures run under ulimit -v 2097152 (2 GiB address space) so
+an allocation explosion is contained and reported as a kill.
+exit=132 is SIGILL (Swift fatal-error trap); exit=137 would be SIGKILL (OOM).
+A clean named error keeps exit 0 and prints 'ERROR <description>'.
+
+=== UNFIXED library crash evidence (2026-11-06T21:37:31Z) ===
+bad-lace-no-count.mkv        exit=132 out=Swift/ContiguousArrayBuffer.swift:600: Fatal error: Index out of range
+huge-cluster-timecode.mkv    exit=132 out=Swift/Integers.swift:3543: Fatal error: Not enough bits to represent the passed value
+huge-timestamp-scale.mkv     exit=132 out=Swift/Integers.swift:3543: Fatal error: Not enough bits to represent the passed value
+huge-box-largesize.mp4       exit=0   out=ERROR truncated: box ftyp at 0 size 7382659213257867263
+huge-stsz-count.mp4          exit=0   out=ERROR malformed: stsz count 1073741823 != stts count 48
+huge-ctts-count.mp4          exit=132 out=
+huge-stts-count.mp4          exit=0   out=ERROR malformed: stsz count 48 != stts count 2147483647
+control a1-v24.mp4           exit=0   out=OK tracks=1 packets=48 payloadBytes=15266
+reopen good->bad             exit=0  
+    OPEN1 tracks=1 drained=3 payloadBytes=2420
+  REOPEN-ERROR malformed: stsz count 1073741823 != stts count 48
+  AFTER packet trackID=0 bytes=331
+
+  (reopen good->bad pre-fix note: 'AFTER packet trackID=0 bytes=331' is a
+   stale packet from the first stream leaking through after a failed reopen)
+
+=== FIXED library (2026-11-06T21:41:03Z) ===
+bad-lace-no-count.mkv        exit=0   out=ERROR truncated: xiph lace count
+huge-cluster-timecode.mkv    exit=0   out=ERROR unsupported: cluster Timecode 18446744073709551615 > Int64.max
+huge-timestamp-scale.mkv     exit=0   out=ERROR unsupported: TimestampScale 18446744073709551615 > Int64.max
+huge-box-largesize.mp4       exit=0   out=ERROR truncated: box ftyp at 0 size 7382659213257867263
+huge-stsz-count.mp4          exit=0   out=ERROR malformed: stsz count 1073741823 != stts count 48
+huge-ctts-count.mp4          exit=0   out=ERROR malformed: ctts entry count 1073741824 exceeds stts sample count 48
+huge-stts-count.mp4          exit=0   out=ERROR malformed: stts sample count 2147483647 exceeds file size
+control a1-v24.mp4           exit=0   out=OK tracks=1 packets=48 payloadBytes=15266
+reopen good->bad             exit=0  
+  OPEN1 tracks=1 drained=3 payloadBytes=2420
+  REOPEN-ERROR malformed: stsz count 1073741823 != stts count 48
+  AFTER error malformed: next() before open()
+reopen mkv good->bad         exit=0  
+  OPEN1 tracks=1 drained=3 payloadBytes=6144
+  REOPEN-ERROR truncated: xiph lace count
+  AFTER error malformed: next() before open()

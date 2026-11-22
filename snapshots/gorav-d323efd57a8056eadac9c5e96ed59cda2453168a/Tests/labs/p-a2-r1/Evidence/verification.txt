@@ -1,0 +1,3 @@
+Verified all sample-derived metrics in 4 runs
+Four full evidence traces byte-identical on repeated XCTest run.
+Three input fixtures byte-identical after regeneration.

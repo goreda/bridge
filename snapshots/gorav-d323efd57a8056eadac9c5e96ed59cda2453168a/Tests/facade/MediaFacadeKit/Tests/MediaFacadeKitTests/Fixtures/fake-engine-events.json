@@ -1,0 +1,12 @@
+{
+  "name": "fake-engine-events",
+  "generated": "2026-11-06T21:00:00Z",
+  "purpose": "P-B1 skeleton: generated empty/load/playback/error sequence driven against FakeEngine; candidate vocabulary only, not the approved E1 row set.",
+  "sequence": [
+    { "step": "empty",    "action": "get",     "property": "pause",    "expect": { "returns": { "type": "none" } } },
+    { "step": "load",     "action": "command", "name": "loadfile",     "arguments": [ { "type": "text", "value": "a1-v24.mp4" } ], "expect": { "returns": { "type": "none" } } },
+    { "step": "playback", "action": "set",     "property": "pause",    "value": { "type": "bool", "value": false }, "expect": { "returns": { "type": "none" } } },
+    { "step": "playback", "action": "get",     "property": "time-pos", "expect": { "returns": { "type": "number", "value": 1.25 } }, "seedProperty": { "type": "number", "value": 1.25 } },
+    { "step": "error",    "action": "command", "name": "seek",         "arguments": [ { "type": "number", "value": 10.0 } ], "expect": { "throws": "engineFailure: simulated seek failure" } }
+  ]
+}

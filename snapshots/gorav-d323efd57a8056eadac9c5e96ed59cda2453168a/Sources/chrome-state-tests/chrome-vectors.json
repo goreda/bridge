@@ -1,0 +1,5285 @@
+{
+ "source": "photon-chrome.lua v1.1 SHA256 d0ebe78af3dd3d2ed13bdd7d2f0960f7803cf31e709b96a40191c78285ee92ca",
+ "derivation": "formula-derived (no Lua interpreter on the Linux host); gor lane re-derives from authoritative Lua",
+ "vectors": [
+  {
+   "name": "V1-hue-ema-jitter",
+   "steps": [
+    {
+     "op": "toggle",
+     "nowUs": 0
+    },
+    {
+     "op": "ingest",
+     "hue": 0.11,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.11,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.99,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.09000000000000001,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1084,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9756,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.11,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.108528,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9767520000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.09000000000000001,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10704576,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.96341184,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.11,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10728209920000001,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9655388928000002,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.09000000000000001,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10589953126400001,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9530957813760002,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.11,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10622756876288,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9560481188659201,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.09000000000000001,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10492936326184961,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9443642693566465,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.11,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10533501420090165,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9480151278081148,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.09000000000000001,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10410821306482952,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9369739175834658,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 1000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.11,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10457955601964317,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9412160041767885,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 1100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.09000000000000001,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10341319153807171,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9307187238426454,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 1200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.11,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10394013621502597,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9354612259352337,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 1300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.09000000000000001,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10282492531782389,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9254243278604151,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 1400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.11,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10339893129239798,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9305903816315819,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 1500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.09000000000000001,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10232701678900614,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9209431511010553,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 1600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.11,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10294085544588566,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.926467699012971,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 1700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.09000000000000001,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10190558701021481,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9171502830919334,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 1800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.11,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10255314004939763,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9229782604445788,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 1900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.09000000000000001,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.10154888884544581,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9139399996090125,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 2000000
+    }
+   ]
+  },
+  {
+   "name": "V2-cut-reset",
+   "steps": [
+    {
+     "op": "toggle",
+     "nowUs": 0
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": true,
+     "expect": {
+      "hueSmoothed": 0.3,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.7,
+      "posRendered": 1.0015792413677131,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0134399977741015
+     },
+     "nowUs": 600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.3,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.7,
+      "posRendered": 1.0019680832139475,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0134399977741015
+     },
+     "nowUs": 700000
+    }
+   ]
+  },
+  {
+   "name": "V3-dwell-confirm",
+   "steps": [
+    {
+     "op": "toggle",
+     "nowUs": 0
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 1000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 1100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 1200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 1300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 1400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 1500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 1600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 1700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 1800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 1900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 2000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 2100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 2200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 2300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 2400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 2500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 2600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 2700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 2800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 2900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 3000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 3100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 3200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 3300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 3400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 3500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 3600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 3700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 3800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 3900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 4000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 4100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 4200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 4300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 4400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 4500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 4600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 4700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 4800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 4900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 5000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 5100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 5200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 5300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 5400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 5500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 5600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 5700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 5800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 5900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 6000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 6100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 6200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 6300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 6400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 6500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 6600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 6700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 6800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 6900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 7000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 7100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 7200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 7300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 7400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 7500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 7600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 7700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 7800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 7900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 8000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 8100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 8200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 8300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 8400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 8500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 8600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 8700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 8800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 8900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 9000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 9100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 9200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 9300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 9400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 9500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 9600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 9700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 9800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 9900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 10000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 10100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 10200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 10300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 10400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 10500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 10600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 10700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 10800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 10900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 11000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 11100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 11200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 11300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 11400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 11500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 11600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 11700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 11800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 11900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 12000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 12100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 12200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 12300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 12400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 12500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 12600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 12700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 12800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 12900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 0.8847349610866735,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 13000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 13100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 13200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 13300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 13400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 13500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 13600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 13700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 13800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 13900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 0.8021439516907691,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 14000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 14100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 14200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 14300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "nowUs": 14400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 0.7700943281248682,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 14500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 0.7643008276471625,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 14600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 0.7586972607069753,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 14700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 0.7532774005422975,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 14800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 0.7480352245286602,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 14900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 0.7429649074867096,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 15000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.07,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.6300000000000001,
+      "posRendered": 0.7380608152091866,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 15100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.0884,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.7956000000000001,
+      "posRendered": 0.7333174982001169,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 15200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.105328,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9479520000000001,
+      "posRendered": 0.7287296856192546,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 15300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.12090176,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 1.08811584,
+      "posRendered": 0.7242922794250506,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 15400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.13522961919999998,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 1.2170665727999999,
+      "posRendered": 0.7200003487096379,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 15500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.148411249664,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 1.335701246976,
+      "posRendered": 0.7158491242195375,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 15600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.16053834969088,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 1.44484514721792,
+      "posRendered": 0.7118339930559973,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 15700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.17169528171560958,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 1.5452575354404863,
+      "posRendered": 0.707950493549074,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 15800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.18195965917836082,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 1.6376369326052476,
+      "posRendered": 0.704194310299764,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 15900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.19140288644409195,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 1.7226259779968278,
+      "posRendered": 0.7005612693846704,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 16000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2000906555285646,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 1.8008158997570813,
+      "posRendered": 0.6970473337178821,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 16100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.20808340308627943,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 1.8727506277765151,
+      "posRendered": 0.6936485985649065,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 16200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.21543673083937706,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 1.9389305775543937,
+      "posRendered": 0.6903612872036742,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 16300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2222017923722269,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 1.9998161313500424,
+      "posRendered": 0.687181746727793,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 16400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.22842564898244874,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.055830840842039,
+      "posRendered": 0.6841064439873864,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 16500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.23415159706385283,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.1073643735746757,
+      "posRendered": 0.6811319616630087,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 16600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2394194692987446,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.1547752236887017,
+      "posRendered": 0.6782549944682715,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 16700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.24426591175484505,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.1983932057936055,
+      "posRendered": 0.6754723454769631,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 16800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.24872463881445744,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.238521749330117,
+      "posRendered": 0.6727809225705798,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 16900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.25282666770930085,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.2754400093837077,
+      "posRendered": 0.6701777350023196,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 17000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2566005342925568,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.309404808633011,
+      "posRendered": 0.6676598900737237,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 17100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.26007249154915224,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.34065242394237,
+      "posRendered": 0.6652245899202689,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 17200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.26326669222522003,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.3694002300269803,
+      "posRendered": 0.662869128402341,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 17300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2662053568472024,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.395848211624822,
+      "posRendered": 0.6605908880981355,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 17400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.26890892829942625,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.4201803546948364,
+      "posRendered": 0.6583873373951408,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 17500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.27139621403547215,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.4425659263192494,
+      "posRendered": 0.6562560276769759,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 17600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2736845169126344,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.4631606522137095,
+      "posRendered": 0.6541945906024531,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 17700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.27578975555962365,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.482107800036613,
+      "posRendered": 0.652200735473844,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 17800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.27772657511485377,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.499539176033684,
+      "posRendered": 0.6502722466914248,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 17900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.27950844910566547,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.5155760419509896,
+      "posRendered": 0.6484069812914699,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 18000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.28114777317721223,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.53032995859491,
+      "posRendered": 0.6466028665649616,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 18100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2826559513230353,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.543903561907318,
+      "posRendered": 0.6448578977543661,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 18200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2840434752171925,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.5563912769547326,
+      "posRendered": 0.6431701358259191,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 18300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2853199971998171,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.567879974798354,
+      "posRendered": 0.6415377053149447,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 18400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2864943974238317,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.5784495768144855,
+      "posRendered": 0.6399587922418121,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 18500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2875748456299252,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.588173610669327,
+      "posRendered": 0.6384316420962167,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 18600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2885688579795312,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.5971197218157807,
+      "posRendered": 0.6369545578875435,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 18700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2894833493411687,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6053501440705182,
+      "posRendered": 0.6355258982591471,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 18800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2903246813938752,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6129221325448766,
+      "posRendered": 0.6341440756644534,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 18900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29109870688236517,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6198883619412863,
+      "posRendered": 0.6328075546028558,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 19000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29181081033177597,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.626297292985984,
+      "posRendered": 0.6315148499134453,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 19100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2924659455052339,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6321935095471054,
+      "posRendered": 0.6302645251246789,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 19200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2930686698648152,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6376180287833373,
+      "posRendered": 0.6290551908581522,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 19300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29362317627563,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6426085864806703,
+      "posRendered": 0.627885503284703,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 19400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2941333221735796,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.647199899562217,
+      "posRendered": 0.6267541626311293,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 19500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29460265639969324,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6514239075972394,
+      "posRendered": 0.6256599117358629,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 19600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29503444388771777,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.65530999498946,
+      "posRendered": 0.6246015346519944,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 19700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29543168837670036,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6588851953903037,
+      "posRendered": 0.6235778552960957,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 19800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2957971533065643,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6621743797590787,
+      "posRendered": 0.6225877361413393,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 19900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2961333810420392,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.665200429378353,
+      "posRendered": 0.6216300769534633,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 20000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29644271055867605,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6679843950280846,
+      "posRendered": 0.6207038135681751,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 20100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.296727293713982,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6705456434258377,
+      "posRendered": 0.6198079167086373,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 20200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2969891102168634,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.672901991951771,
+      "posRendered": 0.6189413908417212,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 20300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29722998139951434,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6750698325956295,
+      "posRendered": 0.6181032730717558,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 20400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2974515828875532,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.677064245987979,
+      "posRendered": 0.6172926320705452,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 0.5933764707959719
+     },
+     "nowUs": 20500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29765545625654893,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6788991063089407,
+      "posRendered": 0.6420718211843004,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 20600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.297843019756025,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.680587177804225,
+      "posRendered": 0.666038651852012,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 20700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29801557817554303,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.682140203579887,
+      "posRendered": 0.6892197563513495,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 20800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29817433192149956,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.683568987293496,
+      "posRendered": 0.7116408938500637,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 20900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2983203853677796,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6848834683100167,
+      "posRendered": 0.7333269790299417,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 21000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29845475453835724,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.686092790845215,
+      "posRendered": 0.7543021097723439,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 21100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29857837417528865,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6872053675775978,
+      "posRendered": 0.7745895939361097,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 21200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2986921042412656,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.68822893817139,
+      "posRendered": 0.7942119752575784,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 21300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2987967359019643,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.689170623117679,
+      "posRendered": 0.8131910584014996,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 21400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29889299702980715,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6900369732682643,
+      "posRendered": 0.8315479331906875,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 21500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2989815572674226,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6908340154068036,
+      "posRendered": 0.8493029980413223,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 21600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2990630326860288,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.691567294174259,
+      "posRendered": 0.8664759826299577,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 21700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2991379900711465,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6922419106403184,
+      "posRendered": 0.8830859698174159,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 21800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2992069508654548,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.692862557789093,
+      "posRendered": 0.8991514168539247,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 21900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2992703947962184,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6934335531659657,
+      "posRendered": 0.9146901758890775,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 22000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29932876321252094,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6939588689126888,
+      "posRendered": 0.9297195138093876,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 22100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2993824621555193,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6944421593996735,
+      "posRendered": 0.9442561314254957,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 22200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29943186518307774,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6948867866476998,
+      "posRendered": 0.9583161820303463,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 22300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2994773159684315,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6952958437158836,
+      "posRendered": 0.9719152893489491,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 22400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.299519130690957,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.695672176218613,
+      "posRendered": 0.9850685648996849,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 22500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2995576002356804,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6960184021211235,
+      "posRendered": 0.9977906247864328,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 22600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29959299221682595,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6963369299514337,
+      "posRendered": 1.0100956059401913,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 22700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2996255528394799,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.696629975555319,
+      "posRendered": 1.0219971818282345,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 22800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2996555086123215,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6968995775108935,
+      "posRendered": 1.033508577648258,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 22900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29968306792333577,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.697147611310022,
+      "posRendered": 1.0446425850244063,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 23000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2997084224894689,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.69737580240522,
+      "posRendered": 1.0554115762215024,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 23100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2997317486903114,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6975857382128026,
+      "posRendered": 1.0658275178932823,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 23200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2997532087950865,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6977788791557784,
+      "posRendered": 1.0759019843799098,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 23300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2997729520914796,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.697956568823316,
+      "posRendered": 1.085646170569542,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 23400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2997911159241612,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.698120043317451,
+      "posRendered": 1.0950709043382487,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 23500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2998078266502283,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6982704398520547,
+      "posRendered": 1.1041866585820985,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 23600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29982320051821004,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6984088046638908,
+      "posRendered": 1.113003562854787,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 23700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29983734447675325,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.698536100290779,
+      "posRendered": 1.12153141462374,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 23800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.299850356918613,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.698653212267517,
+      "posRendered": 1.129779690157195,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 23900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29986232836512394,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6987609552861156,
+      "posRendered": 1.1377575550543648,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 24000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29987334209591404,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6988600788632264,
+      "posRendered": 1.1454738744303776,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 24100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2998834747282409,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6989512725541682,
+      "posRendered": 1.1529372227673182,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 24200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29989279674998165,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.699035170749835,
+      "posRendered": 1.160155893442313,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 24300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2999013730099831,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.699112357089848,
+      "posRendered": 1.1671379079432451,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 24400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2999092631691844,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.69918336852266,
+      "posRendered": 1.1738910247823457,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 24500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2999165221156497,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6992486990408473,
+      "posRendered": 1.18042274811756,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 24600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2999232003463977,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6993088031175794,
+      "posRendered": 1.186740336091273,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 24700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2999293443186859,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6993640988681733,
+      "posRendered": 1.19285080889566,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 24800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.299934996773191,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.699414970958719,
+      "posRendered": 1.1987609565736204,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 24900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29994019703133573,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.699461773282022,
+      "posRendered": 1.20447734656397,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 25000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29994498126882885,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6995048314194596,
+      "posRendered": 1.2100063309992704,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 25100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2999493827673225,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6995444449059027,
+      "posRendered": 1.2153540537644072,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 25200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2999534321459367,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6995808893134305,
+      "posRendered": 1.2205264573237617,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 25300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2999571575742618,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.699614418168356,
+      "posRendered": 1.2255292893245597,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 25400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29996058496832084,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6996452647148876,
+      "posRendered": 1.2303681089837384,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 25500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2999637381708552,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6996736435376967,
+      "posRendered": 1.2350482932654248,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 25600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2999666391171868,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.699699752054681,
+      "posRendered": 1.2395750428558945,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 25700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29996930798781185,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.699723771890307,
+      "posRendered": 1.2439533879426474,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 25800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2999717633487869,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.699745870139082,
+      "posRendered": 1.248188193804021,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.3731267298463237
+     },
+     "nowUs": 25900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29997402228088393,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6997662005279555,
+      "posRendered": 1.271856052635102,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.9701236309868417
+     },
+     "nowUs": 26000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2999761004984132,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6997849044857194,
+      "posRendered": 1.2947479867604588,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.9701236309868417
+     },
+     "nowUs": 26100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29997801245854017,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6998021121268616,
+      "posRendered": 1.3168894340176767,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.9701236309868417
+     },
+     "nowUs": 26200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29997977146185695,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6998179431567126,
+      "posRendered": 1.3383049982928317,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.9701236309868417
+     },
+     "nowUs": 26300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2999813897449084,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6998325077041754,
+      "posRendered": 1.3590184768606681,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.9701236309868417
+     },
+     "nowUs": 26400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29998287856531575,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.699845907087842,
+      "posRendered": 1.3790528868284693,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.9701236309868417
+     },
+     "nowUs": 26500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29998424828009046,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.699858234520814,
+      "posRendered": 1.3984304907129836,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.9701236309868417
+     },
+     "nowUs": 26600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.29998550841768323,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6998695757591493,
+      "posRendered": 1.417172821178848,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.9701236309868417
+     },
+     "nowUs": 26700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2999866677442686,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6998800096984175,
+      "posRendered": 1.435300704965987,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.9701236309868417
+     },
+     "nowUs": 26800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2999877343247271,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.699889608922544,
+      "posRendered": 1.4528342860325738,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.9701236309868417
+     },
+     "nowUs": 26900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.3,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2999887155787489,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.6998984402087403,
+      "posRendered": 1.4697930479392838,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.9701236309868417
+     },
+     "nowUs": 27000000
+    }
+   ],
+   "commitTime": 15.1
+  },
+  {
+   "name": "V4-hue-outside-arc",
+   "steps": [
+    {
+     "op": "toggle",
+     "nowUs": 0
+    },
+    {
+     "op": "ingest",
+     "hue": 0.5,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.5,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 3.0,
+      "posRendered": 1.0,
+      "arcClamped": true,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.95,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": true,
+     "expect": {
+      "hueSmoothed": 0.95,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.0,
+      "posRendered": 1.00126967066111,
+      "arcClamped": true,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.010805422912566
+     },
+     "nowUs": 200000
+    }
+   ]
+  },
+  {
+   "name": "V5-manual-cycle-pause",
+   "steps": [
+    {
+     "op": "toggle",
+     "nowUs": 0
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 100000
+    },
+    {
+     "op": "filterToggle",
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.0,
+      "posRendered": 0.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": true,
+      "manualPos": 0.0,
+      "committed": 0.0
+     },
+     "nowUs": 200000
+    },
+    {
+     "op": "filterToggle",
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 1.0,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": true,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 300000
+    },
+    {
+     "op": "filterToggle",
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 2.0,
+      "posRendered": 2.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": true,
+      "manualPos": 2.0,
+      "committed": 2.0
+     },
+     "nowUs": 400000
+    },
+    {
+     "op": "filterToggle",
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 3.0,
+      "posRendered": 3.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": true,
+      "manualPos": 3.0,
+      "committed": 3.0
+     },
+     "nowUs": 500000
+    },
+    {
+     "op": "filterToggle",
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 3.0,
+      "committed": 1.0
+     },
+     "nowUs": 600000
+    },
+    {
+     "op": "filterToggle",
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.0,
+      "posRendered": 0.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": true,
+      "manualPos": 0.0,
+      "committed": 0.0
+     },
+     "nowUs": 700000
+    },
+    {
+     "op": "pause",
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 0.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 0.0,
+      "committed": 0.0
+     },
+     "nowUs": 800000
+    }
+   ]
+  },
+  {
+   "name": "V6-file-loaded-reset",
+   "steps": [
+    {
+     "op": "toggle",
+     "nowUs": 0
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.5,
+     "contrast": 0.4,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.6890624999999999,
+      "contrastRendered": 0.099,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.5,
+     "contrast": 0.4,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.6890624999999999,
+      "contrastRendered": 0.099,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.5,
+     "contrast": 0.4,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.6890624999999999,
+      "contrastRendered": 0.099,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.5,
+     "contrast": 0.4,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.6890624999999999,
+      "contrastRendered": 0.099,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.05,
+     "sat": 0.5,
+     "contrast": 0.4,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.05,
+      "strengthRendered": 0.6890624999999999,
+      "contrastRendered": 0.099,
+      "posResolved": 0.45000000000000007,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 500000
+    },
+    {
+     "op": "fileLoaded",
+     "expect": {
+      "hueSmoothed": null,
+      "strengthRendered": 0.26249999999999996,
+      "contrastRendered": 0.0935,
+      "posResolved": 1.0,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": false,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 1000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.2,
+     "sat": 0.5,
+     "contrast": 0.4,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.2,
+      "strengthRendered": 0.6890624999999999,
+      "contrastRendered": 0.099,
+      "posResolved": 1.8000000000000003,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 1100000
+    }
+   ]
+  },
+  {
+   "name": "V7-carryover-rendezvous",
+   "steps": [
+    {
+     "op": "setTargetEnabled",
+     "value": true,
+     "expect": {
+      "hueSmoothed": null,
+      "strengthRendered": 0.75,
+      "contrastRendered": 0.055,
+      "posResolved": 1.0,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": false,
+      "hasFeed": false,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "fileLoaded",
+     "expect": {
+      "hueSmoothed": null,
+      "strengthRendered": 0.26249999999999996,
+      "contrastRendered": 0.0935,
+      "posResolved": 1.0,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": false,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 100000
+    }
+   ]
+  },
+  {
+   "name": "V8-tier1-ease",
+   "steps": [
+    {
+     "op": "toggle",
+     "nowUs": 0
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.55,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.75,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 100000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.15,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.6288451803742019,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 200000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.15,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.5378000844787826,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 300000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.15,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.46938176226751305,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 400000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.15,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.41796694669543555,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 500000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.15,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.3793298802653657,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 600000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.15,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.3502950021721268,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 700000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.15,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.3284759505778487,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 800000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.15,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.31207942874831057,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 900000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.15,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.2997578149079994,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 1000000
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.15,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.2904984018929634,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 1100000
+    }
+   ]
+  },
+  {
+   "name": "V9-hdr-sentinel-nil-hue",
+   "steps": [
+    {
+     "op": "toggle",
+     "nowUs": 0
+    },
+    {
+     "op": "ingest",
+     "hue": 0.1,
+     "sat": 0.3,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.4453125,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 100000
+    },
+    {
+     "op": "ingest",
+     "hue": null,
+     "sat": -1,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.5210342622661238,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 200000
+    },
+    {
+     "op": "ingest",
+     "hue": null,
+     "sat": -1,
+     "contrast": 0.25,
+     "isCut": false,
+     "expect": {
+      "hueSmoothed": 0.1,
+      "strengthRendered": 0.5779374472007609,
+      "contrastRendered": 0.0825,
+      "posResolved": 0.9000000000000001,
+      "posRendered": 1.0,
+      "arcClamped": false,
+      "enabled": true,
+      "hasFeed": true,
+      "manualActive": false,
+      "manualPos": 1.0,
+      "committed": 1.0
+     },
+     "nowUs": 300000
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+  "actualPackets" : 143,
+  "expectedPackets" : 143,
+  "fixture" : "a6-h264-aac.mp4",
+  "mismatchCount" : 0,
+  "mismatches" : [
+
+  ],
+  "tracks" : [
+    {
+      "actual" : 48,
+      "codec" : "h264",
+      "expected" : 48,
+      "track" : 0
+    },
+    {
+      "actual" : 95,
+      "codec" : "aac",
+      "expected" : 95,
+      "track" : 1
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "CodecDelayNanoseconds": 10000000,
+    "CodecDelayPresent": true,
+    "codecID": "V_MPEGH/ISO/HEVC",
+    "trackNumber": 1
+  },
+  {
+    "CodecDelayNanoseconds": 32000000,
+    "CodecDelayPresent": true,
+    "codecID": "A_EAC3",
+    "trackNumber": 2
+  }
+]

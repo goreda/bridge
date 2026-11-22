@@ -1,0 +1,54 @@
+TEST LOG - BridgeTimeMath P-A4
+date: 2026-11-06T22:01:24Z
+toolchain: Swift version 5.9.2 (swift-5.9.2-RELEASE)
+platform: Linux 7.2.14 x86_64
+
+=== swift test (debug) ===
+[0/1] Planning build
+Building for debugging...
+Build complete! (0.35s)
+Test Suite 'All tests' started at 2026-11-06 22:01:24.758
+Test Suite 'debug.xctest' started at 2026-11-06 22:01:24.759
+Test Suite 'TimeMathTests' started at 2026-11-06 22:01:24.759
+Test Case 'TimeMathTests.testAddSubVectors' started at 2026-11-06 22:01:24.759
+Test Case 'TimeMathTests.testAddSubVectors' passed (0.001 seconds)
+Test Case 'TimeMathTests.testNamedRescaleRegressionVector' started at 2026-11-06 22:01:24.760
+Test Case 'TimeMathTests.testNamedRescaleRegressionVector' passed (0.0 seconds)
+Test Case 'TimeMathTests.testNamedSplitRegressionVector' started at 2026-11-06 22:01:24.761
+Test Case 'TimeMathTests.testNamedSplitRegressionVector' passed (0.0 seconds)
+Test Case 'TimeMathTests.testRescaleVectors' started at 2026-11-06 22:01:24.761
+Test Case 'TimeMathTests.testRescaleVectors' passed (0.0 seconds)
+Test Case 'TimeMathTests.testSplitVectors' started at 2026-11-06 22:01:24.761
+Test Case 'TimeMathTests.testSplitVectors' passed (0.0 seconds)
+Test Suite 'TimeMathTests' passed at 2026-11-06 22:01:24.762
+Executed 5 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'debug.xctest' passed at 2026-11-06 22:01:24.762
+Executed 5 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'All tests' passed at 2026-11-06 22:01:24.762
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+
+=== swift test -c release ===
+[0/1] Planning build
+Building for production...
+Build complete! (0.24s)
+Test Suite 'All tests' started at 2026-11-06 22:01:25.233
+Test Suite 'release.xctest' started at 2026-11-06 22:01:25.234
+Test Suite 'TimeMathTests' started at 2026-11-06 22:01:25.234
+Test Case 'TimeMathTests.testAddSubVectors' started at 2026-11-06 22:01:25.234
+Test Case 'TimeMathTests.testAddSubVectors' passed (0.001 seconds)
+Test Case 'TimeMathTests.testNamedRescaleRegressionVector' started at 2026-11-06 22:01:25.235
+Test Case 'TimeMathTests.testNamedRescaleRegressionVector' passed (0.0 seconds)
+Test Case 'TimeMathTests.testNamedSplitRegressionVector' started at 2026-11-06 22:01:25.235
+Test Case 'TimeMathTests.testNamedSplitRegressionVector' passed (0.0 seconds)
+Test Case 'TimeMathTests.testRescaleVectors' started at 2026-11-06 22:01:25.235
+Test Case 'TimeMathTests.testRescaleVectors' passed (0.0 seconds)
+Test Case 'TimeMathTests.testSplitVectors' started at 2026-11-06 22:01:25.235
+Test Case 'TimeMathTests.testSplitVectors' passed (0.0 seconds)
+Test Suite 'TimeMathTests' passed at 2026-11-06 22:01:25.235
+Executed 5 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'release.xctest' passed at 2026-11-06 22:01:25.235
+Executed 5 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'All tests' passed at 2026-11-06 22:01:25.235
+Executed 5 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+
+Debug and release runs execute the identical CSV vectors; both pass.

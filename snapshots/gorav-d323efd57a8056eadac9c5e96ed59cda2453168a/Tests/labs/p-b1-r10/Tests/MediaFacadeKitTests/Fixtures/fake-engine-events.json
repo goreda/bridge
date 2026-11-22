@@ -1,0 +1,303 @@
+{
+  "name": "fake-engine-events",
+  "generated": "2026-11-06T22:06:40Z",
+  "purpose": "P-B1-E2 (fa31ade): generated sequence covering the E2 vocabulary (cycle/add/frame-step/frame-back-step, time-pos set, volume get, vid set/mutate, aid/sid/vid gets, track-list observe/notify/unobserve) plus the original empty/load/playback/error legs, driven against FakeEngine through the facade with the merged 34-row table installed.",
+  "sequence": [
+    {
+      "step": "empty",
+      "action": "get",
+      "property": "pause",
+      "expect": {
+        "returns": {
+          "type": "none"
+        }
+      }
+    },
+    {
+      "step": "load",
+      "action": "command",
+      "name": "loadfile",
+      "arguments": [
+        {
+          "type": "text",
+          "value": "a1-v24.mp4"
+        }
+      ],
+      "expect": {
+        "returns": {
+          "type": "none"
+        }
+      }
+    },
+    {
+      "step": "playback",
+      "action": "set",
+      "property": "pause",
+      "value": {
+        "type": "bool",
+        "value": false
+      },
+      "expect": {
+        "returns": {
+          "type": "none"
+        }
+      }
+    },
+    {
+      "step": "playback",
+      "action": "get",
+      "property": "time-pos",
+      "seedProperty": {
+        "type": "number",
+        "value": 1.25
+      },
+      "expect": {
+        "returns": {
+          "type": "number",
+          "value": 1.25
+        }
+      }
+    },
+    {
+      "step": "e2-cycle",
+      "action": "command",
+      "name": "cycle",
+      "arguments": [
+        {
+          "type": "text",
+          "value": "pause"
+        }
+      ],
+      "expect": {
+        "returns": {
+          "type": "none"
+        }
+      }
+    },
+    {
+      "step": "e2-add",
+      "action": "command",
+      "name": "add",
+      "arguments": [
+        {
+          "type": "text",
+          "value": "speed"
+        },
+        {
+          "type": "number",
+          "value": 0.5
+        }
+      ],
+      "expect": {
+        "returns": {
+          "type": "none"
+        }
+      }
+    },
+    {
+      "step": "e2-frame-step",
+      "action": "command",
+      "name": "frame-step",
+      "expect": {
+        "returns": {
+          "type": "none"
+        }
+      }
+    },
+    {
+      "step": "e2-frame-back",
+      "action": "command",
+      "name": "frame-back-step",
+      "expect": {
+        "returns": {
+          "type": "none"
+        }
+      }
+    },
+    {
+      "step": "e2-time-pos-set",
+      "action": "set",
+      "property": "time-pos",
+      "value": {
+        "type": "number",
+        "value": 12.5
+      },
+      "expect": {
+        "returns": {
+          "type": "none"
+        }
+      }
+    },
+    {
+      "step": "e2-volume-get",
+      "action": "get",
+      "property": "volume",
+      "seedProperty": {
+        "type": "number",
+        "value": 80
+      },
+      "expect": {
+        "returns": {
+          "type": "number",
+          "value": 80
+        }
+      }
+    },
+    {
+      "step": "e2-vid-set",
+      "action": "set",
+      "property": "vid",
+      "value": {
+        "type": "text",
+        "value": "auto"
+      },
+      "expect": {
+        "returns": {
+          "type": "none"
+        }
+      }
+    },
+    {
+      "step": "e2-vid-mutate",
+      "action": "set",
+      "property": "vid",
+      "value": {
+        "type": "number",
+        "value": 2
+      },
+      "expect": {
+        "returns": {
+          "type": "none"
+        }
+      }
+    },
+    {
+      "step": "e2-aid-get",
+      "action": "get",
+      "property": "aid",
+      "seedProperty": {
+        "type": "number",
+        "value": 1
+      },
+      "expect": {
+        "returns": {
+          "type": "number",
+          "value": 1
+        }
+      }
+    },
+    {
+      "step": "e2-sid-get",
+      "action": "get",
+      "property": "sid",
+      "seedProperty": {
+        "type": "text",
+        "value": "no"
+      },
+      "expect": {
+        "returns": {
+          "type": "text",
+          "value": "no"
+        }
+      }
+    },
+    {
+      "step": "e2-vid-get",
+      "action": "get",
+      "property": "vid",
+      "expect": {
+        "returns": {
+          "type": "number",
+          "value": 2
+        }
+      }
+    },
+    {
+      "step": "e2-track-list-observe",
+      "action": "observe",
+      "property": "track-list",
+      "token": 900,
+      "expect": {
+        "returns": {
+          "type": "none"
+        }
+      }
+    },
+    {
+      "step": "e2-track-list-notify",
+      "action": "notify",
+      "property": "track-list",
+      "value": {
+        "type": "list",
+        "value": [
+          {
+            "type": "object",
+            "value": {
+              "id": {
+                "type": "number",
+                "value": 1
+              },
+              "kind": {
+                "type": "text",
+                "value": "audio"
+              }
+            }
+          }
+        ]
+      },
+      "expect": {
+        "callbackCount": 1
+      }
+    },
+    {
+      "step": "e2-track-list-unobserve",
+      "action": "unobserve",
+      "token": 900,
+      "expect": {
+        "returns": {
+          "type": "none"
+        }
+      }
+    },
+    {
+      "step": "e2-track-list-notify-after-remove",
+      "action": "notify",
+      "property": "track-list",
+      "value": {
+        "type": "list",
+        "value": [
+          {
+            "type": "object",
+            "value": {
+              "id": {
+                "type": "number",
+                "value": 2
+              },
+              "kind": {
+                "type": "text",
+                "value": "sub"
+              }
+            }
+          }
+        ]
+      },
+      "expect": {
+        "callbackCount": 0
+      }
+    },
+    {
+      "step": "error",
+      "action": "command",
+      "name": "seek",
+      "arguments": [
+        {
+          "type": "number",
+          "value": 10.0
+        }
+      ],
+      "expect": {
+        "throws": "engineFailure: simulated seek failure"
+      }
+    }
+  ]
+}

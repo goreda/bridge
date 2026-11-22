@@ -1,0 +1,96 @@
+[0/1] Planning build
+Building for debugging...
+[0/5] Write swift-version-6DF22CE69C72FCAF.txt
+[1/5] Write sources
+[3/6] Emitting module BridgeDemux
+[4/7] Compiling BridgeDemux MKVDemuxer.swift
+[5/9] Write Objects.LinkFileList
+[7/9] Linking BridgeDemuxProbe
+[8/9] Linking BridgeDemuxPackageTests.xctest
+Build complete! (1.67s)
+Test Suite 'All tests' started at 2026-11-06 22:14:44.848
+Test Suite 'debug.xctest' started at 2026-11-06 22:14:44.850
+Test Suite 'A6OracleTests' started at 2026-11-06 22:14:44.850
+Test Case 'A6OracleTests.testA6AACPrimingIsNegativeNotZero' started at 2026-11-06 22:14:44.850
+Test Case 'A6OracleTests.testA6AACPrimingIsNegativeNotZero' passed (0.002 seconds)
+Test Case 'A6OracleTests.testA6EmptyAndTruncatedInputsThrow' started at 2026-11-06 22:14:44.852
+Test Case 'A6OracleTests.testA6EmptyAndTruncatedInputsThrow' passed (0.0 seconds)
+Test Case 'A6OracleTests.testH264AACExactOracle' started at 2026-11-06 22:14:44.852
+A6 MEASURED a6-h264-aac.mp4 actual=143 expected=143 mismatches=0
+Test Case 'A6OracleTests.testH264AACExactOracle' passed (0.004 seconds)
+Test Case 'A6OracleTests.testHEVCEAC3ExactOracle' started at 2026-11-06 22:14:44.857
+A6 MEASURED a6-hevc-eac3.mkv actual=111 expected=111 mismatches=0
+Test Case 'A6OracleTests.testHEVCEAC3ExactOracle' passed (0.003 seconds)
+Test Case 'A6OracleTests.testHEVCEAC3NonzeroCodecDelayExactOracle' started at 2026-11-06 22:14:44.860
+A6 MEASURED a6-hevc-eac3-delay.mkv actual=111 expected=111 mismatches=0
+Test Case 'A6OracleTests.testHEVCEAC3NonzeroCodecDelayExactOracle' passed (0.003 seconds)
+Test Case 'A6OracleTests.testNonzeroDelaySubtractsFromBothTracksAndPreservesPayload' started at 2026-11-06 22:14:44.862
+Test Case 'A6OracleTests.testNonzeroDelaySubtractsFromBothTracksAndPreservesPayload' passed (0.002 seconds)
+Test Suite 'A6OracleTests' passed at 2026-11-06 22:14:44.864
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.014 (0.014) seconds
+Test Suite 'DemuxTests' started at 2026-11-06 22:14:44.864
+Test Case 'DemuxTests.testAllFixturesMatchFFprobeOracle' started at 2026-11-06 22:14:44.864
+Test Case 'DemuxTests.testAllFixturesMatchFFprobeOracle' passed (0.008 seconds)
+Test Case 'DemuxTests.testConcreteDemuxerTypes' started at 2026-11-06 22:14:44.872
+Test Case 'DemuxTests.testConcreteDemuxerTypes' passed (0.001 seconds)
+Test Case 'DemuxTests.testDeterministicOutput' started at 2026-11-06 22:14:44.873
+Test Case 'DemuxTests.testDeterministicOutput' passed (0.029 seconds)
+Test Case 'DemuxTests.testEmptyInputThrows' started at 2026-11-06 22:14:44.903
+Test Case 'DemuxTests.testEmptyInputThrows' passed (0.0 seconds)
+Test Case 'DemuxTests.testFragmentedBFrameReorder' started at 2026-11-06 22:14:44.903
+Test Case 'DemuxTests.testFragmentedBFrameReorder' passed (0.0 seconds)
+Test Case 'DemuxTests.testFragmentedBaseMoofVariantMatchesDefault' started at 2026-11-06 22:14:44.903
+Test Case 'DemuxTests.testFragmentedBaseMoofVariantMatchesDefault' passed (0.029 seconds)
+Test Case 'DemuxTests.testFragmentedFaithfulFirstDuration' started at 2026-11-06 22:14:44.932
+Test Case 'DemuxTests.testFragmentedFaithfulFirstDuration' passed (0.001 seconds)
+Test Case 'DemuxTests.testFragmentedFixturesMatchFFprobeOracle' started at 2026-11-06 22:14:44.933
+Test Case 'DemuxTests.testFragmentedFixturesMatchFFprobeOracle' passed (0.007 seconds)
+Test Case 'DemuxTests.testFragmentedMultiFragmentContinuity' started at 2026-11-06 22:14:44.940
+Test Case 'DemuxTests.testFragmentedMultiFragmentContinuity' passed (0.001 seconds)
+Test Case 'DemuxTests.testMKVMillisecondTimebase' started at 2026-11-06 22:14:44.941
+Test Case 'DemuxTests.testMKVMillisecondTimebase' passed (0.0 seconds)
+Test Case 'DemuxTests.testMP4BFrameReorder' started at 2026-11-06 22:14:44.941
+Test Case 'DemuxTests.testMP4BFrameReorder' passed (0.0 seconds)
+Test Case 'DemuxTests.testMP4EditListAndAACPriming' started at 2026-11-06 22:14:44.942
+Test Case 'DemuxTests.testMP4EditListAndAACPriming' passed (0.001 seconds)
+Test Case 'DemuxTests.testMissingClusterTimestampYieldsNilNotZero' started at 2026-11-06 22:14:44.942
+Test Case 'DemuxTests.testMissingClusterTimestampYieldsNilNotZero' passed (0.001 seconds)
+Test Case 'DemuxTests.testPacketPayloadsMatchFFprobeHashes' started at 2026-11-06 22:14:44.943
+Test Case 'DemuxTests.testPacketPayloadsMatchFFprobeHashes' passed (0.181 seconds)
+Test Case 'DemuxTests.testRationalTimeBasics' started at 2026-11-06 22:14:45.123
+Test Case 'DemuxTests.testRationalTimeBasics' passed (0.0 seconds)
+Test Case 'DemuxTests.testTruncatedInputThrows' started at 2026-11-06 22:14:45.124
+Test Case 'DemuxTests.testTruncatedInputThrows' passed (0.001 seconds)
+Test Suite 'DemuxTests' passed at 2026-11-06 22:14:45.125
+	 Executed 16 tests, with 0 failures (0 unexpected) in 0.26 (0.26) seconds
+Test Suite 'HEVCReorderTests' started at 2026-11-06 22:14:45.125
+Test Case 'HEVCReorderTests.testAllTruncatedConfigPrefixesThrowWithoutTrap' started at 2026-11-06 22:14:45.125
+Test Case 'HEVCReorderTests.testAllTruncatedConfigPrefixesThrowWithoutTrap' passed (0.0 seconds)
+Test Case 'HEVCReorderTests.testDepthParsedFromSPSNotHardcoded' started at 2026-11-06 22:14:45.125
+Test Case 'HEVCReorderTests.testDepthParsedFromSPSNotHardcoded' passed (0.0 seconds)
+Test Case 'HEVCReorderTests.testOversizeDepthAndMissingSPSThrow' started at 2026-11-06 22:14:45.126
+Test Case 'HEVCReorderTests.testOversizeDepthAndMissingSPSThrow' passed (0.0 seconds)
+Test Suite 'HEVCReorderTests' passed at 2026-11-06 22:14:45.126
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'MalformedSafetyTests' started at 2026-11-06 22:14:45.126
+Test Case 'MalformedSafetyTests.testFailedReopenInProcess' started at 2026-11-06 22:14:45.126
+Test Case 'MalformedSafetyTests.testFailedReopenInProcess' passed (0.0 seconds)
+Test Case 'MalformedSafetyTests.testFailedReopenNoStalePacketLeakSubprocess' started at 2026-11-06 22:14:45.126
+Test Case 'MalformedSafetyTests.testFailedReopenNoStalePacketLeakSubprocess' passed (0.541 seconds)
+Test Case 'MalformedSafetyTests.testMalformedFixturesNoProcessTrap' started at 2026-11-06 22:14:45.667
+Test Case 'MalformedSafetyTests.testMalformedFixturesNoProcessTrap' passed (0.534 seconds)
+Test Case 'MalformedSafetyTests.testMalformedFixturesThrowNamedErrorsInProcess' started at 2026-11-06 22:14:46.201
+Test Case 'MalformedSafetyTests.testMalformedFixturesThrowNamedErrorsInProcess' passed (0.003 seconds)
+Test Case 'MalformedSafetyTests.testProbeControlOnGoodFixtures' started at 2026-11-06 22:14:46.205
+Test Case 'MalformedSafetyTests.testProbeControlOnGoodFixtures' passed (0.238 seconds)
+Test Case 'MalformedSafetyTests.testSuccessfulOpenAfterFailedReopenMatchesFreshOpen' started at 2026-11-06 22:14:46.443
+Test Case 'MalformedSafetyTests.testSuccessfulOpenAfterFailedReopenMatchesFreshOpen' passed (0.002 seconds)
+Test Suite 'MalformedSafetyTests' passed at 2026-11-06 22:14:46.445
+	 Executed 6 tests, with 0 failures (0 unexpected) in 1.319 (1.319) seconds
+Test Suite 'debug.xctest' passed at 2026-11-06 22:14:46.445
+	 Executed 31 tests, with 0 failures (0 unexpected) in 1.594 (1.594) seconds
+Test Suite 'All tests' passed at 2026-11-06 22:14:46.445
+	 Executed 31 tests, with 0 failures (0 unexpected) in 1.594 (1.594) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+✔ Test run with 0 tests passed after 0.001 seconds.

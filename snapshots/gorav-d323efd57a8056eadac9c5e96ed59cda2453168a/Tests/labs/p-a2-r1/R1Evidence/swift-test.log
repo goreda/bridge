@@ -1,0 +1,70 @@
+[0/1] Planning build
+Building for debugging...
+[0/12] Write swift-version-6DF22CE69C72FCAF.txt
+[0/12] Write sources
+[2/12] Wrapping AST for AudioMasterScheduler for debugging
+[4/13] Emitting module AudioMasterSchedulerTests
+[5/16] Compiling AudioMasterSchedulerTests AdapterTests.swift
+[6/16] Compiling AudioMasterSchedulerTests ClockTests.swift
+[7/16] Compiling AudioMasterSchedulerTests resource_bundle_accessor.swift
+[8/17] Wrapping AST for AudioMasterSchedulerTests for debugging
+[9/17] /downloads/P-A2-R1-AudioMasterScheduler/.build/x86_64-unknown-linux-gnu/debug/AudioMasterSchedulerPackageDiscoveredTests.derived/all-discovered-tests.swift
+[10/17] Write sources
+[12/18] Emitting module AudioMasterSchedulerPackageDiscoveredTests
+[13/20] Compiling AudioMasterSchedulerPackageDiscoveredTests AudioMasterSchedulerTests.swift
+[14/20] Compiling AudioMasterSchedulerPackageDiscoveredTests all-discovered-tests.swift
+[15/21] /downloads/P-A2-R1-AudioMasterScheduler/.build/x86_64-unknown-linux-gnu/debug/AudioMasterSchedulerPackageTests.derived/runner.swift
+[16/21] Write sources
+[18/22] Emitting module AudioMasterSchedulerPackageTests
+[19/23] Compiling AudioMasterSchedulerPackageTests runner.swift
+[20/24] Wrapping AST for AudioMasterSchedulerPackageDiscoveredTests for debugging
+[21/24] Wrapping AST for AudioMasterSchedulerPackageTests for debugging
+[22/24] Write Objects.LinkFileList
+[23/24] Linking AudioMasterSchedulerPackageTests.xctest
+Build complete! (2.14s)
+Test Suite 'All tests' started at 2026-11-06 21:35:41.385
+Test Suite 'debug.xctest' started at 2026-11-06 21:35:41.488
+Test Suite 'AdapterTests' started at 2026-11-06 21:35:41.488
+Test Case 'AdapterTests.testFiveSeeksEnqueueAdapter600Seconds' started at 2026-11-06 21:35:41.488
+ADAPTER MEASURED ticks=600001 presentations=15000 staleChecks=90 maxAbsOffset=0.0010000000000616183 segmentDrifts=[0.0, 0.0009999999999763531, 0.0009999999999195097, 0.0, 0.0009999999999763531, 0.0009999999999195097]
+Test Case 'AdapterTests.testFiveSeeksEnqueueAdapter600Seconds' passed (0.495 seconds)
+Test Case 'AdapterTests.testIdenticalPTSUnseenOldFrameAndFreshFrame' started at 2026-11-06 21:35:41.983
+Test Case 'AdapterTests.testIdenticalPTSUnseenOldFrameAndFreshFrame' passed (0.0 seconds)
+Test Case 'AdapterTests.testProtocolRemainsUsableButCannotIdentifyOldFrames' started at 2026-11-06 21:35:41.983
+Test Case 'AdapterTests.testProtocolRemainsUsableButCannotIdentifyOldFrames' passed (0.0 seconds)
+Test Case 'AdapterTests.testResetAlsoInvalidatesQueuedFrame' started at 2026-11-06 21:35:41.983
+Test Case 'AdapterTests.testResetAlsoInvalidatesQueuedFrame' passed (0.0 seconds)
+Test Case 'AdapterTests.testWaitingFrameIsNotRetaggedAtDecisionTime' started at 2026-11-06 21:35:41.984
+Test Case 'AdapterTests.testWaitingFrameIsNotRetaggedAtDecisionTime' passed (0.0 seconds)
+Test Suite 'AdapterTests' passed at 2026-11-06 21:35:41.984
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.495 (0.495) seconds
+Test Suite 'ClockTests' started at 2026-11-06 21:35:41.984
+Test Case 'ClockTests.test600Seconds' started at 2026-11-06 21:35:41.984
+MEASURED clock-600s-25fps: presentations=15000 drops=0 waits=600001 maxAbsOffset=0.0010000000000047748 segmentDrifts=[0.0]
+Test Case 'ClockTests.test600Seconds' passed (0.052 seconds)
+Test Case 'ClockTests.test600SecondsTagged' started at 2026-11-06 21:35:42.035
+MEASURED clock-600s-25fps-tagged: presentations=15000 drops=0 waits=600001 maxAbsOffset=0.0010000000000047748 segmentDrifts=[0.0]
+Test Case 'ClockTests.test600SecondsTagged' passed (0.027 seconds)
+Test Case 'ClockTests.testBoundary' started at 2026-11-06 21:35:42.062
+Test Case 'ClockTests.testBoundary' passed (0.0 seconds)
+Test Case 'ClockTests.testEpochDisambiguatesIdenticalPTSAndUnseenStaleFrame' started at 2026-11-06 21:35:42.063
+Test Case 'ClockTests.testEpochDisambiguatesIdenticalPTSAndUnseenStaleFrame' passed (0.0 seconds)
+Test Case 'ClockTests.testExtrapolationAndInvalidInput' started at 2026-11-06 21:35:42.063
+Test Case 'ClockTests.testExtrapolationAndInvalidInput' passed (0.0 seconds)
+Test Case 'ClockTests.testFiveSeeks' started at 2026-11-06 21:35:42.063
+MEASURED clock-five-seeks: presentations=14995 drops=5 waits=600001 maxAbsOffset=0.0010000000000331966 segmentDrifts=[0.0, 0.000999999999990564, 0.0, 0.0, 0.0, 0.0009999999999052989]
+Test Case 'ClockTests.testFiveSeeks' passed (0.08 seconds)
+Test Case 'ClockTests.testFiveSeeksTagged' started at 2026-11-06 21:35:42.143
+MEASURED clock-five-seeks-tagged: presentations=15000 drops=0 waits=600001 maxAbsOffset=0.0010000000000331966 segmentDrifts=[0.0, 0.000999999999990564, 0.0, 0.0, 0.0, 0.0009999999999195097]
+Test Case 'ClockTests.testFiveSeeksTagged' passed (0.043 seconds)
+Test Case 'ClockTests.testKnownPendingPTSIsInvalidatedUntilReset' started at 2026-11-06 21:35:42.185
+Test Case 'ClockTests.testKnownPendingPTSIsInvalidatedUntilReset' passed (0.0 seconds)
+Test Suite 'ClockTests' passed at 2026-11-06 21:35:42.185
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.201 (0.201) seconds
+Test Suite 'debug.xctest' passed at 2026-11-06 21:35:42.185
+	 Executed 13 tests, with 0 failures (0 unexpected) in 0.697 (0.697) seconds
+Test Suite 'All tests' passed at 2026-11-06 21:35:42.185
+	 Executed 13 tests, with 0 failures (0 unexpected) in 0.697 (0.697) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+✔ Test run with 0 tests passed after 0.001 seconds.

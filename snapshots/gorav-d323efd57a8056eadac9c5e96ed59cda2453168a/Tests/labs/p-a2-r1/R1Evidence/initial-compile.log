@@ -1,0 +1,105 @@
+Building for debugging...
+[0/14] Write swift-version-6DF22CE69C72FCAF.txt
+[1/14] Copying Fixtures
+[2/14] Write sources
+[5/15] Emitting module AudioMasterScheduler
+[6/17] Compiling AudioMasterScheduler AudioMasterScheduler.swift
+[7/17] Compiling AudioMasterScheduler EnqueueGenerationAdapter.swift
+error: emit-module command failed with exit code 1 (use -v to see invocation)
+[9/19] Emitting module AudioMasterSchedulerTests
+/downloads/P-A2-R1-AudioMasterScheduler/Tests/AudioMasterSchedulerTests/AdapterTests.swift:71:90: error: '.001' is not a valid floating point literal; it must be written '0.001'
+ 69 |                 oldFrames.append(contentsOf: [next, pending, identicalOld])
+ 70 |                 adapter.seek(to: seek.mediaSeconds, hostTime: host)
+ 71 |                 XCTAssertEqual(adapter.mediaTime(at: host), seek.mediaSeconds, accuracy: .001)
+    |                                                                                          `- error: '.001' is not a valid floating point literal; it must be written '0.001'
+ 72 |                 let fresh = adapter.enqueue(videoPTS: seek.mediaSeconds)
+ 73 |                 XCTAssertEqual(identicalOld.pts, fresh.pts)
+
+/downloads/P-A2-R1-AudioMasterScheduler/Tests/AudioMasterSchedulerTests/AdapterTests.swift:97:59: error: '.040' is not a valid floating point literal; it must be written '0.040'
+ 95 |                 if decision == .drop { drops += 1 } else {
+ 96 |                     let master = adapter.mediaTime(at: host), offset = next.pts-master
+ 97 |                     XCTAssertLessThanOrEqual(abs(offset), .040+1e-9)
+    |                                                           `- error: '.040' is not a valid floating point literal; it must be written '0.040'
+ 98 |                     let anchorTick = max(originTick, tick-tick%input.audioEveryTicks)
+ 99 |                     let jitter = anchorTick == originTick && originTick != 0 ? 0 : input.jitterTicks[(anchorTick/input.audioEveryTicks)%input.jitterTicks.count]
+
+/downloads/P-A2-R1-AudioMasterScheduler/Tests/AudioMasterSchedulerTests/AdapterTests.swift:115:63: error: '.040' is not a valid floating point literal; it must be written '0.040'
+113 |         let drifts = offsets.map { abs($0.last!-$0.first!) }
+114 |         let maxOffset = offsets.flatMap { $0 }.map { abs($0) }.max()!
+115 |         for drift in drifts { XCTAssertLessThanOrEqual(drift, .040+1e-9) }
+    |                                                               `- error: '.040' is not a valid floating point literal; it must be written '0.040'
+116 |         let evidence: [String: Any] = ["ticks": input.durationTicks+1, "presentations": samples.count,
+117 |             "drops": drops, "waits": waits, "staleChecks": staleChecks,
+[10/22] Compiling AudioMasterSchedulerTests AdapterTests.swift
+/downloads/P-A2-R1-AudioMasterScheduler/Tests/AudioMasterSchedulerTests/AdapterTests.swift:71:90: error: '.001' is not a valid floating point literal; it must be written '0.001'
+ 69 |                 oldFrames.append(contentsOf: [next, pending, identicalOld])
+ 70 |                 adapter.seek(to: seek.mediaSeconds, hostTime: host)
+ 71 |                 XCTAssertEqual(adapter.mediaTime(at: host), seek.mediaSeconds, accuracy: .001)
+    |                                                                                          `- error: '.001' is not a valid floating point literal; it must be written '0.001'
+ 72 |                 let fresh = adapter.enqueue(videoPTS: seek.mediaSeconds)
+ 73 |                 XCTAssertEqual(identicalOld.pts, fresh.pts)
+
+/downloads/P-A2-R1-AudioMasterScheduler/Tests/AudioMasterSchedulerTests/AdapterTests.swift:97:59: error: '.040' is not a valid floating point literal; it must be written '0.040'
+ 95 |                 if decision == .drop { drops += 1 } else {
+ 96 |                     let master = adapter.mediaTime(at: host), offset = next.pts-master
+ 97 |                     XCTAssertLessThanOrEqual(abs(offset), .040+1e-9)
+    |                                                           `- error: '.040' is not a valid floating point literal; it must be written '0.040'
+ 98 |                     let anchorTick = max(originTick, tick-tick%input.audioEveryTicks)
+ 99 |                     let jitter = anchorTick == originTick && originTick != 0 ? 0 : input.jitterTicks[(anchorTick/input.audioEveryTicks)%input.jitterTicks.count]
+
+/downloads/P-A2-R1-AudioMasterScheduler/Tests/AudioMasterSchedulerTests/AdapterTests.swift:115:63: error: '.040' is not a valid floating point literal; it must be written '0.040'
+113 |         let drifts = offsets.map { abs($0.last!-$0.first!) }
+114 |         let maxOffset = offsets.flatMap { $0 }.map { abs($0) }.max()!
+115 |         for drift in drifts { XCTAssertLessThanOrEqual(drift, .040+1e-9) }
+    |                                                               `- error: '.040' is not a valid floating point literal; it must be written '0.040'
+116 |         let evidence: [String: Any] = ["ticks": input.durationTicks+1, "presentations": samples.count,
+117 |             "drops": drops, "waits": waits, "staleChecks": staleChecks,
+[11/22] Compiling AudioMasterSchedulerTests ClockTests.swift
+/downloads/P-A2-R1-AudioMasterScheduler/Tests/AudioMasterSchedulerTests/AdapterTests.swift:71:90: error: '.001' is not a valid floating point literal; it must be written '0.001'
+ 69 |                 oldFrames.append(contentsOf: [next, pending, identicalOld])
+ 70 |                 adapter.seek(to: seek.mediaSeconds, hostTime: host)
+ 71 |                 XCTAssertEqual(adapter.mediaTime(at: host), seek.mediaSeconds, accuracy: .001)
+    |                                                                                          `- error: '.001' is not a valid floating point literal; it must be written '0.001'
+ 72 |                 let fresh = adapter.enqueue(videoPTS: seek.mediaSeconds)
+ 73 |                 XCTAssertEqual(identicalOld.pts, fresh.pts)
+
+/downloads/P-A2-R1-AudioMasterScheduler/Tests/AudioMasterSchedulerTests/AdapterTests.swift:97:59: error: '.040' is not a valid floating point literal; it must be written '0.040'
+ 95 |                 if decision == .drop { drops += 1 } else {
+ 96 |                     let master = adapter.mediaTime(at: host), offset = next.pts-master
+ 97 |                     XCTAssertLessThanOrEqual(abs(offset), .040+1e-9)
+    |                                                           `- error: '.040' is not a valid floating point literal; it must be written '0.040'
+ 98 |                     let anchorTick = max(originTick, tick-tick%input.audioEveryTicks)
+ 99 |                     let jitter = anchorTick == originTick && originTick != 0 ? 0 : input.jitterTicks[(anchorTick/input.audioEveryTicks)%input.jitterTicks.count]
+
+/downloads/P-A2-R1-AudioMasterScheduler/Tests/AudioMasterSchedulerTests/AdapterTests.swift:115:63: error: '.040' is not a valid floating point literal; it must be written '0.040'
+113 |         let drifts = offsets.map { abs($0.last!-$0.first!) }
+114 |         let maxOffset = offsets.flatMap { $0 }.map { abs($0) }.max()!
+115 |         for drift in drifts { XCTAssertLessThanOrEqual(drift, .040+1e-9) }
+    |                                                               `- error: '.040' is not a valid floating point literal; it must be written '0.040'
+116 |         let evidence: [String: Any] = ["ticks": input.durationTicks+1, "presentations": samples.count,
+117 |             "drops": drops, "waits": waits, "staleChecks": staleChecks,
+[12/22] Compiling AudioMasterSchedulerTests resource_bundle_accessor.swift
+/downloads/P-A2-R1-AudioMasterScheduler/Tests/AudioMasterSchedulerTests/AdapterTests.swift:71:90: error: '.001' is not a valid floating point literal; it must be written '0.001'
+ 69 |                 oldFrames.append(contentsOf: [next, pending, identicalOld])
+ 70 |                 adapter.seek(to: seek.mediaSeconds, hostTime: host)
+ 71 |                 XCTAssertEqual(adapter.mediaTime(at: host), seek.mediaSeconds, accuracy: .001)
+    |                                                                                          `- error: '.001' is not a valid floating point literal; it must be written '0.001'
+ 72 |                 let fresh = adapter.enqueue(videoPTS: seek.mediaSeconds)
+ 73 |                 XCTAssertEqual(identicalOld.pts, fresh.pts)
+
+/downloads/P-A2-R1-AudioMasterScheduler/Tests/AudioMasterSchedulerTests/AdapterTests.swift:97:59: error: '.040' is not a valid floating point literal; it must be written '0.040'
+ 95 |                 if decision == .drop { drops += 1 } else {
+ 96 |                     let master = adapter.mediaTime(at: host), offset = next.pts-master
+ 97 |                     XCTAssertLessThanOrEqual(abs(offset), .040+1e-9)
+    |                                                           `- error: '.040' is not a valid floating point literal; it must be written '0.040'
+ 98 |                     let anchorTick = max(originTick, tick-tick%input.audioEveryTicks)
+ 99 |                     let jitter = anchorTick == originTick && originTick != 0 ? 0 : input.jitterTicks[(anchorTick/input.audioEveryTicks)%input.jitterTicks.count]
+
+/downloads/P-A2-R1-AudioMasterScheduler/Tests/AudioMasterSchedulerTests/AdapterTests.swift:115:63: error: '.040' is not a valid floating point literal; it must be written '0.040'
+113 |         let drifts = offsets.map { abs($0.last!-$0.first!) }
+114 |         let maxOffset = offsets.flatMap { $0 }.map { abs($0) }.max()!
+115 |         for drift in drifts { XCTAssertLessThanOrEqual(drift, .040+1e-9) }
+    |                                                               `- error: '.040' is not a valid floating point literal; it must be written '0.040'
+116 |         let evidence: [String: Any] = ["ticks": input.durationTicks+1, "presentations": samples.count,
+117 |             "drops": drops, "waits": waits, "staleChecks": staleChecks,
+error: fatalError

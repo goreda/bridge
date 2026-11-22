@@ -1,0 +1,31 @@
+{
+  "audioSeconds": 100,
+  "cases": [
+    {
+      "expected": "wait",
+      "pts": 100.001
+    },
+    {
+      "expected": "present",
+      "pts": 100
+    },
+    {
+      "expected": "present",
+      "pts": 99.960000001
+    },
+    {
+      "expected": "present",
+      "pts": 99.96
+    },
+    {
+      "expected": "drop",
+      "pts": 99.959999998
+    },
+    {
+      "expected": "drop",
+      "pts": 99.9
+    }
+  ],
+  "hostSeconds": 100,
+  "schema": 1
+}

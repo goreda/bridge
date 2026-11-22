@@ -1,0 +1,52 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version-6DF22CE69C72FCAF.txt
+[1/5] Write sources
+[3/6] Emitting module AudioMasterSchedulerTests
+[4/7] Compiling AudioMasterSchedulerTests ClockTests.swift
+[5/8] /downloads/P-A2-AudioMasterScheduler/.build/x86_64-unknown-linux-gnu/debug/AudioMasterSchedulerPackageDiscoveredTests.derived/all-discovered-tests.swift
+[6/9] Write sources
+[8/10] Emitting module AudioMasterSchedulerPackageDiscoveredTests
+[9/12] Compiling AudioMasterSchedulerPackageDiscoveredTests AudioMasterSchedulerTests.swift
+[10/12] Compiling AudioMasterSchedulerPackageDiscoveredTests all-discovered-tests.swift
+[11/13] Wrapping AST for AudioMasterSchedulerPackageDiscoveredTests for debugging
+[12/17] /downloads/P-A2-AudioMasterScheduler/.build/x86_64-unknown-linux-gnu/debug/AudioMasterSchedulerPackageTests.derived/runner.swift
+[13/18] Wrapping AST for AudioMasterSchedulerTests for debugging
+[13/18] Write sources
+[16/19] Emitting module AudioMasterSchedulerPackageTests
+[17/20] Compiling AudioMasterSchedulerPackageTests runner.swift
+[18/20] Write Objects.LinkFileList
+[19/20] Linking AudioMasterSchedulerPackageTests.xctest
+Build complete! (2.77s)
+Test Suite 'All tests' started at 2026-11-06 21:02:46.518
+Test Suite 'debug.xctest' started at 2026-11-06 21:02:46.519
+Test Suite 'ClockTests' started at 2026-11-06 21:02:46.519
+Test Case 'ClockTests.test600Seconds' started at 2026-11-06 21:02:46.519
+MEASURED clock-600s-25fps: presentations=15000 drops=0 waits=600001 maxAbsOffset=0.0010000000000047748 segmentDrifts=[0.0]
+Test Case 'ClockTests.test600Seconds' passed (0.189 seconds)
+Test Case 'ClockTests.test600SecondsTagged' started at 2026-11-06 21:02:46.708
+MEASURED clock-600s-25fps-tagged: presentations=15000 drops=0 waits=600001 maxAbsOffset=0.0010000000000047748 segmentDrifts=[0.0]
+Test Case 'ClockTests.test600SecondsTagged' passed (0.134 seconds)
+Test Case 'ClockTests.testBoundary' started at 2026-11-06 21:02:46.843
+Test Case 'ClockTests.testBoundary' passed (0.001 seconds)
+Test Case 'ClockTests.testEpochDisambiguatesIdenticalPTSAndUnseenStaleFrame' started at 2026-11-06 21:02:46.844
+Test Case 'ClockTests.testEpochDisambiguatesIdenticalPTSAndUnseenStaleFrame' passed (0.0 seconds)
+Test Case 'ClockTests.testExtrapolationAndInvalidInput' started at 2026-11-06 21:02:46.844
+Test Case 'ClockTests.testExtrapolationAndInvalidInput' passed (0.0 seconds)
+Test Case 'ClockTests.testFiveSeeks' started at 2026-11-06 21:02:46.844
+MEASURED clock-five-seeks: presentations=14995 drops=5 waits=600001 maxAbsOffset=0.0010000000000331966 segmentDrifts=[0.0, 0.000999999999990564, 0.0, 0.0, 0.0, 0.0009999999999052989]
+Test Case 'ClockTests.testFiveSeeks' passed (0.226 seconds)
+Test Case 'ClockTests.testFiveSeeksTagged' started at 2026-11-06 21:02:47.069
+MEASURED clock-five-seeks-tagged: presentations=15000 drops=0 waits=600001 maxAbsOffset=0.0010000000000331966 segmentDrifts=[0.0, 0.000999999999990564, 0.0, 0.0, 0.0, 0.0009999999999195097]
+Test Case 'ClockTests.testFiveSeeksTagged' passed (0.16 seconds)
+Test Case 'ClockTests.testKnownPendingPTSIsInvalidatedUntilReset' started at 2026-11-06 21:02:47.229
+Test Case 'ClockTests.testKnownPendingPTSIsInvalidatedUntilReset' passed (0.0 seconds)
+Test Suite 'ClockTests' passed at 2026-11-06 21:02:47.229
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.71 (0.71) seconds
+Test Suite 'debug.xctest' passed at 2026-11-06 21:02:47.229
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.71 (0.71) seconds
+Test Suite 'All tests' passed at 2026-11-06 21:02:47.229
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.71 (0.71) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+✔ Test run with 0 tests passed after 0.001 seconds.
