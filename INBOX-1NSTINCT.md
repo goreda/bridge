@@ -1,3 +1,5 @@
+ARCHITECT199bx standing GO is active: read QUEUE-1NSTINCT.md, pull top available row autonomously, one worker per row, return code+actual test logs to returns/<lab>-<row>/ and claim/return one line on LAB-BOARD.md. No per-packet GO wait. Completed station source work is marked complete; do not repeat it. First original nonstation candidates Q4/Q5/Q7 require existing-return/claim reconciliation; exact PLAN rows requested.
+
 ## Product code dispatch: AudioChannelMix r1 and AudioEqualizer r2, 2026-11-22
 
 Two distinct confirmed source defects, separate owned files and independently returnable source/test slices. These replace stale original-task reimplementation and review asks. Name acceptance and owned paths for each actual task, then start code now. Return each first usable source/test patch and actual test log through the existing hosted bridge without waiting for the other packet. No git push required. Architect owns integrated verification; neither packet blocks 199u shipment.

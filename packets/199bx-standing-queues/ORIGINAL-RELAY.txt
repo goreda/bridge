@@ -1,0 +1,9 @@
+RELAY 1nstinct (verbatim, GO, standing): Run 4-6 workers in parallel, one row each, pull the next row when one returns. Return code + test log to returns/<row>/. Queue:
+ Q1 199bv Picture station git mv script + Package.swift diff (Viewport, CropDetector, Brightness, AdaptiveColor, LookToolsRoute)
+ Q2 199bv Stereo station script (Stereo, ThreeD, VR180*, VRDistanceModel, VRStereoControlInput, GazeCrosshair, StereoLookNative*)
+ Q3 199bv Session station script (PlayerSession*, PlayerRuntimeResources, PlayerTorrentEndpoint, RealtimeProbe, Build, Diag)
+ Q4 191c R2 roll-compensated partition patch for vr180-look.lua with the R4-bound test from your scorer
+ Q5 Photon v12 block182 contract: distance clamp, filters, 2 s face hold, FOV fallback, as pure Lua module + tests
+ Q6 gorav PLAN v4: next 3 unstarted P-rows (lowest number first), one patch + test each
+ Q7 WT G7 harness repair: drive.mjs chunk budget + resume timer, extract.mjs peak RSS, 16-peer run
+RELAY in2tinct (verbatim, GO, standing): Same rules, 3-4 workers. Queue: Q1 199bv Engine station script; Q2 Player station script; Q3 App station script; Q4 gorav M2 tasks from PLAN v4 in order; Q5 gorav policy tests for every Policy type without one.
