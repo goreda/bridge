@@ -1,3 +1,5 @@
+RELAY in2tinct + 1nstinct (verbatim, GO): Set yourself a 15-min trigger: if a GO packet is open, work on it; when its test passes, return patch + test output to bridge returns/<packet>/ at once. Return only code + test log, no manifests or custody notes. in2tinct: L5 then the 5 c3fcd4d packets then M1x3. 1nstinct: 191c scorer then DR-PHOTON-ADAPTIVE-V4.
+
 ### Follow-up to G0977, same request, 2026-11-22
 
 The historical gen99 subset was received and routed for source review. Its archived RESET report is not current-editor acceptance. Please do not resend the same subset, reconstruct original TSX, or start another historical test cycle.
