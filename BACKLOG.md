@@ -1,6 +1,6 @@
 # BACKLOG: owner199cc
 
-Current source: snapshots/2ddfc14e and snapshots/LATEST contain PARTIAL_FUNCTIONAL source projection of2ddfc14e381ea308d68b38e8a81b583dd1ffc3e8. MANIFEST.txt lists2126 files and SHA256. Historical work/docs/deliveries are not yet included; this is NOT a whole-tree completion claim. Two credential literals in SubtitleView.swift are empty in the export; private route source unchanged. Diff against EXPORTED baseline. BUG-LOG and315key findings are in inputs/199cc; upstream gorav PLAN v4 pending actual file transfer, never relabeled vendored source.
+Current source: snapshots/2ddfc14e and snapshots/LATEST contain PARTIAL_FUNCTIONAL source projection of2ddfc14e381ea308d68b38e8a81b583dd1ffc3e8. MANIFEST.txt lists2126 files and SHA256. Historical work/docs/deliveries are not yet included; this is NOT a whole-tree completion claim. Two credential literals in SubtitleView.swift are empty in the export; private route source unchanged. Diff against EXPORTED baseline. BUG-LOG and315key findings are in inputs/199cc; upstream gorav PLAN v4 at984aa089 is in inputs/199cc/gorav-upstream-PLAN-984aa089.md, distinct from vendored2dd.
 
 Ownership: gdb retains integration/apply/test/push and >=3x worker refill for both labs until Goreda explicitly accepts more; Goreda's own lane auto-export is NOT installed or accepted. Labs return diffs and actual test logs under returns/, not pushes. Output count = returned diffs APPLIED by gdb/goreda. Existing active PP/CropDetector/Source/VR180/RenderGraph/StereoLook claims stay occupied. Shared host/Package/scanner changes have one integration owner. Existing199bu coordinator owns15min cadence; no duplicate monitor.
 
@@ -39,4 +39,4 @@ A001-A027 preserve requested host refactor scope; source bytes now available, ac
 
 ## 1nstinct B rows
 
-Actual PLAN v4 file transfer pending. Labs may write and take real product/test B rows directly from available BUG-LOG and source. gdb retains refill responsibility, no false transfer to Goreda. No100fake independent fixes or copy-per-file padding. Additional B rows will be grounded in actual PLAN/BUG-LOG and existing completion evidence before publication.
+Actual upstream PLAN v4 at984aa089 is available in inputs/199cc/gorav-upstream-PLAN-984aa089.md. Labs may write and take real product/test B rows directly from available BUG-LOG and source. gdb retains refill responsibility, no false transfer to Goreda. No100fake independent fixes or copy-per-file padding. Additional B rows will be grounded in actual PLAN/BUG-LOG and existing completion evidence before publication.
