@@ -1,0 +1,16 @@
+// Music mode keeps discrete command ordering and existing host side effects.
+struct PlayerMusicModeOperations {
+    let command:(String)->Void
+    func enter(size:Int) {
+        command(#"{"command":["stop"]}"#)
+        command(#"{"command":["set","vid","auto"]}"#)
+        command("{\"command\":[\"set\",\"geometry\",\"\(size)x\(size)\"]}")
+        command(#"{"command":["set","keepaspect","no"]}"#)
+    }
+    func exit(scriptedFit:Bool) {
+        command(#"{"command":["stop"]}"#)
+        command(#"{"command":["set","vid","auto"]}"#)
+        if !scriptedFit {command(#"{"command":["set","geometry","38%+50%+50%"]}"#)}
+        command(#"{"command":["set","keepaspect","yes"]}"#)
+    }
+}

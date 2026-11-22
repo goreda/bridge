@@ -1,0 +1,43 @@
+
+test_audio.py
+silence qualifying ticks 61 of 1200 last audio 0.3282
+constant qualifying ticks 25 of 1200 last audio 0.5655
+pulse qualifying ticks 534 of 1200 last audio 0.2752
+All audio traces bounded; this is a math model, not thermal or AppKit benchmark
+
+test_cache_fanout.py
+{
+  "result": "PASS",
+  "random_cache_operations": 20000,
+  "source_guards": 12,
+  "checks": [
+    "shared CT/NS bounds and index integrity",
+    "cache hit protects hot key",
+    "normalized sorted quantization",
+    "cumulative subthreshold mouse movement eventually fans out"
+  ],
+  "characterizations": [
+    "First construction in opposite CT/NS cache does not refresh existing shared LRU key, so just-created instance can be next eviction. Performance-only model result, no incorrect font proved.",
+    "Listener cleanup counter advances only on qualifying notifications; 300 is not a guaranteed 5-second wall-clock cadence.",
+    "CATextLayer.applyVariation in broadcaster assigns self.font directly, unlike setIfChanged helper. Actual typesetter cost not measured."
+  ],
+  "source_sha256": {
+    "font": "1e366e3299ec6f77f958e500aa7c57b28e7cd4b16e4f328e4b9f5ae90e7f7cea",
+    "broadcast": "bf913a2756fa7a0e0aad0abffb972db4a29c8913c743a10015bc2a99f00170b9"
+  },
+  "scope": "Python port and source checks; no Swift CoreText/AppKit execution or thermal/pixel claim"
+}
+
+test_listeners.py
+{
+  "normal_result": "PASS",
+  "normal_cases": [
+    "movement resumes fanout",
+    "explicit remove prevents later delivery",
+    "dead weak lifetime pruned at 300 qualifying ticks",
+    "tokenless entry retained at cleanup"
+  ],
+  "idle_characterization": "New listener gets zero callbacks across 10,000 stable ticks; addListener does not deliver current state or invalidate suppression. Visible consequence depends on caller initialization/layout.",
+  "scope": "Python state port and source anchors, no Swift listener mutation/queue or visual proof",
+  "source_sha256": "bf913a2756fa7a0e0aad0abffb972db4a29c8913c743a10015bc2a99f00170b9"
+}

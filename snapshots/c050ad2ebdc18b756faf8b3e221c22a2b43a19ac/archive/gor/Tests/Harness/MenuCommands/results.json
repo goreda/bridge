@@ -1,0 +1,621 @@
+{
+  "result": "PASS source-extracted static command JSON and action controls",
+  "static_commands_validated": 80,
+  "action_mapping_controls": 13,
+  "commands": [
+    {
+      "offset": 853,
+      "command": [
+        "playlist-play-index",
+        "current"
+      ]
+    },
+    {
+      "offset": 946,
+      "command": [
+        "stop"
+      ]
+    },
+    {
+      "offset": 1057,
+      "command": [
+        "quit-watch-later"
+      ]
+    },
+    {
+      "offset": 1486,
+      "command": [
+        "cycle",
+        "pause"
+      ]
+    },
+    {
+      "offset": 1563,
+      "command": [
+        "seek",
+        "5",
+        "relative"
+      ]
+    },
+    {
+      "offset": 1646,
+      "command": [
+        "seek",
+        "-5",
+        "relative"
+      ]
+    },
+    {
+      "offset": 1730,
+      "command": [
+        "seek",
+        "60",
+        "relative"
+      ]
+    },
+    {
+      "offset": 1814,
+      "command": [
+        "seek",
+        "-60",
+        "relative"
+      ]
+    },
+    {
+      "offset": 1899,
+      "command": [
+        "seek",
+        "0",
+        "absolute"
+      ]
+    },
+    {
+      "offset": 1982,
+      "command": [
+        "add",
+        "chapter",
+        "1"
+      ]
+    },
+    {
+      "offset": 2063,
+      "command": [
+        "add",
+        "chapter",
+        "-1"
+      ]
+    },
+    {
+      "offset": 2145,
+      "command": [
+        "frame-step"
+      ]
+    },
+    {
+      "offset": 2219,
+      "command": [
+        "frame-back-step"
+      ]
+    },
+    {
+      "offset": 2298,
+      "command": [
+        "multiply",
+        "speed",
+        1.1
+      ]
+    },
+    {
+      "offset": 2382,
+      "command": [
+        "multiply",
+        "speed",
+        0.9
+      ]
+    },
+    {
+      "offset": 2466,
+      "command": [
+        "multiply",
+        "speed",
+        2.0
+      ]
+    },
+    {
+      "offset": 2550,
+      "command": [
+        "multiply",
+        "speed",
+        0.5
+      ]
+    },
+    {
+      "offset": 2634,
+      "command": [
+        "set",
+        "speed",
+        1.0
+      ]
+    },
+    {
+      "offset": 2713,
+      "command": [
+        "cycle-values",
+        "loop-file",
+        "inf",
+        "no"
+      ]
+    },
+    {
+      "offset": 2812,
+      "command": [
+        "ab-loop"
+      ]
+    },
+    {
+      "offset": 2883,
+      "command": [
+        "playlist-next"
+      ]
+    },
+    {
+      "offset": 2960,
+      "command": [
+        "playlist-prev"
+      ]
+    },
+    {
+      "offset": 3073,
+      "command": [
+        "cycle",
+        "fullscreen"
+      ]
+    },
+    {
+      "offset": 3159,
+      "command": [
+        "cycle",
+        "ontop"
+      ]
+    },
+    {
+      "offset": 3240,
+      "command": [
+        "add",
+        "video-zoom",
+        0.1
+      ]
+    },
+    {
+      "offset": 3328,
+      "command": [
+        "add",
+        "video-zoom",
+        -0.1
+      ]
+    },
+    {
+      "offset": 3417,
+      "command": [
+        "set",
+        "video-zoom",
+        0
+      ]
+    },
+    {
+      "offset": 3503,
+      "command": [
+        "add",
+        "panscan",
+        0.1
+      ]
+    },
+    {
+      "offset": 3588,
+      "command": [
+        "add",
+        "panscan",
+        -0.1
+      ]
+    },
+    {
+      "offset": 3674,
+      "command": [
+        "add",
+        "video-rotate",
+        90
+      ]
+    },
+    {
+      "offset": 3763,
+      "command": [
+        "add",
+        "video-rotate",
+        -90
+      ]
+    },
+    {
+      "offset": 3853,
+      "command": [
+        "set",
+        "video-rotate",
+        0
+      ]
+    },
+    {
+      "offset": 9096,
+      "command": [
+        "vf",
+        "clr",
+        ""
+      ]
+    },
+    {
+      "offset": 10418,
+      "command": [
+        "vf",
+        "clr",
+        ""
+      ]
+    },
+    {
+      "offset": 12505,
+      "command": [
+        "screenshot",
+        "subtitles"
+      ]
+    },
+    {
+      "offset": 12595,
+      "command": [
+        "screenshot",
+        "video"
+      ]
+    },
+    {
+      "offset": 12681,
+      "command": [
+        "screenshot",
+        "window"
+      ]
+    },
+    {
+      "offset": 12768,
+      "command": [
+        "cycle",
+        "deband"
+      ]
+    },
+    {
+      "offset": 12850,
+      "command": [
+        "cycle",
+        "deinterlace"
+      ]
+    },
+    {
+      "offset": 13494,
+      "command": [
+        "add",
+        "contrast",
+        1
+      ]
+    },
+    {
+      "offset": 13578,
+      "command": [
+        "add",
+        "contrast",
+        -1
+      ]
+    },
+    {
+      "offset": 13663,
+      "command": [
+        "add",
+        "brightness",
+        1
+      ]
+    },
+    {
+      "offset": 13749,
+      "command": [
+        "add",
+        "brightness",
+        -1
+      ]
+    },
+    {
+      "offset": 13836,
+      "command": [
+        "add",
+        "gamma",
+        1
+      ]
+    },
+    {
+      "offset": 13917,
+      "command": [
+        "add",
+        "gamma",
+        -1
+      ]
+    },
+    {
+      "offset": 13999,
+      "command": [
+        "add",
+        "saturation",
+        1
+      ]
+    },
+    {
+      "offset": 14085,
+      "command": [
+        "add",
+        "saturation",
+        -1
+      ]
+    },
+    {
+      "offset": 15814,
+      "command": [
+        "add",
+        "volume",
+        5
+      ]
+    },
+    {
+      "offset": 15892,
+      "command": [
+        "add",
+        "volume",
+        -5
+      ]
+    },
+    {
+      "offset": 15971,
+      "command": [
+        "cycle",
+        "mute"
+      ]
+    },
+    {
+      "offset": 16047,
+      "command": [
+        "cycle",
+        "audio"
+      ]
+    },
+    {
+      "offset": 16124,
+      "command": [
+        "cycle",
+        "audio",
+        "down"
+      ]
+    },
+    {
+      "offset": 16208,
+      "command": [
+        "add",
+        "audio-delay",
+        0.1
+      ]
+    },
+    {
+      "offset": 16293,
+      "command": [
+        "add",
+        "audio-delay",
+        -0.1
+      ]
+    },
+    {
+      "offset": 16382,
+      "command": [
+        "set_property",
+        "audio-delay",
+        0
+      ]
+    },
+    {
+      "offset": 16510,
+      "command": [
+        "cycle",
+        "sub-visibility"
+      ]
+    },
+    {
+      "offset": 16596,
+      "command": [
+        "cycle",
+        "sub"
+      ]
+    },
+    {
+      "offset": 16671,
+      "command": [
+        "cycle",
+        "sub",
+        "down"
+      ]
+    },
+    {
+      "offset": 16753,
+      "command": [
+        "add",
+        "sub-delay",
+        0.1
+      ]
+    },
+    {
+      "offset": 16836,
+      "command": [
+        "add",
+        "sub-delay",
+        -0.1
+      ]
+    },
+    {
+      "offset": 16921,
+      "command": [
+        "set_property",
+        "sub-delay",
+        0
+      ]
+    },
+    {
+      "offset": 17011,
+      "command": [
+        "add",
+        "sub-scale",
+        0.1
+      ]
+    },
+    {
+      "offset": 17094,
+      "command": [
+        "add",
+        "sub-scale",
+        -0.1
+      ]
+    },
+    {
+      "offset": 17178,
+      "command": [
+        "add",
+        "sub-pos",
+        -1
+      ]
+    },
+    {
+      "offset": 17258,
+      "command": [
+        "add",
+        "sub-pos",
+        1
+      ]
+    },
+    {
+      "offset": 17434,
+      "command": [
+        "script-message-to",
+        "photon",
+        "photon-toggle"
+      ]
+    },
+    {
+      "offset": 17540,
+      "command": [
+        "keypress",
+        "F8"
+      ]
+    },
+    {
+      "offset": 17688,
+      "command": [
+        "script-message-to",
+        "photon",
+        "photon-bright-toggle"
+      ]
+    },
+    {
+      "offset": 17801,
+      "command": [
+        "script-message-to",
+        "photon_sharp",
+        "photon-sharp-toggle"
+      ]
+    },
+    {
+      "offset": 17919,
+      "command": [
+        "script-message-to",
+        "photon_grain",
+        "photon-grain-toggle"
+      ]
+    },
+    {
+      "offset": 18037,
+      "command": [
+        "script-message-to",
+        "photon_chrome",
+        "photon-chrome-toggle"
+      ]
+    },
+    {
+      "offset": 18163,
+      "command": [
+        "script-message-to",
+        "photon_chrome",
+        "photon-chrome-filter-toggle"
+      ]
+    },
+    {
+      "offset": 18291,
+      "command": [
+        "script-message-to",
+        "photon_negativ",
+        "photon-negativ-toggle"
+      ]
+    },
+    {
+      "offset": 18413,
+      "command": [
+        "script-binding",
+        "gor_stats/display-stats-toggle"
+      ]
+    },
+    {
+      "offset": 19599,
+      "command": [
+        "script-binding",
+        "clip/clip_video"
+      ]
+    },
+    {
+      "offset": 19692,
+      "command": [
+        "script-binding",
+        "clip/clip_gif"
+      ]
+    },
+    {
+      "offset": 19783,
+      "command": [
+        "script-binding",
+        "clip/clip_undo"
+      ]
+    },
+    {
+      "offset": 19875,
+      "command": [
+        "script-binding",
+        "clip/clip_abort"
+      ]
+    },
+    {
+      "offset": 19968,
+      "command": [
+        "script-binding",
+        "clip/clip_open"
+      ]
+    },
+    {
+      "offset": 20060,
+      "command": [
+        "script-binding",
+        "clip/toggle_fade"
+      ]
+    }
+  ],
+  "dynamic_exclusions": [],
+  "limits": [
+    "JSON validity does not establish installed mpv command/version acceptance",
+    "dynamic string commands, full menu dispatch/wiring and action reachability not executed",
+    "aspect/VR/media/profile/companion behavior not covered by static extraction"
+  ],
+  "source_sha256": "415b25571de3cd9c9a21d9871bf05e10f8319589bbf1785a9a6a260c2f9434c3",
+  "scope": "Current Swift text extraction/JSON validation only, no Swift/menu/mpv/UI execution"
+}

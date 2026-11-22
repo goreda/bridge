@@ -1,0 +1,41 @@
+{
+ "version": 1,
+ "about": "Expected values for the gor3d-selftest v1 receiving comparator (tools/depth_analysis/selftest_check.py). Budgets are v1 first-run bounds for the owner Mac on the synthetic 36-frame clip; tighten from the first real good log.",
+ "clip": {
+  "frames": 36,
+  "depth_w": 266,
+  "depth_h": 154
+ },
+ "stage_budgets_ms": {
+  "clip_write": 60000,
+  "prepare_total": 300000,
+  "render_shot": 180000
+ },
+ "thermal": {
+  "peak_level_max": 1,
+  "policy": "s19: level 0 nominal / 1 fair acceptable for the short self-test; 2 serious or 3 critical fails"
+ },
+ "precision": {
+  "rule": "moge fp16_used>=1 OR fp32_used>=1 (fp32 is the sanctioned fallback); fp16_rejected>0 is a finding, both zero fails"
+ },
+ "depth": {
+  "nan": 0,
+  "inf": 0,
+  "min_exclusive": 0.0,
+  "max_exclusive": 1000000.0,
+  "count_note": "count = frames * box.nw * box.nh where box = VDAStream.letterbox(clip W x H) from the log's clip note (s22/ce1ab092: depth is cropped to the letterbox picture; for 640x360, box = 266x150 so 36f -> 1436400, NOT the full 266x154 canvas). Fallback when no clip note: full canvas frames*266*154 with a finding."
+ },
+ "first_3d_frame_sha256": {
+  "expect": null,
+  "on_mismatch": "warn",
+  "bit_exact": "NOT expected: the hash covers an HEVC encode of a Metal render fed by CoreML fp16 inference - all three vary across OS/build/hardware. A recorded reference (set expect to the owner Mac's first good value) can only pin same-machine same-build reruns; DIFFERS is a warning, never a fail.",
+  "check": "presence + 64 lowercase hex only"
+ },
+ "error_buckets": {
+  "gh": "(?i)\\bgh\\b|github|release asset|releases/download|\\b401\\b|\\b403\\b|bad credentials|authentication",
+  "kit": "(?i)kit_manifest|content_sha256|size_bytes|mlpackage.*missing|tar|unpack|kit-compiled|manifest sha",
+  "coreml_load": "(?i)mlmodelc|mlpackage|coreml.*(load|compil)|model.*(load|compil)|Could not create|compiler",
+  "compute_plan": "(?i)compute ?(units|plan)|\\bANE\\b|neural engine|unsupported op|fallback to (gpu|cpu)",
+  "other": ".*"
+ }
+}

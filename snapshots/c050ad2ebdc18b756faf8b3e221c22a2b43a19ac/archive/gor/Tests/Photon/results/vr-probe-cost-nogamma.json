@@ -1,0 +1,30 @@
+{
+ "tag": "nogamma",
+ "mpv": "mpv v0.41.0 Copyright \u00a9 2000-2025 mpv/MPlayer/mplayer2 projects",
+ "date": "2026-11-07T16:04:46+0300",
+ "window_s": 20,
+ "video_draw_n": 70,
+ "video_draw_ms": {
+  "mean": 260.87,
+  "p50": 264.0,
+  "p95": 347.74,
+  "max": 376.85
+ },
+ "drop_vo_in_window": 0,
+ "frame_drop_count": 142,
+ "cpu_pct_mean": 126.9,
+ "neutered": [],
+ "glsl_shaders": [
+  "photon-grain.glsl",
+  "photon-sharp.glsl",
+  "vr180-look-shader-a.glsl"
+ ],
+ "vf_n": 0,
+ "max_concurrent_ffmpeg": 3,
+ "sync_readbacks_total": 5,
+ "paced_captures": 2,
+ "capture_ms_max": 509.9,
+ "probe_frames_served": 8,
+ "probe_frames_skipped": 1,
+ "photon_errors": []
+}

@@ -1,0 +1,20 @@
+{
+  "live_read": "goreda/instinct main 2026-10-01 22:54 Europe/Istanbul",
+  "source_sha256": {
+    "cli.mjs": "a606a856c8a9055db1c743a7f40752653e95a1e8e8b8069e6b6f4915df2324ac",
+    "magnet_search.mjs": "89b979e6a3b84dbd75842342c366f856a47201f51c5b33c45792141979112659"
+  },
+  "execution": "Node actual current exported enrichSeeds, UDP bound only 127.0.0.1, synthetic responses; CLI not executed",
+  "connect_transaction_status": "Fixed in current source: wrong connect transaction ignored, no scrape issued; valid connect positive control retained.",
+  "fix_provenance": {
+    "custody": "40d90d73",
+    "promotion": "6085a725",
+    "historical_baseline_sha256": "1ad027e2e54061e562e3e9c8b30fa73b5c046ee62964c666675a55edfba7ef99"
+  },
+  "still_open": [
+    "External BEP15 sender address/port binding",
+    "Packet length and protocol state validation",
+    "Real provider/tracker reliability",
+    "Native browser/CGImage/AppKit evidence"
+  ]
+}

@@ -1,0 +1,1 @@
+Only lexical fix >=- to spaced >= - for Swift5.10 parser; assertions and state logic unchanged. Original retained.

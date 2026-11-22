@@ -1,0 +1,143 @@
+import Foundation
+import Glibc
+final class IPCClient {
+
+    let path: String
+
+    init(path: String) { self.path = path }
+
+    // MARK: - Queries
+    // ── Batch query (synchronous) ───────────────────────────────────────────
+    func queryBatch(_ payload: String, timeout: TimeInterval = 0.8) -> [String] {
+        guard FileManager.default.fileExists(atPath: path) else { return [] }
+        return IPCClient.socketRoundtrip(path: path, payload: payload, timeout: timeout)
+    }
+
+    private let poseSlot=LatestPoseSlot()
+    private func drainLatestPose() {
+        if let value=poseSlot.take(),poseSlot.current(value.epoch),FileManager.default.fileExists(atPath:path) {
+            let began=ProcessInfo.processInfo.systemUptime
+            _=IPCClient.socketRoundtrip(path:path,payload:value.payload+"\n",timeout:0.5)
+            let end=ProcessInfo.processInfo.systemUptime
+            CommandLatencyTrace.shared.record(kind:"pose",queuedMS:(began-value.at)*1000,sendMS:(end-began)*1000)
+        }
+        if poseSlot.finish() {IPCClient.cmdQueue.async { [weak self] in self?.drainLatestPose() }}
+    }
+    func sendLatestPose(_ json:String) {
+        if poseSlot.offer(json,at:ProcessInfo.processInfo.systemUptime) {
+            IPCClient.cmdQueue.async { [weak self] in self?.drainLatestPose() }
+        }
+    }
+    func cancelLatestPose() {poseSlot.clear()}
+    func closeLatestPose() {poseSlot.close()}
+
+    // ── Fire-and-forget command ─────────────────────────────────────────────
+    static let cmdQueue = DispatchQueue(label: "gor.ipc.cmd", qos: .utility)
+
+    func send(_ json: String) {
+        let p = path
+        let enqueued=ProcessInfo.processInfo.systemUptime
+        IPCClient.cmdQueue.async {
+            let diagnosticOldThreadName = Thread.current.name
+            Thread.current.name = "ipc.cmd"
+            defer { Thread.current.name = diagnosticOldThreadName }
+            guard FileManager.default.fileExists(atPath: p) else { return }
+            let began=ProcessInfo.processInfo.systemUptime
+            _ = IPCClient.socketRoundtrip(path: p, payload: json + "\n", timeout: 0.5)
+            let end=ProcessInfo.processInfo.systemUptime
+            CommandLatencyTrace.shared.record(kind:"discrete",queuedMS:(began-enqueued)*1000,sendMS:(end-began)*1000)
+        }
+    }
+
+    // ── Core POSIX primitive ────────────────────────────────────────────────
+    static func socketRoundtrip(path: String, payload: String, timeout: TimeInterval) -> [String] {
+        let fd = socket(AF_UNIX, Int32(SOCK_STREAM.rawValue), 0)
+        guard fd >= 0 else { return [] }
+        defer { Glibc.close(fd) }
+
+        let sec  = Int(timeout)
+        let usec = suseconds_t((timeout - Double(sec)) * 1_000_000)
+        var tv   = timeval(tv_sec: sec, tv_usec: usec)
+        _ = setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &tv, socklen_t(MemoryLayout<timeval>.size))
+        _ = setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, &tv, socklen_t(MemoryLayout<timeval>.size))
+
+        var addr  = sockaddr_un()
+        addr.sun_family = sa_family_t(AF_UNIX)
+        path.withCString { src in
+            withUnsafeMutablePointer(to: &addr.sun_path) { dst in
+                dst.withMemoryRebound(to: CChar.self, capacity: 108) {
+                    _ = strncpy($0, src, 107)
+                }
+            }
+        }
+
+        let flags = fcntl(fd, F_GETFL, 0)
+        _ = fcntl(fd, F_SETFL, flags | O_NONBLOCK)
+
+        let connectResult: Int32 = withUnsafePointer(to: addr) { ptr in
+            ptr.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                Glibc.connect(fd, $0, socklen_t(MemoryLayout<sockaddr_un>.size))
+            }
+        }
+
+        var ok = false
+        if connectResult == 0 {
+            ok = true
+        } else if errno == EINPROGRESS {
+            var pfd = pollfd(fd: fd, events: Int16(POLLOUT), revents: 0)
+            let timeoutMs = Int32(max(0, timeout) * 1000)
+            let pollResult = poll(&pfd, 1, timeoutMs)
+            if pollResult > 0 && (pfd.revents & Int16(POLLOUT)) != 0 {
+                var soError: Int32 = 0
+                var soErrorLen = socklen_t(MemoryLayout<Int32>.size)
+                let gotOpt = getsockopt(fd, SOL_SOCKET, SO_ERROR, &soError, &soErrorLen)
+                ok = (gotOpt == 0 && soError == 0)
+            }
+        }
+
+        _ = fcntl(fd, F_SETFL, flags)
+        guard ok else { return [] }
+
+        let toSend = payload.hasSuffix("\n") ? payload : payload + "\n"
+        // A stream write may accept only part of a JSON line. Never close
+        // the request side until every byte has been written.
+        let sentAll = toSend.utf8CString.withUnsafeBufferPointer { bytes -> Bool in
+            guard let base = bytes.baseAddress else { return false }
+            let byteCount = bytes.count - 1 // do not send the C terminator
+            var offset = 0
+            while offset < byteCount {
+                let n = Glibc.write(fd, base.advanced(by: offset), byteCount - offset)
+                if n > 0 { offset += n; continue }
+                if n < 0 && errno == EINTR { continue }
+                return false // timeout or peer closed; do not read a partial request
+            }
+            return true
+        }
+        guard sentAll else { return [] }
+
+        Glibc.shutdown(fd, Int32(SHUT_WR))
+
+        var buf = [UInt8](repeating: 0, count: 4096)
+        var raw = Data()
+        while true {
+            let n = Glibc.read(fd, &buf, buf.count)
+            if n <= 0 { break }
+            raw.append(contentsOf: buf.prefix(n))
+        }
+
+        guard let str = String(data: raw, encoding: .utf8) else { return [] }
+        return str.components(separatedBy: "\n").filter { !$0.isEmpty }
+    }
+
+    // ── Convenience: parse first response with a "data" field ───────────────
+    static func parseFirst(_ lines: [String]) -> [String: Any] {
+        for line in lines {
+            guard let jd  = line.data(using: .utf8),
+                  let obj = try? JSONSerialization.jsonObject(with: jd) as? [String: Any],
+                  obj["data"] != nil
+            else { continue }
+            return obj
+        }
+        return [:]
+    }
+}

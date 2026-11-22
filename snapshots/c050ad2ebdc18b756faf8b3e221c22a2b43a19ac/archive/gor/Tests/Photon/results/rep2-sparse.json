@@ -1,0 +1,30 @@
+{
+ "tag": "sparse",
+ "mpv": "mpv v0.41.0 Copyright \u00a9 2000-2025 mpv/MPlayer/mplayer2 projects",
+ "date": "2026-11-07T16:09:58+0300",
+ "window_s": 20,
+ "video_draw_n": 80,
+ "video_draw_ms": {
+  "mean": 224.77,
+  "p50": 230.61,
+  "p95": 263.75,
+  "max": 271.55
+ },
+ "drop_vo_in_window": 0,
+ "frame_drop_count": 273,
+ "cpu_pct_mean": 141.5,
+ "neutered": [],
+ "glsl_shaders": [
+  "photon-grain.glsl",
+  "photon-sharp.glsl",
+  "vr180-look-shader-a.glsl"
+ ],
+ "vf_n": 0,
+ "max_concurrent_ffmpeg": 2,
+ "sync_readbacks_total": 4,
+ "paced_captures": 2,
+ "capture_ms_max": 502.8,
+ "probe_frames_served": 9,
+ "probe_frames_skipped": 0,
+ "photon_errors": []
+}

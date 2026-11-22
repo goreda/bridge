@@ -1,0 +1,10 @@
+LUAERR	vr180-look: shader publication failed: nil
+LUAERR	vr180-look: shader publication failed: nil
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS live flat-texture false relief binocular_px 0.0
+MEAS live flat-texture false relief binocular_px 0.0
+MEAS contrast inversion disparity_delta_px 0.0
+MEAS known geometric near/far disparities_px ['10', '2']
+MEAS known geometric near/far disparities_px ['10', '2']
+MEAS recorded VDA fixture production mapper p5p95 disparity_px baseline/candidate/ratio 8.0 8.0 1.0
+PASS both software gates: false texture relief zero; actual prepared mapping retains nonzero recorded learned-depth structure. Mac registration/inference/playback NOT_RUN

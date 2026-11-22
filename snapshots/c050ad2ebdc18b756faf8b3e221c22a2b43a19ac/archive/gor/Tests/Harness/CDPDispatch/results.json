@@ -1,0 +1,28 @@
+{
+  "result": "PASS dispatch controls and failure-retention characterizations",
+  "controls": [
+    "monotonic IDs, reverse response correlation and duplicate exactly-once dispatch",
+    "unknown reply ignored",
+    "method/dictionary event dispatch shape",
+    "CDP error response still resolves callback once"
+  ],
+  "characterizations": [
+    {
+      "case": "serialization failure",
+      "observed": "pending retained without callback in command send path",
+      "scope": "source-bound failure model; outer operation deadline may compensate"
+    },
+    {
+      "case": "nil wsTask",
+      "observed": "pending retained without callback in command send path",
+      "scope": "source-bound failure model; outer operation deadline may compensate"
+    },
+    {
+      "case": "send error",
+      "observed": "pending retained without callback in command send path",
+      "scope": "source-bound failure model; outer operation deadline may compensate"
+    }
+  ],
+  "source_sha256": "c2d52d97a370331db2bf738395502463e0d5f0025cacbcb908b4f0d45dd1f200",
+  "scope": "Python bookkeeping model/current Swift guards; no Swift/URLSession/WebSocket/browser/provider execution"
+}

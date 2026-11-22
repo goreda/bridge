@@ -1,0 +1,13 @@
+{
+  "shots": [
+    {
+      "shot": 0,
+      "start": 0,
+      "end": 2,
+      "frames": 2,
+      "median_hfov_deg": 90.0,
+      "hfov_deg": 90.0,
+      "confidence": 1.0
+    }
+  ]
+}

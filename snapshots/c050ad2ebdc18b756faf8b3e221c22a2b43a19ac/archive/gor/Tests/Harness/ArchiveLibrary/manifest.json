@@ -1,0 +1,20 @@
+{
+  "source": "goreda/instinct main live read 2026-10-02 00:00 Europe/Istanbul; final reread unchanged",
+  "source_sha256": "1979ee139ef84a7fbf5ec825492e56f780fb720c8009f69cd2f1501cf1d39d8f",
+  "negative_checks": [
+    {
+      "changed_anchor": "let changed = Set(result) != Set(self.titles)",
+      "rejected": true
+    },
+    {
+      "changed_anchor": "return fetchFailed ? nil : result",
+      "rejected": true
+    },
+    {
+      "changed_anchor": "options: .atomic",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "native_validation": "not performed"
+}

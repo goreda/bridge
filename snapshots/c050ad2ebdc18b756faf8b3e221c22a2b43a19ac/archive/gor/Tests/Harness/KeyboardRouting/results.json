@@ -1,0 +1,39 @@
+{
+  "result": "PASS keyboard controls and scoped characterizations",
+  "controls": [
+    "arrow ownership and current input.conf mappings",
+    "shift subtitle/VR/IPD ownership",
+    "monitor command pass-through and command-option clip route",
+    "panel/mode monitor ownership bypass",
+    "modifier order/special key/character forwarding",
+    "volume endpoint clamps"
+  ],
+  "characterizations": [
+    {
+      "case": "view-keyDown command modifier",
+      "observed": "direct handler lacks monitor Cmd gate and mpvKeyName does not emit Cmd/Meta",
+      "scope": "requires direct handler reachability, native event chain not executed"
+    },
+    {
+      "case": "control/option arrows",
+      "observed": "Swift arrow checks exclude Cmd/Shift only, so Ctrl/Alt arrows still use plain volume/seek",
+      "scope": "policy characterization, intended modifier behavior unknown"
+    },
+    {
+      "case": "embedded control in forwarded characters",
+      "observed": "quote/backslash-only escaping can yield invalid JSON",
+      "scope": "synthetic text; native NSEvent character reachability unverified"
+    }
+  ],
+  "source_sha256": {
+    "PPController_Features.swift": "74d16c7591b1058167d0fbb2a025f554afe59df5dd76dd168df97e20580b277e",
+    "input.conf": "c99f87b94e3b5ab74424fb143c910d127d04f696fd1dde7246e4006e119a5097"
+  },
+  "open": [
+    "native monitor/responder/key layout ownership",
+    "input.conf installed parity and shortcut intent",
+    "special media/function key parity",
+    "event injection/control-character reachability"
+  ],
+  "scope": "Python event-routing port + live source/config checks, no Swift/NSEvent/mpv/UI execution"
+}

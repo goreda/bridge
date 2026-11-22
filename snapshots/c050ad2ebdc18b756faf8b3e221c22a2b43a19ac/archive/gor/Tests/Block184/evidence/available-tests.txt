@@ -1,0 +1,51 @@
+PASS 184-5 index-free EAR rotation
+PASS 184-5 double blink 700ms
+PASS 184-5 deliberate 450ms
+PASS 184-5 sub60ms rejected
+PASS 184-7 letterbox crop and single bright bar pixel preserved, SBS union
+PASS 184-4 crossed-eye sign and swap
+PASS 184-4 one degree clamp
+PASS 184-6 single-frame impulse dropped
+PASS 184-6 reacquire held pose to150ms ease
+PASS 184-5 zero aperture closure accepted
+PASS 184-3 source ownership OFF-before-custom and horizontal-only replica (static; native pixels unrun)
+PASS invalid stream absent status=invalidProbeJSON
+PASS mono metadata absent remains unknown status=metadataAbsent
+PASS layout without coverage remains unknown status=metadataAbsent
+PASS VR180 plus stereo metadata status=projectionMetadata
+PASS flat stereo metadata status=projectionMetadata
+PASS 360 coverage not silently VR180 status=projectionMetadata
+PASS recognition remembered test_vr180.mkv
+PASS recognition projectionMetadata test_sbs.mkv
+PASS recognition stereoMetadata plain.mkv
+PASS recognition filename180 test_vr180.mkv
+PASS recognition filename180 test_180.mkv
+PASS recognition filenameSBS test_lr.mkv
+PASS recognition filenameSBS test_sbs.mkv
+PASS recognition filenameSBS test_hsbs.mkv
+PASS recognition filenameSBS test_fsbs.mkv
+PASS recognition filenameSBS test_3D.mkv
+PASS recognition geometry2to1 plain.mkv
+PASS recognition geometryFullSBS plain.mkv
+PASS recognition monoNegative plain.mkv
+PASS recognition monoNegative name1800_3dprint.mkv
+PASS recognition unsupportedProjectionMetadata test_vr180.mkv
+PASS actual GorCropMPV: clear during add, late readback, labelled removal, idle reset
+PASS manual intent centered geometry + invalid/anamorphic/rotation eligibility refusal
+ok   A 15Hz blink confirmed
+ok   B 10Hz single dip possible
+ok   C 0.5 s closure not a blink
+ok   D held closure once
+ok   E unusable inside possible
+ok   F young baseline possible
+ok   G 66 ms dip rejected
+ok   H 30Hz 0.2 s blink confirmed
+ok   I no dip no event
+ok   J reset drops the open episode
+ok   K unbounded gap never confirmed
+ok   L point samples never assert physical continuous duration
+ALL PASS
+
+Actual additional Linux scanner: FFV1 original stream, ffprobe and ffmpeg-only metadata routes correct; limited-range YUV444 singlebrightpixel safety correct (39/40 spread seeks decoded; source preserved).
+Actual Linux mpv0.41 video-crop128x56+0+20 acknowledged and rendered128x56 screenshot inspected. MacAppKit/camera/fusion visuals UNRUN.
+Full-range gray original safety: black=0, single bright pixel retained at y2 by actual scanner. Gray code16 correctly counts as nonblack, so no crop was the correct result on that deliberately mismatched fixture.

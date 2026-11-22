@@ -1,0 +1,229 @@
+{
+ "kit": "gor prepare Mac runtime (contract s13)",
+ "built": "2026-11-09",
+ "status": "CONVERTED on Linux, NEVER EXECUTED - macOS-only",
+ "verify_on_mac": [
+  "VDA-S: 20 synthetic parity frames + 60 real anim/live frames through encoder+bootstrap/stream; rel dev vs ONNX-fp16 outputs must be <0.5%",
+  "MoGe-2: real anim frame; depth corr vs torch fp32 >0.999, metric_scale rel dev <1%",
+  "if MoGe-2 fp16 fails, rerun with the fp32 package"
+ ],
+ "packages": {
+  "bootstrap_fp16.mlpackage": {
+   "role": "vda-s bootstrap head",
+   "inputs": {
+    "feat1..4": [
+     1,
+     209,
+     384
+    ]
+   },
+   "outputs": {
+    "depth": [
+     1,
+     1,
+     154,
+     266
+    ],
+    "cache0..7": "T=1"
+   },
+   "precision": "fp16",
+   "content_sha256": "86671aa6b8ca1119dd00b8399b57dd280c82177ada63866f1626cfa414a0671e",
+   "size_bytes": 14016508
+  },
+  "encoder_fp16.mlpackage": {
+   "role": "vda-s encoder",
+   "inputs": {
+    "pixels": [
+     1,
+     3,
+     154,
+     266
+    ]
+   },
+   "outputs": {
+    "feat1..4": [
+     1,
+     209,
+     384
+    ]
+   },
+   "precision": "fp16",
+   "content_sha256": "e29b440e4b87a58de2b88079983ea58f1061bdf8653821a3c7918b8ac27ac9b2",
+   "size_bytes": 43368953
+  },
+  "stream_fp16.mlpackage": {
+   "role": "vda-s stream head",
+   "inputs": {
+    "feat1..4": [
+     1,
+     209,
+     384
+    ],
+    "cache0..7": "T=31"
+   },
+   "outputs": {
+    "depth": [
+     1,
+     1,
+     154,
+     266
+    ],
+    "nextCache0..7": "T=1"
+   },
+   "precision": "fp16",
+   "content_sha256": "81c4aae1a967971143dac5a09c91574ce16600c4fc237b52b3d852e7600a532f",
+   "size_bytes": 14065079
+  },
+  "moge2_vits_518x294_fp16.mlpackage": {
+   "role": "moge-2 16:9 aspect (fp16 default)",
+   "inputs": {
+    "image": [
+     1,
+     3,
+     294,
+     518
+    ]
+   },
+   "outputs": {
+    "points": [
+     1,
+     294,
+     518,
+     3
+    ],
+    "normal": [
+     1,
+     294,
+     518,
+     3
+    ],
+    "mask": [
+     1,
+     294,
+     518
+    ],
+    "metric_scale": [
+     1
+    ]
+   },
+   "precision": "fp16",
+   "num_tokens": 777,
+   "content_sha256": "771ba3d91579ba2ff4118a197279260a77be735254d75e094bea9494e735b6f4",
+   "size_bytes": 71119259
+  },
+  "moge2_vits_518x294_fp32.mlpackage": {
+   "role": "moge-2 16:9 fp32 fallback",
+   "inputs": {
+    "image": [
+     1,
+     3,
+     294,
+     518
+    ]
+   },
+   "outputs": {
+    "points": [
+     1,
+     294,
+     518,
+     3
+    ],
+    "normal": [
+     1,
+     294,
+     518,
+     3
+    ],
+    "mask": [
+     1,
+     294,
+     518
+    ],
+    "metric_scale": [
+     1
+    ]
+   },
+   "precision": "fp32",
+   "num_tokens": 777,
+   "content_sha256": "0258fa319d26d5ea973130fd84a045eee9b24acb389fb66880ee05dba456b6c7",
+   "size_bytes": 141905815
+  },
+  "moge2_vits_518x518_fp16.mlpackage": {
+   "role": "moge-2 VR180 square per-eye (fp16 default)",
+   "inputs": {
+    "image": [
+     1,
+     3,
+     518,
+     518
+    ]
+   },
+   "outputs": {
+    "points": [
+     1,
+     518,
+     518,
+     3
+    ],
+    "normal": [
+     1,
+     518,
+     518,
+     3
+    ],
+    "mask": [
+     1,
+     518,
+     518
+    ],
+    "metric_scale": [
+     1
+    ]
+   },
+   "precision": "fp16",
+   "num_tokens": 1369,
+   "content_sha256": "8ca5c2e37eb3697e0b9a3c92abfad9babe33441d5a8460d43b6af9f3b6e09a54",
+   "size_bytes": 72381519
+  },
+  "moge2_vits_518x518_fp32.mlpackage": {
+   "role": "moge-2 square fp32 fallback",
+   "inputs": {
+    "image": [
+     1,
+     3,
+     518,
+     518
+    ]
+   },
+   "outputs": {
+    "points": [
+     1,
+     518,
+     518,
+     3
+    ],
+    "normal": [
+     1,
+     518,
+     518,
+     3
+    ],
+    "mask": [
+     1,
+     518,
+     518
+    ],
+    "metric_scale": [
+     1
+    ]
+   },
+   "precision": "fp32",
+   "num_tokens": 1369,
+   "content_sha256": "06f6cd1b1954578327dab21966105134c301b1353c9da221288d3deb994c6bee",
+   "size_bytes": 144430226
+  }
+ },
+ "aspect_rule": "runner picks the package whose aspect matches the source: 518x294 for 16:9-class, 518x518 for VR180 per-eye square; no stretching (contract s13 c3)",
+ "vda_aspect_rule": "runner must letterbox any non-16:9 source into the 154x266 stream canvas preserving aspect (black bars, source canvas scale); the plain stretch biases square (1:1) sources -14% median inverse depth with ~10% spatial non-uniformity (center -22%, corners ~0% - a depth-curvature distortion NOT absorbable by per-shot align scale/shift); 2.39:1 stretch bias is mild (+1.7%) but letterbox is still the policy. Letterbox is near-neutral: +4%/+5.7% uniform scale (absorbed by align), log-depth r 0.98 vs the 16:9 control. Measured on the CG clip through the ONNX fp16 stream, tools/depth_analysis/aspect_bias.py (contract s22)",
+ "content_sha256_algorithm": "sha256 over: for each regular file under the .mlpackage, recursive, relative path UTF-8 '/'-separated (no './'), sorted bytewise, feed path_bytes + NUL + file_bytes + NUL. Symlinks forbidden (error); dotfiles included (none expected). tools/depth_analysis/kit_hash.py"
+}

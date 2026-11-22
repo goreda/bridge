@@ -1,0 +1,73 @@
+HEAD:archive/gor/Tests/BlinkRecognizer/run.sh:9:s=Path(sys.argv[1]).read_text();i=s.index('struct BlinkEpisodeTracker {')
+HEAD:archive/gor/Tests/BlinkRoute/current_route.py:19:final class HeadTracker {
+HEAD:archive/gor/Tests/BlinkRoute/current_route.py:20: static let shared=HeadTracker()
+HEAD:archive/gor/Tests/BlinkRoute/current_route.py:69:let p=Probe(),t=HeadTracker.shared
+HEAD:archive/gor/Tests/Gaze/binocular_gaze_test.py:59:assert 'HeadTracker.shared.onPoseUpdate' not in overlay
+HEAD:archive/gor/Tests/Gaze/binocular_gaze_test.py:60:assert 'HeadTracker.shared.start(' not in overlay and 'HeadTracker.shared.stop(' not in overlay
+HEAD:archive/gor/Tests/Gaze/binocular_gaze_test.py:61:assert 'HeadTracker.shared.isRequested' in overlay and 'view.isHiddenOrHasHiddenAncestor' in overlay and 'NSApp.isActive' in overlay
+HEAD:archive/gor/Tests/Gaze/binocular_gaze_test.py:76:final class HeadTracker {static let shared=HeadTracker();var isRequested=false;var onGazeUpdate:((Double)->Void)?}
+HEAD:archive/gor/Tests/Gaze/binocular_gaze_test.py:83:let g=Gaze(),h=HeadTracker.shared
+HEAD:archive/gor/Tests/Gaze/crosshair_controller_test.py:18:class HeadTracker {static let shared=HeadTracker();var onGazeUpdate:((BinocularGazeSample?)->Void)?,onPoseUpdate:(()->Void)?;var isRunning=true;var consumers=7;func start(){consumers+=1};func stop(){consumers-=1}}
+HEAD:archive/gor/Tests/Gaze/crosshair_controller_test.py:22:HeadTracker.shared.onPoseUpdate={}
+HEAD:archive/gor/Tests/Gaze/crosshair_controller_test.py:25:controller.toggle();precondition(HeadTracker.shared.consumers==8)
+HEAD:archive/gor/Tests/Gaze/crosshair_controller_test.py:31:  HeadTracker.shared.onGazeUpdate?(BinocularGazeSample(t:clock,x:(Double(target.x)-0.5)*0.3,y:(Double(target.y)-0.5)*0.2,yaw:0,pitch:0))
+HEAD:archive/gor/Tests/Gaze/crosshair_controller_test.py:36:HeadTracker.shared.onGazeUpdate?(BinocularGazeSample(t:clock,x:0.06,y:-0.04,yaw:0,pitch:0))
+HEAD:archive/gor/Tests/Gaze/crosshair_controller_test.py:39:HeadTracker.shared.onGazeUpdate?(nil);precondition(marker.isHidden)
+HEAD:archive/gor/Tests/Gaze/crosshair_controller_test.py:54:precondition(HeadTracker.shared.consumers==7 && HeadTracker.shared.onGazeUpdate==nil && HeadTracker.shared.onPoseUpdate != nil)
+HEAD:archive/gor/Tests/Harness/AmbientDutyCycle/manifest.json:14:      "anchor": "HeadTracker.shared.stopAmbientOnly()",
+HEAD:archive/gor/Tests/Harness/AmbientDutyCycle/results.json:15:      "scope": "adversarial retained callback, native HeadTracker delivery ordering unverified"
+HEAD:archive/gor/Tests/Harness/AmbientDutyCycle/test_ambient.py:5:for t in ['ambientCheckpointFractions: [Double] = [0, 0.125, 0.25, 0.50, 0.75]','ambientDutyCycleOnDuration: TimeInterval = 2.0','ambientFirstWindowCeiling: TimeInterval = 15.0','ambientRetryDelay: TimeInterval = 7.0','guard !ambientDutyCycleActive else { return }','guard runtimeEnabled, playbackActive, ambientDutyCycleActive else { return }','firstAmbientWindowWorkItem?.cancel()','HeadTracker.shared.startAmbientOnly()','HeadTracker.shared.stopAmbientOnly()','guard fromCeiling,','guard AmbientLightProvider.shared.normalizedLevel() == nil else { return }']:assert t in a,t
+HEAD:archive/gor/Tests/Harness/AmbientDutyCycle/test_ambient.py:32:x=Ambient();x.start();x.first();old=x.window;x.open();new=x.window;x.close(False);assert new>old and not x.opened;reds.append({'case':'old ambient frame closure after replacement','observed':'close has no window identity and can stop new window','scope':'adversarial retained callback, native HeadTracker delivery ordering unverified'})
+HEAD:archive/gor/Tests/Harness/ScreenCamera/handle_helper_frame_test.py:48:enum HeadTracker { struct TwoRegionLuma { var faceLuma: Double; var roomLuma: Double; var combined: Double } }
+HEAD:archive/gor/Tests/Harness/ScreenCamera/handle_helper_frame_test.py:59:    func publishAmbient(_ luma: Double, regions: HeadTracker.TwoRegionLuma?, generation: UInt64, epoch: Double, source: String) { EVENTS.append(source) }
+HEAD:archive/gor/Tests/Harness/ScreenCamera/helper_link_test.py:4:production CameraHelperClient (QuitChildKiller.swift) with only the registry and
+HEAD:archive/gor/Tests/Harness/ScreenCamera/helper_link_test.py:18:           'final class CameraHelperClient','// MARK: - Helper-side (child process)')
+HEAD:archive/gor/Tests/Harness/ScreenCamera/helper_link_test.py:105:    func add(_ i: CameraHelperClient.Incoming) {
+HEAD:archive/gor/Tests/Harness/ScreenCamera/helper_link_test.py:135:    let rec = Recorder(); let client = CameraHelperClient()
+HEAD:archive/gor/Tests/Harness/ScreenCamera/helper_link_test.py:153:    let rec2 = Recorder(); let client2 = CameraHelperClient()
+HEAD:archive/gor/Tests/Harness/ScreenCamera/helper_link_test.py:161:    let rec3 = Recorder(); let client3 = CameraHelperClient()
+HEAD:archive/gor/Tests/Harness/ScreenCamera/helper_link_test.py:182:    let rec4 = Recorder(); let client4 = CameraHelperClient()
+HEAD:archive/gor/Tests/Harness/ScreenCamera/helper_link_test.py:195:    let rec5 = Recorder(); let client5 = CameraHelperClient()
+HEAD:archive/gor/Tests/Harness/ScreenCamera/signal_test.py:18: helper='''final class CameraHelperClient {
+HEAD:archive/gor/Tests/Harness/ScreenCamera/signal_test.py:62:final class HeadTracker {
+HEAD:archive/gor/Tests/Harness/ScreenCamera/signal_test.py:63: static let shared=HeadTracker()
+HEAD:archive/gor/Tests/Harness/ScreenCamera/signal_test.py:71: let cameraHelper=CameraHelperClient();let helperQueue=DispatchQueue(label:"test.headtrack.helper")
+HEAD:archive/gor/Tests/Harness/ScreenCamera/signal_test.py:81: source=(r/'Sources/gor/ScreenCaptureEngine.swift').read_text().split('final class HeadTracker:',1)[1]
+HEAD:archive/gor/Tests/Harness/ScreenCamera/signal_test.py:115:let t=HeadTracker.shared,v=VR()
+HEAD:archive/gor/Tests/Harness/ScreenCamera/signal_test.py:288:assert 'final class CameraHelperClient' in helper and 'final class CameraHelperEngine' in helper
+HEAD:archive/gor/Tests/Harness/ScreenCamera/signal_test.py:316:src=(r/'Sources/gor/ScreenCaptureEngine.swift').read_text().split('final class HeadTracker:',1)[1]
+HEAD:archive/gor/Tests/Harness/ScreenCamera/signal_test.py:325:final class HeadTracker {
+HEAD:archive/gor/Tests/Harness/ScreenCamera/signal_test.py:332:let t=HeadTracker();var accepted=0;t.onAmbientFrame={accepted+=1}
+HEAD:archive/gor/Tests/Harness/ScreenCamera/signal_test.py:390:assert 'frame.lumaFull = frame.lumaFull ?? HeadTracker.averageLumaSingleRegion(of: pixelBuffer)' in helper
+HEAD:archive/gor/Tests/Harness/ScreenCamera/signal_test.py:391:assert 'if ambientSettled { frame.lumaFull = HeadTracker.averageLumaSingleRegion(of: pixelBuffer) }' in helper
+HEAD:archive/gor/Tests/Harness/ScreenCamera/signal_test.py:450:final class HeadTracker {static let shared=HeadTracker();var starts=0,stops=0,running=false;var onAmbientFrame:(()->Void)?
+HEAD:archive/gor/Tests/Harness/ScreenCamera/signal_test.py:459: let h=HeadTracker.shared,a=AmbientLightProvider.shared
+HEAD:archive/gor/Tests/Harness/ScreenCamera/signal_test.py:484:assert provider.index('if alsServiceAvailable, let lux = rawLux()') < provider.index('guard let raw = HeadTracker.shared.lastAmbientLuma')
+HEAD:archive/gor/Tests/Harness/ScreenCamera/vision_worker_test.py:8:transport=s[s.index('private struct CameraVisionPacket:'):s.index('// No AVCaptureSession, AVCaptureDevice or CameraHelperEngine instance')].replace('private ','')
+HEAD:archive/gor/Tests/Harness/ScreenCamera/vision_worker_test.py:27:struct CameraVisionWorkerCLI {static let flag="--camera-vision-worker"}
+HEAD:archive/gor/Tests/Harness/ScreenCamera/vision_worker_test.py:31:if CommandLine.arguments.contains(CameraVisionWorkerCLI.flag) {
+HEAD:archive/gor/Tests/Harness/ScreenCamera/vision_worker_test.py:80:worker=s[s.index('enum CameraVisionWorkerCLI {'):s.index('/// The capture engine that used to live')]
+HEAD:archive/gor/Tests/Harness/ScreenCamera/vision_worker_test.py:81:assert 'AVCaptureSession(' not in worker and 'AVCaptureDevice.' not in worker and 'CameraHelperEngine(sink:' not in worker
+HEAD:archive/gor/Tests/Harness/VRController/test_vr.py:7:assert 'HeadTracker.shared.onPoseUpdate = nil' in a and 'HeadTracker.shared.stop()' in a
+HEAD:archive/gor/Tests/HeadPose/activation_distance_arming_test.py:27:print("PASS actual HeadTracker ingestion acquisition gate; native camera transition NOT_RUN")
+HEAD:archive/gor/Tests/HeadPose/degraded_input_audit_test.py:28:var continuity=PoseContinuity();_=continuity.accept(Array(repeating:0,count:6),t:0)
+HEAD:archive/gor/Tests/HeadPose/distance_consistency_test.py:90: var consistency=PoseDistanceConsistency(),distance=PupilDistanceScale(),continuity=PoseContinuity(),noise=PoseNoiseCalibration(),follow:PoseBacklashFollow?,previous:[Double]?
+HEAD:archive/gor/Tests/HeadPose/native_latency_sweep_test.py:46: main=main.replace('HeadTracker.','Probe.')
+HEAD:archive/gor/Tests/HeadPose/native_motion_response_test.py:37:main=main.replace('HeadTracker.','Probe.')
+HEAD:archive/gor/Tests/HeadPose/pipeline192d_test.py:72: var c=PoseContinuity(),e=OneEuro(minCutoff:j==5 ? 1/(2*Double.pi*0.8):0.35,beta:j==5 ? 0:1.65/(j<3 ? 1:0.25))
+HEAD:archive/gor/Tests/HeadPose/pipeline192d_test.py:86: var c=PoseContinuity(),e=OneEuro(minCutoff:1/(2*Double.pi*0.8),beta:0)
+HEAD:archive/gor/Tests/HeadPose/recenter_alignment_test.py:15:typealias PoseContinuity=Reset
+HEAD:archive/gor/Tests/HeadPose/recenter_alignment_test.py:56:assert part.index('resetFilmView()') < part.index('HeadTracker.shared.recenter()')
+HEAD:archive/gor/Tests/HeadPose/recenter_alignment_test.py:60:assert part.index('resetFilmView()') < part.index('recenterPosePublishing=true') < part.index('HeadTracker.shared.recenter()')
+HEAD:archive/gor/Tests/HeadPose/session_baseline_test.py:91:assert consumer.index('HeadTracker.shared.beginPoseSession()') < consumer.index('HeadTracker.shared.onPoseUpdate') < consumer.index('HeadTracker.shared.start()')
+HEAD:archive/gor/Tests/HeadTrackVisionOnce/head_track_vision_once_test.py:2:"""Heat (owner log 03:28 sample + 00:33 VB lines, build 304f5f9f): with blink on, HeadTracker ran Vision twice per camera frame: the blink landmark request
+HEAD:archive/gor/Tests/Structure/migrate.py:22: 'Sources/gor/PoseContinuity.swift': 'd6e2feab4c123571310160d3961b2c60d3eb13c22f366bb0580793baadd13b41',
+HEAD:archive/gor/Tests/ThreeDAutoRoute/explicit_sbs_lua_test.py:89:final class HeadTracker {static let shared=HeadTracker();var nativeMotionResponsive=false}
+HEAD:archive/gor/Tests/_retired-195q/lifecycle_test.py:5:r=Path(__file__).resolve().parents[3];source=(r/'Sources/gor/ScreenCaptureEngine.swift').read_text().split('final class HeadTracker:',1)[1]
+HEAD:archive/gor/Tests/_retired-195q/privacy_test.py:37:assert 'HeadTracker.shared.stopForQuit()' in a
+HEAD:archive/gor/Tests/_retired-195q/privacy_test.py:38:assert 'HeadTracker.shared.setCameraPrivacyPaused(!enabled)' in f and 'HeadTracker.shared.setCameraPrivacyPaused(!next)' in m
+HEAD:archive/gor/gor-selftest.sh:1332:        # change-list glsl-shader-opts; (2) HeadTracker's pose path (applyObservation / filter / sim / blink
+HEAD:archive/gor/gor-selftest.sh:1371:        # only, the camera is never started) so the real HeadTracker filter, applyHeadPose and the real script-message
+HEAD:archive/gor/tools/head_pose/pose_filter.py:2:pose path mirrors (existing Swift: ScreenCaptureEngine HeadTracker.OneEuro,
+HEAD:archive/gor/tools/head_pose/pose_filter.py:48:    """Exact mirror of ScreenCaptureEngine.swift HeadTracker.OneEuro."""
+HEAD:archive/gor/tools/head_pose/pose_signs.py:18:    -> HeadTracker sign constants (ScreenCaptureEngine.swift yawSign/pitchSign/

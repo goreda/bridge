@@ -1,0 +1,40 @@
+{
+  "result": "PASS XML delegate controls and admission characterizations",
+  "controls": [
+    "XML character/entity/Unicode accumulation at every byte chunk size",
+    "explicit timezone conversion",
+    "current-program start-inclusive stop-exclusive boundary",
+    "invalid dates skipped",
+    "missing title placeholder path",
+    "records sorted by start"
+  ],
+  "characterizations": [
+    {
+      "case": "malformed tail after complete programme",
+      "observed": "partial records survive parse error",
+      "scope": "Expat-driven delegate port, Foundation partial-record behavior unverified"
+    },
+    {
+      "case": "reversed interval",
+      "observed": "admitted though never current under interval predicate"
+    },
+    {
+      "case": "multiple title languages",
+      "observed": "last nonempty title wins regardless of language",
+      "scope": "policy characterization, preference unresolved"
+    },
+    {
+      "case": "nested title element",
+      "observed": "capture reset drops title",
+      "scope": "malformed/unexpected input characterization, XMLTV format acceptance not certified"
+    }
+  ],
+  "source_sha256": "bde436a1b47df6facffd8fe26cd11a3b1cd81efa76a6f737e891e96186508683",
+  "open": [
+    "Foundation XMLParser/DateFormatter parity and entity settings",
+    "actual EPG cache/update/provider/fallback behavior",
+    "language preference and malformed-input policy",
+    "native UI guide/search timing"
+  ],
+  "scope": "Current Swift guards + Python delegate port driven by Expat, no Swift/provider/network/UI execution"
+}

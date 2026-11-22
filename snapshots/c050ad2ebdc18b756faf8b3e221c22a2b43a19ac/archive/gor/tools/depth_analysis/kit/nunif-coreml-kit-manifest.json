@@ -1,0 +1,125 @@
+{
+ "kit": "gor prepare Mac runtime - nunif iw3 synthesis runners (190w W3 tiers, CoreML fp16)",
+ "built": "2026-11-09",
+ "status": "CONVERTED on Linux (coremltools 9.0), NEVER EXECUTED - macOS-only; verify each package vs its *_fixture.npz (torch fp32, seeded) before first use",
+ "source_weights": "gor-kit-nunif-v2.tar (gorav gor-kit-2026-11-09, sha 0dbfb58d...), upstream nunif release 0.0.0, MIT; owner-private Mac build only (190w W1)",
+ "convention": {
+  "warp_models": "input x = [1,3,H,W] = (depth, divergence_feature, convergence_feature) per iw3.backward_warp.make_input_tensor(c=None); divergence/convergence are baked into feature channels runner-side, NOT model inputs. Outputs used per iw3.backward_warp.apply_divergence_nn_delta_weight: delta (grid delta, x2 for sym), layer_weight, hole_mask_logits (mask model only). layer_weight is interpolated to frame size runner-side (upstream F.interpolate bilinear align_corners=True antialias=True).",
+  "inpaint_models": "inputs x [B,3,H,W] masked RGB + mask [B,1,H,W] AFTER upstream preprocess (hole closing/dilation + SeparableGaussian blur stay runner-side, mirroring iw3 LightInpaintV1.preprocess / LightVideoInpaintV1.preprocess); converted boundary is model.forward(x, mask, skip_i2i_offset=True). Video model B=12 (SEQ_LEN) per window; overlap/padding across windows is runner-side (iw3.base_inpaint BaseVideoInpaint, default overlap 3+3).",
+  "padding": "inputs must be pre-padded (replication) so H,W are multiples of 96; models always pad one block internally and crop (trace converted with slice-crop, numerically identical)",
+  "shapes_note": "row_flow/mask_mlbw/light_inpaint converted at 768x1344 (720p + pad). light_video_inpaint converted at 288x480: this Linux box (2GB) OOMs tracing it larger. Mac-side re-conversion at production res: tools/depth_analysis/nunif_convert.py --shape (script in repo); 288x480 package is for runner-wiring + parity-harness bring-up, NOT final T1 quality."
+ },
+ "packages": {
+  "nunif_row_flow_v3_fp16.mlpackage": {
+   "role": "T3 row_flow_v3 delta warp",
+   "inputs": {
+    "x": [
+     1,
+     3,
+     768,
+     1344
+    ]
+   },
+   "outputs": {
+    "delta": [
+     1,
+     2,
+     768,
+     1344
+    ]
+   },
+   "content_sha256": "5ca7937cfd7aeb79b12582b5011d76cf1f76d24dcd429380fb58d6252a78af76",
+   "size_bytes": 2347600
+  },
+  "nunif_mask_mlbw_l2_d1_fp16.mlpackage": {
+   "role": "T1/T2 mask_mlbw warp + hole-mask logits",
+   "inputs": {
+    "x": [
+     1,
+     3,
+     768,
+     1344
+    ]
+   },
+   "outputs": {
+    "delta": "...",
+    "layer_weight": "...",
+    "hole_mask_logits": "..."
+   },
+   "content_sha256": "f3152aa9889f614ac9ed856dede144b773c9e1c14c15d0ac7efc929d88293af1",
+   "size_bytes": 562528
+  },
+  "nunif_light_inpaint_v1_fp16.mlpackage": {
+   "role": "T2 image hole inpaint",
+   "inputs": {
+    "x": [
+     1,
+     3,
+     768,
+     1344
+    ],
+    "mask": [
+     1,
+     1,
+     768,
+     1344
+    ]
+   },
+   "outputs": {
+    "out": [
+     1,
+     3,
+     768,
+     1344
+    ]
+   },
+   "content_sha256": "9194946035dbae39c272dc50d6abfd804c081d42074efdd67b7e9f8aa8b86fd2",
+   "size_bytes": 18734645
+  },
+  "nunif_light_video_inpaint_v1_fp16.mlpackage": {
+   "role": "T1 video hole inpaint (12-frame windows)",
+   "inputs": {
+    "x": [
+     12,
+     3,
+     288,
+     480
+    ],
+    "mask": [
+     12,
+     1,
+     288,
+     480
+    ]
+   },
+   "outputs": {
+    "out": [
+     12,
+     3,
+     288,
+     480
+    ]
+   },
+   "content_sha256": "836b3fed3dfbdb0a61f5447acefae7658913ca1861a8663f6e79054a1a8a971d",
+   "size_bytes": 28386467
+  }
+ },
+ "fixtures": {
+  "nunif_row_flow_v3_fp16_fixture.npz": {
+   "sha256": "eba75294048d29fd2885079673815ad7f0fb2d931b30ec939dcea7e2bdc5ece4",
+   "size_bytes": 14529591
+  },
+  "nunif_mask_mlbw_l2_d1_fp16_fixture.npz": {
+   "sha256": "19df8214f061cf249be6924b85442da230702abb9e3447a784f3f7471fe7d09e",
+   "size_bytes": 27905970
+  },
+  "nunif_light_inpaint_v1_fp16_fixture.npz": {
+   "sha256": "74890d3bafd1ae10e529633164e08ab2201ed59dcb22db89b2fb2181bc781d51",
+   "size_bytes": 21608187
+  },
+  "nunif_light_video_inpaint_v1_fp16_fixture.npz": {
+   "sha256": "6e1b3bf7fa965674a094b9ebeb9fbadbcb3cb9c6da59a756f8a5db18f20ece65",
+   "size_bytes": 35859710
+  }
+ }
+}

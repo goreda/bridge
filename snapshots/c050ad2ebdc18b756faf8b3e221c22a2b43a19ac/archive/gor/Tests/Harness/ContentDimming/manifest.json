@@ -1,0 +1,20 @@
+{
+  "source": "goreda/instinct main live read 2026-10-02 00:08 Europe/Istanbul; final reread unchanged",
+  "source_sha256": "74d16c7591b1058167d0fbb2a025f554afe59df5dd76dd168df97e20580b277e",
+  "negative_checks": [
+    {
+      "anchor": "self.microStepGeneration == generation",
+      "rejected": true
+    },
+    {
+      "anchor": "contentTargetFloor: Float = 0.75",
+      "rejected": true
+    },
+    {
+      "anchor": "if !isFading { self.setBrightness(end) }",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "native_validation": "not performed"
+}

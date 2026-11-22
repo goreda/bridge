@@ -1,0 +1,16 @@
+PASS 184-5 index-free EAR rotation
+PASS 184-5 double blink 700ms
+PASS 184-5 deliberate 450ms
+PASS 184-5 sub60ms rejected
+PASS 184-7 letterbox crop and single bright bar pixel preserved, SBS union
+PASS 184-4 crossed-eye sign and swap
+PASS 184-4 one degree clamp
+PASS 184-6 single-frame impulse dropped
+PASS 184-6 reacquire held pose to150ms ease
+PASS 184-5 zero aperture closure accepted
+PASS 184 input slow-transport latest-only500poses bounded, discrete key interleaved, latest delivered
+PASS 184 input clear invalidates pending pose before teardown
+PASS 184 input quit rejects future poses
+PASS 184 sticky loss survives found-frame coalescing, reacquire starts at held pose
+PASS 184 actual main-frame flood coalesces500->latest, sticky loss delivered
+PASS 184-3 source ownership OFF-before-custom and horizontal-only replica (static; native pixels unrun)

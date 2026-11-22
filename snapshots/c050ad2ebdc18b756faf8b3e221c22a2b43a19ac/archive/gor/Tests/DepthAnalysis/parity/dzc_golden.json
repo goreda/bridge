@@ -1,0 +1,23 @@
+{
+ "shot": 2,
+ "fps_num": 24,
+ "fps_den": 1,
+ "start_frame": 96,
+ "width": 34,
+ "height": 48,
+ "depth_width": 33,
+ "depth_height": 47,
+ "n_frames": 8,
+ "plane_bytes": 3264,
+ "frame_crc32": [
+  1581079885,
+  714209854,
+  1414700062,
+  382439277,
+  1017402511,
+  45718941,
+  3796789984,
+  2956215431
+ ],
+ "note": "decode(dzc_golden.dzc) must equal planes (uint16 w10, padded). Encoders need not be byte-identical."
+}

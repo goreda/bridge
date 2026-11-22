@@ -1,0 +1,5 @@
+# WT v22.6 fallback request custody
+
+Received October 2, 2026 at01:58:14 Europe/Istanbul. Dated October1packet exact: wt_server.mjs v22.6, v22.5delta, three harness scripts and README. Producer Linux synthetic swap/fallback findings retained, not independently executed by custody. No node-level swap race reproduced per producer; Swift generation guard read but not executed. No-metadata/no-holder fallback requests and healthy-stream zero-event findings remain synthetic; all-choked/no-peers/earlier peer-loss rows and Swift consumer/headless search not proved in this packet. No live installation, source promotion or Swift/Mac completion. Combined WT release/one-ZIP boundary remains parent-owned.
+
+Lane-reported dependency pin finding: webtorrent-cli/node_modules absent from repo; build.sh only checks webtorrent/index.js existence, so uint8-util@2.2.5 pin is unverifiable from repository, with risk on fresh npm installation of2.3.x. This is lane-reported inspection, not independently rechecked by custody. README reports string-infoHash arr2hex issue with2.3.x; not tested here.

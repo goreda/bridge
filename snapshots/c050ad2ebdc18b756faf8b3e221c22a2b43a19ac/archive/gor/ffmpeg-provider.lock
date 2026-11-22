@@ -1,0 +1,28 @@
+# gorav FFmpeg provider lock (arch-196v r2). The 8.0.1 cache is LEGACY - do
+# not mix. The provider of record is the pinned 7.1 below, built per
+# kits/ffmpeg-configure-diff/full-codec-provider-7.1-recipe.txt (default) or
+# ...-dav1d-recipe.txt (arch-named av1=dav1d variant; both verified).
+provider: ffmpeg-7.1-full-codec
+ffmpeg_version: "7.1"
+ffmpeg_tarball_url: https://ffmpeg.org/releases/ffmpeg-7.1.tar.xz
+ffmpeg_tarball_xz_sha256: 40973d44970dbc83ef302b0609f2e74982be2d85916dd2ee7472d30678a7abe6
+dav1d_version: "1.4.3"   # only for the dav1d variant; BSD-2-Clause, vendored
+dav1d_tarball_url: https://code.videolan.org/videolan/dav1d/-/archive/1.4.3/dav1d-1.4.3.tar.gz
+dav1d_tarball_gz_sha256: 88a023e58d955e0886faf49c72940e0e90914a948a8e60c1326ce3e09e7a6099
+darwin_build_recipe: |
+  # macOS (arm64): identical configure flags to the Linux recipe except
+  # --prefix. dav1d variant first: meson setup --default-library=static
+  # -Denable_tools=false -Denable_tests=false -Denable_asm=true (nasm not
+  # needed on arm64; NEON asm on), ninja install; then PKG_CONFIG_PATH=<dav1d
+  # pkgconfig> ./configure <recipe flags> --prefix=<install>. No --disable-x86asm
+  # needed on arm64 (x86-only flag, harmless if kept). LGPL-compliant: no
+  # --enable-gpl, no nonfree, no external encoder libs.
+legacy_8_0_1_cache:
+  ffmpeg_version: 8.0.1
+  ffmpeg_commit: 894da5ca7d742e4429ffb2af534fcda0103ef593
+  tarball_path: ffmpeg-894da5ca-refetch.tar.xz
+  tarball_xz_sha256: 7c8f502b31c6b2de19e63010ed4d991f0d25468cf15fc18ca6fd74380a076b37
+  inner_tar_sha256: acc2e0cceb5b4bed6a655047533127e4d34081430246a39315e674c0c4a98891
+  recorded_from: build.command@38e04f5eab20d9d795d7f9371b79b397c444c5b6 (blob ff95216c10c60ac7334bae785782916e3950bdf9)
+  inner_tar_recorded_from: README.txt@38e04f5eab20d9d795d7f9371b79b397c444c5b6 (line 5)
+gorav_lock_source: goreda/gorav@cf3e3f1772033dbc8465b19689e93f53c60006ce:ffmpeg-provider.lock 52a2b9390b35121cb60618f3963fceca64bd1b62

@@ -1,0 +1,98 @@
+{
+ "tos_t3_row_flow_v3.mp4": {
+  "frames": 48,
+  "p95_left": {
+   "mean": 7.583,
+   "max": 8.0
+  },
+  "p95_right": {
+   "mean": 4.0,
+   "max": 4.0
+  },
+  "flat_left": {
+   "mean": 0.093,
+   "max": 0.111
+  },
+  "flat_right": {
+   "mean": 0.003,
+   "max": 0.014
+  },
+  "defs": {
+   "TOL": 1,
+   "BAND": 0.15,
+   "MINRUN": 8
+  }
+ },
+ "tos_t3_row_flow_v3_goreda.mp4": {
+  "frames": 48,
+  "p95_left": {
+   "mean": 7.503,
+   "max": 8.0
+  },
+  "p95_right": {
+   "mean": 4.0,
+   "max": 4.0
+  },
+  "flat_left": {
+   "mean": 0.105,
+   "max": 0.125
+  },
+  "flat_right": {
+   "mean": 0.001,
+   "max": 0.005
+  },
+  "defs": {
+   "TOL": 1,
+   "BAND": 0.15,
+   "MINRUN": 8
+  }
+ },
+ "tos_t1_mlbw_l2_inpaint_video.mp4": {
+  "frames": 48,
+  "p95_left": {
+   "mean": 7.423,
+   "max": 8.0
+  },
+  "p95_right": {
+   "mean": 4.0,
+   "max": 4.0
+  },
+  "flat_left": {
+   "mean": 0.088,
+   "max": 0.11
+  },
+  "flat_right": {
+   "mean": 0.001,
+   "max": 0.008
+  },
+  "defs": {
+   "TOL": 1,
+   "BAND": 0.15,
+   "MINRUN": 8
+  }
+ },
+ "tos_t1_mlbw_l2_inpaint_video_goreda.mp4": {
+  "frames": 48,
+  "p95_left": {
+   "mean": 8.303,
+   "max": 10.0
+  },
+  "p95_right": {
+   "mean": 4.0,
+   "max": 4.0
+  },
+  "flat_left": {
+   "mean": 0.123,
+   "max": 0.133
+  },
+  "flat_right": {
+   "mean": 0.001,
+   "max": 0.006
+  },
+  "defs": {
+   "TOL": 1,
+   "BAND": 0.15,
+   "MINRUN": 8
+  }
+ }
+}
