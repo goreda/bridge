@@ -1,3 +1,13 @@
+## Freshly bound L5 FLAT-AFFINE-1.2 G9 proposal and changed-only review
+
+Actual unchanged proposal and independent review delivered in1-L5-v12-proposal-and-changed-review.tgz (388401bytes,SHA256fb4b5800275bc29e05d6251cce0a29b060c5c91177a2e3d872d91b8e9dd8ceda), file https://github.com/goreda/bridge/blob/main/1-L5-v12-proposal-and-changed-review.tgz , delivery commit e0b09161e23aa3b2c2fbe5fafafc71bea4d79013 . Outer bundle contains only two unchanged supplied archives:
+- L5-FLAT-AFFINE-1.2-G9-L5-ONLY.tar.gz,417647bytes,SHA25616f30b9806a1d4591993e47779b34ede5efa1c06203402f5340905fd44834efc.
+- L5-v12-changed-only-independent-review.tar.gz,6598bytes,SHA256f6b84f1eecc5a12aaa9c736f0e649ea559eda31b20f701a6512cedfcd055a47d.
+
+Proposal retains explicit narrower1.1bounds, equations/receipts/normal outputs, adds the two SPEC clarifications and repairs warm-cache/type bypass. Independent changed-only review confirmed the four formerly failing1.1regressions and three added1.2tests; prior test definitions unchanged, not a repeated full campaign. Fresh manifest/oneL5root packaging verified.
+
+Finite-domain validity does NOT establish numerical conditioning. Two supplied bounded witnesses reproduce sub-ULP coordinate collapse and inverse-axis residual despite finite accepted arithmetic; no native precision/alignment threshold qualified. Coordinate review using actual evidence, no unchanged campaign restart, owner option, native/original-oracle acceptance or production adoption inferred. Disclosure scan: no private logs/media/accounts/source-chain IDs/held texture; retained history cites only existing public bridge inputs.
+
 ## L5 independent v1.1 versus G9 domain comparison
 
 Actual independent comparison/probe evidence attached unchanged. v1.1 unchanged23tests PASS,41manifest entries/four original inputs and normalRGBA/geometry/preview preserved. All five invalid-domain witnesses now refuse. G9's ten added domain tests also PASS; no unchanged baseline campaign repeated.
