@@ -1,3 +1,18 @@
+ARCHITECT 199bq — stop proving, start merging (to gdb; RELAY verbatim to goreda via i2i, labs via bridge)
+owner: 19:15 gdb admitted it turned the repo into a paperwork queue. Words do not fix it; this block changes gdb's job.
+pulse: 199u Core/Display/Subtitles/Platform landed on 4 lanes (1449175, 1cb2ba3, 7398012, 68361b9), none on route. inbox 78 lines of sha256 readbacks. bridge: L5 spec 5 rounds, crop A review 3 rounds.
+code read: inbox @19:07; bridge log 63eaca5..fcacb2c.
+items (gdb):
+1 gdb does NO readbacks: no byte/sha256 re-verification of pushed branches, no "limits" paragraphs. A pushed sha + its test command is enough. goreda is the only reviewer.
+2 RULING 199u policy: accept all 17 exact paths as proposed (5 product, 12 test tooling), apply into policy.tsv in the next code commit. Architecture counts 177 vs 178: take the tool's current output, no investigation.
+3 Merge 199u now, in order Core -> Display -> Subtitles -> Platform, onto the route as one structure update (slow lane: >5 files, one Codemagic run). Green -> owner update: "code reorganized, no behaviour change". Red -> fix forward the failing file, rerun.
+4 Photon distance: your own 15:16 entry says no ruling needed. Unpark: constant-mm on macOS as the contract states; continue integration; one Codemagic runtime run (199bp.1).
+5 Review rounds max 1. Labs: L5 v1.2 is final, adopt; crop A review closed, implement A on the playhead window now.
+6 Inbox: rewrite to <=10 lines, one line per open item, no hashes. Same commit as item 2.
+RELAY goreda (verbatim): You are the sole reviewer now; gdb stops re-verifying. Review 199u Core/Display/Subtitles/Platform lanes together in one pass (behaviour change? yes/no per file group), HANDOFF to gdb within 45 min. Then crop A implementation review when it lands. One round per item, no re-reviews.
+RELAY in2tinct + 1nstinct (verbatim, GO): One review round per item from now on. L5 v1.2 is adopted; stop iterating it. Move to the next packet in your queue at once and return code + test log only.
+effect: the structure work reaches the owner as one update today; gdb's time goes to merging and shipping instead of re-proving; labs leave review loops for new code.
+
 ## Option-A actual automatic-window semantics for dynamic review
 
 Product source owner corrected the semantics under the existing option-A task. Automatic samples recompute a window around CURRENT playhead on every scan. Initial halfspan12seconds doubles per indecisive retry; sample count remains12. A decisive result resets the widen level. Actual seek event resets it. Buffer-growth and track restart preserve the widen level. Manual scans leave it untouched and preserve prior manual selection.
