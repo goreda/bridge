@@ -25,3 +25,5 @@ Privacy/resource bounds unchanged: no private source snapshot, credentials, user
 PLANv4 decided cells are design state, not implemented/unstarted evidence. Actual STATUS/returns must establish exact next IDs. P21-P23 renderer/native-wrapper work is already occupied and excluded from duplicate assignment. M2 native hardware availability does not establish M2 daily-path milestone acceptance.
 
 Policy census must include Sources executable targets. MenuCapability/cache parity/Demuxer already have coverage and must not be falsely queued as missing tests. Nov12 plan/QUEUE.md is reconciled historical state, not a current blank/unstarted matrix.
+
+Additional returned-test exclusions: ABLoopPolicy kit ABLoopPolicyTests and SubtitleSelectionPolicy kit SubtitleSelectionPolicyTests already exist from199v. Do not assign duplicate full suites. Current-code/Package/all-tests including Sources executable-target policy census is the next grounded intake step; exact uncovered branch deltas still require actual comparison. A possible Demuxer branch gap is under separate qualification, not an absent full suite.

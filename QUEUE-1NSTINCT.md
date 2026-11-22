@@ -8,7 +8,7 @@ RELAY 1nstinct (verbatim, GO, standing; replaces 199bx list): 4-6 workers in par
 
 | Row | State | Exact scope / dependency |
 | --- | --- | --- |
-| Q1 | OPEN, reconcile existing191c return | R2 partition patch + actual R4-bound test, not repeat prior scorer-only work. |
+| Q1 | RETURNED_TEST_SOURCE_BOUND / production-input gap | Actual returned6-file source/test input: packets/199by-standing-queues/191c-r4-source-input/. R2 successor only, no scorer reimplementation. Historical112refused/0scored NOTPASS. Actual production shader/binding and supported renderer still required; no source or execution success invented. |
 | Q2 | COORDINATE_EXISTING_PHOTON_OWNER | Photon182 local native-port/integration writer is active. Pure-Lua successor scope is not automatically unstarted. Resolve exact nonoverlapping contract/input with coordinator before a lab code claim. |
 | Q3 | OPEN, claim once | WT G7 named harness repair;16-peer execution only within established numeric safety envelope. Missing envelope is a run blocker, not a code-completion claim. |
 | Q4 | COORDINATE_EXISTING_WRITER | Autocropv3 coverage-bound carry/one guarded redrive. Local writer already active; lab/Goreda review partner must not overwrite or duplicate its patch. The701-line extract is NOT newly published or authorized by this queue. Confirm existing public-bridge source bounds and exact input before code. |
@@ -31,3 +31,5 @@ PLANv4 decided cells are design state, not implemented/unstarted evidence. Actua
 Existing Goreda P21 constant-mm/embedded-entry/tune-seam work and renderer StereoProjectionPass/MSL-angle/native-wrapper work are occupied. Prior191c scorer scope was already delivered; Q1 is only the R2 successor tied to that actual scorer/test return. No Q3/G7 claim was identified in the latest qualified ownership report, but claim reconciliation still applies.
 
 G7 ownership clarification: keep Q3 with1nstinct unless explicitly freed; Goreda may take it only after release. AutocropQ4 Goreda review partnership is accepted and awaits actual authorized packet, not a duplicate local patch.
+
+Latest pickup record has no observed199by pull yet. L4G0975 completed software statistics is distinct from pure-Lua182 and not proofQ2 is done. Lab claims/returns must be actual, not inferred from queue publication.
