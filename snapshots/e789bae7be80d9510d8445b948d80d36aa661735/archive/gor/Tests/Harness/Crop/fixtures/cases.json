@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "source_baseline": "gor/zips/260928-150356-gor-wt-crop-thermal.zip.b64:PPController.swift",
+  "reference_sha256": "382288b91e9d1539abdb7a388a8c35f45b72b6570595509f2d09835927b9f068",
+  "pixel_dimensions": [
+    960,
+    540
+  ],
+  "cases": [
+    {
+      "id": "black-text-card",
+      "frames": 4,
+      "description": "small bright text rectangle on black background",
+      "expected": "no-crop-or-undecided",
+      "risk": "archive.org false-positive pattern"
+    },
+    {
+      "id": "credits",
+      "frames": 4,
+      "description": "scrolling central credits on black, varying text height",
+      "expected": "no-crop-or-undecided"
+    },
+    {
+      "id": "channel-logo",
+      "frames": 4,
+      "description": "full-frame picture with fixed bright corner logo",
+      "expected": "no-crop"
+    },
+    {
+      "id": "subtitles",
+      "frames": 4,
+      "description": "letterboxed picture with subtitle crossing lower band",
+      "expected": "do-not-cut-subtitle"
+    },
+    {
+      "id": "true-letterbox",
+      "frames": 4,
+      "description": "1920x800 picture centered in 1920x1080 frame",
+      "expected": "crop-vertical"
+    },
+    {
+      "id": "true-pillarbox",
+      "frames": 4,
+      "description": "4:3 picture centered in 16:9 frame",
+      "expected": "crop-horizontal"
+    },
+    {
+      "id": "variable-aspect",
+      "frames": 8,
+      "description": "four letterbox then four full frame",
+      "expected": "no-single-static-crop"
+    },
+    {
+      "id": "dark-bailout",
+      "frames": 4,
+      "description": "dark scene with no visible picture",
+      "expected": "undecided"
+    },
+    {
+      "id": "bright-text-panel",
+      "frames": 4,
+      "description": "wide central dim panel, black surround and narrow bright lines; different frame bytes",
+      "expected": "auto-no-crop; manual-current-scene may crop"
+    },
+    {
+      "id": "narrow-subtitle",
+      "frames": 4,
+      "description": "bright picture letterbox with narrow glyph extending into lower black band",
+      "expected": "crop must preserve subtitle pixels"
+    },
+    {
+      "id": "bright-credits",
+      "frames": 4,
+      "description": "widely spaced bright title lines on nearly black full frame, with moving positions",
+      "expected": "auto-no-crop; manual-current-scene may crop"
+    },
+    {
+      "id": "moving-letterbox",
+      "frames": 6,
+      "description": "bright diverse moving content inside stable letterbox",
+      "expected": "auto-fast-crop"
+    },
+    {
+      "id": "moving-pillarbox",
+      "frames": 6,
+      "description": "bright diverse moving content inside stable pillarbox",
+      "expected": "auto-fast-crop"
+    },
+    {
+      "id": "moving-no-bars",
+      "frames": 6,
+      "description": "bright diverse moving full frame",
+      "expected": "auto-fast-no-crop"
+    },
+    {
+      "id": "dim-panel-sweep",
+      "frames": 6,
+      "description": "central panel luminance 14,18,24,30,38,50 on black",
+      "expected": "auto-no-crop-or-hold across brightness sweep",
+      "risk": "center luminance alone fails from 24 upward"
+    },
+    {
+      "id": "mixed-dark-film",
+      "frames": 8,
+      "description": "same true letterbox with dim and bright film scenes plus dark transition",
+      "expected": "auto-hold on dim, crop after enough independent bright scenes"
+    },
+    {
+      "id": "noisy-static-film",
+      "frames": 6,
+      "description": "same film frame with minor deterministic grain and pixel bytes changed",
+      "expected": "auto-at-most-one-independent-vote"
+    },
+    {
+      "id": "moving-title-card",
+      "frames": 6,
+      "description": "moving bright title plaque on dim central panel with black surround",
+      "expected": "auto-no-crop; track-1 may fail if near-black fraction falls below fixed threshold"
+    },
+    {
+      "id": "dark-grain-film",
+      "frames": 6,
+      "description": "genuine bars around low-light changing film texture",
+      "expected": "auto-crop if enough independent confidence; no false ineligible no-crop"
+    },
+    {
+      "id": "moving-aspect-change",
+      "frames": 8,
+      "description": "four genuinely distinct letterbox movie frames then four genuinely distinct full-frame movie frames",
+      "expected": "no permanent crop across aspect shift; track-1 early lock likely persists"
+    },
+    {
+      "id": "dark-moving-film",
+      "frames": 6,
+      "description": "genuine low-light letterbox with moving bright shapes and shifting scene luminance",
+      "expected": "fast auto-crop with independent scenes, measure decision latency"
+    }
+  ],
+  "gates": [
+    "no positive crop for text/credits/variable aspect",
+    "no subtitle pixel loss",
+    "true bars detected within measurement tolerance",
+    "only independent bright frames count",
+    "stale file/paused/player-stall does not vote"
+  ],
+  "limitations": "Synthetic images are not native CGImage/mpv decoded frames. Validate pixel identity, colorspace, scaling, screenshot path and actual UI crop separately on macOS."
+}

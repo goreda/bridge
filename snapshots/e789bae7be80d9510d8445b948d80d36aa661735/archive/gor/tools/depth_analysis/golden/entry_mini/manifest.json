@@ -1,0 +1,30 @@
+{
+  "shot": 0,
+  "frames": 2,
+  "theta_h_deg": 75.0,
+  "shot_hfov_deg": 90.0,
+  "screen_deg": 75.0,
+  "aspect": 1.7777777777777777,
+  "ipd": 0.063,
+  "depth_scale": 1.0,
+  "convergence_m": 2.0,
+  "swap_eyes": true,
+  "surround": "soft",
+  "out_w": 256,
+  "out_h": 256,
+  "start_pts": 0.0,
+  "frame_sha256": [
+    "9034f024e83b4d6a55b3aa8b1c89f196b0d08635512e9d4487c26c213364f48c",
+    "4039e590c3fe57c36fab4bf0ad9f5c7adfb4780a4fd2920804a098f4e488715f"
+  ],
+  "sequence_sha256": "7627de7115e9ac6537f023011b04b4a09beeaacac506a6bae5227a8268d19b98",
+  "provenance": "crafted deterministic entry (make_golden_entry.py, rng seed 190); Mac-default render params",
+  "parity_params": {
+    "ipd": 0.063,
+    "depth_scale": 1.0,
+    "screen_deg": 75.0,
+    "convergence_m": 2.0,
+    "swap_eyes": true,
+    "eye_n": 256
+  }
+}

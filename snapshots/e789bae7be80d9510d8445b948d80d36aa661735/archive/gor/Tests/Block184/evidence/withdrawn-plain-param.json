@@ -1,0 +1,12 @@
+{
+  "label": "plain-param",
+  "framesSent": 149,
+  "cmdMedianMS": 1.4788179998959095,
+  "cmdMaxMS": 842.4329899999066,
+  "avMeanAbs": 0.05852773333333333,
+  "frame-drop-count": 89,
+  "decoder-frame-drop-count": 0,
+  "vo-delayed-frame-count": 0,
+  "mistimed-frame-count": null,
+  "total-avsync-change": -0.033333
+}

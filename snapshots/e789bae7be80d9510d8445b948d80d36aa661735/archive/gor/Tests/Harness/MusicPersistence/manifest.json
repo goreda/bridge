@@ -1,0 +1,20 @@
+{
+  "source": "goreda/instinct main live 2026-10-02 00:26 Europe/Istanbul; final reread unchanged",
+  "source_sha256": "5abc42fe83c197067a9f5b787b18667010fc7e1052373c041bcc1c01e3f470a1",
+  "negative_checks": [
+    {
+      "mutation": "def save_playlists(pls):",
+      "rejected": true
+    },
+    {
+      "mutation": "json.dump(libs, f, indent=2)",
+      "rejected": true
+    },
+    {
+      "mutation": "json.dump(pls, f, indent=2)",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "compiled_mus2_parity": "unverified"
+}

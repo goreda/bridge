@@ -1,0 +1,9 @@
+# Music helper protocol harness
+
+Run `bash gor/Tests/Harness/MusicProtocol/run.sh`. Python 3 only. Reads current MusicController.swift and mus2.py directly; no snapshot fallback. Only the AST-isolated current Python emit function and CHUNK_SIZE assignment are executed. Backend module imports/startup, compiled mus2 binary, mpv, network, process, download and UI are not executed. No production edits.
+
+Controls: small/large Unicode actual emit roundtrip through the modeled Swift consumer, every UTF-8 byte split boundary, invalid chunk count/index/per-part bound, aggregate 4MB bound, changed-total accumulator reset and ordered local-context play/queue tail. Three source mutations fail. Byte-buffered UTF-8 and existing chunk limits are current positive protections, not missing features.
+
+Known-red/protocol characterizations: main-queued JSON lacks current-process identity after stop/replacement; same-total fragments can mix without a message ID under synthetic interleaving/loss; a newline in a raw command argument creates another stdin command; multiword search sends the full query from Swift but the inspected Python backend uses only the first word as arg. The compiled bundled mus2 helper may differ from mus2.py, so backend findings need binary/source provenance before production conclusions. The ordinary Python emit serializes each chunk batch; two simultaneously interleaved chunk batches were not proved in production. Do not turn synthetic mixer input into a confirmed music failure.
+
+Priority: confirm bundled helper provenance and preserve full search query; scope queued response/startup actions to the owning process. Protocol newline admission and message identity need reviewed compatibility decisions. PASS retains counterexamples rather than claiming correctness clearance. Native process/FileHandle/main queue, helper exit/reaping, startup-delay ownership, playlists/queues/providers and music UI remain open.

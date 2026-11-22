@@ -1,0 +1,37 @@
+{
+  "result": "PASS nonvisual controls and callback ownership characterizations",
+  "controls": [
+    "cache miss then successful callback installs selected cover",
+    "cache hit skips fetch",
+    "unreadable cached image does not install",
+    "hide after completed preview remains hidden",
+    "in-order selections finish with B"
+  ],
+  "characterizations": [
+    {
+      "case": "A/B completion reversed",
+      "observed": "older cover A overwrites B"
+    },
+    {
+      "case": "hide before completion",
+      "observed": "queued load unhides cover again"
+    },
+    {
+      "case": "music mode exit before completion",
+      "observed": "captured coverView still receives image/alpha write without mode check"
+    },
+    {
+      "case": "corrupt cache entry",
+      "observed": "file-exists fast path skips refetch even if NSImage cannot decode",
+      "scope": "source routing model, corrupt actual bytes not inspected"
+    }
+  ],
+  "source_sha256": "74d16c7591b1058167d0fbb2a025f554afe59df5dd76dd168df97e20580b277e",
+  "open": [
+    "actual SHA-1 implementation parity (only source call anchored)",
+    "NSImage/network/size/MIME/timeout/cache write errors",
+    "real AppKit animations/mode lifetime/pixels",
+    "concurrent same-key cache writes"
+  ],
+  "scope": "Python nonvisual routing/ownership ports and Swift source anchors; no cover/network/image/Swift/UI execution"
+}

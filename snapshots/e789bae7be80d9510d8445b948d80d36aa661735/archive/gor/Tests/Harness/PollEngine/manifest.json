@@ -1,0 +1,20 @@
+{
+  "source": "goreda/instinct main current 2026-10-02 00:02 Europe/Istanbul; final reread unchanged",
+  "source_sha256": "7964e9bcff8779fdc6c2ee064ffac0c93ca4452fc8977581b19369f8cae05962",
+  "negative_checks": [
+    {
+      "anchor": "slowEveryTicks: UInt64 = 5",
+      "rejected": true
+    },
+    {
+      "anchor": "if rid == 4 || rid == 15 || rid == 21 { flush() }",
+      "rejected": true
+    },
+    {
+      "anchor": "if let value, !(value is NSNull)",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "native_validation": "not performed"
+}

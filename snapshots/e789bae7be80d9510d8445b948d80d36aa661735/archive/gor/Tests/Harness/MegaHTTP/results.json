@@ -1,0 +1,31 @@
+{
+  "result": "PASS actual current HTTP handler loopback fixtures",
+  "controls": [
+    "GET entire source 200, exact synthetic bytes/length",
+    "HEAD 200 headers without source.open",
+    "closed range 206 exact slice",
+    "open-ended range to EOF",
+    "HEAD range 206 length without body",
+    "start/end/safe-integer/malformed rejection 416",
+    "non GET/HEAD rejected 405"
+  ],
+  "characterizations": [
+    {
+      "range": "bytes=-4",
+      "observed": "416 rejected by current handler",
+      "scope": "actual loopback handler result; desired suffix/clamp/multirange policy not externally verified"
+    },
+    {
+      "range": "bytes=0-999",
+      "observed": "416 rejected by current handler",
+      "scope": "actual loopback handler result; desired suffix/clamp/multirange policy not externally verified"
+    },
+    {
+      "range": "bytes=0-1,4-5",
+      "observed": "416 rejected by current handler",
+      "scope": "actual loopback handler result; desired suffix/clamp/multirange policy not externally verified"
+    }
+  ],
+  "source_sha256": "b950e8595cdc79b6f4f18da0ab60f11c6aae910ea566bb1381079a73b6d0467a",
+  "scope": "Actual isolated Node HTTP handler and synthetic source on 127.0.0.1 only. No MEGA/provider/download/Swift/mpv/real media or UI execution."
+}

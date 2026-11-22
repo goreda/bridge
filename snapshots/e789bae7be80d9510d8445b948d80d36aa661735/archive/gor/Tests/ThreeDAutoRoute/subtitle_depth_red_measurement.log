@@ -1,0 +1,8 @@
+LUAERR	vr180-look: shader publication failed: nil
+LUAERR	vr180-look: shader publication failed: nil
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS adjacent displacement max_px 3.0359115600585938 second difference max_px 3.273031234741211
+Traceback (most recent call last):
+  File "/tmp/gor-current/archive/gor/Tests/ThreeDAutoRoute/subtitle_depth_gpu_test.py", line 23, in <module>
+    assert peak<1,'source-pixel skips';assert curvature<1/255,'glyph-scale oscillation'
+AssertionError: source-pixel skips

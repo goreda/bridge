@@ -1,0 +1,10 @@
+R1 sweep: one cap for sources 720..1439, rows src 720/1080 at out 1080/2160, pre-written margins (sharp_outcome.py verdict_mid). nativerender, mpv 0.34 --vo=gpu, Xvfb Mesa.
+cap  amount  verdict (failing rows)
+none(m)  3.25-5.63  FAIL text overshoot 5.3-18.2, grain noise gain 1.23-1.44
+0.8   2.6   7 failing: src=720 out=1080 text overshoot=1.82 > 1.5x 2160p(0.0);src=720 out=1080 grain noise_gain=1.203 > 1.15;src=720 out=2160 grain noise_gain=1.185 > 1.15;src=1080 out=1080 text overshoot=4.39 > 1.5x 2160p(0.0);src=1080 out=1080 grain n
+0.6   1.95   2 failing: src=720 out=1080 grain noise_gain=1.151 > 1.15;src=1080 out=1080 text overshoot=2.63 > 1.5x 2160p(0.0);
+0.55   1.7875   1 failing: src=1080 out=1080 text overshoot=2.63 > 1.5x 2160p(0.0);
+0.5   1.625   1 failing: src=1080 out=1080 text overshoot=1.75 > 1.5x 2160p(0.0);
+0.45   1.4625   1 failing: src=1080 out=1080 text overshoot=1.75 > 1.5x 2160p(0.0);
+0.4   1.3   0 failing: 
+Shipped: 720p class 0.55 (passes all 720 rows), 1080p class 0.40 (first passing 0.05 step; 0.45 fails text overshoot 1.75 > 1.5 at 1080 out). Rise gain at shipped caps: 720p 1.12-1.16, 1080p 1.04.

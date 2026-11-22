@@ -1,0 +1,20 @@
+{
+  "source": "goreda/instinct main live 2026-10-02 00:12 Europe/Istanbul; final reread unchanged",
+  "source_sha256": "74d16c7591b1058167d0fbb2a025f554afe59df5dd76dd168df97e20580b277e",
+  "negative_checks": [
+    {
+      "anchor": "baseIPDLimit: Double = 0.3",
+      "rejected": true
+    },
+    {
+      "anchor": "guard enabled != headTrackingEnabled else { return }",
+      "rejected": true
+    },
+    {
+      "anchor": "headZTranslateSign: Double = -1.0",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "scope": "Swift controller only; script consumer/native rendering not validated"
+}

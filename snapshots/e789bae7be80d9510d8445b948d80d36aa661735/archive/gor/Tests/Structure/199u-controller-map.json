@@ -1,0 +1,15 @@
+{
+ "station": "Controller",
+ "sections": {
+  "InputController.swift": {
+   "sha256": "2f05e6767b9100f179122f6ef9904a5481f2436fa9e0ef7749dfda7763306f89",
+   "lines": 527,
+   "host": "Sources/gor/Player/Input.swift"
+  },
+  "DragDropHandler.swift": {
+   "sha256": "16e217064f814b612115382f9bc593b1d21cd70ab0b7c09163e1ac6bed03dd50",
+   "lines": 112,
+   "host": "Sources/gor/Player/Input.swift"
+  }
+ }
+}

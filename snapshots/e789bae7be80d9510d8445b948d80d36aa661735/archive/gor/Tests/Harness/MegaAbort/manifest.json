@@ -1,0 +1,16 @@
+{
+  "source": "goreda/instinct main live 2026-10-02 00:37 Europe/Istanbul; reread unchanged",
+  "source_sha256": "b950e8595cdc79b6f4f18da0ab60f11c6aae910ea566bb1381079a73b6d0467a",
+  "mutation_checks": [
+    {
+      "mutation": "if (body.pause) body.pause();",
+      "rejected": false
+    },
+    {
+      "mutation": "console.error(`ERROR:source stream error: ${e.message}`);",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "execution": "actual isolated Node HTTP/Readable fixtures, loopback"
+}

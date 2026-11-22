@@ -1,0 +1,1111 @@
+{
+ "schema": 1,
+ "original": {
+  "path": "Sources/gor/gor/ThreeD.swift",
+  "sha256": "2b06e395bbe7dfbfaeb2a242336097f1b1db48e8d09da867f8ed6ce03e08a51e",
+  "lines": 12441,
+  "bytes": 856749,
+  "declaration_count": 3522,
+  "declaration_sha256": "b4e3e622ee1a34b472461810b5f7ad6c874278ba3c298ab16bc4df857cf01ee1",
+  "import_modules": [
+   "AVFoundation",
+   "Accelerate",
+   "AppKit",
+   "Compression",
+   "CoreGraphics",
+   "CoreML",
+   "CoreMedia",
+   "CoreVideo",
+   "CryptoKit",
+   "Darwin",
+   "Foundation",
+   "Glibc",
+   "ImageIO",
+   "Metal",
+   "QuartzCore",
+   "UniformTypeIdentifiers",
+   "VideoToolbox",
+   "Vision"
+  ]
+ },
+ "header": [
+  "// ThreeD.swift - the 3D domain in one document (owner order 2026-11-14: all 3D-related",
+  "// Swift in one file, related types colocated as before the satellite split). 67 files merged",
+  "// byte-exact below, each in its own BEGIN/END relocated section with its original #if guards.",
+  "// No behavior change. Section order: state/route -> models/kit -> depth backends ->",
+  "// degrade/comfort -> prepare -> render/shot -> stereo/format/geometry -> crop -> subtitle",
+  "// depth -> VR mirror -> menu/UI -> selftest/logs."
+ ],
+ "stations": {
+  "Source": {
+   "file": "Sources/gor/Stereo/Source.swift",
+   "header_lines": 48,
+   "sections": [
+    {
+     "name": "ThreeDRecognitionBridge.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 71,
+     "sha256_before": "b8d1207eaa503e6214f9be84d1372c13a9bda6eaf0cd030a19fc593781086b01",
+     "sha256_after": "b8d1207eaa503e6214f9be84d1372c13a9bda6eaf0cd030a19fc593781086b01"
+    },
+    {
+     "name": "StereoSource.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 188,
+     "sha256_before": "8dd1bdf4b8d3a33b59d6239a3490e02420794a0c4fad39cb9559fc8630cff1d1",
+     "sha256_after": "8dd1bdf4b8d3a33b59d6239a3490e02420794a0c4fad39cb9559fc8630cff1d1"
+    },
+    {
+     "name": "StereoSourceGate.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 82,
+     "sha256_before": "a1a003680dff71e65ee92593755e71187cdba44b1e0b3161318a1a7b9e8f52ee",
+     "sha256_after": "a1a003680dff71e65ee92593755e71187cdba44b1e0b3161318a1a7b9e8f52ee"
+    },
+    {
+     "name": "StereoSourceProbe.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 21,
+     "sha256_before": "422e95ce7e504882111a408a3a9b5cb130939fbd2222bf2a371fbfad2f43634a",
+     "sha256_after": "422e95ce7e504882111a408a3a9b5cb130939fbd2222bf2a371fbfad2f43634a"
+    },
+    {
+     "name": "SourceFormat.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 113,
+     "sha256_before": "a649c786724696a2866b75209faf0fdd9486a426c06a8d447e52810d4fe031cf",
+     "sha256_after": "a649c786724696a2866b75209faf0fdd9486a426c06a8d447e52810d4fe031cf"
+    },
+    {
+     "name": "SourceFormatProbe.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 370,
+     "sha256_before": "bf8365745a4bd407651f96213097166b1cb41725e4f791bcf78799ff50ee39a0",
+     "sha256_after": "bf8365745a4bd407651f96213097166b1cb41725e4f791bcf78799ff50ee39a0"
+    },
+    {
+     "name": "SphericalTag.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 84,
+     "sha256_before": "9817f411737f0179221bc0ae7e75e884406a5c8b07bb91b450d249e02dc8f8ce",
+     "sha256_after": "9817f411737f0179221bc0ae7e75e884406a5c8b07bb91b450d249e02dc8f8ce"
+    },
+    {
+     "name": "SourcePixelCrop.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 559,
+     "sha256_before": "c299527c5461023cf3105687d4a2d990c01ae7f566245d3a449587fc23fb50e5",
+     "sha256_after": "c299527c5461023cf3105687d4a2d990c01ae7f566245d3a449587fc23fb50e5",
+     "current_lines": 677,
+     "sha256_current": "dc6d4646e03fc8e808508e770447b54d34eff3750b79d8a374750740119315bb"
+    },
+    {
+     "name": "WTCropSamples.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 152,
+     "sha256_before": "d8d506ecdaac3a187acb9842a5975cf4fefd4aa927df717f0a05eff5dbadd1f8",
+     "sha256_after": "d8d506ecdaac3a187acb9842a5975cf4fefd4aa927df717f0a05eff5dbadd1f8",
+     "current_lines": 196,
+     "sha256_current": "802cfe28fbe9c644389419846c22236169361f8d7a9beafe787be44d281f7688"
+    }
+   ],
+   "historical_fixture": "Tests/Structure/threed-split-historical/Source.swift.2940d4e5.txt",
+   "historical_sha256": "2940d4e54937483156f66f442c30940c09330389e1e109f5e2cb462fff110838",
+   "note": "Live file is not a pure move: product edit after the split. Historical rebuild uses the fixture, the live bytes are pinned separately.",
+   "current_sha256": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53"
+  },
+  "Depth": {
+   "file": "Sources/gor/Stereo/Depth.swift",
+   "header_lines": 48,
+   "sections": [
+    {
+     "name": "ThreeDModels.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 125,
+     "sha256_before": "ff0b870a387af4f3b6b34efd64a65ad1df5a0f239d49985ecf02973b32ea2300",
+     "sha256_after": "ff0b870a387af4f3b6b34efd64a65ad1df5a0f239d49985ecf02973b32ea2300",
+     "current_lines": 125,
+     "sha256_current": "ff0b870a387af4f3b6b34efd64a65ad1df5a0f239d49985ecf02973b32ea2300"
+    },
+    {
+     "name": "ThreeDKit.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 100,
+     "sha256_before": "58fd350ba516ab36956b5a2432b69bf7f9ed5ec4e6126fbb29db93b2c4e53d48",
+     "sha256_after": "58fd350ba516ab36956b5a2432b69bf7f9ed5ec4e6126fbb29db93b2c4e53d48",
+     "current_lines": 100,
+     "sha256_current": "58fd350ba516ab36956b5a2432b69bf7f9ed5ec4e6126fbb29db93b2c4e53d48"
+    },
+    {
+     "name": "KitHash.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 110,
+     "sha256_before": "44d4356f976c80b09cd80aa99e5e520c49c4e50f3c244e060806d4acadec6b60",
+     "sha256_after": "44d4356f976c80b09cd80aa99e5e520c49c4e50f3c244e060806d4acadec6b60",
+     "current_lines": 110,
+     "sha256_current": "44d4356f976c80b09cd80aa99e5e520c49c4e50f3c244e060806d4acadec6b60"
+    },
+    {
+     "name": "KitCompiledCache.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 130,
+     "sha256_before": "6ad68ffa4e8bb6e94f32197471a88d85581690ffc5565f1423c784260c3bf098",
+     "sha256_after": "6ad68ffa4e8bb6e94f32197471a88d85581690ffc5565f1423c784260c3bf098",
+     "current_lines": 179,
+     "sha256_current": "327a530b06aa23e50f1073e501515080205d357b43a06eebef856a04e92042cb"
+    },
+    {
+     "name": "ComputeUnitsProbe.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 40,
+     "sha256_before": "98fd1bab41b9ec83c432a7cd83e3ad9d104076b3f03e62e587a2cd187aa6bbc3",
+     "sha256_after": "98fd1bab41b9ec83c432a7cd83e3ad9d104076b3f03e62e587a2cd187aa6bbc3",
+     "current_lines": 42,
+     "sha256_current": "558a9ceddb67d731dc889fcce99cb376227592b640a7920c3c4cd2a1e96aab34"
+    },
+    {
+     "name": "CoreMLDepthRunner.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 130,
+     "sha256_before": "cf155e821e8da0fba92a4f4dadf6d44bbcbfc05b9630b2d866efcb9787762fe7",
+     "sha256_after": "cf155e821e8da0fba92a4f4dadf6d44bbcbfc05b9630b2d866efcb9787762fe7",
+     "current_lines": 130,
+     "sha256_current": "cf155e821e8da0fba92a4f4dadf6d44bbcbfc05b9630b2d866efcb9787762fe7"
+    },
+    {
+     "name": "NunifPipeline.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 374,
+     "sha256_before": "a2e5829ea42841c86e2579bdbbcec2b6eced3db07c818af9a989131686de7154",
+     "sha256_after": "a2e5829ea42841c86e2579bdbbcec2b6eced3db07c818af9a989131686de7154",
+     "current_lines": 374,
+     "sha256_current": "a2e5829ea42841c86e2579bdbbcec2b6eced3db07c818af9a989131686de7154"
+    },
+    {
+     "name": "VDAStreamRunner.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 144,
+     "sha256_before": "756ca2fc030ca0610f7c6178b53cd79b890e09a10af112d11cdfb01eae682632",
+     "sha256_after": "756ca2fc030ca0610f7c6178b53cd79b890e09a10af112d11cdfb01eae682632",
+     "current_lines": 144,
+     "sha256_current": "756ca2fc030ca0610f7c6178b53cd79b890e09a10af112d11cdfb01eae682632"
+    },
+    {
+     "name": "VDAWindowPlan.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 246,
+     "sha256_before": "a882c4e277f0c4fbe690887bf2e8b3e15fc6332c3e7526856e5ef0c756a1e629",
+     "sha256_after": "a882c4e277f0c4fbe690887bf2e8b3e15fc6332c3e7526856e5ef0c756a1e629",
+     "current_lines": 246,
+     "sha256_current": "a882c4e277f0c4fbe690887bf2e8b3e15fc6332c3e7526856e5ef0c756a1e629"
+    },
+    {
+     "name": "MoGeKeyframeRunner.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 90,
+     "sha256_before": "03039d26264f9242e6f3ff24745762f0650f06d0a3dd4207e81d1f92b39dcc85",
+     "sha256_after": "03039d26264f9242e6f3ff24745762f0650f06d0a3dd4207e81d1f92b39dcc85",
+     "current_lines": 90,
+     "sha256_current": "03039d26264f9242e6f3ff24745762f0650f06d0a3dd4207e81d1f92b39dcc85"
+    },
+    {
+     "name": "ModelDepthEMA.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 66,
+     "sha256_before": "df52f4728e5575c49fdf63883c61afa8632bbf6862f6ef69de0b1a356503ea21",
+     "sha256_after": "df52f4728e5575c49fdf63883c61afa8632bbf6862f6ef69de0b1a356503ea21",
+     "current_lines": 66,
+     "sha256_current": "df52f4728e5575c49fdf63883c61afa8632bbf6862f6ef69de0b1a356503ea21"
+    },
+    {
+     "name": "DepthCacheBudget.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 1065,
+     "sha256_before": "f78a3dad43a5b05f48a3dedcee828e37c53a89125bcfce2118b6a45f265fcbda",
+     "sha256_after": "f78a3dad43a5b05f48a3dedcee828e37c53a89125bcfce2118b6a45f265fcbda",
+     "current_lines": 1065,
+     "sha256_current": "f78a3dad43a5b05f48a3dedcee828e37c53a89125bcfce2118b6a45f265fcbda"
+    },
+    {
+     "name": "DepthContainerWriter.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 330,
+     "sha256_before": "2fc11666599d4879ec960a098a6e3a6c539c53ad546d5783af8602f0a10052c0",
+     "sha256_after": "2fc11666599d4879ec960a098a6e3a6c539c53ad546d5783af8602f0a10052c0",
+     "current_lines": 329,
+     "sha256_current": "ba8de5a7f9d4971458db92a3031ee8d28160694e2cdc7464c5d954135deeedf5"
+    },
+    {
+     "name": "DepthGuards.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 360,
+     "sha256_before": "043a2f66ea15217dc675bc45a7dc648c9ca4169dd0b53440efe5a5f968a5f0b5",
+     "sha256_after": "043a2f66ea15217dc675bc45a7dc648c9ca4169dd0b53440efe5a5f968a5f0b5",
+     "current_lines": 360,
+     "sha256_current": "043a2f66ea15217dc675bc45a7dc648c9ca4169dd0b53440efe5a5f968a5f0b5"
+    },
+    {
+     "name": "DepthPrepareMath.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 193,
+     "sha256_before": "be9c3915843a11d24c039765ba82767307479b3cbcd98cecefb4bec393a8c38e",
+     "sha256_after": "be9c3915843a11d24c039765ba82767307479b3cbcd98cecefb4bec393a8c38e",
+     "current_lines": 193,
+     "sha256_current": "be9c3915843a11d24c039765ba82767307479b3cbcd98cecefb4bec393a8c38e"
+    },
+    {
+     "name": "FovTrackBuilder.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 31,
+     "sha256_before": "d8e53b4dff4c12f082ed8b4e6a3c9aab98a9a128a9d461d32fbb06ab2b499d90",
+     "sha256_after": "d8e53b4dff4c12f082ed8b4e6a3c9aab98a9a128a9d461d32fbb06ab2b499d90",
+     "current_lines": 31,
+     "sha256_current": "d8e53b4dff4c12f082ed8b4e6a3c9aab98a9a128a9d461d32fbb06ab2b499d90"
+    }
+   ],
+   "historical_fixture": "Tests/Structure/threed-split-historical/Depth.swift.fef9b28f.txt",
+   "historical_sha256": "fef9b28fe60f91adabd92239561314c3f9a4242973b1fafbd0b0d719bd436b0e",
+   "note": "Live file is not a pure move: product edit after the split. Historical rebuild uses the fixture, the live bytes are pinned separately.",
+   "current_sha256": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9",
+   "current_header_lines": 48
+  },
+  "Prepare": {
+   "file": "Sources/gor/Stereo/Prepare.swift",
+   "header_lines": 48,
+   "sections": [
+    {
+     "name": "ThreeDThermalGate.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 57,
+     "sha256_before": "1061f31f10339a5dbbcf1912cbf53541fbf4191cff7c59c5ed5a508906354843",
+     "sha256_after": "1061f31f10339a5dbbcf1912cbf53541fbf4191cff7c59c5ed5a508906354843"
+    },
+    {
+     "name": "NativePrepareRunner.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 434,
+     "sha256_before": "b02651d37cbc29498fbc4cbd30a0d13911c15b459d4e218a5ee3df0f752fe15f",
+     "sha256_after": "b02651d37cbc29498fbc4cbd30a0d13911c15b459d4e218a5ee3df0f752fe15f",
+     "current_lines": 421,
+     "sha256_current": "966f0bfa9ddb422d5c8736e3743f6002a14c7514ed1454df45c18905c6d57e5f"
+    },
+    {
+     "name": "PrepareSupport.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 164,
+     "sha256_before": "ecceaf15dd4e5b38f532375b6af74ded7076af8583114ecbb4a1abe3bd02ac37",
+     "sha256_after": "ecceaf15dd4e5b38f532375b6af74ded7076af8583114ecbb4a1abe3bd02ac37",
+     "current_lines": 165,
+     "sha256_current": "f4dd0535f6a919eadbe816febf027337d597982d55e462f9177cd71eafd35085"
+    },
+    {
+     "name": "PrepareTelemetry.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 123,
+     "sha256_before": "196e72cd4537cbd1b7932d09898f04e3e977042fa02de41ac1354974456ac70b",
+     "sha256_after": "196e72cd4537cbd1b7932d09898f04e3e977042fa02de41ac1354974456ac70b"
+    },
+    {
+     "name": "FilmPrepareStatus.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 94,
+     "sha256_before": "a5b8838601c1008becb13b51158825bb4a6a46711416fc647f0dbfd92314f749",
+     "sha256_after": "a5b8838601c1008becb13b51158825bb4a6a46711416fc647f0dbfd92314f749"
+    },
+    {
+     "name": "ThreeDPreflight.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 59,
+     "sha256_before": "0dd79b2fec27bfd2479423cb814ae2489a86e94ee9bdb16ec630d3a231e61eb7",
+     "sha256_after": "0dd79b2fec27bfd2479423cb814ae2489a86e94ee9bdb16ec630d3a231e61eb7"
+    },
+    {
+     "name": "ThreeDPrepareLauncher.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 93,
+     "sha256_before": "417f4a1bdd8c97c84600f3e4b1c4f5bceb8e1eb768240523ea4650e9902ed2ed",
+     "sha256_after": "417f4a1bdd8c97c84600f3e4b1c4f5bceb8e1eb768240523ea4650e9902ed2ed"
+    },
+    {
+     "name": "ThreeDPrepareSpawn.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 282,
+     "sha256_before": "d1347d6b71fa434e7aae4037241dc26023ff36a26f47896f5e46a5a0b2ef00e9",
+     "sha256_after": "d1347d6b71fa434e7aae4037241dc26023ff36a26f47896f5e46a5a0b2ef00e9",
+     "current_lines": 274,
+     "sha256_current": "b73a8cbbe10693f08de8908134aa9cc005e44529243d46f1c59911a7e1573aa0"
+    },
+    {
+     "name": "ShotPrepareAssembly.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 392,
+     "sha256_before": "830abceeda3d6fce65b8dc9b6d8683121e8a3b3385e9f098317ac5b4bdc2c1d9",
+     "sha256_after": "830abceeda3d6fce65b8dc9b6d8683121e8a3b3385e9f098317ac5b4bdc2c1d9"
+    },
+    {
+     "name": "ThreeDSelfTest.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 224,
+     "sha256_before": "2cc9b510aa3b5684b4c62faf1504e73f073aceac250406a23532052aa4a4d100",
+     "sha256_after": "2cc9b510aa3b5684b4c62faf1504e73f073aceac250406a23532052aa4a4d100",
+     "current_lines": 231,
+     "sha256_current": "1f30f65f0b03a61423f0e35e31f2ca72fa09ef1847a7fe0c169a4fb2bee8a227"
+    },
+    {
+     "name": "ThreeDSelfTestCLI.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 87,
+     "sha256_before": "98720505719109bddc6e029cd83fe3441d0f1eb6124d8cb26b7d25f5d814c693",
+     "sha256_after": "98720505719109bddc6e029cd83fe3441d0f1eb6124d8cb26b7d25f5d814c693"
+    },
+    {
+     "name": "ThreeDStageLog.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 85,
+     "sha256_before": "2a0832e24e97713435ea3619c4b8f200b7984510b08054f41d64c2dc2e4e270d",
+     "sha256_after": "2a0832e24e97713435ea3619c4b8f200b7984510b08054f41d64c2dc2e4e270d"
+    },
+    {
+     "name": "CacheKeyMemo.swift",
+     "kind": "station-move",
+     "pre_blank_lines": 1,
+     "lines": 31,
+     "sha256_before": "c584b490788f107b25024a637becf7c9129bffb2af5df386047ba56e26061fa2",
+     "sha256_after": "c584b490788f107b25024a637becf7c9129bffb2af5df386047ba56e26061fa2"
+    }
+   ],
+   "historical_fixture": "Tests/Structure/threed-split-historical/Prepare.swift.93dedb7a.txt",
+   "historical_sha256": "93dedb7a7ad77f53f779ea73880685f0d38dc771a8d6454af4f630e1f18c5ca4",
+   "note": "Live file is not a pure move: product edit after the split. Historical rebuild uses the fixture, the live bytes are pinned separately.",
+   "current_sha256": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+  },
+  "Render": {
+   "file": "Sources/gor/Stereo/Render.swift",
+   "header_lines": 48,
+   "sections": [
+    {
+     "name": "ShotComfort.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 218,
+     "sha256_before": "9eebf7b08c2ea5a08f9b7c7cccb29c703a0341a62eb9d5c1d9155018cc8801c8",
+     "sha256_after": "9eebf7b08c2ea5a08f9b7c7cccb29c703a0341a62eb9d5c1d9155018cc8801c8"
+    },
+    {
+     "name": "ThreeDRenderCoordinator.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 471,
+     "sha256_before": "a2c7bcf87de2e6406e56ec2ab4e4a71397281aae3fd58249cd6321460909ab04",
+     "sha256_after": "a2c7bcf87de2e6406e56ec2ab4e4a71397281aae3fd58249cd6321460909ab04",
+     "current_lines": 473,
+     "sha256_current": "6fa1b2ea49741cc62e7c09de9fe01251ebd1e697536bb51ddaddac973fdc1843"
+    },
+    {
+     "name": "RenderedShotPlan.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 49,
+     "sha256_before": "1360f67b3fc2871bb18aea8da8a64274265786a794bee6942ab7975ef7dd1e78",
+     "sha256_after": "1360f67b3fc2871bb18aea8da8a64274265786a794bee6942ab7975ef7dd1e78"
+    },
+    {
+     "name": "RenderedShotMPV.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 53,
+     "sha256_before": "76e7d9a80197f9f06e238997ec098cbbe3101abc3de63b7d60c84915da67b559",
+     "sha256_after": "76e7d9a80197f9f06e238997ec098cbbe3101abc3de63b7d60c84915da67b559"
+    },
+    {
+     "name": "RenderShotWriter.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 138,
+     "sha256_before": "37cbd7bc74fb201f1ee1bb59916d797ff903cc3d61fa7b1395f4508115b5a306",
+     "sha256_after": "37cbd7bc74fb201f1ee1bb59916d797ff903cc3d61fa7b1395f4508115b5a306",
+     "current_lines": 202,
+     "sha256_current": "f4b92070eea4b43e9ee8f6104d577bd11851024aee997be54c2e13c0abb6b835"
+    },
+    {
+     "name": "VTShotEncoder.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 174,
+     "sha256_before": "aaf291801e055fcb2549f7d72426b2a323556d9e640fad090325d0106a9ba8b5",
+     "sha256_after": "aaf291801e055fcb2549f7d72426b2a323556d9e640fad090325d0106a9ba8b5",
+     "current_lines": 175,
+     "sha256_current": "779857f57a3926231057cba92e1da9d88dc661218f21ec09fcfd75a0e1ea49b7"
+    },
+    {
+     "name": "PreparedShotPlayback.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 159,
+     "sha256_before": "6ba2d0c7583f8264120a82048d14051d2f8a9cbf3d4de16d790a4a848a0e5f93",
+     "sha256_after": "6ba2d0c7583f8264120a82048d14051d2f8a9cbf3d4de16d790a4a848a0e5f93"
+    },
+    {
+     "name": "RenderPrefsReader.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 70,
+     "sha256_before": "aff99fa72e2902a92a4b7b1e3eeb46327e6673bdcb9cd68c405331e59209d515",
+     "sha256_after": "aff99fa72e2902a92a4b7b1e3eeb46327e6673bdcb9cd68c405331e59209d515"
+    },
+    {
+     "name": "RenderRevision.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 53,
+     "sha256_before": "3bb1789c109e69839ce5b3a7d5b087787f6f92b7ccd8e73b3d8262af51294e13",
+     "sha256_after": "3bb1789c109e69839ce5b3a7d5b087787f6f92b7ccd8e73b3d8262af51294e13"
+    },
+    {
+     "name": "Stereo3DKernel.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 571,
+     "sha256_before": "60709fba245efd9939bb5ab401ffa7e0cf7975ad32ce00e2748c2d8a1244af49",
+     "sha256_after": "60709fba245efd9939bb5ab401ffa7e0cf7975ad32ce00e2748c2d8a1244af49"
+    },
+    {
+     "name": "SurroundGeometry.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 140,
+     "sha256_before": "9cf62dc7baf20c708d446a2e4dd1b89e8f6b57cdbd8246706d20cf867e6cee3b",
+     "sha256_after": "9cf62dc7baf20c708d446a2e4dd1b89e8f6b57cdbd8246706d20cf867e6cee3b"
+    },
+    {
+     "name": "OutputModes.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 44,
+     "sha256_before": "d0bcbd6fbf63967fd9261c1ddfad4f630af98e38367ce498bf45295037b43d3c",
+     "sha256_after": "d0bcbd6fbf63967fd9261c1ddfad4f630af98e38367ce498bf45295037b43d3c"
+    },
+    {
+     "name": "ThreeDPresentation.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 37,
+     "sha256_before": "caf7cd50d39f6cd1543a94ee75e3749a538d3c366756d32b4b37bd7843499150",
+     "sha256_after": "caf7cd50d39f6cd1543a94ee75e3749a538d3c366756d32b4b37bd7843499150"
+    },
+    {
+     "name": "SubtitleDepth.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 26,
+     "sha256_before": "549a708d457caabed2d842115203b17a5e145a704231d0e74d9ae242264c209f",
+     "sha256_after": "549a708d457caabed2d842115203b17a5e145a704231d0e74d9ae242264c209f"
+    },
+    {
+     "name": "ThreeDSubtitleDepth.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 163,
+     "sha256_before": "ce65021f98735bafcc16f8e0824e3d83bc59de8991c86e1c52cf6a90f0ab3e38",
+     "sha256_after": "ce65021f98735bafcc16f8e0824e3d83bc59de8991c86e1c52cf6a90f0ab3e38"
+    },
+    {
+     "name": "ThreeDShotPlayLog.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 85,
+     "sha256_before": "e140ceb6bdccb903883df5da56b6324bd7b1adce8d4b10f2643f70a706ea7f02",
+     "sha256_after": "e140ceb6bdccb903883df5da56b6324bd7b1adce8d4b10f2643f70a706ea7f02"
+    }
+   ],
+   "historical_fixture": "Tests/Structure/threed-split-historical/Render.swift.4c96b9f5.txt",
+   "historical_sha256": "4c96b9f5c4441a8ab0ec01b1a8b5a63d8b3196e5f9b12b59eb41a847fe3aaa39",
+   "note": "Live file is not a pure move: product edit after the split. Historical rebuild uses the fixture, the live bytes are pinned separately.",
+   "current_sha256": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+  },
+  "Control": {
+   "file": "Sources/gor/Stereo/Control.swift",
+   "header_lines": 48,
+   "sections": [
+    {
+     "name": "ThreeDState.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 412,
+     "sha256_before": "57896560157847e4d5d16e7974b43c15f79fa555f3663b8cdcb7d0da4f444fc0",
+     "sha256_after": "57896560157847e4d5d16e7974b43c15f79fa555f3663b8cdcb7d0da4f444fc0"
+    },
+    {
+     "name": "ThreeDRoute.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 194,
+     "sha256_before": "0981d93092c9e5e7a7bb5f9694501156b71567e22cab83d038b0441d75ae716c",
+     "sha256_after": "0981d93092c9e5e7a7bb5f9694501156b71567e22cab83d038b0441d75ae716c"
+    },
+    {
+     "name": "ThreeDAutoRoute.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 65,
+     "sha256_before": "aa0c94bb53b61a0fdd825de1785d5b752bad62fce5490c72dc80205ac4045c22",
+     "sha256_after": "aa0c94bb53b61a0fdd825de1785d5b752bad62fce5490c72dc80205ac4045c22"
+    },
+    {
+     "name": "ThreeDWiring.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 114,
+     "sha256_before": "319ab2de5d2eae074a4b918ff860d533d6492d7fdfc6aab40cd1c9cf4b78ce55",
+     "sha256_after": "319ab2de5d2eae074a4b918ff860d533d6492d7fdfc6aab40cd1c9cf4b78ce55",
+     "current_lines": 118,
+     "sha256_current": "4192066f6f3a324cb339d0c8ca8baec0f414b54ae75754258d508e0b215a7b47"
+    },
+    {
+     "name": "ThreeDStoreAcceptance.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 241,
+     "sha256_before": "614d88f4ffbec37ad15572cb50a9b73746b3256852627e0c4e620f54d515f7fe",
+     "sha256_after": "614d88f4ffbec37ad15572cb50a9b73746b3256852627e0c4e620f54d515f7fe"
+    },
+    {
+     "name": "ThreeDOwnerActionAcceptance.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 77,
+     "sha256_before": "e2519f75493240d2626388f057261ea0c0d23dad426d892bdbf680e98278ea4b",
+     "sha256_after": "e2519f75493240d2626388f057261ea0c0d23dad426d892bdbf680e98278ea4b"
+    },
+    {
+     "name": "ThreeDDegrade.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 218,
+     "sha256_before": "8202a4b75d040e9632c9a5515a5d45c2c50eb948bf5bdc074eaa65e1b6ade7e6",
+     "sha256_after": "8202a4b75d040e9632c9a5515a5d45c2c50eb948bf5bdc074eaa65e1b6ade7e6"
+    },
+    {
+     "name": "VRMirrorThrottle.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 290,
+     "sha256_before": "490cff6e5d4d7b3b3bd64e266fe5280cc02a44046105ff75b3a81e7b2b59293c",
+     "sha256_after": "490cff6e5d4d7b3b3bd64e266fe5280cc02a44046105ff75b3a81e7b2b59293c"
+    },
+    {
+     "name": "ThreeDMenu.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 216,
+     "sha256_before": "1c7e5b26b0590683713812f93217dc59183753926ee0ec9876beeaac83e3ffbd",
+     "sha256_after": "1c7e5b26b0590683713812f93217dc59183753926ee0ec9876beeaac83e3ffbd"
+    },
+    {
+     "name": "ThreeDExperimentMenu.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 116,
+     "sha256_before": "60f619ad652c3d0ca28d2a94fbf2aab53e8905ba53e79ab22f26b35cf60a2e3c",
+     "sha256_after": "60f619ad652c3d0ca28d2a94fbf2aab53e8905ba53e79ab22f26b35cf60a2e3c"
+    },
+    {
+     "name": "ThreeDExperimentOptions.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 50,
+     "sha256_before": "422c8f4780594b5cc60ece793390645d18818fc77db9d13a107fb21e0ad00935",
+     "sha256_after": "422c8f4780594b5cc60ece793390645d18818fc77db9d13a107fb21e0ad00935"
+    },
+    {
+     "name": "ThreeDKeymap.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 159,
+     "sha256_before": "4af0c5c80138d95fcd0d3bf2151107b08c55cb12bc716c996bee61d31bb9f88b",
+     "sha256_after": "4af0c5c80138d95fcd0d3bf2151107b08c55cb12bc716c996bee61d31bb9f88b"
+    },
+    {
+     "name": "ThreeDCornerTune.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 332,
+     "sha256_before": "7970f7dec48eb759479d0eed341760f4ca452eee0b67408dfcf6884994bfa0bb",
+     "sha256_after": "7970f7dec48eb759479d0eed341760f4ca452eee0b67408dfcf6884994bfa0bb"
+    },
+    {
+     "name": "ThreeDCornerTuneLayout.swift",
+     "kind": "relocated",
+     "pre_blank_lines": 0,
+     "lines": 200,
+     "sha256_before": "a1bdd2f229b152616fc7e439343c4ae2f66dd83c14740bbc859ac13cfe3d5ce9",
+     "sha256_after": "a1bdd2f229b152616fc7e439343c4ae2f66dd83c14740bbc859ac13cfe3d5ce9"
+    }
+   ],
+   "historical_fixture": "Tests/Structure/threed-split-historical/Control.swift.5ca7d20f.txt",
+   "historical_sha256": "5ca7d20ffce7756916d27346ad091bc39ee444f42bc8fe3cef787b9b7b80204a",
+   "note": "Live file is not a pure move: product edit after the split. Historical rebuild uses the fixture, the live bytes are pinned separately.",
+   "current_sha256": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+  }
+ },
+ "order": [
+  "ThreeDState.swift",
+  "ThreeDRoute.swift",
+  "ThreeDAutoRoute.swift",
+  "ThreeDWiring.swift",
+  "ThreeDStoreAcceptance.swift",
+  "ThreeDOwnerActionAcceptance.swift",
+  "ThreeDRecognitionBridge.swift",
+  "ThreeDModels.swift",
+  "ThreeDKit.swift",
+  "KitHash.swift",
+  "KitCompiledCache.swift",
+  "ComputeUnitsProbe.swift",
+  "CoreMLDepthRunner.swift",
+  "NunifPipeline.swift",
+  "VDAStreamRunner.swift",
+  "VDAWindowPlan.swift",
+  "MoGeKeyframeRunner.swift",
+  "ModelDepthEMA.swift",
+  "DepthCacheBudget.swift",
+  "DepthContainerWriter.swift",
+  "DepthGuards.swift",
+  "DepthPrepareMath.swift",
+  "ThreeDDegrade.swift",
+  "ShotComfort.swift",
+  "ThreeDThermalGate.swift",
+  "NativePrepareRunner.swift",
+  "PrepareSupport.swift",
+  "PrepareTelemetry.swift",
+  "FilmPrepareStatus.swift",
+  "ThreeDPreflight.swift",
+  "ThreeDPrepareLauncher.swift",
+  "ThreeDPrepareSpawn.swift",
+  "ShotPrepareAssembly.swift",
+  "ThreeDRenderCoordinator.swift",
+  "RenderedShotPlan.swift",
+  "RenderedShotMPV.swift",
+  "RenderShotWriter.swift",
+  "VTShotEncoder.swift",
+  "PreparedShotPlayback.swift",
+  "RenderPrefsReader.swift",
+  "RenderRevision.swift",
+  "Stereo3DKernel.swift",
+  "StereoSource.swift",
+  "StereoSourceGate.swift",
+  "StereoSourceProbe.swift",
+  "SourceFormat.swift",
+  "SourceFormatProbe.swift",
+  "SphericalTag.swift",
+  "SurroundGeometry.swift",
+  "FovTrackBuilder.swift",
+  "OutputModes.swift",
+  "ThreeDPresentation.swift",
+  "SourcePixelCrop.swift",
+  "WTCropSamples.swift",
+  "SubtitleDepth.swift",
+  "ThreeDSubtitleDepth.swift",
+  "VRMirrorThrottle.swift",
+  "ThreeDMenu.swift",
+  "ThreeDExperimentMenu.swift",
+  "ThreeDExperimentOptions.swift",
+  "ThreeDKeymap.swift",
+  "ThreeDCornerTune.swift",
+  "ThreeDCornerTuneLayout.swift",
+  "ThreeDSelfTest.swift",
+  "ThreeDSelfTestCLI.swift",
+  "ThreeDShotPlayLog.swift",
+  "ThreeDStageLog.swift",
+  "CacheKeyMemo.swift"
+ ],
+ "current": {
+  "sha256": "98dfb27fad8dc7c5cd950996f6200cdc7d1715302079da0aa10779fcccc66108",
+  "declaration_count": 3578,
+  "declaration_sha256": "d4cc704dc5bc525b04a97de11634ae29380ab8436d0fb079743116992538fe45",
+  "declarations_added": [
+   [
+    "class",
+    "LoadableLease"
+   ],
+   [
+    "enum",
+    "ReadFailure"
+   ],
+   [
+    "func",
+    "carryPlanReusable"
+   ],
+   [
+    "func",
+    "failure"
+   ],
+   [
+    "func",
+    "finishShot"
+   ],
+   [
+    "func",
+    "invalidateMeasurementContext"
+   ],
+   [
+    "func",
+    "mayStoreCancelledCarry"
+   ],
+   [
+    "func",
+    "progressClearedOnCompletion"
+   ],
+   [
+    "func",
+    "rawFrontierEnd"
+   ],
+   [
+    "func",
+    "retain"
+   ],
+   [
+    "func",
+    "transientShotCopy"
+   ],
+   [
+    "let",
+    "a"
+   ],
+   [
+    "let",
+    "admitted"
+   ],
+   [
+    "let",
+    "autoBaseHalfSpan"
+   ],
+   [
+    "let",
+    "best"
+   ],
+   [
+    "let",
+    "compiled"
+   ],
+   [
+    "let",
+    "compiled"
+   ],
+   [
+    "let",
+    "consensus"
+   ],
+   [
+    "let",
+    "deadline"
+   ],
+   [
+    "let",
+    "depthDelta"
+   ],
+   [
+    "let",
+    "device"
+   ],
+   [
+    "let",
+    "diagnostic"
+   ],
+   [
+    "let",
+    "err"
+   ],
+   [
+    "let",
+    "expires"
+   ],
+   [
+    "let",
+    "failure"
+   ],
+   [
+    "let",
+    "fastLuma"
+   ],
+   [
+    "let",
+    "filmStart"
+   ],
+   [
+    "let",
+    "fovFirstPTS"
+   ],
+   [
+    "let",
+    "frontier"
+   ],
+   [
+    "let",
+    "grace"
+   ],
+   [
+    "let",
+    "hasPlayhead"
+   ],
+   [
+    "let",
+    "inode"
+   ],
+   [
+    "let",
+    "lease"
+   ],
+   [
+    "let",
+    "lease"
+   ],
+   [
+    "let",
+    "lo"
+   ],
+   [
+    "let",
+    "localOpening"
+   ],
+   [
+    "let",
+    "lumaTail"
+   ],
+   [
+    "let",
+    "mode"
+   ],
+   [
+    "let",
+    "now"
+   ],
+   [
+    "let",
+    "openingIndices"
+   ],
+   [
+    "let",
+    "owned"
+   ],
+   [
+    "let",
+    "p"
+   ],
+   [
+    "let",
+    "planPositions"
+   ],
+   [
+    "let",
+    "reason"
+   ],
+   [
+    "let",
+    "rect"
+   ],
+   [
+    "let",
+    "remaining"
+   ],
+   [
+    "let",
+    "result"
+   ],
+   [
+    "let",
+    "shotFrames"
+   ],
+   [
+    "let",
+    "span"
+   ],
+   [
+    "let",
+    "srcPTS"
+   ],
+   [
+    "let",
+    "stage"
+   ],
+   [
+    "let",
+    "staging"
+   ],
+   [
+    "let",
+    "started"
+   ],
+   [
+    "let",
+    "stdout"
+   ],
+   [
+    "let",
+    "stream"
+   ],
+   [
+    "let",
+    "t"
+   ],
+   [
+    "let",
+    "t"
+   ],
+   [
+    "let",
+    "t0"
+   ],
+   [
+    "let",
+    "timedOut"
+   ],
+   [
+    "let",
+    "url"
+   ],
+   [
+    "let",
+    "widened"
+   ],
+   [
+    "let",
+    "win"
+   ],
+   [
+    "struct",
+    "ReadResult"
+   ],
+   [
+    "var",
+    "asset"
+   ],
+   [
+    "var",
+    "freshnessFloor"
+   ],
+   [
+    "var",
+    "info"
+   ],
+   [
+    "var",
+    "info"
+   ],
+   [
+    "var",
+    "lastFailure"
+   ],
+   [
+    "var",
+    "leaseAssociationKey"
+   ],
+   [
+    "var",
+    "rangeExplicit"
+   ],
+   [
+    "var",
+    "scanStartedAt"
+   ]
+  ],
+  "declarations_removed": [
+   [
+    "func",
+    "beginSource"
+   ],
+   [
+    "func",
+    "finishSource"
+   ],
+   [
+    "func",
+    "firstApplyBudget"
+   ],
+   [
+    "let",
+    "asset"
+   ],
+   [
+    "let",
+    "avgSample"
+   ],
+   [
+    "let",
+    "elapsed"
+   ],
+   [
+    "let",
+    "f10"
+   ],
+   [
+    "let",
+    "f8"
+   ],
+   [
+    "let",
+    "fallbackMinCount"
+   ],
+   [
+    "let",
+    "full"
+   ],
+   [
+    "let",
+    "late"
+   ],
+   [
+    "let",
+    "s"
+   ],
+   [
+    "let",
+    "src"
+   ],
+   [
+    "var",
+    "best"
+   ],
+   [
+    "var",
+    "ok"
+   ]
+  ]
+ }
+}

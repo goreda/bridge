@@ -1,0 +1,39 @@
+{
+  "result": "PASS Swift-side controls and policy characterizations",
+  "controls": [
+    "tracking toggle inactive outside VR",
+    "tracking start/stop idempotence",
+    "stereo auto enable + file reset stops tracking",
+    "ordinary 1080p and zero-height do not auto-enable",
+    "base IPD clamp \u00b10.3",
+    "mouse degree-per-point to radian mapping",
+    "mouse degree-per-point to radian mapping",
+    "mouse degree-per-point to radian mapping",
+    "dead zone and FOV/roll/IPD/translation mapping"
+  ],
+  "characterizations": [
+    {
+      "case": "wide ordinary 4K video",
+      "observed": "dimension heuristic auto-enables VR with no stereo metadata",
+      "scope": "policy characterization, media intent not established"
+    },
+    {
+      "case": "substring stereo metadata",
+      "observed": "any sbs-containing value triggers",
+      "scope": "synthetic string, real mpv metadata value set not verified"
+    },
+    {
+      "case": "base IPD after file reset",
+      "observed": "Swift base remains .2; reset does not clear it",
+      "scope": "possibly desired user preference, Lua-side state not verified"
+    }
+  ],
+  "source_sha256": "74d16c7591b1058167d0fbb2a025f554afe59df5dd76dd168df97e20580b277e",
+  "open": [
+    "script consumer/clamp/reset parity",
+    "native pose sign/camera validity/units",
+    "VR auto-detection owner intent",
+    "actual projection/rendering/stereo/fullscreen/aspect pixels"
+  ],
+  "scope": "Python state/arithmetic port + current Swift guards only; no Lua engine, camera, mpv, Swift or UI execution"
+}

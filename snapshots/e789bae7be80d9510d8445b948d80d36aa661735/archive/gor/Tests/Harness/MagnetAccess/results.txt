@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: valid local BEP15 response enriches counts
+ok 1 - valid local BEP15 response enriches counts
+  ---
+  duration_ms: 9.867664
+  type: 'test'
+  ...
+# Subtest: silent leaves unknown counts
+ok 2 - silent leaves unknown counts
+  ---
+  duration_ms: 80.860554
+  type: 'test'
+  ...
+# Subtest: error leaves unknown counts
+ok 3 - error leaves unknown counts
+  ---
+  duration_ms: 1.881814
+  type: 'test'
+  ...
+# Subtest: wrong-scrape-tx leaves unknown counts
+ok 4 - wrong-scrape-tx leaves unknown counts
+  ---
+  duration_ms: 80.735553
+  type: 'test'
+  ...
+# Subtest: maxRows skips rows past budget and already populated rows
+ok 5 - maxRows skips rows past budget and already populated rows
+  ---
+  duration_ms: 2.042963
+  type: 'test'
+  ...
+# Subtest: no UDP tracker does not enrich
+ok 6 - no UDP tracker does not enrich
+  ---
+  duration_ms: 0.246887
+  type: 'test'
+  ...
+# Subtest: wrong connect transaction is rejected before scrape
+ok 7 - wrong connect transaction is rejected before scrape
+  ---
+  duration_ms: 121.173453
+  type: 'test'
+  ...
+# Subtest: challenge HTML is not a provider listing
+ok 8 - challenge HTML is not a provider listing
+  ---
+  duration_ms: 1.214816
+  type: 'test'
+  ...
+# Subtest: CLI final parse network triggers are explicit source guards, not executed
+ok 9 - CLI final parse network triggers are explicit source guards, not executed
+  ---
+  duration_ms: 0.731103
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 365.167287

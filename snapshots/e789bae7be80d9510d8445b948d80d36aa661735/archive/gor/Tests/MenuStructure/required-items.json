@@ -1,0 +1,437 @@
+{
+  "required": {
+    "master": [
+      "Sources/gor/Stereo/Control.swift",
+      "row(.toggle3D)"
+    ],
+    "source": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .film2D"
+    ],
+    "output": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .viewOff"
+    ],
+    "vr180-source": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .filmVR180SBS"
+    ],
+    "sbs-source": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .filmSBS"
+    ],
+    "half-sbs-source": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .filmHalfSBS"
+    ],
+    "tb-source": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .filmTB"
+    ],
+    "flat-source": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .film2D"
+    ],
+    "quality": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .qualityAuto"
+    ],
+    "strength": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .depthStronger"
+    ],
+    "screen-depth": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .screenNearer"
+    ],
+    "screen-size": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .sizeLarger"
+    ],
+    "surround": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .surroundBlack"
+    ],
+    "osd": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .osdLine"
+    ],
+    "shift-v": [
+      "Sources/gor/Stereo/Control.swift",
+      "Chord(\"v\", shift: true)"
+    ],
+    "shift-d": [
+      "Sources/gor/Stereo/Control.swift",
+      "Chord(\"d\", shift: true)"
+    ],
+    "head": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .headTracking"
+    ],
+    "blink": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .blink"
+    ],
+    "recenter": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .recenter"
+    ],
+    "cross-eye": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .crossEye"
+    ],
+    "ipd-plus": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .ipdPlus"
+    ],
+    "ipd-minus": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .ipdMinus"
+    ],
+    "vr180-auto": [
+      "Sources/gor/Stereo/StereoDetection.swift",
+      "reason:\"projectionMetadata\""
+    ],
+    "off": [
+      "Sources/gor/Stereo/VR180Controller.swift",
+      "if desired.output == .off {if !effectOnlyChange {setVRModeEnabled(false)}}"
+    ],
+    "half-tb-source": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .filmHalfTB"
+    ],
+    "source-swap": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .filmSwapEyes"
+    ],
+    "detected-source-visible": [
+      "Sources/gor/Stereo/Control.swift",
+      "i.title = \"Auto (\""
+    ],
+    "2d-default-output": [
+      "Sources/gor/Stereo/Control.swift",
+      "static let routedMode = \"full_sbs\""
+    ],
+    "mono-whole-frame": [
+      "Resources/vendor/mpv/scripts/vr180-look.lua",
+      "if(vr_flat_mono>0.5) {"
+    ],
+    "unknown-output-flat-default": [
+      "Sources/gor/Stereo/Render.swift",
+      "output: OutputMode.parse(prefs.mode) ?? .fullSBS"
+    ],
+    "double-blink-one-minute": [
+      "Sources/gor/Camera/HeadPose.swift",
+      "if lastAt != nil {lastAt=nil;blinkBoostUntil=nil;return .seek(60)}"
+    ],
+    "quality-honesty": [
+      "Sources/gor/Stereo/Control.swift",
+      "i.isHidden = ThreeDRunnerRegistry.runner == nil"
+    ],
+    "quality-no-false-promise": [
+      "Sources/gor/Stereo/Control.swift",
+      "selection changes no processing"
+    ],
+    "vr180-tb-source": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .filmVR180TB"
+    ],
+    "vr360-mono-source": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .film360:"
+    ],
+    "vr360-tb-source": [
+      "Sources/gor/Stereo/Control.swift",
+      "case .film360TB:"
+    ],
+    "per-file-output": [
+      "Sources/gor/Stereo/LookToolsRoute.swift",
+      "static func output("
+    ],
+    "per-file-last-output": [
+      "Sources/gor/Stereo/Control.swift",
+      "film.output = film.output == .off ? ThreeDPresentationPlan.restoredOutput(for:next) : .off"
+    ],
+    "off-wins-route": [
+      "Sources/gor/Stereo/VR180Controller.swift",
+      "if desired.output == .off {if !effectOnlyChange {setVRModeEnabled(false)}}"
+    ]
+  },
+  "orders": [
+    {
+      "timestamp": "2026-11-09T16:04:10+03:00",
+      "message_id": "phonemsg-01M706HDY7CXEKAYCHQAJ01Y1F",
+      "verbatim": "vr men\u00fcs\u00fcnde vr180 var bir de toggle vr 180 var am\u0131na koyim bunlar ayn\u0131",
+      "required_items": [],
+      "source_conversation": "phoneconv-01M4632DF4FAF61ZY7H3PQPPQH"
+    },
+    {
+      "timestamp": "2026-11-09T16:04:52+03:00",
+      "message_id": "phonemsg-01M706JQEG0ESPFE2A43G7V1RS",
+      "verbatim": "tamam tek men\u00fc yap",
+      "required_items": [
+        "master"
+      ],
+      "source_conversation": "phoneconv-01M4632DF4FAF61ZY7H3PQPPQH"
+    },
+    {
+      "timestamp": "2026-11-09T16:05:42+03:00",
+      "message_id": "phonemsg-01M706M821KBNXF1K89ZDJTQPE",
+      "verbatim": "3d olsun. o men\u00fc tasar\u0131m\u0131n\u0131 g\u00fczel yap. isimlendirmeler k\u0131sa ve net olsun",
+      "required_items": [
+        "master"
+      ],
+      "source_conversation": "phoneconv-01M4632DF4FAF61ZY7H3PQPPQH"
+    },
+    {
+      "timestamp": "2026-11-09T16:52:44+03:00",
+      "message_id": "phonemsg-01M709AC1JT3DBXGDNME40SX4G",
+      "verbatim": "O MEN\u00dc TASARIMI VE H\u0130YERAR\u015e\u0130S\u0130 VE \u00c7ALI\u015eMA PRENS\u0130B\u0130",
+      "required_items": [],
+      "source_conversation": "phoneconv-01M4632DF4FAF61ZY7H3PQPPQH"
+    },
+    {
+      "timestamp": "2026-11-09T16:53:45+03:00",
+      "message_id": "phonemsg-01M709C7SQNKJCP6TA5Y7WP0JN",
+      "verbatim": "O MEN\u00dcDE \u0130NTERNETTEN \u0130ND\u0130R\u0130LEN SBS VE VR180 F\u0130LMLER \u00c7ALI\u015eTIRILMASININ YANI SIRA. \n\n2D F\u0130LMLER\u0130 3D\u2019YE \u00c7EV\u0130REN VE SBS \u0130LE VR180 \u0130ZLEME \u0130MKANI VEREN B\u0130R \u00d6ZELL\u0130K TA\u015eIYOR",
+      "required_items": [
+        "source",
+        "output",
+        "sbs-source",
+        "vr180-source",
+        "flat-source"
+      ],
+      "source_conversation": "phoneconv-01M4632DF4FAF61ZY7H3PQPPQH"
+    },
+    {
+      "timestamp": "2026-11-09T21:00:00+03:00",
+      "message_id": "phonemsg-01M70QFKGK5PRY063TWAP0Y7W6",
+      "verbatim": "bu projenin ilk yap\u0131 ta\u015f\u0131 vr180 di",
+      "required_items": [
+        "vr180-source",
+        "vr180-auto",
+        "shift-v",
+        "off"
+      ],
+      "source_conversation": "phoneconv-01M4632DF4FAF61ZY7H3PQPPQH"
+    },
+    {
+      "message_id": "phonemsg-01M70QFYFVDF7ZA2PVM2FQ0SMS",
+      "verbatim": "hangi akla hizmet ne c\u00fcretle bana sormadan onu men\u00fc d\u0131\u015f\u0131na al\u0131rs\u0131n\u0131z ya",
+      "source_conversation": "phoneconv-01M4632DF4FAF61ZY7H3PQPPQH",
+      "required_items": [
+        "master",
+        "source",
+        "output",
+        "vr180-source",
+        "sbs-source",
+        "half-sbs-source",
+        "tb-source",
+        "flat-source",
+        "quality",
+        "strength",
+        "screen-depth",
+        "screen-size",
+        "surround",
+        "osd",
+        "shift-v",
+        "shift-d",
+        "head",
+        "blink",
+        "recenter",
+        "cross-eye",
+        "ipd-plus",
+        "ipd-minus",
+        "vr180-auto",
+        "off",
+        "source-chord-m",
+        "source-chord-s",
+        "source-chord-v",
+        "half-tb-source",
+        "source-swap"
+      ],
+      "timestamp": "2026-11-09T21:00:00+03:00",
+      "timestamp_precision": "minute approximate; message id authoritative"
+    },
+    {
+      "message_id": "phonemsg-01M70QH940ZF4E4RASYXDX3TX9",
+      "verbatim": "SANA S\u0130STEM TASARLA DED\u0130M",
+      "source_conversation": "phoneconv-01M4632DF4FAF61ZY7H3PQPPQH",
+      "required_items": [
+        "master",
+        "source",
+        "output",
+        "vr180-source",
+        "sbs-source",
+        "half-sbs-source",
+        "tb-source",
+        "flat-source",
+        "quality",
+        "strength",
+        "screen-depth",
+        "screen-size",
+        "surround",
+        "osd",
+        "shift-v",
+        "shift-d",
+        "head",
+        "blink",
+        "recenter",
+        "cross-eye",
+        "ipd-plus",
+        "ipd-minus",
+        "vr180-auto",
+        "off",
+        "source-chord-m",
+        "source-chord-s",
+        "source-chord-v",
+        "half-tb-source",
+        "source-swap"
+      ],
+      "timestamp": "2026-11-09T21:00:00+03:00",
+      "timestamp_precision": "minute approximate; message id authoritative"
+    },
+    {
+      "message_id": "phonemsg-01M70QN0ZYV8G5ZKABWV6R9K4Z",
+      "source_conversation": "phoneconv-01M4632DF4FAF61ZY7H3PQPPQH",
+      "verbatim": "SBS VE VR360 F\u0130LMLER VAR. F\u0130Z\u0130KSEL OLARAK VAR BUNLAR.",
+      "required_items": [
+        "source",
+        "unsupported360-visible"
+      ],
+      "timestamp": "2026-11-09T21:03:00+03:00",
+      "timestamp_precision": "minute approximate; message id authoritative"
+    },
+    {
+      "message_id": "phonemsg-01M70QQJPM165VJSFWCP1XX4S7",
+      "source_conversation": "phoneconv-01M4632DF4FAF61ZY7H3PQPPQH",
+      "verbatim": "NORMAL F\u0130LM\u0130 3D YAP D\u0130YORSUN BOZUK B\u0130R VR180 YAPIYOR",
+      "required_items": [
+        "2d-default-output",
+        "output-vr180-caveat"
+      ],
+      "timestamp": "2026-11-09T21:03:00+03:00",
+      "timestamp_precision": "minute approximate; message id authoritative",
+      "timestamp_original": "Monday, November 9, 2026, 9:04:37 PM +03"
+    },
+    {
+      "message_id": "phonemsg-01M70QSV9SQ9EXT5ST2C7DD37P",
+      "source_conversation": "phoneconv-01M4632DF4FAF61ZY7H3PQPPQH",
+      "verbatim": "2D F\u0130LM\u0130 3D YAP D\u0130YORSUN. VR180 YAPIYOR. 2D F\u0130LM\u0130N YARISINI SA\u011eA YARISINI SOLA KOYUYOR. VE VR180 BOZUK G\u00d6R\u00dcYORSUN",
+      "required_items": [
+        "mono-whole-frame",
+        "2d-default-output"
+      ],
+      "timestamp": "2026-11-09T21:03:00+03:00",
+      "timestamp_precision": "minute approximate; message id authoritative",
+      "timestamp_original": "Monday, November 9, 2026, 9:05:51 PM +03"
+    },
+    {
+      "message_id": "phonemsg-01M70QYE8XZCR62ETBTXN27PRE",
+      "verbatim": "\u00c7\u0130FT BL\u0130NK 1 DAK\u0130KA SARSIN \u0130LER\u0130. GENEL.",
+      "source_conversation": "phoneconv-01M4632DF4FAF61ZY7H3PQPPQH",
+      "timestamp": "2026-11-09T21:08:00+03:00",
+      "required_items": [
+        "double-blink-one-minute",
+        "blink"
+      ]
+    },
+    {
+      "message_id": "phonemsg-01M70R2KWTZA1WQN4G59KVZ28Y",
+      "verbatim": "QUAL\u0130TY T\u0130ER 1 2 3 NE S\u0130KE YARIYOR?",
+      "source_conversation": "phoneconv-01M4632DF4FAF61ZY7H3PQPPQH",
+      "required_items": [
+        "quality",
+        "quality-honesty",
+        "quality-no-false-promise"
+      ],
+      "interpretation": "Explain actual behavior without promising unimplemented tier effects."
+    },
+    {
+      "message_id": "phonemsg-01M70R7Y47G5JKCN23659KT1VQ",
+      "source_conversation": "phoneconv-01M4632DF4FAF61ZY7H3PQPPQH",
+      "verbatim": "191a \u2014 3D: restore control, real Mac acceptance, stable head\ntracking (architect design, owner 16:59 asked the architect to\nown design/shader)\n\nread: ARCHITECT-INBOX 21:09 post-mortem (owner-ordered 21:02:29)\nread: NOW.md 21:00 (live GOR tip 797e2ffb, capture 204251)\nOwner 20:58-21:04: the converted film opened VR180, the source\nmenu is gone, Shift+V and 3D cannot turn it off, and there is no\nway to choose 2D\u2192VR180.\n\nA. Restore control first. Nothing else lands before A on the\n   Mac.\nA1. The 3D state is three independent axes, never one boolean.\n    - SOURCE: Auto, 2D, SBS full, SBS half, Top-bottom,\n      VR180 SBS, VR180 TB, VR360 mono, VR360 TB\n    - OUTPUT: Off (as source), SBS, Half-SBS, Top-bottom,\n      VR180, Anaglyph\n    - EFFECTS: head tracking, blink, recenter, IPD, cross-eye,\n      each independent and valid with OUTPUT Off and plain 2D\n    - For a 2D source, a stereo OUTPUT means conversion. For a\n      stereo source, OUTPUT means re-presentation: native\n      VR180 \u2192 SBS works, as does native SBS \u2192 VR180 window.\n    - Everything sits in ONE \"3D\" menu with short labels, as\n      the owner ordered at 16:04. One menu, never one button.\n      Restore Shift+V and the Cmd+Ctrl+Opt shortcuts removed in\n      e1046888.\nA2. Off always wins.\n    - The 3D master toggle switches OUTPUT between Off and the\n      last non-Off output.\n    - Off is stored per file. No auto-detect, provisional or\n      pending state and no remembered state may override it,\n      on reopen too.\n    - Off returns the exact original film: no projection, no\n      crop beyond measured black bars, no SBS split.\nA3. Auto-detect promotes a SOURCE projection ONLY from:\n    - container metadata (FFmpeg AVSphericalMapping /\n      AVStereo3D side data; MKV Projection and StereoMode\n      elements; MP4 sv3d/st3d)\n    - explicit filename tags (180, VR180, LR, TB, SBS, 360)\n    Geometry (aspect, width, circle edges) may only SUGGEST,\n    shown as \"Auto: looks like SBS?\". It never switches\n    projection. Remove the geometry promotion from f327a4d9.\n    Log vrOpenDecision with its reason for every file.\nA4. Tests run compiled on the owner's Mac through the update\n    self-test, not as source-text pins. They walk the real menu\n    and routing across every SOURCE \u00d7 OUTPUT pair and through\n    load\u2192probe\u2192pending\u2192ready\u2192Off\u2192reopen. Pass condition: pixels\n    equal the source when Off. Include the owner's converted\n    \"magnet\" file case: Off must work and SOURCE must show 2D.\n\nB. Real conversion completes on the Mac\nB1. 204251: background 3D FAIL rc -15 at 321 s in prepare.\n    rc -15 means a SIGTERM. Name the sender (our watchdog,\n    updater cap, or launchd) from the logs. If it is our own\n    bound, the bound is wrong for this stage.\nB2. Add in-stage progress to prepare: frames done / total for\n    cuts, depth (per window), MoGe keyframes, stereo synthesis.\n    Heartbeat lines in the existing log, so slow vs stuck is\n    measured, not guessed.\nB3. Self-test uses a short fixed clip (Tears of Steel, CC-BY),\n    so the full prepare \u2192 SBS \u2192 VR180 path finishes inside its\n    announced duration. A self-test result is PASS only when it\n    returns SBS + VR180 frame grabs, the FoV track and ms per\n    stage.\nB4. Licence: 190w W1 IS the architect ruling (MoGe-2 MIT;\n    nunif weights MIT, owner-Mac private use, Depth-Pro\n    provenance caveat in NOTICE). The post-mortem may cite it as\n    ratified.\n\nC. Head tracking that does not drift or breathe\nC1. Pose comes from Apple Vision face landmarks, not box size:\n    - VNFaceObservation roll/yaw/pitch\n    - Z from the inter-pupil landmark distance divided by\n      cos(yaw), not from the bounding box\nC2. Filter every channel with a One Euro filter (Casiez 2012):\n    low jitter at rest, low lag on real motion. Add hysteresis\n    on Z: zoom only after a sustained forward/back change, so a\n    still head gives exactly zero zoom. Engineers pick the\n    constants and measure them on a recorded still-head and\n    lean-in clip from the owner's camera. Never ask the owner\n    for numbers.\nC3. Tilt keeps fusion at any angle in converted modes. Each\n    eye's view is rendered from the depth at the real eye\n    positions given by head roll (re-projection), not by\n    rotating a fixed-baseline pair. Native stereo keeps its\n    baked baseline. That is why native VR180 behaved and must\n    stay unchanged.\nC4. Shift+R: full-fit at the original aspect ratio, centred,\n    zoom reset. Shift+D toggles the 3D master (A2).\nC5. Record a per-frame pose trace (raw, filtered, the uniform\n    sent) in the self-test log. Closure is that trace, not\n    synthetic jitter stats. Fix the HeadTrackVisionOnce test\n    regression at 797e2ffb first.\n\nD. Completion language (post-mortem section 6, now a rule)\n- To the owner, \"fixed\" or \"\u00e7al\u0131\u015f\u0131yor\" may only be said with:\n  - the delivered pin\n  - the Mac capture ID showing that behaviour\n  - the verdict\n- Otherwise say \"kaynakta var, Mac'inde hen\u00fcz do\u011frulanmad\u0131\".\n- No owner run is requested while a newer commit is landing.\n  Freeze, deliver one pin, then ask once.\n\nE. Order: A (restore), then B and C in parallel, then the next\n   owner update. Heat stays paused. No owner gate is touched.",
+      "removed_items": [
+        "unsupported360-visible"
+      ],
+      "required_items": [
+        "source",
+        "output",
+        "off",
+        "shift-v",
+        "shift-d"
+      ],
+      "interpretation": "Replace unsupported360 placeholder with actual source controls and independent source/output routing. Full block in original channel message.",
+      "timestamp_original": "Monday, November 9, 2026, 9:13:33 PM +03"
+    },
+    {
+      "message_id": "phonemsg-01M70VCE8AZ8SH2K2ACMKKVPV1",
+      "source_conversation": "phoneconv-01M4632DF4FAF61ZY7H3PQPPQH",
+      "verbatim": "191b \u2014 3D state, menu and keys: architect redesign from scratch\n(owner 22:01:06 \"MEN\u00dcY\u00dc VE ANAHTARLARI BA\u015eTAN TASARLASIN\")\n\nread: ARCHITECT-INBOX 22:03 source audit (installed pin 0d0f37b9)\nread: archive/gor/Sources/gor/ThreeDWiring.swift @0d0f37b9\nread: archive/gor/Sources/gor/ThreeDMenu.swift @0d0f37b9\nread: archive/gor/Sources/gor/LookToolsRoute.swift @0d0f37b9\n  (SourceFormatChoice, SingleSwitchRoute, applySingleSwitch)\nPeer facts (gdb 22:03, not re-read by the architect):\n  PPController.swift:3362/:2671, PPController_Features.swift\n  :735/:862, AppDelegate.swift:483/:1253/:2830, :3782 test hook\n\nROOT CAUSE (architect read, confirm with the Mac trace in 191b-T)\n3D state lives in three stores with three different keys and\nseveral writers:\n  1. global gor.3d.mode (ThreeDSettings). The prepare timer in\n     ThreeDWiring reads THIS, not the per-film choice.\n  2. gor.3d.sourceByFilm.v1 (+.off/.output/.lastOutput), keyed\n     by currentFilePath. That can be a generated\n     render_shot_N.mp4, while routing uses recognitionPath.\n  3. gor.vr.fileChoices.v184 plus sessionProjectionChoices,\n     keyed by recognitionIdentity.\nWriters that fight:\n  - applySingleSwitch: writes lastOutput (default full_sbs) as\n    the output at load, so a film turns 3D on by itself.\n  - refreshPreview: re-applies the stored value on every\n    refresh, so a menu pick reverts.\n  - resetForFileChange: forces projection vr180.\n  - autoSelectProjection: turns VR on from detection.\n  - the gor-test-vr-mode hook: bypasses the menu.\n  - controller?.onSourceResolved: dropped when the controller is\n    nil or the VR180Controller is created lazily.\nPatching single writers cannot converge. Replace the structure.\n\nB1. One state, one owner\n- New file ThreeDState.swift. Pure value plus reducer, no AppKit,\n  testable on Linux:\n    struct FilmThreeD { source: Source; output: Output;\n      lastOutput: Output; userTouched: Bool }\n    Source: auto, flat2D, sbsFull, sbsHalf, tbFull, tbHalf,\n      vr180SBS, vr180TB, vr360Mono, vr360TB, each with a swap\n      flag\n    Output: off, sbs, halfSBS, tb, vr180, anaglyph\n    Effects (global, not per film): head, blink, crossEye, ipd,\n      strength, screenDepth, screenSize, surround, quality,\n      osdLine\n    enum Action: open(FilmID, Evidence), setSource, setOutput,\n      toggle3D, cycleSource, setEffect, resetView\n    func reduce(state, action) -> (state, [Effect])\n- ThreeDStore (main actor, single instance) is the ONLY writer of\n  3D state. Menu, keys, OSD commands, IPC/script messages,\n  acceptance runner and test hooks all call\n  store.dispatch(action). Nothing else may call\n  setVRModeEnabled, publishProjection, select3DOutput or write a\n  3D defaults key.\n- The applier subscribes to the store. It diffs desired vs\n  applied presentation and sends idempotent commands to mpv /\n  vr180-look / the coordinator. No timers or polling re-apply\n  state. The menu reads the store in validateMenuItem only.\n- The subscription replaces onSourceResolved and\n  onSingleSwitchResolved, so controller creation order can no\n  longer drop an event.\n\nB2. Film identity\n- FilmID = the original source's recognitionIdentity (the\n  existing StableCacheKey for files; normalized URL for streams\n  and magnets). It is never currentFilePath.\n- Generated media (render_shot_N.mp4, prepared caches) are marked\n  internal at load. They inherit the parent FilmID, do NOT run\n  resetForFileChange, and never write or read their own entry.\n- One defaults key: gor.3d.films.v2 = [FilmID: FilmThreeD],\n  capped at the last 2000 films, oldest evicted.\n- Migrate once from keys 2 and 3 above: take the owner's explicit\n  per-file choices only. Then stop reading AND writing every old\n  3D key (gor.3d.mode, sourceByFilm.v1.*, vr.fileChoices.v184,\n  sessionProjectionChoices). Leave the old values in place; this\n  block does not delete them.\n- The prepare launcher reads store.output(for: film), not a\n  global mode.\n\nB3. Precedence at open (pure function, unit-tested)\n1. userTouched entry for this FilmID: exact restore, Off\n   included. Nothing below can override it.\n2. Container metadata (AVSphericalMapping / AVStereo3D side data,\n   MKV Projection/StereoMode, MP4 sv3d/st3d):\n   - sets source\n   - for native VR it sets output = vr180, native presentation,\n     no conversion (keeps today's native VR behaviour, no feature\n     loss)\n3. Explicit filename tag (180/VR180/LR/TB/SBS/360): same as 2.\n4. Otherwise source = flat2D, output = off.\n   - A plain film ALWAYS opens 2D.\n   - Geometry may only show \"looks like SBS?\" in the menu and\n     never switches anything.\n- Delete applySingleSwitch's lastOutput write and\n  autoSelectProjection's geometry path. Both are superseded\n  by 1-4.\n\nB4. Menu: one \"3D\" menu, short labels, the state always visible\n  3D: <Output> \u00b7 <Source>          (status line, disabled)\n  3D On/Off                      \u21e7D\n  \u2500\n  View: Off \u00b7 SBS \u21e7S \u00b7 Half SBS \u00b7 Top/Bottom \u00b7 VR180 \u21e7V \u00b7\n        Anaglyph\n  Film is: Auto (<detected>) \u00b7 2D \u00b7 SBS \u00b7 Half SBS \u00b7\n        Top/Bottom \u00b7 Half T/B \u00b7 VR180 SBS \u00b7 VR180 T/B \u00b7\n        360 \u00b7 360 T/B \u00b7 Swap eyes        (cycle \u21e7F)\n  \u2500\n  Depth: stronger \u21e7= \u00b7 weaker \u21e7- \u00b7 (shows current)\n  Screen: nearer \u2325\u21e7= \u00b7 farther \u2325\u21e7- \u00b7 (shows current)\n  Size (VR180): larger \u2325\u21e7] \u00b7 smaller \u2325\u21e7[\n  Eyes: IPD + \u21e7] \u00b7 IPD \u2212 \u21e7[ \u00b7 Cross-eye \u21e7X\n  Head tracking \u21e7H \u00b7 Blink \u21e7E \u00b7 Recenter / full fit \u21e7R\n  Surround: Black \u00b7 Soft\n  Quality: Auto \u00b7 Best \u00b7 Fast   (rows for tiers that are not\n    built are hidden, not shown \"not implemented\")\n  Show 3D info on screen\n- Every 3D change shows a one-line OSD:\n  \"3D SBS \u00b7 film 2D \u00b7 converting 34%\" / \"3D off\".\n- Depth / Screen / Size are live steps with an OSD value. The\n  owner tunes by eye and is never asked for numbers. Remove the\n  numeric submenus.\n- Shift+V means View VR180, and toggles back to Off if already\n  VR180.\n- Remove the Cmd+Ctrl+Opt shortcuts.\n\nB5. Key safety\n- Before landing: list every existing gor/mpv binding (input.conf,\n  MenuActions, InputController, AppDelegate) against B4.\n- On a collision: keep the existing non-3D binding (zero feature\n  loss), move the 3D key to \u2325 plus the same key, and report each\n  move in one line.\n- One keymap table drives both the menu key equivalents and the\n  keyboard path, so they can never diverge.\n\nB6. Off is exact\n- Output off means:\n  - the source pixels as decoded\n  - no projection, SBS split or 3D crop\n  - measured black-bar crop only, as in 2D gor\n  - prepare paused, not cancelled; cache kept\n- Toggling back resumes from cache.\n\n191b-T. Acceptance, compiled on the owner's Mac via the\nupdate self-test\n- The runner dispatches store actions and drives real menu items\n  via NSMenu performActionForItem. Assert the presented pixels\n  and the applied mpv/vr180-look state, not text pins.\n- Matrix: every Source \u00d7 Output pair, plus the sequences below.\n  1. Plain film opens 2D \u2192 \u21e7S \u2192 SBS stays SBS through 3 render\n     shot swaps and 2 min of playback (the owner's 21:58\n     complaint).\n  2. SBS \u2192 \u21e7V \u2192 VR180 \u2192 \u21e7D Off \u2192 close \u2192 reopen: still Off, and\n     pixels equal the source.\n  3. Native VR180 with metadata opens VR180. \u21e7D gives the exact\n     equirect frame flat.\n  4. The owner's converted \"magnet\" file: opens 2D, Off works,\n     and Film is shows 2D.\n  5. Every key in B4 does what its menu row does (one table).\n- Per-case artifacts: action log, store snapshots, applied\n  commands, one frame grab, pass/fail. Aggregate-only FAIL is not\n  a result.\n- Fold the gor-test-vr-mode hook into store.dispatch. Delete the\n  bypass.\n\nORDER\n- 191b replaces 191a A1-A3 and is 191a A4's acceptance.\n- 191a B (prepare SIGTERM, in-stage progress) and C (landmark\n  tracking) continue in parallel. They must not touch the store,\n  menu or keys.\n- Main freezes, delivers ONE pin, then reports the 191b-T result\n  and the capture ID to the owner in Turkish. No owner run is\n  requested while a newer commit is landing.\n\nOCR lineage (190y Y2.3, 21:20), architect ruling: route 1.\n- Import the P3.3c changes as patches onto kni main 3c7ed2d5.\n- Rerun the independent full suite on the new commit, then merge.\n- No unrelated-histories merge, and no promotion of the OCR\n  lineage.\nKNI policies (21:19): the architect answers on the next read.\n\nNo owner gate touched.",
+      "removed_items": [
+        "source-chord-m",
+        "source-chord-s",
+        "source-chord-v",
+        "output-vr180-caveat"
+      ],
+      "hidden_items": [
+        "qualityBest",
+        "qualityFast"
+      ],
+      "required_items": [
+        "master",
+        "source",
+        "output",
+        "vr180-source",
+        "sbs-source",
+        "half-sbs-source",
+        "tb-source",
+        "flat-source",
+        "quality",
+        "strength",
+        "screen-depth",
+        "screen-size",
+        "surround",
+        "osd",
+        "head",
+        "blink",
+        "recenter",
+        "cross-eye",
+        "ipd-plus",
+        "ipd-minus",
+        "half-tb-source",
+        "source-swap",
+        "detected-source-visible",
+        "quality-honesty",
+        "vr180-tb-source",
+        "vr360-mono-source",
+        "vr360-tb-source"
+      ],
+      "interpretation": "191b supersedes191a A1-A3, removes legacy chords/numeric submenus/unverified label; quality unavailable rows hidden as B4 expressly requests."
+    }
+  ],
+  "removals": [
+    {
+      "item": "unsupported360-visible",
+      "owner_order_id": "phonemsg-01M70R7Y47G5JKCN23659KT1VQ"
+    },
+    {
+      "item": "source-chord-m",
+      "owner_order_id": "phonemsg-01M70VCE8AZ8SH2K2ACMKKVPV1"
+    },
+    {
+      "item": "source-chord-s",
+      "owner_order_id": "phonemsg-01M70VCE8AZ8SH2K2ACMKKVPV1"
+    },
+    {
+      "item": "source-chord-v",
+      "owner_order_id": "phonemsg-01M70VCE8AZ8SH2K2ACMKKVPV1"
+    },
+    {
+      "item": "output-vr180-caveat",
+      "owner_order_id": "phonemsg-01M70VCE8AZ8SH2K2ACMKKVPV1"
+    }
+  ],
+  "unsupported": {},
+  "test_scope": "Source token guard preserves controls. Does not prove rendering or native compilation."
+}

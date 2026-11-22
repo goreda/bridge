@@ -1,0 +1,44 @@
+{
+  "_doc": "Per-step bounds for tools/gor_step.py. 'limit' is a POLICY hard upper bound in seconds (the wrapper stops the step after it and says so); it is not a measurement. 'measured' lists durations measured on the owner's Mac (capture files on gor-capture-mac); steps with no entry have nothing measured yet and use 'limit' only until the Mac's own history (step-history.jsonl) has runs. 'rate_bps_assumed' is only used with GOR_STEP_BYTES and is replaced by the measured rate after the first successful run.",
+  "default": {
+    "limit": 900,
+    "rate_bps_assumed": 3000000
+  },
+  "steps": {
+    "selftest build": {
+      "limit": 1800
+    },
+    "lifecycle selftest": {
+      "limit": 600,
+      "measured": [
+        117
+      ],
+      "source": "capture 261109-155227: update-selftest rc=1 after 117s (one failing run)"
+    },
+    "live-caption evidence": {
+      "limit": 180
+    },
+    "subtitle and 3D check": {
+      "limit": 1800
+    },
+    "capture upload": {
+      "limit": 300
+    },
+    "fetch models": {
+      "limit": 2700,
+      "measured": [
+        191
+      ],
+      "source": "capture 261109-161740: fetch-models rc=0 seconds=191 (full fetch)"
+    },
+    "start background 3D check": {
+      "limit": 180
+    },
+    "subtitle evidence": {
+      "limit": 180
+    },
+    "background 3D check": {
+      "limit": 1800
+    }
+  }
+}

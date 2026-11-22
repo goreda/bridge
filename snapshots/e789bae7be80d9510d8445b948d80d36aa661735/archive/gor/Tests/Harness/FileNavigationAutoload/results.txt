@@ -1,0 +1,23 @@
+navigation epoch transitions and scoped torrent UI checks PASS
+{
+  "result": "PASS",
+  "source_guards": 8,
+  "source_sha256": "ef735567f7259716884f3a2933581c6c15de56f2426bc4788ff43d9cced9ae05",
+  "scope": "Source presence checks only, not FileManager execution or installed config selection"
+}
+{
+  "source_sha256": "8f429d14cc0b171fca78357368c11737fefd33c3757778a3a44c14f6c0477417",
+  "result": "PASS",
+  "cases": [
+    "natural sort, case-insensitive extensions, same-type and hidden/ignored filtering",
+    "aborted playback is no-op",
+    "manual playlist preserved",
+    "bare filename no-op matches source contract",
+    "missing current file does not replace playlist",
+    "repeated start does not append duplicate",
+    "hidden current file remains accepted",
+    "recursive traversal ignores hidden directory"
+  ],
+  "count": 8,
+  "scope": "Actual vendored Lua under Lupa with mocked mpv/options/filesystem; no mpv/AppKit integration or sidecar-subtitle test"
+}

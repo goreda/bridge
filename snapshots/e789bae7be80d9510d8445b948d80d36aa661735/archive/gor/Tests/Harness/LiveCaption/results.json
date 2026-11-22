@@ -1,0 +1,7 @@
+{
+  "source_sha256": "48ddd318010a3e8ac7792a2d43004617c5b5fee38ac9ccefab5a799443f421e6",
+  "source_guard_checks": 10,
+  "model_cases": 28,
+  "result": "PASS",
+  "scope": "Python lifecycle model and Swift token guards only; no native lifecycle, PCM threading or UI proof"
+}

@@ -1,0 +1,24 @@
+{
+  "source": "goreda/instinct main live 2026-10-02 00:35 Europe/Istanbul; reread unchanged",
+  "source_sha256": "b950e8595cdc79b6f4f18da0ab60f11c6aae910ea566bb1381079a73b6d0467a",
+  "negative_checks": [
+    {
+      "mutation": "end - start + 1",
+      "rejected": true
+    },
+    {
+      "mutation": "res.writeHead(range ? 206 : 200",
+      "rejected": true
+    },
+    {
+      "mutation": "res.writeHead(405)",
+      "rejected": true
+    }
+  ],
+  "surviving_mutations": [
+    "start>=size changed to start>size still rejected by independent end bound",
+    "HEAD writeHead(500) after existing writeHead survived; not counted as rejected mutation"
+  ],
+  "production_edit": false,
+  "execution": "Actual isolated Node HTTP handler, synthetic bytes, loopback only"
+}

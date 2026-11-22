@@ -1,0 +1,34 @@
+{
+  "result": "PASS actual cache-index controls and synthetic state characterizations",
+  "controls": [
+    "original object subsets/reordering preserve indexed positions",
+    "populated indexed cache avoids provider fetch",
+    "unindexed existing archive rebuilds without fetch",
+    "empty cache stub fetch sorted/extended/saved/indexed",
+    "empty rebuild clears index"
+  ],
+  "characterizations": [
+    {
+      "case": "equal copied item",
+      "observed": "content-equal copy gets -1 because object identity differs",
+      "scope": "intentional identity contract may require original references"
+    },
+    {
+      "case": "duplicate same object in cache",
+      "observed": "last duplicate position wins",
+      "scope": "synthetic duplicate input, normal producer reachability unverified"
+    },
+    {
+      "case": "indexed bandcamp-only cache",
+      "observed": "nonempty index bypasses archive content check/fetch",
+      "scope": "actual helper synthetic state, search/main normal reachability not validated"
+    },
+    {
+      "case": "cache replaced without rebuild",
+      "observed": "cache parameter unused by items_with_idx; stale global index returns -1",
+      "scope": "synthetic caller misuse, actual mutation sites not proved"
+    }
+  ],
+  "source_sha256": "5abc42fe83c197067a9f5b787b18667010fc7e1052373c041bcc1c01e3f470a1",
+  "scope": "Actual isolated current Python helpers with provider/save stubs, no pickle/user cache/backend module/compiled helper/network/Swift/UI execution"
+}

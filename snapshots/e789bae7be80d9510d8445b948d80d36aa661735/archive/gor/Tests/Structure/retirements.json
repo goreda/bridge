@@ -1,0 +1,1851 @@
+{
+  "schema": 1,
+  "entries": [
+    {
+      "path": "Sources/gor/BoundedCropFrameBatch.swift",
+      "sha256": "ca50b95012b7e71133442abb36a5679da8dcc8ab29c19774aefccc31a143c123",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53"
+      }
+    },
+    {
+      "path": "Sources/gor/BoundedDiskWriter.swift",
+      "sha256": "311676ee726c7831c37e2734a6911830733ec06c0075615c3a5877a3a9ccac38",
+      "replacements": {
+        "Sources/gor/Session/Diag.swift": "28dad9f5d9dbaec5c1fb0702bf6ec3528c70e00f0a683a33f4a75f956bd1907e"
+      }
+    },
+    {
+      "path": "Sources/gor/BoundedSubtitleDownload.swift",
+      "sha256": "35d274cd3d60c3760f92d901b6506ac7f98bba2bc8e3739eb47d8926a8e46748",
+      "replacements": {
+        "Sources/gor/Subtitles/SubtitleView.swift": "3e10053423df5afcfcd28cc2de760f8478c2eb371e344f3e4aac3c3c5265d3eb"
+      }
+    },
+    {
+      "path": "Sources/gor/ComputeUnitsProbe.swift",
+      "sha256": "9082196a8e894216b61862c8db04995fd49b41de1df90d6a7db207217fd16ed9",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/CoreMLDepthRunner.swift",
+      "sha256": "f6341a2adab2d197dd0e4f84f2db95713c0466b670fc0423e202ad586fda0d87",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/CropAcceptPolicy.swift",
+      "sha256": "a6163407e1eab494d6953f6b206f924599e20706de964652c3636cf271295c15",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53"
+      }
+    },
+    {
+      "path": "Sources/gor/CropHTTPReader.swift",
+      "sha256": "96aceb3c693878c7e416109d066dddc2be77fc53ca357200eb3273086fd553a3",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53"
+      }
+    },
+    {
+      "path": "Sources/gor/DepthCacheBudget.swift",
+      "sha256": "b560ad3651c0ed7b9c9542b81d14893e4cb8e6ad889c49bd17d73da8b49c7777",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/DepthContainerReader.swift",
+      "sha256": "76a27e206d262e9319566035b221061f1d8d5e53e39a806b621db26d6d6d9206",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/DepthContainerWriter.swift",
+      "sha256": "1b10083e89cd3daf6d7f123858771c0bcea49c3a0cc44c3526c511365c84c115",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/DepthFrameReader.swift",
+      "sha256": "325ed213ab52ad7e9a071a3f477f1211723ea2b1160e171c3e698f8c9c0e074e",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/DepthGuards.swift",
+      "sha256": "c63c459133747e424013754358ebc1f917b717da93d0fdb4637160b1b7a04e11",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/DepthModelID.swift",
+      "sha256": "f37d9582fcd92c116218c60c7f641603d614d0b08a11682a4ffd36980ca844ae",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/DepthPrepareMath.swift",
+      "sha256": "eb1258a01697176752c273401a5e728a96133c49cb5939b95f1712b8964b964b",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/DepthShotIndex.swift",
+      "sha256": "b391ead134c4abc076b310e2ee204cfbf47a368d998462c4e2e2955c7f25d718",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/DepthTemporalEMA.swift",
+      "sha256": "e57e1ad786115ba7bae7306584f7a5fa50059a49768320862a41fd14a75e7848",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/DepthUpsample.swift",
+      "sha256": "43b28ee7cd2a15d5c6f9d1394441000fd188d4f0a57e8fc1587578508f36736e",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/FFmpegAnalysisThreads.swift",
+      "sha256": "b8e489a7af6785ad8786cd773403db182f387613bc404408c522ad36dfcbbdaf",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53"
+      }
+    },
+    {
+      "path": "Sources/gor/FilmPrepareStatus.swift",
+      "sha256": "fd2266361cf704ab1c41a6bb44e6f2ca7d08e383d52c1428855bcff725243216",
+      "replacements": {
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+      }
+    },
+    {
+      "path": "Sources/gor/FovTrackBuilder.swift",
+      "sha256": "7e6ec4b1466b6183134051aa4b0d99dfc03911258c1e0b4292f3ea0b748cacbd",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/KitCompiledCache.swift",
+      "sha256": "5d03ab9c252b2912f572b6e67a0c980db51b28e077c698cf4479afe0f2bd55f0",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/KitHash.swift",
+      "sha256": "75ab0ba12aa09a49e6462b8bc3d683b7c90bd770cca6c078c52ff432b36a8e83",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/MoGeKeyframeRunner.swift",
+      "sha256": "4bf70127898a8426aae995fb0742002a1d45b42d77c2a055e7b95ce5cd0b47a2",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/ModelDepthEMA.swift",
+      "sha256": "ec5be2f3eec001be9927cd5864491059640e65a6fe59d8bcd0df6663a318cdcc",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/NativePrepareRunner.swift",
+      "sha256": "2c0565b9a5341f7017863daaaa0fcdab128c4ada0935efc3368049618b6e0e5f",
+      "replacements": {
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+      }
+    },
+    {
+      "path": "Sources/gor/NunifCoreMLRunner.swift",
+      "sha256": "93415af34a6b9e72ca26378513364701e1cc9d221d90ccf27d7e08508710ab59",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/NunifMath.swift",
+      "sha256": "d718bd72149554d581283a33458ed49a7d1b580d7d11b3d1e3a2217eeb9ba278",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/NunifPipeline.swift",
+      "sha256": "957658b06280bf04cd10a738c25b6db8d0f6e9d606f1f72641eb73a1f29c488d",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/OutputModes.swift",
+      "sha256": "aaffc65efe71fa645b2e9a95c77c872bbb664e9d35fca54dc2ebf27ed52d3509",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/PlayerProtocol.swift",
+      "sha256": "cd3a13a7751e25fd75197bfe6b5553e11f30ce1fafb0002f828d12f86542ba29",
+      "replacements": {
+        "Sources/gor/Engine/MPVCommand.swift": "ac024d2ba83a39ad78c5b642dac0a985fd2adf300f1da5ecba753213f8fbfe86"
+      }
+    },
+    {
+      "path": "Sources/gor/PrepareInputRemux.swift",
+      "sha256": "78a63c2338f9541ab49eb8e9beac5d0c415199f44611e218c3d00d992522e6bf",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53",
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9",
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a",
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e",
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/PrepareProcessLifetime.swift",
+      "sha256": "c7e53ad50955bd5fd9444e025566c6ac60d343ec29a68628d25e4634018e707d",
+      "replacements": {
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+      }
+    },
+    {
+      "path": "Sources/gor/PrepareSupport.swift",
+      "sha256": "7f2ca87f4b985e66b19ade36f7735e44b4a48e38acf23120ba94f99337f09841",
+      "replacements": {
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+      }
+    },
+    {
+      "path": "Sources/gor/PrepareTelemetry.swift",
+      "sha256": "9c66f4a1ae159521cf611f667544f05211d7143a26a12c4c04156ddd3518f02d",
+      "replacements": {
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+      }
+    },
+    {
+      "path": "Sources/gor/PrepareWorkerJob.swift",
+      "sha256": "5460f45dfaabac527c4b52ff3bc5d521ee1d43ac22e581de3ad14b9c66aeef4d",
+      "replacements": {
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+      }
+    },
+    {
+      "path": "Sources/gor/PreparedShotPlayback.swift",
+      "sha256": "030a965b0b7bb8e4d8849846bc30c78ff558f7d6cd4170827d9ebf82bdc0e95e",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/RenderPrefsReader.swift",
+      "sha256": "c73dc0d14877f4fe4f25a11e95dc18314ebec2575a9562d9cc9618080444afb7",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/RenderRevision.swift",
+      "sha256": "3eca4e1a9a9293043fb0eefb0d02b5cede6ab3af58a6a16534cd0b0209e4958c",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/RenderShotWriter.swift",
+      "sha256": "b9d4f9f55d56c2241ed085ede26a528e242fb51440bff957bd325f1f588b609c",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/RenderedShotMPV.swift",
+      "sha256": "56ef36062da028e4c7fa79687e77bd7734e6e4927eead05f09ad1a5e655983c4",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/RenderedShotPlan.swift",
+      "sha256": "cc5cc21990f5a747492427005eba14c21aa3d3c5d1e06b02b550e2e9e0d5da88",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/SessionLogPaths.swift",
+      "sha256": "04b1a84f336e5312073e1359563dc89fe291092dc57bdc0e5b35f4d1c74f4079",
+      "replacements": {
+        "Sources/gor/Session/Diag.swift": "28dad9f5d9dbaec5c1fb0702bf6ec3528c70e00f0a683a33f4a75f956bd1907e"
+      },
+      "accepted_sha256": [
+        "04b1a84f336e5312073e1359563dc89fe291092dc57bdc0e5b35f4d1c74f4079",
+        "e0c5311a48950c7261a9df8e847c847b60ce29baee3da3b9cfffc804ec134001"
+      ]
+    },
+    {
+      "path": "Sources/gor/SharedDiagnosticRecord.swift",
+      "sha256": "b3094aa8405639814d91a18564e7a205155b335e2b97c703a8dda9b222834412",
+      "replacements": {
+        "Sources/gor/Session/Diag.swift": "28dad9f5d9dbaec5c1fb0702bf6ec3528c70e00f0a683a33f4a75f956bd1907e"
+      }
+    },
+    {
+      "path": "Sources/gor/ShotComfort.swift",
+      "sha256": "419b21928937d5ab732d0f741d6d536c360583746bd9b9ec56e181232be51b9b",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/ShotComfortShot.swift",
+      "sha256": "edf6f8b27d6e92262fc8e3966468c62f8fcb325abc1faa0b19840f439c41623a",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/ShotComfortSpan.swift",
+      "sha256": "bd80c802cca5edc03038c8faf47d4998962a5735be3053ce3bdda0b08aebfce1",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/ShotCuts.swift",
+      "sha256": "1cd440357fc714c9bb3369b324609f3616ad4dd13410be5c2119324392a766e1",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/ShotPrepareAssembly.swift",
+      "sha256": "189d6ae61a362fa2344e4ba371901bd13b57cb4614e5f12991da01ad7e29ae66",
+      "replacements": {
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+      }
+    },
+    {
+      "path": "Sources/gor/SourceFormat.swift",
+      "sha256": "447aea567a84ba34d3806142b7a42af8fc65201e17cfce8e829c1a8f7048e4c0",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53"
+      }
+    },
+    {
+      "path": "Sources/gor/SourceFormatProbe.swift",
+      "sha256": "b27d81bf0c19f9c1234a623c7f8b0962d85e94524127c2ac55158cbc7f290d03",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53"
+      }
+    },
+    {
+      "path": "Sources/gor/SourcePixelCrop.swift",
+      "sha256": "f83b515cedad7c0715ae83998658ea1ae56975d2514052b74a3035401b826a59",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53"
+      }
+    },
+    {
+      "path": "Sources/gor/SphericalTag.swift",
+      "sha256": "1f3087f8e2180d2aafbc4baf09dc839781517a6f15377f7fe1c516f25680b7d8",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53"
+      }
+    },
+    {
+      "path": "Sources/gor/Stereo3DKernel.swift",
+      "sha256": "db33e6cd65748becd39b0493cb33e160c1ebf7d5d8fa881b86c19fdf52229b93",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/StereoSource.swift",
+      "sha256": "56abc85d6b8ec6d23d2c67be9610a8130f09563b476ec0dec05e4628fa992a5e",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53"
+      }
+    },
+    {
+      "path": "Sources/gor/StereoSourceGate.swift",
+      "sha256": "a370eed48b9c83bf9edbc021529d5996b9e7b0087b6fd29a917ac8160ecc0eb0",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53"
+      }
+    },
+    {
+      "path": "Sources/gor/StereoSourceProbe.swift",
+      "sha256": "d53a73adeb9a68c15ed6c1ad639a6388b67ec6880045e94da62de5b8baa05beb",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53"
+      }
+    },
+    {
+      "path": "Sources/gor/SubtitleDepth.swift",
+      "sha256": "bc296e2627133869a9586b8bcea66b5d7666d5dfe80559a13c5e6305acc7f6d2",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/SurroundGeometry.swift",
+      "sha256": "59261cf1f2aec520eea46fed039ca820191dc67f6667029de14a15e6b9affce6",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/TemporalDepth.swift",
+      "sha256": "2b53f791c3b0c1c93a7907891cdd443bf72fcbe13bb32ce966a30ff62ac186d7",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDAutoRoute.swift",
+      "sha256": "2f715a93d9cd9f7b27e87b4ae888ce5a040364146cbdf5492edccb215b3e7720",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDCornerTune.swift",
+      "sha256": "a703e3d1ae91ea9764e78fbb847d56d8cd4ec8ca2c648222cf3a2d086d5eb269",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDCornerTuneLayout.swift",
+      "sha256": "3e2b636342c3fa66cbfd8e68167609537b027f031853c42bbab9fd76fc303245",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDDegrade.swift",
+      "sha256": "35902b61b644655b155d57c44a7a5021f83cb72304debf29c64385af2df102b7",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDDegradeProbes.swift",
+      "sha256": "66e0851b4d7704f521b9095dff8b0f0ae361994d41adb941eecffe0072ea6035",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDDegradeTable.swift",
+      "sha256": "b5c777cde546a93000796745da736b9194b9c89128ea6af4044474399dc58aab",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDExperimentMenu.swift",
+      "sha256": "318729f42778c8ecec840cdd93f3263fd351b63a2c00973537ae26d64bf88b53",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDExperimentOptions.swift",
+      "sha256": "abc0fbc35ea4f93da6881e2252422e268f0960c9fdf98439b78d94c3060236f2",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDKeymap.swift",
+      "sha256": "6030b4fb3beaa7835139fb733c82726b830359f3cc2b1bd2ecc9aea1ff460187",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDKit.swift",
+      "sha256": "1bb87ded35cc004f4ebcb51a83dadf7d876e12185b25f67ef00e6a0a75737fcb",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDMenu.swift",
+      "sha256": "4535304b41095a683de255098a164b25c2ce335706387b0feb4fe542fd9cf71e",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDModels.swift",
+      "sha256": "70c9af5530b5fa84d1fd71e0ad85528e791e60be90a30710f1cde245ff0b118d",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDOwnerActionAcceptance.swift",
+      "sha256": "d88a089c2317ffb4a6891bd51c9df7849e996077e98ad60e5fc81ce801fef2cb",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDPreflight.swift",
+      "sha256": "58eb5c2025f8d34b5d5dfdb7d57897099c0e1e599dfb18d039990fa38513d0fd",
+      "replacements": {
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDPrepareLauncher.swift",
+      "sha256": "7959166fed13855c53218993776dfd6ece5cdd35afdbd1a0cee706b71cbb5c68",
+      "replacements": {
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDPrepareSpawn.swift",
+      "sha256": "97073effeedd5ffb38acd683ba060f773e9defcafb9c2be7b0e382b84182fb80",
+      "replacements": {
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDPresentation.swift",
+      "sha256": "0548357fbdcbc6da40676b3296eed5d58ba5e2a0801a1ac364d0c248658bdadc",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDRecognitionBridge.swift",
+      "sha256": "17906c963e0acbc8137ab86601fa8c12a8e483c376e49448a46e96b846aab4f7",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDRenderCoordinator.swift",
+      "sha256": "56a6308f4cd0897ec4c315878991b8e2a95f0e664585ddbb52b00be874128b72",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDRoute.swift",
+      "sha256": "7e61dcaf2b0b7030c20fe6f0daf26e886933de2b6161257aa61e117fa9496220",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDSelfTest.swift",
+      "sha256": "ab75c67e0b13a8430498147f0faa8476e98baffb458f86d7d04a0572d4f192de",
+      "replacements": {
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDSelfTestCLI.swift",
+      "sha256": "02030b6c7266c495b7304aad7731ddebdfc231e7f6cd1ae0f9c2a5a97d4f0a71",
+      "replacements": {
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDShotPlayLog.swift",
+      "sha256": "edf730da9a95204ac73db0bb78512a92861c7fe2ada94c66de996c158a0f6a55",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDStageLog.swift",
+      "sha256": "3db675762817520788f82688d06070b1816cabab1413a711222cf60e91fbd4e3",
+      "replacements": {
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDState.swift",
+      "sha256": "95aab9d5a534dc16e145e58d6efe460e479dc881c0d4d81125bca9d66ed381a1",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDStoreAcceptance.swift",
+      "sha256": "1c647c3cfa79f3f932cec0486c98c44f762b8d03dca847a9d790759a03e52e91",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDSubtitleDepth.swift",
+      "sha256": "72d2d55e2536b322dd071f1f17e313d86d657e2a0f4f86464097e78936d74631",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDSynthCurrent.swift",
+      "sha256": "5a113f0db7392348ba2fbec159d965a730a09bf6fda6245a4946291f1513137d",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDSynthMethod.swift",
+      "sha256": "065218b8d852b1188aabb879da1817d8c7fd98cb844ba2af2723c84e5f2ca3e0",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDThermalGate.swift",
+      "sha256": "562f62dc6e202b28fc1163f9de2d85d8dab11de629ab4d0888193083cf5e10f5",
+      "replacements": {
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeDWiring.swift",
+      "sha256": "34edaf85f061f4ff2733218e580f71ff570d09ef919046f33b59ffa37efb1be4",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/VDAStreamRunner.swift",
+      "sha256": "f9cb60e4461f3053e0a0704be7e584e98c2091f8e8a0042dfe5ea7995d2f628e",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/VDAWindowPlan.swift",
+      "sha256": "0ce1fc6d818f8ff9e0f3e6a2a058b8478436b87bbc9ce4b4fbb72077faeb6a6d",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/VDAWindowRunner.swift",
+      "sha256": "8c93276bfdd690a6a930f5166d7093d8d6c65b7a50bdb17a51de35018a83aef9",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/VDAWindowedBackend.swift",
+      "sha256": "6c85bb635d0c5944a7bd27b4440d453f8c303cf8562b6b8d15c26beec5a0ab90",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/VDAWindowedSource.swift",
+      "sha256": "9e09b1e0c2988538510b04610d7c86add26c1f49ac68827f41448d0e798a0cd6",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/VRMirrorThrottle.swift",
+      "sha256": "b6c7b9400264ba3f55ebd295078b509038a4d4f27b9c608cba4558b0062a7249",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/VTShotEncoder.swift",
+      "sha256": "db3755afb76c9b1b2365214a9bb90721f3c9a5e77ce15254ba990c6655ab2d14",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/WTCropSamples.swift",
+      "sha256": "ec48cdd3edc1a55d4bbc55c0e0d07450336c41250273324662230081bbb64360",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53"
+      }
+    },
+    {
+      "path": "Sources/gor/AudioMenuControls.swift",
+      "sha256": "ab2625c285f46a02da27dc48492204a0ceaa346972ec168c808acc332750d730",
+      "replacements": {
+        "Sources/gor/UI/MenuActions.swift": "6c65019bb0bbe68b6d22451166dc998e4f709df415dff5149141b00fec95507f"
+      }
+    },
+    {
+      "path": "Sources/gor/UpdateChecks.swift",
+      "sha256": "44ced0d0eb96ddde6d90657871c9f3ff7049516de21b0934643199aa6cf74e69",
+      "replacements": {
+        "Sources/gor/UI/MenuActions.swift": "6c65019bb0bbe68b6d22451166dc998e4f709df415dff5149141b00fec95507f"
+      }
+    },
+    {
+      "path": "Sources/gor/VideoFormatCycle.swift",
+      "sha256": "ded1ad8b768c6efbf5cbf038c2f8adccafa49852355102317241da0d665d1227",
+      "replacements": {
+        "Sources/gor/UI/MenuActions.swift": "6c65019bb0bbe68b6d22451166dc998e4f709df415dff5149141b00fec95507f"
+      }
+    },
+    {
+      "path": "Sources/gor/CacheKeyMemo.swift",
+      "sha256": "30a71f5fb960e2dc6ab46951c04ad25707580a27ae40447f31b3173a550e566f",
+      "replacements": {
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+      }
+    },
+    {
+      "path": "Sources/gor/TextLayerColor.swift",
+      "sha256": "cabdd86b75744a478e96558dd3c2752140b4aa8a5495d9a4ff7586005530de5f",
+      "replacements": {
+        "Sources/gor/UI/PhotonFont.swift": "724495ed72bb07cbdbec58e6581997d687bfe9f2c6d84c38208283936e8dff01"
+      }
+    },
+    {
+      "path": "Sources/gor/Stereo/HeadPose.swift",
+      "sha256": "2c3a36532b48c520412b186d28a41f9b1c19a54b955ec6f22f8aa4b2a48f7b05",
+      "replacements": {
+        "Sources/gor/Camera/HeadPose.swift": "1863f428bf7df4f16261cff8350e692a5daa287a20ff331a789e4f0d9be8dde4"
+      }
+    },
+    {
+      "path": "Sources/gor/Stereo/Pose192d.swift",
+      "sha256": "adda737a81e3ad5281c6331288db37992d090f1ea2f62569f0c4778b8782a499",
+      "replacements": {
+        "Sources/gor/Camera/Pose192d.swift": "adda737a81e3ad5281c6331288db37992d090f1ea2f62569f0c4778b8782a499"
+      }
+    },
+    {
+      "path": "Sources/gor/Stereo/PoseMeasurementValidity.swift",
+      "sha256": "8a063f2298953d8e7ade1063677d9e7e349580c00c79afa7b57b56e8f7115317",
+      "replacements": {
+        "Sources/gor/Camera/PoseMeasurementValidity.swift": "8a063f2298953d8e7ade1063677d9e7e349580c00c79afa7b57b56e8f7115317"
+      }
+    },
+    {
+      "path": "Sources/gor/Stereo/PoseFrameQuality.swift",
+      "sha256": "67d08d6ee15921cc91e2869cff4ed5d159ba87354c892ea2ff9c1ac0a6f1bb0a",
+      "replacements": {
+        "Sources/gor/Camera/PoseFrameQuality.swift": "67d08d6ee15921cc91e2869cff4ed5d159ba87354c892ea2ff9c1ac0a6f1bb0a"
+      }
+    },
+    {
+      "path": "Sources/gor/Stereo/BinocularGaze.swift",
+      "sha256": "ef7d2efe1ea5db435a93b99f7d6aec4931a0699c0fb5af30e57b92a03a658841",
+      "replacements": {
+        "Sources/gor/Camera/BinocularGaze.swift": "ef7d2efe1ea5db435a93b99f7d6aec4931a0699c0fb5af30e57b92a03a658841"
+      }
+    },
+    {
+      "path": "Sources/gor/BrightnessReadCache.swift",
+      "sha256": "db2c270074ffdd25a5799d90fc7958bb62dff13a8a4cd1c54cb384dc16c95c0a",
+      "replacements": {
+        "Sources/gor/Picture/Brightness.swift": "bc6c5dac08ab5690e1f62f0660ee2aa0cb5e9692a99204326b657ee5fa46cd68"
+      }
+    },
+    {
+      "path": "Sources/gor/PlaybackCacheTrace.swift",
+      "sha256": "265e758dafb5d508e7396b7b1d2e5f45c5c2ac7ea865868233783b9ac94c4f98",
+      "replacements": {
+        "Sources/gor/Session/Diag.swift": "28dad9f5d9dbaec5c1fb0702bf6ec3528c70e00f0a683a33f4a75f956bd1907e"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVAppGate.swift",
+      "sha256": "525dd07e46a622d560071d58883bd698dd78a984ae8dae54d1bf405b6a52ecff",
+      "replacements": {
+        "Sources/gor/Engine/GorAVAppGate.swift": "525dd07e46a622d560071d58883bd698dd78a984ae8dae54d1bf405b6a52ecff"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVHostMotion.swift",
+      "sha256": "74c7fe2edc868045d8903071a4000f466d17071402aed880d5eb6d3977d7ea19",
+      "replacements": {
+        "Sources/gor/Engine/GorAVHostMotion.swift": "74c7fe2edc868045d8903071a4000f466d17071402aed880d5eb6d3977d7ea19"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVHostWindow.swift",
+      "sha256": "73c9171e511ddeb433a297cfa6092118316878a670a2497a876556964ee34f47",
+      "replacements": {
+        "Sources/gor/Engine/GorAVHostWindow.swift": "fff38e2579a418b46930dab72081efabedc3b44979a791cea1ec4a32f51c2a25"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVLocalOffer.swift",
+      "sha256": "7af57f2ed18b7a64f250fe2f21f0f7d6351a3bd03b8837989d46f6513b29ff31",
+      "replacements": {
+        "Sources/gor/Engine/GorAVLocalOffer.swift": "7af57f2ed18b7a64f250fe2f21f0f7d6351a3bd03b8837989d46f6513b29ff31"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVNativeGate.swift",
+      "sha256": "8c0c6abc1e60ac8b45c1ef6e607b76095c2edd81920c28251f43c9bb6d8e5c83",
+      "replacements": {
+        "Sources/gor/Engine/GorAVNativeGate.swift": "8c0c6abc1e60ac8b45c1ef6e607b76095c2edd81920c28251f43c9bb6d8e5c83"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVPlayerHost.swift",
+      "sha256": "102ff8b4a3a28d6d8293de6b0e0c2a9a29d6c428ddccfc18dbdd8f38665c20c8",
+      "replacements": {
+        "Sources/gor/Engine/GorAVPlayerHost.swift": "0bafe010ea57aa3a0809f1224ba6fc8f0a3fa28d9a5ef5f0b8cd7bff588df800"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVStreamAdmission.swift",
+      "sha256": "e3d95e54dd3c87a7c30864165d54c2e76d058f02ff1fc85a5de8d7170337c773",
+      "replacements": {
+        "Sources/gor/Engine/GorAVStreamAdmission.swift": "e3d95e54dd3c87a7c30864165d54c2e76d058f02ff1fc85a5de8d7170337c773"
+      }
+    },
+    {
+      "path": "Sources/gor/ArchiveBrowser.swift",
+      "sha256": "25472e0eb5da384cda6b5823dc851c8471e002c9223e1949937055b9e98608bb",
+      "replacements": {
+        "Sources/gor/Media/ArchiveBrowser.swift": "25472e0eb5da384cda6b5823dc851c8471e002c9223e1949937055b9e98608bb"
+      }
+    },
+    {
+      "path": "Sources/gor/ArchiveLibrary.swift",
+      "sha256": "772942f9057fe2486eac455c145f544e7101238dc52e1693e0aee32cf5a6f1a3",
+      "replacements": {
+        "Sources/gor/Media/ArchiveLibrary.swift": "772942f9057fe2486eac455c145f544e7101238dc52e1693e0aee32cf5a6f1a3"
+      }
+    },
+    {
+      "path": "Sources/gor/ArchiveRandom.swift",
+      "sha256": "d06654d43b0d6688beddf28e069826baaf864855e8f044c0e5363923ef98ee96",
+      "replacements": {
+        "Sources/gor/Media/ArchiveRandom.swift": "d06654d43b0d6688beddf28e069826baaf864855e8f044c0e5363923ef98ee96"
+      }
+    },
+    {
+      "path": "Sources/gor/CDPSession.swift",
+      "sha256": "7e29882b1d3ba4b427d202d3faf9ff950295194e23d2c5955bf2c6e5e5ecf18b",
+      "replacements": {
+        "Sources/gor/Media/CDPSession.swift": "7907dc6d76f4b7aa00c4de736cd5914525ec9043020bffe9435b5c958655b05e"
+      }
+    },
+    {
+      "path": "Sources/gor/FileBrowser.swift",
+      "sha256": "633b968dd7d4ecc5626b174b8a1744290e82cbd53ce28481e32d6ad18b914b67",
+      "replacements": {
+        "Sources/gor/Media/FileBrowser.swift": "16ed8d4060686763667552e2cd47e33d99f80a91e1d0a91ebd29d58058af0dd4"
+      }
+    },
+    {
+      "path": "Sources/gor/IPTV.swift",
+      "sha256": "d3c1ed6bf012926e74425437d2b62270c39f1e209f293960a4909719ebc0e0e8",
+      "replacements": {
+        "Sources/gor/Media/IPTV.swift": "d3c1ed6bf012926e74425437d2b62270c39f1e209f293960a4909719ebc0e0e8"
+      }
+    },
+    {
+      "path": "Sources/gor/MagnetBrowser.swift",
+      "sha256": "cd7f2f21fb85957d24f6eefd8b17d9acb9292f99217a3d949cfb755d3c6f9211",
+      "replacements": {
+        "Sources/gor/Media/MagnetBrowser.swift": "172b3b240bfca5ac61a814ca744ea7d035520597c0e7f942a2fd481bc6f45e26"
+      }
+    },
+    {
+      "path": "Sources/gor/MegaStreamManager.swift",
+      "sha256": "f207c003097927b7a4857c8c54337cd75fb0073ddd0e6b2a7b3cb360b384ff42",
+      "replacements": {
+        "Sources/gor/Media/MegaStreamManager.swift": "950b772ebeab9c7591ffda65b0267e435f210a8275458899e81e922f2db774cc"
+      }
+    },
+    {
+      "path": "Sources/gor/TorrentManager.swift",
+      "sha256": "6ad6bbef5d9ec07ba989f2adb8eae7bc3774fd431bdeecfa8e4d3e8516f43e2b",
+      "replacements": {
+        "Sources/gor/Media/TorrentManager.swift": "fbd0359276a20fa5140ea5251c5a0a68ca65d639772b3922a6a079b9a37f35af"
+      }
+    },
+    {
+      "path": "Sources/gor/TransferResolver.swift",
+      "sha256": "b433e500e71a5ef7e120350112926466ef697e341c72ff2651fbafb3c9d44a3b",
+      "replacements": {
+        "Sources/gor/Media/TransferResolver.swift": "b433e500e71a5ef7e120350112926466ef697e341c72ff2651fbafb3c9d44a3b"
+      }
+    },
+    {
+      "path": "Sources/gor/TransferTicketContext.swift",
+      "sha256": "561cba0c7d3a3956eba7faf6df5a5962a1adabe0cf90432c557f6696c97c9820",
+      "replacements": {
+        "Sources/gor/Media/TransferTicketContext.swift": "561cba0c7d3a3956eba7faf6df5a5962a1adabe0cf90432c557f6696c97c9820"
+      }
+    },
+    {
+      "path": "Sources/gor/FlatControlRefreshGate.swift",
+      "sha256": "b990c0f7031831097bf94b52391e1cfa681ef845e9cbd85bd5aa86192455fd2a",
+      "replacements": {
+        "Sources/gor/UI/FlatControlRefreshGate.swift": "b990c0f7031831097bf94b52391e1cfa681ef845e9cbd85bd5aa86192455fd2a"
+      }
+    },
+    {
+      "path": "Sources/gor/MenuActions.swift",
+      "sha256": "c0e40e4441398a1c756ab97acbafeb19d58e613d6f87fdfd76d785598153e615",
+      "replacements": {
+        "Sources/gor/UI/MenuActions.swift": "6c65019bb0bbe68b6d22451166dc998e4f709df415dff5149141b00fec95507f"
+      }
+    },
+    {
+      "path": "Sources/gor/MusicController.swift",
+      "sha256": "e8e322d64449214ce03b030b156efe8b28305f8580c5038cd9bfbae43b1a1e1e",
+      "replacements": {
+        "Sources/gor/Modes/MusicController.swift": "53d3875837dcb7560003064ada2d7b81c58dc1be8ae01dfdc766b361252a8d18"
+      }
+    },
+    {
+      "path": "Sources/gor/MusicPanel.swift",
+      "sha256": "c671112da430988b090b17e1b9565d181c73993d60e7113365f05cfd4d2ab27f",
+      "replacements": {
+        "Sources/gor/Modes/MusicPanel.swift": "0dbba831852f4b28f1cdf9cfc0379532547606a4fafba891f0b4c84eb8e48e8f"
+      }
+    },
+    {
+      "path": "Sources/gor/PPControllerMenuQueries.swift",
+      "sha256": "e0776408c8ed4c5fd79859fe7a14c65fe632e5e9ddb6f368f0887664dcfb7bd9",
+      "replacements": {
+        "Sources/gor/Player/PPControllerMenuQueries.swift": "03b606dc4b138878f981b1c39939ccb66540e7200f5db56744c5db432dc48303"
+      }
+    },
+    {
+      "path": "Sources/gor/SidebarUI.swift",
+      "sha256": "5187de7cc3c02eec241cae126714ac7e51ade02b5299076279d54bbb0585ef69",
+      "replacements": {
+        "Sources/gor/UI/SidebarUI.swift": "a7e2274b755dffc4dd8f0090b790dd0fe01bead81e5ad8b61c3e41002ed8e6a1"
+      }
+    },
+    {
+      "path": "Sources/gor/SpineUI.swift",
+      "sha256": "4854f9c1379fc8a534e4ca9fbf8e208901891511b07d8f26be1d7d5806991f2d",
+      "replacements": {
+        "Sources/gor/UI/SpineUI.swift": "e19af36d3bd31b97dc767e85c937742446efcdee4f3b9d6f732d36d6dfb00cca"
+      }
+    },
+    {
+      "path": "Sources/gor/GORResources.swift",
+      "sha256": "d94c3244ba7adc4ef87d85e94d9de573950d770c2885073d978b17c6a19484ac",
+      "replacements": {
+        "Sources/gor/App/Build.swift": "439d0fa68ea4749c8de843ee18cf4accee00a2afcb7c19771bd2cab4eb54c6b6"
+      }
+    },
+    {
+      "path": "Sources/gor/OverlaySpaceGate.swift",
+      "sha256": "b78a82df465755b61f695a10f6121f13a081ba40ff9cf76da7c075e06125fff9",
+      "replacements": {
+        "Sources/gor/Platform/Windowing.swift": "353b655037a9c8f6b836398d40855aa272571ab02d8942fa118c2f746f05fcbe"
+      }
+    },
+    {
+      "path": "Sources/gor/PanelFocus.swift",
+      "sha256": "617b617586a9f12900bed807f162cd0000d86bd082fa06fa3754a91ffe3374a5",
+      "replacements": {
+        "Sources/gor/Platform/Windowing.swift": "353b655037a9c8f6b836398d40855aa272571ab02d8942fa118c2f746f05fcbe"
+      }
+    },
+    {
+      "path": "Sources/gor/PanelFocusTraversal.swift",
+      "sha256": "3e1a34f112600388f6317285289c98669320dd8b5c3c85e14a7ce114693fd78f",
+      "replacements": {
+        "Sources/gor/Platform/Windowing.swift": "353b655037a9c8f6b836398d40855aa272571ab02d8942fa118c2f746f05fcbe"
+      }
+    },
+    {
+      "path": "Sources/gor/PreviewGuard.swift",
+      "sha256": "c398d9089d5d5786b21d68266fe7d83014b14e0453032d0cd2be7c0a874ee9b6",
+      "replacements": {
+        "Sources/gor/Platform/QuitChildKiller.swift": "ffbea2bab58dc393d3d0d74fad7752afef587c181c9f426013b4080b70fe607a"
+      }
+    },
+    {
+      "path": "Sources/gor/QuitChildKiller.swift",
+      "sha256": "7ec6930b77bc29d06024dc6876e7e2ad54b7e6221e2854ec068022b8fc795e83",
+      "replacements": {
+        "Sources/gor/Platform/QuitChildKiller.swift": "ffbea2bab58dc393d3d0d74fad7752afef587c181c9f426013b4080b70fe607a"
+      }
+    },
+    {
+      "path": "Sources/gor/RealtimeProbe.swift",
+      "sha256": "e237e2976f6328a319482e9ae3f09d0e59b877535081118e5df2c3e9453c4a38",
+      "replacements": {
+        "Sources/gor/Stereo/RealtimeProbe.swift": "e237e2976f6328a319482e9ae3f09d0e59b877535081118e5df2c3e9453c4a38"
+      }
+    },
+    {
+      "path": "Sources/gor/MPVCommand.swift",
+      "sha256": "47a0471633aa0df6f8cc59cddcadd75f8fac9e32dff44bfed667df77480a7022",
+      "replacements": {
+        "Sources/gor/Engine/MPVCommand.swift": "ac024d2ba83a39ad78c5b642dac0a985fd2adf300f1da5ecba753213f8fbfe86"
+      }
+    },
+    {
+      "path": "Sources/gor/BuildID.swift",
+      "sha256": "4cf3984e2674800af070c8d55f9728f770dc23d7e7417ffa3b728c119e704c62",
+      "replacements": {
+        "Sources/gor/App/Build.swift": "439d0fa68ea4749c8de843ee18cf4accee00a2afcb7c19771bd2cab4eb54c6b6"
+      }
+    },
+    {
+      "path": "Sources/gor/Diag.swift",
+      "sha256": "5bf1c7436478a3ff6d1bdff520078ea341f99357c052b13213a3609784d69da8",
+      "replacements": {
+        "Sources/gor/Session/Diag.swift": "28dad9f5d9dbaec5c1fb0702bf6ec3528c70e00f0a683a33f4a75f956bd1907e"
+      }
+    },
+    {
+      "path": "Sources/gor/StableCacheKey.swift",
+      "sha256": "06ab2fa85040c2ae44d953cfc29d583db2b804d59c7cc3e8abc4876e3a790ef5",
+      "replacements": {
+        "Sources/gor/App/Build.swift": "439d0fa68ea4749c8de843ee18cf4accee00a2afcb7c19771bd2cab4eb54c6b6"
+      }
+    },
+    {
+      "path": "Sources/gor/EngineObservation.swift",
+      "sha256": "c8ce37ab1ff7a734de70b76b8d1ba9cea64bd75031b98ac0fe2d4dc2bc83def6",
+      "replacements": {
+        "Sources/gor/Player/EngineObservation.swift": "c8ce37ab1ff7a734de70b76b8d1ba9cea64bd75031b98ac0fe2d4dc2bc83def6"
+      }
+    },
+    {
+      "path": "Sources/gor/AdaptiveColor.swift",
+      "sha256": "2fd63b55e52d7e97a5b21a21856583137373c4fa8bfa52f167133d08bb5be1d6",
+      "replacements": {
+        "Sources/gor/UI/AdaptiveColor.swift": "2fd63b55e52d7e97a5b21a21856583137373c4fa8bfa52f167133d08bb5be1d6"
+      }
+    },
+    {
+      "path": "Sources/gor/LookToolsRoute.swift",
+      "sha256": "3208c01f3c9831bc4b97b5221f20a48e4e9e063fa208bdb89bde19b52d91ca13",
+      "replacements": {
+        "Sources/gor/Stereo/LookToolsRoute.swift": "3208c01f3c9831bc4b97b5221f20a48e4e9e063fa208bdb89bde19b52d91ca13"
+      }
+    },
+    {
+      "path": "Sources/gor/PhotonFont.swift",
+      "sha256": "bfacd0486b28217d6399a507c4d8f0273e1b70c1e0e13392801f532d3d77aeb7",
+      "replacements": {
+        "Sources/gor/UI/PhotonFont.swift": "724495ed72bb07cbdbec58e6581997d687bfe9f2c6d84c38208283936e8dff01"
+      }
+    },
+    {
+      "path": "Sources/gor/VariationBroadcaster.swift",
+      "sha256": "886240c5e48f11a71da46b607095ed4a045a4a4d92e49912b7a0386c5aab06af",
+      "replacements": {
+        "Sources/gor/UI/VariationBroadcaster.swift": "2f762fe5ce7c091c6aba6f064845428d29eb187d315d6b791d5e3881f74fe1aa"
+      }
+    },
+    {
+      "path": "Sources/gor/ScreenCaptureEngine.swift",
+      "sha256": "a5b3ac4613179ef0c0c2a415c28ce7fe4c60d70e80cb1800f73c1777a2ad650a",
+      "replacements": {
+        "Sources/gor/Camera/ScreenCaptureEngine.swift": "a5b3ac4613179ef0c0c2a415c28ce7fe4c60d70e80cb1800f73c1777a2ad650a"
+      }
+    },
+    {
+      "path": "Sources/gor/IconBarFit.swift",
+      "sha256": "be45ac1c02481bda9e17b4a7d36702d0ecaafcb6654ecdb685d141c0ac6a3eb5",
+      "replacements": {
+        "Sources/gor/UI/IconBarFit.swift": "52415ab0b3cf991afa2c5aac4afb89f1109fa87e4442b299d368717f3e7fc613"
+      }
+    },
+    {
+      "path": "Sources/gor/GazeCrosshairController.swift",
+      "sha256": "a56fd57b99c9af56f88cbb03ab2e9759a9a3e2a55cae6f0a86482b0d3dab076e",
+      "replacements": {
+        "Sources/gor/Stereo/GazeCrosshairController.swift": "a56fd57b99c9af56f88cbb03ab2e9759a9a3e2a55cae6f0a86482b0d3dab076e"
+      }
+    },
+    {
+      "path": "Sources/gor/LiveCaptionController.swift",
+      "sha256": "d749b6d29a80423faa9e66d8b274b7103b4ce477c57ee3c54c7ed861c4c04da3",
+      "replacements": {
+        "Sources/gor/Subtitles/LiveCaption.swift": "22fd33b11dc597d4e818984ebe5a04a27539520fc904ca95a010162478e14866"
+      }
+    },
+    {
+      "path": "Sources/gor/SubtitleSampleGovernor.swift",
+      "sha256": "fe3793cff08a472617ba1ca2170cca700ca919c5e7760f0bddfd64b6ed2f98da",
+      "replacements": {
+        "Sources/gor/Subtitles/LiveCaption.swift": "22fd33b11dc597d4e818984ebe5a04a27539520fc904ca95a010162478e14866"
+      }
+    },
+    {
+      "path": "Sources/gor/SubtitleView.swift",
+      "sha256": "8eb5aaee942e087d92cba4644ac42ceef2c5decc488f76de51799585f8d29873",
+      "replacements": {
+        "Sources/gor/Subtitles/SubtitleView.swift": "3e10053423df5afcfcd28cc2de760f8478c2eb371e344f3e4aac3c3c5265d3eb"
+      }
+    },
+    {
+      "path": "Sources/gor/PPController.swift",
+      "sha256": "6510681b43161cac5c79479dea54fc4de9109721416034d1fb7689eb09040c3d",
+      "replacements": {
+        "Sources/gor/Stereo/VRStereoControlInput.swift": "d10c210417045168bc2c879653a3cd5130fb4cb254e96049b5b236eefadf9846",
+        "Sources/gor/Picture/Brightness.swift": "bc6c5dac08ab5690e1f62f0660ee2aa0cb5e9692a99204326b657ee5fa46cd68",
+        "Sources/gor/Player/PPController.swift": "2c8adc5ed998dfd156187496813ccd13f73f7ffab34f2657514fd84778eedff8",
+        "Sources/gor/Modes/MusicRowLabel.swift": "2aed8a32c44f48c7aec5802ccf8b761904bb5dfa59500a36de2c8078f1e5c228",
+        "Sources/gor/Player/PlayerViewStub.swift": "8a9e5b71a22e874601fde41e8579f9210db7cc9f1511f931dbd31d91a20a5fb3",
+        "Sources/gor/App/Build.swift": "439d0fa68ea4749c8de843ee18cf4accee00a2afcb7c19771bd2cab4eb54c6b6",
+        "Sources/gor/Session/Diag.swift": "28dad9f5d9dbaec5c1fb0702bf6ec3528c70e00f0a683a33f4a75f956bd1907e"
+      }
+    },
+    {
+      "path": "Sources/gor/PPController_Features.swift",
+      "sha256": "d500d0751559898df0a4bdae750c2a7a84aff2de5c155746aabda71b32eeeada",
+      "replacements": {
+        "Sources/gor/Modes/MusicModeController.swift": "4274ef855ba067960ee785fde4e49d3203068a6c177d3df1de29146fccc3b50b",
+        "Sources/gor/Modes/IPTVModeController.swift": "26dadce883a81b86a5925051219b571f6cb4ae37c2f56fdfe847fc42472563ec",
+        "Sources/gor/Camera/BlinkCommandRoute.swift": "ff074e9dba8de9fe85143d204a9b3e1667ea41aaa90de19cd77770a3cb6534f7",
+        "Sources/gor/Camera/CaptureConsumerRules.swift": "56f5b0b802ca54baec6f05bdf2151b16cadb7811aab7f893d3d67cc03b68899a",
+        "Sources/gor/Stereo/VR180Controller.swift": "4728c9b8773d28d81549c8d0a5435fbc7b197b8b5a03c121a9066a413cb5096d",
+        "Sources/gor/Picture/Brightness.swift": "bc6c5dac08ab5690e1f62f0660ee2aa0cb5e9692a99204326b657ee5fa46cd68",
+        "Sources/gor/Player/Input.swift#InputController.swift": "678758565bbfc7005fe6a8670dd4710611738a5a1581311d7e916a271503888a",
+        "Sources/gor/Player/Input.swift#DragDropHandler.swift": "16e217064f814b612115382f9bc593b1d21cd70ab0b7c09163e1ac6bed03dd50"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeD.swift",
+      "sha256": "9fce9e1edd33ac101d5483c31814925f64d9afba06e79f945d8d30be6c6c1b90",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53",
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9",
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a",
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e",
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/ThreeD.swift",
+      "sha256": "2b06e395bbe7dfbfaeb2a242336097f1b1db48e8d09da867f8ed6ce03e08a51e",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53",
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9",
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a",
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e",
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/InputController.swift",
+      "sha256": "49b589859de42e38ffa05fea504d71c42d7d84f2679029dcced767740028f259",
+      "replacements": {
+        "Sources/gor/Player/Input.swift#InputController.swift": "678758565bbfc7005fe6a8670dd4710611738a5a1581311d7e916a271503888a"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/DragDropHandler.swift",
+      "sha256": "44f6b8ee47cc2a5bbf404cadafdb654c9dc002c1ed03bc2d2ce4942fde37b332",
+      "replacements": {
+        "Sources/gor/Player/Input.swift#DragDropHandler.swift": "16e217064f814b612115382f9bc593b1d21cd70ab0b7c09163e1ac6bed03dd50"
+      }
+    },
+    {
+      "path": "Sources/gor/GorCore/Diag.swift",
+      "sha256": "c8a9d49477962cb33ccc6bac0578c380fb309dd029797ee7df7dcf2ad895e121",
+      "replacements": {
+        "Sources/gor/Session/Diag.swift": "28dad9f5d9dbaec5c1fb0702bf6ec3528c70e00f0a683a33f4a75f956bd1907e"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/GeomTrace.swift",
+      "sha256": "6b4288e3f6f89b93220d7afd5f50bea7019ec477fbc22ae13d7e90f85484dddc",
+      "replacements": {
+        "Sources/gor/Session/Diag.swift": "28dad9f5d9dbaec5c1fb0702bf6ec3528c70e00f0a683a33f4a75f956bd1907e"
+      }
+    },
+    {
+      "path": "Sources/gor/GorPlatformMac/GORResources.swift",
+      "sha256": "d94c3244ba7adc4ef87d85e94d9de573950d770c2885073d978b17c6a19484ac",
+      "replacements": {
+        "Sources/gor/App/Build.swift": "439d0fa68ea4749c8de843ee18cf4accee00a2afcb7c19771bd2cab4eb54c6b6"
+      }
+    },
+    {
+      "path": "Sources/gor/GorCore/BuildID.swift",
+      "sha256": "544881ae92b8f6b4235ed47b70c14f4997ee10a05faa06d877d5bf8f3df80365",
+      "replacements": {
+        "Sources/gor/App/Build.swift": "439d0fa68ea4749c8de843ee18cf4accee00a2afcb7c19771bd2cab4eb54c6b6"
+      }
+    },
+    {
+      "path": "Sources/gor/GorCore/StableCacheKey.swift",
+      "sha256": "06ab2fa85040c2ae44d953cfc29d583db2b804d59c7cc3e8abc4876e3a790ef5",
+      "replacements": {
+        "Sources/gor/App/Build.swift": "439d0fa68ea4749c8de843ee18cf4accee00a2afcb7c19771bd2cab4eb54c6b6"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/SeededRandomNumberGenerator.swift",
+      "sha256": "5c74f2097d44ae358decb04031097a6b83face3c34f7107a541838a6c24d058f",
+      "replacements": {
+        "Sources/gor/App/Build.swift": "439d0fa68ea4749c8de843ee18cf4accee00a2afcb7c19771bd2cab4eb54c6b6"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/BrightnessController.swift",
+      "sha256": "b63c6bb391f53494fe740e4b3a964943426af74f9cda0534bb4c723d161bbdea",
+      "replacements": {
+        "Sources/gor/Picture/Brightness.swift": "bc6c5dac08ab5690e1f62f0660ee2aa0cb5e9692a99204326b657ee5fa46cd68"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/BrightnessReadCache.swift",
+      "sha256": "e3b41206bfcdf56dfd88966bed799216e4beb5ae68fac9817801fd039367cd24",
+      "replacements": {
+        "Sources/gor/Picture/Brightness.swift": "bc6c5dac08ab5690e1f62f0660ee2aa0cb5e9692a99204326b657ee5fa46cd68"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/ContentAdaptiveDimming.swift",
+      "sha256": "e9c99a7f4c90a796a7f46bbdbccf2d58e30d65ff30a41f72f17929e50d307c15",
+      "replacements": {
+        "Sources/gor/Picture/Brightness.swift": "bc6c5dac08ab5690e1f62f0660ee2aa0cb5e9692a99204326b657ee5fa46cd68"
+      }
+    },
+    {
+      "path": "Sources/gor/GorSubtitlesUI/SubtitleView.swift",
+      "sha256": "8eb5aaee942e087d92cba4644ac42ceef2c5decc488f76de51799585f8d29873",
+      "replacements": {
+        "Sources/gor/Subtitles/SubtitleView.swift": "3e10053423df5afcfcd28cc2de760f8478c2eb371e344f3e4aac3c3c5265d3eb"
+      }
+    },
+    {
+      "path": "Sources/gor/Subtitles/SubtitleTiltGeometry.swift",
+      "sha256": "204496360f173b50ed42f399e79b14cf77cb9d7b3c0833247f4e30d1af064abe",
+      "replacements": {
+        "Sources/gor/Subtitles/SubtitleView.swift": "3e10053423df5afcfcd28cc2de760f8478c2eb371e344f3e4aac3c3c5265d3eb"
+      }
+    },
+    {
+      "path": "Sources/gor/Subtitles/SubtitlePreferences.swift",
+      "sha256": "b9d27a54dc0af5dd37504f289bf2240deb923b0df3c14271a64d39eb6efece5f",
+      "replacements": {
+        "Sources/gor/Subtitles/SubtitleView.swift": "3e10053423df5afcfcd28cc2de760f8478c2eb371e344f3e4aac3c3c5265d3eb"
+      }
+    },
+    {
+      "path": "Sources/gor/GorSubtitles/LiveCaptionController.swift",
+      "sha256": "d749b6d29a80423faa9e66d8b274b7103b4ce477c57ee3c54c7ed861c4c04da3",
+      "replacements": {
+        "Sources/gor/Subtitles/LiveCaption.swift": "22fd33b11dc597d4e818984ebe5a04a27539520fc904ca95a010162478e14866"
+      }
+    },
+    {
+      "path": "Sources/gor/GorSubtitles/SubtitleSampleGovernor.swift",
+      "sha256": "fe3793cff08a472617ba1ca2170cca700ca919c5e7760f0bddfd64b6ed2f98da",
+      "replacements": {
+        "Sources/gor/Subtitles/LiveCaption.swift": "22fd33b11dc597d4e818984ebe5a04a27539520fc904ca95a010162478e14866"
+      }
+    },
+    {
+      "path": "Sources/gor/GorPlatformMac/QuitChildKiller.swift",
+      "sha256": "ffbea2bab58dc393d3d0d74fad7752afef587c181c9f426013b4080b70fe607a",
+      "replacements": {
+        "Sources/gor/Platform/QuitChildKiller.swift": "ffbea2bab58dc393d3d0d74fad7752afef587c181c9f426013b4080b70fe607a"
+      }
+    },
+    {
+      "path": "Sources/gor/GorPlatformMac/OverlaySpaceGate.swift",
+      "sha256": "b78a82df465755b61f695a10f6121f13a081ba40ff9cf76da7c075e06125fff9",
+      "replacements": {
+        "Sources/gor/Platform/Windowing.swift": "353b655037a9c8f6b836398d40855aa272571ab02d8942fa118c2f746f05fcbe"
+      }
+    },
+    {
+      "path": "Sources/gor/GorPlatformMac/PanelFocus.swift",
+      "sha256": "ed945c8ac1050e41949ad19f34c42fe176c74ef1ef5cc35bb91aa35e7796381b",
+      "replacements": {
+        "Sources/gor/Platform/Windowing.swift": "353b655037a9c8f6b836398d40855aa272571ab02d8942fa118c2f746f05fcbe"
+      }
+    },
+    {
+      "path": "Sources/gor/GorPlatformMac/PanelFocusTraversal.swift",
+      "sha256": "3e1a34f112600388f6317285289c98669320dd8b5c3c85e14a7ce114693fd78f",
+      "replacements": {
+        "Sources/gor/Platform/Windowing.swift": "353b655037a9c8f6b836398d40855aa272571ab02d8942fa118c2f746f05fcbe"
+      }
+    },
+    {
+      "path": "Sources/gor/GorPlatformMac/PlayerSessionBarrierAdapter.swift",
+      "sha256": "1284739f03fc3a4fbde17bbb5d1c484deeff4f01e5b8d81c24332f35eb4ade80",
+      "replacements": {
+        "Sources/gor/Session/PlayerSessionBarrierAdapter.swift": "1284739f03fc3a4fbde17bbb5d1c484deeff4f01e5b8d81c24332f35eb4ade80"
+      }
+    },
+    {
+      "path": "Sources/gor/GorPlatformMac/PlayerSessionContext.swift",
+      "sha256": "ba0946edaaa7164957ddeb36de8562b3884b4bad4e40d06302351df79c30eeca",
+      "replacements": {
+        "Sources/gor/Session/PlayerSessionContext.swift": "ba0946edaaa7164957ddeb36de8562b3884b4bad4e40d06302351df79c30eeca"
+      }
+    },
+    {
+      "path": "Sources/gor/GorPlatformMac/PlayerSessionDrainPlan.swift",
+      "sha256": "67583dc90d38415f6c12559dcd91dbe8d49e19fb8c09e87c5f85f94a91791d14",
+      "replacements": {
+        "Sources/gor/Session/PlayerSessionDrainPlan.swift": "67583dc90d38415f6c12559dcd91dbe8d49e19fb8c09e87c5f85f94a91791d14"
+      }
+    },
+    {
+      "path": "Sources/gor/GorPlatformMac/PlayerSessionFileTransport.swift",
+      "sha256": "90787950854b69c468485cd58179f652fdacebdd053dbc77969412a92f186885",
+      "replacements": {
+        "Sources/gor/Session/PlayerSessionFileTransport.swift": "90787950854b69c468485cd58179f652fdacebdd053dbc77969412a92f186885"
+      }
+    },
+    {
+      "path": "Sources/gor/GorPlatformMac/PlayerSessionNativeSink.swift",
+      "sha256": "6dea9abe4df8db32fd5ac0f8c6c4cd92a085f4f9d4cf330608dd7cc994109315",
+      "replacements": {
+        "Sources/gor/Session/PlayerSessionNativeSink.swift": "6dea9abe4df8db32fd5ac0f8c6c4cd92a085f4f9d4cf330608dd7cc994109315"
+      }
+    },
+    {
+      "path": "Sources/gor/GorPlatformMac/PlayerSessionPipeDrain.swift",
+      "sha256": "5014113f7b6222e3fb40d30f01d16c90d0a0ce598ae94243867e68369dd4915b",
+      "replacements": {
+        "Sources/gor/Session/PlayerSessionPipeDrain.swift": "5014113f7b6222e3fb40d30f01d16c90d0a0ce598ae94243867e68369dd4915b"
+      }
+    },
+    {
+      "path": "Sources/gor/GorPlatformMac/PlayerRuntimeResources.swift",
+      "sha256": "00f375e5ee4b41fab7e189eea8a89ca4abe4e863d7f1ac0f051ad5d16f4f8b0b",
+      "replacements": {
+        "Sources/gor/Session/PlayerRuntimeResources.swift": "00f375e5ee4b41fab7e189eea8a89ca4abe4e863d7f1ac0f051ad5d16f4f8b0b"
+      }
+    },
+    {
+      "path": "Sources/gor/GorPlatformMac/PlayerTorrentEndpoint.swift",
+      "sha256": "9c6a162973b00c69a6552e8983d3623912cd0325389ba02bb03528abe6cce814",
+      "replacements": {
+        "Sources/gor/Session/PlayerTorrentEndpoint.swift": "9c6a162973b00c69a6552e8983d3623912cd0325389ba02bb03528abe6cce814"
+      }
+    },
+    {
+      "path": "Sources/gor/GorPlatformMac/RealtimeProbe.swift",
+      "sha256": "e237e2976f6328a319482e9ae3f09d0e59b877535081118e5df2c3e9453c4a38",
+      "replacements": {
+        "Sources/gor/Stereo/RealtimeProbe.swift": "e237e2976f6328a319482e9ae3f09d0e59b877535081118e5df2c3e9453c4a38"
+      }
+    },
+    {
+      "path": "Sources/gor/Core/Diag.swift",
+      "sha256": "28dad9f5d9dbaec5c1fb0702bf6ec3528c70e00f0a683a33f4a75f956bd1907e",
+      "replacements": {
+        "Sources/gor/Session/Diag.swift": "28dad9f5d9dbaec5c1fb0702bf6ec3528c70e00f0a683a33f4a75f956bd1907e"
+      }
+    },
+    {
+      "path": "Sources/gor/Display/Brightness.swift",
+      "sha256": "bc6c5dac08ab5690e1f62f0660ee2aa0cb5e9692a99204326b657ee5fa46cd68",
+      "replacements": {
+        "Sources/gor/Picture/Brightness.swift": "bc6c5dac08ab5690e1f62f0660ee2aa0cb5e9692a99204326b657ee5fa46cd68"
+      }
+    },
+    {
+      "path": "Sources/gor/GorEffectsModel/LookToolsRoute.swift",
+      "sha256": "3208c01f3c9831bc4b97b5221f20a48e4e9e063fa208bdb89bde19b52d91ca13",
+      "replacements": {
+        "Sources/gor/Stereo/LookToolsRoute.swift": "3208c01f3c9831bc4b97b5221f20a48e4e9e063fa208bdb89bde19b52d91ca13"
+      }
+    },
+    {
+      "path": "Sources/gor/Viewport/CropDetector.swift",
+      "sha256": "c0fec5c30bd87cb81e5273e719691dce73e44209e0e6b72989dbd5e6af2ab6f1",
+      "replacements": {
+        "Sources/gor/Picture/CropDetector.swift": "3302531e84a4eb8460fd59a00261ca8fc09c3124d28c49e5e0906a2c23164600"
+      }
+    },
+    {
+      "path": "Sources/gor/Viewport/Viewport.swift",
+      "sha256": "8fd512af160da3e9fda5a9da6e5c840e8850f7b2212af3f169af562d4b84ee19",
+      "replacements": {
+        "Sources/gor/Picture/Viewport.swift": "8fd512af160da3e9fda5a9da6e5c840e8850f7b2212af3f169af562d4b84ee19"
+      }
+    },
+    {
+      "path": "Sources/gor/Session/Build.swift",
+      "sha256": "175e9cd9c246cee3e95fe8e0a61da9d6d00b83091b26df993fac7c6ae10c4b9f",
+      "replacements": {
+        "Sources/gor/App/Build.swift": "439d0fa68ea4749c8de843ee18cf4accee00a2afcb7c19771bd2cab4eb54c6b6"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVBackend/StereoLookNativeCommands.swift",
+      "sha256": "7113a857ecb605bec22d606f1c833c56bf1c864e9f288d68b870b45c5dffa3f7",
+      "replacements": {
+        "Sources/gor/Stereo/StereoLookNativeCommands.swift": "7113a857ecb605bec22d606f1c833c56bf1c864e9f288d68b870b45c5dffa3f7"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVBackend/StereoLookNativeInputOwner.swift",
+      "sha256": "8cea18220eb0da5186d0bdc4e4a92e70688d24f4e03a6a976fffbe038c676bce",
+      "replacements": {
+        "Sources/gor/Stereo/StereoLookNativeInputOwner.swift": "8cea18220eb0da5186d0bdc4e4a92e70688d24f4e03a6a976fffbe038c676bce"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVBackend/StereoLookNativeIntentAdapter.swift",
+      "sha256": "ceae955eb4c7414c9c885f33a765c71151f8069f2afb78d8ad3911fff42fa54a",
+      "replacements": {
+        "Sources/gor/Stereo/StereoLookNativeIntentAdapter.swift": "ceae955eb4c7414c9c885f33a765c71151f8069f2afb78d8ad3911fff42fa54a"
+      }
+    },
+    {
+      "path": "Sources/gor/GorStereoUI/GazeCrosshairController.swift",
+      "sha256": "a56fd57b99c9af56f88cbb03ab2e9759a9a3e2a55cae6f0a86482b0d3dab076e",
+      "replacements": {
+        "Sources/gor/Stereo/GazeCrosshairController.swift": "a56fd57b99c9af56f88cbb03ab2e9759a9a3e2a55cae6f0a86482b0d3dab076e"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeD/Control.swift",
+      "sha256": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5",
+      "replacements": {
+        "Sources/gor/Stereo/Control.swift": "905d8052a1128dde00c4ebc1e20034777de369441038f36076f9cc34c0da0ce5"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeD/Depth.swift",
+      "sha256": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9",
+      "replacements": {
+        "Sources/gor/Stereo/Depth.swift": "f011750b5b5572a8f4b3a55a64b77aa3b943326ee6b57a1eb0100361d1b3afa9"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeD/Prepare.swift",
+      "sha256": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a",
+      "replacements": {
+        "Sources/gor/Stereo/Prepare.swift": "fb6af20d863ab6e04d0e566490d85e5d693e0314c08e2fe668460a25b9acb06a"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeD/Render.swift",
+      "sha256": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e",
+      "replacements": {
+        "Sources/gor/Stereo/Render.swift": "fe0e42e6e1e7e9ef4b5ddddb3a97e9bf776a026d91b93c733505b5646d47c98e"
+      }
+    },
+    {
+      "path": "Sources/gor/ThreeD/Source.swift",
+      "sha256": "a71d98dfadb470e36fd55c5ce0dbb21c7f143955bab6fc60fa2d6ceb028f2743",
+      "replacements": {
+        "Sources/gor/Stereo/Source.swift": "4c93a91c8a79b185ce6f2a5ad71f5facdf140b7293539e474505a60cc07c1c53"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/VR180Controller.swift",
+      "sha256": "4728c9b8773d28d81549c8d0a5435fbc7b197b8b5a03c121a9066a413cb5096d",
+      "replacements": {
+        "Sources/gor/Stereo/VR180Controller.swift": "4728c9b8773d28d81549c8d0a5435fbc7b197b8b5a03c121a9066a413cb5096d"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/VRDistanceModel.swift",
+      "sha256": "73bec20012095bcfda383fe6c1966907c1eef6eaeb9c17beeca07017254440e8",
+      "replacements": {
+        "Sources/gor/Stereo/VRDistanceModel.swift": "73bec20012095bcfda383fe6c1966907c1eef6eaeb9c17beeca07017254440e8"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/VRStereoControlInput.swift",
+      "sha256": "d10c210417045168bc2c879653a3cd5130fb4cb254e96049b5b236eefadf9846",
+      "replacements": {
+        "Sources/gor/Stereo/VRStereoControlInput.swift": "d10c210417045168bc2c879653a3cd5130fb4cb254e96049b5b236eefadf9846"
+      }
+    },
+    {
+      "path": "Sources/gor/Session/RealtimeProbe.swift",
+      "sha256": "e237e2976f6328a319482e9ae3f09d0e59b877535081118e5df2c3e9453c4a38",
+      "replacements": {
+        "Sources/gor/Stereo/RealtimeProbe.swift": "e237e2976f6328a319482e9ae3f09d0e59b877535081118e5df2c3e9453c4a38"
+      }
+    },
+    {
+      "path": "Sources/gor/Picture/LookToolsRoute.swift",
+      "sha256": "3208c01f3c9831bc4b97b5221f20a48e4e9e063fa208bdb89bde19b52d91ca13",
+      "replacements": {
+        "Sources/gor/Stereo/LookToolsRoute.swift": "3208c01f3c9831bc4b97b5221f20a48e4e9e063fa208bdb89bde19b52d91ca13"
+      }
+    },
+    {
+      "path": "Sources/gor/Picture/AdaptiveColor.swift",
+      "sha256": "2fd63b55e52d7e97a5b21a21856583137373c4fa8bfa52f167133d08bb5be1d6",
+      "replacements": {
+        "Sources/gor/UI/AdaptiveColor.swift": "2fd63b55e52d7e97a5b21a21856583137373c4fa8bfa52f167133d08bb5be1d6"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/MusicModeController.swift",
+      "sha256": "4274ef855ba067960ee785fde4e49d3203068a6c177d3df1de29146fccc3b50b",
+      "replacements": {
+        "Sources/gor/Modes/MusicModeController.swift": "4274ef855ba067960ee785fde4e49d3203068a6c177d3df1de29146fccc3b50b"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/MusicRowLabel.swift",
+      "sha256": "2aed8a32c44f48c7aec5802ccf8b761904bb5dfa59500a36de2c8078f1e5c228",
+      "replacements": {
+        "Sources/gor/Modes/MusicRowLabel.swift": "2aed8a32c44f48c7aec5802ccf8b761904bb5dfa59500a36de2c8078f1e5c228"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/IPTVModeController.swift",
+      "sha256": "54950012a42418e48e157012cdea762a44313054311c0e1d304578161a5b0b29",
+      "replacements": {
+        "Sources/gor/Modes/IPTVModeController.swift": "26dadce883a81b86a5925051219b571f6cb4ae37c2f56fdfe847fc42472563ec"
+      }
+    },
+    {
+      "path": "Sources/gor/GorUI/MusicController.swift",
+      "sha256": "69cfd7b3543e5904febd8b19b1d5101b6a85653e63a31912b9d26d1d2dce7b76",
+      "replacements": {
+        "Sources/gor/Modes/MusicController.swift": "53d3875837dcb7560003064ada2d7b81c58dc1be8ae01dfdc766b361252a8d18"
+      }
+    },
+    {
+      "path": "Sources/gor/GorUI/MusicPanel.swift",
+      "sha256": "c671112da430988b090b17e1b9565d181c73993d60e7113365f05cfd4d2ab27f",
+      "replacements": {
+        "Sources/gor/Modes/MusicPanel.swift": "0dbba831852f4b28f1cdf9cfc0379532547606a4fafba891f0b4c84eb8e48e8f"
+      }
+    },
+    {
+      "path": "Sources/gor/GorSources/ArchiveBrowser.swift",
+      "sha256": "25472e0eb5da384cda6b5823dc851c8471e002c9223e1949937055b9e98608bb",
+      "replacements": {
+        "Sources/gor/Media/ArchiveBrowser.swift": "25472e0eb5da384cda6b5823dc851c8471e002c9223e1949937055b9e98608bb"
+      }
+    },
+    {
+      "path": "Sources/gor/GorSources/ArchiveLibrary.swift",
+      "sha256": "772942f9057fe2486eac455c145f544e7101238dc52e1693e0aee32cf5a6f1a3",
+      "replacements": {
+        "Sources/gor/Media/ArchiveLibrary.swift": "772942f9057fe2486eac455c145f544e7101238dc52e1693e0aee32cf5a6f1a3"
+      }
+    },
+    {
+      "path": "Sources/gor/GorSources/ArchiveRandom.swift",
+      "sha256": "d06654d43b0d6688beddf28e069826baaf864855e8f044c0e5363923ef98ee96",
+      "replacements": {
+        "Sources/gor/Media/ArchiveRandom.swift": "d06654d43b0d6688beddf28e069826baaf864855e8f044c0e5363923ef98ee96"
+      }
+    },
+    {
+      "path": "Sources/gor/GorSources/CDPSession.swift",
+      "sha256": "7907dc6d76f4b7aa00c4de736cd5914525ec9043020bffe9435b5c958655b05e",
+      "replacements": {
+        "Sources/gor/Media/CDPSession.swift": "7907dc6d76f4b7aa00c4de736cd5914525ec9043020bffe9435b5c958655b05e"
+      }
+    },
+    {
+      "path": "Sources/gor/GorSources/FileBrowser.swift",
+      "sha256": "5787101f65b62c289efa436cd6a744cfbe7c8f67d6ddd392040132682eabfaae",
+      "replacements": {
+        "Sources/gor/Media/FileBrowser.swift": "16ed8d4060686763667552e2cd47e33d99f80a91e1d0a91ebd29d58058af0dd4"
+      }
+    },
+    {
+      "path": "Sources/gor/GorSources/IPTV.swift",
+      "sha256": "d3c1ed6bf012926e74425437d2b62270c39f1e209f293960a4909719ebc0e0e8",
+      "replacements": {
+        "Sources/gor/Media/IPTV.swift": "d3c1ed6bf012926e74425437d2b62270c39f1e209f293960a4909719ebc0e0e8"
+      }
+    },
+    {
+      "path": "Sources/gor/GorSources/MagnetBrowser.swift",
+      "sha256": "172b3b240bfca5ac61a814ca744ea7d035520597c0e7f942a2fd481bc6f45e26",
+      "replacements": {
+        "Sources/gor/Media/MagnetBrowser.swift": "172b3b240bfca5ac61a814ca744ea7d035520597c0e7f942a2fd481bc6f45e26"
+      }
+    },
+    {
+      "path": "Sources/gor/GorSources/MegaStreamManager.swift",
+      "sha256": "950b772ebeab9c7591ffda65b0267e435f210a8275458899e81e922f2db774cc",
+      "replacements": {
+        "Sources/gor/Media/MegaStreamManager.swift": "950b772ebeab9c7591ffda65b0267e435f210a8275458899e81e922f2db774cc"
+      }
+    },
+    {
+      "path": "Sources/gor/GorSources/TorrentManager.swift",
+      "sha256": "8bac5223b130774b31596b8f7ceeec4a660965fcc619913039ad3ae819e7c2b4",
+      "replacements": {
+        "Sources/gor/Media/TorrentManager.swift": "fbd0359276a20fa5140ea5251c5a0a68ca65d639772b3922a6a079b9a37f35af"
+      }
+    },
+    {
+      "path": "Sources/gor/GorSources/TransferResolver.swift",
+      "sha256": "b433e500e71a5ef7e120350112926466ef697e341c72ff2651fbafb3c9d44a3b",
+      "replacements": {
+        "Sources/gor/Media/TransferResolver.swift": "b433e500e71a5ef7e120350112926466ef697e341c72ff2651fbafb3c9d44a3b"
+      }
+    },
+    {
+      "path": "Sources/gor/GorSources/TransferTicketContext.swift",
+      "sha256": "561cba0c7d3a3956eba7faf6df5a5962a1adabe0cf90432c557f6696c97c9820",
+      "replacements": {
+        "Sources/gor/Media/TransferTicketContext.swift": "561cba0c7d3a3956eba7faf6df5a5962a1adabe0cf90432c557f6696c97c9820"
+      }
+    },
+    {
+      "path": "Sources/gor/GorSources/WTSessionPipeDrain.swift",
+      "sha256": "40fe8e5d458a5e55a5a25d021735601fd246ffef2ef039446861f4c962d67fd3",
+      "replacements": {
+        "Sources/gor/Media/WTSessionPipeDrain.swift": "40fe8e5d458a5e55a5a25d021735601fd246ffef2ef039446861f4c962d67fd3"
+      }
+    },
+    {
+      "path": "Sources/gor/GorUI/SpineUI.swift",
+      "sha256": "e19af36d3bd31b97dc767e85c937742446efcdee4f3b9d6f732d36d6dfb00cca",
+      "replacements": {
+        "Sources/gor/UI/SpineUI.swift": "e19af36d3bd31b97dc767e85c937742446efcdee4f3b9d6f732d36d6dfb00cca"
+      }
+    },
+    {
+      "path": "Sources/gor/GorUI/SidebarUI.swift",
+      "sha256": "a7e2274b755dffc4dd8f0090b790dd0fe01bead81e5ad8b61c3e41002ed8e6a1",
+      "replacements": {
+        "Sources/gor/UI/SidebarUI.swift": "a7e2274b755dffc4dd8f0090b790dd0fe01bead81e5ad8b61c3e41002ed8e6a1"
+      }
+    },
+    {
+      "path": "Sources/gor/GorUI/MenuActions.swift",
+      "sha256": "6c65019bb0bbe68b6d22451166dc998e4f709df415dff5149141b00fec95507f",
+      "replacements": {
+        "Sources/gor/UI/MenuActions.swift": "6c65019bb0bbe68b6d22451166dc998e4f709df415dff5149141b00fec95507f"
+      }
+    },
+    {
+      "path": "Sources/gor/GorEffectsModel/PhotonFont.swift",
+      "sha256": "fa16facffeaea3719604f775628c2b6dc2b009acebf4b8da290ac560d0088eeb",
+      "replacements": {
+        "Sources/gor/UI/PhotonFont.swift": "724495ed72bb07cbdbec58e6581997d687bfe9f2c6d84c38208283936e8dff01"
+      }
+    },
+    {
+      "path": "Sources/gor/GorEffectsModel/VariationBroadcaster.swift",
+      "sha256": "2f762fe5ce7c091c6aba6f064845428d29eb187d315d6b791d5e3881f74fe1aa",
+      "replacements": {
+        "Sources/gor/UI/VariationBroadcaster.swift": "2f762fe5ce7c091c6aba6f064845428d29eb187d315d6b791d5e3881f74fe1aa"
+      }
+    },
+    {
+      "path": "Sources/gor/GorFit/IconBarFit.swift",
+      "sha256": "52415ab0b3cf991afa2c5aac4afb89f1109fa87e4442b299d368717f3e7fc613",
+      "replacements": {
+        "Sources/gor/UI/IconBarFit.swift": "52415ab0b3cf991afa2c5aac4afb89f1109fa87e4442b299d368717f3e7fc613"
+      }
+    },
+    {
+      "path": "Sources/gor/GorUI/FlatControlRefreshGate.swift",
+      "sha256": "b990c0f7031831097bf94b52391e1cfa681ef845e9cbd85bd5aa86192455fd2a",
+      "replacements": {
+        "Sources/gor/UI/FlatControlRefreshGate.swift": "b990c0f7031831097bf94b52391e1cfa681ef845e9cbd85bd5aa86192455fd2a"
+      }
+    },
+    {
+      "path": "Sources/gor/GorUI/PhotonActiveEngineHeader.swift",
+      "sha256": "17e69da824f24bc73bf2786f85e5ef068aadc2ea0e14b1b275807d5bbff4cc08",
+      "replacements": {
+        "Sources/gor/UI/PhotonActiveEngineHeader.swift": "17e69da824f24bc73bf2786f85e5ef068aadc2ea0e14b1b275807d5bbff4cc08"
+      }
+    },
+    {
+      "path": "Sources/gor/GorEffectsModel/AdaptiveColor.swift",
+      "sha256": "2fd63b55e52d7e97a5b21a21856583137373c4fa8bfa52f167133d08bb5be1d6",
+      "replacements": {
+        "Sources/gor/UI/AdaptiveColor.swift": "2fd63b55e52d7e97a5b21a21856583137373c4fa8bfa52f167133d08bb5be1d6"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/BlinkCommandRoute.swift",
+      "sha256": "ff074e9dba8de9fe85143d204a9b3e1667ea41aaa90de19cd77770a3cb6534f7",
+      "replacements": {
+        "Sources/gor/Camera/BlinkCommandRoute.swift": "ff074e9dba8de9fe85143d204a9b3e1667ea41aaa90de19cd77770a3cb6534f7"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/CaptureConsumerRules.swift",
+      "sha256": "56f5b0b802ca54baec6f05bdf2151b16cadb7811aab7f893d3d67cc03b68899a",
+      "replacements": {
+        "Sources/gor/Camera/CaptureConsumerRules.swift": "56f5b0b802ca54baec6f05bdf2151b16cadb7811aab7f893d3d67cc03b68899a"
+      }
+    },
+    {
+      "path": "Sources/gor/GorCaptureModel/ScreenCaptureEngine.swift",
+      "sha256": "a5b3ac4613179ef0c0c2a415c28ce7fe4c60d70e80cb1800f73c1777a2ad650a",
+      "replacements": {
+        "Sources/gor/Camera/ScreenCaptureEngine.swift": "a5b3ac4613179ef0c0c2a415c28ce7fe4c60d70e80cb1800f73c1777a2ad650a"
+      }
+    },
+    {
+      "path": "Sources/gor/GorMPVBackend/MPVCommand.swift",
+      "sha256": "9158fbe3898b9dadea17e1470bc0ce8aee3dd54c962968dc920b33a4c0f8ad2b",
+      "replacements": {
+        "Sources/gor/Engine/MPVCommand.swift": "ac024d2ba83a39ad78c5b642dac0a985fd2adf300f1da5ecba753213f8fbfe86"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVBackend/GorAVAppGate.swift",
+      "sha256": "525dd07e46a622d560071d58883bd698dd78a984ae8dae54d1bf405b6a52ecff",
+      "replacements": {
+        "Sources/gor/Engine/GorAVAppGate.swift": "525dd07e46a622d560071d58883bd698dd78a984ae8dae54d1bf405b6a52ecff"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVBackend/GorAVHostMotion.swift",
+      "sha256": "74c7fe2edc868045d8903071a4000f466d17071402aed880d5eb6d3977d7ea19",
+      "replacements": {
+        "Sources/gor/Engine/GorAVHostMotion.swift": "74c7fe2edc868045d8903071a4000f466d17071402aed880d5eb6d3977d7ea19"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVBackend/GorAVHostWindow.swift",
+      "sha256": "fff38e2579a418b46930dab72081efabedc3b44979a791cea1ec4a32f51c2a25",
+      "replacements": {
+        "Sources/gor/Engine/GorAVHostWindow.swift": "fff38e2579a418b46930dab72081efabedc3b44979a791cea1ec4a32f51c2a25"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVBackend/GorAVLocalOffer.swift",
+      "sha256": "7af57f2ed18b7a64f250fe2f21f0f7d6351a3bd03b8837989d46f6513b29ff31",
+      "replacements": {
+        "Sources/gor/Engine/GorAVLocalOffer.swift": "7af57f2ed18b7a64f250fe2f21f0f7d6351a3bd03b8837989d46f6513b29ff31"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVBackend/GorAVNativeGate.swift",
+      "sha256": "8c0c6abc1e60ac8b45c1ef6e607b76095c2edd81920c28251f43c9bb6d8e5c83",
+      "replacements": {
+        "Sources/gor/Engine/GorAVNativeGate.swift": "8c0c6abc1e60ac8b45c1ef6e607b76095c2edd81920c28251f43c9bb6d8e5c83"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVBackend/GorAVPlayerHost.swift",
+      "sha256": "0bafe010ea57aa3a0809f1224ba6fc8f0a3fa28d9a5ef5f0b8cd7bff588df800",
+      "replacements": {
+        "Sources/gor/Engine/GorAVPlayerHost.swift": "0bafe010ea57aa3a0809f1224ba6fc8f0a3fa28d9a5ef5f0b8cd7bff588df800"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVBackend/GorAVPostOpenFallback.swift",
+      "sha256": "73d66375596154e9df22649cd6d522911e7067d6dad4c18b434a48c408f0a33d",
+      "replacements": {
+        "Sources/gor/Engine/GorAVPostOpenFallback.swift": "73d66375596154e9df22649cd6d522911e7067d6dad4c18b434a48c408f0a33d"
+      }
+    },
+    {
+      "path": "Sources/gor/GorAVBackend/GorAVStreamAdmission.swift",
+      "sha256": "e3d95e54dd3c87a7c30864165d54c2e76d058f02ff1fc85a5de8d7170337c773",
+      "replacements": {
+        "Sources/gor/Engine/GorAVStreamAdmission.swift": "e3d95e54dd3c87a7c30864165d54c2e76d058f02ff1fc85a5de8d7170337c773"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/PPController.swift",
+      "sha256": "7bd959a8e6bf574c2fb57f7da9e902ada69912ff3211f8a3892ef2b4961e09cf",
+      "replacements": {
+        "Sources/gor/Player/PPController.swift": "2c8adc5ed998dfd156187496813ccd13f73f7ffab34f2657514fd84778eedff8"
+      }
+    },
+    {
+      "path": "Sources/gor/gor/PlayerViewStub.swift",
+      "sha256": "8a9e5b71a22e874601fde41e8579f9210db7cc9f1511f931dbd31d91a20a5fb3",
+      "replacements": {
+        "Sources/gor/Player/PlayerViewStub.swift": "8a9e5b71a22e874601fde41e8579f9210db7cc9f1511f931dbd31d91a20a5fb3"
+      }
+    },
+    {
+      "path": "Sources/gor/Controller/Input.swift",
+      "sha256": "d2d8b3f407132907ff37b99c4fa7f4ccc8dae5c78786ee1eb3648da0e46c9378",
+      "replacements": {
+        "Sources/gor/Player/Input.swift": "3c86acc0e30e7f5e5b46ebee350f2046369f42a01862094c6fb7177873b702b5"
+      }
+    },
+    {
+      "path": "Sources/gor/GorUI/PPControllerEngineRefusalHUD.swift",
+      "sha256": "19c4bb316c83aee30d8506524a7469336122f113b7e75b58875ea627d26e7b23",
+      "replacements": {
+        "Sources/gor/Player/PPControllerEngineRefusalHUD.swift": "19c4bb316c83aee30d8506524a7469336122f113b7e75b58875ea627d26e7b23"
+      }
+    },
+    {
+      "path": "Sources/gor/GorUI/PPControllerMenuQueries.swift",
+      "sha256": "1b3125518ba884128df777a7c0968d2576955fc69d719b7962d7750a40bc5e67",
+      "replacements": {
+        "Sources/gor/Player/PPControllerMenuQueries.swift": "03b606dc4b138878f981b1c39939ccb66540e7200f5db56744c5db432dc48303"
+      }
+    },
+    {
+      "path": "Sources/gor/GorPlaybackModel/EngineObservation.swift",
+      "sha256": "c8ce37ab1ff7a734de70b76b8d1ba9cea64bd75031b98ac0fe2d4dc2bc83def6",
+      "replacements": {
+        "Sources/gor/Player/EngineObservation.swift": "c8ce37ab1ff7a734de70b76b8d1ba9cea64bd75031b98ac0fe2d4dc2bc83def6"
+      }
+    },
+    {
+      "path": "Sources/gor/main.swift",
+      "sha256": "2c2f4298d0a3ea01d59e716bb7f18860afda64af7034d204d045bca5d24e2436",
+      "replacements": {
+        "Sources/gor/App/main.swift": "2c2f4298d0a3ea01d59e716bb7f18860afda64af7034d204d045bca5d24e2436"
+      }
+    },
+    {
+      "path": "Sources/gor/AppDelegate.swift",
+      "sha256": "32bf4a1a3b0df9c4b96a34d78499c6da3189726cd3746bda765bf2408e659f6b",
+      "replacements": {
+        "Sources/gor/App/AppDelegate.swift": "a393fb3793d60f6dd889cb328e2d2420f583ff7ba82490ccbd927da11bdc8809"
+      },
+      "accepted_sha256": [
+        "32bf4a1a3b0df9c4b96a34d78499c6da3189726cd3746bda765bf2408e659f6b",
+        "72baa39bf94db09b27bd819ed0d2916a6538ce69fbf3485c1d4347121d298fe2"
+      ]
+    },
+    {
+      "path": "Sources/gor/GorPlatformMac/IndependentDocumentRouter.swift",
+      "sha256": "3a62584615656f3e3da906d9d64b2b67ec39660e3ccd9b1bbbdf376174358aa8",
+      "replacements": {
+        "Sources/gor/App/IndependentDocumentRouter.swift": "3a62584615656f3e3da906d9d64b2b67ec39660e3ccd9b1bbbdf376174358aa8"
+      }
+    },
+    {
+      "path": "Sources/gor/Core/Build.swift",
+      "sha256": "175e9cd9c246cee3e95fe8e0a61da9d6d00b83091b26df993fac7c6ae10c4b9f",
+      "replacements": {
+        "Sources/gor/App/Build.swift": "439d0fa68ea4749c8de843ee18cf4accee00a2afcb7c19771bd2cab4eb54c6b6"
+      }
+    }
+  ]
+}

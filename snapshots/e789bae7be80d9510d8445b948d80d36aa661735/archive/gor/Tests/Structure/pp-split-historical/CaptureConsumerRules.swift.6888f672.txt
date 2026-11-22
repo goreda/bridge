@@ -1,0 +1,22 @@
+import AppKit
+import CoreImage
+import Foundation
+import IOKit
+import IOKit.ps
+import CoreGraphics
+import Darwin
+import QuartzCore
+/// Which camera consumers should run for the current feature state. Pure so the harness
+/// pins the composition; VR180Controller.updateCaptureConsumers applies the edges.
+enum CaptureConsumerRules {
+    /// Both consumers use loaded-video authority; paused video must still respond to head motion.
+    static func headShouldRun(headTrackingEnabled: Bool, playbackActive: Bool) -> Bool {
+        headTrackingEnabled && playbackActive
+    }
+    /// Blink leg: needs frames whenever blink is on in VR with a file loaded - pause must NOT
+    /// stop it (loadedVideoActive, not playbackActive), or the pause toggle could never resume.
+    static func blinkShouldRun(blinkOn: Bool, vrEnabled: Bool, loadedVideoActive: Bool, cameraAllowed: Bool) -> Bool {
+        blinkOn && vrEnabled && loadedVideoActive && cameraAllowed
+    }
+}
+

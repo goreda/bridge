@@ -1,0 +1,49 @@
+{
+  "result": "PASS admission/cap controls and source characterizations",
+  "controls": [
+    {
+      "case": "all current extension types case-insensitive",
+      "count": 26
+    },
+    {
+      "case": "directory-first, hidden skip, nonplayable filter"
+    },
+    {
+      "case": "case-insensitive query, directory-first, hidden omission"
+    },
+    {
+      "case": "500 admitted result bound"
+    },
+    {
+      "case": "unplayable entries do not consume admitted result cap"
+    },
+    {
+      "case": "no match stays empty"
+    }
+  ],
+  "characterizations": [
+    {
+      "case": "removed file after directory listing",
+      "observed": "ignored fileExists return admits stale playable name",
+      "scope": "synthetic TOCTOU, real FileManager race unverified"
+    },
+    {
+      "case": "cap before alphabetical sort",
+      "observed": "first enumerated 500 admitted; globally earlier matching item can be omitted",
+      "scope": "bounded-search policy characterization, enumeration order native dependent"
+    },
+    {
+      "case": "enumeration error represented as no contents",
+      "observed": "try? branch renders empty rows with no error state here",
+      "scope": "source path, actual permission failure/UI message not executed"
+    }
+  ],
+  "source_sha256": "48e3bc5d4f276af987d8613b00797845f5a7595123d1515b4e45193ddb683ee1",
+  "open": [
+    "actual FileManager symlink/permission/race/enumerator semantics",
+    "sorting Unicode/localized expectations",
+    "generation IO cancellation native timing",
+    "row/image/title/preview UI (not covered)"
+  ],
+  "scope": "Python enumeration/admission port + current Swift source guards, no filesystem/Swift/AppKit/UI scan"
+}

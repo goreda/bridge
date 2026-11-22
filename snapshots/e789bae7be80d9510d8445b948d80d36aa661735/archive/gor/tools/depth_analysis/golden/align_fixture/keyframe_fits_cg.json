@@ -1,0 +1,26 @@
+{
+ "provenance": "CG slice (/tmp/benchcg, 48f 360x640) VDA-S rel depth subsampled ::8; per-keyframe LSQ fits of VDA rel -> MoGe-2 metric (moge2_vits_normal.pt, num_tokens=600, resolution_level=5, finite-masked, s30 measurement 2026-11-09)",
+ "stride": 12,
+ "fits": [
+  [
+   0,
+   -0.05552039894369802,
+   1.4330988619781289
+  ],
+  [
+   12,
+   -0.09159202433396717,
+   1.653462194410493
+  ],
+  [
+   24,
+   -0.08961842539696176,
+   1.5884208919141205
+  ],
+  [
+   36,
+   -0.07055887097851363,
+   1.4526880800911222
+  ]
+ ]
+}
