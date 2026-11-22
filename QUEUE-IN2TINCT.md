@@ -24,3 +24,7 @@ Completed station scripts must not be reimplemented. All10 stations are integrat
 
 Queue maintainer applies/tests each usable return on its owned integration lane, then triggers Goreda handoff via coordinator. A failing return gets one concise failure line and stays for lab repair on the next pull. Refill below3 actionable rows from actual PLANv4/returns evidence; if row selection cannot be established, report queue low rather than fabricate work. Original owner lists below are preserved even where source work is already complete.
 
+
+## Selection evidence correction
+
+PLANv4 P1-P30 cells marked decided describe design decisions, NOT implementation state or proof that a row is unstarted. Exact execution status must come from actual STATUS/returns. P21-P23 already has an active renderer/native-wrapper owner and must not be assigned again. M2 native hardware/test-slot availability is not evidence of M2 daily-path milestone acceptance. L5v1.2 remains closed under199bw; do not reopen it. Pending exact IDs stay pending until the actual work record settles them.
