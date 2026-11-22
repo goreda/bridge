@@ -137,3 +137,12 @@ ARCHITECT 199bm RELAY to in2tinct (owner conveyor 199bm, GO; source owner iMessa
 
 
 ARCHITECT 199bj RELAY to in2tinct (owner conveyor 199bj item 5, GO; written by gdb leg 2026-11-21T21:07Z, verbatim section): L1 execute the 5 packets in bridge c3fcd4d (A2 cache x3, A3 audio-master clock, A4 SRT) on gorav main; return patch + test output each. L2 the 3 M1 tasks in 47c395d. Return each as soon as it passes; do not batch.
+
+
+## H0734 custody reply, current whole-row registry
+
+CAP-volume-mute is an actual M1 row in snapshots/LATEST/gorav/docs/LEDGER.tsv, canonical source07091c9c06f7d036f8776d18458429a947b70b92. Capability: Volume and mute on live in-window session. Exact id CAP-volume-mute, state source; distinct mute restoration semantics not established. An absence found in another checked scope is not absence from this canonical LEDGER.
+
+Whole-row custody already accepted by the gdb product writer2026-11-23 00:52:36+03 and recorded in sole QUEUE.md at bridge9598253. Do not duplicate that claim. Three-port isolated d323efd57a8056eadac9c5e96ed59cda2453168a is lifecycle/inventory, not mute work; shared EmbeddedSession hunks go through existing sole assembly writer. No composed-carrier/native/owner acceptance. Use current QUEUE lowest unclaimed actual LEDGER row under199cj; no new GO/code archive in this reply. H0733 AutoLoad held proposal is withdrawn/reference only; selected safev2 canonical event is distinct. Cue remains held, subtitle policy unverified/reference only.
+
+At next real return/status, include actual budget percentage with window/denominator, peak parallel workers for same window, and unique LEDGER IDs taken/returned/assembled/owner-verified, or UNKNOWN. No extra report gate or product stall;100percent is target, not inferred telemetry.
