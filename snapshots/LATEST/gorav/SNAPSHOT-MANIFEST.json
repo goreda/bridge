@@ -1,6 +1,6 @@
 {
   "source_repo": "goreda/gorav",
-  "source_commit": "984aa089a09257444ec9b50d50d29ebf7e8820a2",
+  "source_commit": "c7692865da375a53e3e727315ae936c9ec9e293e",
   "files": [
     {
       "path": "PLAN-v5-DRAFT.md",
@@ -10,8 +10,8 @@
     },
     {
       "path": "PLAN.md",
-      "sha256": "13bff2d3a978514e636ba08f2faffd47b69f11d2b7c761bb74d04336a5b249ed",
-      "bytes": 13790,
+      "sha256": "b6f2ffc180fb4c4d6bac5ed3d74b54d74ff344af784d9a8c615380db646881c9",
+      "bytes": 41493,
       "mode": "100644"
     },
     {
