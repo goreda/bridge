@@ -1,0 +1,26 @@
+path	responsibility	planned target	allowed-small reason	baseline id	vendor class	bulk_file_count	bulk_tree_sha256
+Sources/gor/GorSources/ArchiveBrowser.swift	ArchiveBrowser	GorSources		M6		-	-
+Sources/gor/GorSources/ArchiveLibrary.swift	ArchiveLibrary	GorSources		M7		-	-
+Sources/gor/GorSources/ArchiveRandom.swift	ArchiveRandom	GorSources		M7		-	-
+Sources/gor/GorSources/CDPSession.swift	CDPSession	GorSources		M7		-	-
+Sources/gor/GorSources/FileBrowser.swift	FileBrowser	GorSources		M6		-	-
+Sources/gor/GorSources/IPTV.swift	IPTV	GorSources		M7		-	-
+Sources/gor/GorSources/MagnetBrowser.swift	MagnetBrowser	GorSources		M7		-	-
+Sources/gor/GorSources/MegaStreamManager.swift	MegaStreamManager	GorSources		M7		-	-
+Sources/gor/GorSources/TorrentManager.swift	TorrentManager	GorSources		M7		-	-
+Sources/gor/GorSources/TransferResolver.swift	TransferResolver	GorSources		M7		-	-
+Sources/gor/GorSources/TransferTicketContext.swift	TransferTicketContext	GorSources	Main-queue captured transfer ticket metadata	M7		-	-
+NO-POLICY-ROW\tSources/gor/GorSources/WTSessionPipeDrain.swift
+Sources/gor/GorUI/SpineUI.swift	SpineUI	GorUI		M6		-	-
+Sources/gor/GorUI/SidebarUI.swift	SidebarUI	GorUI		M6		-	-
+Sources/gor/GorUI/MenuActions.swift	MenuActions	GorUI		M6		-	-
+Sources/gor/GorEffectsModel/PhotonFont.swift	PhotonFont	GorEffectsModel		M6		-	-
+Sources/gor/GorEffectsModel/VariationBroadcaster.swift	VariationBroadcaster	GorEffectsModel		M6		-	-
+Sources/gor/GorFit/IconBarFit.swift	IconBarFit	GorFit		M6		-	-
+Sources/gor/GorUI/FlatControlRefreshGate.swift	timer-only equality gate for control refresh	GorUI	Timer-only equality gate; direct layout, mode and pose publishers bypass it	M6		-	-
+Sources/gor/GorUI/PhotonActiveEngineHeader.swift	Annotate existing Photon header with actual engine and source identity only	gor		arch-199n			
+Sources/gor/gor/MusicModeController.swift	Byte-exact PP section MusicModeController	gor		M6		-	-
+Sources/gor/GorUI/MusicController.swift	MusicController	GorUI		M7		-	-
+Sources/gor/GorUI/MusicPanel.swift	MusicPanel	GorUI		M6		-	-
+Sources/gor/gor/MusicRowLabel.swift	Byte-exact PP section MusicRowLabel	gor		M6		-	-
+Sources/gor/gor/IPTVModeController.swift	Byte-exact PP section IPTVModeController	gor		M6		-	-
