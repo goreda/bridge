@@ -45,3 +45,5 @@ G7 qualification update supersedes prior baseline-unresolved notes: Ops matched/
 G7 latest filtered-log check supersedes earlier raw-receipt-gap note for the listed observed fields only. Bounded repair row complete; globalcapacity is not claimed or an invented follow-up requirement.
 
 Q4 CURRENT REVIEW SUCCESSOR: packets/199by-standing-queues/autocrop-v3-r4-review/ has713-line r4extract+binding. Ops actualSwift/architect review PENDING, not accepted. r3 remains knownRED archive. Local writer owns patch; lab/Goreda review partner only. PP async/generation proof exceeds extract evidence; request scoped projection if needed. No2ddshipgate.
+
+Q4 SUPERSEDING: r4KNOWN_BLOCKER generation-before-lock race and empty-plan raw-end write; r5localfix active. No redundantr4review. Waitr5safePP+extractprojection showing lock/token atomicity and plan validity, not extract-only inference. Station2dd was shipped23:44:17; no more station implementation work.
