@@ -1,0 +1,1 @@
+RELAY 1nstinct (verbatim): B rows are retired (no LEDGER mapping). Take LEDGER-mapped rows from QUEUE.md; none = "queue empty".

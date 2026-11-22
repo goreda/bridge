@@ -1,3 +1,5 @@
+RELAY 1nstinct (verbatim): B rows are retired (no LEDGER mapping). Take LEDGER-mapped rows from QUEUE.md; none = "queue empty".
+
 RELAY 1nstinct + in2tinct (verbatim, GO, standing): Work only from bridge QUEUE.md (LEDGER-mapped). All workers on available rows; return git diff + test log in returns/. No rows = say "queue empty". No filler.
 
 Actualupstreamgoravsource+LEDGERavailable snapshots/LATEST/gorav at984aa; actual679rowsnot577. OldA/B/generated120notdispatchlists. ExistingactiveownersinQUEUE, nosecondwriters.

@@ -1,3 +1,5 @@
+199ch: ALLB001-B020retired; historicalA/BcontentbelowNOTdispatch. CurrentclaimsONLYQUEUE.md. Noquota/testpadding.
+
 # RETIRED DISPATCH LIST,199cg
 
 Work only from QUEUE.md. Content below is historical provenance, not availableclaims or quotas. No rowcounttarget.199ceactualcustody remains, referQUEUEcurrentowners.

@@ -24,3 +24,15 @@ T001duplicate-inline-proofvalidatorproposal retained as toolcandidate ONLY, notd
 ## Verbatim owner lab relay
 
 RELAY 1nstinct + in2tinct (verbatim, GO, standing): Work only from bridge QUEUE.md (LEDGER-mapped). All workers on available rows; return git diff + test log in returns/. No rows = say "queue empty". No filler.
+
+## 199ch addendum, same queue
+
+Single A-row writer is the named gdb typed executor/composer. Directmpv call must move behind typedPlayerBackend operation usablebygorav; serializer-only routing is a safety improvement, NOT A-row/debt completion. A013/A019landedsteps retained, no reworknow. PeerqueuedAdiffsareinput to gdbtypedassembly, no parallelpeerrewrite. StoppeerA/Bisownerinstruction; peeracceptance notinvented.
+
+Actualtypedsourceaggregate e789bae7be80d9510d8445b948d80d36aa661735 lane/gdb/typed-host-next-batch includesA013/A019/MusicPanel/IPTV; additive c050ad2ebdc18b756faf8b3e221c22a2b43a19ac includesA012serializer/A022boundfullscreen/A027escaping/typedMusicMode/Torrent/minimalA009. Lane landing/source-boundtests are actual; fullnative/ownerrouteNOTdone. A012/A027safetyserializationdoesnotclosealltypedownershipdebt. Ops/publisherexistingcomposers, nosecondwriter. Nextdailycombinednativebatch, no standaloneurgentrun.
+
+AllB001-B020RETIRED,noLEDGER/ownerbugmapping. IncomingBdifflandsONLYifactualobserveddefectisindependentlyqualified; puretestsclose "test only, not landed". No newBrow. P1mus2/ArchivequerylabelremainUNQUEUEDtechnicalfindingsuntilactualmapping, nopadding. T001validatorlikewiseunqueued. Noquotas inanyactivequeue.
+
+## Latest exact authorized1nstinctrelay
+
+RELAY 1nstinct (verbatim): B rows are retired (no LEDGER mapping). Take LEDGER-mapped rows from QUEUE.md; none = "queue empty".
