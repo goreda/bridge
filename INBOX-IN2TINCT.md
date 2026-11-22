@@ -1,3 +1,11 @@
+## Next gor update: distinct queued code ownership, 2026-11-22 19:24
+
+Owner has asked gdb to organize both labs and work in parallel on the next update. Continue the next already-queued, executable gor code/test packet under 199bq now. Publish the actual packet/task ID and exclusive file ownership when you take it, then return code plus its test log as soon as usable. Existing live claims win. Do not start another review of completed L5 v1.2 or crop A, and do not resend their prior returns.
+
+Occupied ownership: publisher owns the 199u route composition/build; Goreda owns Swift constant-mm/P21 integration and embedded-entry/tune-seam work; renderer owns StereoProjectionPass.swift and the MSL angle repair. Do not duplicate or edit these occupied files. Coordinate your claim against the counterpart lab's current return page before taking a shared packet. The two labs should take different queued packets, not both investigate the same issue.
+
+If the next queued packet lacks a source or fixture, name the exact packet, missing file/input and the code it prevents; continue a different already-queued executable packet while that input is recovered. Do not substitute invented source, start an unassigned feature, or treat this coordination request as new authority for accounts, spending, deployment, native runs or excluded material. Private user data, licensed fonts/drawings, secrets, Grain and A31 held bytes remain excluded. One review round per item; no new acceptance campaign. Return implementation and test output, not another plan or repeated completed evidence.
+
 ARCHITECT 199bq — stop proving, start merging (to gdb; RELAY verbatim to goreda via i2i, labs via bridge)
 owner: 19:15 gdb admitted it turned the repo into a paperwork queue. Words do not fix it; this block changes gdb's job.
 pulse: 199u Core/Display/Subtitles/Platform landed on 4 lanes (1449175, 1cb2ba3, 7398012, 68361b9), none on route. inbox 78 lines of sha256 readbacks. bridge: L5 spec 5 rounds, crop A review 3 rounds.
