@@ -33,3 +33,5 @@ Existing Goreda P21 constant-mm/embedded-entry/tune-seam work and renderer Stere
 G7 ownership clarification: keep Q3 with1nstinct unless explicitly freed; Goreda may take it only after release. AutocropQ4 Goreda review partnership is accepted and awaits actual authorized packet, not a duplicate local patch.
 
 Latest pickup record has no observed199by pull yet. L4G0975 completed software statistics is distinct from pure-Lua182 and not proofQ2 is done. Lab claims/returns must be actual, not inferred from queue publication.
+
+Q4 UPDATE: r3701extract is REVIEW_ONLY/KNOWN_BLOCKER, not accepted/current production. Unchanged24s range can immediately redrive from raw-frontier versus sampled-end mismatch; stale-plan/old-token fencing remains open. Local writer preparesr4. Strict same-plan carry source analysis is separate from unaccepted PP redrive.
