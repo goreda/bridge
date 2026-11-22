@@ -14,6 +14,9 @@ Assignments below are current coordinator-held owners, not permission to create 
 | M1-ENGINE-MENU | gorav 07091c9c06f7d036f8776d18458429a947b70b92 | LEDGER `CAP-local-window` | Actual gorav opt-in through gor PlayerBackend/engine menu, mpvdefault. Permanentintegration/qualification team, preserve existingfacade notr14downgrade. | ACTIVE_ASSEMBLY |
 | M1-AUDIO-TRACK | gorav 07091c9c06f7d036f8776d18458429a947b70b92 | LEDGER `CAP-audio-track-switch` | Pending actual audio/track product candidates andtests qualify againstupstreamtarget, mapdiffbeforeapply. Permanentqualification owns existingreturns. | QUALIFICATION_ACTIVE |
 | M1-SUBTITLES | gorav 07091c9c06f7d036f8776d18458429a947b70b92 | LEDGER `CAP-subtitle-track-switch` | Pending repeatedcueindex/output andsubtitleplan/trackreturns; existingqualifier owns runtime/sourcebinding, no secondsubtitleswriter. | QUALIFICATION_ACTIVE |
+| CAP-volume-mute | gorav07091; actual LEDGER M1 | LEDGER `CAP-volume-mute` | Product writer accepted whole-row custody2026-11-23 00:52:36+03; source/spec/code/golden/native-script/assembly followthrough. Existing assembly alone owns shared EmbeddedSession hunks. | ACCEPTED_WHOLE_ROW_ACTIVE |
+| PROP-duration | gorav07091; actual LEDGER M1 | LEDGER `PROP-duration` | A-D writer accepted whole-row custody2026-11-23 00:52:33+03; source/spec/code/golden/native-script/assembly followthrough. Existing assembly alone owns shared EmbeddedSession hunks. | ACCEPTED_WHOLE_ROW_ACTIVE |
+| PROP-time-pos | gorav07091; actual LEDGER M1 | LEDGER `PROP-time-pos` | Playback writer accepted whole-row custody2026-11-23 00:52:38+03; prior RenderGraph investigation handed off, no active write collision. Existing assembly alone owns shared EmbeddedSession hunks. | ACCEPTED_WHOLE_ROW_ACTIVE |
 | GOR-ARCH-FAIL | gor2dd/R5/frozenfollow-ons | Ownerbug current2ddRTF500architecturefindings; latestowner "failleri çözeceksin" |377manifestcells inR5candidate,115membership structureowner,RenderGraph Musicworker,StereoLook Photonowner,PPconstructor structure/Ops. ExistingtypedhostaggregatehandledbyOps/publisher, A012/14/15/16/22/27 attributionretained. No new parallelrawhostrewrites. | ACTIVE_QUALIFIED_DIFFS_NOT_OWNER_ROUTE |
 | GOR-FFPROBE-OPTION | gor2dd | Actual localfile option-boundarybug A009 | Minimal --argvseparator landed1f2fb162 isolatedlane, Linuxffprobe8+6casesboundedPASS; literalrelative-dashstdinlimitknown. Publisher nextsafecomposition, noallpath/nativeclaim. | LANDED_LANE_NOT_OWNER_ROUTE |
 
@@ -21,7 +24,7 @@ No standalone next native run: activebuild12continues. One daily combinedCodemag
 
 T001duplicate-inline-proofvalidatorproposal retained as toolcandidate ONLY, notdispatch/productrow: actualownerbug/LEDGERmappingnotyetestablished. No quota added for it. Older labtest/review artifacts are intakeevidence, neverassembledproductcredit.
 
-## Verbatim owner lab relay
+## Historical199cg lab relay, superseded by199cj below
 
 RELAY 1nstinct + in2tinct (verbatim, GO, standing): Work only from bridge QUEUE.md (LEDGER-mapped). All workers on available rows; return git diff + test log in returns/. No rows = say "queue empty". No filler.
 
@@ -33,7 +36,7 @@ Actualtypedsourceaggregate e789bae7be80d9510d8445b948d80d36aa661735 lane/gdb/typ
 
 AllB001-B020RETIRED,noLEDGER/ownerbugmapping. IncomingBdifflandsONLYifactualobserveddefectisindependentlyqualified; puretestsclose "test only, not landed". No newBrow. P1mus2/ArchivequerylabelremainUNQUEUEDtechnicalfindingsuntilactualmapping, nopadding. T001validatorlikewiseunqueued. Noquotas inanyactivequeue.
 
-## Latest exact authorized1nstinctrelay
+## Historical199ch 1nstinct relay, superseded by199cj below
 
 RELAY 1nstinct (verbatim): B rows are retired (no LEDGER mapping). Take LEDGER-mapped rows from QUEUE.md; none = "queue empty".
 
@@ -72,3 +75,5 @@ RELAY 1nstinct + in2tinct (verbatim, GO, standing): Use 100% of your budget. Eac
 This current amendment supersedes prior199cg/ch queue-empty relay lines retained above as history. One worker owns a whole LEDGER row: public reference file@tag, behavior spec, owning-module implementation, Linux golden fixtures, and native script. Lowest open milestone M1 then M2/M3/M4; architect coordinates claims, no competing writer. All ready native scripts go into the daily combined batch within500free monthly minutes, no extra dispatch authority. Pulse per Instinct is budget %, peak workers and rows taken/returned/assembled/owner-Mac-verified, measured not inferred.
 
 Exact owner charter additions landed instinct main ccae99da13b92f54a772a977b48f5d4f07c1ba4a (docs/ARCHITECT.md only, named arch-199cj). Authenticated source phonemsg-01M82KTGH04SMQQ5KAK3VBB00V. Current199ci checker remains unqualified/pending, not claimed available in LATEST.
+
+199cj claim coordination update2026-11-23 00:52+03: three M1 whole-row assignments above are accepted, not merely requested. Coordinator maintains next unclaimed lowest-milestone allocation; no duplicate EmbeddedSession writer or independent source publication/native dispatch. Native scripts become ready only on actual evidence, all ready scripts retained for the daily combined500free-minute-month batch. Consumed/reserved native minutes remain unverified here. Pending deletion decisions remain with main, unchanged.
