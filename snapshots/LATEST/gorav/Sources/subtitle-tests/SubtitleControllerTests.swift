@@ -1,4 +1,9 @@
 import Foundation
+#if canImport(Glibc)
+import Glibc
+#elseif canImport(Darwin)
+import Darwin
+#endif
 import GorAVSubtitles
 
 // R7 (arch-195b) witness: external subtitle auto-load discovery, primary/
@@ -38,6 +43,22 @@ check("A2 tagged matches discovered, sorted", found.count == 3 && found[1].tag =
 check("A3 non-matching and non-subtitle files excluded", !found.contains { $0.path.contains("other") || $0.path.contains("txt") })
 check("A4 missing directory is empty, not an error", SubtitleAutoLoad.discover(forVideoPath: dir + "/nope/v.mp4").isEmpty)
 check("A5 ssa normalizes to ass format", SubtitleAutoLoad.discover(forVideoPath: video).allSatisfy { $0.format != "ssa" })
+
+// B-AUTOLOAD-FILE: discovery means regular files, not extension-shaped entries.
+let kindDir = dir + "/entry-kinds"
+try! FileManager.default.createDirectory(atPath: kindDir, withIntermediateDirectories: true)
+try! FileManager.default.createDirectory(atPath: kindDir + "/film.srt", withIntermediateDirectories: false)
+try! FileManager.default.createDirectory(atPath: kindDir + "/film.directory.ass", withIntermediateDirectories: false)
+try! srt.write(toFile: kindDir + "/film.en.srt", atomically: true, encoding: .utf8)
+try! FileManager.default.createSymbolicLink(atPath: kindDir + "/film.link.srt", withDestinationPath: "film.en.srt")
+try! FileManager.default.createSymbolicLink(atPath: kindDir + "/film.broken.srt", withDestinationPath: "missing.srt")
+try! FileManager.default.createSymbolicLink(atPath: kindDir + "/film.folder.srt", withDestinationPath: "film.srt")
+mkfifo(kindDir + "/film.pipe.srt", 0o644)
+try! FileManager.default.createSymbolicLink(atPath: kindDir + "/film.pipelink.srt", withDestinationPath: "film.pipe.srt")
+let kindCandidates = SubtitleAutoLoad.discover(forVideoPath: kindDir + "/film.mp4")
+check("B-AUTOLOAD-FILE excludes directories and dangling links", kindCandidates.map { URL(fileURLWithPath: $0.path).lastPathComponent } == ["film.en.srt", "film.link.srt"])
+check("B-AUTOLOAD-FILE retains symlink candidate identity", kindCandidates.last?.path == kindDir + "/film.link.srt" && kindCandidates.last?.tag == "link")
+check("B-AUTOLOAD-FILE refuses FIFO and symlink-to-FIFO", !kindCandidates.contains { $0.path.hasSuffix("film.pipe.srt") || $0.path.hasSuffix("film.pipelink.srt") })
 
 // B-series: selection, delay, identity across seeks, reset
 var ctl = SubtitleController()

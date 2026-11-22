@@ -42,6 +42,28 @@ public enum SubtitleAutoLoad {
             guard extensions.contains(ext) else { continue }
             let nameNoExt = e.deletingPathExtension
             let full = listDir == "." ? entry : (listDir as NSString).appendingPathComponent(entry)
+            // Discover files only. Symlink handling is explicit so it behaves
+            // identically whether attributesOfItem follows the final link or
+            // reports the link itself (corelibs-foundation differs by release):
+            // each link target resolves against the LINK's own directory (never
+            // the process CWD), at most 8 hops, and the final target must be a
+            // regular file. Directories, broken links, loops and special files
+            // (FIFO/socket/device) are not loadable tracks. The candidate
+            // identity stays the discovered path, never the resolved target.
+            var probe = full
+            var hops = 0
+            var isRegularTarget = false
+            while hops <= 8 {
+                guard let attributes = try? FileManager.default.attributesOfItem(atPath: probe),
+                      let type = attributes[.type] as? FileAttributeType else { break }
+                if type == .typeRegular { isRegularTarget = true; break }
+                guard type == .typeSymbolicLink else { break }
+                hops += 1
+                guard let dest = try? FileManager.default.destinationOfSymbolicLink(atPath: probe) else { break }
+                probe = (dest as NSString).isAbsolutePath ? dest
+                    : ((probe as NSString).deletingLastPathComponent as NSString).appendingPathComponent(dest)
+            }
+            guard isRegularTarget else { continue }
             let format = ext == "ssa" ? "ass" : ext
             if nameNoExt == baseName {
                 exact.append(Candidate(path: full, tag: nil, format: format))
