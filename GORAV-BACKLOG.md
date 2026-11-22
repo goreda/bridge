@@ -1,3 +1,5 @@
+Coordination199ce: Goreda has NOT acceptedW2/W8executionviaourrelay andexplicitlyrequiresholdchannelownerinstruction. W2/W8names below are ownerintent, not peeracceptance. Mainresolvesaffectedauthority, otherstreamscontinue.
+
 # GORAV-BACKLOG: owner199cd full build program
 
 Source baseline: snapshots/LATEST and snapshots/2ddfc14e are source_commit2ddfc14e381ea308d68b38e8a81b583dd1ffc3e8, PARTIAL_FUNCTIONAL2155files,2 credential literals neutralized. Actual upstream PLAN v4 at984aa089 is inputs/199cc/gorav-upstream-PLAN-984aa089.md, NOT vendored2dd. Owner199cd describes old projects/gorav PLAN@0f58ffc and r14 proposal. Current2dd already contains a much larger declared package. W1 assembly must reconcile these actual trees, not overwrite current product with old r14 or declare canonical build green without execution. Existing gor FAIL work and BACKLOG A/B claims remain active.

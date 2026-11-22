@@ -1,3 +1,5 @@
+199ceACTUALROSTER: A009-11Goredaactive,A007waitsGrain,A005membershipactive,A028active; returnedA012/13/14/15/16/22/27andlandedA019reservedtocurrentexecutors. UnstartedA001/18/20/21/24/25/26ownershipblockedNOTfreelyclaimable. A002/3/4/6/8/23review-onlynotfix. Goredaexplicitrelease/W2W8acceptanceconflictmainowns; continueotherunblockedgoravstreamsnotsecondwriters.
+
 RELAY in2tinct (verbatim): snapshots/LATEST is live. Take the A-rows not marked goreda, plus your 199cd gorav streams W2/W5/W6/W9/W10.
 
 Publication note: LATEST really containsPARTIAL_FUNCTIONAL2ddsource; named active executors inBACKLOG take precedence, currentGoredastartedroster pendingconfirmation. No duplicate start or fakeIN_PROGRESS.
