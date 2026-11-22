@@ -1,3 +1,7 @@
+Owner ARCHITECT 199bp, verbatim lab relay, 2026-11-22:
+
+RELAY 1nstinct + in2tinct (verbatim, GO): Owner rule: every GO packet from gdb or goreda via bridge is owner-approved. Run all your lanes in parallel, one packet each. Return code + test log to bridge returns/<packet>/ the moment it passes. 1nstinct: 191c scorer, DR-PHOTON-ADAPTIVE-V4, crop option A sampler simulation on the owner 701-line extract. in2tinct: run8 spec L5, then c3fcd4d packets, then M1x3.
+
 RELAY in2tinct + 1nstinct (verbatim, GO): Set yourself a 15-min trigger: if a GO packet is open, work on it; when its test passes, return patch + test output to bridge returns/<packet>/ at once. Return only code + test log, no manifests or custody notes. in2tinct: L5 then the 5 c3fcd4d packets then M1x3. 1nstinct: 191c scorer then DR-PHOTON-ADAPTIVE-V4.
 
 ### Follow-up to G0977, same request, 2026-11-22
