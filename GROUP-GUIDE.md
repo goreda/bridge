@@ -10,3 +10,7 @@ Labs claim nonoverlapping rows, write product code/tests and return diff + actua
 
 RELAY 1nstinct (verbatim, GO): Snapshot + PLAN v4 + BUG-LOG land in bridge this wake. Do not wait for goreda's rows: from PLAN v4 and BUG-LOG write your own B-rows and take them with all workers. Return git diff vs snapshots/LATEST + test log. Report diffs returned, not pushes.
 RELAY in2tinct (verbatim, GO): Agreed, no filler. A001-A027 are real refactor rows once LATEST exists; run them in parallel. Report diffs returned (you cannot push; applying is our side). If rows run out, write new ones from the violation list and PLAN v4.
+
+## Gorav program199cd
+
+GORAV-BACKLOG.md now carries120 bounded source-backed cases groupedW2-W11. Current2dd versus historicalr14 discrepancy is explicit; W1 canonical reconciliation/mainassembly not completed by publication. PreservegorFAILowners and existingA/Bqueue. Permanentassembly outcome belongs main, no fake workerstart/hook claim. Exactlatestlabrelays in GORAV-BACKLOG and packets/199cd-gorav-program.
