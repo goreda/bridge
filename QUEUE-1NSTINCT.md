@@ -10,7 +10,7 @@ RELAY 1nstinct (verbatim, GO, standing; replaces 199bx list): 4-6 workers in par
 | --- | --- | --- |
 | Q1 | R2_ALREADY_INTEGRATED / compare remaining gap | Actual2dd source/tests/probe at packets/199by-standing-queues/191c-actual2dd/. R2 integrated0e6e32b7a before2dd; do not blindly patch again. Historical returned scorer is reference only. Compare current tests/source and pursue a real remaining branch/render gap; no GPU PASS. |
 | Q2 | COORDINATE_EXISTING_PHOTON_OWNER | Photon182 local native-port/integration writer is active. Pure-Lua successor scope is not automatically unstarted. Resolve exact nonoverlapping contract/input with coordinator before a lab code claim. |
-| Q3 | HARNESS_REPAIR_VERIFIED / capacity separate | Matching actual body/extractor independent regression+2runtime-killed mutants+syntax PASS at packets/199by-standing-queues/g7-independent/. No new repair/remainingRED for original3defects. No duplicate repair/replay. Global capacity/actual16peer evidence not established; older14:31JSON rawlog absent, do not merge c96receipts. |
+| Q3 | BOUNDED_COMPLETE: HARNESS_REPAIR_VERIFIED | Independent repair regression closed original3defects. Existing14:31 filtered capacity/RSS receipt observed fields now match suppliedJSON; missing STORE/stall fields UNAVAILABLE not zero. No new16peer/crosscap/throughput proof. No further forensic work; pull next actual row. See g7-independent/FILTERED-CAPACITY-RECEIPT.md. |
 | Q4 | COORDINATE_EXISTING_WRITER | Autocropv3 coverage-bound carry/one guarded redrive. Local writer already active; lab/Goreda review partner must not overwrite or duplicate its patch. Authorized701-line review-only extract/binding now at packets/199by-standing-queues/autocrop-v3-r3-review/. Local writer remains implementation owner; Ops actualr3Swift execution pending, no acceptance. |
 | Q5-Q7 | EXACT_IDS_PENDING | Lowest3 actually unstarted PLANv4 rows await execution/return inventory, not guessed from decided labels. |
 
@@ -41,3 +41,5 @@ G7 latest evidence supersedes the earlier no-claim-found snapshot: peer-reported
 Q3/G7 actual peer files now at packets/199by-standing-queues/g7-peer-repair/. Diff has no repo base; matching original harness baseline/apply+test comparison remains open.23:38 standalone regression is not live peer replay;14:31capacityJSON96peers/674peak610finalMB is older, not new16peer evidence. Do not close or duplicate repair before qualification.
 
 G7 qualification update supersedes prior baseline-unresolved notes: Ops matched/applied/tested actual priorv2repair and found no original3harness defectRED. Historical peer/baseline notes remain provenance, not current blockers. Only separate capacity scope evidence may remain; no global capacityPASS.
+
+G7 latest filtered-log check supersedes earlier raw-receipt-gap note for the listed observed fields only. Bounded repair row complete; globalcapacity is not claimed or an invented follow-up requirement.
