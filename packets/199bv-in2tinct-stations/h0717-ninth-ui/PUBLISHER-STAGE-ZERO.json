@@ -1,0 +1,15 @@
+{
+  "source_commit": "37a149bf376f55b6b6688c41036daad661a92d8f",
+  "source_path": "archive/gor/Sources/gor/GorEffectsModel/AdaptiveColor.swift",
+  "destination_path": "archive/gor/Sources/gor/UI/AdaptiveColor.swift",
+  "index_mode": "100644",
+  "index_stage": 0,
+  "blob_oid": "b613c6639ab53a4fd72d9f8861be7e2fca364221",
+  "sha256": "2fd63b55e52d7e97a5b21a21856583137373c4fa8bfa52f167133d08bb5be1d6",
+  "bytes": 4826,
+  "lines": 128,
+  "index_readback": "100644 b613c6639ab53a4fd72d9f8861be7e2fca364221 0\tarchive/gor/Sources/gor/GorEffectsModel/AdaptiveColor.swift",
+  "method": "Fresh isolated Git index read directly from the named commit; stage-zero entry and blob bytes verified. No working index or source change.",
+  "observed_at": "2026-11-22T22:23:23.016544+03:00",
+  "scope": "Metadata binding for ninth UI pure move after existing eight; no source execution, native or production claim."
+}
