@@ -18,3 +18,35 @@ The gor96 result counts diagnostics, not bad files:89 header diagnostics,6 S4 di
 ## Current source-bound measurement
 
 Whole committed canonical gorav e13e262b7ea625e80f3c5c070e500a09edd82df5, exact c2e74 checker and registry from that ref,17.10 seconds, strict exit1:606 diagnostics =488header +91Sources product-layout +26S4 +1scan metadata. This is not606product defects or606bad files. All488 tracked non-Package Swift paths were scanned. The earlier07091 snapshot532 =413header+91layout+26S4+1missing-registry+1scan-metadata; current whole606 equals532 minus1fixed registry plus75header paths outside the snapshot (kits34,lanes16,photon-v4 11,fixtures6,plan5,Documentation2,lane1). Product layout91 and S4 26 surfaces are unchanged. Gor96 remains product-Sources-only, not comparable. Snapshot/composed counts stay separate. Known checker false-header behavior around free functions remains a separate issue, not hidden by these diagnostic totals. Whole gor count remains unmeasured due timeout. No source/native/release-green claim. Original cj-cl closeout remains closed.
+
+## d0 checker replacement
+
+Qualified coverage-preserving d0b2d98422bd264b1177ce03769f595484059dec92e047e3e39c20cf2098f582 replaces c2e74. S4 uses a token index, preserves full Packages coverage; no-import header ends at first actual code including free functions.19 preserved cases, entry controls, locked-vendor bad header rejection and composed free-function/F1 controls qualified. Earlier free-function false-header issue is fixed by this delta, not waived. Actual scoped measurements:
+
+[
+  {
+    "repo": "gorav",
+    "source_commit": "57322be20eb5492775d20bfab834ede24ffeb727",
+    "scope": "Whole committed tree, all paths, validated in-tree links preserved; proposed d0 checker",
+    "diagnostics": 606,
+    "categories": {
+      "gorav Sources/ product modules only (GorAV<Station> .target)": 91,
+      "header": 488,
+      "S4": 26,
+      "nothing checked in /tmp/tmpq16htxpj/gorav": 1
+    },
+    "exit": 1,
+    "elapsed_seconds": 3.18,
+    "checker_sha256": "d0b2d98422bd264b1177ce03769f595484059dec92e047e3e39c20cf2098f582"
+  },
+  {
+    "repo": "gor",
+    "source_commit": "a8153e1a6654b3c6143a6669b77055cef88b3b69",
+    "scope": "Whole actual a8153 checkout including Packages/Tests/work; proposed registry and d0 checker",
+    "diagnostics": "NOT_ESTABLISHED_TIMEOUT42s",
+    "elapsed_seconds": 42.04,
+    "checker_sha256": "d0b2d98422bd264b1177ce03769f595484059dec92e047e3e39c20cf2098f582"
+  }
+]
+
+Diagnostics are not distinct bad files or product defects. Prior c2 counts remain historical and cannot be mixed with these source/scope-bound d0 results. No native or full audit green; original cj-cl closed.

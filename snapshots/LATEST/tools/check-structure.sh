@@ -211,13 +211,10 @@ for root in roots:
                 viol(f'header: extra content above imports: {f}: {raw.strip()[:60]}')
                 break
         else:
-            if f.name == 'main.swift':
-                # entry script: header ends at first ACTUAL code line; non-doc comments before it still violate
-                stop_i = next((i for i, (raw, stripped) in enumerate(zip(lines[4:], clines[4:]), 4)
-                               if stripped.strip() and not COND_RE.match(stripped.strip())), len(lines))
-            else:
-                stop_i = next((i for i, ln in enumerate(clines[4:], 4)
-                               if TYPE_RE.search(ln) or EXT_RE.search(ln)), len(lines))
+            # header region ends at the first ACTUAL code line (type, free func, let/var, entry code);
+            # non-doc comments and other content before it violate
+            stop_i = next((i for i, stripped in enumerate(clines[4:], 4)
+                           if stripped.strip() and not COND_RE.match(stripped.strip())), len(lines))
             for raw in lines[4:stop_i]:
                 rs = raw.strip()
                 if not rs: continue
@@ -256,25 +253,20 @@ for root in roots:
             if GORAV_IMP.search(code):
                 viol(f'S2: GorAV import outside Engine: {f}')
 
-    # S4 wiring (199ck): each Sources file wired or entry point
-    if True:
-        for f in src_swift:
-            decls = decl_map.get(f, [])
-            rel = f.relative_to(root)
-            if f.name == 'main.swift' or ENTRY_RE.search(code_map[f]) or 'AppDelegate' in decls:
-                continue
-            wired = False
-            for t in decls:
-                pat = re.compile(r'(?<![\w])' + re.escape(t) + r'(?![\w])')
-                decl_of_t = re.compile(r'(?<![\w.])(?:struct|class|enum|actor|protocol|typealias)\s+' + re.escape(t) + r'(?![\w])')
-                for g in src_swift:
-                    if g is f: continue
-                    gcode = decl_of_t.sub(' ', code_map[g])
-                    if pat.search(gcode):
-                        wired = True; break
-                if wired: break
-            if not wired:
-                viol(f'S4: unwired file (no type used from another Sources file, not an entry point): {f}')
+    # S4 wiring (199ck): each Sources file wired or entry point; linear token index
+    DECL_MASK = re.compile(r'(?<![\w.])(?:struct|class|enum|actor|protocol|typealias)\s+[A-Za-z_]\w*')
+    use_index = {}
+    for g in src_swift:
+        masked = DECL_MASK.sub(lambda m: m.group(0).split()[0], code_map[g])
+        for tok in set(re.findall(r'[A-Za-z_]\w*', masked)):
+            use_index.setdefault(tok, set()).add(g)
+    for f in src_swift:
+        decls = decl_map.get(f, [])
+        if f.name == 'main.swift' or ENTRY_RE.search(code_map[f]) or 'AppDelegate' in decls:
+            continue
+        wired = any(len(use_index.get(t, set()) - {f}) > 0 for t in decls)
+        if not wired:
+            viol(f'S4: unwired file (no type used from another Sources file, not an entry point): {f}')
 
     # 199cm: vendored gorav drift read-only report (lock varsa bayt eşleşmesi; yoksa MISSING bulgusu)
     vend = root/'Packages'/'gorav'
