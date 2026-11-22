@@ -1,30 +1,25 @@
 # QUEUE-IN2TINCT
 
-## Verbatim owner standing GO and original queue
+## Verbatim current owner standing GO
 
-RELAY in2tinct (verbatim, GO, standing): Same rules, 3-4 workers. Queue: Q1 199bv Engine station script; Q2 Player station script; Q3 App station script; Q4 gorav M2 tasks from PLAN v4 in order; Q5 gorav policy tests for every Policy type without one.
+RELAY in2tinct (verbatim, GO, standing; replaces 199bx list): 3-4 workers. Q1 fix the architecture import/ownership violations list from gdb, one file per return. Q2 gorav M2 tasks in PLAN v4 order. Q3 policy tests for every gorav Policy type without one.
 
-## Current execution ledger
+## Current pull ledger
 
-| Row | State | Outcome / next action |
+| Row | State | Exact scope / dependency |
 | --- | --- | --- |
-| Q1 | SOURCE_COMPLETE | Engine pure moves integrated. No duplicate implementation. |
-| Q2 | SOURCE_COMPLETE | Player pure moves integrated. No duplicate implementation. |
-| Q3 | SOURCE_COMPLETE | App624ef40 pure moves integrated. No duplicate implementation. |
-| Q4 | INPUT_PENDING | Actual PLANv4 M2 row list/status requested from coordinator. Pull lowest unstarted row once exact ownership/input is available; do not invent plan rows. |
-| Q5 | INVENTORY_PENDING | Reconcile current Policy types with existing tests and returns, then claim distinct uncovered types. No duplicate of already returned Audio/Subtitle/policy implementations. Current metadata/test inventory requested from coordinator. |
+| Q1 | VIOLATION_LIST_PENDING | Actual import/ownership file:line list is being supplied by integration. One file per return; no invented violations, no baseline/debt suppression. Architecture health is NOT a shipping gate. |
+| Q2 | EXACT_IDS_PENDING | Actual PLANv4 M2 execution status and source ownership awaited. No assumption from hardware slots or design-state cells. |
+| Q3 | INVENTORY_PENDING | Exact current uncovered Policy types/tests/returns awaited. Do not duplicate completed or active policy code. |
 
-queue low in2tinct: no3 distinct source-grounded actionable rows currently identified. PLANv4/M2 and current policy-test coverage metadata are required for honest refill. Original standing GO remains effective; source-gap report is not a demand for another GO.
+queue low in2tinct: precise file:line violations, actual PLANv4 M2 execution rows and uncovered-policy inventory are pending coordinator delivery. Standing GO is active; this is an input gap, not a missing per-packet GO.
 
-## Pull and return workflow
+## Standing workflow and boundaries
 
-This standing owner GO replaces waiting for per-packet GO. Pull the highest available original row, one worker per row. Respect existing claims; post a one-line claim with the row ID on LAB-BOARD.md. Return code and actual test log to returns/<lab>-<row>/, then pull the next available row. A claim is not a completed implementation. Existing privacy/resource limits remain: no secrets, private snapshots, licensed media, paid resources, production deployment or owner-device work. Source gaps must be named precisely; do not invent inputs or widen access.
+199by supersedes199bx. Completed station-script rows are removed from active queues as explicitly directed; historical199bx relay remains in packets/199bx-standing-queues/ORIGINAL-RELAY.txt, not active work. All station source moves are already integrated; native qualification/owner delivery are separate. Do not reimplement stations.
 
-Completed station scripts must not be reimplemented. All10 stations are integrated as source-only pure moves through App624ef40; combined candidate2ddfc14e381ea308d68b38e8a81b583dd1ffc3e8 remains native-pending, not owner-delivered. Completed below means source work complete, NOT native acceptance. Existing metadata supplements remain immutable historical inputs.
+Pull top available row, one worker per distinct row/file, record a one-line claim/return on LAB-BOARD.md and return code + actual test log under returns/<lab>-<row>/. Do not wait for another per-packet GO. Reconcile existing claims/returns before duplicate work; a claim is not implementation. Failing returns get a precise failure line for repair next pull. Coordinator applies/tests -> owned lane -> Goreda review handoff.
 
-Queue maintainer applies/tests each usable return on its owned integration lane, then triggers Goreda handoff via coordinator. A failing return gets one concise failure line and stays for lab repair on the next pull. Refill below3 actionable rows from actual PLANv4/returns evidence; if row selection cannot be established, report queue low rather than fabricate work. Original owner lists below are preserved even where source work is already complete.
+Privacy/resource bounds unchanged: no private source snapshot, credentials, user data, licensed material, paid capacity, deployment or owner-device work. Use only already authorized inputs. Missing exact source/contract/budgets remain precise blockers, not permission to invent interfaces or widen access. Refill below3 actionable rows from actual execution records; otherwise post queue low in the lab inbox. L5v1.2 stays closed.
 
-
-## Selection evidence correction
-
-PLANv4 P1-P30 cells marked decided describe design decisions, NOT implementation state or proof that a row is unstarted. Exact execution status must come from actual STATUS/returns. P21-P23 already has an active renderer/native-wrapper owner and must not be assigned again. M2 native hardware/test-slot availability is not evidence of M2 daily-path milestone acceptance. L5v1.2 remains closed under199bw; do not reopen it. Pending exact IDs stay pending until the actual work record settles them.
+PLANv4 decided cells are design state, not implemented/unstarted evidence. Actual STATUS/returns must establish exact next IDs. P21-P23 renderer/native-wrapper work is already occupied and excluded from duplicate assignment. M2 native hardware availability does not establish M2 daily-path milestone acceptance.

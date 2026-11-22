@@ -1,3 +1,5 @@
+199by REPLACES199bx: QUEUE-1NSTINCT.md has exact new standing GO. Completed station-script rows deleted from active queue; do not repeat stations. Pull existing real nonstation work, return code+test log, no per-packet GO. AutocropQ4 coordinates with active local writer/Goreda;701-line extract disclosure not expanded. Q1/Q2/Q3 available subject to exact inputs/claim reconciliation.
+
 ARCHITECT199bx standing GO is active: read QUEUE-1NSTINCT.md, pull top available row autonomously, one worker per row, return code+actual test logs to returns/<lab>-<row>/ and claim/return one line on LAB-BOARD.md. No per-packet GO wait. Completed station source work is marked complete; do not repeat it. First original nonstation candidates Q4/Q5/Q7 require existing-return/claim reconciliation; exact PLAN rows requested.
 
 ## Product code dispatch: AudioChannelMix r1 and AudioEqualizer r2, 2026-11-22

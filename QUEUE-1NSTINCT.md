@@ -1,39 +1,27 @@
 # QUEUE-1NSTINCT
 
-## Verbatim owner standing GO and original queue
+## Verbatim current owner standing GO
 
-RELAY 1nstinct (verbatim, GO, standing): Run 4-6 workers in parallel, one row each, pull the next row when one returns. Return code + test log to returns/<row>/. Queue:
- Q1 199bv Picture station git mv script + Package.swift diff (Viewport, CropDetector, Brightness, AdaptiveColor, LookToolsRoute)
- Q2 199bv Stereo station script (Stereo, ThreeD, VR180*, VRDistanceModel, VRStereoControlInput, GazeCrosshair, StereoLookNative*)
- Q3 199bv Session station script (PlayerSession*, PlayerRuntimeResources, PlayerTorrentEndpoint, RealtimeProbe, Build, Diag)
- Q4 191c R2 roll-compensated partition patch for vr180-look.lua with the R4-bound test from your scorer
- Q5 Photon v12 block182 contract: distance clamp, filters, 2 s face hold, FOV fallback, as pure Lua module + tests
- Q6 gorav PLAN v4: next 3 unstarted P-rows (lowest number first), one patch + test each
- Q7 WT G7 harness repair: drive.mjs chunk budget + resume timer, extract.mjs peak RSS, 16-peer run
+RELAY 1nstinct (verbatim, GO, standing; replaces 199bx list): 4-6 workers in parallel, pull next row when one returns; return code + test log. Q1 191c R2 roll-compensated partition patch for vr180-look.lua + R4-bound test. Q2 Photon v12 block182 contract as pure Lua module + tests. Q3 WT G7 harness repair (drive.mjs chunk budget + resume timer, extract.mjs RSS, 16-peer run). Q4 autocrop v3 (coverage-bound carry, one guarded redrive) on the 701-line extract. Q5-Q7 next three unstarted gorav PLAN v4 P-rows, lowest first.
 
-## Current execution ledger
+## Current pull ledger
 
-| Row | State | Outcome / next action |
+| Row | State | Exact scope / dependency |
 | --- | --- | --- |
-| Q1 | SOURCE_COMPLETE | Picture pure moves integrated. Original list is historical: AdaptiveColor resolved to UI, LookToolsRoute to Stereo. No duplicate implementation. |
-| Q2 | SOURCE_COMPLETE | Stereo pure moves integrated. No duplicate implementation. |
-| Q3 | SOURCE_COMPLETE | Session pure moves integrated. No duplicate implementation. |
-| Q4 | OPEN / check existing return first | Pull original191c R2 partition patch work from existing191c packet/scorer context. If already returned, link exact code/test receipt instead of repeating it. |
-| Q5 | OPEN / check existing return first | Pull original Photonv12 block182 pure-Lua contract/tests; preserve original bounded scope. Name any missing exact contract/source input. |
-| Q6 | INPUT_PENDING | Actual PLANv4 lowest3 unstarted P-row IDs/status requested from coordinator. Do not guess rows or collide with existing writers. |
-| Q7 | OPEN / safety envelope required | Original WT G7 harness repair only. Reconcile existing code/returns first;16-peer execution requires established numeric safety/resource limits. If absent, return exact blocker while code repair proceeds where inputs suffice. |
+| Q1 | OPEN, reconcile existing191c return | R2 partition patch + actual R4-bound test, not repeat prior scorer-only work. |
+| Q2 | OPEN, exact contract/input needed | Photonv12 block182 pure Lua + tests. Reconcile existing ownership/returns first. |
+| Q3 | OPEN, claim once | WT G7 named harness repair;16-peer execution only within established numeric safety envelope. Missing envelope is a run blocker, not a code-completion claim. |
+| Q4 | COORDINATE_EXISTING_WRITER | Autocropv3 coverage-bound carry/one guarded redrive. Local writer already active; lab/Goreda review partner must not overwrite or duplicate its patch. The701-line extract is NOT newly published or authorized by this queue. Confirm existing public-bridge source bounds and exact input before code. |
+| Q5-Q7 | EXACT_IDS_PENDING | Lowest3 actually unstarted PLANv4 rows await execution/return inventory, not guessed from decided labels. |
 
-First pull candidates are Q4, Q5, Q7, subject to existing exact claims/returns. These are work offers under standing GO, not claims that labs have started. Return a claim or precise blocker now; do not wait for another per-packet GO.
+First autonomous claims or precise input blockers expected on Q1/Q2/Q3; Q4 coordinates with the existing writer and Goreda rather than competing source edits.
 
-## Pull and return workflow
+## Standing workflow and boundaries
 
-This standing owner GO replaces waiting for per-packet GO. Pull the highest available original row, one worker per row. Respect existing claims; post a one-line claim with the row ID on LAB-BOARD.md. Return code and actual test log to returns/<lab>-<row>/, then pull the next available row. A claim is not a completed implementation. Existing privacy/resource limits remain: no secrets, private snapshots, licensed media, paid resources, production deployment or owner-device work. Source gaps must be named precisely; do not invent inputs or widen access.
+199by supersedes199bx. Completed station-script rows are removed from active queues as explicitly directed; historical199bx relay remains in packets/199bx-standing-queues/ORIGINAL-RELAY.txt, not active work. All station source moves are already integrated; native qualification/owner delivery are separate. Do not reimplement stations.
 
-Completed station scripts must not be reimplemented. All10 stations are integrated as source-only pure moves through App624ef40; combined candidate2ddfc14e381ea308d68b38e8a81b583dd1ffc3e8 remains native-pending, not owner-delivered. Completed below means source work complete, NOT native acceptance. Existing metadata supplements remain immutable historical inputs.
+Pull top available row, one worker per distinct row/file, record a one-line claim/return on LAB-BOARD.md and return code + actual test log under returns/<lab>-<row>/. Do not wait for another per-packet GO. Reconcile existing claims/returns before duplicate work; a claim is not implementation. Failing returns get a precise failure line for repair next pull. Coordinator applies/tests -> owned lane -> Goreda review handoff.
 
-Queue maintainer applies/tests each usable return on its owned integration lane, then triggers Goreda handoff via coordinator. A failing return gets one concise failure line and stays for lab repair on the next pull. Refill below3 actionable rows from actual PLANv4/returns evidence; if row selection cannot be established, report queue low rather than fabricate work. Original owner lists below are preserved even where source work is already complete.
+Privacy/resource bounds unchanged: no private source snapshot, credentials, user data, licensed material, paid capacity, deployment or owner-device work. Use only already authorized inputs. Missing exact source/contract/budgets remain precise blockers, not permission to invent interfaces or widen access. Refill below3 actionable rows from actual execution records; otherwise post queue low in the lab inbox. L5v1.2 stays closed.
 
-
-## Selection evidence correction
-
-PLANv4 P1-P30 cells marked decided describe design decisions, NOT implementation state or proof that a row is unstarted. Exact execution status must come from actual STATUS/returns. P21-P23 already has an active renderer/native-wrapper owner and must not be assigned again. M2 native hardware/test-slot availability is not evidence of M2 daily-path milestone acceptance. L5v1.2 remains closed under199bw; do not reopen it. Pending exact IDs stay pending until the actual work record settles them.
+PLANv4 decided cells are design state, not implemented/unstarted evidence. Actual STATUS/returns must establish exact next IDs. P21-P23 renderer/native-wrapper work is already occupied and excluded from duplicate assignment. M2 native hardware availability does not establish M2 daily-path milestone acceptance.
