@@ -1,0 +1,22 @@
+{
+  "commit": "2ddfc14e381ea308d68b38e8a81b583dd1ffc3e8",
+  "bindings": [
+    {
+      "path": "archive/gor/Sources/gor/UI/MenuActions.swift",
+      "sha256": "6c65019bb0bbe68b6d22451166dc998e4f709df415dff5149141b00fec95507f"
+    },
+    {
+      "path": "archive/gor/Sources/gor/Modes/MusicModeController.swift",
+      "sha256": "4274ef855ba067960ee785fde4e49d3203068a6c177d3df1de29146fccc3b50b"
+    },
+    {
+      "path": "archive/gor/Sources/gor/Engine/GorAVPlayerHost.swift",
+      "sha256": "0bafe010ea57aa3a0809f1224ba6fc8f0a3fa28d9a5ef5f0b8cd7bff588df800"
+    },
+    {
+      "path": "archive/gor/Packages/gorav/Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift",
+      "sha256": "73141ce429e48aa6ccc32349906c0778bf4b3c9fc056c1f623cb8855d437056a"
+    }
+  ],
+  "scope": "source bindings only; no raw source export or new custody"
+}
