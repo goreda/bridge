@@ -10,7 +10,7 @@ RELAY in2tinct (verbatim, GO, standing; replaces 199bx list): 3-4 workers. Q1 fi
 | --- | --- | --- |
 | Q1 | METADATA_READY / exact-source dependency | Actual2dd list at packets/199by-standing-queues/architecture-2dd/violations.tsv:315path/rule keys,332occurrences,124-target graph. Pull one distinct file per return; classify live target versus standalone/uncompiled test first. Membership line1 is an ownership anchor, NOT a defective statement. No blind import deletion or baseline/debt suppression. Actual source required for a repair, and no new private-source disclosure granted. Architecture health is NOT a shipping gate. |
 | Q2 | EXACT_IDS_PENDING | Actual PLANv4 M2 execution status and source ownership awaited. No assumption from hardware slots or design-state cells. |
-| Q3 | INVENTORY_PENDING | Exact current uncovered Policy types/tests/returns awaited. Do not duplicate completed or active policy code. |
+| Q3 | BOUNDED_TEST_INTAKE | Q3-Demuxer guard-branch successor at packets/199by-standing-queues/demuxer-guard-branches/TASK.md. Two exact baseline files supplied; actual AdmissionTable/SourceDescriptor closure requested. Check other current tests, add missing guard branches only, runtime mutant evidence required. No duplicate full suite or product-policy widening. |
 
 queue low in2tinct: Q1 exact metadata is ready, but actual PLANv4 M2 execution rows and uncovered-policy inventory remain pending coordinator delivery. Standing GO is active; this is an input gap, not a missing per-packet GO.
 

@@ -1,3 +1,5 @@
+199byQ3-Demuxer concrete test-only intake: packets/199by-standing-queues/demuxer-guard-branches/TASK.md. Actual policy+full current runner supplied, admitted-container guard coverage gaps identified; verify other current tests/add missing branches only. Preserve actual AdmissionTable, runtime-killed mutants, noFFmpeg/network for pure cases. Missing exact dependencies requested, not invented.
+
 199byQ1 actual2dd violation metadata now delivered: packets/199by-standing-queues/architecture-2dd/README.txt and violations.tsv.315path/rule keys/332occurrences, one file per return. Membership line1 is an anchor; classify standalone/uncompiled findings before repair, no blind patch. Source disclosure not expanded; not a shipping gate.
 
 199by REPLACES199bx: QUEUE-IN2TINCT.md has exact new standing GO. Completed station-script rows deleted from active queue; do not repeat stations. Pull existing real nonstation work, return code+test log, no per-packet GO. queue low in2tinct: actual architecture file:line list/PLAN execution/uncovered-policy inputs pending.
