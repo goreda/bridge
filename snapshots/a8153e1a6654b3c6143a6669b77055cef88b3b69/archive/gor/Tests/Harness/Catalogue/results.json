@@ -1,0 +1,56 @@
+{
+  "result": "PASS current backfill source/model regression",
+  "cases": [
+    {
+      "case": "cached facet missing files",
+      "facet_requests": [],
+      "file_requests": [
+        "a"
+      ],
+      "result": "PASS"
+    },
+    {
+      "case": "populated cache",
+      "facet_requests": [],
+      "file_requests": [],
+      "result": "PASS"
+    },
+    {
+      "case": "empty list is cached",
+      "facet_requests": [],
+      "file_requests": [],
+      "result": "PASS"
+    },
+    {
+      "case": "new facet",
+      "facet_requests": [
+        "a"
+      ],
+      "file_requests": [
+        "a"
+      ],
+      "result": "PASS"
+    },
+    {
+      "case": "missing facet reply",
+      "facet_requests": [
+        "a"
+      ],
+      "file_requests": [
+        "a"
+      ],
+      "result": "PASS"
+    }
+  ],
+  "next_run_failed_file_retry": "PASS",
+  "source_sha256": "108992a6c3982009a46118d497b011cff0ff295d0f6de210f1d09748ecb7ff3e",
+  "historical_fixed": [
+    "Step2 cached facets early return blocked Step3 file backfill"
+  ],
+  "still_open_source_characterizations": {
+    "disk_write_after_unlock": true,
+    "worker_refresh_joins_running": true,
+    "year_repair_done_unconditional": true
+  },
+  "scope": "Python control-flow model + source guards, not native concurrency/disk/network proof"
+}

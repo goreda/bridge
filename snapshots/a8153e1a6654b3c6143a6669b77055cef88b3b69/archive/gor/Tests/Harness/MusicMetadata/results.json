@@ -1,0 +1,28 @@
+{
+  "result": "PASS actual metadata helper controls and input characterizations",
+  "controls": [
+    "all current audio tags case-insensitive admission",
+    "nonmusic exclusion and mixed audio tag current precedence",
+    "duration boundaries/float string/invalid input",
+    "title URL escaping roundtrips delimiters and Unicode",
+    "cache identity includes extension/default ZIP"
+  ],
+  "characterizations": [
+    {
+      "case": "tag substring in ordinary word",
+      "observed": "flac substring admits flaccid",
+      "scope": "synthetic metadata, real collection false positive not observed"
+    },
+    {
+      "case": "negative duration",
+      "observed": "negative minute plus modulo seconds emitted, no nonnegative gate"
+    },
+    {
+      "case": "collection/extension unsanitized",
+      "observed": "only title quoted; synthetic collection/ext can alter path/query",
+      "scope": "normal trusted source collection/ext producer contract unverified; not exploit claim"
+    }
+  ],
+  "source_sha256": "5abc42fe83c197067a9f5b787b18667010fc7e1052373c041bcc1c01e3f470a1",
+  "scope": "Actual isolated Python pure helpers/invented inputs only; no provider/backend module/compiled helper/user cache/network/Swift/UI execution"
+}

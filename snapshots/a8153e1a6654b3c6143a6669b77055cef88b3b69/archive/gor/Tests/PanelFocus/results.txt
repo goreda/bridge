@@ -1,0 +1,17 @@
+/tmp/tmp11zffozj/main.swift:12:41: warning: conditional downcast from 'NSView?' to 'NSView' does nothing
+10 |         guard isVisible,isKeyWindow else{return}
+11 |         // Preserve the active field editor/IME and selection. A non-text control keeps focus too.
+12 |         if let responder=firstResponder as? NSView,responder !== contentView,
+   |                                         `- warning: conditional downcast from 'NSView?' to 'NSView' does nothing
+13 |            responder.window === self {
+14 |             if responder is NSTextView {return}
+
+/tmp/tmp11zffozj/main.swift:30:41: warning: conditional downcast from 'NSView?' to 'NSView' does nothing
+28 |             savedControl=field;savedSelection=editor.selectedRange()
+29 |         }
+30 |         else if let view=firstResponder as? NSView,view.window === self,view is NSControl {savedControl=view}
+   |                                         `- warning: conditional downcast from 'NSView?' to 'NSView' does nothing
+31 | 
+32 |     }
+PASS extracted production restore/resign lifecycle: editor/control preserved; inactive no-op; selection saved/clamped; AppKit native UNRUN
+PASS production recursive resolver mono/stereo nested/hidden/disabled controls; native AppKit switch/IME/Esc UNRUN

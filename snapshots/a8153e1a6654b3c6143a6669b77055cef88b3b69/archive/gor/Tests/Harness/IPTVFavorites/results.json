@@ -1,0 +1,35 @@
+{
+  "result": "PASS favorites schema controls and loss/admission characterizations",
+  "controls": [
+    "four persisted fields Unicode roundtrip",
+    "no played channel does not add",
+    "same streamURL dedupe",
+    "distinct URL preserved even same name/ID",
+    "remove matches exact streamURL",
+    "legacy missing optional fields default; missing required row omitted"
+  ],
+  "characterizations": [
+    {
+      "case": "favorite mirror roundtrip",
+      "observed": "saved favorite loses alternate URLs; replay failover has no mirrors",
+      "scope": "schema/source port, real UserDefaults/app restart not executed"
+    },
+    {
+      "case": "one nonstring value in persisted array",
+      "observed": "whole typed-array cast fails; otherwise valid rows not recovered",
+      "scope": "Swift cast behavior source model, native bridging not executed"
+    },
+    {
+      "case": "empty name/URL strings",
+      "observed": "required key presence accepted without nonempty/URL validation",
+      "scope": "synthetic stored state; no real corrupt preference read"
+    }
+  ],
+  "source_sha256": "bde436a1b47df6facffd8fe26cd11a3b1cd81efa76a6f737e891e96186508683",
+  "open": [
+    "native UserDefaults bridging/persistence/restart parity",
+    "favorite identity/migration/quality-selection intent",
+    "real mirror failure/playback and UI"
+  ],
+  "scope": "Python schema/state port + current Swift source guards, no actual preferences/stream/network/Swift/UI action"
+}

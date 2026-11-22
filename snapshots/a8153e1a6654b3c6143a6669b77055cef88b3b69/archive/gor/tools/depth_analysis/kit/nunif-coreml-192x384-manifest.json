@@ -1,0 +1,129 @@
+{
+ "kit": "gor prepare Mac runtime - nunif iw3 synthesis runners, ToS-parity shape 192x384 (goreda lane 190y X2)",
+ "built": "2026-11-09",
+ "status": "CONVERTED on Linux (coremltools 9.0, torch 2.14.1+cpu), NEVER EXECUTED - macOS-only; verify each package vs its *_fixture.npz (torch fp32, seeded) before first use",
+ "source_weights": "upstream nunif release 0.0.0, 7 assets sha256-verified by independent download (X2-VERIFY-20261109-goreda.md), MIT code / owner-private Mac build only (190w W1 label, see models.lock)",
+ "purpose": "ToS-parity shape (320x180 replication-padded to multiples of 96 = 192x384) so the Mac parity run diffs CoreML vs the committed ToS reference renders WITHOUT any re-conversion; this also retires the handoff open item 'light_video re-convert needed on Mac (Linux OOM)' for the parity shape: video traced fine at 192x384 on a 1GB box",
+ "convention": "same as nunif-coreml-kit-manifest.json (warp x = [depth, divergence_feature, convergence_feature]; inpaint x,mask after upstream preprocess; replication-pad to multiples of 96; slice-crop pad shim)",
+ "packages": {
+  "nunif_row_flow_fp16.mlpackage": {
+   "role": "T3 row_flow_v3 delta warp",
+   "inputs": {
+    "x": [
+     1,
+     3,
+     192,
+     384
+    ]
+   },
+   "content_files_sha256": "379a633224326d42916d9cbf016c95a02d87924213170fd717e2c28df7bb9ee4",
+   "fixture": "nunif_row_flow_fp16_fixture.npz",
+   "fixture_sha256": "5a96c554581ae1f79b8d0d7e5b3cb078dd92d62df1c460c05617fef179f3ff84",
+   "outputs": {
+    "delta": [
+     1,
+     2,
+     192,
+     384
+    ]
+   }
+  },
+  "nunif_mlbw_fp16.mlpackage": {
+   "role": "T1/T2 mask_mlbw_l2_d1 warp + hole mask",
+   "inputs": {
+    "x": [
+     1,
+     3,
+     192,
+     384
+    ]
+   },
+   "content_files_sha256": "a9a79c77876f8c2ca133db07736bdbf10a1af2f13f2ef87bf01723da298d48a6",
+   "fixture": "nunif_mlbw_fp16_fixture.npz",
+   "fixture_sha256": "9b419f71292c0aee6ce24588603b815f0d217d60d464f249d3f90049ee5d3d1d",
+   "outputs": {
+    "delta": [
+     1,
+     2,
+     192,
+     384
+    ],
+    "layer_weight": [
+     1,
+     2,
+     192,
+     384
+    ],
+    "hole_mask_logits": [
+     1,
+     1,
+     192,
+     384
+    ]
+   }
+  },
+  "nunif_inpaint_fp16.mlpackage": {
+   "role": "T2 light_inpaint_v1 image inpaint",
+   "inputs": {
+    "x": [
+     1,
+     3,
+     192,
+     384
+    ],
+    "mask": [
+     1,
+     1,
+     192,
+     384
+    ]
+   },
+   "content_files_sha256": "2b2a89a39a43cfea6802b9e015e0622390a65f4ec6fe5d8d0ba058628f68b960",
+   "fixture": "nunif_inpaint_fp16_fixture.npz",
+   "fixture_sha256": "5cf7707cd2309c1b1cfb3713c0e69e5fb9c8fc8e2f5ba619894e5e3fe301a6d6",
+   "outputs": {
+    "out": [
+     1,
+     3,
+     192,
+     384
+    ]
+   }
+  },
+  "nunif_video_fp16.mlpackage": {
+   "role": "T1 light_video_inpaint_v1 video inpaint (SEQ 12)",
+   "inputs": {
+    "x": [
+     12,
+     3,
+     192,
+     384
+    ],
+    "mask": [
+     12,
+     1,
+     192,
+     384
+    ]
+   },
+   "content_files_sha256": "eb2ccdcb6e706ae8ee34b0ba64ff7fe9360d062ccf6b19818042584139484ed9",
+   "fixture": "nunif_video_fp16_fixture.npz",
+   "fixture_sha256": "b234d0cb60329f44498bbf3ddc9ce5516ca036b97883e905d32107a06ebe5c3e",
+   "outputs": {
+    "out": [
+     12,
+     3,
+     192,
+     384
+    ]
+   }
+  }
+ },
+ "tar": {
+  "file": "gor-kit-nunif-coreml-192x384.tar",
+  "sha256": "9aad06cecfd7fad987d025c860db219d750f6c3823215d8eeac14b37aeaffa9c",
+  "bytes": 52142080,
+  "note": "hash algorithm: tar sha256; per-package content_files_sha256 = sha256 over sorted per-file sha256sum lines (find -type f | sort); tar NOT uploaded - needs the gorav release route (owner gh login), goreda lane has no gorav write access"
+ },
+ "boundary_fix": "image inpaint now traced at the documented skip_i2i_offset=True boundary (nunif_convert.py fix, this lane): out is full-size [1,3,192,384]; i2i ring handled runner-side like video. The earlier 768x1344 kit package was traced WITHOUT the wrapper, so its real out is [1,3,736,1312] and its manifest/contract out-shape documentation is wrong; re-convert at production shape from the fixed script."
+}

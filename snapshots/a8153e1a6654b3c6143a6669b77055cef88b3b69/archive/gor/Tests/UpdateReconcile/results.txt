@@ -1,0 +1,11 @@
+PASS actual updater block empty accepted
+PASS actual updater block nonempty refused-preserved
+PASS actual updater block wrongmessage refused-preserved
+PASS actual updater block merge refused-preserved
+PASS actual updater block dirty refused-preserved
+PASS actual updater block wrongbranch refused-preserved
+PASS actual updater block ahead accepted
+PASS actual updater block prior-merge accepted
+PASS actual updater block later-remote accepted
+PASS actual updater block evil-source-merge refused-preserved
+PASS actual updater block changed-merge-tree refused-preserved

@@ -1,0 +1,46 @@
+{
+  "result": "PASS controls and expected known-red characterization",
+  "controls": [
+    "EOL '\\n' attributes/blank line/URL whitespace",
+    "EOL '\\r\\n' attributes/blank line/URL whitespace",
+    "EOL '\\r' attributes/blank line/URL whitespace",
+    "tvg-ID quality suffix groups alternate URLs in encountered order",
+    "absent tvg-ID does not merge unrelated channels",
+    "missing name and local-file URL skipped",
+    "country suffix fallback controls",
+    "old country completion rejected after replacement",
+    "country result rejected after leaving country screen",
+    "same-country ABA guarded by generation"
+  ],
+  "known_red": [
+    {
+      "case": "intervening player directive",
+      "observed": "otherwise named HTTP channel dropped after comment/directive"
+    },
+    {
+      "case": "prefix-only URL admission",
+      "observed": "malformed http-prefixed string enters channel list"
+    },
+    {
+      "case": "uppercase scheme",
+      "observed": "uppercase HTTPS omitted by case-sensitive prefix gate"
+    },
+    {
+      "case": "comma in display name",
+      "observed": "last-comma fallback loses leading display-name text"
+    },
+    {
+      "case": "random stop/restart ABA",
+      "observed": "A request remains eligible when boolean returns true in new random session",
+      "scope": "ownership model, native URLSession ordering unverified"
+    }
+  ],
+  "source_sha256": "bde436a1b47df6facffd8fe26cd11a3b1cd81efa76a6f737e891e96186508683",
+  "open": [
+    "Swift regex/String/Dictionary parity",
+    "random request cancellation/retry bounds",
+    "playlist HTTP status/charset/provider behavior",
+    "EPG, favorites persistence, quality switching and AppKit pixels not covered"
+  ],
+  "scope": "Synthetic Python parser/state ports + current Swift source guards; no live playlist request or Swift/native execution"
+}

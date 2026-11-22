@@ -1,0 +1,29 @@
+{
+ "tag": "uncapped",
+ "mpv": "mpv v0.41.0 Copyright \u00a9 2000-2025 mpv/MPlayer/mplayer2 projects",
+ "date": "2026-11-07T15:58:01+0300",
+ "window_s": 20,
+ "video_draw_n": 73,
+ "video_draw_ms": {
+  "mean": 251.16,
+  "p50": 263.25,
+  "p95": 356.24,
+  "max": 380.08
+ },
+ "drop_vo_in_window": 0,
+ "frame_drop_count": 155,
+ "cpu_pct_mean": 129.6,
+ "glsl_shaders": [
+  "photon-grain.glsl",
+  "photon-sharp.glsl",
+  "vr180-look-shader-a.glsl"
+ ],
+ "vf_n": 0,
+ "max_concurrent_ffmpeg": 2,
+ "sync_readbacks_total": 4,
+ "paced_captures": 2,
+ "capture_ms_max": 381.8,
+ "probe_frames_served": 7,
+ "probe_frames_skipped": 1,
+ "photon_errors": []
+}

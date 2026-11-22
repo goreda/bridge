@@ -1,0 +1,15 @@
+{
+  "base_commit": "e1aab979",
+  "scope": "Owner-performed Mac scenarios. Collector is passive. No native result exists yet.",
+  "cases": [
+    {"id":"OVERLAY-DRAG","action":"Drag the mpv window by its native titlebar, then by the GOR drag area; release, including outside the window.","pass":"Overlay stays aligned, no snap-back; mouse-up releases drag ownership.","evidence":"Screen recording or owner observation plus logs. Static source tests cannot prove latency."},
+    {"id":"FS-MINIMIZE","action":"Enter fullscreen, use the GOR minimize button; restore. Repeat once. During a second pending minimize, toggle fullscreen deliberately.","pass":"Fullscreen exits before minimization; restore works; explicit fullscreen cancels pending minimize. No forced timeout miniaturize."},
+    {"id":"FIRST-SPACE","action":"Open a fresh video, wait until it is playing, press Space once and wait 3 seconds. Press Space again to resume.","pass":"First press holds pause, brightness fade does not undo pause. Resume advances position. Repeat once immediately after a fresh load."},
+    {"id":"CAMERA-VIDEO","action":"With adaptive brightness enabled and ALS unavailable, compare idle panel, loaded video, paused video, audio-only file, embedded-cover MP3/FLAC and standalone image, stopped video and transition gap.","pass":"Camera fallback only with loaded video; pause sampling remains intentional; audio-only/cover/image/idle/stop/gap stay off. VR head tracking remains off while paused."},
+    {"id":"RESTART-MENU","action":"Restart once using the menu, then once using Shift+Q. After each restart wait until the new window is ready.","pass":"New GOR survives; old GOR/mpv retire; startup takeover is logged if old instance is still exiting."},
+    {"id":"TRUE-DUPLICATE","action":"While GOR is running normally, open the same app again without choosing restart.","pass":"Existing app activates; no second persistent GOR/mpv instance."},
+    {"id":"QUIT","action":"Quit during playback and once while paused; do not interrupt the fade. Record any error or leftover process.","pass":"Brightness restores once; quit completes; SCE tap teardown is logged; final process snapshot has no owned orphan mpv."}
+  ],
+  "excluded": ["Automated rapid mixed shortcuts", "SCE liveness replacement", "Photon model/native measurement qualification", "Any automatic UI or playback mutation"],
+  "shortcut_stress_design": {"owner_only":true,"status":"Design only, no automation","steps":"Use a bounded short mix of existing size/strength/sharp increase/decrease and toggle shortcuts. Record exact key order/times and the first visible failure; stop on a freeze or crash.","required_evidence":"Source/build hashes, exact input trace, before/after state, last successful frame, crash report if present. No root cause inferred from a rapid-key report alone."}
+}

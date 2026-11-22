@@ -1,0 +1,2 @@
+PASS actual automatic l5/l6 branch reaches l5 verdict+l6skip, actual common detached helper executed; AppKit boundary stubbed, no native PASS
+PASS full-mode helper definitions not referenced by later automatic branch

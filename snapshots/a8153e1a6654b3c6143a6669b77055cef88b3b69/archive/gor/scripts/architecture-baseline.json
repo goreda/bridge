@@ -1,0 +1,773 @@
+{
+  "commit": "5a9469d5e20c5abb51bf6414df37ec9ed8604611",
+  "scope": "descriptive source inventory, no debt grant",
+  "sources": {
+    "Sources/gor/AppDelegate.swift": {
+      "lines": 4024,
+      "git_blob": "f70a10133c6b784fda7906ecbfae1645515f77f0"
+    },
+    "Sources/gor/Camera/BinocularGaze.swift": {
+      "lines": 88,
+      "git_blob": "667258e76444ea44a6bbb8dcd020b9027829ffa0"
+    },
+    "Sources/gor/Camera/BlinkEpisodes.swift": {
+      "lines": 128,
+      "git_blob": "d8887e0cf9cb5d6696bacf6278770d03df86635d"
+    },
+    "Sources/gor/Camera/HeadPose.swift": {
+      "lines": 623,
+      "git_blob": "803fb35d09c2062c4f208213fa3cbf7c41de23fe"
+    },
+    "Sources/gor/Camera/Pose192d.swift": {
+      "lines": 166,
+      "git_blob": "92890c521e329fe84820980e256b098c7b2af550"
+    },
+    "Sources/gor/Camera/PoseFrameQuality.swift": {
+      "lines": 33,
+      "git_blob": "4c85b1eefe896488cca8088b1f25dc9f7625570e"
+    },
+    "Sources/gor/Camera/PoseMeasurementValidity.swift": {
+      "lines": 25,
+      "git_blob": "d510d4232c55221ed3b29dd1e2639d5d5cfdc97a"
+    },
+    "Sources/gor/Camera/Runtime.swift": {
+      "lines": 1055,
+      "git_blob": "95f0e2167c8d1caece178d9b7657fd10552ea05a"
+    },
+    "Sources/gor/Camera/Sensing.swift": {
+      "lines": 1748,
+      "git_blob": "267de6d4dc3e8475d0cdf49798ac982bf8a16554"
+    },
+    "Sources/gor/GorAVBackend/GorAVAppGate.swift": {
+      "lines": 199,
+      "git_blob": "daa52b6b795a86fb532461a93ada39a7b7f0f6ae"
+    },
+    "Sources/gor/GorAVBackend/GorAVHostMotion.swift": {
+      "lines": 176,
+      "git_blob": "8fbecd7304836e829e41a912ff821796b82103d5"
+    },
+    "Sources/gor/GorAVBackend/GorAVHostWindow.swift": {
+      "lines": 232,
+      "git_blob": "80cbd2a322cf16c5efb22b8d2e83f3e6a100e16a"
+    },
+    "Sources/gor/GorAVBackend/GorAVLocalOffer.swift": {
+      "lines": 118,
+      "git_blob": "bc52ffbf7b9ff90e5392f14a4df8a61526675fa4"
+    },
+    "Sources/gor/GorAVBackend/GorAVNativeGate.swift": {
+      "lines": 176,
+      "git_blob": "7bae685bca2168c9bad9e1af104a01ca3abadea1"
+    },
+    "Sources/gor/GorAVBackend/GorAVPlayerHost.swift": {
+      "lines": 576,
+      "git_blob": "32132d823fb7b551f01ea17c6002f9605d9c21c3"
+    },
+    "Sources/gor/GorAVBackend/GorAVPostOpenFallback.swift": {
+      "lines": 38,
+      "git_blob": "3b09365db6f6640cba767138f4fbb73a075f0c38"
+    },
+    "Sources/gor/GorAVBackend/GorAVStreamAdmission.swift": {
+      "lines": 37,
+      "git_blob": "06e257f845f91ad4ddf5c8f5dd5ae7808e82af5d"
+    },
+    "Sources/gor/GorCaptureModel/ScreenCaptureEngine.swift": {
+      "lines": 2266,
+      "git_blob": "ca15511dea9b8faeb654361a270a1a3ec82efdf9"
+    },
+    "Sources/gor/GorCore/BuildID.swift": {
+      "lines": 76,
+      "git_blob": "596659ee778a0aa3ee82f159dba74fb6858cf78c"
+    },
+    "Sources/gor/GorCore/Diag.swift": {
+      "lines": 666,
+      "git_blob": "cb459b1533d692e6e6dbe73f876fcb199105c08f"
+    },
+    "Sources/gor/GorCore/StableCacheKey.swift": {
+      "lines": 15,
+      "git_blob": "70e2486fdfe2ef111a6308a022a2beed69577321"
+    },
+    "Sources/gor/GorEffectsModel/AdaptiveColor.swift": {
+      "lines": 128,
+      "git_blob": "b613c6639ab53a4fd72d9f8861be7e2fca364221"
+    },
+    "Sources/gor/GorEffectsModel/LookToolsRoute.swift": {
+      "lines": 136,
+      "git_blob": "126f4db912906ccdd46ac2489ec35a8ea1d4268b"
+    },
+    "Sources/gor/GorEffectsModel/PhotonFont.swift": {
+      "lines": 1092,
+      "git_blob": "c354074cee1161931e8c856368c498875647ab9e"
+    },
+    "Sources/gor/GorEffectsModel/VariationBroadcaster.swift": {
+      "lines": 573,
+      "git_blob": "170f59be919f2ddf8060e74ef118128ea8227cd2"
+    },
+    "Sources/gor/GorFit/IconBarFit.swift": {
+      "lines": 111,
+      "git_blob": "ed92bb0d6d29f6784e14fdac5bf9d7ca296270ab"
+    },
+    "Sources/gor/GorMPVBackend/MPVCommand.swift": {
+      "lines": 819,
+      "git_blob": "099ff642fd15a3ae694aec2eb3334b795515c773"
+    },
+    "Sources/gor/GorPlatformMac/GORResources.swift": {
+      "lines": 208,
+      "git_blob": "c9e4be6a2a02a983e5c4a9797b40ab34f44092e0"
+    },
+    "Sources/gor/GorPlatformMac/OverlaySpaceGate.swift": {
+      "lines": 174,
+      "git_blob": "30c444d95a0f7405a3fd9f0e8a6c280254265647"
+    },
+    "Sources/gor/GorPlatformMac/PanelFocus.swift": {
+      "lines": 89,
+      "git_blob": "7a170c4053b17c6067a43368b7a9a9343fb6e4bd"
+    },
+    "Sources/gor/GorPlatformMac/PanelFocusTraversal.swift": {
+      "lines": 46,
+      "git_blob": "e13e7739b890075231797990bb255787f3991d27"
+    },
+    "Sources/gor/GorPlatformMac/QuitChildKiller.swift": {
+      "lines": 744,
+      "git_blob": "e61591834cafcbfcdbe48175602a40e6a9b7f293"
+    },
+    "Sources/gor/GorPlatformMac/RealtimeProbe.swift": {
+      "lines": 80,
+      "git_blob": "28fb6cc8fabb746b5d1ab166f36e31e56e8ff20e"
+    },
+    "Sources/gor/GorPlaybackModel/EngineObservation.swift": {
+      "lines": 211,
+      "git_blob": "7dbd20cb140445909f4c7bd3135566de8e02a327"
+    },
+    "Sources/gor/GorSources/ArchiveBrowser.swift": {
+      "lines": 2570,
+      "git_blob": "9aa9dbe910ee314ee38b059d48d5ed5e09c8bf0e"
+    },
+    "Sources/gor/GorSources/ArchiveLibrary.swift": {
+      "lines": 426,
+      "git_blob": "f54269da6b7cd045bc2f74d43804a420a2fb2524"
+    },
+    "Sources/gor/GorSources/ArchiveRandom.swift": {
+      "lines": 158,
+      "git_blob": "fb35a006c6336da77225576692774f1a6e5d8315"
+    },
+    "Sources/gor/GorSources/CDPSession.swift": {
+      "lines": 1698,
+      "git_blob": "a5146343fa42c654f76ebb651dbd39766003a2dc"
+    },
+    "Sources/gor/GorSources/FileBrowser.swift": {
+      "lines": 1209,
+      "git_blob": "5fea39ce234068b3ea564231230cf95d27dc74cf"
+    },
+    "Sources/gor/GorSources/IPTV.swift": {
+      "lines": 3444,
+      "git_blob": "66148bbc5911291105755560e264e89f3a84e84a"
+    },
+    "Sources/gor/GorSources/MagnetBrowser.swift": {
+      "lines": 2086,
+      "git_blob": "3c4872105db2b034a629d5e44fdedb42e85d6e50"
+    },
+    "Sources/gor/GorSources/MegaStreamManager.swift": {
+      "lines": 180,
+      "git_blob": "932e9f1498f323b357f2073a660d420f9c0a4e44"
+    },
+    "Sources/gor/GorSources/TorrentManager.swift": {
+      "lines": 754,
+      "git_blob": "5db095cee3559d0bd888a370d761aed2623835c2"
+    },
+    "Sources/gor/GorSources/TransferResolver.swift": {
+      "lines": 1792,
+      "git_blob": "7e67a89b8cac118c87affe72db0091743f7c9e11"
+    },
+    "Sources/gor/GorSources/TransferTicketContext.swift": {
+      "lines": 76,
+      "git_blob": "4999907c3a7668aa3dc824c2e931fd175007d0a9"
+    },
+    "Sources/gor/GorStereoUI/GazeCrosshairController.swift": {
+      "lines": 83,
+      "git_blob": "120444201681550306b645301400cbc63d930616"
+    },
+    "Sources/gor/GorSubtitles/LiveCaptionController.swift": {
+      "lines": 595,
+      "git_blob": "423b750d54e97bd3f0b8768822d26e79085ae01d"
+    },
+    "Sources/gor/GorSubtitles/SubtitleSampleGovernor.swift": {
+      "lines": 39,
+      "git_blob": "878aba5914bc5b5eb48e7b9cca51b4ac7bab17e6"
+    },
+    "Sources/gor/GorSubtitlesUI/SubtitleView.swift": {
+      "lines": 2233,
+      "git_blob": "6d68a69663744bef8c1f9fd5517e9167af87f764"
+    },
+    "Sources/gor/GorUI/FlatControlRefreshGate.swift": {
+      "lines": 8,
+      "git_blob": "c5b89455d1332b739bfd61abe3ee0e9a88a1fe5a"
+    },
+    "Sources/gor/GorUI/MenuActions.swift": {
+      "lines": 2175,
+      "git_blob": "91c4373d6519dcec965b1a0f0701927d1d73d3d5"
+    },
+    "Sources/gor/GorUI/MusicController.swift": {
+      "lines": 451,
+      "git_blob": "b063de333a663d35825c9d9fc5c0c26d48ace561"
+    },
+    "Sources/gor/GorUI/MusicPanel.swift": {
+      "lines": 1923,
+      "git_blob": "96e2fe06452d1d30b732f1cd446ad8833cf274d4"
+    },
+    "Sources/gor/GorUI/PPControllerEngineRefusalHUD.swift": {
+      "lines": 5,
+      "git_blob": "1e1b67bc86af588779e2685ca68ed50fb06f9307"
+    },
+    "Sources/gor/GorUI/PPControllerMenuQueries.swift": {
+      "lines": 76,
+      "git_blob": "55a6e2af675f0472b1007ea1adfe2365ea58ea97"
+    },
+    "Sources/gor/GorUI/SidebarUI.swift": {
+      "lines": 1147,
+      "git_blob": "4f88fd72d32f2ae28421ed05b5f8ae99afb674f5"
+    },
+    "Sources/gor/GorUI/SpineUI.swift": {
+      "lines": 3400,
+      "git_blob": "efeec1185a27a05fc0da22a2e9ddb66b4c4f2968"
+    },
+    "Sources/gor/Stereo/StereoDetection.swift": {
+      "lines": 231,
+      "git_blob": "78310fe9affa4280aac34351098ced63b871e7a3"
+    },
+    "Sources/gor/Stereo/StereoGeometry.swift": {
+      "lines": 156,
+      "git_blob": "194aa03e44902235d3adcf14e4985ab33d8f90f4"
+    },
+    "Sources/gor/Subtitles/SubtitlePreferences.swift": {
+      "lines": 102,
+      "git_blob": "0d07eba97e57df80023d33acdf30b590844dd8fe"
+    },
+    "Sources/gor/Subtitles/SubtitleTiltGeometry.swift": {
+      "lines": 37,
+      "git_blob": "d2532922fc9599634db878e21af47f7a1bd01cec"
+    },
+    "Sources/gor/Viewport/CropDetector.swift": {
+      "lines": 1385,
+      "git_blob": "2d12c0d9c5721b6ec875482bfa9ce1697509122e"
+    },
+    "Sources/gor/Viewport/Viewport.swift": {
+      "lines": 1323,
+      "git_blob": "bed1e80498eaeab3e9a3cb63317670ded77ad50a"
+    },
+    "Sources/gor/gor/BlinkCommandRoute.swift": {
+      "lines": 26,
+      "git_blob": "ba97e92ac79f3b6f4146fc2a781bcc37732471c2"
+    },
+    "Sources/gor/gor/BrightnessController.swift": {
+      "lines": 280,
+      "git_blob": "d04daadb3b385d5b3fabfb0535c69024ec61e8f9"
+    },
+    "Sources/gor/gor/BrightnessReadCache.swift": {
+      "lines": 25,
+      "git_blob": "69c907b40585727ba04291b66afedd928cdda1bb"
+    },
+    "Sources/gor/gor/CaptureConsumerRules.swift": {
+      "lines": 22,
+      "git_blob": "84e6e91869ce77bade0e7f81875151e425025cc8"
+    },
+    "Sources/gor/gor/ContentAdaptiveDimming.swift": {
+      "lines": 489,
+      "git_blob": "d9f458062a099e0e1235ac667f0464968ce2b290"
+    },
+    "Sources/gor/gor/DragDropHandler.swift": {
+      "lines": 119,
+      "git_blob": "a632d8a8400db5f0baa00d49dc76902cce3559b2"
+    },
+    "Sources/gor/gor/GeomTrace.swift": {
+      "lines": 110,
+      "git_blob": "7c8c07c4940f504aeeb43001fa5032a1cef4d2c2"
+    },
+    "Sources/gor/gor/IPTVModeController.swift": {
+      "lines": 239,
+      "git_blob": "ef0e3c6cdee926a11f23e748ebee8b484c7b0cc3"
+    },
+    "Sources/gor/gor/InputController.swift": {
+      "lines": 520,
+      "git_blob": "f09d5ad9e750bbe6cf8df4be73c79808480ddcc5"
+    },
+    "Sources/gor/gor/MusicModeController.swift": {
+      "lines": 172,
+      "git_blob": "723e5b989e8d6daffb9f23a910bd868aefc8a5c1"
+    },
+    "Sources/gor/gor/MusicRowLabel.swift": {
+      "lines": 63,
+      "git_blob": "8835aa06a2a88d2014f677ef75732f1dc0fd8c7f"
+    },
+    "Sources/gor/gor/PPController.swift": {
+      "lines": 4231,
+      "git_blob": "767f3083a7ccbceb9029459fca3e1cf99d47f26b"
+    },
+    "Sources/gor/gor/PlayerViewStub.swift": {
+      "lines": 48,
+      "git_blob": "b28818f1c8f1c5d60fa7238a64e8f59311764d88"
+    },
+    "Sources/gor/gor/SeededRandomNumberGenerator.swift": {
+      "lines": 18,
+      "git_blob": "3275a1f1056df51c82d1e78347c160cd2a93e60c"
+    },
+    "Sources/gor/gor/ThreeD.swift": {
+      "lines": 12441,
+      "git_blob": "51238ce45783facb8bd8c8adf309e9f9eb8c1f1e"
+    },
+    "Sources/gor/gor/VR180Controller.swift": {
+      "lines": 800,
+      "git_blob": "bcebf60057e84781061b0226d5b5504afcca7e03"
+    },
+    "Sources/gor/gor/VRStereoControlInput.swift": {
+      "lines": 120,
+      "git_blob": "bd1cd83076a4e96fa610c4a4cf8bd65a7a357907"
+    },
+    "Sources/gor/main.swift": {
+      "lines": 36,
+      "git_blob": "63318c3e8dfff81b59fbdf395dadb758866616ae"
+    }
+  },
+  "history": {
+    "commit": "a2ff11626c3e0dd186419eb2772fe9369a45bc53",
+    "sources": {
+      "Sources/gor/AdaptiveColor.swift": {
+        "imports": [
+          "AppKit",
+          "QuartzCore"
+        ],
+        "lines": 128,
+        "mpv": {}
+      },
+      "Sources/gor/AppDelegate.swift": {
+        "imports": [
+          "AppKit",
+          "CoreAudio",
+          "CoreGraphics",
+          "CryptoKit",
+          "Darwin",
+          "Dispatch",
+          "QuartzCore"
+        ],
+        "lines": 3652,
+        "mpv": {
+          "ProcessInfo.processInfo.disableAutomaticTermination(\"mpv ipc sync active\")": 1,
+          "controller?.ipcCommand(MPVCommand.make([\"set_property\",\"user-data/gor/pip-window-owned\",pictureInPictureActive]))": 1,
+          "ctrl.ipcCommand(MPVCommand.make([\"set_property\",\"user-data/gor/pip-window-owned\",pictureInPictureActive]))": 1,
+          "ctrl.ipcCommand(MPVCommand.make([\"set_property\",\"user-data/gor/pip-window-owned\",true]))": 1,
+          "let client = IPCClient(path: ipcPath)": 1,
+          "let required = [\"mpv.conf\"] + requiredLua.map { \"scripts/\" + $0 }": 1,
+          "private func performMinimizeCommand(client: IPCClient, ax: AXUIElement, win: NSWindow,": 1,
+          "private func pollMinimizeReadiness(client: IPCClient, ax: AXUIElement, win: NSWindow,": 1,
+          "private func scheduleMinimizePoll(client: IPCClient, ax: AXUIElement, win: NSWindow,": 1
+        }
+      },
+      "Sources/gor/ArchiveBrowser.swift": {
+        "imports": [
+          "AppKit",
+          "CommonCrypto",
+          "Foundation"
+        ],
+        "lines": 2547,
+        "mpv": {}
+      },
+      "Sources/gor/ArchiveLibrary.swift": {
+        "imports": [
+          "AppKit",
+          "Foundation"
+        ],
+        "lines": 419,
+        "mpv": {}
+      },
+      "Sources/gor/ArchiveRandom.swift": {
+        "imports": [
+          "CryptoKit",
+          "Foundation",
+          "Security"
+        ],
+        "lines": 132,
+        "mpv": {}
+      },
+      "Sources/gor/BuildID.swift": {
+        "imports": [
+          "Foundation"
+        ],
+        "lines": 42,
+        "mpv": {}
+      },
+      "Sources/gor/CDPSession.swift": {
+        "imports": [
+          "AppKit",
+          "CommonCrypto",
+          "Darwin",
+          "Foundation"
+        ],
+        "lines": 1698,
+        "mpv": {}
+      },
+      "Sources/gor/Diag.swift": {
+        "imports": [
+          "AppKit",
+          "CoreFoundation",
+          "Darwin",
+          "Foundation"
+        ],
+        "lines": 385,
+        "mpv": {}
+      },
+      "Sources/gor/FileBrowser.swift": {
+        "imports": [
+          "AppKit"
+        ],
+        "lines": 1146,
+        "mpv": {
+          "_ = IPCClient.socketRoundtrip(path: socketPath, payload: payload, timeout: 0.25)": 1,
+          "let socketPath = \"/tmp/preview_mpv_\\(UUID().uuidString).sock\"": 1
+        }
+      },
+      "Sources/gor/GORResources.swift": {
+        "imports": [
+          "Foundation"
+        ],
+        "lines": 116,
+        "mpv": {}
+      },
+      "Sources/gor/GorFit.swift": {
+        "imports": [
+          "AppKit",
+          "Foundation"
+        ],
+        "lines": 1323,
+        "mpv": {}
+      },
+      "Sources/gor/IPTV.swift": {
+        "imports": [
+          "AppKit",
+          "Foundation"
+        ],
+        "lines": 3442,
+        "mpv": {}
+      },
+      "Sources/gor/LiveCaptionController.swift": {
+        "imports": [
+          "Foundation"
+        ],
+        "lines": 595,
+        "mpv": {}
+      },
+      "Sources/gor/MPVCommand.swift": {
+        "imports": [
+          "Foundation"
+        ],
+        "lines": 80,
+        "mpv": {
+          "enum MPVCommand {": 1
+        }
+      },
+      "Sources/gor/MagnetBrowser.swift": {
+        "imports": [
+          "AppKit",
+          "CoreFoundation",
+          "Darwin",
+          "Foundation",
+          "WebKit"
+        ],
+        "lines": 1984,
+        "mpv": {}
+      },
+      "Sources/gor/MegaStreamManager.swift": {
+        "imports": [
+          "AppKit",
+          "Foundation"
+        ],
+        "lines": 161,
+        "mpv": {}
+      },
+      "Sources/gor/MenuActions.swift": {
+        "imports": [
+          "AppKit",
+          "CoreText",
+          "Foundation",
+          "ObjectiveC"
+        ],
+        "lines": 1771,
+        "mpv": {
+          "cmds.append(MPVCommand.make([\"set_property\", \"http-header-fields\",": 1,
+          "if extraHeaders.isEmpty { cmds.append(MPVCommand.make([\"set_property\", \"http-header-fields\", \"\"])) }": 1
+        }
+      },
+      "Sources/gor/MusicController.swift": {
+        "imports": [
+          "AppKit",
+          "Foundation"
+        ],
+        "lines": 450,
+        "mpv": {}
+      },
+      "Sources/gor/MusicPanel.swift": {
+        "imports": [
+          "AppKit",
+          "Foundation"
+        ],
+        "lines": 1923,
+        "mpv": {
+          "ctrl.ipcCommand(MPVCommand.make([\"loadfile\", url.path]))": 1,
+          "ctrl.ipcCommand(MPVCommand.make([\"sub-add\", url.path]))": 1
+        }
+      },
+      "Sources/gor/PPController.swift": {
+        "imports": [
+          "AppKit",
+          "CoreGraphics",
+          "CoreImage",
+          "Darwin",
+          "Foundation",
+          "IOKit"
+        ],
+        "lines": 6234,
+        "mpv": {
+          "IPCClient.cmdQueue.async {": 2,
+          "IPCClient.cmdQueue.async { [weak self] in self?.drainLatestLids() }": 1,
+          "IPCClient.cmdQueue.async { [weak self] in self?.drainLatestPose() }": 1,
+          "IPCClient.parseFirst(ipcClient.queryBatch(#\"{\"command\":[\"get_property\",\"ontop\"]}\"#,timeout:0.15))[\"data\"] as? Bool": 1,
+          "MPVCommand.make([\"loadfile\", path]),": 1,
+          "MPVCommand.make([\"set_property\", \"force-media-title\", \"\"]),": 1,
+          "_ = IPCClient.socketRoundtrip(path: p, payload: json + \"\\n\", timeout: 0.5)": 1,
+          "_=IPCClient.socketRoundtrip(path:path,payload:value.payload+\"\\n\",timeout:0.1,sendOnly:true)": 1,
+          "_=IPCClient.socketRoundtrip(path:path,payload:value.payload+\"\\n\",timeout:0.5)": 1,
+          "client: IPCClient, seekSec: Int, filePath: String, videoW: Double, videoH: Double,": 1,
+          "command[3] as? String == \"false\" {ipcClient.cancelLatestPose()}": 1,
+          "else if continuousPose {ipcClient.sendLatestPose(json)}": 1,
+          "else {ipcClient.cancelLatestPose()}": 1,
+          "else {ipcClient.send(json)}": 1,
+          "final class IPCClient {": 1,
+          "final class PersistentEventConnection {": 1,
+          "guard let raw = IPCClient.parseFirst(lines)[\"data\"] as? String else { return }": 1,
+          "if continuousLids {ipcClient.sendLatestLids(json)}": 1,
+          "if lidSlot.finish() {IPCClient.cmdQueue.async { [weak self] in self?.drainLatestLids() }}": 1,
+          "if name == \"quit\" || name == \"quit-watch-later\" {ipcClient.closeLatestPose()}": 1,
+          "if poseSlot.finish() {IPCClient.cmdQueue.async { [weak self] in self?.drainLatestPose() }}": 1,
+          "init(connection: PersistentEventConnection) {": 1,
+          "ipcClient.closeLatestPose()": 1,
+          "ipcCommand(MPVCommand.make([\"script-message-to\", \"gor_fit\", \"cancel\"]))": 1,
+          "ipcCommand(MPVCommand.make([\"script-message-to\", \"gor_fit\", \"pip-mode\", pictureInPicture ? \"yes\" : \"no\"]))": 1,
+          "ipcCommand(MPVCommand.make([\"set_property\", \"geometry\", geom]))": 1,
+          "ipcCommand(MPVCommand.make([\"set_property\", \"user-data/gor/fit\", value]))": 1,
+          "ipcCommand(MPVCommand.make([\"set_property\",\"sub-pos\",position]))": 1,
+          "ipcCommand(MPVCommand.make([\"set_property\",\"sub-scale\",scale]))": 1,
+          "let after=IPCClient.parseFirst(ipcClient.queryBatch(#\"{\"command\":[\"get_property\",\"path\"]}\"#,timeout:0.15))[\"data\"] as? String ?? \"\"": 1,
+          "let client = IPCClient(path: mainIPCPath)": 2,
+          "let client = IPCClient(path: probeSocket)": 1,
+          "let client = IPCClient(path: socket)": 1,
+          "let client = IPCClient(path: socketPath)": 1,
+          "let client = ipcClient": 4,
+          "let client = self.ipcClient": 1,
+          "let command=MPVCommand.make([\"set_property\",\"video-crop\",plan.commandValue])": 1,
+          "let command=reset ? MPVCommand.make([\"set_property\",property,property == \"sub-scale\" ? 1 : property == \"sub-pos\" ? 100 : 0]) : MPVCommand.make([\"add\",property,delta])": 1,
+          "let data=IPCClient.parseFirst(ipcClient.queryBatch(#\"{\"command\":[\"get_property\",\"video-dec-params\"]}\"#,timeout:0.25))[\"data\"] as? [String:Any] ?? [:]": 1,
+          "let durObj   = IPCClient.parseFirst(durLines)": 2,
+          "let fmtObj = IPCClient.parseFirst(fmtLines)": 1,
+          "let ipcLocal = ipcClient": 1,
+          "let lines = IPCClient(path: socket).queryBatch(": 1,
+          "let lines = ipcClient.queryBatch(": 1,
+          "let lines=ipcClient.queryBatch(payload,timeout:0.3)": 1,
+          "let loadedPath = IPCClient.parseFirst(client.queryBatch(": 1,
+          "let mainClient = IPCClient(path: mainPath)": 1,
+          "let obj   = IPCClient.parseFirst(lines)": 3,
+          "let path = IPCClient.parseFirst(lines)[\"data\"] as? String": 1,
+          "let path=IPCClient.parseFirst(ipcClient.queryBatch(#\"{\"command\":[\"get_property\",\"path\"]}\"#,timeout:0.15))[\"data\"] as? String ?? \"\"": 1,
+          "let paused = IPCClient.parseFirst(IPCClient(path: mainPath).queryBatch(": 1,
+          "let paused = IPCClient.parseFirst(client.queryBatch(": 1,
+          "let payload=command+\"\\n\"+MPVCommand.make([\"get_property\",property])": 1,
+          "let position = IPCClient.parseFirst(client.queryBatch(": 1,
+          "let postShotPath = IPCClient.parseFirst(client.queryBatch(": 1,
+          "let probeSocket = \"/tmp/hidden_mpv_probe_\\(Int(Date().timeIntervalSince1970 * 1000)).sock\"": 1,
+          "let replies=ipcClient.queryBatch(command,timeout:0.3)": 1,
+          "let reply=IPCClient.parseFirst(lines)": 1,
+          "let response = IPCClient.parseFirst(client.queryBatch(": 1,
+          "let socketPath = \"/tmp/hidden_mpv_\\(seekSec)_\\(Int(Date().timeIntervalSince1970 * 1000)).sock\"": 1,
+          "let tracks=IPCClient.parseFirst(ipcClient.queryBatch(#\"{\"command\":[\"get_property\",\"track-list\"]}\"#,timeout:0.15))[\"data\"] as? [[String:Any]] ?? []": 1,
+          "private func waitForFileLoaded(client: IPCClient, maxWait: TimeInterval) -> Bool {": 1,
+          "private func waitForSeekCompletion(client: IPCClient, maxWait: TimeInterval) {": 1,
+          "private let connection: PersistentEventConnection": 1,
+          "private let ipcClient: IPCClient": 1,
+          "private let persistentConnection: PersistentEventConnection": 1,
+          "return IPCClient.socketRoundtrip(path: path, payload: payload, timeout: timeout)": 1,
+          "return MPVCommand.make([\"set_property\", \"user-data/gor/fit\", v]) + \"\\n\" + payload": 1,
+          "self.ipcClient    = IPCClient(path: ipcPath)": 1,
+          "self.persistentConnection = PersistentEventConnection(path: ipcPath)": 1,
+          "self?.ipcCommand(MPVCommand.make([\"sub-add\", url.path]))": 1
+        }
+      },
+      "Sources/gor/PPController_Features.swift": {
+        "imports": [
+          "AppKit",
+          "QuartzCore"
+        ],
+        "lines": 2298,
+        "mpv": {
+          "MPVCommand.make([\"loadfile\", resolvedURL]),": 1,
+          "MPVCommand.make([\"loadfile\", url]),": 1,
+          "self.ipcCommand(MPVCommand.make([\"loadfile\", url.path, mode]))": 1,
+          "self.ipcCommand(MPVCommand.make([\"sub-add\", url.path]))": 1
+        }
+      },
+      "Sources/gor/PanelFocus.swift": {
+        "imports": [
+          "AppKit"
+        ],
+        "lines": 82,
+        "mpv": {}
+      },
+      "Sources/gor/PanelFocusTraversal.swift": {
+        "imports": [
+          "Foundation"
+        ],
+        "lines": 36,
+        "mpv": {}
+      },
+      "Sources/gor/PhotonFont.swift": {
+        "imports": [
+          "AppKit",
+          "CoreText"
+        ],
+        "lines": 981,
+        "mpv": {}
+      },
+      "Sources/gor/PlayerProtocol.swift": {
+        "imports": [
+          "AppKit"
+        ],
+        "lines": 27,
+        "mpv": {}
+      },
+      "Sources/gor/QuitChildKiller.swift": {
+        "imports": [
+          "Darwin",
+          "Foundation",
+          "Glibc"
+        ],
+        "lines": 497,
+        "mpv": {}
+      },
+      "Sources/gor/ScreenCaptureEngine.swift": {
+        "imports": [
+          "AVFoundation",
+          "Accelerate",
+          "AppKit",
+          "CoreAudio",
+          "CoreGraphics",
+          "IOKit",
+          "ScreenCaptureKit",
+          "Vision"
+        ],
+        "lines": 4187,
+        "mpv": {}
+      },
+      "Sources/gor/SidebarUI.swift": {
+        "imports": [
+          "AppKit",
+          "QuartzCore"
+        ],
+        "lines": 1141,
+        "mpv": {}
+      },
+      "Sources/gor/SourcePixelCrop.swift": {
+        "imports": [
+          "Darwin",
+          "Foundation"
+        ],
+        "lines": 198,
+        "mpv": {}
+      },
+      "Sources/gor/SpineUI.swift": {
+        "imports": [
+          "AppKit",
+          "QuartzCore"
+        ],
+        "lines": 3371,
+        "mpv": {}
+      },
+      "Sources/gor/StableCacheKey.swift": {
+        "imports": [
+          "CryptoKit",
+          "Foundation"
+        ],
+        "lines": 15,
+        "mpv": {}
+      },
+      "Sources/gor/Stereo/HeadPose.swift": {
+        "imports": [
+          "Foundation"
+        ],
+        "lines": 235,
+        "mpv": {}
+      },
+      "Sources/gor/Stereo/StereoDetection.swift": {
+        "imports": [
+          "Darwin",
+          "Foundation",
+          "Glibc"
+        ],
+        "lines": 217,
+        "mpv": {}
+      },
+      "Sources/gor/Stereo/StereoGeometry.swift": {
+        "imports": [
+          "Foundation"
+        ],
+        "lines": 137,
+        "mpv": {}
+      },
+      "Sources/gor/SubtitleView.swift": {
+        "imports": [
+          "Accelerate",
+          "AppKit",
+          "Compression",
+          "CoreAudio",
+          "CoreText",
+          "QuartzCore"
+        ],
+        "lines": 2139,
+        "mpv": {}
+      },
+      "Sources/gor/Subtitles/SubtitlePreferences.swift": {
+        "imports": [
+          "Foundation"
+        ],
+        "lines": 45,
+        "mpv": {}
+      },
+      "Sources/gor/TorrentManager.swift": {
+        "imports": [
+          "AppKit",
+          "Foundation"
+        ],
+        "lines": 724,
+        "mpv": {}
+      },
+      "Sources/gor/TransferResolver.swift": {
+        "imports": [
+          "AppKit",
+          "Foundation"
+        ],
+        "lines": 1792,
+        "mpv": {}
+      },
+      "Sources/gor/VariationBroadcaster.swift": {
+        "imports": [
+          "AppKit",
+          "CoreText"
+        ],
+        "lines": 493,
+        "mpv": {}
+      },
+      "Sources/gor/main.swift": {
+        "imports": [
+          "AppKit"
+        ],
+        "lines": 11,
+        "mpv": {}
+      }
+    }
+  }
+}

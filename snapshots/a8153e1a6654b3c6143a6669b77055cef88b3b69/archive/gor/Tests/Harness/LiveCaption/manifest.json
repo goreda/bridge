@@ -1,0 +1,18 @@
+{
+  "live_source_read": "goreda/instinct main, 2026-10-01 22:36 Europe/Istanbul",
+  "sha256": "48ddd318010a3e8ac7792a2d43004617c5b5fee38ac9ccefab5a799443f421e6",
+  "negative_checks": [
+    {
+      "removed_guard": "self.stdoutPipe === oldPipe",
+      "rejected": true
+    },
+    {
+      "removed_guard": "self.process === proc",
+      "rejected": true
+    },
+    {
+      "removed_guard": "self.captionGeneration == generation",
+      "rejected": true
+    }
+  ]
+}

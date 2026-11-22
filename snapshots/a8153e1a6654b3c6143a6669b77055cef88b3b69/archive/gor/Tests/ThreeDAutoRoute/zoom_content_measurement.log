@@ -1,0 +1,17 @@
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS approach/retreat headdeg 0 z 0.2 fov 110 scale_ratio 2.112912211458687 expected 2.113063169027198 S1_error_px 2.209486456195009e-05
+MEAS approach/retreat headdeg 0 z -0.2 fov 150 scale_ratio 0.5389718855364795 expected 0.5390721453284455 S1_error_px 3.977557952339339e-05
+MEAS approach/retreat headdeg 20 z 0.2 fov 110 scale_ratio 2.1130167214649993 expected 2.113063169027198 S1_error_px 0.0004026134952539451
+MEAS approach/retreat headdeg 20 z -0.2 fov 150 scale_ratio 0.5390008457088831 expected 0.5390721453284455 S1_error_px 0.007361881134329451
+MEAS approach/retreat headdeg -20 z 0.2 fov 110 scale_ratio 2.113016005485849 expected 2.113063169027198 S1_error_px 0.0003785928808497374
+MEAS approach/retreat headdeg -20 z -0.2 fov 150 scale_ratio 0.5390006855283265 expected 0.5390721453284455 S1_error_px 0.007308350821944032
+MEAS shortcut equals manual_view -6.0 pixel_scale_ratio 1.2341105822613812
+MEAS shortcut minus manual_view 6.0 pixel_scale_ratio 0.79764027430167
+MEAS shortcut held-in manual_view -26.0 pixel_scale_ratio 1.750767807205175
+MEAS shortcut held-out manual_view 22.5 pixel_scale_ratio 0.5619454957251597
+PASS distance content zoom and actual Lua shortcut bridge, S1 centres retained. Physical Mac keyboard delivery NOT_RUN
+PASS production fn+shift zoom physical keycode 43 direction 1
+PASS production fn+shift zoom physical keycode 47 direction -1
+PASS production single-step zoom = 1
+PASS production single-step zoom - -1
+PASS unrelated command modifier rejected; native Mac event arrival NOT_RUN

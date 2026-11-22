@@ -1,0 +1,14 @@
+// IPTV owns a single ordered batch, not three independent sends.
+// Host load-generation admission precedes this operation; existing batchIPC
+// retains transport and embedded dispatch ownership.
+struct PlayerIPTVOperations {
+    let batch:(String)->Void
+    func load(url:String,photonEnabled:Bool) {
+        let payload = [
+            #"{"command":["script-message-to","photon","set-live","true"]}"#,
+            #"{"command":["script-message-to","photon","set-user-enabled","\#(photonEnabled ? "true" : "false")"]}"#,
+            MPVCommand.make(["loadfile",url]),
+        ].joined(separator:"\n")
+        batch(payload)
+    }
+}

@@ -1,0 +1,56 @@
+{
+  "result": "PASS controls and expected known-red characterization",
+  "controls": [
+    {
+      "case": "all ASCII ready-message three-chunk partitions",
+      "count": 496
+    },
+    {
+      "case": "coalesced lines, blanks, CRLF and retained tail"
+    },
+    {
+      "case": "unterminated tail waits for newline"
+    },
+    {
+      "case": "separate stdout/stderr accumulation"
+    },
+    {
+      "case": "current ready plays once"
+    }
+  ],
+  "known_red": [
+    {
+      "case": "queued ready survives stop",
+      "observed": "old relay still calls playMedia"
+    },
+    {
+      "case": "queued ready survives replacement",
+      "observed": "old title/URL delivered after B owns relay"
+    },
+    {
+      "case": "queued old error survives replacement",
+      "observed": "stale error can reach current OSD"
+    },
+    {
+      "case": "duplicate ready is not terminal-gated",
+      "observed": "two play callbacks; producer promises one STREAM but consumer does not enforce"
+    },
+    {
+      "case": "UTF-8 scalar split across reads",
+      "observed": "both chunks invalid independently; complete ERROR line lost",
+      "scope": "strict UTF-8 model + current per-read decoding source guard, not native Foundation"
+    }
+  ],
+  "other_open": [
+    "EOF/exit does not flush trailing line or report unexpected termination",
+    "no pending-line size bound",
+    "port reuse/process startup failure cleanup",
+    "native FileHandle/main-queue ordering and Foundation UTF-8 parity"
+  ],
+  "source_sha256": {
+    "Sources/gor/MegaStreamManager.swift": "2a7f979f20f628a29c0ec314113290497059cfa924a32b92ca3578f171ad34a9",
+    "Sources/gor/App/AppDelegate.swift": "ef735567f7259716884f3a2933581c6c15de56f2426bc4788ff43d9cced9ae05",
+    "Resources/vendor/mega_relay/mega_relay.mjs": "b950e8595cdc79b6f4f18da0ab60f11c6aae910ea566bb1381079a73b6d0467a"
+  },
+  "scope": "Python source-bound models only; not Swift execution, real process scheduling, localhost relay integration, external MEGA or playback"
+}

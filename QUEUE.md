@@ -48,3 +48,7 @@ Canonical main b94e26134cabc4d03ed89adbe77d8ef05ef78a4c, parent 4bbea562aa8670cd
 ## Canonical AutoLoad v2 source event
 
 Selected safe AutoLoad v2 regular-file and bounded symlink resolution fixes landed canonical main 07091c9c06f7d036f8776d18458429a947b70b92, parent b94e26134cabc4d03ed89adbe77d8ef05ef78a4c. Exactly two qualified source/test files; postimages verified from committed blobs. Parent reports22checks bothSwift5.10.1/6.0.3 plus chain and loop boundaries PASS. No new local Swift execution, native or owner acceptance. AutoLoad oldv1/peer alternate rejected, Cue remains held. Prior source events retain their original commits.
+
+## Gor targeted Stereo facade source event
+
+Source lane a8153e1a6654b3c6143a6669b77055cef88b3b69 parent37a220b9c2fec0e7f523337f7b8897b05e44e15f at snapshots/a8153e1a6654b3c6143a6669b77055cef88b3b69. Targeted vendor05 plus app06 and four metadata files,18 changed paths in this event. Existing e789/c050/F4 preserved. Committed2110 delivery rows and284 retirement refs PASS; actual root/vendor package graph qualified. No native/release, full app compile or entire vendor equality. Separate canonical safe AutoLoadv2 not bundled into this gor lane. LATEST gor2dd baseline remains assigned, not silently rebound.

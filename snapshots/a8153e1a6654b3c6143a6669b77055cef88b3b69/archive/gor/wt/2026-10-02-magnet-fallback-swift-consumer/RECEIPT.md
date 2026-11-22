@@ -1,0 +1,5 @@
+# Magnet fallback Swift consumer candidate custody
+
+Received October 2, 2026 at01:59:56 Europe/Istanbul. Exact candidate ZIP retained; independently confirmed wt_server member identical to earlier v22.6packet. Swift consumer/search code and diff are read-review-only producer candidate, never compiled/run; Mac build pending. Parent says this stage belongs to WT chain todo-01M3BYJ5PA7BVRCW5WPHG0WW00; owner delivery stays with main, not custody. No installed tree update or one-fix release.
+
+Limits: providers without seed count excluded; uindex unavailable; same-cut assumption for resume; eligible-best after excluding current/tried hashes, not literal global second-best; normal connecting overlay despite no prompt. Node synthetic harness evidence is previous packet scope, not Swift proof. build.sh does not enforce uint8-util@2.2.5pin, dependency bytes unverifiable from repo per lane report; fresh npm2.3.xrisk remains. No custody compile/run, nativegate closure, source promotion or owner delivery.

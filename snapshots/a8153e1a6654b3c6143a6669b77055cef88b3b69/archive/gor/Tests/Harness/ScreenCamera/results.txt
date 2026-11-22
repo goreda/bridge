@@ -1,0 +1,29 @@
+{
+  "result": "PASS",
+  "source_guards": 13,
+  "sampling_routes": 4,
+  "geometry_models": 18,
+  "face_acceptance_models": 6,
+  "source_sha256": "073de7f3164aa04b4a399b8870db42f03ae1ee7b4503bbd9123e9ac47376de57",
+  "scope": "Python source models, no CGImage pixels/multimonitor/permissions/timing proof"
+}
+{
+  "result": "PASS",
+  "checks": [
+    "denied not running",
+    "second consumer retries denied",
+    "one consumer retains session",
+    "last stop closes",
+    "pending not running",
+    "grant after last stop no start",
+    "replacement consumes permission exactly once",
+    "queued start stop start identity",
+    "failed setup not running",
+    "second consumer retries setup",
+    "duplicate ambient start",
+    "duplicate ambient stop",
+    "stale camera observation rejected"
+  ],
+  "source_sha256": "073de7f3164aa04b4a399b8870db42f03ae1ee7b4503bbd9123e9ac47376de57",
+  "scope": "Python camera request/state model, no Swift AVCapture or hardware execution"
+}

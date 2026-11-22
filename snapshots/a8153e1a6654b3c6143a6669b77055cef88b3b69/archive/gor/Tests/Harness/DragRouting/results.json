@@ -1,0 +1,44 @@
+{
+  "result": "PASS controls and expected drag characterizations",
+  "controls": [
+    "gesture/change/visibility/active-space/window-location guards",
+    "font-only loads without torrent stop",
+    "first ordinary media replace then append-play",
+    "current subtitle routing and current stop side effect reproduced",
+    "torrent source uses stream route",
+    "image delegates to paired openMediaFile",
+    "different later gesture allowed"
+  ],
+  "characterizations": [
+    {
+      "case": "same URLs in later deliberate gesture",
+      "observed": "suppressed across gestures because lastDraggedURLs never cleared",
+      "scope": "source/model action suppression, native drag event ordering unverified"
+    },
+    {
+      "case": "subtitle-only while torrent plays",
+      "observed": "stopTorrent precedes sub-add",
+      "scope": "confirmed route side effect, actual playback disruption unverified"
+    },
+    {
+      "case": "image then ordinary media",
+      "observed": "both use replace/open because image does not consume isFirst",
+      "scope": "mixed-file routing characterization; owner intent unresolved"
+    },
+    {
+      "case": "torrent then ordinary media",
+      "observed": "torrent stream then media open; paired open stops torrent again",
+      "scope": "mixed-file ordering characterization, not native stream race proof"
+    },
+    {
+      "case": "repeated start() monitor registration",
+      "observed": "three unretained global monitor registrations per start; no teardown",
+      "scope": "source lifecycle gap; production repeated start/deallocation not proved"
+    }
+  ],
+  "source_sha256": {
+    "PPController_Features.swift": "74d16c7591b1058167d0fbb2a025f554afe59df5dd76dd168df97e20580b277e",
+    "PPController.swift": "7964e9bcff8779fdc6c2ee064ffac0c93ca4452fc8977581b19369f8cae05962"
+  },
+  "scope": "Python routing model/current Swift source guards; no AppKit event/drag/file/font/torrent/mpv/UI execution"
+}

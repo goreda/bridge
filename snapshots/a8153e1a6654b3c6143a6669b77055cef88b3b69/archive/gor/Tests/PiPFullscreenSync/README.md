@@ -1,0 +1,11 @@
+# PiP fullscreen and physical receipt ownership
+
+Run `SWIFTC=/path/to/swiftc python3 Tests/PiPFullscreenSync/run.py` and `MPV=/path/to/mpv python3 Tests/PiPFullscreenSync/mpv_owner.py`.
+
+The source bisection anchors distinguish two faults. After 42c45e80, f122d588 put PiP refitting ahead of the fullscreen transition fence; it lost deferred intent and built proposals from fullscreen-sized overlay geometry. The earlier exit tracker separately assigned lastFrame to the native restored frame without committing it. The visual follower suppressed receipts while restoration was pending and then compared against that bookkeeping cache, leaving the UI at the previous fullscreen frame. The Lua display-aspect follower had no PiP owner and could write its normal opening-size geometry after fullscreen exit.
+
+PiP now keeps its own target, separate from fullscreen receipts, and all explicit window writers honor the transition fence first. On a settled native exit, the actual physical receipt is committed before one saved/latest PiP target. The Lua follower and new-file sizing yield to the PiP owner. The visual follower no longer mistakes a writer fence for permission to stop following physical frames. It rejects stale fullscreen epochs and compares against the actual overlay frame, committing view/HUD/OSD layout in the same no-animation transaction. Clamp classification remains behind the writer fence.
+
+Tests compile current production fullscreen/refit/PiP methods with AX/window boundary spies: 160 cases across two screens, every corner, mixed aspects and delayed native restoration. They assert exact saved position/size, deferred latest intent, no fullscreen writes and at most one exit write after the receipt (no redundant write when native restored the saved PiP). Existing geometry tests cover 324 normal/SBS/VR-labelled routing cases. Real mpv 0.41 executes the production Lua before/after: its old follower changed a saved 480x270+1440+810 PiP to 768x576+576+252; fixed Lua retains 480x270+1440+810.
+
+Linux evidence only. Native AppKit/AX motion, installed PiP pixels and absolute timing remain unverified. Separate native windows are still synchronized by physical receipts; these tests do not establish zero-latency motion.

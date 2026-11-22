@@ -1,0 +1,20 @@
+{
+  "source": "goreda/instinct main live 2026-10-02 00:34 Europe/Istanbul; final reread unchanged",
+  "source_sha256": "5abc42fe83c197067a9f5b787b18667010fc7e1052373c041bcc1c01e3f470a1",
+  "negative_checks": [
+    {
+      "mutation": "urllib.parse.quote(alb[\"title\"], safe=\"\")",
+      "rejected": true
+    },
+    {
+      "mutation": "s%60:02d",
+      "rejected": true
+    },
+    {
+      "mutation": "if hb and not ha: return False",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "compiled_helper_parity": "unverified"
+}

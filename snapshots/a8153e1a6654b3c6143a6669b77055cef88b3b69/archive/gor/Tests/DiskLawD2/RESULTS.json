@@ -1,0 +1,74 @@
+{
+  "source_sha256": "41c0cc0b48d5558f543125c09fcf43cd85c6ba58f36b1a302b8e03589ed8bc86",
+  "rows": [
+    {
+      "guard": "G17 selftest-original-film-consumer",
+      "ok": true
+    },
+    {
+      "guard": "G1 no-proxy-encoder-call",
+      "ok": true
+    },
+    {
+      "guard": "G2 no-proxy-sink-api",
+      "ok": true
+    },
+    {
+      "guard": "G3 readiness-depth-only",
+      "ok": true
+    },
+    {
+      "guard": "G4 proxy-name-sweep-only",
+      "ok": true
+    },
+    {
+      "guard": "G5 original-film-writer",
+      "ok": true
+    },
+    {
+      "guard": "G6 transient-shot-law",
+      "ok": true
+    },
+    {
+      "guard": "G7 deterministic-and-real-pts-pairing",
+      "ok": true
+    },
+    {
+      "guard": "G11 first-pts-fail-closed",
+      "ok": true
+    },
+    {
+      "guard": "G8 first-pts-plumbing",
+      "ok": true
+    },
+    {
+      "guard": "G9 frame-count-termination",
+      "ok": true
+    },
+    {
+      "guard": "G10 by-index-original-readers",
+      "ok": true
+    },
+    {
+      "guard": "G12 stderr-async-drain",
+      "ok": true
+    },
+    {
+      "guard": "G13 bounded-reap",
+      "ok": true
+    },
+    {
+      "guard": "G14 nonfinite-pts-fail-closed",
+      "ok": true
+    },
+    {
+      "guard": "G15 process-group-kill",
+      "ok": true
+    },
+    {
+      "guard": "G16 eof-independent-return",
+      "ok": true
+    }
+  ],
+  "scope": "source guards over the pin-verified rebuilt monolith; native NOT_RUN"
+}
