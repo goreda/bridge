@@ -1,8 +1,14 @@
 {
   "source_commit": "2ddfc14e381ea308d68b38e8a81b583dd1ffc3e8",
   "readiness": "PARTIAL_FUNCTIONAL",
-  "file_count": 2126,
+  "file_count": 2155,
   "files": [
+    {
+      "path": "archive/gor/.swift-format",
+      "sha256": "34703173b34c6cafcf918339f662fcda02f3e29baab12b3e015809dd1a25599a",
+      "bytes": 138,
+      "mode": "100644"
+    },
     {
       "path": "archive/gor/ARCHITECTURE.md",
       "sha256": "a70c3bfea1fa78faf80e7d3e1b0f0adff1d3faab1d0295080603185ca0ec0419",
@@ -11575,6 +11581,66 @@
       "mode": "100755"
     },
     {
+      "path": "archive/gor/docs/adr/0001-layered-swiftpm.md",
+      "sha256": "8975c065fc8af4043e866029f548a176b3c3d6cfcc9f9d834798829c0be6a12f",
+      "bytes": 520,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/docs/adr/0002-player-backend.md",
+      "sha256": "50be50ae890881989e7f268c05410fb999ca028e74e686084b9b934f1bab5ae6",
+      "bytes": 537,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/docs/adr/0003-state-action.md",
+      "sha256": "62bffb9a01bca644a4d4854512c5e5aeca4de0bb05fe4b80c16c2b544ab9fdff",
+      "bytes": 528,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/docs/adr/0004-swift6-concurrency.md",
+      "sha256": "15f454b53bde5d8cfc35f50ed62ad3ebe0ffc5803b9b75adfb07f871f99871a6",
+      "bytes": 560,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/docs/adr/0005-linux-first.md",
+      "sha256": "bebdeb283697d4c5f385dda2a267b5771ba7fe115914385c2bfb7be535284d45",
+      "bytes": 538,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/docs/adr/0006-placement.md",
+      "sha256": "973d4d8daf329d9864e1940969c22536a124ccd3601dfd4466cfc63081ada169",
+      "bytes": 529,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/docs/adr/0007-shared-core.md",
+      "sha256": "6d282670ce2d4711f74e12b8a8091a17b1b1436c291c76ff05e1002c3e4a56ca",
+      "bytes": 548,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/docs/adr/0008-delivery-transaction.md",
+      "sha256": "58681fe90a682be26b18df73079a366de1cc322318aad008c78d9efd2c53609d",
+      "bytes": 548,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/docs/adr/0009-script-layout.md",
+      "sha256": "d29a198cf8dc19290933011928054add33b0b07015836aa4e1bac340e1671148",
+      "bytes": 541,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/docs/adr/0010-session-ownership.md",
+      "sha256": "468d1c2a38a06a56cfce9e114dc160174f1fc21859fd5c368f32d35115af8b57",
+      "bytes": 575,
+      "mode": "100644"
+    },
+    {
       "path": "archive/gor/engine/260930-142600-selected-entry-fence-trace.zip.b64",
       "sha256": "ab7fa95b48810e728b22326109dbf816bddf9ee11cd9c472495924112d88e9d2",
       "bytes": 2108,
@@ -11665,9 +11731,57 @@
       "mode": "100644"
     },
     {
+      "path": "archive/gor/gor-capture-channel.py",
+      "sha256": "ba29e9b180d85250aafdb61a28e5d5820d3bbaea44a117f0f0087c41da1ebadf",
+      "bytes": 10040,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/gor-diagnostics.sh",
+      "sha256": "47e3a485211fed1f3612656be8f4a48939ce55648318f6cb7b3585c47d72f340",
+      "bytes": 4526,
+      "mode": "100755"
+    },
+    {
+      "path": "archive/gor/gor-selftest.sh",
+      "sha256": "979879773218053ad136d4ad9cce7e032383d45c645c54338f59ec5dc092fbd0",
+      "bytes": 149161,
+      "mode": "100755"
+    },
+    {
       "path": "archive/gor/gorav-197d-pin.json",
       "sha256": "4100e6ee4d0c6046c83b90b70b55a2a7e4270003bda21ab5fa37ec1bffbb018d",
       "bytes": 20835,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/install-r62.sh",
+      "sha256": "e03ed899fc6ac826c4c6bf625890abaf4c0eb8f646b5ef158d053a57681afcf9",
+      "bytes": 3697,
+      "mode": "100755"
+    },
+    {
+      "path": "archive/gor/scripts/arch-check.sh",
+      "sha256": "7fdc2d03762a0294b93ef64a3ebc53bc5b06ce59dcabb784037049d2585a5a37",
+      "bytes": 140,
+      "mode": "100755"
+    },
+    {
+      "path": "archive/gor/scripts/arch_check.py",
+      "sha256": "d9db8c995824d5e50808994c13474b6d76351dc54fb5df79bbb50fa541adb2b8",
+      "bytes": 216,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/scripts/architecture-baseline.json",
+      "sha256": "6bdf379d914c002902be45c62104d0796d99dd6efda5facb98b76fa35dc0d39e",
+      "bytes": 26415,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/scripts/linux-model-tests.py",
+      "sha256": "bf6a4a8d3f46ad45042c71abc357ab73104d3dd220fe5dca834cf6580f10b74b",
+      "bytes": 1821,
       "mode": "100644"
     },
     {
@@ -11704,6 +11818,66 @@
       "path": "archive/gor/src/wt_server_v21.6-c5ba8dd8.mjs",
       "sha256": "c2971cf4a6f08d0b4a09603e16fa95466799aa06c80d50baaa966a7469e16db0",
       "bytes": 167276,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/test-distance-lua.py",
+      "sha256": "24ae2893c2e685e4e097e52e82c379b21cf89f59b3f75f153ccb7d1b73275dc7",
+      "bytes": 3593,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/test-magnet-episode-swift.py",
+      "sha256": "6915be7f243f2ec862c3cc88b5f66dd9e8556c390ea10bfaf7a42024f68ff16a",
+      "bytes": 5162,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/test-magnet-next-episode.py",
+      "sha256": "ed9e7bc383c4bcb8783365fa9639b82a286becf8502cf8265201d2f458e4ed12",
+      "bytes": 8072,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/test-magnet-search-replace.py",
+      "sha256": "416b1ed3f0e9674f04613c5facea694086d80884bf742d93bdcde11fdeb3ff5e",
+      "bytes": 2335,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/test-panel-scroll-idle-wake.py",
+      "sha256": "0f1aa637c6a711bcd1db9e543a03a256e4db71fe7ae6b7421fb84f5d15f9d560",
+      "bytes": 2879,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/test-search-bar-line-cap.py",
+      "sha256": "9bdffbfca53db29ed4b1a3c3e15e22a4f980b0956c14081176e8a2e4db2f42ab",
+      "bytes": 2371,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/test-vr-flat-glsl.py",
+      "sha256": "9e7e63eb09cd38d5c910660973a8c501390397ec77a8c4c9c61b90b12e6ef920",
+      "bytes": 10222,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/test-vr-manual-lua.py",
+      "sha256": "cbe0e73a6935458450f86a170e6f74918d0e032ba533a36013f1cd680fcf87cf",
+      "bytes": 3698,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/test-vr-recognition-swift.py",
+      "sha256": "a86f40792b9df021a622dced3a06ce0cac6a8a1ae6d42ef8ac19255f86929bb8",
+      "bytes": 4854,
+      "mode": "100644"
+    },
+    {
+      "path": "archive/gor/test-vr-ui-ceiling-lua.py",
+      "sha256": "860e0162799955873c1c6db721fdd1fdceeec122d1c2da68439e9cce4770ae86",
+      "bytes": 11177,
       "mode": "100644"
     },
     {

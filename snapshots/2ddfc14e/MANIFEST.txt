@@ -1,7 +1,8 @@
 source_commit 2ddfc14e381ea308d68b38e8a81b583dd1ffc3e8
 readiness PARTIAL_FUNCTIONAL
-credential_projection SubtitleView.swift has 2 credential literals neutralized. Diff baseline is exported bytes, not original route bytes.
-scope Product source/tests/resources/packages/build tools; historical work/docs/deliveries pending internal-record classification.
+credential_projection SubtitleView.swift has 2 credential literals neutralized. Diff baseline is exported bytes.
+scope Product functional source plus reviewed product ADRs/root regression scripts; historical work/docs/deliveries pending internal-record classification.
+34703173b34c6cafcf918339f662fcda02f3e29baab12b3e015809dd1a25599a  archive/gor/.swift-format
 a70c3bfea1fa78faf80e7d3e1b0f0adff1d3faab1d0295080603185ca0ec0419  archive/gor/ARCHITECTURE.md
 638236da647c9a8919eedbb321e6d17db3b4b97a6aa7cea74acbee2c20e74d86  archive/gor/BUG-LOG.md
 ceec6f1d5f034a5594c7da8348fdcc41de916d34f82df6eb6bd3a37868f3ff7e  archive/gor/NOTICE-models.md
@@ -1930,6 +1931,16 @@ fc9d814ff4a63444d1455b84c6b481e06bc212ca0a2036192b189309a211a1e1  archive/gor/VE
 4dd77dafdd18f67defb4f4ffdefd2a92789f106adbf9b5aca18f940509cbe108  archive/gor/architecture/policy.tsv
 32d82e9c1d59aff18279fcee075feac241d78a46c467e14065d33862288723f6  archive/gor/architecture/pp-split-native78-inventory.json
 be4dc164a13c98b6e9370e1578b6705638415d8b1e8a64491b6bcb3d01e19fbe  archive/gor/build.sh
+8975c065fc8af4043e866029f548a176b3c3d6cfcc9f9d834798829c0be6a12f  archive/gor/docs/adr/0001-layered-swiftpm.md
+50be50ae890881989e7f268c05410fb999ca028e74e686084b9b934f1bab5ae6  archive/gor/docs/adr/0002-player-backend.md
+62bffb9a01bca644a4d4854512c5e5aeca4de0bb05fe4b80c16c2b544ab9fdff  archive/gor/docs/adr/0003-state-action.md
+15f454b53bde5d8cfc35f50ed62ad3ebe0ffc5803b9b75adfb07f871f99871a6  archive/gor/docs/adr/0004-swift6-concurrency.md
+bebdeb283697d4c5f385dda2a267b5771ba7fe115914385c2bfb7be535284d45  archive/gor/docs/adr/0005-linux-first.md
+973d4d8daf329d9864e1940969c22536a124ccd3601dfd4466cfc63081ada169  archive/gor/docs/adr/0006-placement.md
+6d282670ce2d4711f74e12b8a8091a17b1b1436c291c76ff05e1002c3e4a56ca  archive/gor/docs/adr/0007-shared-core.md
+58681fe90a682be26b18df73079a366de1cc322318aad008c78d9efd2c53609d  archive/gor/docs/adr/0008-delivery-transaction.md
+d29a198cf8dc19290933011928054add33b0b07015836aa4e1bac340e1671148  archive/gor/docs/adr/0009-script-layout.md
+468d1c2a38a06a56cfce9e114dc160174f1fc21859fd5c368f32d35115af8b57  archive/gor/docs/adr/0010-session-ownership.md
 ab7fa95b48810e728b22326109dbf816bddf9ee11cd9c472495924112d88e9d2  archive/gor/engine/260930-142600-selected-entry-fence-trace.zip.b64
 6610cdc1e2005dd68ccd98f89812d2ad6b26ad7b4d51cb5183ca1d490776932b  archive/gor/engine/260930-142600-selected-entry-fence-v1.zip.b64
 4e9629acf45ea0c8cc8fcc94aa94e47c0ae6c0351c3526e7ea1b6732ff894727  archive/gor/engine/260930-142600-selected-entry-fence-v2.zip.b64
@@ -1945,13 +1956,31 @@ acf504b6f9ed0233b0ee20db31b46f44968b4c4bd3187cf620e80f66690b43b1  archive/gor/en
 2447acb902aa09e4faabef7f5b19dc8a0b533fba1e419469d777ce483fc5ccb2  archive/gor/engine/260930-1742-source-contract-evidence.part00.b64
 c61bff9b3563dace998a336e7b1396634e5c730d3e94f2a6f4782970dbd382d4  archive/gor/engine/JOURNAL.md
 9e90d33a913ec91faf3a127574a1bee921d656b1178d3e8e0cf33d769611ddf5  archive/gor/ffmpeg-provider.lock
+ba29e9b180d85250aafdb61a28e5d5820d3bbaea44a117f0f0087c41da1ebadf  archive/gor/gor-capture-channel.py
+47e3a485211fed1f3612656be8f4a48939ce55648318f6cb7b3585c47d72f340  archive/gor/gor-diagnostics.sh
+979879773218053ad136d4ad9cce7e032383d45c645c54338f59ec5dc092fbd0  archive/gor/gor-selftest.sh
 4100e6ee4d0c6046c83b90b70b55a2a7e4270003bda21ab5fa37ec1bffbb018d  archive/gor/gorav-197d-pin.json
+e03ed899fc6ac826c4c6bf625890abaf4c0eb8f646b5ef158d053a57681afcf9  archive/gor/install-r62.sh
+7fdc2d03762a0294b93ef64a3ebc53bc5b06ce59dcabb784037049d2585a5a37  archive/gor/scripts/arch-check.sh
+d9db8c995824d5e50808994c13474b6d76351dc54fb5df79bbb50fa541adb2b8  archive/gor/scripts/arch_check.py
+6bdf379d914c002902be45c62104d0796d99dd6efda5facb98b76fa35dc0d39e  archive/gor/scripts/architecture-baseline.json
+bf6a4a8d3f46ad45042c71abc357ab73104d3dd220fe5dca834cf6580f10b74b  archive/gor/scripts/linux-model-tests.py
 cb8ca0495d950572347a20d5d0701b7e5b3cca527667a1af500366317653225c  archive/gor/src/260928-133817-gor-full-live-swift-tree.zip.b64
 a0e7d3b4d5a83a47951d1d3801fac42bbcc4d61a404c250f95b92252d6b84f16  archive/gor/src/260928-134150-gor-AppDelegate-ytdlp-guard.swift.b64
 fb3f624ebd5e8042c88b00d8d9a1dcacb07ffdda5d459354b77e3ae5afddefb6  archive/gor/src/260928-150255-gor-wt_server-live.mjs.b64
 bf4deba6f6d5a4e0fb13301bf79df1583d5cce5de3f7f77e68621affb46f369e  archive/gor/src/v21.6_to_v21.7-e09502a6.diff
 e0a2a1ee82697d2d4520f4dca15a8164726dff6ece2d2c2176a6d177683b4215  archive/gor/src/wt-v22.1-candidate.mjs.b64
 c2971cf4a6f08d0b4a09603e16fa95466799aa06c80d50baaa966a7469e16db0  archive/gor/src/wt_server_v21.6-c5ba8dd8.mjs
+24ae2893c2e685e4e097e52e82c379b21cf89f59b3f75f153ccb7d1b73275dc7  archive/gor/test-distance-lua.py
+6915be7f243f2ec862c3cc88b5f66dd9e8556c390ea10bfaf7a42024f68ff16a  archive/gor/test-magnet-episode-swift.py
+ed9e7bc383c4bcb8783365fa9639b82a286becf8502cf8265201d2f458e4ed12  archive/gor/test-magnet-next-episode.py
+416b1ed3f0e9674f04613c5facea694086d80884bf742d93bdcde11fdeb3ff5e  archive/gor/test-magnet-search-replace.py
+0f1aa637c6a711bcd1db9e543a03a256e4db71fe7ae6b7421fb84f5d15f9d560  archive/gor/test-panel-scroll-idle-wake.py
+9bdffbfca53db29ed4b1a3c3e15e22a4f980b0956c14081176e8a2e4db2f42ab  archive/gor/test-search-bar-line-cap.py
+9e7e63eb09cd38d5c910660973a8c501390397ec77a8c4c9c61b90b12e6ef920  archive/gor/test-vr-flat-glsl.py
+cbe0e73a6935458450f86a170e6f74918d0e032ba533a36013f1cd680fcf87cf  archive/gor/test-vr-manual-lua.py
+a86f40792b9df021a622dced3a06ce0cac6a8a1ae6d42ef8ac19255f86929bb8  archive/gor/test-vr-recognition-swift.py
+860e0162799955873c1c6db721fdd1fdceeec122d1c2da68439e9cce4770ae86  archive/gor/test-vr-ui-ceiling-lua.py
 34703173b34c6cafcf918339f662fcda02f3e29baab12b3e015809dd1a25599a  archive/gor/tools/.swift-format
 72618dd22ca1b498609e9aabcca3b578d39c33c8e7c5deab83dcc53e4e547513  archive/gor/tools/__pycache__/structure-freeze.cpython-310.pyc
 4fcc8f6089d73fbb750d8e3af1cc37d1bed2c924cb5d79b426ae1d34c20d6a70  archive/gor/tools/__pycache__/vr180_render_ref.cpython-310.pyc
