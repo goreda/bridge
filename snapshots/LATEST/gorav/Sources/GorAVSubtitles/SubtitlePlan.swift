@@ -140,6 +140,23 @@ public enum SubtitlePlanContentID {
         func feedText(_ s: String) { feed(UInt64(s.utf8.count)); for b in s.utf8 { feed(UInt64(b)) } }
         func feedOptText(_ s: String?) { feed(s == nil ? 0 : 1); if let s { feedText(s) } }
         func feedOptInt(_ v: Int?) { feed(v == nil ? 0 : 1); if let v { feed(UInt64(bitPattern: Int64(v))) } }
+        // Millisecond identity is the landed encoding; keep it byte-exact for
+        // every Int64-representable rounded ms. Non-finite or unrepresentable
+        // times take a typed extension instead of trapping (observed exit132
+        // on an extreme SRT): marker + the exact Double bitPattern of the
+        // seconds value, so magnitude and class (NaN, +/-inf, +/-huge) stay
+        // distinct identities. The marker+payload pair can never coincide
+        // with a single representable-ms feed, so ordinary identities are
+        // unchanged.
+        func feedMs(_ seconds: Double) {
+            let ms = (seconds * 1000).rounded()
+            if let v = Int64(exactly: ms) {
+                feed(UInt64(bitPattern: v))
+            } else {
+                feed(0xFFFF_FFFF_FFFF_FFFF)
+                feed(seconds.bitPattern)
+            }
+        }
         // PlayRes is render-relevant identity (gdb review P5-1): presence AND
         // values, per axis.
         feedOptInt(playResX)
@@ -147,8 +164,8 @@ public enum SubtitlePlanContentID {
         feed(UInt64(cues.count))
         for c in cues {
             feed(UInt64(bitPattern: Int64(c.index)))
-            feed(UInt64(bitPattern: Int64((c.startSeconds * 1000).rounded())))
-            feed(UInt64(bitPattern: Int64((c.endSeconds * 1000).rounded())))
+            feedMs(c.startSeconds)
+            feedMs(c.endSeconds)
             // nil and "" are DISTINCT identities (gdb review P5-2).
             feedOptText(c.styleName)
             for line in c.lines { feedText(line) }

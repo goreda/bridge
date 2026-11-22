@@ -111,5 +111,53 @@ if case .success(let p) = PipSize.fit(contentWidth: 1920, contentHeight: 1080) {
     check(p.width * 1000 == (p.width * 1000).rounded(), "W21 pip size rounded to 3 decimals")
 } else { check(false, "W21 pip size rounded to 3 decimals") }
 
+// ---- B-WINDOW group (P28): bounds/arithmetic hardening + state proofs ----
+
+// W22-W25 (B001 nonfinite-max-width): non-finite max bounds refuse. NaN was
+// already refused (control); infinite bounds previously slipped the >0
+// guard, and both-infinite bounds returned an infinite size as success.
+if case .failure(.degenerateContentSize) = PipSize.fit(contentWidth: 1920, contentHeight: 1080, maxWidth: .infinity, maxHeight: .infinity) {
+    check(true, "W22 infinite max bounds refused")
+} else { check(false, "W22 infinite max bounds refused") }
+if case .failure(.degenerateContentSize) = PipSize.fit(contentWidth: 1920, contentHeight: 1080, maxWidth: .nan) {
+    check(true, "W23 NaN max width refused (control)")
+} else { check(false, "W23 NaN max width refused (control)") }
+if case .failure(.degenerateContentSize) = PipSize.fit(contentWidth: 1920, contentHeight: 1080, maxWidth: .infinity, maxHeight: 270) {
+    check(true, "W24 single infinite bound refused")
+} else { check(false, "W24 single infinite bound refused") }
+if case .success(let p) = PipSize.fit(contentWidth: 1920, contentHeight: 1080, maxWidth: 320, maxHeight: 180) {
+    check(p.width == 320 && p.height == 180, "W25 finite custom bounds size exactly (valid sizing unchanged)")
+} else { check(false, "W25 finite custom bounds size exactly (valid sizing unchanged)") }
+
+// W26-W28 (B002 extreme-content-arithmetic): finite greatest/subnormal
+// content must not succeed with NaN/infinite (or rounded-to-zero) sizes.
+// Both-subnormal content overflowed the fit ratio to infinity -> (inf, inf).
+if case .failure(.degenerateContentSize) = PipSize.fit(contentWidth: .leastNonzeroMagnitude, contentHeight: .leastNonzeroMagnitude) {
+    check(true, "W26 subnormal content ratio overflow refused")
+} else { check(false, "W26 subnormal content ratio overflow refused") }
+if case .success(let p) = PipSize.fit(contentWidth: .greatestFiniteMagnitude, contentHeight: .greatestFiniteMagnitude) {
+    check(p.width.isFinite && p.height.isFinite && p.width > 0 && p.height > 0 && p.width <= 480 && p.height <= 270,
+          "W27 greatest-finite content still fits finite inside the box")
+} else { check(false, "W27 greatest-finite content still fits finite inside the box") }
+if case .failure(.degenerateContentSize) = PipSize.fit(contentWidth: .greatestFiniteMagnitude, contentHeight: 1) {
+    check(true, "W28 greatest-width extreme refused (height rounded to zero)")
+} else { check(false, "W28 greatest-width extreme refused (height rounded to zero)") }
+
+// W29-W30 (B003 subpixel-rounded-zero): a dimension rounding to zero is a
+// typed refusal, not a zero-size window; a narrow but representable aspect
+// still succeeds positive (no invented minimum-width bump).
+if case .failure(.degenerateContentSize) = PipSize.fit(contentWidth: 1, contentHeight: 1_000_000) {
+    check(true, "W29 subpixel-rounded-zero width refused")
+} else { check(false, "W29 subpixel-rounded-zero width refused") }
+if case .success(let p) = PipSize.fit(contentWidth: 1, contentHeight: 1000) {
+    check(p.width > 0 && p.height == 270, "W30 narrow representable aspect stays positive")
+} else { check(false, "W30 narrow representable aspect stays positive") }
+
+// W34 (QUAL_HUGE regression): huge finite custom bounds overflow the 3-decimal
+// rounding multiply; a non-finite rounded dimension is degenerate, never a size.
+if case .failure(.degenerateContentSize) = PipSize.fit(contentWidth: 1920, contentHeight: 1080, maxWidth: .greatestFiniteMagnitude, maxHeight: .greatestFiniteMagnitude) {
+    check(true, "W34 huge finite bounds rounding overflow refused")
+} else { check(false, "W34 huge finite bounds rounding overflow refused") }
+
 print("window-mode-tests: \(pass) PASS, \(fail) FAIL")
 exit(fail == 0 ? 0 : 1)

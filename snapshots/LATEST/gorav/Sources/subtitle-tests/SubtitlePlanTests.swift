@@ -231,6 +231,23 @@ struct SubtitlePlanTests {
         check(planA1.presenterEchoRevision != planA2.presenterEchoRevision,
               "echo changes across reissue (same content, new generation)")
 
+        // SP-TRAP regression (observed exit132 on extreme SRT input): non-finite
+        // and Int64-unrepresentable cue times hash without a trap; extension
+        // classes stay distinct; ordinary millisecond identity is untouched
+        // (existing checks above already pin the representable encoding).
+        let trapStyles = styles
+        let hugeID = SubtitlePlanContentID.compute(cues: [SubtitleCue(index: 1, startSeconds: .greatestFiniteMagnitude, endSeconds: .infinity, lines: ["a"], styleName: "Default")], styles: trapStyles, playResX: nil, playResY: nil, unsupportedOverrides: [], skippedStyles: [])
+        let nanID = SubtitlePlanContentID.compute(cues: [SubtitleCue(index: 1, startSeconds: .nan, endSeconds: 2, lines: ["a"], styleName: "Default")], styles: trapStyles, playResX: nil, playResY: nil, unsupportedOverrides: [], skippedStyles: [])
+        let negInfID = SubtitlePlanContentID.compute(cues: [SubtitleCue(index: 1, startSeconds: -.infinity, endSeconds: 2, lines: ["a"], styleName: "Default")], styles: trapStyles, playResX: nil, playResY: nil, unsupportedOverrides: [], skippedStyles: [])
+        let negHugeID = SubtitlePlanContentID.compute(cues: [SubtitleCue(index: 1, startSeconds: -.greatestFiniteMagnitude, endSeconds: 2, lines: ["a"], styleName: "Default")], styles: trapStyles, playResX: nil, playResY: nil, unsupportedOverrides: [], skippedStyles: [])
+        check(hugeID != nanID && hugeID != negInfID && hugeID != negHugeID && nanID != negInfID && nanID != negHugeID && negInfID != negHugeID,
+              "SP-TRAP: non-finite/unrepresentable cue times hash distinctly, no trap")
+        let hugeHalfID = SubtitlePlanContentID.compute(cues: [SubtitleCue(index: 1, startSeconds: .greatestFiniteMagnitude / 2, endSeconds: .infinity, lines: ["a"], styleName: "Default")], styles: trapStyles, playResX: nil, playResY: nil, unsupportedOverrides: [], skippedStyles: [])
+        check(hugeID != hugeHalfID, "SP-TRAP: distinct huge magnitudes keep distinct identities")
+        check(SubtitlePlanContentID.compute(cues: [SubtitleCue(index: 1, startSeconds: -0.0, endSeconds: 0.0, lines: ["a"], styleName: "Default")], styles: trapStyles, playResX: nil, playResY: nil, unsupportedOverrides: [], skippedStyles: [])
+              == SubtitlePlanContentID.compute(cues: [SubtitleCue(index: 1, startSeconds: 0.0, endSeconds: 0.0, lines: ["a"], styleName: "Default")], styles: trapStyles, playResX: nil, playResY: nil, unsupportedOverrides: [], skippedStyles: []),
+              "SP-TRAP: -0.0 and +0.0 keep the same millisecond identity")
+
         if failures == 0 { print("ALL_CHECKS_PASS") } else { print("FAILURES=\(failures)") }
         exit(failures == 0 ? 0 : 1)
     }

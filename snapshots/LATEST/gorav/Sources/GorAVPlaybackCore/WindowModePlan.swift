@@ -81,21 +81,31 @@ public struct PipSize: Equatable, Sendable {
     public static let defaultMaxHeight = 270.0
 
     /// Aspect-preserving fit of a content size inside the max box.
-    /// Degenerate or non-finite content sizes are a typed refusal, never a
-    /// guessed size.
+    /// Degenerate or non-finite content sizes or bounds are a typed refusal,
+    /// never a guessed size. Extreme finite inputs that overflow the fit
+    /// ratio or round a dimension to zero are degenerate too.
     public static func fit(contentWidth: Double, contentHeight: Double,
                            maxWidth: Double = defaultMaxWidth,
                            maxHeight: Double = defaultMaxHeight) -> Result<PipSize, WindowModeRefusal> {
         guard contentWidth.isFinite, contentHeight.isFinite,
               contentWidth > 0, contentHeight > 0,
+              maxWidth.isFinite, maxHeight.isFinite,
               maxWidth > 0, maxHeight > 0 else {
             return .failure(.degenerateContentSize)
         }
         let scale = min(maxWidth / contentWidth, maxHeight / contentHeight)
         let w = contentWidth * scale
         let h = contentHeight * scale
-        return .success(PipSize(width: (w * 1000).rounded() / 1000,
-                                height: (h * 1000).rounded() / 1000))
+        // Extreme finite inputs can overflow the ratio to infinity; a
+        // non-finite fit is degenerate, never a size.
+        guard w.isFinite, h.isFinite else { return .failure(.degenerateContentSize) }
+        let rw = (w * 1000).rounded() / 1000
+        let rh = (h * 1000).rounded() / 1000
+        // A very narrow aspect can round a dimension to zero, and a huge
+        // finite bound can overflow the rounding multiply to a non-finite
+        // dimension; both are degenerate. No minimum-width bump (see above).
+        guard rw.isFinite, rh.isFinite, rw > 0, rh > 0 else { return .failure(.degenerateContentSize) }
+        return .success(PipSize(width: rw, height: rh))
     }
 }
 

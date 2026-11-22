@@ -1,6 +1,6 @@
 {
   "source_repo": "goreda/gorav",
-  "source_commit": "c7692865da375a53e3e727315ae936c9ec9e293e",
+  "source_commit": "4bbea562aa8670cd3662664a920cb6f57692d59a",
   "files": [
     {
       "path": "PLAN-v5-DRAFT.md",
@@ -898,8 +898,8 @@
     },
     {
       "path": "Sources/GorAVPlaybackCore/WindowModePlan.swift",
-      "sha256": "cce8e9b8ce7bbb69d68d1bd4e93c918f78b72e7d4b4ec98e7cc345a6a4d6763b",
-      "bytes": 7628,
+      "sha256": "34ae95ec28c8e6d830ffc99d0e105bb57706fa4d77f8b85d1a5ab0b9c79006d0",
+      "bytes": 8349,
       "mode": "100644"
     },
     {
@@ -958,8 +958,8 @@
     },
     {
       "path": "Sources/GorAVSubtitles/SubtitlePlan.swift",
-      "sha256": "ab71ef7425c33dfbbe93e558b8797139260fa1aff449369724fcad45b9dce696",
-      "bytes": 22800,
+      "sha256": "7419540715e11adfbb5ddc6edef58dee896be2f6b3fb5c1c673c14399cdcdd4d",
+      "bytes": 23579,
       "mode": "100644"
     },
     {
@@ -1672,8 +1672,8 @@
     },
     {
       "path": "Sources/subtitle-tests/SubtitlePlanTests.swift",
-      "sha256": "2ee504983febc98948c126c2fa85341ac1f1df2b9180c0df17ea7ad5263d6712",
-      "bytes": 18203,
+      "sha256": "814a0d46ade9035b969d95b53511b4a0f75c311e3670bfe4eec24eeb5a092e95",
+      "bytes": 20777,
       "mode": "100644"
     },
     {
@@ -1768,8 +1768,8 @@
     },
     {
       "path": "Sources/window-mode-tests/main.swift",
-      "sha256": "09640617ae9065cf34ce0f0c42b44fdb92c59e69e1dbc16aca0aaf430b1b5a20",
-      "bytes": 6136,
+      "sha256": "5132bdd4c79b7260bc3b5477ad98caf715abe44cd28e03e4f783831449892a77",
+      "bytes": 9820,
       "mode": "100644"
     },
     {
