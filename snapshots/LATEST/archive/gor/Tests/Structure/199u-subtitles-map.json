@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "station": "Subtitles",
+  "base_ref": "1cb2ba3fe1f826a303cfb3c962eb7715f2b9dc9f",
+  "scope": "Pure move; only unconditional imports lifted. Conditional FoundationNetworking block, internal topic and relocated-download markers, comments and all other bytes retained.",
+  "sections": {
+    "SubtitleView.swift": {
+      "old": "Sources/gor/GorSubtitlesUI/SubtitleView.swift",
+      "host": "Sources/gor/Subtitles/SubtitleView.swift",
+      "source_sha256": "8eb5aaee942e087d92cba4644ac42ceef2c5decc488f76de51799585f8d29873",
+      "source_lines": 2233,
+      "body_sha256": "8c40d00d85b2ec287c3fd5e853bee9337108fc079a8a24c772dfc410526fe988",
+      "body_lines": 2227,
+      "lifted_import_lines": [
+        {
+          "line": 10,
+          "text": "import AppKit\n"
+        },
+        {
+          "line": 11,
+          "text": "import QuartzCore\n"
+        },
+        {
+          "line": 12,
+          "text": "import CoreText\n"
+        },
+        {
+          "line": 13,
+          "text": "import Compression\n"
+        },
+        {
+          "line": 14,
+          "text": "import CoreAudio\n"
+        },
+        {
+          "line": 15,
+          "text": "import Accelerate\n"
+        }
+      ]
+    },
+    "SubtitleTiltGeometry.swift": {
+      "old": "Sources/gor/Subtitles/SubtitleTiltGeometry.swift",
+      "host": "Sources/gor/Subtitles/SubtitleView.swift",
+      "source_sha256": "204496360f173b50ed42f399e79b14cf77cb9d7b3c0833247f4e30d1af064abe",
+      "source_lines": 37,
+      "body_sha256": "ffce048b56a109d6fa9c03fd8d88c07ae875f2d1e234ba894492c25e1eeedaab",
+      "body_lines": 36,
+      "lifted_import_lines": [
+        {
+          "line": 1,
+          "text": "import Foundation\n"
+        }
+      ]
+    },
+    "SubtitlePreferences.swift": {
+      "old": "Sources/gor/Subtitles/SubtitlePreferences.swift",
+      "host": "Sources/gor/Subtitles/SubtitleView.swift",
+      "source_sha256": "b9d27a54dc0af5dd37504f289bf2240deb923b0df3c14271a64d39eb6efece5f",
+      "source_lines": 102,
+      "body_sha256": "1e9a273d85a23c6dbd696d1510f1ab4471088b663c2c3e8bf7b9d94ef41dae22",
+      "body_lines": 100,
+      "lifted_import_lines": [
+        {
+          "line": 1,
+          "text": "import Foundation\n"
+        },
+        {
+          "line": 48,
+          "text": "import Foundation\n"
+        }
+      ]
+    },
+    "LiveCaptionController.swift": {
+      "old": "Sources/gor/GorSubtitles/LiveCaptionController.swift",
+      "host": "Sources/gor/Subtitles/LiveCaption.swift",
+      "source_sha256": "d749b6d29a80423faa9e66d8b274b7103b4ce477c57ee3c54c7ed861c4c04da3",
+      "source_lines": 595,
+      "body_sha256": "20bce73bdb794b5c6d3f774652618ec9872f40c313d362cd4a33c532b633cf4d",
+      "body_lines": 594,
+      "lifted_import_lines": [
+        {
+          "line": 9,
+          "text": "import Foundation\n"
+        }
+      ]
+    },
+    "SubtitleSampleGovernor.swift": {
+      "old": "Sources/gor/GorSubtitles/SubtitleSampleGovernor.swift",
+      "host": "Sources/gor/Subtitles/LiveCaption.swift",
+      "source_sha256": "fe3793cff08a472617ba1ca2170cca700ca919c5e7760f0bddfd64b6ed2f98da",
+      "source_lines": 39,
+      "body_sha256": "60459caf3cba2ae81e6f82e9f5a0b21e0c47ba6a47a737130197e4aa8c36d160",
+      "body_lines": 38,
+      "lifted_import_lines": [
+        {
+          "line": 1,
+          "text": "import CoreGraphics\n"
+        }
+      ]
+    }
+  },
+  "hosts": {
+    "Sources/gor/Subtitles/SubtitleView.swift": {
+      "sha256": "3e10053423df5afcfcd28cc2de760f8478c2eb371e344f3e4aac3c3c5265d3eb",
+      "lines": 2375,
+      "imports": [
+        "import Accelerate",
+        "import AppKit",
+        "import Compression",
+        "import CoreAudio",
+        "import CoreText",
+        "import Foundation",
+        "import QuartzCore"
+      ],
+      "units": [
+        "SubtitleView.swift",
+        "SubtitleTiltGeometry.swift",
+        "SubtitlePreferences.swift"
+      ]
+    },
+    "Sources/gor/Subtitles/LiveCaption.swift": {
+      "sha256": "22fd33b11dc597d4e818984ebe5a04a27539520fc904ca95a010162478e14866",
+      "lines": 638,
+      "imports": [
+        "import CoreGraphics",
+        "import Foundation"
+      ],
+      "units": [
+        "LiveCaptionController.swift",
+        "SubtitleSampleGovernor.swift"
+      ]
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "shot": 0,
+  "frames": 8,
+  "theta_h_deg": 75.0,
+  "shot_hfov_deg": 51.190559387583356,
+  "screen_deg": 75.0,
+  "aspect": 1.7777777777777777,
+  "ipd": 0.063,
+  "depth_scale": 1.0,
+  "convergence_m": 2.0,
+  "swap_eyes": true,
+  "surround": "soft",
+  "out_w": 720,
+  "out_h": 720,
+  "start_pts": 0.291016,
+  "frame_sha256": [
+    "29dec64ab090713fdfc0ba04e6360bfedb57fc3244f5f34308a69568915d7b28",
+    "67ae5e74d7b81a4dbb67a2652a06a82084c6a2abb27d955fe9be848189b72a4b",
+    "9da3871320a4b845ab0318161fd477f82ec684dde61e87bf145786c03292ccd4",
+    "70e801a7b2aeafe17f823854bc3639a3d0b2c746ed0a56121637415a456e1d16",
+    "1d81a2ae704c2af1818d5636ede7d0b7c17a9ad985c4b311de6fe0dc3e527add",
+    "ec968fda0df3c61a9f3fc69f429b65db1af4d9098e3de1bd25246a76dded20db",
+    "e2ad95c6cf0df62ddc1bd0c54cad16affeec98a3d10fe31f6f2cd80465851eec",
+    "b7dcf80b36bb0c2918c6aeea635ea40895acb1accca89ecd2c68564a0e90cb01"
+  ],
+  "sequence_sha256": "e19eb72fec77fcc02ba1989620aa3db10a612ddfb599d89c5d1c356c39e1978c",
+  "provenance": "bench_prepare.py on ~/s4/e2/clips/live.mp4 10s slice (640x360@24, input 252, VDA-S depth, MoGe-2 FoV + finite-masked LSQ align scale=-2.2245 shift=24.1884), shot [7,213), first 8 frames. Mac-default render params: eyeN=360 square eyes (ThreeDRenderCoordinator.eyeN), swapEyes=true (RenderedShotPlan default), screen_deg=75 (prefs default). Depth mp4 lossless -> bit-stable; source proxy CRF10 lossy -> parity must re-derive or ship proxy bytes. | r3 renderer re-lock 2026-11-09 | r4 renderer re-lock 2026-11-09",
+  "parity_params": {
+    "ipd": 0.063,
+    "depth_scale": 1.0,
+    "screen_deg": 75.0,
+    "convergence_m": 2.0,
+    "swap_eyes": true,
+    "eye_n": 720
+  }
+}

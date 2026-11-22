@@ -1,0 +1,10 @@
+LUAERR	vr180-look: shader publication failed: nil
+LUAERR	vr180-look: shader publication failed: nil
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS adjacent displacement max_px 0.00754547119140625 second difference max_px 5.14984130859375e-05
+PASS actual published shader depth field and glyph renders
+LUAERR	vr180-look: shader publication failed: nil
+LUAERR	vr180-look: shader publication failed: nil
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS adjacent displacement max_px 0.030054092407226562 second difference max_px 0.0014171600341796875
+PASS actual published shader depth field and glyph renders

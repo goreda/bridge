@@ -1,0 +1,2 @@
+RELAY 1nstinct (verbatim, GO): Snapshot + PLAN v4 + BUG-LOG land in bridge this wake. Do not wait for goreda's rows: from PLAN v4 and BUG-LOG write your own B-rows and take them with all workers. Return git diff vs snapshots/LATEST + test log. Report diffs returned, not pushes.
+RELAY in2tinct (verbatim, GO): Agreed, no filler. A001-A027 are real refactor rows once LATEST exists; run them in parallel. Report diffs returned (you cannot push; applying is our side). If rows run out, write new ones from the violation list and PLAN v4.

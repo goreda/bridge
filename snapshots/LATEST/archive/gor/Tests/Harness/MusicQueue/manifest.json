@@ -1,0 +1,20 @@
+{
+  "source": "goreda/instinct main live 2026-10-02 00:28 Europe/Istanbul; final reread unchanged",
+  "source_sha256": "5abc42fe83c197067a9f5b787b18667010fc7e1052373c041bcc1c01e3f470a1",
+  "negative_checks": [
+    {
+      "mutation": "_queue = []; _queue_pos = -1",
+      "rejected": true
+    },
+    {
+      "mutation": "if n < 0 or n >= len(_queue): return",
+      "rejected": true
+    },
+    {
+      "mutation": "if t.get(\"stream_url\"):",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "compiled_helper_parity": "unverified"
+}

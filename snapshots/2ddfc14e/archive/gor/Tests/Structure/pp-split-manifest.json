@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "files": {
+    "PPController.swift": {
+      "sha256": "c0c02953aa3fa870afcc6a27358323b6e46bb492689f4d424437039fbdc12b71",
+      "bytes": 272706,
+      "lines": 4835,
+      "preamble": [
+        "// ================================================================",
+        "//  PPController.swift - central overlay NSView",
+        "//  Owns: construction, mpv IPC polling and dispatch, frame layout, cross-feature decisions",
+        "//  Answers: I11 I14 I16 I27 I31 I34 I35 I36 I37 I41 I42 I44 \u00b7 TRAP-04 TRAP-06 TRAP-07 TRAP-10",
+        "//  Contract: applyVideoFrame() is the only writer of spineUI/sidebarUI/subtitleView frames",
+        "//  Not here: self-contained features (PPController_Features.swift)",
+        "// ================================================================",
+        "//  Rules: New narrow feature state goes in PPController_Features.swift;",
+        "//  broad or cross-feature decisions stay here. Read mode flags through",
+        "//  forwarding properties. Keep unmigrated callers behind named shims.",
+        "// ================================================================",
+        "import AppKit",
+        "import CoreImage",
+        "import Foundation",
+        "import IOKit"
+      ],
+      "parts": [
+        {
+          "file": "VRStereoControlInput.swift",
+          "header_lines": 8,
+          "body_lines": 112
+        },
+        {
+          "file": "GeomTrace.swift",
+          "header_lines": 8,
+          "body_lines": 102
+        },
+        {
+          "file": "SeededRandomNumberGenerator.swift",
+          "header_lines": 8,
+          "body_lines": 10
+        },
+        {
+          "file": "BrightnessController.swift",
+          "header_lines": 8,
+          "body_lines": 272
+        },
+        {
+          "file": "PPController.swift",
+          "header_lines": 19,
+          "body_lines": 4212,
+          "historical_fixture": "Tests/Structure/pp-split-historical/PPController.swift.ea5cd9d8.txt",
+          "historical_sha256": "5d56118360318ee546903aa74ccfa88c2bcea214447017755b889425d5ab659e",
+          "current_sha256": "7bd959a8e6bf574c2fb57f7da9e902ada69912ff3211f8a3892ef2b4961e09cf",
+          "note": "Historical rebuild retains the exact split fixture; live bytes also include subsequent edits, including crop transport publication. Live bytes pinned separately."
+        },
+        {
+          "file": "MusicRowLabel.swift",
+          "header_lines": 8,
+          "body_lines": 55
+        },
+        {
+          "file": "PlayerViewStub.swift",
+          "header_lines": 8,
+          "body_lines": 40
+        },
+        {
+          "file": "BrightnessReadCache.swift",
+          "header_lines": 8,
+          "body_lines": 17
+        }
+      ]
+    },
+    "PPController_Features.swift": {
+      "sha256": "ef8fc46feeb8bff1ae6b18bdd058c3a210fc028550f61ebf04feb0fd0b21e683",
+      "bytes": 123159,
+      "lines": 2334,
+      "preamble": [
+        "// ================================================================",
+        "//  PPController_Features.swift - composed overlay feature controllers",
+        "//  Owns: drag/drop, music and IPTV modes, input, VR180, content dimming",
+        "//  Answers: I11 I45 \u00b7 TRAP-04",
+        "//  Contract: PPController owns each feature and supplies callbacks",
+        "// ================================================================",
+        "//  Rules: Add a final feature class here; hold views weakly, route",
+        "//  calls to PPController through injected closures.",
+        "// ================================================================",
+        "import AppKit",
+        "import QuartzCore"
+      ],
+      "parts": [
+        {
+          "file": "DragDropHandler.swift",
+          "header_lines": 8,
+          "body_lines": 111
+        },
+        {
+          "file": "MusicModeController.swift",
+          "header_lines": 8,
+          "body_lines": 164
+        },
+        {
+          "file": "IPTVModeController.swift",
+          "header_lines": 8,
+          "body_lines": 231
+        },
+        {
+          "file": "BlinkCommandRoute.swift",
+          "header_lines": 8,
+          "body_lines": 18
+        },
+        {
+          "file": "CaptureConsumerRules.swift",
+          "header_lines": 8,
+          "body_lines": 14,
+          "historical_fixture": "Tests/Structure/pp-split-historical/CaptureConsumerRules.swift.6888f672.txt",
+          "historical_sha256": "6888f6720ce649e6f1dcd29f26d2796ecb962d9ba88c622d314df5940f9b4703",
+          "current_sha256": "56f5b0b802ca54baec6f05bdf2151b16cadb7811aab7f893d3d67cc03b68899a",
+          "note": "Live file is not a pure move: 199az blink-in-normal-playback rule edit after the split. Historical rebuild uses the fixture, the live bytes are pinned separately."
+        },
+        {
+          "file": "VR180Controller.swift",
+          "header_lines": 8,
+          "body_lines": 792
+        },
+        {
+          "file": "InputController.swift",
+          "header_lines": 8,
+          "body_lines": 512,
+          "historical_fixture": "Tests/Structure/pp-split-historical/InputController.swift.ea5cd9d8.txt",
+          "historical_sha256": "0ec864e76b371027d9027d3f82351c14f341a118dfd3048a140791e326da1a85",
+          "current_sha256": "49b589859de42e38ffa05fea504d71c42d7d84f2679029dcced767740028f259",
+          "note": "Live file is not a pure move: keypress parity edit after the split. Historical rebuild uses the fixture, the live bytes are pinned separately."
+        },
+        {
+          "file": "ContentAdaptiveDimming.swift",
+          "header_lines": 8,
+          "body_lines": 481
+        }
+      ]
+    }
+  }
+}

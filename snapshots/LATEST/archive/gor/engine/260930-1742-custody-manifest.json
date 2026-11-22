@@ -1,0 +1,26 @@
+[
+  {
+    "label": "101-final",
+    "bytes": 31460,
+    "sha256": "f797af091e3424398ebfbafd0984da0e9c0cfdd6e80562b6cc3458cb540def81",
+    "parts": 3
+  },
+  {
+    "label": "114-consolidated",
+    "bytes": 23161,
+    "sha256": "f96633bc702a27adad438122a36098c2403f67c8d8b548ee3ed4349f1608a475",
+    "parts": 2
+  },
+  {
+    "label": "reducer-source-proof",
+    "bytes": 1894,
+    "sha256": "bfe2d8d344b0bb7f1c8ea9a6d63187bdb41208d8ecebd045c296069c06d29126",
+    "parts": 1
+  },
+  {
+    "label": "source-contract-evidence",
+    "bytes": 1688,
+    "sha256": "475a4675023c936b4aa21b62a56217a087a7c5894c1956ecb95898164bf072c5",
+    "parts": 1
+  }
+]

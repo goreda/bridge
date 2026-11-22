@@ -1,0 +1,32 @@
+{
+  "result": "PASS current source guards and models",
+  "checks": 39,
+  "source_sha256": {
+    "TransferResolver.swift": "108992a6c3982009a46118d497b011cff0ff295d0f6de210f1d09748ecb7ff3e",
+    "CDPSession.swift": "c2d52d97a370331db2bf738395502463e0d5f0025cacbcb908b4f0d45dd1f200",
+    "ArchiveBrowser.swift": "07028fa2f2f93578f9f4fc975c8008f327140dd4ebd451992fb8d591561120ac"
+  },
+  "historical_fixed": [
+    "archive substring direct-return gate",
+    "fresh capture semaphore wait",
+    "reused capture identity isolation"
+  ],
+  "still_open": [
+    "native URLComponents semantics",
+    "real CDP callback/queue ordering",
+    "legacy listing startup/resource teardown",
+    "external provider reliability"
+  ],
+  "scope": "Python models + source checks only; not Swift execution"
+}
+{
+  "normal_result": "PASS",
+  "cases": [
+    "same-folder subtitle selection",
+    "missing and duplicate signed URL handling",
+    "stale selected-file completion suppressed"
+  ],
+  "source_guards": 5,
+  "characterization": "Companion matching is folder-only, not video basename. A different film subtitle in same folder is included. Could be intentional owner behavior; no production change or playback bug claimed.",
+  "scope": "Python port/source checks, no CDP/Swift/subtitle rendering"
+}

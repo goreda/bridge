@@ -1,0 +1,53 @@
+{
+  "result": "PASS provider route controls and admission characterizations",
+  "controls": [
+    "https://mega.nz/folder/abc#key",
+    "https://mega.nz/file/abc#key",
+    "mega-folder::https://mega.nz/folder/abc#key::handle",
+    "https://transfer.it/share",
+    "https://gofile.io/d/content",
+    "https://drive.google.com/file/d/abc/view",
+    "https://drive.google.com/drive/folders/abc",
+    "https://pixeldrain.com/u/abc?download",
+    "https://archive.org/details/@name/lists/1",
+    "https://archive.org/download/item/movie.mp4",
+    "https://example.invalid/x"
+  ],
+  "characterizations": [
+    {
+      "case": "https://unrelated.invalid/?next=https://transfer.it/share",
+      "observed": [
+        "transfer"
+      ],
+      "scope": "synthetic off-host route, no actual provider/browser action"
+    },
+    {
+      "case": "https://unrelated.invalid/archive.org/download/item/movie.mp4",
+      "observed": [
+        "archiveItem",
+        "item"
+      ],
+      "scope": "synthetic off-host route, no actual provider/browser action"
+    },
+    {
+      "case": "https://unrelated.invalid/mega.nz/folder/abc#key",
+      "observed": [
+        "mega",
+        "abc",
+        "key"
+      ],
+      "scope": "synthetic off-host route, no actual provider/browser action"
+    },
+    {
+      "case": "uppercase host",
+      "observed": "case-sensitive contains rejects route"
+    },
+    {
+      "case": "empty internal pseudo-link",
+      "observed": "empty handle/share admitted",
+      "scope": "internal provenance/input validity unverified"
+    }
+  ],
+  "source_sha256": "c2d52d97a370331db2bf738395502463e0d5f0025cacbcb908b4f0d45dd1f200",
+  "scope": "Python classifier port/current Swift guards, no Swift/Foundation/browser/network/provider execution"
+}

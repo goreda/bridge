@@ -1,0 +1,20 @@
+{
+  "source": "goreda/instinct main live 2026-10-02 00:23 Europe/Istanbul; final reread unchanged",
+  "source_sha256": "48e3bc5d4f276af987d8613b00797845f5a7595123d1515b4e45193ddb683ee1",
+  "negative_checks": [
+    {
+      "anchor": "let maxResults = 500",
+      "rejected": true
+    },
+    {
+      "anchor": "options: [.skipsHiddenFiles]",
+      "rejected": true
+    },
+    {
+      "anchor": "self.renderEntries(dirs + files)",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "native_validation": "not performed"
+}

@@ -1,0 +1,20 @@
+{
+  "source": "goreda/instinct main live 2026-10-02 00:29 Europe/Istanbul; reread unchanged",
+  "source_sha256": "c2d52d97a370331db2bf738395502463e0d5f0025cacbcb908b4f0d45dd1f200",
+  "negative_checks": [
+    {
+      "mutation": "pending.removeValue(forKey: id)",
+      "rejected": true
+    },
+    {
+      "mutation": "nextId += 1",
+      "rejected": true
+    },
+    {
+      "mutation": "eventHandlers[method]?(params)",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "native_validation": "not performed"
+}

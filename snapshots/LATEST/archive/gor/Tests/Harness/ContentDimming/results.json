@@ -1,0 +1,36 @@
+{
+  "result": "PASS bounded numeric controls and expected state characterizations",
+  "controls": [
+    "404 normalized luma/ambient target bounds and endpoints",
+    "more content luma never raises target under current policy",
+    "ambient support never dims further",
+    "ambient support never dims further",
+    "ambient support never dims further",
+    "cut threshold clamp endpoints",
+    "two-candidate cut confirmation",
+    "steady scene no cut",
+    "20 monotonic micro steps reach endpoint",
+    "replaced step generation suppresses old timer",
+    "external fade prevents intermediate/final write",
+    "adaptive cut duration floor/saturation at 60/120/240Hz"
+  ],
+  "characterizations": [
+    {
+      "case": "disable during active micro-step",
+      "observed": "timer guard tests generation/fade, not runtimeEnabled; old transition can continue writes",
+      "scope": "source/model, native Timer disable ordering unverified"
+    },
+    {
+      "case": "capture failure after previous success",
+      "observed": "cachedRawLuma reused without sample-age expiry",
+      "scope": "source characterization, correct fallback duration/visible effect not established"
+    },
+    {
+      "case": "capture cadence widens under calm content",
+      "observed": "up to 4 scene ticks between captures, using cached content on intervening ticks",
+      "scope": "designed bounded policy; not a defect or thermal claim"
+    }
+  ],
+  "source_sha256": "74d16c7591b1058167d0fbb2a025f554afe59df5dd76dd168df97e20580b277e",
+  "scope": "Python arithmetic/state port + current Swift source guards, not captured pixels/native timers/brightness hardware/UI/performance execution"
+}

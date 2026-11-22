@@ -1,0 +1,10 @@
+PASS G1 two user resizes -> two writes writes=2
+PASS G2 own animation frames -> no extra write writes=1
+PASS G3 receipt before ack -> no extra write writes=1
+PASS G4 drags 0.1s after landing are USER events and get clamped writes=3
+PASS G5 no ack/receipt: fence expires, later user resize clamped writes=2
+PASS G6 refused write is retried, not lost writes=2
+PASS G7 refused/off-request receipts: loop bounded by identical-target rule writes=4
+PASS G7b same target refused 3x -> stops chasing writes=3
+PASS G7c new user move after a refused target is clamped writes=4
+FAILS 0

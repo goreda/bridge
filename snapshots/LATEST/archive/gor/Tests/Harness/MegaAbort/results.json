@@ -1,0 +1,10 @@
+{
+  "result": "PASS actual current handler abort/error loopback controls",
+  "controls": [
+    "downstream abort destroys/pauses synthetic upstream without ERROR",
+    "genuine upstream error reported on ERROR and destroyed",
+    "clean complete response no ERROR"
+  ],
+  "source_sha256": "b950e8595cdc79b6f4f18da0ab60f11c6aae910ea566bb1381079a73b6d0467a",
+  "scope": "Actual isolated Node server/Readable fixtures on 127.0.0.1. No MEGA/provider/real media/backend/Swift/mpv/UI execution."
+}

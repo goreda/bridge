@@ -1,0 +1,34 @@
+{
+ "tag": "iso-grainsharp",
+ "mpv": "mpv v0.41.0 Copyright \u00a9 2000-2025 mpv/MPlayer/mplayer2 projects",
+ "date": "2026-11-07T16:03:08+0300",
+ "window_s": 20,
+ "video_draw_n": 73,
+ "video_draw_ms": {
+  "mean": 248.12,
+  "p50": 261.12,
+  "p95": 337.3,
+  "max": 393.41
+ },
+ "drop_vo_in_window": 0,
+ "frame_drop_count": 180,
+ "cpu_pct_mean": 129.7,
+ "neutered": [
+  "photon-sharp.glsl",
+  "photon-sharp-temporal.glsl",
+  "photon-grain.glsl"
+ ],
+ "glsl_shaders": [
+  "photon-grain.glsl",
+  "photon-sharp.glsl",
+  "vr180-look-shader-a.glsl"
+ ],
+ "vf_n": 0,
+ "max_concurrent_ffmpeg": 2,
+ "sync_readbacks_total": 5,
+ "paced_captures": 2,
+ "capture_ms_max": 603.8,
+ "probe_frames_served": 8,
+ "probe_frames_skipped": 1,
+ "photon_errors": []
+}

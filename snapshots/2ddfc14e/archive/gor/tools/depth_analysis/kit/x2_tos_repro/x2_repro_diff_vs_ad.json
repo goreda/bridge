@@ -1,0 +1,24 @@
+{
+  "t3_row_flow_v3": {
+    "frames": 48,
+    "meandiff": 3.177,
+    "p99": 15.0,
+    "max": 62,
+    "psnr_db": 35.08
+  },
+  "t2_mlbw_l2_inpaint_image": {
+    "frames": 1,
+    "meandiff": 0.044,
+    "p99": 1.0,
+    "max": 1,
+    "psnr_db": 61.65
+  },
+  "t1_mlbw_l2_inpaint_video": {
+    "frames": 48,
+    "meandiff": 3.134,
+    "p99": 15.0,
+    "max": 58,
+    "psnr_db": 35.23
+  },
+  "method": "goreda independent Linux reproduction, iw3 @ b1548e8, torch 2.14.1+cpu fp32, ToS 720p (nluug mirror) frames 1440-1487 (t=60.0s, 24fps) scaled to 320x180 by ffmpeg default (bicubic), committed depth fixture tos_depth_minmax_320x180_fp16.npz, divergence 2.0 convergence 1.0 steps 1 synthetic_view=both, diff vs A-D committed renders (their mp4 crf18 codec noise included); T1 peak RSS 977MB on 1GB box"
+}

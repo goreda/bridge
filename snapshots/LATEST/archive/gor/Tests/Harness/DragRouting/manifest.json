@@ -1,0 +1,23 @@
+{
+  "source": "goreda/instinct main live reads 2026-10-02 00:02-00:06 Europe/Istanbul; final rereads unchanged",
+  "source_sha256": {
+    "PPController_Features.swift": "74d16c7591b1058167d0fbb2a025f554afe59df5dd76dd168df97e20580b277e",
+    "PPController.swift": "7964e9bcff8779fdc6c2ee064ffac0c93ca4452fc8977581b19369f8cae05962"
+  },
+  "negative_checks": [
+    {
+      "anchor": "win.isVisible, win.isOnActiveSpace",
+      "rejected": true
+    },
+    {
+      "anchor": "MPVCommand.make([\"sub-add\", url.path])",
+      "rejected": true
+    },
+    {
+      "anchor": "let mode = isFirst ? \"replace\" : \"append-play\"",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "native_validation": "not performed"
+}

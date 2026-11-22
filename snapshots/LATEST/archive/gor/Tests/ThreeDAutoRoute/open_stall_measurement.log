@@ -1,0 +1,5 @@
+MEAS duplicate_open_count=10000 callback_count=1 elapsed_s=0.0018763469997793436
+MEAS drawable_reads=10000 socket_queries=0 elapsed_s=0.00023809399863239378
+PASS changed metadata and structural same-file reopen are applied
+BOUNDARY Linux production-method timing; owner8K Mac frame pacing unmeasured
+PASS production wiring: invalidate at structural start; accepted feed; retry missing receipt asynchronously

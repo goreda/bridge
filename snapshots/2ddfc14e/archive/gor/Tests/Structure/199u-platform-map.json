@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "station": "Platform",
+  "base_ref": "73980122c3bed58773558584330070e1b04241c7",
+  "scope": "Pure move. QuitChildKiller remains byte-identical and standalone. Only unconditional imports are lifted from the three complete Windowing units. Conditional imports, nested preview fold and all non-import bytes remain unchanged.",
+  "sections": {
+    "QuitChildKiller.swift": {
+      "old": "Sources/gor/GorPlatformMac/QuitChildKiller.swift",
+      "host": "Sources/gor/Platform/QuitChildKiller.swift",
+      "source_sha256": "ffbea2bab58dc393d3d0d74fad7752afef587c181c9f426013b4080b70fe607a",
+      "source_lines": 744,
+      "body_sha256": "ffbea2bab58dc393d3d0d74fad7752afef587c181c9f426013b4080b70fe607a",
+      "body_lines": 744,
+      "lifted_import_lines": []
+    },
+    "OverlaySpaceGate.swift": {
+      "old": "Sources/gor/GorPlatformMac/OverlaySpaceGate.swift",
+      "host": "Sources/gor/Platform/Windowing.swift",
+      "source_sha256": "b78a82df465755b61f695a10f6121f13a081ba40ff9cf76da7c075e06125fff9",
+      "source_lines": 174,
+      "body_sha256": "4ec3bc3b66d9ec22424756885f88d07413deb3d9dc32b48f0c018b28fc4da5ce",
+      "body_lines": 172,
+      "lifted_import_lines": [
+        {
+          "line": 1,
+          "text": "import AppKit\n"
+        },
+        {
+          "line": 2,
+          "text": "import CoreGraphics\n"
+        }
+      ]
+    },
+    "PanelFocus.swift": {
+      "old": "Sources/gor/GorPlatformMac/PanelFocus.swift",
+      "host": "Sources/gor/Platform/Windowing.swift",
+      "source_sha256": "ed945c8ac1050e41949ad19f34c42fe176c74ef1ef5cc35bb91aa35e7796381b",
+      "source_lines": 110,
+      "body_sha256": "776e5ac0a73ff04d99343f943873dfb29a4a89a58c554aef4a6a0e99ca3f25a0",
+      "body_lines": 109,
+      "lifted_import_lines": [
+        {
+          "line": 1,
+          "text": "import AppKit\n"
+        }
+      ]
+    },
+    "PanelFocusTraversal.swift": {
+      "old": "Sources/gor/GorPlatformMac/PanelFocusTraversal.swift",
+      "host": "Sources/gor/Platform/Windowing.swift",
+      "source_sha256": "3e1a34f112600388f6317285289c98669320dd8b5c3c85e14a7ce114693fd78f",
+      "source_lines": 46,
+      "body_sha256": "817804335eaf6c137e1b89dcc95b95c3d3fe3630b4b5d4a1c284c568d8c7bd3d",
+      "body_lines": 45,
+      "lifted_import_lines": [
+        {
+          "line": 1,
+          "text": "import Foundation\n"
+        }
+      ]
+    }
+  },
+  "hosts": {
+    "Sources/gor/Platform/QuitChildKiller.swift": {
+      "sha256": "ffbea2bab58dc393d3d0d74fad7752afef587c181c9f426013b4080b70fe607a",
+      "lines": 744,
+      "imports": [],
+      "units": [
+        "QuitChildKiller.swift"
+      ],
+      "standalone": true
+    },
+    "Sources/gor/Platform/Windowing.swift": {
+      "sha256": "ae031ace622e23bcfa261659a052473c13f6e8d3e8aa7fe6a2d1614db545dc61",
+      "lines": 334,
+      "imports": [
+        "import AppKit",
+        "import CoreGraphics",
+        "import Foundation"
+      ],
+      "units": [
+        "OverlaySpaceGate.swift",
+        "PanelFocus.swift",
+        "PanelFocusTraversal.swift"
+      ],
+      "standalone": false
+    }
+  }
+}

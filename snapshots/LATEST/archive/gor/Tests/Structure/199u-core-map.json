@@ -1,0 +1,262 @@
+{
+  "schema": 1,
+  "station": "Core",
+  "base_ref": "a2e565778004acb43b02c6cf7f9324e282248ff9",
+  "scope": "Pure move; only unconditional import lines lifted. Conditional branches, legacy internal markers, comments and every other byte retained.",
+  "sections": {
+    "Diag.swift": {
+      "old": "Sources/gor/GorCore/Diag.swift",
+      "host": "Sources/gor/Session/Diag.swift",
+      "source_sha256": "c8a9d49477962cb33ccc6bac0578c380fb309dd029797ee7df7dcf2ad895e121",
+      "source_lines": 807,
+      "body_sha256": "9789ee7f329480d27834efc5eb597d9d2dd689f23ba8daf859a4975ba8208819",
+      "body_lines": 796,
+      "lifted_import_lines": [
+        {
+          "line": 1,
+          "text": "import AppKit\n"
+        },
+        {
+          "line": 2,
+          "text": "import Foundation\n"
+        },
+        {
+          "line": 3,
+          "text": "import Darwin\n"
+        },
+        {
+          "line": 4,
+          "text": "import Vision\n"
+        },
+        {
+          "line": 5,
+          "text": "import AVFoundation\n"
+        },
+        {
+          "line": 6,
+          "text": "import CoreFoundation\n"
+        },
+        {
+          "line": 509,
+          "text": "import Foundation\n"
+        },
+        {
+          "line": 527,
+          "text": "import Foundation\n"
+        },
+        {
+          "line": 558,
+          "text": "import Foundation\n"
+        },
+        {
+          "line": 668,
+          "text": "import Foundation\n"
+        },
+        {
+          "line": 720,
+          "text": "import Foundation\n"
+        }
+      ]
+    },
+    "GeomTrace.swift": {
+      "old": "Sources/gor/gor/GeomTrace.swift",
+      "host": "Sources/gor/Session/Diag.swift",
+      "source_sha256": "6b4288e3f6f89b93220d7afd5f50bea7019ec477fbc22ae13d7e90f85484dddc",
+      "source_lines": 110,
+      "body_sha256": "924546e43da23f0ec903d9be16e2102127a5cf670f312e38fd7e2ce070f956ad",
+      "body_lines": 99,
+      "lifted_import_lines": [
+        {
+          "line": 1,
+          "text": "import AppKit\n"
+        },
+        {
+          "line": 2,
+          "text": "import CoreImage\n"
+        },
+        {
+          "line": 3,
+          "text": "import Foundation\n"
+        },
+        {
+          "line": 4,
+          "text": "import IOKit\n"
+        },
+        {
+          "line": 5,
+          "text": "import IOKit.ps\n"
+        },
+        {
+          "line": 6,
+          "text": "import CoreGraphics\n"
+        },
+        {
+          "line": 7,
+          "text": "import Darwin\n"
+        },
+        {
+          "line": 8,
+          "text": "import QuartzCore\n"
+        },
+        {
+          "line": 108,
+          "text": "import IOKit.ps\n"
+        },
+        {
+          "line": 109,
+          "text": "import CoreGraphics\n"
+        },
+        {
+          "line": 110,
+          "text": "import Darwin\n"
+        }
+      ]
+    },
+    "GORResources.swift": {
+      "old": "Sources/gor/GorPlatformMac/GORResources.swift",
+      "host": "Sources/gor/App/Build.swift",
+      "source_sha256": "d94c3244ba7adc4ef87d85e94d9de573950d770c2885073d978b17c6a19484ac",
+      "source_lines": 208,
+      "body_sha256": "0d3b74ca1db82b39fcb664415624cb542642be6748129972b07f4aae8b60f223",
+      "body_lines": 204,
+      "lifted_import_lines": [
+        {
+          "line": 31,
+          "text": "import Foundation\n"
+        },
+        {
+          "line": 32,
+          "text": "import AVFoundation\n"
+        },
+        {
+          "line": 33,
+          "text": "import ApplicationServices\n"
+        },
+        {
+          "line": 34,
+          "text": "import CoreGraphics\n"
+        }
+      ]
+    },
+    "BuildID.swift": {
+      "old": "Sources/gor/GorCore/BuildID.swift",
+      "host": "Sources/gor/App/Build.swift",
+      "source_sha256": "544881ae92b8f6b4235ed47b70c14f4997ee10a05faa06d877d5bf8f3df80365",
+      "source_lines": 76,
+      "body_sha256": "92c929ca73638a6d0c81a2929b0beba3be926f1a16c1d8b978e6e69b7c9b71c9",
+      "body_lines": 75,
+      "lifted_import_lines": [
+        {
+          "line": 1,
+          "text": "import Foundation\n"
+        }
+      ]
+    },
+    "StableCacheKey.swift": {
+      "old": "Sources/gor/GorCore/StableCacheKey.swift",
+      "host": "Sources/gor/App/Build.swift",
+      "source_sha256": "06ab2fa85040c2ae44d953cfc29d583db2b804d59c7cc3e8abc4876e3a790ef5",
+      "source_lines": 15,
+      "body_sha256": "c32941d01b836142661b9c5afc6cef0def3e21e96dcd75fb22cb0c362413c05d",
+      "body_lines": 13,
+      "lifted_import_lines": [
+        {
+          "line": 6,
+          "text": "import Foundation\n"
+        },
+        {
+          "line": 7,
+          "text": "import CryptoKit\n"
+        }
+      ]
+    },
+    "SeededRandomNumberGenerator.swift": {
+      "old": "Sources/gor/gor/SeededRandomNumberGenerator.swift",
+      "host": "Sources/gor/App/Build.swift",
+      "source_sha256": "5c74f2097d44ae358decb04031097a6b83face3c34f7107a541838a6c24d058f",
+      "source_lines": 18,
+      "body_sha256": "3f823e5cdaef4645058771b09050a5766b2277ac41ca6ceb4af20074b7b29741",
+      "body_lines": 10,
+      "lifted_import_lines": [
+        {
+          "line": 1,
+          "text": "import AppKit\n"
+        },
+        {
+          "line": 2,
+          "text": "import CoreImage\n"
+        },
+        {
+          "line": 3,
+          "text": "import Foundation\n"
+        },
+        {
+          "line": 4,
+          "text": "import IOKit\n"
+        },
+        {
+          "line": 5,
+          "text": "import IOKit.ps\n"
+        },
+        {
+          "line": 6,
+          "text": "import CoreGraphics\n"
+        },
+        {
+          "line": 7,
+          "text": "import Darwin\n"
+        },
+        {
+          "line": 8,
+          "text": "import QuartzCore\n"
+        }
+      ]
+    }
+  },
+  "hosts": {
+    "Sources/gor/Session/Diag.swift": {
+      "sha256": "28dad9f5d9dbaec5c1fb0702bf6ec3528c70e00f0a683a33f4a75f956bd1907e",
+      "lines": 910,
+      "imports": [
+        "import AVFoundation",
+        "import AppKit",
+        "import CoreFoundation",
+        "import CoreGraphics",
+        "import CoreImage",
+        "import Darwin",
+        "import Foundation",
+        "import IOKit",
+        "import IOKit.ps",
+        "import QuartzCore",
+        "import Vision"
+      ],
+      "units": [
+        "Diag.swift",
+        "GeomTrace.swift"
+      ]
+    },
+    "Sources/gor/App/Build.swift": {
+      "sha256": "175e9cd9c246cee3e95fe8e0a61da9d6d00b83091b26df993fac7c6ae10c4b9f",
+      "lines": 319,
+      "imports": [
+        "import AVFoundation",
+        "import AppKit",
+        "import ApplicationServices",
+        "import CoreGraphics",
+        "import CoreImage",
+        "import CryptoKit",
+        "import Darwin",
+        "import Foundation",
+        "import IOKit",
+        "import IOKit.ps",
+        "import QuartzCore"
+      ],
+      "units": [
+        "GORResources.swift",
+        "BuildID.swift",
+        "StableCacheKey.swift",
+        "SeededRandomNumberGenerator.swift"
+      ]
+    }
+  }
+}

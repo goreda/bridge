@@ -1,0 +1,6 @@
+PASS operational guard known accepted
+PASS operational guard unexpected refused, bytes preserved
+PASS operational guard collision refused, bytes preserved
+PASS operational guard symlink refused, bytes preserved
+PASS operational guard tracked refused, bytes preserved
+PASS operational guard staged refused, bytes preserved

@@ -1,0 +1,21 @@
+// AUTHORED_R2 replacement (2026-10-16, ZDYM provider/build lane).
+// NOT the pinned r1 member (pin 293B/eb6c1a70...); byte identity is not claimed.
+// Role per DECODER-ONLY-TARGET-WIRING-r1: FFmpeg header import + avformat/avcodec/avutil link names.
+// AUTHORED_L3 (2026-10-25, L3 formats/hardware-decode lane): + swscale/swresample
+// link names for the pixel/sample conversion helpers.
+// M1 (2026-10-30, J1 port): link order avformat, avcodec, swscale, swresample, avutil
+// per J4's Linux static-link probe (undefined sws_getContext/swr_alloc otherwise).
+// M1-r7 (2026-10-31, J4 kit repair): + link "z" - the v2 flag set enables zlib
+// (matroska header-stripping; mov cmov; id3v2), so libavformat.a references
+// inflate/inflateEnd/inflateInit_/uncompress. Mac r6 run ld: exactly these 4
+// symbols undefined, nothing else. System libz, resolved from the CLT SDK.
+module CFFmpeg {
+    header "shim.h"
+    link "avformat"
+    link "avcodec"
+    link "swscale"
+    link "swresample"
+    link "avutil"
+    link "z"
+    export *
+}

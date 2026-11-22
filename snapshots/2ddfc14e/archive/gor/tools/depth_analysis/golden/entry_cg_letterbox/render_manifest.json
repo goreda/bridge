@@ -1,0 +1,27 @@
+{
+  "shot": 0,
+  "frames": 8,
+  "theta_h_deg": 75.0,
+  "shot_hfov_deg": 56.86539221693351,
+  "screen_deg": 75.0,
+  "aspect": 1.7777777777777777,
+  "ipd": 0.063,
+  "depth_scale": 1.0,
+  "convergence_m": null,
+  "swap_eyes": true,
+  "surround": "soft",
+  "out_w": 360,
+  "out_h": 360,
+  "start_pts": 0.0,
+  "frame_sha256": [
+    "6933c698601f4bf042a4ce8ffed0233283ea2a0edd33a994903059e33b22647b",
+    "e09bbdb0f6c707aac4e66790c89f28305153d48d26e25447aeaac4ab643e4f98",
+    "115460710000ef2d3025f436bcb9f90e7cb182f519f84a7445b64d13e5c2ee09",
+    "e76cbcd97e62f2a7d70bd5ef8a1fb89b357bde395c3189bc6f1f3192a66ca386",
+    "cff15d87f8eb807a86fa545999fb9ca8c63620981899a89ad26d1d0df62a527c",
+    "cc6f9282a2ce1c76a70c70328c953ec5331dc642f96d2083f5070a8aa9630295",
+    "35fcb0b0b9a17b21e28af122667be19fb6eafceef5884a133c6894dbb2edd864",
+    "4ec77b46bf9fa0d8ee6d470d8c9a4a1da91ccff6bdf7343acd2188f2d9994f8d"
+  ],
+  "sequence_sha256": "ff59ee1f1005c2ff5f7b106b1913373cd284f6a3352dd61cf8c1dbc7692f7bd6"
+}

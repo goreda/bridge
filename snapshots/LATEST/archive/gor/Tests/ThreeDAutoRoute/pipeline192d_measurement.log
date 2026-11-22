@@ -1,0 +1,2002 @@
+192d software evidence,2026-11-10. Owner G1/G2/G5 NOT_MEASURED: no retained owner trace. No playback acceptance.
+
+=== 192d-fullswift.log ===
+PASS D2 actual Swift nod/yaw/roll pupil invariance, distance approach and matched fallback
+PASS initial box fallback to first pupil acquisition keeps zoom continuous
+MEAS synthetic startup online band=0.0020204378225925847, fixed critical tau_s=0.1; owner noise envelope NOT_MEASURED
+MEAS synthetic still output_rms2=1.1260612846471588e-05 filtered_noise_floor_rms2=0.0006917137324903703 maxStep=0.0003958856128368788 band=0.0020204378225925847
+MEAS channel0 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS channel1 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS channel2 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS channel3 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS channel4 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS channel5 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS held20deg settled_deg=19.884237439996838 band_deg=0.11576256000315688, stable range=0.0
+MEAS full_pipeline synthetic channel0 step_t90_s=0.5666666666666669, includes continuity and existing one-euro; NOT camera latency
+MEAS full_pipeline synthetic channel1 step_t90_s=0.5666666666666669, includes continuity and existing one-euro; NOT camera latency
+MEAS full_pipeline synthetic channel2 step_t90_s=0.5666666666666669, includes continuity and existing one-euro; NOT camera latency
+MEAS full_pipeline synthetic channel3 step_t90_s=0.4333333333333331, includes continuity and existing one-euro; NOT camera latency
+MEAS full_pipeline synthetic channel4 step_t90_s=0.4333333333333331, includes continuity and existing one-euro; NOT camera latency
+MEAS full_pipeline synthetic channel5 step_t90_s=2.1333333333333337, includes continuity and existing one-euro; NOT camera latency
+PASS synthetic G1-G4 primitives. Owner G1/G2/G5 NOT_MEASURED no_owner_trace
+PASS production wiring: one zoom carrier, no Lua cinema/fast mode, no StationaryScaleHold
+
+=== 192d-gpu-last.log ===
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+PASS actual Lua native False FOV/translation published exactly; film/fusion roll channels distinct, native raw compatibility
+PASS actual Lua native True FOV/translation published exactly; film/fusion roll channels distinct, native raw compatibility
+PASS pitchSign=-1 at ScreenCaptureEngine rawPitch: final_pitch -0.1 feature_y_GL 316.57949178217075 positive look samples higher source latitude; world-fixed content shifts opposite camera
+PASS pitchSign=-1 at ScreenCaptureEngine rawPitch: final_pitch 0.1 feature_y_GL 282.42049952434 positive look samples higher source latitude; world-fixed content shifts opposite camera
+MEAS held_tilt_deg 0 scale_vs_level 1.0 filtered_roll_noise_scale_range 1.8369476233459636e-06 S1 residual_px 2.6298436864635732e-05
+MEAS held_tilt_deg 20 scale_vs_level 0.965891169899211 filtered_roll_noise_scale_range 7.466310814885357e-05 S1 residual_px 0.003928583540357522
+MEAS held_tilt_deg 30 scale_vs_level 0.842219745819103 filtered_roll_noise_scale_range 0.0001506768153267668 S1 residual_px 0.0005118161701886947
+PASS synthetic D3/D4/D5 shader tests. G1/G2/G5 owner traces NOT_MEASURED. Owner ruling keeps every corner; minimized geometric fit measured separately in divider_corners_gpu_test.
+
+=== 192d-corners-final.log ===
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS crossed 0 headdeg 0 dividerdeg 5.3268354011536595e-14 maximal_scale 1 corner_area_retention [1.0, 1.0, 1.0, 1.0] limiting width
+MEAS crossed 0 headdeg 10 dividerdeg -10.024091577684453 maximal_scale 0.9107710551970255 corner_area_retention [1.0046165163050507, 1.006882568597468, 1.0053718670691898, 1.0046165163050507] limiting width
+MEAS crossed 0 headdeg 20 dividerdeg -19.993056437470656 maximal_scale 0.913352037092939 corner_area_retention [1.0042043926731579, 1.0034533048701115, 1.0034533048701115, 1.0042043926731579] limiting width
+MEAS crossed 0 headdeg 30 dividerdeg -29.952300223035937 maximal_scale 0.8422643285852598 corner_area_retention [1.0042243825337545, 1.0024579368300892, 1.0024579368300892, 1.0042243825337545] limiting height
+MEAS crossed 0 headdeg -10 dividerdeg 10.024091577684521 maximal_scale 0.9107710551970255 corner_area_retention [1.0053718670691898, 1.006127217833329, 1.0046165163050507, 1.0053718670691898] limiting width
+MEAS crossed 0 headdeg -20 dividerdeg 19.993056437470724 maximal_scale 0.913352037092939 corner_area_retention [1.0034533048701115, 1.0042043926731579, 1.0042043926731579, 1.0034533048701115] limiting width
+MEAS crossed 0 headdeg -30 dividerdeg 29.95230022303602 maximal_scale 0.8422643285852598 corner_area_retention [1.0024579368300892, 1.0042243825337545, 1.0042243825337545, 1.0024579368300892] limiting height
+MEAS crossed 1 headdeg 0 dividerdeg 5.3268354011536595e-14 maximal_scale 1 corner_area_retention [1.0, 1.0, 1.0, 1.0] limiting width
+MEAS crossed 1 headdeg 10 dividerdeg 10.024091577684521 maximal_scale 0.967734697411728 corner_area_retention [1.007579817206467, 1.0062417297998183, 1.0062417297998183, 1.007579817206467] limiting width
+MEAS crossed 1 headdeg 20 dividerdeg 19.993056437470724 maximal_scale 0.9659179905359777 corner_area_retention [1.0053294462498923, 1.00734413451893, 1.00734413451893, 1.0053294462498923] limiting width
+MEAS crossed 1 headdeg 30 dividerdeg 29.95230022303602 maximal_scale 0.8422643285852598 corner_area_retention [0.9980418225709258, 0.9989250454227584, 0.9989250454227584, 0.9980418225709258] limiting height
+MEAS crossed 1 headdeg -10 dividerdeg -10.024091577684453 maximal_scale 0.967734697411728 corner_area_retention [1.0062417297998183, 1.007579817206467, 1.007579817206467, 1.0062417297998183] limiting width
+MEAS crossed 1 headdeg -20 dividerdeg -19.993056437470656 maximal_scale 0.9659179905359777 corner_area_retention [1.00734413451893, 1.0053294462498923, 1.0053294462498923, 1.00734413451893] limiting width
+MEAS crossed 1 headdeg -30 dividerdeg -29.952300223035937 maximal_scale 0.8422643285852598 corner_area_retention [0.9989250454227584, 0.9980418225709258, 0.9980418225709258, 0.9989250454227584] limiting height
+PASS14 real pixel divider/corner gates, plus1% scale-up infeasibility. Software evidence, not Mac playback.
+
+=== 192d-rotated-shift.log ===
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS layout 0 cross 0 headdeg -30 dxdy [352.31963376 203.40178723] line_error_px 0.010048159127478584 axis_error_deg 0.0012255722458007767
+MEAS layout 0 cross 0 headdeg -20 dxdy [466.77289454 169.88539818] line_error_px 0.006041592708214694 axis_error_deg 0.0006548500837020299
+MEAS layout 0 cross 0 headdeg -10 dxdy [489.73412186  86.37206102] line_error_px 0.018721959972509694 axis_error_deg 0.0021242892880053432
+MEAS layout 0 cross 0 headdeg -5 dxdy [490.2581264  42.9194952] line_error_px 0.027466939844643434 axis_error_deg 0.0031856235015030876
+MEAS layout 0 cross 0 headdeg 0 dxdy [ 4.82999997e+02 -1.33801558e-06] line_error_px 1.338015579221974e-06 axis_error_deg 1.5872183462701324e-07
+MEAS layout 0 cross 0 headdeg 5 dxdy [490.25816408 -42.91951828] line_error_px 0.027486723027024595 axis_error_deg 0.0031879177044169538
+MEAS layout 0 cross 0 headdeg 10 dxdy [489.7341531  -86.37203067] line_error_px 0.01868610401467663 axis_error_deg 0.002120220779021409
+MEAS layout 0 cross 0 headdeg 20 dxdy [ 466.77289892 -169.8854383 ] line_error_px 0.006003066420248615 axis_error_deg 0.0006506741841789676
+MEAS layout 0 cross 0 headdeg 30 dxdy [ 352.3196146  -203.40182586] line_error_px 0.009998471394283115 axis_error_deg 0.0012195118333551136
+MEAS layout 0 cross 1 headdeg -30 dxdy [ 352.29870688 -203.41702161] line_error_px 0.01726835954212902 axis_error_deg 0.0021062732458325684
+MEAS layout 0 cross 1 headdeg -20 dxdy [ 438.40661354 -159.57097177] line_error_px 0.0040139323918140235 axis_error_deg 0.0004632185507951192
+MEAS layout 0 cross 1 headdeg -10 dxdy [460.29281106 -81.15393538] line_error_px 0.008106240562270273 axis_error_deg 0.000978615643910885
+MEAS layout 0 cross 1 headdeg -5 dxdy [471.48467948 -41.2358704 ] line_error_px 0.013694076403567124 axis_error_deg 0.0016514952954338469
+MEAS layout 0 cross 1 headdeg 0 dxdy [ 4.82999997e+02 -1.33801558e-06] line_error_px 1.338015579221974e-06 axis_error_deg 1.5872183462701324e-07
+MEAS layout 0 cross 1 headdeg 5 dxdy [471.48464838  41.23589493] line_error_px 0.013666831857811701 axis_error_deg 0.0016482097242098703
+MEAS layout 0 cross 1 headdeg 10 dxdy [460.29280174  81.15394648] line_error_px 0.008093488291777362 axis_error_deg 0.0009770761573353326
+MEAS layout 0 cross 1 headdeg 20 dxdy [438.40661126 159.57098878] line_error_px 0.0040317752895759895 axis_error_deg 0.0004652776653379931
+MEAS layout 0 cross 1 headdeg 30 dxdy [352.29874711 203.4170384 ] line_error_px 0.017261922816032893 axis_error_deg 0.0021054879154114303
+MEAS layout 1 cross 0 headdeg -30 dxdy [352.31278238 203.40115623] line_error_px 0.006723512580691704 axis_error_deg 0.0008200782735166001
+MEAS layout 1 cross 0 headdeg -20 dxdy [466.76913153 169.88277109] line_error_px 0.00729905984090351 axis_error_deg 0.0007911543943848187
+MEAS layout 1 cross 0 headdeg -10 dxdy [489.74912573  86.38724392] line_error_px 0.03125927241141824 axis_error_deg 0.0035467126609081134
+MEAS layout 1 cross 0 headdeg -5 dxdy [490.22881041  42.9100017 ] line_error_px 0.020538254306913473 axis_error_deg 0.0023821779512873675
+MEAS layout 1 cross 0 headdeg 0 dxdy [4.82999990e+02 1.21840028e-05] line_error_px 1.2184002798676374e-05 axis_error_deg 1.4453249537714132e-06
+MEAS layout 1 cross 0 headdeg 5 dxdy [490.22879041 -42.90998353] line_error_px 0.020521832961911457 axis_error_deg 0.0023802733867874792
+MEAS layout 1 cross 0 headdeg 10 dxdy [489.74912192 -86.38722349] line_error_px 0.031239519691141027 axis_error_deg 0.0035444715467480847
+MEAS layout 1 cross 0 headdeg 20 dxdy [ 466.7691431  -169.88277526] line_error_px 0.0072991016164394296 axis_error_deg 0.0007911589029028221
+MEAS layout 1 cross 0 headdeg 30 dxdy [ 352.31278771 -203.40114743] line_error_px 0.00673539057453354 axis_error_deg 0.0008215270521922946
+MEAS layout 1 cross 1 headdeg -30 dxdy [ 352.30922046 -203.41733816] line_error_px 0.011514885989384993 axis_error_deg 0.00140447295984103
+MEAS layout 1 cross 1 headdeg -20 dxdy [ 438.38420439 -159.57801335] line_error_px 0.019211783313267006 axis_error_deg 0.002217179887288978
+MEAS layout 1 cross 1 headdeg -10 dxdy [460.26964939 -81.16288281] line_error_px 0.004925222483521452 axis_error_deg 0.0005946182999387872
+MEAS layout 1 cross 1 headdeg -5 dxdy [471.50284238 -41.23141251] line_error_px 0.019741020524215003 axis_error_deg 0.0023806631401805944
+MEAS layout 1 cross 1 headdeg 0 dxdy [ 4.83000000e+02 -1.48917774e-05] line_error_px 1.4891777368575276e-05 axis_error_deg 1.7665341464280275e-06
+MEAS layout 1 cross 1 headdeg 5 dxdy [471.50288045  41.23141863] line_error_px 0.01973822759364907 axis_error_deg 0.0023803261340322734
+MEAS layout 1 cross 1 headdeg 10 dxdy [460.2696926   81.16290284] line_error_px 0.004937629042984781 axis_error_deg 0.0005961160755507677
+MEAS layout 1 cross 1 headdeg 20 dxdy [438.3842525  159.57800758] line_error_px 0.019188495574809394 axis_error_deg 0.0022144921072531076
+MEAS layout 1 cross 1 headdeg 30 dxdy [352.30924407 203.41736555] line_error_px 0.011528647211264342 axis_error_deg 0.0014061513008520876
+MEAS layout 2 cross 0 headdeg -30 dxdy [352.33140783 203.41127726] line_error_px 0.007355891806270165 axis_error_deg 0.0008971639112616003
+MEAS layout 2 cross 0 headdeg -20 dxdy [466.78187738 169.88799222] line_error_px 0.006717042963998665 axis_error_deg 0.0007280486713092671
+MEAS layout 2 cross 0 headdeg -10 dxdy [489.80280253  86.34421459] line_error_px 0.02123472303235019 axis_error_deg 0.002409095991467325
+MEAS layout 2 cross 0 headdeg -5 dxdy [490.26596065  42.89472356] line_error_px 0.002009893591782941 axis_error_deg 0.00023310535707921076
+MEAS layout 2 cross 0 headdeg 0 dxdy [4.83000006e+02 1.03103662e-05] line_error_px 1.0310366178600816e-05 axis_error_deg 1.2230651335062606e-06
+MEAS layout 2 cross 0 headdeg 5 dxdy [490.265976   -42.89472147] line_error_px 0.0020064601902163304 axis_error_deg 0.00023270714761203237
+MEAS layout 2 cross 0 headdeg 10 dxdy [489.80282386 -86.34418054] line_error_px 0.02127252845743044 axis_error_deg 0.002413384973406707
+MEAS layout 2 cross 0 headdeg 20 dxdy [ 466.78187888 -169.88797153] line_error_px 0.006738278267107489 axis_error_deg 0.0007303503374274101
+MEAS layout 2 cross 0 headdeg 30 dxdy [ 352.33139172 -203.41124648] line_error_px 0.0073773713456546375 axis_error_deg 0.0008997837356723437
+MEAS layout 2 cross 1 headdeg -30 dxdy [ 352.33156301 -203.43523104] line_error_px 0.01650829570849055 axis_error_deg 0.002013380109016083
+MEAS layout 2 cross 1 headdeg -20 dxdy [ 438.41375672 -159.59009113] line_error_px 0.020533394384528947 axis_error_deg 0.0023695414129747405
+MEAS layout 2 cross 1 headdeg -10 dxdy [460.32788754 -81.18834168] line_error_px 0.02011513784663066 axis_error_deg 0.002428164088307483
+MEAS layout 2 cross 1 headdeg -5 dxdy [471.51366038 -41.29734819] line_error_px 0.0452482101561813 axis_error_deg 0.005456505410188051
+MEAS layout 2 cross 1 headdeg 0 dxdy [4.82999998e+02 4.24591917e-09] line_error_px 4.245919171808055e-09 axis_error_deg 5.036713244312051e-10
+MEAS layout 2 cross 1 headdeg 5 dxdy [471.51367579  41.2973478 ] line_error_px 0.04524646820010503 axis_error_deg 0.0054562951702070706
+MEAS layout 2 cross 1 headdeg 10 dxdy [460.32789163  81.18835404] line_error_px 0.0201267696860441 axis_error_deg 0.0024295681735893027
+MEAS layout 2 cross 1 headdeg 20 dxdy [438.41375791 159.59008607] line_error_px 0.02052789416566725 axis_error_deg 0.0023689066941727788
+MEAS layout 2 cross 1 headdeg 30 dxdy [352.33152754 203.43523473] line_error_px 0.016532453662421176 axis_error_deg 0.0020163265976904654
+MEAS layout 3 cross 0 headdeg -30 dxdy [352.34351554 203.38020614] line_error_px 0.04541740762917357 axis_error_deg 0.0055394187148714025
+MEAS layout 3 cross 0 headdeg -20 dxdy [466.76267684 169.90213336] line_error_px 0.014412524213724964 axis_error_deg 0.0015621901079185818
+MEAS layout 3 cross 0 headdeg -10 dxdy [489.74086523  86.36264471] line_error_px 0.008116615854177667 axis_error_deg 0.0009209434582153619
+MEAS layout 3 cross 0 headdeg -5 dxdy [490.25253802  42.86849832] line_error_px 0.023041022253238452 axis_error_deg 0.0026723586857517745
+MEAS layout 3 cross 0 headdeg 0 dxdy [ 4.82999991e+02 -1.07322464e-05] line_error_px 1.0732246380484867e-05 axis_error_deg 1.2731106279319845e-06
+MEAS layout 3 cross 0 headdeg 5 dxdy [490.2525278  -42.86850195] line_error_px 0.023036494901440108 axis_error_deg 0.002671833645102595
+MEAS layout 3 cross 0 headdeg 10 dxdy [489.74088406 -86.36265848] line_error_px 0.008127066199776323 axis_error_deg 0.0009221291570860046
+MEAS layout 3 cross 0 headdeg 20 dxdy [ 466.76268549 -169.90212292] line_error_px 0.014398931451353292 axis_error_deg 0.0015607167584192894
+MEAS layout 3 cross 0 headdeg 30 dxdy [ 352.34349905 -203.3801669 ] line_error_px 0.04544712078740076 axis_error_deg 0.005543043197441477
+MEAS layout 3 cross 1 headdeg -30 dxdy [ 352.34509977 -203.39358674] line_error_px 0.032951456600557094 axis_error_deg 0.0040189061405584425
+MEAS layout 3 cross 1 headdeg -20 dxdy [ 438.37979013 -159.59475493] line_error_px 0.03756002257668456 axis_error_deg 0.004334685827164009
+MEAS layout 3 cross 1 headdeg -10 dxdy [460.28379384 -81.17259615] line_error_px 0.012144516785468795 axis_error_deg 0.0014661491269478688
+MEAS layout 3 cross 1 headdeg -5 dxdy [471.50691865 -41.26910342] line_error_px 0.01759326045050358 axis_error_deg 0.0021216216553812117
+MEAS layout 3 cross 1 headdeg 0 dxdy [ 4.82999990e+02 -5.36609446e-06] line_error_px 5.366094455894199e-06 axis_error_deg 6.365519071617515e-07
+MEAS layout 3 cross 1 headdeg 5 dxdy [471.50694369  41.26910175] line_error_px 0.0175894068022302 axis_error_deg 0.002121156821735859
+MEAS layout 3 cross 1 headdeg 10 dxdy [460.28382048  81.17263304] line_error_px 0.01217670554875383 axis_error_deg 0.0014700350189400524
+MEAS layout 3 cross 1 headdeg 20 dxdy [438.37976797 159.59480242] line_error_px 0.037615568787828124 axis_error_deg 0.004341096285841672
+MEAS layout 3 cross 1 headdeg 30 dxdy [352.34510939 203.393512  ] line_error_px 0.03303175882678033 axis_error_deg 0.004028700444585809
+MEAS layout 4 cross 0 headdeg -30 dxdy [352.34106498 203.41546222] line_error_px 0.008746497105818207 axis_error_deg 0.0010667421560945911
+MEAS layout 4 cross 0 headdeg -20 dxdy [466.77987997 169.90556067] line_error_px 0.011578405266959635 axis_error_deg 0.001254952886032612
+MEAS layout 4 cross 0 headdeg -10 dxdy [489.69807714  86.29998959] line_error_px 0.046993811547878295 axis_error_deg 0.005332672939555749
+MEAS layout 4 cross 0 headdeg -5 dxdy [490.24585261  42.88449962] line_error_px 0.0064548235858694625 axis_error_deg 0.0007486555178477516
+MEAS layout 4 cross 0 headdeg 0 dxdy [ 4.82999994e+02 -6.31224850e-06] line_error_px 6.312248501672002e-06 axis_error_deg 7.487892396605944e-07
+MEAS layout 4 cross 0 headdeg 5 dxdy [490.24586436 -42.88447488] line_error_px 0.006480593066619633 axis_error_deg 0.0007516443477468826
+MEAS layout 4 cross 0 headdeg 10 dxdy [489.69804407 -86.29996783] line_error_px 0.04700973896586902 axis_error_deg 0.005334480710169842
+MEAS layout 4 cross 0 headdeg 20 dxdy [ 466.77988006 -169.90555763] line_error_px 0.011575337021753285 axis_error_deg 0.0012546203294085956
+MEAS layout 4 cross 0 headdeg 30 dxdy [ 352.34106347 -203.41544762] line_error_px 0.00876021981332542 axis_error_deg 0.0010684158304989921
+MEAS layout 4 cross 1 headdeg -30 dxdy [ 352.32935041 -203.41195939] line_error_px 0.005485913485273386 axis_error_deg 0.0006690937222231241
+MEAS layout 4 cross 1 headdeg -20 dxdy [ 438.37057759 -159.60839919] line_error_px 0.054557365897892396 axis_error_deg 0.006296350395412986
+MEAS layout 4 cross 1 headdeg -10 dxdy [460.27970187 -81.18208159] line_error_px 0.022351482137437984 axis_error_deg 0.0026984007387476083
+MEAS layout 4 cross 1 headdeg -5 dxdy [471.5010754  -41.27474326] line_error_px 0.023744318152665755 axis_error_deg 0.0028634275581156388
+MEAS layout 4 cross 1 headdeg 0 dxdy [ 4.82999988e+02 -7.68248526e-07] line_error_px 7.682485261284455e-07 axis_error_deg 9.113333170294863e-08
+MEAS layout 4 cross 1 headdeg 5 dxdy [471.50108668  41.27476211] line_error_px 0.02376218673628472 axis_error_deg 0.002865582328074545
+MEAS layout 4 cross 1 headdeg 10 dxdy [460.27969484  81.18211014] line_error_px 0.02238127118762634 axis_error_deg 0.0027019970572546015
+MEAS layout 4 cross 1 headdeg 20 dxdy [438.37056822 159.60839302] line_error_px 0.05455461020355301 axis_error_deg 0.006296032513859018
+MEAS layout 4 cross 1 headdeg 30 dxdy [352.32931452 203.41194932] line_error_px 0.005475260687774153 axis_error_deg 0.0006677945047357525
+MEAS Y3 headdeg 0 axis_disparity_px -1.5510578306200955 vertical_residual_px 3.020017987864776e-05
+MEAS Y3 headdeg 30 axis_disparity_px -1.5380414218495573 vertical_residual_px 0.0001654984785002256
+MEAS Y3 depth retained ratio 0.9916080441917924
+PASS S1 rendered-centre/axis/pitch-yaw-distance matrix
+
+=== 192d-native-new.log ===
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+PASS native generated GLSL compile legacy
+MEAS legacy TB 0 cross 0 headdeg -30 line_error_px 0.007565364084143766 axis_error_deg 0.0009335809336228351
+MEAS legacy TB 0 cross 0 headdeg -20 line_error_px 0.008930636853762053 axis_error_deg 0.001043597870726387
+MEAS legacy TB 0 cross 0 headdeg -10 line_error_px 0.0038035662501698653 axis_error_deg 0.00042756690303491496
+MEAS legacy TB 0 cross 0 headdeg -5 line_error_px 0.002463300701911919 axis_error_deg 0.0002791129293200356
+MEAS legacy TB 0 cross 0 headdeg 0 line_error_px 1.9069023267093144e-05 axis_error_deg 2.2620591260926168e-06
+MEAS legacy TB 0 cross 0 headdeg 5 line_error_px 0.002436364432540472 axis_error_deg 0.00027606080708508784
+MEAS legacy TB 0 cross 0 headdeg 10 line_error_px 0.0037870912004507318 axis_error_deg 0.000425714899671803
+MEAS legacy TB 0 cross 0 headdeg 20 line_error_px 0.008941353951058773 axis_error_deg 0.0010448502323221476
+MEAS legacy TB 0 cross 0 headdeg 30 line_error_px 0.007508438176785148 axis_error_deg 0.0009265561220637153
+MEAS legacy TB 0 cross 1 headdeg -30 line_error_px 0.0010314769503736443 axis_error_deg 0.00017654214417461844
+MEAS legacy TB 0 cross 1 headdeg -20 line_error_px 0.0012799715424023361 axis_error_deg 0.0002121583805134719
+MEAS legacy TB 0 cross 1 headdeg -10 line_error_px 0.004511601802818177 axis_error_deg 0.0006655068580467827
+MEAS legacy TB 0 cross 1 headdeg -5 line_error_px 0.004143744879691269 axis_error_deg 0.0005561066910200196
+MEAS legacy TB 0 cross 1 headdeg 0 line_error_px 8.851979600876803e-06 axis_error_deg 1.0500643752474016e-06
+MEAS legacy TB 0 cross 1 headdeg 5 line_error_px 0.004133863484092615 axis_error_deg 0.0005547805720338417
+MEAS legacy TB 0 cross 1 headdeg 10 line_error_px 0.004531558242732103 axis_error_deg 0.0006684506187024652
+MEAS legacy TB 0 cross 1 headdeg 20 line_error_px 0.0012804165885853536 axis_error_deg 0.00021223212323207008
+MEAS legacy TB 0 cross 1 headdeg 30 line_error_px 0.0010467487186360813 axis_error_deg 0.00017915596489359586
+MEAS legacy TB 1 cross 0 headdeg -30 line_error_px 0.0024310313271769246 axis_error_deg 0.00029998288774635284
+MEAS legacy TB 1 cross 0 headdeg -20 line_error_px 0.01464845952750693 axis_error_deg 0.0017117320647557221
+MEAS legacy TB 1 cross 0 headdeg -10 line_error_px 0.0008336176110788074 axis_error_deg 9.370646651163383e-05
+MEAS legacy TB 1 cross 0 headdeg -5 line_error_px 0.0008874961346094778 axis_error_deg 0.00010056001141922621
+MEAS legacy TB 1 cross 0 headdeg 0 line_error_px 3.074915429124303e-05 axis_error_deg 3.647612680262135e-06
+MEAS legacy TB 1 cross 0 headdeg 5 line_error_px 0.0008346915481567407 axis_error_deg 9.45768503575195e-05
+MEAS legacy TB 1 cross 0 headdeg 10 line_error_px 0.0007922302768008649 axis_error_deg 8.905413802651196e-05
+MEAS legacy TB 1 cross 0 headdeg 20 line_error_px 0.014695776779575453 axis_error_deg 0.0017172615512031086
+MEAS legacy TB 1 cross 0 headdeg 30 line_error_px 0.002397617971212185 axis_error_deg 0.000295859768712603
+MEAS legacy TB 1 cross 1 headdeg -30 line_error_px 0.0004093795645587761 axis_error_deg 7.006731223668794e-05
+MEAS legacy TB 1 cross 1 headdeg -20 line_error_px 0.0031516247161818 axis_error_deg 0.0005223861089582726
+MEAS legacy TB 1 cross 1 headdeg -10 line_error_px 0.011707501860016123 axis_error_deg 0.001726933512799178
+MEAS legacy TB 1 cross 1 headdeg -5 line_error_px 0.0034971114466273434 axis_error_deg 0.0004693330843625887
+MEAS legacy TB 1 cross 1 headdeg 0 line_error_px 4.265109527068489e-05 axis_error_deg 5.059477704973061e-06
+MEAS legacy TB 1 cross 1 headdeg 5 line_error_px 0.003520649809942711 axis_error_deg 0.000472492073261499
+MEAS legacy TB 1 cross 1 headdeg 10 line_error_px 0.011697935094957757 axis_error_deg 0.0017255222923999725
+MEAS legacy TB 1 cross 1 headdeg 20 line_error_px 0.0031558716968902445 axis_error_deg 0.000523090033510698
+MEAS legacy TB 1 cross 1 headdeg 30 line_error_px 0.0004091712267211278 axis_error_deg 7.003165311658677e-05
+LUAERR	vr180-look: shader publication failed: nil
+PASS native generated GLSL compile extended
+MEAS extended TB 0 cross 0 headdeg -30 line_error_px 0.007565369394257004 axis_error_deg 0.0009335815272208947
+MEAS extended TB 0 cross 0 headdeg -20 line_error_px 0.008931446432114853 axis_error_deg 0.0010436924978165507
+MEAS extended TB 0 cross 0 headdeg -10 line_error_px 0.0037961807015705062 axis_error_deg 0.0004267366799890482
+MEAS extended TB 0 cross 0 headdeg -5 line_error_px 0.0024160934309804816 axis_error_deg 0.00027376391678402
+MEAS extended TB 0 cross 0 headdeg 0 line_error_px 1.9226683605211292e-05 axis_error_deg 2.2807615049002177e-06
+MEAS extended TB 0 cross 0 headdeg 5 line_error_px 0.002455802550294095 axis_error_deg 0.00027826330090618967
+MEAS extended TB 0 cross 0 headdeg 10 line_error_px 0.0037774966334040982 axis_error_deg 0.0004246363458353386
+MEAS extended TB 0 cross 0 headdeg 20 line_error_px 0.008928790093932548 axis_error_deg 0.0010433820450508335
+MEAS extended TB 0 cross 0 headdeg 30 line_error_px 0.007573051978681633 axis_error_deg 0.0009345295615759142
+MEAS extended TB 0 cross 1 headdeg -30 line_error_px 0.0010259920038322434 axis_error_deg 0.00017560336907962437
+MEAS extended TB 0 cross 1 headdeg -20 line_error_px 0.0012509630829100615 axis_error_deg 0.00020735015066719598
+MEAS extended TB 0 cross 1 headdeg -10 line_error_px 0.004500249707106718 axis_error_deg 0.0006638323247578626
+MEAS extended TB 0 cross 1 headdeg -5 line_error_px 0.004163129721142411 axis_error_deg 0.0005587081918436709
+MEAS extended TB 0 cross 1 headdeg 0 line_error_px 1.2387853757900302e-05 axis_error_deg 1.469506725412786e-06
+MEAS extended TB 0 cross 1 headdeg 5 line_error_px 0.004135832561757979 axis_error_deg 0.0005550448211053549
+MEAS extended TB 0 cross 1 headdeg 10 line_error_px 0.004500311967333914 axis_error_deg 0.0006638413933419685
+MEAS extended TB 0 cross 1 headdeg 20 line_error_px 0.0012689874674975954 axis_error_deg 0.00021033773078826812
+MEAS extended TB 0 cross 1 headdeg 30 line_error_px 0.0009912809012178059 axis_error_deg 0.0001696624131781732
+MEAS extended TB 1 cross 0 headdeg -30 line_error_px 0.0024154292858895587 axis_error_deg 0.00029805763254842077
+MEAS extended TB 1 cross 0 headdeg -20 line_error_px 0.014672465377344679 axis_error_deg 0.0017145373890201654
+MEAS extended TB 1 cross 0 headdeg -10 line_error_px 0.0008139751892173308 axis_error_deg 9.149846782463555e-05
+MEAS extended TB 1 cross 0 headdeg -5 line_error_px 0.0008578855719605372 axis_error_deg 9.720490463482889e-05
+MEAS extended TB 1 cross 0 headdeg 0 line_error_px 4.654758225797195e-05 axis_error_deg 5.521698250407357e-06
+MEAS extended TB 1 cross 0 headdeg 5 line_error_px 0.0008123665693346993 axis_error_deg 9.204726315115153e-05
+MEAS extended TB 1 cross 0 headdeg 10 line_error_px 0.0008163464467543236 axis_error_deg 9.176502036645218e-05
+MEAS extended TB 1 cross 0 headdeg 20 line_error_px 0.014710025521907255 axis_error_deg 0.0017189265344406124
+MEAS extended TB 1 cross 0 headdeg 30 line_error_px 0.0024084125633407893 axis_error_deg 0.0002971917879968089
+MEAS extended TB 1 cross 1 headdeg -30 line_error_px 0.000376798205167006 axis_error_deg 6.44908551734602e-05
+MEAS extended TB 1 cross 1 headdeg -20 line_error_px 0.003178906144896132 axis_error_deg 0.0005269080514480606
+MEAS extended TB 1 cross 1 headdeg -10 line_error_px 0.01169036338583851 axis_error_deg 0.0017244054424558897
+MEAS extended TB 1 cross 1 headdeg -5 line_error_px 0.0035174345767643445 axis_error_deg 0.00047206058274440466
+MEAS extended TB 1 cross 1 headdeg 0 line_error_px 4.211613713778206e-06 axis_error_deg 4.99601857598414e-07
+MEAS extended TB 1 cross 1 headdeg 5 line_error_px 0.0035011026128231038 axis_error_deg 0.00046986874429322256
+MEAS extended TB 1 cross 1 headdeg 10 line_error_px 0.01170929433662593 axis_error_deg 0.0017271977871189392
+MEAS extended TB 1 cross 1 headdeg 20 line_error_px 0.003156051596150178 axis_error_deg 0.0005231198478696797
+MEAS extended TB 1 cross 1 headdeg 30 line_error_px 0.0004179649629065807 axis_error_deg 7.153674560456125e-05
+FAILURES []
+PASS native spherical S1 held-centre matrix
+
+=== ipd_axis_gpu_test.py.final192d.log ===
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS layout 0 cross 0 deg -30 ipd -0.2 axis_change_px -58.83044513739661 vertical_px 9.841932475751491e-05
+MEAS layout 0 cross 0 deg -30 ipd 0.2 axis_change_px 58.83194499776871 vertical_px -0.020476689218071442
+MEAS layout 0 cross 0 deg 0 ipd -0.2 axis_change_px -53.3787423364177 vertical_px 2.758058292329224e-05
+MEAS layout 0 cross 0 deg 0 ipd 0.2 axis_change_px 53.37791860177799 vertical_px 9.715256396702898e-06
+MEAS layout 0 cross 0 deg 30 ipd -0.2 axis_change_px -58.83019317091813 vertical_px 0.00038308606733039596
+MEAS layout 0 cross 0 deg 30 ipd 0.2 axis_change_px 58.832016203233884 vertical_px 0.020505694268820207
+MEAS layout 0 cross 1 deg -30 ipd -0.2 axis_change_px -54.50879591007988 vertical_px 0.0035568202880256194
+MEAS layout 0 cross 1 deg -30 ipd 0.2 axis_change_px 54.50565359526589 vertical_px 0.0012335340239815196
+MEAS layout 0 cross 1 deg 0 ipd -0.2 axis_change_px -53.3787423364177 vertical_px 2.758058292329224e-05
+MEAS layout 0 cross 1 deg 0 ipd 0.2 axis_change_px 53.37791860177799 vertical_px 9.715256396702898e-06
+MEAS layout 0 cross 1 deg 30 ipd -0.2 axis_change_px -54.508883741908534 vertical_px -0.0035418284557522384
+MEAS layout 0 cross 1 deg 30 ipd 0.2 axis_change_px 54.50577589115553 vertical_px -0.0012340770719276861
+MEAS layout 1 cross 0 deg -30 ipd -0.2 axis_change_px -47.987954459556306 vertical_px -0.042261740303956685
+MEAS layout 1 cross 0 deg -30 ipd 0.2 axis_change_px 47.97747718783228 vertical_px -0.03523248984944871
+MEAS layout 1 cross 0 deg 0 ipd -0.2 axis_change_px -48.00026885104728 vertical_px -2.2212429541923484e-05
+MEAS layout 1 cross 0 deg 0 ipd 0.2 axis_change_px 47.99955833922991 vertical_px 1.708797697119735e-06
+MEAS layout 1 cross 0 deg 30 ipd -0.2 axis_change_px -47.98759962253218 vertical_px 0.04225751626438523
+MEAS layout 1 cross 0 deg 30 ipd 0.2 axis_change_px 47.9775118509476 vertical_px 0.03536863059622419
+MEAS layout 1 cross 1 deg -30 ipd -0.2 axis_change_px -48.072417257232736 vertical_px 0.002248580077406359
+MEAS layout 1 cross 1 deg -30 ipd 0.2 axis_change_px 47.994531932826675 vertical_px 0.040196284502428625
+MEAS layout 1 cross 1 deg 0 ipd -0.2 axis_change_px -48.00028162272827 vertical_px -1.8791800812323345e-05
+MEAS layout 1 cross 1 deg 0 ipd 0.2 axis_change_px 47.99954322932933 vertical_px 8.5421389712792e-06
+MEAS layout 1 cross 1 deg 30 ipd -0.2 axis_change_px -48.07226394745427 vertical_px -0.0021895876668622805
+MEAS layout 1 cross 1 deg 30 ipd 0.2 axis_change_px 47.99460242341065 vertical_px -0.04015314618951038
+MEAS layout 2 cross 0 deg -30 ipd -0.2 axis_change_px -48.01468653518559 vertical_px -0.037465933825217235
+MEAS layout 2 cross 0 deg -30 ipd 0.2 axis_change_px 47.97010940523336 vertical_px -0.04993368738357162
+MEAS layout 2 cross 0 deg 0 ipd -0.2 axis_change_px -48.00023747971767 vertical_px -1.8920442755643307e-05
+MEAS layout 2 cross 0 deg 0 ipd 0.2 axis_change_px 47.99954716448519 vertical_px -2.575251681946611e-05
+MEAS layout 2 cross 0 deg 30 ipd -0.2 axis_change_px -48.014263656449366 vertical_px 0.03741965337931674
+MEAS layout 2 cross 0 deg 30 ipd 0.2 axis_change_px 47.970185925902314 vertical_px 0.05001495612469853
+MEAS layout 2 cross 1 deg -30 ipd -0.2 axis_change_px -48.091615234486795 vertical_px -0.0026021300376442014
+MEAS layout 2 cross 1 deg -30 ipd 0.2 axis_change_px 47.94976492953301 vertical_px 0.030102070834999495
+MEAS layout 2 cross 1 deg 0 ipd -0.2 axis_change_px -48.00022591269885 vertical_px -1.2493242820710293e-05
+MEAS layout 2 cross 1 deg 0 ipd 0.2 axis_change_px 47.999557184339096 vertical_px -2.5763128689959558e-05
+MEAS layout 2 cross 1 deg 30 ipd -0.2 axis_change_px -48.09146893358553 vertical_px 0.002646446115107892
+MEAS layout 2 cross 1 deg 30 ipd 0.2 axis_change_px 47.94990207252312 vertical_px -0.03009222299417047
+FAILURES []
+PASS36 nonzero-IPD optical cases
+
+=== depth_integrity_gpu_test.py.final192d.log ===
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS live flat-texture false relief binocular_px 0.0
+MEAS live flat-texture false relief binocular_px 0.0
+MEAS contrast inversion disparity_delta_px 0.0
+MEAS known geometric near/far disparities_px ['10', '2']
+MEAS known geometric near/far disparities_px ['10', '2']
+MEAS recorded VDA fixture production mapper p5p95 disparity_px baseline/candidate/ratio 8.0 8.0 1.0
+PASS both software gates: false texture relief zero; actual prepared mapping retains nonzero recorded learned-depth structure. Mac registration/inference/playback NOT_RUN
+
+=== common_window_gpu_test.py.final192d.log ===
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+PASS old actual shader rejected: ('extra seam band', 16)
+PASS known-source gain 0 ipd -0.2 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0 ipd 0 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0 ipd 0.2 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.04 ipd -0.2 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.04 ipd 0 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.04 ipd 0.2 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.08 ipd -0.2 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.08 ipd 0 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.08 ipd 0.2 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.2 ipd -0.2 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.2 ipd 0 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.2 ipd 0.2 seam_px 6 no repeated/stretched rows/columns
+PASS actual generated GLSL common-window gate. Original frame not verified; owner playback decides.
+
+=== zoom_content_gpu_test.py.final192d.log ===
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS approach/retreat headdeg 0 z 0.2 fov 110 scale_ratio 2.112912211458687 expected 2.113063169027198 S1_error_px 2.209486456195009e-05
+MEAS approach/retreat headdeg 0 z -0.2 fov 150 scale_ratio 0.5389718855364795 expected 0.5390721453284455 S1_error_px 3.977557952339339e-05
+MEAS approach/retreat headdeg 20 z 0.2 fov 110 scale_ratio 2.1130703110837525 expected 2.113063169027198 S1_error_px 0.00016003374656747837
+MEAS approach/retreat headdeg 20 z -0.2 fov 150 scale_ratio 0.5390576181123077 expected 0.5390721453284455 S1_error_px 0.007813315595797121
+MEAS approach/retreat headdeg -20 z 0.2 fov 110 scale_ratio 2.1130702131371057 expected 2.113063169027198 S1_error_px 0.00016674142773354106
+MEAS approach/retreat headdeg -20 z -0.2 fov 150 scale_ratio 0.5390577583883025 expected 0.5390721453284455 S1_error_px 0.007817252303198075
+MEAS shortcut equals manual_view -6.0 pixel_scale_ratio 1.2341105822613812
+MEAS shortcut minus manual_view 6.0 pixel_scale_ratio 0.79764027430167
+MEAS shortcut held-in manual_view -26.0 pixel_scale_ratio 2.3252996900692744
+MEAS shortcut held-out manual_view 22.5 pixel_scale_ratio 0.3703993893865919
+PASS distance content zoom and actual Lua shortcut bridge, S1 centres retained. Physical Mac keyboard delivery NOT_RUN
+
+=== test_periodic.py.final192d.log ===
+PASS real periodic collector covers WT/mpv/photon/gor/stack/captureidentity, numeric+symbol redaction,120s owned-child gating, approvedremote, queue ACK unlink; native background upload NOT_RUN
+PASS real collect retains startup registration outside262KB tail, exact prefix failure plus numeric fail counts; private path/error/token mutants suppressed; missing evidence NOT_RUN not registered=0
+PASS new cuts handoff and thermal stages survive typed collector without private suffix
+PASS192d numeric pose/pupil trace allowlist, malformed arrays/private suffix rejected
+
+=== 192d-c1-last.log ===
+PASS C1 view member names: 53 view types, production rename mutant + duplicate override + extension collision rejected by Swift
+PASS C1 extracted CoreText ink API: production compiles; real CF-cast and attributes-key mutants rejected; Linux CF/Foundation signature probe, NOT full macOS compile
+typecheck: 76 files, 0 error(s) (stub-checked, see docstring)
+adsite (own invocation): 0 error(s)
+MSL syntax ok against the metal_stdlib shim (lax: real MSL is stricter on implicit conversions)
+S3DParams layout ok: 10 x 4 bytes
+PASS
+
+===192d follow-up subtitle tilt and distance separation,2026-11-10 17:34===
+
+distance-orientation.log
+MEAS signed roll/pitch/yaw +/-10/20/30 with pupil/eye/missing switching: corrected max_relative_zoom=7.771561172376096e-16, previous_source_mutant=0.0666666666666671
+MEAS missing-landmark signed tilt-30.0: corrected_zoom=0.0, previous_box_zoom=0.5445968323558672
+MEAS missing-landmark signed tilt-20.0: corrected_zoom=0.0, previous_box_zoom=0.403862815299316
+MEAS missing-landmark signed tilt-10.0: corrected_zoom=0.0, previous_box_zoom=0.22047313698875648
+MEAS missing-landmark signed tilt0.0: corrected_zoom=0.0, previous_box_zoom=0.0
+MEAS missing-landmark signed tilt10.0: corrected_zoom=0.0, previous_box_zoom=0.22047313698875648
+MEAS missing-landmark signed tilt20.0: corrected_zoom=0.0, previous_box_zoom=0.403862815299316
+MEAS missing-landmark signed tilt30.0: corrected_zoom=0.0, previous_box_zoom=0.5445968323558672
+PASS simultaneous real20percent approach and signed tilt-30.0 preserves relative zoom0.19999999999999996
+PASS simultaneous real20percent approach and signed tilt30.0 preserves relative zoom0.19999999999999996
+PASS recenter zero, missing landmarks hold last distance instead of box-driven false zoom; owner trace NOT_MEASURED
+PASS production chooses paired same-kind landmarks, never independently mixed eye/pupil sensors
+
+subtitle-tilt-final.log
+PASS42 compiled production placements: signed baselines0/+/-10/20/30deg, both-eye four-corner containment, unit ink scale, top/middle/bottom positions
+PASS actual compositor method: signed rotation matrix, tilt mask disabled, neutral/reset restores translation and clip
+PASS production pose-to-overlay wiring, native film-roll choice, tracking-stop reset and no fixed vertical mask during tilt. Actual Mac Core Animation NOT_RUN.
+
+sub-c1-last.log
+PASS C1 view member names: 53 view types, production rename mutant + duplicate override + extension collision rejected by Swift
+PASS C1 extracted CoreText ink API: production compiles; real CF-cast and attributes-key mutants rejected; Linux CF/Foundation signature probe, NOT full macOS compile
+typecheck: 76 files, 0 error(s) (stub-checked, see docstring)
+adsite (own invocation): 0 error(s)
+MSL syntax ok against the metal_stdlib shim (lax: real MSL is stricter on implicit conversions)
+S3DParams layout ok: 10 x 4 bytes
+PASS
+
+subpip.log
+PASS production policy + setter/font-write/fade methods:3005 pointer/scale cases; PiP height-based21.6pt-at270, constant independent of mouse/app activation; normal formula unchanged; paused entry immediate; outgoing ink unfrozen/reflowed; exit restores prior normal state
+PASS source mode routing: PiP enter/exit + controller replacement; no app-active, hover or control visibility dependency; window height drives PiP only in PiP typography policy
+Linux only: AppKit/CoreText painting and installed PiP window pixels unverified; boundary spies test production writes, not native rendering
+
+subreg.log
+PASS production renderer ownership: exact mpv empty-secondary/default-true regression, all visibility/selected-track combinations, string IDs, no/auto options
+PASS actual production compositor gate unhides subtitle layer for empty secondary track and retains hide for real native track
+PASS production integration: selected-track-qualified compositor gate; live captions request custom ownership; both live native keys subscribed; state capture wired
+Linux only; no native AppKit subtitle bitmap/render or real mpv run in this test
+
+sub-corners-last.log
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS crossed 0 headdeg 0 dividerdeg 5.3268354011536595e-14 maximal_scale 1 corner_area_retention [1.0, 1.0, 1.0, 1.0] limiting width
+MEAS crossed 0 headdeg 10 dividerdeg -10.024091577684453 maximal_scale 0.9107710551970255 corner_area_retention [1.0046165163050507, 1.006882568597468, 1.0053718670691898, 1.0046165163050507] limiting width
+MEAS crossed 0 headdeg 20 dividerdeg -19.993056437470656 maximal_scale 0.913352037092939 corner_area_retention [1.0042043926731579, 1.0034533048701115, 1.0034533048701115, 1.0042043926731579] limiting width
+MEAS crossed 0 headdeg 30 dividerdeg -29.952300223035937 maximal_scale 0.8422643285852598 corner_area_retention [1.0042243825337545, 1.0024579368300892, 1.0024579368300892, 1.0042243825337545] limiting height
+MEAS crossed 0 headdeg -10 dividerdeg 10.024091577684521 maximal_scale 0.9107710551970255 corner_area_retention [1.0053718670691898, 1.006127217833329, 1.0046165163050507, 1.0053718670691898] limiting width
+MEAS crossed 0 headdeg -20 dividerdeg 19.993056437470724 maximal_scale 0.913352037092939 corner_area_retention [1.0034533048701115, 1.0042043926731579, 1.0042043926731579, 1.0034533048701115] limiting width
+MEAS crossed 0 headdeg -30 dividerdeg 29.95230022303602 maximal_scale 0.8422643285852598 corner_area_retention [1.0024579368300892, 1.0042243825337545, 1.0042243825337545, 1.0024579368300892] limiting height
+MEAS crossed 1 headdeg 0 dividerdeg 5.3268354011536595e-14 maximal_scale 1 corner_area_retention [1.0, 1.0, 1.0, 1.0] limiting width
+MEAS crossed 1 headdeg 10 dividerdeg 10.024091577684521 maximal_scale 0.967734697411728 corner_area_retention [1.007579817206467, 1.0062417297998183, 1.0062417297998183, 1.007579817206467] limiting width
+MEAS crossed 1 headdeg 20 dividerdeg 19.993056437470724 maximal_scale 0.9659179905359777 corner_area_retention [1.0053294462498923, 1.00734413451893, 1.00734413451893, 1.0053294462498923] limiting width
+MEAS crossed 1 headdeg 30 dividerdeg 29.95230022303602 maximal_scale 0.8422643285852598 corner_area_retention [0.9980418225709258, 0.9989250454227584, 0.9989250454227584, 0.9980418225709258] limiting height
+MEAS crossed 1 headdeg -10 dividerdeg -10.024091577684453 maximal_scale 0.967734697411728 corner_area_retention [1.0062417297998183, 1.007579817206467, 1.007579817206467, 1.0062417297998183] limiting width
+MEAS crossed 1 headdeg -20 dividerdeg -19.993056437470656 maximal_scale 0.9659179905359777 corner_area_retention [1.00734413451893, 1.0053294462498923, 1.0053294462498923, 1.00734413451893] limiting width
+MEAS crossed 1 headdeg -30 dividerdeg -29.952300223035937 maximal_scale 0.8422643285852598 corner_area_retention [0.9989250454227584, 0.9980418225709258, 0.9980418225709258, 0.9989250454227584] limiting height
+PASS14 real pixel divider/corner gates, plus1% scale-up infeasibility. Software evidence, not Mac playback.
+
+sub-zoom-last.log
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS approach/retreat headdeg 0 z 0.2 fov 110 scale_ratio 2.112912211458687 expected 2.113063169027198 S1_error_px 2.209486456195009e-05
+MEAS approach/retreat headdeg 0 z -0.2 fov 150 scale_ratio 0.5389718855364795 expected 0.5390721453284455 S1_error_px 3.977557952339339e-05
+MEAS approach/retreat headdeg 20 z 0.2 fov 110 scale_ratio 2.1130703110837525 expected 2.113063169027198 S1_error_px 0.00016003374656747837
+MEAS approach/retreat headdeg 20 z -0.2 fov 150 scale_ratio 0.5390576181123077 expected 0.5390721453284455 S1_error_px 0.007813315595797121
+MEAS approach/retreat headdeg -20 z 0.2 fov 110 scale_ratio 2.1130702131371057 expected 2.113063169027198 S1_error_px 0.00016674142773354106
+MEAS approach/retreat headdeg -20 z -0.2 fov 150 scale_ratio 0.5390577583883025 expected 0.5390721453284455 S1_error_px 0.007817252303198075
+MEAS shortcut equals manual_view -6.0 pixel_scale_ratio 1.2341105822613812
+MEAS shortcut minus manual_view 6.0 pixel_scale_ratio 0.79764027430167
+MEAS shortcut held-in manual_view -26.0 pixel_scale_ratio 2.3252996900692744
+MEAS shortcut held-out manual_view 22.5 pixel_scale_ratio 0.3703993893865919
+PASS distance content zoom and actual Lua shortcut bridge, S1 centres retained. Physical Mac keyboard delivery NOT_RUN
+
+sub-collect.log
+PASS real periodic collector covers WT/mpv/photon/gor/stack/captureidentity, numeric+symbol redaction,120s owned-child gating, approvedremote, queue ACK unlink; native background upload NOT_RUN
+PASS real collect retains startup registration outside262KB tail, exact prefix failure plus numeric fail counts; private path/error/token mutants suppressed; missing evidence NOT_RUN not registered=0
+PASS new cuts handoff and thermal stages survive typed collector without private suffix
+PASS192d numeric pose/pupil trace allowlist, malformed arrays/private suffix rejected
+
+Existing SubtitlePositionPresets/run.py obsolete queryBatch source pin fails, unchanged PPControllerMenuQueries.swift. Not an all-tests-green claim. Mac rendering and owner motion trace NOT_MEASURED.
+
+=== Blink-safe final distance and compositor follow-up ===
+
+distance-blink-final.log
+MEAS signed roll/pitch/yaw +/-10/20/30 with pupil/eye/missing switching: corrected max_relative_zoom=3.3306690738754696e-16, previous_source_mutant=0.0666666666666671
+MEAS missing-landmark signed tilt-30.0: corrected_zoom=0.0, previous_box_zoom=0.5445968323558672
+MEAS missing-landmark signed tilt-20.0: corrected_zoom=0.0, previous_box_zoom=0.403862815299316
+MEAS missing-landmark signed tilt-10.0: corrected_zoom=0.0, previous_box_zoom=0.22047313698875648
+MEAS missing-landmark signed tilt0.0: corrected_zoom=0.0, previous_box_zoom=0.0
+MEAS missing-landmark signed tilt10.0: corrected_zoom=0.0, previous_box_zoom=0.22047313698875648
+MEAS missing-landmark signed tilt20.0: corrected_zoom=0.0, previous_box_zoom=0.403862815299316
+MEAS missing-landmark signed tilt30.0: corrected_zoom=0.0, previous_box_zoom=0.5445968323558672
+PASS simultaneous real20percent approach and signed tilt-30.0 preserves relative zoom0.19999999999999996
+PASS simultaneous real20percent approach and signed tilt30.0 preserves relative zoom0.19999999999999996
+PASS signed blink-30.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink-20.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink-10.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink0.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink10.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink20.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink30.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS recenter zero, missing landmarks hold last distance instead of box-driven false zoom; owner trace NOT_MEASURED
+PASS production chooses paired same-kind landmarks, never independently mixed eye/pupil sensors
+
+subtitle-tilt-final.log
+PASS42 compiled production placements: signed baselines0/+/-10/20/30deg, both-eye four-corner containment, unit ink scale, top/middle/bottom positions
+PASS actual compositor method: signed rotation matrix, tilt mask disabled, neutral/reset restores translation and clip
+PASS production pose-to-overlay wiring, native film-roll choice, tracking-stop reset and no fixed vertical mask during tilt. Actual Mac Core Animation NOT_RUN.
+
+sub-blink-c1final.log
+PASS C1 view member names: 53 view types, production rename mutant + duplicate override + extension collision rejected by Swift
+PASS C1 extracted CoreText ink API: production compiles; real CF-cast and attributes-key mutants rejected; Linux CF/Foundation signature probe, NOT full macOS compile
+typecheck: 76 files, 0 error(s) (stub-checked, see docstring)
+adsite (own invocation): 0 error(s)
+MSL syntax ok against the metal_stdlib shim (lax: real MSL is stricter on implicit conversions)
+S3DParams layout ok: 10 x 4 bytes
+PASS
+
+sub-blink-collect.log
+PASS real periodic collector covers WT/mpv/photon/gor/stack/captureidentity, numeric+symbol redaction,120s owned-child gating, approvedremote, queue ACK unlink; native background upload NOT_RUN
+PASS real collect retains startup registration outside262KB tail, exact prefix failure plus numeric fail counts; private path/error/token mutants suppressed; missing evidence NOT_RUN not registered=0
+PASS new cuts handoff and thermal stages survive typed collector without private suffix
+PASS192d numeric pose/pupil trace allowlist, malformed arrays/private suffix rejected
+PASS blink-hold/aperture and distance-source numeric capture, no private strings
+
+===192e subtitle sign correction,2026-11-10 17:45===
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS cross 0 headdeg -30.0 film_topdown_deg [29.997738478874865, 29.99773821908963] subtitle_topdown_deg 29.999999999999996 max_baseline_error_deg 0.00226178091036644 old_sign_error_deg 59.99773821908963
+MEAS cross 0 headdeg -20.0 film_topdown_deg [19.998526016772814, 19.998540577008907] subtitle_topdown_deg 20.0 max_baseline_error_deg 0.0014739832271857267 old_sign_error_deg 39.99854057700891
+MEAS cross 0 headdeg -10.0 film_topdown_deg [10.000998145207049, 10.001008635923075] subtitle_topdown_deg 10.0 max_baseline_error_deg 0.0010086359230747632 old_sign_error_deg 20.001008635923075
+MEAS cross 0 headdeg 10.0 film_topdown_deg [-10.001018051389329, -10.00101760699851] subtitle_topdown_deg -10.0 max_baseline_error_deg 0.0010180513893285337 old_sign_error_deg 20.00101760699851
+MEAS cross 0 headdeg 20.0 film_topdown_deg [-19.998509350435317, -19.99853407494917] subtitle_topdown_deg -20.0 max_baseline_error_deg 0.0014906495646833662 old_sign_error_deg 39.99853407494917
+MEAS cross 0 headdeg 30.0 film_topdown_deg [-29.99774755031872, -29.997740194694646] subtitle_topdown_deg -29.999999999999996 max_baseline_error_deg 0.002259805305349971 old_sign_error_deg 59.99774019469464
+MEAS cross 1 headdeg -30.0 film_topdown_deg [30.00074481848163, 30.00074089461348] subtitle_topdown_deg 29.999999999999996 max_baseline_error_deg 0.0007448184816318815 old_sign_error_deg 60.00074089461348
+MEAS cross 1 headdeg -20.0 film_topdown_deg [19.999874887044324, 19.999861014156746] subtitle_topdown_deg 20.0 max_baseline_error_deg 0.00013898584325389152 old_sign_error_deg 39.99986101415675
+MEAS cross 1 headdeg -10.0 film_topdown_deg [9.99988091912916, 9.999880574203296] subtitle_topdown_deg 10.0 max_baseline_error_deg 0.00011942579670431996 old_sign_error_deg 19.999880574203296
+MEAS cross 1 headdeg 10.0 film_topdown_deg [-9.999850473211364, -9.999854627562799] subtitle_topdown_deg -10.0 max_baseline_error_deg 0.00014952678863622282 old_sign_error_deg 19.9998546275628
+MEAS cross 1 headdeg 20.0 film_topdown_deg [-19.99988471253164, -19.999875253490654] subtitle_topdown_deg -20.0 max_baseline_error_deg 0.00012474650934635179 old_sign_error_deg 39.99987525349066
+MEAS cross 1 headdeg 30.0 film_topdown_deg [-30.000733522367813, -30.00075543094173] subtitle_topdown_deg -29.999999999999996 max_baseline_error_deg 0.0007554309417336924 old_sign_error_deg 60.00075543094173
+PASS24 same-screen signed film/subtitle baselines, SBS both eyes and parallel/cross; old wrong-sign mutant rejected. Native Mac screenshot still required.
+PASS42 compiled production placements: signed baselines0/+/-10/20/30deg, both-eye four-corner containment, unit ink scale, top/middle/bottom positions
+PASS actual compositor method: signed rotation matrix, tilt mask disabled, neutral/reset restores translation and clip
+PASS production pose-to-overlay wiring, native film-roll choice, tracking-stop reset and no fixed vertical mask during tilt. Actual Mac Core Animation NOT_RUN.
+
+===192e degraded-input structural audit,2026-11-10 17:51===
+
+degraded-final.log
+PASS structural degradation signed tests: missing/multiple face, absent fields/landmarks, nonfinite, hold-before-mutation; source continuity reacquire starts at held pose
+PASS production BGRA sampler: dark/mid/bright levels, constant-field contrast, eye-region clipped fraction; numeric diagnostics only
+PASS production guards absent pose instead of substituting0; no semantic low-light/glare threshold introduced
+OWNER owner-pose-172323-adc6cef7.jsonl rows 900 valid6 900 confidence_min_med_max 0.761308 0.813701 0.8580956 raw_z_range -0.272449 0.1619826 filtered_z_range -0.0208436 0.0933275 pupil_span_range 90.80799469424987 145.05355160798436 worst_z_confidence 0.784991
+OWNER worst_z sequence [(572876.224317, 0.7871651, [0.0481702], [0.0701861]), (572876.2354585, 0.784991, [-0.272449], [0.0701861]), (572876.2705637, 0.8094896, [0.1501498], [0.0701861])]
+OWNER lighting/exposure/eyeHold/source_kind labels present False False False
+OWNER owner-pose-172815-bc578d52.jsonl rows 900 valid6 900 confidence_min_med_max 0.7457562 0.8446176 0.881394 raw_z_range -0.2429456 0.0726391 filtered_z_range -0.0937122 0.0293371 pupil_span_range 100.10749833576931 141.73633463651575 worst_z_confidence 0.814001
+OWNER worst_z sequence [(573149.7054261, 0.8259109, [-0.1264616], [-0.0210001]), (573149.7765371, 0.814001, [-0.2429456], [-0.0251729]), (573149.811705, 0.8040425, [-0.0887186], [-0.0280862])]
+OWNER lighting/exposure/eyeHold/source_kind labels present False False False
+OWNER owner-pose-173021-1ef40be9.jsonl rows 900 valid6 900 confidence_min_med_max 0.7561596 0.8267973 0.876394 raw_z_range -0.8607536 0.0951151 filtered_z_range -0.6398465 0.0243407 pupil_span_range 18.244315710223557 144.46244577556828 worst_z_confidence 0.8058623
+OWNER worst_z sequence [(573271.7386618, 0.7781187, [-0.848607], [-0.5660254]), (573271.7738252, 0.8058623, [-0.8607536], [-0.5707277]), (573271.8633542, 0.7982525, [-0.7231419], [-0.5858665])]
+OWNER lighting/exposure/eyeHold/source_kind labels present False False False
+AUDIT low-light/backlight/glare/exposure-change: NOT_PROVEN in old pose-only traces; numeric image-quality capture added, no guessed classification
+AUDIT occlusion/hand/second-face: missing or ambiguous structure held; high-confidence semantically wrong single-face measurement NOT_PROVEN
+AUDIT fast-head/frame-stall/edge: no arbitrary speed/edge/age cutoff added; existing continuity/latest-only transport retained; native camera cases NOT_PROVEN
+
+degraded-c1.log
+PASS C1 view member names: 53 view types, production rename mutant + duplicate override + extension collision rejected by Swift
+PASS C1 extracted CoreText ink API: production compiles; real CF-cast and attributes-key mutants rejected; Linux CF/Foundation signature probe, NOT full macOS compile
+typecheck: 76 files, 0 error(s) (stub-checked, see docstring)
+adsite (own invocation): 0 error(s)
+MSL syntax ok against the metal_stdlib shim (lax: real MSL is stricter on implicit conversions)
+S3DParams layout ok: 10 x 4 bytes
+PASS
+
+degraded-collectfinal.log
+PASS real periodic collector covers WT/mpv/photon/gor/stack/captureidentity, numeric+symbol redaction,120s owned-child gating, approvedremote, queue ACK unlink; native background upload NOT_RUN
+PASS real collect retains startup registration outside262KB tail, exact prefix failure plus numeric fail counts; private path/error/token mutants suppressed; missing evidence NOT_RUN not registered=0
+PASS new cuts handoff and thermal stages survive typed collector without private suffix
+PASS192d numeric pose/pupil trace allowlist, malformed arrays/private suffix rejected
+PASS blink-hold/aperture and distance-source numeric capture, no private strings
+PASS structural hold and frame-quality allowlist, no image content or private strings
+
+base-FullscreenPiPTransitionTick.log
+/tmp/tmp10a3rg17/main.swift:348:31: warning: result of call to 'finishFullscreenGeometryTransition(frame:)' is unused
+346 |             controller?.synchronizeSubtitlePresentation(pictureInPicture:pictureInPictureActive)
+347 |             if pictureInPictureActive {restorePictureInPictureAfterFullscreen()}
+348 |             else {controller?.finishFullscreenGeometryTransition(frame: frame)}
+    |                               `- warning: result of call to 'finishFullscreenGeometryTransition(frame:)' is unused
+349 |             controller?.ipcCommand(#"{"command":["set_property","user-data/gor/window-transition",false]}"#)
+350 |             return
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(0,810 480x270)
+[window-sync] transition receipt exit: mpv=(0,810 480x270) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(1440,810 480x270)
+[window-sync] transition receipt exit: mpv=(1440,810 480x270) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(0,0 480x270)
+[window-sync] transition receipt exit: mpv=(0,0 480x270) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(1440,0 480x270)
+[window-sync] transition receipt exit: mpv=(1440,0 480x270) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(0,226 480x853)
+[window-sync] transition receipt exit: mpv=(0,226 480x853) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(1440,226 480x853)
+[window-sync] transition receipt exit: mpv=(1440,226 480x853) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(0,0 480x853)
+[window-sync] transition receipt exit: mpv=(0,0 480x853) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(1440,0 480x853)
+[window-sync] transition receipt exit: mpv=(1440,0 480x853) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(0,879 480x200)
+[window-sync] transition receipt exit: mpv=(0,879 480x200) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(1440,879 480x200)
+[window-sync] transition receipt exit: mpv=(1440,879 480x200) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(0,0 480x200)
+[window-sync] transition receipt exit: mpv=(0,0 480x200) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(1440,0 480x200)
+[window-sync] transition receipt exit: mpv=(1440,0 480x200) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-2560,1270 480x270)
+[window-sync] transition receipt exit: mpv=(-2560,1270 480x270) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-480,1270 480x270)
+[window-sync] transition receipt exit: mpv=(-480,1270 480x270) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-2560,100 480x270)
+[window-sync] transition receipt exit: mpv=(-2560,100 480x270) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-480,100 480x270)
+[window-sync] transition receipt exit: mpv=(-480,100 480x270) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-2560,686 480x853)
+[window-sync] transition receipt exit: mpv=(-2560,686 480x853) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-480,686 480x853)
+[window-sync] transition receipt exit: mpv=(-480,686 480x853) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-2560,100 480x853)
+[window-sync] transition receipt exit: mpv=(-2560,100 480x853) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-480,100 480x853)
+[window-sync] transition receipt exit: mpv=(-480,100 480x853) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-2560,1339 480x200)
+[window-sync] transition receipt exit: mpv=(-2560,1339 480x200) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-480,1339 480x200)
+[window-sync] transition receipt exit: mpv=(-480,1339 480x200) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-2560,100 480x200)
+[window-sync] transition receipt exit: mpv=(-2560,100 480x200) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-480,100 480x200)
+[window-sync] transition receipt exit: mpv=(-480,100 480x200) overlay=(-2560,100 2560x1440) pip=true
+PASS 24 fullscreen<->PiP transition-tick cases: geometry equality after the transition tick (entry and exit, HUD layout spy committed in the same atomic transaction), no fullscreen writes, at most one settled intent write, saved PiP target preserved
+PASS source invariants: transition commits precede the settle gate; overlay-vs-mpv frame diagnostics at entry, exit and settled restore
+Linux only: boundary spies, not native AppKit/AX windows; absolute native timing and pixels remain unverified
+
+base-AudioMenu.log
+PASS audio menu: boost cap/step/restore batches exact, 5 channel rows and 4 eq rows map 1:1,
+  dynamics are labeled af toggles, eq replace-never-stack enforced, device list re-read from mpv
+  every open with checkmarks from mpv state and JSON-safe selection
+
+base-SubtitleSamplePaused.log
+PASS governor: playing always samples
+PASS governor: paused wakes on signature change or interval
+PASS governor: pause/resume edge resets
+PASS engine: only the subtitle tick is gated, panel sampling untouched
+PASS engine: timer cadence unchanged (0.1 s)
+PASS engine: signature is the registered subtitle frames
+PASS pause edge feeds governor from the single mpv pause observation
+PASS model: playing still samples every tick (100/10 s)
+PASS model: paused static subtitle <= 10 captures/10 s (was 100)
+PASS model: subtitle appear/change/hide while paused samples within one tick
+PASS model: paused with moving subtitle samples every tick (no staleness)
+PASS model: seek/frame-step with static subtitle sampled within 1 s
+PASS model: resume then re-pause samples first tick
+PASS model: ungated mutant is caught
+subtitle sample paused: 0 failure(s)
+
+base-SubtitleRegression.log
+PASS production renderer ownership: exact mpv empty-secondary/default-true regression, all visibility/selected-track combinations, string IDs, no/auto options
+PASS actual production compositor gate unhides subtitle layer for empty secondary track and retains hide for real native track
+PASS production integration: selected-track-qualified compositor gate; live captions request custom ownership; both live native keys subscribed; state capture wired
+Linux only; no native AppKit subtitle bitmap/render or real mpv run in this test
+
+base-HeadPose.log
+MEAS sendOnly=false elapsed_s=1.0040342659995076
+MEAS sendOnly=true elapsed_s=7.268199988175184e-05
+
+PASS actual production transport:8 whole JSON lines, delayed-EOF baseline red, pose send-only no reply wait; coalescing unchanged
+PASS structural degradation signed tests: missing/multiple face, absent fields/landmarks, nonfinite, hold-before-mutation; source continuity reacquire starts at held pose
+PASS production BGRA sampler: dark/mid/bright levels, constant-field contrast, eye-region clipped fraction; numeric diagnostics only
+PASS production guards absent pose instead of substituting0; no semantic low-light/glare threshold introduced
+AUDIT low-light/backlight/glare/exposure-change: NOT_PROVEN in old pose-only traces; numeric image-quality capture added, no guessed classification
+AUDIT occlusion/hand/second-face: missing or ambiguous structure held; high-confidence semantically wrong single-face measurement NOT_PROVEN
+AUDIT fast-head/frame-stall/edge: no arbitrary speed/edge/age cutoff added; existing continuity/latest-only transport retained; native camera cases NOT_PROVEN
+PASS compiled production ring: synchronized geometry/source time, process session/build, baseline/recenter/stop sequence; no pose mutation
+PASS distance estimator, eye gate, follow/noise parameters byte-identical to3083622; no inferred plausibility threshold
+PASS compiled production eye-outline diameter: pixel-aspect/roll correctness and actual0.8/1.0/1.2 scale retained; not a plausibility classifier
+MEAS signed roll/pitch/yaw +/-10/20/30 with pupil/eye/missing switching: corrected max_relative_zoom=3.3306690738754696e-16, previous_source_mutant=0.0666666666666671
+MEAS missing-landmark signed tilt-30.0: corrected_zoom=0.0, previous_box_zoom=0.5445968323558672
+MEAS missing-landmark signed tilt-20.0: corrected_zoom=0.0, previous_box_zoom=0.403862815299316
+MEAS missing-landmark signed tilt-10.0: corrected_zoom=0.0, previous_box_zoom=0.22047313698875648
+MEAS missing-landmark signed tilt0.0: corrected_zoom=0.0, previous_box_zoom=0.0
+MEAS missing-landmark signed tilt10.0: corrected_zoom=0.0, previous_box_zoom=0.22047313698875648
+MEAS missing-landmark signed tilt20.0: corrected_zoom=0.0, previous_box_zoom=0.403862815299316
+MEAS missing-landmark signed tilt30.0: corrected_zoom=0.0, previous_box_zoom=0.5445968323558672
+PASS simultaneous real20percent approach and signed tilt-30.0 preserves relative zoom0.19999999999999996
+PASS simultaneous real20percent approach and signed tilt30.0 preserves relative zoom0.19999999999999996
+PASS signed blink-30.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink-20.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink-10.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink0.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink10.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink20.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink30.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS recenter zero, missing landmarks hold last distance instead of box-driven false zoom; owner trace NOT_MEASURED
+PASS production chooses paired same-kind landmarks, never independently mixed eye/pupil sensors
+PASS C1 view member names: 53 view types, production rename mutant + duplicate override + extension collision rejected by Swift
+PASS C1 extracted CoreText ink API: production compiles; real CF-cast and attributes-key mutants rejected; Linux CF/Foundation signature probe, NOT full macOS compile
+typecheck: 76 files, 0 error(s) (stub-checked, see docstring)
+adsite (own invocation): 0 error(s)
+MSL syntax ok against the metal_stdlib shim (lax: real MSL is stricter on implicit conversions)
+S3DParams layout ok: 10 x 4 bytes
+PASS
+PASS real periodic collector covers WT/mpv/photon/gor/stack/captureidentity, numeric+symbol redaction,120s owned-child gating, approvedremote, queue ACK unlink; native background upload NOT_RUN
+PASS real collect retains startup registration outside262KB tail, exact prefix failure plus numeric fail counts; private path/error/token mutants suppressed; missing evidence NOT_RUN not registered=0
+PASS new cuts handoff and thermal stages survive typed collector without private suffix
+PASS192d numeric pose/pupil trace allowlist, malformed arrays/private suffix rejected
+PASS blink-hold/aperture and distance-source numeric capture, no private strings
+PASS structural hold and frame-quality allowlist, no image content or private strings
+PASS synchronized geometry/build/session/reset allowlist; malformed identifiers, partial geometry and arbitrary strings rejected
+RUN Tests/FullscreenPiPTransitionTick/run.py
+/tmp/tmpod1k0sil/main.swift:348:31: warning: result of call to 'finishFullscreenGeometryTransition(frame:)' is unused
+346 |             controller?.synchronizeSubtitlePresentation(pictureInPicture:pictureInPictureActive)
+347 |             if pictureInPictureActive {restorePictureInPictureAfterFullscreen()}
+348 |             else {controller?.finishFullscreenGeometryTransition(frame: frame)}
+    |                               `- warning: result of call to 'finishFullscreenGeometryTransition(frame:)' is unused
+349 |             controller?.ipcCommand(#"{"command":["set_property","user-data/gor/window-transition",false]}"#)
+350 |             return
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(0,810 480x270)
+[window-sync] transition receipt exit: mpv=(0,810 480x270) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(1440,810 480x270)
+[window-sync] transition receipt exit: mpv=(1440,810 480x270) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(0,0 480x270)
+[window-sync] transition receipt exit: mpv=(0,0 480x270) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(1440,0 480x270)
+[window-sync] transition receipt exit: mpv=(1440,0 480x270) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(0,226 480x853)
+[window-sync] transition receipt exit: mpv=(0,226 480x853) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(1440,226 480x853)
+[window-sync] transition receipt exit: mpv=(1440,226 480x853) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(0,0 480x853)
+[window-sync] transition receipt exit: mpv=(0,0 480x853) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(1440,0 480x853)
+[window-sync] transition receipt exit: mpv=(1440,0 480x853) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(0,879 480x200)
+[window-sync] transition receipt exit: mpv=(0,879 480x200) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(1440,879 480x200)
+[window-sync] transition receipt exit: mpv=(1440,879 480x200) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(0,0 480x200)
+[window-sync] transition receipt exit: mpv=(0,0 480x200) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(0,0 1920x1080) overlay=(1440,0 480x200)
+[window-sync] transition receipt exit: mpv=(1440,0 480x200) overlay=(0,0 1920x1080) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-2560,1270 480x270)
+[window-sync] transition receipt exit: mpv=(-2560,1270 480x270) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-480,1270 480x270)
+[window-sync] transition receipt exit: mpv=(-480,1270 480x270) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-2560,100 480x270)
+[window-sync] transition receipt exit: mpv=(-2560,100 480x270) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-480,100 480x270)
+[window-sync] transition receipt exit: mpv=(-480,100 480x270) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-2560,686 480x853)
+[window-sync] transition receipt exit: mpv=(-2560,686 480x853) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-480,686 480x853)
+[window-sync] transition receipt exit: mpv=(-480,686 480x853) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-2560,100 480x853)
+[window-sync] transition receipt exit: mpv=(-2560,100 480x853) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-480,100 480x853)
+[window-sync] transition receipt exit: mpv=(-480,100 480x853) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-2560,1339 480x200)
+[window-sync] transition receipt exit: mpv=(-2560,1339 480x200) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-480,1339 480x200)
+[window-sync] transition receipt exit: mpv=(-480,1339 480x200) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-2560,100 480x200)
+[window-sync] transition receipt exit: mpv=(-2560,100 480x200) overlay=(-2560,100 2560x1440) pip=true
+[window-sync] transition receipt entry: mpv=(-2560,100 2560x1440) overlay=(-480,100 480x200)
+[window-sync] transition receipt exit: mpv=(-480,100 480x200) overlay=(-2560,100 2560x1440) pip=true
+PASS 24 fullscreen<->PiP transition-tick cases: geometry equality after the transition tick (entry and exit, HUD layout spy committed in the same atomic transaction), no fullscreen writes, at most one settled intent write, saved PiP target preserved
+PASS source invariants: transition commits precede the settle gate; overlay-vs-mpv frame diagnostics at entry, exit and settled restore
+Linux only: boundary spies, not native AppKit/AX windows; absolute native timing and pixels remain unverified
+RUN Tests/AudioMenu/run.py
+PASS audio menu: boost cap/step/restore batches exact, 5 channel rows and 4 eq rows map 1:1,
+  dynamics are labeled af toggles, eq replace-never-stack enforced, device list re-read from mpv
+  every open with checkmarks from mpv state and JSON-safe selection
+RUN Tests/SubtitleSamplePaused/subtitle_sample_paused_test.py
+PASS governor: playing always samples
+PASS governor: paused wakes on signature change or interval
+PASS governor: pause/resume edge resets
+PASS engine: only the subtitle tick is gated, panel sampling untouched
+PASS engine: timer cadence unchanged (0.1 s)
+PASS engine: signature is the registered subtitle frames
+PASS pause edge feeds governor from the single mpv pause observation
+PASS model: playing still samples every tick (100/10 s)
+PASS model: paused static subtitle <= 10 captures/10 s (was 100)
+PASS model: subtitle appear/change/hide while paused samples within one tick
+PASS model: paused with moving subtitle samples every tick (no staleness)
+PASS model: seek/frame-step with static subtitle sampled within 1 s
+PASS model: resume then re-pause samples first tick
+PASS model: ungated mutant is caught
+subtitle sample paused: 0 failure(s)
+RUN Tests/SubtitleRegression/run.py
+PASS production renderer ownership: exact mpv empty-secondary/default-true regression, all visibility/selected-track combinations, string IDs, no/auto options
+PASS actual production compositor gate unhides subtitle layer for empty secondary track and retains hide for real native track
+PASS production integration: selected-track-qualified compositor gate; live captions request custom ownership; both live native keys subscribed; state capture wired
+Linux only; no native AppKit subtitle bitmap/render or real mpv run in this test
+RUN Tests/PlaybackCost/test.py
+PASS production child-tree CPU parser: includes nested children; excludes unrelated processes/arguments
+PASS numeric-only capped extractor (24 records, 128 KiB/source read)
+RUN Tests/HeadPose/pose_transport_test.py
+MEAS sendOnly=false elapsed_s=1.0030586350003432
+MEAS sendOnly=true elapsed_s=6.505800047307275e-05
+
+PASS actual production transport:8 whole JSON lines, delayed-EOF baseline red, pose send-only no reply wait; coalescing unchanged
+RUN Tests/HeadPose/pipeline192d_test.py
+PASS D2 actual Swift nod/yaw/roll pupil invariance, distance approach and matched fallback
+PASS initial missing-distance hold to first pupil acquisition keeps zoom continuous
+MEAS synthetic startup online band=0.0020204378225925847, fixed critical tau_s=0.1; owner noise envelope NOT_MEASURED
+MEAS synthetic still output_rms2=1.1260612846471588e-05 filtered_noise_floor_rms2=0.0006917137324903703 maxStep=0.0003958856128368788 band=0.0020204378225925847
+MEAS channel0 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS channel1 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS channel2 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS channel3 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS channel4 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS channel5 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS held20deg settled_deg=19.884237439996838 band_deg=0.11576256000315688, stable range=0.0
+MEAS full_pipeline synthetic channel0 step_t90_s=0.5666666666666669, includes continuity and existing one-euro; NOT camera latency
+MEAS full_pipeline synthetic channel1 step_t90_s=0.5666666666666669, includes continuity and existing one-euro; NOT camera latency
+MEAS full_pipeline synthetic channel2 step_t90_s=0.5666666666666669, includes continuity and existing one-euro; NOT camera latency
+MEAS full_pipeline synthetic channel3 step_t90_s=0.4333333333333331, includes continuity and existing one-euro; NOT camera latency
+MEAS full_pipeline synthetic channel4 step_t90_s=0.4333333333333331, includes continuity and existing one-euro; NOT camera latency
+MEAS full_pipeline synthetic channel5 step_t90_s=2.1333333333333337, includes continuity and existing one-euro; NOT camera latency
+PASS synthetic G1-G4 primitives. Owner G1/G2/G5 NOT_MEASURED no_owner_trace
+PASS production wiring: one zoom carrier, no Lua cinema/fast mode, no StationaryScaleHold
+PASS structural degradation signed tests: missing/multiple face, absent fields/landmarks, nonfinite, hold-before-mutation; source continuity reacquire starts at held pose
+PASS production BGRA sampler: dark/mid/bright levels, constant-field contrast, eye-region clipped fraction; numeric diagnostics only
+PASS production guards absent pose instead of substituting0; no semantic low-light/glare threshold introduced
+AUDIT low-light/backlight/glare/exposure-change: NOT_PROVEN in old pose-only traces; numeric image-quality capture added, no guessed classification
+AUDIT occlusion/hand/second-face: missing or ambiguous structure held; high-confidence semantically wrong single-face measurement NOT_PROVEN
+AUDIT fast-head/frame-stall/edge: no arbitrary speed/edge/age cutoff added; existing continuity/latest-only transport retained; native camera cases NOT_PROVEN
+PASS compiled production ring: synchronized geometry/source time, process session/build, baseline/recenter/stop sequence; no pose mutation
+PASS distance estimator, eye gate, follow/noise parameters byte-identical to3083622; no inferred plausibility threshold
+PASS compiled production eye-outline diameter: pixel-aspect/roll correctness and actual0.8/1.0/1.2 scale retained; not a plausibility classifier
+PASS Mac typecheck-complexity source guard:8explicitDouble components, typed eyes/angles/pupils/counts; native SDK build NOT_RUN
+PASS Mac callback-complexity guard: all coordinate arrays, angles, confidence and timestamp typed before submit; no inline conversion/compactMap/ternary
+PASS C1 view member names: 53 view types, production rename mutant + duplicate override + extension collision rejected by Swift
+PASS C1 extracted CoreText ink API: production compiles; real CF-cast and attributes-key mutants rejected; Linux CF/Foundation signature probe, NOT full macOS compile
+typecheck: 76 files, 0 error(s) (stub-checked, see docstring)
+adsite (own invocation): 0 error(s)
+MSL syntax ok against the metal_stdlib shim (lax: real MSL is stricter on implicit conversions)
+S3DParams layout ok: 10 x 4 bytes
+PASS
+MEAS signed roll/pitch/yaw +/-10/20/30 with pupil/eye/missing switching: corrected max_relative_zoom=3.3306690738754696e-16, previous_source_mutant=0.0666666666666671
+MEAS missing-landmark signed tilt-30.0: corrected_zoom=0.0, previous_box_zoom=0.5445968323558672
+MEAS missing-landmark signed tilt-20.0: corrected_zoom=0.0, previous_box_zoom=0.403862815299316
+MEAS missing-landmark signed tilt-10.0: corrected_zoom=0.0, previous_box_zoom=0.22047313698875648
+MEAS missing-landmark signed tilt0.0: corrected_zoom=0.0, previous_box_zoom=0.0
+MEAS missing-landmark signed tilt10.0: corrected_zoom=0.0, previous_box_zoom=0.22047313698875648
+MEAS missing-landmark signed tilt20.0: corrected_zoom=0.0, previous_box_zoom=0.403862815299316
+MEAS missing-landmark signed tilt30.0: corrected_zoom=0.0, previous_box_zoom=0.5445968323558672
+PASS simultaneous real20percent approach and signed tilt-30.0 preserves relative zoom0.19999999999999996
+PASS simultaneous real20percent approach and signed tilt30.0 preserves relative zoom0.19999999999999996
+PASS signed blink-30.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink-20.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink-10.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink0.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink10.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink20.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink30.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS recenter zero, missing landmarks hold last distance instead of box-driven false zoom; owner trace NOT_MEASURED
+PASS production chooses paired same-kind landmarks, never independently mixed eye/pupil sensors
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS plain -30 mean_error 0.003334049 wrong_pixels 7982 N 465976
+MEAS plain -20 mean_error 0.0031840887 wrong_pixels 8046 N 491878
+MEAS plain -10 mean_error 0.0031094379 wrong_pixels 8414 N 527148
+MEAS plain 0 mean_error 0.0035145148 wrong_pixels 10560 N 576000
+MEAS plain 10 mean_error 0.0031094456 wrong_pixels 8414 N 527148
+MEAS plain 20 mean_error 0.0031841113 wrong_pixels 8046 N 491878
+MEAS plain 30 mean_error 0.0033340906 wrong_pixels 7983 N 465976
+MEAS SBS -30 mean_error 0.0035341491 wrong_pixels 3267 N 179936
+MEAS SBS -20 mean_error 0.0035308958 wrong_pixels 4301 N 237046
+MEAS SBS -10 mean_error 0.0035291377 wrong_pixels 4318 N 238118
+MEAS SBS 0 mean_error 0.003520297 wrong_pixels 4770 N 255672
+MEAS SBS 10 mean_error 0.0035291372 wrong_pixels 4319 N 238118
+MEAS SBS 20 mean_error 0.0035308963 wrong_pixels 4301 N 237046
+MEAS SBS 30 mean_error 0.0035341484 wrong_pixels 3267 N 179936
+MEAS TB -30 mean_error 0.0034485636 wrong_pixels 4598 N 259524
+MEAS TB -20 mean_error 0.0032638826 wrong_pixels 4648 N 276740
+MEAS TB -10 mean_error 0.0031235781 wrong_pixels 4744 N 296128
+MEAS TB 0 mean_error 0.0035124512 wrong_pixels 5320 N 319200
+MEAS TB 10 mean_error 0.0031235954 wrong_pixels 4744 N 296128
+MEAS TB 20 mean_error 0.0032639226 wrong_pixels 4648 N 276740
+MEAS TB 30 mean_error 0.0034486246 wrong_pixels 4598 N 259524
+MEAS anaglyph -30 mean_error 0.0033452853 wrong_pixels 7495 N 436120
+MEAS anaglyph -20 mean_error 0.0032300777 wrong_pixels 7663 N 461696
+MEAS anaglyph -10 mean_error 0.003298406 wrong_pixels 8378 N 494042
+MEAS anaglyph 0 mean_error 0.003513755 wrong_pixels 8640 N 518400
+MEAS anaglyph 10 mean_error 0.0032984065 wrong_pixels 8378 N 494042
+MEAS anaglyph 20 mean_error 0.003230093 wrong_pixels 7663 N 461696
+MEAS anaglyph 30 mean_error 0.0033453198 wrong_pixels 7495 N 436120
+MEAS VRpreview -30 mean_error 0.0034890282 wrong_pixels 1012 N 57732
+MEAS VRpreview -20 mean_error 0.003490641 wrong_pixels 1028 N 57428
+MEAS VRpreview -10 mean_error 0.0034892103 wrong_pixels 1026 N 57318
+MEAS VRpreview 0 mean_error 0.003497346 wrong_pixels 972 N 57040
+MEAS VRpreview 10 mean_error 0.0034892098 wrong_pixels 1026 N 57318
+MEAS VRpreview 20 mean_error 0.0034906433 wrong_pixels 1028 N 57428
+MEAS VRpreview 30 mean_error 0.0034890359 wrong_pixels 1012 N 57732
+PASS previous-published-source mutant rejected and open pixels identical plain
+PASS previous-published-source mutant rejected and open pixels identical SBS
+PASS previous-published-source mutant rejected and open pixels identical TB
+PASS previous-published-source mutant rejected and open pixels identical anaglyph
+PASS previous-published-source mutant rejected and open pixels identical VRpreview
+PASS35 signed film-local blink masks match actual source Y; old published shader fails; open output pixel-identical. Native Mac playback NOT_RUN.
+RUN Tests/ThreeDAutoRoute/pipeline192d_gpu_test.py
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+PASS actual Lua native False FOV/translation published exactly; film/fusion roll channels distinct, native raw compatibility
+PASS actual Lua native True FOV/translation published exactly; film/fusion roll channels distinct, native raw compatibility
+PASS pitchSign=-1 at ScreenCaptureEngine rawPitch: final_pitch -0.1 feature_y_GL 316.57949178217075 positive look samples higher source latitude; world-fixed content shifts opposite camera
+PASS pitchSign=-1 at ScreenCaptureEngine rawPitch: final_pitch 0.1 feature_y_GL 282.42049952434 positive look samples higher source latitude; world-fixed content shifts opposite camera
+MEAS held_tilt_deg 0 scale_vs_level 1.0 filtered_roll_noise_scale_range 1.8369476233459636e-06 S1 residual_px 2.6298436864635732e-05
+MEAS held_tilt_deg 20 scale_vs_level 0.965891169899211 filtered_roll_noise_scale_range 7.466310814885357e-05 S1 residual_px 0.003928583540357522
+MEAS held_tilt_deg 30 scale_vs_level 0.842219745819103 filtered_roll_noise_scale_range 0.0001506768153267668 S1 residual_px 0.0005118161701886947
+PASS synthetic D3/D4/D5 shader tests. G1/G2/G5 owner traces NOT_MEASURED. Owner ruling keeps every corner; minimized geometric fit measured separately in divider_corners_gpu_test.
+RUN Tests/ThreeDAutoRoute/divider_corners_gpu_test.py
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS crossed 0 headdeg 0 dividerdeg 5.3268354011536595e-14 maximal_scale 1 corner_area_retention [1.0, 1.0, 1.0, 1.0] limiting width
+MEAS crossed 0 headdeg 10 dividerdeg -10.024091577684453 maximal_scale 0.9107710551970255 corner_area_retention [1.0046165163050507, 1.006882568597468, 1.0053718670691898, 1.0046165163050507] limiting width
+MEAS crossed 0 headdeg 20 dividerdeg -19.993056437470656 maximal_scale 0.913352037092939 corner_area_retention [1.0042043926731579, 1.0034533048701115, 1.0034533048701115, 1.0042043926731579] limiting width
+MEAS crossed 0 headdeg 30 dividerdeg -29.952300223035937 maximal_scale 0.8422643285852598 corner_area_retention [1.0042243825337545, 1.0024579368300892, 1.0024579368300892, 1.0042243825337545] limiting height
+MEAS crossed 0 headdeg -10 dividerdeg 10.024091577684521 maximal_scale 0.9107710551970255 corner_area_retention [1.0053718670691898, 1.006127217833329, 1.0046165163050507, 1.0053718670691898] limiting width
+MEAS crossed 0 headdeg -20 dividerdeg 19.993056437470724 maximal_scale 0.913352037092939 corner_area_retention [1.0034533048701115, 1.0042043926731579, 1.0042043926731579, 1.0034533048701115] limiting width
+MEAS crossed 0 headdeg -30 dividerdeg 29.95230022303602 maximal_scale 0.8422643285852598 corner_area_retention [1.0024579368300892, 1.0042243825337545, 1.0042243825337545, 1.0024579368300892] limiting height
+MEAS crossed 1 headdeg 0 dividerdeg 5.3268354011536595e-14 maximal_scale 1 corner_area_retention [1.0, 1.0, 1.0, 1.0] limiting width
+MEAS crossed 1 headdeg 10 dividerdeg 10.024091577684521 maximal_scale 0.967734697411728 corner_area_retention [1.007579817206467, 1.0062417297998183, 1.0062417297998183, 1.007579817206467] limiting width
+MEAS crossed 1 headdeg 20 dividerdeg 19.993056437470724 maximal_scale 0.9659179905359777 corner_area_retention [1.0053294462498923, 1.00734413451893, 1.00734413451893, 1.0053294462498923] limiting width
+MEAS crossed 1 headdeg 30 dividerdeg 29.95230022303602 maximal_scale 0.8422643285852598 corner_area_retention [0.9980418225709258, 0.9989250454227584, 0.9989250454227584, 0.9980418225709258] limiting height
+MEAS crossed 1 headdeg -10 dividerdeg -10.024091577684453 maximal_scale 0.967734697411728 corner_area_retention [1.0062417297998183, 1.007579817206467, 1.007579817206467, 1.0062417297998183] limiting width
+MEAS crossed 1 headdeg -20 dividerdeg -19.993056437470656 maximal_scale 0.9659179905359777 corner_area_retention [1.00734413451893, 1.0053294462498923, 1.0053294462498923, 1.00734413451893] limiting width
+MEAS crossed 1 headdeg -30 dividerdeg -29.952300223035937 maximal_scale 0.8422643285852598 corner_area_retention [0.9989250454227584, 0.9980418225709258, 0.9980418225709258, 0.9989250454227584] limiting height
+PASS14 real pixel divider/corner gates, plus1% scale-up infeasibility. Software evidence, not Mac playback.
+RUN Tests/ThreeDAutoRoute/native_roll_parity_test.py
+PASS native VR180 +15deg roll is published raw on the same pose message target=0.261799388 got=0.261799
+PASS native VR180 -15deg roll is published raw on the same pose message target=-0.261799388 got=-0.261799
+native roll parity: 0 failure(s)
+RUN Tests/ThreeDAutoRoute/off_full_frame_test.py
+Traceback (most recent call last):
+  File "/tmp/gor-current/archive/gor/Tests/ThreeDAutoRoute/off_full_frame_test.py", line 11, in <module>
+    MPV=os.environ['GOR_TEST_MPV']
+  File "/usr/lib/python3.10/os.py", line 680, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'GOR_TEST_MPV'
+RUN Tests/ThreeDAutoRoute/subtitle_film_sign_test.py
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS cross 0 headdeg -30.0 film_topdown_deg [29.997738478874865, 29.99773821908963] subtitle_topdown_deg 29.999999999999996 max_baseline_error_deg 0.00226178091036644 old_sign_error_deg 59.99773821908963
+MEAS cross 0 headdeg -20.0 film_topdown_deg [19.998526016772814, 19.998540577008907] subtitle_topdown_deg 20.0 max_baseline_error_deg 0.0014739832271857267 old_sign_error_deg 39.99854057700891
+MEAS cross 0 headdeg -10.0 film_topdown_deg [10.000998145207049, 10.001008635923075] subtitle_topdown_deg 10.0 max_baseline_error_deg 0.0010086359230747632 old_sign_error_deg 20.001008635923075
+MEAS cross 0 headdeg 10.0 film_topdown_deg [-10.001018051389329, -10.00101760699851] subtitle_topdown_deg -10.0 max_baseline_error_deg 0.0010180513893285337 old_sign_error_deg 20.00101760699851
+MEAS cross 0 headdeg 20.0 film_topdown_deg [-19.998509350435317, -19.99853407494917] subtitle_topdown_deg -20.0 max_baseline_error_deg 0.0014906495646833662 old_sign_error_deg 39.99853407494917
+MEAS cross 0 headdeg 30.0 film_topdown_deg [-29.99774755031872, -29.997740194694646] subtitle_topdown_deg -29.999999999999996 max_baseline_error_deg 0.002259805305349971 old_sign_error_deg 59.99774019469464
+MEAS cross 1 headdeg -30.0 film_topdown_deg [30.00074481848163, 30.00074089461348] subtitle_topdown_deg 29.999999999999996 max_baseline_error_deg 0.0007448184816318815 old_sign_error_deg 60.00074089461348
+MEAS cross 1 headdeg -20.0 film_topdown_deg [19.999874887044324, 19.999861014156746] subtitle_topdown_deg 20.0 max_baseline_error_deg 0.00013898584325389152 old_sign_error_deg 39.99986101415675
+MEAS cross 1 headdeg -10.0 film_topdown_deg [9.99988091912916, 9.999880574203296] subtitle_topdown_deg 10.0 max_baseline_error_deg 0.00011942579670431996 old_sign_error_deg 19.999880574203296
+MEAS cross 1 headdeg 10.0 film_topdown_deg [-9.999850473211364, -9.999854627562799] subtitle_topdown_deg -10.0 max_baseline_error_deg 0.00014952678863622282 old_sign_error_deg 19.9998546275628
+MEAS cross 1 headdeg 20.0 film_topdown_deg [-19.99988471253164, -19.999875253490654] subtitle_topdown_deg -20.0 max_baseline_error_deg 0.00012474650934635179 old_sign_error_deg 39.99987525349066
+MEAS cross 1 headdeg 30.0 film_topdown_deg [-30.000733522367813, -30.00075543094173] subtitle_topdown_deg -29.999999999999996 max_baseline_error_deg 0.0007554309417336924 old_sign_error_deg 60.00075543094173
+PASS24 same-screen signed film/subtitle baselines, SBS both eyes and parallel/cross; old wrong-sign mutant rejected. Native Mac screenshot still required.
+RUN Tests/BlinkRoute/blink_gesture_replay_test.py
+  double blink fast   new 1.00 old 0.00
+PASS double blink fast caught >=95% of frame phases (robust)
+PASS single blink fast never a double (robust)
+PASS single blink fast never a double (previous path)
+  double blink normal new 1.00 old 0.02
+PASS double blink normal caught >=95% of frame phases (robust)
+PASS single blink normal never a double (robust)
+PASS single blink normal never a double (previous path)
+  double blink slow   new 1.00 old 0.00
+PASS double blink slow caught >=95% of frame phases (robust)
+PASS single blink slow never a double (robust)
+PASS single blink slow never a double (previous path)
+PASS previous path misses at least one speed (test is sensitive)
+PASS port sanity: previous path catches step-like double blinks
+PASS two blinks 1.6 s apart are not a double
+PASS closure held 0.9 s is not a blink
+PASS three blinks at 2 s are not a double
+PASS wink (one eye) is not a blink
+PASS open-eye noise only: no gesture
+PASS shallow dips (min 0.6) are not blinks
+PASS single blink with reopening mid-band frames counts once or never
+PASS one dropped landmark frame between blinks: robust still double
+PASS previous path loses that double (sensitivity)
+PASS mutant: mid-band cancels again -> fails normal/slow
+PASS analog amount takes intermediate values (neither 0 nor 1)
+PASS analog amount is 0 at rest and ~1 when closed
+PASS analog amount rises monotonically while closing
+PASS flag OFF: amount is strictly binary (previous behaviour)
+PASS analog rest jitter (ratio 0.9..1.0) never darkens
+PASS analog responds no later than the binary amount
+PASS pin: analog flag default ON
+PASS pin: analog formula
+PASS pin: robust flag default ON
+PASS pin: series window 1.2/0.95
+PASS pin: blinkMin 0.025/0.060
+PASS pin: blinkMax 0.6/0.5
+PASS pin: close threshold 0.50/0.45
+PASS pin: mid-band hold
+PASS pin: miss tolerance
+PASS pin: gesture returns 60 on the second blink
+PASS pin: flags read from defaults, ON when unset
+PASS pin: robust flag read
+PASS pin: analog IPC to lua
+PASS pin: cmd-held rewind sign retained
+PASS pin: lua analog flag
+PASS pin: lua linear 60 ms close
+PASS pin: lua previous t*t ease kept for flag off
+PASS pin: lua early-out when settled
+PASS pin: lua pre-warm shader variant
+PASS pin: lua variant held while lids stream
+PASS pin: lua variant switch is logged
+PASS pin: trace split: frameAge/detect/mainHop/lid
+PASS pin: blinkDelivery ageMS kept
+PASS cmd held -> -60, not held -> +60
+blink replay: 0 failure(s)
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+PASS actual Lua signed flat/converted shared final roll, native VR180 raw path retained
+MEAS83captured before pair_separation_ptp_px [ 0.44561532 13.08591042] rms_px [0.10754151 3.07991129] rms_step_px [0.03022827 0.80558035]
+MEAS83captured after pair_separation_ptp_px [0. 0.] rms_px [2.84217094e-13 8.88178420e-15] rms_step_px [0. 0.]
+NOT_STILL_LABELED: exact constant final-roll segment; proves output bypass removal, not physical noise/lag
+MEAS signed synthetic0.5rad step sign-1.0 existing final-path t90_s=0.5666666666666669; shared pair-axis adds no further filter; NOT camera latency
+MEAS signed synthetic0.5rad step sign1.0 existing final-path t90_s=0.5666666666666669; shared pair-axis adds no further filter; NOT camera latency
+PASS subtitle pair axis uses final flat roll, native exception unchanged; no noise thresholds changed
+RUN Tests/ThreeDAutoRoute/native_roll_parity_test.py
+PASS native VR180 +15deg roll is published raw on the same pose message target=0.261799388 got=0.261799
+PASS native VR180 -15deg roll is published raw on the same pose message target=-0.261799388 got=-0.261799
+native roll parity: 0 failure(s)
+RUN Tests/ThreeDAutoRoute/pipeline192d_gpu_test.py
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+PASS actual Lua native False FOV/translation published exactly; flat film/fusion share final roll, native raw compatibility
+PASS actual Lua native True FOV/translation published exactly; flat film/fusion share final roll, native raw compatibility
+PASS pitchSign=-1 at ScreenCaptureEngine rawPitch: final_pitch -0.1 feature_y_GL 316.57949178217075 positive look samples higher source latitude; world-fixed content shifts opposite camera
+PASS pitchSign=-1 at ScreenCaptureEngine rawPitch: final_pitch 0.1 feature_y_GL 282.42049952434 positive look samples higher source latitude; world-fixed content shifts opposite camera
+MEAS held_tilt_deg 0 scale_vs_level 1.0 filtered_roll_noise_scale_range 1.8369476233459636e-06 S1 residual_px 2.6298436864635732e-05
+MEAS held_tilt_deg 20 scale_vs_level 0.965891169899211 filtered_roll_noise_scale_range 7.466310814885357e-05 S1 residual_px 0.003928583540357522
+MEAS held_tilt_deg 30 scale_vs_level 0.842219745819103 filtered_roll_noise_scale_range 0.0001506768153267668 S1 residual_px 0.0005118161701886947
+PASS synthetic D3/D4/D5 shader tests. G1/G2/G5 owner traces NOT_MEASURED. Owner ruling keeps every corner; minimized geometric fit measured separately in divider_corners_gpu_test.
+RUN Tests/ThreeDAutoRoute/divider_corners_gpu_test.py
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS crossed 0 headdeg 0 dividerdeg 5.3268354011536595e-14 maximal_scale 1 corner_area_retention [1.0, 1.0, 1.0, 1.0] limiting width
+MEAS crossed 0 headdeg 10 dividerdeg -10.024091577684453 maximal_scale 0.9107710551970255 corner_area_retention [1.0046165163050507, 1.006882568597468, 1.0053718670691898, 1.0046165163050507] limiting width
+MEAS crossed 0 headdeg 20 dividerdeg -19.993056437470656 maximal_scale 0.913352037092939 corner_area_retention [1.0042043926731579, 1.0034533048701115, 1.0034533048701115, 1.0042043926731579] limiting width
+MEAS crossed 0 headdeg 30 dividerdeg -29.952300223035937 maximal_scale 0.8422643285852598 corner_area_retention [1.0042243825337545, 1.0024579368300892, 1.0024579368300892, 1.0042243825337545] limiting height
+MEAS crossed 0 headdeg -10 dividerdeg 10.024091577684521 maximal_scale 0.9107710551970255 corner_area_retention [1.0053718670691898, 1.006127217833329, 1.0046165163050507, 1.0053718670691898] limiting width
+MEAS crossed 0 headdeg -20 dividerdeg 19.993056437470724 maximal_scale 0.913352037092939 corner_area_retention [1.0034533048701115, 1.0042043926731579, 1.0042043926731579, 1.0034533048701115] limiting width
+MEAS crossed 0 headdeg -30 dividerdeg 29.95230022303602 maximal_scale 0.8422643285852598 corner_area_retention [1.0024579368300892, 1.0042243825337545, 1.0042243825337545, 1.0024579368300892] limiting height
+MEAS crossed 1 headdeg 0 dividerdeg 5.3268354011536595e-14 maximal_scale 1 corner_area_retention [1.0, 1.0, 1.0, 1.0] limiting width
+MEAS crossed 1 headdeg 10 dividerdeg 10.024091577684521 maximal_scale 0.967734697411728 corner_area_retention [1.007579817206467, 1.0062417297998183, 1.0062417297998183, 1.007579817206467] limiting width
+MEAS crossed 1 headdeg 20 dividerdeg 19.993056437470724 maximal_scale 0.9659179905359777 corner_area_retention [1.0053294462498923, 1.00734413451893, 1.00734413451893, 1.0053294462498923] limiting width
+MEAS crossed 1 headdeg 30 dividerdeg 29.95230022303602 maximal_scale 0.8422643285852598 corner_area_retention [0.9980418225709258, 0.9989250454227584, 0.9989250454227584, 0.9980418225709258] limiting height
+MEAS crossed 1 headdeg -10 dividerdeg -10.024091577684453 maximal_scale 0.967734697411728 corner_area_retention [1.0062417297998183, 1.007579817206467, 1.007579817206467, 1.0062417297998183] limiting width
+MEAS crossed 1 headdeg -20 dividerdeg -19.993056437470656 maximal_scale 0.9659179905359777 corner_area_retention [1.00734413451893, 1.0053294462498923, 1.0053294462498923, 1.00734413451893] limiting width
+MEAS crossed 1 headdeg -30 dividerdeg -29.952300223035937 maximal_scale 0.8422643285852598 corner_area_retention [0.9989250454227584, 0.9980418225709258, 0.9980418225709258, 0.9989250454227584] limiting height
+PASS14 real pixel divider/corner gates, plus1% scale-up infeasibility. Software evidence, not Mac playback.
+RUN Tests/ThreeDAutoRoute/subtitle_film_sign_test.py
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS cross 0 headdeg -30.0 film_topdown_deg [29.997738478874865, 29.99773821908963] subtitle_topdown_deg 29.999999999999996 max_baseline_error_deg 0.00226178091036644 old_sign_error_deg 59.99773821908963
+MEAS cross 0 headdeg -20.0 film_topdown_deg [19.998526016772814, 19.998540577008907] subtitle_topdown_deg 20.0 max_baseline_error_deg 0.0014739832271857267 old_sign_error_deg 39.99854057700891
+MEAS cross 0 headdeg -10.0 film_topdown_deg [10.000998145207049, 10.001008635923075] subtitle_topdown_deg 10.0 max_baseline_error_deg 0.0010086359230747632 old_sign_error_deg 20.001008635923075
+MEAS cross 0 headdeg 10.0 film_topdown_deg [-10.001018051389329, -10.00101760699851] subtitle_topdown_deg -10.0 max_baseline_error_deg 0.0010180513893285337 old_sign_error_deg 20.00101760699851
+MEAS cross 0 headdeg 20.0 film_topdown_deg [-19.998509350435317, -19.99853407494917] subtitle_topdown_deg -20.0 max_baseline_error_deg 0.0014906495646833662 old_sign_error_deg 39.99853407494917
+MEAS cross 0 headdeg 30.0 film_topdown_deg [-29.99774755031872, -29.997740194694646] subtitle_topdown_deg -29.999999999999996 max_baseline_error_deg 0.002259805305349971 old_sign_error_deg 59.99774019469464
+MEAS cross 1 headdeg -30.0 film_topdown_deg [30.00074481848163, 30.00074089461348] subtitle_topdown_deg 29.999999999999996 max_baseline_error_deg 0.0007448184816318815 old_sign_error_deg 60.00074089461348
+MEAS cross 1 headdeg -20.0 film_topdown_deg [19.999874887044324, 19.999861014156746] subtitle_topdown_deg 20.0 max_baseline_error_deg 0.00013898584325389152 old_sign_error_deg 39.99986101415675
+MEAS cross 1 headdeg -10.0 film_topdown_deg [9.99988091912916, 9.999880574203296] subtitle_topdown_deg 10.0 max_baseline_error_deg 0.00011942579670431996 old_sign_error_deg 19.999880574203296
+MEAS cross 1 headdeg 10.0 film_topdown_deg [-9.999850473211364, -9.999854627562799] subtitle_topdown_deg -10.0 max_baseline_error_deg 0.00014952678863622282 old_sign_error_deg 19.9998546275628
+MEAS cross 1 headdeg 20.0 film_topdown_deg [-19.99988471253164, -19.999875253490654] subtitle_topdown_deg -20.0 max_baseline_error_deg 0.00012474650934635179 old_sign_error_deg 39.99987525349066
+MEAS cross 1 headdeg 30.0 film_topdown_deg [-30.000733522367813, -30.00075543094173] subtitle_topdown_deg -29.999999999999996 max_baseline_error_deg 0.0007554309417336924 old_sign_error_deg 60.00075543094173
+PASS24 same-screen signed film/subtitle baselines, SBS both eyes and parallel/cross; old wrong-sign mutant rejected. Native Mac screenshot still required.
+RUN Tests/HeadPose/distance_orientation_test.py
+MEAS signed roll/pitch/yaw +/-10/20/30 with pupil/eye/missing switching: corrected max_relative_zoom=3.3306690738754696e-16, previous_source_mutant=0.0666666666666671
+MEAS missing-landmark signed tilt-30.0: corrected_zoom=0.0, previous_box_zoom=0.5445968323558672
+MEAS missing-landmark signed tilt-20.0: corrected_zoom=0.0, previous_box_zoom=0.403862815299316
+MEAS missing-landmark signed tilt-10.0: corrected_zoom=0.0, previous_box_zoom=0.22047313698875648
+MEAS missing-landmark signed tilt0.0: corrected_zoom=0.0, previous_box_zoom=0.0
+MEAS missing-landmark signed tilt10.0: corrected_zoom=0.0, previous_box_zoom=0.22047313698875648
+MEAS missing-landmark signed tilt20.0: corrected_zoom=0.0, previous_box_zoom=0.403862815299316
+MEAS missing-landmark signed tilt30.0: corrected_zoom=0.0, previous_box_zoom=0.5445968323558672
+PASS simultaneous real20percent approach and signed tilt-30.0 preserves relative zoom0.19999999999999996
+PASS simultaneous real20percent approach and signed tilt30.0 preserves relative zoom0.19999999999999996
+PASS signed blink-30.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink-20.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink-10.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink0.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink10.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink20.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink30.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS recenter zero, missing landmarks hold last distance instead of box-driven false zoom; owner trace NOT_MEASURED
+PASS production chooses paired same-kind landmarks, never independently mixed eye/pupil sensors
+RUN Tests/DarwinTypecheck/darwin_typecheck_test.py
+PASS C1 view member names: 53 view types, production rename mutant + duplicate override + extension collision rejected by Swift
+PASS C1 extracted CoreText ink API: production compiles; real CF-cast and attributes-key mutants rejected; Linux CF/Foundation signature probe, NOT full macOS compile
+typecheck: 76 files, 0 error(s) (stub-checked, see docstring)
+adsite (own invocation): 0 error(s)
+MSL syntax ok against the metal_stdlib shim (lax: real MSL is stricter on implicit conversions)
+S3DParams layout ok: 10 x 4 bytes
+PASS
+PROVENANCE installed bands present at retained accepted index 9 therefore exact original calibration not recoverable
+PASS invalid boundary clears only pending calibration; full33fresh samples required; completed bands retained
+REPLAY_OLD window_s 88.87033100007102 bands [0.17265634304447888, 0.2802412823002356, 0.03254684081069139, 0.09234754762906797, 0.268590430708107, 0.44033463950539237]
+REPLAY_NEW window_s 1.7970240000868216 bands [0.030795063388674375, 0.02164102136170733, 0.013440552512149604, 0.002544522400193507, 0.0023022929469290986, 0.014698958021499805]
+PASS loss/structure/eye-held/reacquire production boundaries wired; estimator formula/noise thresholds/native roll unchanged; no still-head or gap-only stall guarantee
+PASS structural degradation signed tests: missing/multiple face, absent fields/landmarks, nonfinite, hold-before-mutation; source continuity reacquire starts at held pose
+PASS production BGRA sampler: dark/mid/bright levels, constant-field contrast, eye-region clipped fraction; numeric diagnostics only
+PASS production guards absent pose instead of substituting0; no semantic low-light/glare threshold introduced
+AUDIT low-light/backlight/glare/exposure-change: NOT_PROVEN in old pose-only traces; numeric image-quality capture added, no guessed classification
+AUDIT occlusion/hand/second-face: missing or ambiguous structure held; high-confidence semantically wrong single-face measurement NOT_PROVEN
+AUDIT fast-head/frame-stall/edge: no arbitrary speed/edge/age cutoff added; existing continuity/latest-only transport retained; native camera cases NOT_PROVEN
+PASS compiled production ring: synchronized geometry/source time, process session/build, baseline/recenter/stop sequence; no pose mutation
+PASS distance estimator, eye gate, follow/noise formulas unchanged except pending-calibration interrupt to3083622; no inferred plausibility threshold
+PASS compiled production eye-outline diameter: pixel-aspect/roll correctness and actual0.8/1.0/1.2 scale retained; not a plausibility classifier
+PASS Mac typecheck-complexity source guard:8explicitDouble components, typed eyes/angles/pupils/counts; native SDK build NOT_RUN
+PASS Mac callback-complexity guard: all coordinate arrays, angles, confidence and timestamp typed before submit; no inline conversion/compactMap/ternary
+PASS C1 view member names: 53 view types, production rename mutant + duplicate override + extension collision rejected by Swift
+PASS C1 extracted CoreText ink API: production compiles; real CF-cast and attributes-key mutants rejected; Linux CF/Foundation signature probe, NOT full macOS compile
+typecheck: 76 files, 0 error(s) (stub-checked, see docstring)
+adsite (own invocation): 0 error(s)
+MSL syntax ok against the metal_stdlib shim (lax: real MSL is stricter on implicit conversions)
+S3DParams layout ok: 10 x 4 bytes
+PASS
+MEAS signed roll/pitch/yaw +/-10/20/30 with pupil/eye/missing switching: corrected max_relative_zoom=3.3306690738754696e-16, previous_source_mutant=0.0666666666666671
+MEAS missing-landmark signed tilt-30.0: corrected_zoom=0.0, previous_box_zoom=0.5445968323558672
+MEAS missing-landmark signed tilt-20.0: corrected_zoom=0.0, previous_box_zoom=0.403862815299316
+MEAS missing-landmark signed tilt-10.0: corrected_zoom=0.0, previous_box_zoom=0.22047313698875648
+MEAS missing-landmark signed tilt0.0: corrected_zoom=0.0, previous_box_zoom=0.0
+MEAS missing-landmark signed tilt10.0: corrected_zoom=0.0, previous_box_zoom=0.22047313698875648
+MEAS missing-landmark signed tilt20.0: corrected_zoom=0.0, previous_box_zoom=0.403862815299316
+MEAS missing-landmark signed tilt30.0: corrected_zoom=0.0, previous_box_zoom=0.5445968323558672
+PASS simultaneous real20percent approach and signed tilt-30.0 preserves relative zoom0.19999999999999996
+PASS simultaneous real20percent approach and signed tilt30.0 preserves relative zoom0.19999999999999996
+PASS signed blink-30.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink-20.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink-10.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink0.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink10.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink20.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS signed blink30.0:12frames pupil dropout/collapsed outline hold all6channels, reopen no distance jump
+PASS recenter zero, missing landmarks hold last distance instead of box-driven false zoom; owner trace NOT_MEASURED
+PASS production chooses paired same-kind landmarks, never independently mixed eye/pupil sensors
+PASS actual Lua930updates identical uniforms,900row bound, numeric route/convergence/time/session, exact all-pack GLSL parity; title stats explicitly unavailable
+PASS real periodic collector covers WT/mpv/photon/gor/stack/captureidentity, numeric+symbol redaction,120s owned-child gating, approvedremote, queue ACK unlink; native background upload NOT_RUN
+PASS real collect retains startup registration outside262KB tail, exact prefix failure plus numeric fail counts; private path/error/token mutants suppressed; missing evidence NOT_RUN not registered=0
+PASS new cuts handoff and thermal stages survive typed collector without private suffix
+PASS192d numeric pose/pupil trace allowlist, malformed arrays/private suffix rejected
+PASS blink-hold/aperture and distance-source numeric capture, no private strings
+PASS structural hold and frame-quality allowlist, no image content or private strings
+PASS synchronized geometry/build/session/reset allowlist; malformed identifiers, partial geometry and arbitrary strings rejected
+PASS convergence uniform numeric allowlist excludes arbitrary strings, shader text and private paths
+PASS native VR180 +15deg roll is published raw on the same pose message target=0.261799388 got=0.261799
+PASS native VR180 -15deg roll is published raw on the same pose message target=-0.261799388 got=-0.261799
+native roll parity: 0 failure(s)
+PASS invalid boundary clears only pending calibration; full33fresh samples required; completed bands retained
+PASS loss/structure/eye-held/reacquire production boundaries wired; estimator formula/noise thresholds/native roll unchanged; no still-head or gap-only stall guarantee
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+TITLE 0.6 left [239.0183110152317, 231.72622773504867] right [719.9817479543937, 231.72622904330717] separation 480.96343693916197
+TITLE 0.64 left [239.11483663051993, 231.72625053087262] right [719.8852518357627, 231.7262338888068] separation 480.7704152052428
+TITLE 0.68 left [239.21034669117938, 231.72639927271257] right [719.7897095145743, 231.72639241817765] separation 480.5793628233949
+TITLE 0.72 left [239.30877485992366, 231.72648237053644] right [719.6912972341395, 231.7264763182067] separation 480.3825223742158
+TITLE 0.76 left [239.40483318626278, 231.7267671579072] right [719.5952330598752, 231.72677115295795] separation 480.1903998736125
+TITLE 0.8 left [239.50004301055432, 231.72699386534023] right [719.5000280495874, 231.72700475983777] separation 479.99998503903305
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+Z -0.01 fov 2.382374 nudge -0.0012 base -0.0 centres [(np.float64(226.08779547662954), np.float64(299.5000012472158)), (np.float64(732.9124584979684), np.float64(299.5000111433532))] separation 506.82466302133884
+Z 0 fov 2.356194 nudge 0.0 base 0.0 centres [(np.float64(226.2748021122265), np.float64(299.50000283759664)), (np.float64(732.7254565737201), np.float64(299.500000487709))] separation 506.45065446149357
+Z 0.01 fov 2.330015 nudge 0.0012 base 0.0 centres [(np.float64(226.45896712092457), np.float64(299.5000133430427)), (np.float64(732.5412976660814), np.float64(299.4999986905286))] separation 506.0823305451568
+PASS actual Lua930updates identical uniforms,900row bound, numeric route/convergence/time/session, exact all-pack GLSL parity; title stats explicitly unavailable
+provider-pin: ABSENT (no gorav dependency declared); lock-bytes checked only; pin bump/M2b BLOCKED until exact pin is declared and verified
+arch-check: unmapped=0 new-forbidden-edges=0 debt-current=31376/baseline=31777 targets=1 files=12724
+tests: GorKit targets=0 ran=0 skipped=not-run-by-architecture-gate; see dedicated test runner
+FAIL swift unavailable: PermissionError; compiler graph NOT_RUN
+PASS 625 signed rigid-plane yaw/pitch/roll and real0.25-4xscale cases; differential co-collapse rejected; approach/retreat scale active
+PASS independent pupil/outline calibration; existing outline-startup route retained
+PASS channel5 exact follow hold during nonzero velocity; other5channels and resumed valid distance active
+PASS production guard before pupil-reference mutation; exact channel5 hold with other5channels active; diagnostic distanceMode3
+SEQ 5 N 376
+original_replay_max_error 1.6938829605628314e-07
+before fov_range 22.5 156.94083721645586 maxstep 31.113275299084663 stepRMS 3.6815540317517783
+after fov_range 22.5 156.94083721645586 maxstep 21.794637425738685 stepRMS 2.5706097695060848
+rejects 6
+SEQ 7 N 4
+original_replay_max_error 4.8562461408066526e-08
+before fov_range 135.0 157.45838186522934 maxstep 12.797515575589273 stepRMS 8.376270114866253
+after fov_range 135.0 135.0 maxstep 0.0 stepRMS 0.0
+rejects 4
+SEQ 10 N 1
+original_replay_max_error 0.0
+before fov_range 135.0 135.0 maxstep 0 stepRMS 0
+after fov_range 135.0 135.0 maxstep 0 stepRMS 0
+rejects 0
+PASS partial-history replay original reproduction<1e-5; comparable rejected-distance exact holds 9 other5channels byte-identical as Doubles
+LIMIT startup33 anatomy samples still unguarded; retained capture begins mid-session; no physical labels; native Mac NOT_RUN
+PASS D2 actual Swift nod/yaw/roll pupil invariance, distance approach and matched fallback
+PASS initial missing-distance hold to first pupil acquisition keeps zoom continuous
+MEAS synthetic startup online band=0.0020204378225925847, fixed critical tau_s=0.1; owner noise envelope NOT_MEASURED
+MEAS synthetic still output_rms2=1.1260612846471588e-05 filtered_noise_floor_rms2=0.0006917137324903703 maxStep=0.0003958856128368788 band=0.0020204378225925847
+MEAS channel0 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS channel1 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS channel2 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS channel3 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS channel4 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS channel5 synthetic slow maxStep=0.0005051094556481894 band=0.0020204378225925847 t90_s=0.4
+MEAS held20deg settled_deg=19.884237439996838 band_deg=0.11576256000315688, stable range=0.0
+MEAS full_pipeline synthetic channel0 step_t90_s=0.5666666666666669, includes continuity and existing one-euro; NOT camera latency
+MEAS full_pipeline synthetic channel1 step_t90_s=0.5666666666666669, includes continuity and existing one-euro; NOT camera latency
+MEAS full_pipeline synthetic channel2 step_t90_s=0.5666666666666669, includes continuity and existing one-euro; NOT camera latency
+MEAS full_pipeline synthetic channel3 step_t90_s=0.4333333333333331, includes continuity and existing one-euro; NOT camera latency
+MEAS full_pipeline synthetic channel4 step_t90_s=0.4333333333333331, includes continuity and existing one-euro; NOT camera latency
+MEAS full_pipeline synthetic channel5 step_t90_s=2.1333333333333337, includes continuity and existing one-euro; NOT camera latency
+PASS synthetic G1-G4 primitives. Owner G1/G2/G5 NOT_MEASURED no_owner_trace
+PASS production wiring: one zoom carrier, no Lua cinema/fast mode, no StationaryScaleHold
+PASS invalid boundary clears only pending calibration; full33fresh samples required; completed bands retained
+PASS loss/structure/eye-held/reacquire production boundaries wired; estimator formula/noise thresholds/native roll unchanged; no still-head or gap-only stall guarantee
+PASS structural degradation signed tests: missing/multiple face, absent fields/landmarks, nonfinite, hold-before-mutation; source continuity reacquire starts at held pose
+PASS production BGRA sampler: dark/mid/bright levels, constant-field contrast, eye-region clipped fraction; numeric diagnostics only
+PASS production guards absent pose instead of substituting0; no semantic low-light/glare threshold introduced
+AUDIT low-light/backlight/glare/exposure-change: NOT_PROVEN in old pose-only traces; numeric image-quality capture added, no guessed classification
+AUDIT occlusion/hand/second-face: missing or ambiguous structure held; high-confidence semantically wrong single-face measurement NOT_PROVEN
+AUDIT fast-head/frame-stall/edge: no arbitrary speed/edge/age cutoff added; existing continuity/latest-only transport retained; native camera cases NOT_PROVEN
+PASS compiled production ring: synchronized geometry/source time, process session/build, baseline/recenter/stop sequence; no pose mutation
+PASS distance estimator/eye gate/numeric follow-noise formulas unchanged to3083622; pending-calibration interrupt and explicit channel hold only; new anatomy guard tested separately
+PASS compiled production eye-outline diameter: pixel-aspect/roll correctness and actual0.8/1.0/1.2 scale retained; not a plausibility classifier
+PASS Mac typecheck-complexity source guard:8explicitDouble components, typed eyes/angles/pupils/counts; native SDK build NOT_RUN
+PASS Mac callback-complexity guard: all coordinate arrays, angles, confidence and timestamp typed before submit; no inline conversion/compactMap/ternary
+PASS native VR180 +15deg roll is published raw on the same pose message target=0.261799388 got=0.261799
+PASS native VR180 -15deg roll is published raw on the same pose message target=-0.261799388 got=-0.261799
+native roll parity: 0 failure(s)
+PASS actual Lua930updates identical uniforms,900row bound, numeric route/convergence/time/session, exact all-pack GLSL parity; title stats explicitly unavailable
+PASS real periodic collector covers WT/mpv/photon/gor/stack/captureidentity, numeric+symbol redaction,120s owned-child gating, approvedremote, queue ACK unlink; native background upload NOT_RUN
+PASS real collect retains startup registration outside262KB tail, exact prefix failure plus numeric fail counts; private path/error/token mutants suppressed; missing evidence NOT_RUN not registered=0
+PASS new cuts handoff and thermal stages survive typed collector without private suffix
+PASS192d numeric pose/pupil trace allowlist, malformed arrays/private suffix rejected
+PASS blink-hold/aperture and distance-source numeric capture, no private strings
+PASS structural hold and frame-quality allowlist, no image content or private strings
+PASS synchronized geometry/build/session/reset allowlist; malformed identifiers, partial geometry and arbitrary strings rejected
+PASS convergence uniform numeric allowlist excludes arbitrary strings, shader text and private paths
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+before t=586691.128 FOV=32.39 sep=407.92px
+before t=586691.344 FOV=63.50 sep=473.08px
+after t=586691.128 FOV=22.50 sep=348.44px
+after t=586691.344 FOV=22.50 sep=348.44px
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS 192k_regression 22signed dual-angle cross/parallel cases max_physical_axis_error_px 319.30160894812457 min_normalized_corner_area 1.0
+MEAS axis_only_mutant 22signed dual-angle cross/parallel cases max_physical_axis_error_px 0.003627832405271647 min_normalized_corner_area 0.45443430493792225
+MEAS repair 22signed dual-angle cross/parallel cases max_physical_axis_error_px 0.0038405438612585385 min_normalized_corner_area 1.0
+PASS physical head-axis alignment AND every corner; old axis and crop mutants rejected; native routing/subtitle axis retained. Mac NOT_RUN
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+PASS actual Lua native False FOV/translation published exactly; flat measured fusion axis separate from stabilized film, native raw compatibility
+PASS actual Lua native True FOV/translation published exactly; flat measured fusion axis separate from stabilized film, native raw compatibility
+PASS pitchSign=-1 at ScreenCaptureEngine rawPitch: final_pitch -0.1 feature_y_GL 316.57949178217075 positive look samples higher source latitude; world-fixed content shifts opposite camera
+PASS pitchSign=-1 at ScreenCaptureEngine rawPitch: final_pitch 0.1 feature_y_GL 282.42049952434 positive look samples higher source latitude; world-fixed content shifts opposite camera
+MEAS held_tilt_deg 0 scale_vs_level 1.0 filtered_roll_noise_scale_range 0.00030496338435470616 S1 residual_px 2.6298436864635732e-05
+MEAS held_tilt_deg 20 scale_vs_level 0.965891169899211 filtered_roll_noise_scale_range 0.0003807179681067918 S1 residual_px 0.003928583540357522
+MEAS held_tilt_deg 30 scale_vs_level 0.842219745819103 filtered_roll_noise_scale_range 0.001037914377517768 S1 residual_px 0.0005118161701886947
+PASS synthetic D3/D4/D5 shader tests. G1/G2/G5 owner traces NOT_MEASURED. Owner ruling keeps every corner; minimized geometric fit measured separately in divider_corners_gpu_test.
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS crossed 0 headdeg 0 dividerdeg 5.3268354011536595e-14 maximal_scale 1 corner_area_retention [1.0, 1.0, 1.0, 1.0] limiting width
+MEAS crossed 0 headdeg 10 dividerdeg -10.024091577684453 maximal_scale 0.9107710551970255 corner_area_retention [1.0046165163050507, 1.006882568597468, 1.0053718670691898, 1.0046165163050507] limiting width
+MEAS crossed 0 headdeg 20 dividerdeg -19.993056437470656 maximal_scale 0.913352037092939 corner_area_retention [1.0042043926731579, 1.0034533048701115, 1.0034533048701115, 1.0042043926731579] limiting width
+MEAS crossed 0 headdeg 30 dividerdeg -29.952300223035937 maximal_scale 0.8422643285852598 corner_area_retention [1.0042243825337545, 1.0024579368300892, 1.0024579368300892, 1.0042243825337545] limiting height
+MEAS crossed 0 headdeg -10 dividerdeg 10.024091577684521 maximal_scale 0.9107710551970255 corner_area_retention [1.0053718670691898, 1.006127217833329, 1.0046165163050507, 1.0053718670691898] limiting width
+MEAS crossed 0 headdeg -20 dividerdeg 19.993056437470724 maximal_scale 0.913352037092939 corner_area_retention [1.0034533048701115, 1.0042043926731579, 1.0042043926731579, 1.0034533048701115] limiting width
+MEAS crossed 0 headdeg -30 dividerdeg 29.95230022303602 maximal_scale 0.8422643285852598 corner_area_retention [1.0024579368300892, 1.0042243825337545, 1.0042243825337545, 1.0024579368300892] limiting height
+MEAS crossed 1 headdeg 0 dividerdeg 5.3268354011536595e-14 maximal_scale 1 corner_area_retention [1.0, 1.0, 1.0, 1.0] limiting width
+MEAS crossed 1 headdeg 10 dividerdeg 10.024091577684521 maximal_scale 0.967734697411728 corner_area_retention [1.007579817206467, 1.0062417297998183, 1.0062417297998183, 1.007579817206467] limiting width
+MEAS crossed 1 headdeg 20 dividerdeg 19.993056437470724 maximal_scale 0.9659179905359777 corner_area_retention [1.0053294462498923, 1.00734413451893, 1.00734413451893, 1.0053294462498923] limiting width
+MEAS crossed 1 headdeg 30 dividerdeg 29.95230022303602 maximal_scale 0.8422643285852598 corner_area_retention [0.9980418225709258, 0.9989250454227584, 0.9989250454227584, 0.9980418225709258] limiting height
+MEAS crossed 1 headdeg -10 dividerdeg -10.024091577684453 maximal_scale 0.967734697411728 corner_area_retention [1.0062417297998183, 1.007579817206467, 1.007579817206467, 1.0062417297998183] limiting width
+MEAS crossed 1 headdeg -20 dividerdeg -19.993056437470656 maximal_scale 0.9659179905359777 corner_area_retention [1.00734413451893, 1.0053294462498923, 1.0053294462498923, 1.00734413451893] limiting width
+MEAS crossed 1 headdeg -30 dividerdeg -29.952300223035937 maximal_scale 0.8422643285852598 corner_area_retention [0.9989250454227584, 0.9980418225709258, 0.9980418225709258, 0.9989250454227584] limiting height
+PASS14 real pixel divider/corner gates, plus1% scale-up infeasibility. Software evidence, not Mac playback.
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS plain -30 mean_error 0.003334049 wrong_pixels 7982 N 465976
+MEAS plain -20 mean_error 0.0031840887 wrong_pixels 8046 N 491878
+MEAS plain -10 mean_error 0.0031094379 wrong_pixels 8414 N 527148
+MEAS plain 0 mean_error 0.0035145148 wrong_pixels 10560 N 576000
+MEAS plain 10 mean_error 0.0031094456 wrong_pixels 8414 N 527148
+MEAS plain 20 mean_error 0.0031841113 wrong_pixels 8046 N 491878
+MEAS plain 30 mean_error 0.0033340906 wrong_pixels 7983 N 465976
+MEAS SBS -30 mean_error 0.0035341491 wrong_pixels 3267 N 179936
+MEAS SBS -20 mean_error 0.0035308958 wrong_pixels 4301 N 237046
+MEAS SBS -10 mean_error 0.0035291377 wrong_pixels 4318 N 238118
+MEAS SBS 0 mean_error 0.003520297 wrong_pixels 4770 N 255672
+MEAS SBS 10 mean_error 0.0035291372 wrong_pixels 4319 N 238118
+MEAS SBS 20 mean_error 0.0035308963 wrong_pixels 4301 N 237046
+MEAS SBS 30 mean_error 0.0035341484 wrong_pixels 3267 N 179936
+MEAS TB -30 mean_error 0.0034485636 wrong_pixels 4598 N 259524
+MEAS TB -20 mean_error 0.0032638826 wrong_pixels 4648 N 276740
+MEAS TB -10 mean_error 0.0031235781 wrong_pixels 4744 N 296128
+MEAS TB 0 mean_error 0.0035124512 wrong_pixels 5320 N 319200
+MEAS TB 10 mean_error 0.0031235954 wrong_pixels 4744 N 296128
+MEAS TB 20 mean_error 0.0032639226 wrong_pixels 4648 N 276740
+MEAS TB 30 mean_error 0.0034486246 wrong_pixels 4598 N 259524
+MEAS anaglyph -30 mean_error 0.0033452853 wrong_pixels 7495 N 436120
+MEAS anaglyph -20 mean_error 0.0032300777 wrong_pixels 7663 N 461696
+MEAS anaglyph -10 mean_error 0.003298406 wrong_pixels 8378 N 494042
+MEAS anaglyph 0 mean_error 0.003513755 wrong_pixels 8640 N 518400
+MEAS anaglyph 10 mean_error 0.0032984065 wrong_pixels 8378 N 494042
+MEAS anaglyph 20 mean_error 0.003230093 wrong_pixels 7663 N 461696
+MEAS anaglyph 30 mean_error 0.0033453198 wrong_pixels 7495 N 436120
+MEAS VRpreview -30 mean_error 0.0034890282 wrong_pixels 1012 N 57732
+MEAS VRpreview -20 mean_error 0.003490641 wrong_pixels 1028 N 57428
+MEAS VRpreview -10 mean_error 0.0034892103 wrong_pixels 1026 N 57318
+MEAS VRpreview 0 mean_error 0.003497346 wrong_pixels 972 N 57040
+MEAS VRpreview 10 mean_error 0.0034892098 wrong_pixels 1026 N 57318
+MEAS VRpreview 20 mean_error 0.0034906433 wrong_pixels 1028 N 57428
+MEAS VRpreview 30 mean_error 0.0034890359 wrong_pixels 1012 N 57732
+PASS previous-published-source mutant rejected and open pixels identical plain
+PASS previous-published-source mutant rejected and open pixels identical SBS
+PASS previous-published-source mutant rejected and open pixels identical TB
+PASS previous-published-source mutant rejected and open pixels identical anaglyph
+PASS previous-published-source mutant rejected and open pixels identical VRpreview
+PASS35 signed film-local blink masks match actual source Y; old published shader fails; open output pixel-identical. Native Mac playback NOT_RUN.
+PASS native VR180 +15deg roll is published raw on the same pose message target=0.261799388 got=0.261799
+PASS native VR180 -15deg roll is published raw on the same pose message target=-0.261799388 got=-0.261799
+native roll parity: 0 failure(s)
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS layout 0 cross 0 deg -30 ipd -0.2 axis_change_px -58.83044513739661 vertical_px 9.841932475751491e-05
+MEAS layout 0 cross 0 deg -30 ipd 0.2 axis_change_px 58.83194499776871 vertical_px -0.020476689218071442
+MEAS layout 0 cross 0 deg 0 ipd -0.2 axis_change_px -53.3787423364177 vertical_px 2.758058292329224e-05
+MEAS layout 0 cross 0 deg 0 ipd 0.2 axis_change_px 53.37791860177799 vertical_px 9.715256396702898e-06
+MEAS layout 0 cross 0 deg 30 ipd -0.2 axis_change_px -58.83019317091813 vertical_px 0.00038308606733039596
+MEAS layout 0 cross 0 deg 30 ipd 0.2 axis_change_px 58.832016203233884 vertical_px 0.020505694268820207
+MEAS layout 0 cross 1 deg -30 ipd -0.2 axis_change_px -54.50879591007988 vertical_px 0.0035568202880256194
+MEAS layout 0 cross 1 deg -30 ipd 0.2 axis_change_px 54.50565359526589 vertical_px 0.0012335340239815196
+MEAS layout 0 cross 1 deg 0 ipd -0.2 axis_change_px -53.3787423364177 vertical_px 2.758058292329224e-05
+MEAS layout 0 cross 1 deg 0 ipd 0.2 axis_change_px 53.37791860177799 vertical_px 9.715256396702898e-06
+MEAS layout 0 cross 1 deg 30 ipd -0.2 axis_change_px -54.508883741908534 vertical_px -0.0035418284557522384
+MEAS layout 0 cross 1 deg 30 ipd 0.2 axis_change_px 54.50577589115553 vertical_px -0.0012340770719276861
+MEAS layout 1 cross 0 deg -30 ipd -0.2 axis_change_px -47.987954459556306 vertical_px -0.042261740303956685
+MEAS layout 1 cross 0 deg -30 ipd 0.2 axis_change_px 47.97747718783228 vertical_px -0.03523248984944871
+MEAS layout 1 cross 0 deg 0 ipd -0.2 axis_change_px -48.00026885104728 vertical_px -2.2212429541923484e-05
+MEAS layout 1 cross 0 deg 0 ipd 0.2 axis_change_px 47.99955833922991 vertical_px 1.708797697119735e-06
+MEAS layout 1 cross 0 deg 30 ipd -0.2 axis_change_px -47.98759962253218 vertical_px 0.04225751626438523
+MEAS layout 1 cross 0 deg 30 ipd 0.2 axis_change_px 47.9775118509476 vertical_px 0.03536863059622419
+MEAS layout 1 cross 1 deg -30 ipd -0.2 axis_change_px -48.072417257232736 vertical_px 0.002248580077406359
+MEAS layout 1 cross 1 deg -30 ipd 0.2 axis_change_px 47.994531932826675 vertical_px 0.040196284502428625
+MEAS layout 1 cross 1 deg 0 ipd -0.2 axis_change_px -48.00028162272827 vertical_px -1.8791800812323345e-05
+MEAS layout 1 cross 1 deg 0 ipd 0.2 axis_change_px 47.99954322932933 vertical_px 8.5421389712792e-06
+MEAS layout 1 cross 1 deg 30 ipd -0.2 axis_change_px -48.07226394745427 vertical_px -0.0021895876668622805
+MEAS layout 1 cross 1 deg 30 ipd 0.2 axis_change_px 47.99460242341065 vertical_px -0.04015314618951038
+MEAS layout 2 cross 0 deg -30 ipd -0.2 axis_change_px -48.01468653518559 vertical_px -0.037465933825217235
+MEAS layout 2 cross 0 deg -30 ipd 0.2 axis_change_px 47.97010940523336 vertical_px -0.04993368738357162
+MEAS layout 2 cross 0 deg 0 ipd -0.2 axis_change_px -48.00023747971767 vertical_px -1.8920442755643307e-05
+MEAS layout 2 cross 0 deg 0 ipd 0.2 axis_change_px 47.99954716448519 vertical_px -2.575251681946611e-05
+MEAS layout 2 cross 0 deg 30 ipd -0.2 axis_change_px -48.014263656449366 vertical_px 0.03741965337931674
+MEAS layout 2 cross 0 deg 30 ipd 0.2 axis_change_px 47.970185925902314 vertical_px 0.05001495612469853
+MEAS layout 2 cross 1 deg -30 ipd -0.2 axis_change_px -48.091615234486795 vertical_px -0.0026021300376442014
+MEAS layout 2 cross 1 deg -30 ipd 0.2 axis_change_px 47.94976492953301 vertical_px 0.030102070834999495
+MEAS layout 2 cross 1 deg 0 ipd -0.2 axis_change_px -48.00022591269885 vertical_px -1.2493242820710293e-05
+MEAS layout 2 cross 1 deg 0 ipd 0.2 axis_change_px 47.999557184339096 vertical_px -2.5763128689959558e-05
+MEAS layout 2 cross 1 deg 30 ipd -0.2 axis_change_px -48.09146893358553 vertical_px 0.002646446115107892
+MEAS layout 2 cross 1 deg 30 ipd 0.2 axis_change_px 47.94990207252312 vertical_px -0.03009222299417047
+FAILURES []
+PASS36 nonzero-IPD optical cases
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS approach/retreat headdeg 0 z 0.2 fov 110 scale_ratio 2.112912211458687 expected 2.113063169027198 S1_error_px 2.209486456195009e-05
+MEAS approach/retreat headdeg 0 z -0.2 fov 150 scale_ratio 0.5389718855364795 expected 0.5390721453284455 S1_error_px 3.977557952339339e-05
+MEAS approach/retreat headdeg 20 z 0.2 fov 110 scale_ratio 2.1130703110837525 expected 2.113063169027198 S1_error_px 0.00016003374656747837
+MEAS approach/retreat headdeg 20 z -0.2 fov 150 scale_ratio 0.5390576181123077 expected 0.5390721453284455 S1_error_px 0.007813315595797121
+MEAS approach/retreat headdeg -20 z 0.2 fov 110 scale_ratio 2.1130702131371057 expected 2.113063169027198 S1_error_px 0.00016674142773354106
+MEAS approach/retreat headdeg -20 z -0.2 fov 150 scale_ratio 0.5390577583883025 expected 0.5390721453284455 S1_error_px 0.007817252303198075
+MEAS shortcut equals manual_view -6.0 pixel_scale_ratio 1.2341105822613812
+MEAS shortcut minus manual_view 6.0 pixel_scale_ratio 0.79764027430167
+MEAS shortcut held-in manual_view -26.0 pixel_scale_ratio 2.3252996900692744
+MEAS shortcut held-out manual_view 22.5 pixel_scale_ratio 0.3703993893865919
+PASS distance content zoom and actual Lua shortcut bridge, S1 centres retained. Physical Mac keyboard delivery NOT_RUN
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS cross 0 headdeg -30.0 film_topdown_deg [29.997738478874865, 29.99773821908963] subtitle_topdown_deg 29.999999999999996 max_baseline_error_deg 0.00226178091036644 old_sign_error_deg 59.99773821908963
+MEAS cross 0 headdeg -20.0 film_topdown_deg [19.998526016772814, 19.998540577008907] subtitle_topdown_deg 20.0 max_baseline_error_deg 0.0014739832271857267 old_sign_error_deg 39.99854057700891
+MEAS cross 0 headdeg -10.0 film_topdown_deg [10.000998145207049, 10.001008635923075] subtitle_topdown_deg 10.0 max_baseline_error_deg 0.0010086359230747632 old_sign_error_deg 20.001008635923075
+MEAS cross 0 headdeg 10.0 film_topdown_deg [-10.001018051389329, -10.00101760699851] subtitle_topdown_deg -10.0 max_baseline_error_deg 0.0010180513893285337 old_sign_error_deg 20.00101760699851
+MEAS cross 0 headdeg 20.0 film_topdown_deg [-19.998509350435317, -19.99853407494917] subtitle_topdown_deg -20.0 max_baseline_error_deg 0.0014906495646833662 old_sign_error_deg 39.99853407494917
+MEAS cross 0 headdeg 30.0 film_topdown_deg [-29.99774755031872, -29.997740194694646] subtitle_topdown_deg -29.999999999999996 max_baseline_error_deg 0.002259805305349971 old_sign_error_deg 59.99774019469464
+MEAS cross 1 headdeg -30.0 film_topdown_deg [30.00074481848163, 30.00074089461348] subtitle_topdown_deg 29.999999999999996 max_baseline_error_deg 0.0007448184816318815 old_sign_error_deg 60.00074089461348
+MEAS cross 1 headdeg -20.0 film_topdown_deg [19.999874887044324, 19.999861014156746] subtitle_topdown_deg 20.0 max_baseline_error_deg 0.00013898584325389152 old_sign_error_deg 39.99986101415675
+MEAS cross 1 headdeg -10.0 film_topdown_deg [9.99988091912916, 9.999880574203296] subtitle_topdown_deg 10.0 max_baseline_error_deg 0.00011942579670431996 old_sign_error_deg 19.999880574203296
+MEAS cross 1 headdeg 10.0 film_topdown_deg [-9.999850473211364, -9.999854627562799] subtitle_topdown_deg -10.0 max_baseline_error_deg 0.00014952678863622282 old_sign_error_deg 19.9998546275628
+MEAS cross 1 headdeg 20.0 film_topdown_deg [-19.99988471253164, -19.999875253490654] subtitle_topdown_deg -20.0 max_baseline_error_deg 0.00012474650934635179 old_sign_error_deg 39.99987525349066
+MEAS cross 1 headdeg 30.0 film_topdown_deg [-30.000733522367813, -30.00075543094173] subtitle_topdown_deg -29.999999999999996 max_baseline_error_deg 0.0007554309417336924 old_sign_error_deg 60.00075543094173
+PASS24 same-screen signed film/subtitle baselines, SBS both eyes and parallel/cross; old wrong-sign mutant rejected. Native Mac screenshot still required.
+PASS actual current Lua930updates identical uniforms,900row bound, numeric route/convergence/time/session, exact all-pack GLSL parity; title stats explicitly unavailable
+PASS 625 signed rigid-plane yaw/pitch/roll and real0.25-4xscale cases; differential co-collapse rejected; approach/retreat scale active
+PASS independent pupil/outline calibration; existing outline-startup route retained
+PASS channel5 exact follow hold during nonzero velocity; other5channels and resumed valid distance active
+PASS production guard before pupil-reference mutation; exact channel5 hold with other5channels active; diagnostic distanceMode3
+SEQ 5 N 376
+original_replay_max_error 1.6938829605628314e-07
+before fov_range 22.5 156.94083721645586 maxstep 31.113275299084663 stepRMS 3.6815540317517783
+after fov_range 22.5 156.94083721645586 maxstep 21.794637425738685 stepRMS 2.5706097695060848
+rejects 6
+SEQ 7 N 4
+original_replay_max_error 4.8562461408066526e-08
+before fov_range 135.0 157.45838186522934 maxstep 12.797515575589273 stepRMS 8.376270114866253
+after fov_range 135.0 135.0 maxstep 0.0 stepRMS 0.0
+rejects 4
+SEQ 10 N 1
+original_replay_max_error 0.0
+before fov_range 135.0 135.0 maxstep 0 stepRMS 0
+after fov_range 135.0 135.0 maxstep 0 stepRMS 0
+rejects 0
+PASS partial-history replay original reproduction<1e-5; comparable rejected-distance exact holds 9 other5channels byte-identical as Doubles
+LIMIT startup33 anatomy samples still unguarded; retained capture begins mid-session; no physical labels; native Mac NOT_RUN
+before same false false 0
+same true true 1
+
+after same false false 0
+same true true 0
+
+before actualLua effect reapply finalFOV 2.356194 initial 2.094395
+after actualLua effect reapply finalFOV 2.094395 initial 2.094395
+PASS extracted production forced-route decisions +8actualLua effect republish: pose preserved; real route switch/Off still tear down; explicit fullfit still resets
+PASS explicit SBS Swift->Lua saved=False initiallyNative=False layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=False initiallyNative=False layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=False initiallyNative=False layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=False initiallyNative=True layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=False initiallyNative=True layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=False initiallyNative=True layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=True initiallyNative=False layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=True initiallyNative=False layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=True initiallyNative=False layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=True initiallyNative=True layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=True initiallyNative=True layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=True initiallyNative=True layout=1.0 pack3
+PASS same-process action off applied pack=0.0
+PASS same-process action full_sbs applied pack=3.0
+PASS same-process action vr180 applied pack=3.0
+PASS same-process action full_sbs applied pack=3.0
+PASS same-process action off applied pack=0.0
+PASS same-process action full_sbs applied pack=3.0
+PASS same-process action vr180 applied pack=3.0
+PASS same-process action off applied pack=0.0
+PASS same-process action full_sbs applied pack=3.0
+PASS all explicit SBS route scenarios through actual Swift plan and Lua
+PASS 191t T5 repeated SBS sent output twice and projection twice through actual applier and projection sender
+PASS 191t T5 actual resends replay through Lua as flat source pack3
+PASS actual compiled applier4effect changes -> exact Lua bytes preserve tracked pose; stale resends and actualOff retained
+PASS fresh Lua explicit Off publishes enabled=false even when state was already false
+PASS T1 pure ThreeDPresentationPlan.make(state) exists
+PASS T1 film source ignores renderedSource
+PASS T1 engine resolves film source and current output
+PASS T1 flat SBS preview plan uses pack 3
+PASS T2 non-VR stored lastOutput vr180 restores sbs
+PASS T2 toggle3D uses the sanitized flat restore output
+PASS T2 plan helper uses FilmThreeD.lastOutput through current
+PASS owner regression: opening rebuilds inferred source and sanitizes flat VR180 restore
+PASS reapply forces projection/output resend without discarding applied route
+PASS F3 flat explicit VR180 never teaches lastOutput
+PASS T3 generated carries plan output
+PASS T3 generated is ignored unless plan output equals current output
+PASS T3 2D View VR180 generated shot stays twoDVR180, never native
+PASS T3 interim TWO_D_VR180 ignores a generated VR180 Lua kind
+PASS T3 ignored generated shot keeps the measured 2D aspect
+PASS T4 explicit output change clears renderedSource
+PASS T4 rendered shot changes only Lua projection while output matches
+PASS T5 toggle3D clears renderedSource on every output change
+PASS T5 Off plan disables VR and pack
+PASS T6 Swift native VR180 SBS and TB force pack 0
+PASS T6 native Off stays Off and disables VR
+PASS T6 native strength/IPD/head changes keep pack 0
+PASS T9 native VR180 on a file resolves native
+PASS T8 store queues re-entrant dispatch and drains final state
+PASS T8 explicit same-output actions re-present instead of latching
+FAIL T4 original return re-applies a route-only plan change
+PASS F6 interim twoDVR180 uses flat virtual screen, not equirect pack 4
+PASS capture 035341: native projection has a per-opening memory
+PASS capture 035341: later stereo-only video params keep opening native projection
+PASS recognition memory resets only when the film changes
+PASS projection merge keeps spherical verdicts above generic flat layouts
+presentation plan pins: 1 failure(s)
+
+192q final rerun: old T4 textual pin named presentationChanged; updated to preserved routeChanged condition, not a behavior failure. Final pins below.
+PASS explicit SBS Swift->Lua saved=False initiallyNative=False layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=False initiallyNative=False layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=False initiallyNative=False layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=False initiallyNative=True layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=False initiallyNative=True layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=False initiallyNative=True layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=True initiallyNative=False layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=True initiallyNative=False layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=True initiallyNative=False layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=True initiallyNative=True layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=True initiallyNative=True layout=1.0 pack3
+PASS explicit SBS Swift->Lua saved=True initiallyNative=True layout=1.0 pack3
+PASS same-process action off applied pack=0.0
+PASS same-process action full_sbs applied pack=3.0
+PASS same-process action vr180 applied pack=3.0
+PASS same-process action full_sbs applied pack=3.0
+PASS same-process action off applied pack=0.0
+PASS same-process action full_sbs applied pack=3.0
+PASS same-process action vr180 applied pack=3.0
+PASS same-process action off applied pack=0.0
+PASS same-process action full_sbs applied pack=3.0
+PASS all explicit SBS route scenarios through actual Swift plan and Lua
+PASS 191t T5 repeated SBS sent output twice and projection twice through actual applier and projection sender
+PASS 191t T5 actual resends replay through Lua as flat source pack3
+PASS actual compiled applier4effect changes -> exact Lua bytes preserve tracked pose; stale resends and actualOff retained
+PASS fresh Lua explicit Off publishes enabled=false even when state was already false
+PASS T1 pure ThreeDPresentationPlan.make(state) exists
+PASS T1 film source ignores renderedSource
+PASS T1 engine resolves film source and current output
+PASS T1 flat SBS preview plan uses pack 3
+PASS T2 non-VR stored lastOutput vr180 restores sbs
+PASS T2 toggle3D uses the sanitized flat restore output
+PASS T2 plan helper uses FilmThreeD.lastOutput through current
+PASS owner regression: opening rebuilds inferred source and sanitizes flat VR180 restore
+PASS reapply forces projection/output resend without discarding applied route
+PASS F3 flat explicit VR180 never teaches lastOutput
+PASS T3 generated carries plan output
+PASS T3 generated is ignored unless plan output equals current output
+PASS T3 2D View VR180 generated shot stays twoDVR180, never native
+PASS T3 interim TWO_D_VR180 ignores a generated VR180 Lua kind
+PASS T3 ignored generated shot keeps the measured 2D aspect
+PASS T4 explicit output change clears renderedSource
+PASS T4 rendered shot changes only Lua projection while output matches
+PASS T5 toggle3D clears renderedSource on every output change
+PASS T5 Off plan disables VR and pack
+PASS T6 Swift native VR180 SBS and TB force pack 0
+PASS T6 native Off stays Off and disables VR
+PASS T6 native strength/IPD/head changes keep pack 0
+PASS T9 native VR180 on a file resolves native
+PASS T8 store queues re-entrant dispatch and drains final state
+PASS T8 explicit same-output actions re-present instead of latching
+PASS T4 original return re-applies a route-only plan change
+PASS F6 interim twoDVR180 uses flat virtual screen, not equirect pack 4
+PASS capture 035341: native projection has a per-opening memory
+PASS capture 035341: later stereo-only video params keep opening native projection
+PASS recognition memory resets only when the film changes
+PASS projection merge keeps spherical verdicts above generic flat layouts
+presentation plan pins: 0 failure(s)
+PASS four-controls-subs-removed
+PASS ipd-top-left
+PASS depth-top-right
+PASS screen-bottom-left
+PASS size-bottom-right
+PASS ipd-value-beside
+PASS size-value-beside-left
+PASS ipd-diagonal
+PASS size-diagonal-mirrored
+PASS size-reads-dash-plus-value-word
+PASS screen-diagonal-up
+PASS ipd-inside
+PASS ipd-inside
+PASS ipd-inside
+PASS ipd-inside
+PASS ipd-cells-one-char
+PASS ipd-cells-disjoint
+PASS ipd-cell-hit
+PASS depth-inside
+PASS depth-inside
+PASS depth-inside
+PASS depth-inside
+PASS depth-cells-one-char
+PASS depth-cells-disjoint
+PASS depth-cell-hit
+PASS screen-inside
+PASS screen-inside
+PASS screen-inside
+PASS screen-inside
+PASS screen-cells-one-char
+PASS screen-cells-disjoint
+PASS screen-cell-hit
+PASS size-inside
+PASS size-inside
+PASS size-inside
+PASS size-inside
+PASS size-cells-one-char
+PASS size-cells-disjoint
+PASS size-cell-hit
+PASS no-control-overlap
+PASS size-above-subtitle-band
+PASS size-diagonal-preserved-under-shift
+PASS top-rows-untouched-by-band
+PASS chrome-pushes-left-corner
+PASS chrome-pushes-right-corner
+PASS format-size
+PASS format-ipd
+PASS format-screen
+PASS even-crosshair-one-cell
+PASS even-crosshair-centered
+PASS even-crosshair-inside
+PASS odd-crosshair-one-cell
+PASS odd-crosshair-centered
+PASS odd-crosshair-inside
+PASS sweep-ipd-200x200-never-clipped
+PASS sweep-ipd-200x200-never-clipped
+PASS sweep-ipd-200x200-never-clipped
+PASS sweep-ipd-200x200-never-clipped
+PASS sweep-depth-200x200-never-clipped
+PASS sweep-depth-200x200-never-clipped
+PASS sweep-depth-200x200-never-clipped
+PASS sweep-depth-200x200-never-clipped
+PASS sweep-screen-200x200-never-clipped
+PASS sweep-screen-200x200-never-clipped
+PASS sweep-screen-200x200-never-clipped
+PASS sweep-screen-200x200-never-clipped
+PASS sweep-size-200x200-never-clipped
+PASS sweep-size-200x200-never-clipped
+PASS sweep-size-200x200-never-clipped
+PASS sweep-size-200x200-never-clipped
+PASS sweep-crosshair-200x200-inside
+PASS sweep-ipd-320x200-never-clipped
+PASS sweep-ipd-320x200-never-clipped
+PASS sweep-ipd-320x200-never-clipped
+PASS sweep-ipd-320x200-never-clipped
+PASS sweep-depth-320x200-never-clipped
+PASS sweep-depth-320x200-never-clipped
+PASS sweep-depth-320x200-never-clipped
+PASS sweep-depth-320x200-never-clipped
+PASS sweep-screen-320x200-never-clipped
+PASS sweep-screen-320x200-never-clipped
+PASS sweep-screen-320x200-never-clipped
+PASS sweep-screen-320x200-never-clipped
+PASS sweep-size-320x200-never-clipped
+PASS sweep-size-320x200-never-clipped
+PASS sweep-size-320x200-never-clipped
+PASS sweep-size-320x200-never-clipped
+PASS sweep-crosshair-320x200-inside
+PASS sweep-ipd-640x480-never-clipped
+PASS sweep-ipd-640x480-never-clipped
+PASS sweep-ipd-640x480-never-clipped
+PASS sweep-ipd-640x480-never-clipped
+PASS sweep-depth-640x480-never-clipped
+PASS sweep-depth-640x480-never-clipped
+PASS sweep-depth-640x480-never-clipped
+PASS sweep-depth-640x480-never-clipped
+PASS sweep-screen-640x480-never-clipped
+PASS sweep-screen-640x480-never-clipped
+PASS sweep-screen-640x480-never-clipped
+PASS sweep-screen-640x480-never-clipped
+PASS sweep-size-640x480-never-clipped
+PASS sweep-size-640x480-never-clipped
+PASS sweep-size-640x480-never-clipped
+PASS sweep-size-640x480-never-clipped
+PASS sweep-crosshair-640x480-inside
+PASS sweep-ipd-800x600-never-clipped
+PASS sweep-ipd-800x600-never-clipped
+PASS sweep-ipd-800x600-never-clipped
+PASS sweep-ipd-800x600-never-clipped
+PASS sweep-depth-800x600-never-clipped
+PASS sweep-depth-800x600-never-clipped
+PASS sweep-depth-800x600-never-clipped
+PASS sweep-depth-800x600-never-clipped
+PASS sweep-screen-800x600-never-clipped
+PASS sweep-screen-800x600-never-clipped
+PASS sweep-screen-800x600-never-clipped
+PASS sweep-screen-800x600-never-clipped
+PASS sweep-size-800x600-never-clipped
+PASS sweep-size-800x600-never-clipped
+PASS sweep-size-800x600-never-clipped
+PASS sweep-size-800x600-never-clipped
+PASS sweep-crosshair-800x600-inside
+PASS sweep-ipd-1024x576-never-clipped
+PASS sweep-ipd-1024x576-never-clipped
+PASS sweep-ipd-1024x576-never-clipped
+PASS sweep-ipd-1024x576-never-clipped
+PASS sweep-depth-1024x576-never-clipped
+PASS sweep-depth-1024x576-never-clipped
+PASS sweep-depth-1024x576-never-clipped
+PASS sweep-depth-1024x576-never-clipped
+PASS sweep-screen-1024x576-never-clipped
+PASS sweep-screen-1024x576-never-clipped
+PASS sweep-screen-1024x576-never-clipped
+PASS sweep-screen-1024x576-never-clipped
+PASS sweep-size-1024x576-never-clipped
+PASS sweep-size-1024x576-never-clipped
+PASS sweep-size-1024x576-never-clipped
+PASS sweep-size-1024x576-never-clipped
+PASS sweep-crosshair-1024x576-inside
+PASS sweep-ipd-1280x720-never-clipped
+PASS sweep-ipd-1280x720-never-clipped
+PASS sweep-ipd-1280x720-never-clipped
+PASS sweep-ipd-1280x720-never-clipped
+PASS sweep-depth-1280x720-never-clipped
+PASS sweep-depth-1280x720-never-clipped
+PASS sweep-depth-1280x720-never-clipped
+PASS sweep-depth-1280x720-never-clipped
+PASS sweep-screen-1280x720-never-clipped
+PASS sweep-screen-1280x720-never-clipped
+PASS sweep-screen-1280x720-never-clipped
+PASS sweep-screen-1280x720-never-clipped
+PASS sweep-size-1280x720-never-clipped
+PASS sweep-size-1280x720-never-clipped
+PASS sweep-size-1280x720-never-clipped
+PASS sweep-size-1280x720-never-clipped
+PASS sweep-crosshair-1280x720-inside
+PASS sweep-ipd-1600x900-never-clipped
+PASS sweep-ipd-1600x900-never-clipped
+PASS sweep-ipd-1600x900-never-clipped
+PASS sweep-ipd-1600x900-never-clipped
+PASS sweep-depth-1600x900-never-clipped
+PASS sweep-depth-1600x900-never-clipped
+PASS sweep-depth-1600x900-never-clipped
+PASS sweep-depth-1600x900-never-clipped
+PASS sweep-screen-1600x900-never-clipped
+PASS sweep-screen-1600x900-never-clipped
+PASS sweep-screen-1600x900-never-clipped
+PASS sweep-screen-1600x900-never-clipped
+PASS sweep-size-1600x900-never-clipped
+PASS sweep-size-1600x900-never-clipped
+PASS sweep-size-1600x900-never-clipped
+PASS sweep-size-1600x900-never-clipped
+PASS sweep-crosshair-1600x900-inside
+PASS sweep-ipd-1920x1080-never-clipped
+PASS sweep-ipd-1920x1080-never-clipped
+PASS sweep-ipd-1920x1080-never-clipped
+PASS sweep-ipd-1920x1080-never-clipped
+PASS sweep-depth-1920x1080-never-clipped
+PASS sweep-depth-1920x1080-never-clipped
+PASS sweep-depth-1920x1080-never-clipped
+PASS sweep-depth-1920x1080-never-clipped
+PASS sweep-screen-1920x1080-never-clipped
+PASS sweep-screen-1920x1080-never-clipped
+PASS sweep-screen-1920x1080-never-clipped
+PASS sweep-screen-1920x1080-never-clipped
+PASS sweep-size-1920x1080-never-clipped
+PASS sweep-size-1920x1080-never-clipped
+PASS sweep-size-1920x1080-never-clipped
+PASS sweep-size-1920x1080-never-clipped
+PASS sweep-crosshair-1920x1080-inside
+PASS sweep-ipd-2560x1080-never-clipped
+PASS sweep-ipd-2560x1080-never-clipped
+PASS sweep-ipd-2560x1080-never-clipped
+PASS sweep-ipd-2560x1080-never-clipped
+PASS sweep-depth-2560x1080-never-clipped
+PASS sweep-depth-2560x1080-never-clipped
+PASS sweep-depth-2560x1080-never-clipped
+PASS sweep-depth-2560x1080-never-clipped
+PASS sweep-screen-2560x1080-never-clipped
+PASS sweep-screen-2560x1080-never-clipped
+PASS sweep-screen-2560x1080-never-clipped
+PASS sweep-screen-2560x1080-never-clipped
+PASS sweep-size-2560x1080-never-clipped
+PASS sweep-size-2560x1080-never-clipped
+PASS sweep-size-2560x1080-never-clipped
+PASS sweep-size-2560x1080-never-clipped
+PASS sweep-crosshair-2560x1080-inside
+PASS sweep-ipd-3440x1440-never-clipped
+PASS sweep-ipd-3440x1440-never-clipped
+PASS sweep-ipd-3440x1440-never-clipped
+PASS sweep-ipd-3440x1440-never-clipped
+PASS sweep-depth-3440x1440-never-clipped
+PASS sweep-depth-3440x1440-never-clipped
+PASS sweep-depth-3440x1440-never-clipped
+PASS sweep-depth-3440x1440-never-clipped
+PASS sweep-screen-3440x1440-never-clipped
+PASS sweep-screen-3440x1440-never-clipped
+PASS sweep-screen-3440x1440-never-clipped
+PASS sweep-screen-3440x1440-never-clipped
+PASS sweep-size-3440x1440-never-clipped
+PASS sweep-size-3440x1440-never-clipped
+PASS sweep-size-3440x1440-never-clipped
+PASS sweep-size-3440x1440-never-clipped
+PASS sweep-crosshair-3440x1440-inside
+PASS sweep-ipd-3840x2160-never-clipped
+PASS sweep-ipd-3840x2160-never-clipped
+PASS sweep-ipd-3840x2160-never-clipped
+PASS sweep-ipd-3840x2160-never-clipped
+PASS sweep-depth-3840x2160-never-clipped
+PASS sweep-depth-3840x2160-never-clipped
+PASS sweep-depth-3840x2160-never-clipped
+PASS sweep-depth-3840x2160-never-clipped
+PASS sweep-screen-3840x2160-never-clipped
+PASS sweep-screen-3840x2160-never-clipped
+PASS sweep-screen-3840x2160-never-clipped
+PASS sweep-screen-3840x2160-never-clipped
+PASS sweep-size-3840x2160-never-clipped
+PASS sweep-size-3840x2160-never-clipped
+PASS sweep-size-3840x2160-never-clipped
+PASS sweep-size-3840x2160-never-clipped
+PASS sweep-crosshair-3840x2160-inside
+PASS sweep-ipd-801x603-never-clipped
+PASS sweep-ipd-801x603-never-clipped
+PASS sweep-ipd-801x603-never-clipped
+PASS sweep-ipd-801x603-never-clipped
+PASS sweep-depth-801x603-never-clipped
+PASS sweep-depth-801x603-never-clipped
+PASS sweep-depth-801x603-never-clipped
+PASS sweep-depth-801x603-never-clipped
+PASS sweep-screen-801x603-never-clipped
+PASS sweep-screen-801x603-never-clipped
+PASS sweep-screen-801x603-never-clipped
+PASS sweep-screen-801x603-never-clipped
+PASS sweep-size-801x603-never-clipped
+PASS sweep-size-801x603-never-clipped
+PASS sweep-size-801x603-never-clipped
+PASS sweep-size-801x603-never-clipped
+PASS sweep-crosshair-801x603-inside
+PASS sweep-ipd-2048x1152-never-clipped
+PASS sweep-ipd-2048x1152-never-clipped
+PASS sweep-ipd-2048x1152-never-clipped
+PASS sweep-ipd-2048x1152-never-clipped
+PASS sweep-depth-2048x1152-never-clipped
+PASS sweep-depth-2048x1152-never-clipped
+PASS sweep-depth-2048x1152-never-clipped
+PASS sweep-depth-2048x1152-never-clipped
+PASS sweep-screen-2048x1152-never-clipped
+PASS sweep-screen-2048x1152-never-clipped
+PASS sweep-screen-2048x1152-never-clipped
+PASS sweep-screen-2048x1152-never-clipped
+PASS sweep-size-2048x1152-never-clipped
+PASS sweep-size-2048x1152-never-clipped
+PASS sweep-size-2048x1152-never-clipped
+PASS sweep-size-2048x1152-never-clipped
+PASS sweep-crosshair-2048x1152-inside
+PASS screen-value-fits-field-0.25m
+PASS screen-value-fits-field-0.667m
+PASS screen-fixed-positions-0.667m
+PASS screen-value-fits-field-1m
+PASS screen-fixed-positions-1m
+PASS screen-value-fits-field-1.5m
+PASS screen-fixed-positions-1.5m
+PASS screen-value-fits-field-2.25m
+PASS screen-fixed-positions-2.25m
+PASS screen-value-fits-field-3.38m
+PASS screen-fixed-positions-3.38m
+PASS screen-value-fits-field-5.06m
+PASS screen-fixed-positions-5.06m
+PASS screen-value-fits-field-7.59m
+PASS screen-fixed-positions-7.59m
+PASS screen-value-fits-field-8m
+PASS screen-fixed-positions-8m
+PASS depth-value-fits-field-0
+PASS depth-value-fits-field-0.25
+PASS depth-fixed-positions-0.25
+PASS depth-value-fits-field-0.5
+PASS depth-fixed-positions-0.5
+PASS depth-value-fits-field-0.75
+PASS depth-fixed-positions-0.75
+PASS depth-value-fits-field-1
+PASS depth-fixed-positions-1
+PASS depth-value-fits-field-1.25
+PASS depth-fixed-positions-1.25
+PASS depth-value-fits-field-1.5
+PASS depth-fixed-positions-1.5
+PASS depth-value-fits-field-1.75
+PASS depth-fixed-positions-1.75
+PASS depth-value-fits-field-2
+PASS depth-fixed-positions-2
+PASS ipd-value-fits-field-+0.0
+PASS ipd-value-fits-field-+0.1
+PASS ipd-fixed-positions-+0.1
+PASS ipd-value-fits-field--0.1
+PASS ipd-fixed-positions--0.1
+PASS ipd-value-fits-field-+0.2
+PASS ipd-fixed-positions-+0.2
+PASS ipd-value-fits-field--0.2
+PASS ipd-fixed-positions--0.2
+PASS size-value-fits-field-20°
+PASS size-value-fits-field-75°
+PASS size-fixed-positions-75°
+PASS size-value-fits-field-105°
+PASS size-fixed-positions-105°
+PASS size-value-fits-field-150°
+PASS size-fixed-positions-150°
+PASS format-strength-fits-0.0
+PASS format-strength-fits-0.25
+PASS format-strength-fits-0.5
+PASS format-strength-fits-0.75
+PASS format-strength-fits-1.0
+PASS format-strength-fits-1.25
+PASS format-strength-fits-1.5
+PASS format-strength-fits-1.75
+PASS format-strength-fits-2.0
+PASS format-depth-fits-1.5
+PASS format-depth-fits-2.25
+PASS format-depth-fits-3.375
+PASS format-depth-fits-5.0625
+PASS format-depth-fits-7.59375
+PASS format-depth-low-fits-1.5
+PASS format-depth-low-fits-1.0
+PASS format-depth-low-fits-0.6666666666666666
+PASS format-depth-low-fits-0.4444444444444444
+PASS format-depth-low-fits-0.2962962962962963
+PASS format-size-fits-20.0
+PASS format-size-fits-25.0
+PASS format-size-fits-30.0
+PASS format-size-fits-35.0
+PASS format-size-fits-40.0
+PASS format-size-fits-45.0
+PASS format-size-fits-50.0
+PASS format-size-fits-55.0
+PASS format-size-fits-60.0
+PASS format-size-fits-65.0
+PASS format-size-fits-70.0
+PASS format-size-fits-75.0
+PASS format-size-fits-80.0
+PASS format-size-fits-85.0
+PASS format-size-fits-90.0
+PASS format-size-fits-95.0
+PASS format-size-fits-100.0
+PASS format-size-fits-105.0
+PASS format-size-fits-110.0
+PASS format-size-fits-115.0
+PASS format-size-fits-120.0
+PASS format-size-fits-125.0
+PASS format-size-fits-130.0
+PASS format-size-fits-135.0
+PASS format-size-fits-140.0
+PASS format-size-fits-145.0
+PASS format-size-fits-150.0
+PASS format-ipd-fits--0.2
+PASS format-ipd-fits--0.18000000000000002
+PASS format-ipd-fits--0.16000000000000003
+PASS format-ipd-fits--0.14000000000000004
+PASS format-ipd-fits--0.12000000000000004
+PASS format-ipd-fits--0.10000000000000003
+PASS format-ipd-fits--0.08000000000000003
+PASS format-ipd-fits--0.060000000000000026
+PASS format-ipd-fits--0.04000000000000002
+PASS format-ipd-fits--0.02000000000000002
+PASS format-ipd-fits--2.0816681711721685e-17
+PASS format-ipd-fits-0.01999999999999998
+PASS format-ipd-fits-0.03999999999999998
+PASS format-ipd-fits-0.059999999999999984
+PASS format-ipd-fits-0.07999999999999999
+PASS format-ipd-fits-0.09999999999999999
+PASS format-ipd-fits-0.12
+PASS format-ipd-fits-0.13999999999999999
+PASS format-ipd-fits-0.15999999999999998
+PASS format-ipd-fits-0.17999999999999997
+PASS format-ipd-fits-0.19999999999999996
+PASS ipd-equal-gaps
+PASS depth-equal-gaps
+PASS screen-equal-gaps
+PASS size-equal-gaps
+PASS fs-ipd-1280x720-inside
+PASS fs-ipd-1280x720-inside
+PASS fs-ipd-1280x720-inside
+PASS fs-ipd-1280x720-inside
+PASS fs-depth-1280x720-inside
+PASS fs-depth-1280x720-inside
+PASS fs-depth-1280x720-inside
+PASS fs-depth-1280x720-inside
+PASS fs-screen-1280x720-inside
+PASS fs-screen-1280x720-inside
+PASS fs-screen-1280x720-inside
+PASS fs-screen-1280x720-inside
+PASS fs-size-1280x720-inside
+PASS fs-size-1280x720-inside
+PASS fs-size-1280x720-inside
+PASS fs-size-1280x720-inside
+PASS fs-anchors-1280x720
+PASS fs-crosshair-1280x720-center
+PASS fs-ipd-1280x720-gaps
+PASS fs-depth-1280x720-gaps
+PASS fs-screen-1280x720-gaps
+PASS fs-size-1280x720-gaps
+PASS fs-ipd-1920x1080-inside
+PASS fs-ipd-1920x1080-inside
+PASS fs-ipd-1920x1080-inside
+PASS fs-ipd-1920x1080-inside
+PASS fs-depth-1920x1080-inside
+PASS fs-depth-1920x1080-inside
+PASS fs-depth-1920x1080-inside
+PASS fs-depth-1920x1080-inside
+PASS fs-screen-1920x1080-inside
+PASS fs-screen-1920x1080-inside
+PASS fs-screen-1920x1080-inside
+PASS fs-screen-1920x1080-inside
+PASS fs-size-1920x1080-inside
+PASS fs-size-1920x1080-inside
+PASS fs-size-1920x1080-inside
+PASS fs-size-1920x1080-inside
+PASS fs-anchors-1920x1080
+PASS fs-crosshair-1920x1080-center
+PASS fs-ipd-1920x1080-gaps
+PASS fs-depth-1920x1080-gaps
+PASS fs-screen-1920x1080-gaps
+PASS fs-size-1920x1080-gaps
+PASS fs-ipd-3440x1440-inside
+PASS fs-ipd-3440x1440-inside
+PASS fs-ipd-3440x1440-inside
+PASS fs-ipd-3440x1440-inside
+PASS fs-depth-3440x1440-inside
+PASS fs-depth-3440x1440-inside
+PASS fs-depth-3440x1440-inside
+PASS fs-depth-3440x1440-inside
+PASS fs-screen-3440x1440-inside
+PASS fs-screen-3440x1440-inside
+PASS fs-screen-3440x1440-inside
+PASS fs-screen-3440x1440-inside
+PASS fs-size-3440x1440-inside
+PASS fs-size-3440x1440-inside
+PASS fs-size-3440x1440-inside
+PASS fs-size-3440x1440-inside
+PASS fs-anchors-3440x1440
+PASS fs-crosshair-3440x1440-center
+PASS fs-ipd-3440x1440-gaps
+PASS fs-depth-3440x1440-gaps
+PASS fs-screen-3440x1440-gaps
+PASS fs-size-3440x1440-gaps
+PASS fs-ipd-3840x2160-inside
+PASS fs-ipd-3840x2160-inside
+PASS fs-ipd-3840x2160-inside
+PASS fs-ipd-3840x2160-inside
+PASS fs-depth-3840x2160-inside
+PASS fs-depth-3840x2160-inside
+PASS fs-depth-3840x2160-inside
+PASS fs-depth-3840x2160-inside
+PASS fs-screen-3840x2160-inside
+PASS fs-screen-3840x2160-inside
+PASS fs-screen-3840x2160-inside
+PASS fs-screen-3840x2160-inside
+PASS fs-size-3840x2160-inside
+PASS fs-size-3840x2160-inside
+PASS fs-size-3840x2160-inside
+PASS fs-size-3840x2160-inside
+PASS fs-anchors-3840x2160
+PASS fs-crosshair-3840x2160-center
+PASS fs-ipd-3840x2160-gaps
+PASS fs-depth-3840x2160-gaps
+PASS fs-screen-3840x2160-gaps
+PASS fs-size-3840x2160-gaps
+PASS fs-ipd-1280x720-inside
+PASS fs-ipd-1280x720-inside
+PASS fs-ipd-1280x720-inside
+PASS fs-ipd-1280x720-inside
+PASS fs-depth-1280x720-inside
+PASS fs-depth-1280x720-inside
+PASS fs-depth-1280x720-inside
+PASS fs-depth-1280x720-inside
+PASS fs-screen-1280x720-inside
+PASS fs-screen-1280x720-inside
+PASS fs-screen-1280x720-inside
+PASS fs-screen-1280x720-inside
+PASS fs-size-1280x720-inside
+PASS fs-size-1280x720-inside
+PASS fs-size-1280x720-inside
+PASS fs-size-1280x720-inside
+PASS fs-anchors-1280x720
+PASS fs-crosshair-1280x720-center
+PASS fs-ipd-1280x720-gaps
+PASS fs-depth-1280x720-gaps
+PASS fs-screen-1280x720-gaps
+PASS fs-size-1280x720-gaps
+PASS ipd-field-width
+PASS depth-field-width
+PASS screen-field-width
+PASS size-field-width
+ALL PASS
+PASS subscribe-present
+PASS depthStronger-lands
+PASS depthStronger-notifies
+PASS depthWeaker-lands
+PASS depthWeaker-clamps-low
+PASS depthStronger-clamps-high
+PASS screenNearer-lands
+PASS screenFarther-lands
+PASS screenFarther-clamps-high
+PASS screenNearer-clamps-low
+PASS sizeLarger-lands
+PASS sizeSmaller-lands
+PASS sizeLarger-clamps-high
+PASS ipdPlus-lands
+PASS ipdMinus-lands
+PASS every-dispatch-notifies
+PASS unsubscribe-stops-notify
+ALL PASS
+run.py pins PASS
+PASS actual current Lua930updates identical uniforms,900row bound, numeric route/convergence/time/session, exact all-pack GLSL parity; title stats explicitly unavailable
+PASS native VR180 +15deg roll is published raw on the same pose message target=0.261799388 got=0.261799
+PASS native VR180 -15deg roll is published raw on the same pose message target=-0.261799388 got=-0.261799
+native roll parity: 0 failure(s)
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+PASS all generated shaders byte-identical to192l except retired green calibrationmark
+MEAS failed192p vs192l changed pixels 443117 of 576000
+PASS 32 whole-frame UV/textured native+converted cross+parallel signed tilt/blink renders EXACT192l; actual Lua uniforms identical; subtitle axis192l. Mac acceptance pending
+PASS 192s fresh cross-eye default ON
+PASS 192s legacy inherited false recovers approved ON
+PASS 192s explicit OFF persists and survives default recovery
+PASS 192s explicit ON persists
+PASS 192s native VR entry blink defaults ON
+PASS 192s explicit blink OFF survives re-entry/relaunch
+PASS 192s plain2D does not auto-start blink
+PASS 192s converted VR entry blink defaults ON
+PASS 192s real store loads inherited OFF as ON
+PASS 192s real stored explicit OFF survives next process load

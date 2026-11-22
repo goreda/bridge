@@ -1,0 +1,21 @@
+{
+  "source": "goreda/instinct main pinned e05663098c85308dae0d75102c784f5c890619f7",
+  "sha256": "6430a5488a5357f16b6b19d9840122cd6180808efbc530d832da026f2fad04e0",
+  "negative_checks": [
+    {
+      "removed_anchor": "if subtitleOnly && captureBounds.isNull { return }",
+      "rejected": true
+    },
+    {
+      "removed_anchor": "cameraState == .running",
+      "rejected": true
+    },
+    {
+      "removed_anchor": "self.faceLifecycle == lifecycle",
+      "rejected": true
+    }
+  ],
+  "previous_review_sha256": "073de7f3164aa04b4a399b8870db42f03ae1ee7b4503bbd9123e9ac47376de57",
+  "semantic_delta_review": "Compared to prior reviewed source: window bounds bridge now casts to [String: Any], then as CFDictionary for CGRect. No lifecycle/sampling algorithm change; no Swift compilation or native bridge correctness claim.",
+  "current_rerun": "camera 13 controls and sampling 13 source guards/4 routes/18 geometry/6 face models PASS"
+}

@@ -1,0 +1,24 @@
+{
+  "live_read": "goreda/instinct main, 2026-10-01 22:37 Europe/Istanbul",
+  "sources": {
+    "Sources/gor/ArchiveBrowser.swift": "07028fa2f2f93578f9f4fc975c8008f327140dd4ebd451992fb8d591561120ac",
+    "Sources/gor/App/AppDelegate.swift": "ef735567f7259716884f3a2933581c6c15de56f2426bc4788ff43d9cced9ae05",
+    "Sources/gor/FileBrowser.swift": "48e3bc5d4f276af987d8613b00797845f5a7595123d1515b4e45193ddb683ee1",
+    "Resources/vendor/mpv/scripts/autoload.lua": "8f429d14cc0b171fca78357368c11737fefd33c3757778a3a44c14f6c0477417",
+    "Resources/vendor/mpv/script-opts/autoload.conf": "781f41cd1f81445a9e0052ec8cc8adb98d25131c1aab7c20fb2f065fbc83481e"
+  },
+  "negative_checks": [
+    {
+      "source": "Sources/gor/ArchiveBrowser.swift",
+      "rejected": true
+    },
+    {
+      "source": "Sources/gor/App/AppDelegate.swift",
+      "rejected": true
+    },
+    {
+      "source": "Resources/vendor/mpv/scripts/autoload.lua",
+      "rejected": true
+    }
+  ]
+}

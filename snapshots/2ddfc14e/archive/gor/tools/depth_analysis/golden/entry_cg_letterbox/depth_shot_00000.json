@@ -1,0 +1,11 @@
+{
+ "depth_width": 266,
+ "depth_height": 150,
+ "frames": 8,
+ "start_frame": 0,
+ "fps": 24.0,
+ "start_pts": 0.0,
+ "source_width": 640,
+ "source_height": 360,
+ "note": "letterboxed-box golden (s24): depth stored at the 266x150 letterbox box; renderer upsamples (canonical inverse-plane bilinear)"
+}

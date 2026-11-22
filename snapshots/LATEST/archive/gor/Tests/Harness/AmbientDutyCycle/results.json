@@ -1,0 +1,36 @@
+{
+  "result": "PASS duty-cycle controls and scoped ownership characterizations",
+  "controls": [
+    "idempotent start/first window 15s source ceiling",
+    "checkpoint normal window 2s source ceiling",
+    "ceiling without ambient schedules retry",
+    "available ambient/frame close does not retry",
+    "checkpoint runtime/active guard",
+    "stop closes window and cancels pending work under successful cancellation assumption"
+  ],
+  "characterizations": [
+    {
+      "case": "old ambient frame closure after replacement",
+      "observed": "close has no window identity and can stop new window",
+      "scope": "adversarial retained callback, native HeadTracker delivery ordering unverified"
+    },
+    {
+      "case": "already-running first/retry callback after stop",
+      "observed": "open itself lacks runtime/active/generation gate",
+      "scope": "only if cancellation cannot retract begun callback; not claiming canceled pending DispatchWorkItem executes"
+    },
+    {
+      "case": "seek past checkpoints",
+      "observed": "one overdue checkpoint per call, four successive opens",
+      "scope": "current policy characterization, not necessarily defect"
+    }
+  ],
+  "source_sha256": "74d16c7591b1058167d0fbb2a025f554afe59df5dd76dd168df97e20580b277e",
+  "open": [
+    "actual DispatchWorkItem cancellation/native frame ordering",
+    "camera settling and consumer balance",
+    "ambient fallback source reliability",
+    "scheduled duration/thermal/privacy/UI effects"
+  ],
+  "scope": "Python state port + current source guards, no camera/timer/Dispatch/native/UI/hardware execution"
+}

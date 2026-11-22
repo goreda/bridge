@@ -1,0 +1,37 @@
+{
+  "result": "PASS cache/fallback controls and source policy characterizations",
+  "controls": [
+    "inflight waiters coalesce and all delivered once",
+    "fresh positive cache avoids request",
+    "TTL boundary expires cache and starts request",
+    "network negative cache expires at same 6h boundary",
+    "non200 primary goes to fallback",
+    "empty-body primary goes to fallback",
+    "countries keep independent loading/waiters"
+  ],
+  "characterizations": [
+    {
+      "case": "primary nonempty 200 parses empty",
+      "observed": "fallback not attempted; caller gets empty guide",
+      "scope": "synthetic provider reply, not current live outage"
+    },
+    {
+      "case": "empty parsed success repeats",
+      "observed": "no positive/negative cache, next request repeats primary",
+      "scope": "source policy characterization, actual frequency unmeasured"
+    },
+    {
+      "case": "fuzzy prefix guide match",
+      "observed": "first matching prefix wins with Dictionary iteration, no exact identity assurance",
+      "scope": "caller-dependent channel ambiguity, actual wrong guide not proved"
+    }
+  ],
+  "source_sha256": "bde436a1b47df6facffd8fe26cd11a3b1cd81efa76a6f737e891e96186508683",
+  "open": [
+    "native URLSession/thread/cache time parity",
+    "real primary/fallback feed responses and XMLParser",
+    "normalization/channel identity preference",
+    "stale-cache preservation policy and failure TTL intent"
+  ],
+  "scope": "Python state port + current Swift guards only; no EPG provider/network/XML/native/UI execution"
+}

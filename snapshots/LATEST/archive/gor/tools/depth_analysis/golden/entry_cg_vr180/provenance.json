@@ -1,0 +1,25 @@
+{
+  "median_hfov_deg": 56.86539221693351,
+  "hfov_true_deg": 60.0,
+  "kf_hfovs": [
+    55.56489840223441,
+    60.731708348303776,
+    58.1658860316326,
+    54.39753080918571
+  ],
+  "align_scale": -0.063,
+  "align_shift": 1.467,
+  "vda_input_size": 252,
+  "moge_num_tokens": 600,
+  "omp_threads": "2",
+  "multistart": "moge_recovery.patch_moge engaged (asserted in run)",
+  "clip": {
+    "w": 640,
+    "h": 360,
+    "frames": 48,
+    "fps": 24,
+    "hfov_true": 60.0,
+    "dolly_m": 1.2,
+    "generator": "pinhole raycast, 3 spheres + floor + wall, exact geometry (stall class)"
+  }
+}

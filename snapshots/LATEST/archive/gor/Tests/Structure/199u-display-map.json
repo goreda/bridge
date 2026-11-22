@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "station": "Display",
+  "base_ref": "1449175304fdf18192f3962857af02d4221651d8",
+  "scope": "Pure move; the eight unconditional leading import lines per unit are lifted. Every other byte is retained.",
+  "sections": {
+    "BrightnessController.swift": {
+      "old": "Sources/gor/gor/BrightnessController.swift",
+      "host": "Sources/gor/Picture/Brightness.swift",
+      "source_sha256": "b63c6bb391f53494fe740e4b3a964943426af74f9cda0534bb4c723d161bbdea",
+      "source_lines": 280,
+      "body_sha256": "bca1298868b91576da651e969711105b40c36f94b4e09bbdc15e67efb2d957e1",
+      "body_lines": 272,
+      "lifted_import_lines": [
+        {
+          "line": 1,
+          "text": "import AppKit\n"
+        },
+        {
+          "line": 2,
+          "text": "import CoreImage\n"
+        },
+        {
+          "line": 3,
+          "text": "import Foundation\n"
+        },
+        {
+          "line": 4,
+          "text": "import IOKit\n"
+        },
+        {
+          "line": 5,
+          "text": "import IOKit.ps\n"
+        },
+        {
+          "line": 6,
+          "text": "import CoreGraphics\n"
+        },
+        {
+          "line": 7,
+          "text": "import Darwin\n"
+        },
+        {
+          "line": 8,
+          "text": "import QuartzCore\n"
+        }
+      ]
+    },
+    "BrightnessReadCache.swift": {
+      "old": "Sources/gor/gor/BrightnessReadCache.swift",
+      "host": "Sources/gor/Picture/Brightness.swift",
+      "source_sha256": "e3b41206bfcdf56dfd88966bed799216e4beb5ae68fac9817801fd039367cd24",
+      "source_lines": 25,
+      "body_sha256": "be061cbc2d3d5adb368aa285d4e13a36c35f691843f545deefcdb59462e9e064",
+      "body_lines": 17,
+      "lifted_import_lines": [
+        {
+          "line": 1,
+          "text": "import AppKit\n"
+        },
+        {
+          "line": 2,
+          "text": "import CoreImage\n"
+        },
+        {
+          "line": 3,
+          "text": "import Foundation\n"
+        },
+        {
+          "line": 4,
+          "text": "import IOKit\n"
+        },
+        {
+          "line": 5,
+          "text": "import IOKit.ps\n"
+        },
+        {
+          "line": 6,
+          "text": "import CoreGraphics\n"
+        },
+        {
+          "line": 7,
+          "text": "import Darwin\n"
+        },
+        {
+          "line": 8,
+          "text": "import QuartzCore\n"
+        }
+      ]
+    },
+    "ContentAdaptiveDimming.swift": {
+      "old": "Sources/gor/gor/ContentAdaptiveDimming.swift",
+      "host": "Sources/gor/Picture/Brightness.swift",
+      "source_sha256": "e9c99a7f4c90a796a7f46bbdbccf2d58e30d65ff30a41f72f17929e50d307c15",
+      "source_lines": 489,
+      "body_sha256": "a1b3f90d8c8d4939ea39e7432e50070c888a6fa07e71af52c01c365be23c3d5d",
+      "body_lines": 481,
+      "lifted_import_lines": [
+        {
+          "line": 1,
+          "text": "import AppKit\n"
+        },
+        {
+          "line": 2,
+          "text": "import CoreImage\n"
+        },
+        {
+          "line": 3,
+          "text": "import Foundation\n"
+        },
+        {
+          "line": 4,
+          "text": "import IOKit\n"
+        },
+        {
+          "line": 5,
+          "text": "import IOKit.ps\n"
+        },
+        {
+          "line": 6,
+          "text": "import CoreGraphics\n"
+        },
+        {
+          "line": 7,
+          "text": "import Darwin\n"
+        },
+        {
+          "line": 8,
+          "text": "import QuartzCore\n"
+        }
+      ]
+    }
+  },
+  "hosts": {
+    "Sources/gor/Picture/Brightness.swift": {
+      "sha256": "bc6c5dac08ab5690e1f62f0660ee2aa0cb5e9692a99204326b657ee5fa46cd68",
+      "lines": 783,
+      "imports": [
+        "import AppKit",
+        "import CoreGraphics",
+        "import CoreImage",
+        "import Darwin",
+        "import Foundation",
+        "import IOKit",
+        "import IOKit.ps",
+        "import QuartzCore"
+      ],
+      "units": [
+        "BrightnessController.swift",
+        "BrightnessReadCache.swift",
+        "ContentAdaptiveDimming.swift"
+      ]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "source": "goreda/instinct main live read 2026-10-01 23:56 Europe/Istanbul, matched on final reread",
+  "source_sha256": "bde436a1b47df6facffd8fe26cd11a3b1cd81efa76a6f737e891e96186508683",
+  "negative_checks": [
+    {
+      "changed_anchor": "self.countryRequestGeneration == generation",
+      "rejected": true
+    },
+    {
+      "changed_anchor": "currentCode == code",
+      "rejected": true
+    },
+    {
+      "changed_anchor": "existing.urls.append(ch.streamURL)",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "native_validation": "not performed",
+  "known_red_policy": "PASS retains source-grounded counterexamples; not IPTV correctness clearance"
+}

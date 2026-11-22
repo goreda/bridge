@@ -1,0 +1,30 @@
+{
+ "tag": "noffmpeg",
+ "mpv": "mpv v0.41.0 Copyright \u00a9 2000-2025 mpv/MPlayer/mplayer2 projects",
+ "date": "2026-11-07T16:05:34+0300",
+ "window_s": 20,
+ "video_draw_n": 110,
+ "video_draw_ms": {
+  "mean": 161.09,
+  "p50": 160.9,
+  "p95": 163.56,
+  "max": 165.26
+ },
+ "drop_vo_in_window": 0,
+ "frame_drop_count": 785,
+ "cpu_pct_mean": 196.0,
+ "neutered": [],
+ "glsl_shaders": [
+  "photon-grain.glsl",
+  "photon-sharp.glsl",
+  "vr180-look-shader-a.glsl"
+ ],
+ "vf_n": 0,
+ "max_concurrent_ffmpeg": 0,
+ "sync_readbacks_total": 5,
+ "paced_captures": 2,
+ "capture_ms_max": 472.6,
+ "probe_frames_served": 7,
+ "probe_frames_skipped": 1,
+ "photon_errors": []
+}

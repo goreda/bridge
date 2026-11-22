@@ -1,0 +1,30 @@
+{
+  "packet_sha256": "0c372fb35fdb49d9e7abbf868af602b5a12ff486260abb5b9f4e377c165006c2",
+  "bytes": 66783,
+  "members": {
+    "README.md": {
+      "bytes": 2035,
+      "sha256": "5014314d96819ad731837ea7b9654cc8c2b9cad9a5726dc34d9def0f71e834a1"
+    },
+    "wt_server/wt_server.mjs": {
+      "bytes": 192565,
+      "sha256": "c4e473e7b36c4c9ac19b6ae9c562a696e2004eb578a38aaf277b22eba1ce0bcc"
+    },
+    "harness/fb.mjs": {
+      "bytes": 2019,
+      "sha256": "07a6786406f67c3f28477b7a124c880ca327ffff62b0edce2548decde54d7a32"
+    },
+    "harness/swap.mjs": {
+      "bytes": 4768,
+      "sha256": "bf7a27a411f7a08e7dc662b22662d2588ce87a1dc5b65c01f4161be414b7a32f"
+    },
+    "harness/fixture.mjs": {
+      "bytes": 1871,
+      "sha256": "c91bc893a671985f771c6527597f3eed0d27025acd1c805b32ee933aad682cb4"
+    },
+    "wt_server_v22.5_to_v22.6.diff": {
+      "bytes": 5579,
+      "sha256": "0cd2c610ac22989e9de9294e75580b80b735aa446c420e7f0c8e470c84e7ca37"
+    }
+  }
+}

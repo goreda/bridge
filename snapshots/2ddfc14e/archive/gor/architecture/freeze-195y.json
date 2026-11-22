@@ -1,0 +1,263 @@
+{
+ "commit": "aaeaed7bc31310c19cc93dfa3ccbccfc0c87302d",
+ "files": {
+  "Sources/gor/AdaptiveColor.swift": [
+   128,
+   "b613c6639ab53a4fd72d9f8861be7e2fca364221"
+  ],
+  "Sources/gor/AppDelegate.swift": [
+   3719,
+   "b18b2eb57090fc11fb69dea27292eaaf923b9c2e"
+  ],
+  "Sources/gor/ArchiveBrowser.swift": [
+   2553,
+   "7fcf6309632e02055959175303c7ec0c9a94ec8e"
+  ],
+  "Sources/gor/ArchiveLibrary.swift": [
+   426,
+   "f54269da6b7cd045bc2f74d43804a420a2fb2524"
+  ],
+  "Sources/gor/ArchiveRandom.swift": [
+   132,
+   "beca7ebacddd0677235976bd4d8786dd59dc19ef"
+  ],
+  "Sources/gor/AudioMenuControls.swift": [
+   90,
+   "81535e3aa0d3d86ead7e6af8eb35424d2081beac"
+  ],
+  "Sources/gor/BrightnessReadCache.swift": [
+   18,
+   "2398ed76f59dbf31e196b28c220c9961f1b4f3bf"
+  ],
+  "Sources/gor/BuildID.swift": [
+   42,
+   "cf9b2aef840a298fb2a20b5833bfcc2e6bf4efd1"
+  ],
+  "Sources/gor/CDPSession.swift": [
+   1698,
+   "a5146343fa42c654f76ebb651dbd39766003a2dc"
+  ],
+  "Sources/gor/CacheKeyMemo.swift": [
+   29,
+   "b75f021e4f8736b06c9505455c84969be405cd89"
+  ],
+  "Sources/gor/Diag.swift": [
+   539,
+   "ccd379a5e837f1e126cc3580410b14bcbc6c7f1d"
+  ],
+  "Sources/gor/EngineObservation.swift": [
+   211,
+   "7dbd20cb140445909f4c7bd3135566de8e02a327"
+  ],
+  "Sources/gor/FileBrowser.swift": [
+   1141,
+   "e5870f96e202060bd12178565add67416aa8a8fd"
+  ],
+  "Sources/gor/FlatControlRefreshGate.swift": [
+   8,
+   "c5b89455d1332b739bfd61abe3ee0e9a88a1fe5a"
+  ],
+  "Sources/gor/GORResources.swift": [
+   208,
+   "c9e4be6a2a02a983e5c4a9797b40ab34f44092e0"
+  ],
+  "Sources/gor/GazeCrosshairController.swift": [
+   84,
+   "351f6e2021a143b1322c42a1c69a468a1b174528"
+  ],
+  "Sources/gor/GorAVHostMotion.swift": [
+   176,
+   "8fbecd7304836e829e41a912ff821796b82103d5"
+  ],
+  "Sources/gor/GorAVHostWindow.swift": [
+   215,
+   "09f7a2822f57adaed082a66e1009bd069602dcf0"
+  ],
+  "Sources/gor/GorAVPlayerHost.swift": [
+   276,
+   "51da0627ab16f1a201c638c196846dcd5445c6b4"
+  ],
+  "Sources/gor/GorFit.swift": [
+   1323,
+   "bed1e80498eaeab3e9a3cb63317670ded77ad50a"
+  ],
+  "Sources/gor/IPTV.swift": [
+   3444,
+   "2d960d6caabedd9d74f64a19f63689ea6dc2fad8"
+  ],
+  "Sources/gor/IconBarFit.swift": [
+   100,
+   "ce73da90c837b8a0153601cb1497c42807019b90"
+  ],
+  "Sources/gor/LiveCaptionController.swift": [
+   595,
+   "423b750d54e97bd3f0b8768822d26e79085ae01d"
+  ],
+  "Sources/gor/LookToolsRoute.swift": [
+   136,
+   "126f4db912906ccdd46ac2489ec35a8ea1d4268b"
+  ],
+  "Sources/gor/MPVCommand.swift": [
+   776,
+   "4062ea072351b25d301360323eb9c0b95260852e"
+  ],
+  "Sources/gor/MagnetBrowser.swift": [
+   2076,
+   "15fcff7f11e14f793e67388f143d28a19d300e1c"
+  ],
+  "Sources/gor/MegaStreamManager.swift": [
+   180,
+   "932e9f1498f323b357f2073a660d420f9c0a4e44"
+  ],
+  "Sources/gor/MenuActions.swift": [
+   1780,
+   "056a2d82b31197b78fdfffe056b98ccff6f026bc"
+  ],
+  "Sources/gor/MusicController.swift": [
+   450,
+   "ed872b01d9699c71bba5d5f58315048f948d1ce0"
+  ],
+  "Sources/gor/MusicPanel.swift": [
+   1923,
+   "96e2fe06452d1d30b732f1cd446ad8833cf274d4"
+  ],
+  "Sources/gor/OverlaySpaceGate.swift": [
+   174,
+   "30c444d95a0f7405a3fd9f0e8a6c280254265647"
+  ],
+  "Sources/gor/PPController.swift": [
+   6066,
+   "0f6bb8dd1cbd48b4a8f9f445fbf0399b5161f5de"
+  ],
+  "Sources/gor/PPControllerMenuQueries.swift": [
+   75,
+   "5b9c916d3af6f7eaa018d72bb9cba0fbba7ea43f"
+  ],
+  "Sources/gor/PPController_Features.swift": [
+   2326,
+   "8d00e13314446f6602818a86194fdd13971acc59"
+  ],
+  "Sources/gor/PanelFocus.swift": [
+   89,
+   "7a170c4053b17c6067a43368b7a9a9343fb6e4bd"
+  ],
+  "Sources/gor/PanelFocusTraversal.swift": [
+   46,
+   "e13e7739b890075231797990bb255787f3991d27"
+  ],
+  "Sources/gor/PhotonFont.swift": [
+   1071,
+   "1ba20bb9a9dc1c973794b3067608693c0d06b76b"
+  ],
+  "Sources/gor/PlaybackCacheTrace.swift": [
+   17,
+   "89401d6a0034522d82cd6519c9755f63fc141f42"
+  ],
+  "Sources/gor/QuitChildKiller.swift": [
+   520,
+   "825acdd2c0543702220379baeeb347743b80e180"
+  ],
+  "Sources/gor/RealtimeProbe.swift": [
+   80,
+   "28fb6cc8fabb746b5d1ab166f36e31e56e8ff20e"
+  ],
+  "Sources/gor/ScreenCaptureEngine.swift": [
+   4209,
+   "84cc39be21530a0fac5166ddb557e66815e52fb2"
+  ],
+  "Sources/gor/SidebarUI.swift": [
+   1147,
+   "0960ea2248aec7acd2a39f78d3ca621335df6041"
+  ],
+  "Sources/gor/SpineUI.swift": [
+   3399,
+   "8968915cb1586a75bad15f260e1b4369e4ec31b6"
+  ],
+  "Sources/gor/StableCacheKey.swift": [
+   15,
+   "70e2486fdfe2ef111a6308a022a2beed69577321"
+  ],
+  "Sources/gor/Stereo/BinocularGaze.swift": [
+   88,
+   "667258e76444ea44a6bbb8dcd020b9027829ffa0"
+  ],
+  "Sources/gor/Stereo/HeadPose.swift": [
+   300,
+   "386794b96200ca5e4322553288e8cb73949fbc07"
+  ],
+  "Sources/gor/Stereo/Pose192d.swift": [
+   166,
+   "92890c521e329fe84820980e256b098c7b2af550"
+  ],
+  "Sources/gor/Stereo/PoseFrameQuality.swift": [
+   33,
+   "4c85b1eefe896488cca8088b1f25dc9f7625570e"
+  ],
+  "Sources/gor/Stereo/PoseMeasurementValidity.swift": [
+   17,
+   "407d772f5fe4bbeeced86f8d2f1c0d1b12b7e9a4"
+  ],
+  "Sources/gor/Stereo/StereoDetection.swift": [
+   231,
+   "78310fe9affa4280aac34351098ced63b871e7a3"
+  ],
+  "Sources/gor/Stereo/StereoGeometry.swift": [
+   156,
+   "194aa03e44902235d3adcf14e4985ab33d8f90f4"
+  ],
+  "Sources/gor/SubtitleSampleGovernor.swift": [
+   23,
+   "8c863380c465929eee4eee2150727c2a5e7a0266"
+  ],
+  "Sources/gor/SubtitleView.swift": [
+   2214,
+   "5848ae44fc453a49a6afea1ef7528be5947c73d0"
+  ],
+  "Sources/gor/Subtitles/SubtitlePreferences.swift": [
+   102,
+   "0d07eba97e57df80023d33acdf30b590844dd8fe"
+  ],
+  "Sources/gor/Subtitles/SubtitleTiltGeometry.swift": [
+   37,
+   "d2532922fc9599634db878e21af47f7a1bd01cec"
+  ],
+  "Sources/gor/TextLayerColor.swift": [
+   10,
+   "f042b8461b9c3753ab7cdd11dbb254a2cf7c4fa2"
+  ],
+  "Sources/gor/ThreeD.swift": [
+   10800,
+   "5c97ff696a99d4bf3a50e539aa8d040034061002"
+  ],
+  "Sources/gor/TorrentManager.swift": [
+   731,
+   "d65a61eccc9cf1cb1c18c39d7565eebf9accaf99"
+  ],
+  "Sources/gor/TransferResolver.swift": [
+   1792,
+   "7e67a89b8cac118c87affe72db0091743f7c9e11"
+  ],
+  "Sources/gor/TransferTicketContext.swift": [
+   76,
+   "4999907c3a7668aa3dc824c2e931fd175007d0a9"
+  ],
+  "Sources/gor/UpdateChecks.swift": [
+   120,
+   "d93ab8f3cdf620e9137428465d6198a2fa26f314"
+  ],
+  "Sources/gor/VariationBroadcaster.swift": [
+   557,
+   "54edbfc0cbcba25f70d9295945fe38caf3c53f62"
+  ],
+  "Sources/gor/VideoFormatCycle.swift": [
+   65,
+   "af3de0a713f743ff769816f96ad61b0e5a1a1769"
+  ],
+  "Sources/gor/main.swift": [
+   22,
+   "4a4df8fbe469b5d3a32ccc983cee6afe67610055"
+  ]
+ },
+ "rules": "195y-r4",
+ "supersedes": "195y-r3 (owner order 2026-11-14: 3D consolidated into Sources/gor/ThreeD.swift; over-1500 ceiling suspended for ThreeD.swift only; hubs unchanged; freeze stays blocking)"
+}

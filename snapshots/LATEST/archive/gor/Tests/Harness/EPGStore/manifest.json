@@ -1,0 +1,20 @@
+{
+  "source": "goreda/instinct main live 2026-10-02 00:17 Europe/Istanbul; final reread unchanged",
+  "source_sha256": "bde436a1b47df6facffd8fe26cd11a3b1cd81efa76a6f737e891e96186508683",
+  "negative_checks": [
+    {
+      "anchor": "if loading.contains(code) { return }",
+      "rejected": true
+    },
+    {
+      "anchor": "httpStatus == 200",
+      "rejected": true
+    },
+    {
+      "anchor": "cacheTTL: TimeInterval = 6 * 3600",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "native_validation": "not performed"
+}

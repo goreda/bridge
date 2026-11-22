@@ -1,0 +1,8 @@
+PASS actual Swift fixed-distance pitch +/-40deg z=0; approach remains live z=0.19999999999999996
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+PASS pitch -0.5 pixel_scale_ratio 1.0 z 0.0
+PASS pitch -0.3 pixel_scale_ratio 1.000039915449903 z 0.0
+PASS pitch 0 pixel_scale_ratio 1.000042446388633 z 0.0
+PASS pitch 0.3 pixel_scale_ratio 1.0000397295908274 z 0.0
+PASS pitch 0.5 pixel_scale_ratio 0.9999999729455095 z 0.0
+PASS production Swift estimator and Lua/GLSL pitch scale; not live camera or owner playback proof

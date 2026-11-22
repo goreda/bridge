@@ -1,0 +1,32 @@
+== characterization: pre-fix behavior at 3c48acac ==
+PASS  pre-fix reproduces 'focus changed for a moment': o2 steals key after open - key=player
+PASS  pre-fix: typing reaches the player path, not the field
+PASS  pre-fix reproduces mpv-window steal: gor re-keys the overlay
+PASS  pre-fix: with mpv key, esc AND keyboard are dead for gor
+PASS  pre-fix: a stray overlay click tears key from the panel
+== fixed behavior ==
+PASS  fixed: o2 activation beat cannot steal key from the opening panel
+PASS  fixed: typing lands in the search field
+PASS  fixed: overlay click keeps its action but cannot steal key
+PASS  fixed: mpv activation recovery leaves the panel key
+PASS  fixed: esc reaches the panel's cancel path
+PASS  fixed: close releases ownership and returns key to the player
+PASS  fixed: with two open panels, closing one keeps ownership
+PASS  fixed: register is idempotent
+PASS  fixed: unregister is idempotent and unknown tokens are a no-op
+== source anchors (current Swift tree) ==
+PASS  PanelKeyOwnership lives in PanelFocusTraversal.swift
+PASS  ownership exposes register/unregister/mayKeyPlayerWindow
+PASS  ownership type is AppKit-free (Foundation/stdlib only)
+PASS  GORInputPanel registers on key claims and releases on close/orderOut/deinit
+PASS  [panel-focus] diagnostics at open-assert/became-key/resigned-key/post-loss
+PASS  AppDelegate guards all four automatic re-key paths (o1, o2, un-minimize, overlay sendEvent) - count=4
+PASS  every AppDelegate makeKeyAndOrderFront(nil) is guarded or initial setup - offset=2674
+PASS  every AppDelegate makeKeyAndOrderFront(nil) is guarded or initial setup - offset=75932
+PASS  every AppDelegate makeKeyAndOrderFront(nil) is guarded or initial setup - offset=77666
+PASS  every AppDelegate makeKeyAndOrderFront(nil) is guarded or initial setup - offset=79351
+PASS  every AppDelegate makeKeyAndOrderFront(nil) is guarded or initial setup - offset=104627
+PASS  PPController.claimFocusForClick is guarded
+PASS  MagnetBrowser.closeSearch keeps the intentional key return on close
+
+RESULT: PASS (characterization + fixed invariants + source anchors)

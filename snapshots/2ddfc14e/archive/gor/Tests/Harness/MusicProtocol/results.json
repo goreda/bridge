@@ -1,0 +1,43 @@
+{
+  "result": "PASS controls and expected protocol characterizations",
+  "controls": [
+    "actual current backend emit small/large Unicode roundtrip through modeled Swift chunk assembly",
+    "all UTF-8 pipe split boundaries retained as bytes before decode",
+    "invalid chunk count/index/per-part bound resets state",
+    "aggregate >4MB bound resets state",
+    "new total resets old partial assembly",
+    "local context play followed by ordered tail queue; no timer"
+  ],
+  "known_red": [
+    {
+      "case": "same-total cross-message fragments",
+      "observed": "no message ID: A0+B1 assembled together",
+      "limit": "synthetic interleaving/loss input; current normal producer serial chunk emit is not proved to generate two interleaved chunk batches"
+    },
+    {
+      "case": "queued JSON survives stop/replacement",
+      "observed": "main callback checks self only, no process ownership"
+    },
+    {
+      "case": "newline in command argument",
+      "observed": "raw string creates a second stdin command",
+      "limit": "local input protocol ambiguity; not external attack or observed exploit"
+    },
+    {
+      "case": "multiword search",
+      "observed": "Swift sends full query but backend search uses only first word (arg)"
+    }
+  ],
+  "source_sha256": {
+    "MusicController.swift": "87daf8b718fca3c6aa3628f5a703d01611a59ee4cd097c63f3588cc532f016b2",
+    "mus2.py": "5abc42fe83c197067a9f5b787b18667010fc7e1052373c041bcc1c01e3f470a1"
+  },
+  "open": [
+    "native FileHandle/process/main-queue ordering",
+    "backend compiled mus2 binary parity",
+    "response/request IDs and same-total retry/interleaving",
+    "helper exit/reaping and startup delay ownership",
+    "playlist/queue/network/music UI proof"
+  ],
+  "scope": "Actual isolated Python emit plus source-bound Python consumer/lifecycle ports; no backend module launch, Swift process, music/provider/download or UI execution"
+}

@@ -1,0 +1,20 @@
+{
+  "source": "goreda/instinct main live 2026-10-02 00:20 Europe/Istanbul; final reread unchanged",
+  "source_sha256": "7964e9bcff8779fdc6c2ee064ffac0c93ca4452fc8977581b19369f8cae05962",
+  "negative_checks": [
+    {
+      "anchor": "guard self.fadeGeneration == myGeneration else { return }",
+      "rejected": true
+    },
+    {
+      "anchor": "fadeSteps: Int = 36",
+      "rejected": true
+    },
+    {
+      "anchor": "max(0.0, min(1.0, value))",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "native_validation": "not performed"
+}

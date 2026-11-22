@@ -1,0 +1,14 @@
+{
+  "flags_sha256": "6f484146d29b6978c4932e3996050936196cdb7d6c8a4856b1d6a74fccf7dfe7",
+  "legacy_superseded": "the 8.0.1 cache (894da5ca) is LEGACY per the engine ffmpeg-provider.lock at 8786bfe3; do not mix",
+  "parallel_jobs": 2,
+  "provider": "ffmpeg-7.1-full-codec",
+  "recipe": "goreda/gorav@8786bfe3e5482a891dda15248b107e50fab52463:kits/ffmpeg-configure-diff/full-codec-provider-7.1-recipe.txt",
+  "recipe_sha256": "6f484146d29b6978c4932e3996050936196cdb7d6c8a4856b1d6a74fccf7dfe7",
+  "recorded_decisions": "av1 = FFmpeg native decoder (dav1d not vendored); protocols = file,http,tcp (no TLS lib vendored); LGPL-compliant: no --enable-gpl, no nonfree, no external encoder libs",
+  "schema": 1,
+  "scope": "own isolated source rebuild; hashes host/path-sensitive; no library byte identity with peer assumed; no media playback acceptance",
+  "source_version": "7.1",
+  "tarball_sha256": "40973d44970dbc83ef302b0609f2e74982be2d85916dd2ee7472d30678a7abe6",
+  "tarball_url": "https://ffmpeg.org/releases/ffmpeg-7.1.tar.xz"
+}

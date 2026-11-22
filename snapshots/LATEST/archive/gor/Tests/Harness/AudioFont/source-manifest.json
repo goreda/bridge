@@ -1,0 +1,18 @@
+{
+  "read_from": "goreda/instinct main, 2026-10-01 22:32 Europe/Istanbul",
+  "hashes": {
+    "VariationBroadcaster.swift": "bf913a2756fa7a0e0aad0abffb972db4a29c8913c743a10015bc2a99f00170b9",
+    "PhotonFont.swift": "1e366e3299ec6f77f958e500aa7c57b28e7cd4b16e4f328e4b9f5ae90e7f7cea"
+  },
+  "negative_checks": [
+    {
+      "source": "VariationBroadcaster.swift",
+      "rejected_mutated_live_source": true
+    },
+    {
+      "source": "PhotonFont.swift",
+      "rejected_mutated_live_source": true
+    }
+  ],
+  "scope": "Python models and live-tree token guards, not native execution"
+}

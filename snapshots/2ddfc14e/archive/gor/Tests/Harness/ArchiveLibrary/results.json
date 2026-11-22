@@ -1,0 +1,48 @@
+{
+  "result": "PASS controls and expected cache/parser characterizations",
+  "controls": [
+    "CSV '\\n' row boundaries/trailing terminator",
+    "CSV '\\r' row boundaries/trailing terminator",
+    "CSV '\\r\\n' row boundaries/trailing terminator",
+    "quoted comma/escaped quote",
+    "embedded quoted newline retained",
+    "empty input/trailing empty fields",
+    "Unicode fields without byte splitting",
+    "instant disk cache + failed refresh never blanks titles",
+    "successful initial fetch delivers owner + queued callback",
+    "first failure permits successful next load retry",
+    "reorder-only refresh causes no update/write",
+    "changed refresh updates UI and schedules persistence"
+  ],
+  "known_red_or_characterization": [
+    {
+      "case": "off-main cache writes complete out of order",
+      "observed": "memory B, disk older A even though each write is atomic",
+      "scope": "adversarial completion model, actual filesystem queue ordering unverified"
+    },
+    {
+      "case": "failed first-fetch queued callback retained",
+      "observed": "old queued callback delivered on later success",
+      "scope": "lifetime characterization, may be intended waiting-client behavior"
+    },
+    {
+      "case": "single quoted empty field at EOF",
+      "observed": "empty row omitted, identical to empty input",
+      "scope": "parser characterization, impact on Sheets rows unverified"
+    },
+    {
+      "case": "unterminated quote",
+      "observed": "accepted field without syntax error",
+      "scope": "malformed-input permissiveness, not current Sheets failure"
+    }
+  ],
+  "source_sha256": "1979ee139ef84a7fbf5ec825492e56f780fb720c8009f69cd2f1501cf1d39d8f",
+  "open": [
+    "Swift Character/regex/link extraction parity",
+    "real Sheets HTTP/source merge/provider availability",
+    "actual atomic-write ordering and disk errors",
+    "callback owner replacement/thread discipline",
+    "title deduplication/manual-source/empty-library semantics"
+  ],
+  "scope": "Python ports/current Swift source guards only; no Swift/Foundation/network/disk/AppKit execution"
+}

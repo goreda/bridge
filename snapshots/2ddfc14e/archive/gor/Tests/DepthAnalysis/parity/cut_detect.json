@@ -1,0 +1,69 @@
+{
+ "spec": {
+  "detector": "ffmpeg -vf scdet=threshold=12.0; parse lavfi.scd.time",
+  "threshold": 12.0,
+  "semantics": "hard cuts only; fades stay uncut BY DESIGN (measured on ToS/Caminandes). A Mac port using another detector must reproduce these boundaries on the calibration clips, not scdet internals.",
+  "time_to_frame": "frame = int(t*fps + 0.5), dedup, sort",
+  "ranges": "bounds [0]+cuts(0<c<n)+[n]; shot i = (b[i], b[i+1]-1)"
+ },
+ "case": {
+  "times_s": [
+   1.04,
+   2.0,
+   3.999
+  ],
+  "fps": 24,
+  "n_frames": 120,
+  "expect_cut_frames": [
+   25,
+   48,
+   96
+  ],
+  "expect_ranges": [
+   [
+    0,
+    24
+   ],
+   [
+    25,
+    47
+   ],
+   [
+    48,
+    95
+   ],
+   [
+    96,
+    119
+   ]
+  ]
+ },
+ "edge_cases": [
+  {
+   "times_s": [
+    0.0
+   ],
+   "fps": 24,
+   "n_frames": 48,
+   "expect_ranges": [
+    [
+     0,
+     47
+    ]
+   ]
+  },
+  {
+   "times_s": [
+    2.0
+   ],
+   "fps": 24,
+   "n_frames": 48,
+   "expect_ranges": [
+    [
+     0,
+     47
+    ]
+   ]
+  }
+ ]
+}

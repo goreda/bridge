@@ -1,0 +1,281 @@
+--- gor216/wt_server.mjs	2026-09-27 13:46:53.237245604 +0300
++++ gor217/wt_server.mjs	2026-09-27 19:15:34.815799321 +0300
+@@ -1,5 +1,5 @@
+ // wt_server.mjs — WebTorrent HTTP streaming server (magnet → mpv/ffmpeg via HTTP 206 range)
+-// CURRENT VERSION: 21.6
++// CURRENT VERSION: 21.7
+ 
+ // INVARIANT
+ //        - pump must never block forever —
+@@ -34,6 +34,7 @@
+ 
+ // CHANGELOG
+ //          (newest first):
++// v21.7 — hash-fail waiters: 10s bound + instant reissue + selection pin, spray VERDICT (4/5min), seek-orphan destroy, seek-no-follow watchdog.
+ // v21.5 — sweep probe no longer self-matches (false 2s sweep every boot), SIGTERM-in-bootstrap TDZ crash closed (hoisted declarations).
+ // v21.6 — stall final-retry reissues the stalled piece: soft-cancel its stranded reservations on all wires (WT hotswap pattern), re-request immediately instead of waiting out WT’s request-timeout cycle.
+ // v21.4 — wt_full.log mirror on by default (logs drive wt tuning), GOR_WT_FULL_LOG=0 disables.
+@@ -239,7 +240,7 @@
+ 
+ // INIT must be the first line of output — any later anchor risks silently
+ // dropping earlier lines from log capture (see v18.4). DO NOT FORGET TO UPDATE HERE IN EACH VERSION!!!
+-process.stdout.write("INIT:v21.6 — stall final-retry reissue of stranded piece requests\n");
++process.stdout.write("INIT:v21.7 — hash-fail waiter fast-lane, spray VERDICT, seek-orphan destroy, seek-no-follow watchdog\n");
+ 
+ // ─── Arguments ────────────────────────────────────────────────────
+ const port = parseInt(process.argv[2]) || 2222;
+@@ -454,6 +455,14 @@
+ const PIECE_TIMEOUT_MIN = WT_WIRE_TIMEOUT_MS + 5_000; // 35_000
+ 
+ 
++// v21.7: after a hash-fail the first delivery already proved bad — bound the
++// reissue-driven retry to 10s, then zero-fill (was ~100s via 2 x pieceTimeout).
++const HASHFAIL_WAITER_MS = 10_000;
++const RETRY_PIN_MAX = 8;
++const SEEK_ORPHAN_GAP = 20;     // pieces; orphan farther than this = reader seeked away
++const SEEK_JUMP_PIECES = 20;    // POS jump that arms the no-follow watchdog
++const SEEK_NOFOLLOW_MS = 10_000;
++
+ const STALL_CHECK_MS = 3_000;
+ const STALL_THRESHOLD_MS = 6_000;
+ const STALL_MAX_RETRIES = 2;
+@@ -603,6 +612,11 @@
+     cb && cb(null);
+ 
+     try { pieceFailureTracker.clear(index); } catch (_) { }
++    try { // v21.7: verified — drop any retry pin and its priority selection
++      if (_retryPins.delete(index) && !_torrentGone && typeof torrent !== 'undefined' && torrent && !torrent.destroyed) {
++        torrent.deselect(index, Math.min(index + 1, totalFileLast), 2);
++      }
++    } catch (_) { }
+ 
+     const waiters = this._waiters.get(index);
+     if (waiters?.length) {
+@@ -1117,29 +1131,10 @@
+             `dlSpeed=${(downloadSpeed / 1024).toFixed(0)}KB/s active=${this._dlGateActive} ` +
+             `swarmFactor=${swarmFactor} gateMs=${gateMs} maxWaitMs=${maxWaitMs.toFixed(0)} — extending wait\n`
+           );
+-          // v21.6: final-retry reissue — release the stalled piece's stranded
+-          // block reservations on every wire and re-request now, not after
+-          // WT's request-timeout cycle (WT hotswap pattern, see v21.6).
++          // v21.6: final-retry reissue (factored in v21.7, see _reissuePiece).
+           try {
+-            const piece = torrent.pieces?.[stalledPiece];
+-            if (piece) {
+-              let canceled = 0;
+-              for (const w of torrent.wires) {
+-                if (!w.requests?.length) continue;
+-                let touched = false;
+-                for (const req of w.requests) {
+-                  if (req.piece !== stalledPiece) continue;
+-                  piece.cancel((req.offset / 16384) | 0); // 16KB blocks
+-                  canceled++; touched = true;
+-                }
+-                if (touched && Array.isArray(torrent._reservations?.[stalledPiece])) {
+-                  const r = torrent._reservations[stalledPiece];
+-                  for (let i = 0; i < r.length; i++) if (r[i] === w) r[i] = null;
+-                }
+-              }
+-              if (canceled > 0) torrent._update();
+-              process.stdout.write(`STALL:reissue piece=${stalledPiece} canceled=${canceled}\n`);
+-            }
++            const canceled = _reissuePiece(stalledPiece);
++            process.stdout.write(`STALL:reissue piece=${stalledPiece} canceled=${canceled}\n`);
+           } catch (e) {
+             process.stdout.write(`STALL:reissue ERR ${e?.message || e}\n`);
+           }
+@@ -1370,7 +1365,23 @@
+   _verdictFired.add(key);
+   process.stdout.write(`VERDICT:corrupt-suspect piece=${index} fails=${total} bans=${_hashFailBans.get(index) || 0} peers=${torrent.wires.length} reason=${reason}\n`);
+ }
++const _hashFailTimes = []; // v21.7: rolling global window for spray detection
+ function _recordHashFail(index) {
++  {
++    const now = Date.now();
++    _hashFailTimes.push(now);
++    while (_hashFailTimes.length && now - _hashFailTimes[0] > 300_000) _hashFailTimes.shift();
++    const rolling = _hashFailTimes.length;
++    // A corrupt peer spraying one bad block per piece never trips the
++    // per-piece ban streak — surface it at 4/8/12... fails in 5min (see v21.7).
++    if (rolling >= 4 && rolling % 4 === 0) {
++      const key = `spray:${rolling}`;
++      if (!_verdictFired.has(key)) {
++        _verdictFired.add(key);
++        process.stdout.write(`VERDICT:corrupt-suspect piece=${index} fails=${rolling} bans=0 peers=${torrent.wires.length} reason=spray-5min\n`);
++      }
++    }
++  }
+   const streak = (_hashFailStreak.get(index) || 0) + 1;
+   _hashFailStreak.set(index, streak);
+   const total = (_hashFailTotal.get(index) || 0) + 1;
+@@ -1405,15 +1416,17 @@
+     const ring = getRing();
+     _recordHashFail(index);
+     if (ring?._waiters.has(index)) {
+-      const restarted = ring.restartWaiter(index, stallDetector.pieceTimeout);
++      const restarted = ring.restartWaiter(index, HASHFAIL_WAITER_MS);
+       try { _boostWaiterPiece(index); } catch (_) { }
++      let canceled = 0;
++      try { _pinRetry(index); canceled = _reissuePiece(index); } catch (_) { }
+       process.stdout.write(
+-        `HASH:fail piece=${index} waiter-restarted=${restarted} — WT will retry\n`
++        `HASH:fail piece=${index} waiter-restarted=${restarted} reissue-canceled=${canceled} — pinned, retry bound ${HASHFAIL_WAITER_MS}ms (see v21.7)\n`
+       );
+-      // clearTimeoutOnly belongs in this branch only — WT retries the piece,
+-      // so resetting the counter lets a later recordTimeout() accumulate
+-      // from 1 again; _manual/_skipped flags stay untouched (see v17.34).
+-      pieceFailureTracker.clearTimeoutOnly(index);
++      // v21.7: one strike pre-loaded — the first delivery already proved
++      // corrupt, so the bounded wait ends in zero-fill, not a 50s
++      // connection-reset detour (was clearTimeoutOnly, see v17.21/v17.34).
++      pieceFailureTracker.recordTimeout(index);
+     } else {
+       const outOfWindow = currentWindow && (index < currentWindow.from || index > currentWindow.to);
+       if (outOfWindow) {
+@@ -1608,6 +1621,65 @@
+ // fetches in-window pieces roughly in order, so the playhead piece starves
+ // behind 60+ queued pieces on thin swarms — this cuts the line.
+ let _waiterBoost = null;
++// v21.6 dl-gate reissue, factored so the v21.7 hash-fail path reuses it:
++// release the piece's stranded block reservations on every wire, re-request
++// now (WT hotswap pattern — late dupes ignored by piece.set).
++function _reissuePiece(index) {
++  const piece = torrent?.pieces?.[index];
++  if (!piece || typeof piece.cancel !== 'function') return 0;
++  let canceled = 0;
++  for (const w of torrent.wires) {
++    if (!w.requests?.length) continue;
++    let touched = false;
++    for (const req of w.requests) {
++      if (req.piece !== index) continue;
++      piece.cancel((req.offset / 16384) | 0); // 16KB blocks
++      canceled++; touched = true;
++    }
++    if (touched && Array.isArray(torrent._reservations?.[index])) {
++      const r = torrent._reservations[index];
++      for (let i = 0; i < r.length; i++) if (r[i] === w) r[i] = null;
++    }
++  }
++  if (canceled > 0) torrent._update();
++  return canceled;
++}
++
++// v21.7: hash-failed waiter pieces stay selected until verified or seeked
++// past — the single-slot waiter boost drops them when the frontier moves,
++// and WT then silently stops the retry (see v21.7 CHANGELOG).
++const _retryPins = new Set();
++function _pinRetry(index) {
++  if (_retryPins.size >= RETRY_PIN_MAX) _retryPins.delete(_retryPins.values().next().value);
++  _retryPins.add(index);
++  _assertRetryPins();
++}
++function _assertRetryPins() {
++  if (!_retryPins.size || _torrentGone || _shuttingDown || !torrent || torrent.destroyed) return;
++  for (const idx of _retryPins) {
++    try { torrent.select(idx, Math.min(idx + 1, totalFileLast), 2); } catch (_) { }
++  }
++}
++function _clearRetryPins() {
++  if (!_retryPins.size) return;
++  for (const idx of _retryPins) {
++    try {
++      if (!_torrentGone && torrent && !torrent.destroyed) torrent.deselect(idx, Math.min(idx + 1, totalFileLast), 2);
++    } catch (_) { }
++  }
++  _retryPins.clear();
++}
++
++// v21.7: seek-orphan marks — piece -> window start at flush time; the pump
++// destroys the connection instead of zero-filling a departing reader.
++const _seekOrphans = new Map();
++const SEEK_ORPHAN_MAX = 32;
++
++// v21.7: seek-no-follow watchdog — armed by large POS jumps, disarmed when a
++// matching RANGE arrives; one REQ: line per stuck seek.
++let _seekWatch = null; // {piece, at}
++let _lastPosPiece = null;
++
+ function _boostWaiterPiece(index) {
+   if (_torrentGone || _shuttingDown || !torrent || torrent.destroyed) return;
+   const to = Math.min(index + 1, totalFileLast);
+@@ -1618,6 +1690,7 @@
+     _waiterBoost = { from: index, to };
+     process.stdout.write(`SEL:boost piece=${index} priority=2\n`);
+   } catch (_) { }
++  _assertRetryPins(); // v21.7: boost moves must not drop hash-fail retries
+ }
+ 
+ function _selectHighPriority(from, to) {
+@@ -1790,6 +1863,12 @@
+             ring.forceSkip(idx);
+             continue;
+           }
++          // v21.7: far-orphan = reader left by a seek; mark so the pump
++          // destroys the connection instead of zero-filling (see v21.7).
++          if (Math.min(Math.abs(idx - from), Math.abs(idx - to)) > SEEK_ORPHAN_GAP) {
++            if (_seekOrphans.size >= SEEK_ORPHAN_MAX) _seekOrphans.delete(_seekOrphans.keys().next().value);
++            _seekOrphans.set(idx, from);
++          }
+           pieceFailureTracker.markManualSkip(idx);
+           ring.forceSkip(idx);
+           stallDetector.incrementSkipStreak(); // counts toward dead-zone streak (see v17.27, v17.37)
+@@ -2273,6 +2352,13 @@
+     },
+   });
+ 
++  // v21.7: seek-no-follow — POS jumped but no matching RANGE ever arrived;
++  // surfaced via REQ: so the app layer can nudge the player (see v21.7).
++  if (_seekWatch && Date.now() - _seekWatch.at > SEEK_NOFOLLOW_MS) {
++    const w = _seekWatch; _seekWatch = null;
++    process.stdout.write(`REQ:seek-no-follow piece=${w.piece} waitMs=${Date.now() - w.at} — mpv never requested the seek region\n`);
++  }
++
+   // Stuck waiter flush
+   const STUCK_WAITER_MS = PIECE_TIMEOUT_BASE + 10_000;
+   {
+@@ -3074,6 +3160,16 @@
+               return;
+             }
+             const piece = applyMpvPosition(playhead, duration);
++            // v21.7: arm seek-no-follow watchdog on large jumps; a POS
++            // landing near the armed target disarms it (see v21.7).
++            if (typeof piece === 'number') {
++              if (_seekWatch && Math.abs(piece - _seekWatch.piece) <= 2) _seekWatch = null;
++              else if (_lastPosPiece != null && Math.abs(piece - _lastPosPiece) > SEEK_JUMP_PIECES) {
++                _seekWatch = { piece, at: Date.now() };
++                _clearRetryPins(); // v21.7: a real seek abandons pinned hash-fail retries
++              }
++              _lastPosPiece = piece;
++            }
+             process.stdout.write(`POS:received playhead=${payload.playhead}s (piece=${piece})\n`);
+             res.writeHead(200, { 'Content-Type': 'application/json' });
+             res.end(JSON.stringify({ ok: true, piece }));
+@@ -3141,6 +3237,9 @@
+         `pieces=${startPiece}-${endPiece}\n`
+       );
+ 
++      // v21.7: a request near the armed seek target disarms the watchdog
++      if (_seekWatch && Math.abs(startPiece - _seekWatch.piece) <= 2) _seekWatch = null;
++
+       const dedupResult = checkDuplicate(startPiece);
+       if (dedupResult === 'reject') {
+         process.stdout.write(`RANGE:reject pieces=${startPiece}-${endPiece}\n`);
+@@ -3365,6 +3464,18 @@
+             // without zero-fill. Old code entered the buf=null branch and
+             // wrote phantom zeroBuf to the aborted connection before break.
+             if (aborted) break;
++            // v21.7: seek-orphaned stream — destroy, never zero-fill into a
++            // departing demuxer; zeros mid-re-cue poison the next read.
++            if (_seekOrphans.has(piece)) {
++              const orphanWin = _seekOrphans.get(piece);
++              _seekOrphans.delete(piece);
++              if (currentWindow && (piece < currentWindow.from || piece > currentWindow.to)) {
++                process.stdout.write(`PUMP:seek-orphan piece=${piece} flushed-win=${orphanWin} — connection destroyed (reader seeked away)\n`);
++                aborted = true;
++                try { res.destroy(); } catch (_) { }
++                break;
++              }
++            }
+             const wasManual = pieceFailureTracker.isManualSkip(piece);
+             // v17.2: immediateZeroFill bypasses recordTimeout — outcome is
+             // already determined and a false timeout entry would advance lastTs,

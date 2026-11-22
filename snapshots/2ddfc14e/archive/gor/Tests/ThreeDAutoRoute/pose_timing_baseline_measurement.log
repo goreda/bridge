@@ -1,0 +1,29 @@
+BASELINE 4b53c54f8b3b5c7925f7f214879ef420f7cd4aef
+PASS yaw rate15 sigma0.003 baseline_t90=0.266666667 current_t90=0.266666667 seconds
+PASS yaw rate15 sigma0.020 baseline_t90=0.266666667 current_t90=0.266666667 seconds
+PASS yaw rate15 sigma0.060 baseline_t90=0.266666667 current_t90=0.266666667 seconds
+PASS yaw rate30 sigma0.003 baseline_t90=0.133333333 current_t90=0.133333333 seconds
+PASS yaw rate30 sigma0.020 baseline_t90=0.133333333 current_t90=0.133333333 seconds
+PASS yaw rate30 sigma0.060 baseline_t90=0.133333333 current_t90=0.133333333 seconds
+PASS yaw rate60 sigma0.003 baseline_t90=0.066666667 current_t90=0.066666667 seconds
+PASS yaw rate60 sigma0.020 baseline_t90=0.066666667 current_t90=0.066666667 seconds
+PASS yaw rate60 sigma0.060 baseline_t90=0.066666667 current_t90=0.066666667 seconds
+PASS pitch rate15 sigma0.003 baseline_t90=0.266666667 current_t90=0.266666667 seconds
+PASS pitch rate15 sigma0.020 baseline_t90=0.266666667 current_t90=0.266666667 seconds
+PASS pitch rate15 sigma0.060 baseline_t90=0.266666667 current_t90=0.266666667 seconds
+PASS pitch rate30 sigma0.003 baseline_t90=0.133333333 current_t90=0.133333333 seconds
+PASS pitch rate30 sigma0.020 baseline_t90=0.133333333 current_t90=0.133333333 seconds
+PASS pitch rate30 sigma0.060 baseline_t90=0.133333333 current_t90=0.133333333 seconds
+PASS pitch rate60 sigma0.003 baseline_t90=0.066666667 current_t90=0.066666667 seconds
+PASS pitch rate60 sigma0.020 baseline_t90=0.066666667 current_t90=0.066666667 seconds
+PASS pitch rate60 sigma0.060 baseline_t90=0.066666667 current_t90=0.066666667 seconds
+PASS roll rate15 sigma0.003 baseline_t90=0.266666667 current_t90=0.266666667 seconds
+PASS roll rate15 sigma0.020 baseline_t90=0.266666667 current_t90=0.266666667 seconds
+PASS roll rate15 sigma0.060 baseline_t90=0.266666667 current_t90=0.266666667 seconds
+PASS roll rate30 sigma0.003 baseline_t90=0.133333333 current_t90=0.133333333 seconds
+PASS roll rate30 sigma0.020 baseline_t90=0.133333333 current_t90=0.133333333 seconds
+PASS roll rate30 sigma0.060 baseline_t90=0.133333333 current_t90=0.133333333 seconds
+PASS roll rate60 sigma0.003 baseline_t90=0.066666667 current_t90=0.066666667 seconds
+PASS roll rate60 sigma0.020 baseline_t90=0.066666667 current_t90=0.066666667 seconds
+PASS roll rate60 sigma0.060 baseline_t90=0.066666667 current_t90=0.066666667 seconds
+PASS actual source comparison, not camera or Mac timing

@@ -1,0 +1,30 @@
+{
+ "tag": "cap1nice",
+ "mpv": "mpv v0.41.0 Copyright \u00a9 2000-2025 mpv/MPlayer/mplayer2 projects",
+ "date": "2026-11-07T16:06:58+0300",
+ "window_s": 20,
+ "video_draw_n": 84,
+ "video_draw_ms": {
+  "mean": 213.16,
+  "p50": 221.95,
+  "p95": 253.52,
+  "max": 271.47
+ },
+ "drop_vo_in_window": 0,
+ "frame_drop_count": 336,
+ "cpu_pct_mean": 146.5,
+ "neutered": [],
+ "glsl_shaders": [
+  "photon-grain.glsl",
+  "photon-sharp.glsl",
+  "vr180-look-shader-a.glsl"
+ ],
+ "vf_n": 0,
+ "max_concurrent_ffmpeg": 1,
+ "sync_readbacks_total": 4,
+ "paced_captures": 2,
+ "capture_ms_max": 398.2,
+ "probe_frames_served": 7,
+ "probe_frames_skipped": 2,
+ "photon_errors": []
+}

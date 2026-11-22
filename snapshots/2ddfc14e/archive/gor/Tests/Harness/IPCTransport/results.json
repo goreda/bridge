@@ -1,0 +1,69 @@
+{
+  "result": "PASS controls and expected transport characterizations",
+  "controls": [
+    {
+      "case": "JSON string roundtrip and single-line batch boundary",
+      "count": 8,
+      "scope": "Python JSON equivalence class, not Foundation serialization"
+    },
+    {
+      "case": "one-shot complete-write/short-write/EINTR/failure controls",
+      "positive_step_sizes": 33
+    },
+    {
+      "case": "persistent byte framing, all split points incl UTF-8, malformed/non-object isolation",
+      "splits": 49
+    },
+    {
+      "case": "reconnect exponential bound/reset source guards",
+      "delay_trace": [
+        0.25,
+        0.5,
+        1.0,
+        2.0,
+        4.0,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ]
+    },
+    {
+      "case": "first data-bearing response including null; malformed/error-only skipped"
+    }
+  ],
+  "known_red_or_protocol_risk": [
+    {
+      "case": "persistent short write 1",
+      "observed": "prefix sent, transport torn down, original frame not completed/replayed by writer"
+    },
+    {
+      "case": "persistent short write 32",
+      "observed": "prefix sent, transport torn down, original frame not completed/replayed by writer"
+    },
+    {
+      "case": "persistent EINTR",
+      "observed": "single negative write causes teardown rather than retry"
+    },
+    {
+      "case": "first-data response selection",
+      "observed": "data-bearing event before reply wins; no request-id correlation",
+      "scope": "caller-dependent protocol risk, not observed incorrect playback"
+    }
+  ],
+  "open": [
+    "persistent disconnected writes silently dropped",
+    "newline-free event buffer and one-shot response memory unbounded",
+    "read EINTR/timeout partial reply behavior",
+    "AF_UNIX path truncation, SIGPIPE and reconnect/start-stop scheduling",
+    "Darwin/Foundation/socket/mpv native integration"
+  ],
+  "source_sha256": {
+    "PPController.swift": "7964e9bcff8779fdc6c2ee064ffac0c93ca4452fc8977581b19369f8cae05962",
+    "MPVCommand.swift": "4b902c71c433ab08a2f9544071bba80d225a777f008e1d8c6770da209b074565"
+  },
+  "scope": "Python models + current source guards only; no socket/mpv/Swift execution, performance or runtime-proof claim"
+}

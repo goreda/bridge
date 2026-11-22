@@ -1,0 +1,23 @@
+{
+  "source": "goreda/instinct main live reads 2026-10-01 23:54-23:55 Europe/Istanbul, unchanged on final reread",
+  "source_sha256": {
+    "PPController.swift": "7964e9bcff8779fdc6c2ee064ffac0c93ca4452fc8977581b19369f8cae05962",
+    "MPVCommand.swift": "4b902c71c433ab08a2f9544071bba80d225a777f008e1d8c6770da209b074565"
+  },
+  "negative_checks": [
+    {
+      "changed_anchor": "if n < 0 && errno == EINTR { continue }",
+      "rejected": true
+    },
+    {
+      "changed_anchor": "src.setCancelHandler { Darwin.close(newFd) }",
+      "rejected": true
+    },
+    {
+      "changed_anchor": "lineBuffer.append(contentsOf: buf.prefix(n))",
+      "rejected": true
+    }
+  ],
+  "scope": "Python source-bound ports, no Swift/Darwin/Foundation/mpv execution",
+  "production_edit": false
+}

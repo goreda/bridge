@@ -1,0 +1,104 @@
+{
+ "spec": {
+  "encode": "v = 256/z (z<=0 masked -> 0); w10 = clip(round(v/1024*1023), 0, 1023)",
+  "decode": "inv = w10/1023*1024; z = 256/inv (w10==0 -> masked)",
+  "container": "w10 rides LUMA of yuv420p10le, chroma constant 512"
+ },
+ "cases": [
+  {
+   "z": 0.1,
+   "v": 2560.0,
+   "w10": 1023,
+   "inv_roundtrip": 1024.0,
+   "z_roundtrip": 0.25
+  },
+  {
+   "z": 0.25,
+   "v": 1024.0,
+   "w10": 1023,
+   "inv_roundtrip": 1024.0,
+   "z_roundtrip": 0.25
+  },
+  {
+   "z": 0.5,
+   "v": 512.0,
+   "w10": 512,
+   "inv_roundtrip": 512.500489,
+   "z_roundtrip": 0.499512
+  },
+  {
+   "z": 1.0,
+   "v": 256.0,
+   "w10": 256,
+   "inv_roundtrip": 256.250244,
+   "z_roundtrip": 0.999023
+  },
+  {
+   "z": 2.0,
+   "v": 128.0,
+   "w10": 128,
+   "inv_roundtrip": 128.125122,
+   "z_roundtrip": 1.998047
+  },
+  {
+   "z": 3.7,
+   "v": 69.189189,
+   "w10": 69,
+   "inv_roundtrip": 69.067449,
+   "z_roundtrip": 3.706522
+  },
+  {
+   "z": 10.0,
+   "v": 25.6,
+   "w10": 26,
+   "inv_roundtrip": 26.025415,
+   "z_roundtrip": 9.836538
+  },
+  {
+   "z": 33.33,
+   "v": 7.680768,
+   "w10": 8,
+   "inv_roundtrip": 8.00782,
+   "z_roundtrip": 31.96875
+  },
+  {
+   "z": 100.0,
+   "v": 2.56,
+   "w10": 3,
+   "inv_roundtrip": 3.002933,
+   "z_roundtrip": 85.25
+  },
+  {
+   "z": 1000.0,
+   "v": 0.256,
+   "w10": 0,
+   "inv_roundtrip": 0.0,
+   "z_roundtrip": null
+  },
+  {
+   "z": 1000000.0,
+   "v": 0.000256,
+   "w10": 0,
+   "inv_roundtrip": 0.0,
+   "z_roundtrip": null
+  },
+  {
+   "z": 0.0,
+   "v": 0.0,
+   "w10": 0,
+   "inv_roundtrip": 0.0,
+   "z_roundtrip": null
+  },
+  {
+   "z": -1.0,
+   "v": 0.0,
+   "w10": 0,
+   "inv_roundtrip": 0.0,
+   "z_roundtrip": null
+  }
+ ],
+ "tolerance": {
+  "w10_abs": 0,
+  "note": "integer quantisation must match exactly"
+ }
+}

@@ -1,0 +1,5 @@
+module GorAVAudioClock {
+    header "gorav_audio_clock.h"
+    export *
+}
+

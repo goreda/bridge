@@ -1,0 +1,17 @@
+kind	src	out	amount	overshoot	ring	rise_gain	noise_gain	contrast_gain	max_dev
+step	480	1080	4.875	0.0	0	1.0			
+step	480	2160	6.5	0.0	0	1.004			
+step	2160	1080	2.2981	0.0	0	1.0			
+step	2160	2160	3.25	0.0	0	1.0			
+grain	480	1080	4.875				1.366		
+grain	480	2160	6.5				1.508		
+grain	2160	1080	2.2981				1.125		
+grain	2160	2160	3.25				1.15		
+text	480	1080	4.875					1.0	
+text	480	2160	6.5					1.0	
+text	2160	1080	2.2981					1.0	
+text	2160	2160	3.25					1.0	
+gradient	480	1080	4.875						3.0
+gradient	480	2160	6.5						3.0
+gradient	2160	1080	2.2981						1.0
+gradient	2160	2160	3.25						2.0

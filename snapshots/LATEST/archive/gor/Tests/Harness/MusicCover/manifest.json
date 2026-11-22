@@ -1,0 +1,20 @@
+{
+  "source": "goreda/instinct main live read 2026-10-02 00:10 Europe/Istanbul; final reread unchanged",
+  "source_sha256": "74d16c7591b1058167d0fbb2a025f554afe59df5dd76dd168df97e20580b277e",
+  "negative_checks": [
+    {
+      "anchor": "StableCacheKey.sha1(urlString)",
+      "rejected": true
+    },
+    {
+      "anchor": "coverView.image = image",
+      "rejected": true
+    },
+    {
+      "anchor": "coverView.animator().alphaValue = 0.0",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "native_visual_validation": "not performed; nonvisual model only"
+}

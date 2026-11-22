@@ -1,0 +1,27 @@
+{
+  "reviewed_source_commit": "e05663098c85308dae0d75102c784f5c890619f7",
+  "live_main_read": "2026-10-01 23:51 Europe/Istanbul; matched pinned source bytes",
+  "source_sha256": {
+    "Sources/gor/MegaStreamManager.swift": "2a7f979f20f628a29c0ec314113290497059cfa924a32b92ca3578f171ad34a9",
+    "Sources/gor/App/AppDelegate.swift": "ef735567f7259716884f3a2933581c6c15de56f2426bc4788ff43d9cced9ae05",
+    "Resources/vendor/mega_relay/mega_relay.mjs": "b950e8595cdc79b6f4f18da0ab60f11c6aae910ea566bb1381079a73b6d0467a"
+  },
+  "negative_checks": [
+    {
+      "changed_anchor": "pending += chunk",
+      "rejected": true
+    },
+    {
+      "changed_anchor": "megaStdoutPipe?.fileHandleForReading.readabilityHandler = nil",
+      "rejected": true
+    },
+    {
+      "changed_anchor": "String(data: data, encoding: .utf8)",
+      "rejected": true
+    }
+  ],
+  "execution": "Python 3 source-bound models only",
+  "native_swift": "No Swift executable available in this run",
+  "production_changes": false,
+  "known_red_policy": "PASS preserves observed failure counterexamples; not a claim that relay correctness passes"
+}
