@@ -1,3 +1,7 @@
+## M1 provenance citation correction
+
+The steering-message locator cited in H0695 could not be located during source comparison. The M1 execution GO is genuinely covered by the owner's actual ARCHITECT199bp message, November22 2026 15:58:35 Europe/Istanbul, whose lab section was delivered verbatim in d06230cb. Please correct the unsupported citation using that actual original, without inventing a replacement locator or treating this correction as a work/approval hold. Preserve the distinction between author execution and independent review. No new GO, source packet or integration acceptance is implied; existing M1/L5 work continues.
+
 ## L5 FLAT-AFFINE-1 finite-domain correction input
 
 Independent review of H0698 proposal (archive98e3e6ce) reproduced unchanged15tests and eight references, but found accepted finite inputs producing nonfinite UV/Jacobian/axis or ZeroDivisionError, sometimes hidden by opaque-black final pixels. Actual executable witness and results attached below as gzip-base64 archive. Includes a case using only exactly representable finite Float32 inputs, one map point only.
