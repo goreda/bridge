@@ -37,3 +37,5 @@ Latest pickup record has no observed199by pull yet. L4G0975 completed software s
 Q4 UPDATE: r3701extract is REVIEW_ONLY/KNOWN_BLOCKER, not accepted/current production. Unchanged24s range can immediately redrive from raw-frontier versus sampled-end mismatch; stale-plan/old-token fencing remains open. Local writer preparesr4. Strict same-plan carry source analysis is separate from unaccepted PP redrive.
 
 G7 latest evidence supersedes the earlier no-claim-found snapshot: peer-reported prior repair/PASS is pending actual receipt, not our verified result or proof of current completion. Do not blindly rerun/reimplement; coordinator is recovering returned evidence and any remaining RED.
+
+Q3/G7 actual peer files now at packets/199by-standing-queues/g7-peer-repair/. Diff has no repo base; matching original harness baseline/apply+test comparison remains open.23:38 standalone regression is not live peer replay;14:31capacityJSON96peers/674peak610finalMB is older, not new16peer evidence. Do not close or duplicate repair before qualification.

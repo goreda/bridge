@@ -1,0 +1,2 @@
+{"stalls":29,"stallEvents":2,"holderPhases":17,"readMB":443.6,"playerSec":11.72,"fetchedMB":425.6,"verified":27,"put":27,"maxPending":296,"maxConns":200,"maxConnected":96,"cpuUserS":28.7,"cpuSysS":1.5,"engRssPeakMB":674,"engRssFinalMB":610,"rssPeakByProc":{"blackholes.mjs":53,"minimal_seed.mjs":96,"wt_replay.mjs":674},"throttlePauses":409,"throttleResumes":338}
+

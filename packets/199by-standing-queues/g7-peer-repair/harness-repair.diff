@@ -1,0 +1,131 @@
+--- a/harness/drive.mjs
++++ b/harness/drive.mjs
+@@ -1,12 +1,22 @@
+-// G4 actual-archive replay driver (trace demand from /tmp/wt/trace.json,
++// G4 actual-archive replay driver v2 (trace demand from /tmp/wt/trace.json,
+ // media + swarm synthetic local, throttled). One variant per invocation.
+-// usage: node drive.mjs <maxConns> <cap30 0|1> <outLogFile> [windowSecs]
++// v2 repairs (gdb review 2026-11-22):
++//  1. demand throttle budgets REAL chunk sizes (v1 decremented a constant
++//     65536 per data event regardless of chunk.length).
++//  2. paused responses resume from an INDEPENDENT per-response timer that
++//     tops the budget up on a 100ms tick (v1 topped up only inside the data
++//     handler, so a paused response never accumulated budget again and sat
++//     stalled until the next scheduled range destroyed it).
++//  3. THROTTLE pause/resume events are logged as evidence.
++//  4. seeder count is a parameter (capacity legs run >16 real wires).
++// usage: node drive.mjs <maxConns> <cap30 0|1> <outLogFile> [windowSecs] [nSeeds]
+ import { spawn } from 'node:child_process';
+ import fs from 'node:fs';
+ import http from 'node:http';
+ 
+-const [maxConns, cap30, outLog, winArg] = process.argv.slice(2);
++const [maxConns, cap30, outLog, winArg, seedsArg] = process.argv.slice(2);
+ const WINDOW = parseInt(winArg || '120', 10);
++const N_SEEDS = parseInt(seedsArg || '16', 10);
+ const BITRATE = 9.19e6;              // trace-real bytes/s (archive median)
+ const FILE_LEN = 97921926465;        // full archive geometry (sparse zeros; hashes valid)
+ const trace = JSON.parse(fs.readFileSync('/tmp/wt/trace.json', 'utf8'));
+@@ -43,7 +53,7 @@
+ 
+ // 1. blackholes (pending-dial population) + throttled seeder swarm
+ run('bh', 'node', ['--max-old-space-size=128', '/tmp/wt/blackholes.mjs', '200', '32000', '/tmp/wt/peers_bh.txt']);
+-run('seed', 'node', ['--max-old-space-size=192', '/tmp/wt/minimal_seed.mjs', '16', '300', '31000', '/tmp/wt/peers_seed.txt']);
++run('seed', 'node', ['--max-old-space-size=192', '/tmp/wt/minimal_seed.mjs', String(N_SEEDS), '300', '31000', '/tmp/wt/peers_seed.txt']);
+ 
+ // 2. engine under test
+ await new Promise(r => setTimeout(r, 12000)); // let swarm seeding come up
+@@ -66,7 +76,6 @@
+ });
+ if (!token) { log.write('NO TOKEN\n'); shutdown(1); await new Promise(() => {}); }
+ log.write(`TOKEN ${token}\n`);
+-const tStart = Date.now();
+ 
+ function postPos(playhead) {
+   return new Promise((resolve) => {
+@@ -79,7 +88,9 @@
+   });
+ }
+ 
+-// demand: RANGE GETs, throttled consumption at 1.15x bitrate, destroyed at next range or window end
++// demand: RANGE GETs, throttled consumption at 1.15x bitrate.
++// v2 throttle: real chunk sizes against a budget that an independent 100ms
++// timer tops up at 1.15x BITRATE; pause at budget<0, resume at budget>=0.
+ let activeReq = null;
+ function fireRange(start, end) {
+   if (activeReq) { try { activeReq.destroy(); } catch (_) {} activeReq = null; }
+@@ -88,14 +99,19 @@
+   const req = http.request({ host: '127.0.0.1', port: 2222, path: `/?gor_stream=${token}`,
+     headers: { range: `bytes=${start}-${e}` } }, (res) => {
+     if (res.statusCode >= 400) { res.resume(); return; }
+-    // throttle reads: pause/resume to ~1.15x bitrate
+-    let budget = 0; let last = Date.now();
+-    res.on('data', (chunk) => { globalThis._readBytes = (globalThis._readBytes || 0) + chunk.length;
+-      const now = Date.now(); budget += (now - last) / 1000 * BITRATE * 1.15; last = now;
+-      budget -= 65536;
+-      if (budget < -262144) res.pause(); else res.resume();
++    let budget = 1048576; // 1MB initial burst allowance
++    let paused = false;
++    res.on('data', (chunk) => {
++      globalThis._readBytes = (globalThis._readBytes || 0) + chunk.length;
++      budget -= chunk.length;                     // REAL chunk size, not a constant
++      if (budget < 0 && !paused) { paused = true; res.pause(); log.write(`THROTTLE pause budget=${budget.toFixed(0)}\n`); }
+     });
+-    res.on('error', () => {});
++    const iv = setInterval(() => {                // independent resume timer
++      budget += 0.1 * BITRATE * 1.15;
++      if (paused && budget >= 0) { paused = false; log.write(`THROTTLE resume-timer budget=${budget.toFixed(0)}\n`); res.resume(); }
++    }, 100);
++    res.on('close', () => clearInterval(iv));
++    res.on('error', () => clearInterval(iv));
+   });
+   req.on('error', () => {});
+   req.end();
+--- a/harness/extract.mjs
++++ b/harness/extract.mjs
+@@ -1,12 +1,18 @@
+ // Extract G4 matrix metrics from a drive log: bytes in/out, underruns, CPU, peaks.
++// v2 (gdb review 2026-11-22): reports PEAK RSS per process, not the final
++// sample (v1 kept the last RSS line). Final RSS is still reported, labeled.
++// Also surfaces throttle pause/resume-timer counts from drive.mjs v2 logs.
+ import fs from 'node:fs';
+ const log = fs.readFileSync(process.argv[2], 'utf8');
+ const lines = log.split('\n');
+-let stalls = 0, stallEvents = 0, holderPhases = 0, readBytes = 0, lastPlayerSec = 0, firstDone = null, lastDone = 0, lastDl = 0, maxPending = 0, maxConns = 0, maxConnected = 0, lastRssEng = 0, verified = 0, put = 0, playedBytes = 0, cpuU = 0, cpuS = 0;
++let stalls = 0, stallEvents = 0, holderPhases = 0, readBytes = 0, lastPlayerSec = 0, firstDone = null, lastDone = 0, lastDl = 0, maxPending = 0, maxConns = 0, maxConnected = 0, verified = 0, put = 0, playedBytes = 0, cpuU = 0, cpuS = 0, throttlePauses = 0, throttleResumes = 0;
++const rssPeak = {}, rssFinal = {};
+ for (const l of lines) {
+   if (l.includes('STALL:')) stalls++;
+   if (/STALL: piece=\d+ play=\d+ retry/.test(l)) stallEvents++;
+   if (l.includes('STALL:holder')) holderPhases++;
++  if (l.startsWith('THROTTLE pause')) throttlePauses++;
++  if (l.startsWith('THROTTLE resume-timer')) throttleResumes++;
+   const w = l.match(/WINDOW_END readBytes=(\d+)/); if (w) readBytes = +w[1];
+   const m = l.match(/REPLAY:pending=(\d+) connected=(\d+) conns=(\d+).*dl=([\d.]+) done=(\d+)(?: cpuUser=([\d.]+) cpuSys=([\d.]+))?/);
+   if (m) {
+@@ -20,7 +26,22 @@
+   }
+   const s = l.match(/STORE:(\{.*\})/);
+   if (s) { try { const j = JSON.parse(s[1]); verified = j.verifiedCount; put = j.put; lastPlayerSec = j.playerSec || lastPlayerSec; } catch (_) { } }
+-  const r = l.match(/RSS wt_replay\.mjs pid=\d+ rssMB=(\d+) user=([\d.]+) sys=([\d.]+)/);
+-  if (r) { lastRssEng = +r[1]; cpuU = +r[2]; cpuS = +r[3]; }
++  const r = l.match(/RSS (\S+) pid=\d+ rssMB=(\d+) user=([\d.]+) sys=([\d.]+)/);
++  if (r) {
++    const name = r[1], mb = +r[2];
++    rssFinal[name] = mb;
++    if (!(name in rssPeak) || mb > rssPeak[name]) rssPeak[name] = mb;
++    if (name === 'wt_replay.mjs') { cpuU = +r[3]; cpuS = +r[4]; }
++  }
+ }
+-console.log(JSON.stringify({ stalls, stallEvents, holderPhases, readMB: +(readBytes/1048576).toFixed(1), playerSec: lastPlayerSec, fetchedMB: +(lastDone / 1048576).toFixed(1), verified, put, maxPending, maxConns, maxConnected, cpuUserS: cpuU, cpuSysS: cpuS, engRssMB: lastRssEng }));
++console.log(JSON.stringify({
++  stalls, stallEvents, holderPhases,
++  readMB: +(readBytes / 1048576).toFixed(1), playerSec: lastPlayerSec,
++  fetchedMB: +(lastDone / 1048576).toFixed(1), verified, put,
++  maxPending, maxConns, maxConnected,
++  cpuUserS: cpuU, cpuSysS: cpuS,
++  engRssPeakMB: rssPeak['wt_replay.mjs'] ?? null,
++  engRssFinalMB: rssFinal['wt_replay.mjs'] ?? null,
++  rssPeakByProc: rssPeak,
++  throttlePauses, throttleResumes,
++}));
