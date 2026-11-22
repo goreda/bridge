@@ -29,3 +29,7 @@ Policy census must include Sources executable targets. MenuCapability/cache pari
 Additional returned-test exclusions: ABLoopPolicy kit ABLoopPolicyTests and SubtitleSelectionPolicy kit SubtitleSelectionPolicyTests already exist from199v. Do not assign duplicate full suites. Current-code/Package/all-tests including Sources executable-target policy census is the next grounded intake step; exact uncovered branch deltas still require actual comparison. A possible Demuxer branch gap is under separate qualification, not an absent full suite.
 
 Demuxer dependency clarification: real Package target is Sources/admission-tests with GorAVCore+GorAVNativeProbeKit+GorAVFFmpegAdapter. swift run admission-tests is full FFmpeg/network, not pure. Actual AdmissionTable/SourceDescriptor closure remains unavailable pending source-owner export; no fabricated stubs or broad fetch retries.
+
+## SUPERSEDED BY199ca SNAPSHOT BACKLOG
+
+Active dispatch now uses GROUP-GUIDEv15 and BACKLOG.md, not per-packet13fields/run-proof/inline archives. Earlier rows and known outcomes remain historical provenance. Snapshot export is pending, not yet available; no missing-GO gate. Do not repeat station/G7 work.

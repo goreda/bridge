@@ -47,3 +47,7 @@ G7 latest filtered-log check supersedes earlier raw-receipt-gap note for the lis
 Q4 CURRENT REVIEW SUCCESSOR: packets/199by-standing-queues/autocrop-v3-r4-review/ has713-line r4extract+binding. Ops actualSwift/architect review PENDING, not accepted. r3 remains knownRED archive. Local writer owns patch; lab/Goreda review partner only. PP async/generation proof exceeds extract evidence; request scoped projection if needed. No2ddshipgate.
 
 Q4 SUPERSEDING: r4KNOWN_BLOCKER generation-before-lock race and empty-plan raw-end write; r5localfix active. No redundantr4review. Waitr5safePP+extractprojection showing lock/token atomicity and plan validity, not extract-only inference. Station2dd was shipped23:44:17; no more station implementation work.
+
+## SUPERSEDED BY199ca SNAPSHOT BACKLOG
+
+Active dispatch now uses GROUP-GUIDEv15 and BACKLOG.md, not per-packet13fields/run-proof/inline archives. Earlier rows and known outcomes remain historical provenance. Snapshot export is pending, not yet available; no missing-GO gate. Do not repeat station/G7 work.

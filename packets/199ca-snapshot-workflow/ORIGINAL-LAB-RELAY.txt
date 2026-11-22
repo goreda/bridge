@@ -1,0 +1,1 @@
+RELAY 1nstinct + in2tinct (verbatim, GO, standing): Source now lives in bridge snapshots/LATEST. Take BACKLOG rows with all workers in parallel; return git diff vs the snapshot + test log. When rows run low, write new rows yourself from the snapshot and gorav PLAN v4. Target: 100% of daily budget. Report: budget %, peak parallel workers, diffs returned.

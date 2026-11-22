@@ -1,3 +1,5 @@
+199ca standing snapshot workflow now governs: GROUP-GUIDE.md v15 + BACKLOG.md.70distinct actual file-level findings seeded for in2tinct; Goreda produces/refills1nstinct rows, labs self-refill from real source. Snapshot readiness PENDING: no claim LATEST exists until exporter verified.13fields/inlinearchives/per-packet runproof RETIRED for snapshot rows. Return diff+test log, producer applies/tests/pushes.
+
 199byQ4 review successor: packets/199by-standing-queues/autocrop-v3-r4-review/autocrop-v3-r4-extract.swift exactly713lines, sha89515d871d33ab4c29c27dd167384a1a0b14db1413b327b04e0d953643beea78. OpsSwift/architectreviewPENDING, notaccepted; active localwriter retains implementation, r3knownREDarchive. No PP generation proof or station gate inferred.
 
 199byQ3/G7 bounded outcome: HARNESS_REPAIR_VERIFIED. Actual independent body/extractor regression+2runtime mutants+JSsyntax receipts at packets/199by-standing-queues/g7-independent/. Original3repair defects have no remainingRED; do not reimplement/replay. Capacity/actual16peer scope remains separate, notPASS from oldJSON.

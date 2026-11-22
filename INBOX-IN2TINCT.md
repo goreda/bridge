@@ -1,3 +1,5 @@
+199ca standing snapshot workflow now governs: GROUP-GUIDE.md v15 + BACKLOG.md.70distinct actual file-level findings seeded for in2tinct; Goreda produces/refills1nstinct rows, labs self-refill from real source. Snapshot readiness PENDING: no claim LATEST exists until exporter verified.13fields/inlinearchives/per-packet runproof RETIRED for snapshot rows. Return diff+test log, producer applies/tests/pushes.
+
 199byQ3-Demuxer concrete test-only intake: packets/199by-standing-queues/demuxer-guard-branches/TASK.md. Actual policy+full current runner supplied, admitted-container guard coverage gaps identified; verify other current tests/add missing branches only. Preserve actual AdmissionTable, runtime-killed mutants, noFFmpeg/network for pure cases. Missing exact dependencies requested, not invented.
 
 199byQ1 actual2dd violation metadata now delivered: packets/199by-standing-queues/architecture-2dd/README.txt and violations.tsv.315path/rule keys/332occurrences, one file per return. Membership line1 is an anchor; classify standalone/uncompiled findings before repair, no blind patch. Source disclosure not expanded; not a shipping gate.
