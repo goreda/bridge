@@ -29,3 +29,5 @@ PLANv4 decided cells are design state, not implemented/unstarted evidence. Actua
 ## Occupied work, do not duplicate
 
 Existing Goreda P21 constant-mm/embedded-entry/tune-seam work and renderer StereoProjectionPass/MSL-angle/native-wrapper work are occupied. Prior191c scorer scope was already delivered; Q1 is only the R2 successor tied to that actual scorer/test return. No Q3/G7 claim was identified in the latest qualified ownership report, but claim reconciliation still applies.
+
+G7 ownership clarification: keep Q3 with1nstinct unless explicitly freed; Goreda may take it only after release. AutocropQ4 Goreda review partnership is accepted and awaits actual authorized packet, not a duplicate local patch.

@@ -1,0 +1,3 @@
+Exact2dd actual architecture source findings for standing in2Q1.315unique path/rule keys,332occurrences,124target graph. violations.tsv maps every occurrence to real source line. Import rows use actual import token location including annotated SPI; MPV rows use exact scanner signature occurrence; membership rows use explicitly marked file-level line1 anchor because ownership has no offending statement.
+
+No377stale metadata rows or subset asset omissions. No source bodies/excerpts, only project-relative paths, line numbers, categories and hashes. This list does not grant code edits, choose architecture fixes, assert every unassigned lab file is live product, or gate shipping. Preserve per-row semantic investigation and existing owner/bridge scope.

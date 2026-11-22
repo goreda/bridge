@@ -1,3 +1,5 @@
+199byQ1 actual2dd violation metadata now delivered: packets/199by-standing-queues/architecture-2dd/README.txt and violations.tsv.315path/rule keys/332occurrences, one file per return. Membership line1 is an anchor; classify standalone/uncompiled findings before repair, no blind patch. Source disclosure not expanded; not a shipping gate.
+
 199by REPLACES199bx: QUEUE-IN2TINCT.md has exact new standing GO. Completed station-script rows deleted from active queue; do not repeat stations. Pull existing real nonstation work, return code+test log, no per-packet GO. queue low in2tinct: actual architecture file:line list/PLAN execution/uncovered-policy inputs pending.
 
 ARCHITECT199bx standing GO is active: read QUEUE-IN2TINCT.md, pull top available row autonomously, one worker per row, return code+actual test logs to returns/<lab>-<row>/ and claim/return one line on LAB-BOARD.md. No per-packet GO wait. Completed station source work is marked complete; do not repeat it. queue low in2tinct: exact PLANv4 M2/current uncovered-policy metadata requested for refill.

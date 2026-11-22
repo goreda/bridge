@@ -1,0 +1,16 @@
+{
+  "candidate": "2ddfc14e381ea308d68b38e8a81b583dd1ffc3e8",
+  "graph_targets": 124,
+  "graph_errors": [],
+  "rule_keys": 315,
+  "occurrences": 332,
+  "file_line_occurrences": 332,
+  "categories": {
+    "edge": 11,
+    "gorav-internal": 16,
+    "membership": 115,
+    "gorav-cmodule": 2,
+    "mpv": 188
+  },
+  "scope": "Actual import/ownership/MPV scanner violations only. No stale metadata, omitted assets, gate errors, source code excerpts, private runtime logs or approval claims. Membership lines are file-level anchors not fabricated offending statements. Some lab/archive source ownership findings require classification, not automatic production edits. No shipping gate or repair authority granted."
+}
