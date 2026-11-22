@@ -56,3 +56,11 @@ Source lane a8153e1a6654b3c6143a6669b77055cef88b3b69 parent37a220b9c2fec0e7f5233
 ## Isolated M1 EmbeddedSession candidate
 
 Gorav d323efd57a8056eadac9c5e96ed59cda2453168a on lane/gdb/m1-embedded-session-three-ports, base 07091c9c06f7d036f8776d18458429a947b70b92, separate snapshots/gorav-d323efd57a8056eadac9c5e96ed59cda2453168a. One file lifecycle/inventory port. Parse/guard inspection and portable80/29/17 only; changed shell TYPECHECK NOT_RUN due CFFmpeg header, runtime gates77. Must enter existing next daily combined native batch before delivery. No carrier dispatch, no release/native/owner acceptance. Canonical LATEST/gorav remains07091. Combined subtitle/Cue on safeAutoLoadv2 currently times out both toolchains under investigation; Controller22+boundaries remains narrow valid evidence, no fullcombinedgreen or confirmedregression.
+
+## Owner199ci structure relay, exact original
+
+RELAY 1nstinct + in2tinct (verbatim): Every diff you return must pass tools/check-structure.sh (in snapshots/LATEST). New Swift files carry the 4-line header and sit in the owning station; failing diffs come back to you with the lines.
+
+Source: authenticated owner iMessage phonemsg-01M82JVNMJMJA5JPJJY3CBXAAE,2026-11-23 00:33:39+03. Implementation status: tools/check-structure.sh and repo CODE-STRUCTURE.md/STATIONS.tsv are being implemented by the structure owner, NOT yet claimed available in snapshots/LATEST. This relay does not claim the missing script currently executes. One audit lane, station commits, no overlapping writers; daily native batch/deletion gate retained. Exact docs spec is held by structure owner for verbatim repository delivery, no rewritten substitute.
+
+Cue correction supersedes prior combined-both-toolchains timeout caveat: actual restored uninstrumented2dd+selectedCueRepeatedIndex+safeAutoLoadv2 with genuine28fixtures completedSwift6 in46seconds,220657PASS0FAIL. Prior30second bound was too short, notSwift6hang. Swift5.10 remains unclosed, selectedCue publication held; no genericAPIcausalclaim.
