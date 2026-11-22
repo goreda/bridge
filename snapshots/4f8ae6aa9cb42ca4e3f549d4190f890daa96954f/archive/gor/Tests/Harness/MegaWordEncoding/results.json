@@ -1,0 +1,28 @@
+{
+  "result": "PASS synthetic encoding controls and shape characterizations",
+  "controls": [
+    "signed boundary big-endian/base64url roundtrip",
+    "decimal string/integer fixture equivalence",
+    "empty/invalid shape and out-of-range string rejected",
+    "1000 seeded eight-word signed roundtrips"
+  ],
+  "characterizations": [
+    {
+      "case": "empty handle",
+      "observed": "formatter does not require nonempty handle",
+      "scope": "synthetic input, caller validation unverified"
+    },
+    {
+      "case": "arbitrary nonzero word count",
+      "observed": "no expected format/key word-count gate in helper",
+      "scope": "provider-specific intended key sizes not validated; not cryptographic failure claim"
+    }
+  ],
+  "source_sha256": "c2d52d97a370331db2bf738395502463e0d5f0025cacbcb908b4f0d45dd1f200",
+  "open": [
+    "Foundation NSNumber Bool/float/overflow bridging",
+    "provider key format/length and caller handle validation",
+    "native base64/string parity, relay/provider decryption"
+  ],
+  "scope": "Invented fixture words only, Python packing port/current Swift guards; no real secrets/provider/decryption/Swift execution"
+}

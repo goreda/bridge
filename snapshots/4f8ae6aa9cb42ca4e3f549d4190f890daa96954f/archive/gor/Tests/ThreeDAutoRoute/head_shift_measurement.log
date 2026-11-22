@@ -1,0 +1,97 @@
+LUAERR	vr180-look: shader publication failed: nil
+LUAERR	vr180-look: shader publication failed: nil
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS layout 0 cross 0 headdeg -30 dxdy [386.55779075 223.15013893] line_error_px 0.029105617461652855 axis_error_deg 0.0032356418321413116
+MEAS layout 0 cross 0 headdeg -20 dxdy [483.00701375 175.81542013] line_error_px 0.015244181293695647 axis_error_deg 0.0015967632468871784
+MEAS layout 0 cross 0 headdeg -10 dxdy [482.99227859  85.16825467] line_error_px 0.003684480465679485 axis_error_deg 0.00042389769418527123
+MEAS layout 0 cross 0 headdeg -5 dxdy [482.99892191  42.26865507] line_error_px 0.011724903935991904 axis_error_deg 0.001380299405060903
+MEAS layout 0 cross 0 headdeg 0 dxdy [ 4.82999997e+02 -1.33801558e-06] line_error_px 1.338015579221974e-06 axis_error_deg 1.5872183462701324e-07
+MEAS layout 0 cross 0 headdeg 5 dxdy [482.99894334 -42.26867576] line_error_px 0.011743719677021147 axis_error_deg 0.0013825143982213461
+MEAS layout 0 cross 0 headdeg 10 dxdy [482.99228945 -85.16826978] line_error_px 0.003697677947641864 axis_error_deg 0.0004254160465482215
+MEAS layout 0 cross 0 headdeg 20 dxdy [ 483.00699143 -175.81537035] line_error_px 0.01520252434215763 axis_error_deg 0.0015923999758484797
+MEAS layout 0 cross 0 headdeg 30 dxdy [ 386.55782241 -223.15012093] line_error_px 0.02914189865137473 axis_error_deg 0.003239675041395884
+MEAS layout 0 cross 1 headdeg -30 dxdy [ 386.53348852 -223.16798867] line_error_px 0.002775017421413395 axis_error_deg 0.0003085042372248381
+MEAS layout 0 cross 1 headdeg -20 dxdy [ 482.9929807  -175.81541258] line_error_px 0.020344243306993803 axis_error_deg 0.0021310277632800023
+MEAS layout 0 cross 1 headdeg -10 dxdy [483.00771738 -85.16824447] line_error_px 0.0009520051537350582 axis_error_deg 0.00010952433717648091
+MEAS layout 0 cross 1 headdeg -5 dxdy [483.00104302 -42.26868886] line_error_px 0.011573124964357362 axis_error_deg 0.0013624254727000462
+MEAS layout 0 cross 1 headdeg 0 dxdy [ 4.82999997e+02 -1.33801558e-06] line_error_px 1.338015579221974e-06 axis_error_deg 1.5872183462701324e-07
+MEAS layout 0 cross 1 headdeg 5 dxdy [483.0010532   42.26868304] line_error_px 0.011566415878334624 axis_error_deg 0.0013616356304604338
+MEAS layout 0 cross 1 headdeg 10 dxdy [483.00773667  85.16830698] line_error_px 0.0010111172819478043 axis_error_deg 0.00011632494103608337
+MEAS layout 0 cross 1 headdeg 20 dxdy [482.99301135 175.81539675] line_error_px 0.020317258999625665 axis_error_deg 0.0021282011023089353
+MEAS layout 0 cross 1 headdeg 30 dxdy [386.53347091 223.16795112] line_error_px 0.002747638969367472 axis_error_deg 0.0003054605432346591
+MEAS layout 1 cross 0 headdeg -30 dxdy [386.56834063 223.15069303] line_error_px 0.03464249550066256 axis_error_deg 0.003851089699029586
+MEAS layout 1 cross 0 headdeg -20 dxdy [483.00893321 175.81074341] line_error_px 0.00986883281902351 axis_error_deg 0.0010337179133728114
+MEAS layout 1 cross 0 headdeg -10 dxdy [482.9922129   85.16728778] line_error_px 0.002729174358051978 axis_error_deg 0.0003139903378084341
+MEAS layout 1 cross 0 headdeg -5 dxdy [482.99912159  42.26946996] line_error_px 0.012522325326898454 axis_error_deg 0.0014741740033930029
+MEAS layout 1 cross 0 headdeg 0 dxdy [4.82999990e+02 1.21840028e-05] line_error_px 1.2184002798676374e-05 axis_error_deg 1.4453249537714132e-06
+MEAS layout 1 cross 0 headdeg 5 dxdy [482.99909852 -42.26944825] line_error_px 0.012502638681581857 axis_error_deg 0.0014718564949118829
+MEAS layout 1 cross 0 headdeg 10 dxdy [482.99220278 -85.16729666] line_error_px 0.0027398349719192083 axis_error_deg 0.0003152168422708712
+MEAS layout 1 cross 0 headdeg 20 dxdy [ 483.00893583 -175.81075169] line_error_px 0.009876161027335684 axis_error_deg 0.0010344855011190646
+MEAS layout 1 cross 0 headdeg 30 dxdy [ 386.56831154 -223.15065772] line_error_px 0.03466101147083123 axis_error_deg 0.0038531484269697103
+MEAS layout 1 cross 1 headdeg -30 dxdy [ 386.54248605 -223.16622462] line_error_px 0.004183752645360528 axis_error_deg 0.0004651089489762228
+MEAS layout 1 cross 1 headdeg -20 dxdy [ 482.99104945 -175.81075922] line_error_px 0.016393801176718625 axis_error_deg 0.0017172364907303006
+MEAS layout 1 cross 1 headdeg -10 dxdy [483.00778327 -85.16728698] line_error_px 1.709940632110829e-05 axis_error_deg 1.967217848175551e-06
+MEAS layout 1 cross 1 headdeg -5 dxdy [483.00085661 -42.26949493] line_error_px 0.012395501400042974 axis_error_deg 0.0014592386176479621
+MEAS layout 1 cross 1 headdeg 0 dxdy [ 4.83000000e+02 -1.48917774e-05] line_error_px 1.4891777368575276e-05 axis_error_deg 1.7665341464280275e-06
+MEAS layout 1 cross 1 headdeg 5 dxdy [483.00089275  42.26944584] line_error_px 0.012343247771674726 axis_error_deg 0.001453087055995006
+MEAS layout 1 cross 1 headdeg 10 dxdy [483.00778435  85.1672748 ] line_error_px 2.947777961992415e-05 axis_error_deg 3.391299863153563e-06
+MEAS layout 1 cross 1 headdeg 20 dxdy [482.99105151 175.81075097] line_error_px 0.016384802196540704 axis_error_deg 0.0017162938583332732
+MEAS layout 1 cross 1 headdeg 30 dxdy [386.5425025  223.16618913] line_error_px 0.004228735418649876 axis_error_deg 0.00047010970012806297
+MEAS layout 2 cross 0 headdeg -30 dxdy [386.5462908  223.16371976] line_error_px 0.008885287488027416 axis_error_deg 0.0009877753688982693
+MEAS layout 2 cross 0 headdeg -20 dxdy [483.00123542 175.83021401] line_error_px 0.03214120225479178 axis_error_deg 0.003366656849870253
+MEAS layout 2 cross 0 headdeg -10 dxdy [482.96396919  85.19150371] line_error_px 0.03192523043939843 axis_error_deg 0.003673160869366754
+MEAS layout 2 cross 0 headdeg -5 dxdy [483.07100026  42.21471603] line_error_px 0.04852017359942096 axis_error_deg 0.005711185281932707
+MEAS layout 2 cross 0 headdeg 0 dxdy [4.83000006e+02 1.03103662e-05] line_error_px 1.0310366178600816e-05 axis_error_deg 1.2230651335062606e-06
+MEAS layout 2 cross 0 headdeg 5 dxdy [483.07098637 -42.2147044 ] line_error_px 0.048530587213470255 axis_error_deg 0.005712411216688196
+MEAS layout 2 cross 0 headdeg 10 dxdy [482.96394825 -85.19152837] line_error_px 0.03195358194859921 axis_error_deg 0.0036764229778505353
+MEAS layout 2 cross 0 headdeg 20 dxdy [ 483.0012491  -175.83020474] line_error_px 0.03212695044430802 axis_error_deg 0.0033651639687342083
+MEAS layout 2 cross 0 headdeg 30 dxdy [ 386.54628137 -223.16376863] line_error_px 0.008830969374116648 axis_error_deg 0.0009817368008562255
+MEAS layout 2 cross 1 headdeg -30 dxdy [ 386.54266353 -223.17414685] line_error_px 0.003636008094531462 axis_error_deg 0.00040421230798060037
+MEAS layout 2 cross 1 headdeg -20 dxdy [ 482.9987294  -175.83023681] line_error_px 0.0330761227174321 axis_error_deg 0.0034646016879342767
+MEAS layout 2 cross 1 headdeg -10 dxdy [483.0360145 -85.1915105] line_error_px 0.019228489959502326 axis_error_deg 0.002212015985497473
+MEAS layout 2 cross 1 headdeg -5 dxdy [482.92898489 -42.21472187] line_error_px 0.03608959707538162 axis_error_deg 0.0042492537156171295
+MEAS layout 2 cross 1 headdeg 0 dxdy [4.82999998e+02 4.24591917e-09] line_error_px 4.245919171808055e-09 axis_error_deg 5.036713244312051e-10
+MEAS layout 2 cross 1 headdeg 5 dxdy [482.92899789  42.21469873] line_error_px 0.03611387681694822 axis_error_deg 0.004252112359907301
+MEAS layout 2 cross 1 headdeg 10 dxdy [483.03601187  85.19148816] line_error_px 0.019206613583179433 axis_error_deg 0.0022094993898775783
+MEAS layout 2 cross 1 headdeg 20 dxdy [482.99877822 175.83025505] line_error_px 0.0330765902670862 axis_error_deg 0.0034646503108000104
+MEAS layout 2 cross 1 headdeg 30 dxdy [386.5426728  223.17413347] line_error_px 0.003617271698544755 axis_error_deg 0.00040212939561357075
+MEAS layout 3 cross 0 headdeg -30 dxdy [386.58672608 223.1493067 ] line_error_px 0.046643664884840064 axis_error_deg 0.005185042417025443
+MEAS layout 3 cross 0 headdeg -20 dxdy [483.00498508 175.82703724] line_error_px 0.027599672773504835 axis_error_deg 0.0028909368774705513
+MEAS layout 3 cross 0 headdeg -10 dxdy [483.00196935  85.19104102] line_error_px 0.024762091745870407 axis_error_deg 0.002848788249533385
+MEAS layout 3 cross 0 headdeg -5 dxdy [483.0074361   42.21748855] line_error_px 0.04018651007579166 axis_error_deg 0.004730866534925049
+MEAS layout 3 cross 0 headdeg 0 dxdy [ 4.82999991e+02 -1.07322464e-05] line_error_px 1.0732246380484867e-05 axis_error_deg 1.2731106279319845e-06
+MEAS layout 3 cross 0 headdeg 5 dxdy [483.00742224 -42.21755869] line_error_px 0.040115153604283194 axis_error_deg 0.004722466329714514
+MEAS layout 3 cross 0 headdeg 10 dxdy [483.00197958 -85.19103224] line_error_px 0.024751507006797624 axis_error_deg 0.002847570464302507
+MEAS layout 3 cross 0 headdeg 20 dxdy [ 483.00499278 -175.82696637] line_error_px 0.027525998862984125 axis_error_deg 0.002883219974645357
+MEAS layout 3 cross 0 headdeg 30 dxdy [ 386.58674299 -223.14931736] line_error_px 0.04664277386802951 axis_error_deg 0.005184943137088283
+MEAS layout 3 cross 1 headdeg -30 dxdy [ 386.59071953 -223.13726302] line_error_px 0.06099296225818307 axis_error_deg 0.006780190038650602
+MEAS layout 3 cross 1 headdeg -20 dxdy [ 482.99499702 -175.82704146] line_error_px 0.031239243031336628 axis_error_deg 0.0032722246109280206
+MEAS layout 3 cross 1 headdeg -10 dxdy [482.99799896 -85.19106384] line_error_px 0.02548499850078656 axis_error_deg 0.0029319793831543706
+MEAS layout 3 cross 1 headdeg -5 dxdy [482.99250982 -42.21754835] line_error_px 0.038820830489370906 axis_error_deg 0.004570235089273567
+MEAS layout 3 cross 1 headdeg 0 dxdy [ 4.82999990e+02 -5.36609446e-06] line_error_px 5.366094455894199e-06 axis_error_deg 6.365519071617515e-07
+MEAS layout 3 cross 1 headdeg 5 dxdy [482.99252794  42.21750958] line_error_px 0.03886117942704459 axis_error_deg 0.004574985084401462
+MEAS layout 3 cross 1 headdeg 10 dxdy [482.99805123  85.19107025] line_error_px 0.025482188094230196 axis_error_deg 0.002931655739182304
+MEAS layout 3 cross 1 headdeg 20 dxdy [482.99505269 175.82702451] line_error_px 0.0312020389623342 axis_error_deg 0.003268327291461759
+MEAS layout 3 cross 1 headdeg 30 dxdy [386.59071366 223.1372633 ] line_error_px 0.060989304582022896 axis_error_deg 0.006779783513675142
+MEAS layout 4 cross 0 headdeg -30 dxdy [386.59761138 223.12053474] line_error_px 0.08170026114612483 axis_error_deg 0.009082134187469393
+MEAS layout 4 cross 0 headdeg -20 dxdy [482.99762888 175.81829709] line_error_px 0.021536951640769075 axis_error_deg 0.002255938600693952
+MEAS layout 4 cross 0 headdeg -10 dxdy [483.01080598  85.18733597] line_error_px 0.019498900845803746 axis_error_deg 0.002243240492910914
+MEAS layout 4 cross 0 headdeg -5 dxdy [482.97845071  42.2165017 ] line_error_px 0.03863746469430396 axis_error_deg 0.004548780360138949
+MEAS layout 4 cross 0 headdeg 0 dxdy [ 4.82999994e+02 -6.31224850e-06] line_error_px 6.312248501672002e-06 axis_error_deg 7.487892396605944e-07
+MEAS layout 4 cross 0 headdeg 5 dxdy [482.9784086  -42.21650409] line_error_px 0.03863139356020184 axis_error_deg 0.004548065998361217
+MEAS layout 4 cross 0 headdeg 10 dxdy [483.01078096 -85.18732855] line_error_px 0.01949589860622325 axis_error_deg 0.0022428952204691655
+MEAS layout 4 cross 0 headdeg 20 dxdy [ 482.99761533 -175.81833717] line_error_px 0.021581966244383466 axis_error_deg 0.002260653756827935
+MEAS layout 4 cross 0 headdeg 30 dxdy [ 386.59761432 -223.12053656] line_error_px 0.08170013291729106 axis_error_deg 0.00908211986264007
+MEAS layout 4 cross 1 headdeg -30 dxdy [ 386.57068534 -223.17316372] line_error_px 0.013525523938312745 axis_error_deg 0.0015035423164881934
+MEAS layout 4 cross 1 headdeg -20 dxdy [ 483.00231539 -175.81835227] line_error_px 0.019886390472265703 axis_error_deg 0.0020830287697783945
+MEAS layout 4 cross 1 headdeg -10 dxdy [482.98920141 -85.18731375] line_error_px 0.02328614817601249 axis_error_deg 0.0026790585497717956
+MEAS layout 4 cross 1 headdeg -5 dxdy [483.02155371 -42.21648833] line_error_px 0.04242185854703706 axis_error_deg 0.004993873947886307
+MEAS layout 4 cross 1 headdeg 0 dxdy [ 4.82999988e+02 -7.68248526e-07] line_error_px 7.682485261284455e-07 axis_error_deg 9.113333170294863e-08
+MEAS layout 4 cross 1 headdeg 5 dxdy [483.02158007  42.21650322] line_error_px 0.04240927893757629 axis_error_deg 0.00499239280058994
+MEAS layout 4 cross 1 headdeg 10 dxdy [482.98918273  85.18730353] line_error_px 0.023279219655393035 axis_error_deg 0.002678261537438331
+MEAS layout 4 cross 1 headdeg 20 dxdy [483.00237441 175.81833425] line_error_px 0.019846882022875434 axis_error_deg 0.00207889020069274
+MEAS layout 4 cross 1 headdeg 30 dxdy [386.57067538 223.17310486] line_error_px 0.013578631411945707 axis_error_deg 0.0015094460489137873
+MEAS Y3 headdeg 0 axis_disparity_px -5.2460614505804415 vertical_residual_px -3.337242867473833e-05
+MEAS Y3 headdeg 30 axis_disparity_px -5.212288164716653 vertical_residual_px 0.020411511128536564
+MEAS Y3 depth retained ratio 0.993562163504575
+PASS S1 rendered-centre/axis/pitch-yaw-distance matrix

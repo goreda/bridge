@@ -1,0 +1,29 @@
+{
+  "result": "PASS fade controls and early-return ownership counterexamples",
+  "controls": [
+    "ascending/descending 36-step easing monotonic endpoint/completion",
+    "nontrivial replacement cancels old generation and completion",
+    "teardown generation suppresses future writes/completion",
+    "near-target immediate completion with no active fade",
+    "scheduled durations source arithmetic, not elapsed timing"
+  ],
+  "characterizations": [
+    {
+      "case": "near-target replacement during existing fade",
+      "observed": "B completes without generation invalidation; old A continues to endpoint"
+    },
+    {
+      "case": "quit restore within near-target threshold",
+      "observed": "quit completion can run while older fade remains active",
+      "scope": "requires matching saved/current target; app termination ordering unverified"
+    }
+  ],
+  "source_sha256": "7964e9bcff8779fdc6c2ee064ffac0c93ca4452fc8977581b19369f8cae05962",
+  "open": [
+    "DisplayServices hardware/read failures/display identity",
+    "native Dispatch timing/quit teardown ordering",
+    "user override/drift monitor integration",
+    "Float parity and target ownership"
+  ],
+  "scope": "Python arithmetic/generation port + current Swift guards; no Swift/display/timer/UI/hardware execution"
+}

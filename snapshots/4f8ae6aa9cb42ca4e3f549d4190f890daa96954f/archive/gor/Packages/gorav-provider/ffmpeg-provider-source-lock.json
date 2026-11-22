@@ -1,0 +1,29 @@
+{
+  "build_exit": 0,
+  "build_log_sha256": "6ead1215b151f8619dd08b5b3c86095abd7f0ccb83fb8b2e47c6466f4bd90aa6",
+  "configure_exit": 0,
+  "configure_log_sha256": "22083c3882d8a5df532db59e18951d1bc8f2f1b8700c5e0915c1b043a4fa3b98",
+  "evidence_label": "linux-passed",
+  "flags_path": "build/ffmpeg-linux-host/flags-894da5ca-v2-probe-linux-gdb.txt",
+  "flags_sha256": "3751e4009bdf80ee9f55ce6ef4ec5ae3bc26fb9d1af5d228fd4885525a0ed721",
+  "libraries": {
+    "libavcodec/libavcodec.a": "445ed9454b4cd3091db4a20e3e0a03ecb20538ab97eeb71eb02c32bd399ad7eb",
+    "libavformat/libavformat.a": "54a14c8bcbf7731ae68ad6442655bbf42356355aadbaaf9152d6d4d395f2cba4",
+    "libavutil/libavutil.a": "c2e1f79847a4671a678aacfced1fed9a792822db44161cee45fc92ec5dcee4ed",
+    "libswresample/libswresample.a": "abbda392caaf8055f34024180c590d8b25e03f1692844eb60832658e01a08d5a",
+    "libswscale/libswscale.a": "4b9b634731a1cdddbf579f00ee602fe71bec3e3eee0c7fba5753411b5d67a0f8"
+  },
+  "native_status": "not-run",
+  "parallel_jobs": 2,
+  "peer_reported_libraries": {
+    "libavcodec/libavcodec.a": "4b9520be836dbff1e6630a0ee1947c5ebb93870d78f65c0820a48aeec2a6b333",
+    "libavformat/libavformat.a": "3f82c68001b452dfa17180e53d5514a1d6655727c921a232e41f5f11174593a6",
+    "libavutil/libavutil.a": "b9f4d35e33f99b9d966120a17d98a786c876140145b67ca1118fa49391e7c658"
+  },
+  "schema": 1,
+  "scope": "own isolated source rebuild; hashes host/path-sensitive; no library byte identity with peer assumed; no media playback acceptance",
+  "source_commit": "894da5ca7d742e4429ffb2af534fcda0103ef593",
+  "source_version": "8.0.1",
+  "tarball_sha256": "7c8f502b31c6b2de19e63010ed4d991f0d25468cf15fc18ca6fd74380a076b37",
+  "variant": "linux-v2-probe-http-tcp-gdb"
+}

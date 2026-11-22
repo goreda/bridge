@@ -1,0 +1,35 @@
+{
+  "result": "PASS actual JSON persistence controls/fault injection",
+  "controls": [
+    "playlists missing file defaults empty",
+    "playlists Unicode JSON roundtrip",
+    "playlists malformed JSON defaults empty",
+    "local_libraries missing file defaults empty",
+    "local_libraries Unicode JSON roundtrip",
+    "local_libraries malformed JSON defaults empty"
+  ],
+  "characterizations": [
+    {
+      "case": "playlists write failure after truncation",
+      "observed": "prior valid content lost, exception propagates, subsequent load returns empty",
+      "scope": "actual isolated save + injected writer, not observed disk failure"
+    },
+    {
+      "case": "local_libraries write failure after truncation",
+      "observed": "prior valid content lost, exception propagates, subsequent load returns empty",
+      "scope": "actual isolated save + injected writer, not observed disk failure"
+    },
+    {
+      "case": "wrong JSON root shape",
+      "observed": "loader returns object unchanged, no schema validation",
+      "scope": "synthetic persisted value, downstream crash not executed"
+    }
+  ],
+  "source_sha256": "5abc42fe83c197067a9f5b787b18667010fc7e1052373c041bcc1c01e3f470a1",
+  "open": [
+    "compiled mus2 parity",
+    "real disk permissions/concurrent writes/recovery",
+    "playlist/library schema/migration and user-visible error handling"
+  ],
+  "scope": "Actual isolated current Python JSON load/save on temporary fixture files only; no user state/backend imports/pickle/network/Swift/UI execution"
+}

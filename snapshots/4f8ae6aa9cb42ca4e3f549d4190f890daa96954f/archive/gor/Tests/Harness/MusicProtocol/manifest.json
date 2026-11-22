@@ -1,0 +1,23 @@
+{
+  "source": "goreda/instinct main live read 2026-10-01 23:58 Europe/Istanbul; final reread unchanged",
+  "source_sha256": {
+    "MusicController.swift": "87daf8b718fca3c6aa3628f5a703d01611a59ee4cd097c63f3588cc532f016b2",
+    "mus2.py": "5abc42fe83c197067a9f5b787b18667010fc7e1052373c041bcc1c01e3f470a1"
+  },
+  "negative_checks": [
+    {
+      "changed_anchor": "self.stdoutBuffer.append(data)",
+      "rejected": true
+    },
+    {
+      "changed_anchor": "total <= 4096",
+      "rejected": true
+    },
+    {
+      "changed_anchor": "chunkBuffer[index] = data",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "scope": "Isolated actual current Python emit only, modeled Swift consumer; compiled helper binary not validated"
+}

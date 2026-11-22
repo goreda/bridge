@@ -1,0 +1,30 @@
+{
+ "tag": "nophoton",
+ "mpv": "mpv v0.41.0 Copyright \u00a9 2000-2025 mpv/MPlayer/mplayer2 projects",
+ "date": "2026-11-07T16:02:31+0300",
+ "window_s": 20,
+ "video_draw_n": 110,
+ "video_draw_ms": {
+  "mean": 161.46,
+  "p50": 161.05,
+  "p95": 164.55,
+  "max": 172.27
+ },
+ "drop_vo_in_window": 0,
+ "frame_drop_count": 866,
+ "cpu_pct_mean": 195.5,
+ "neutered": [],
+ "glsl_shaders": [
+  "photon-grain.glsl",
+  "photon-sharp.glsl",
+  "vr180-look-shader-a.glsl"
+ ],
+ "vf_n": 0,
+ "max_concurrent_ffmpeg": 0,
+ "sync_readbacks_total": 0,
+ "paced_captures": 0,
+ "capture_ms_max": null,
+ "probe_frames_served": null,
+ "probe_frames_skipped": null,
+ "photon_errors": []
+}

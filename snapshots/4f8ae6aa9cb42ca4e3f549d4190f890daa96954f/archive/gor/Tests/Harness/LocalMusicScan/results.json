@@ -1,0 +1,33 @@
+{
+  "result": "PASS actual isolated source functions on synthetic filesystem",
+  "controls": [
+    "album/folder/hidden/empty admission and title prefix cleanup",
+    "track indices and local path identity",
+    "missing root empty result",
+    "every current audio extension uppercase accepted",
+    "injected permission error returns empty without crash"
+  ],
+  "characterizations": [
+    {
+      "case": "audio directly in selected root",
+      "observed": "root tracks omitted, scanner lists child folders only",
+      "scope": "actual isolated current scan, root-entry contract may be intentional"
+    },
+    {
+      "case": "folder with direct audio and nested album",
+      "observed": "classified only as album; nested directory not represented in this result",
+      "scope": "actual scan output, UI access through other routes unverified"
+    },
+    {
+      "case": "hidden audio inside visible album",
+      "observed": "included despite hidden child folders being skipped"
+    },
+    {
+      "case": "symlink album alias",
+      "observed": "both alias and target listed, no realpath dedupe",
+      "scope": "synthetic symlink behavior, may be intended"
+    }
+  ],
+  "source_sha256": "5abc42fe83c197067a9f5b787b18667010fc7e1052373c041bcc1c01e3f470a1",
+  "scope": "Actual current Python scan/classify functions, temp empty fixture files only. Not compiled mus2 binary, user library/music decoding/network/Swift/UI proof"
+}

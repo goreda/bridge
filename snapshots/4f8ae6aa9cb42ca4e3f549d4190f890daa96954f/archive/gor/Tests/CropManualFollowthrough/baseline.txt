@@ -1,0 +1,56 @@
+        cropDetector.onResult = { [weak self] rect, decisive, confidence in
+            guard let self = self, !self.menuCropOwnsSelection else {return}
+            guard CropAcceptPolicy.accepts(rect: rect, stereo: self.cropDetector.stereoSBS || self.cropDetector.perEyeAspect != nil, startPlayhead: CropScanGuard.shared.startPlayhead, nowPlayhead: self.currentTime, stream: CropDetector.isWTPlayback(self.currentFilePath), manual: self.manualRedetectInFlight) else {
+                self.recoverRejectedAutomaticCrop(early:confidence<0,manual:self.manualRedetectInFlight)
+                if confidence>=0 {self.manualRedetectInFlight=false}
+                return
+            }
+            // Detector aspect is UI-only; original per-eye picture aspect is unchanged.
+            let early = confidence < 0; let manual = self.manualRedetectInFlight; if decisive && !early { self.wtCropRetry[self.currentFilePath] = nil }; print("[cropdetect] result decisive=\(decisive) early=\(early) manual=\(manual) rect=\(String(describing: rect))")
+            if !early { self.manualRedetectInFlight = false }   // an early apply must not end the manual/retry state before the final result
+            // Weak measurements never move the picture; the file stays
+            // unlocked and a later trigger re-measures.
+            guard decisive else {
+                print("[cropdetect] indecisive result — crop state unchanged"); var willRetry = false; if CropDetector.isWTPlayback(self.currentFilePath), self.isPlaying, (!manual || !self.cropSearchOwnsSelection) { let n = self.wtCropRetry[self.currentFilePath]?.n ?? 0; if self.wtCropRetry.index(forKey: self.currentFilePath) == nil, self.wtCropRetry.count >= 64, let old = self.wtCropRetry.min(by: { $0.value.t < $1.value.t })?.key { self.wtCropRetry.removeValue(forKey: old) }; self.wtCropRetry[self.currentFilePath] = (n + 1, ProcessInfo.processInfo.systemUptime, self.lastSeekableEnd); willRetry = true; let scheduled = self.currentFilePath; let token=self.cropDetector.retryToken; let delay = Self.wtCropRetryDelay(attempt: n + 1); print("[cropdetect] search continues in \(Int(delay))s (attempt \(n + 1), scanned to \(Int(self.lastSeekableEnd))s)"); DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in guard let self, self.currentFilePath == scheduled else { return }; self.fireWTCropRetry(scheduled,token:token) } }
+                if manual { self.showCropDetectOSD(CropDetector.isWTPlayback(self.currentFilePath) ? (willRetry ? "crop detect: not enough of the stream downloaded yet, retrying by itself" : "crop detect: not enough of the stream downloaded yet, try again") : "crop detect: no decision yet, file left unlocked") }
+                return
+            }
+            if let rect = rect {
+                if manual { self.showCropDetectOSD("crop detect: bars found, applying crop") }
+                if self.cropRect == nil {
+                    self.transitionCrop(.apply(rect), confidence: abs(confidence), manual: manual)
+                } else {
+                    self.transitionCrop(.reRect(rect), confidence: abs(confidence), manual: manual)
+                }
+            } else {
+                if manual { self.showCropDetectOSD("crop detect: no bars") }
+                self.transitionCrop(.revert, confidence: confidence, manual: manual)
+            }
+        }
+
+        cropDetector.onStatus = 
+    func reDetectCrop() {
+        guard !presentationIsQuitting else{return}
+        cropDetectionStopped=false
+        rejectedCropRetryAvailable=true;cropPacketTokenAttempts=0
+        if embeddedBackend && embeddedSourceCrop == nil {_=refuseEmbedded("source crop adapter");return}
+        refreshCropSourcePacking()
+        menuCropOwnsSelection=false;manualMenuCropAspect=nil; stereoRestorePending = false
+        if cropDetector.isPending, cropDetector.hasScanProgress { manualRedetectInFlight = true; showCropDetectOSD("crop detect: already measuring, applies when done"); print("[cropdetect] manual Detect joined the running scan (samples decoded so far, not restarting)"); return }
+        guard !currentFilePath.hasPrefix("http://localhost") || CropDetector.isWTPlayback(currentFilePath) else {
+            print("[cropdetect] unknown localhost source — skipping reDetect")
+            return
+        }
+        // Keep the current crop displayed while re-measuring: one decisive
+        // result per click, no uncrop bounce.
+        manualRedetectInFlight = true
+        cropDetector.cancel()
+        cropDetector.resetLastFile()
+        cropDetector.detect(
+            filePath:         currentFilePath,
+            videoW:           videoDisplayW,
+            videoH:           videoDisplayH,
+            fallbackDuration: duration,
+            manualPriority:   true
+        )
+    }

@@ -1,0 +1,30 @@
+{
+  "result": "PASS actual isolated queue controls and failure characterizations",
+  "controls": [
+    "invalid/empty bounds have no playback effect",
+    "archive queues one album and emits list",
+    "valid queue entry plays and emits now-playing",
+    "clear resets queue/position and sends playlist-clear",
+    "bandcamp only playable tracks retain source cache/track identity",
+    "empty bandcamp tracks use stubbed provider result"
+  ],
+  "characterizations": [
+    {
+      "case": "playback dependency raises",
+      "observed": "position already advanced, no rollback/now-playing event",
+      "scope": "actual helper with injected failure; real mpv_play error contract unverified"
+    },
+    {
+      "case": "malformed entry URL missing",
+      "observed": "KeyError after position mutation",
+      "scope": "synthetic queue state, normal producer validity not disproved"
+    },
+    {
+      "case": "unknown album source",
+      "observed": "no queued item, still emits list",
+      "scope": "admission characterization, may be intended"
+    }
+  ],
+  "source_sha256": "5abc42fe83c197067a9f5b787b18667010fc7e1052373c041bcc1c01e3f470a1",
+  "scope": "Actual Python queue helpers with synthetic effects/stubs; no mpv/cover/provider/user state/compiled helper/Swift/UI execution"
+}

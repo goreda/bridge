@@ -1,0 +1,52 @@
+{
+  "result": "PASS controls and expected HLS characterizations",
+  "controls": [
+    "highest bandwidth sort, absolute and simple relative path",
+    "media/no-variant playlist fallback",
+    "non-m3u8 URL pass-through",
+    "invalid bandwidth currently zero, still admitted",
+    "comment as immediate variant URI omitted"
+  ],
+  "known_red_or_characterization": [
+    {
+      "case": "URI /high.m3u8",
+      "observed": "https://example.invalid/live//high.m3u8",
+      "reference_resolution": "https://example.invalid/high.m3u8",
+      "scope": "Python URI-reference comparison, no Foundation/native playback"
+    },
+    {
+      "case": "URI //cdn.invalid/high.m3u8",
+      "observed": "https://example.invalid/live///cdn.invalid/high.m3u8",
+      "reference_resolution": "https://cdn.invalid/high.m3u8",
+      "scope": "Python URI-reference comparison, no Foundation/native playback"
+    },
+    {
+      "case": "URI ../high.m3u8",
+      "observed": "https://example.invalid/live/../high.m3u8",
+      "reference_resolution": "https://example.invalid/high.m3u8",
+      "scope": "Python URI-reference comparison, no Foundation/native playback"
+    },
+    {
+      "case": "blank before variant URI",
+      "observed": "variant lost; only immediate next line inspected"
+    },
+    {
+      "case": "leading tag whitespace",
+      "observed": "variant lost; parser does not trim tag line",
+      "scope": "permissiveness characterization, not valid-HLS compliance claim"
+    },
+    {
+      "case": "selection A/B resolve completion reverses",
+      "observed": "old A loadfile/quality list can follow B selection",
+      "scope": "adversarial completion model; actual network/main queue order not executed"
+    }
+  ],
+  "source_sha256": "74d16c7591b1058167d0fbb2a025f554afe59df5dd76dd168df97e20580b277e",
+  "open": [
+    "Foundation deleteLastPathComponent/URL query-fragment parity",
+    "HLS audio-group/codec/redirect/HTTP handling",
+    "equal bandwidth order and quoted attributes",
+    "native selected-channel switching/quality UI/mpv playback"
+  ],
+  "scope": "Python port + current Swift source guards; no HLS/network/Swift/UI execution"
+}

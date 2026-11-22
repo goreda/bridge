@@ -1,0 +1,17 @@
+{
+ "base": "56181f7699d792a3a3e095caf2e807a551be46f9",
+ "moves": [
+  {
+   "old": "BrightnessReadCache.swift",
+   "new": "Player/PPController.swift",
+   "sha256": "db2c270074ffdd25a5799d90fc7958bb62dff13a8a4cd1c54cb384dc16c95c0a",
+   "base_host": "PPController.swift"
+  },
+  {
+   "old": "PlaybackCacheTrace.swift",
+   "new": "GorCore/Diag.swift",
+   "sha256": "265e758dafb5d508e7396b7b1d2e5f45c5c2ac7ea865868233783b9ac94c4f98",
+   "base_host": "Diag.swift"
+  }
+ ]
+}

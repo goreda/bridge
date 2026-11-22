@@ -1,0 +1,26 @@
+{
+  "packet_sha256": "e8a1df4fe8e833d5c19c8605067073bae4ca3b5915e291823ffdb2954af5f769",
+  "bytes": 86810,
+  "members": {
+    "README.md": {
+      "bytes": 1774,
+      "sha256": "07372c6317cc7524c2b0effca6875df99cbe8efe677f29ba1e179f8a96fce5e8"
+    },
+    "swift_fallback.diff": {
+      "bytes": 10096,
+      "sha256": "ec591562db08e2b3319583032359621659d630124dfa36258aeaa4b7d6894bf9"
+    },
+    "gor/Sources/gor/MagnetBrowser.swift": {
+      "bytes": 57214,
+      "sha256": "7b720c6b5a8052dceabc16f2f23e54c56554c1f285538b6a66dbd006fcb39751"
+    },
+    "gor/Sources/gor/TorrentManager.swift": {
+      "bytes": 27408,
+      "sha256": "d3f3d282def104294a474915a34fb14bb846ea7ca9d2e5885f04b91607df1348"
+    },
+    "gor/Resources/vendor/wt_server/wt_server.mjs": {
+      "bytes": 192565,
+      "sha256": "c4e473e7b36c4c9ac19b6ae9c562a696e2004eb578a38aaf277b22eba1ce0bcc"
+    }
+  }
+}

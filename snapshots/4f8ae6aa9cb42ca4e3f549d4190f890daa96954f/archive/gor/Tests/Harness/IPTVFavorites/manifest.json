@@ -1,0 +1,20 @@
+{
+  "source": "goreda/instinct main live 2026-10-02 00:19 Europe/Istanbul; final reread unchanged",
+  "source_sha256": "bde436a1b47df6facffd8fe26cd11a3b1cd81efa76a6f737e891e96186508683",
+  "negative_checks": [
+    {
+      "anchor": "favorites.contains(where: { $0.streamURL == ch.streamURL })",
+      "rejected": true
+    },
+    {
+      "anchor": "favorites.removeAll { $0.streamURL == url }",
+      "rejected": true
+    },
+    {
+      "anchor": "guard let name = d[\"name\"], let url = d[\"url\"]",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "native_validation": "not performed"
+}

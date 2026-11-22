@@ -1,0 +1,20 @@
+{
+  "source": "goreda/instinct main live read 2026-10-02 00:15 Europe/Istanbul; final reread unchanged",
+  "source_sha256": "bde436a1b47df6facffd8fe26cd11a3b1cd81efa76a6f737e891e96186508683",
+  "negative_checks": [
+    {
+      "anchor": "textBuf += string",
+      "rejected": true
+    },
+    {
+      "anchor": "result[key]?.sort { $0.start < $1.start }",
+      "rejected": true
+    },
+    {
+      "anchor": "return progs.first { $0.start <= now && now < $0.stop }",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "native_validation": "not performed"
+}

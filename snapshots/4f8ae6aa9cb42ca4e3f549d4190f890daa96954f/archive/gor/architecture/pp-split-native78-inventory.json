@@ -1,0 +1,1588 @@
+{
+  "scope": "descriptive inventory only; historical freeze files unchanged",
+  "source_pin": "5a9469d5e20c5abb51bf6414df37ec9ed8604611",
+  "parts": {
+    "Sources/gor/gor/VRStereoControlInput.swift": {
+      "lines": 120,
+      "git_blob": "bd1cd83076a4e96fa610c4a4cf8bd65a7a357907"
+    },
+    "Sources/gor/gor/GeomTrace.swift": {
+      "lines": 110,
+      "git_blob": "7c8c07c4940f504aeeb43001fa5032a1cef4d2c2"
+    },
+    "Sources/gor/gor/SeededRandomNumberGenerator.swift": {
+      "lines": 18,
+      "git_blob": "3275a1f1056df51c82d1e78347c160cd2a93e60c"
+    },
+    "Sources/gor/gor/BrightnessController.swift": {
+      "lines": 280,
+      "git_blob": "d04daadb3b385d5b3fabfb0535c69024ec61e8f9"
+    },
+    "Sources/gor/gor/PPController.swift": {
+      "lines": 4231,
+      "git_blob": "767f3083a7ccbceb9029459fca3e1cf99d47f26b"
+    },
+    "Sources/gor/gor/MusicRowLabel.swift": {
+      "lines": 63,
+      "git_blob": "8835aa06a2a88d2014f677ef75732f1dc0fd8c7f"
+    },
+    "Sources/gor/gor/PlayerViewStub.swift": {
+      "lines": 48,
+      "git_blob": "b28818f1c8f1c5d60fa7238a64e8f59311764d88"
+    },
+    "Sources/gor/gor/BrightnessReadCache.swift": {
+      "lines": 25,
+      "git_blob": "69c907b40585727ba04291b66afedd928cdda1bb"
+    },
+    "Sources/gor/gor/DragDropHandler.swift": {
+      "lines": 119,
+      "git_blob": "a632d8a8400db5f0baa00d49dc76902cce3559b2"
+    },
+    "Sources/gor/gor/MusicModeController.swift": {
+      "lines": 172,
+      "git_blob": "723e5b989e8d6daffb9f23a910bd868aefc8a5c1"
+    },
+    "Sources/gor/gor/IPTVModeController.swift": {
+      "lines": 239,
+      "git_blob": "ef0e3c6cdee926a11f23e748ebee8b484c7b0cc3"
+    },
+    "Sources/gor/gor/BlinkCommandRoute.swift": {
+      "lines": 26,
+      "git_blob": "ba97e92ac79f3b6f4146fc2a781bcc37732471c2"
+    },
+    "Sources/gor/gor/CaptureConsumerRules.swift": {
+      "lines": 22,
+      "git_blob": "84e6e91869ce77bade0e7f81875151e425025cc8"
+    },
+    "Sources/gor/gor/VR180Controller.swift": {
+      "lines": 800,
+      "git_blob": "bcebf60057e84781061b0226d5b5504afcca7e03"
+    },
+    "Sources/gor/gor/InputController.swift": {
+      "lines": 520,
+      "git_blob": "f09d5ad9e750bbe6cf8df4be73c79808480ddcc5"
+    },
+    "Sources/gor/gor/ContentAdaptiveDimming.swift": {
+      "lines": 489,
+      "git_blob": "d9f458062a099e0e1235ac667f0464968ce2b290"
+    }
+  },
+  "debt_relocations": [
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:01594ff1b38239ac"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:01594ff1b38239ac"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:01d2d70bbce0133f"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:01d2d70bbce0133f"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:0577d087dcef2cb6"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:0577d087dcef2cb6"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:072e6adc7ed12860"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:072e6adc7ed12860"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:0bf7d96b9c4dc127"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:0bf7d96b9c4dc127"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:0c7e4bea532c8dc9"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:0c7e4bea532c8dc9"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:0cf5b9b4fbea3003"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:0cf5b9b4fbea3003"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:0df6906ec2792a37"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:0df6906ec2792a37"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:10b26c98141f1dec"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:10b26c98141f1dec"
+      ],
+      "count": "3"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:12d361638899359f"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:12d361638899359f"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:161f6d231d00a9a2"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:161f6d231d00a9a2"
+      ],
+      "count": "2"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:256fc30559462e96"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:256fc30559462e96"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:2d357d7e572a75dd"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:2d357d7e572a75dd"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:2f049b2f28778a4b"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:2f049b2f28778a4b"
+      ],
+      "count": "4"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:319b8f2485934d2c"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:319b8f2485934d2c"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:339c31c6e3342c82"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:339c31c6e3342c82"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:3e0e984b19420ce4"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:3e0e984b19420ce4"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:40f193e879246999"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:40f193e879246999"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:42c555d0ceb9f1d3"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:42c555d0ceb9f1d3"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:462805598aa4ca99"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:462805598aa4ca99"
+      ],
+      "count": "4"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:46bcda905dac7ff8"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:46bcda905dac7ff8"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:4ef38814dd946592"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:4ef38814dd946592"
+      ],
+      "count": "2"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:53a46fc46c2d48df"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:53a46fc46c2d48df"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:57d78062a32cfc69"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:57d78062a32cfc69"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:58027d9c47da3da5"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:58027d9c47da3da5"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:60451363fbaf163f"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:60451363fbaf163f"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:66916fd7a98cf186"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:66916fd7a98cf186"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:68ca43f1133a96d6"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:68ca43f1133a96d6"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:69f54d4095f95c4d"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:69f54d4095f95c4d"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:6e3af1c7c7aff994"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:6e3af1c7c7aff994"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:751a14bd0b64ec64"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:751a14bd0b64ec64"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:7dbd3a6eedb8cc3d"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:7dbd3a6eedb8cc3d"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:7e64794de3e2aa53"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:7e64794de3e2aa53"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:7e8f257b2891e1c1"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:7e8f257b2891e1c1"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:7eb06b0de02416e2"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:7eb06b0de02416e2"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:8083ea5576a47299"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:8083ea5576a47299"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:8556a3c7e0e4fa83"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:8556a3c7e0e4fa83"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:87e209f1f9902c9b"
+      ],
+      "new": [
+        "Sources/gor/gor/PlayerViewStub.swift",
+        "mpv:87e209f1f9902c9b"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:8876891b7bd9693e"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:8876891b7bd9693e"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:8ed8717ef6a94df3"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:8ed8717ef6a94df3"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:8edfd1bec7fb10ba"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:8edfd1bec7fb10ba"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:8fd2c2ed42f92a46"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:8fd2c2ed42f92a46"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:919197586a8225bd"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:919197586a8225bd"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:946b02d38a9931e1"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:946b02d38a9931e1"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:99a88494e9baa228"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:99a88494e9baa228"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:9d5e42f213e92cb4"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:9d5e42f213e92cb4"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:9fd28472595b8a37"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:9fd28472595b8a37"
+      ],
+      "count": "4"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:a0513d56cd775ba4"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:a0513d56cd775ba4"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:ada59884edf9affe"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:ada59884edf9affe"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:b2d9c23b804840f4"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:b2d9c23b804840f4"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:b3d532ad95d9f8e5"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:b3d532ad95d9f8e5"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:b87151560b9d3c01"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:b87151560b9d3c01"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:bced0c47a591802e"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:bced0c47a591802e"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:c801fcc6ec2385dc"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:c801fcc6ec2385dc"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:c833bb92337aa5ea"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:c833bb92337aa5ea"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:cabb4331547d8256"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:cabb4331547d8256"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:cd9be0f3aee7e59e"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:cd9be0f3aee7e59e"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:d0a121647d71e945"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:d0a121647d71e945"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:d18bbf23f087273f"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:d18bbf23f087273f"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:d203cdc983e70295"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:d203cdc983e70295"
+      ],
+      "count": "2"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:da353307fedd5257"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:da353307fedd5257"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:da5e4db57cf6102d"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:da5e4db57cf6102d"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:db9fb7656807e851"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:db9fb7656807e851"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:dea89da4b665866f"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:dea89da4b665866f"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:e4f8b541a5c11faa"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:e4f8b541a5c11faa"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:eb775daf38c72663"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:eb775daf38c72663"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:ebad6c41c1bdf093"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:ebad6c41c1bdf093"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:ef0fd3b9ee8bda55"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:ef0fd3b9ee8bda55"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:ef32cdb0103c41db"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:ef32cdb0103c41db"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:f0fd66cc8c9388c9"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:f0fd66cc8c9388c9"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:f4ca9a52cc3bdcc4"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:f4ca9a52cc3bdcc4"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:8a95f49fb2af1cb9"
+      ],
+      "new": [
+        "Sources/gor/gor/PPController.swift",
+        "mpv:f72245e78d04d8c8"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:07c3e608313a62e2"
+      ],
+      "new": [
+        "Sources/gor/gor/VR180Controller.swift",
+        "mpv:07c3e608313a62e2"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:0ade81c0c88de397"
+      ],
+      "new": [
+        "Sources/gor/gor/VR180Controller.swift",
+        "mpv:0ade81c0c88de397"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:11d4aea3c7698df9"
+      ],
+      "new": [
+        "Sources/gor/gor/MusicModeController.swift",
+        "mpv:11d4aea3c7698df9"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:152ddd97ad0a3457"
+      ],
+      "new": [
+        "Sources/gor/gor/InputController.swift",
+        "mpv:152ddd97ad0a3457"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:1e4261db05397c34"
+      ],
+      "new": [
+        "Sources/gor/gor/InputController.swift",
+        "mpv:1e4261db05397c34"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:256fc30559462e96"
+      ],
+      "new": [
+        "Sources/gor/gor/MusicModeController.swift",
+        "mpv:256fc30559462e96"
+      ],
+      "count": "2"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:2c0a5fa0a48e025c"
+      ],
+      "new": [
+        "Sources/gor/gor/DragDropHandler.swift",
+        "mpv:2c0a5fa0a48e025c"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:46b7f83aca17467d"
+      ],
+      "new": [
+        "Sources/gor/gor/IPTVModeController.swift",
+        "mpv:46b7f83aca17467d"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:4d18a609ceb05049"
+      ],
+      "new": [
+        "Sources/gor/gor/DragDropHandler.swift",
+        "mpv:4d18a609ceb05049"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:4f7c20caa73c89cb"
+      ],
+      "new": [
+        "Sources/gor/gor/DragDropHandler.swift",
+        "mpv:4f7c20caa73c89cb"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:4f7c20caa73c89cb"
+      ],
+      "new": [
+        "Sources/gor/gor/IPTVModeController.swift",
+        "mpv:4f7c20caa73c89cb"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:4f7c20caa73c89cb"
+      ],
+      "new": [
+        "Sources/gor/gor/InputController.swift",
+        "mpv:4f7c20caa73c89cb"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:4f7c20caa73c89cb"
+      ],
+      "new": [
+        "Sources/gor/gor/MusicModeController.swift",
+        "mpv:4f7c20caa73c89cb"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:4f7c20caa73c89cb"
+      ],
+      "new": [
+        "Sources/gor/gor/VR180Controller.swift",
+        "mpv:4f7c20caa73c89cb"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:52dab7abc265f74f"
+      ],
+      "new": [
+        "Sources/gor/gor/MusicModeController.swift",
+        "mpv:52dab7abc265f74f"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:58ee57cda6b206c5"
+      ],
+      "new": [
+        "Sources/gor/gor/VR180Controller.swift",
+        "mpv:58ee57cda6b206c5"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:5a84c60406979a96"
+      ],
+      "new": [
+        "Sources/gor/gor/MusicModeController.swift",
+        "mpv:5a84c60406979a96"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:613172146b604c96"
+      ],
+      "new": [
+        "Sources/gor/gor/DragDropHandler.swift",
+        "mpv:613172146b604c96"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:613172146b604c96"
+      ],
+      "new": [
+        "Sources/gor/gor/IPTVModeController.swift",
+        "mpv:613172146b604c96"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:613172146b604c96"
+      ],
+      "new": [
+        "Sources/gor/gor/InputController.swift",
+        "mpv:613172146b604c96"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:613172146b604c96"
+      ],
+      "new": [
+        "Sources/gor/gor/MusicModeController.swift",
+        "mpv:613172146b604c96"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:613172146b604c96"
+      ],
+      "new": [
+        "Sources/gor/gor/VR180Controller.swift",
+        "mpv:613172146b604c96"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:75d68f9084bbb3ca"
+      ],
+      "new": [
+        "Sources/gor/gor/IPTVModeController.swift",
+        "mpv:75d68f9084bbb3ca"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:7eab134c8f0a01b7"
+      ],
+      "new": [
+        "Sources/gor/gor/InputController.swift",
+        "mpv:7eab134c8f0a01b7"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:818c75d9c00c8f3d"
+      ],
+      "new": [
+        "Sources/gor/gor/InputController.swift",
+        "mpv:818c75d9c00c8f3d"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:95864fe3cb18d53a"
+      ],
+      "new": [
+        "Sources/gor/gor/VR180Controller.swift",
+        "mpv:95864fe3cb18d53a"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:96a3204d6280618a"
+      ],
+      "new": [
+        "Sources/gor/gor/MusicModeController.swift",
+        "mpv:96a3204d6280618a"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:bf6ca6c41a64a5cb"
+      ],
+      "new": [
+        "Sources/gor/gor/VR180Controller.swift",
+        "mpv:bf6ca6c41a64a5cb"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:db88083da3deb1d9"
+      ],
+      "new": [
+        "Sources/gor/gor/InputController.swift",
+        "mpv:db88083da3deb1d9"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:dc00304d6b8a9686"
+      ],
+      "new": [
+        "Sources/gor/gor/MusicModeController.swift",
+        "mpv:dc00304d6b8a9686"
+      ],
+      "count": "2"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:ed40c6b18b2991f6"
+      ],
+      "new": [
+        "Sources/gor/gor/DragDropHandler.swift",
+        "mpv:ed40c6b18b2991f6"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:ed40c6b18b2991f6"
+      ],
+      "new": [
+        "Sources/gor/gor/IPTVModeController.swift",
+        "mpv:ed40c6b18b2991f6"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:ed40c6b18b2991f6"
+      ],
+      "new": [
+        "Sources/gor/gor/InputController.swift",
+        "mpv:ed40c6b18b2991f6"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:ed40c6b18b2991f6"
+      ],
+      "new": [
+        "Sources/gor/gor/MusicModeController.swift",
+        "mpv:ed40c6b18b2991f6"
+      ],
+      "count": "1"
+    },
+    {
+      "old": [
+        "Sources/gor/gor/PPController_Features.swift",
+        "mpv:f6c9e34594f5f074"
+      ],
+      "new": [
+        "Sources/gor/gor/InputController.swift",
+        "mpv:f6c9e34594f5f074"
+      ],
+      "count": "1"
+    }
+  ],
+  "unmatched_no_seed_no_waiver": [
+    {
+      "action": "KEEP",
+      "old_path": "Sources/gor/gor/PPController.swift",
+      "rule": "mpv:0bd00514d47ffd6d",
+      "baseline_count": "-",
+      "old_source_count": "1",
+      "new_path": "Sources/gor/gor/PPController.swift",
+      "new_count": "1",
+      "baseline_status": "PREEXISTING-UNMATCHED-FAIL-CLOSED-NO-SEED-NO-WAIVER"
+    },
+    {
+      "action": "KEEP",
+      "old_path": "Sources/gor/gor/PPController.swift",
+      "rule": "mpv:53bf20bd16ad382f",
+      "baseline_count": "-",
+      "old_source_count": "1",
+      "new_path": "Sources/gor/gor/PPController.swift",
+      "new_count": "1",
+      "baseline_status": "PREEXISTING-UNMATCHED-FAIL-CLOSED-NO-SEED-NO-WAIVER"
+    }
+  ],
+  "stale_rows_preserved": [
+    {
+      "path": "Sources/gor/gor/PPController.swift",
+      "rule": "ceiling",
+      "count": "5709",
+      "queue id": "M6",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "1",
+      "commit": "194r on692e5e700",
+      "reason": "Subtitle-only committed frame consumer wiring",
+      "removal M step": "M6"
+    },
+    {
+      "path": "Sources/gor/gor/PPController.swift",
+      "rule": "mpv:0dab20f249ec6b5b",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController.swift",
+      "rule": "mpv:3365840aee3dfe0b",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController.swift",
+      "rule": "mpv:701ae4e66d25b590",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController.swift",
+      "rule": "mpv:e8ca3f7dc19077f4",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "ceiling",
+      "count": "1518",
+      "queue id": "M6",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "2",
+      "commit": "5ac7f0c5 + affine-preview194m",
+      "reason": "Scoped chrome font canvas and affine preview receipt; layout and film transform remain separate",
+      "removal M step": "M6"
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "mpv:0bb48b68655ec4e4",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "mpv:0f710bdea311cdce",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "mpv:36000854929a9913",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "mpv:45fe3b53272b9c78",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "mpv:4f73cb3ee8e3cca0",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "mpv:661a0bd99e9b9c5d",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "mpv:6c2812fcac716cd0",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "mpv:7af01d6edae7fee7",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "mpv:841cd2e949d8e8c6",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "mpv:b7ed015c71fa2689",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "mpv:ba64cdb828f8264a",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "mpv:bf4f8a727ed677d6",
+      "count": "2",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "mpv:c687bc0037ac6805",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "mpv:eaba864079b17f9b",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "mpv:f089717b8f64b508",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController.swift",
+      "rule": "mpv:e110a8c49493d09a",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController.swift",
+      "rule": "mpv:9ac39b10ae2ac253",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    },
+    {
+      "path": "Sources/gor/gor/PPController.swift",
+      "rule": "mpv:9a76fae3e3574371",
+      "count": "1",
+      "queue id": "M5",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "",
+      "commit": "",
+      "reason": "",
+      "removal M step": ""
+    }
+  ],
+  "old_ceiling_rows_preserved": [
+    {
+      "path": "Sources/gor/gor/PPController.swift",
+      "rule": "ceiling",
+      "count": "5709",
+      "queue id": "M6",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "1",
+      "commit": "194r on692e5e700",
+      "reason": "Subtitle-only committed frame consumer wiring",
+      "removal M step": "M6"
+    },
+    {
+      "path": "Sources/gor/gor/PPController_Features.swift",
+      "rule": "ceiling",
+      "count": "1518",
+      "queue id": "M6",
+      "removal condition": "queue item complete; remove debt row",
+      "+lines": "2",
+      "commit": "5ac7f0c5 + affine-preview194m",
+      "reason": "Scoped chrome font canvas and affine preview receipt; layout and film transform remain separate",
+      "removal M step": "M6"
+    }
+  ],
+  "policy_added": [
+    "Sources/gor/gor/BlinkCommandRoute.swift",
+    "Sources/gor/gor/BrightnessController.swift",
+    "Sources/gor/gor/BrightnessReadCache.swift",
+    "Sources/gor/gor/CaptureConsumerRules.swift",
+    "Sources/gor/gor/ContentAdaptiveDimming.swift",
+    "Sources/gor/gor/DragDropHandler.swift",
+    "Sources/gor/gor/GeomTrace.swift",
+    "Sources/gor/gor/IPTVModeController.swift",
+    "Sources/gor/gor/InputController.swift",
+    "Sources/gor/gor/MusicModeController.swift",
+    "Sources/gor/gor/MusicRowLabel.swift",
+    "Sources/gor/gor/PlayerViewStub.swift",
+    "Sources/gor/gor/SeededRandomNumberGenerator.swift",
+    "Sources/gor/gor/VR180Controller.swift",
+    "Sources/gor/gor/VRStereoControlInput.swift",
+    "Tests/Structure/pp_split.py",
+    "Tests/Structure/pp-split-manifest.json",
+    "Tests/Structure/pp-split-helper-test.py",
+    "Tests/MenuStructure/required_items_split_test.py",
+    "architecture/pp-split-native78-inventory.json"
+  ],
+  "policy_removed_absorbed_source": "Sources/gor/gor/PPController_Features.swift",
+  "historical_freeze_sha256": {
+    "architecture/freeze-195o.json": "132f37a5f310d66bd9a795c5894c60c90d346fd53a65cfb98f88e0c99cc12740",
+    "architecture/freeze-195y.json": "9facecb73847fef1c9e225a9b07ee7d487414f41b661fbe971b30acbd47ebaa1"
+  }
+}

@@ -1,0 +1,19 @@
+[2026-11-09T10:00:00] gor3d-selftest v1 begin gor3d\ndev\nM1\nselftest
+[2026-11-09T10:00:00] gor3d-selftest v1 note key=clip value=640x360 36f @24.0 synthetic
+[2026-11-09T10:00:01] gor3d-selftest v1 stage name=clip_write ms=1200.0 n=1 max_ms=1200.0
+[2026-11-09T10:00:30] gor3d-selftest v1 stage name=prepare_total ms=29000.0 n=1 max_ms=29000.0
+[2026-11-09T10:00:32] gor3d-selftest v1 stage name=render_shot ms=4100.0 n=1 max_ms=4100.0
+[2026-11-09T10:00:32] gor3d-selftest v1 note key=moge_precision value=fp16_used=3 fp32_used=0 fp16_rejected=0
+[2026-11-09T10:00:32] gor3d-selftest v1 depth min=0.5 max=98000.0 nan=0 inf=0 count=1436400
+[2026-11-09T10:00:32] gor3d-selftest v1 note key=first_3d_frame_sha256 value=0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+[2026-11-09T10:00:32] gor3d-selftest v1 note key=rt_config value=fps=24.0 vr180=false depth_rate=24.0 surround_opt=false
+[2026-11-09T10:00:33] gor3d-selftest v1 rtstage name=vda ms=9.5 n=36 max_ms=14.2
+[2026-11-09T10:00:33] gor3d-selftest v1 rtstage name=moge ms=350.0 n=3 max_ms=35.8
+[2026-11-09T10:00:33] gor3d-selftest v1 rtstage name=upsample ms=0.004 n=36 max_ms=0.01
+[2026-11-09T10:00:33] gor3d-selftest v1 rtstage name=render ms=0.012 n=36 max_ms=0.03
+[2026-11-09T10:00:33] gor3d-selftest v1 rtstage name=vt_decode ms=1.3 n=36 max_ms=2.2
+[2026-11-09T10:00:33] gor3d-selftest v1 rtstage name=vt_encode ms=1.1 n=36 max_ms=1.9
+[2026-11-09T10:00:33] gor3d-selftest v1 thermal level=0 t_ms=0
+[2026-11-09T10:00:33] gor3d-selftest v1 thermal level=1 t_ms=25000
+[2026-11-09T10:00:33] gor3d-selftest v1 thermal_peak level=1 transitions=1
+[2026-11-09T10:00:33] gor3d-selftest v1 end errors=0

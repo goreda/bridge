@@ -1,0 +1,16 @@
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+PASS old actual shader rejected: ('extra seam band', 16)
+PASS known-source gain 0 ipd -0.2 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0 ipd 0 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0 ipd 0.2 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.04 ipd -0.2 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.04 ipd 0 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.04 ipd 0.2 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.08 ipd -0.2 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.08 ipd 0 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.08 ipd 0.2 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.2 ipd -0.2 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.2 ipd 0 seam_px 6 no repeated/stretched rows/columns
+PASS known-source gain 0.2 ipd 0.2 seam_px 6 no repeated/stretched rows/columns
+MEAS owner205.247s captured-output replay bbox (51, 286, 960, 798) original frame NOT_VERIFIED; existing baked repeats cannot be repaired or attributed to new shader
+PASS actual generated GLSL common-window gate. Original frame not verified; owner playback decides.

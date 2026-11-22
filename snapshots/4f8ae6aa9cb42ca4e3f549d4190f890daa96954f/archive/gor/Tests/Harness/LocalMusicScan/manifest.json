@@ -1,0 +1,21 @@
+{
+  "source": "goreda/instinct main live 2026-10-02 00:25 Europe/Istanbul; final reread unchanged",
+  "source_sha256": "5abc42fe83c197067a9f5b787b18667010fc7e1052373c041bcc1c01e3f470a1",
+  "negative_checks": [
+    {
+      "mutation": "os.path.splitext(entry.lower())[1]",
+      "rejected": true
+    },
+    {
+      "mutation": "\"n\": i,",
+      "rejected": true
+    },
+    {
+      "mutation": "if not os.path.isdir(full) or entry.startswith(\".\"):",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "execution": "Actual isolated scan/classify source functions on synthetic temp filesystem",
+  "compiled_mus2_binary_parity": "unverified"
+}

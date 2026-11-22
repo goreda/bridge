@@ -1,0 +1,10 @@
+{
+  "depth_width": 64,
+  "depth_height": 36,
+  "frames": 2,
+  "start_frame": 0,
+  "fps": 24.0,
+  "start_pts": 0.0,
+  "source_width": 64,
+  "source_height": 36
+}

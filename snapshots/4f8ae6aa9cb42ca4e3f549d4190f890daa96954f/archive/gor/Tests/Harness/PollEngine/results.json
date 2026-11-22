@@ -1,0 +1,68 @@
+{
+  "result": "PASS controls and scoped interleaving characterizations",
+  "controls": [
+    "playing 5Hz model, slow/cache each fifth tick",
+    "paused normal fast/slow/cache only each fifth tick",
+    "paused two pending kicks, then suppress",
+    "disabled/disconnected do not advance tick",
+    "idle no batch; production parks timer",
+    "reply IDs, terminal flush, null/error removal",
+    "unknown response ID ignored",
+    "property changes update state and flush",
+    "file-scoped purge preserves global fields"
+  ],
+  "characterizations": [
+    {
+      "case": "queued snapshot outlives file purge",
+      "observed": "purge removes live store, not already copied main-queue result",
+      "limit": "queue ordering relative to start-file main handler unverified"
+    },
+    {
+      "case": "late prior-file reply after purge",
+      "observed": "fixed request ID can repopulate purged old time-pos",
+      "limit": "requires this event/reply ordering; not observed mpv trace"
+    },
+    {
+      "case": "mixed-age tier snapshot",
+      "observed": "fast response flush includes earlier slow/event values",
+      "limit": "expected tiered cache behavior, not inherently a bug"
+    }
+  ],
+  "tables": {
+    "fast": {
+      "1": "time-pos",
+      "2": "sub-text",
+      "3": "sub-start",
+      "4": "sub-end"
+    },
+    "slow": {
+      "11": "video-params/dw",
+      "12": "video-params/dh",
+      "13": "video-params/stereo-mode",
+      "14": "dwidth",
+      "15": "dheight"
+    },
+    "cache": {
+      "21": "demuxer-cache-state"
+    },
+    "observed": {
+      "101": "pause",
+      "102": "volume",
+      "103": "path",
+      "104": "media-title",
+      "105": "duration",
+      "106": "eof-reached",
+      "107": "idle-active",
+      "108": "current-tracks/sub/codec",
+      "109": "osd-width",
+      "110": "osd-height",
+      "111": "ytdl_is_live",
+      "112": "user-data/adaptive-brightness-enabled",
+      "113": "osd-msg1",
+      "114": "demuxer-via-network",
+      "115": "sub-visibility"
+    }
+  },
+  "source_sha256": "7964e9bcff8779fdc6c2ee064ffac0c93ca4452fc8977581b19369f8cae05962",
+  "scope": "Python port/current source guards, not Swift timers/Dispatch queues/mpv response ordering or UI execution"
+}

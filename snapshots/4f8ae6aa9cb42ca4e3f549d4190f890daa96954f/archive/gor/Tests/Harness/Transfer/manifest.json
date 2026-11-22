@@ -1,0 +1,17 @@
+{
+  "reviewed_source_commit": "9910f354",
+  "current_tree_source_required": true,
+  "source_sha256": {
+    "CDPSession.swift": "c2d52d97a370331db2bf738395502463e0d5f0025cacbcb908b4f0d45dd1f200",
+    "ArchiveBrowser.swift": "07028fa2f2f93578f9f4fc975c8008f327140dd4ebd451992fb8d591561120ac",
+    "TransferResolver.swift": "108992a6c3982009a46118d497b011cff0ff295d0f6de210f1d09748ecb7ff3e"
+  },
+  "negative_checks": [
+    {
+      "cell": "Transfer",
+      "regression_rejected": true
+    }
+  ],
+  "historical_status": "Prior survey defect outputs describe pre-fix source snapshots; not current defect claims",
+  "native_validation": "not performed"
+}

@@ -1,0 +1,140 @@
+{
+  "result": "PASS expected controls and known-red characterization",
+  "source_sha256": "7964e9bcff8779fdc6c2ee064ffac0c93ca4452fc8977581b19369f8cae05962",
+  "guards": 12,
+  "families": 21,
+  "records": {
+    "black-text-card": {
+      "independent_votes": 0,
+      "first_decision": null,
+      "decision_vote": null,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "credits": {
+      "independent_votes": 0,
+      "first_decision": null,
+      "decision_vote": null,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "channel-logo": {
+      "independent_votes": 1,
+      "first_decision": null,
+      "decision_vote": null,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "subtitles": {
+      "independent_votes": 1,
+      "first_decision": null,
+      "decision_vote": null,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "true-letterbox": {
+      "independent_votes": 1,
+      "first_decision": null,
+      "decision_vote": null,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "true-pillarbox": {
+      "independent_votes": 1,
+      "first_decision": null,
+      "decision_vote": null,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "variable-aspect": {
+      "independent_votes": 2,
+      "first_decision": null,
+      "decision_vote": null,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "dark-bailout": {
+      "independent_votes": 0,
+      "first_decision": null,
+      "decision_vote": null,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "bright-text-panel": {
+      "independent_votes": 0,
+      "first_decision": null,
+      "decision_vote": null,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "narrow-subtitle": {
+      "independent_votes": 1,
+      "first_decision": null,
+      "decision_vote": null,
+      "max_bright_pixels_outside_candidate": 567
+    },
+    "bright-credits": {
+      "independent_votes": 0,
+      "first_decision": null,
+      "decision_vote": null,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "moving-letterbox": {
+      "independent_votes": 4,
+      "first_decision": "crop",
+      "decision_vote": 4,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "moving-pillarbox": {
+      "independent_votes": 4,
+      "first_decision": "crop",
+      "decision_vote": 4,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "moving-no-bars": {
+      "independent_votes": 4,
+      "first_decision": "no-crop",
+      "decision_vote": 4,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "dim-panel-sweep": {
+      "independent_votes": 0,
+      "first_decision": null,
+      "decision_vote": null,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "mixed-dark-film": {
+      "independent_votes": 3,
+      "first_decision": null,
+      "decision_vote": null,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "noisy-static-film": {
+      "independent_votes": 1,
+      "first_decision": null,
+      "decision_vote": null,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "moving-title-card": {
+      "independent_votes": 6,
+      "first_decision": "crop",
+      "decision_vote": 4,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "dark-grain-film": {
+      "independent_votes": 2,
+      "first_decision": null,
+      "decision_vote": null,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "moving-aspect-change": {
+      "independent_votes": 7,
+      "first_decision": "crop",
+      "decision_vote": 4,
+      "max_bright_pixels_outside_candidate": 0
+    },
+    "dark-moving-film": {
+      "independent_votes": 6,
+      "first_decision": "crop",
+      "decision_vote": 4,
+      "max_bright_pixels_outside_candidate": 0
+    }
+  },
+  "known_red": [
+    "moving title card false crop",
+    "moving aspect change early lock at four votes",
+    "narrow subtitle 567 pixels outside candidate"
+  ],
+  "scope": "960px Python arithmetic port plus current source guards; no CGImage rasterization, mpv, UI or native timing"
+}

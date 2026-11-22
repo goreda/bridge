@@ -1,0 +1,80 @@
+LUAERR	vr180-look: shader publication failed: nil
+LUAERR	vr180-look: shader publication failed: nil
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+PASS native generated GLSL compile legacy
+MEAS legacy TB 0 cross 0 headdeg -30 line_error_px 0.003643222766783083 axis_error_deg 0.0005601728086901403
+MEAS legacy TB 0 cross 0 headdeg -20 line_error_px 0.0008738707062292406 axis_error_deg 0.0001377249298677441
+MEAS legacy TB 0 cross 0 headdeg -10 line_error_px 0.004972537712703229 axis_error_deg 0.0007235530091218578
+MEAS legacy TB 0 cross 0 headdeg -5 line_error_px 0.010086011644887094 axis_error_deg 0.0013487829628529013
+MEAS legacy TB 0 cross 0 headdeg 0 line_error_px 1.9069023267093144e-05 axis_error_deg 2.2620591260926168e-06
+MEAS legacy TB 0 cross 0 headdeg 5 line_error_px 0.010069143481423737 axis_error_deg 0.0013465273285069301
+MEAS legacy TB 0 cross 0 headdeg 10 line_error_px 0.004936983561009356 axis_error_deg 0.0007183795890988165
+MEAS legacy TB 0 cross 0 headdeg 20 line_error_px 0.0009194128201244212 axis_error_deg 0.00014490250237386704
+MEAS legacy TB 0 cross 0 headdeg 30 line_error_px 0.0036630110761279866 axis_error_deg 0.0005632154241972387
+MEAS legacy TB 0 cross 1 headdeg -30 line_error_px 0.002138179066378143 axis_error_deg 0.00032875783765007327
+MEAS legacy TB 0 cross 1 headdeg -20 line_error_px 9.663387714908822e-06 axis_error_deg 1.522990668689772e-06
+MEAS legacy TB 0 cross 1 headdeg -10 line_error_px 0.0028647003570512197 axis_error_deg 0.00041683909204515146
+MEAS legacy TB 0 cross 1 headdeg -5 line_error_px 0.010059381690986413 axis_error_deg 0.0013451630141041448
+MEAS legacy TB 0 cross 1 headdeg 0 line_error_px 8.851979600876803e-06 axis_error_deg 1.0500643752474016e-06
+MEAS legacy TB 0 cross 1 headdeg 5 line_error_px 0.01006708079995633 axis_error_deg 0.0013461924949478288
+MEAS legacy TB 0 cross 1 headdeg 10 line_error_px 0.0028071410906420624 axis_error_deg 0.00040846372006342335
+MEAS legacy TB 0 cross 1 headdeg 20 line_error_px 2.6930727443641445e-06 axis_error_deg 4.244395590546901e-07
+MEAS legacy TB 0 cross 1 headdeg 30 line_error_px 0.0021187743156758643 axis_error_deg 0.0003257742096707261
+MEAS legacy TB 1 cross 0 headdeg -30 line_error_px 0.0002916704820563609 axis_error_deg 4.484453273789768e-05
+MEAS legacy TB 1 cross 0 headdeg -20 line_error_px 0.004071902214406009 axis_error_deg 0.0006417330509655983
+MEAS legacy TB 1 cross 0 headdeg -10 line_error_px 0.012981186331444405 axis_error_deg 0.0018888751966255057
+MEAS legacy TB 1 cross 0 headdeg -5 line_error_px 0.008577361470003098 axis_error_deg 0.0011469880342671601
+MEAS legacy TB 1 cross 0 headdeg 0 line_error_px 3.074915429124303e-05 axis_error_deg 3.647612680262135e-06
+MEAS legacy TB 1 cross 0 headdeg 5 line_error_px 0.008601551327338086 axis_error_deg 0.0011502227141289012
+MEAS legacy TB 1 cross 0 headdeg 10 line_error_px 0.01300590368029475 axis_error_deg 0.0018924719715265326
+MEAS legacy TB 1 cross 0 headdeg 20 line_error_px 0.004073623603389365 axis_error_deg 0.0006420042942210102
+MEAS legacy TB 1 cross 0 headdeg 30 line_error_px 0.00023307127042926368 axis_error_deg 3.5834868864270675e-05
+MEAS legacy TB 1 cross 1 headdeg -30 line_error_px 0.00023782180113585127 axis_error_deg 3.656622350689531e-05
+MEAS legacy TB 1 cross 1 headdeg -20 line_error_px 0.008697329704716594 axis_error_deg 0.0013707467565069464
+MEAS legacy TB 1 cross 1 headdeg -10 line_error_px 0.009884424001697312 axis_error_deg 0.0014383233375365734
+MEAS legacy TB 1 cross 1 headdeg -5 line_error_px 0.011804182218817516 axis_error_deg 0.001578557023320215
+MEAS legacy TB 1 cross 1 headdeg 0 line_error_px 4.265109527068489e-05 axis_error_deg 5.059477704973061e-06
+MEAS legacy TB 1 cross 1 headdeg 5 line_error_px 0.011772159737397203 axis_error_deg 0.0015742746730573742
+MEAS legacy TB 1 cross 1 headdeg 10 line_error_px 0.00986351090155324 axis_error_deg 0.0014352800688914868
+MEAS legacy TB 1 cross 1 headdeg 20 line_error_px 0.008704480014159799 axis_error_deg 0.001371873597936002
+MEAS legacy TB 1 cross 1 headdeg 30 line_error_px 0.0002101012524917678 axis_error_deg 3.230405616960752e-05
+LUAERR	vr180-look: shader publication failed: nil
+PASS native generated GLSL compile extended
+MEAS extended TB 0 cross 0 headdeg -30 line_error_px 0.003653602952994106 axis_error_deg 0.0005617688431662771
+MEAS extended TB 0 cross 0 headdeg -20 line_error_px 0.0008771865863934636 axis_error_deg 0.00013824751973245952
+MEAS extended TB 0 cross 0 headdeg -10 line_error_px 0.004960918390153779 axis_error_deg 0.0007218623098683707
+MEAS extended TB 0 cross 0 headdeg -5 line_error_px 0.010108157618887503 axis_error_deg 0.0013517445377626558
+MEAS extended TB 0 cross 0 headdeg 0 line_error_px 1.9226683605211292e-05 axis_error_deg 2.2807615049002177e-06
+MEAS extended TB 0 cross 0 headdeg 5 line_error_px 0.010069222573626746 axis_error_deg 0.0013465378817958396
+MEAS extended TB 0 cross 0 headdeg 10 line_error_px 0.0049628120526818975 axis_error_deg 0.000722137909617615
+MEAS extended TB 0 cross 0 headdeg 20 line_error_px 0.000914098422981624 axis_error_deg 0.00014406493642482587
+MEAS extended TB 0 cross 0 headdeg 30 line_error_px 0.0036551990160660353 axis_error_deg 0.0005620142573405928
+MEAS extended TB 0 cross 1 headdeg -30 line_error_px 0.002091695181832165 axis_error_deg 0.00032161066831903895
+MEAS extended TB 0 cross 1 headdeg -20 line_error_px 3.947000691084668e-05 axis_error_deg 6.220639249931992e-06
+MEAS extended TB 0 cross 1 headdeg -10 line_error_px 0.0028492539817221996 axis_error_deg 0.00041459150843081716
+MEAS extended TB 0 cross 1 headdeg -5 line_error_px 0.01007933446296505 axis_error_deg 0.001347831075150907
+MEAS extended TB 0 cross 1 headdeg 0 line_error_px 1.2387853757900302e-05 axis_error_deg 1.469506725412786e-06
+MEAS extended TB 0 cross 1 headdeg 5 line_error_px 0.010067613301465883 axis_error_deg 0.0013462637051251392
+MEAS extended TB 0 cross 1 headdeg 10 line_error_px 0.0027723193615685204 axis_error_deg 0.00040339680601775285
+MEAS extended TB 0 cross 1 headdeg 20 line_error_px 1.1847215688476354e-06 axis_error_deg 1.8671710222406546e-07
+MEAS extended TB 0 cross 1 headdeg 30 line_error_px 0.002131812209512418 axis_error_deg 0.0003277789036886247
+MEAS extended TB 1 cross 0 headdeg -30 line_error_px 0.00029951661869631607 axis_error_deg 4.605087917042283e-05
+MEAS extended TB 1 cross 0 headdeg -20 line_error_px 0.004053104974474309 axis_error_deg 0.0006387706559110029
+MEAS extended TB 1 cross 0 headdeg -10 line_error_px 0.013005969414308538 axis_error_deg 0.0018924814565739467
+MEAS extended TB 1 cross 0 headdeg -5 line_error_px 0.008589625607058338 axis_error_deg 0.00114862798299864
+MEAS extended TB 1 cross 0 headdeg 0 line_error_px 4.654758225797195e-05 axis_error_deg 5.521698250407357e-06
+MEAS extended TB 1 cross 0 headdeg 5 line_error_px 0.00859847970728822 axis_error_deg 0.0011498119420867425
+MEAS extended TB 1 cross 0 headdeg 10 line_error_px 0.013051684317602508 axis_error_deg 0.0018991332994229282
+MEAS extended TB 1 cross 0 headdeg 20 line_error_px 0.004097132074704746 axis_error_deg 0.0006457092550675725
+MEAS extended TB 1 cross 0 headdeg 30 line_error_px 0.00027638819389608216 axis_error_deg 4.249487464491608e-05
+MEAS extended TB 1 cross 1 headdeg -30 line_error_px 0.0001896547567810103 axis_error_deg 2.9160312525533527e-05
+MEAS extended TB 1 cross 1 headdeg -20 line_error_px 0.008629915661813925 axis_error_deg 0.0013601218483501043
+MEAS extended TB 1 cross 1 headdeg -10 line_error_px 0.009866995942743984 axis_error_deg 0.0014357873079493544
+MEAS extended TB 1 cross 1 headdeg -5 line_error_px 0.011767543697786209 axis_error_deg 0.001573657295629971
+MEAS extended TB 1 cross 1 headdeg 0 line_error_px 4.211613713778206e-06 axis_error_deg 4.99601857598414e-07
+MEAS extended TB 1 cross 1 headdeg 5 line_error_px 0.011788133213215701 axis_error_deg 0.0015764107208324774
+MEAS extended TB 1 cross 1 headdeg 10 line_error_px 0.009910008310157536 axis_error_deg 0.0014420462671047574
+MEAS extended TB 1 cross 1 headdeg 20 line_error_px 0.008692692529564283 axis_error_deg 0.0013700158448379796
+MEAS extended TB 1 cross 1 headdeg 30 line_error_px 0.00018156638827804272 axis_error_deg 2.7916689095519587e-05
+FAILURES []
+PASS native spherical S1 held-centre matrix

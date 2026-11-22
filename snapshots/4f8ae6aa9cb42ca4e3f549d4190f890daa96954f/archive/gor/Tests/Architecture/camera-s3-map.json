@@ -1,0 +1,54 @@
+{
+  "base": "5643b4d6170fd86e01954e0aec66872473629e09",
+  "moves": [
+    {
+      "old": "QuitChildKiller.swift",
+      "new": "Camera/Runtime.swift",
+      "start": "// BEGIN camera-helper runtime",
+      "end": null,
+      "prefix": "import Foundation\n#if os(Linux)\nimport Glibc\n#else\nimport Darwin\n#endif\n\n",
+      "sha256": "96f72a0d78b3b7b45715273576c349f591d0b46d222ba921b22b3d1e32c37238"
+    },
+    {
+      "old": "ScreenCaptureEngine.swift",
+      "new": "Camera/Sensing.swift",
+      "start": "// ================================================================\n// HeadTracker ",
+      "end": "// ================================================================\n// Core Audio",
+      "prefix": "import AppKit\nimport CoreGraphics\nimport ScreenCaptureKit\nimport AVFoundation\nimport CoreAudio\nimport Accelerate\nimport Vision\nimport CoreML\nimport IOKit\n\n",
+      "sha256": "4655c8d87e275f8d991200e7bb158a680eee9ac2071bbae907f8a45b7e21f89d"
+    },
+    {
+      "old": "ScreenCaptureEngine.swift",
+      "new": "Camera/BlinkEpisodes.swift",
+      "start": "// MARK: - Blink episode bookkeeping",
+      "end": "// Subtitle Vision has its own request lifetime",
+      "prefix": "import Foundation\n\n",
+      "sha256": "f854b114594e759581e2968c755a317a02948aed55db004bdb473049f66b875b"
+    },
+    {
+      "old": "Stereo/HeadPose.swift",
+      "new": "Camera/HeadPose.swift",
+      "sha256": "2c3a36532b48c520412b186d28a41f9b1c19a54b955ec6f22f8aa4b2a48f7b05"
+    },
+    {
+      "old": "Stereo/Pose192d.swift",
+      "new": "Camera/Pose192d.swift",
+      "sha256": "adda737a81e3ad5281c6331288db37992d090f1ea2f62569f0c4778b8782a499"
+    },
+    {
+      "old": "Stereo/PoseMeasurementValidity.swift",
+      "new": "Camera/PoseMeasurementValidity.swift",
+      "sha256": "8a063f2298953d8e7ade1063677d9e7e349580c00c79afa7b57b56e8f7115317"
+    },
+    {
+      "old": "Stereo/PoseFrameQuality.swift",
+      "new": "Camera/PoseFrameQuality.swift",
+      "sha256": "67d08d6ee15921cc91e2869cff4ed5d159ba87354c892ea2ff9c1ac0a6f1bb0a"
+    },
+    {
+      "old": "Stereo/BinocularGaze.swift",
+      "new": "Camera/BinocularGaze.swift",
+      "sha256": "ef7d2efe1ea5db435a93b99f7d6aec4931a0699c0fb5af30e57b92a03a658841"
+    }
+  ]
+}

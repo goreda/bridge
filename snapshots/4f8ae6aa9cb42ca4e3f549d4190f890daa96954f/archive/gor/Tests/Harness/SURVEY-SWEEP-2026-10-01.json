@@ -1,0 +1,130 @@
+{
+  "reviewed_commit": "e05663098c85308dae0d75102c784f5c890619f7",
+  "current_runners": [
+    {
+      "runner": "gor/Tests/Harness/AudioFont/test_audio.py",
+      "status": "PASS on pinned current repository sources; no snapshot fallback",
+      "runner_sha256": "645eb1921022bd0331bad6a63eb8b7a647766798da97b832e7002bbdc3fcbd87"
+    },
+    {
+      "runner": "gor/Tests/Harness/AudioFont/test_cache_fanout.py",
+      "status": "PASS on pinned current repository sources; no snapshot fallback",
+      "runner_sha256": "f237b5930cea550eb442e9b585ad53baac6603845aec18664e1fcf9c445f6aed"
+    },
+    {
+      "runner": "gor/Tests/Harness/AudioFont/test_listeners.py",
+      "status": "PASS on pinned current repository sources; no snapshot fallback",
+      "runner_sha256": "60c78632cd50a65f1b4d734b9161e15abb0dce85209a5cbd2f68f00987b38c10"
+    },
+    {
+      "runner": "gor/Tests/Harness/Catalogue/test_catalogue.py",
+      "status": "PASS on pinned current repository sources; no snapshot fallback",
+      "runner_sha256": "a90d240f90b15645f1e08dabbdbc2c179ba94f8a31a1e6320343b77090db2935"
+    },
+    {
+      "runner": "gor/Tests/Harness/Crop/test_current_model.py",
+      "status": "PASS on pinned current repository sources; no snapshot fallback",
+      "runner_sha256": "b8024f09c8873b44a1805fce999ec551f76317a03e4a95387716eaea634ecf9c"
+    },
+    {
+      "runner": "gor/Tests/Harness/FileNavigationAutoload/test_autoload.py",
+      "status": "PASS on pinned current repository sources; no snapshot fallback",
+      "runner_sha256": "f0d8ab26efc84d4ecaf75c9dae0d9807acf1d7228f2e2bc9734524e3b836cc3f"
+    },
+    {
+      "runner": "gor/Tests/Harness/FileNavigationAutoload/test_navigation.py",
+      "status": "PASS on pinned current repository sources; no snapshot fallback",
+      "runner_sha256": "1afbadff87f083e46cb7bf6d05e5594421d3b75b702c43ad2f68e2c979faa03e"
+    },
+    {
+      "runner": "gor/Tests/Harness/FileNavigationAutoload/test_resource_guards.py",
+      "status": "PASS on pinned current repository sources; no snapshot fallback",
+      "runner_sha256": "3117a3a9b04cc15acc1ebd05e01d659ad4f37ed4de93f27b28a861b3c53c79a4"
+    },
+    {
+      "runner": "gor/Tests/Harness/LiveCaption/test_lifecycle_model.py",
+      "status": "PASS on pinned current repository sources; no snapshot fallback",
+      "runner_sha256": "72d1fee06cca7874d16717339b6d5ee5541c6dbe3c4501dbc3f27f9f3b507058"
+    },
+    {
+      "runner": "gor/Tests/Harness/MagnetAccess/test_access.mjs",
+      "status": "PASS on pinned current repository sources; no snapshot fallback",
+      "runner_sha256": "9974ddae71e29de9d8da066e4a8f5146d22b6e3ee39130ad9bb2e546889d19b1"
+    },
+    {
+      "runner": "gor/Tests/Harness/MagnetJSON/test_json.mjs",
+      "status": "PASS on pinned current repository sources; no snapshot fallback",
+      "runner_sha256": "fe30c170e673bc1851a33e354b3300af587375e2b8b4a1076aff2a736c99f565"
+    },
+    {
+      "runner": "gor/Tests/Harness/ScreenCamera/test_camera.py",
+      "status": "PASS on pinned current repository sources; no snapshot fallback",
+      "runner_sha256": "07891e012654c959996efab08636a297f7a0a3458f41269ed6c745d04cc365bc"
+    },
+    {
+      "runner": "gor/Tests/Harness/ScreenCamera/test_sampling.py",
+      "status": "PASS on pinned current repository sources; no snapshot fallback",
+      "runner_sha256": "c6ada24b6d8896a3a21bdd1c6119109e0cce68d3cb6cf05e8a1f6fe1cd59b3aa"
+    },
+    {
+      "runner": "gor/Tests/Harness/Transfer/test_companions.py",
+      "status": "PASS on pinned current repository sources; no snapshot fallback",
+      "runner_sha256": "075f6855b915f158880ebb98ab9d48cf71f375a68d2e242abe88c9268d81e800"
+    },
+    {
+      "runner": "gor/Tests/Harness/Transfer/test_transfer.py",
+      "status": "PASS on pinned current repository sources; no snapshot fallback",
+      "runner_sha256": "492ae53f1cf5a2c91fc5c46003d5ad1ca2d8b171cf5c5f634f0b35781e873bfa"
+    }
+  ],
+  "source_sha256": {
+    "gor/Sources/gor/VariationBroadcaster.swift": "bf913a2756fa7a0e0aad0abffb972db4a29c8913c743a10015bc2a99f00170b9",
+    "gor/Sources/gor/PPController.swift": "7964e9bcff8779fdc6c2ee064ffac0c93ca4452fc8977581b19369f8cae05962",
+    "gor/Sources/gor/CDPSession.swift": "c2d52d97a370331db2bf738395502463e0d5f0025cacbcb908b4f0d45dd1f200",
+    "gor/Sources/gor/ArchiveBrowser.swift": "07028fa2f2f93578f9f4fc975c8008f327140dd4ebd451992fb8d591561120ac",
+    "gor/Sources/gor/LiveCaptionController.swift": "48ddd318010a3e8ac7792a2d43004617c5b5fee38ac9ccefab5a799443f421e6",
+    "gor/Sources/gor/App/AppDelegate.swift": "ef735567f7259716884f3a2933581c6c15de56f2426bc4788ff43d9cced9ae05",
+    "gor/Sources/gor/PhotonFont.swift": "1e366e3299ec6f77f958e500aa7c57b28e7cd4b16e4f328e4b9f5ae90e7f7cea",
+    "gor/Sources/gor/TransferResolver.swift": "108992a6c3982009a46118d497b011cff0ff295d0f6de210f1d09748ecb7ff3e",
+    "gor/Sources/gor/FileBrowser.swift": "48e3bc5d4f276af987d8613b00797845f5a7595123d1515b4e45193ddb683ee1",
+    "gor/Sources/gor/ScreenCaptureEngine.swift": "6430a5488a5357f16b6b19d9840122cd6180808efbc530d832da026f2fad04e0",
+    "gor/Resources/vendor/mpv/scripts/autoload.lua": "8f429d14cc0b171fca78357368c11737fefd33c3757778a3a44c14f6c0477417",
+    "gor/Resources/vendor/mpv/script-opts/autoload.conf": "781f41cd1f81445a9e0052ec8cc8adb98d25131c1aab7c20fb2f065fbc83481e",
+    "gor/Resources/vendor/magnet_search/cli.mjs": "a606a856c8a9055db1c743a7f40752653e95a1e8e8b8069e6b6f4915df2324ac",
+    "gor/Resources/vendor/magnet_search/magnet_search.mjs": "89b979e6a3b84dbd75842342c366f856a47201f51c5b33c45792141979112659"
+  },
+  "dated_directory_inventory": [
+    "2026-10-01-audio-font",
+    "2026-10-01-audio-font-current-tree",
+    "2026-10-01-audio-font-portable-scaffold",
+    "2026-10-01-caption-autoload",
+    "2026-10-01-caption-current-tree",
+    "2026-10-01-caption-portable-scaffold",
+    "2026-10-01-catalogue-candidate-review",
+    "2026-10-01-catalogue-survey",
+    "2026-10-01-crop-current-tree",
+    "2026-10-01-crop-track2-sequence",
+    "2026-10-01-final-integrated-v22.4",
+    "2026-10-01-fix-ready-survey-1515",
+    "2026-10-01-magnet-access-current-tree",
+    "2026-10-01-magnet-access-metadata-refresh",
+    "2026-10-01-navigation-autoload-current-tree",
+    "2026-10-01-screen-camera-current-tree",
+    "2026-10-01-transfer-catalogue-modernization",
+    "2026-10-01-transfer-companion-survey",
+    "2026-10-01-v22.5-regression-verification",
+    "2026-10-01-wt-fallback-matrix",
+    "2026-10-01-wt-swap-race",
+    "2026-10-01-wt-v22.3-candidate",
+    "2026-10-01-wt-v22.3-missing-custody"
+  ],
+  "archived_runner_review": {
+    "catalogue_model.py": "already current-cell wrapper",
+    "transfer_model.py": "already current-cell wrapper",
+    "remote_companion_model.py": "already current-cell wrapper",
+    "original/current-transfer-catalogue.py": "immutable snapshot audit; separate run-current.sh added",
+    "silent-seed.mjs": "historical WT fixture with /tmp/wt-real imports, separate engine/server program; no current clearance",
+    "stuck-curl.sh": "historical WT experiment, separate engine/server program; no current clearance"
+  },
+  "limits": "Python ports/source guards, actual vendored Lua in mocked mpv, actual Node module with loopback tracker fixtures. Not Swift/native Mac, external provider or pixel proof. Crop known-reds remain. No immutable archive bytes or production sources edited."
+}

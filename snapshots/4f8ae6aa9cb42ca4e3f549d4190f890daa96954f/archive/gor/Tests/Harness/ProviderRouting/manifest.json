@@ -1,0 +1,20 @@
+{
+  "source": "goreda/instinct main live 2026-10-02 00:30 Europe/Istanbul; final reread unchanged",
+  "source_sha256": "c2d52d97a370331db2bf738395502463e0d5f0025cacbcb908b4f0d45dd1f200",
+  "negative_checks": [
+    {
+      "mutation": "url.hasPrefix(\"mega-folder::\")",
+      "rejected": true
+    },
+    {
+      "mutation": "url.contains(\"pixeldrain.com/u/\")",
+      "rejected": true
+    },
+    {
+      "mutation": "url.contains(\"drive.google.com/file/d/\")",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "native_validation": "not performed"
+}

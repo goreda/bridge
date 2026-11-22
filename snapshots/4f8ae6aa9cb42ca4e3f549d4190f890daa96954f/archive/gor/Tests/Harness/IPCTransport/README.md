@@ -1,0 +1,9 @@
+# Swift IPC transport harness
+
+Run `bash gor/Tests/Harness/IPCTransport/run.sh`. Python 3 only. Reads current PPController.swift and MPVCommand.swift directly; no historical-source fallback. No sockets, mpv processes, network requests, downloads or production changes. Source hashes and final current-main reread are in manifest.json.
+
+Coverage: eight JSON string escaping/batch-frame controls, every positive short-write size for a UTF-8 one-shot request, EINTR and terminal failure, persistent byte framing at every split boundary including multibyte UTF-8, malformed/non-object line isolation, capped reconnect delay and first-data selection. Three source mutations fail. The one-shot complete-write loop is current fixed behavior; this cell does not report it as an outstanding defect.
+
+PersistentEventConnection.write still calls write once and tears down/reconnects after a short write, without completing or replaying the command in that function. EINTR also causes teardown. The harness preserves those counterexamples. Current PollEngine source explicitly reinstalls subscriptions on connection and retries recurring polls. That can compensate for transport loss; native reconnect recovery is unverified. This is not an observed lasting UI failure. parseFirst accepts the first data-bearing object without request correlation. This is a protocol risk only when unrelated data-bearing events precede the wanted reply.
+
+PASS means expected controls and characterizations were reproduced, not transport correctness clearance. Python JSON models do not execute Foundation. Write scripts model POSIX results, not Darwin socket semantics. Swift native compile, socket/mpv integration, SIGPIPE, AF_UNIX path limits, read-error handling, response size bounds, disconnect drops and reconnect race/stop ordering remain open. This targets gor's Swift IPC boundary, not gorav rendering or WT server coverage.

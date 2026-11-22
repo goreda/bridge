@@ -1,0 +1,3632 @@
+// ThreeD/Depth.swift - 3D station "Depth": depth inference, containers, caches, guards and prepare math.
+// Move-only split of the former ThreeD.swift (arch-199s). The sections below are byte-identical to their former BEGIN/END spans,
+// in their original relative order. The import list is the union of the former file (a deliberate superset; narrow it only with a Darwin compile).
+#if canImport(AVFoundation)
+import AVFoundation
+#endif
+#if canImport(Accelerate)
+import Accelerate
+#endif
+import AppKit
+#if canImport(Compression)
+import Compression
+#endif
+import CoreGraphics
+#if canImport(CoreML)
+import CoreML
+#endif
+#if canImport(CoreMedia)
+import CoreMedia
+#endif
+#if canImport(CoreVideo)
+import CoreVideo
+#endif
+#if canImport(CryptoKit)
+import CryptoKit
+#endif
+import Darwin
+import Foundation
+#if canImport(Glibc)
+import Glibc
+#endif
+#if canImport(ImageIO)
+import ImageIO
+#endif
+#if canImport(Metal)
+import Metal
+#endif
+import QuartzCore
+#if canImport(UniformTypeIdentifiers)
+import UniformTypeIdentifiers
+#endif
+#if canImport(VideoToolbox)
+import VideoToolbox
+#endif
+#if canImport(Vision)
+import Vision
+#endif
+
+// BEGIN relocated ThreeDModels.swift (195y owner-order 3D consolidation, behavior unchanged)
+import Foundation
+#if canImport(CryptoKit)
+import CryptoKit
+#endif
+
+/// 190t K: first-3D-enable model fetch. Runs the repo's tools/gor-fetch-models.sh (curl to huggingface.co, no account; every file kept only if its
+/// sha256 matches models/models.lock.tsv) from the source directory baked at build time, then verifies the same sha256 values itself before 3D may
+/// start. Plain OSD lines for progress and failure; until verified the film stays 2D. Nothing is downloaded by build.sh. Not run on a Mac.
+final class ThreeDModels {
+    static let shared = ThreeDModels()
+    /// The owner's source checkout (build.sh --update works from it). Override for tests with GOR_SOURCE_DIR.
+    static var sourceDir: URL {
+        URL(fileURLWithPath: ProcessInfo.processInfo.environment["GOR_SOURCE_DIR"] ?? (NSHomeDirectory() + "/Downloads/gor"))
+    }
+    static var modelsDir: URL {
+        ProcessInfo.processInfo.environment["GOR_MODELS_DIR"].map { URL(fileURLWithPath: $0) }
+            ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("gor/models", isDirectory: true)
+    }
+
+    struct Row: Equatable { let id: String, repo: String, file: String, sha: String }
+
+    /// Pure: the `usable` Apache-2.0/MIT rows of models.lock.tsv (same filter as gor-fetch-models.sh). Header row and others are skipped.
+    static func rows(lock: String) -> [Row] {
+        lock.split(separator: "\n").compactMap { line -> Row? in
+            let c = line.split(separator: "\t", omittingEmptySubsequences: false).map(String.init)
+            guard c.count >= 7, c[0] != "id", c[1] == "usable", ["Apache-2.0", "MIT"].contains(c[2]) else { return nil }
+            return Row(id: c[0], repo: c[3].hasPrefix("https://") ? String(c[3].dropFirst(8)) : c[3], file: c[5], sha: c[6])   // local dir = host/path, same as gor-fetch-models.sh
+        }
+    }
+    /// Pure: the OSD text for one script output line ("ok   id", "ok   id (cached)", "skip ...", "FAIL id: reason", "REFUSE ...").
+    static func progressText(line: String, done: Int, total: Int) -> String? {
+        let t = line.trimmingCharacters(in: .whitespaces)
+        if t.hasPrefix("ok ") { return "3D: models \(done)/\(total) ready" }
+        if t.hasPrefix("FAIL") || t.hasPrefix("REFUSE") { return "3D: model download failed (\(t.prefix(80))), staying 2D" }
+        return nil
+    }
+
+    /// Only the CoreML kit rows gate "verified" and are fetched (GOR_MODELS_ONLY below): the runtime uses nothing else. The .pth/.onnx/.pt rows stay in the lock as provenance.
+    static let onlyID = "coreml-kit"
+    static func gated(_ r: Row) -> Bool { r.id.contains(onlyID) }
+    /// 195h A (Delivery A-5): a DAV2 request's gate is its own 3 pinned mlpackage parts (plain files; no kit install marker),
+    /// never the CoreML kit. A DAV2-only install verifies without VDA/MoGe ever being fetched.
+    static let dav2OnlyID = "dav2-small-coreml-f16"
+    static func gatedDAV2(_ r: Row) -> Bool { r.id.contains(dav2OnlyID) }
+    /// The lock rows gating one request: the CoreML kit for the default producer, just the 3 pinned DAV2 files for dav2_small_coreml.
+    static func gatedRows(lock: String, dav2: Bool) -> [Row] { rows(lock: lock).filter { dav2 ? gatedDAV2($0) : gated($0) } }
+    /// The GOR_MODELS_ONLY filter the fetch script gets for that gate (it substring-matches row ids).
+    static func onlyID(dav2: Bool) -> String { dav2 ? dav2OnlyID : onlyID }
+    /// Files of `rows` whose on-disk sha256 differs (or whose kit install marker is missing). Injectable sha256 for tests (Linux has no CryptoKit).
+    static func missing(_ rows: [Row], modelsDir: URL = ThreeDModels.modelsDir, sha: (URL) -> String? = ThreeDModels.sha256(of:)) -> [Row] {
+        rows.filter { sha(modelsDir.appendingPathComponent($0.repo).appendingPathComponent($0.file)) != $0.sha || !kitInstalled($0, modelsDir: modelsDir) }
+    }
+
+    /// Kit rows (id contains coreml-kit) also need their unpacked packages: gor-fetch-models.sh writes <models>/kit/.installed-<id> holding the archive sha256 once every package is in place.
+    static func kitInstalled(_ r: Row, modelsDir: URL = ThreeDModels.modelsDir) -> Bool {
+        guard r.id.contains("coreml-kit") else { return true }
+        return (try? String(contentsOf: modelsDir.appendingPathComponent("kit/.installed-" + r.id), encoding: .utf8)) == r.sha && KitHash.verify(kitDir: modelsDir.appendingPathComponent("kit"), archiveID: r.id).isEmpty
+    }
+
+    static func sha256(of url: URL) -> String? {
+        #if canImport(CryptoKit)
+        guard let h = try? FileHandle(forReadingFrom: url) else { return nil }
+        defer { try? h.close() }
+        var hasher = SHA256()
+        while let d = try? h.read(upToCount: 1 << 20), !d.isEmpty { hasher.update(data: d) }
+        return hasher.finalize().map { String(format: "%02x", $0) }.joined()
+        #else
+        return nil
+        #endif
+    }
+
+    private let lock = NSLock()
+    private var running = false, isVerified = false, failedText: String?
+    private var runningDAV2 = false, isVerifiedDAV2 = false, failedTextDAV2: String?   // 195h A: the DAV2 gate has its own state
+    var verified: Bool { lock.lock(); defer { lock.unlock() }; return isVerified }
+    var verifiedDAV2: Bool { lock.lock(); defer { lock.unlock() }; return isVerifiedDAV2 }
+
+    /// Idempotent and cheap to call from a timer: verifies on a utility queue, fetches when something is missing, reports plain progress/failure
+    /// once per distinct line. A failed fetch is not retried until the app restarts.
+    func ensure(report: @escaping (String) -> Void) { ensure(dav2: false, report: report) }
+    /// 195h A (Delivery A-5): the DAV2 request's verify/fetch gate over just the 3 pinned dav2 rows.
+    func ensureDAV2(report: @escaping (String) -> Void) { ensure(dav2: true, report: report) }
+    private func ensure(dav2: Bool, report: @escaping (String) -> Void) {
+        lock.lock()
+        if dav2 { if runningDAV2 || isVerifiedDAV2 || failedTextDAV2 != nil { lock.unlock(); return }; runningDAV2 = true }
+        else { if running || isVerified || failedText != nil { lock.unlock(); return }; running = true }
+        lock.unlock()
+        DispatchQueue.global(qos: .utility).async { [self] in
+            func finish(_ ok: Bool, _ fail: String?) {
+                lock.lock()
+                if dav2 { runningDAV2 = false; isVerifiedDAV2 = ok; failedTextDAV2 = fail } else { running = false; isVerified = ok; failedText = fail }
+                lock.unlock()
+                if let f = fail { DispatchQueue.main.async { report(f) } }
+            }
+            let lockURL = Self.sourceDir.appendingPathComponent("models/models.lock.tsv")
+            guard let text = try? String(contentsOf: lockURL, encoding: .utf8) else {
+                return finish(false, "3D: model list not found (\(lockURL.path)), staying 2D")
+            }
+            let rows = Self.gatedRows(lock: text, dav2: dav2)
+            guard !rows.isEmpty else { return finish(false, "3D: no usable models are listed, staying 2D") }
+            func missing() -> [Row] { Self.missing(rows) }
+            if missing().isEmpty { return finish(true, nil) }
+            let script = Self.sourceDir.appendingPathComponent("tools/gor-fetch-models.sh")
+            guard FileManager.default.isReadableFile(atPath: script.path) else { return finish(false, "3D: model fetch script not found, staying 2D") }
+            DispatchQueue.main.async { report("3D: downloading models (first use), staying 2D until they are verified") }
+            let p = Process(); p.executableURL = URL(fileURLWithPath: "/bin/bash"); p.arguments = [script.path]
+            var env = ProcessInfo.processInfo.environment; env["GOR_MODELS_DIR"] = Self.modelsDir.path; env["GOR_MODELS_ONLY"] = Self.onlyID(dav2: dav2); p.environment = env
+            let out = Pipe(); p.standardOutput = out; p.standardError = out
+            var done = 0
+            out.fileHandleForReading.readabilityHandler = { h in
+                for line in String(decoding: h.availableData, as: UTF8.self).split(separator: "\n") {
+                    print("[GOR] 3d-fetch \(line)"); fflush(stdout)       // first Mac log names exactly what failed (gh missing / not signed in / no access)
+                    if line.hasPrefix("ok ") { done += 1 }
+                    if let t = Self.progressText(line: String(line), done: done, total: rows.count) { DispatchQueue.main.async { report(t) } }
+                }
+            }
+            guard (try? p.run()) != nil else { return finish(false, "3D: could not start the model download, staying 2D") }
+            p.waitUntilExit(); out.fileHandleForReading.readabilityHandler = nil
+            let left = missing()                                       // our own sha256 check, not the script's exit code alone
+            finish(left.isEmpty && p.terminationStatus == 0, left.isEmpty && p.terminationStatus == 0 ? nil : "3D: models not verified (\(left.count) missing or wrong), staying 2D")
+        }
+    }
+}
+// END relocated ThreeDModels.swift
+// BEGIN relocated ThreeDKit.swift (195y owner-order 3D consolidation, behavior unchanged)
+import Foundation
+
+/// 190t K: the CoreML kit gate. NativePrepareRunner needs the converted packages (encoder/bootstrap/stream fp16 for VDA-S and at least one
+/// moge2_vits_WxH_{fp16,fp32}) in one directory (kit_manifest.json names them). This registers the runner in ThreeDRunnerRegistry once they are all present;
+/// until then it reports ONE plain OSD line naming what is missing and the film stays 2D. Where the packages come from is an open item (they are converted
+/// on Linux and are not in models.lock.tsv); this file only checks and registers. Not compiled or run on a Mac.
+enum ThreeDKit {
+    /// GOR_KIT_DIR overrides; default <models dir>/kit (next to the files gor-fetch-models.sh writes).
+    static var dir: URL {
+        ProcessInfo.processInfo.environment["GOR_KIT_DIR"].map { URL(fileURLWithPath: $0) } ?? ThreeDModels.modelsDir.appendingPathComponent("kit", isDirectory: true)
+    }
+    static let vda = ["encoder_fp16.mlpackage", "bootstrap_fp16.mlpackage", "stream_fp16.mlpackage"]
+
+    /// Pure: the package names still missing given the directory listing ("moge2_vits_*.mlpackage" stands for "any MoGe-2 package").
+    static func missing(listing: [String]) -> [String] {
+        let have = Set(listing)
+        var m = vda.filter { !have.contains($0) }
+        if !listing.contains(where: { $0.hasPrefix("moge2_vits_") && $0.hasSuffix(".mlpackage") }) { m.append("moge2_vits_*.mlpackage") }
+        return m
+    }
+    static func missing(dir: URL = ThreeDKit.dir) -> [String] { missing(listing: (try? FileManager.default.contentsOfDirectory(atPath: dir.path)) ?? []) }
+
+    /// Pure: the plain OSD line. MoGe-2 alone missing = its kit is not fetched yet (licence approved, 190w W1), so say that instead of "missing".
+    static func message(missing m: [String]) -> String {
+        m == ["moge2_vits_*.mlpackage"] ? "3D unavailable: the MoGe-2 depth model is not downloaded yet, staying 2D"
+                                        : "3D: CoreML kit missing (\(m.joined(separator: ", "))), staying 2D"
+    }
+
+    private static let lock = NSLock()
+    private static var verifyRunning = false, verifyFailed: [String]?, toldVerify = false
+    private static var told = false
+    /// Idempotent, cheap (one directory listing). true once a runner is registered. Reports the missing list once per launch.
+    @discardableResult
+    static func register(report: (String) -> Void) -> Bool {
+        if ThreeDRunnerRegistry.runner != nil { return true }
+        let m = missing()
+        guard m.isEmpty else {
+            // 195h A (Delivery A-1): a DAV2-only install (kit absent) still registers when the pinned DAV2 package is present - the DAV2
+            // prepare path never touches the kit (NativePrepareRunner skips loadModels for DAV2 jobs).
+            #if canImport(AVFoundation) && canImport(CoreML) && canImport(VideoToolbox) && canImport(Accelerate)
+            if CoreMLDepthRunner.available(modelsDir: ThreeDModels.modelsDir) {
+                let r = NativePrepareRunner(kitDir: dir); r.modelsDir = ThreeDModels.modelsDir
+                ThreeDRunnerRegistry.runner = r
+                print("3d-depth-runtime registered runner=NativePrepareRunner verified_manifest=none depth=DAV2_Small synthesis=\(SynthMethod.current.method.rawValue)"); fflush(stdout)
+                return true
+            }
+            #endif
+            if !told { told = true; report(message(missing: m)) }
+            return false
+        }
+        // per-package content_sha256 + size against the kit manifests (KitHash), once per kit version, off the main thread; a verified kit leaves .verified-<manifest sha>
+        let tag = KitCompiledCache.manifestSha(kitDir: dir).map { String($0.prefix(16)) } ?? "none"
+        let mark = dir.appendingPathComponent(".verified-" + tag)
+        if !FileManager.default.fileExists(atPath: mark.path) {
+            lock.lock(); let run = verifyRunning, failed = verifyFailed; if !run && failed == nil { verifyRunning = true }; lock.unlock()
+            if let f = failed { if !toldVerify { toldVerify = true; report("3D: CoreML kit failed verification (\(f.joined(separator: ", "))), staying 2D") }; return false }
+            if !run {
+                let kd = dir
+                DispatchQueue.global(qos: .utility).async {
+                    let bad = KitHash.verify(kitDir: kd)
+                    if bad.isEmpty { try? Data("ok".utf8).write(to: mark) }
+                    lock.lock(); verifyRunning = false; verifyFailed = bad.isEmpty ? nil : bad; lock.unlock()
+                }
+            }
+            return false
+        }
+        #if canImport(AVFoundation) && canImport(CoreML) && canImport(VideoToolbox) && canImport(Accelerate)
+        let r = NativePrepareRunner(kitDir: dir); r.modelsDir = ThreeDModels.modelsDir     // kit-compiled cache lives under <models>
+        ThreeDRunnerRegistry.runner = r
+        print("3d-depth-runtime registered runner=NativePrepareRunner verified_manifest=\(tag) depth=VDA_MoGe synthesis=\(SynthMethod.current.method.rawValue)"); fflush(stdout)
+        return true
+        #else
+        return false
+        #endif
+    }
+
+    /// Snapshot for the degradation FSM probe (ThreeDDegradeProbe.kitEvent); the verified marker is the one register() writes.
+    static func probeState() -> (missing: [String], verified: Bool, failed: [String]?, verifying: Bool) {
+        let tag = KitCompiledCache.manifestSha(kitDir: dir).map { String($0.prefix(16)) } ?? "none"
+        lock.lock(); let f = verifyFailed, r = verifyRunning; lock.unlock()
+        return (missing(), FileManager.default.fileExists(atPath: dir.appendingPathComponent(".verified-" + tag).path), f, r)
+    }
+    private static var selfTestStarted = false
+    /// E-G's one-shot self-test (ThreeDSelfTest): once per (kit manifest sha, build), with 3D on, the kit complete and no film preparing, on a utility queue.
+    /// The marker (<models>/selftest-<sha12>-<build>.done) is written by run() before the work; `selfTestStarted` stops a second timer tick racing it. Output goes
+    /// through print + fflush, i.e. the same stdout the launch log lines use (AppDelegate dup2s stdout/stderr into gor-log-writer).
+    static func maybeSelfTest(enabled: Bool, filmPreparing: Bool) {
+        #if canImport(AVFoundation) && canImport(CoreML) && canImport(VideoToolbox) && canImport(Accelerate) && canImport(Metal)
+        guard enabled, ThreeDSelfTest.interactiveRequested(ProcessInfo.processInfo.environment), !selfTestStarted, let runner = ThreeDRunnerRegistry.runner as? NativePrepareRunner else { return }
+        let kit = dir, models = ThreeDModels.modelsDir, build = BuildID.value()
+        guard let sha = KitCompiledCache.manifestSha(kitDir: kit) else { return }
+        let marker = models.appendingPathComponent(ThreeDSelfTest.markerName(manifestSha: sha, build: build))
+        guard ThreeDSelfTest.shouldRun(enabled: enabled, kitPresent: missing(dir: kit).isEmpty, markerExists: FileManager.default.fileExists(atPath: marker.path), filmPreparing: filmPreparing) else { return }
+        selfTestStarted = true
+        DispatchQueue.global(qos: .utility).async { _ = ThreeDSelfTest.run(runner: runner, kitDir: kit, modelsDir: models, build: build, marker: marker) }
+        #endif
+    }
+}
+// END relocated ThreeDKit.swift
+// BEGIN relocated KitHash.swift (195y owner-order 3D consolidation, behavior unchanged)
+import Foundation
+#if canImport(CryptoKit)
+import CryptoKit
+#endif
+
+/// 190v s13: per-package content_sha256 of the CoreML kit, the same algorithm as tools/depth_analysis/kit_hash.py: for every regular file under the .mlpackage,
+/// path relative to the package root (UTF-8, '/'-separated, no './'), sorted BYTEWISE, feed path + NUL + file bytes + NUL. Symlinks are an error, dotfiles count.
+/// `verify` checks every package named by the kit manifests in the kit dir (content_sha256 and size_bytes). Not compiled or run on a Mac (CryptoKit path).
+enum KitHash {
+    private struct Hasher {
+        #if canImport(CryptoKit)
+        private var h = SHA256()
+        mutating func update(_ d: Data) { h.update(data: d) }
+        func hex() -> String { h.finalize().map { String(format: "%02x", $0) }.joined() }
+        #else
+        private var h = SHA256Pure.Hasher()
+        mutating func update(_ d: Data) { h.update([UInt8](d)) }
+        func hex() -> String { var c = h; return c.hex() }
+        #endif
+    }
+
+    /// Regular files of a package as (relative path, url), bytewise sorted. nil on a symlink or a non-regular entry.
+    static func files(package: URL) -> [(rel: String, url: URL)]? {
+        let fm = FileManager.default
+        func reject(_ reason: String) -> [(rel: String, url: URL)]? {
+            print("3d-kit-read FAIL package=\(package.lastPathComponent) reason=\(reason)"); fflush(stdout); return nil
+        }
+        let keys: Set<URLResourceKey> = [.isRegularFileKey, .isSymbolicLinkKey, .isDirectoryKey]
+        let root: URLResourceValues
+        do { root = try package.resourceValues(forKeys: keys) } catch {
+            let e = error as NSError; return reject("root_resource_\(e.domain)_\(e.code)")
+        }
+        guard root.isDirectory == true, root.isSymbolicLink != true else { return reject("root_directory_\(String(describing: root.isDirectory))_symlink_\(String(describing: root.isSymbolicLink))") }
+        // Check the selected root for symlinks first, then enumerate its canonical URL.
+        // Darwin may canonicalize ancestor aliases for enumerated children but not for
+        // the original root URL. Mixing the two spellings rejected every package.
+        let canonical = package.resolvingSymlinksInPath().standardizedFileURL
+        let base = canonical.path
+        var enumerationError: NSError?
+        guard let en = fm.enumerator(at: canonical, includingPropertiesForKeys: Array(keys), options: [], errorHandler: { _, error in
+            enumerationError = error as NSError; return false
+        }) else { return reject("enumerator_unavailable") }
+        var out: [(rel: String, url: URL)] = []
+        for case let u as URL in en {
+            let v: URLResourceValues
+            do { v = try u.resourceValues(forKeys: keys) } catch {
+                let e = error as NSError; return reject("entry_resource_\(e.domain)_\(e.code)")
+            }
+            if v.isSymbolicLink == true { return reject("symlink_entry") }
+            if v.isDirectory == true { continue }
+            guard v.isRegularFile == true else { return reject("entry_regular_\(String(describing: v.isRegularFile))_directory_\(String(describing: v.isDirectory))_symlink_\(String(describing: v.isSymbolicLink))") }
+            let p = u.standardizedFileURL.path
+            guard p.hasPrefix(base + "/") else { return reject("relative_prefix_mismatch") }
+            out.append((String(p.dropFirst(base.count + 1)), u))
+        }
+        if let e = enumerationError { return reject("enumeration_error_\(e.domain)_\(e.code)") }
+        return out.sorted { Array($0.rel.utf8).lexicographicallyPrecedes(Array($1.rel.utf8)) }
+    }
+
+    /// (hex digest, total bytes of the files) or nil.
+    static func contentSha256(package: URL) -> (sha: String, size: Int)? {
+        guard let fs = files(package: package) else { return nil }
+        var h = Hasher(), size = 0
+        for f in fs {
+            h.update(Data(f.rel.utf8)); h.update(Data([0]))
+            let fh: FileHandle
+            do { fh = try FileHandle(forReadingFrom: f.url) } catch {
+                let e = error as NSError; print("3d-kit-read FAIL package=\(package.lastPathComponent) reason=file_open_\(e.domain)_\(e.code)"); fflush(stdout); return nil
+            }
+            defer { try? fh.close() }
+            do {
+                while let d = try fh.read(upToCount: 1 << 20), !d.isEmpty { h.update(d); size += d.count }
+            } catch {
+                let e = error as NSError; print("3d-kit-read FAIL package=\(package.lastPathComponent) reason=file_read_\(e.domain)_\(e.code)"); fflush(stdout); return nil
+            }
+            h.update(Data([0]))
+        }
+        return (h.hex(), size)
+    }
+
+    /// Manifest files in the kit dir: the per-archive kit_manifest.<id>.json copies (gor-fetch-models.sh), else kit_manifest.json.
+    static func manifests(kitDir: URL) -> [URL] {
+        let names = ((try? FileManager.default.contentsOfDirectory(atPath: kitDir.path)) ?? []).sorted()
+        let per = names.filter { $0.hasPrefix("kit_manifest.") && $0.hasSuffix(".json") && $0 != "kit_manifest.json" }
+        return (per.isEmpty ? names.filter { $0 == "kit_manifest.json" } : per).map { kitDir.appendingPathComponent($0) }
+    }
+
+    /// Package names whose hash or size does not match (or that are missing); empty = verified. A kit dir with no manifest fails with "kit_manifest.json".
+    static func verify(kitDir: URL, archiveID: String? = nil) -> [String] {
+        let ms = archiveID.map { [kitDir.appendingPathComponent("kit_manifest." + $0 + ".json")] } ?? manifests(kitDir: kitDir)
+        guard !ms.isEmpty else { return ["kit_manifest.json"] }
+        var bad: [String] = []
+        for m in ms {
+            guard let d = try? Data(contentsOf: m), let j = try? JSONSerialization.jsonObject(with: d) as? [String: Any], let pk = j["packages"] as? [String: [String: Any]] else { bad.append(m.lastPathComponent); continue }
+            for (name, e) in pk.sorted(by: { $0.key < $1.key }) {
+                let id = archiveID ?? (m.lastPathComponent == "kit_manifest.json" ? nil : String(m.lastPathComponent.dropFirst("kit_manifest.".count).dropLast(".json".count)))
+                if let id, name.hasPrefix("moge2_") != id.hasPrefix("moge2") { continue }
+                let want = e["content_sha256"] as? String, size = (e["size_bytes"] as? NSNumber)?.intValue
+                let got = contentSha256(package: kitDir.appendingPathComponent(name))
+                guard let got, got.sha == want, got.size == size else {
+                    print("3d-kit-verify FAIL package=\(name) expected_sha=\(want ?? "missing") actual_sha=\(got?.sha ?? "unreadable") expected_bytes=\(size.map(String.init) ?? "unknown") actual_bytes=\(got.map { String($0.size) } ?? "unknown")"); fflush(stdout)
+                    bad.append(name); continue
+                }
+            }
+        }
+        return bad
+    }
+}
+// END relocated KitHash.swift
+// BEGIN relocated KitCompiledCache.swift (195y owner-order 3D consolidation, behavior unchanged)
+#if canImport(ObjectiveC)
+import ObjectiveC
+#endif
+import Foundation
+#if canImport(CoreML)
+import CoreML
+import Darwin
+#endif
+
+/// Compiled-model cache (Main 09:03 decision c): `<models>/kit-compiled/<manifest sha>/<package>.mlmodelc`. CoreML compiles an .mlpackage into a temp .mlmodelc on every
+/// MLModel.compileModel call; the cache keeps one compiled copy per kit version, so a new kit manifest (new sha) never reuses a stale compile, and old versions are pruned.
+/// The pure parts (key, path, prune choice) are tested on Linux; the CoreML compile is parse-only.
+enum KitCompiledCache {
+    /// Set by the runner when it opens a kit: `<models>/kit-compiled/<sha>`. nil = no cache (compile to temp each time, as before).
+    static var dir: URL?
+
+    /// sha256 of kit_manifest.json bytes: the cache key.
+    static func manifestSha(kitDir: URL) -> String? {
+        guard let d = try? Data(contentsOf: kitDir.appendingPathComponent("kit_manifest.json")) else { return nil }
+        var h = SHA256Pure.Hasher(); h.update([UInt8](d)); return h.hex()
+    }
+    static func cacheDir(modelsDir: URL, sha: String) -> URL { modelsDir.appendingPathComponent("kit-compiled", isDirectory: true).appendingPathComponent(sha, isDirectory: true) }
+    static func compiledName(_ package: URL) -> String { package.deletingPathExtension().lastPathComponent + ".mlmodelc" }
+    /// Version directories to delete: every child of kit-compiled except `keep`.
+    static func stale(children: [String], keep: String) -> [String] { children.filter { $0 != keep && !$0.hasPrefix(".") } }
+    static func prune(modelsDir: URL, keep sha: String) {
+        let root = modelsDir.appendingPathComponent("kit-compiled", isDirectory: true)
+        for n in stale(children: (try? FileManager.default.contentsOfDirectory(atPath: root.path)) ?? [], keep: sha) { try? FileManager.default.removeItem(at: root.appendingPathComponent(n)) }
+    }
+
+    #if canImport(CoreML)
+    static let probeFlag = "--gor-model-load-probe"
+    /// Headless one-use child. Owns the model until exit; no app/window/settings/cache mutations.
+    static func probeCLI(arguments: [String]) -> Int32? {
+        guard let at = arguments.firstIndex(of: probeFlag) else { return nil }
+        PrepareProcessLifetime.watchOwner(arguments: arguments)
+        guard arguments.count == at + 3 || arguments.count == at + 5 else { return 64 }
+        let units: MLComputeUnits
+        switch arguments[at + 2] {
+        case "all": units = .all
+        case "cpuAndGPU": units = .cpuAndGPU
+        case "cpuOnly": units = .cpuOnly
+        default: return 64
+        }
+        let cfg = MLModelConfiguration(); cfg.computeUnits = units
+        do {
+            let model = try MLModel(contentsOf: URL(fileURLWithPath: arguments[at + 1]), configuration: cfg)
+            withExtendedLifetime(model) { print("3d-load-probe loaded device=\(arguments[at + 2])"); fflush(stdout) }
+            return 0
+        } catch { print("3d-load-probe error device=\(arguments[at + 2]) error=\(error)"); fflush(stdout); return 2 }
+    }
+    /// A child is genuinely killable. Do not touch CoreML in the parent unless this child exited0.
+    private static func probe(_ lease: LoadableLease, device: String, seconds: Double = 30) -> Bool {
+        let compiled = lease.url
+        defer { withExtendedLifetime(lease) {} }
+        guard let exe = Bundle.main.executableURL else { return false }
+        let child = Process(); child.executableURL = exe
+        child.terminationHandler = { [lease] _ in withExtendedLifetime(lease) {} }
+        child.arguments = [probeFlag, compiled.path, device, PrepareProcessLifetime.ownerFlag, String(ProcessInfo.processInfo.processIdentifier)]
+        child.standardInput = FileHandle.nullDevice
+        child.standardOutput = FileHandle.standardOutput; child.standardError = FileHandle.standardError
+        let start = Date()
+        do { try child.run() } catch { return false }
+        let until = Date().addingTimeInterval(seconds)
+        while child.isRunning && Date() < until { Thread.sleep(forTimeInterval: 0.05) }
+        if child.isRunning {
+            kill(child.processIdentifier, SIGKILL)
+            let reapUntil = Date().addingTimeInterval(2)
+            while child.isRunning && Date() < reapUntil { Thread.sleep(forTimeInterval: 0.01) }
+            print("3d-load-probe timeout device=\(device) limit_s=\(Int(seconds)) killed=yes"); fflush(stdout)
+            return false
+        }
+        let ok = child.terminationReason == .exit && child.terminationStatus == 0
+        print("3d-load-probe end device=\(device) elapsed_ms=\(Int(Date().timeIntervalSince(start)*1000)) outcome=\(ok ? "loaded" : "failed")"); fflush(stdout)
+        return ok
+    }
+    private static let loadLock = NSLock()
+    private static var timedOutDevices = Set<String>()
+    /// Owner Mac E1 (2026-11-15): the system ANE path hangs Vision inference (default rectangles/landmarks time out at
+    /// 10 s, aned returned 3, even with gor closed) while CPU compute returns in 0.132 s. When set, every later model
+    /// load in this process tries cpuOnly first. Set by GOR_3D_CPU_FIRST=1 (known aned-broken system) or by a bounded
+    /// CoreML inference timeout on a non-CPU model (self-adaptive).
+    private static var cpuOnlyFirst = false
+    static func preferCPUOnlyFirst() { loadLock.lock(); cpuOnlyFirst = true; loadLock.unlock() }
+    /// Each device gets at most one timed-out call per process. Late results never enter the model cache.
+    static func model(_ u: URL) -> MLModel? { modelWithDevice(u)?.model }
+    /// Same chain as model(_:) plus the device that won, for callers whose inference bound depends on it (DAV2 retire).
+    static func modelWithDevice(_ u: URL) -> (model: MLModel, device: String)? {
+        let lease = loadable(u)
+        let compiled = lease.url
+        defer { withExtendedLifetime(lease) {} }
+        loadLock.lock(); let cpuFirst = cpuOnlyFirst || ProcessInfo.processInfo.environment["GOR_3D_CPU_FIRST"] == "1"; loadLock.unlock()
+        let devices: [(String, MLComputeUnits)] = cpuFirst ? [("cpuOnly", .cpuOnly), ("cpuAndGPU", .cpuAndGPU), ("all", .all)] : [("all", .all), ("cpuAndGPU", .cpuAndGPU), ("cpuOnly", .cpuOnly)]
+        for (name, units) in devices {
+            loadLock.lock(); let skip = timedOutDevices.contains(name); loadLock.unlock()
+            if skip { print("3d-load skip device=\(name) reason=previous_timeout"); fflush(stdout); continue }
+            guard probe(lease, device: name) else {
+                loadLock.lock(); timedOutDevices.insert(name); loadLock.unlock()
+                continue
+            }
+            let start = Date()
+            print("3d-load begin package=\(u.lastPathComponent) device=\(name) limit_s=30"); fflush(stdout)
+            let result = ThreeDStageLog.time("load " + u.lastPathComponent + " (computeUnits " + name + ")") {
+                BoundedLoad.attempt(seconds: 30) { () -> MLModel? in
+                    let cfg = MLModelConfiguration(); cfg.computeUnits = units
+                    guard let model = try? MLModel(contentsOf: compiled, configuration: cfg) else { return nil }
+                    retain(lease, on: model)
+                    return model
+                }
+            }
+            print("3d-load end package=\(u.lastPathComponent) device=\(name) elapsed_ms=\(Int(Date().timeIntervalSince(start) * 1000)) outcome=\(result.timedOut ? "timeout" : (result.value == nil ? "error" : "loaded"))"); fflush(stdout)
+            if result.timedOut { loadLock.lock(); timedOutDevices.insert(name); loadLock.unlock() }
+            if let model = result.value { return (model, name) }
+        }
+        return nil
+    }
+
+    /// A temporary compile belongs to this operation, not to a global sweep.
+    /// The inode/device check refuses cleanup if the path has been replaced.
+    final class LoadableLease {
+        let url: URL
+        private let owned: URL?
+        private let device: dev_t
+        private let inode: ino_t
+        init(_ url: URL, owned: URL? = nil) {
+            self.url = url
+            var info = stat()
+            if let owned, lstat(owned.path, &info) == 0,
+               (info.st_mode & S_IFMT) == S_IFDIR {
+                self.owned = owned; device = info.st_dev; inode = info.st_ino
+            } else { self.owned = nil; device = 0; inode = 0 }
+        }
+        deinit {
+            guard let owned else { return }
+            var info = stat()
+            guard lstat(owned.path, &info) == 0,
+                  (info.st_mode & S_IFMT) == S_IFDIR,
+                  info.st_dev == device, info.st_ino == inode else { return }
+            try? FileManager.default.removeItem(at: owned)
+        }
+    }
+    // A loaded model may keep mapped/lazy references to its compiled files.
+    // Retaining the lease on that exact model also covers late async results.
+    private static var leaseAssociationKey: UInt8 = 0
+    private static func retain(_ lease: LoadableLease, on model: MLModel) {
+        objc_setAssociatedObject(model, &leaseAssociationKey, lease, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+    static func loadable(_ u: URL) -> LoadableLease {
+        guard u.pathExtension == "mlpackage" else { return LoadableLease(u) }
+        let fm = FileManager.default
+        if let d = dir {
+            let hit = d.appendingPathComponent(compiledName(u))
+            if fm.fileExists(atPath: hit.path) {
+                ThreeDStageLog.done("compile " + u.lastPathComponent + " (cache hit)", ms: 0)
+                return LoadableLease(hit)
+            }
+            guard let tmp = ThreeDStageLog.time("compile " + u.lastPathComponent, { try? MLModel.compileModel(at: u) }) else { return LoadableLease(u) }
+            let compiled = LoadableLease(tmp, owned: tmp)
+            defer { withExtendedLifetime(compiled) {} }
+            try? fm.createDirectory(at: d, withIntermediateDirectories: true)
+            // Never truncate/remove a pre-existing .part or a concurrent hit.
+            let stage = d.appendingPathComponent(".compile-" + UUID().uuidString)
+            guard mkdir(stage.path, mode_t(0o700)) == 0 else { return compiled }
+            let staging = LoadableLease(stage, owned: stage)
+            defer { withExtendedLifetime(staging) {} }
+            let part = stage.appendingPathComponent(compiledName(u))
+            do {
+                try fm.copyItem(at: tmp, to: part)
+                try fm.moveItem(at: part, to: hit)
+                return LoadableLease(hit)
+            } catch { return compiled }
+        }
+        guard let tmp = try? MLModel.compileModel(at: u) else { return LoadableLease(u) }
+        return LoadableLease(tmp, owned: tmp)
+    }
+    #endif
+}
+// END relocated KitCompiledCache.swift
+// BEGIN relocated ComputeUnitsProbe.swift (195y owner-order 3D consolidation, behavior unchanged)
+import Foundation
+#if canImport(CoreML)
+import CoreML
+
+/// Which compute devices CoreML plans to use for a model (self-test log). Uses MLComputePlan (macOS 14.4+): per operation `deviceUsage(for:)`, summarised as op counts per
+/// preferred device. This is the PLAN, not a runtime trace (the public API has no per-prediction device report); the log says "plan". UNVERIFIED on a Mac: the
+/// MLComputePlan names below are from memory, so every failure path returns a readable string instead of throwing.
+enum ComputeUnitsProbe {
+    static func summary(of compiledOrPackage: URL, units: MLComputeUnits = .all) -> String {
+        guard #available(macOS 14.4, *) else { return "unavailable (macOS < 14.4)" }
+        let lease = KitCompiledCache.loadable(compiledOrPackage)
+        let u = lease.url
+        let cfg = MLModelConfiguration(); cfg.computeUnits = units
+        var result = "unavailable (load did not finish)"
+        let sem = DispatchSemaphore(value: 0)
+        Task.detached {
+            defer { withExtendedLifetime(lease) {} }
+            do {
+                let plan = try await MLComputePlan.load(contentsOf: u, configuration: cfg)
+                guard case .program(let program) = plan.modelStructure, let main = program.functions["main"] else { result = "unavailable (not an ML program)"; sem.signal(); return }
+                var counts: [String: Int] = [:]
+                for op in main.block.operations {
+                    let name: String
+                    switch plan.deviceUsage(for: op)?.preferred {
+                    case .some(let d) where d is MLNeuralEngineComputeDevice: name = "ane"
+                    case .some(let d) where d is MLGPUComputeDevice: name = "gpu"
+                    case .some(let d) where d is MLCPUComputeDevice: name = "cpu"
+                    default: name = "none"
+                    }
+                    counts[name, default: 0] += 1
+                }
+                result = "plan ops " + counts.sorted { $0.key < $1.key }.map { "\($0.key)=\($0.value)" }.joined(separator: " ")
+            } catch { result = "unavailable (\(error))" }
+            sem.signal()
+        }
+        _ = sem.wait(timeout: .now() + 60)
+        return result
+    }
+}
+#endif
+// END relocated ComputeUnitsProbe.swift
+// BEGIN relocated CoreMLDepthRunner.swift (195y owner-order 3D consolidation, behavior unchanged)
+import Foundation
+
+/// 195y G2: the DepthModelID enum lives in THIS file (relocated span below, still pure Foundation, outside the CoreML gate; Delivery A: PrepareSupport needs it without the CoreML gate).
+
+
+#if canImport(CoreML) && canImport(Vision)
+import CoreML
+import Vision
+
+/// 195h A: Depth Anything V2 Small (CoreML F16) runner behind DepthModelID.dav2_small_coreml. Loads ONLY when the package exists in the
+/// models directory (fetched, sha-verified, never committed); never a build dependency and never loaded by default. The pinned package's
+/// spec (Manifest + model description): input "image" (image; shorter side 518, larger a multiple of 14), output "depth" (a grayscale
+/// IMAGE - "Estimated depth map, as a grayscale output image"), relative disparity (larger = nearer). UNCOMPILED AND UNRUN here (no Mac):
+/// Vision/CoreML calls are parse-only, same convention as NativePrepareRunner/VDAWindowRunner.
+final class CoreMLDepthRunner {
+    static let packageName = "DepthAnythingV2SmallF16.mlpackage"
+    /// Where tools/gor-fetch-models.sh reconstructs the package from the models.lock.tsv rows: <modelsDir>/<repo>/<file>.
+    static func packageURL(modelsDir: URL) -> URL { modelsDir.appendingPathComponent("apple/coreml-depth-anything-v2-small").appendingPathComponent(packageName) }
+    static func available(modelsDir: URL) -> Bool { FileManager.default.fileExists(atPath: packageURL(modelsDir: modelsDir).path) }
+    private let model: MLModel
+    private let device: String
+    private let deadLock = NSLock()
+    /// Set after a bounded inference timeout: a second perform on the same model would race the abandoned thread, so
+    /// this runner never touches CoreML again and every frame honestly returns nil.
+    private var dead = false
+    init?(modelsDir: URL) {
+        guard Self.available(modelsDir: modelsDir), let m = KitCompiledCache.modelWithDevice(Self.packageURL(modelsDir: modelsDir)) else { return nil }
+        model = m.model; device = m.device
+    }
+    /// One BGRA pixel buffer -> relative disparity floats (w*h, row-major, larger = nearer), nil on any model failure. The output is
+    /// verified to be a grayscale pixel buffer in a layout this runner actually decodes - OneComponent32Float or OneComponent16Half
+    /// (the pinned package's declared grayscale image output); ANY other observation kind or pixel format is rejected, never inferred.
+    func run(pixelBuffer: CVPixelBuffer) -> (depth: [Float], w: Int, h: Int)? {
+        deadLock.lock(); let retired = dead; deadLock.unlock()
+        guard !retired,
+              model.modelDescription.inputDescriptionsByName.values.contains(where: { $0.type == .image }),
+              let vn = try? VNCoreMLModel(for: model) else { return nil }
+        var out: (depth: [Float], w: Int, h: Int)?
+        let req = VNCoreMLRequest(model: vn) { r, e in
+            guard e == nil, let first = r.results?.first as? VNPixelBufferObservation else { return }
+            let pb = first.pixelBuffer
+            let w = CVPixelBufferGetWidth(pb), h = CVPixelBufferGetHeight(pb)
+            let fmt = CVPixelBufferGetPixelFormatType(pb)
+            // Verified layouts only: 32-bit float or 16-bit half, one component, row stride from bytesPerRow.
+            let elemBytes: Int
+            if fmt == kCVPixelFormatType_OneComponent32Float { elemBytes = 4 } else if fmt == kCVPixelFormatType_OneComponent16Half { elemBytes = 2 } else { return }
+            CVPixelBufferLockBaseAddress(pb, .readOnly); defer { CVPixelBufferUnlockBaseAddress(pb, .readOnly) }
+            guard let base = CVPixelBufferGetBaseAddress(pb) else { return }
+            let bpr = CVPixelBufferGetBytesPerRow(pb)
+            var v = [Float](repeating: 0, count: w * h)
+            for y in 0..<h { for x in 0..<w {
+                let p = base.advanced(by: y * bpr + x * elemBytes)
+                v[y * w + x] = elemBytes == 4 ? p.bindMemory(to: Float.self, capacity: 1).pointee
+                                              : HalfFloat.toFloat(p.bindMemory(to: UInt16.self, capacity: 1).pointee)
+            } }
+            out = (v, w, h)
+        }
+        req.imageCropAndScaleOption = .scaleFill
+        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
+        // Bounded inference (owner Mac E1 2026-11-15: a hung ANE call never returns, and VNCoreMLRequest takes no
+        // computeDevice override - the device is fixed by the model's load-time computeUnits). 30 s like the load
+        // bound. On timeout the stuck worker thread is abandoned, this runner retires, and every later load in the
+        // process starts at cpuOnly - the chain an aned-broken system needs.
+        let attempt = BoundedLoad.attempt(seconds: 30) { () -> Bool? in (try? handler.perform([req])) != nil ? true : nil }
+        if attempt.timedOut {
+            deadLock.lock(); dead = true; deadLock.unlock()
+            if device != "cpuOnly" { KitCompiledCache.preferCPUOnlyFirst() }
+            print("dav2-infer timeout device=\(device) limit_s=30 action=runner-retired cpuOnly_first=\(device != "cpuOnly")"); fflush(stdout)
+            return nil
+        }
+        guard attempt.value == true else { return nil }
+        return out
+    }
+    /// Mac self-test line (scope-add item 5), wired into ThreeDSelfTest when the DAV2 experiment is selected: runs `frames` once each
+    /// and reports "dav2_small_coreml self-test ms/frame <ms> (WxH)". nil when fewer than one frame succeeds.
+    func selfTest(frames: [CVPixelBuffer]) -> String? {
+        var ok = 0, wh = "", t0 = CFAbsoluteTimeGetCurrent()
+        for f in frames { if let r = run(pixelBuffer: f) { ok += 1; wh = "(\(r.w)x\(r.h))" } }
+        guard ok > 0 else { return nil }
+        let ms = (CFAbsoluteTimeGetCurrent() - t0) * 1000.0 / Double(ok)
+        return "dav2_small_coreml self-test ms/frame \(String(format: "%.1f", ms)) \(wh)"
+    }
+}
+
+/// 195h A (item 1): the DAV2-Small CoreML backend for the prepared-depth producer (ShotPrepareBackend, plugged in NativePrepareRunner,
+/// never ThreeDSynthMethod). Per-frame monocular relative depth: disparity -> depth 1/max(d,eps), bilinear-resized onto the job's depth
+/// grid (the same letterboxed grid the VDA path emits, so sidecar/render geometry is uniform). Stateless per frame, so its checkpoint
+/// `window` carries ONLY the temporal-EMA accumulator (item 3, exact resume through the GORCK003 checkpoint); a fresh backend per shot
+/// is the shot-boundary reset. MoGe metric keyframes: none (nil) - ShotPrepareAssembly already degrades honestly when mogeKeyframe
+/// returns nil. UNCOMPILED AND UNRUN here (no Mac), same convention as NativeShotBackend.
+final class DAV2Backend: ShotPrepareBackend {
+    private let runner: CoreMLDepthRunner
+    private let pixels: (Int) -> CVPixelBuffer?
+    private let outW: Int, outH: Int
+    private let ema: ModelDepthEMA?
+    init(runner: CoreMLDepthRunner, pixels: @escaping (Int) -> CVPixelBuffer?, outW: Int, outH: Int, ema: ModelDepthEMA?) {
+        self.runner = runner; self.pixels = pixels; self.outW = outW; self.outH = outH; self.ema = ema
+    }
+    var window: VDAWindowState {
+        get { var w = VDAWindowState(); w.setState(id: 0, list: ema.map { [$0.stateBundles] } ?? []); return w }
+        set { ema?.restore(bundles: newValue.list.first?.first.map { [$0] } ?? []) }
+    }
+    func vdaStep(frame: Int) -> [Float]? {
+        guard let pb = pixels(frame), let r = runner.run(pixelBuffer: pb) else { return nil }
+        let depth = DepthMapResize.disparityToDepth(r.depth)
+        let sized = DepthMapResize.bilinear(depth, w: r.w, h: r.h, outW: outW, outH: outH)
+        return ema?.apply(sized) ?? sized
+    }
+    func mogeKeyframe(frame: Int) -> MoGeKeyframe? { nil }
+}
+#endif
+
+// BEGIN relocated DepthModelID.swift (195y G2, behavior unchanged)
+/// 195h A (Main scope-add): depth-model identity for the prepared-depth producer. The default, luma_y_prior, is the existing
+/// pipeline (unchanged: output, cache keys and paths stay byte-identical). dav2_small_coreml selects the Depth Anything V2 Small
+/// CoreML F16 package (apple/coreml-depth-anything-v2-small, Apache-2.0; fetched by tools/gor-fetch-models.sh, models.lock.tsv
+/// rows dav2-small-coreml-f16-*) through CoreMLDepthRunner, only when the mlpackage is present. The Experiments menu's A row is
+/// the single switch; prepare jobs read it through the frozen options snapshot, never live. Apple Depth Pro is never used
+/// (research licence); no Python on the owner's Mac.
+enum DepthModelID: String {
+    case luma_y_prior, dav2_small_coreml
+    private static let lock = NSLock()
+    private static var current: DepthModelID = .luma_y_prior
+    /// The single selection point (lock-backed, 195h r2-3 convention). Default luma_y_prior: the existing producer, byte-identical behaviour.
+    static func selected() -> DepthModelID { lock.lock(); defer { lock.unlock() }; return current }
+    static func select(_ m: DepthModelID) { lock.lock(); current = m; lock.unlock() }
+}
+// END relocated DepthModelID.swift
+// END relocated CoreMLDepthRunner.swift
+// BEGIN relocated NunifPipeline.swift (195y owner-order 3D consolidation, behavior unchanged)
+import Foundation
+
+/// S1 (A-D parity plan 14:50): the nunif iw3 pre/post-model math as pure Foundation Swift, a port of tools/depth_analysis/kit/nunif_pipeline_reference.py (batch 1, float32 like the fixture).
+/// Feature values, input channels, backward warp (grid_sample bilinear / border / align_corners), mlbw delta weighting, hole-mask postprocess (closing, resize, sigmoid, 0.15, inner/outer dilation),
+/// k15 gaussian (sigma 2.6) + inpaint preprocess, and the video window plan (head edge-clamped x4, tail replicated, emit slices; A-D confirmed against upstream base_inpaint.py).
+/// Linux-tested against nunif_pipeline_fixture.npz (max-abs table); NOT yet used by a runner (the CoreML runner stages S2+ need the Mac). Supersedes NunifMath.videoWindows, whose head clamp was my unverified reading.
+enum NunifPipeline {
+    /// [C,H,W] float32 planar tensor (batch 1).
+    struct T { var c: Int, h: Int, w: Int, d: [Float]
+        init(c: Int, h: Int, w: Int, fill: Float = 0) { self.c = c; self.h = h; self.w = w; d = [Float](repeating: fill, count: c * h * w) }
+        init(c: Int, h: Int, w: Int, data: [Float]) { self.c = c; self.h = h; self.w = w; d = data }
+        @inline(__always) func at(_ ch: Int, _ y: Int, _ x: Int) -> Float { d[(ch * h + y) * w + x] }
+        @inline(__always) mutating func set(_ ch: Int, _ y: Int, _ x: Int, _ v: Float) { d[(ch * h + y) * w + x] = v }
+    }
+
+    // 1. feature values (iw3/backward_warp.py:10-16, image_width = max(H, W)); depth is fed AS-IS (no remap).
+    static func featureValues(divergence: Double, convergence: Double, imageWidth: Int) -> (Float, Float) {
+        let pix = divergence * 0.5 * 0.01 * Double(imageWidth)
+        return (Float(pix / 32.0), Float((-pix * convergence) / 32.0))
+    }
+    static func inputTensor(depth: [Float], h: Int, w: Int, divergence: Double, convergence: Double) -> T {
+        let (dv, cv) = featureValues(divergence: divergence, convergence: convergence, imageWidth: max(h, w))
+        var t = T(c: 3, h: h, w: w); t.d.replaceSubrange(0..<(h * w), with: depth)
+        for i in 0..<(h * w) { t.d[h * w + i] = dv; t.d[2 * h * w + i] = cv }
+        return t
+    }
+
+    // 2. warp convention
+    static func makeGrid(h: Int, w: Int) -> T {
+        var g = T(c: 2, h: h, w: w)
+        for y in 0..<h { let gy = h == 1 ? -1.0 : -1.0 + 2.0 * Double(y) / Double(h - 1)
+            for x in 0..<w { let gx = w == 1 ? -1.0 : -1.0 + 2.0 * Double(x) / Double(w - 1); g.set(0, y, x, Float(gx)); g.set(1, y, x, Float(gy)) } }
+        return g
+    }
+    /// delta_x [C,H,W] -> [2C,H,W]: channel 2i = delta_x[i], 2i+1 = 0.
+    static func padDeltaY(_ dx: T) -> T {
+        var o = T(c: dx.c * 2, h: dx.h, w: dx.w)
+        for i in 0..<dx.c { o.d.replaceSubrange((2 * i * dx.h * dx.w)..<((2 * i + 1) * dx.h * dx.w), with: dx.d[(i * dx.h * dx.w)..<((i + 1) * dx.h * dx.w)]) }
+        return o
+    }
+    static func deltaScale(width: Int) -> Float { Float(1.0 / Double(width / 2 - 1)) }
+    /// F.grid_sample(bilinear, padding border, align_corners True); `grid` [2,H,W] in -1..1.
+    static func gridSample(_ c: T, grid: T) -> T {
+        var o = T(c: c.c, h: c.h, w: c.w)
+        let wm1 = Float(c.w - 1), hm1 = Float(c.h - 1)
+        for y in 0..<c.h { for x in 0..<c.w {
+            var gx = (grid.at(0, y, x) + 1.0) * wm1 / 2.0, gy = (grid.at(1, y, x) + 1.0) * hm1 / 2.0
+            gx = min(max(gx, 0), wm1); gy = min(max(gy, 0), hm1)
+            let fx = gx.rounded(.down), fy = gy.rounded(.down)
+            let x0 = Int(fx), y0 = Int(fy), x1 = min(x0 + 1, c.w - 1), y1 = min(y0 + 1, c.h - 1)
+            let wx = gx - fx, wy = gy - fy
+            for ch in 0..<c.c {
+                let ia = c.at(ch, y0, x0), ib = c.at(ch, y1, x0), ic = c.at(ch, y0, x1), id = c.at(ch, y1, x1)
+                o.set(ch, y, x, ia * (1 - wx) * (1 - wy) + ic * wx * (1 - wy) + ib * (1 - wx) * wy + id * wx * wy)
+            }
+        } }
+        return o
+    }
+    /// iw3 apply_divergence_nn_delta_weight (mlbw): sum_i warp(c, grid + delta_i * scale) * weight_i, clamp 0..1. `layerWeight` [L,H,W].
+    static func applyMlbwDeltaWeight(c: T, deltaX: T, layerWeight: T, layers: Int) -> T {
+        let delta = padDeltaY(deltaX), grid = makeGrid(h: c.h, w: c.w), ds = deltaScale(width: c.w)
+        var z = T(c: c.c, h: c.h, w: c.w)
+        for i in 0..<layers {
+            var g = grid
+            for y in 0..<c.h { for x in 0..<c.w { g.set(0, y, x, g.at(0, y, x) + delta.at(2 * i, y, x) * ds); g.set(1, y, x, g.at(1, y, x) + delta.at(2 * i + 1, y, x) * ds) } }
+            let s = gridSample(c, grid: g)
+            for ch in 0..<c.c { for y in 0..<c.h { for x in 0..<c.w { z.set(ch, y, x, z.at(ch, y, x) + s.at(ch, y, x) * layerWeight.at(i, y, x)) } } }
+        }
+        for i in 0..<z.d.count { z.d[i] = min(max(z.d[i], 0), 1) }
+        return z
+    }
+
+    // 3. hole mask (iw3/backward_warp.py:529-539, iw3/dilation.py)
+    static func grayDilate(_ m: T, k: Int = 3) -> T {
+        let r = k / 2; var o = m
+        for ch in 0..<m.c { for y in 0..<m.h { for x in 0..<m.w {
+            var v = -Float.greatestFiniteMagnitude
+            for dy in -r...r { for dx in -r...r { v = max(v, m.at(ch, min(max(y + dy, 0), m.h - 1), min(max(x + dx, 0), m.w - 1))) } }
+            o.set(ch, y, x, v) } } }
+        return o
+    }
+    static func grayErode(_ m: T) -> T {
+        var n = m; for i in 0..<n.d.count { n.d[i] = -n.d[i] }
+        var e = grayDilate(n); for i in 0..<e.d.count { e.d[i] = -e.d[i] }
+        return e
+    }
+    // closing = dilate then erode (iw3/dilation.py:63-70)
+    static func closingDE(_ m: T) -> T { grayErode(grayDilate(m)) }
+    static func resizeBilinearAlignCorners(_ x: T, h th: Int, w tw: Int) -> T {
+        if x.h == th && x.w == tw { return x }
+        var o = T(c: x.c, h: th, w: tw)
+        for ch in 0..<x.c { for y in 0..<th { for xx in 0..<tw {
+            let sy = th == 1 ? 0 : Double(y) * Double(x.h - 1) / Double(th - 1), sx = tw == 1 ? 0 : Double(xx) * Double(x.w - 1) / Double(tw - 1)
+            let y0 = Int(sy.rounded(.down)), x0 = Int(sx.rounded(.down)), y1 = min(y0 + 1, x.h - 1), x1 = min(x0 + 1, x.w - 1)
+            let wy = Float(sy - Double(y0)), wx = Float(sx - Double(x0))
+            o.set(ch, y, xx, x.at(ch, y0, x0) * (1 - wy) * (1 - wx) + x.at(ch, y0, x1) * (1 - wy) * wx + x.at(ch, y1, x0) * wy * (1 - wx) + x.at(ch, y1, x1) * wy * wx)
+        } } }
+        return o
+    }
+    static func scaledIter(_ n: Int, width: Int, base: Int) -> Int { max(Int((Double(width) / Double(base) * Double(n)).rounded(.toNearestOrEven)), 1) }
+    /// inner: m[x] |= m[x+1]; outer: m[x] |= m[x-1] (iw3/dilation.py:73-102).
+    static func dilate(_ m: [Bool], h: Int, w: Int, iter: Int, inner: Bool) -> [Bool] {
+        var cur = m
+        for _ in 0..<iter { var nx = cur
+            for y in 0..<h { for x in 0..<w { let nb = inner ? (x + 1 < w ? cur[y * w + x + 1] : false) : (x > 0 ? cur[y * w + x - 1] : false); nx[y * w + x] = cur[y * w + x] || nb } }
+            cur = nx }
+        return cur
+    }
+    /// `logits` [1,H,W]; returns the boolean hole mask at (th, tw).
+    static func postprocessHoleMask(logits: T, th: Int, tw: Int, threshold: Float = 0.15, innerDilation: Int = 0, outerDilation: Int = 0) -> [Bool] {
+        var m = closingDE(logits)
+        if th != m.h || tw != m.w { m = resizeBilinearAlignCorners(m, h: th, w: tw) }
+        var b = m.d.map { (value: Float) -> Bool in
+            let exponential: Float = Float(exp(Double(-value)))
+            let probability: Float = 1.0 / (1.0 + exponential)
+            return probability > threshold
+        }
+        if innerDilation > 0 { b = dilate(b, h: th, w: tw, iter: scaledIter(innerDilation, width: tw, base: logits.w), inner: true) }
+        if outerDilation > 0 { b = dilate(b, h: th, w: tw, iter: scaledIter(outerDilation, width: tw, base: logits.w), inner: false) }
+        return b
+    }
+
+    // 4. gaussian k15 + inpaint preprocess (nunif/modules/gaussian_filter.py, iw3/models/light_inpaint_v1.py:91-105)
+    static func gaussianKernel1D(_ k: Int = 15) -> [Float] {
+        let sigma = Double(k) * 0.15 + 0.35, half = Double(k - 1) * 0.5
+        let v: [Double] = (0..<k).map { (index: Int) -> Double in
+            let offset: Double = -half + Double(index) * (2 * half) / Double(k - 1)
+            let normalized: Double = offset / sigma
+            return exp(-0.5 * pow(normalized, 2))
+        }
+        let s = v.reduce(0, +); return v.map { Float($0 / s) }
+    }
+    static func gaussianBlur(_ m: T, k: Int = 15) -> T {
+        let ker = gaussianKernel1D(k), r = k / 2
+        func pass(_ s: T, horizontal: Bool) -> T {
+            var o = s
+            for ch in 0..<s.c { for y in 0..<s.h { for x in 0..<s.w {
+                var acc: Float = 0
+                for j in 0..<k { let o_ = j - r
+                    let yy = horizontal ? y : min(max(y + o_, 0), s.h - 1), xx = horizontal ? min(max(x + o_, 0), s.w - 1) : x
+                    acc += ker[j] * s.at(ch, yy, xx) }
+                o.set(ch, y, x, acc) } } }
+            return o
+        }
+        return pass(pass(m, horizontal: true), horizontal: false)
+    }
+    /// x [3,H,W], mask [1,H,W] in 0..1 (inner/outer dilation 0): returns (x * (1 - m), clamp(blur(m) + m, 0, 1)).
+    static func inpaintPreprocess(x: T, mask: T) -> (T, T) {
+        var xm = x
+        for ch in 0..<x.c { for i in 0..<(x.h * x.w) { xm.d[ch * x.h * x.w + i] = x.d[ch * x.h * x.w + i] * (1 - mask.d[i]) } }
+        var b = gaussianBlur(mask)
+        for i in 0..<b.d.count { b.d[i] = min(max(b.d[i] + mask.d[i], 0), 1) }
+        return (xm, b)
+    }
+
+    /// iw3 default depth scaling (utils.py minmax_normalize_chw / SimpleMinMaxScaler, ema_normalize off): each FRAME is min-max normalised to [0,1] on its own before the warp. Raw VDA range (0.045..16.6) fed
+    /// as-is gives dense vertical comb striping (A-D X2 README). A flat frame (max == min, or no finite value) maps to zeros; non-finite values map to 0. No cross-frame state, no EMA.
+    static func minmaxNormalize(_ z: [Float]) -> [Float] {
+        var lo = Float.greatestFiniteMagnitude, hi = -Float.greatestFiniteMagnitude
+        for v in z where v.isFinite { lo = min(lo, v); hi = max(hi, v) }
+        guard hi > lo else { return [Float](repeating: 0, count: z.count) }
+        let r = hi - lo
+        return z.map { $0.isFinite ? min(max(($0 - lo) / r, 0), 1) : 0 }
+    }
+
+    // 5. video windows (iw3/base_inpaint.py:407-743 via the reference video_windows)
+    static let seqLen = 12, prePad = 3, postPad = 3, step = 6
+    static func videoWindows(frames n: Int) -> [(idx: [Int], emit: Range<Int>)] {
+        var plan: [(idx: [Int], emit: Range<Int>)] = []
+        guard n > 0 else { return plan }
+        var q = [Int](repeating: 0, count: prePad + 1); var i = 1
+        while i < n { q.append(i); i += 1
+            if q.count == seqLen { plan.append((q, prePad..<(seqLen - postPad))); q = Array(q[step...]) } }
+        if !q.isEmpty { let pad = seqLen - q.count; while q.count < seqLen { q.append(q[q.count - 1]) }; plan.append((q, prePad..<(seqLen - pad))) }
+        return plan
+    }
+}
+
+// BEGIN relocated NunifMath.swift (195y G2, behavior unchanged)
+/// 190w W3: the well-defined runner-side math of the nunif CoreML kit (A-D contract): replicate-pad H,W up to a multiple of 96 and crop back, and the align_corners=True bilinear resize of
+/// layer_weight. Pure Foundation, Linux-tested (Tests/NunifMath). Everything model-specific (input channels, hole preprocess, 3+3 video overlap) is NOT here: no runner exists yet.
+enum NunifMath {
+    static let block = 96
+    static func paddedSize(_ n: Int) -> Int { n <= 0 ? 0 : ((n + block - 1) / block) * block }
+    /// One CHW plane stack (c planes of h*w) -> c planes of ph*pw, bottom/right replicate (iw3 pads right/bottom; the crop is the top-left h*w).
+    static func padReplicate(_ x: [Float], c: Int, h: Int, w: Int) -> (data: [Float], h: Int, w: Int)? {
+        guard h > 0, w > 0, c > 0, x.count == c * h * w else { return nil }
+        let ph = paddedSize(h), pw = paddedSize(w)
+        var out = [Float](repeating: 0, count: c * ph * pw)
+        for ch in 0..<c { for y in 0..<ph { let sy = min(y, h - 1); for xx in 0..<pw { out[(ch * ph + y) * pw + xx] = x[(ch * h + sy) * w + min(xx, w - 1)] } } }
+        return (out, ph, pw)
+    }
+    static func crop(_ x: [Float], c: Int, ph: Int, pw: Int, h: Int, w: Int) -> [Float]? {
+        guard h <= ph, w <= pw, x.count == c * ph * pw else { return nil }
+        var out = [Float](); out.reserveCapacity(c * h * w)
+        for ch in 0..<c { for y in 0..<h {
+            let start: Int = (ch * ph + y) * pw
+            let end: Int = start + w
+            out.append(contentsOf: x[start..<end])
+        } }
+        return out
+    }
+    /// torch F.interpolate(mode="bilinear", align_corners=True) on one plane (no antialias; A-D's contract also names antialias for downscales: NOT implemented, down-scaling returns nil).
+    static func resizeBilinearAligned(_ p: [Float], h: Int, w: Int, toH: Int, toW: Int) -> [Float]? {
+        guard h > 0, w > 0, toH >= h, toW >= w, p.count == h * w else { return nil }
+        var out = [Float](repeating: 0, count: toH * toW)
+        for y in 0..<toH {
+            let fy = toH == 1 ? 0 : Float(y) * Float(h - 1) / Float(toH - 1), y0 = Int(fy), y1 = min(y0 + 1, h - 1), ty = fy - Float(y0)
+            for x in 0..<toW {
+                let fx = toW == 1 ? 0 : Float(x) * Float(w - 1) / Float(toW - 1), x0 = Int(fx), x1 = min(x0 + 1, w - 1), tx = fx - Float(x0)
+                let a = p[y0 * w + x0] * (1 - tx) + p[y0 * w + x1] * tx, b = p[y1 * w + x0] * (1 - tx) + p[y1 * w + x1] * tx
+                out[y * toW + x] = a * (1 - ty) + b * ty
+            }
+        }
+        return out
+    }
+
+    // MARK: video inpaint windows (BaseVideoInpaint, SEQ_LEN 12, pre/post padding 3)
+    static let seqLen = 12, pad = 3, centre = seqLen - 2 * pad     // 6 frames kept per window
+    /// Windows over n frames: window w runs the model on seqLen frames starting at w*centre - pad (indices clamped to [0, n-1] = edge replication, which also covers the non-multiple-of-12 tail),
+    /// and keeps its centre `centre` frames [w*centre, w*centre + centre) (the last window keeps up to n). READING of the contract's "3 + 3 overlap, pre/post padding 3": UNVERIFIED vs upstream BaseVideoInpaint.
+    static func videoWindows(frameCount n: Int) -> [(input: [Int], keep: Range<Int>)] {
+        guard n > 0 else { return [] }
+        return (0..<((n + centre - 1) / centre)).map { w in
+            let s = w * centre
+            return ((0..<seqLen).map { min(max(s - pad + $0, 0), n - 1) }, s..<min(s + centre, n))
+        }
+    }
+    /// Hole mask binarisation at MASK_MLBW_THRESHOLD (0.15) on a probability map (sigmoid already applied by the caller).
+    static let maskThreshold: Float = 0.15
+    static func holeMask(prob: [Float]) -> [Float] { prob.map { $0 > maskThreshold ? 1 : 0 } }
+    /// Masked-RGB input of the inpaint packages: x * (1 - mask) per channel (mask is 1 plane of h*w, x is c planes).
+    static func maskedInput(x: [Float], mask: [Float], c: Int) -> [Float]? {
+        guard c > 0, !mask.isEmpty, x.count == c * mask.count else { return nil }
+        let n = mask.count; var out = x
+        for ch in 0..<c { for i in 0..<n { out[ch * n + i] = x[ch * n + i] * (1 - mask[i]) } }
+        return out
+    }
+}
+// END relocated NunifMath.swift
+
+// BEGIN relocated ThreeDSynthMethod.swift (195y G2, behavior unchanged)
+/// 190w W3: which view-synthesis method a render uses. Tiers (architect): mlbw_l2_inpaint_video = T1 (learned, temporal), mlbw_l2_inpaint = T2, row_flow_v3 = T3, dibr_golden = last-resort
+/// fallback (labelled "fallback" wherever the method surfaces). Weights come from the owner-Mac-only kit (lock row iw3-nunif-weights-kit, unpacked by gor-fetch-models.sh to <models>/nunif).
+/// HONESTY RULE: the method named in the render key and in the log/OSD is the one that actually RUNS. A learned tier is selectable only when its weights are present AND this build has a runner
+/// for it (`implemented`). No learned runner exists in Swift yet (the weights are PyTorch .pth; a CoreML/Metal port is not written), so today every render is dibr_golden and says "fallback".
+/// Pure Foundation, Linux-tested (Tests/ThreeDSynthMethod). UNCOMPILED on a Mac only where it touches the file system paths of a real models dir (no Darwin API).
+enum SynthMethod: String, CaseIterable {
+    case mlbw_l2_inpaint_video, mlbw_l2_inpaint, row_flow_v3, dibr_golden
+
+    /// Weight files per learned tier (nunif manifest, corrected map from A-D 14:09; the ".pth" extension is assumed from nunif, unverified until the v2 kit is unpacked):
+    /// T1 video = mask_mlbw_l2_d1 + light_video_inpaint_v1, T2 inpaint = mask_mlbw_l2_d1 + light_inpaint_v1, T3 row_flow_v3. A tier needs ALL its files.
+    var weightFiles: [String] {
+        switch self {
+        case .mlbw_l2_inpaint_video: return ["iw3_mask_mlbw_l2_d1_20250903.pth", "iw3_light_video_inpaint_v1_20250919.pth"]
+        case .mlbw_l2_inpaint: return ["iw3_mask_mlbw_l2_d1_20250903.pth", "iw3_light_inpaint_v1_20250919.pth"]
+        case .row_flow_v3: return ["iw3_row_flow_v3_20250627.pth"]
+        case .dibr_golden: return []
+        }
+    }
+    /// Tiers whose runner exists in this build. Add a case here only together with the code that runs it.
+    static let implemented: Set<SynthMethod> = [.dibr_golden]
+
+    struct Choice: Equatable { let method: SynthMethod; let note: String }
+
+    /// Highest tier (T1 > T2 > T3) that is present and implemented; otherwise dibr_golden, with a note that says why it is a fallback.
+    static func select(present: Set<SynthMethod>, implemented: Set<SynthMethod> = SynthMethod.implemented) -> Choice {
+        for m in [SynthMethod.mlbw_l2_inpaint_video, .mlbw_l2_inpaint, .row_flow_v3] where present.contains(m) && implemented.contains(m) { return Choice(method: m, note: "3D: view synthesis \(m.rawValue)") }
+        let learned = present.filter { $0 != .dibr_golden }
+        let why = learned.isEmpty ? "no learned weights installed" : "learned weights present but this build has no runner for them"
+        return Choice(method: .dibr_golden, note: "3D: view synthesis dibr_golden (fallback: \(why))")
+    }
+
+    static func present(modelsDir: URL, fm: FileManager = .default) -> Set<SynthMethod> {
+        let nd = modelsDir.appendingPathComponent("nunif")
+        var out = Set<SynthMethod>([.dibr_golden])
+        for m in allCases where !m.weightFiles.isEmpty && m.weightFiles.allSatisfy({ fm.fileExists(atPath: nd.appendingPathComponent($0).path) }) { out.insert(m) }
+        return out
+    }
+}
+// END relocated ThreeDSynthMethod.swift
+
+// BEGIN relocated ThreeDSynthCurrent.swift (195y G2, behavior unchanged)
+/// 190w W3: the method this process renders with (see SynthMethod's honesty rule). Cached: the models dir does not change while the app runs.
+extension SynthMethod {
+    private static var cached: Choice?
+    private static let lock = NSLock()
+    static var current: Choice {
+        lock.lock(); defer { lock.unlock() }
+        if let c = cached { return c }
+        let c = select(present: present(modelsDir: ThreeDModels.modelsDir)); cached = c; return c
+    }
+}
+// END relocated ThreeDSynthCurrent.swift
+
+// BEGIN relocated NunifCoreMLRunner.swift (195y G2, behavior unchanged)
+#if canImport(CoreML)
+import CoreML
+
+/// S2 (A-D parity plan): thin CoreML runner for the iw3-nunif-coreml kit packages (NUNIF-COREML-RUNNER-CONTRACT.md). One package = one MLModel; inputs/outputs are flat float arrays by feature name.
+/// CONVERTED on Linux, NEVER EXECUTED: nothing here has run on a Mac. `parity(...)` is the self-test hook: run a package on the fixture's seeded `in_*` and return the max |out - out_ref| per output (and PSNR vs the
+/// reference range) so the first Mac run posts the S2 table (package x output x max-abs, PSNR); no pass threshold is claimed (fp16 packages are expected to deviate).
+/// NOT wired into rendering: SynthMethod.implemented still lists no learned tier, so every render stays the "fallback" (dibr_golden) label. Pre/post math lives in NunifPipeline (Linux-tested).
+final class NunifCoreMLRunner {
+    /// Package file names from the kit manifest (`nunif-coreml-kit-manifest.json`); shapes: warp/inpaint packages are fixed 768x1344, the video inpaint package is 288x480 (bring-up only, not a T1 quality claim).
+    static let rowFlow = "nunif_row_flow_v3_fp16.mlpackage", maskMLBW = "nunif_mask_mlbw_l2_d1_fp16.mlpackage"
+    static let lightInpaint = "nunif_light_inpaint_v1_fp16.mlpackage", lightVideoInpaint = "nunif_light_video_inpaint_v1_fp16.mlpackage"
+    static let warpH = 768, warpW = 1344, videoH = 288, videoW = 480
+
+    private let kitDir: URL
+    private var models: [String: MLModel] = [:]
+    init(kitDir: URL) { self.kitDir = kitDir }
+    static func available(kitDir: URL, package: String) -> Bool { FileManager.default.fileExists(atPath: kitDir.appendingPathComponent(package).path) }
+
+    private func model(_ name: String) -> MLModel? {
+        if let m = models[name] { return m }
+        guard let m = KitCompiledCache.model(kitDir.appendingPathComponent(name)) else { return nil }
+        models[name] = m; return m
+    }
+    private func array(_ values: [Float], shape: [Int], like m: MLModel, name: String) -> MLMultiArray? {
+        let want = m.modelDescription.inputDescriptionsByName[name]?.multiArrayConstraint?.dataType ?? .float32
+        guard values.count == shape.reduce(1, *), let a = try? MLMultiArray(shape: shape.map { NSNumber(value: $0) }, dataType: want) else { return nil }
+        #if arch(arm64)
+        if want == .float16 { let p = a.dataPointer.bindMemory(to: Float16.self, capacity: values.count); for i in 0..<values.count { p[i] = Float16(values[i]) }; return a }
+        #endif
+        if want == .float32 { a.dataPointer.bindMemory(to: Float.self, capacity: values.count).update(from: values, count: values.count); return a }
+        for i in 0..<values.count { a[i] = NSNumber(value: values[i]) }
+        return a
+    }
+    private func floats(_ a: MLMultiArray) -> [Float] {          // logical C-order reads when strides are padded (same rule as VDAWindowRunner.floats)
+        let n = a.count, shape = a.shape.map { $0.intValue }, st = a.strides.map { $0.intValue }
+        var packed = shape.count == st.count, expect = 1
+        for i in stride(from: shape.count - 1, through: 0, by: -1) where packed { if shape[i] != 1 && st[i] != expect { packed = false }; expect *= shape[i] }
+        if !packed { return (0..<n).map { a[$0].floatValue } }
+        if a.dataType == .float32 { return Array(UnsafeBufferPointer(start: a.dataPointer.bindMemory(to: Float.self, capacity: n), count: n)) }
+        #if arch(arm64)
+        if a.dataType == .float16 { let p = a.dataPointer.bindMemory(to: Float16.self, capacity: n); return (0..<n).map { Float(p[$0]) } }
+        #endif
+        return (0..<n).map { a[$0].floatValue }
+    }
+    /// inputs: feature name -> (shape, flat values). Returns output name -> flat values, nil on any model failure.
+    func predict(package: String, inputs: [String: (shape: [Int], values: [Float])]) -> [String: [Float]]? {
+        guard let m = model(package) else { return nil }
+        var feed: [String: MLFeatureValue] = [:]
+        for (k, v) in inputs { guard let a = array(v.values, shape: v.shape, like: m, name: k) else { return nil }; feed[k] = MLFeatureValue(multiArray: a) }
+        guard let o = try? m.prediction(from: MLDictionaryFeatureProvider(dictionary: feed)) else { return nil }
+        var out: [String: [Float]] = [:]
+        for name in o.featureNames { if let a = o.featureValue(for: name)?.multiArrayValue { out[name] = floats(a) } }
+        return out
+    }
+    /// Warp packages: x = NunifPipeline.inputTensor (3 channels, replicate-padded by the caller to 768x1344). mask_mlbw -> delta, layer_weight, hole_mask_logits; row_flow -> delta.
+    func warpModel(package: String, x: [Float]) -> [String: [Float]]? {
+        predict(package: package, inputs: ["x": ([1, 3, Self.warpH, Self.warpW], x)])
+    }
+    struct ParityRow { var output: String, maxAbs: Float, psnr: Float }
+    /// Fixture arrays (flat float32, extracted by the caller from <package>_fixture.npz): `inputs` = in_* by feature name with shapes, `refs` = out_* by output name.
+    /// PSNR uses the reference's own dynamic range (max - min, at least 1e-6).
+    func parity(package: String, inputs: [String: (shape: [Int], values: [Float])], refs: [String: [Float]]) -> [ParityRow]? {
+        guard let o = predict(package: package, inputs: inputs) else { return nil }
+        var rows: [ParityRow] = []
+        for (name, ref) in refs.sorted(by: { $0.key < $1.key }) {
+            guard let got = o[name], got.count == ref.count, !ref.isEmpty else { return nil }
+            var mx: Float = 0, se: Double = 0
+            for i in 0..<ref.count { let d = abs(got[i] - ref[i]); mx = max(mx, d); se += Double(d) * Double(d) }
+            let range = max((ref.max() ?? 0) - (ref.min() ?? 0), 1e-6), mse = se / Double(ref.count)
+            rows.append(ParityRow(output: name, maxAbs: mx, psnr: mse > 0 ? Float(20 * log10(Double(range)) - 10 * log10(mse)) : .infinity))
+        }
+        return rows
+    }
+}
+#endif
+// END relocated NunifCoreMLRunner.swift
+// END relocated NunifPipeline.swift
+// BEGIN relocated VDAStreamRunner.swift (195y owner-order 3D consolidation, behavior unchanged)
+import Foundation
+#if canImport(CoreML)
+import CoreML
+#endif
+
+/// 190t native prepare: VDA-S streaming over the A-D CoreML kit (tools/depth_analysis/kit/kit_manifest.json, contract s13): encoder_fp16 (pixels [1,3,154,266] -> feat1..4 [1,209,384]),
+/// bootstrap_fp16 (feat1..4 -> depth [1,1,154,266] + cache0..7 T=1), stream_fp16 (feat1..4 + cache0..7 T=31 -> depth + nextCache0..7 T=1).
+/// Port of tools/depth_analysis/vda_stream_common.py (WindowState, INFER_LEN=32, GAP=41, ImageNet preprocess) and onnx_stream.py. The window state and
+/// preprocess are pure and Linux-tested against the Python; CoreML execution is UNVERIFIED on a Mac (parse-checked only).
+enum VDAStream {
+    static let exportH = 154, exportW = 266, inferLen = 32, gap = 41, ncache = 8
+    /// cache{i} is [tokens, T, dim] (coreml_convert.py cache_shapes with T = 31 for the stream head, 1 for what each frame emits).
+    static let cacheTokens = [209, 209, 60, 60, 209, 209, 836, 836]
+    static let cacheDim = [192, 192, 384, 384, 64, 64, 64, 64]
+    static let mean: [Float] = [0.485, 0.456, 0.406], std: [Float] = [0.229, 0.224, 0.225]
+    /// Contract s22 aspect policy (vda_stream_common.preprocess_aspect): the source is letterboxed into the 266x154 stream canvas, uniform scale, black bars.
+    /// nw/nh = the scaled picture (Python round(): half to even), x0/y0 its top-left in the canvas.
+    struct Box: Equatable { let nw: Int, nh: Int, x0: Int, y0: Int }
+    static func letterbox(srcW: Int, srcH: Int, w: Int = exportW, h: Int = exportH) -> Box {
+        let scale = min(Double(w) / Double(srcW), Double(h) / Double(srcH))
+        let nw = max(1, Int((Double(srcW) * scale).rounded(.toNearestOrEven))), nh = max(1, Int((Double(srcH) * scale).rounded(.toNearestOrEven)))
+        return Box(nw: nw, nh: nh, x0: (w - nw) / 2, y0: (h - nh) / 2)
+    }
+    /// RGBA8 picture of box.nw x box.nh (the caller resizes the film frame to it) -> [3, h, w] ImageNet-normalised canvas; the bars are black PIXELS (0) that are then
+    /// normalised like any other pixel, exactly as preprocess_aspect does (zero canvas, then (v / 255 - mean) / std).
+    static func chwLetterboxed(rgba: [UInt8], box: Box, w: Int = exportW, h: Int = exportH) -> [Float] {
+        let n = w * h; var out = [Float](repeating: 0, count: 3 * n)
+        for c in 0..<3 {
+            let bar = (0 - mean[c]) / std[c]
+            for i in 0..<n { out[c * n + i] = bar }
+            for y in 0..<box.nh { for x in 0..<box.nw {
+                out[c * n + (box.y0 + y) * w + box.x0 + x] = (Float(rgba[(y * box.nw + x) * 4 + c]) / 255.0 - mean[c]) / std[c]
+            } }
+        }
+        return out
+    }
+    /// The stream depth [h x w] cropped to the picture area (bars removed): a depth grid with the SOURCE aspect, box.nw x box.nh, row-major.
+    static func cropDepth(_ d: [Float], box: Box, w: Int = exportW) -> [Float] {
+        var out = [Float](); out.reserveCapacity(box.nw * box.nh)
+        for y in 0..<box.nh { let o = (box.y0 + y) * w + box.x0; out.append(contentsOf: d[o..<(o + box.nw)]) }
+        return out
+    }
+    /// RGBA8 at exportW x exportH (the caller resizes the film frame with a bicubic scaler, as cv2.INTER_CUBIC does upstream) -> [3, h, w] ImageNet-normalised.
+    static func chw(rgba: [UInt8], w: Int = exportW, h: Int = exportH) -> [Float] {
+        let n = w * h; var out = [Float](repeating: 0, count: 3 * n)
+        for i in 0..<n { for c in 0..<3 { out[c * n + i] = (Float(rgba[i * 4 + c]) / 255.0 - mean[c]) / std[c] } }
+        return out
+    }
+}
+
+/// Anchor + rolling sliding window over per-frame cache bundles (a bundle is `ncache` flat [tokens, 1, dim] arrays), exactly the upstream frame_cache_list logic.
+struct VDAWindowState {
+    typealias Bundle = [[Float]]
+    private(set) var id = -1
+    private(set) var list: [Bundle] = []
+    mutating func setState(id: Int, list: [Bundle]) { self.id = id; self.list = list }   // checkpoint restore (s19)
+    let tokens: [Int], dims: [Int]
+    init(tokens: [Int] = VDAStream.cacheTokens, dims: [Int] = VDAStream.cacheDim) { self.tokens = tokens; self.dims = dims }
+    var isFirst: Bool { id < 0 }
+    mutating func start(_ first: Bundle) { id = 0; list = Array(repeating: first, count: VDAStream.inferLen) }
+    /// 31 frames: the anchor pair list[0..<2] + the newest 29, each cache concatenated on the T axis -> flat [tokens, 31, dim].
+    func buildCurCache() -> [[Float]] {
+        let cur = Array(list[0..<2]) + Array(list[(list.count - (VDAStream.inferLen - 3))...])
+        precondition(cur.count == VDAStream.inferLen - 1)
+        return (0..<cur[0].count).map { i in
+            let tk = tokens[i], d = dims[i], t = cur.count
+            var out = [Float](repeating: 0, count: tk * t * d)
+            for (f, b) in cur.enumerated() { let src = b[i]
+                for k in 0..<tk { let o = (k * t + f) * d; let s = k * d
+                    for j in 0..<d { out[o + j] = src[s + j] } } }
+            return out
+        }
+    }
+    mutating func advance(_ b: Bundle) {
+        id += 1; list.append(b)
+        if id + VDAStream.inferLen > VDAStream.gap + 1 { list.remove(at: 1) }
+    }
+}
+
+#if canImport(CoreML)
+/// One shot = one stream: create a runner per shot (the window restarts at a cut). `process` takes the pre-normalised CHW pixels and returns the relative
+/// inverse depth [154 x 266] (the same quantity the Python ONNX driver returns; the shot-level alignment to metric is ShotAlignerSwift).
+final class VDAStreamRunner {
+    struct Kit { let encoder: URL, bootstrap: URL, stream: URL }
+    private let enc: MLModel, boot: MLModel, strm: MLModel
+    private var state = VDAWindowState()
+    var window: VDAWindowState { get { state } set { state = newValue } }     // thermal checkpoint / resume (s19)
+    init?(kit: Kit) {
+        func load(_ u: URL) -> MLModel? { KitCompiledCache.model(u) }
+        guard let e = load(kit.encoder), let b = load(kit.bootstrap), let s = load(kit.stream) else { return nil }
+        enc = e; boot = b; strm = s
+    }
+    private func array(_ values: [Float], shape: [Int], like model: MLModel, name: String) -> MLMultiArray? {
+        let want = model.modelDescription.inputDescriptionsByName[name]?.multiArrayConstraint?.dataType ?? .float32
+        guard let a = try? MLMultiArray(shape: shape.map { NSNumber(value: $0) }, dataType: want) else { return nil }
+        #if arch(arm64)
+        if want == .float16 { let p = a.dataPointer.bindMemory(to: Float16.self, capacity: values.count); for i in 0..<values.count { p[i] = Float16(values[i]) }; return a }
+        #endif
+        if want == .float32 { a.dataPointer.bindMemory(to: Float.self, capacity: values.count).update(from: values, count: values.count); return a }
+        for i in 0..<values.count { a[i] = NSNumber(value: values[i]) }
+        return a
+    }
+    private func floats(_ a: MLMultiArray) -> [Float] {
+        let n = a.count
+        // review: CoreML OUTPUT arrays may carry padded strides (rows aligned for float16); dataPointer then holds more than n packed elements. Packed = every dim with extent > 1 has the C-order stride.
+        let shape = a.shape.map { $0.intValue }, st = a.strides.map { $0.intValue }
+        var packed = shape.count == st.count, expect = 1
+        for i in stride(from: shape.count - 1, through: 0, by: -1) where packed { if shape[i] != 1 && st[i] != expect { packed = false }; expect *= shape[i] }
+        if !packed { return (0..<n).map { a[$0].floatValue } }          // subscript(Int) is the logical C-order linear index whatever the strides (same rule as MoGeKeyframeRunner.floats)
+        if a.dataType == .float32 { return Array(UnsafeBufferPointer(start: a.dataPointer.bindMemory(to: Float.self, capacity: n), count: n)) }
+        #if arch(arm64)
+        if a.dataType == .float16 { let p = a.dataPointer.bindMemory(to: Float16.self, capacity: n); return (0..<n).map { Float(p[$0]) } }
+        #endif
+        return (0..<n).map { a[$0].floatValue }
+    }
+    /// Returns nil on any model failure (the caller marks the shot failed; it never substitutes a lower-quality depth).
+    func process(chw: [Float]) -> [Float]? {
+        let H = VDAStream.exportH, W = VDAStream.exportW
+        guard let px = array(chw, shape: [1, 3, H, W], like: enc, name: "pixels"),
+              let eo = try? enc.prediction(from: MLDictionaryFeatureProvider(dictionary: ["pixels": MLFeatureValue(multiArray: px)])) else { return nil }
+        var feed: [String: MLFeatureValue] = [:]
+        for i in 1...4 { guard let v = eo.featureValue(for: "feat\(i)") else { return nil }; feed["feat\(i)"] = v }
+        let first = state.isFirst
+        if !first {
+            let cur = state.buildCurCache()
+            for i in 0..<VDAStream.ncache {
+                guard let a = array(cur[i], shape: [VDAStream.cacheTokens[i], VDAStream.inferLen - 1, VDAStream.cacheDim[i]], like: strm, name: "cache\(i)") else { return nil }
+                feed["cache\(i)"] = MLFeatureValue(multiArray: a)
+            }
+        }
+        guard let out = try? (first ? boot : strm).prediction(from: MLDictionaryFeatureProvider(dictionary: feed)),
+              let d = out.featureValue(for: "depth")?.multiArrayValue else { return nil }
+        var bundle: VDAWindowState.Bundle = []
+        for i in 0..<VDAStream.ncache {       // bootstrap emits cache{i}, the stream head emits nextCache{i}
+            guard let a = (out.featureValue(for: first ? "cache\(i)" : "nextCache\(i)") ?? out.featureValue(for: first ? "nextCache\(i)" : "cache\(i)"))?.multiArrayValue else { return nil }
+            bundle.append(floats(a))
+        }
+        if first { state.start(bundle) } else { state.advance(bundle) }
+        let depth = floats(d); return depth.count == H * W ? depth : nil
+    }
+}
+#endif
+// END relocated VDAStreamRunner.swift
+// BEGIN relocated VDAWindowPlan.swift (195y owner-order 3D consolidation, behavior unchanged)
+import Foundation
+
+/// 190w W4: planning + stitching for WINDOWED (non-streaming) Video-Depth-Anything-Small in Prepare (streaming stays for the unprepared live range).
+/// Pure Foundation, Linux-tested (Tests/VDAWindow). Mirrors upstream video_depth.py infer_video_depth as A-D's windowed_convert.py documents it (INFER_LEN 32, OVERLAP 10, step 22,
+/// KEYFRAMES [0,12,24..31], tail padded with the last frame) plus the post-process as REMEMBERED (INTERP_LEN 8, align on KEYFRAMES[:OVERLAP-INTERP_LEN], least squares scale/shift, linear
+/// crossfade, clip >= 0): UNVERIFIED against the vendored upstream source and against windowed_ref_fixture.npz (that fixture is a single-window model check; the stitch has no fixture). A-D can diff it.
+/// Window k covers video frames [22k, 22k+32). Its input for positions 0..9 is NOT the video at that time: it is window k-1's input frames at KEYFRAMES (context carry-over); the model's output at
+/// position j is still treated as the depth of video frame 22k+j (those carried frames are prev frames 24..31 = video 22k+2..22k+9 at positions 2..9).
+enum VDAWindowPlan {
+    static let inferLen = 32, overlap = 10, interp = 8
+    static let keyframes = [0, 12, 24, 25, 26, 27, 28, 29, 30, 31]
+    static var step: Int { inferLen - overlap }
+    static var alignLen: Int { overlap - interp }
+
+    /// Upstream window count: one window per 22 frames (range(0, n, 22)), at least one. For n <= 32 a second window still exists when n > 22 (it blends frames 24..31).
+    static func windowCount(frameCount n: Int) -> Int { n <= 0 ? 0 : (n + step - 1) / step }
+
+    /// frames[k][p] = the VIDEO frame index fed at input position p of window k (padded past the end with the last frame; positions 0..9 of k > 0 are window k-1's input at KEYFRAMES).
+    static func inputFrames(frameCount n: Int) -> [[Int]] {
+        var out = [[Int]](), prev: [Int]? = nil
+        for k in 0..<windowCount(frameCount: n) {
+            var f = (0..<inferLen).map { min(k * step + $0, n - 1) }
+            if let p = prev { for j in 0..<overlap { f[j] = p[keyframes[j]] } }
+            out.append(f); prev = f
+        }
+        return out
+    }
+
+    /// Least squares: cur*scale + shift ~ ref. Degenerate (flat cur) gives scale 1 and the mean difference.
+    static func fit(ref: [Float], cur: [Float]) -> (scale: Float, shift: Float) {
+        let n = min(ref.count, cur.count)
+        guard n > 0 else { return (1, 0) }
+        var sx = 0.0, sy = 0.0, sxx = 0.0, sxy = 0.0
+        for i in 0..<n { let x = Double(cur[i]), y = Double(ref[i]); sx += x; sy += y; sxx += x * x; sxy += x * y }
+        let d = Double(n) * sxx - sx * sx
+        if abs(d) < 1e-12 { return (1, Float((sy - sx) / Double(n))) }
+        let a = (Double(n) * sxy - sx * sy) / d
+        return (Float(a), Float((sy - a * sx) / Double(n)))
+    }
+
+    /// Incremental form of the post-process: feed window k's depth (inferLen frames of px floats), get back the frames that are FINAL (the last `interp` aligned frames stay open for the
+    /// next window's crossfade; `finish()` releases them). Frame numbers are consecutive from 0.
+    struct Stitcher {
+        let px: Int
+        private var aligned = [[Float]](), ref = [[Float]](), k = 0
+        private(set) var emitted = 0
+        init(px: Int) { self.px = px }
+        private func frame(_ o: [Float], _ j: Int) -> ArraySlice<Float> { o[(j * px)..<((j + 1) * px)] }
+        mutating func add(_ o: [Float]) -> [[Float]] {
+            guard o.count == inferLen * px else { return [] }
+            let kfAlign = Array(keyframes[0..<alignLen])
+            if k == 0 {
+                aligned = (0..<inferLen).map { Array(frame(o, $0)) }
+                ref = kfAlign.map { Array(frame(o, $0)) }
+            } else {
+                let curr = (0..<alignLen).flatMap { Array(frame(o, $0)) }, rf = ref.flatMap { $0 }
+                let f = VDAWindowPlan.fit(ref: rf, cur: curr)
+                func adj(_ v: ArraySlice<Float>) -> [Float] { v.map { max(0, $0 * f.scale + f.shift) } }
+                let post = (alignLen..<overlap).map { adj(frame(o, $0)) }                  // the crossfade frames
+                let base = aligned.count - interp
+                for i in 0..<interp {
+                    let w = interp == 1 ? Float(1) : Float(i) / Float(interp - 1)      // np.linspace(0, 1, INTERP_LEN)
+                    aligned[base + i] = zip(aligned[base + i], post[i]).map { $0 * (1 - w) + $1 * w }
+                }
+                for j in overlap..<inferLen { aligned.append(adj(frame(o, j))) }
+                var nr = [ref[0]]
+                for kf in kfAlign.dropFirst() { nr.append(adj(frame(o, kf))) }
+                ref = nr
+            }
+            k += 1
+            let final = max(0, aligned.count - interp)
+            let out = Array(aligned[emitted..<final]); emitted = final
+            return out
+        }
+        mutating func finish() -> [[Float]] { let out = Array(aligned[emitted...]); emitted = aligned.count; return out }
+    }
+
+    /// outputs[k] = window k's depth, inferLen frames of `px` floats each, packed. Returns frameCount * px floats (the first n of the aligned sequence); [] on a shape error.
+    static func stitch(outputs: [[Float]], frameCount n: Int, px: Int) -> [Float] {
+        guard outputs.count == windowCount(frameCount: n), px > 0, outputs.allSatisfy({ $0.count == inferLen * px }) else { return [] }
+        var st = Stitcher(px: px), all = [[Float]]()
+        for o in outputs { all += st.add(o) }
+        all += st.finish()
+        return Array(all.prefix(n).flatMap { $0 })
+    }
+}
+
+// BEGIN relocated VDAWindowedSource.swift (195y G2, behavior unchanged)
+/// 190w W4: in-order per-frame depth out of the WINDOWED VDA model, for one shot. Pure Foundation (the model is a closure), Linux-tested with a fake model (Tests/VDAWindow).
+/// `input(f)` = ImageNet-normalised CHW pixels of shot frame f, requested in ascending order (the film reader is sequential); `onRead(f)` fires right after a successful read of f,
+/// while the caller's single-frame pixel cache still holds f (the caller uses it to grab that frame's guard luma and, on keyframes, its MoGe input). `window(frames)` = 32 CHW arrays -> 32 * px depth.
+/// Memory: the previous window's 32 inputs (the KEYFRAMES carry-over) + the stitcher's open tail; never the whole shot. A request for frame k computes whole windows until k is final,
+/// so a resumed shot (first request k0 > 0) recomputes from frame 0 and discards what it does not need.
+final class VDAWindowedSource {
+    let frameCount: Int, px: Int
+    private let input: (Int) -> [Float]?, window: ([[Float]]) -> [Float]?
+    var progress: (Int, Int) -> Void = { _, _ in }
+    var onRead: (Int) -> Void = { _ in }
+    private var stitcher: VDAWindowPlan.Stitcher
+    private var prevInputs: [[Float]] = [], nextWindow = 0, lastRead = -1, lastChw: [Float] = []
+    private var ready: [Int: [Float]] = [:], produced = 0, finished = false
+    init(frameCount: Int, px: Int, input: @escaping (Int) -> [Float]?, window: @escaping ([[Float]]) -> [Float]?) {
+        self.frameCount = frameCount; self.px = px; self.input = input; self.window = window; stitcher = VDAWindowPlan.Stitcher(px: px)
+    }
+    private func chw(_ f: Int) -> [Float]? {
+        if f <= lastRead { return f == lastRead ? lastChw : nil }       // padding repeats the last frame (min(.., n-1)), which is the one just read
+        guard f == lastRead + 1, let c = input(f) else { return nil }
+        lastRead = f; lastChw = c; onRead(f); return c
+    }
+    /// Runs the next window; false on any failure (a missing frame or a model failure: the shot fails, no substitute depth).
+    private func runWindow() -> Bool {
+        let w = nextWindow, frames = VDAWindowPlan.inputFrames(frameCount: frameCount)[w]
+        var ins = [[Float]](); ins.reserveCapacity(VDAWindowPlan.inferLen)
+        for p in 0..<VDAWindowPlan.inferLen {
+            if w > 0 && p < VDAWindowPlan.overlap { ins.append(prevInputs[VDAWindowPlan.keyframes[p]]); continue }
+            guard let c = chw(frames[p]) else { return false }
+            ins.append(c)
+        }
+        progress(w, VDAWindowPlan.windowCount(frameCount: frameCount))
+        guard let out = window(ins), out.count == VDAWindowPlan.inferLen * px else { return false }
+        prevInputs = ins; nextWindow += 1
+        progress(nextWindow, VDAWindowPlan.windowCount(frameCount: frameCount))
+        for fr in stitcher.add(out) { ready[produced] = fr; produced += 1 }
+        if nextWindow == VDAWindowPlan.windowCount(frameCount: frameCount) { for fr in stitcher.finish() { ready[produced] = fr; produced += 1 }; finished = true }
+        return true
+    }
+    /// Final depth of frame k (relative inverse depth, the model grid). nil = failure, or k already released (frames below the last request are dropped).
+    func depth(frame k: Int) -> [Float]? {
+        guard k >= 0, k < frameCount else { return nil }
+        while produced <= k && !finished { if !runWindow() { return nil } }
+        for key in ready.keys where key < k { ready[key] = nil }
+        return ready[k]
+    }
+}
+// END relocated VDAWindowedSource.swift
+
+// BEGIN relocated VDAWindowRunner.swift (195y G2, behavior unchanged)
+#if canImport(CoreML)
+import CoreML
+
+/// 190w W4: the A-D windowed VDA-S CoreML kit (windowed_encoder_fp16: pixels [B<=32,3,154,266] -> feat1..4 [B,209,384]; windowed_head_fp16: feat1..4 [32,209,384] -> depth [1,32,154,266]).
+/// One window = one encoder call with batch 32 + one head call. CONVERTED on Linux, NEVER EXECUTED: parity vs windowed_ref_fixture.npz (torch fp32 window + depth) must be checked on the Mac
+/// before first use (`parityError(fixture:)` returns the max abs diff for the self-test). Parse-only on Linux; same array helpers as VDAStreamRunner.
+final class VDAWindowRunner {
+    static let encoderName = "windowed_encoder_fp16.mlpackage", headName = "windowed_head_fp16.mlpackage"
+    private let enc: MLModel, head: MLModel
+    static func available(kitDir: URL) -> Bool {
+        let fm = FileManager.default
+        return fm.fileExists(atPath: kitDir.appendingPathComponent(encoderName).path) && fm.fileExists(atPath: kitDir.appendingPathComponent(headName).path)
+    }
+    init?(kitDir: URL) {
+        func load(_ n: String) -> MLModel? {
+            return KitCompiledCache.model(kitDir.appendingPathComponent(n))
+        }
+        guard let e = load(Self.encoderName), let h = load(Self.headName) else { return nil }
+        enc = e; head = h
+    }
+    private func array(_ values: [Float], shape: [Int], like model: MLModel, name: String) -> MLMultiArray? {
+        let want = model.modelDescription.inputDescriptionsByName[name]?.multiArrayConstraint?.dataType ?? .float32
+        guard let a = try? MLMultiArray(shape: shape.map { NSNumber(value: $0) }, dataType: want) else { return nil }
+        #if arch(arm64)
+        if want == .float16 { let p = a.dataPointer.bindMemory(to: Float16.self, capacity: values.count); for i in 0..<values.count { p[i] = Float16(values[i]) }; return a }
+        #endif
+        if want == .float32 { a.dataPointer.bindMemory(to: Float.self, capacity: values.count).update(from: values, count: values.count); return a }
+        for i in 0..<values.count { a[i] = NSNumber(value: values[i]) }
+        return a
+    }
+    private func floats(_ a: MLMultiArray) -> [Float] {
+        let n = a.count
+        let shape = a.shape.map { $0.intValue }, st = a.strides.map { $0.intValue }
+        var packed = shape.count == st.count, expect = 1
+        for i in stride(from: shape.count - 1, through: 0, by: -1) where packed { if shape[i] != 1 && st[i] != expect { packed = false }; expect *= shape[i] }
+        if !packed { return (0..<n).map { a[$0].floatValue } }            // padded strides: logical C-order reads (same rule as VDAStreamRunner.floats)
+        if a.dataType == .float32 { return Array(UnsafeBufferPointer(start: a.dataPointer.bindMemory(to: Float.self, capacity: n), count: n)) }
+        #if arch(arm64)
+        if a.dataType == .float16 { let p = a.dataPointer.bindMemory(to: Float16.self, capacity: n); return (0..<n).map { Float(p[$0]) } }
+        #endif
+        return (0..<n).map { a[$0].floatValue }
+    }
+    /// frames = 32 CHW arrays (3*154*266 floats each, ImageNet-normalised); returns 32*154*266 relative inverse depth floats, nil on any model failure.
+    func run(frames: [[Float]]) -> [Float]? {
+        let H = VDAStream.exportH, W = VDAStream.exportW, T = VDAWindowPlan.inferLen, per = 3 * H * W
+        guard frames.count == T, frames.allSatisfy({ $0.count == per }),
+              let px = array(frames.flatMap { $0 }, shape: [T, 3, H, W], like: enc, name: "pixels"),
+              let eo = try? enc.prediction(from: MLDictionaryFeatureProvider(dictionary: ["pixels": MLFeatureValue(multiArray: px)])) else { return nil }
+        var feed: [String: MLFeatureValue] = [:]
+        for i in 1...4 { guard let v = eo.featureValue(for: "feat\(i)") else { return nil }; feed["feat\(i)"] = v }
+        guard let ho = try? head.prediction(from: MLDictionaryFeatureProvider(dictionary: feed)), let d = ho.featureValue(for: "depth")?.multiArrayValue else { return nil }
+        let out = floats(d); return out.count == T * H * W ? out : nil
+    }
+    /// Self-test: max |depth - reference| over one deterministic window; `window` is [1,32,3,H,W] flat, `depth` [1,32,H,W] flat (windowed_ref_fixture.npz arrays, extracted by the caller).
+    func parityError(window: [Float], depth: [Float]) -> Float? {
+        let per = 3 * VDAStream.exportH * VDAStream.exportW
+        guard window.count == VDAWindowPlan.inferLen * per else { return nil }
+        let frames = (0..<VDAWindowPlan.inferLen).map { Array(window[($0 * per)..<(($0 + 1) * per)]) }
+        guard let o = run(frames: frames), o.count == depth.count else { return nil }
+        return zip(o, depth).map { abs($0 - $1) }.max()
+    }
+}
+#endif
+// END relocated VDAWindowRunner.swift
+
+// BEGIN relocated VDAWindowedBackend.swift (195y G2, behavior unchanged)
+#if canImport(CoreML)
+
+/// 190w W4: ShotPrepareBackend over the WINDOWED VDA model (VDAWindowedSource does the windows + stitch). UNCOMPILED on a Mac, CoreML UNEXECUTED.
+/// The window source reads frames AHEAD of the step being asked for, so everything the step needs from a frame is captured when that frame is read (`onRead`, called while the caller's
+/// single-frame pixel cache still holds it): its guard luma (`lumaOf`) and, on MoGe keyframes (k % keyframeStride == 0), the MoGe input. `window` is a dummy: resume recomputes
+/// the shot from frame 0 (costly, correct: nothing is carried in the checkpoint, only the spooled finished frames).
+final class VDAWindowedBackend: ShotPrepareBackend {
+    private let source: VDAWindowedSource, moge: MoGeKeyframeRunner
+    private let crop: VDAStream.Box
+    private let mogeInput: (Int) -> (rgba: [UInt8], shape: MoGeInput.Shape)?
+    private var luma: [Int: [Float]] = [:], mogeIn: [Int: (rgba: [UInt8], shape: MoGeInput.Shape)] = [:], lastStep = -1
+    var window = VDAWindowState()
+    var progress: (Int, Int) -> Void { get { source.progress } set { source.progress = newValue } }
+    var stage: (String, Double) -> Void = { _, _ in }
+    /// `lumaAt(k)` = guard luma of the frame just read (call only from the read hook), `px` = VDAStream.exportH * exportW.
+    init(runner: VDAWindowRunner, moge: MoGeKeyframeRunner, frameCount: Int, crop: VDAStream.Box, vdaInput: @escaping (Int) -> [Float]?, lumaNow: @escaping () -> [Float]?,
+         mogeInput: @escaping (Int) -> (rgba: [UInt8], shape: MoGeInput.Shape)?) {
+        self.moge = moge; self.crop = crop; self.mogeInput = mogeInput
+        source = VDAWindowedSource(frameCount: frameCount, px: VDAStream.exportH * VDAStream.exportW, input: vdaInput, window: { runner.run(frames: $0) })
+        source.onRead = { [unowned self] k in
+            if let l = lumaNow() { luma[k] = l }
+            if k % FovTrackBuilder.keyframeStride == 0, let m = self.mogeInput(k) { mogeIn[k] = m }
+        }
+    }
+    func vdaStep(frame: Int) -> [Float]? {
+        let t = DispatchTime.now(); defer { stage("vda_model", Double(DispatchTime.now().uptimeNanoseconds - t.uptimeNanoseconds) / 1e6) }
+        guard let d = source.depth(frame: frame) else { return nil }
+        lastStep = frame
+        for k in luma.keys where k < frame { luma[k] = nil }
+        for k in mogeIn.keys where k < frame { mogeIn[k] = nil }
+        return VDAStream.cropDepth(d, box: crop)
+    }
+    func guardLuma() -> [Float]? { luma[lastStep] }
+    func mogeKeyframe(frame: Int) -> MoGeKeyframe? {
+        guard let i = mogeIn[frame] ?? mogeInput(frame) else { return nil }          // the fallback re-reads (sequential reader: only correct if frame is still the cached one)
+        let t = DispatchTime.now(); defer { stage("moge_model", Double(DispatchTime.now().uptimeNanoseconds - t.uptimeNanoseconds) / 1e6) }
+        return moge.run(rgba: i.rgba, shape: i.shape)
+    }
+}
+#endif
+// END relocated VDAWindowedBackend.swift
+// END relocated VDAWindowPlan.swift
+// BEGIN relocated MoGeKeyframeRunner.swift (195y owner-order 3D consolidation, behavior unchanged)
+import Foundation
+#if canImport(CoreML)
+import CoreML
+#endif
+
+/// 190t native prepare: MoGe-2 ViT-S keyframe runner over the A-D CoreML package (tools/depth_analysis/moge_convert.py: image [1,3,518,518]
+/// ImageNet-normalised -> points [1,518,518,3], normal, mask [1,518,518] float, metric_scale [1]). Recovery of focal/shift, metric depth and hfov is
+/// MoGeGeometry (DepthPrepareMath.swift). CoreML execution is UNVERIFIED on a Mac; this file is only parse-checked, the pure helpers are tested on Linux.
+enum MoGeInput {
+    static let size = 518          // square calibration package only
+    /// One enumerated-shape package (A-D kit): input [1,3,h,w], multiples of 14. The square 518 package is calibration-only and never picked for film frames.
+    struct Shape: Equatable { let w: Int, h: Int; var aspect: Double { Double(w) / Double(h) } }
+    /// Pick the shape whose aspect is closest (log ratio) to the source frame's: no letterbox, no stretch beyond that mismatch.
+    static func pick(_ shapes: [Shape], srcW: Int, srcH: Int) -> Shape? {
+        guard srcW > 0, srcH > 0 else { return nil }
+        let a = Double(srcW) / Double(srcH)
+        return shapes.min { abs(log($0.aspect / a)) < abs(log($1.aspect / a)) }
+    }
+    static let mean: [Float] = [0.485, 0.456, 0.406], std: [Float] = [0.229, 0.224, 0.225]
+    /// w x h RGBA8 (the caller resizes the film frame to the picked shape with a high quality scaler) -> CHW float32.
+    static func chw(rgba: [UInt8], w: Int = size, h: Int = size) -> [Float] {
+        let n = w * h; var out = [Float](repeating: 0, count: 3 * n)
+        for i in 0..<n { for c in 0..<3 { out[c * n + i] = (Float(rgba[i * 4 + c]) / 255.0 - mean[c]) / std[c] } }
+        return out
+    }
+}
+
+struct MoGeKeyframe {
+    var hfovDeg: Double
+    var depth: [Float]          // width x height metres, +inf where masked / invalid
+    var validFraction: Double
+    var usedFP32: Bool
+    var width = MoGeInput.size, height = MoGeInput.size     // the shape this keyframe was run at (depth is width x height)
+    var plausible: Bool { hfovDeg.isFinite && hfovDeg > 5 && hfovDeg < 170 && validFraction >= 0.02 && depth.contains { $0.isFinite } }
+}
+
+#if canImport(CoreML)
+final class MoGeKeyframeRunner {
+    struct Package { let shape: MoGeInput.Shape; let fp16: URL?; let fp32: URL? }
+    private let packages: [Package]
+    /// Precision actually used per keyframe (self-test): fp16 results accepted, fp16 results rejected as implausible, fp32 fallbacks accepted.
+    private(set) var fp16Used = 0, fp16Rejected = 0, fp32Used = 0
+    private var cache: [String: MLModel] = [:]
+    /// Enumerated-shape packages from the kit manifest (compiled .mlmodelc or .mlpackage, compiled here). Models load lazily; fp32 only when needed.
+    init?(packages: [Package]) {
+        let usable = packages.filter { $0.fp16 != nil || $0.fp32 != nil }
+        guard !usable.isEmpty else { return nil }
+        self.packages = usable
+    }
+    func shape(srcW: Int, srcH: Int) -> MoGeInput.Shape? { MoGeInput.pick(packages.map { $0.shape }, srcW: srcW, srcH: srcH) }
+
+    private func model(_ u: URL?) -> MLModel? {
+        guard let u else { return nil }
+        if let m = cache[u.path] { return m }
+        guard let m = KitCompiledCache.model(u) else { return nil }
+        cache[u.path] = m; return m
+    }
+
+    /// One keyframe at `shape` (RGBA8 w*h, resized by the caller): fp16 first, fp32 when the fp16 result is implausible (non-finite or out-of-range
+    /// hfov, <2% valid pixels) or fp16 is absent.
+    func run(rgba: [UInt8], shape: MoGeInput.Shape) -> MoGeKeyframe? {
+        guard rgba.count == shape.w * shape.h * 4, let pkg = packages.first(where: { $0.shape == shape }) else { return nil }
+        let input = MoGeInput.chw(rgba: rgba, w: shape.w, h: shape.h)
+        if let m = model(pkg.fp16) { if let k = infer(m, input, shape, fp32: false), k.plausible { fp16Used += 1; return k }; fp16Rejected += 1 }
+        if let m = model(pkg.fp32), let k = infer(m, input, shape, fp32: true), k.plausible { fp32Used += 1; return k }
+        return nil
+    }
+
+    private func floats(_ a: MLMultiArray) -> [Float] {       // linear NSNumber access: element order equals the logical C order for any dtype/strides
+        let n = a.count; var out = [Float](repeating: 0, count: n)
+        for i in 0..<n { out[i] = a[i].floatValue }
+        return out
+    }
+    private func infer(_ model: MLModel, _ chw: [Float], _ sh: MoGeInput.Shape, fp32: Bool) -> MoGeKeyframe? {
+        guard let arr = try? MLMultiArray(shape: [1, 3, NSNumber(value: sh.h), NSNumber(value: sh.w)], dataType: .float32) else { return nil }
+        chw.withUnsafeBufferPointer { src in arr.dataPointer.copyMemory(from: src.baseAddress!, byteCount: src.count * 4) }
+        guard let out = try? model.prediction(from: MLDictionaryFeatureProvider(dictionary: ["image": MLFeatureValue(multiArray: arr)])),
+              let p = out.featureValue(for: "points")?.multiArrayValue, let mk = out.featureValue(for: "mask")?.multiArrayValue,
+              let ms = out.featureValue(for: "metric_scale")?.multiArrayValue, p.count == sh.w * sh.h * 3, mk.count == sh.w * sh.h, ms.count >= 1 else { return nil }
+        let points = floats(p), mask = floats(mk).map { $0 > 0.5 }, scale = Double(ms[0].floatValue)
+        let fs = MoGeGeometry.recoverFocalShift(points: points, mask: mask, height: sh.h, width: sh.w)
+        let depth = MoGeGeometry.depth(points: points, mask: mask, shift: fs.shift, metricScale: scale)
+        let valid = Double(depth.filter { $0.isFinite }.count) / Double(depth.count)
+        return MoGeKeyframe(hfovDeg: MoGeGeometry.hfovDegrees(focal: fs.focal, width: sh.w, height: sh.h), depth: depth, validFraction: valid,
+                            usedFP32: fp32, width: sh.w, height: sh.h)
+    }
+}
+#endif
+// END relocated MoGeKeyframeRunner.swift
+// BEGIN relocated ModelDepthEMA.swift (195y owner-order 3D consolidation, behavior unchanged)
+import Foundation
+
+/// 195h A (item 3): temporal EMA for the DAV2 model's per-frame depth maps, per shot, reset at every shot boundary, default OFF.
+/// Pure Foundation, Linux-tested; the DAV2 backend holds one instance per shot and checkpoint-restores its state through the
+/// backend `window` contract, so a crash + resume continues the exact same sequence (no approximate re-prime).
+final class ModelDepthEMA {
+    /// Lock-backed global switch (195h r2-3 convention), default off. Read once per job into the frozen options snapshot, so a
+    /// mid-job toggle never mixes smoothed and raw frames inside one depth container.
+    private static let lock = NSLock()
+    private static var on = false
+    static var enabled: Bool { lock.lock(); defer { lock.unlock() }; return on }
+    static func setEnabled(_ value: Bool) { lock.lock(); self.on=value; lock.unlock() }
+    static func toggle() { lock.lock(); on.toggle(); lock.unlock() }
+
+    let alpha: Float                       // weight of the NEW frame; 0.25 = smooth over roughly the last 4 frames
+    private var acc: [Float]?
+    init(alpha: Float = 0.25) { self.alpha = alpha }
+    /// Shot boundary / explicit reset: the next frame passes through unsmoothed.
+    func reset() { acc = nil }
+    /// One depth map (w*h row-major). First map of a shot passes through unchanged; later maps blend per pixel.
+    func apply(_ m: [Float]) -> [Float] {
+        guard let a = acc, a.count == m.count else { acc = m; return m }
+        var out = [Float](repeating: 0, count: m.count)
+        for i in 0..<m.count { out[i] = alpha * m[i] + (1 - alpha) * a[i] }
+        acc = out; return out
+    }
+    /// Checkpoint contract bridge: the accumulator as one VDA "bundle" ([[Float]]), so ShotCheckpoint (GORCK003) persists and
+    /// restores it EXACTLY like any other backend state. [] = cold start.
+    var stateBundles: [[Float]] { acc.map { [$0] } ?? [] }
+    func restore(bundles: [[Float]]) { acc = bundles.first }
+}
+
+/// 195h A: half-precision float bit pattern -> Float (IEEE 754 binary16), pure and Linux-tested. The pinned DAV2 package's depth
+/// output may arrive as OneComponent16Half; this is the only conversion the runner performs.
+enum HalfFloat {
+    static func toFloat(_ h: UInt16) -> Float {
+        let s = Float((h >> 15) & 1) * -2 + 1, e = Int((h >> 10) & 0x1f), m = Int(h & 0x3ff)
+        if e == 0 { return s * Float(m) * pow(2, -14) / 1024 }           // subnormal
+        if e == 31 { return m == 0 ? s * Float.infinity : .nan }
+        return s * (1 + Float(m) / 1024) * pow(2, Float(e - 15))
+    }
+}
+
+/// 195h A: bilinear resize of a depth/disparity map (row-major w*h -> outW*outH). The sample coordinate is CLAMPED to the valid
+/// range before the low index and weight are taken, so edge pixels replicate the edge instead of blending with a phantom row.
+enum DepthMapResize {
+    static func bilinear(_ src: [Float], w: Int, h: Int, outW: Int, outH: Int) -> [Float] {
+        guard w > 0, h > 0, outW > 0, outH > 0, src.count == w * h else { return [] }
+        var out = [Float](repeating: 0, count: outW * outH)
+        for y in 0..<outH {
+            let fy = max(0, min(Float(h - 1), (Float(y) + 0.5) * Float(h) / Float(outH) - 0.5))
+            let y0 = min(h - 1, Int(floor(fy))), y1 = min(h - 1, y0 + 1), wy = fy - floor(fy)
+            for x in 0..<outW {
+                let fx = max(0, min(Float(w - 1), (Float(x) + 0.5) * Float(w) / Float(outW) - 0.5))
+                let x0 = min(w - 1, Int(floor(fx))), x1 = min(w - 1, x0 + 1), wx = fx - floor(fx)
+                let a = src[y0 * w + x0], b = src[y0 * w + x1], c = src[y1 * w + x0], d = src[y1 * w + x1]
+                out[y * outW + x] = a * (1 - wx) * (1 - wy) + b * wx * (1 - wy) + c * (1 - wx) * wy + d * wx * wy
+            }
+        }
+        return out
+    }
+    /// DAV2 emits relative disparity (larger = nearer); the pipeline's depth maps store depth (larger = farther). d -> 1/max(d, eps).
+    static func disparityToDepth(_ d: [Float], eps: Float = 1e-6) -> [Float] { d.map { 1 / max($0, eps) } }
+}
+// END relocated ModelDepthEMA.swift
+// BEGIN relocated DepthCacheBudget.swift (195y owner-order 3D consolidation, behavior unchanged)
+import Foundation
+#if canImport(Darwin)
+import Darwin
+#else
+import Glibc
+#endif
+
+/// Gor-owned derived cache only. Unknown/legacy directories are excluded from
+/// the managed quota and are never adopted or removed by a budget sweep. Pins are advisory
+/// locks outside film directories, shared by playback and every writer process.
+enum DepthCacheBudget {
+    struct Policy {
+        // Optional absolute override is for tests, never the production default.
+        var quota: UInt64? = nil
+        var volumePercent: UInt64 = 5
+        var usablePercent: UInt64 = 10
+        var reserve: UInt64 = 5 * 1024 * 1024 * 1024
+        var writeHeadroom: UInt64 = 256 * 1024 * 1024
+    }
+    static var policy = Policy()
+    static let marker = ".gor-cache-owned-v1"
+    static func validKey(_ s: String) -> Bool { s.count == 64 && s.utf8.allSatisfy { (48...57).contains($0) || (97...102).contains($0) } }
+    static func plainDirectory(_ u: URL) -> Bool {
+        var s = stat(); return lstat(u.path, &s) == 0 && (s.st_mode & S_IFMT) == S_IFDIR
+    }
+    static func plainFile(_ u: URL) -> Bool {
+        var s = stat(); return lstat(u.path, &s) == 0 && (s.st_mode & S_IFMT) == S_IFREG && s.st_nlink == 1
+    }
+    final class Pin {
+        fileprivate let fd: Int32
+        let entry: URL
+        fileprivate init(_ fd: Int32, _ entry: URL) { self.fd = fd; self.entry = entry }
+        deinit { _ = flock(fd, LOCK_UN); close(fd) }
+    }
+    static func withLock<T>(_ root: URL, _ body: () throws -> T) throws -> T {
+        guard plainDirectory(root) else { throw Failure.unsafe }
+        let fd = open(root.appendingPathComponent(".budget.lock").path, O_CREAT | O_RDWR | O_NOFOLLOW, mode_t(0o600))
+        guard fd >= 0 else { throw Failure.unsafe }
+        defer { _ = flock(fd, LOCK_UN); close(fd) }
+        guard flock(fd, LOCK_EX) == 0 else { throw Failure.unsafe }
+        return try body()
+    }
+    enum Failure: Error, CustomStringConvertible {
+        case unsafe, quota, freeSpace
+        var description: String {
+            switch self {
+            case .unsafe: return "3D: cache safety check failed; staying 2D"
+            case .quota: return "3D: depth cache is full; preparation stopped, keeping 2D"
+            case .freeSpace: return "3D: disk space is low; preparation stopped, keeping 2D"
+            }
+        }
+    }
+    /// Call before accessing any entry. create=true is for writers; only a new
+    /// directory receives an ownership marker. Existing legacy data stays intact.
+    static func pin(root: URL, key: String, create: Bool = false) throws -> Pin {
+        guard validKey(key) else { throw Failure.unsafe }
+        try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
+        return try withLock(root) {
+            let entry = root.appendingPathComponent(key, isDirectory: true)
+            let existed = FileManager.default.fileExists(atPath: entry.path)
+            if create && !existed {
+                try DepthCacheIO.checkLocked(root:root,bytes:UInt64(key.utf8.count))
+                try FileManager.default.createDirectory(at: entry, withIntermediateDirectories: false)
+                do { try Data(key.utf8).write(to: entry.appendingPathComponent(marker), options: .withoutOverwriting) }
+                catch { try? FileManager.default.removeItem(at: entry); throw error }
+            }
+            guard plainDirectory(entry) else { throw Failure.unsafe }
+            let fd = open(root.appendingPathComponent(".pin-" + key).path, O_CREAT | O_RDWR | O_NOFOLLOW, mode_t(0o600))
+            guard fd >= 0 else { throw Failure.unsafe }
+            guard flock(fd, LOCK_SH | LOCK_NB) == 0 else { close(fd); throw Failure.unsafe }
+            // One stamp per acquisition, not per playback tick.
+            if owned(entry) { try? FileManager.default.setAttributes([.modificationDate: Date()], ofItemAtPath: entry.appendingPathComponent(marker).path) }
+            return Pin(fd, entry)
+        }
+    }
+    static func quota(capacity: UInt64, available: UInt64, used: UInt64, policy: Policy) -> UInt64 {
+        if let override = policy.quota { return override }
+        let reclaimed = available.addingReportingOverflow(used)
+        let occupancy = reclaimed.overflow ? capacity : min(capacity, reclaimed.partialValue)
+        let usable = occupancy > policy.reserve ? occupancy - policy.reserve : 0
+        return policy.quota ?? min((capacity / 100 * policy.volumePercent + capacity % 100 * policy.volumePercent / 100), (usable / 100 * policy.usablePercent + usable % 100 * policy.usablePercent / 100))
+    }
+    static func recordFailure(_ f: Failure, root: URL) {
+        print(f.description);fflush(stdout)
+        let text = f == .freeSpace ? "free" : f == .quota ? "quota" : "unsafe"
+        try? withLock(root) {
+            try DepthCacheIO.checkLocked(root:root,bytes:UInt64(text.utf8.count))
+            let url=root.appendingPathComponent(".budget-failure")
+            if FileManager.default.fileExists(atPath:url.path) && !plainFile(url) {throw Failure.unsafe}
+            let fd=open(url.path,O_CREAT|O_WRONLY|O_TRUNC|O_NOFOLLOW,mode_t(0o600))
+            guard fd>=0 else {throw Failure.unsafe}
+            let handle=FileHandle(fileDescriptor:fd,closeOnDealloc:true)
+            try handle.write(contentsOf:Data(text.utf8));try handle.close()
+        }
+    }
+    static func failure(root: URL) -> Failure? {
+        guard let s=try? String(contentsOf:root.appendingPathComponent(".budget-failure"),encoding:.utf8) else {return nil}
+        switch s {case "free":return .freeSpace;case "quota":return .quota;case "unsafe":return .unsafe;default:return nil}
+    }
+    static func owned(_ entry: URL) -> Bool {
+        let m = entry.appendingPathComponent(marker)
+        return validKey(entry.lastPathComponent) && plainDirectory(entry) && plainFile(m) && (try? String(contentsOf: m, encoding: .utf8)) == entry.lastPathComponent
+    }
+    static func deletable(_ entry: URL) -> Bool {
+        guard owned(entry),let files=try? FileManager.default.contentsOfDirectory(at:entry,includingPropertiesForKeys:nil) else {return false}
+        let fixed:Set<String>=[marker,"cuts.json","fov_track.json","progress.json","render-ready.json","prepare-input.mp4","prepare-input.part.mp4"]
+        let pattern="^(depth_shot_[0-9]{5}\\.(dzc(\\.(options|ema)\\.json)?|json)|source_shot_[0-9]{5}\\.mp4|shot_[0-9]{5}\\.(spool(\\.identity\\.json)?|ck|align\\.json)|render_shot_[0-9]{5}(_[a-f0-9]{64})?\\.(mp4|json)|\\.render-[A-Fa-f0-9-]{36}\\.mp4)$"
+        return files.allSatisfy {u in
+            guard plainFile(u) else {return false}
+            let n=u.lastPathComponent.hasPrefix(".tmp-") ? String(u.lastPathComponent.dropFirst(5)) : u.lastPathComponent
+            return ShotGenerationStore.recognized(u.lastPathComponent) || fixed.contains(n) || n.range(of:pattern,options:.regularExpression) != nil
+        }
+    }
+    /// Logical byte count is conservative for APFS clones/sparse files. No
+    /// symlink traversal. Any enumeration/read failure refuses further writes.
+    static func bytes(_ directory: URL) throws -> UInt64 {
+        guard plainDirectory(directory) else { throw Failure.unsafe }
+        var sum: UInt64 = 0
+        for u in try FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) {
+            var s = stat(); guard lstat(u.path, &s) == 0 else { throw Failure.unsafe }
+            let value: UInt64
+            if (s.st_mode & S_IFMT) == S_IFDIR { value = try bytes(u) }
+            else if (s.st_mode & S_IFMT) == S_IFREG { value = UInt64(max(0, s.st_size)) }
+            else { throw Failure.unsafe }
+            let next = sum.addingReportingOverflow(value)
+            guard !next.overflow else { throw Failure.quota }
+            sum = next.partialValue
+        }
+        return sum
+    }
+    static func freeBytes(_ root: URL) -> UInt64? {
+        (try? FileManager.default.attributesOfFileSystem(forPath: root.path)[.systemFreeSize] as? NSNumber)?.uint64Value
+    }
+    /// LRU eviction uses nonblocking exclusive pins. A pinned preparing,
+    /// rendering or playing entry is never a candidate, even in another process.
+    @discardableResult static func enforce(root: URL, policy: Policy = policy, additional: UInt64 = 0, free: (() -> UInt64?)? = nil) throws -> [String] {
+        try withLock(root) {
+            var removed: [String] = []
+            let fm = FileManager.default
+            let managed = try fm.contentsOfDirectory(at:root,includingPropertiesForKeys:nil).filter {owned($0)}
+            var total:UInt64=0
+            for entry in managed {total += try bytes(entry)}
+            guard let available = (free ?? { freeBytes(root) })(),
+                  let capacity = (try? fm.attributesOfFileSystem(forPath: root.path)[.systemSize] as? NSNumber)?.uint64Value else { throw Failure.freeSpace }
+            // Add back cache occupancy so its own writes do not move the goal.
+            // The low-space reserve always binds independently of this quota.
+            let need = additional.addingReportingOverflow(policy.writeHeadroom)
+            guard !need.overflow else { throw Failure.quota }
+            let requiredFree = policy.reserve.addingReportingOverflow(need.partialValue)
+            guard !requiredFree.overflow else { throw Failure.freeSpace }
+            let quota = quota(capacity:capacity,available:available,used:total,policy:policy)
+            let entries = managed.sorted {
+                let a = (try? fm.attributesOfItem(atPath: $0.appendingPathComponent(marker).path)[.modificationDate] as? Date) ?? .distantPast
+                let b = (try? fm.attributesOfItem(atPath: $1.appendingPathComponent(marker).path)[.modificationDate] as? Date) ?? .distantPast
+                return a == b ? $0.lastPathComponent < $1.lastPathComponent : a < b
+            }
+            for entry in entries where total > quota || need.partialValue > quota - total {
+                let fd = open(root.appendingPathComponent(".pin-" + entry.lastPathComponent).path, O_CREAT | O_RDWR | O_NOFOLLOW, mode_t(0o600))
+                guard fd >= 0 else { continue }
+                defer { _ = flock(fd, LOCK_UN); close(fd) }
+                guard flock(fd, LOCK_EX | LOCK_NB) == 0, deletable(entry) else { continue }
+                let size = try bytes(entry)
+                try fm.removeItem(at: entry)
+                total -= size; removed.append(entry.lastPathComponent)
+            }
+            // Pins protect the last-good film from eviction, not from quota.
+            // This admission/scan guard is not a byte-hard output sink.
+            guard total <= quota, need.partialValue <= quota - total else {throw Failure.quota}
+            guard let after = (free ?? { freeBytes(root) })(), after >= requiredFree.partialValue else { throw Failure.freeSpace }
+            return removed
+        }
+    }
+    /// Retire only the legacy whole-source remux artifacts. The worker lock
+    /// excludes live producers; entry pins exclude playback/render users.
+    /// No recursive removal, unknown-directory adoption, or error suppression.
+    @discardableResult static func reapLegacyInputs(root:URL,source:URL?=nil) throws -> [String] {
+        guard plainDirectory(root) else {throw Failure.unsafe}
+        let worker=open(root.appendingPathComponent(".prepare-worker.lock").path,O_CREAT|O_RDWR|O_NOFOLLOW,mode_t(0o600))
+        guard worker>=0 else {throw Failure.unsafe}
+        defer {close(worker)}
+        if flock(worker,LOCK_EX|LOCK_NB) != 0 {
+            if errno==EWOULDBLOCK {return []};throw Failure.unsafe
+        }
+        defer {_=flock(worker,LOCK_UN)}
+        return try withLock(root) {
+            var removed:[String]=[]
+            for entry in try FileManager.default.contentsOfDirectory(at:root,includingPropertiesForKeys:nil) where owned(entry) {
+                let pin=open(root.appendingPathComponent(".pin-"+entry.lastPathComponent).path,O_CREAT|O_RDWR|O_NOFOLLOW,mode_t(0o600))
+                guard pin>=0 else {throw Failure.unsafe}
+                defer {close(pin)}
+                if flock(pin,LOCK_EX|LOCK_NB) != 0 {
+                    if errno==EWOULDBLOCK {continue};throw Failure.unsafe
+                }
+                defer {_=flock(pin,LOCK_UN)}
+                let dir=open(entry.path,O_RDONLY|O_DIRECTORY|O_NOFOLLOW)
+                guard dir>=0 else {throw Failure.unsafe}
+                defer {close(dir)}
+                for name in ["prepare-input.part","prepare-input.part.mp4","prepare-input.mp4"] {
+                    let file=entry.appendingPathComponent(name)
+                    if file.standardizedFileURL==source?.standardizedFileURL {continue}
+                    var before=stat()
+                    if fstatat(dir,name,&before,AT_SYMLINK_NOFOLLOW) != 0 {
+                        if errno==ENOENT {continue};throw Failure.unsafe
+                    }
+                    guard (before.st_mode&S_IFMT)==S_IFREG,before.st_nlink==1 else {continue}
+                    let fd=openat(dir,name,O_RDONLY|O_NOFOLLOW)
+                    guard fd>=0 else {throw Failure.unsafe}
+                    defer {close(fd)}
+                    var current=stat()
+                    guard fstat(fd,&current)==0,current.st_ino==before.st_ino,current.st_dev==before.st_dev,current.st_nlink==1 else {throw Failure.unsafe}
+                    guard unlinkat(dir,name,0)==0 else {throw Failure.unsafe}
+                    removed.append(entry.lastPathComponent+"/"+name)
+                }
+            }
+            return removed
+        }
+    }
+
+    /// Scans run on prepare/render workers, never on the playback timer. Space
+    /// checks remain per frame; full cache accounting is at most once a second.
+    final class Watch {
+        let root: URL
+        var next = 0.0, failure: Failure?
+        init(root: URL) { self.root = root }
+        func allowed(force: Bool = false) -> Bool {
+            if failure != nil { return false }
+            let now = ProcessInfo.processInfo.systemUptime
+            do {
+                guard let free = freeBytes(root), free >= policy.reserve + policy.writeHeadroom else { throw Failure.freeSpace }
+                if force || now >= next { try enforce(root: root); next = now + 1 }
+                return true
+            } catch {
+                failure = (error as? Failure) ?? .unsafe
+                print(failure!.description); fflush(stdout); return false
+            }
+        }
+    }
+}
+/// A reservation is the lifetime of the cross-process budget critical section.
+/// Exact bytes are debited before the synchronous write begins. No other cache
+/// writer can observe or spend that reservation until it has committed or failed.
+/// A crash releases flock; the next writer accounts for the bytes actually left.
+enum DepthCacheIO {
+    static func root(for url:URL)->URL? {
+        var p=url.deletingLastPathComponent().standardizedFileURL
+        while p.path != "/" {
+            if DepthCacheBudget.owned(p) {return p.deletingLastPathComponent()}
+            if p.lastPathComponent=="depth-cache" || DepthCacheBudget.plainFile(p.appendingPathComponent(".budget.lock")) {return p}
+            p=p.deletingLastPathComponent()
+        }
+        return nil
+    }
+    static func checkLocked(root:URL,bytes:UInt64) throws {
+        let used=try DepthCacheBudget.bytes(root)
+        guard let free=DepthCacheBudget.freeBytes(root),
+              let capacity=(try FileManager.default.attributesOfFileSystem(forPath:root.path)[.systemSize] as? NSNumber)?.uint64Value else {throw DepthCacheBudget.Failure.freeSpace}
+        let p=DepthCacheBudget.policy,q=DepthCacheBudget.quota(capacity:capacity,available:free,used:used,policy:p)
+        guard used<=q,bytes<=q-used else {throw DepthCacheBudget.Failure.quota}
+        guard free>=p.reserve,bytes<=free-p.reserve else {throw DepthCacheBudget.Failure.freeSpace}
+    }
+    private static func transact<T>(url:URL,bytes:UInt64,_ write:() throws->T) throws -> T {
+        guard let root=root(for:url) else {return try write()}
+        do {
+            return try DepthCacheBudget.withLock(root) {
+                // Entry bytes are a subset of root bytes. The per-entry ceiling
+                // is the same derived total ceiling, so this binds both limits.
+                try checkLocked(root:root,bytes:bytes)
+                return try write()
+            }
+        } catch {
+            DepthCacheBudget.recordFailure((error as? DepthCacheBudget.Failure) ?? .unsafe,root:root)
+            throw error
+        }
+    }
+    static func append(_ data:Data,to handle:FileHandle,url:URL) throws {
+        try transact(url:url,bytes:UInt64(data.count)) {
+            var fdstat=stat(),pathstat=stat()
+            guard fstat(handle.fileDescriptor,&fdstat)==0,lstat(url.path,&pathstat)==0,
+                  (pathstat.st_mode&S_IFMT)==S_IFREG,pathstat.st_nlink==1,
+                  fdstat.st_ino==pathstat.st_ino,fdstat.st_dev==pathstat.st_dev else {throw DepthCacheBudget.Failure.unsafe}
+            try handle.write(contentsOf:data)
+        }
+    }
+    /// Atomic replacement is charged for old + full new data, not just growth.
+    /// The reservation therefore covers the temporary while the old file lives.
+    static func write(_ data:Data,to url:URL,atomic:Bool=true) throws {
+        try transact(url:url,bytes:UInt64(data.count)) {
+            var s=stat()
+            let exists=lstat(url.path,&s)==0
+            if exists && ((s.st_mode&S_IFMT) != S_IFREG || s.st_nlink != 1) {throw DepthCacheBudget.Failure.unsafe}
+            if !exists && errno != ENOENT {throw DepthCacheBudget.Failure.unsafe}
+            if atomic {try data.write(to:url,options:.atomic)}
+            else {
+                let fd=open(url.path,O_WRONLY|O_CREAT|O_TRUNC|O_NOFOLLOW,mode_t(0o600))
+                guard fd>=0 else {throw DepthCacheBudget.Failure.unsafe}
+                let handle=FileHandle(fileDescriptor:fd,closeOnDealloc:true)
+                try handle.write(contentsOf:data);try handle.close()
+            }
+        }
+    }
+}
+
+// BEGIN arch-199c ShotTimelineMap slice0+1 (local-v2 admission disabled)
+import Foundation
+
+/// arch-199c slice 0+1. Generated local media is NOT enabled by this declaration.
+/// Every read boundary must opt in in a later, independently reviewed migration.
+enum ShotTimelineFailure: Error, Equatable {
+    case invalidTime, overflow, invalidRate, invalidCount, invalidRecord
+    case outOfRange, offGrid, migrationRequired
+}
+
+/// Exact seconds. Reduced form, positive denominator; no Double identity/offsets.
+struct ShotRationalTime: Equatable, Codable {
+    let value: Int64
+    let scale: Int32
+    static let zero = try! ShotRationalTime(value:0,scale:1)
+    init(value:Int64,scale:Int32) throws {
+        guard scale>0,value != Int64.min else {throw ShotTimelineFailure.invalidTime}
+        let g=Self.gcd(value.magnitude,UInt64(scale))
+        self.value=value/Int64(g);self.scale=scale/Int32(g)
+    }
+    private static func gcd(_ x:UInt64,_ y:UInt64)->UInt64 {
+        var a=x,b=y
+        while b != 0 {let r=a%b;a=b;b=r}
+        return a
+    }
+    private enum CodingKeys:String,CodingKey {case value,scale}
+    init(from decoder:Decoder)throws {
+        let c=try decoder.container(keyedBy:CodingKeys.self)
+        try self.init(value:c.decode(Int64.self,forKey:.value),scale:c.decode(Int32.self,forKey:.scale))
+    }
+    func adding(_ b:Self)throws->Self {
+        let g=Int64(Self.gcd(UInt64(scale),UInt64(b.scale)))
+        let (den,denOverflow)=Int64(scale).multipliedReportingOverflow(by:Int64(b.scale)/g)
+        guard !denOverflow,den<=Int64(Int32.max) else {throw ShotTimelineFailure.overflow}
+        let (left,lo)=value.multipliedReportingOverflow(by:Int64(b.scale)/g)
+        let (right,ro)=b.value.multipliedReportingOverflow(by:Int64(scale)/g)
+        let (sum,so)=left.addingReportingOverflow(right)
+        guard !lo,!ro,!so else {throw ShotTimelineFailure.overflow}
+        return try Self(value:sum,scale:Int32(den))
+    }
+    func subtracting(_ b:Self)throws->Self {
+        // The validated representation excludes Int64.min, so negation is safe.
+        try adding(Self(value:-b.value,scale:b.scale))
+    }
+    /// Exact frame ratio only. Cross-cancel before multiplication.
+    fileprivate func frames(rate:ShotFrameRate)throws->Int64 {
+        guard value>=0 else {throw ShotTimelineFailure.outOfRange}
+        var a=UInt64(value),b=UInt64(rate.numerator)
+        var c=UInt64(scale),d=UInt64(rate.denominator)
+        var g=Self.gcd(a,c);a/=g;c/=g
+        g=Self.gcd(a,d);a/=g;d/=g
+        g=Self.gcd(b,c);b/=g;c/=g
+        g=Self.gcd(b,d);b/=g;d/=g
+        guard c==1,d==1 else {throw ShotTimelineFailure.offGrid}
+        let (n,o)=a.multipliedReportingOverflow(by:b)
+        guard !o,n<=UInt64(Int64.max) else {throw ShotTimelineFailure.overflow}
+        return Int64(n)
+    }
+    fileprivate static func media(frame:Int64,rate:ShotFrameRate)throws->Self {
+        guard frame>=0 else {throw ShotTimelineFailure.outOfRange}
+        let g=Int64(gcd(UInt64(frame),UInt64(rate.numerator)))
+        let (v,o)=(frame/g).multipliedReportingOverflow(by:Int64(rate.denominator))
+        guard !o else {throw ShotTimelineFailure.overflow}
+        return try Self(value:v,scale:rate.numerator/Int32(g))
+    }
+}
+struct ShotFrameRate: Equatable, Codable {
+    let numerator:Int32
+    let denominator:Int32
+    init(numerator:Int32,denominator:Int32)throws {
+        guard numerator>0,denominator>0 else {throw ShotTimelineFailure.invalidRate}
+        var a=numerator,b=denominator
+        while b != 0 {let r=a%b;a=b;b=r}
+        self.numerator=numerator/a;self.denominator=denominator/a
+    }
+    private enum CodingKeys:String,CodingKey {case numerator,denominator}
+    init(from decoder:Decoder)throws {
+        let c=try decoder.container(keyedBy:CodingKeys.self)
+        try self.init(numerator:c.decode(Int32.self,forKey:.numerator),denominator:c.decode(Int32.self,forKey:.denominator))
+    }
+}
+/// Coordinate wrappers deliberately have no implicit conversion to each other.
+struct ShotMediaTime: Equatable {let seconds:ShotRationalTime}
+struct ShotFilmTime: Equatable {let seconds:ShotRationalTime}
+
+/// One typed generation record. Local origin is fixed at zero; rate is CFR 1:1.
+/// Media/map atomic publication and artifact binding are NOT implemented here.
+/// A decoded valid record is not an admission receipt or proof of its media.
+struct ShotTimelineMap: Equatable, Codable {
+    static let format="gor-shot-local-v2"
+    static let version=2
+    let format:String
+    let version:Int
+    let generationID:UUID
+    let filmStart:ShotRationalTime
+    let fps:ShotFrameRate
+    let frameCount:Int64
+    init(generationID:UUID,filmStart:ShotRationalTime,fps:ShotFrameRate,frameCount:Int64)throws {
+        guard filmStart.value>=0 else {throw ShotTimelineFailure.invalidTime}
+        guard frameCount>0 else {throw ShotTimelineFailure.invalidCount}
+        // Reject unrepresentable end now, not after publication or during seek.
+        let duration=try ShotRationalTime.media(frame:frameCount,rate:fps)
+        _=try filmStart.adding(duration)
+        self.format=Self.format;self.version=Self.version
+        self.generationID=generationID;self.filmStart=filmStart;self.fps=fps;self.frameCount=frameCount
+    }
+    private enum CodingKeys:String,CodingKey {case format,version,generationID,filmStart,fps,frameCount}
+    init(from decoder:Decoder)throws {
+        let c=try decoder.container(keyedBy:CodingKeys.self)
+        guard try c.decode(String.self,forKey:.format)==Self.format,
+              try c.decode(Int.self,forKey:.version)==Self.version else {throw ShotTimelineFailure.invalidRecord}
+        try self.init(generationID:c.decode(UUID.self,forKey:.generationID),
+            filmStart:c.decode(ShotRationalTime.self,forKey:.filmStart),
+            fps:c.decode(ShotFrameRate.self,forKey:.fps),frameCount:c.decode(Int64.self,forKey:.frameCount))
+    }
+    static func decodeRecord(_ bytes:Data)throws->Self {
+        guard !bytes.isEmpty,bytes.count<=4096 else {throw ShotTimelineFailure.invalidRecord}
+        return try JSONDecoder().decode(Self.self,from:bytes)
+    }
+    func mediaTime(frame:Int64)throws->ShotMediaTime {
+        guard frame>=0,frame<frameCount else {throw ShotTimelineFailure.outOfRange}
+        return ShotMediaTime(seconds:try .media(frame:frame,rate:fps))
+    }
+    func filmTime(frame:Int64)throws->ShotFilmTime {
+        ShotFilmTime(seconds:try filmStart.adding(mediaTime(frame:frame).seconds))
+    }
+    var filmEndExclusive:ShotFilmTime {
+        // Constructor validates these exact operations and members are immutable.
+        ShotFilmTime(seconds:try! filmStart.adding(.media(frame:frameCount,rate:fps)))
+    }
+    func frame(at time:ShotMediaTime)throws->Int64 {
+        let i=try time.seconds.frames(rate:fps)
+        guard i<frameCount else {throw ShotTimelineFailure.outOfRange}
+        return i
+    }
+    func mediaTime(at time:ShotFilmTime)throws->ShotMediaTime {
+        let local=ShotMediaTime(seconds:try time.seconds.subtracting(filmStart))
+        _=try frame(at:local)
+        return local
+    }
+}
+
+/// No boundary is migrated in slice0+1. A parsed record is never enough to play,
+/// render, resume, or advertise readiness. No public Bool/capability bypass.
+/// Future commits must bind media+record atomically and migrate ONE boundary.
+enum ShotLocalTimelineAdmission {
+    enum Boundary: CaseIterable {
+        case readiness, resume, sourceDecode, renderDecode, renderPublish
+        case preparedPlayback, preparedSeek, legacyMPV, diagnosticProbe, referenceTool
+    }
+    static func requireAdmission(_ map:ShotTimelineMap,at boundary:Boundary)throws {
+        throw ShotTimelineFailure.migrationRequired
+    }
+}
+// END arch-199c ShotTimelineMap slice0+1
+// BEGIN arch-199c atomic generation infrastructure
+import Foundation
+#if canImport(Darwin)
+import Darwin
+#else
+import Glibc
+#endif
+
+/// Infrastructure only. Does not admit a producer, playback or resume consumer.
+enum ShotGenerationStore {
+    static let recordLimit=8192,chunkSize=65536
+    enum Failure:Error {case unsafe, invalid, missing, changed, io, busy}
+    enum Kind:String,Codable {case source,render}
+    struct Identity:Equatable,Codable {
+        let sourceKey:String
+        let shot:Int
+        let kind:Kind
+        let renderKey:String?
+        init(sourceKey:String,shot:Int,kind:Kind,renderKey:String?=nil)throws {
+            guard DepthCacheBudget.validKey(sourceKey),(0...99999).contains(shot),
+                  (kind == .source && renderKey == nil) || (kind == .render && renderKey.map(DepthCacheBudget.validKey)==true) else {throw Failure.invalid}
+            self.sourceKey=sourceKey;self.shot=shot;self.kind=kind;self.renderKey=renderKey
+        }
+        fileprivate var commitName:String {
+            let stem=String(format:"%@-%05d",kind.rawValue,shot)
+            return stem+(renderKey.map {"-"+$0} ?? "")+".local-v2.json"
+        }
+        private enum CodingKeys:String,CodingKey {case sourceKey,shot,kind,renderKey}
+        init(from d:Decoder)throws {
+            let c=try d.container(keyedBy:CodingKeys.self)
+            try self.init(sourceKey:c.decode(String.self,forKey:.sourceKey),shot:c.decode(Int.self,forKey:.shot),kind:c.decode(Kind.self,forKey:.kind),renderKey:c.decodeIfPresent(String.self,forKey:.renderKey))
+        }
+    }
+    struct Record:Equatable,Codable {
+        let schema:String,version:Int
+        let identity:Identity
+        let map:ShotTimelineMap
+        let mediaBytes:UInt64,mediaSHA256:String
+        init(identity:Identity,map:ShotTimelineMap,mediaBytes:UInt64,mediaSHA256:String)throws {
+            guard mediaBytes>0,mediaBytes<=UInt64.max/8,DepthCacheBudget.validKey(mediaSHA256) else {throw Failure.invalid}
+            self.schema="gor-shot-generation";self.version=2;self.identity=identity;self.map=map
+            self.mediaBytes=mediaBytes;self.mediaSHA256=mediaSHA256
+        }
+        private enum CodingKeys:String,CodingKey {case schema,version,identity,map,mediaBytes,mediaSHA256}
+        init(from d:Decoder)throws {
+            let c=try d.container(keyedBy:CodingKeys.self)
+            guard try c.decode(String.self,forKey:.schema)=="gor-shot-generation",try c.decode(Int.self,forKey:.version)==2 else {throw Failure.invalid}
+            try self.init(identity:c.decode(Identity.self,forKey:.identity),map:c.decode(ShotTimelineMap.self,forKey:.map),mediaBytes:c.decode(UInt64.self,forKey:.mediaBytes),mediaSHA256:c.decode(String.self,forKey:.mediaSHA256))
+        }
+        fileprivate var hex:String {map.generationID.uuidString.replacingOccurrences(of:"-",with:"").lowercased()}
+        var mediaName:String {"local-v2-"+hex+".mp4"}
+    }
+    // Retention is conservatively entry-wide: every writer/verified generation
+    // shares one stable retain lock. Reaping needs its exclusive lock.
+    // This avoids persistent per-generation lock files and inode-unlink races.
+    /// Exact name policy shared by whole-entry eviction and orphan reaping.
+    static func recognized(_ name:String)->Bool {
+        name.range(of:"^(local-v2-[0-9a-f]{32}\\.mp4|\\.local-v2-[0-9a-f]{32}\\.(part|commit\\.tmp)|source-[0-9]{5}\\.local-v2\\.json|render-[0-9]{5}-[0-9a-f]{64}\\.local-v2\\.json)$",options:.regularExpression) != nil
+    }
+    private static func hex(_ id:UUID)->String {id.uuidString.replacingOccurrences(of:"-",with:"").lowercased()}
+    private static func regular(_ fd:Int32)throws->stat {
+        var s=stat()
+        guard fstat(fd,&s)==0,(s.st_mode&S_IFMT)==S_IFREG,s.st_nlink==1,s.st_size>=0 else {throw Failure.unsafe}
+        return s
+    }
+    private static func same(_ a:stat,_ b:stat)->Bool {
+        #if canImport(Darwin)
+        return a.st_dev==b.st_dev && a.st_ino==b.st_ino && a.st_size==b.st_size && a.st_mtimespec.tv_sec==b.st_mtimespec.tv_sec && a.st_mtimespec.tv_nsec==b.st_mtimespec.tv_nsec && a.st_ctimespec.tv_sec==b.st_ctimespec.tv_sec && a.st_ctimespec.tv_nsec==b.st_ctimespec.tv_nsec
+        #else
+        return a.st_dev==b.st_dev && a.st_ino==b.st_ino && a.st_size==b.st_size && a.st_mtim.tv_sec==b.st_mtim.tv_sec && a.st_mtim.tv_nsec==b.st_mtim.tv_nsec && a.st_ctim.tv_sec==b.st_ctim.tv_sec && a.st_ctim.tv_nsec==b.st_ctim.tv_nsec
+        #endif
+    }
+    private static func writeAll(_ fd:Int32,_ data:Data)throws {
+        try data.withUnsafeBytes {raw in
+            var at=0
+            while at<raw.count {
+                #if canImport(Darwin)
+                let n=Darwin.write(fd,raw.baseAddress!.advanced(by:at),raw.count-at)
+                #else
+                let n=Glibc.write(fd,raw.baseAddress!.advanced(by:at),raw.count-at)
+                #endif
+                if n<0 && errno==EINTR {continue}
+                guard n>0 else {throw Failure.io};at+=n
+            }
+        }
+    }
+    private static func readChunk(_ fd:Int32,_ count:Int)throws->Data {
+        var b=[UInt8](repeating:0,count:count)
+        let n=b.withUnsafeMutableBytes {p->Int in
+            while true {
+                #if canImport(Darwin)
+                let n=Darwin.read(fd,p.baseAddress!,count)
+                #else
+                let n=Glibc.read(fd,p.baseAddress!,count)
+                #endif
+                if n<0 && errno==EINTR {continue};return n
+            }
+        }
+        guard n>=0 else {throw Failure.io}
+        return Data(b.prefix(n))
+    }
+    private static func digest(_ fd:Int32)throws->(UInt64,String) {
+        guard lseek(fd,0,SEEK_SET)==0 else {throw Failure.io}
+        let before=try regular(fd)
+        guard UInt64(before.st_size)<=UInt64.max/8 else {throw Failure.invalid}
+        var h=SHA256Pure.Hasher(),total:UInt64=0
+        while true {
+            let b=try readChunk(fd,chunkSize)
+            if b.isEmpty {break}
+            total+=UInt64(b.count);guard total<=UInt64(before.st_size) else {throw Failure.changed}
+            h.update([UInt8](b))
+        }
+        guard total==UInt64(before.st_size),same(before,try regular(fd)),lseek(fd,0,SEEK_SET)==0 else {throw Failure.changed}
+        return (total,h.hex())
+    }
+    final class Lease {
+        fileprivate let entryPin:DepthCacheBudget.Pin
+        fileprivate let root:URL,entry:URL,dir:Int32
+        fileprivate let key:String
+        init(root:URL,key:String)throws {
+            self.entryPin=try DepthCacheBudget.pin(root:root,key:key,create:false)
+            self.root=root;self.entry=entryPin.entry;self.key=key
+            guard DepthCacheBudget.owned(entry) else {throw Failure.unsafe}
+            dir=open(entry.path,O_RDONLY|O_DIRECTORY|O_CLOEXEC|O_NOFOLLOW)
+            guard dir>=0 else {throw Failure.unsafe}
+        }
+        deinit {close(dir)}
+        fileprivate func anchored()throws {
+            var a=stat(),b=stat()
+            guard fstat(dir,&a)==0,lstat(entry.path,&b)==0,(b.st_mode&S_IFMT)==S_IFDIR,a.st_dev==b.st_dev,a.st_ino==b.st_ino else {throw Failure.changed}
+        }
+        private func lockFile(_ suffix:String)throws->Int32 {
+            let fd=open(root.appendingPathComponent(".local-v2-"+key+suffix+".lock").path,O_RDWR|O_CREAT|O_NONBLOCK|O_CLOEXEC|O_NOFOLLOW,mode_t(0o600))
+            guard fd>=0 else {throw Failure.unsafe}
+            do {_=try regular(fd);return fd} catch {close(fd);throw error}
+        }
+        fileprivate func publication<T>(_ body:()throws->T)throws->T {
+            let fd=try lockFile("-publish");defer {close(fd)}
+            guard flock(fd,LOCK_EX)==0 else {throw Failure.io}
+            defer {_=flock(fd,LOCK_UN)}
+            try anchored();return try body()
+        }
+        fileprivate func retentionLock(exclusive:Bool)throws->Int32 {
+            let fd=try lockFile("-retain")
+            guard flock(fd,(exclusive ? LOCK_EX:LOCK_SH)|LOCK_NB)==0 else {close(fd);throw Failure.busy}
+            return fd
+        }
+        fileprivate func budgeted(_ count:UInt64,_ body:()throws->Void)throws {
+            try DepthCacheBudget.withLock(root) {
+                try anchored();try DepthCacheIO.checkLocked(root:root,bytes:count);try body()
+            }
+        }
+        fileprivate func readRecord(_ name:String)throws->Record {
+            let fd=openat(dir,name,O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_NOFOLLOW);guard fd>=0 else {throw Failure.missing}
+            defer {close(fd)}
+            let before=try regular(fd);guard before.st_size>0,before.st_size<=recordLimit else {throw Failure.invalid}
+            let data=try readChunk(fd,recordLimit+1)
+            guard data.count==before.st_size,same(before,try regular(fd)) else {throw Failure.changed}
+            guard let object=try JSONSerialization.jsonObject(with:data) as? [String:Any],let nested=object["map"],try JSONSerialization.data(withJSONObject:nested).count<=4096 else {throw Failure.invalid}
+            let record=try JSONDecoder().decode(Record.self,from:data)
+            guard record.identity.commitName==name,record.identity.sourceKey==key else {throw Failure.invalid}
+            return record
+        }
+        func begin(identity:Identity,map:ShotTimelineMap)throws->Writer {
+            guard identity.sourceKey==key else {throw Failure.invalid}
+            return try publication {try Writer(lease:self,identity:identity,map:map)}
+        }
+        func verify(identity:Identity,expectedMap:ShotTimelineMap)throws->Verified {
+            guard identity.sourceKey==key else {throw Failure.invalid}
+            return try publication {
+                let record=try readRecord(identity.commitName)
+                guard record.identity==identity,record.map==expectedMap else {throw Failure.invalid}
+                let pin=try retentionLock(exclusive:false)
+                do {
+                    let fd=openat(dir,record.mediaName,O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_NOFOLLOW);guard fd>=0 else {throw Failure.missing}
+                    do {
+                        let (bytes,sha)=try digest(fd)
+                        guard bytes==record.mediaBytes,sha==record.mediaSHA256 else {throw Failure.invalid}
+                        return Verified(lease:self,record:record,fd:fd,pin:pin)
+                    } catch {close(fd);throw error}
+                } catch {close(pin);throw error}
+            }
+        }
+        /// Unknown/invalid committed metadata aborts cleanup. Only unreferenced,
+        /// recognized generation files retire only with an exclusive entry-wide retain pin.
+        @discardableResult func reapOrphans()throws->[String] {
+            try publication {
+                let retention:Int32
+                do {retention=try retentionLock(exclusive:true)} catch Failure.busy {return []}
+                defer {close(retention)}
+                let names=try FileManager.default.contentsOfDirectory(atPath:entry.path)
+                var retained=Set<String>()
+                for name in names where recognized(name) && name.hasSuffix(".local-v2.json") {
+                    retained.insert(try readRecord(name).hex)
+                }
+                var removed:[String]=[]
+                for name in names where recognized(name) && !name.hasSuffix(".local-v2.json") {
+                    let raw=name.hasPrefix(".local-v2-") ? String(name.dropFirst(10)):String(name.dropFirst(9))
+                    let id=String(raw.prefix(32));guard id.count==32,!retained.contains(id) else {continue}
+                    var s=stat();guard fstatat(dir,name,&s,AT_SYMLINK_NOFOLLOW)==0,(s.st_mode&S_IFMT)==S_IFREG,s.st_nlink==1 else {throw Failure.unsafe}
+                    guard unlinkat(dir,name,0)==0 else {throw Failure.io};removed.append(name)
+                }
+                if !removed.isEmpty {guard fsync(dir)==0 else {throw Failure.io}}
+                return removed
+            }
+        }
+    }
+    final class Writer {
+        private let lease:Lease,identity:Identity,map:ShotTimelineMap
+        private let hex:String,part:String,tmp:String,media:String
+        private var fd:Int32,pin:Int32,finished=false
+        private var total:UInt64=0
+        fileprivate init(lease:Lease,identity:Identity,map:ShotTimelineMap)throws {
+            self.lease=lease;self.identity=identity;self.map=map
+            hex=ShotGenerationStore.hex(map.generationID);part=".local-v2-"+hex+".part";tmp=".local-v2-"+hex+".commit.tmp";media="local-v2-"+hex+".mp4"
+            pin=try lease.retentionLock(exclusive:false)
+            fd = -1
+            do {
+                var s=stat()
+                for name in [part,tmp,media] {
+                    guard fstatat(lease.dir,name,&s,AT_SYMLINK_NOFOLLOW) != 0,errno==ENOENT else {throw Failure.unsafe}
+                }
+                try lease.budgeted(0) {
+                    fd=openat(lease.dir,part,O_RDWR|O_CREAT|O_EXCL|O_CLOEXEC|O_NOFOLLOW,mode_t(0o600))
+                    guard fd>=0 else {throw Failure.io}
+                }
+            } catch {if fd>=0 {close(fd);fd = -1};close(pin);pin = -1;throw error}
+        }
+        deinit {if fd>=0 {close(fd)};if pin>=0 {close(pin)}}
+        /// At most one bounded encoded segment/chunk supplied by future producer.
+        func append(_ bytes:Data)throws {
+            guard !finished,fd>=0,!bytes.isEmpty,bytes.count<=chunkSize,total<=UInt64.max/8-UInt64(bytes.count) else {throw Failure.invalid}
+            try lease.budgeted(UInt64(bytes.count)) {
+                let s=try regular(fd);var p=stat()
+                guard UInt64(s.st_size)==total,fstatat(lease.dir,part,&p,AT_SYMLINK_NOFOLLOW)==0,s.st_dev==p.st_dev,s.st_ino==p.st_ino else {throw Failure.changed}
+                try writeAll(fd,bytes)
+            }
+            total+=UInt64(bytes.count)
+        }
+        /// Caller must separately prove native local-media sample/grid validity.
+        /// Infrastructure commit does not open consumer admission or claim that.
+        func commit()throws->Record {
+            guard !finished,fd>=0,total>0 else {throw Failure.invalid}
+            // Even failed finalization is one-shot; recovery reaps private files.
+            finished=true
+            return try lease.publication {
+                guard fsync(fd)==0 else {throw Failure.io}
+                let (bytes,sha)=try digest(fd);guard bytes==total else {throw Failure.changed}
+                let record=try Record(identity:identity,map:map,mediaBytes:bytes,mediaSHA256:sha)
+                let encoded=try JSONEncoder().encode(record);guard encoded.count<=recordLimit else {throw Failure.invalid}
+                var s=stat()
+                if fstatat(lease.dir,identity.commitName,&s,AT_SYMLINK_NOFOLLOW)==0 {
+                    guard (s.st_mode&S_IFMT)==S_IFREG,s.st_nlink==1 else {throw Failure.unsafe}
+                } else {guard errno==ENOENT else {throw Failure.unsafe}}
+                // Reserve record BEFORE moving private media, retain all old bytes.
+                try lease.budgeted(UInt64(encoded.count)) {
+                    let recordfd=openat(lease.dir,tmp,O_WRONLY|O_CREAT|O_EXCL|O_CLOEXEC|O_NOFOLLOW,mode_t(0o600))
+                    guard recordfd>=0 else {throw Failure.io}
+                    defer {close(recordfd)}
+                    try writeAll(recordfd,encoded);guard fsync(recordfd)==0 else {throw Failure.io}
+                }
+                let final=try regular(fd);var privatePath=stat()
+                guard fstatat(lease.dir,part,&privatePath,AT_SYMLINK_NOFOLLOW)==0,privatePath.st_nlink==1,privatePath.st_dev==final.st_dev,privatePath.st_ino==final.st_ino else {throw Failure.changed}
+                guard close(fd)==0 else {fd = -1;throw Failure.io};fd = -1
+                // Publication lock + unique O_EXCL part creation exclude competing
+                // UUID ownership. Retention blocks reaping. Never overwrite media.
+                guard fstatat(lease.dir,media,&s,AT_SYMLINK_NOFOLLOW) != 0,errno==ENOENT,
+                      renameat(lease.dir,part,lease.dir,media)==0,fsync(lease.dir)==0 else {throw Failure.io}
+                guard renameat(lease.dir,tmp,lease.dir,identity.commitName)==0 else {throw Failure.io}
+                // Failure here means visibility/durability uncertain; do not
+                // delete the now possibly committed generation or roll back.
+                guard fsync(lease.dir)==0 else {throw Failure.io}
+                close(pin);pin = -1
+                return record
+            }
+        }
+    }
+    final class Verified {
+        let record:Record
+        private let lease:Lease
+        private let fd:Int32,pin:Int32
+        fileprivate init(lease:Lease,record:Record,fd:Int32,pin:Int32) {self.lease=lease;self.record=record;self.fd=fd;self.pin=pin}
+        deinit {close(fd);close(pin)}
+        /// Bounded sequential read of the exact opened generation. No URL reopen.
+        /// Each reader owns this object exclusively; not a concurrent cursor API.
+        func read(upTo count:Int)throws->Data {
+            guard count>0,count<=chunkSize else {throw Failure.invalid}
+            return try readChunk(fd,count)
+        }
+    }
+    /// Recovery only, never publication/admission. Called at startup, before
+    /// worker spawn/entry, and after the parent has reaped the worker process.
+    /// Entries with no exact local-v2 files take no local locks and stay intact.
+    @discardableResult static func reapAbandoned(root:URL)throws->[String] {
+        guard DepthCacheBudget.plainDirectory(root) else {throw Failure.unsafe}
+        let worker=open(root.appendingPathComponent(".prepare-worker.lock").path,O_RDWR|O_CREAT|O_NONBLOCK|O_CLOEXEC|O_NOFOLLOW,mode_t(0o600))
+        guard worker>=0 else {throw Failure.unsafe}
+        defer {close(worker)}
+        _=try regular(worker)
+        if flock(worker,LOCK_EX|LOCK_NB) != 0 {
+            if errno==EWOULDBLOCK || errno==EAGAIN {return []}
+            throw Failure.io
+        }
+        defer {_=flock(worker,LOCK_UN)}
+        var removed:[String]=[]
+        for entry in try FileManager.default.contentsOfDirectory(at:root,includingPropertiesForKeys:nil) where DepthCacheBudget.owned(entry) {
+            let names=try FileManager.default.contentsOfDirectory(atPath:entry.path)
+            guard names.contains(where:{recognized($0)}) else {continue}
+            let lease=try Lease(root:root,key:entry.lastPathComponent)
+            removed += try lease.reapOrphans().map {entry.lastPathComponent+"/"+$0}
+        }
+        return removed
+    }
+
+}
+// END arch-199c atomic generation infrastructure
+
+// BEGIN arch-199c preparation reuse context
+import Foundation
+
+/// Provenance for the preparation runner's existing-artifact reuse decision.
+/// Not Codable and not a caller-selected format flag. The current runner is a
+/// delivered-legacy producer. A parsed local map is NOT a verified generation.
+struct ShotPrepareReuseContext {
+    private let legacyProducer:Bool
+    private init(legacyProducer:Bool) {self.legacyProducer=legacyProducer}
+    static let deliveredLegacy=ShotPrepareReuseContext(legacyProducer:true)
+
+    /// A future atomic generation verifier must own local admission. Until it
+    /// exists, no local request can mint a reusable preparation context, even
+    /// with a structurally valid map. Never fall back to deliveredLegacy here.
+    static func localV2(map:ShotTimelineMap)throws->Self {
+        try ShotLocalTimelineAdmission.requireAdmission(map,at:.resume)
+        // Opening a generic admission gate alone is insufficient to prove that
+        // this record and the actually opened media form an atomic generation.
+        throw ShotTimelineFailure.migrationRequired
+    }
+    /// Existing-source regeneration is still a legacy encoder path. A future
+    /// admitted local context must never enter it merely because files are absent.
+    func sourceRegenerationRequired(_ legacyChecks:@autoclosure ()->Bool)throws->Bool {
+        guard legacyProducer else {throw ShotTimelineFailure.migrationRequired}
+        return legacyChecks()
+    }
+    /// Must run before checkpoint/spool reads OR mode-mismatch deletion.
+    func requireLegacyCheckpointResume()throws {
+        guard legacyProducer else {throw ShotTimelineFailure.migrationRequired}
+    }
+    func mayReuseExisting(_ legacyChecks:@autoclosure ()->Bool)->Bool {
+        guard legacyProducer else {return false}
+        return legacyChecks()
+    }
+}
+// END arch-199c preparation reuse context
+
+/// A valid empty event carries no media sample and is not a frame.
+/// Positive buffers must contain exactly one frame for this writer contract.
+enum DepthMovieSamplePolicy {
+    static func kind(samples:Int,bytes:Int,valid:Bool,ready:Bool)->Int {
+        guard valid,ready,samples>=0,bytes>=0 else {return -1}
+        if samples==0 {return bytes==0 ? 0 : -1}
+        return samples==1 ? 1 : -1
+    }
+    static func matchesFrame(pts:Double,index:Int,frames:Int,first:Double,last:Double)->Bool {
+        guard pts.isFinite,first.isFinite,last.isFinite,frames>0,index>=0,index<frames else {return false}
+        if frames==1 {return first==last && abs(pts-first)<0.0005}
+        let step=(last-first)/Double(frames-1)
+        return step.isFinite && step>0 && abs(pts-(first+Double(index)*step))<0.0005
+    }
+}
+
+/// Fixture-only, opt-in capture. Never returns a truncated byte sequence.
+struct DepthMovieFixtureCapture {
+    static let byteLimit=65536,segmentLimit=16
+    private(set) var segments:[Data]=[]
+    private(set) var types:[Int]=[]
+    private(set) var bytes=0
+    private(set) var rejected=false
+    mutating func append(_ data:Data,type:Int) {
+        guard !rejected else {return}
+        guard data.count<=Self.byteLimit-bytes,segments.count<Self.segmentLimit,
+              (segments.isEmpty ? type==1 : type==2) else {
+            rejected=true;segments.removeAll();types.removeAll();bytes=0;return
+        }
+        segments.append(data);types.append(type);bytes+=data.count
+    }
+    var complete:[Data]? {
+        guard !rejected,types.first==1,types.count>=2 else {return nil}
+        return segments
+    }
+}
+
+#if canImport(AVFoundation) && canImport(UniformTypeIdentifiers)
+import UniformTypeIdentifiers
+/// No URL is ever handed to AVAssetWriter. Encoded initialization/media
+/// fragments enter the same exact-byte synchronous sink as spool and metadata.
+/// Bounded numeric-only diagnostics. No media paths, content, or extra files.
+/// Bounded read-only ISO BMFF box metadata. Hex is raw big-endian box payload,
+/// not interpreted as seconds. Never scans media bytes or changes their storage.
+private enum DepthMovieBoxDiagnostic {
+    static func fields(_ data: Data) -> String {
+        let limit=min(data.count, 1024*1024)
+        var budget=512, fields:[String]=[]
+        func byte(_ i:Int)->UInt8 {data[data.startIndex+i]}
+        func uint32(_ i:Int)->UInt64 {
+            (0..<4).reduce(UInt64(0)) {($0 << 8) | UInt64(byte(i+$1))}
+        }
+        func scan(_ start:Int,_ end:Int,_ depth:Int) {
+            guard depth<8 else{return}
+            var at=start
+            while at+8<=end && budget>0 {
+                budget-=1
+                var size=uint32(at),header=8
+                let type=String(bytes:(at+4..<at+8).map{byte($0)},encoding:.ascii) ?? "????"
+                if size==1 {
+                    guard at+16<=end else{return};header=16
+                    size=(0..<8).reduce(UInt64(0)) {($0 << 8) | UInt64(byte(at+8+$1))}
+                } else if size==0 {size=UInt64(end-at)}
+                guard size>=UInt64(header),size<=UInt64(end-at) else{return}
+                let stop=at+Int(size),body=at+header
+                if ["mvhd","tkhd","elst","mdhd","tfdt"].contains(type),fields.count<8 {
+                    let hex=(body..<min(stop,body+48)).map{String(format:"%02x",byte($0))}.joined()
+                    fields.append(type+":"+hex)
+                }
+                if ["moov","trak","mdia","edts","moof","traf"].contains(type) {scan(body,stop,depth+1)}
+                at=stop
+            }
+        }
+        scan(0,limit,0)
+        return fields.isEmpty ? "absent-or-outside-bounds" : fields.joined(separator:",")
+    }
+}
+private struct DepthMovieVerifyReport {
+    var stage = "input"
+    var frames = 0, width = 0, height = 0
+    var first = Double.nan, last = Double.nan
+    var hasTrack = false, hasFormat = false, readerCreated = false
+    var canAdd = false, readerStarted = false
+    var actualWidth = 0, actualHeight = 0, codec: UInt32 = 0, profile = -1
+    var trackStart = Double.nan, trackDuration = Double.nan, assetDuration = Double.nan
+    var buffers = 0, samples = 0, head = Double.nan, tail = Double.nan
+    var readerStatus = -1, readerError = 0
+    var segment = "unavailable"
+
+    // Exactly the pre-existing final verifier predicates. No new acceptance rule.
+    static func timelineMatches(completed: Bool, count: Int, frames: Int,
+                                head: Double, first: Double, tail: Double, last: Double) -> Bool {
+        completed && count == frames && abs(head-first) < 0.0005 && abs(tail-last) < 0.0005
+    }
+    func fail() -> Bool {
+        let line = "DEPTH_MOVIE_VERIFY_FAIL stage=\(stage) expected=\(width)x\(height) frames=\(frames) first=\(first) last=\(last) track=\(hasTrack) format=\(hasFormat) size=\(actualWidth)x\(actualHeight) codecFourCC=\(codec) hvccProfile=\(profile) trackStart=\(trackStart) trackDuration=\(trackDuration) assetDuration=\(assetDuration) readerCreated=\(readerCreated) canAdd=\(canAdd) readerStarted=\(readerStarted) readerStatus=\(readerStatus) readerErrorCode=\(readerError) buffers=\(buffers) samples=\(samples) headPTS=\(head) tailPTS=\(tail) countOK=\(samples == frames) headOK=\(abs(head-first)<0.0005) tailOK=\(abs(tail-last)<0.0005) segment=[\(segment)]"
+        print(String(line.prefix(1800))); fflush(stdout)
+        return false
+    }
+}
+final class DepthBoundedMovie:NSObject,AVAssetWriterDelegate {
+    let writer:AVAssetWriter
+    private let url:URL,handle:FileHandle,lock=NSLock()
+    private var error:Error?,closed=false,initialized=false
+    private var initializationSegments = 0, mediaSegments = 0, segmentBytes = 0, segmentReports = 0
+    private var initialBoxFields="unseen",firstMediaBoxFields="unseen"
+    private var fixtureCapture:DepthMovieFixtureCapture?
+    var diagnosticSegments:[Data]? {
+        lock.lock();defer {lock.unlock()};return fixtureCapture?.complete
+    }
+    var verificationSegmentSummary: String {
+        lock.lock(); defer {lock.unlock()}
+        return "init=\(initializationSegments) media=\(mediaSegments) bytes=\(segmentBytes) reports=\(segmentReports) initialized=\(initialized) closed=\(closed) sinkError=\(error != nil) writerStatus=\(writer.status.rawValue) initBoxes=\(initialBoxFields) mediaBoxes=\(firstMediaBoxFields)"
+    }
+    init?(url:URL,start:CMTime,captureFixtureSegments:Bool=false) {
+        do {try DepthCacheIO.write(Data(),to:url,atomic:false)} catch {return nil}
+        guard let handle=try? FileHandle(forWritingTo:url) else {return nil}
+        self.url=url;self.handle=handle
+        fixtureCapture=captureFixtureSegments ? DepthMovieFixtureCapture() : nil
+        writer=AVAssetWriter(contentType:.mpeg4Movie)
+        super.init()
+        // HLS playback starts at its earliest video sample even with nonzero tfdt.
+        // This local asset requires a movie timeline, not HLS-relative playback.
+        // Native global-PTS readback remains mandatory for this CMAF candidate.
+        writer.outputFileTypeProfile = .mpeg4CMAFCompliant
+        writer.preferredOutputSegmentInterval=CMTime(seconds:1,preferredTimescale:60000)
+        writer.initialSegmentStartTime=start
+        writer.delegate=self
+    }
+    func assetWriter(_ writer:AVAssetWriter,didOutputSegmentData data:Data,segmentType:AVAssetSegmentType,segmentReport:AVAssetSegmentReport?) {
+        lock.lock();defer {lock.unlock()}
+        guard !closed,error==nil else {return}
+        if segmentType == .initialization {
+            initializationSegments += 1
+            if initializationSegments==1 {initialBoxFields=DepthMovieBoxDiagnostic.fields(data)}
+        } else if segmentType == .separable {
+            mediaSegments += 1
+            if mediaSegments==1 {firstMediaBoxFields=DepthMovieBoxDiagnostic.fields(data)}
+        }
+        segmentBytes += data.count
+        if segmentReport != nil { segmentReports += 1 }
+        do {
+            if segmentType == .initialization {
+                guard !initialized else {throw DepthCacheBudget.Failure.unsafe};initialized=true
+            } else {
+                guard initialized,segmentType == .separable else {throw DepthCacheBudget.Failure.unsafe}
+            }
+            try DepthCacheIO.append(data,to:handle,url:url)
+            fixtureCapture?.append(data,type:segmentType == .initialization ? 1:2)
+        } catch {self.error=error}
+    }
+    var failed:Bool {lock.lock();defer {lock.unlock()};return error != nil || closed}
+    func finish()->Bool {
+        lock.lock();defer {lock.unlock()}
+        guard !closed else {return false};closed=true
+        do {try handle.synchronize();try handle.close()} catch {self.error=error}
+        return error==nil && initialized && writer.status == .completed
+    }
+    static func sampleKind(_ sample:CMSampleBuffer)->Int {
+        DepthMovieSamplePolicy.kind(samples:CMSampleBufferGetNumSamples(sample),
+            bytes:CMSampleBufferGetTotalSampleSize(sample),
+            valid:CMSampleBufferIsValid(sample),ready:CMSampleBufferDataIsReady(sample))
+    }
+    static func verify(url:URL,size:(w:Int,h:Int),frames:Int,first:Double,last:Double,
+                       segment:String = "unavailable")->Bool {
+        let asset=AVURLAsset(url:url)
+        var report=DepthMovieVerifyReport()
+        report.frames=frames;report.width=size.w;report.height=size.h
+        report.first=first;report.last=last;report.segment=segment
+        guard frames>0,first.isFinite,last.isFinite else {return report.fail()}
+        report.stage="track"
+        guard let track=asset.tracks(withMediaType:.video).first else {return report.fail()}
+        report.hasTrack=true
+        report.trackStart=track.timeRange.start.seconds
+        report.trackDuration=track.timeRange.duration.seconds
+        report.assetDuration=asset.duration.seconds
+        report.stage="format"
+        guard let desc=track.formatDescriptions.first else {return report.fail()}
+        report.hasFormat=true
+        let format=desc as! CMFormatDescription
+        report.codec=CMFormatDescriptionGetMediaSubType(format)
+        let ext=CMFormatDescriptionGetExtensions(format) as? [String:Any] ?? [:]
+        if let atoms=ext[kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms as String] as? [String:Any],
+           let hv=atoms["hvcC"] as? Data,hv.count>1 {report.profile=Int(hv[1] & 0x1F)}
+        let dimensions=CMVideoFormatDescriptionGetDimensions(format)
+        report.actualWidth=Int(dimensions.width);report.actualHeight=Int(dimensions.height)
+        report.stage="dimensions"
+        guard Int(dimensions.width)==size.w,Int(dimensions.height)==size.h else {return report.fail()}
+        report.stage="reader-create"
+        guard let reader=try? AVAssetReader(asset:asset) else {return report.fail()}
+        report.readerCreated=true
+        let output=AVAssetReaderTrackOutput(track:track,outputSettings:nil)
+        report.canAdd=reader.canAdd(output);report.stage="reader-canAdd"
+        guard report.canAdd else {return report.fail()};reader.add(output)
+        report.readerStarted=reader.startReading();report.stage="reader-start"
+        guard report.readerStarted else {
+            report.readerStatus=reader.status.rawValue;report.readerError=(reader.error as NSError?)?.code ?? 0
+            return report.fail()
+        }
+        var count=0,head=Double.nan,tail=Double.nan
+        while let sample=output.copyNextSampleBuffer() {
+            let pts=CMSampleBufferGetPresentationTimeStamp(sample).seconds
+            // Log each buffer before classifying empty events versus frames.
+            if report.buffers<64 {
+                let attachments=CMSampleBufferGetSampleAttachmentsArray(sample,createIfNecessary:false) as? [[String:Any]]
+                let flags=attachments?.first ?? [:]
+                var all=CMCopyDictionaryOfAttachments(allocator:kCFAllocatorDefault,target:sample,attachmentMode:kCMAttachmentMode_ShouldPropagate) as? [String:Any] ?? [:]
+                let local=CMCopyDictionaryOfAttachments(allocator:kCFAllocatorDefault,target:sample,attachmentMode:kCMAttachmentMode_ShouldNotPropagate) as? [String:Any] ?? [:]
+                all.merge(local) {current,_ in current}
+                func flag(_ name:String)->String {
+                    if let value=flags[name] as? Bool {return value ? "1":"0"}
+                    if let value=all[name] as? Bool {return value ? "1":"0"}
+                    return "?"
+                }
+                let line="DMB i=\(report.buffers) n=\(CMSampleBufferGetNumSamples(sample)) p=\(pts) d=\(CMSampleBufferGetDuration(sample).seconds) b=\(CMSampleBufferGetTotalSampleSize(sample)) v=\(CMSampleBufferIsValid(sample) ? 1:0) r=\(CMSampleBufferDataIsReady(sample) ? 1:0) ns=\(flag("NotSync")) dep=\(flag("DependsOnOthers")) empty=\(flag("EmptyMedia")) end=\(flag("EndsPreviousSampleDuration"))"
+                print(String(line.prefix(180)));fflush(stdout)
+            }
+            report.buffers+=1
+            let kind=sampleKind(sample)
+            guard kind>=0 else {report.stage="invalid-sample";reader.cancelReading();return report.fail()}
+            guard report.buffers<=frames+64 else {report.stage="excess-events";reader.cancelReading();return report.fail()}
+            if kind==0 {continue} // Measured empty event, never count it as a frame.
+            guard DepthMovieSamplePolicy.matchesFrame(pts:pts,index:count,frames:frames,first:first,last:last),
+                  count==0 || pts>tail else {
+                report.stage="frame-timeline"
+                report.readerStatus=reader.status.rawValue
+                report.readerError=(reader.error as NSError?)?.code ?? 0
+                reader.cancelReading();return report.fail()
+            }
+            if count==0 {head=pts};tail=pts;count+=1
+            report.samples += CMSampleBufferGetNumSamples(sample)
+            report.head=head;report.tail=tail
+            if count>frames {
+                report.stage="excess-buffers";reader.cancelReading()
+                report.readerStatus=reader.status.rawValue;report.readerError=(reader.error as NSError?)?.code ?? 0
+                return report.fail()
+            }
+        }
+        report.stage="timeline"
+        report.readerStatus=reader.status.rawValue;report.readerError=(reader.error as NSError?)?.code ?? 0
+        let okay=DepthMovieVerifyReport.timelineMatches(completed:reader.status == .completed,
+            count:count,frames:frames,head:head,first:first,tail:tail,last:last)
+        return okay ? true : report.fail()
+    }
+    func cancel() {
+        lock.lock();let wasClosed=closed;closed=true;lock.unlock()
+        if !wasClosed {writer.cancelWriting();try? handle.close()}
+    }
+    deinit {if !closed {try? handle.close()}}
+}
+#endif
+
+// END relocated DepthCacheBudget.swift
+// BEGIN relocated DepthContainerWriter.swift (195y owner-order 3D consolidation, behavior unchanged)
+import Foundation
+#if canImport(Compression)
+import Compression
+#endif
+
+/// 190v s16: lossless per-shot depth container (.dzc), Swift writer. Spec and reference: tools/depth_analysis/depth_container.py. Layout (little-endian):
+/// 64 B header | per frame [u32 payload_len, u32 crc32(plane), LZFSE payload] | n x u64 frame offsets | "GORDZEND". Plane = padded W x H u16 w10 (same quantiser as
+/// prepare_film). Index + trailer are written last, so a file without them is incomplete but scannable (leading crc-valid frames). Any valid LZFSE stream is
+/// accepted by readers, so the encoder need not be byte-identical to the reference. The layout code is pure Foundation and tested on Linux against the
+/// Python reference; the LZFSE calls (Compression framework) are Mac-only and parse-checked.
+enum DZC {
+    static let magic = Array("GORDZ001".utf8), trailer = Array("GORDZEND".utf8), headerSize = 64
+    struct Meta: Equatable {
+        var shot: UInt32, fpsNum: UInt32, fpsDen: UInt32, startFrame: UInt64
+        var width: UInt32, height: UInt32, depthWidth: UInt32, depthHeight: UInt32, nFrames: UInt32
+        var planeBytes: UInt32 {
+            let (pixels,p)=UInt64(width).multipliedReportingOverflow(by:UInt64(height))
+            let (bytes,b)=pixels.multipliedReportingOverflow(by:2)
+            guard !p,!b,bytes>0,bytes<=UInt64(UInt32.max) else {return 0}
+            return UInt32(bytes)
+        }
+        var valid:Bool {
+            let (end,overflow)=startFrame.addingReportingOverflow(UInt64(nFrames))
+            return width>0 && height>0 && depthWidth>0 && depthHeight>0 &&
+                depthWidth<=width && depthHeight<=height && planeBytes>0 &&
+                fpsNum>0 && fpsDen>0 && nFrames>0 && !overflow && end<=UInt64(Int.max)
+        }
+    }
+    static func fpsPair(_ fps: Double) -> (UInt32, UInt32) { fps == fps.rounded() ? (UInt32(fps), 1) : (UInt32((fps * 1000).rounded()), 1000) }
+
+    private static let crcTable: [UInt32] = (0..<256).map { n in var c = UInt32(n); for _ in 0..<8 { c = (c & 1) != 0 ? 0xEDB88320 ^ (c >> 1) : c >> 1 }; return c }
+    static func crc32(_ d: [UInt8]) -> UInt32 { var c: UInt32 = 0xFFFFFFFF; for b in d { c = crcTable[Int((c ^ UInt32(b)) & 0xFF)] ^ (c >> 8) }; return c ^ 0xFFFFFFFF }
+
+    /// depth_container.quantise: z metres [h*w] -> edge-padded even plane of w10 (v = 256/z, w10 = clip(rint(v/1024*1023), 0, 1023); z <= 1e-3 or non-finite -> 0).
+    static func quantise(z: [Float], h: Int, w: Int) -> (plane: [UInt16], width: Int, height: Int) {
+        let wp = w + (w & 1), hp = h + (h & 1); var out = [UInt16](repeating: 0, count: wp * hp)
+        for y in 0..<h { for x in 0..<w { out[y * wp + x] = DepthQuant.w10(zMetres: z[y * w + x]) } }
+        if wp != w { for y in 0..<h { out[y * wp + w] = out[y * wp + w - 1] } }
+        if hp != h { for x in 0..<wp { out[h * wp + x] = out[(h - 1) * wp + x] } }
+        return (out, wp, hp)
+    }
+    static func le(_ v: UInt64, _ n: Int) -> [UInt8] {
+        // 195y native#30 sweep: same one-line bitop closure shape as the unpack timeout; explicit loop, identical results.
+        var out: [UInt8] = []
+        out.reserveCapacity(n)
+        for i in 0..<n {
+            let shift: UInt64 = 8 * UInt64(i)
+            out.append(UInt8((v >> shift) & 0xFF))
+        }
+        return out
+    }
+    static func rd(_ b: [UInt8], _ o: Int, _ n: Int) -> UInt64 {
+        // 195y native#30 sweep: same one-line bitop closure shape as the unpack timeout; explicit loop, identical results.
+        var acc: UInt64 = 0
+        for i in 0..<n {
+            let shift: UInt64 = 8 * UInt64(i)
+            acc = acc | (UInt64(b[o + i]) << shift)
+        }
+        return acc
+    }
+
+    static func header(_ m: Meta) -> [UInt8] {
+        var h = magic + le(1, 2) + le(1, 2) + le(0, 4) + le(UInt64(m.shot), 4) + le(UInt64(m.fpsNum), 4) + le(UInt64(m.fpsDen), 4) + le(m.startFrame, 8)
+        h += le(UInt64(m.width), 4) + le(UInt64(m.height), 4) + le(UInt64(m.depthWidth), 4) + le(UInt64(m.depthHeight), 4) + le(UInt64(m.nFrames), 4) + le(UInt64(m.planeBytes), 4)
+        return h + [UInt8](repeating: 0, count: headerSize - h.count)
+    }
+    static func parseHeader(_ b: [UInt8]) -> Meta? {
+        guard b.count >= headerSize, Array(b[0..<8]) == magic, rd(b, 8, 2) == 1, rd(b, 10, 2) == 1 else { return nil }
+        let m=Meta(shot: UInt32(rd(b, 16, 4)), fpsNum: UInt32(rd(b, 20, 4)), fpsDen: UInt32(rd(b, 24, 4)), startFrame: rd(b, 28, 8), width: UInt32(rd(b, 36, 4)),
+                    height: UInt32(rd(b, 40, 4)), depthWidth: UInt32(rd(b, 44, 4)), depthHeight: UInt32(rd(b, 48, 4)), nFrames: UInt32(rd(b, 52, 4)))
+        guard m.valid,rd(b,56,4)==UInt64(m.planeBytes) else {return nil}
+        return m
+    }
+    static func record(planeLE: [UInt8], compressed: [UInt8]) -> [UInt8] { le(UInt64(compressed.count), 4) + le(UInt64(crc32(planeLE)), 4) + compressed }
+    static func tail(offsets: [UInt64]) -> [UInt8] { offsets.flatMap { le($0, 8) } + trailer }
+    static func planeBytesLE(_ p: [UInt16]) -> [UInt8] { p.flatMap { [UInt8($0 & 0xFF), UInt8($0 >> 8)] } }
+
+    /// Leading frames whose record parses, decompresses to plane_bytes and matches its crc; also returns the byte offset after the last valid record.
+    static func scanValid(_ f: [UInt8], decompress: ([UInt8], Int) -> [UInt8]?) -> (frames: Int, end: Int, meta: Meta)? {
+        guard let m = parseHeader(f) else { return nil }
+        var o = headerSize, n = 0
+        while o<=f.count, f.count-o>=8 {
+            let len = Int(rd(f, o, 4)), crc = UInt32(rd(f, o + 4, 4))
+            guard len<=f.count-o-8, n < Int(m.nFrames), let raw = decompress(Array(f[(o + 8)..<(o + 8 + len)]), Int(m.planeBytes)), raw.count == Int(m.planeBytes), crc32(raw) == crc else { break }
+            o += 8 + len; n += 1
+        }
+        return (n, o, m)
+    }
+}
+
+/// Appends frames to a .dzc and finishes it (index + trailer). `resume` keeps the leading valid frames of an interrupted file.
+final class DZCWriter {
+    typealias Codec = (compress: ([UInt8]) -> [UInt8]?, decompress: ([UInt8], Int) -> [UInt8]?)
+    private let url: URL, meta: DZC.Meta, codec: Codec
+    private var handle: FileHandle?, offsets: [UInt64] = []
+    private(set) var framesWritten = 0
+
+    /// Starts a new file (replaces any existing one) or, with resume, truncates an existing one after its valid prefix. nil on I/O failure or a header mismatch.
+    init?(url: URL, meta: DZC.Meta, resume: Bool = false, codec: Codec = DZCWriter.lzfse) {
+        guard meta.valid else {return nil}
+        self.url = url; self.meta = meta; self.codec = codec
+        let fm = FileManager.default
+        if resume, let d = try? Data(contentsOf: url), let s = DZC.scanValid([UInt8](d), decompress: codec.decompress), s.meta == meta {
+            guard let h = try? FileHandle(forUpdating: url) else { return nil }
+            do { try h.truncate(atOffset: UInt64(s.end)); try h.seekToEnd() } catch { return nil }
+            handle = h; framesWritten = s.frames
+            var o = DZC.headerSize
+            for _ in 0..<s.frames { offsets.append(UInt64(o)); o += 8 + Int(DZC.rd([UInt8](d), o, 4)) }
+        } else {
+            guard (try? DepthCacheIO.write(Data(DZC.header(meta)),to:url,atomic:false)) != nil, let h = try? FileHandle(forWritingTo: url) else { return nil }
+            do { try h.seekToEnd() } catch { return nil }
+            handle = h
+        }
+    }
+    /// One frame of metres (depthHeight x depthWidth). False on codec/I/O failure or too many frames.
+    func append(zMetres z: [Float]) -> Bool {
+        let dh = Int(meta.depthHeight), dw = Int(meta.depthWidth)
+        guard let h = handle, z.count == dh * dw, framesWritten < Int(meta.nFrames) else { return false }
+        let q = DZC.quantise(z: z, h: dh, w: dw)
+        guard q.width == Int(meta.width), q.height == Int(meta.height) else { return false }
+        let raw = DZC.planeBytesLE(q.plane)
+        guard let comp = codec.compress(raw), let off = try? h.offset() else { return false }
+        do { try DepthCacheIO.append(Data(DZC.record(planeLE: raw, compressed: comp)),to:h,url:url) } catch { ThreeDDegradeProbe.noteWriteError(error); return false }
+        offsets.append(off); framesWritten += 1; return true
+    }
+    func synchronize() { try? handle?.synchronize() }
+    /// Writes index + trailer. Only valid once every frame is written; the file is incomplete (but scannable) until this returns true.
+    func finish() -> Bool {
+        guard let h = handle, framesWritten == Int(meta.nFrames) else { return false }
+        do { try DepthCacheIO.append(Data(DZC.tail(offsets: offsets)),to:h,url:url); try h.close() } catch { ThreeDDegradeProbe.noteWriteError(error); return false }
+        handle = nil; return true
+    }
+
+    static let lzfse: Codec = (
+        { raw in
+            #if canImport(Compression)
+            var dst = [UInt8](repeating: 0, count: raw.count + raw.count / 8 + 4096)
+            let n = compression_encode_buffer(&dst, dst.count, raw, raw.count, nil, COMPRESSION_LZFSE)
+            return n > 0 ? Array(dst[0..<n]) : nil
+            #else
+            return nil
+            #endif
+        },
+        { comp, expected in
+            #if canImport(Compression)
+            var dst = [UInt8](repeating: 0, count: expected)
+            let n = compression_decode_buffer(&dst, dst.count, comp, comp.count, nil, COMPRESSION_LZFSE)
+            return n == expected ? dst : nil
+            #else
+            return nil
+            #endif
+        })
+}
+
+// BEGIN relocated DepthContainerReader.swift (195y G2, behavior unchanged)
+/// 190v s16 read side: opens a finished depth_shot_NNNNN.dzc (header, index, "GORDZEND" trailer) and decodes frames. Pure Foundation; the codec is
+/// injected (default: the Compression-framework LZFSE of DZCWriter, Mac only). A file without its index and trailer is incomplete and never opens.
+/// Frame i has pts (startFrame + i) / (fpsNum / fpsDen) seconds. Planes are the padded width x height uint16 w10 values (no shift, no chroma).
+/// Not compiled or run on a Mac.
+final class DZCFile {
+    let meta: DZC.Meta
+    private let data: Data, offsets: [Int]
+    var count: Int { offsets.count }
+    var fps: Double { Double(meta.fpsNum) / Double(max(1, meta.fpsDen)) }
+
+    /// True when the file is a complete container: header parses, size agrees with n_frames and the last 8 bytes are the trailer.
+    static func isComplete(_ url: URL) -> Bool { DZCFile.layout(url) != nil }
+
+    private static func layout(_ url: URL) -> (meta: DZC.Meta, data: Data, offsets: [Int])? {
+        guard let d = try? Data(contentsOf: url, options: .mappedIfSafe), d.count >= DZC.headerSize + 8,
+              let m = DZC.parseHeader([UInt8](d.prefix(DZC.headerSize))), m.nFrames > 0 else { return nil }
+        let n=Int(m.nFrames)
+        guard n<=(d.count-DZC.headerSize-8)/8 else {return nil}
+        let tail=n*8+8,end=d.count-tail
+        guard Array(d.suffix(8))==DZC.trailer else {return nil}
+        let idx=[UInt8](d[end..<(d.count-8)])
+        var offs:[Int]=[]
+        for i in 0..<n {
+            let wire=DZC.rd(idx,i*8,8)
+            guard wire<=UInt64(Int.max) else {return nil}
+            let o=Int(wire)
+            guard o>=DZC.headerSize,o<=end,end-o>=8 else {return nil}
+            let head=[UInt8](d[o..<(o+8)]),len=DZC.rd(head,0,4)
+            guard len<=UInt64(end-o-8) else {return nil}
+            if let previous=offs.last {
+                let plen=Int(DZC.rd([UInt8](d[previous..<(previous+8)]),0,4))
+                guard o==previous+8+plen else {return nil}
+            } else {guard o==DZC.headerSize else {return nil}}
+            offs.append(o)
+        }
+        if let last=offs.last {
+            let len=Int(DZC.rd([UInt8](d[last..<(last+8)]),0,4))
+            guard last+8+len==end else {return nil}
+        }
+        return (m, d, offs)
+    }
+
+    init?(url: URL) {
+        guard let l = DZCFile.layout(url) else { return nil }
+        meta = l.meta; data = l.data; offsets = l.offsets
+    }
+
+    func pts(_ i: Int) -> Double {
+        let clamped=min(max(i,0),count-1)
+        return Double(Int(meta.startFrame)+clamped)/fps
+    }
+
+    /// Index of the first frame at/after `pts` (clamped to the last frame).
+    func index(atOrAfter pts: Double) -> Int {
+        if pts.isNaN {return 0}
+        let absolute=(pts*fps).rounded(.up)
+        let first=Double(meta.startFrame),last=Double(meta.startFrame+UInt64(count-1))
+        if absolute<=first {return 0}
+        if absolute>=last {return count-1}
+        let relative=absolute-first
+        guard relative.isFinite,relative>=0,relative<Double(Int.max) else {return 0}
+        return min(Int(relative),count-1)
+    }
+
+    /// The decoded plane (width x height little-endian u16 as [UInt16]); nil when the record does not decompress or fails its crc.
+    func plane(_ i: Int, decompress: ([UInt8], Int) -> [UInt8]? = DZCWriter.lzfse.decompress) -> [UInt16]? {
+        guard offsets.indices.contains(i) else { return nil }
+        let o = offsets[i], head = [UInt8](data[o..<(o + 8)])
+        let len = Int(DZC.rd(head, 0, 4)), crc = UInt32(DZC.rd(head, 4, 4))
+        let end=data.count-count*8-8
+        guard o<=end,end-o>=8,len<=end-o-8,let raw = decompress([UInt8](data[(o + 8)..<(o + 8 + len)]), Int(meta.planeBytes)),
+              raw.count == Int(meta.planeBytes), DZC.crc32(raw) == crc else { return nil }
+        return (0..<(raw.count / 2)).map { (index: Int) -> UInt16 in
+            let low: UInt16 = UInt16(raw[index * 2])
+            let high: UInt16 = UInt16(raw[index * 2 + 1]) << 8
+            return low | high
+        }
+    }
+}
+// END relocated DepthContainerReader.swift
+
+// BEGIN relocated DepthShotIndex.swift (195y G2, behavior unchanged)
+/// Swift port of tools/depth_analysis/prepare_film.find_shot_at_pts (CONTRACT-190v section 7) plus the per-shot horizontal FoV from
+/// fov_track.json. Reads <entry>/cuts.json and <entry>/fov_track.json once; a shot is "prepared" iff its complete depth_shot_NNNNN.dzc (CONTRACT s16) exists. 199h D2 (DISK-LAW): no source_shot proxy gate.
+struct DepthShotIndex {
+    /// A local-v2 prepared hit requires durable verified generation admission,
+    /// not only the legacy source/depth existence predicates below.
+    enum Timeline {case legacyFilmPTS, localV2}
+    struct Hit: Equatable { let shot: Int; let depth: URL; let frame: Int; let frameInShot: Int; let shotStartPTS: Double; let shotEndPTS: Double }
+    let entry: URL, fps: Double, firstPTS: Double, shots: [[Int]], tracks: [(start: Double, end: Double, hfovDeg: Double)]
+
+    init?(entry: URL) {
+        func json(_ n: String) -> [String: Any]? {
+            (try? Data(contentsOf: entry.appendingPathComponent(n))).flatMap { try? JSONSerialization.jsonObject(with: $0) as? [String: Any] }
+        }
+        guard let c = json("cuts.json"), let s = c["shots"] as? [[Int]], let f = json("fov_track.json"),
+              let fps = (f["fps"] as? NSNumber)?.doubleValue, fps > 0 else { return nil }
+        self.entry = entry; self.fps = fps; self.firstPTS = (f["first_pts"] as? NSNumber)?.doubleValue ?? 0; self.shots = s   // pre-D2 caches carry no first_pts: 0, exact for zero-first-PTS films; a nonzero-first-PTS cache needs a re-prepare
+        // fov_track shots carry their own [start_pts, end_pts]; match by PTS, never by position
+        self.tracks = ((f["shots"] as? [[String: Any]]) ?? []).compactMap { t -> (start: Double, end: Double, hfovDeg: Double)? in
+            guard let a = (t["start_pts"] as? NSNumber)?.doubleValue, let b = (t["end_pts"] as? NSNumber)?.doubleValue,
+                  let h = (t["hfov_deg"] as? NSNumber)?.doubleValue else { return nil }
+            return (a, b, h)
+        }
+    }
+
+    /// Frame range [first,last] of the shot holding `pts`, prepared or not (the menu gates its entries on it).
+    func shotFrames(pts: Double) -> (Int, Int)? {
+        let f = Int((pts * fps).rounded(.toNearestOrEven))
+        return shots.first(where: { $0.count == 2 && $0[0] <= f && f <= $0[1] }).map { ($0[0], $0[1]) }
+    }
+
+    /// nil when no shot covers the PTS or the shot's depth container (complete: index + trailer) is not written yet. 199h D2: no source proxy gate.
+    func find(pts: Double, timeline: Timeline = .legacyFilmPTS) -> Hit? {
+        if case .localV2 = timeline {return nil}
+        let f = Int((pts * fps).rounded(.toNearestOrEven))     // Python round(): half to even
+        for (i, r) in shots.enumerated() where r.count == 2 && r[0] <= f && f <= r[1] {
+            let dz = entry.appendingPathComponent(String(format: "depth_shot_%05d.dzc", i))
+            guard DZCFile.isComplete(dz) else { return nil }   // 199h D2 (DISK-LAW): depth-only readiness; the renderer reads the original film by index
+            return Hit(shot: i, depth: dz, frame: f, frameInShot: f - r[0], shotStartPTS: Double(r[0]) / fps, shotEndPTS: Double(r[1]) / fps)
+        }
+        return nil
+    }
+
+    /// Horizontal FoV in radians for Stereo3DRenderer.render(thetaH:), constant per shot (the track's start_pts..end_pts shot holding `pts`).
+    /// nil when the track has no usable value there.
+    func thetaH(pts: Double) -> Double? {
+        guard let t = tracks.first(where: { $0.start - 1e-6 <= pts && pts <= $0.end + 1.0 / fps }), t.hfovDeg > 1, t.hfovDeg < 179 else { return nil }
+        return t.hfovDeg * .pi / 180
+    }
+}
+// END relocated DepthShotIndex.swift
+
+// BEGIN relocated DepthFrameReader.swift (195y G2, behavior unchanged)
+#if canImport(Metal)
+import Metal
+
+/// CONTRACT-190v s16 depth feed: reads depth_shot_NNNNN.dzc (lossless LZFSE w10 planes, DZCFile) and hands each frame to Metal as an r16Unorm texture holding
+/// the raw w10 value (0...1023), so decodeDepth runs with shift 0 (no HEVC range or alignment question remains). Frames are keyed by PTS (film seconds).
+/// Not run on a Mac: the LZFSE decode and texture upload are unmeasured.
+final class DepthFrameReader {
+    struct Frame { let pts: Double; let luma: MTLTexture; let width: Int; let height: Int; let rangeOK: Bool }
+    private let file: DZCFile, device: MTLDevice
+    private var i = 0, stopped = false
+
+    /// nil when the file is missing, incomplete or not a container (caller stays on the 2D path).
+    init?(url: URL, device: MTLDevice) {
+        guard let f = DZCFile(url: url) else { return nil }
+        file = f; self.device = device
+    }
+
+    /// The next frame (PTS ascending), or nil at the end, on a corrupt record or after cancel().
+    func next() -> Frame? {
+        guard !stopped, i < file.count, let plane = file.plane(i) else { return nil }
+        let w = Int(file.meta.width), h = Int(file.meta.height)
+        let d = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .r16Unorm, width: w, height: h, mipmapped: false)
+        d.usage = .shaderRead; d.storageMode = .shared
+        guard let t = device.makeTexture(descriptor: d) else { return nil }
+        plane.withUnsafeBytes { t.replace(region: MTLRegionMake2D(0, 0, w, h), mipmapLevel: 0, withBytes: $0.baseAddress!, bytesPerRow: w * 2) }
+        defer { i += 1 }
+        return Frame(pts: file.pts(i), luma: t, width: w, height: h, rangeOK: true)
+    }
+
+    /// Decodes one frame to metres through Stereo3DRenderer.decodeDepth (shift 0: the texture already holds w10).
+    func decode(_ f: Frame, into metric: MTLTexture, renderer: Stereo3DRenderer) -> Bool {
+        renderer.decodeDepth(luma: f.luma, metric: metric, shift: 0)
+    }
+
+    func cancel() { stopped = true }
+}
+#endif
+// END relocated DepthFrameReader.swift
+// END relocated DepthContainerWriter.swift
+// BEGIN relocated DepthGuards.swift (195y owner-order 3D consolidation, behavior unchanged)
+import Foundation
+
+/// 190v s35 port of tools/depth_analysis/depth_guards.py (sky far clamp, fade flatten, static-overlay flatten, texture-weighted align fit) plus the jitter_rel metric of
+/// failure_probes.metrics. Pure Foundation: compiled and run on Linux against the Python reference (Tests/DepthGuards). Every guard is a no-op outside its failure mode.
+/// Deviations from the reference, all on purpose and recorded in the commit note:
+///  - local_std mirrors scipy's uniform_filter (mode 'reflect'), the reference's primary path; the numpy fallback (clipped windows, float32 cumsums) is not ported;
+///  - the overlay statistics run on the depth-resolution mean-RGB luma, not the full frame (the thresholds are 0-255 units; a downscale smooths motion a little).
+enum DepthGuards {
+    static var weightedFit = true            // s35: texture-weighted align fit (A-D probe harness measured it on residuals only; see commit note)
+    static var skyClamp = true, overlayFlatten = true
+
+    // MARK: helpers
+    /// Local std over a win x win box with reflected borders (scipy.ndimage.uniform_filter semantics: x*x filtered separately, var = max(E[x^2] - E[x]^2, 0)).
+    static func localStd(_ x: [Float], w: Int, h: Int, win: Int = 5) -> [Float] {
+        func box(_ src: [Double]) -> [Double] {
+            let r = win / 2
+            func refl(_ i: Int, _ n: Int) -> Int { var j = i; if j < 0 { j = -j - 1 }; if j >= n { j = 2 * n - 1 - j }; return min(max(j, 0), n - 1) }
+            var tmp = [Double](repeating: 0, count: w * h), out = tmp
+            for y in 0..<h { for xx in 0..<w { var s = 0.0; for d in -r...r { s += src[y * w + refl(xx + d, w)] }; tmp[y * w + xx] = s / Double(win) } }
+            for y in 0..<h { for xx in 0..<w { var s = 0.0; for d in -r...r { s += tmp[refl(y + d, h) * w + xx] }; out[y * w + xx] = s / Double(win) } }
+            return out
+        }
+        let v = x.map { Double($0) }
+        let m = box(v), m2 = box(v.map { $0 * $0 })
+        return (0..<(w * h)).map { (index: Int) -> Float in
+            let variance: Double = m2[index] - m[index] * m[index]
+            let deviation: Double = max(variance, 0).squareRoot()
+            return Float(deviation)
+        }
+    }
+    /// numpy.percentile, linear interpolation.
+    static func percentile(_ v: [Double], _ q: Double) -> Double {
+        let s = v.sorted(); guard !s.isEmpty else { return .nan }
+        let pos = q / 100.0 * Double(s.count - 1), lo = Int(pos.rounded(.down)), hi = min(lo + 1, s.count - 1)
+        return s[lo] + (s[hi] - s[lo]) * (pos - Double(lo))
+    }
+    /// Mean-RGB luma of an RGBA8 buffer (the overlay / fade / texture input).
+    static func meanLuma(rgba: [UInt8]) -> [Float] {
+        var o = [Float](); o.reserveCapacity(rgba.count / 4)
+        var i = 0; while i + 3 < rgba.count { o.append(Float(Int(rgba[i]) + Int(rgba[i + 1]) + Int(rgba[i + 2])) / 3.0); i += 4 }
+        return o
+    }
+    /// MoGe depth (mw x mh, +inf masked) -> finite mask on the depth grid. Same rule as the reference harness (cv2 bilinear resize, then isfinite): a pixel is finite only when every
+    /// bilinear neighbour (borders replicated) is finite, because inf * 0 is nan.
+    static func finiteMask(_ src: [Float], mw: Int, mh: Int, dw: Int, dh: Int) -> [Bool] {
+        var out = [Bool](repeating: true, count: dw * dh)
+        for y in 0..<dh {
+            let fy = min(max((Double(y) + 0.5) / Double(dh) * Double(mh) - 0.5, 0), Double(mh - 1)), y0 = Int(fy), y1 = min(y0 + 1, mh - 1)
+            for x in 0..<dw {
+                let fx = min(max((Double(x) + 0.5) / Double(dw) * Double(mw) - 0.5, 0), Double(mw - 1)), x0 = Int(fx), x1 = min(x0 + 1, mw - 1)
+                out[y * dw + x] = src[y0 * mw + x0].isFinite && src[y0 * mw + x1].isFinite && src[y1 * mw + x0].isFinite && src[y1 * mw + x1].isFinite
+            }
+        }
+        return out
+    }
+    static func pack(_ m: [Bool]) -> [UInt32] {
+        var o = [UInt32](repeating: 0, count: (m.count + 31) / 32); for i in 0..<m.count where m[i] { o[i >> 5] |= 1 << UInt32(i & 31) }; return o
+    }
+    static func unpack(_ b: [UInt32], count: Int) -> [Bool] {
+        // 195y native#30: the one-line map expression blew the type-checker time limit in the merged file; explicit loop, identical results.
+        var out: [Bool] = []
+        out.reserveCapacity(count)
+        for i in 0..<count {
+            let word: Int = i >> 5
+            let bit: UInt32 = UInt32(i & 31)
+            let present: Bool = word < b.count && ((b[word] >> bit) & 1) == 1
+            out.append(present)
+        }
+        return out
+    }
+
+    // MARK: 1. sky
+    /// Sky candidates keyed on the MoGe invalid mask: not finite in MoGe, top `topFrac` rows, local luma std <= texThresh.
+    static func skyMaskMoGe(luma: [Float], finite: [Bool], w: Int, h: Int, topFrac: Double = 0.5, texThresh: Float = 3.0) -> [Bool] {
+        let tex = localStd(luma, w: w, h: h), rows = Int(Double(h) * topFrac)
+        return (0..<(w * h)).map { !finite[$0] && ($0 / w) < rows && tex[$0] <= texThresh }
+    }
+    /// Heuristic candidates (no MoGe mask): valid, top rows, inv <= far * 1.5, low texture.
+    static func skyMaskHeuristic(inv: [Float], luma: [Float], w: Int, h: Int, topFrac: Double = 0.5, texThresh: Float = 3.0, farQ: Double = 5.0) -> [Bool] {
+        let valid = inv.map { $0.isFinite && $0 > 0 }, vals = (0..<inv.count).filter { valid[$0] }.map { Double(inv[$0]) }
+        guard vals.count >= 16 else { return [Bool](repeating: false, count: inv.count) }
+        let far = percentile(vals, farQ), tex = localStd(luma, w: w, h: h), rows = Int(Double(h) * topFrac)
+        // 195y native#30 sweep: explicit loop, identical results.
+        var out: [Bool] = []
+        out.reserveCapacity(inv.count)
+        for i in 0..<inv.count {
+            let ok: Bool = valid[i] && (i / w) < rows && Double(inv[i]) <= far * 1.5 && tex[i] <= texThresh
+            out.append(ok)
+        }
+        return out
+    }
+    /// Clamp the masked pixels to the far plane (farQ percentile of valid inverse depth). No-op under 16 valid pixels or under 64 masked pixels.
+    static func clampSky(inv: [Float], mask: [Bool], farQ: Double = 5.0) -> [Float] {
+        let vals = inv.filter { $0.isFinite && $0 > 0 }.map { Double($0) }
+        guard vals.count >= 16, mask.reduce(0, { $0 + ($1 ? 1 : 0) }) >= 64 else { return inv }
+        let far = Float(percentile(vals, farQ))
+        // 195y native#30 sweep: explicit loop, identical results.
+        var out: [Float] = []
+        out.reserveCapacity(inv.count)
+        for i in 0..<inv.count {
+            let v: Float = mask[i] ? far : inv[i]
+            out.append(v)
+        }
+        return out
+    }
+    static func skyFarClamp(inv: [Float], luma: [Float], w: Int, h: Int, topFrac: Double = 0.5, farQ: Double = 5.0, mogeFinite: [Bool]? = nil) -> [Float] {
+        if inv.filter({ $0.isFinite && $0 > 0 }).count < 16 { return inv }
+        let m = mogeFinite.map { skyMaskMoGe(luma: luma, finite: $0, w: w, h: h, topFrac: topFrac) } ?? skyMaskHeuristic(inv: inv, luma: luma, w: w, h: h, topFrac: topFrac, farQ: farQ)
+        return clampSky(inv: inv, mask: m, farQ: farQ)
+    }
+    /// The same clamp applied to a metric depth frame (inv = 1/z for z > 1e-3; masked pixels become 1/far). Untouched pixels are byte-identical.
+    static func clampSkyMetres(z: [Float], mask: [Bool], farQ: Double = 5.0) -> [Float] {
+        var vals = [Double](); vals.reserveCapacity(z.count)
+        for v in z where v.isFinite && v > 1e-3 { vals.append(1.0 / Double(v)) }
+        guard vals.count >= 16, mask.reduce(0, { $0 + ($1 ? 1 : 0) }) >= 64 else { return z }
+        let zFar = Float(1.0 / percentile(vals, farQ))
+        // 195y native#30 sweep: explicit loop, identical results.
+        var out: [Float] = []
+        out.reserveCapacity(z.count)
+        for i in 0..<z.count {
+            let v: Float = mask[i] ? zFar : z[i]
+            out.append(v)
+        }
+        return out
+    }
+
+    // MARK: 2. fade
+    static func fadeAmounts(meanLuma m: [Double]) -> [Double] {
+        var peak: Double = 1e-6
+        return m.map { (value: Double) -> Double in
+            peak = max(peak, max(value, 1e-6))
+            let amount: Double = 1.0 - value / peak
+            if amount >= 0.5 { return amount }
+            return 0.0
+        }
+    }
+    static func fadeFlatten(inv: [[Float]], meanLuma: [Double]) -> [[Float]] {
+        let a = fadeAmounts(meanLuma: meanLuma)
+        guard a.contains(where: { $0 > 0 }), let n = inv.first?.count else { return inv }
+        var med = [Float](repeating: 0, count: n); var col = [Float](repeating: 0, count: inv.count)
+        for p in 0..<n { for t in 0..<inv.count { col[t] = inv[t][p] }; col.sort(); let c = col.count
+            med[p] = c % 2 == 1 ? col[c / 2] : Float((Double(col[c / 2 - 1]) + Double(col[c / 2])) / 2.0) }
+        var result: [[Float]] = []
+        result.reserveCapacity(inv.count)
+        for (t, frame) in inv.enumerated() {
+            let amount: Double = a[t]
+            if amount > 0 {
+                var flattened: [Float] = []
+                flattened.reserveCapacity(n)
+                for pixel in 0..<n {
+                    let sourceTerm: Double = (1 - amount) * Double(frame[pixel])
+                    let medianTerm: Double = amount * Double(med[pixel])
+                    flattened.append(Float(sourceTerm + medianTerm))
+                }
+                result.append(flattened)
+            } else {
+                result.append(frame)
+            }
+        }
+        return result
+    }
+
+    // MARK: 3. static overlay
+    /// Streaming per-pixel luma statistics over a shot (Welford, population std) plus the mean frame-to-frame change.
+    struct OverlayAccumulator {
+        let w: Int, h: Int
+        private(set) var n = 0
+        private var mean: [Double], m2: [Double], prev: [Float] = [], motion = 0.0
+        init(w: Int, h: Int) { self.w = w; self.h = h; mean = [Double](repeating: 0, count: w * h); m2 = mean }
+        var frames: Int { n }
+        mutating func add(luma: [Float]) {
+            guard luma.count == w * h else { return }
+            n += 1; let nn = Double(n)
+            for i in 0..<luma.count { let x = Double(luma[i]), d = x - mean[i]; mean[i] += d / nn; m2[i] += d * (x - mean[i]) }
+            if !prev.isEmpty { var s = 0.0; for i in 0..<luma.count { s += abs(Double(luma[i]) - Double(prev[i])) }; motion += s / Double(luma.count) }
+            prev = luma
+        }
+        /// Pixels static in screen space while the scene moves (reference static_overlay_mask). nil = no overlay (static scene, too few frames, or coverage outside [minFrac, maxFrac]).
+        func mask(sceneMotionThresh: Double = 4.0, staticThresh: Double = 2.0, minFrac: Double = 0.001, maxFrac: Double = 0.35, minFrames: Int = 2) -> [Bool]? {
+            guard n >= max(2, minFrames), motion / Double(n - 1) >= sceneMotionThresh else { return nil }
+            let m: [Bool] = (0..<(w * h)).map { (index: Int) -> Bool in
+                let variance: Double = m2[index] / Double(n)
+                return variance.squareRoot() < staticThresh
+            }
+            let frac = Double(m.reduce(0) { $0 + ($1 ? 1 : 0) }) / Double(m.count)
+            return (frac < minFrac || frac > maxFrac) ? nil : m
+        }
+    }
+    static func flattenOverlay(z: [Float], mask: [Bool], zScreen: Float) -> [Float] {
+        // 195y native#30 sweep: explicit loop, identical results.
+        var out: [Float] = []
+        out.reserveCapacity(z.count)
+        for i in 0..<z.count {
+            let v: Float = mask[i] ? zScreen : z[i]
+            out.append(v)
+        }
+        return out
+    }
+
+    // MARK: 4. weighted align fit
+    /// Whole-frame low texture (night/noise) starves the weighted fit, so the
+    /// weights blend toward uniform by the frame's mean texture (s45; mirror of
+    /// tools/depth_analysis/depth_guards.py texture_weights).
+    static func textureWeights(luma: [Float], w: Int, h: Int, lo: Float = 1.0, hi: Float = 8.0) -> [Float] {
+        let tex = localStd(luma, w: w, h: h)
+        let a = Float(min(1.0, tex.reduce(0.0) { $0 + Double($1) } / Double(tex.count) / Double(hi)))
+        return tex.map { 1.0 + a * (min(max($0 / hi, lo / hi), 1.0) - 1.0) }
+    }
+
+    // MARK: jitter_rel (failure_probes.metrics)
+    /// median over consecutive frame pairs of median |inv_t - inv_(t-1)| over pixels valid in both (> 16 of them), divided by the median valid inverse depth of the whole sequence.
+    /// Frames are metric depth; inv = 1/z for finite z > 1e-3 (the ratio does not depend on the D_SCALE the reference multiplies in).
+    struct JitterAccumulator {
+        private var prev: [Float] = [], diffs: [Double] = [], vals: [Float] = []
+        let pixelStride: Int
+        init(pixelStride: Int = 1) { self.pixelStride = max(1, pixelStride) }
+        mutating func add(z: [Float]) {
+            let inv: [Float] = z.map { (value: Float) -> Float in
+                if value.isFinite && value > 1e-3 { return 1.0 / value }
+                return 0
+            }
+            var d = [Double]()
+            if inv.count == prev.count { for i in stride(from: 0, to: inv.count, by: pixelStride) where inv[i] > 0 && prev[i] > 0 { d.append(abs(Double(inv[i]) - Double(prev[i]))) } }
+            let need = pixelStride == 1 ? 16 : 16 / pixelStride
+            if d.count > need { diffs.append(median(d)) }
+            for i in stride(from: 0, to: inv.count, by: pixelStride) where inv[i] > 0 { vals.append(inv[i]) }
+            prev = inv
+        }
+        var value: Double? {
+            guard !diffs.isEmpty, !vals.isEmpty else { return nil }
+            let m = median(vals.map { Double($0) }); return m > 0 ? median(diffs) / m : nil
+        }
+        private func median(_ v: [Double]) -> Double { let s = v.sorted(), c = s.count; return c % 2 == 1 ? s[c / 2] : (s[c / 2 - 1] + s[c / 2]) / 2 }
+    }
+}
+
+// BEGIN relocated DepthUpsample.swift (195y G2, behavior unchanged)
+#if canImport(Metal)
+import Metal
+
+/// 190v s22 follow-up: the native prepare stores depth at the letterbox box (e.g. 266x150), the renderer needs depth the size of the source picture. This resamples the
+/// decoded metric depth to the source size with bilinear, half-pixel centres, edge clamp (cv2.INTER_LINEAR / torch bilinear align_corners=False), done on INVERSE depth
+/// (v = 256/Z, the quantised quantity) so disparity is what gets interpolated, then back to Z. A tap with Z <= 0 (invalid) counts as v = 0 (far), exactly what linear
+/// interpolation of the stored w10 plane (0 = invalid) does. The source proxy is never resampled. Not compiled or run on a Mac.
+enum DepthUpsampleKernel {
+    static let source = """
+    #include <metal_stdlib>
+    using namespace metal;
+    kernel void s3d_depth_up(texture2d<float, access::read> src [[texture(0)]], texture2d<float, access::write> dst [[texture(1)]], uint2 gid [[thread_position_in_grid]]) {
+        uint ow = dst.get_width(), oh = dst.get_height(), iw = src.get_width(), ih = src.get_height();
+        if (gid.x >= ow || gid.y >= oh) return;
+        float fx = ((float)gid.x + 0.5f) * (float)iw / (float)ow - 0.5f, fy = ((float)gid.y + 0.5f) * (float)ih / (float)oh - 0.5f;
+        float x0f = floor(fx), y0f = floor(fy), ax = fx - x0f, ay = fy - y0f;
+        int x0 = clamp((int)x0f, 0, (int)iw - 1), x1 = clamp((int)x0f + 1, 0, (int)iw - 1), y0 = clamp((int)y0f, 0, (int)ih - 1), y1 = clamp((int)y0f + 1, 0, (int)ih - 1);
+        float z00 = src.read(uint2(x0, y0)).r, z10 = src.read(uint2(x1, y0)).r, z01 = src.read(uint2(x0, y1)).r, z11 = src.read(uint2(x1, y1)).r;
+        float v00 = z00 > 0.0f ? 256.0f / z00 : 0.0f, v10 = z10 > 0.0f ? 256.0f / z10 : 0.0f, v01 = z01 > 0.0f ? 256.0f / z01 : 0.0f, v11 = z11 > 0.0f ? 256.0f / z11 : 0.0f;
+        float v = (v00 * (1.0f - ax) + v10 * ax) * (1.0f - ay) + (v01 * (1.0f - ax) + v11 * ax) * ay;
+        dst.write(float4(v > 0.0f ? 256.0f / v : 0.0f, 0.0f, 0.0f, 0.0f), gid);
+    }
+    """
+
+    /// Pure: may a depth box of `d` stand in for a source picture of `s`? Same aspect within 2% (the letterbox box is rounded to whole pixels), never larger than the source.
+    static func compatible(depth d: (w: Int, h: Int), source s: (w: Int, h: Int)) -> Bool {
+        guard d.w > 0, d.h > 0, s.w > 0, s.h > 0, d.w <= s.w, d.h <= s.h else { return false }
+        let a = Double(d.w) / Double(d.h), b = Double(s.w) / Double(s.h)
+        return abs(a - b) / b <= 0.02
+    }
+}
+
+final class DepthUpsampler {
+    private let queue: MTLCommandQueue, pipe: MTLComputePipelineState
+    init?(device: MTLDevice, queue: MTLCommandQueue) {
+        guard let lib = try? device.makeLibrary(source: DepthUpsampleKernel.source, options: nil), let fn = lib.makeFunction(name: "s3d_depth_up"),
+              let p = try? device.makeComputePipelineState(function: fn) else { return nil }
+        self.queue = queue; pipe = p
+    }
+    /// `src` r32Float metric depth (the cropped box) -> `dst` r32Float at the source size. false on any resource failure.
+    func resample(_ src: MTLTexture, into dst: MTLTexture) -> Bool {
+        guard let cb = queue.makeCommandBuffer(), let e = cb.makeComputeCommandEncoder() else { return false }
+        e.setComputePipelineState(pipe); e.setTexture(src, index: 0); e.setTexture(dst, index: 1)
+        e.dispatchThreads(MTLSize(width: dst.width, height: dst.height, depth: 1), threadsPerThreadgroup: MTLSize(width: 16, height: min(16, dst.height), depth: 1))
+        e.endEncoding(); cb.commit(); cb.waitUntilCompleted()
+        return cb.status == .completed
+    }
+}
+#endif
+// END relocated DepthUpsample.swift
+
+// BEGIN relocated DepthTemporalEMA.swift (195y G2, behavior unchanged)
+/// 195h B (peer B-EMA hint; scope-add via Main: "DepthTemporalEMA per-shot, shot-boundary reset, default off"): per-frame depth-range
+/// breathing (the robust min/max wanders frame to frame) shows as contrast pumping in the stereo render. This EMA-smooths the shot's
+/// depth range (1%/99% percentiles of the valid depths) and renormalises each frame onto the smoothed range. State is one value per
+/// prepare job, so it resets at every shot boundary. Default OFF: every frame passes through unchanged and flag-off output is
+/// byte-identical. The first frame of a shot primes the range and passes through unchanged. State persists next to the container
+/// (<dzc>.ema.json with lo/hi/primed/frames) so a resume continues the exact history; it is written only AFTER a successful append.
+/// Pure Foundation, Linux-tested on a synthetic breathing scene (no owner baseline).
+enum DepthTemporalEMA {
+    private static let lock = NSLock()
+    static var enabled = false                       // mutated only through toggleEnabled() under lock; read only via isEnabled()
+    static func setEnabled(_ value: Bool) { lock.lock(); enabled=value; lock.unlock() }
+    static func toggleEnabled() { lock.lock(); enabled.toggle(); lock.unlock() }
+    static func isEnabled() -> Bool { lock.lock(); defer { lock.unlock() }; return enabled }
+    static let alpha: Float = 0.15, epsilon: Float = 1e-4
+    struct State {
+        /// Frozen at job start (job.experiments): a mid-prepare menu toggle never changes a running job's mode.
+        let active: Bool
+        private(set) var lo: Float = 0, hi: Float = 0
+        private(set) var primed = false
+        init(active: Bool = DepthTemporalEMA.isEnabled()) { self.active = active }
+        /// Exact restore of the state persisted next to the container (195h r3-3): lo/hi AND primed come from the file; the caller
+        /// has already checked the persisted frame count matches the container.
+        init(active: Bool, lo: Float, hi: Float, primed: Bool) { self.active = active; self.lo = lo; self.hi = hi; self.primed = primed }
+        /// EMA update from the frame's robust range, then the frame renormalised onto the smoothed range. Invalid values (<= 0 or
+        /// non-finite) pass through. Fewer than 16 valid samples or a degenerate range: the frame passes through unchanged.
+        mutating func apply(_ cur: [Float], alpha a: Float = DepthTemporalEMA.alpha) -> [Float] {
+            guard active else { return cur }
+            var v = cur.filter { $0.isFinite && $0 > 0 }
+            guard v.count >= 16 else { return cur }
+            v.sort()
+            let lo = v[max(0, Int(Float(v.count - 1) * 0.01))], hi = v[min(v.count - 1, Int(Float(v.count - 1) * 0.99))]
+            guard hi - lo > DepthTemporalEMA.epsilon else { return cur }
+            if !primed { self.lo = lo; self.hi = hi; primed = true; return cur }
+            self.lo = a * lo + (1 - a) * self.lo
+            self.hi = a * hi + (1 - a) * self.hi
+            let scale = (self.hi - self.lo) / (hi - lo)
+            var out = cur
+            for i in 0..<cur.count {
+                let z = cur[i]
+                guard z.isFinite, z > 0 else { continue }
+                out[i] = self.lo + (z - lo) * scale
+            }
+            return out
+        }
+    }
+}
+// END relocated DepthTemporalEMA.swift
+
+// BEGIN relocated TemporalDepth.swift (195y G2, behavior unchanged)
+/// F2b (A-D owner-issue analysis 14:41, owner "yeterince iyi degil" / blink flicker): per-frame depth jitter shows as shimmer in the stereo render. Temporal smoothing of the metric depth of consecutive frames of ONE shot
+/// (state resets at a cut: each shot is its own job), in the INVERSE-depth domain (disparity is what the eye sees), with a motion gate: a pixel whose depth changed by more than `gate` (relative) since the previous
+/// output frame is taken as is (a moving edge or an occlusion change is never smeared). Invalid values (<= 0 or non-finite) pass through. Pure Foundation, Linux-tested on a synthetic static scene (no owner baseline).
+enum TemporalDepth {
+    static var enabled = true
+    static let alpha: Float = 0.6, gate: Float = 0.12
+    /// out = prev-weighted blend of 1/z; `prev` = the previous OUTPUT frame (recursive EMA). Sizes must match, otherwise `cur` is returned unchanged.
+    static func smooth(prev: [Float], cur: [Float], alpha a: Float = TemporalDepth.alpha, gate g: Float = TemporalDepth.gate) -> [Float] {
+        guard enabled, prev.count == cur.count else { return cur }
+        var out = cur
+        for i in 0..<cur.count {
+            let c = cur[i], p = prev[i]
+            guard c.isFinite, c > 0, p.isFinite, p > 0 else { continue }
+            if abs(c - p) > g * p { continue }
+            out[i] = 1 / (a / p + (1 - a) / c)
+        }
+        return out
+    }
+}
+// END relocated TemporalDepth.swift
+// END relocated DepthGuards.swift
+// BEGIN relocated DepthPrepareMath.swift (195y owner-order 3D consolidation, behavior unchanged)
+import Foundation
+
+/// 190t native prepare runner, pure math (no CoreML, no Metal): ports of tools/depth_analysis/align.py (ShotAligner), MoGe-2 recover_focal_shift +
+/// metric-scale/mask post-processing (microsoft/MoGe moge/model/v2.py infer + geometry_torch.recover_focal_shift) and prepare_film.py's depth quantiser.
+/// Tests/DepthPrepareMath keeps a Python mirror checked against align.py and the scipy reference. Swift is only parse-checked on this host.
+enum DepthQuant {
+    static let dScale: Float = 256.0, vInvMax: Float = 1024.0
+    /// prepare_film.write_depth_hevc: z metres -> 10-bit luma. z <= 1e-3 or non-finite -> 0 (masked / infinity). np.rint = half to even.
+    static func w10(zMetres z: Float) -> UInt16 {
+        guard z.isFinite, z > 1e-3 else { return 0 }
+        let inv = dScale / max(z, 1e-3)
+        let q = (inv / vInvMax * 1023.0).rounded(.toNearestOrEven)
+        return UInt16(min(max(q, 0), 1023))
+    }
+}
+
+/// Per-shot VDA-relative -> MoGe-metric alignment: scale*vda + shift, least squares per frame, EMA within the shot, reset at cuts.
+final class ShotAlignerSwift {
+    static let minPairs = 16
+    let ema: Double
+    private(set) var scale: Double?, shift: Double?
+    private(set) var skipped = 0
+    init(ema: Double = 0.9) { self.ema = ema }
+    func reset() { scale = nil; shift = nil; skipped = 0 }
+
+    /// Closed-form LSQ of reference ~ scale*target + shift over the pairs where both are finite (and `mask`, when given). nil if degenerate.
+    /// `weights` (s35, depth_guards.fit_scale_shift_weighted): per-pair weights clipped at 1e-6; nil = the plain LSQ below, unchanged.
+    static func fit(target: [Float], reference: [Float], mask: [Bool]? = nil, weights: [Float]? = nil) -> (scale: Double, shift: Double, pairs: Int)? {
+        if let wt = weights, wt.count >= min(target.count, reference.count) {
+            var n = 0.0, sw = 0.0, st = 0.0, sr = 0.0, stt = 0.0, str = 0.0
+            for i in 0..<min(target.count, reference.count) {
+                if let m = mask, !m[i] { continue }
+                let t = Double(target[i]), r = Double(reference[i]); if !t.isFinite || !r.isFinite { continue }
+                let w = max(Double(wt[i]), 1e-6)
+                n += 1; sw += w; st += w * t; sr += w * r; stt += w * t * t; str += w * t * r
+            }
+            guard n >= 1 else { return nil }
+            let den = sw * stt - st * st
+            guard den > 0, den.isFinite else { return nil }
+            let s = (sw * str - st * sr) / den, b = (sr - s * st) / sw
+            return s.isFinite && b.isFinite ? (s, b, Int(n)) : nil
+        }
+        var n = 0.0, st = 0.0, sr = 0.0, stt = 0.0, str = 0.0
+        for i in 0..<min(target.count, reference.count) {
+            if let m = mask, !m[i] { continue }
+            let t = Double(target[i]), r = Double(reference[i])
+            if !t.isFinite || !r.isFinite { continue }
+            n += 1; st += t; sr += r; stt += t * t; str += t * r
+        }
+        guard n >= 1 else { return nil }
+        let den = n * stt - st * st
+        guard den > 0, den.isFinite else { return nil }
+        let s = (n * str - st * sr) / den, b = (sr - s * st) / n
+        return s.isFinite && b.isFinite ? (s, b, Int(n)) : nil
+    }
+
+    /// align.ShotAligner.update: fit this frame (>= 16 finite pairs), EMA into the running estimate; otherwise keep the previous one (1,0 if none).
+    func update(vda: [Float], moge: [Float], mask: [Bool]? = nil, weights: [Float]? = nil) {
+        if let f = Self.fit(target: vda, reference: moge, mask: mask, weights: weights), f.pairs >= Self.minPairs {
+            if let s0 = scale, let b0 = shift { scale = ema * s0 + (1 - ema) * f.scale; shift = ema * b0 + (1 - ema) * f.shift }
+            else { scale = f.scale; shift = f.shift }
+        } else { skipped += 1 }
+    }
+    func apply(_ vda: [Float]) -> [Float] {
+        let s = Float(scale ?? 1.0), b = Float(shift ?? 0.0)
+        return vda.map { $0 * s + b }
+    }
+}
+
+/// 190v s30: causal EASED application of the per-keyframe EMA (scale, shift), port of align.apply_align_track. Entry i is the EMA value after keyframe k_i; frame f in
+/// [k_i, k_(i+1)) lerps linearly from entry (i-1) to entry i over (k_i - k_(i-1)) frames (t = min(1, (f - k_i) / (k_i - k_(i-1)))), holds entry 0 at and before the first
+/// keyframe, and holds the last entry once t reaches 1. Depends only on entries with k <= f (causal), so a seek reconstructs identical parameters from the stored track alone.
+struct AlignTrack: Equatable {
+    struct Entry: Equatable { var k: Int; var scale: Double; var shift: Double }
+    var entries: [Entry]
+    /// nil scale/shift (no fit yet at that keyframe) -> `default` (the reference passes the shot's final EMA, 1/0 if none).
+    init(keyframes: [(k: Int, scale: Double?, shift: Double?)], defaultScale: Double = 1.0, defaultShift: Double = 0.0) {
+        entries = keyframes.map { Entry(k: $0.k, scale: $0.scale ?? defaultScale, shift: $0.shift ?? defaultShift) }
+    }
+    init(json: [[Double]]) { entries = json.filter { $0.count >= 3 }.map { Entry(k: Int($0[0]), scale: $0[1], shift: $0[2]) } }
+    var json: [[Double]] { entries.map { [Double($0.k), $0.scale, $0.shift] } }
+    /// (scale, shift) applied at frame f. Empty track: the caller's default.
+    func params(at f: Int, defaultScale: Double = 1.0, defaultShift: Double = 0.0) -> (scale: Double, shift: Double) {
+        guard !entries.isEmpty else { return (defaultScale, defaultShift) }
+        var i = 0
+        while i + 1 < entries.count && entries[i + 1].k <= f { i += 1 }          // last entry with k <= f (entry 0 before the first keyframe)
+        let e = entries[i]
+        if i == 0 { return (e.scale, e.shift) }
+        let p = entries[i - 1], span = Double(e.k - p.k)
+        let t = span > 0 ? min(1.0, Double(f - e.k) / span) : 1.0
+        return (p.scale + (e.scale - p.scale) * t, p.shift + (e.shift - p.shift) * t)
+    }
+    func apply(_ vda: [Float], frame f: Int, defaultScale: Double = 1.0, defaultShift: Double = 0.0) -> [Float] {
+        let q = params(at: f, defaultScale: defaultScale, defaultShift: defaultShift)
+        return vda.map { (value: Float) -> Float in
+            let scaled: Double = Double(value) * q.scale
+            return Float(scaled + q.shift)
+        }
+    }
+}
+
+/// MoGe-2: raw network output (points [H*W*3] x,y,z affine-invariant, mask, metric_scale) -> focal, shift, metric depth, hfov.
+enum MoGeGeometry {
+    /// normalized_view_plane_uv: linspace over +-span*(n-1)/n; focal is relative to the half image diagonal.
+    static func uv(_ width: Int, _ height: Int) -> (u: [Double], v: [Double]) {
+        let a = Double(width) / Double(height), sx = a / (1 + a * a).squareRoot(), sy = 1 / (1 + a * a).squareRoot()
+        func lin(_ span: Double, _ n: Int) -> [Double] {
+            let e: Double = span * Double(n - 1) / Double(n)
+            // 195y native#30: same type-checker timeout; explicit loop, identical arithmetic order.
+            var out: [Double] = []
+            out.reserveCapacity(n)
+            for i in 0..<n {
+                let v: Double = n == 1 ? -e : -e + 2 * e * Double(i) / Double(n - 1)
+                out.append(v)
+            }
+            return out
+        }
+        return (lin(sx, width), lin(sy, height))
+    }
+
+    /// geometry_torch.recover_focal_shift: nearest downsample to 64x64 (torch 'nearest': src = floor(dst * in / out)), masked points, then
+    /// min over shift of | f(shift) * xy / (z + shift) - uv | with f the closed-form optimum (focal == nil) or the given focal.
+    static func recoverFocalShift(points: [Float], mask: [Bool]?, height: Int, width: Int, focal: Double? = nil,
+                                  down: (h: Int, w: Int) = (64, 64)) -> (focal: Double, shift: Double) {
+        let g = uv(width, height)
+        var px = [Double](), py = [Double](), pz = [Double](), uu = [Double](), vv = [Double]()
+        for dy in 0..<down.h {
+            let y = min(height - 1, dy * height / down.h)
+            for dx in 0..<down.w {
+                let x = min(width - 1, dx * width / down.w), i = y * width + x
+                if let m = mask, !m[i] { continue }
+                px.append(Double(points[i * 3])); py.append(Double(points[i * 3 + 1])); pz.append(Double(points[i * 3 + 2]))
+                uu.append(g.u[x]); vv.append(g.v[y])
+            }
+        }
+        let n = px.count
+        if n < 2 { return (1, 0) }
+        // residual sum of squares at a shift (focal optimal, or fixed)
+        func eval(_ s: Double) -> (rss: Double, f: Double) {
+            var num = 0.0, den = 0.0
+            for i in 0..<n { let d = pz[i] + s; let a = px[i] / d, b = py[i] / d; num += a * uu[i] + b * vv[i]; den += a * a + b * b }
+            let f = focal ?? (den > 0 ? num / den : 1.0)
+            var rss = 0.0
+            for i in 0..<n { let d = pz[i] + s; let a = f * px[i] / d - uu[i], b = f * py[i] / d - vv[i]; rss += a * a + b * b }
+            return (rss, f)
+        }
+        let minZ = pz.min() ?? 0
+        // Levenberg-Marquardt on the scalar shift, numeric derivatives, steps keep z + shift > 0. MULTISTART over x0 in {0, .5, 1, 2, 4}, minimum cost wins
+        // (CONTRACT-190v s15: the upstream single start x0 = 0 stalls on exact-geometry scenes with a large shift/z ratio). A start with z + x0 <= 0 is infeasible
+        // and moved just inside the feasible region.
+        func solve(from x0: Double) -> (s: Double, rss: Double, f: Double) {
+            var s = x0; if !(minZ + s > 1e-6) { s = 1e-6 - minZ + 1e-3 }
+            var cur = eval(s), lambda = 1e-3
+            for _ in 0..<100 {
+                let h = max(1e-6, abs(s) * 1e-6)
+                let p = eval(s + h).rss, m = eval(s - h).rss
+                let grad = (p - m) / (2 * h), hess = max((p - 2 * cur.rss + m) / (h * h), 1e-12)
+                var moved = false
+                for _ in 0..<20 {
+                    let step = -grad / (hess * (1 + lambda)), cand = s + step
+                    if minZ + cand > 1e-6 {
+                        let e = eval(cand)
+                        if e.rss <= cur.rss { s = cand; cur = e; lambda = max(lambda * 0.3, 1e-9); moved = abs(step) > 1e-10 * max(1, abs(s)); break }
+                    }
+                    lambda *= 10
+                }
+                if !moved { break }
+            }
+            return (s, cur.rss, cur.f)
+        }
+        var best = solve(from: 0)
+        for x0 in [0.5, 1.0, 2.0, 4.0] { let r = solve(from: x0); if r.rss < best.rss { best = r } }
+        return (best.f, best.s)
+    }
+
+    /// infer(): depth = z + shift; mask &= depth > 0; depth *= metric_scale; masked -> +inf (the aligner excludes non-finite).
+    static func depth(points: [Float], mask: [Bool]?, shift: Double, metricScale: Double) -> [Float] {
+        let n = points.count / 3
+        return (0..<n).map { i in
+            let z = Double(points[i * 3 + 2]) + shift
+            let ok = (mask?[i] ?? true) && z > 0
+            return ok ? Float(z * metricScale) : Float.infinity
+        }
+    }
+
+    /// intrinsics fx (normalized by width) = focal/2 * sqrt(1+a^2)/a;  hfov = 2 atan(0.5 / fx), degrees (moge_fov.infer_frame).
+    static func hfovDegrees(focal: Double, width: Int, height: Int) -> Double {
+        let a = Double(width) / Double(height), fx = focal / 2 * (1 + a * a).squareRoot() / a
+        return 2 * atan(0.5 / fx) * 180 / Double.pi
+    }
+}
+// END relocated DepthPrepareMath.swift
+// BEGIN relocated FovTrackBuilder.swift (195y owner-order 3D consolidation, behavior unchanged)
+import Foundation
+
+/// CONTRACT-190v s2 / prepare_film._analyze_shot: per-shot horizontal FoV from MoGe-2 keyframes (stride 12 frames). Pure Foundation (tested on Linux).
+enum FovTrackBuilder {
+    static let keyframeStride = 12
+    static let confSpreadDeg = 15.0
+    struct Entry: Equatable { var startPTS: Double; var endPTS: Double; var hfovDeg: Double?; var confidence: Double; var keyframes: [(pts: Double, fov: Double)]
+        static func == (a: Entry, b: Entry) -> Bool { a.startPTS == b.startPTS && a.endPTS == b.endPTS && a.hfovDeg == b.hfovDeg && a.confidence == b.confidence && a.keyframes.map { $0.pts } == b.keyframes.map { $0.pts } }
+        /// fov_track.json shot object: {start_pts, end_pts, hfov_deg, confidence, keyframe_values: [[pts, fov]]}
+        var json: [String: Any] {
+            ["start_pts": startPTS, "end_pts": endPTS, "hfov_deg": hfovDeg.map { $0 as Any } ?? NSNull(), "confidence": confidence,
+             "keyframe_values": keyframes.map { [($0.pts * 1e6).rounded() / 1e6, $0.fov] }]
+        }
+    }
+    /// Frame indices (relative to the shot start) to run MoGe on.
+    static func keyframeIndices(frames: Int) -> [Int] { Array(stride(from: 0, to: max(0, frames), by: keyframeStride)) }
+    static func median(_ v: [Double]) -> Double { let s = v.sorted(), n = s.count; return n % 2 == 1 ? s[n / 2] : (s[n / 2 - 1] + s[n / 2]) / 2 }
+    /// >= 2 keyframes: median fov, confidence = 1 - min(1, population stdev / 15 deg); 1 keyframe: that fov, confidence 0; none: nil, 0.
+    static func entry(startFrame: Int, endFrame: Int, fps: Double, keyframes: [(frame: Int, fov: Double)]) -> Entry {
+        let kf = keyframes.filter { $0.fov.isFinite && $0.fov > 0 && $0.fov < 180 }.map { (pts: Double($0.frame) / fps, fov: $0.fov) }
+        let fovs = kf.map { $0.fov }
+        var hfov: Double? = nil, conf = 0.0
+        if fovs.count >= 2 {
+            let mean = fovs.reduce(0, +) / Double(fovs.count), sd = (fovs.map { ($0 - mean) * ($0 - mean) }.reduce(0, +) / Double(fovs.count)).squareRoot()
+            conf = 1.0 - min(1.0, sd / confSpreadDeg); hfov = median(fovs)
+        } else if let f = fovs.first { hfov = f }
+        return Entry(startPTS: Double(startFrame) / fps, endPTS: Double(endFrame) / fps, hfovDeg: hfov, confidence: conf, keyframes: kf)
+    }
+}
+// END relocated FovTrackBuilder.swift

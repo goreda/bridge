@@ -1,0 +1,16 @@
+{
+ "meta": {
+  "width": 96,
+  "height": 54,
+  "theta_h": 0.9075712110370514,
+  "note": "s36 synthetic fixture: textured 96x54, depth ramp + centre bump"
+ },
+ "hashes": {
+  "full_sbs": "ee03b0fd7cc027db818ca010789f64f128766ffbbd0a7bfc4f5137753845b7c2",
+  "half_sbs": "32c590b92489ffc2a2888c47a55120c895533f19488c50d233e4089e5a13655c",
+  "over_under": "a8ebe5934327558f1231610523353390e7fe40d172c3dde79acacb79b9834c50",
+  "anaglyph": "314ac15d43ea92449f5df09323360fbc48b22481bc27f42a4557c9e30d7fbab4",
+  "vr180": "41dd59c836be451372bd0bf428f88af2749cac6c2ce378900bc69383f4e8899f",
+  "full_sbs_swap": "926d8a10202204acd66e381ca191f14bdde7813a1e6001b6bd10c785c84cb0f6"
+ }
+}

@@ -1,0 +1,20 @@
+{
+  "source": "goreda/instinct main live 2026-10-02 01:58 Europe/Istanbul; reread unchanged",
+  "source_sha256": "415b25571de3cd9c9a21d9871bf05e10f8319589bbf1785a9a6a260c2f9434c3",
+  "negative_checks": [
+    {
+      "mutation": "[\"playlist-play-index\",\"current\"]",
+      "rejected": true
+    },
+    {
+      "mutation": "[\"seek\",\"-60\",\"relative\"]",
+      "rejected": true
+    },
+    {
+      "mutation": "[\"multiply\",\"speed\",2.0]",
+      "rejected": true
+    }
+  ],
+  "production_edit": false,
+  "native_validation": "not performed"
+}

@@ -1,0 +1,41 @@
+LUAERR	vr180-look: shader publication failed: nil
+LUAERR	vr180-look: shader publication failed: nil
+GPU llvmpipe (LLVM 15.0.7, 256 bits) published GLSL compiled
+MEAS layout 0 cross 0 deg -30 ipd -0.2 axis_change_px -48.008078032303544 vertical_px -0.019627644535319178
+MEAS layout 0 cross 0 deg -30 ipd 0.2 axis_change_px 47.99165954204562 vertical_px -0.011750350635935547
+MEAS layout 0 cross 0 deg 0 ipd -0.2 axis_change_px -48.00013145955245 vertical_px 5.351678680654004e-06
+MEAS layout 0 cross 0 deg 0 ipd 0.2 axis_change_px 47.999627495481604 vertical_px 2.6772613068715145e-06
+MEAS layout 0 cross 0 deg 30 ipd -0.2 axis_change_px -48.00816576137113 vertical_px 0.019682923099679783
+MEAS layout 0 cross 0 deg 30 ipd 0.2 axis_change_px 47.991613927317445 vertical_px 0.011769213316114246
+MEAS layout 0 cross 1 deg -30 ipd -0.2 axis_change_px -48.00493027876033 vertical_px 0.012243710809258346
+MEAS layout 0 cross 1 deg -30 ipd 0.2 axis_change_px 47.99457202562509 vertical_px 0.011281024072388846
+MEAS layout 0 cross 1 deg 0 ipd -0.2 axis_change_px -48.00013145955245 vertical_px 5.351678680654004e-06
+MEAS layout 0 cross 1 deg 0 ipd 0.2 axis_change_px 47.999627495481604 vertical_px 2.6772613068715145e-06
+MEAS layout 0 cross 1 deg 30 ipd -0.2 axis_change_px -48.00453395541086 vertical_px -0.012166522980834316
+MEAS layout 0 cross 1 deg 30 ipd 0.2 axis_change_px 47.99465925464705 vertical_px -0.011147772600850203
+MEAS layout 1 cross 0 deg -30 ipd -0.2 axis_change_px -48.01227545085603 vertical_px -0.014224577313257214
+MEAS layout 1 cross 0 deg -30 ipd 0.2 axis_change_px 47.97947167175731 vertical_px -0.007361458724147951
+MEAS layout 1 cross 0 deg 0 ipd -0.2 axis_change_px -48.000143475259165 vertical_px 2.708097156300937e-06
+MEAS layout 1 cross 0 deg 0 ipd 0.2 axis_change_px 47.99965652984088 vertical_px 4.4674126343124954e-05
+MEAS layout 1 cross 0 deg 30 ipd -0.2 axis_change_px -48.012260732223424 vertical_px 0.014297403181444679
+MEAS layout 1 cross 0 deg 30 ipd 0.2 axis_change_px 47.97954030343924 vertical_px 0.007358185515670357
+MEAS layout 1 cross 1 deg -30 ipd -0.2 axis_change_px -48.01065129633127 vertical_px 0.007104558400840233
+MEAS layout 1 cross 1 deg -30 ipd 0.2 axis_change_px 48.015981209464314 vertical_px 0.0117695552443422
+MEAS layout 1 cross 1 deg 0 ipd -0.2 axis_change_px -48.000158571184954 vertical_px -3.655117535572572e-05
+MEAS layout 1 cross 1 deg 0 ipd 0.2 axis_change_px 47.99958258327115 vertical_px -2.978345111159797e-05
+MEAS layout 1 cross 1 deg 30 ipd -0.2 axis_change_px -48.010241721487716 vertical_px -0.007042689045817951
+MEAS layout 1 cross 1 deg 30 ipd 0.2 axis_change_px 48.01600146881516 vertical_px -0.011666987108782223
+MEAS layout 2 cross 0 deg -30 ipd -0.2 axis_change_px -47.99360215606872 vertical_px -0.0240383892392515
+MEAS layout 2 cross 0 deg -30 ipd 0.2 axis_change_px 47.992404592551004 vertical_px 0.007191736068392629
+MEAS layout 2 cross 0 deg 0 ipd -0.2 axis_change_px -48.00012347209719 vertical_px 2.3216656472868635e-05
+MEAS layout 2 cross 0 deg 0 ipd 0.2 axis_change_px 47.99963563863173 vertical_px 1.9992206887309294e-05
+MEAS layout 2 cross 0 deg 30 ipd -0.2 axis_change_px -47.99358941228819 vertical_px 0.024122147343803135
+MEAS layout 2 cross 0 deg 30 ipd 0.2 axis_change_px 47.992359547277424 vertical_px -0.007247836851320244
+MEAS layout 2 cross 1 deg -30 ipd -0.2 axis_change_px -48.02664984147594 vertical_px 0.00499274785093462
+MEAS layout 2 cross 1 deg -30 ipd 0.2 axis_change_px 47.99591141527301 vertical_px -0.004795218787052136
+MEAS layout 2 cross 1 deg 0 ipd -0.2 axis_change_px -48.000143642190835 vertical_px -1.2259434470252017e-05
+MEAS layout 2 cross 1 deg 0 ipd 0.2 axis_change_px 47.99963249960604 vertical_px 7.741563877061708e-06
+MEAS layout 2 cross 1 deg 30 ipd -0.2 axis_change_px -48.026228807420225 vertical_px -0.004867904052190397
+MEAS layout 2 cross 1 deg 30 ipd 0.2 axis_change_px 47.996014872515886 vertical_px 0.004862760041930869
+FAILURES []
+PASS36 nonzero-IPD optical cases
