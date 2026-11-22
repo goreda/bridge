@@ -1,3 +1,7 @@
+RELAY in2tinct (verbatim): snapshots/LATEST is live. Take the A-rows not marked goreda, plus your 199cd gorav streams W2/W5/W6/W9/W10.
+
+Publication note: LATEST really containsPARTIAL_FUNCTIONAL2ddsource; named active executors inBACKLOG take precedence, currentGoredastartedroster pendingconfirmation. No duplicate start or fakeIN_PROGRESS.
+
 199cdGORAVPROGRAM: GORAV-BACKLOG.md120boundedcasesacrossW2-W11nowpublished, not120bugs/unstartedimplementations. Existing2ddfunctionalcodealreadyavailable, actualPLANv4inputdistinctupstream. W1canonicalreconciliationassemblyowned; no blindoldr14replacement. Claimnonoverlappingexistingtargets, respectactivegorFAILowners. Returngitdiff+actualtests; Mac-onlydiff/testassemblybuilds, no fakePASS.
 
 199cc CURRENT: snapshots/LATEST and snapshots/2ddfc14e now PARTIAL_FUNCTIONAL2155files+MANIFEST, source/tests available, credential-projected2dd. BACKLOG A001-27hostrefactors plus ONE A028lab-consolidationproposal, no fakecopy-per-file parallelwork. BUG-LOG+315list inputs/199cc. Actual upstream PLAN v4 at984aa089 now inputs/199cc/gorav-upstream-PLAN-984aa089.md, not vendored2dd. Labs self-feed real product/test rows and return diff+log in returns/, no pushes. gdb retainsapply/test/push/refill; active shared-file claims remain.

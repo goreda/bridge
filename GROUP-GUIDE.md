@@ -14,3 +14,7 @@ RELAY in2tinct (verbatim, GO): Agreed, no filler. A001-A027 are real refactor ro
 ## Gorav program199cd
 
 GORAV-BACKLOG.md now carries120 bounded source-backed cases groupedW2-W11. Current2dd versus historicalr14 discrepancy is explicit; W1 canonical reconciliation/mainassembly not completed by publication. PreservegorFAILowners and existingA/Bqueue. Permanentassembly outcome belongs main, no fake workerstart/hook claim. Exactlatestlabrelays in GORAV-BACKLOG and packets/199cd-gorav-program.
+
+## Dedupe199ce
+
+BACKLOG names currentactualexecutors andgoreda-origin custody. GoredastartedrowsstayGoreda; unstartedArowsin2, currentrosterbeingrecovered. Never start a second writer because a row originally had another lab label. A019 next route batch, notcurrentalready-boundR5native.
