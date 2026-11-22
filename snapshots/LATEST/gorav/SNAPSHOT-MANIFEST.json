@@ -1,6 +1,6 @@
 {
   "source_repo": "goreda/gorav",
-  "source_commit": "4bbea562aa8670cd3662664a920cb6f57692d59a",
+  "source_commit": "b94e26134cabc4d03ed89adbe77d8ef05ef78a4c",
   "files": [
     {
       "path": "PLAN-v5-DRAFT.md",
@@ -16,8 +16,8 @@
     },
     {
       "path": "Package.swift",
-      "sha256": "613440ccfe79843bdc1e42e013894e88a8e0275009ac6f1eb806e63aa583e7b8",
-      "bytes": 28685,
+      "sha256": "d06d270250e469cd84c9f3eb5356fe2f9cbf4b94786f767f6518d14036f2fe9a",
+      "bytes": 28889,
       "mode": "100644"
     },
     {
@@ -5281,9 +5281,57 @@
       "sha256": "29fd083f2ee391084002252375089cd1bdebafcf25edc5bf1692059144b0aa3f",
       "bytes": 323805,
       "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/StereoLookDistanceTrace.swift",
+      "sha256": "5449bc878358c0de927b226b54944b2bea922b1044dd2a9826eacb5ccde7a269",
+      "bytes": 1381,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/StereoLookFramePayload.swift",
+      "sha256": "40aa337d452e2b852532491744e9eef67e51c133b103abfa64c88c3914156a86",
+      "bytes": 3330,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/StereoLookProducer.swift",
+      "sha256": "79e65ee264787392598e63d25e781005006c50d8a876436b2771be8b5133cc9b",
+      "bytes": 15602,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/StereoLookStageAdapter.swift",
+      "sha256": "65992d1dd3fcbac21c18637028422769bc1a1596da3b048ad25933b1a335344b",
+      "bytes": 5736,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/StereoLookStageSource.swift",
+      "sha256": "7a5d6a7fbd4359c0f4fe985d2bbbf208b2a2dd538fff07aadc91e513ed604433",
+      "bytes": 5394,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/StereoLookStageSubmission.swift",
+      "sha256": "8859fcd6e929f222f2c813a47c4360813243c1be004f80b1fdb4262b43a7d51f",
+      "bytes": 7785,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/StereoLookNativeContract/StereoLookContract.swift",
+      "sha256": "982d5be23228709ee20e348a3f6176c87726eee38f9d2a7fc6a3756119d98631",
+      "bytes": 16158,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/StereoLookNativeContract/StereoLookDistanceTrace.swift",
+      "sha256": "4bb14d9b4c2a5a2471ab2d903d1bf67343a1506717a460e4eba9d9a8dbda5f51",
+      "bytes": 4926,
+      "mode": "100644"
     }
   ],
-  "file_count": 880,
+  "file_count": 888,
   "blocked": [],
   "scope": "Sources,Tests,Package.swift,PLAN.md,docs/LEDGER.tsv,STATUS.md plus historicalv5draft input; no owner verification inferred",
   "credential_scan": "PASS configured patterns for included bytes"
