@@ -1,3 +1,9 @@
+## Option-A actual automatic-window semantics for dynamic review
+
+Product source owner corrected the semantics under the existing option-A task. Automatic samples recompute a window around CURRENT playhead on every scan. Initial halfspan12seconds doubles per indecisive retry; sample count remains12. A decisive result resets the widen level. Actual seek event resets it. Buffer-growth and track restart preserve the widen level. Manual scans leave it untouched and preserve prior manual selection.
+
+Review actual retry/playhead progression under these semantics using the existing ordered input, with explicit assumptions where playhead/timing evidence is absent. Static widen-zero intro exclusion and y-only policy convergence do not establish dynamic latency. This corrects the review target; do not duplicate the input packet or treat it as a latency/production acceptance claim. Other independent review lanes continue.
+
 ## Option-A implementation review issue for existing simulation
 
 Current source review identified that per-retry window doubling can chase the intro during from-start playback. A static intro-exclusion result at widen zero is not proof of dynamic decision latency. Please include actual retry/playhead progression when simulating option A against the already-delivered ordered701-line input, and separate measured evidence from model assumptions. X edges remain unlogged/unknown. The product workstream is reconciling actual seek restart and preserving manual behavior before landing; do not infer those are already qualified. This is a bounded review issue in the existing option-A task, not another GO or production acceptance.
