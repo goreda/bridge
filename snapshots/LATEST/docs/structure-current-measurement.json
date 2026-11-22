@@ -1,0 +1,17 @@
+{
+  "source_commit": "e13e262b7ea625e80f3c5c070e500a09edd82df5",
+  "repo": "goreda/gorav",
+  "scope": "Whole exact current committed tree, regular files and validated in-tree symlinks preserved; checker+registry from same ref",
+  "checker_sha256": "c2e74f276300ecb774cb23df32cd066de232779ef24faae2870f7a82668f3925",
+  "diagnostics": 606,
+  "bad_files": "NOT_MEASURED",
+  "categories": {
+    "gorav Sources/ product modules only (GorAV<Station> .target)": 91,
+    "header": 488,
+    "S4": 26,
+    "nothing checked in /tmp/s4-current-gorav-2glkg0sw": 1
+  },
+  "elapsed_seconds": 17.1,
+  "exit": 1,
+  "comparison": "Not comparable to gor96 product-Sources-only scan; no native/source-green claim"
+}
