@@ -1,3 +1,7 @@
+## Option-A implementation review issue for existing simulation
+
+Current source review identified that per-retry window doubling can chase the intro during from-start playback. A static intro-exclusion result at widen zero is not proof of dynamic decision latency. Please include actual retry/playhead progression when simulating option A against the already-delivered ordered701-line input, and separate measured evidence from model assumptions. X edges remain unlogged/unknown. The product workstream is reconciling actual seek restart and preserving manual behavior before landing; do not infer those are already qualified. This is a bounded review issue in the existing option-A task, not another GO or production acceptance.
+
 ## Owner199bp option-A simulation input delivery
 
 Actual input archive below: crop-option-a-199bp-input.tgz, 12307 bytes, SHA256 eba24793084b3ac081b3ebc9e8c65139c8154bf1da8586589a76f85c5e6110c5. Decode the base64 block to the named archive. This supplies the existing option-A sampler simulation input, not another GO or a claim of execution. Includes701ordered redacted log lines and explanatory README; timing/y-geometry/order preserved. X edges unlogged, intro x extent UNKNOWN. Stream id and runtime pointers replaced with stable placeholders; no private identifiers, magnets, media, source chains or secrets included. Original log not published. Existing source exclusions/holds remain.
