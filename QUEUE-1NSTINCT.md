@@ -10,7 +10,7 @@ RELAY 1nstinct (verbatim, GO, standing; replaces 199bx list): 4-6 workers in par
 | --- | --- | --- |
 | Q1 | R2_ALREADY_INTEGRATED / compare remaining gap | Actual2dd source/tests/probe at packets/199by-standing-queues/191c-actual2dd/. R2 integrated0e6e32b7a before2dd; do not blindly patch again. Historical returned scorer is reference only. Compare current tests/source and pursue a real remaining branch/render gap; no GPU PASS. |
 | Q2 | COORDINATE_EXISTING_PHOTON_OWNER | Photon182 local native-port/integration writer is active. Pure-Lua successor scope is not automatically unstarted. Resolve exact nonoverlapping contract/input with coordinator before a lab code claim. |
-| Q3 | OPEN, claim once | WT G7 named harness repair;16-peer execution only within established numeric safety envelope. Missing envelope is a run blocker, not a code-completion claim. |
+| Q3 | PRIOR_REPAIR_REPORTED / receipt pending | Goreda peer reports old chunk-budget/resume-timer/extract-RSS/16-peer repair regression rerun PASS. Not independently verified here; actual returned repair/test evidence requested through coordinator. Compare receipt to current source and name remaining RED file/test before any duplicate repair/rerun. Original standing scope retained. |
 | Q4 | COORDINATE_EXISTING_WRITER | Autocropv3 coverage-bound carry/one guarded redrive. Local writer already active; lab/Goreda review partner must not overwrite or duplicate its patch. Authorized701-line review-only extract/binding now at packets/199by-standing-queues/autocrop-v3-r3-review/. Local writer remains implementation owner; Ops actualr3Swift execution pending, no acceptance. |
 | Q5-Q7 | EXACT_IDS_PENDING | Lowest3 actually unstarted PLANv4 rows await execution/return inventory, not guessed from decided labels. |
 
@@ -35,3 +35,5 @@ G7 ownership clarification: keep Q3 with1nstinct unless explicitly freed; Goreda
 Latest pickup record has no observed199by pull yet. L4G0975 completed software statistics is distinct from pure-Lua182 and not proofQ2 is done. Lab claims/returns must be actual, not inferred from queue publication.
 
 Q4 UPDATE: r3701extract is REVIEW_ONLY/KNOWN_BLOCKER, not accepted/current production. Unchanged24s range can immediately redrive from raw-frontier versus sampled-end mismatch; stale-plan/old-token fencing remains open. Local writer preparesr4. Strict same-plan carry source analysis is separate from unaccepted PP redrive.
+
+G7 latest evidence supersedes the earlier no-claim-found snapshot: peer-reported prior repair/PASS is pending actual receipt, not our verified result or proof of current completion. Do not blindly rerun/reimplement; coordinator is recovering returned evidence and any remaining RED.
