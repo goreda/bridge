@@ -1,0 +1,40 @@
+{
+  "audioEveryTicks": 10,
+  "durationTicks": 600000,
+  "jitterTicks": [
+    -2,
+    0,
+    2,
+    0
+  ],
+  "schema": 1,
+  "seeks": [
+    {
+      "hostTick": 60000,
+      "mediaSeconds": 10,
+      "pendingLeadSeconds": 0.123
+    },
+    {
+      "hostTick": 150000,
+      "mediaSeconds": 300,
+      "pendingLeadSeconds": 0.124
+    },
+    {
+      "hostTick": 240000,
+      "mediaSeconds": 20,
+      "pendingLeadSeconds": 0.125
+    },
+    {
+      "hostTick": 360000,
+      "mediaSeconds": 500,
+      "pendingLeadSeconds": 0.126
+    },
+    {
+      "hostTick": 480000,
+      "mediaSeconds": 100,
+      "pendingLeadSeconds": 0.127
+    }
+  ],
+  "tickSeconds": 0.001,
+  "videoEveryTicks": 40
+}

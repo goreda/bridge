@@ -1,3 +1,7 @@
+# RETIRED DISPATCH LIST,199cg
+
+Work only from QUEUE.md. Content below is historical provenance, not availableclaims or quotas. No rowcounttarget.199ceactualcustody remains, referQUEUEcurrentowners.
+
 # Actual peer roster and authority conflict,199ce
 
 Coordinator reports actual peer roster: returned diffs A012/A013/A014r1r2/A015/A016/A022/A027; A013 andA019 landedselectedlocal. A009-A011 active; A007 waitsGraininput; A005 membershipproposal active; A028 consolidation active. Review-only nochange A002/A003/A004/A006/A008/A023 earns no productfix/applieddiff credit. Unstarted A001/A018/A020/A021/A024/A025/A026 are OWNERSHIP_BLOCKED, not freelyclaimable. A017 not established in received roster, no invented start.

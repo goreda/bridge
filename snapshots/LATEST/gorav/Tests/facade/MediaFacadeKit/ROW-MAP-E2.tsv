@@ -1,0 +1,13 @@
+kind	name	test
+command	cycle	testE2Row01_command_cycle
+command	add	testE2Row02_command_add
+command	frame-step	testE2Row03_command_frameStep
+command	frame-back-step	testE2Row04_command_frameBackStep
+property-set	time-pos	testE2Row05_propertySet_timePos
+property-get	volume	testE2Row06_propertyGet_volume
+property-set	vid	testE2Row07_propertySet_vid
+property-mutate	vid	testE2Row08_propertyMutate_vid
+property-get	aid	testE2Row09_propertyGet_aid
+property-get	sid	testE2Row10_propertyGet_sid
+property-get	vid	testE2Row11_propertyGet_vid
+property-observe	track-list	testE2Row12_propertyObserve_trackList

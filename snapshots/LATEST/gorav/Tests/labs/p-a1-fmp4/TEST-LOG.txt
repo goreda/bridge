@@ -1,0 +1,39 @@
+swift: Swift version 5.9.2 (swift-5.9.2-RELEASE)
+ffmpeg: ffmpeg version 4.4.2-0ubuntu0.22.04.1 Copyright (c) 2000-2021 the FFmpeg developers
+date: Fri Nov  6 21:08:22 UTC 2026
+
+Test Case 'DemuxTests.testAllFixturesMatchFFprobeOracle' started at 2026-11-06 21:08:23.738
+Test Case 'DemuxTests.testAllFixturesMatchFFprobeOracle' passed (0.011 seconds)
+Test Case 'DemuxTests.testConcreteDemuxerTypes' started at 2026-11-06 21:08:23.748
+Test Case 'DemuxTests.testConcreteDemuxerTypes' passed (0.001 seconds)
+Test Case 'DemuxTests.testDeterministicOutput' started at 2026-11-06 21:08:23.750
+Test Case 'DemuxTests.testDeterministicOutput' passed (0.031 seconds)
+Test Case 'DemuxTests.testEmptyInputThrows' started at 2026-11-06 21:08:23.781
+Test Case 'DemuxTests.testEmptyInputThrows' passed (0.0 seconds)
+Test Case 'DemuxTests.testFragmentedBFrameReorder' started at 2026-11-06 21:08:23.781
+Test Case 'DemuxTests.testFragmentedBFrameReorder' passed (0.0 seconds)
+Test Case 'DemuxTests.testFragmentedBaseMoofVariantMatchesDefault' started at 2026-11-06 21:08:23.781
+Test Case 'DemuxTests.testFragmentedBaseMoofVariantMatchesDefault' passed (0.031 seconds)
+Test Case 'DemuxTests.testFragmentedFaithfulFirstDuration' started at 2026-11-06 21:08:23.812
+Test Case 'DemuxTests.testFragmentedFaithfulFirstDuration' passed (0.001 seconds)
+Test Case 'DemuxTests.testFragmentedFixturesMatchFFprobeOracle' started at 2026-11-06 21:08:23.813
+Test Case 'DemuxTests.testFragmentedFixturesMatchFFprobeOracle' passed (0.008 seconds)
+Test Case 'DemuxTests.testFragmentedMultiFragmentContinuity' started at 2026-11-06 21:08:23.821
+Test Case 'DemuxTests.testFragmentedMultiFragmentContinuity' passed (0.001 seconds)
+Test Case 'DemuxTests.testMKVMillisecondTimebase' started at 2026-11-06 21:08:23.821
+Test Case 'DemuxTests.testMKVMillisecondTimebase' passed (0.0 seconds)
+Test Case 'DemuxTests.testMP4BFrameReorder' started at 2026-11-06 21:08:23.822
+Test Case 'DemuxTests.testMP4BFrameReorder' passed (0.0 seconds)
+Test Case 'DemuxTests.testMP4EditListAndAACPriming' started at 2026-11-06 21:08:23.822
+Test Case 'DemuxTests.testMP4EditListAndAACPriming' passed (0.001 seconds)
+Test Case 'DemuxTests.testMissingClusterTimestampYieldsNilNotZero' started at 2026-11-06 21:08:23.823
+Test Case 'DemuxTests.testMissingClusterTimestampYieldsNilNotZero' passed (0.001 seconds)
+Test Case 'DemuxTests.testPacketPayloadsMatchFFprobeHashes' started at 2026-11-06 21:08:23.824
+Test Case 'DemuxTests.testPacketPayloadsMatchFFprobeHashes' passed (0.194 seconds)
+Test Case 'DemuxTests.testRationalTimeBasics' started at 2026-11-06 21:08:24.017
+Test Case 'DemuxTests.testRationalTimeBasics' passed (0.0 seconds)
+Test Case 'DemuxTests.testTruncatedInputThrows' started at 2026-11-06 21:08:24.017
+Test Case 'DemuxTests.testTruncatedInputThrows' passed (0.002 seconds)
+	 Executed 16 tests, with 0 failures (0 unexpected) in 0.281 (0.281) seconds
+	 Executed 16 tests, with 0 failures (0 unexpected) in 0.281 (0.281) seconds
+	 Executed 16 tests, with 0 failures (0 unexpected) in 0.281 (0.281) seconds

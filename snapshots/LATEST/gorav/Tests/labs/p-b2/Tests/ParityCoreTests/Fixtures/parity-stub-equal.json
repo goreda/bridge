@@ -1,0 +1,6 @@
+{
+  "backends": [
+    { "name": "stub-a", "result": { "frames": 48, "duration": 2.0, "seekLanding": 1.0416666666666667, "avOffset": 0.002 } },
+    { "name": "stub-b", "result": { "frames": 48, "duration": 2.0, "seekLanding": 1.0416666666666667, "avOffset": 0.002 } }
+  ]
+}

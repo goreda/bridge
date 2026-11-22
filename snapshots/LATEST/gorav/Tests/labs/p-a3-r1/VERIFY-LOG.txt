@@ -1,0 +1,29 @@
+P-A3-R1 verification log
+
+== 1. Vendored original P-A3 package vs its delivered MANIFEST.sha256 (GNU sha256sum -c) ==
+EXPECTED.md: OK
+Package.swift: OK
+README.md: OK
+SPEC.md: OK
+Sources/SubtitleLayout/ASSParser.swift: OK
+Sources/SubtitleLayout/Anchors.swift: OK
+Sources/SubtitleLayout/Core.swift: OK
+Sources/SubtitleLayout/FixedCellSubtitleLayout.swift: OK
+Sources/SubtitleLayout/SRTParser.swift: OK
+TEST-LOG.txt: OK
+Tests/SubtitleLayoutTests/FixtureLoading.swift: OK
+Tests/SubtitleLayoutTests/Fixtures/alignment.ass: OK
+Tests/SubtitleLayoutTests/Fixtures/basic.ass: OK
+Tests/SubtitleLayoutTests/Fixtures/basic.srt: OK
+Tests/SubtitleLayoutTests/Fixtures/invalid.srt: OK
+Tests/SubtitleLayoutTests/Fixtures/overlap.srt: OK
+Tests/SubtitleLayoutTests/Fixtures/unicode.srt: OK
+Tests/SubtitleLayoutTests/SubtitleLayoutTests.swift: OK
+
+== 2. R1 fixture copies byte-identical to P-A3 fixtures (cmp -s) ==
+basic.srt: identical
+overlap.srt: identical
+unicode.srt: identical
+invalid.srt: identical
+basic.ass: identical
+alignment.ass: identical

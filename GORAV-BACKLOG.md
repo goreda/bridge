@@ -1,3 +1,7 @@
+# RETIRED DISPATCH LIST,199cg
+
+Work only from QUEUE.md. Content below is historical provenance, not availableclaims or quotas. No rowcounttarget.199ceactualcustody remains, referQUEUEcurrentowners.
+
 Coordination199ce: Goreda has NOT acceptedW2/W8executionviaourrelay andexplicitlyrequiresholdchannelownerinstruction. W2/W8names below are ownerintent, not peeracceptance. Mainresolvesaffectedauthority, otherstreamscontinue.
 
 # GORAV-BACKLOG: owner199cd full build program

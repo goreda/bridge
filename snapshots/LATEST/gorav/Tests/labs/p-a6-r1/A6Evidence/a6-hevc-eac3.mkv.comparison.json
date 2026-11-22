@@ -1,0 +1,598 @@
+{
+  "actualPackets" : 111,
+  "expectedPackets" : 111,
+  "fixture" : "a6-hevc-eac3.mkv",
+  "mismatchCount" : 96,
+  "mismatches" : [
+    {
+      "actual" : "0\/1",
+      "expected" : "nil",
+      "field" : "track[0].packet[0].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "1\/8",
+      "expected" : "nil",
+      "field" : "track[0].packet[1].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "11\/125",
+      "expected" : "0\/1",
+      "field" : "track[0].packet[2].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "297\/1000",
+      "expected" : "11\/125",
+      "field" : "track[0].packet[4].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "213\/1000",
+      "expected" : "1\/8",
+      "field" : "track[0].packet[5].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "51\/200",
+      "expected" : "213\/1000",
+      "field" : "track[0].packet[7].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "101\/200",
+      "expected" : "51\/200",
+      "field" : "track[0].packet[8].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "211\/500",
+      "expected" : "297\/1000",
+      "field" : "track[0].packet[9].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "463\/1000",
+      "expected" : "211\/500",
+      "field" : "track[0].packet[12].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "713\/1000",
+      "expected" : "463\/1000",
+      "field" : "track[0].packet[13].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "63\/100",
+      "expected" : "101\/200",
+      "field" : "track[0].packet[14].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "84\/125",
+      "expected" : "63\/100",
+      "field" : "track[0].packet[17].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "419\/500",
+      "expected" : "84\/125",
+      "field" : "track[0].packet[18].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "797\/1000",
+      "expected" : "713\/1000",
+      "field" : "track[0].packet[19].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "963\/1000",
+      "expected" : "797\/1000",
+      "field" : "track[0].packet[21].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "461\/500",
+      "expected" : "419\/500",
+      "field" : "track[0].packet[22].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "113\/100",
+      "expected" : "461\/500",
+      "field" : "track[0].packet[24].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "1047\/1000",
+      "expected" : "963\/1000",
+      "field" : "track[0].packet[25].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "136\/125",
+      "expected" : "1047\/1000",
+      "field" : "track[0].packet[27].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "1297\/1000",
+      "expected" : "136\/125",
+      "field" : "track[0].packet[28].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "1213\/1000",
+      "expected" : "113\/100",
+      "field" : "track[0].packet[29].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "251\/200",
+      "expected" : "1213\/1000",
+      "field" : "track[0].packet[31].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "301\/200",
+      "expected" : "251\/200",
+      "field" : "track[0].packet[32].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "711\/500",
+      "expected" : "1297\/1000",
+      "field" : "track[0].packet[33].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "1463\/1000",
+      "expected" : "711\/500",
+      "field" : "track[0].packet[36].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "1713\/1000",
+      "expected" : "1463\/1000",
+      "field" : "track[0].packet[37].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "163\/100",
+      "expected" : "301\/200",
+      "field" : "track[0].packet[38].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "209\/125",
+      "expected" : "163\/100",
+      "field" : "track[0].packet[41].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "961\/500",
+      "expected" : "209\/125",
+      "field" : "track[0].packet[42].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "919\/500",
+      "expected" : "1713\/1000",
+      "field" : "track[0].packet[43].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "47\/25",
+      "expected" : "919\/500",
+      "field" : "track[0].packet[46].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "1963\/1000",
+      "expected" : "47\/25",
+      "field" : "track[0].packet[47].dts",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "a_eac3",
+      "expected" : "eac3",
+      "field" : "track[1].codec",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[0].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[1].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[2].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[3].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[4].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[5].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[6].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[7].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[8].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[9].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[10].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[11].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[12].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[13].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[14].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[15].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[16].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[17].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[18].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[19].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[20].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[21].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[22].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[23].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[24].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[25].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[26].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[27].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[28].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[29].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[30].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[31].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[32].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[33].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[34].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[35].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[36].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[37].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[38].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[39].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[40].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[41].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[42].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[43].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[44].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[45].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[46].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[47].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[48].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[49].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[50].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[51].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[52].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[53].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[54].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[55].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[56].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[57].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[58].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[59].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[60].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[61].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    },
+    {
+      "actual" : "nil",
+      "expected" : "4\/125",
+      "field" : "track[1].packet[62].duration",
+      "fixture" : "a6-hevc-eac3.mkv"
+    }
+  ],
+  "tracks" : [
+    {
+      "actual" : 48,
+      "codec" : "hevc",
+      "expected" : 48,
+      "track" : 0
+    },
+    {
+      "actual" : 63,
+      "codec" : "a_eac3",
+      "expected" : 63,
+      "track" : 1
+    }
+  ]
+}

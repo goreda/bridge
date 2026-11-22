@@ -1,0 +1,1043 @@
+{
+ "source": "photon-hud.lua v2.2.17 SHA256 0902f3b07901dbffb95ffeb056011e1a68e2144e14e380f65e1f23dd111c696d",
+ "derivation": "formula-derived (no Lua interpreter on the Linux host); gor lane re-derives from authoritative Lua",
+ "vectors": [
+  {
+   "name": "V1-all-sections-hdr",
+   "steps": [
+    {
+     "op": "photonHudState",
+     "fields": {
+      "enabled_str": "true",
+      "scene_smooth_peak_str": "0.72",
+      "scene_smooth_contrast_str": "0.31",
+      "scene_smooth_noise_str": "0.12",
+      "scene_motion_str": "0.05",
+      "scene_has_feed_str": "true",
+      "is_hdr_str": "true",
+      "is_live_str": "false",
+      "hdr_peak_str": "812.4",
+      "hdr_vel_str": "-12.5",
+      "hdr_avg_str": "0.4123",
+      "hdr_drive_str": "0.505",
+      "hdr_contrast_str": "0.0771",
+      "hdr_cut_thr_str": "0.42",
+      "hdr_pq_str": "0.55",
+      "hdr_dark_thresh_str": "0.30",
+      "hdr_bright_thresh_str": "0.75",
+      "sdr_pbs_str": "120.0",
+      "sdr_vel_str": "2.0",
+      "sdr_gamma_str": "-1.875",
+      "sdr_neutral_str": "110.0",
+      "live_calib_ready_str": "false",
+      "live_calib_samples_str": "2",
+      "live_calib_frames_str": "50",
+      "radar_buffer_len_str": "300",
+      "radar_buffer_miss_str": "false",
+      "ring_str": "12.3",
+      "rlevel_str": "0.44"
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "grainHudState",
+     "fields": {
+      "enabled_str": "true",
+      "amount_str": "0.55",
+      "fps_str": "24.0",
+      "size_base_str": "1.25",
+      "hint_received_str": "true",
+      "hint_suppressed_str": "false",
+      "hint_value_str": "1.023",
+      "hue_has_data_str": "true",
+      "hue_str": "42.0",
+      "strength_base_str": "0.62",
+      "strength_hint_received_str": "true",
+      "strength_hint_suppressed_str": "false",
+      "strength_hint_value_str": "0.58",
+      "size_rendered_str": "1.2",
+      "development_rendered_str": "0.9",
+      "softness_rendered_str": "0.3",
+      "amount_rendered_str": "0.55",
+      "user_offset_str": "0.0",
+      "weight_shift_str": "0.0",
+      "res_adapt_str": "true",
+      "target_enabled_str": "true",
+      "source_h_str": "1080",
+      "output_h_str": "2160",
+      "coefficient_str": "1.12",
+      "strength_k_str": "0.9",
+      "adaptive_mode_str": "true",
+      "strength_status_str": "ok",
+      "render_density_str": "0.5",
+      "effective_h_str": "1080",
+      "strength_src_str": "auto-measured",
+      "size_trim_str": "1.04"
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "chromeHudState",
+     "fields": {
+      "enabled_str": "true",
+      "filter_idx_str": "1",
+      "filter_strength_str": "0.68",
+      "contrast_str": "0.12",
+      "has_feed_str": "true",
+      "hue_driven_str": "true",
+      "hue_str": "0.083",
+      "shadow_lift_str": "0.05",
+      "highlight_rolloff_str": "0.9",
+      "mono_grain_str": "false",
+      "arc_clamped_str": "false",
+      "manual_filter_str": "false"
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "negativHudState",
+     "fields": {
+      "enabled_str": "true",
+      "stock_idx_str": "1",
+      "mask_gain_str": "0.85",
+      "gamma_str": "1.05",
+      "has_feed_str": "true",
+      "hue_driven_str": "true",
+      "hue_str": "0.5",
+      "arc_clamped_str": "true",
+      "mode_str": "mask"
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "sharpHudState",
+     "fields": {
+      "enabled_str": "true",
+      "shader_ready_str": "true",
+      "current_algo_str": "0",
+      "user_strength_str": "0.45",
+      "smooth_coarse_str": "0.30",
+      "global_factor_str": "0.80",
+      "halo_guard_str": "0.65",
+      "texture_bias_str": "0.20",
+      "fine_strength_str": "0.50",
+      "medium_strength_str": "0.35",
+      "coarse_strength_str": "0.25",
+      "content_adapt_str": "1",
+      "temporal_mode_str": "1",
+      "ring_damp_str": "0.10",
+      "target_enabled_str": "true",
+      "source_h_str": "1080",
+      "output_h_str": "2160",
+      "multiplier_str": "0.85",
+      "adaptive_mode_str": "true"
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "brightState",
+     "fields": {
+      "active": true,
+      "backlight": 0.62,
+      "inertia_mode": "ease",
+      "is_cut": false,
+      "ambient_level": 0.35,
+      "ambient_source": "als",
+      "ambient_lux": 180.0
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "hudToggle",
+     "nowUs": 0
+    },
+    {
+     "op": "draw",
+     "nowUs": 0,
+     "expect": {
+      "osd": "photon\tphoton hdr‖photon\t      peak: 812 nit   vel: -12.5 nit/s‖photon\t      avg-pq: 0.4123   hybrid: 0.5050‖photon\t      contrast ∂: 0.0771   cut@: 0.4200‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphoton bright‖bright\t      backlight: 62%   inertia: ease   cut: no   feed: live‖bright\t      ambient: 35% als: 180 lux ‖sharp\tphoton sharp‖sharp\t      global: 0.80   halo: 0.65   texture: 0.20‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.45   fine-mix: 0.30   ring: -6%‖sharp\t      algo: Hybrid  bands  F: 0.50  M: 0.35  C: 0.25‖sharp\t      content-adapt: on   temporal: Phase2(buf)‖sharp\t      adaptive: on   src/out: 1080/2160   m: 0.85‖sharp\t      (open-loop, source-height only, attenuation only,‖sharp\t      synthetic basis, not noise-adaptive) ‖grain\tphoton grain‖grain\t      amount: 0.55   fps: 24.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)  trim x1.04   hue: 42°‖grain\t      strength: 0.62  auto, source noise measured (x0.580)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05‖grain\t      resolution scale: auto 1.12x‖grain\t      density: 0.50 neutral, strength from sampled frames ‖chrome\tphoton chrome ‖negativ\tphoton negativ — mask"
+     }
+    }
+   ]
+  },
+  {
+   "name": "V2-guard-corrupt-hold",
+   "steps": [
+    {
+     "op": "photonHudState",
+     "fields": {
+      "enabled_str": "true",
+      "scene_smooth_peak_str": "0.72",
+      "scene_smooth_contrast_str": "0.31",
+      "scene_smooth_noise_str": "0.12",
+      "scene_motion_str": "0.05",
+      "scene_has_feed_str": "true",
+      "is_hdr_str": "true",
+      "is_live_str": "false",
+      "hdr_peak_str": "812.4",
+      "hdr_vel_str": "-12.5",
+      "hdr_avg_str": "0.4123",
+      "hdr_drive_str": "0.505",
+      "hdr_contrast_str": "0.0771",
+      "hdr_cut_thr_str": "0.42",
+      "hdr_pq_str": "0.55",
+      "hdr_dark_thresh_str": "0.30",
+      "hdr_bright_thresh_str": "0.75",
+      "sdr_pbs_str": "120.0",
+      "sdr_vel_str": "2.0",
+      "sdr_gamma_str": "-1.875",
+      "sdr_neutral_str": "110.0",
+      "live_calib_ready_str": "false",
+      "live_calib_samples_str": "2",
+      "live_calib_frames_str": "50",
+      "radar_buffer_len_str": "300",
+      "radar_buffer_miss_str": "false",
+      "ring_str": "12.3",
+      "rlevel_str": "0.44"
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "hudToggle",
+     "nowUs": 0
+    },
+    {
+     "op": "draw",
+     "nowUs": 0,
+     "expect": {
+      "osd": "photon\tphoton hdr‖photon\t      peak: 812 nit   vel: -12.5 nit/s‖photon\t      avg-pq: 0.4123   hybrid: 0.5050‖photon\t      contrast ∂: 0.0771   cut@: 0.4200‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "photonHudState",
+     "fields": {
+      "enabled_str": "true",
+      "scene_smooth_peak_str": "",
+      "scene_smooth_contrast_str": "0.31",
+      "scene_smooth_noise_str": "0.12",
+      "scene_motion_str": "0.05",
+      "scene_has_feed_str": "true",
+      "is_hdr_str": "true",
+      "is_live_str": "false",
+      "hdr_peak_str": "nan",
+      "hdr_vel_str": "inf",
+      "hdr_avg_str": "0.4123",
+      "hdr_drive_str": "0.505",
+      "hdr_contrast_str": "0.0771",
+      "hdr_cut_thr_str": "0.42",
+      "hdr_pq_str": "0.55",
+      "hdr_dark_thresh_str": "0.30",
+      "hdr_bright_thresh_str": "0.75",
+      "sdr_pbs_str": "120.0",
+      "sdr_vel_str": "2.0",
+      "sdr_gamma_str": "99.0",
+      "sdr_neutral_str": "110.0",
+      "live_calib_ready_str": "false",
+      "live_calib_samples_str": "2",
+      "live_calib_frames_str": "50",
+      "radar_buffer_len_str": "300",
+      "radar_buffer_miss_str": "false",
+      "ring_str": "12.3",
+      "rlevel_str": "0.44"
+     },
+     "nowUs": 250000
+    },
+    {
+     "op": "draw",
+     "nowUs": 250000,
+     "expect": {
+      "osd": "photon\tphoton hdr‖photon\t      peak: 812 nit   vel: -12.5 nit/s‖photon\t      avg-pq: 0.4123   hybrid: 0.5050‖photon\t      contrast ∂: 0.0771   cut@: 0.4200‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.00   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.00   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "expectWarnings",
+     "fields": [
+      "photon.hdr_peak",
+      "photon.hdr_vel",
+      "photon.sdr_gamma"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "V3-fold-toggle-trajectory",
+   "steps": [
+    {
+     "op": "photonHudState",
+     "fields": {
+      "enabled_str": "true",
+      "scene_smooth_peak_str": "0.72",
+      "scene_smooth_contrast_str": "0.31",
+      "scene_smooth_noise_str": "0.12",
+      "scene_motion_str": "0.05",
+      "scene_has_feed_str": "true",
+      "is_hdr_str": "false",
+      "is_live_str": "false",
+      "hdr_peak_str": "812.4",
+      "hdr_vel_str": "-12.5",
+      "hdr_avg_str": "0.4123",
+      "hdr_drive_str": "0.505",
+      "hdr_contrast_str": "0.0771",
+      "hdr_cut_thr_str": "0.42",
+      "hdr_pq_str": "0.55",
+      "hdr_dark_thresh_str": "0.30",
+      "hdr_bright_thresh_str": "0.75",
+      "sdr_pbs_str": "120.0",
+      "sdr_vel_str": "2.0",
+      "sdr_gamma_str": "-1.875",
+      "sdr_neutral_str": "110.0",
+      "live_calib_ready_str": "false",
+      "live_calib_samples_str": "2",
+      "live_calib_frames_str": "50",
+      "radar_buffer_len_str": "300",
+      "radar_buffer_miss_str": "false",
+      "ring_str": "12.3",
+      "rlevel_str": "0.44"
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "chromeHudState",
+     "fields": {
+      "enabled_str": "true",
+      "filter_idx_str": "1",
+      "filter_strength_str": "0.68",
+      "contrast_str": "0.12",
+      "has_feed_str": "true",
+      "hue_driven_str": "true",
+      "hue_str": "0.083",
+      "shadow_lift_str": "0.05",
+      "highlight_rolloff_str": "0.9",
+      "mono_grain_str": "false",
+      "arc_clamped_str": "false",
+      "manual_filter_str": "false"
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "hudToggle",
+     "nowUs": 0
+    },
+    {
+     "op": "draw",
+     "nowUs": 0,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphoton chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "toggleFold",
+     "section": "chrome",
+     "nowUs": 1000000
+    },
+    {
+     "op": "foldTick",
+     "section": "chrome",
+     "nowUs": 1040000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphoton chrome‖chrome\t      filter: orange   strength: 0.68  feed: live‖chrome\t      contrast: 0.12   shadow: 0.05   highlight: 0.90 ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "foldTick",
+     "section": "chrome",
+     "nowUs": 1080000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphoton chrome‖chrome\t      filter: orange   strength: 0.68  feed: live‖chrome\t      contrast: 0.12   shadow: 0.05   highlight: 0.90‖chrome\t      hue-driven: on   hue: 0.083   mono-grain: off ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "foldTick",
+     "section": "chrome",
+     "nowUs": 1120000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphoton chrome‖chrome\t      filter: orange   strength: 0.68  feed: live‖chrome\t      contrast: 0.12   shadow: 0.05   highlight: 0.90‖chrome\t      hue-driven: on   hue: 0.083   mono-grain: off ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "foldTick",
+     "section": "chrome",
+     "nowUs": 1160000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphoton chrome‖chrome\t      filter: orange   strength: 0.68  feed: live‖chrome\t      contrast: 0.12   shadow: 0.05   highlight: 0.90‖chrome\t      hue-driven: on   hue: 0.083   mono-grain: off ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "foldTick",
+     "section": "chrome",
+     "nowUs": 1200000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphoton chrome‖chrome\t      filter: orange   strength: 0.68  feed: live‖chrome\t      contrast: 0.12   shadow: 0.05   highlight: 0.90‖chrome\t      hue-driven: on   hue: 0.083   mono-grain: off ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "toggleFold",
+     "section": "chrome",
+     "nowUs": 2000000
+    },
+    {
+     "op": "foldTick",
+     "section": "chrome",
+     "nowUs": 2040000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphoton chrome‖chrome\t      filter: orange   strength: 0.68  feed: live ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "foldTick",
+     "section": "chrome",
+     "nowUs": 2080000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphoton chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "foldTick",
+     "section": "chrome",
+     "nowUs": 2120000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphoton chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "foldTick",
+     "section": "chrome",
+     "nowUs": 2160000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphoton chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "foldTick",
+     "section": "chrome",
+     "nowUs": 2200000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphoton chrome ‖negativ\tphotoff negativ"
+     }
+    }
+   ]
+  },
+  {
+   "name": "V4-sync-fold-to-enabled",
+   "steps": [
+    {
+     "op": "photonHudState",
+     "fields": {
+      "enabled_str": "true",
+      "scene_smooth_peak_str": "0.72",
+      "scene_smooth_contrast_str": "0.31",
+      "scene_smooth_noise_str": "0.12",
+      "scene_motion_str": "0.05",
+      "scene_has_feed_str": "true",
+      "is_hdr_str": "false",
+      "is_live_str": "false",
+      "hdr_peak_str": "812.4",
+      "hdr_vel_str": "-12.5",
+      "hdr_avg_str": "0.4123",
+      "hdr_drive_str": "0.505",
+      "hdr_contrast_str": "0.0771",
+      "hdr_cut_thr_str": "0.42",
+      "hdr_pq_str": "0.55",
+      "hdr_dark_thresh_str": "0.30",
+      "hdr_bright_thresh_str": "0.75",
+      "sdr_pbs_str": "120.0",
+      "sdr_vel_str": "2.0",
+      "sdr_gamma_str": "-1.875",
+      "sdr_neutral_str": "110.0",
+      "live_calib_ready_str": "false",
+      "live_calib_samples_str": "2",
+      "live_calib_frames_str": "50",
+      "radar_buffer_len_str": "300",
+      "radar_buffer_miss_str": "false",
+      "ring_str": "12.3",
+      "rlevel_str": "0.44"
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "chromeHudState",
+     "fields": {
+      "enabled_str": "true",
+      "filter_idx_str": "1",
+      "filter_strength_str": "0.68",
+      "contrast_str": "0.12",
+      "has_feed_str": "true",
+      "hue_driven_str": "true",
+      "hue_str": "0.083",
+      "shadow_lift_str": "0.05",
+      "highlight_rolloff_str": "0.9",
+      "mono_grain_str": "false",
+      "arc_clamped_str": "false",
+      "manual_filter_str": "false"
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "hudToggle",
+     "nowUs": 0
+    },
+    {
+     "op": "draw",
+     "nowUs": 0,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphoton chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "chromeHudState",
+     "fields": {
+      "enabled_str": "false",
+      "filter_idx_str": "1",
+      "filter_strength_str": "0.68",
+      "contrast_str": "0.12",
+      "has_feed_str": "true",
+      "hue_driven_str": "true",
+      "hue_str": "0.083",
+      "shadow_lift_str": "0.05",
+      "highlight_rolloff_str": "0.9",
+      "mono_grain_str": "false",
+      "arc_clamped_str": "false",
+      "manual_filter_str": "false"
+     },
+     "nowUs": 1000000
+    },
+    {
+     "op": "draw",
+     "nowUs": 1000000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "foldTick",
+     "section": "chrome",
+     "nowUs": 1040000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "foldTick",
+     "section": "chrome",
+     "nowUs": 1080000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "foldTick",
+     "section": "chrome",
+     "nowUs": 1120000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "foldTick",
+     "section": "chrome",
+     "nowUs": 1160000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "foldTick",
+     "section": "chrome",
+     "nowUs": 1200000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "chromeHudState",
+     "fields": {
+      "enabled_str": "true",
+      "filter_idx_str": "1",
+      "filter_strength_str": "0.68",
+      "contrast_str": "0.12",
+      "has_feed_str": "true",
+      "hue_driven_str": "true",
+      "hue_str": "0.083",
+      "shadow_lift_str": "0.05",
+      "highlight_rolloff_str": "0.9",
+      "mono_grain_str": "false",
+      "arc_clamped_str": "false",
+      "manual_filter_str": "false"
+     },
+     "nowUs": 2000000
+    },
+    {
+     "op": "draw",
+     "nowUs": 2000000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphoton chrome‖chrome\t      filter: orange   strength: 0.68  feed: live ‖negativ\tphotoff negativ"
+     }
+    }
+   ]
+  },
+  {
+   "name": "V5-grain-measure-expiry",
+   "steps": [
+    {
+     "op": "photonHudState",
+     "fields": {
+      "enabled_str": "true",
+      "scene_smooth_peak_str": "0.72",
+      "scene_smooth_contrast_str": "0.31",
+      "scene_smooth_noise_str": "0.12",
+      "scene_motion_str": "0.05",
+      "scene_has_feed_str": "true",
+      "is_hdr_str": "false",
+      "is_live_str": "false",
+      "hdr_peak_str": "812.4",
+      "hdr_vel_str": "-12.5",
+      "hdr_avg_str": "0.4123",
+      "hdr_drive_str": "0.505",
+      "hdr_contrast_str": "0.0771",
+      "hdr_cut_thr_str": "0.42",
+      "hdr_pq_str": "0.55",
+      "hdr_dark_thresh_str": "0.30",
+      "hdr_bright_thresh_str": "0.75",
+      "sdr_pbs_str": "120.0",
+      "sdr_vel_str": "2.0",
+      "sdr_gamma_str": "-1.875",
+      "sdr_neutral_str": "110.0",
+      "live_calib_ready_str": "false",
+      "live_calib_samples_str": "2",
+      "live_calib_frames_str": "50",
+      "radar_buffer_len_str": "300",
+      "radar_buffer_miss_str": "false",
+      "ring_str": "12.3",
+      "rlevel_str": "0.44"
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "grainHudState",
+     "fields": {
+      "enabled_str": "true",
+      "amount_str": "0.55",
+      "fps_str": "24.0",
+      "size_base_str": "1.25",
+      "hint_received_str": "true",
+      "hint_suppressed_str": "false",
+      "hint_value_str": "1.023",
+      "hue_has_data_str": "true",
+      "hue_str": "42.0",
+      "strength_base_str": "0.62",
+      "strength_hint_received_str": "true",
+      "strength_hint_suppressed_str": "false",
+      "strength_hint_value_str": "0.58",
+      "size_rendered_str": "1.2",
+      "development_rendered_str": "0.9",
+      "softness_rendered_str": "0.3",
+      "amount_rendered_str": "0.55",
+      "user_offset_str": "0.0",
+      "weight_shift_str": "0.0",
+      "res_adapt_str": "true",
+      "target_enabled_str": "true",
+      "source_h_str": "1080",
+      "output_h_str": "2160",
+      "coefficient_str": "1.12",
+      "strength_k_str": "0.9",
+      "adaptive_mode_str": "true",
+      "strength_status_str": "ok",
+      "render_density_str": "0.5",
+      "effective_h_str": "1080",
+      "strength_src_str": "auto-measured",
+      "size_trim_str": "1.04"
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "hudToggle",
+     "nowUs": 0
+    },
+    {
+     "op": "draw",
+     "nowUs": 0,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphoton grain‖grain\t      amount: 0.55   fps: 24.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)  trim x1.04   hue: 42°‖grain\t      strength: 0.62  auto, source noise measured (x0.580)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05‖grain\t      resolution scale: auto 1.12x‖grain\t      density: 0.50 neutral, strength from sampled frames ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "grainMeasureStatus",
+     "value": "blocks<6",
+     "nowUs": 5000000
+    },
+    {
+     "op": "draw",
+     "nowUs": 5000000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphoton grain‖grain\t      amount: 0.55   fps: 24.00  feed: live‖grain\t      not measured: too few blocks  trim x1.04   hue: 42°‖grain\t      strength: 0.62  auto, source noise measured (x0.580)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05‖grain\t      resolution scale: auto 1.12x‖grain\t      density: 0.50 neutral, strength from sampled frames ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "setNow",
+     "nowUs": 17500000
+    },
+    {
+     "op": "draw",
+     "nowUs": 17500000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphoton grain‖grain\t      amount: 0.55   fps: 24.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)  trim x1.04   hue: 42°‖grain\t      strength: 0.62  auto, source noise measured (x0.580)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05‖grain\t      resolution scale: auto 1.12x‖grain\t      density: 0.50 neutral, strength from sampled frames ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "fileLoaded",
+     "nowUs": 18000000
+    },
+    {
+     "op": "draw",
+     "nowUs": 18000000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphoton grain‖grain\t      amount: 0.55   fps: 24.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)  trim x1.04   hue: 42°‖grain\t      strength: 0.62  auto, source noise measured (x0.580)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05‖grain\t      resolution scale: auto 1.12x‖grain\t      density: 0.50 neutral, strength from sampled frames ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    }
+   ]
+  },
+  {
+   "name": "V6-photon-sdr-modes",
+   "steps": [
+    {
+     "op": "hudToggle",
+     "nowUs": 0
+    },
+    {
+     "op": "photonHudState",
+     "fields": {
+      "enabled_str": "true",
+      "scene_smooth_peak_str": "0.72",
+      "scene_smooth_contrast_str": "0.31",
+      "scene_smooth_noise_str": "0.12",
+      "scene_motion_str": "0.05",
+      "scene_has_feed_str": "true",
+      "is_hdr_str": "false",
+      "is_live_str": "false",
+      "hdr_peak_str": "812.4",
+      "hdr_vel_str": "-12.5",
+      "hdr_avg_str": "0.4123",
+      "hdr_drive_str": "0.505",
+      "hdr_contrast_str": "0.0771",
+      "hdr_cut_thr_str": "0.42",
+      "hdr_pq_str": "0.55",
+      "hdr_dark_thresh_str": "0.30",
+      "hdr_bright_thresh_str": "0.75",
+      "sdr_pbs_str": "120.0",
+      "sdr_vel_str": "2.0",
+      "sdr_gamma_str": "-1.875",
+      "sdr_neutral_str": "110.0",
+      "live_calib_ready_str": "false",
+      "live_calib_samples_str": "2",
+      "live_calib_frames_str": "50",
+      "radar_buffer_len_str": "300",
+      "radar_buffer_miss_str": "false",
+      "ring_str": "12.3",
+      "rlevel_str": "0.44"
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "draw",
+     "nowUs": 0,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "photonHudState",
+     "fields": {
+      "enabled_str": "true",
+      "scene_smooth_peak_str": "0.72",
+      "scene_smooth_contrast_str": "0.31",
+      "scene_smooth_noise_str": "0.12",
+      "scene_motion_str": "0.05",
+      "scene_has_feed_str": "true",
+      "is_hdr_str": "false",
+      "is_live_str": "false",
+      "hdr_peak_str": "812.4",
+      "hdr_vel_str": "-12.5",
+      "hdr_avg_str": "0.4123",
+      "hdr_drive_str": "0.505",
+      "hdr_contrast_str": "0.0771",
+      "hdr_cut_thr_str": "0.42",
+      "hdr_pq_str": "0.55",
+      "hdr_dark_thresh_str": "0.30",
+      "hdr_bright_thresh_str": "0.75",
+      "sdr_pbs_str": "120.0",
+      "sdr_vel_str": "2.0",
+      "sdr_gamma_str": "-1.875",
+      "sdr_neutral_str": "110.0",
+      "live_calib_ready_str": "false",
+      "live_calib_samples_str": "2",
+      "live_calib_frames_str": "50",
+      "radar_buffer_len_str": "0",
+      "radar_buffer_miss_str": "false",
+      "ring_str": "12.3",
+      "rlevel_str": "0.44"
+     },
+     "nowUs": 250000
+    },
+    {
+     "op": "draw",
+     "nowUs": 250000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      probe (warming up)‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "photonHudState",
+     "fields": {
+      "enabled_str": "true",
+      "scene_smooth_peak_str": "0.72",
+      "scene_smooth_contrast_str": "0.31",
+      "scene_smooth_noise_str": "0.12",
+      "scene_motion_str": "0.05",
+      "scene_has_feed_str": "true",
+      "is_hdr_str": "false",
+      "is_live_str": "false",
+      "hdr_peak_str": "812.4",
+      "hdr_vel_str": "-12.5",
+      "hdr_avg_str": "0.4123",
+      "hdr_drive_str": "0.505",
+      "hdr_contrast_str": "0.0771",
+      "hdr_cut_thr_str": "0.42",
+      "hdr_pq_str": "0.55",
+      "hdr_dark_thresh_str": "0.30",
+      "hdr_bright_thresh_str": "0.75",
+      "sdr_pbs_str": "120.0",
+      "sdr_vel_str": "2.0",
+      "sdr_gamma_str": "-1.875",
+      "sdr_neutral_str": "110.0",
+      "live_calib_ready_str": "false",
+      "live_calib_samples_str": "2",
+      "live_calib_frames_str": "50",
+      "radar_buffer_len_str": "0",
+      "radar_buffer_miss_str": "true",
+      "ring_str": "12.3",
+      "rlevel_str": "0.44"
+     },
+     "nowUs": 500000
+    },
+    {
+     "op": "draw",
+     "nowUs": 500000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      seek → probe‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "photonHudState",
+     "fields": {
+      "enabled_str": "true",
+      "scene_smooth_peak_str": "0.72",
+      "scene_smooth_contrast_str": "0.31",
+      "scene_smooth_noise_str": "0.12",
+      "scene_motion_str": "0.05",
+      "scene_has_feed_str": "true",
+      "is_hdr_str": "false",
+      "is_live_str": "true",
+      "hdr_peak_str": "812.4",
+      "hdr_vel_str": "-12.5",
+      "hdr_avg_str": "0.4123",
+      "hdr_drive_str": "0.505",
+      "hdr_contrast_str": "0.0771",
+      "hdr_cut_thr_str": "0.42",
+      "hdr_pq_str": "0.55",
+      "hdr_dark_thresh_str": "0.30",
+      "hdr_bright_thresh_str": "0.75",
+      "sdr_pbs_str": "120.0",
+      "sdr_vel_str": "2.0",
+      "sdr_gamma_str": "-1.875",
+      "sdr_neutral_str": "110.0",
+      "live_calib_ready_str": "true",
+      "live_calib_samples_str": "2",
+      "live_calib_frames_str": "50",
+      "radar_buffer_len_str": "300",
+      "radar_buffer_miss_str": "false",
+      "ring_str": "12.3",
+      "rlevel_str": "0.44"
+     },
+     "nowUs": 750000
+    },
+    {
+     "op": "draw",
+     "nowUs": 750000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      live  vf-metadata  calib: 110‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "photonHudState",
+     "fields": {
+      "enabled_str": "true",
+      "scene_smooth_peak_str": "0.72",
+      "scene_smooth_contrast_str": "0.31",
+      "scene_smooth_noise_str": "0.12",
+      "scene_motion_str": "0.05",
+      "scene_has_feed_str": "true",
+      "is_hdr_str": "false",
+      "is_live_str": "true",
+      "hdr_peak_str": "812.4",
+      "hdr_vel_str": "-12.5",
+      "hdr_avg_str": "0.4123",
+      "hdr_drive_str": "0.505",
+      "hdr_contrast_str": "0.0771",
+      "hdr_cut_thr_str": "0.42",
+      "hdr_pq_str": "0.55",
+      "hdr_dark_thresh_str": "0.30",
+      "hdr_bright_thresh_str": "0.75",
+      "sdr_pbs_str": "120.0",
+      "sdr_vel_str": "2.0",
+      "sdr_gamma_str": "-1.875",
+      "sdr_neutral_str": "110.0",
+      "live_calib_ready_str": "false",
+      "live_calib_samples_str": "2",
+      "live_calib_frames_str": "50",
+      "radar_buffer_len_str": "300",
+      "radar_buffer_miss_str": "false",
+      "ring_str": "12.3",
+      "rlevel_str": "0.44"
+     },
+     "nowUs": 1000000
+    },
+    {
+     "op": "draw",
+     "nowUs": 1000000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      live  vf-metadata  calib: 2/50‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    }
+   ]
+  },
+  {
+   "name": "V7-bright-variants",
+   "steps": [
+    {
+     "op": "photonHudState",
+     "fields": {
+      "enabled_str": "true",
+      "scene_smooth_peak_str": "0.72",
+      "scene_smooth_contrast_str": "0.31",
+      "scene_smooth_noise_str": "0.12",
+      "scene_motion_str": "0.05",
+      "scene_has_feed_str": "true",
+      "is_hdr_str": "false",
+      "is_live_str": "false",
+      "hdr_peak_str": "812.4",
+      "hdr_vel_str": "-12.5",
+      "hdr_avg_str": "0.4123",
+      "hdr_drive_str": "0.505",
+      "hdr_contrast_str": "0.0771",
+      "hdr_cut_thr_str": "0.42",
+      "hdr_pq_str": "0.55",
+      "hdr_dark_thresh_str": "0.30",
+      "hdr_bright_thresh_str": "0.75",
+      "sdr_pbs_str": "120.0",
+      "sdr_vel_str": "2.0",
+      "sdr_gamma_str": "-1.875",
+      "sdr_neutral_str": "110.0",
+      "live_calib_ready_str": "false",
+      "live_calib_samples_str": "2",
+      "live_calib_frames_str": "50",
+      "radar_buffer_len_str": "300",
+      "radar_buffer_miss_str": "false",
+      "ring_str": "12.3",
+      "rlevel_str": "0.44"
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "hudToggle",
+     "nowUs": 0
+    },
+    {
+     "op": "brightState",
+     "fields": {
+      "active": true,
+      "backlight": 0.5,
+      "inertia_mode": "ease",
+      "is_cut": true,
+      "ambient_level": null,
+      "ambient_window_open": true,
+      "ambient_source": "als",
+      "ambient_lux": null
+     },
+     "nowUs": 0
+    },
+    {
+     "op": "draw",
+     "nowUs": 0,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphoton bright‖bright\t      backlight: 50%   inertia: ease   cut: yes   feed: live‖bright\t      ambient: reading... ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "brightState",
+     "fields": {
+      "active": true,
+      "backlight": null,
+      "inertia_mode": "hold",
+      "is_cut": false,
+      "ambient_level": null,
+      "ambient_window_open": false,
+      "ambient_source": "camera-room_face",
+      "ambient_face": 0.4,
+      "ambient_room": 0.7
+     },
+     "nowUs": 250000
+    },
+    {
+     "op": "draw",
+     "nowUs": 250000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphoton bright‖bright\t      backlight: n/a   inertia: hold   cut: no   feed: waiting‖bright\t      ambient: n/a face: 40% room: 70% ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    },
+    {
+     "op": "brightState",
+     "fields": {
+      "active": false,
+      "backlight": null,
+      "inertia_mode": "n/a",
+      "is_cut": false,
+      "ambient_level": null,
+      "ambient_window_open": false,
+      "ambient_source": "n/a"
+     },
+     "nowUs": 500000
+    },
+    {
+     "op": "draw",
+     "nowUs": 500000,
+     "expect": {
+      "osd": "photon\tphoton sdr‖photon\t      radar  300 frames‖photon\t      pbs: 120.0   vel: +2.0/s‖photon\t      gamma: -1.88   neutral: 110‖photon\t      scene: mid   ring: 12.3 (lvl 0.44) ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.72   contrast: 0.31   noise: 0.12‖sharp\t      motion: 0.05   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: live‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.72   contrast: 0.31‖grain\t      noise: 0.12   motion: 0.05 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    }
+   ]
+  },
+  {
+   "name": "V8-waiting-and-disabled",
+   "steps": [
+    {
+     "op": "draw",
+     "nowUs": 0,
+     "expect": {
+      "osd": null
+     }
+    },
+    {
+     "op": "hudToggle",
+     "nowUs": 0
+    },
+    {
+     "op": "draw",
+     "nowUs": 0,
+     "expect": {
+      "osd": "photon\tphot? photon‖      waiting for photon.lua… ‖bright\tphotoff bright‖bright\t      backlight: n/a   inertia: n/a   cut: no   feed: no feed‖bright\t      ambient: n/a ‖sharp\tphotoff sharp‖sharp\t      global: 0.00   halo: 0.00   texture: 0.00‖sharp\t      peak: 0.00   contrast: 0.00   noise: 0.00‖sharp\t      motion: 0.00   amount: 0.00   fine-mix: 0.00‖sharp\t      algo: Hybrid  bands  F: 0.00  M: 0.00  C: 0.00‖sharp\t      content-adapt: off   temporal: Phase1(EMA) ‖grain\tphotoff grain‖grain\t      amount: 0.00   fps: 0.00  feed: no feed‖grain\t      base size: not measured yet (neutral 1.0)   hue: off (no data)‖grain\t      strength: 0.00  default (not measured)‖grain\t      scene → peak: 0.00   contrast: 0.00‖grain\t      noise: 0.00   motion: 0.00 ‖chrome\tphotoff chrome ‖negativ\tphotoff negativ"
+     }
+    }
+   ]
+  }
+ ]
+}

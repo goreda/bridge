@@ -1,0 +1,141 @@
+{
+  "a6-h264-aac.mp4.ffprobe.json": {
+    "streams": [
+      {
+        "index": 0,
+        "codec_type": "video",
+        "codec_name": "h264",
+        "time_base": "1/12288"
+      },
+      {
+        "index": 1,
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "time_base": "1/48000"
+      }
+    ],
+    "firstPackets": [
+      {
+        "stream_index": 1,
+        "pts": -1024,
+        "dts": -1024,
+        "duration": 1024,
+        "side_data_list": [
+          {
+            "side_data_type": "Skip Samples",
+            "skip_samples": 1024,
+            "discard_padding": 0,
+            "skip_reason": 0,
+            "discard_reason": 0
+          }
+        ]
+      },
+      {
+        "stream_index": 0,
+        "pts": 0,
+        "dts": 0,
+        "duration": 512
+      },
+      {
+        "stream_index": 1,
+        "pts": 0,
+        "dts": 0,
+        "duration": 1024
+      },
+      {
+        "stream_index": 1,
+        "pts": 1024,
+        "dts": 1024,
+        "duration": 1024
+      },
+      {
+        "stream_index": 0,
+        "pts": 512,
+        "dts": 512,
+        "duration": 512
+      },
+      {
+        "stream_index": 1,
+        "pts": 2048,
+        "dts": 2048,
+        "duration": 1024
+      },
+      {
+        "stream_index": 1,
+        "pts": 3072,
+        "dts": 3072,
+        "duration": 1024
+      },
+      {
+        "stream_index": 0,
+        "pts": 1024,
+        "dts": 1024,
+        "duration": 512
+      }
+    ]
+  },
+  "a6-hevc-eac3.mkv.ffprobe.json": {
+    "streams": [
+      {
+        "index": 0,
+        "codec_type": "video",
+        "codec_name": "hevc",
+        "time_base": "1/1000"
+      },
+      {
+        "index": 1,
+        "codec_type": "audio",
+        "codec_name": "eac3",
+        "time_base": "1/1000"
+      }
+    ],
+    "firstPackets": [
+      {
+        "stream_index": 0,
+        "pts": 0,
+        "duration": 41
+      },
+      {
+        "stream_index": 0,
+        "pts": 125,
+        "duration": 41
+      },
+      {
+        "stream_index": 0,
+        "pts": 88,
+        "dts": 0,
+        "duration": 41
+      },
+      {
+        "stream_index": 1,
+        "pts": 0,
+        "dts": 0,
+        "duration": 32
+      },
+      {
+        "stream_index": 0,
+        "pts": 47,
+        "dts": 47,
+        "duration": 41
+      },
+      {
+        "stream_index": 1,
+        "pts": 32,
+        "dts": 32,
+        "duration": 32
+      },
+      {
+        "stream_index": 0,
+        "pts": 297,
+        "dts": 88,
+        "duration": 41
+      },
+      {
+        "stream_index": 1,
+        "pts": 64,
+        "dts": 64,
+        "duration": 32
+      }
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+../../Sources/GorAVPlaybackCore/CaptureStats/HeatComparison.swift

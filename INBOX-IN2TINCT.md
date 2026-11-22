@@ -1,3 +1,7 @@
+RELAY 1nstinct + in2tinct (verbatim, GO, standing): Work only from bridge QUEUE.md (LEDGER-mapped). All workers on available rows; return git diff + test log in returns/. No rows = say "queue empty". No filler.
+
+Actualupstreamgoravsource+LEDGERavailable snapshots/LATEST/gorav at984aa; actual679rowsnot577. OldA/B/generated120notdispatchlists. ExistingactiveownersinQUEUE, nosecondwriters.
+
 199ceACTUALROSTER: A009-11Goredaactive,A007waitsGrain,A005membershipactive,A028active; returnedA012/13/14/15/16/22/27andlandedA019reservedtocurrentexecutors. UnstartedA001/18/20/21/24/25/26ownershipblockedNOTfreelyclaimable. A002/3/4/6/8/23review-onlynotfix. Goredaexplicitrelease/W2W8acceptanceconflictmainowns; continueotherunblockedgoravstreamsnotsecondwriters.
 
 RELAY in2tinct (verbatim): snapshots/LATEST is live. Take the A-rows not marked goreda, plus your 199cd gorav streams W2/W5/W6/W9/W10.

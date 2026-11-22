@@ -1,0 +1,5290 @@
+{
+  "source_repo": "goreda/gorav",
+  "source_commit": "984aa089a09257444ec9b50d50d29ebf7e8820a2",
+  "files": [
+    {
+      "path": "PLAN-v5-DRAFT.md",
+      "sha256": "803a8b06732c2f5a7338832e9774d97f1dbea978842419cfb454075c7fd221c5",
+      "bytes": 25885,
+      "mode": "100644"
+    },
+    {
+      "path": "PLAN.md",
+      "sha256": "13bff2d3a978514e636ba08f2faffd47b69f11d2b7c761bb74d04336a5b249ed",
+      "bytes": 13790,
+      "mode": "100644"
+    },
+    {
+      "path": "Package.swift",
+      "sha256": "613440ccfe79843bdc1e42e013894e88a8e0275009ac6f1eb806e63aa583e7b8",
+      "bytes": 28685,
+      "mode": "100644"
+    },
+    {
+      "path": "STATUS.md",
+      "sha256": "8d32fc95c79f750e44392561cc979cbd8caf81b1628f7439bb2dc49de540a591",
+      "bytes": 92470,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/AudioMasterScheduler/AudioMasterScheduler.swift",
+      "sha256": "1fa0f2e709725865ea806fce597c8d645d9d14a41a9f25d17e36a6f9c01c9c13",
+      "bytes": 3524,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/AudioMasterScheduler/EnqueueGenerationAdapter.swift",
+      "sha256": "7b49d583879feecf485828a8db333735984e64b63103007bedc1806e005d6dff",
+      "bytes": 2111,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/AudioMasterScheduler/SeekQueueCoordinator.swift",
+      "sha256": "fced02bd5c04f511aa29836684624ce9ba2c938f5e09d1a2548f833b6aff9f10",
+      "bytes": 1808,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/BridgeVTDecode/SoftwareStubDecoder.swift",
+      "sha256": "518f2fea9b598c353db1d7d7f0d14a3523e1dbbed9fa2102fa7232d75fec47b2",
+      "bytes": 831,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/BridgeVTDecode/SpatialContract.swift",
+      "sha256": "e16fc58579f17e9e16850be5622695230e2d55981f5853fa4355416a96d711d5",
+      "bytes": 1523,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/BridgeVTDecode/Types.swift",
+      "sha256": "15d90863310bd14678d9e57514bb7c645a2349dfbff82301a47e37eb0b499522",
+      "bytes": 5918,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/CFFmpeg/module.modulemap",
+      "sha256": "309466e8751f75c111b62458d4bac5eca5bbaf0ff85353a08bcc0e572c58bf49",
+      "bytes": 1034,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/CFFmpeg/shim.h",
+      "sha256": "94dd8f4a469c05be1363768f749cb821af9a93165acf8cea0cbe5e7c051834af",
+      "bytes": 35515,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVAudioClock/include/gorav_audio_clock.h",
+      "sha256": "13e676c02203bc3b74ea15d927a0a166955485312c26ec6a8f2a35bf9cec7d95",
+      "bytes": 5698,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVAudioClock/module.modulemap",
+      "sha256": "2919054d21f4331bcae2dda83b268ee383e7eabc3169a781bbd180696bd1b826",
+      "bytes": 74,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVAudioClock/src/gorav_audio_clock.c",
+      "sha256": "26f9aa452134ed80ffe88116c48528de42e64a196a8b7850b40ba4ebda27f386",
+      "bytes": 6825,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVAudioClock/tests/test_audio_clock.c",
+      "sha256": "da69e4bb3b1bb7345cfbc096eaec45e895653025a2c3a220f40093054990124a",
+      "bytes": 6041,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVAudioClockSwift/AudioClock.swift",
+      "sha256": "99b3b32cdb5dbd4c686b6dc0c1e5fd31453cc6bada15732bcc21c1de87e1dc04",
+      "bytes": 5218,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVAudioClockSwift/AudioPacing.swift",
+      "sha256": "d52e3f5e977f954717f63b65942782f4232c1dcbe1826e47bcbefe0bda717b3f",
+      "bytes": 18752,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVCAtomics/gorav_atomics.c",
+      "sha256": "403f68e06858ce16014dcb218e9b365065203e14ecc3dfddca988f74a4401644",
+      "bytes": 164,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVCAtomics/gorav_atomics.h",
+      "sha256": "0619d60ed595b7a1d756027ef1fbce67e7d1d3ca58a8c77b53a03badc867bafe",
+      "bytes": 4752,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVCAtomics/module.modulemap",
+      "sha256": "6e620ba9d22b555292786ba2435d2331970f7cbc922628ba9660aa7f403606ce",
+      "bytes": 67,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVCore/AdmissionTable.swift",
+      "sha256": "ed59ce0f6b3a89fc2290fb5a11ae71f30ded122d99caea68f5962d7c19ab049a",
+      "bytes": 6222,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVCore/Boundary.swift",
+      "sha256": "29e29ac1cf6dbb2e4a0552c9016347b2a3a5a4aaacceecda6d1b50b8c58fdfef",
+      "bytes": 4831,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVCore/OpenURLRouter.swift",
+      "sha256": "1f42c5b5614ca1e099b695aa647fdbeac35ae73ef91903f68546a2ebf0ad0a32",
+      "bytes": 7518,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVDVRPU/include/DVRPUAnnexB.h",
+      "sha256": "91bae2047319af9641c5db31bf2d4d3487036c7053d995d89101950983d0f807",
+      "bytes": 11322,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVDVRPU/src/DVRPUAnnexB.c",
+      "sha256": "43f00285b035def5b648d32382b56bdf6038ce890d18f83f5fc7e13e0218ec08",
+      "bytes": 15358,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVDolbyVision/DVRPUL3Bridge.swift",
+      "sha256": "68fe28658929b37c6a17cdcc993e4905234743e1b42279fd62e9f9c1de539e4c",
+      "bytes": 8798,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVDolbyVision/DVRPUSideData.swift",
+      "sha256": "cffc14e129aa65ca0f27b131942a1a664b2698a981b7ecc330f6e67ff7750696",
+      "bytes": 13402,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift",
+      "sha256": "70e71210bb3b6e531cf1f39b2d27bef06cda860b9d2c0a8adc55c30e62c4ce78",
+      "bytes": 90918,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/ActiveTransportSnapshot.swift",
+      "sha256": "5f0ea2a183c96dad7d224199ebde579d934af2984ff1a237c55ebad87f7c0109",
+      "bytes": 2103,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/FFmpegSoftwareAudioDecoder.swift",
+      "sha256": "9c41a7aa3bfc85d5e467ddc4140732aba0e34808af725db375189ba18f79eeec",
+      "bytes": 57871,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift",
+      "sha256": "1cd33f2e0b0a37c90eacc0dfcc9353f8f2e9975ccefbac52ef1fb859e8baf28d",
+      "bytes": 157350,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/FrameObservation.swift",
+      "sha256": "be334edb495a9558371d20bde9b301a35071bb43c1e2521dcc0ce5791ff3fa8b",
+      "bytes": 2522,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/L3AVCoordinator.swift",
+      "sha256": "c3172758f299856929884966ea42d147a1a46cf7ab1e50c2e831b3980814932a",
+      "bytes": 5100,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/L3Admission.swift",
+      "sha256": "a99be5ffe4480da5ebdf1565c4baf65038fc35c90f7fe5dcf46b93efb107f2b6",
+      "bytes": 1638,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/L3HardwareDecode.swift",
+      "sha256": "e45ebfe520db1443c081796af25345cb1b0a7cf460f6582973a027b9c29445ae",
+      "bytes": 11774,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/L3PixelConvert.swift",
+      "sha256": "876b5df7e1fe8038002f16fc6280440c26f87495046d4873180801e91f6ca7dd",
+      "bytes": 1976,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/L3SampleConvert.swift",
+      "sha256": "7910337a173551d62be2364acac777f040081048603af151c6c324e5f0ea2516",
+      "bytes": 5713,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/LabSwrBackendBinding.swift",
+      "sha256": "cc97e6b815c1caf5f3f24364c9af9899850e58cbf2578c79472c7da8db7af636",
+      "bytes": 3934,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/MediaInventory.swift",
+      "sha256": "bbc464766d8f2137ed023f2bee9de0a1a88cc148f828502a1e575733fe71fec2",
+      "bytes": 9860,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/SnapshotAVIOOwner.swift",
+      "sha256": "f18d8732b4095bb00c3e513fcad058908ab7eb69f2db4b684bae8bb5f623891d",
+      "bytes": 1505,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/SnapshotInput.swift",
+      "sha256": "60e41cf930269db9cb5ff6f09e0213befa027f496606064ebc3b2bfb3d7e43ab",
+      "bytes": 12868,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/SourceOpenOptions.swift",
+      "sha256": "abd87be3380ff8abf503b36c86873f9da94cf2c1e6959d8226ac7d9b342a6180",
+      "bytes": 5916,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/VTHardwareFrameProducer.swift",
+      "sha256": "656b4406f031c85aeeedbcf075f719954e1825833bdc0dfa09cd46f1bdcfb5a0",
+      "bytes": 8864,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMacShell/AudioUnitSink.swift",
+      "sha256": "22cb8c695ce3b25953ced66c171727f2a202426953de70c2e858e4b6f4e42dbc",
+      "bytes": 74671,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMacShell/DisplaySink.swift",
+      "sha256": "20d8e5844bda2f241f37da17e48176179b986d43a1fdc0811f09c3fb122b5608",
+      "bytes": 11597,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMacShell/FrameTap.swift",
+      "sha256": "fe64779693603830ac11be02992f8e2b450a87c5e0503cdebdb3e4e06d9ae976",
+      "bytes": 18811,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMacShell/ShellClock.swift",
+      "sha256": "f6cc79c732fee29c9bb3e99e7de03511a9452f347f53738911b7886f6f080de9",
+      "bytes": 2809,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMacShell/ShellFrameSource.swift",
+      "sha256": "d28177739b889567ab3503d08804051fb2396d249d5ec561c000d5a6ba51344f",
+      "bytes": 73957,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMacShell/TappedFrameLuma.swift",
+      "sha256": "a99b405b12c88f6e34a8a1623532682f16877849015bf2beffe4294151f4ca5d",
+      "bytes": 2329,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMacShell/WindowModeController.swift",
+      "sha256": "af63f1707be47d49938bb1df7e2527e355fc24a56fd4d56b2ae49894904c8365",
+      "bytes": 6660,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMetalPresenter/cli/MetalCheck.swift",
+      "sha256": "4eda5dd4758d43961b56749a90530368050cfa99ff675b78b6bd7080b9afa49e",
+      "bytes": 33579,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMetalPresenter/core/AspectFit.swift",
+      "sha256": "f677d4fa45f25af0ea127613524025507c62a5b02e9df7720305b6c4b3a17266",
+      "bytes": 2437,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMetalPresenter/core/CVPixelBufferTap.swift",
+      "sha256": "deb3286ee09dfaf3e8f032cff05cf833fc3bba46bd34889cad961032ea4a6938",
+      "bytes": 6764,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMetalPresenter/core/GorAVMetalShellApp.swift",
+      "sha256": "6d76d1f0a8435d24f0eb35336075243112ac90553ececdeac24b7832e9b60b9d",
+      "bytes": 10895,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMetalPresenter/core/HDRSurfaceState.swift",
+      "sha256": "252cc8a437f3aaa8681c842b8df5b47dd34a18d4f4b9ac9ea889ff2f989af6c3",
+      "bytes": 12263,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMetalPresenter/core/MetalPresenter.swift",
+      "sha256": "7cc970b4542d9613bc1607364e89ab6f410fb2303fcd5d5330601272ba094045",
+      "bytes": 34252,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMetalPresenter/core/MetalPresenterTelemetry.swift",
+      "sha256": "943df6a1de471aeaa9aa740098675da7ea2ef44e4e657e20f416bb7130770d69",
+      "bytes": 6335,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMetalPresenter/core/MetalRenderer.swift",
+      "sha256": "4e2de9297f780f1aa80f45e6f6826a0afaa96e032058ba8572fc1d28a072e479",
+      "bytes": 99470,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMetalPresenter/core/PhotonMeasurementShader.swift",
+      "sha256": "1df48726d4de59b790c0d24ae7df91ee03c0c216676c5009153c17b818daa8c9",
+      "bytes": 2357,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMetalPresenter/core/PhotonMetalEffects.swift",
+      "sha256": "472413c667ed599d27fdd49258ff8bb29a0d153651e14dd44ccad55312fcff95",
+      "bytes": 65877,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMetalPresenter/core/PhotonP22ApplyShader.swift",
+      "sha256": "a3119b56832691088bafe23161d4e6ccfb81ed5bf0467683fe6a2b7b7172adf0",
+      "bytes": 1980,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMetalPresenter/core/PhotonP22UpdateConsumer.swift",
+      "sha256": "82608bd1cd5cca0f2c47fe8179f797782c722c63835a8093115bff68751034a7",
+      "bytes": 5496,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMetalPresenter/core/PhotonSourceMeasurementStage.swift",
+      "sha256": "2924001be7cdad51e49be7e2d4047c0dd9624c103e218fa5430f928006141359",
+      "bytes": 5237,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMetalPresenter/core/PhotonWorkingGraph.swift",
+      "sha256": "18ece7b1531c95877cf44068c18972078f061b9f19dc929ee1f1cc39730a20cd",
+      "bytes": 4996,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMetalPresenter/core/StagePass.swift",
+      "sha256": "9d3a46b3644a4bf435a1cb2ea0a8a486e8e1a1272213df837979f9a84fcb3303",
+      "bytes": 6249,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVMetalPresenter/core/SurfaceContract.swift",
+      "sha256": "7bd3659b14bb89506cb2ba9e921eb2c89f0d2fbc40c95779d6d3b3b78d9cc1ac",
+      "bytes": 22804,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVNativeProbeKit/DemuxerPolicy.swift",
+      "sha256": "d90229e6fa304ebc56de48c3fe0f798a79d18650ad4f50b838160a490ece2efa",
+      "bytes": 5074,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVNativeProbeKit/GorAVSeekContract.swift",
+      "sha256": "64b9ce00ed88d0fc03d9ede8870fd4f8f7e08e1ed45782a6a5daca002d5f405e",
+      "bytes": 46225,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVNativeProbeKit/LeaseTable.swift",
+      "sha256": "abdc3c430cc6dacbe24c22ac4bd87ad504c27b06736f6d6c913c005a69438925",
+      "bytes": 3831,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVNativeProbeKit/NativeProbe.swift",
+      "sha256": "0560818acd7a9032ab391d2e1ad22021b56190b3a8afdff0cb0fbd691bf6d2f2",
+      "bytes": 9836,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVNativeProbeKit/PacketFeedMachine.swift",
+      "sha256": "8537f0f8e7bc77aa3b6c6b1400f2ed503fb59ca61cca9a63808a90c02e006245",
+      "bytes": 5366,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/ArchiveItemSource.swift",
+      "sha256": "b3ceab524aed7067e6744c6885cf14f343cf52b09300bb87e6a676ae4c5781bd",
+      "bytes": 6296,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/AudioTrackPlan.swift",
+      "sha256": "f8b7d8d18e3e81ffcb36245a2472f4f82bb8d765e98dc21c330339b1740bd380",
+      "bytes": 5035,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/CacheAccounting.swift",
+      "sha256": "fd0eabc795e6b8b8c1a72309f26db0c4b2e557bab224517e2581830a4038241e",
+      "bytes": 9968,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/CacheParity/CachePolicyConsumption.swift",
+      "sha256": "1b93267055f97c3cb84e79c1702ba5eea0218dd42b037e3c54f8ef89aa08aa57",
+      "bytes": 4691,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/CacheParity/CacheTuningPolicy.swift",
+      "sha256": "798739d590394e0ed4d32128c58d135b0ddb9f629e2b9465b6475afb6f8da643",
+      "bytes": 17202,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/CacheParity/HLSCacheBudget.swift",
+      "sha256": "f3b668dbfcd1df02f707d1a43f28e58782196be63ab145e8420d67745b5db376",
+      "bytes": 2976,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/CaptureStats/CaptureHUDFeed.swift",
+      "sha256": "b1d98d2c795fb26a89bd35267003e3837895c927b1f931e9503d2b3e788bc5a4",
+      "bytes": 1717,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/CaptureStats/CaptureHeatReport.swift",
+      "sha256": "75aeeb18c0f61e9f62a11b57ab1437e95e3aa41d3b5783d982012a684700a806",
+      "bytes": 3180,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/CaptureStats/CaptureStats.swift",
+      "sha256": "5c3137980915d12e301e46b6897ea21a965e015187a282582354e53e65364ecc",
+      "bytes": 3269,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/CaptureStats/HeatComparison.swift",
+      "sha256": "2bafabeaec770520c8c8e5e416a976d3866cbab19681214cccd9279b6305755b",
+      "bytes": 4236,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/CaptureStats/HeatProducer.swift",
+      "sha256": "356bdce98976eb99c5e486af10cd36497132dc0a9717877d67a56c64b60fbdc6",
+      "bytes": 5665,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/CaptureStats/HeatTrialCapture.swift",
+      "sha256": "f890d66c26eef499c3ec4ef5d553f95dda6fb68e52ef3e6bc1107a286d31bbd6",
+      "bytes": 4440,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/CaptureStats/PlatformHeatSources.swift",
+      "sha256": "0bcf08e141c48cf1b8922199f0ea2f9f6c968fa0b68d0f46d0440f6db1c01a83",
+      "bytes": 1404,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/ChapterNavigation.swift",
+      "sha256": "cca7eafbe8bfae8bf5b87b4e0d751f963c65b77ca487f4390c4fe31452c1614a",
+      "bytes": 2326,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/ChromeStateModel.swift",
+      "sha256": "d84e80064f7536d1135227044348ceee2377c9da3883fcbceac0544dd2d627e7",
+      "bytes": 15892,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/ColorStage.swift",
+      "sha256": "daf6de8af2d598408d621bb687b542d47583dc458f9a462ed4648720193be081",
+      "bytes": 5136,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/ControlBus.swift",
+      "sha256": "eded915407feb11e4e2c57245b2f7a58b0fcc255e6cc6c8fe35f6c4cbd615eb3",
+      "bytes": 12768,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/CoreSeekDriver.swift",
+      "sha256": "3fdb2fa68692956b72389c964dfb6dfee41f0a95581dc8928afa86cf6349adf5",
+      "bytes": 5911,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/CropStage.swift",
+      "sha256": "f42207d0d730a7469a4cbf3ea7f2a6d2423301ee49c96df733fcc73b319362bb",
+      "bytes": 5541,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/DecodeHeartbeat.swift",
+      "sha256": "1c5ed5f1b1d7a75132b5295d7640736a180d0c63720fd0f5cf7785f30d271d2b",
+      "bytes": 3476,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/DecodedFrameLeaseBridge.swift",
+      "sha256": "45e7fe84bfc06735970684221e57d03900bdd8159ee3d35187c9e7103734c9e8",
+      "bytes": 12151,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/DecodedFrameTap.swift",
+      "sha256": "53593d5f38172bf07298c5a51a4d7ae3842c720fcf248e0779b5327243e45168",
+      "bytes": 8741,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/DecoderInventory.swift",
+      "sha256": "f502dcdf89727f73c3836d5cdee5d609c53c6b853a731cf6b90424b42ba51d80",
+      "bytes": 6882,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/FrameLeaseStore.swift",
+      "sha256": "1d1fd822acb7994a8d8ea2a3536651f596c2c5da1e3cc9f6feb931421bb34a07",
+      "bytes": 18086,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/FrameUniformABI.swift",
+      "sha256": "4a179d6eea3fabe5608983eac586b38cb3e1fb3229b9fb34ed70028d7ee3abaf",
+      "bytes": 6926,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/HLSVODSource.swift",
+      "sha256": "0bd11b244fe0e3b589992dfe6d5aa10b9f6ace8eda30156c66358696c669c0d7",
+      "bytes": 9585,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/HUDStateModel.swift",
+      "sha256": "90e724a142e33a6213fb1eedf90653914b3e8ebb08891178519885d11ce27b53",
+      "bytes": 36941,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/HostTransform.swift",
+      "sha256": "7d9e3f3f355689d6f1e558f1a14c5d096c931ba02ca3d5dbfa712f19bddd2d49",
+      "bytes": 4427,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/LabColorCurves.swift",
+      "sha256": "3c0b037a22038fb6ffb6f3a325138520c334d33c81ef29c90ac1369f8fb7f60b",
+      "bytes": 2299,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/LabCropEngine.swift",
+      "sha256": "3d55228042fe10505de07b52537a4ca4b7863393f31713ec228de222c95bba7e",
+      "bytes": 9704,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/LabHLSPlaylist.swift",
+      "sha256": "69d3253200aa3a241193fffec4134abfa1c7b80c41d24aa245f3789b41a090a0",
+      "bytes": 15520,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/LabMarginOracle.swift",
+      "sha256": "d0c3155b7b26e8744011160a5b1abc0c545e279438dea111b95f52d971bb0567",
+      "bytes": 14993,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/LabMusicMode.swift",
+      "sha256": "9d958e1c85daeb927c0f3ebc099b554ab6cd5ecdf62edeb621e0f6c94b9f83bd",
+      "bytes": 4299,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/LabPGSDecoder.swift",
+      "sha256": "2f4bc0a68a5ec35599ca9827f6d044ca20f5a172a25b4ba4296e962692b1a0ba",
+      "bytes": 18116,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/LabPTSDuration.swift",
+      "sha256": "40f589209ab29070e8d3ded2f8ca2deea87fd0070697d81456bd1be84a7cd690",
+      "bytes": 19093,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/LabStereoResolver.swift",
+      "sha256": "c8d842db19e33bb10cf2c46394b9d69ef36db837cb4df45faf799d65b40a1331",
+      "bytes": 7942,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/LabSwrConverter.swift",
+      "sha256": "b9872b1ea347907ea7851fd811e6f35e5112b0be6dd5a8aba37dfb85ba00ccf6",
+      "bytes": 11498,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/LabVobSubDecoder.swift",
+      "sha256": "4c9b9ab9b5c5c638531b8de2b31b4e77ee23a85f333227cac95ad106c73daa4b",
+      "bytes": 18473,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/LabYtdlpAdapter.swift",
+      "sha256": "dc04b472b9feb7e36d8b3596e3d60f81b6f719a91221eab96c290a9af66c3217",
+      "bytes": 11865,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/Lane0Contract.swift",
+      "sha256": "3963dc9e6357d1ff6829bfa4557a4ed853e1874e7de39e73c0da78012317ab9d",
+      "bytes": 9612,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/LifetimeRegistry.swift",
+      "sha256": "e1845d11d671ff83daa627a499c3db6294c35bd7d2fbaca1cf0641ef4d5d575d",
+      "bytes": 16513,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/LiveControlActuator.swift",
+      "sha256": "aeb444e8423792f5372e3c850f400588271f5f9816c4ee23affbfc91aab5c9bc",
+      "bytes": 10361,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/LookParameters.swift",
+      "sha256": "466f5f0fd05691b8d3ad91f1ec459b798e73ce43088052d8705e438e0ed9ef70",
+      "bytes": 33297,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/MenuCapabilityPolicy.swift",
+      "sha256": "c36513825245f4cdb87c4cc9f20c1d43a25f7c08c315a98672f7bdb88ca84822",
+      "bytes": 3554,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/NativeFrameOwnership.swift",
+      "sha256": "bcfe3f6209674684c7fae7e5d012599d6972e1ef84cb393043e122bfc7b1d61f",
+      "bytes": 2939,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/NodeSourcePreparation.swift",
+      "sha256": "d8292cd6fa0a43e0aeef228e8dd384653cc22046d3788db26e78e6d399e9251c",
+      "bytes": 10349,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/ObservationSurface.swift",
+      "sha256": "206cbc0e2af2bea0070e31212cc17a1af06a7f58e455f0244b540c5135cb53fd",
+      "bytes": 5780,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/OpenIntentClassification.swift",
+      "sha256": "c8371157ac369ffbc7f46ea707a57147b2fb349c2af04a9fee95c387a2e3600d",
+      "bytes": 2723,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/OpenIntentDispatch.swift",
+      "sha256": "57b52baebc0daa19be9f5953df839200be1b49c9d9895634982e4a9cef8afbbf",
+      "bytes": 1864,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PhotonAdmission.swift",
+      "sha256": "d2b814639d359754765eea98ef36326b98d5dbf589bd2778f94737b85b9756f0",
+      "bytes": 22541,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PhotonAdmissionP22Binding.swift",
+      "sha256": "f3bd5cd5747be05720f07e386e1e2fc1e358915ff4584016d437b9dde374d160",
+      "bytes": 1398,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PhotonGrainClock.swift",
+      "sha256": "b2c82e4356c385bd6d2e1f2c6257afe7131105743c702e7b9ead1caee603ffd9",
+      "bytes": 3575,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PhotonGrainRuntime.swift",
+      "sha256": "37ee77bd9377fe0f5a6d6998e07509893c1a213e13a6564c6aacc80e59cf4b93",
+      "bytes": 14895,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PhotonMeasurementP22.swift",
+      "sha256": "d936897eef77483fb28395c5326d283437fb05c14c751666878d2e0ee1d09d47",
+      "bytes": 4803,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PhotonParameterPublisher.swift",
+      "sha256": "4c9c32a384a4b41134d2fceaeea1c32fcc68c029a09899a15610c385128cc133",
+      "bytes": 2063,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PhotonPresenterProducer.swift",
+      "sha256": "b55d16bfa9f28344e4f982b3b2046df8213541c57d83cf804e30996a666045bc",
+      "bytes": 3858,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PhotonSceneFeed.swift",
+      "sha256": "495fe016974d88939f85f396ca74e3542a37f6be3e5fff70e7bb9f4a9960f692",
+      "bytes": 1511,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PhotonSharpRuntime.swift",
+      "sha256": "0cd42dc18175eed329b2f4d1ee66e8ae9a20a136f8b15e18eba04f3949385e82",
+      "bytes": 9259,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PhotonSharpShaderGenerator.swift",
+      "sha256": "1a596d389891e825941971244b29ddeff6e43e2c773294bd3c7fc6ebed5c3d59",
+      "bytes": 28624,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PhotonSourceMeasurement.swift",
+      "sha256": "cc9c3cc0d796ce591d0b6d51655323387b3faf6cbe08cdc80d54914dadb16c22",
+      "bytes": 4185,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PhotonV4Model.swift",
+      "sha256": "6446be75d53f03282a0ee22f217008ab36adb9ab257c35543c881d408aafeea8",
+      "bytes": 2701,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PlayArguments.swift",
+      "sha256": "b4f2feb2a2768b496b1b326dd8af6a7063fed581907e398ffe8f90030f5de3f2",
+      "bytes": 1966,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PlaybackCore.swift",
+      "sha256": "dbf6764fbcd8a1c2e3980ba6b25a8578c8038192dccc6554f311611566c7ed66",
+      "bytes": 88338,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PlayerControlPlane.swift",
+      "sha256": "39b9a597dc994ff60b37c2c890604b6cda7277e9a297b142e3a365ada1e601a2",
+      "bytes": 4921,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PlayheadObservers.swift",
+      "sha256": "5d8c618cb6449405d528a9d9d1744d4d52ff291625ec5e0206791c93ed63ea49",
+      "bytes": 2211,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PlayheadPosition.swift",
+      "sha256": "0376f99fffa86c3433093a40ecadecea461d934782b787b2f546b76d8716bb15",
+      "bytes": 4239,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PreparedAdoption.swift",
+      "sha256": "111949fc7b840f823e2bba5a6108f7cae70ad879bcea770142d4dbc43650708b",
+      "bytes": 1422,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PreparedShotSession.swift",
+      "sha256": "d7e6636475d4e1565e43b9741d7946e8d6615642ec92325c457ffd079d3ffb74",
+      "bytes": 8613,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PreparedVideoFrameSource.swift",
+      "sha256": "41286a13c95781d4207d15def07f0eea6f8501709f35774113cc8c6c2bcde3ec",
+      "bytes": 1149,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/ReadinessAnchorSession.swift",
+      "sha256": "84ab7c80c17d441405756e2fe7d4ed61d54a7c9219c496c3fcf61a9b249e2db3",
+      "bytes": 2455,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/RenderGraph.swift",
+      "sha256": "7eb0dfd705c11bd4ebacce0f6543882800472889e8315171ad4ba52d5f25b19e",
+      "bytes": 9658,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/SPSC.swift",
+      "sha256": "fcba3646ae6ce3430069c5153f26e3653d9692b97f1be61c7353b4f04919415a",
+      "bytes": 18052,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/ShellSeekBridge.swift",
+      "sha256": "5689ac8756464a2fc412562749041ceb20384e2748ed60c49b41b5a715eb6dfe",
+      "bytes": 8318,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/StageGeometry.swift",
+      "sha256": "c0ea88134197de55ca8fae38b691df90bb70dc65c9d128cfe9c8a640c98457df",
+      "bytes": 3315,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/TapCropDetector.swift",
+      "sha256": "648d03d4fd0cdfff34cabd7f52e97e6c8282963b8ba2e6cab018ab6892423f53",
+      "bytes": 11343,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/TimingLedger.swift",
+      "sha256": "cfbcffdee47c245f98d0a6f203004df08c494bdf0ad17000bf562cecfaa77b16",
+      "bytes": 38385,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/UniformPacking.swift",
+      "sha256": "5b99a191943f414ec50a54da5ca769341977789155ed4a0d8f34151b5e80f44e",
+      "bytes": 1039,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/WindowModePlan.swift",
+      "sha256": "cce8e9b8ce7bbb69d68d1bd4e93c918f78b72e7d4b4ec98e7cc345a6a4d6763b",
+      "bytes": 7628,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/YtdlpProcessSource.swift",
+      "sha256": "cf2f1c3ca2079c7995e288f3b0790fae33f8ec86cbd228f0a2fc2e013b22e8eb",
+      "bytes": 7230,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSeekComposition/SeekComposition.swift",
+      "sha256": "6c43336c8b29721bf9af9bd501799bf5b9da086c32eec3fc6b4ec92044c4dbeb",
+      "bytes": 17930,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSubtitles/ASSParser.swift",
+      "sha256": "4c16b99f1e1e78c7bd84346b35b0be6d670dff2df193bc9f69ac2a0ddc7d18f6",
+      "bytes": 14992,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSubtitles/SRTParser.swift",
+      "sha256": "49ab4d1258dc63529700a6e560ff1cefb6e287f65e267fc3f9befcafb0f5a653",
+      "bytes": 5144,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSubtitles/SubtitleAutoLoad.swift",
+      "sha256": "bdf2a96b5fd4b1a09f7a7cd269304d8dcff479215cd7e75d360f1e8e8d4f36e0",
+      "bytes": 2695,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSubtitles/SubtitleController.swift",
+      "sha256": "7695cee46f59b071b8f315019ad42f15dec6ceab6975a0ddc3bd1e81f2db1897",
+      "bytes": 4366,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSubtitles/SubtitleCue.swift",
+      "sha256": "2311ed3052c4a66f2d7942d23624b693faa52dc509354e22fbff148aa3abaa40",
+      "bytes": 1334,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSubtitles/SubtitleCueDelivery.swift",
+      "sha256": "c0def67c2c6320c899be4b612cb30e4ba4f23a327e6c05d9608e3a048cf7a6e4",
+      "bytes": 4467,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSubtitles/SubtitleCueOutput.swift",
+      "sha256": "c25b9d57173dcd41582d116ef3c480917444fa53bdd2dc80132e76b8148e6457",
+      "bytes": 3892,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSubtitles/SubtitlePlan.swift",
+      "sha256": "ab71ef7425c33dfbbe93e558b8797139260fa1aff449369724fcad45b9dce696",
+      "bytes": 22800,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSubtitles/SubtitleSchedule.swift",
+      "sha256": "dd2afbc48525765a33777c758cb10df4b1629dfc85fd11e69fbbd896f12b2f22",
+      "bytes": 2131,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSubtitles/SubtitleSidecarPlan.swift",
+      "sha256": "8f387a6b0310e7fb9ddc821dcb6955fc5374ede59c06a65d17807e31709b7846",
+      "bytes": 9518,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSubtitles/SubtitleSidecarSession.swift",
+      "sha256": "a785464efbb3d9bf20f31a4c627d299a1fa6da6cf3a90472b9a28823cb0a9a5a",
+      "bytes": 8348,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSubtitles/SubtitleTrack.swift",
+      "sha256": "d0e635a1ec87e20d75cfdb59dd75fb4f9aec24f7c54a2f88f84dab154518b969",
+      "bytes": 2784,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/GorAVSubtitles/VTTParser.swift",
+      "sha256": "3354ef321604169f9b3f4c926565be5e7869d54712d287d70aa53b46b0f0425f",
+      "bytes": 19629,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/active-media-inventory-tests/main.swift",
+      "sha256": "07f1206b44dacb06045f257157b343c3ee5add6205328acfa0decd1873a05580",
+      "bytes": 6530,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/active-transport-tests/main.swift",
+      "sha256": "c8278453d29fe5ac7df2dffecd9c0896195f8854220e074f417dbd576aaf093e",
+      "bytes": 7112,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/admission-tests/main.swift",
+      "sha256": "9f33357bb1261d03ecd6792e3e332786b9243e731cdb992cf6525da082826d4f",
+      "bytes": 27354,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/adversarial-seek-tests/AdversarialSeekTests.swift",
+      "sha256": "7bd4667e138c938e6da126fc67c3703c233afd1c98f4cb6f3a47b9f2cdcd91ee",
+      "bytes": 18743,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/audio-baseline-tests/AudioBaselineTests.swift",
+      "sha256": "d6d5a312b73ac1bcc95d7ee7c8f63d138977da8f30013c25b424404d96486cdf",
+      "bytes": 3499,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/audio-continuity-tests/main.swift",
+      "sha256": "03814077846e5d719f84e82ce241e33d437fe0a41df84ce91a18d01b0731f60a",
+      "bytes": 3229,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/audio-delay-tests/main.swift",
+      "sha256": "4f59403fc6522d0e0800960f0407478bb8f91510481db818a626664a578920dc",
+      "bytes": 5572,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/audio-interrupt-tests/main.swift",
+      "sha256": "9738d9fbffaf9f0a0ce062a29a4bff19d80658128a8853f2113cefe86887c2fb",
+      "bytes": 11166,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/audio-refusal-tests/AudioRefusalTests.swift",
+      "sha256": "1e64138644edff33b4e1a823bdea248d1295e0fb0a493e7b01960e7222b18a17",
+      "bytes": 5344,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/audio-seek-tests/AudioSeekTests.swift",
+      "sha256": "76af9001d32252906eb0f2daf9d3ff09887c2d3ccc306679eb88b85e6b1bdf76",
+      "bytes": 6447,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/audio-test/AudioTest.swift",
+      "sha256": "0968b4623ba90f09960cdf6d7cb98641cd505e140f18932ed0f12d1cadc8428d",
+      "bytes": 14895,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/avsync-golden-tests/AVSyncGoldenChecker.swift",
+      "sha256": "45068d5177951c39e691544c6fcee9e08ff568458c0c132e2a814bc2155ca620",
+      "bytes": 3446,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/b-gate-tests/BoundsTable.swift",
+      "sha256": "3e53181fb3baa244ead365bec2ae90df4accdc6bc3a60287a36fb97ff9bf4c5d",
+      "bytes": 1725,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/b-gate-tests/main.swift",
+      "sha256": "69171b0ccb443d1f1cc0504cfe48c519395b5a9e9e08c76d044c631f3c05e9a6",
+      "bytes": 12496,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/cache-parity-tests/Package.swift",
+      "sha256": "8a9892d63fd4e054f884bf3b066386b11ec65c4bce1c92b67f0537f0a08a58df",
+      "bytes": 713,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/cache-parity-tests/Sources/cache-parity-tests/CachePolicyConsumption.swift",
+      "sha256": "9bc6fc84ef326cd4ed68c76fee1255c9bda4fe11aecdfa27084039310d459591",
+      "bytes": 67,
+      "mode": "120000"
+    },
+    {
+      "path": "Sources/cache-parity-tests/Sources/cache-parity-tests/CacheTuningPolicy.swift",
+      "sha256": "b82eb143e0b728a397a9fcff6d42448d3194580d7c1eb51612d5d78074425e3f",
+      "bytes": 62,
+      "mode": "120000"
+    },
+    {
+      "path": "Sources/cache-parity-tests/Sources/cache-parity-tests/HLSCacheBudget.swift",
+      "sha256": "4bcae425ccc40131b8c93f49372ddd2164d7a7bc2b603515fc8526caa39474d4",
+      "bytes": 59,
+      "mode": "120000"
+    },
+    {
+      "path": "Sources/cache-parity-tests/Sources/cache-parity-tests/main.swift",
+      "sha256": "43e7067bb39a3d30828640f8b077e51513da8dbb2cc19f46668596a80fc97969",
+      "bytes": 12171,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/chrome-state-tests/chrome-vectors.json",
+      "sha256": "d49b55fd553a8b37b3621099ed5d1ef757adaea9f56ecb42e27cc7044f782f16",
+      "bytes": 118667,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/chrome-state-tests/generate-vectors.py",
+      "sha256": "a9c1a6932179060a5ce513f74c7d05dfc2eb87c26c534988d21524803324b001",
+      "bytes": 15114,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/chrome-state-tests/main.swift",
+      "sha256": "b9967f0bb643aff7ee23af8ce1206fac3320a86148cb27ed1bd5139f9e51f0df",
+      "bytes": 7105,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/codec-decode-matrix-tests/main.swift",
+      "sha256": "9d7db24cdb8a08a0a1842c842da80c89c29961383422f96f848b48baf394074c",
+      "bytes": 9333,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/coexist-test/CoexistTest.swift",
+      "sha256": "ba0d9aad4f425f733069de578ac58d76aae08219c9343ddb9bea441d3eaaac0b",
+      "bytes": 3061,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/color-stage-tests/main.swift",
+      "sha256": "76de7b5340bdc48b6ed935c14abe68da308e586d54ce3ceb977d003cd6dace0e",
+      "bytes": 4131,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/controlbus-tests/main.swift",
+      "sha256": "2f92e561c99bfeaf42c1bbd7c99d62213b965af19049212a74b0be3af65722d9",
+      "bytes": 7841,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/core-seek-tests/CoreSeekTests.swift",
+      "sha256": "a955dbc62ab7cbfcf85d4ba1133a4d7ffe1a11561b11735642757a793c4026e1",
+      "bytes": 9775,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/crop-tests/main.swift",
+      "sha256": "d674aedd33dd5e64d7eb5b793de7802e3ac3a1f2609ea113ee20e598ad5f78b2",
+      "bytes": 9946,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/cue-output-tests/CueBatchFixtureRows.swift",
+      "sha256": "20ea9866ee265c47368cc308236fedccff0643e43b62fd7b87096af27be60190",
+      "bytes": 9849,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/cue-output-tests/SidecarFixtureRows.swift",
+      "sha256": "19c217c16242c802a0e4355577c9d5334e03a17cf83dda0f4e645cd798cc4385",
+      "bytes": 6739,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/cue-output-tests/main.swift",
+      "sha256": "afbc53191abd1c96cde81b70b8c9e41e5513090722f0e63917f03fadf718b944",
+      "bytes": 20435,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/decoder-inventory-tests/main.swift",
+      "sha256": "439b78f99d153c35571cd5c8b53824b3eced23bd95199f35c6340d3f50bd6b75",
+      "bytes": 4897,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/decoder-lifetime-tests/main.swift",
+      "sha256": "5d91891d75a33456a96002b6e1649a02e3d0ea5e99cd4d8df3cd2355f3964330",
+      "bytes": 4780,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/demux-parity-tests/DemuxParity.swift",
+      "sha256": "8d64bedee08e3eda8a41ad3b923cfed0eb40270fca2cb5fe21e9053ba98a8198",
+      "bytes": 4683,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/dovi-fuzz/dv_fuzz.c",
+      "sha256": "a18b735c0d7eb4142167d45967c7ce190d9f10a90a93ab8a910c5521b73d39a9",
+      "bytes": 3013,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/dovi-hdrtest/dv_hdrtest.c",
+      "sha256": "7ddf5209c22a69dbeee3733b30a73dde82fafc0aec63357cb6c8bd6c7ddec477",
+      "bytes": 4157,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/dovi-hdrtest/gen_ref_fields.py",
+      "sha256": "30765c581c5031ea7bf74be36f8d4c36175a7248c2e5057414d69f41c5716bf4",
+      "bytes": 1046,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/dovi-selftest/dv_selftest.c",
+      "sha256": "d4d2512f772c500542be9d79089b137e9935af3e3f7493ed3cc2b8b2b6a49aba",
+      "bytes": 2884,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/dovi-selftest/swift/README.md",
+      "sha256": "1d00ddd80d531f11ee617ebcf9ea73be026d0edd2970827bb01b9b1a96373e1a",
+      "bytes": 1130,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/dovi-selftest/swift/goravdvrpu.modulemap.testonly",
+      "sha256": "413600a540d16ca68053e1e69ea05c56f917d3941cc06e3ddb9a9e88ed6a478e",
+      "bytes": 79,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/dovi-selftest/swift/kindcheck.c",
+      "sha256": "168f572172e48ab0b0158f36c103bffbf0a2211531e32c5c4862cac0f218a1ff",
+      "bytes": 465,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/dovi-selftest/swift/main.swift",
+      "sha256": "a69a219006b56cf87f2b3e856b32521131bec0c204e5aba7da39c2a4a7c94d13",
+      "bytes": 4899,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/dovi-vectest/dv_vectest.c",
+      "sha256": "14d1c067b483402e84971de20b3fc3a3c844a3e27acf451e059e75e900c99834",
+      "bytes": 26340,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/e1-headless-tests/E1AudioOut.swift",
+      "sha256": "ad9c9e47c55d55321aaa060b028bf883726ba51ded8c4d8798627e873b5d259b",
+      "bytes": 7342,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/e1-headless-tests/decode-vt-mac.swift",
+      "sha256": "a49d24e1a67ac6f654171728940093b7a195c6eda9de2c246ff6a3b2232e9787",
+      "bytes": 12478,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/e1-headless-tests/main.swift",
+      "sha256": "3afd85fc9d8d8cf8bf6d233108a811598361b82d777e684b50819886ce417667",
+      "bytes": 46538,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/e1-headless-tests/presenter-embed-mac.swift",
+      "sha256": "5e9eb2861c2058bce4752725f18f72983b010053a8322e54a0c21ca20bb27dfb",
+      "bytes": 4658,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/e1-headless-tests/presenter-mac.swift",
+      "sha256": "246c73206e61b637a9c30d7e60fd11b17b2a6d717d7d3e1d5f11251c948409e4",
+      "bytes": 6705,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/e1-shapes-tests/main.swift",
+      "sha256": "e5a56aa8d10c255b5c72238390817c717ddbf1a24a747821610878e4f4dd3a2a",
+      "bytes": 9753,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/e1-vt-live-gate/main.swift",
+      "sha256": "f8facf69370d779f00ee5ec7087773ffec75f0720566fd247694417f73c9f7d7",
+      "bytes": 5006,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/frame-dump/ConverterVariants.swift",
+      "sha256": "a26f872f55e7a5df2d782edfc1be96ccf70b708efd066ea9546cfc003c6d4963",
+      "bytes": 3179,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/frame-dump/FrameDump.swift",
+      "sha256": "a1b3683b4d990f66f47f0015bb10c4ede7c7c83908da14277696fc29433a4d8b",
+      "bytes": 7740,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/frame-dump/RawPlaneDump.swift",
+      "sha256": "b5fffd240abf0c02884d49e8ac6ba78ebd950cc3ecec355f21350678db9fea2d",
+      "bytes": 4835,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/frame-lease-tests/main.swift",
+      "sha256": "990598c9eb3e2f2347a5e4bad85b7324a7b8402a78f36bfe07ac358670a4b6de",
+      "bytes": 21403,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/frame-tap-tests/main.swift",
+      "sha256": "7fbc9194b8d5748a2f97c5e19b0b66bb231ab301b4b401058f5f31df15711f8b",
+      "bytes": 3074,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/gorav-first-frame/FirstFrame.swift",
+      "sha256": "2d069ddbdaeff4f14c0b4a59220aebf1cda9d7d2cf976ea15c2467966f56c58b",
+      "bytes": 5691,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/gorav-play/GorAVPlay.swift",
+      "sha256": "36e7d781a30114dd2a6b2bccc0e63395c9f2d11e7fd0f4005e0b2bd3b9594f1d",
+      "bytes": 11320,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/gorav-probe/main.swift",
+      "sha256": "81e28b17be3efd55e0e87399b085eb8642cf0d4a2021183b8bf1fb131a615abd",
+      "bytes": 5088,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/gorav-sink-check/SinkCheck.swift",
+      "sha256": "7a0ab1b23fd934cf8e80495a886a1149f07800e639c3d55b1479c6ee00d4e4cf",
+      "bytes": 2717,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/hdr-presenter-tests/main.swift",
+      "sha256": "8ea8c15eb3691036daaa60b320ec25b02c579d3db1e548936bc81480d10b8e53",
+      "bytes": 7239,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/hosttransform-tests/main.swift",
+      "sha256": "16460c56cea0c031c5907268dff29564c9d4182715d486d670a5a0d39a29e3d5",
+      "bytes": 8775,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/hud-state-tests/generate-vectors.py",
+      "sha256": "1418fd43563c87039e3db650bbddb4e72ff45da697b11f90d9bf0bcdbe6e1a14",
+      "bytes": 41342,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/hud-state-tests/hud-vectors.json",
+      "sha256": "43de565933d61a2b73ee9ee9ac996b77d3b719016c9bd8e4ec85bd95addd1ffc",
+      "bytes": 61183,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/hud-state-tests/main.swift",
+      "sha256": "4e294b7ffa7cecf36eb9f92a45428dbf849ea8c435b3ce96a30a789b3cbf204c",
+      "bytes": 7039,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/isolation-test/IsolationTest.swift",
+      "sha256": "d48a158cc6d0658f0f3cc66a51612509e308feb7c46047806799987046905a64",
+      "bytes": 4049,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/k9-adversarial/K9Adversarial.swift",
+      "sha256": "db62989a206052c76943577022c396ada7dcdf5e62af21941fd7df59e8b4eea9",
+      "bytes": 9431,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/l3-convert-matrix-tests/ProviderRunner.swift",
+      "sha256": "32337c216d41b3170b4b81a970334657b83292f95eecfbd565ed3b1122742509",
+      "bytes": 6075,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/l3-convert-matrix-tests/ReferenceConverter.swift",
+      "sha256": "80cceaaddd838217973ddfebe35a5abc00d28d00e0f81be4eb2c51f68c5088ba",
+      "bytes": 6235,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/l3-convert-matrix-tests/main.swift",
+      "sha256": "ba33c47cf43c6f90f700bb1de1e1e6eb00dba67cdcef81118c23fd35260cede6",
+      "bytes": 10754,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/l4-hwdecode-tests/L4HWDecodeTests.swift",
+      "sha256": "9a9a5be9b9cc3361238c666a552bd986dc52661f888b0cc0cb3bb22722183fc4",
+      "bytes": 9971,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/live-control-tests/generate-vectors.py",
+      "sha256": "f5123ab46f39dc6c6634d154ed48fd341e591c948f6cd8c4aadafdf088c8d205",
+      "bytes": 19070,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/live-control-tests/live-control-vectors.json",
+      "sha256": "d7fde168643db7f01bd7e4043b5d0c443ce75819a5f69166f0c468acc50a948b",
+      "bytes": 24340,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/live-control-tests/lua-reference/README.md",
+      "sha256": "7c1b556339c2aae8b3f56cf8b44b55d41a5d6e954c8c8497138637ebe7754d79",
+      "bytes": 1423,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/live-control-tests/lua-reference/live-control-lua-reference.json",
+      "sha256": "bcaef42ac477e85ffaf659c1862b6505d3e68c66898d44fcd3c9e552f7e24e47",
+      "bytes": 16459,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/live-control-tests/lua-reference/regenerate-reference.sh",
+      "sha256": "63ece893d89cedc41c2d85e5ba6c1bda9e41cb7e2843da9fea7ab18d9f54cad5",
+      "bytes": 729,
+      "mode": "100755"
+    },
+    {
+      "path": "Sources/live-control-tests/lua-reference/run-live-control.lua",
+      "sha256": "6bb3e49a6512e01f7cf7ae1e2f5e1a87a8e74b499d6fedbb986dca9cad31ab9a",
+      "bytes": 10866,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/live-control-tests/lua-reference/vendor/photon-live-control.lua",
+      "sha256": "4b8ec6a5b8e2f23be36900fc95e9c34a87705673bf2bef4fec69789401da6b76",
+      "bytes": 5014,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/live-control-tests/main.swift",
+      "sha256": "514c53268f7624e7a6be9e6c0f6e423ec7b88a6305d4ab3e2e0f03eeca0a28f9",
+      "bytes": 13555,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/media-inventory-tests/main.swift",
+      "sha256": "ac93a35e5b8c924163518df6266bf2e72d722424a1c7fe185e9e00d6e63d7b9b",
+      "bytes": 4934,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/n6-native-tests/N6NativeTests.swift",
+      "sha256": "3e578c50b2cb8ede4817865128a5729a24a51a6e79a31f2963997c36b4acfd9e",
+      "bytes": 5556,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/observation-tests/main.swift",
+      "sha256": "d86b96656e6059da1c6bb99ec5423e8d4eadd96b36a0169f5ab65e0b53c80f89",
+      "bytes": 4363,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/open-url-tests/main.swift",
+      "sha256": "87e03266ffcd669489ac79296384b72ff4338454b994cd3f6d0deb0598e4041b",
+      "bytes": 3670,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/parity-pixel-tests/main.swift",
+      "sha256": "97fab348326df962ed513bd7a1e4c3fdb97a4024dc15d576980dc30b3f1e3542",
+      "bytes": 7124,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/pause-resume-tests/PauseResumeTests.swift",
+      "sha256": "d11614dc35dc5af2f43181716c9f8103ab136d97458facc3c9bd84c090b74b82",
+      "bytes": 18341,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/photon-admission-tests/main.swift",
+      "sha256": "c0e2d58a9a28f895da400888ee06f73e0470fd70a196a87d4929766171f7c764",
+      "bytes": 13344,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/photon-measurement-tests/main.swift",
+      "sha256": "60c0d205af67c030373b10f77f176c5c2fbec067f8c5f8f2676d8ec2e54378a3",
+      "bytes": 9659,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/photon-sharp-tests/fixtures/photon-sharp-temporal.glsl",
+      "sha256": "e12441759cce0e7e271f663ac3aa2999a25ef6bc307016c01fade9a3643083bc",
+      "bytes": 21755,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/photon-sharp-tests/fixtures/photon-sharp.glsl",
+      "sha256": "bd88d888d9fb8cfd84c909e27438e00a8796ab965362c94975382eeda0f90761",
+      "bytes": 19638,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/photon-sharp-tests/main.swift",
+      "sha256": "441571a215ff8065f8482ea6b36a920bc8eaa63e49408ac83b1bd15a7bfa4548",
+      "bytes": 4542,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/playback-test/PlaybackTest.swift",
+      "sha256": "a421ca5506376c2ef85354791b4fc1adcb62d3cef02f5cfb980500dddf3cfa2c",
+      "bytes": 14234,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/prepared-shot-tests/main.swift",
+      "sha256": "3b803c23b23b9f828859d2fafae3fa88ae96e5c17abf3bbdbc4b812cad6ee9d2",
+      "bytes": 8826,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/race-witness-tests/RaceArms2.swift",
+      "sha256": "5172fac0e70123865f771261b0d8960e68e308e1227f67ad68a09850159592a5",
+      "bytes": 37235,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/race-witness-tests/main.swift",
+      "sha256": "fe6d3db1afd2ba606d4fec82f1dcd60c53504f17c1ec9da29b5f34538b701842",
+      "bytes": 52019,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/real-seek-tests/RealSeekTests.swift",
+      "sha256": "1ec32b58d127f6e1ee0cc88e1f7788ae8790e4be829994b5933bf945ce1a27a6",
+      "bytes": 7801,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/refusal-tests/RefusalTests.swift",
+      "sha256": "0a52b823c7078da69d293f21161b62cfa5773fd375737efc613f7aa9c6a4a572",
+      "bytes": 14329,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/remote-source-tests/main.swift",
+      "sha256": "b7bfea6247706c227449110ab72eee88b3ddba2fa72370187517dfbc73718128",
+      "bytes": 5863,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/render-graph-tests/main.swift",
+      "sha256": "fb75c8a9304c2daf93e2929a58becb26d82685b6a1710c27b2c51c69eda17b1a",
+      "bytes": 15803,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/seek-composition-tests/README-SEEKVECTORS.md",
+      "sha256": "faae543a4e28beb122de8d76f176ed74783cc9cc42ce5403f9e35cca3bcb2df9",
+      "bytes": 2079,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/seek-composition-tests/SeekCompositionTests.swift",
+      "sha256": "4d3218d975a57d2f5b4331590180a30d41ad60aa06f23851308e3bf952ba9e8d",
+      "bytes": 34326,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/seek-composition-tests/SeekVectorPack.swift",
+      "sha256": "aeaa1460ee4432bd98f2e0b46a7702a8d8637640ab7945acea8b320ac29ad359",
+      "bytes": 6468,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/seek-composition-tests/SeekVectorReplay.swift",
+      "sha256": "26f5e056c53262d983f54cee03634dbe0d45336240876f845de50eeec22182c8",
+      "bytes": 12051,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/seek-contract-tests/SeekContractTests.swift",
+      "sha256": "0f000dfd45e7d3778c4873196a4e7e94776585496d7b024597432baec3ac08c4",
+      "bytes": 25659,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/seek-pacing-tests/ClockScenarioReplay.swift",
+      "sha256": "4ed363dac797ddaaf2909c2817394d83ede7369f1890b8f2acf22a344b30aecd",
+      "bytes": 2930,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/seek-pacing-tests/SeekPacingTests.swift",
+      "sha256": "da6f453c40c4770d2130e036076ad22df7e32a901f63b8d9c8dd9514330b4f9c",
+      "bytes": 10606,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/seek-restart-probe/main.swift",
+      "sha256": "7f2b594f10c34590093b75e3686343c7310a80d5c8f24d5e3df41a4bb5e310d3",
+      "bytes": 8123,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/seek-ring-reset-tests/SeekRingResetTests.swift",
+      "sha256": "e5477027e7f8f5735bc4ea4aaf05f3afb418ba306337fa037cf899059286c268",
+      "bytes": 5282,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/seek-test/SeekTest.swift",
+      "sha256": "6780e95396dfad756ea72c9c9be4afc16fb090d0a52ebdd15307a844f4408960",
+      "bytes": 4096,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/session-venue-tests/main.swift",
+      "sha256": "64e3c9856d8d34b1f2fcb0942ad93a0cd0ebc50f879802f0717b91686af7238b",
+      "bytes": 17410,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/shell-mac-test/ShellMacTest.swift",
+      "sha256": "36d64b5ed6869e3d2a7c3f12d5c0c8db45078a5fa4ccceeb9c8ea001c2247978",
+      "bytes": 5393,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/shell-seek-bridge-tests/ShellSeekBridgeTests.swift",
+      "sha256": "ce4f130134a1e0b9aa4dc283eac2b1499f33869ca17d4ea33f38915a1d2c71c5",
+      "bytes": 17771,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/subtitle-tests/ASSTests.swift",
+      "sha256": "24e5725df5d8d0d7905f2072e70ebcdeb215bebc155c4c86bdf843d816a988cb",
+      "bytes": 6798,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/subtitle-tests/SRTTests.swift",
+      "sha256": "1ee9b6b646fdcf5f402fd289319a90b990af68bbb7919770ac0aabf311217de1",
+      "bytes": 4579,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/subtitle-tests/SubtitleControllerTests.swift",
+      "sha256": "7d809e48572e4bf7fef529226163fe7724b074b4ec682f6bc3fe52773bf10572",
+      "bytes": 4316,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/subtitle-tests/SubtitlePlanTests.swift",
+      "sha256": "2ee504983febc98948c126c2fa85341ac1f1df2b9180c0df17ea7ad5263d6712",
+      "bytes": 18203,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/subtitle-tests/SubtitleTrackTests.swift",
+      "sha256": "5ec765fbf610bc32c7ea9413e5fca581cc005ecd2b5219f0cb850a70aad169c1",
+      "bytes": 7442,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/timepos-tests/main.swift",
+      "sha256": "982d540adc725974cb4740c46d8d3e719e0f7bb0bc983992a6ffd011a3ecb886",
+      "bytes": 12933,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/timepos-vector-tests/PlayheadTracker.swift",
+      "sha256": "6abeddd7398ac68126ffaa2c82e8e1f8b648a4b8ef24cb12f598fc3b8d4f52d0",
+      "bytes": 3355,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/timepos-vector-tests/VectorModel.swift",
+      "sha256": "a3a8402947998e3e78f9abb6a7251c6672015cdf273db3455a3d5addaf40fa57",
+      "bytes": 9685,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/timepos-vector-tests/main.swift",
+      "sha256": "538c77c8e8591b287420175171f9a483aaae5ef45ab0d58ca7aeea0fd5540f28",
+      "bytes": 13215,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/timing-ledger-tests/ClockScenarioReplay.swift",
+      "sha256": "4ed363dac797ddaaf2909c2817394d83ede7369f1890b8f2acf22a344b30aecd",
+      "bytes": 2930,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/timing-ledger-tests/SPSCTests.swift",
+      "sha256": "ae9ffc44d415ca87e1fc52d08bf182344e589fed8839b7ed303307ae10345035",
+      "bytes": 13511,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/timing-ledger-tests/TimingLedgerTests.swift",
+      "sha256": "df7a440efc069f3ab3aebf01c0862bd80fe33fee2686cc22f96cfd4b068f514e",
+      "bytes": 29841,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/trace-dump/TraceDump.swift",
+      "sha256": "5aaf0b36456ad8c768119c9268454a6a9100301ae92fe3313bff4e63b74f385e",
+      "bytes": 4707,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/transport-vector-tests/main.swift",
+      "sha256": "5d8d8f0f4b1d0d5a12dfda4742ba296e225b7b08f4342c02037794ab3fc2455d",
+      "bytes": 6328,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/uniform-packing-tests/main.swift",
+      "sha256": "11bbe1ccb46c3794aa0383c090db0e22075537484074880855cc2197f2011add",
+      "bytes": 2415,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/untagged-color-tests/main.swift",
+      "sha256": "0b7113d2ee576758417be8d551fed288b561221e0edce6780e9487d8c86f81bf",
+      "bytes": 11219,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/video-refusal-tests/VideoRefusalTests.swift",
+      "sha256": "0f21054409389ed4bfeb58633e1073969ea3fd04ef8f216284c698762160be0f",
+      "bytes": 6013,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/video-remote-open-tests/main.swift",
+      "sha256": "6944ecb9bec331754c7763dce6e4f54240bb24dcf8dfa355d1422b775d3910ae",
+      "bytes": 6350,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/vtt-parser-tests/main.swift",
+      "sha256": "247c48d0f929a5794bec200809077470bfcd6a45bbebb85e92c8d420bcfe4851",
+      "bytes": 9881,
+      "mode": "100644"
+    },
+    {
+      "path": "Sources/window-mode-tests/main.swift",
+      "sha256": "09640617ae9065cf34ce0f0c42b44fdb92c59e69e1dbc16aca0aaf430b1b5a20",
+      "bytes": 6136,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/AudioPacingTests/AudioPacingTests.swift",
+      "sha256": "409ec640b47978e1585842a971607236e0615b0502d131ce84908bbcdb7defb4",
+      "bytes": 34167,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/CaptureStats/CaptureHUDFeed.swift",
+      "sha256": "f7c36f667cc6f672defdec805891a0d1a65db2f8f4f43514534e76f639372da1",
+      "bytes": 65,
+      "mode": "120000"
+    },
+    {
+      "path": "Tests/CaptureStats/CaptureHeatReport.swift",
+      "sha256": "a01185895d12bef3e609bfc81d4d0f7d3aa8992bb19b479473a608c1cfbf03fa",
+      "bytes": 68,
+      "mode": "120000"
+    },
+    {
+      "path": "Tests/CaptureStats/CaptureStats.swift",
+      "sha256": "fb5400768776b7f72ce52c5a5ccabda3c90c8ed702f0622e898e825df2b2815f",
+      "bytes": 63,
+      "mode": "120000"
+    },
+    {
+      "path": "Tests/CaptureStats/CaptureStatsTests.swift",
+      "sha256": "e687a2d1ac5d59c06880136cdeb03d823a9f9a4bbd4b3d390b8c5e2afc36472b",
+      "bytes": 6394,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/CaptureStats/HUDFeedTests.swift",
+      "sha256": "8e3d4ac5bd1dd67b808e63222cf50abc3f9df70679558a67863e2f109ea2c8e1",
+      "bytes": 4408,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/CaptureStats/HeatComparison.swift",
+      "sha256": "89fe1b9a301a3742b1e0ccdb0443f93e7d474a6711f189c51dae5439225c226b",
+      "bytes": 65,
+      "mode": "120000"
+    },
+    {
+      "path": "Tests/CaptureStats/HeatComparisonTests.swift",
+      "sha256": "8b591e26e7c539a80c7d16ac9c2ba36a8e91530f2e51dcee31de50b6e3630563",
+      "bytes": 3607,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/CaptureStats/HeatProducer.swift",
+      "sha256": "13af79766a018aa75b053f9b6526d09a8fe9b1ea006c5c34cddff5644c2dee9d",
+      "bytes": 63,
+      "mode": "120000"
+    },
+    {
+      "path": "Tests/CaptureStats/HeatProducerTests.swift",
+      "sha256": "81dc80528ca876b628d46dc364faa3000aa2ae87c8f82eb496629ef3e6772815",
+      "bytes": 5657,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/CaptureStats/HeatTrialCapture.swift",
+      "sha256": "b453366ebf2308591ece5a796105e5d47c8872e8ab07a9ae2e7d8b5f5a97ac82",
+      "bytes": 67,
+      "mode": "120000"
+    },
+    {
+      "path": "Tests/CaptureStats/HeatTrialCaptureTests.swift",
+      "sha256": "6815c747400bc18a444a66c57ffe43535af040a126fe91d6dba65d04a47f62ff",
+      "bytes": 2488,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/CaptureStats/MetalPresenterTelemetry.swift",
+      "sha256": "46f048e28922d9dff78b04290dbe66835b05801928318814e06257f24faec6f3",
+      "bytes": 68,
+      "mode": "120000"
+    },
+    {
+      "path": "Tests/CaptureStats/Package.swift",
+      "sha256": "c7eee2b5623c28e4f140a3b9375e35beb2fa686f79aa63edeec368e5b4427923",
+      "bytes": 1169,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/CaptureStats/PlatformHeatSources.swift",
+      "sha256": "9441f92685f7db2ac6fa6f9765eb3fcc0577dbde873dd7d42178f83c469859ad",
+      "bytes": 70,
+      "mode": "120000"
+    },
+    {
+      "path": "Tests/CaptureStats/run-mutants.py",
+      "sha256": "0230fe993dfaf6122916a154140a93358130ebfb4174601742b00c26b934561b",
+      "bytes": 4238,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/DecodeHeartbeatTests/DecodeHeartbeatTests.swift",
+      "sha256": "63390594761de6a09b3226ee9939c630e8bdeceddd0daa83f84973a336ecc6d1",
+      "bytes": 2938,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/E1/entrypoint_contract_test.py",
+      "sha256": "d309a11a1ac8e9c52764dc9bcae951d23cfcb6d69a898f8e162c2631f7135c3b",
+      "bytes": 1388,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/E1/selftest.sh",
+      "sha256": "20fa3d0b705e6c97e4097bcf971b4f8dba8e81216a39093b1456ecde5be00d32",
+      "bytes": 3003,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/EmbeddedPreparedShotTests/EmbeddedPreparedShotTests.swift",
+      "sha256": "fb01776844f868be54215282c49edf80dc9a878cc1f109afeebe4115fd89c5be",
+      "bytes": 4949,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/EngineContractTests/ContractTests.swift",
+      "sha256": "f3932d2164312eb42c2e416cc68bb52be6361be8a7749f677bfe13c29bb28bf1",
+      "bytes": 7283,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/GorAVAudioClockTests/AudioClockTests.swift",
+      "sha256": "65368da29985dc094c605fe3e9fee27896ca086ef7272a2d1b1a458f87accc99",
+      "bytes": 10350,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/J3AudioControlTests/ControlTests.swift",
+      "sha256": "ae13ef82dab41d3005f4c2999f3383a0e7d785387667fa87aae1fb92595b5a2d",
+      "bytes": 5830,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/J3AudioControlTests/IdempotentLockTests.swift",
+      "sha256": "ad4484ec1e29ac72ac792c1e3f6ba44c7f46de1c9860fda70fc80b1c98d7f9ec",
+      "bytes": 1708,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/M2SourceRouting/LocalTorrentTests.swift",
+      "sha256": "1eb2e0ac5ddd9b1c406e1d3a4a584dc22431e82a50db20be3ec23003ea8dc8f0",
+      "bytes": 1846,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/MKVScheduler/run-portable.sh",
+      "sha256": "f50874c23307857223690520ee04cd7179d1b99e7a05f88d70235654a06f06c8",
+      "bytes": 3137,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/MenuCapabilityParity/MenuCapabilityPolicyTests.swift",
+      "sha256": "d5a353d5a9daef88e95109e4eff8104e0547dc764fdd8d9f63ef4fda032f65de",
+      "bytes": 3446,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/MenuCapabilityParity/run-mutants.py",
+      "sha256": "5db1d110a1c8259bef42213f4195c96235d85186df7f9e7a1cb1cbdbc080962c",
+      "bytes": 2618,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/MenuCapabilityParity/run-portable.sh",
+      "sha256": "edec21ac67367a0bab10ece9f27111884f4ef259a830f30e9c38c3495e287255",
+      "bytes": 429,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/OpenIntentClassification/ClassificationTests.swift",
+      "sha256": "ea06109790dbaddcc5a922cd448c20fb5aa95e6321f71da08b28e023d71823a5",
+      "bytes": 4055,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/OpenIntentClassification/README.md",
+      "sha256": "6225cbb362a08fdb620a53e3ecb90ac9fc36fffeb3897b7568bc1d1e40dff8f5",
+      "bytes": 2480,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/OpenIntentClassification/run-mutants.py",
+      "sha256": "64d27e9bacfc3df77e21bd0791d2d007f6ff8011950250042407618268e3f5a2",
+      "bytes": 2105,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/OpenIntentClassification/run-portable.sh",
+      "sha256": "f4e6a4ae5813117c38d58bd2ee77986b33b92700102077591fc84a668a065fdb",
+      "bytes": 932,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/OpenIntentDispatch/DispatchTests.swift",
+      "sha256": "ba6102979dd8bcbc09c02c0ca23ca28992f87f1aaf2f496df331f1eea53de784",
+      "bytes": 2895,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/OpenIntentDispatch/run-portable.sh",
+      "sha256": "737ecf71cde9e4bbc24b17f78b3e7543cae11844b898c8bb8a81389a2d141fcd",
+      "bytes": 1334,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/PhotonPresenterProducerTests/PhotonPresenterPixelsNativeTests.swift",
+      "sha256": "eebeaec94b3f292f9fc385df5266b237b23eeb256ccc07d9aad70ec07f6422fa",
+      "bytes": 1853,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/PhotonPresenterProducerTests/ProducerTests.swift",
+      "sha256": "6b1ead6db81943366ba860d32e1c9b3147f07dabfabb7fe165ab811126dcb2fa",
+      "bytes": 2473,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/PlayerControlPlaneTests/PlayerControlPlaneTests.swift",
+      "sha256": "561e9f040425cd765866d307efe4878e58a921a04bf2e8a4da7cd9463d0c3495",
+      "bytes": 6437,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/PreparedVideoSwapTests/PreparedVideoSwapTests.swift",
+      "sha256": "06b9360b7ac5536fb87485fbab82b097222ff460285ff037904cc89ea1351395",
+      "bytes": 11560,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/ReadinessAnchorTests/ReadinessAnchorTests.swift",
+      "sha256": "32db14c7e374b19674256f39c9d2d9650ff31dc44131f7c3df41e06793795cb5",
+      "bytes": 4049,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/ReadinessAnchorTests/SeekPresentedAnchorTests.swift",
+      "sha256": "ea3e85faa2b4a37be7a4c1ee3a01c6ddafe00c95c55ccb31c9a80d18aafc9503",
+      "bytes": 2891,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/VTProducer/NativeTests.swift",
+      "sha256": "457cb94c6b9b486a67ecd69fa4e7f0114e9a80f0a13b0372b39d3136731bf8d1",
+      "bytes": 3920,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/VTProducer/VTProducerTests.swift",
+      "sha256": "ad0700a850b3aa3eacfe7d4fbec514751ccfdfd70bb736bf68235edc152517d1",
+      "bytes": 5097,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/VTProducer/run-portable.sh",
+      "sha256": "34130e822280734f4ba3f53d97c3ee183880e9063829ac0174a52cdce3a8bff1",
+      "bytes": 895,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/VTPublicProducer/NativeTests.swift",
+      "sha256": "b3095785a79e9d5814de684625dea1b688fd5f56ad72e7d81721227bb6c69627",
+      "bytes": 2803,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/VTPublicProducer/ProducerTests.swift",
+      "sha256": "54a961eab686a16b84cdfe279bae6792dd9c7187129846ce93e1322377e4e246",
+      "bytes": 5246,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/VTPublicProducer/run-portable.sh",
+      "sha256": "a03a94b11a875acce2a9a6d433226b2154e6da98401cf204c325bbe85da0dbd7",
+      "bytes": 1567,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/compat/run-producer-resume.py",
+      "sha256": "07d045f85dbb65d0f8493fb9f61f8c15c487374d33702d4305d0fa2d8fbd6603",
+      "bytes": 8693,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/compat/run-shell-boundaries.py",
+      "sha256": "c5a490bf74210d8134a8b30dc4e559ea81079a074955ad149b9c2e94717dc6d2",
+      "bytes": 2906,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/MANIFEST.txt",
+      "sha256": "6fa5b5f7c79df51a1e109fdf3cc33b86b1d92c372181b25066b581ce7253013b",
+      "bytes": 2023,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/Package.swift",
+      "sha256": "da9ebf68b90e318b2d9910274bd8bd9110323a8f76bf02974c1fc59da4f40ed2",
+      "bytes": 423,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/README.md",
+      "sha256": "83280a2c0cf7d2ae8e5832fe08749a69369d243564bf2cf44b9f96461461de18",
+      "bytes": 9774,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/ROW-MAP-E2.tsv",
+      "sha256": "a2d64d8303d1d7ef3606f9aa663a7c0ded32ffaaf7c659fdce3edec287195b43",
+      "bytes": 600,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/ROW-MAP.tsv",
+      "sha256": "b2caa3caaf7e30672c182203f491485fee23f7fe7a46065c26e5dfd1ce8b4666",
+      "bytes": 1125,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/Sources/MediaFacadeKit/Facade.swift",
+      "sha256": "6aea4430c2a7a087e7f5f5dc9d85e453d2a2d29cf72adc8382f856118a73fb91",
+      "bytes": 5026,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/Sources/MediaFacadeKit/FakeEngine.swift",
+      "sha256": "284046d68cafbf065fb400fad237dc83ab0eb9bc846a0c273303bc35c912e99f",
+      "bytes": 6577,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/Sources/MediaFacadeKit/MediaEngine.swift",
+      "sha256": "862eb8e47e2fc8d4bc734d66d0f2a08ba2d0242b16280a1f61034812626593ad",
+      "bytes": 513,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/Sources/MediaFacadeKit/MediaError.swift",
+      "sha256": "ded1448b766930515ec4d010e7ca8a86d24505fd10afe85a766c0b5af315ba6e",
+      "bytes": 1157,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/Sources/MediaFacadeKit/MediaValue.swift",
+      "sha256": "dcbfa17ff1412f9f9e57d4cee0352fcecaf8050638ae31de0568a8a0b4c5dfbd",
+      "bytes": 2089,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/Sources/MediaFacadeKit/RowTable.swift",
+      "sha256": "d87e3593cd4d98527d26639e64d2d283377ef32d5f9d680d0f10f7341260bdd5",
+      "bytes": 10923,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/TEST-RUN.txt",
+      "sha256": "846d915c80020542e83b6d11fd8535270afa5dd8be41a0d64e9ded972d39e641",
+      "bytes": 20547,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/Tests/MediaFacadeKitTests/E1RowTests.swift",
+      "sha256": "4104984f8c542b6ebecacd9ce3f5f951098c16a04c3af9ffb68af34143bff89b",
+      "bytes": 17030,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/Tests/MediaFacadeKitTests/E2RowTests.swift",
+      "sha256": "c8b8045436556525cd03acae232c16c8cb104c16484d414a5a694f5c28934da1",
+      "bytes": 6657,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/Tests/MediaFacadeKitTests/FacadeContractTests.swift",
+      "sha256": "928438c5ffb0333c117d513214da5645c0b798686d58658bfec8a926a051d5a4",
+      "bytes": 13662,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/Tests/MediaFacadeKitTests/FacadeR1Tests.swift",
+      "sha256": "47edd3ad7438d09593660737373749d0e2f89e8dc326379521ac93f62ee4a758",
+      "bytes": 5896,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/Tests/MediaFacadeKitTests/Fixtures/facade-rows-e2.tsv",
+      "sha256": "ce6e3ab8bac7050ac041e6da3f2e821de8e950155c4339c44b52f3fdf1384354",
+      "bytes": 812,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/Tests/MediaFacadeKitTests/Fixtures/facade-rows.tsv",
+      "sha256": "eb1532026534af085b3a00388405e5a26a0c31cd1a12e0b2942eb1e5205ab8e7",
+      "bytes": 1640,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/Tests/MediaFacadeKitTests/Fixtures/fake-engine-events.json",
+      "sha256": "87d6b888e1f1aabadf19f004cdd328a572c91eb4cd83fd953d4ce9b66cc520e7",
+      "bytes": 1092,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/MediaFacadeKit/Tests/MediaFacadeKitTests/RowTableTests.swift",
+      "sha256": "67c917fba112c2e34f887ad6fdaa8f250d62bf148065a1384114ac53796a1907",
+      "bytes": 6907,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/facade/mpv-surface.tsv",
+      "sha256": "4dbf749b4c03cf7dfa082970ea9eafb9a55cc428aca78840c0b9f4a9646d24d5",
+      "bytes": 83725,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/MANIFEST.sha256",
+      "sha256": "456b841957a76acdbe68dd5cdd195fe8e3f79a7e1b018b55d5d96c2f5ba6d7e4",
+      "bytes": 5254,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Package.swift",
+      "sha256": "483bf4b2932450af1b3d7a758186807cd52f382c37585a1db14df551cdde2917",
+      "bytes": 318,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/README.md",
+      "sha256": "67ddda73d2dd740c2565940094088f783375c41f6e23367244c6fc0743945bbd",
+      "bytes": 944,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/SPEC.md",
+      "sha256": "02429b05084b753c8d097649f3e2aa43e3cd2315b66b5c9cd4f43d7369639fe1",
+      "bytes": 6908,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Sources/BridgeDemux/Cursor.swift",
+      "sha256": "dadb4bc71f049e708c8e94b705bab513ae0f3e2833ca6cc3e8ee542c3f57dc31",
+      "bytes": 2208,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Sources/BridgeDemux/Demuxer.swift",
+      "sha256": "24ab9f02b95de860331b56600f6703157e3743821bfad8352e34cb81f9d4098b",
+      "bytes": 1059,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Sources/BridgeDemux/MKVDemuxer.swift",
+      "sha256": "3312faac7dacea63ee7b7579a24a6c75fb799d9a66a61dca6af9e75a848480db",
+      "bytes": 16231,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Sources/BridgeDemux/MP4Demuxer.swift",
+      "sha256": "286020ca99b4f69d00bf5a22d47b9d5c0afdde9cd095019e7eb0ad7c47faac8f",
+      "bytes": 25200,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Sources/BridgeDemux/Types.swift",
+      "sha256": "8dabb07f279e0e29a16bf780ec1bc272f9df092340788c8a95d9eccdd779bbf6",
+      "bytes": 2087,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/TEST-LOG.txt",
+      "sha256": "1c6ad26a876b2962caa718c1ad58dddedb3a94f8735a93d55b915697fd09d435",
+      "bytes": 3056,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/DemuxTests.swift",
+      "sha256": "e21e36d8de7076956bd2db79838f10d5c41444b5b82a437a92e6154ea46b4dee",
+      "bytes": 20976,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-audio.mkv",
+      "sha256": "1063018105b532efab209ba02723f42560b4ff194dfa8b5c424786f3c149e099",
+      "bytes": 193245,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-audio.mkv.ffprobe.json",
+      "sha256": "507e499601bb00cc154f1985c671878a223ea99e85f94b374aa9d5f7ec76d20b",
+      "bytes": 35040,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-audio.mkv.payloads.json",
+      "sha256": "1fcadfcf0fa336945409add197d2955ab6f138dda071a629763ee306d203d6ba",
+      "bytes": 10008,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-av24.mp4",
+      "sha256": "f6940ed86802109b0117c4f84b4fe6dc71a8e7ec945fff9d911b2795927e1806",
+      "bytes": 29955,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-av24.mp4.ffprobe.json",
+      "sha256": "11c825f3c8435c72cd2d12c3cd46cc5f2d099affd3ffb07b48b05fc7ef3ed186",
+      "bytes": 55218,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-av24.mp4.payloads.json",
+      "sha256": "65948ac3113f692fbb0ab55a8f34bb43646d6352a3bac854a90c8d7f51b0a44e",
+      "bytes": 15059,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-av25.mkv",
+      "sha256": "2e14aab32e2033340a06d784eee5eba8494b949029ec0575c7f3c94d4b750577",
+      "bytes": 209325,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-av25.mkv.ffprobe.json",
+      "sha256": "e7aa16a65370cd5fd5468572374f53bb8bca913b9a7f864b42d730148e0e6331",
+      "bytes": 54584,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-av25.mkv.payloads.json",
+      "sha256": "0d1f3257e1c44d8d202e71ed8f8cc176d0552b443be064fbf90194acb4712f48",
+      "bytes": 15258,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-bframes.mp4",
+      "sha256": "31d6e0b1b6c15a59720d26314c257c9351ae2eec180ddb9392a2394275c9d64b",
+      "bytes": 16443,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-bframes.mp4.ffprobe.json",
+      "sha256": "9053937f89651a94583eb44c2b0848e399a8c76b0bd5192c0e98fb79e8f40b14",
+      "bytes": 19087,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-bframes.mp4.payloads.json",
+      "sha256": "a8f9bb0ebf195e04be45eb0e09e2a8e1b11f86e850c724344a7d383034b7c410",
+      "bytes": 5088,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-v24.mkv",
+      "sha256": "7c3c23de1d93adb726ada656c5d820b47b4a8386c5b176da2685b4b03fbbe9fb",
+      "bytes": 16244,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-v24.mkv.ffprobe.json",
+      "sha256": "dc32cdcfdf40d2909cc8e86421eac3f584c15691a5df8e48f2d7d4871ef6ce4a",
+      "bytes": 18821,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-v24.mkv.payloads.json",
+      "sha256": "58c1734332e5b984f387bd6ed10ec2700032914e4efc6f9d77d43ab97cc4b3c1",
+      "bytes": 5083,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-v24.mp4",
+      "sha256": "fdb4f5d282a0cc3b15ce01808dfe9084eb84e3353960803adac53712a0ddfb71",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-v24.mp4.ffprobe.json",
+      "sha256": "b031073df619eafc8e2f0a31b8dcb64899a0b245145979ccf2c13d4edee1150b",
+      "bytes": 19084,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/a1-v24.mp4.payloads.json",
+      "sha256": "a1bceb02361505b9c5d0da476fcb4d37ab3a80c41c5e4f4f0a3053a63ae71850",
+      "bytes": 5083,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/f1-av24-bm.mp4",
+      "sha256": "803b45d44b0b050449b4e5ab460202e370cd4c4eaf3eba00426e20c7c1e6ac1e",
+      "bytes": 30215,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/f1-av24-bm.mp4.ffprobe.json",
+      "sha256": "6afa05c3c69f9919a7aeaf0653e379ec401bf0f79918a367a1dab4a99d5a29d2",
+      "bytes": 53143,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/f1-av24-bm.mp4.payloads.json",
+      "sha256": "2059cfc97784e3c2363dac28fcf4e450ad93bc96f298f033d420a3bdafd528c4",
+      "bytes": 15063,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/f1-av24-g12.mp4",
+      "sha256": "5e5b88837bb03f847175a892267acb2cbf707eb9799d49efb287f36b891d98fc",
+      "bytes": 33217,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/f1-av24-g12.mp4.ffprobe.json",
+      "sha256": "148dd2faac5d1dae3c011197626c93ba8366b9e9c0812116b4653e3c67f95c87",
+      "bytes": 53409,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/f1-av24-g12.mp4.payloads.json",
+      "sha256": "4c745f01810ba549ee8bfa79e6ee34c3179aada9d6bbebb4c697f77b716e9b97",
+      "bytes": 15067,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/f1-av24.mp4",
+      "sha256": "bdecb3bf246ab8ef26b1c044ce46f61d083098841be2995cb8cd8f2b1fe6cff1",
+      "bytes": 30239,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/f1-av24.mp4.ffprobe.json",
+      "sha256": "236399c804e3b91c5a29a2c531f2cba0523eb6e0d8f594f14fb62873838cddca",
+      "bytes": 53143,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/f1-av24.mp4.payloads.json",
+      "sha256": "36df32f0bb00ea9b0d5cc85070809c6dd311f80d1591179723d17a20ff399212",
+      "bytes": 15060,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/f1-bframes.mp4",
+      "sha256": "ad63624af072cba369c996c8a22db8d66560de07303e54e0451dbf9dc0a27316",
+      "bytes": 16565,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/f1-bframes.mp4.ffprobe.json",
+      "sha256": "0654d3211b30f52313fc5ec2167bc517f34e272e2cabb7fab780b1f4956d5a50",
+      "bytes": 17598,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/f1-bframes.mp4.payloads.json",
+      "sha256": "3027c1d6237461fbd9f15a597f56bb1da20313d8b4a4767dc2937d42f56b08b9",
+      "bytes": 5089,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/f1-v24.mp4",
+      "sha256": "4f063555254da5de557316cc749695895ed23686f977919b0f856f3e5d753f0d",
+      "bytes": 16431,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/f1-v24.mp4.ffprobe.json",
+      "sha256": "cddd6d76ec829b018d86bc556a5e7adbc91c27e5bd254bd1f354b2556a3046d4",
+      "bytes": 17588,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/Fixtures/f1-v24.mp4.payloads.json",
+      "sha256": "3d91d8201657adcd07de32f152619593a9c141bdacd76dd84087916989e884da",
+      "bytes": 5084,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/Tests/BridgeDemuxTests/SHA256.swift",
+      "sha256": "b20d87293af19267b277e12aad1a5ba69f4818767e5c8b9743a057458be89673",
+      "bytes": 3306,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/generate_fixtures.sh",
+      "sha256": "2aa2d7e2d55a337dddac2bf2cf30d83c49d7422ed713537e8820e0557a55b351",
+      "bytes": 2547,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/labs/p-a1-fmp4/tools/make_payload_oracle.py",
+      "sha256": "a00abc408b1e81f3228ee3493e44b6c773e9c02806f07de6bfc9cf78233016ce",
+      "bytes": 963,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/CRASH-EVIDENCE.txt",
+      "sha256": "115e45f90de662ba9b9eaf430ff991bffb32c2c4a388322dfbb070364d9f7884",
+      "bytes": 2774,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/MANIFEST.sha256",
+      "sha256": "60a7786a4e9b3d000de38db6e196ae2e3210bf3ca1f20e527417e12bf0065563",
+      "bytes": 6581,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Package.swift",
+      "sha256": "de02e11be9b64ef966f3b17a66863e64dac89b9dc8f7724caee3047a777c01b6",
+      "bytes": 402,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/README.md",
+      "sha256": "f94407f927afd87b4b272620b01d40ea33fac458aa8a77ffccd95f9bb6e619ea",
+      "bytes": 1189,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/SPEC.md",
+      "sha256": "c2c7537cfaba19ee3a29ef98da5e299bb7477944b62d00a9ff0908c298038a34",
+      "bytes": 9659,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Sources/BridgeDemux/Cursor.swift",
+      "sha256": "38b0b9aa8aed7b3e2360c07308b9545ead177a5b09d057863eb5864ac0cab592",
+      "bytes": 2230,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Sources/BridgeDemux/Demuxer.swift",
+      "sha256": "85d6627e11e2194615c1e6990dc14d2359f7b30f65e441237a33cfe66cfb33c2",
+      "bytes": 1228,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Sources/BridgeDemux/MKVDemuxer.swift",
+      "sha256": "cc8840e4fef86f015eecc0b1b3ae222afcae1f0ba231eef705856b395f3d55da",
+      "bytes": 18656,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Sources/BridgeDemux/MP4Demuxer.swift",
+      "sha256": "9c1cf974e9e7ce261431a1675ab2700e156f8322f095d1054fb933fe7d0af8c3",
+      "bytes": 28128,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Sources/BridgeDemux/Types.swift",
+      "sha256": "8dabb07f279e0e29a16bf780ec1bc272f9df092340788c8a95d9eccdd779bbf6",
+      "bytes": 2087,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Sources/BridgeDemuxProbe/main.swift",
+      "sha256": "23f7f3d43dba51844de7e172985f876dac59e6e9a9d70e0658392853ed310b51",
+      "bytes": 2643,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/TEST-LOG.txt",
+      "sha256": "c40e744ca020eb2a1ef06b1f90dbc4403e74bd8a015364db1d73e2e4bd6bda5b",
+      "bytes": 4882,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/DemuxTests.swift",
+      "sha256": "e21e36d8de7076956bd2db79838f10d5c41444b5b82a437a92e6154ea46b4dee",
+      "bytes": 20976,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-audio.mkv",
+      "sha256": "1063018105b532efab209ba02723f42560b4ff194dfa8b5c424786f3c149e099",
+      "bytes": 193245,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-audio.mkv.ffprobe.json",
+      "sha256": "507e499601bb00cc154f1985c671878a223ea99e85f94b374aa9d5f7ec76d20b",
+      "bytes": 35040,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-audio.mkv.payloads.json",
+      "sha256": "1fcadfcf0fa336945409add197d2955ab6f138dda071a629763ee306d203d6ba",
+      "bytes": 10008,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-av24.mp4",
+      "sha256": "f6940ed86802109b0117c4f84b4fe6dc71a8e7ec945fff9d911b2795927e1806",
+      "bytes": 29955,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-av24.mp4.ffprobe.json",
+      "sha256": "11c825f3c8435c72cd2d12c3cd46cc5f2d099affd3ffb07b48b05fc7ef3ed186",
+      "bytes": 55218,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-av24.mp4.payloads.json",
+      "sha256": "65948ac3113f692fbb0ab55a8f34bb43646d6352a3bac854a90c8d7f51b0a44e",
+      "bytes": 15059,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-av25.mkv",
+      "sha256": "2e14aab32e2033340a06d784eee5eba8494b949029ec0575c7f3c94d4b750577",
+      "bytes": 209325,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-av25.mkv.ffprobe.json",
+      "sha256": "e7aa16a65370cd5fd5468572374f53bb8bca913b9a7f864b42d730148e0e6331",
+      "bytes": 54584,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-av25.mkv.payloads.json",
+      "sha256": "0d1f3257e1c44d8d202e71ed8f8cc176d0552b443be064fbf90194acb4712f48",
+      "bytes": 15258,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-bframes.mp4",
+      "sha256": "31d6e0b1b6c15a59720d26314c257c9351ae2eec180ddb9392a2394275c9d64b",
+      "bytes": 16443,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-bframes.mp4.ffprobe.json",
+      "sha256": "9053937f89651a94583eb44c2b0848e399a8c76b0bd5192c0e98fb79e8f40b14",
+      "bytes": 19087,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-bframes.mp4.payloads.json",
+      "sha256": "a8f9bb0ebf195e04be45eb0e09e2a8e1b11f86e850c724344a7d383034b7c410",
+      "bytes": 5088,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mkv",
+      "sha256": "7c3c23de1d93adb726ada656c5d820b47b4a8386c5b176da2685b4b03fbbe9fb",
+      "bytes": 16244,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mkv.ffprobe.json",
+      "sha256": "dc32cdcfdf40d2909cc8e86421eac3f584c15691a5df8e48f2d7d4871ef6ce4a",
+      "bytes": 18821,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mkv.payloads.json",
+      "sha256": "58c1734332e5b984f387bd6ed10ec2700032914e4efc6f9d77d43ab97cc4b3c1",
+      "bytes": 5083,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mp4",
+      "sha256": "fdb4f5d282a0cc3b15ce01808dfe9084eb84e3353960803adac53712a0ddfb71",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mp4.ffprobe.json",
+      "sha256": "b031073df619eafc8e2f0a31b8dcb64899a0b245145979ccf2c13d4edee1150b",
+      "bytes": 19084,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mp4.payloads.json",
+      "sha256": "a1bceb02361505b9c5d0da476fcb4d37ab3a80c41c5e4f4f0a3053a63ae71850",
+      "bytes": 5083,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24-bm.mp4",
+      "sha256": "803b45d44b0b050449b4e5ab460202e370cd4c4eaf3eba00426e20c7c1e6ac1e",
+      "bytes": 30215,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24-bm.mp4.ffprobe.json",
+      "sha256": "6afa05c3c69f9919a7aeaf0653e379ec401bf0f79918a367a1dab4a99d5a29d2",
+      "bytes": 53143,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24-bm.mp4.payloads.json",
+      "sha256": "2059cfc97784e3c2363dac28fcf4e450ad93bc96f298f033d420a3bdafd528c4",
+      "bytes": 15063,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24-g12.mp4",
+      "sha256": "5e5b88837bb03f847175a892267acb2cbf707eb9799d49efb287f36b891d98fc",
+      "bytes": 33217,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24-g12.mp4.ffprobe.json",
+      "sha256": "148dd2faac5d1dae3c011197626c93ba8366b9e9c0812116b4653e3c67f95c87",
+      "bytes": 53409,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24-g12.mp4.payloads.json",
+      "sha256": "4c745f01810ba549ee8bfa79e6ee34c3179aada9d6bbebb4c697f77b716e9b97",
+      "bytes": 15067,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24.mp4",
+      "sha256": "bdecb3bf246ab8ef26b1c044ce46f61d083098841be2995cb8cd8f2b1fe6cff1",
+      "bytes": 30239,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24.mp4.ffprobe.json",
+      "sha256": "236399c804e3b91c5a29a2c531f2cba0523eb6e0d8f594f14fb62873838cddca",
+      "bytes": 53143,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24.mp4.payloads.json",
+      "sha256": "36df32f0bb00ea9b0d5cc85070809c6dd311f80d1591179723d17a20ff399212",
+      "bytes": 15060,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/f1-bframes.mp4",
+      "sha256": "ad63624af072cba369c996c8a22db8d66560de07303e54e0451dbf9dc0a27316",
+      "bytes": 16565,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/f1-bframes.mp4.ffprobe.json",
+      "sha256": "0654d3211b30f52313fc5ec2167bc517f34e272e2cabb7fab780b1f4956d5a50",
+      "bytes": 17598,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/f1-bframes.mp4.payloads.json",
+      "sha256": "3027c1d6237461fbd9f15a597f56bb1da20313d8b4a4767dc2937d42f56b08b9",
+      "bytes": 5089,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/f1-v24.mp4",
+      "sha256": "4f063555254da5de557316cc749695895ed23686f977919b0f856f3e5d753f0d",
+      "bytes": 16431,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/f1-v24.mp4.ffprobe.json",
+      "sha256": "cddd6d76ec829b018d86bc556a5e7adbc91c27e5bd254bd1f354b2556a3046d4",
+      "bytes": 17588,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/f1-v24.mp4.payloads.json",
+      "sha256": "3d91d8201657adcd07de32f152619593a9c141bdacd76dd84087916989e884da",
+      "bytes": 5084,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/malformed/bad-lace-no-count.mkv",
+      "sha256": "2087ad147a6a9bf54aa17dce0171c95ba7f10fbdec14f17538f7681a30282dea",
+      "bytes": 566,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/malformed/huge-box-largesize.mp4",
+      "sha256": "0e9fd582ce45b2f50f4f360a74598205757d694a4e2b775aec60b25ac0286d69",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/malformed/huge-cluster-timecode.mkv",
+      "sha256": "eb1e8c541aea61d0306591c68c3ba4cfe9e82ba8d476e0c16976d8d8719b6d85",
+      "bytes": 193252,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/malformed/huge-ctts-count.mp4",
+      "sha256": "b778e58d8a2e2e80b6a59cf3a94be9cf6a96665a75175d1cb78ddfaea58618ea",
+      "bytes": 16443,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/malformed/huge-stsz-count.mp4",
+      "sha256": "e957b8d657624f401018e1b16ef044c18efa673add284ed155a9e88887ea2ae2",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/malformed/huge-stts-count.mp4",
+      "sha256": "b7057921b02515c0d52f3b7e083ccbea3050c629f1356bf9b59b105b8f153ce8",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/Fixtures/malformed/huge-timestamp-scale.mkv",
+      "sha256": "3dcc706c1917815bb688f965db4e738e1179d87afd319951d681bf2ce825a22d",
+      "bytes": 193250,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/MalformedSafetyTests.swift",
+      "sha256": "0cc7026a53c1ae0b5224fc29302adad00ce0907f4cfe2fb0d62f4de83cfddda9",
+      "bytes": 10065,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/Tests/BridgeDemuxTests/SHA256.swift",
+      "sha256": "b20d87293af19267b277e12aad1a5ba69f4818767e5c8b9743a057458be89673",
+      "bytes": 3306,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/generate_fixtures.sh",
+      "sha256": "2aa2d7e2d55a337dddac2bf2cf30d83c49d7422ed713537e8820e0557a55b351",
+      "bytes": 2547,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/tools/make_malformed.py",
+      "sha256": "e9b2a0df062168ec595c02eecc01e4bc3294c303d08e3bb7abe99512ddb5d302",
+      "bytes": 7182,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r1/tools/make_payload_oracle.py",
+      "sha256": "a00abc408b1e81f3228ee3493e44b6c773e9c02806f07de6bfc9cf78233016ce",
+      "bytes": 963,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/CRASH-EVIDENCE.txt",
+      "sha256": "115e45f90de662ba9b9eaf430ff991bffb32c2c4a388322dfbb070364d9f7884",
+      "bytes": 2774,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/DEFECT-EVIDENCE.txt",
+      "sha256": "53ea8b4a443f87a840469af1f1dd1fc625664f144cbe2435122461c208281c9e",
+      "bytes": 1127,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/MANIFEST.sha256",
+      "sha256": "266a4a85e1e46e6565721cd88e84cfb61d8412b199c32863d06144b39b4fbaec",
+      "bytes": 7040,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Package.swift",
+      "sha256": "de02e11be9b64ef966f3b17a66863e64dac89b9dc8f7724caee3047a777c01b6",
+      "bytes": 402,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/README.md",
+      "sha256": "fe3d5369b8341b7fe57f86680df1a115bcd4430f45d0ef787d9226cfd3d00054",
+      "bytes": 1395,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/SPEC.md",
+      "sha256": "cfa831bd418a9cb4678efb1433936929926a4b000e74724549af66e0058443d6",
+      "bytes": 11210,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Sources/BridgeDemux/Cursor.swift",
+      "sha256": "38b0b9aa8aed7b3e2360c07308b9545ead177a5b09d057863eb5864ac0cab592",
+      "bytes": 2230,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Sources/BridgeDemux/Demuxer.swift",
+      "sha256": "85d6627e11e2194615c1e6990dc14d2359f7b30f65e441237a33cfe66cfb33c2",
+      "bytes": 1228,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Sources/BridgeDemux/MKVDemuxer.swift",
+      "sha256": "3e92d13f675b5f37b52c0815af4f0cac49441397f9cac79cb0fafca88a3895a7",
+      "bytes": 19294,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Sources/BridgeDemux/MP4Demuxer.swift",
+      "sha256": "6476f3a3f840912d9b07eeead8f7d52cd26002547104a787c5ac0a09d673efb4",
+      "bytes": 32207,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Sources/BridgeDemux/Types.swift",
+      "sha256": "fe84dd0abf83e41fc77c5cb45ceca87f1ae7690b42c5bfb206363add456fe0bf",
+      "bytes": 2193,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Sources/BridgeDemuxProbe/main.swift",
+      "sha256": "23f7f3d43dba51844de7e172985f876dac59e6e9a9d70e0658392853ed310b51",
+      "bytes": 2643,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/TEST-LOG.txt",
+      "sha256": "a16c1422186ef76c6423118afbec5865b66dcca46c44ce82fa108b89c5ce6c3c",
+      "bytes": 9629,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/DemuxTests.swift",
+      "sha256": "e21e36d8de7076956bd2db79838f10d5c41444b5b82a437a92e6154ea46b4dee",
+      "bytes": 20976,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-audio.mkv",
+      "sha256": "1063018105b532efab209ba02723f42560b4ff194dfa8b5c424786f3c149e099",
+      "bytes": 193245,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-audio.mkv.ffprobe.json",
+      "sha256": "507e499601bb00cc154f1985c671878a223ea99e85f94b374aa9d5f7ec76d20b",
+      "bytes": 35040,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-audio.mkv.payloads.json",
+      "sha256": "1fcadfcf0fa336945409add197d2955ab6f138dda071a629763ee306d203d6ba",
+      "bytes": 10008,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-av24.mp4",
+      "sha256": "f6940ed86802109b0117c4f84b4fe6dc71a8e7ec945fff9d911b2795927e1806",
+      "bytes": 29955,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-av24.mp4.ffprobe.json",
+      "sha256": "11c825f3c8435c72cd2d12c3cd46cc5f2d099affd3ffb07b48b05fc7ef3ed186",
+      "bytes": 55218,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-av24.mp4.payloads.json",
+      "sha256": "65948ac3113f692fbb0ab55a8f34bb43646d6352a3bac854a90c8d7f51b0a44e",
+      "bytes": 15059,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-av25.mkv",
+      "sha256": "2e14aab32e2033340a06d784eee5eba8494b949029ec0575c7f3c94d4b750577",
+      "bytes": 209325,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-av25.mkv.ffprobe.json",
+      "sha256": "e7aa16a65370cd5fd5468572374f53bb8bca913b9a7f864b42d730148e0e6331",
+      "bytes": 54584,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-av25.mkv.payloads.json",
+      "sha256": "0d1f3257e1c44d8d202e71ed8f8cc176d0552b443be064fbf90194acb4712f48",
+      "bytes": 15258,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-bframes.mp4",
+      "sha256": "31d6e0b1b6c15a59720d26314c257c9351ae2eec180ddb9392a2394275c9d64b",
+      "bytes": 16443,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-bframes.mp4.ffprobe.json",
+      "sha256": "9053937f89651a94583eb44c2b0848e399a8c76b0bd5192c0e98fb79e8f40b14",
+      "bytes": 19087,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-bframes.mp4.payloads.json",
+      "sha256": "a8f9bb0ebf195e04be45eb0e09e2a8e1b11f86e850c724344a7d383034b7c410",
+      "bytes": 5088,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-v24.mkv",
+      "sha256": "7c3c23de1d93adb726ada656c5d820b47b4a8386c5b176da2685b4b03fbbe9fb",
+      "bytes": 16244,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-v24.mkv.ffprobe.json",
+      "sha256": "dc32cdcfdf40d2909cc8e86421eac3f584c15691a5df8e48f2d7d4871ef6ce4a",
+      "bytes": 18821,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-v24.mkv.payloads.json",
+      "sha256": "58c1734332e5b984f387bd6ed10ec2700032914e4efc6f9d77d43ab97cc4b3c1",
+      "bytes": 5083,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-v24.mp4",
+      "sha256": "fdb4f5d282a0cc3b15ce01808dfe9084eb84e3353960803adac53712a0ddfb71",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-v24.mp4.ffprobe.json",
+      "sha256": "b031073df619eafc8e2f0a31b8dcb64899a0b245145979ccf2c13d4edee1150b",
+      "bytes": 19084,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/a1-v24.mp4.payloads.json",
+      "sha256": "a1bceb02361505b9c5d0da476fcb4d37ab3a80c41c5e4f4f0a3053a63ae71850",
+      "bytes": 5083,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/f1-av24-bm.mp4",
+      "sha256": "803b45d44b0b050449b4e5ab460202e370cd4c4eaf3eba00426e20c7c1e6ac1e",
+      "bytes": 30215,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/f1-av24-bm.mp4.ffprobe.json",
+      "sha256": "6afa05c3c69f9919a7aeaf0653e379ec401bf0f79918a367a1dab4a99d5a29d2",
+      "bytes": 53143,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/f1-av24-bm.mp4.payloads.json",
+      "sha256": "2059cfc97784e3c2363dac28fcf4e450ad93bc96f298f033d420a3bdafd528c4",
+      "bytes": 15063,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/f1-av24-g12.mp4",
+      "sha256": "5e5b88837bb03f847175a892267acb2cbf707eb9799d49efb287f36b891d98fc",
+      "bytes": 33217,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/f1-av24-g12.mp4.ffprobe.json",
+      "sha256": "148dd2faac5d1dae3c011197626c93ba8366b9e9c0812116b4653e3c67f95c87",
+      "bytes": 53409,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/f1-av24-g12.mp4.payloads.json",
+      "sha256": "4c745f01810ba549ee8bfa79e6ee34c3179aada9d6bbebb4c697f77b716e9b97",
+      "bytes": 15067,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/f1-av24.mp4",
+      "sha256": "bdecb3bf246ab8ef26b1c044ce46f61d083098841be2995cb8cd8f2b1fe6cff1",
+      "bytes": 30239,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/f1-av24.mp4.ffprobe.json",
+      "sha256": "236399c804e3b91c5a29a2c531f2cba0523eb6e0d8f594f14fb62873838cddca",
+      "bytes": 53143,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/f1-av24.mp4.payloads.json",
+      "sha256": "36df32f0bb00ea9b0d5cc85070809c6dd311f80d1591179723d17a20ff399212",
+      "bytes": 15060,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/f1-bframes.mp4",
+      "sha256": "ad63624af072cba369c996c8a22db8d66560de07303e54e0451dbf9dc0a27316",
+      "bytes": 16565,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/f1-bframes.mp4.ffprobe.json",
+      "sha256": "0654d3211b30f52313fc5ec2167bc517f34e272e2cabb7fab780b1f4956d5a50",
+      "bytes": 17598,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/f1-bframes.mp4.payloads.json",
+      "sha256": "3027c1d6237461fbd9f15a597f56bb1da20313d8b4a4767dc2937d42f56b08b9",
+      "bytes": 5089,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/f1-v24.mp4",
+      "sha256": "4f063555254da5de557316cc749695895ed23686f977919b0f856f3e5d753f0d",
+      "bytes": 16431,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/f1-v24.mp4.ffprobe.json",
+      "sha256": "cddd6d76ec829b018d86bc556a5e7adbc91c27e5bd254bd1f354b2556a3046d4",
+      "bytes": 17588,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/f1-v24.mp4.payloads.json",
+      "sha256": "3d91d8201657adcd07de32f152619593a9c141bdacd76dd84087916989e884da",
+      "bytes": 5084,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/malformed/bad-lace-no-count.mkv",
+      "sha256": "2087ad147a6a9bf54aa17dce0171c95ba7f10fbdec14f17538f7681a30282dea",
+      "bytes": 566,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/malformed/huge-box-largesize.mp4",
+      "sha256": "0e9fd582ce45b2f50f4f360a74598205757d694a4e2b775aec60b25ac0286d69",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/malformed/huge-cluster-timecode.mkv",
+      "sha256": "eb1e8c541aea61d0306591c68c3ba4cfe9e82ba8d476e0c16976d8d8719b6d85",
+      "bytes": 193252,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/malformed/huge-ctts-count.mp4",
+      "sha256": "b778e58d8a2e2e80b6a59cf3a94be9cf6a96665a75175d1cb78ddfaea58618ea",
+      "bytes": 16443,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/malformed/huge-stsz-count.mp4",
+      "sha256": "e957b8d657624f401018e1b16ef044c18efa673add284ed155a9e88887ea2ae2",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/malformed/huge-stts-count.mp4",
+      "sha256": "b7057921b02515c0d52f3b7e083ccbea3050c629f1356bf9b59b105b8f153ce8",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/malformed/huge-timestamp-scale.mkv",
+      "sha256": "3dcc706c1917815bb688f965db4e738e1179d87afd319951d681bf2ce825a22d",
+      "bytes": 193250,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/malformed/lace-duration-overflow.mkv",
+      "sha256": "0692ae83bac7685ddc7aac6e33d3e26677b5b018a6ce9b50bddda60ad5e2e79e",
+      "bytes": 193259,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/Fixtures/malformed/rescale-rounding-overflow.mp4",
+      "sha256": "05e9a7d6751e88b87542d3152bdc6985f20981724791041eb36d2d39691ef07a",
+      "bytes": 2527,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/MalformedSafetyTests.swift",
+      "sha256": "dd14811880da4656f84a029391d916fa9ceabc8741d58042af7e117a30f0ce24",
+      "bytes": 10847,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/Tests/BridgeDemuxTests/SHA256.swift",
+      "sha256": "b20d87293af19267b277e12aad1a5ba69f4818767e5c8b9743a057458be89673",
+      "bytes": 3306,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/generate_fixtures.sh",
+      "sha256": "2aa2d7e2d55a337dddac2bf2cf30d83c49d7422ed713537e8820e0557a55b351",
+      "bytes": 2547,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/tools/make_malformed.py",
+      "sha256": "e9b2a0df062168ec595c02eecc01e4bc3294c303d08e3bb7abe99512ddb5d302",
+      "bytes": 7182,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/tools/make_payload_oracle.py",
+      "sha256": "a00abc408b1e81f3228ee3493e44b6c773e9c02806f07de6bfc9cf78233016ce",
+      "bytes": 963,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1-r2/tools/make_r2_fixtures.py",
+      "sha256": "ccc304a99cfc48336ab1c866c7dfedcd1c69645f2c4cabc1e10680ab4ad82731",
+      "bytes": 5187,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/MANIFEST.sha256",
+      "sha256": "ad506828e69955bd7d57fe2ce4eae67a0cf5630b765009ce2472890edecdd5a1",
+      "bytes": 3412,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Package.swift",
+      "sha256": "60ad339eaca4b8adde36ff76b04333c11ed003c80b75bd49b41006ea0d43542d",
+      "bytes": 391,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/README.md",
+      "sha256": "c7648d4925f5ec649680296ace227cac9c4d60a7246022388d71e058b050c5e1",
+      "bytes": 749,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/SPEC.md",
+      "sha256": "1f07740d288799906530fe9ff274e09a2daab84ae170140427855fd096073b4e",
+      "bytes": 4678,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Sources/BridgeDemux/Cursor.swift",
+      "sha256": "dadb4bc71f049e708c8e94b705bab513ae0f3e2833ca6cc3e8ee542c3f57dc31",
+      "bytes": 2208,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Sources/BridgeDemux/Demuxer.swift",
+      "sha256": "24ab9f02b95de860331b56600f6703157e3743821bfad8352e34cb81f9d4098b",
+      "bytes": 1059,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Sources/BridgeDemux/MKVDemuxer.swift",
+      "sha256": "3312faac7dacea63ee7b7579a24a6c75fb799d9a66a61dca6af9e75a848480db",
+      "bytes": 16231,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Sources/BridgeDemux/MP4Demuxer.swift",
+      "sha256": "9117820fc07b39ddcd119c78b850921b243f2b3d0fdd30122c421ad0c76e84e5",
+      "bytes": 15902,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Sources/BridgeDemux/Types.swift",
+      "sha256": "8dabb07f279e0e29a16bf780ec1bc272f9df092340788c8a95d9eccdd779bbf6",
+      "bytes": 2087,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/TEST-LOG.txt",
+      "sha256": "19cfb0faec950d0749ba49b46ba00d05bf14c9502417aa3ad3d6054b13f62fa4",
+      "bytes": 2164,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/DemuxTests.swift",
+      "sha256": "1a77737ccec044beaff652b7ee390946a0f39fdca9677902494bdb8468d46402",
+      "bytes": 14245,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-audio.mkv",
+      "sha256": "1063018105b532efab209ba02723f42560b4ff194dfa8b5c424786f3c149e099",
+      "bytes": 193245,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-audio.mkv.ffprobe.json",
+      "sha256": "507e499601bb00cc154f1985c671878a223ea99e85f94b374aa9d5f7ec76d20b",
+      "bytes": 35040,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-audio.mkv.payloads.json",
+      "sha256": "1fcadfcf0fa336945409add197d2955ab6f138dda071a629763ee306d203d6ba",
+      "bytes": 10008,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-av24.mp4",
+      "sha256": "f6940ed86802109b0117c4f84b4fe6dc71a8e7ec945fff9d911b2795927e1806",
+      "bytes": 29955,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-av24.mp4.ffprobe.json",
+      "sha256": "11c825f3c8435c72cd2d12c3cd46cc5f2d099affd3ffb07b48b05fc7ef3ed186",
+      "bytes": 55218,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-av24.mp4.payloads.json",
+      "sha256": "65948ac3113f692fbb0ab55a8f34bb43646d6352a3bac854a90c8d7f51b0a44e",
+      "bytes": 15059,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-av25.mkv",
+      "sha256": "2e14aab32e2033340a06d784eee5eba8494b949029ec0575c7f3c94d4b750577",
+      "bytes": 209325,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-av25.mkv.ffprobe.json",
+      "sha256": "e7aa16a65370cd5fd5468572374f53bb8bca913b9a7f864b42d730148e0e6331",
+      "bytes": 54584,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-av25.mkv.payloads.json",
+      "sha256": "0d1f3257e1c44d8d202e71ed8f8cc176d0552b443be064fbf90194acb4712f48",
+      "bytes": 15258,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-bframes.mp4",
+      "sha256": "31d6e0b1b6c15a59720d26314c257c9351ae2eec180ddb9392a2394275c9d64b",
+      "bytes": 16443,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-bframes.mp4.ffprobe.json",
+      "sha256": "9053937f89651a94583eb44c2b0848e399a8c76b0bd5192c0e98fb79e8f40b14",
+      "bytes": 19087,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-bframes.mp4.payloads.json",
+      "sha256": "a8f9bb0ebf195e04be45eb0e09e2a8e1b11f86e850c724344a7d383034b7c410",
+      "bytes": 5088,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mkv",
+      "sha256": "7c3c23de1d93adb726ada656c5d820b47b4a8386c5b176da2685b4b03fbbe9fb",
+      "bytes": 16244,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mkv.ffprobe.json",
+      "sha256": "dc32cdcfdf40d2909cc8e86421eac3f584c15691a5df8e48f2d7d4871ef6ce4a",
+      "bytes": 18821,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mkv.payloads.json",
+      "sha256": "58c1734332e5b984f387bd6ed10ec2700032914e4efc6f9d77d43ab97cc4b3c1",
+      "bytes": 5083,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mp4",
+      "sha256": "fdb4f5d282a0cc3b15ce01808dfe9084eb84e3353960803adac53712a0ddfb71",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mp4.ffprobe.json",
+      "sha256": "b031073df619eafc8e2f0a31b8dcb64899a0b245145979ccf2c13d4edee1150b",
+      "bytes": 19084,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mp4.payloads.json",
+      "sha256": "a1bceb02361505b9c5d0da476fcb4d37ab3a80c41c5e4f4f0a3053a63ae71850",
+      "bytes": 5083,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/Tests/BridgeDemuxTests/SHA256.swift",
+      "sha256": "b20d87293af19267b277e12aad1a5ba69f4818767e5c8b9743a057458be89673",
+      "bytes": 3306,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a1/generate_fixtures.sh",
+      "sha256": "93ae9156b7e069eccfc9a34a20192870fc0679681f46c5ffb8dc513c009695c8",
+      "bytes": 1283,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/labs/p-a1/tools/make_payload_oracle.py",
+      "sha256": "a00abc408b1e81f3228ee3493e44b6c773e9c02806f07de6bfc9cf78233016ce",
+      "bytes": 963,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/BASE-SHA256SUMS",
+      "sha256": "9c5b525e9626c3e0c811985819e27e41733d3b5ac1c24272b3671e9baf2cebb6",
+      "bytes": 1925,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Evidence/clock-600s-25fps-tagged.evidence.json",
+      "sha256": "d9cfb03cbe72e8d6056e4b49d27430dd0041ef00d6b1c6661850a5942c054438",
+      "bytes": 1146748,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Evidence/clock-600s-25fps.evidence.json",
+      "sha256": "d7dfca7c3d646906e39597958d3a86eea2293f0c3934a44a0ea8ecf5cdc455c0",
+      "bytes": 1146741,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Evidence/clock-five-seeks-tagged.evidence.json",
+      "sha256": "434d3a6877dc5dfc8763af59f9f81edc7b7693f65fcdcf8b330f1539fbeb0534",
+      "bytes": 1329665,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Evidence/clock-five-seeks.evidence.json",
+      "sha256": "557660d62497350f7261468217c5509e9de666de5fb6a95578ec48930492d69d",
+      "bytes": 1329218,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Evidence/secret-scan.txt",
+      "sha256": "43a01b104f60452e1e28897794a137ab29d5fda50fe66dd99aca4b90668f8f36",
+      "bytes": 42,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Evidence/summary.json",
+      "sha256": "62211a5c4974ca89a2fb05b3af85101404003f914ceaca00993614b37f52960e",
+      "bytes": 3551,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Evidence/swift-test.log",
+      "sha256": "5053fc731f85081fb752133157b2ae10d099ceec49c8b4818696becd8a83da7a",
+      "bytes": 3769,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Evidence/toolchain.txt",
+      "sha256": "b0b8f2656fe883af86488be98fdaefd77793688fde6cb5521d77b437c3558928",
+      "bytes": 75,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Evidence/verification.txt",
+      "sha256": "255779994edf76689feef50ab0c5b9345836334cce2f7a5e4ef7814113c7fde4",
+      "bytes": 167,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Package.swift",
+      "sha256": "63ac925980978437cd616b6beaa9849580c8f0aaf93bd45b630698a90641e9c9",
+      "bytes": 379,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/R1-SPEC.md",
+      "sha256": "c24e27af314549ae1ba729951f74e8b96db0a6c216c722e6cb8bd1df1c94103b",
+      "bytes": 4129,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/R1Evidence/adapter-five-seeks.evidence.json",
+      "sha256": "3b57d07990ae751fd7eb853963b5ac83bc9f133a73676141441b15775fbe8c44",
+      "bytes": 1559500,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/R1Evidence/base-integrity.log",
+      "sha256": "721b9287f03c8a021fc7532fc2508573b869bc08e5e05e403ae5fcadd73e5f65",
+      "bytes": 747,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/R1Evidence/initial-compile.log",
+      "sha256": "c149927e00bf27845a70f68c5ee8e273e4d49fdbbacc4cba4c07334a907c35a9",
+      "bytes": 9913,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/R1Evidence/manifest-tool.txt",
+      "sha256": "92733386343e12de9cebbd4710d6f2c4f8e1193191ade1c126ad43caa56edf1f",
+      "bytes": 31,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/R1Evidence/repeat.txt",
+      "sha256": "baa36a1b44049489de1cc64da07c3cb5fb8028d39f90a7aea402ed766d0fbd27",
+      "bytes": 38,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/R1Evidence/secret-scan.txt",
+      "sha256": "d47b7046f0e4ada0869922a4ed66269fe4e42c230ddeb6c18319112262f89308",
+      "bytes": 42,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/R1Evidence/summary.json",
+      "sha256": "f767f310a131df627f67cdac64c73839946dd6132267f5a75e3d59d9ea838506",
+      "bytes": 1395,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/R1Evidence/swift-test.log",
+      "sha256": "3bcf7ecc6c5628d2ed1dd866a3fa55123c2068990f0b4972c7571ee56620fd2b",
+      "bytes": 5430,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/README.md",
+      "sha256": "bf3b0ba202c5d4d2b55f4ce731275b50f1a448cb5c369f076f46996212b7fcd5",
+      "bytes": 5701,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/SHA256SUMS",
+      "sha256": "f8b4a024f350c2a7b5fd8379c3397ce5e248ff97bad5997c9a994920953cc879",
+      "bytes": 3173,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Sources/AudioMasterScheduler/AudioMasterScheduler.swift",
+      "sha256": "ed772adc9ca6e143a405fdf66b0c847055c2a7f329e804420f6c81062bbbbb01",
+      "bytes": 3292,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Sources/AudioMasterScheduler/EnqueueGenerationAdapter.swift",
+      "sha256": "f5e6bc79d3ee558e446468cd629be215c3233801e4b38641ae9581d9b7823e4b",
+      "bytes": 1995,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Tests/AudioMasterSchedulerTests/AdapterTests.swift",
+      "sha256": "3fef1cee4ab1544d75fbce82a828b69c8a0e5da01b517e8a16cf9ebc7b27c1e6",
+      "bytes": 7849,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Tests/AudioMasterSchedulerTests/ClockTests.swift",
+      "sha256": "19ce48889dee8f44bfb3d52ff45c868103e45966cfaa5a073f27351cca869475",
+      "bytes": 8872,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Tests/AudioMasterSchedulerTests/Fixtures/clock-600s-25fps.json",
+      "sha256": "5e7d8ec419ae60c04b22f8bf208baabd6547eedab26d32ced1f5e7bb8634b745",
+      "bytes": 186,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Tests/AudioMasterSchedulerTests/Fixtures/clock-boundary40ms.json",
+      "sha256": "7b0760b405a8275957c5cfb7267cc25c1d4f1b427d50a87e9586aefcbf2ad0b7",
+      "bytes": 450,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/Tests/AudioMasterSchedulerTests/Fixtures/clock-five-seeks.json",
+      "sha256": "ba47096177c0af62060a89f3ba7264fee8d1109f1d1fb5098708f1fb90b23c6e",
+      "bytes": 685,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/tools/generate.py",
+      "sha256": "d8d77d9bae133ea5df5f2c61911d66ea535ecf818ab2811e1f96c188c4886883",
+      "bytes": 1105,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/tools/scan.py",
+      "sha256": "9c747a1fd52c3fd0bb1a4a09ae87e651cc50f060b258ab6972276a8214ac2d3a",
+      "bytes": 868,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/tools/verify_evidence.py",
+      "sha256": "8e77c5060f62a046eccd2153aa1cdb899ed46a43184df3195a27f49b3f113344",
+      "bytes": 1326,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2-r1/tools/verify_r1.py",
+      "sha256": "327b79ae197015ba540c7252e15a6646b78cc9f2e6b426e758ad2ba1b5b61888",
+      "bytes": 1170,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/Evidence/clock-600s-25fps-tagged.evidence.json",
+      "sha256": "d9cfb03cbe72e8d6056e4b49d27430dd0041ef00d6b1c6661850a5942c054438",
+      "bytes": 1146748,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/Evidence/clock-600s-25fps.evidence.json",
+      "sha256": "d7dfca7c3d646906e39597958d3a86eea2293f0c3934a44a0ea8ecf5cdc455c0",
+      "bytes": 1146741,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/Evidence/clock-five-seeks-tagged.evidence.json",
+      "sha256": "434d3a6877dc5dfc8763af59f9f81edc7b7693f65fcdcf8b330f1539fbeb0534",
+      "bytes": 1329665,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/Evidence/clock-five-seeks.evidence.json",
+      "sha256": "557660d62497350f7261468217c5509e9de666de5fb6a95578ec48930492d69d",
+      "bytes": 1329218,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/Evidence/secret-scan.txt",
+      "sha256": "43a01b104f60452e1e28897794a137ab29d5fda50fe66dd99aca4b90668f8f36",
+      "bytes": 42,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/Evidence/summary.json",
+      "sha256": "62211a5c4974ca89a2fb05b3af85101404003f914ceaca00993614b37f52960e",
+      "bytes": 3551,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/Evidence/swift-test.log",
+      "sha256": "5053fc731f85081fb752133157b2ae10d099ceec49c8b4818696becd8a83da7a",
+      "bytes": 3769,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/Evidence/toolchain.txt",
+      "sha256": "b0b8f2656fe883af86488be98fdaefd77793688fde6cb5521d77b437c3558928",
+      "bytes": 75,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/Evidence/verification.txt",
+      "sha256": "255779994edf76689feef50ab0c5b9345836334cce2f7a5e4ef7814113c7fde4",
+      "bytes": 167,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/Package.swift",
+      "sha256": "63ac925980978437cd616b6beaa9849580c8f0aaf93bd45b630698a90641e9c9",
+      "bytes": 379,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/README.md",
+      "sha256": "bf3b0ba202c5d4d2b55f4ce731275b50f1a448cb5c369f076f46996212b7fcd5",
+      "bytes": 5701,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/SHA256SUMS",
+      "sha256": "9c5b525e9626c3e0c811985819e27e41733d3b5ac1c24272b3671e9baf2cebb6",
+      "bytes": 1925,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/Sources/AudioMasterScheduler/AudioMasterScheduler.swift",
+      "sha256": "ed772adc9ca6e143a405fdf66b0c847055c2a7f329e804420f6c81062bbbbb01",
+      "bytes": 3292,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/Tests/AudioMasterSchedulerTests/ClockTests.swift",
+      "sha256": "19ce48889dee8f44bfb3d52ff45c868103e45966cfaa5a073f27351cca869475",
+      "bytes": 8872,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/Tests/AudioMasterSchedulerTests/Fixtures/clock-600s-25fps.json",
+      "sha256": "5e7d8ec419ae60c04b22f8bf208baabd6547eedab26d32ced1f5e7bb8634b745",
+      "bytes": 186,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/Tests/AudioMasterSchedulerTests/Fixtures/clock-boundary40ms.json",
+      "sha256": "7b0760b405a8275957c5cfb7267cc25c1d4f1b427d50a87e9586aefcbf2ad0b7",
+      "bytes": 450,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/Tests/AudioMasterSchedulerTests/Fixtures/clock-five-seeks.json",
+      "sha256": "ba47096177c0af62060a89f3ba7264fee8d1109f1d1fb5098708f1fb90b23c6e",
+      "bytes": 685,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/tools/generate.py",
+      "sha256": "d8d77d9bae133ea5df5f2c61911d66ea535ecf818ab2811e1f96c188c4886883",
+      "bytes": 1105,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/tools/scan.py",
+      "sha256": "9c747a1fd52c3fd0bb1a4a09ae87e651cc50f060b258ab6972276a8214ac2d3a",
+      "bytes": 868,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a2/tools/verify_evidence.py",
+      "sha256": "8e77c5060f62a046eccd2153aa1cdb899ed46a43184df3195a27f49b3f113344",
+      "bytes": 1326,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/EXPECTED-R1.md",
+      "sha256": "b4e5bf86b37fde6b89ce213b7a3f0a702936a03b1190b8dcd8955a3697b7f5a8",
+      "bytes": 2800,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/MANIFEST.sha256",
+      "sha256": "c3b0a94e6dd145825094f97e2fa439e575f1cc0959ab99ba692e5b4b1478b187",
+      "bytes": 4135,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Package.swift",
+      "sha256": "a70d3d444d809b3af51387479e4bede355aacb314c281023c1f1c496027feb38",
+      "bytes": 899,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/README-R1.md",
+      "sha256": "744bd422d93c3a30434ee066995437d3e3e7130b7c4696a845ccd95b95f53341",
+      "bytes": 1128,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/SPEC-R1.md",
+      "sha256": "9f4e06786acf82ea9d83ee794c2990b2801af135fbc0e382f395dfe1bcdf842f",
+      "bytes": 3537,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Sources/SubtitleLayoutStrict/StrictSubtitleLayout.swift",
+      "sha256": "f9fc31132061104a5ae5f0bd134a304cd5eba3e6f5638fb04066f00155a36abf",
+      "bytes": 5506,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/TEST-LOG-R1.txt",
+      "sha256": "74949566dac37228e676f3d82e3118b1da00436eafa1e29d02bdd197bb842833",
+      "bytes": 5616,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Tests/SubtitleLayoutStrictTests/FixtureLoading.swift",
+      "sha256": "1f49f69ea9cf2072da27458ed249d52ced7eb5a4e7d61fe545e1cb8d559217d2",
+      "bytes": 362,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Tests/SubtitleLayoutStrictTests/Fixtures/alignment.ass",
+      "sha256": "7beba425fe0b8590cc4e806b863b45152dfc39aed5f043b9b188cb9def73c1d6",
+      "bytes": 372,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Tests/SubtitleLayoutStrictTests/Fixtures/basic.ass",
+      "sha256": "463eba59aaa6808cec6d453baf474cdca359621c1d351229c0ce989c64c7357a",
+      "bytes": 661,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Tests/SubtitleLayoutStrictTests/Fixtures/basic.srt",
+      "sha256": "395fec893eec180d4c71ad6c45e7aa68c2c1da61492c0ca34e89ae321cfefb38",
+      "bytes": 77,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Tests/SubtitleLayoutStrictTests/Fixtures/invalid.srt",
+      "sha256": "a39f3041ca0408cd93582982ab2ad99c0c384db1df12192a252eabd60e28ecbb",
+      "bytes": 38,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Tests/SubtitleLayoutStrictTests/Fixtures/nonfinite-playres.ass",
+      "sha256": "156957fde286bd54c6a06dff225358c84e463361b7138db45bad60374316253f",
+      "bytes": 661,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Tests/SubtitleLayoutStrictTests/Fixtures/nonpositive-playres.ass",
+      "sha256": "f0de2ddef33875984c6b398c7296f3c97acefdc1064f6c3c1ad7bcf61b049d0e",
+      "bytes": 659,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Tests/SubtitleLayoutStrictTests/Fixtures/overlap.srt",
+      "sha256": "d12f54a5f0a2f8505fee29480d20d17516db47c8c75104f33ef9cb7ec6920d7e",
+      "bytes": 117,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Tests/SubtitleLayoutStrictTests/Fixtures/unicode.srt",
+      "sha256": "0e2a090f398a1a41ee29bf1f289379aebf52d9830b5eda3b5116b825d50073e0",
+      "bytes": 88,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Tests/SubtitleLayoutStrictTests/StrictSubtitleLayoutTests.swift",
+      "sha256": "9a981319a33303c5152d6ab31b3a65ebcf76b43e05e7b4eea3ec3dce4d221bda",
+      "bytes": 8684,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/VERIFY-LOG.txt",
+      "sha256": "4aa9668a5b98dbd28ecf04e7dc8c1fd3189a396991e0bed16dead7bfc4018d8c",
+      "bytes": 1033,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/EXPECTED.md",
+      "sha256": "fe1527f13255404ea95f6499eb5692c64a56c861fd097d060fc8357fd981b549",
+      "bytes": 3024,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/MANIFEST.sha256",
+      "sha256": "85568fa2a72b7f763f3850ae230e661ca8f4868e4e8eae7636d002aa9c969995",
+      "bytes": 1826,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/Package.swift",
+      "sha256": "3be4cbbd9ca5302307c20f87f7024bcb0652ed2871e2d8bd169870c8181bbaa4",
+      "bytes": 507,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/README.md",
+      "sha256": "7b6f5f0ae8020835635ced27ac7be8a6539b38cd336ab94ce9740a3aee52a0ac",
+      "bytes": 1271,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/SPEC.md",
+      "sha256": "a5654f8985c333628832935ab624d0dc425c978235bfa059f3c1ddfad8912273",
+      "bytes": 4543,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/Sources/SubtitleLayout/ASSParser.swift",
+      "sha256": "3d9e65f3303fe34f3a82bfe18d2ab5179a648d3f41035bc5e453cabea0687e5f",
+      "bytes": 6445,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/Sources/SubtitleLayout/Anchors.swift",
+      "sha256": "cee1859520ca0e457a2471ec467e05592650953e7c3b0b7d9b2fac23717235cb",
+      "bytes": 1059,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/Sources/SubtitleLayout/Core.swift",
+      "sha256": "80adb556df6c78972e8f1d4c93dffa3313062a3647cdb52e1da0eee36e5bc5a2",
+      "bytes": 2291,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/Sources/SubtitleLayout/FixedCellSubtitleLayout.swift",
+      "sha256": "26412be36040fd6a902d9cd424529abb8309b8cc03703515c59fbd9165943945",
+      "bytes": 5266,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/Sources/SubtitleLayout/SRTParser.swift",
+      "sha256": "fe9e15a53f59c4d8302ed1d73ec3e968c19c50a192afd39ac544d4472b6c4cd2",
+      "bytes": 3121,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/TEST-LOG.txt",
+      "sha256": "eaa18c71fe9901991ac1b82ef38a6d7ddcca759c89134aac450c103d76203f93",
+      "bytes": 3991,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/Tests/SubtitleLayoutTests/FixtureLoading.swift",
+      "sha256": "1f49f69ea9cf2072da27458ed249d52ced7eb5a4e7d61fe545e1cb8d559217d2",
+      "bytes": 362,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/Tests/SubtitleLayoutTests/Fixtures/alignment.ass",
+      "sha256": "7beba425fe0b8590cc4e806b863b45152dfc39aed5f043b9b188cb9def73c1d6",
+      "bytes": 372,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/Tests/SubtitleLayoutTests/Fixtures/basic.ass",
+      "sha256": "463eba59aaa6808cec6d453baf474cdca359621c1d351229c0ce989c64c7357a",
+      "bytes": 661,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/Tests/SubtitleLayoutTests/Fixtures/basic.srt",
+      "sha256": "395fec893eec180d4c71ad6c45e7aa68c2c1da61492c0ca34e89ae321cfefb38",
+      "bytes": 77,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/Tests/SubtitleLayoutTests/Fixtures/invalid.srt",
+      "sha256": "a39f3041ca0408cd93582982ab2ad99c0c384db1df12192a252eabd60e28ecbb",
+      "bytes": 38,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/Tests/SubtitleLayoutTests/Fixtures/overlap.srt",
+      "sha256": "d12f54a5f0a2f8505fee29480d20d17516db47c8c75104f33ef9cb7ec6920d7e",
+      "bytes": 117,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/Tests/SubtitleLayoutTests/Fixtures/unicode.srt",
+      "sha256": "0e2a090f398a1a41ee29bf1f289379aebf52d9830b5eda3b5116b825d50073e0",
+      "bytes": 88,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3-r1/Vendor/P-A3-SubtitleLayout/Tests/SubtitleLayoutTests/SubtitleLayoutTests.swift",
+      "sha256": "e255dd44225fe380e1ba37339907ca4983c8d3bb18ef862c1e424d95174d4d12",
+      "bytes": 9691,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/EXPECTED.md",
+      "sha256": "fe1527f13255404ea95f6499eb5692c64a56c861fd097d060fc8357fd981b549",
+      "bytes": 3024,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/MANIFEST.sha256",
+      "sha256": "85568fa2a72b7f763f3850ae230e661ca8f4868e4e8eae7636d002aa9c969995",
+      "bytes": 1826,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/Package.swift",
+      "sha256": "3be4cbbd9ca5302307c20f87f7024bcb0652ed2871e2d8bd169870c8181bbaa4",
+      "bytes": 507,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/README.md",
+      "sha256": "7b6f5f0ae8020835635ced27ac7be8a6539b38cd336ab94ce9740a3aee52a0ac",
+      "bytes": 1271,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/SPEC.md",
+      "sha256": "a5654f8985c333628832935ab624d0dc425c978235bfa059f3c1ddfad8912273",
+      "bytes": 4543,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/Sources/SubtitleLayout/ASSParser.swift",
+      "sha256": "3d9e65f3303fe34f3a82bfe18d2ab5179a648d3f41035bc5e453cabea0687e5f",
+      "bytes": 6445,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/Sources/SubtitleLayout/Anchors.swift",
+      "sha256": "cee1859520ca0e457a2471ec467e05592650953e7c3b0b7d9b2fac23717235cb",
+      "bytes": 1059,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/Sources/SubtitleLayout/Core.swift",
+      "sha256": "80adb556df6c78972e8f1d4c93dffa3313062a3647cdb52e1da0eee36e5bc5a2",
+      "bytes": 2291,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/Sources/SubtitleLayout/FixedCellSubtitleLayout.swift",
+      "sha256": "26412be36040fd6a902d9cd424529abb8309b8cc03703515c59fbd9165943945",
+      "bytes": 5266,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/Sources/SubtitleLayout/SRTParser.swift",
+      "sha256": "fe9e15a53f59c4d8302ed1d73ec3e968c19c50a192afd39ac544d4472b6c4cd2",
+      "bytes": 3121,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/TEST-LOG.txt",
+      "sha256": "eaa18c71fe9901991ac1b82ef38a6d7ddcca759c89134aac450c103d76203f93",
+      "bytes": 3991,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/Tests/SubtitleLayoutTests/FixtureLoading.swift",
+      "sha256": "1f49f69ea9cf2072da27458ed249d52ced7eb5a4e7d61fe545e1cb8d559217d2",
+      "bytes": 362,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/Tests/SubtitleLayoutTests/Fixtures/alignment.ass",
+      "sha256": "7beba425fe0b8590cc4e806b863b45152dfc39aed5f043b9b188cb9def73c1d6",
+      "bytes": 372,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/Tests/SubtitleLayoutTests/Fixtures/basic.ass",
+      "sha256": "463eba59aaa6808cec6d453baf474cdca359621c1d351229c0ce989c64c7357a",
+      "bytes": 661,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/Tests/SubtitleLayoutTests/Fixtures/basic.srt",
+      "sha256": "395fec893eec180d4c71ad6c45e7aa68c2c1da61492c0ca34e89ae321cfefb38",
+      "bytes": 77,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/Tests/SubtitleLayoutTests/Fixtures/invalid.srt",
+      "sha256": "a39f3041ca0408cd93582982ab2ad99c0c384db1df12192a252eabd60e28ecbb",
+      "bytes": 38,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/Tests/SubtitleLayoutTests/Fixtures/overlap.srt",
+      "sha256": "d12f54a5f0a2f8505fee29480d20d17516db47c8c75104f33ef9cb7ec6920d7e",
+      "bytes": 117,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/Tests/SubtitleLayoutTests/Fixtures/unicode.srt",
+      "sha256": "0e2a090f398a1a41ee29bf1f289379aebf52d9830b5eda3b5116b825d50073e0",
+      "bytes": 88,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a3/Tests/SubtitleLayoutTests/SubtitleLayoutTests.swift",
+      "sha256": "e255dd44225fe380e1ba37339907ca4983c8d3bb18ef862c1e424d95174d4d12",
+      "bytes": 9691,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a4/MANIFEST.sha256",
+      "sha256": "2697e6ea9a68ea73248e1829cd8786388cc0ef0cf2225f65c109389261dbf916",
+      "bytes": 993,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a4/Package.swift",
+      "sha256": "8e4f68b9eda4f455b9ae8b5de9dc77d2a33b18c54acf4d2007d3b3cf13124ea3",
+      "bytes": 330,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a4/README.md",
+      "sha256": "041fc98e937ca47d2ee361c083ae4502e22e99b02f0f34446b96d52d913d09cf",
+      "bytes": 1002,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a4/SPEC.md",
+      "sha256": "360f31ed38da77465d0ed6f312d15b2cf8755a7881d28a397dbce4c8d973571b",
+      "bytes": 3295,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a4/Sources/BridgeTimeMath/TimeMath.swift",
+      "sha256": "96612120750236446a0d0ad9728ba165a489aa204098672b892a690f88c4d927",
+      "bytes": 3877,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a4/TEST-LOG.txt",
+      "sha256": "c63cd580e6e8646130f1411df8425acf78835c935b9fd5c1bcfadc8122ff3496",
+      "bytes": 3137,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a4/Tests/BridgeTimeMathTests/Fixtures/addsub-vectors.csv",
+      "sha256": "6731538e1f72c412cb38d8da82927fb03081d6ab2ee22adf83982cc39d6bdae8",
+      "bytes": 825,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a4/Tests/BridgeTimeMathTests/Fixtures/rescale-vectors.csv",
+      "sha256": "950654f3bcb5209d0678d10079728ef3ce0a9f06f5eed5d2c85619ffd8f09107",
+      "bytes": 1253,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a4/Tests/BridgeTimeMathTests/Fixtures/split-vectors.csv",
+      "sha256": "2d3f3b3ce67a9d19ae5497d5db9bbcf2b9045558819fcfc166a0c52d373d7040",
+      "bytes": 695,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a4/Tests/BridgeTimeMathTests/TimeMathTests.swift",
+      "sha256": "9e16efbad6eb584d879c5ac06e5fbd5889000685a8a27450ca7d60fd7c3203f4",
+      "bytes": 6392,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a4/tools/make_vectors.py",
+      "sha256": "7bb30b07b931b4078075964949c8464734c1765c9efadc626287641501cd3f04",
+      "bytes": 5533,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/MANIFEST.sha256",
+      "sha256": "b92b345fdc18d517800017bcce76e2c4669061de0abd844766b24fa6fd295617",
+      "bytes": 2592,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Package.swift",
+      "sha256": "4afe2a95fad69f41a60a1b1cb959a16c423929dc983c75e5d1b8dee565bea124",
+      "bytes": 641,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/README.md",
+      "sha256": "44038aeb38fe4018b4da573ad057a5ef1f464ea4bcea22247e53b35b1118b0bd",
+      "bytes": 1346,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/SPEC.md",
+      "sha256": "265f3deb875b7b507a8a708dfc99a22c447140a19f239627bc036997f4b58366",
+      "bytes": 4290,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Sources/BridgeDemux/Cursor.swift",
+      "sha256": "38b0b9aa8aed7b3e2360c07308b9545ead177a5b09d057863eb5864ac0cab592",
+      "bytes": 2230,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Sources/BridgeDemux/Demuxer.swift",
+      "sha256": "85d6627e11e2194615c1e6990dc14d2359f7b30f65e441237a33cfe66cfb33c2",
+      "bytes": 1228,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Sources/BridgeDemux/MKVDemuxer.swift",
+      "sha256": "0d55b5d05fc2fe7e4082d2e2237a193ea7806469769de563585e3a7a82546f9a",
+      "bytes": 19104,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Sources/BridgeDemux/MP4Demuxer.swift",
+      "sha256": "36b8f9882b9f3552e00816952281b5fcfc4c64407089891ea468220a905f2927",
+      "bytes": 28782,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Sources/BridgeDemux/Types.swift",
+      "sha256": "8dabb07f279e0e29a16bf780ec1bc272f9df092340788c8a95d9eccdd779bbf6",
+      "bytes": 2087,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Sources/BridgeVTDecode/FrameDecoder.swift",
+      "sha256": "b6d8508f48fd69290a237632d2fc3aca881809670a8def3a69da5f34b9c05412",
+      "bytes": 1447,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Sources/BridgeVTDecode/PixelDigest.swift",
+      "sha256": "c2f690e0694bfdf44631de1bfcb88dfc6de4d23699ff2b4fa8ba0523791afef9",
+      "bytes": 3728,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Sources/BridgeVTDecode/SoftwareStubDecoder.swift",
+      "sha256": "ce9cecd1da9cb5fd759b10a0b4b41d7befd1a4b18f90511bd826060e459cc7f2",
+      "bytes": 796,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/TEST-LOG.txt",
+      "sha256": "bb1a3eee3306cca5d74c63c80245d208c8cd882047a6b745010011aa236740c8",
+      "bytes": 4774,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Tests/BridgeVTDecodeTests/Fixtures/GENERATION.txt",
+      "sha256": "b3779c4a345339a15f422e948bfb49a33cf341b724c224f8ef1eab5ed44859c9",
+      "bytes": 755,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Tests/BridgeVTDecodeTests/Fixtures/a5-h264-24fps.mp4",
+      "sha256": "fdb4f5d282a0cc3b15ce01808dfe9084eb84e3353960803adac53712a0ddfb71",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Tests/BridgeVTDecodeTests/Fixtures/a5-h264-24fps.mp4.ffprobe-frames.json",
+      "sha256": "7d72243bd13c5701397da524ffe393a9b2e7376574bc7cf6e8f920994c717503",
+      "bytes": 43551,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Tests/BridgeVTDecodeTests/Fixtures/a5-h264-24fps.mp4.ffprobe.json",
+      "sha256": "b031073df619eafc8e2f0a31b8dcb64899a0b245145979ccf2c13d4edee1150b",
+      "bytes": 19084,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Tests/BridgeVTDecodeTests/Fixtures/a5-h264-bframes.mp4",
+      "sha256": "31d6e0b1b6c15a59720d26314c257c9351ae2eec180ddb9392a2394275c9d64b",
+      "bytes": 16443,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Tests/BridgeVTDecodeTests/Fixtures/a5-h264-bframes.mp4.ffprobe-frames.json",
+      "sha256": "ee56e18533f461573c76d9f3d971447f475d0113c9ac61da3fd2704953852356",
+      "bytes": 43413,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Tests/BridgeVTDecodeTests/Fixtures/a5-h264-bframes.mp4.ffprobe.json",
+      "sha256": "9053937f89651a94583eb44c2b0848e399a8c76b0bd5192c0e98fb79e8f40b14",
+      "bytes": 19087,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Tests/BridgeVTDecodeTests/Fixtures/a5-hevc-24fps.mp4",
+      "sha256": "0889ee3a55fc713a271d6fa97722d34ac48b81b1156a1f1fdcdbf2113d9c7169",
+      "bytes": 11222,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Tests/BridgeVTDecodeTests/Fixtures/a5-hevc-24fps.mp4.ffprobe-frames.json",
+      "sha256": "c6e678759462a8ada656c453330e2af06e8b961125916cbfb9ffbf9947813af7",
+      "bytes": 44877,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Tests/BridgeVTDecodeTests/Fixtures/a5-hevc-24fps.mp4.ffprobe.json",
+      "sha256": "c5ff57de60fc6c0f642ec121792b5242f34cd9779a311246d0849741d5988d28",
+      "bytes": 19005,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a5-core/Tests/BridgeVTDecodeTests/VTDecodeTests.swift",
+      "sha256": "d2962adc2997a4ce312c12fbe76d4d41eecbf1c55b03dfaf146ce3f07aee4e54",
+      "bytes": 8630,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6-R1-SPEC.md",
+      "sha256": "eba7e5de53d0efe0df775169f21ed69ab085d3dac4ae9ecd64de32ce5b774f74",
+      "bytes": 6096,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6-SPEC.md",
+      "sha256": "95391cc850a20eb782cd6bee89a7dfb1d6bfbc94dbbb831d0819853fca77be8d",
+      "bytes": 4971,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6Evidence/a6-h264-aac.mp4.comparison.json",
+      "sha256": "2f7a22e576fe787f21983c051c5f3fc3c300ae2a6c8cb72bf53c693a6442eee7",
+      "bytes": 351,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6Evidence/a6-hevc-eac3.mkv.comparison.json",
+      "sha256": "ea8ed0ad525cb139615a8e121eb27d020c9796e3a8b27aeaf004e54546443527",
+      "bytes": 14879,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6Evidence/base-integrity.log",
+      "sha256": "2417b57d5383ed5a527ec1f93a245d0bf0bb15b541e3de70c811617869b4a54b",
+      "bytes": 3258,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6Evidence/ffmpeg-version.txt",
+      "sha256": "ff177c4585de71302b95b6fe2751cb5fdfc8c145ce192b81876fd617561ffa9f",
+      "bytes": 1689,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6Evidence/ffprobe-version.txt",
+      "sha256": "14e6802fa26eff763624de1e9e62114acff20f5c5ed76b43e27668b6f7328dbe",
+      "bytes": 1690,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6Evidence/hevc-generate.log",
+      "sha256": "57f4b9b5c3d28c35b40f0b91f4b8c3e538747225e39cb5df65150a8ca8a732c7",
+      "bytes": 1626,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6Evidence/mkv-codec-delay.json",
+      "sha256": "9fe7592e2d5271840c206f74af588aea97f3ff8298e9d3ad71e9d369cfd89dcf",
+      "bytes": 187,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6Evidence/oracle-inspection.json",
+      "sha256": "f1348089c80152ad50ec1569f1c6c5f7e42445ae604dc4745595d2ab50608453",
+      "bytes": 2611,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6Evidence/secret-scan.txt",
+      "sha256": "bebf24a0b4f907ffd64a6c3021339af046964ed0e67619049b85104f8df515e2",
+      "bytes": 59,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6Evidence/swift-test.log",
+      "sha256": "1e755cc272269547bd4ae04041f1144a95df475bed013bb386a666c85814bcd6",
+      "bytes": 7995,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6R1Evidence/a6-h264-aac.mp4.comparison.json",
+      "sha256": "2f7a22e576fe787f21983c051c5f3fc3c300ae2a6c8cb72bf53c693a6442eee7",
+      "bytes": 351,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6R1Evidence/a6-hevc-eac3-delay.mkv.comparison.json",
+      "sha256": "4108bd8b5bcdb22ac528361d22ff98e26bef4e3e11965114bc391764004e7d87",
+      "bytes": 359,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6R1Evidence/a6-hevc-eac3.mkv.comparison.json",
+      "sha256": "175fc5d994725ecc5d9a5aca68a2ee11f0bc9db1a9e251d76c8bc7b8dc7461b7",
+      "bytes": 353,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6R1Evidence/determinism.txt",
+      "sha256": "df77dbddab2a53f41a3d8c095fc1f8949c43175aaf1977bd7eeb447815546539",
+      "bytes": 59,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6R1Evidence/failing-first.comparison.json",
+      "sha256": "ea8ed0ad525cb139615a8e121eb27d020c9796e3a8b27aeaf004e54546443527",
+      "bytes": 14879,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6R1Evidence/failing-first.log",
+      "sha256": "1e755cc272269547bd4ae04041f1144a95df475bed013bb386a666c85814bcd6",
+      "bytes": 7995,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6R1Evidence/manifest-tool.txt",
+      "sha256": "92733386343e12de9cebbd4710d6f2c4f8e1193191ade1c126ad43caa56edf1f",
+      "bytes": 31,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6R1Evidence/mkv-codec-delay.json",
+      "sha256": "20f64e8625dd3852078299f51c1363a6449fd46d76dc1ed04b113bd821ad8721",
+      "bytes": 263,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6R1Evidence/original-a6-integrity.log",
+      "sha256": "d6cd3d1d5b47ae0cba6143fbd6f7aab83e9bdd92efbe2f61591194c14245a651",
+      "bytes": 3876,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6R1Evidence/secret-scan.txt",
+      "sha256": "cd3494a38efe8d7c88e4a0c24aa6a7a4d85237842fa1ad389baed0f1a64918a7",
+      "bytes": 54,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6R1Evidence/summary.json",
+      "sha256": "07e0bcea24513ebf078c13e79827ead73051f455656af7f3f580b6c583b96bf5",
+      "bytes": 1144,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/A6R1Evidence/swift-test.log",
+      "sha256": "e6a927e2187df4a4baeab6a9730e281647c70b961a646ec47ee4d9c23cefc568",
+      "bytes": 7385,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/CRASH-EVIDENCE.txt",
+      "sha256": "115e45f90de662ba9b9eaf430ff991bffb32c2c4a388322dfbb070364d9f7884",
+      "bytes": 2774,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/DEFECT-EVIDENCE.txt",
+      "sha256": "53ea8b4a443f87a840469af1f1dd1fc625664f144cbe2435122461c208281c9e",
+      "bytes": 1127,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/P-A1-R2-BASE-MANIFEST.sha256",
+      "sha256": "266a4a85e1e46e6565721cd88e84cfb61d8412b199c32863d06144b39b4fbaec",
+      "bytes": 7040,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/P-A6-BASE-SHA256SUMS",
+      "sha256": "192ea7cd8630e934e035577f36275e4b8c31573de6456900abea3649e8e900b4",
+      "bytes": 8836,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Package.swift",
+      "sha256": "de02e11be9b64ef966f3b17a66863e64dac89b9dc8f7724caee3047a777c01b6",
+      "bytes": 402,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/README.md",
+      "sha256": "fe3d5369b8341b7fe57f86680df1a115bcd4430f45d0ef787d9226cfd3d00054",
+      "bytes": 1395,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/SHA256SUMS",
+      "sha256": "d01b187ad879d11d1d19d838217237c88a0af3aca4ff119f5c17d88fff05ab6e",
+      "bytes": 10891,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/SPEC.md",
+      "sha256": "cfa831bd418a9cb4678efb1433936929926a4b000e74724549af66e0058443d6",
+      "bytes": 11210,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Sources/BridgeDemux/Cursor.swift",
+      "sha256": "38b0b9aa8aed7b3e2360c07308b9545ead177a5b09d057863eb5864ac0cab592",
+      "bytes": 2230,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Sources/BridgeDemux/Demuxer.swift",
+      "sha256": "85d6627e11e2194615c1e6990dc14d2359f7b30f65e441237a33cfe66cfb33c2",
+      "bytes": 1228,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Sources/BridgeDemux/HEVCReorder.swift",
+      "sha256": "35b0e335205409547450a7d185bc0bef5a5dca2d07387421f2e4f84cd69c7db8",
+      "bytes": 3932,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Sources/BridgeDemux/MKVDemuxer.swift",
+      "sha256": "9fd7fc7eeb7051203e7ae8af14ac048a1d4b26b82780529c56ef19d7bd433cb4",
+      "bytes": 20532,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Sources/BridgeDemux/MP4Demuxer.swift",
+      "sha256": "36b8f9882b9f3552e00816952281b5fcfc4c64407089891ea468220a905f2927",
+      "bytes": 28782,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Sources/BridgeDemux/Types.swift",
+      "sha256": "8dabb07f279e0e29a16bf780ec1bc272f9df092340788c8a95d9eccdd779bbf6",
+      "bytes": 2087,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Sources/BridgeDemuxProbe/main.swift",
+      "sha256": "23f7f3d43dba51844de7e172985f876dac59e6e9a9d70e0658392853ed310b51",
+      "bytes": 2643,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/TEST-LOG.txt",
+      "sha256": "a16c1422186ef76c6423118afbec5865b66dcca46c44ce82fa108b89c5ce6c3c",
+      "bytes": 9629,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/A6OracleTests.swift",
+      "sha256": "2680d14ca398a0fa4a8f94e5b5cd44c9398d8b65b78772ebb338b16a5bf2e746",
+      "bytes": 6511,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/DemuxTests.swift",
+      "sha256": "e21e36d8de7076956bd2db79838f10d5c41444b5b82a437a92e6154ea46b4dee",
+      "bytes": 20976,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-audio.mkv",
+      "sha256": "1063018105b532efab209ba02723f42560b4ff194dfa8b5c424786f3c149e099",
+      "bytes": 193245,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-audio.mkv.ffprobe.json",
+      "sha256": "507e499601bb00cc154f1985c671878a223ea99e85f94b374aa9d5f7ec76d20b",
+      "bytes": 35040,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-audio.mkv.payloads.json",
+      "sha256": "1fcadfcf0fa336945409add197d2955ab6f138dda071a629763ee306d203d6ba",
+      "bytes": 10008,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-av24.mp4",
+      "sha256": "f6940ed86802109b0117c4f84b4fe6dc71a8e7ec945fff9d911b2795927e1806",
+      "bytes": 29955,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-av24.mp4.ffprobe.json",
+      "sha256": "11c825f3c8435c72cd2d12c3cd46cc5f2d099affd3ffb07b48b05fc7ef3ed186",
+      "bytes": 55218,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-av24.mp4.payloads.json",
+      "sha256": "65948ac3113f692fbb0ab55a8f34bb43646d6352a3bac854a90c8d7f51b0a44e",
+      "bytes": 15059,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-av25.mkv",
+      "sha256": "2e14aab32e2033340a06d784eee5eba8494b949029ec0575c7f3c94d4b750577",
+      "bytes": 209325,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-av25.mkv.ffprobe.json",
+      "sha256": "e7aa16a65370cd5fd5468572374f53bb8bca913b9a7f864b42d730148e0e6331",
+      "bytes": 54584,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-av25.mkv.payloads.json",
+      "sha256": "0d1f3257e1c44d8d202e71ed8f8cc176d0552b443be064fbf90194acb4712f48",
+      "bytes": 15258,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-bframes.mp4",
+      "sha256": "31d6e0b1b6c15a59720d26314c257c9351ae2eec180ddb9392a2394275c9d64b",
+      "bytes": 16443,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-bframes.mp4.ffprobe.json",
+      "sha256": "9053937f89651a94583eb44c2b0848e399a8c76b0bd5192c0e98fb79e8f40b14",
+      "bytes": 19087,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-bframes.mp4.payloads.json",
+      "sha256": "a8f9bb0ebf195e04be45eb0e09e2a8e1b11f86e850c724344a7d383034b7c410",
+      "bytes": 5088,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mkv",
+      "sha256": "7c3c23de1d93adb726ada656c5d820b47b4a8386c5b176da2685b4b03fbbe9fb",
+      "bytes": 16244,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mkv.ffprobe.json",
+      "sha256": "dc32cdcfdf40d2909cc8e86421eac3f584c15691a5df8e48f2d7d4871ef6ce4a",
+      "bytes": 18821,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mkv.payloads.json",
+      "sha256": "58c1734332e5b984f387bd6ed10ec2700032914e4efc6f9d77d43ab97cc4b3c1",
+      "bytes": 5083,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mp4",
+      "sha256": "fdb4f5d282a0cc3b15ce01808dfe9084eb84e3353960803adac53712a0ddfb71",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mp4.ffprobe.json",
+      "sha256": "b031073df619eafc8e2f0a31b8dcb64899a0b245145979ccf2c13d4edee1150b",
+      "bytes": 19084,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a1-v24.mp4.payloads.json",
+      "sha256": "a1bceb02361505b9c5d0da476fcb4d37ab3a80c41c5e4f4f0a3053a63ae71850",
+      "bytes": 5083,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a6-h264-aac.mp4",
+      "sha256": "f6940ed86802109b0117c4f84b4fe6dc71a8e7ec945fff9d911b2795927e1806",
+      "bytes": 29955,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a6-h264-aac.mp4.ffprobe.json",
+      "sha256": "11c825f3c8435c72cd2d12c3cd46cc5f2d099affd3ffb07b48b05fc7ef3ed186",
+      "bytes": 55218,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a6-hevc-eac3-delay.mkv",
+      "sha256": "7fc264d30617498bff01819b5eb888a6a12a687be43c87c83e9be12c2244ff2f",
+      "bytes": 35402,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a6-hevc-eac3-delay.mkv.ffprobe.json",
+      "sha256": "b0dc85a6d06c3b5d499e02c4ef335c6d8253767afdea4bcf6a4294a6f16f295e",
+      "bytes": 42592,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a6-hevc-eac3.mkv",
+      "sha256": "6d2fc8861f19b78f8ae1995a773b4ad98851c17da2508cb5f1921c2de4a1f631",
+      "bytes": 35491,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/a6-hevc-eac3.mkv.ffprobe.json",
+      "sha256": "d19c607ed84903f38d4a6a084c6cbef8cd320bca238834b3491471b5f19f3b50",
+      "bytes": 42582,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24-bm.mp4",
+      "sha256": "803b45d44b0b050449b4e5ab460202e370cd4c4eaf3eba00426e20c7c1e6ac1e",
+      "bytes": 30215,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24-bm.mp4.ffprobe.json",
+      "sha256": "6afa05c3c69f9919a7aeaf0653e379ec401bf0f79918a367a1dab4a99d5a29d2",
+      "bytes": 53143,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24-bm.mp4.payloads.json",
+      "sha256": "2059cfc97784e3c2363dac28fcf4e450ad93bc96f298f033d420a3bdafd528c4",
+      "bytes": 15063,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24-g12.mp4",
+      "sha256": "5e5b88837bb03f847175a892267acb2cbf707eb9799d49efb287f36b891d98fc",
+      "bytes": 33217,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24-g12.mp4.ffprobe.json",
+      "sha256": "148dd2faac5d1dae3c011197626c93ba8366b9e9c0812116b4653e3c67f95c87",
+      "bytes": 53409,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24-g12.mp4.payloads.json",
+      "sha256": "4c745f01810ba549ee8bfa79e6ee34c3179aada9d6bbebb4c697f77b716e9b97",
+      "bytes": 15067,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24.mp4",
+      "sha256": "bdecb3bf246ab8ef26b1c044ce46f61d083098841be2995cb8cd8f2b1fe6cff1",
+      "bytes": 30239,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24.mp4.ffprobe.json",
+      "sha256": "236399c804e3b91c5a29a2c531f2cba0523eb6e0d8f594f14fb62873838cddca",
+      "bytes": 53143,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/f1-av24.mp4.payloads.json",
+      "sha256": "36df32f0bb00ea9b0d5cc85070809c6dd311f80d1591179723d17a20ff399212",
+      "bytes": 15060,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/f1-bframes.mp4",
+      "sha256": "ad63624af072cba369c996c8a22db8d66560de07303e54e0451dbf9dc0a27316",
+      "bytes": 16565,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/f1-bframes.mp4.ffprobe.json",
+      "sha256": "0654d3211b30f52313fc5ec2167bc517f34e272e2cabb7fab780b1f4956d5a50",
+      "bytes": 17598,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/f1-bframes.mp4.payloads.json",
+      "sha256": "3027c1d6237461fbd9f15a597f56bb1da20313d8b4a4767dc2937d42f56b08b9",
+      "bytes": 5089,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/f1-v24.mp4",
+      "sha256": "4f063555254da5de557316cc749695895ed23686f977919b0f856f3e5d753f0d",
+      "bytes": 16431,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/f1-v24.mp4.ffprobe.json",
+      "sha256": "cddd6d76ec829b018d86bc556a5e7adbc91c27e5bd254bd1f354b2556a3046d4",
+      "bytes": 17588,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/f1-v24.mp4.payloads.json",
+      "sha256": "3d91d8201657adcd07de32f152619593a9c141bdacd76dd84087916989e884da",
+      "bytes": 5084,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/malformed/bad-lace-no-count.mkv",
+      "sha256": "2087ad147a6a9bf54aa17dce0171c95ba7f10fbdec14f17538f7681a30282dea",
+      "bytes": 566,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/malformed/huge-box-largesize.mp4",
+      "sha256": "0e9fd582ce45b2f50f4f360a74598205757d694a4e2b775aec60b25ac0286d69",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/malformed/huge-cluster-timecode.mkv",
+      "sha256": "eb1e8c541aea61d0306591c68c3ba4cfe9e82ba8d476e0c16976d8d8719b6d85",
+      "bytes": 193252,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/malformed/huge-ctts-count.mp4",
+      "sha256": "b778e58d8a2e2e80b6a59cf3a94be9cf6a96665a75175d1cb78ddfaea58618ea",
+      "bytes": 16443,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/malformed/huge-stsz-count.mp4",
+      "sha256": "e957b8d657624f401018e1b16ef044c18efa673add284ed155a9e88887ea2ae2",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/malformed/huge-stts-count.mp4",
+      "sha256": "b7057921b02515c0d52f3b7e083ccbea3050c629f1356bf9b59b105b8f153ce8",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/malformed/huge-timestamp-scale.mkv",
+      "sha256": "3dcc706c1917815bb688f965db4e738e1179d87afd319951d681bf2ce825a22d",
+      "bytes": 193250,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/malformed/lace-duration-overflow.mkv",
+      "sha256": "0692ae83bac7685ddc7aac6e33d3e26677b5b018a6ce9b50bddda60ad5e2e79e",
+      "bytes": 193259,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/Fixtures/malformed/rescale-rounding-overflow.mp4",
+      "sha256": "05e9a7d6751e88b87542d3152bdc6985f20981724791041eb36d2d39691ef07a",
+      "bytes": 2527,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/HEVCReorderTests.swift",
+      "sha256": "1c37dbff304a91aa48030d637a0f8fa1fe5582eeec76e86f1d858a6bf8b6582b",
+      "bytes": 1947,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/MalformedSafetyTests.swift",
+      "sha256": "dd14811880da4656f84a029391d916fa9ceabc8741d58042af7e117a30f0ce24",
+      "bytes": 10847,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/Tests/BridgeDemuxTests/SHA256.swift",
+      "sha256": "b20d87293af19267b277e12aad1a5ba69f4818767e5c8b9743a057458be89673",
+      "bytes": 3306,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/generate-a6-fixtures.sh",
+      "sha256": "09eb21d2a7f75fe6f2bdf451d89384fa69716d612afd965b43bf5082bce5e2f5",
+      "bytes": 780,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/generate-a6-r1-delay.sh",
+      "sha256": "b67594b7c51321a843f18ad67ae52b8164626b731b2f2101aef84e5e024df493",
+      "bytes": 376,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/generate_fixtures.sh",
+      "sha256": "2aa2d7e2d55a337dddac2bf2cf30d83c49d7422ed713537e8820e0557a55b351",
+      "bytes": 2547,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/tools/inspect_a6_mkv.py",
+      "sha256": "6d96e0c9b7e67f30cf70011d89fbe7234ce3450b6dd274e55fba495f10fca568",
+      "bytes": 1238,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/tools/make_a6_delay.py",
+      "sha256": "3336a71af0738f4761b5c202c23e4f8986a766d7d2042776554e5b9a52da5fb1",
+      "bytes": 1515,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/tools/make_malformed.py",
+      "sha256": "e9b2a0df062168ec595c02eecc01e4bc3294c303d08e3bb7abe99512ddb5d302",
+      "bytes": 7182,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/tools/make_payload_oracle.py",
+      "sha256": "a00abc408b1e81f3228ee3493e44b6c773e9c02806f07de6bfc9cf78233016ce",
+      "bytes": 963,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-a6-r1/tools/make_r2_fixtures.py",
+      "sha256": "ccc304a99cfc48336ab1c866c7dfedcd1c69645f2c4cabc1e10680ab4ad82731",
+      "bytes": 5187,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/MANIFEST.txt",
+      "sha256": "6c63df77600747fd075816aa09556d8f3a4d4a03c1bc22b4aa7e0ad6fc83dbbf",
+      "bytes": 2234,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/Package.swift",
+      "sha256": "da9ebf68b90e318b2d9910274bd8bd9110323a8f76bf02974c1fc59da4f40ed2",
+      "bytes": 423,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/README.md",
+      "sha256": "4db70da7274b9a270f781ac3134ce8d3bc267726e3e823363cc6e7ba8e216b8c",
+      "bytes": 11182,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/ROW-MAP.tsv",
+      "sha256": "9df5f4d380922c904af476c82ac05c217ca3ca6f70e3e72bf001379eff6762e6",
+      "bytes": 1710,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/Sources/MediaFacadeKit/Facade.swift",
+      "sha256": "6aea4430c2a7a087e7f5f5dc9d85e453d2a2d29cf72adc8382f856118a73fb91",
+      "bytes": 5026,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/Sources/MediaFacadeKit/FakeEngine.swift",
+      "sha256": "284046d68cafbf065fb400fad237dc83ab0eb9bc846a0c273303bc35c912e99f",
+      "bytes": 6577,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/Sources/MediaFacadeKit/MediaEngine.swift",
+      "sha256": "862eb8e47e2fc8d4bc734d66d0f2a08ba2d0242b16280a1f61034812626593ad",
+      "bytes": 513,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/Sources/MediaFacadeKit/MediaError.swift",
+      "sha256": "ded1448b766930515ec4d010e7ca8a86d24505fd10afe85a766c0b5af315ba6e",
+      "bytes": 1157,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/Sources/MediaFacadeKit/MediaValue.swift",
+      "sha256": "dcbfa17ff1412f9f9e57d4cee0352fcecaf8050638ae31de0568a8a0b4c5dfbd",
+      "bytes": 2089,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/Sources/MediaFacadeKit/RowTable.swift",
+      "sha256": "d87e3593cd4d98527d26639e64d2d283377ef32d5f9d680d0f10f7341260bdd5",
+      "bytes": 10923,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/TEST-RUN.txt",
+      "sha256": "6a10441cf5934c5764bbd57c19585496995278c679b39e96696418c74d211bb1",
+      "bytes": 21518,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/Tests/MediaFacadeKitTests/E1RowTests.swift",
+      "sha256": "0f5bf8eb612f1790c6c17c331415ba434a560e67c3f96cf59f941ee2ffff5e58",
+      "bytes": 17337,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/Tests/MediaFacadeKitTests/E2RowTests.swift",
+      "sha256": "7352bec4026b3b25b70b4a493f2142a003a95d58a033cfda523556b6e050217d",
+      "bytes": 9339,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/Tests/MediaFacadeKitTests/FacadeContractTests.swift",
+      "sha256": "e2daa3c0b1b02d8874bee0911bdacf2ff5c89bb0f8a7b0ec6aedd1180d55990b",
+      "bytes": 15747,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/Tests/MediaFacadeKitTests/FacadeR1Tests.swift",
+      "sha256": "c97be391682f9355cd5ceab07cd0836deb72f79c76e8deaeaf0c44038394e1d2",
+      "bytes": 6203,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/Tests/MediaFacadeKitTests/Fixtures/facade-rows-e1-pinned.tsv",
+      "sha256": "eb1532026534af085b3a00388405e5a26a0c31cd1a12e0b2942eb1e5205ab8e7",
+      "bytes": 1640,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/Tests/MediaFacadeKitTests/Fixtures/facade-rows-e2-pinned.tsv",
+      "sha256": "ce6e3ab8bac7050ac041e6da3f2e821de8e950155c4339c44b52f3fdf1384354",
+      "bytes": 812,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/Tests/MediaFacadeKitTests/Fixtures/facade-rows.tsv",
+      "sha256": "a1deb6ff833064a3ad3cfb769c66cd616ad9e3469629554ff1fd5ea979368760",
+      "bytes": 2402,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/Tests/MediaFacadeKitTests/Fixtures/fake-engine-events.json",
+      "sha256": "535ee7e45711a68c87ed67e79b71f1d3f04809ddb5d3742d128c035d303fafca",
+      "bytes": 5924,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/Tests/MediaFacadeKitTests/RowTableTests.swift",
+      "sha256": "762b5626593cefff1bf568996720c774123b853edc5f56684ad05be5fe097739",
+      "bytes": 8339,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b1-r10/tools/make_fake_engine_events.py",
+      "sha256": "972809a4628800094da6f1e12727de6ccc467cacee8d2433b54d7608e7b61279",
+      "bytes": 4009,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/PROVENANCE.md",
+      "sha256": "36f42e545e6d5616df9c4e5f68fa577889cfb1ac193b36abbac0127521ec89a6",
+      "bytes": 1627,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/Package.swift",
+      "sha256": "c3e7f834ec57758763032c7afe47a763d8c3ed5439e122bccc51d92537173d1f",
+      "bytes": 556,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/README.md",
+      "sha256": "5cda95abab22b4fbad879b5cd1a32f614bfae255ec6c5b151594553806d53bfd",
+      "bytes": 1073,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/RESULTS.md",
+      "sha256": "f6533ecf43fbf970f4e2d51dcad2cf9fe60123779ab66bd649e0a7572b18670f",
+      "bytes": 4499,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/SHA256SUMS.txt",
+      "sha256": "417a3737cf30176ce1f5a3e5ff92f211a74a9d4335154c279ab5a2b662828895",
+      "bytes": 2622,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/SPEC.md",
+      "sha256": "a108bfeb2b82492c3cc84cf4f6d9a963324eb899be6b22680859a165fbc64ca7",
+      "bytes": 3748,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/Sources/ParityCore/ParityError.swift",
+      "sha256": "0b0602ef4757dceec6c73ff79c079b7ac40dde4fa65d38c86ca582710fe3770c",
+      "bytes": 752,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/Sources/ParityCore/ParityRunner.swift",
+      "sha256": "186d0386f982f873696151eb62fc7a4cdf93c74d96c81fd894a78cbca062cb7c",
+      "bytes": 279,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/Sources/ParityCore/ParityStatus.swift",
+      "sha256": "7c38ec137679b5e886490027e38d706b98bafef4b832c4aa5eaebfb1e5a5f7be",
+      "bytes": 894,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/Sources/ParityCore/PlaybackProbe.swift",
+      "sha256": "6d318d0b3ef98908d4bfa0443367ded07c36be667664bde0715cc63719b56c4a",
+      "bytes": 668,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/Sources/ParityCore/ProbeBackend.swift",
+      "sha256": "bd9b27908c445898800abef488cd190cc56660e9673639adf6bf3eccfc795b91",
+      "bytes": 286,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/Sources/ParityCore/StubProbeBackend.swift",
+      "sha256": "439e9ea27ff70526feec01eca935aecc702e32bd0c0e951001f24a104708cb7c",
+      "bytes": 2806,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/Sources/ParityCore/TSVEscape.swift",
+      "sha256": "f13bd65e0fdfbd6e313e7679b6012d058e4a5364a48939bc201188f7997a9ce6",
+      "bytes": 1626,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/Sources/ParityCore/TSVParityRunner.swift",
+      "sha256": "29cccf5f687c545082cb9b16036694a93ca4d337f21011cac884b97fc1e06924",
+      "bytes": 3356,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/Sources/ParityRunnerCLI/main.swift",
+      "sha256": "0e10f0897932b02f7717ab9233c89ff0d462944ff53b481c261cf874f88f44a6",
+      "bytes": 1287,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/Tests/ParityCoreTests/Fixtures/parity-a24.mp4",
+      "sha256": "fdb4f5d282a0cc3b15ce01808dfe9084eb84e3353960803adac53712a0ddfb71",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/Tests/ParityCoreTests/Fixtures/parity-missing.json",
+      "sha256": "f8a6bf8c1873b8524cfbd24499df15a471850bc0799f599c83a5ababd703d6ab",
+      "bytes": 260,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/Tests/ParityCoreTests/Fixtures/parity-stub-different.json",
+      "sha256": "2b5b624ce1d453bf63c1b6469d052042bd02b00e8efb47225a03fb79794d8df3",
+      "bytes": 274,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/Tests/ParityCoreTests/Fixtures/parity-stub-equal.json",
+      "sha256": "b7697ce59332bb26842e832fca1f7f23e4e2dac386888ce1e4dc3f307bdb7dbf",
+      "bytes": 273,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/Tests/ParityCoreTests/ParityRunnerTests.swift",
+      "sha256": "b1fba4db9b602395b9363f54507a74c9441fcc93773dec2c42cdcc6863609c8c",
+      "bytes": 8152,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/fixtures/parity-a24.mp4",
+      "sha256": "fdb4f5d282a0cc3b15ce01808dfe9084eb84e3353960803adac53712a0ddfb71",
+      "bytes": 16316,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/fixtures/parity-missing.json",
+      "sha256": "f8a6bf8c1873b8524cfbd24499df15a471850bc0799f599c83a5ababd703d6ab",
+      "bytes": 260,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/fixtures/parity-stub-different.json",
+      "sha256": "2b5b624ce1d453bf63c1b6469d052042bd02b00e8efb47225a03fb79794d8df3",
+      "bytes": 274,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/fixtures/parity-stub-equal.json",
+      "sha256": "b7697ce59332bb26842e832fca1f7f23e4e2dac386888ce1e4dc3f307bdb7dbf",
+      "bytes": 273,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/sample-output/parity-missing.sample.tsv",
+      "sha256": "4446516712e1b6739c53a6b6b46b4706f452868b6b0a9e5ea818d0802e450371",
+      "bytes": 199,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/sample-output/parity-stub-different.sample.tsv",
+      "sha256": "4802d52269bcc6b47bb395a201ea642c53205f2e84ecfabb1d12b2b103ba62be",
+      "bytes": 219,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b2/sample-output/parity-stub-equal.sample.tsv",
+      "sha256": "1e4eb61a30412355b2320ac715ca2da936c31afe4311e49dac7e5c6acd0d0dab",
+      "bytes": 208,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b3/MANIFEST.sha256",
+      "sha256": "82e113601fb298ff6aa660265ed8a7ae63d041abc6c02de3fb26647e89e3147b",
+      "bytes": 1108,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b3/Package.swift",
+      "sha256": "fe34a1478127628b3b277e60a85bc11214352e5df409ccac870edbf9e1670a26",
+      "bytes": 367,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b3/README.md",
+      "sha256": "5657a9a835a26cd3b45070f765d10cebb1ef036d87bc795e8c67731dd475449e",
+      "bytes": 1488,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b3/Shaders/tone_map.metal",
+      "sha256": "1af6a78530283f14d7b4286308a37bc1de544f8760c6345738613ef71109f68c",
+      "bytes": 2581,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b3/Sources/HDRReference/HDRReference.swift",
+      "sha256": "1b0a992378242d24f5d7cd67c33b5369feac5cc0630a11320345b8a283aadb5b",
+      "bytes": 5191,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b3/TEST-RUN.md",
+      "sha256": "e9747b4463457e51ccc1d23aa4a17061d3288c4237dbccffdc2ed23c32b02517",
+      "bytes": 2669,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b3/Tests/HDRReferenceTests/HDRReferenceTests.swift",
+      "sha256": "5f0a496fbb0e1baa3d8ac6bec33d6848d42b2567f6c629829d6f91f823aebc30",
+      "bytes": 11760,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b3/fixtures/color-patches-reference.ppm",
+      "sha256": "4806fa7738bd7547ad7001220a41f5bbbfb13578b5bc42150701f9a162bb1c22",
+      "bytes": 49166,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b3/fixtures/gray-ramp-reference.ppm",
+      "sha256": "d436e5dfaca0398e848472d4d65e7ff096a8cc31c59707dc758f3393aa252653",
+      "bytes": 86030,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b3/fixtures/hdr-primary-patches.csv",
+      "sha256": "d4f8078e0d3800fd518e7bffe0b168c1ec77532ea7078f557d933c7e47b1d60b",
+      "bytes": 486,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b3/fixtures/pq-gray-ramp.csv",
+      "sha256": "2830274dd73ed3bfc792a7a7825b8677114d698fd18dca1ac027a78e80057d90",
+      "bytes": 601,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b3/spec/SPEC.md",
+      "sha256": "2adc048989b554abde1ca4b4d981dad252ae354fb4d12ba269ea5ebf9faff613",
+      "bytes": 6923,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/labs/p-b3/tools/generate_fixtures.py",
+      "sha256": "45ed887c4dbe43e4e60f5267429463eed98471de8ce2eb1b4514807a26745a61",
+      "bytes": 10857,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/parity/ClockParity.swift",
+      "sha256": "9b2c293f362da7ab875084b3d3e026965e07f2ccdc040dfb52ef39c57068b981",
+      "bytes": 2085,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/parity/README.md",
+      "sha256": "c1adbda4c43279c5ce29704a27e8754eb8eb5ccd967c17aba27d7a14192ad5a1",
+      "bytes": 1239,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/parity/mpv-frame-count.lua",
+      "sha256": "cddebaf568979384fd93a0a20d1bd3f1c6ac04b09c5cb4555748e3a27386c11b",
+      "bytes": 1177,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/parity/run-clock-parity.py",
+      "sha256": "76be54ab9677b74dd8a8a3bccf0d15ff610bb385b51438ce4837750499abd032",
+      "bytes": 2167,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/parity/run-mpv-parity.py",
+      "sha256": "19b8f30a288e08689c4b25965874e9f061514d398cf03c13a91160af8df3ce0e",
+      "bytes": 38244,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/prepared-shot/run-linux.sh",
+      "sha256": "0431347b7c1b0d94bf941bdd52abc78cce2222887000023bed8a69111124c1eb",
+      "bytes": 1509,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/presenter/EmbeddingGeometryTests.swift",
+      "sha256": "9a36012cc024b3961ff22d55aa96dfa543cdb97c80cc1d12a918afe72755d56c",
+      "bytes": 1656,
+      "mode": "100644"
+    },
+    {
+      "path": "Tests/presenter/run-native.sh",
+      "sha256": "6c6c6c85c1f1cb85ba3d256c6773870fb480c221eac820f89266ff9a9e0bcb3f",
+      "bytes": 775,
+      "mode": "100755"
+    },
+    {
+      "path": "Tests/presenter/source_contract_test.py",
+      "sha256": "57969ba25b81847e655836d56fb9f145ee0ef4db0387f25fa74806bb1857c797",
+      "bytes": 1603,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/LEDGER.tsv",
+      "sha256": "29fd083f2ee391084002252375089cd1bdebafcf25edc5bf1692059144b0aa3f",
+      "bytes": 323805,
+      "mode": "100644"
+    }
+  ],
+  "file_count": 880,
+  "blocked": [],
+  "scope": "Sources,Tests,Package.swift,PLAN.md,docs/LEDGER.tsv,STATUS.md plus historicalv5draft input; no owner verification inferred",
+  "credential_scan": "PASS configured patterns for included bytes"
+}

@@ -1,0 +1,14 @@
+{
+  "audioEveryTicks": 10,
+  "durationTicks": 600000,
+  "jitterTicks": [
+    -2,
+    0,
+    2,
+    0
+  ],
+  "schema": 1,
+  "seeks": [],
+  "tickSeconds": 0.001,
+  "videoEveryTicks": 40
+}

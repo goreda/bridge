@@ -1,0 +1,27 @@
+DEFECT EVIDENCE - P-A1-R2 (allegations from packet P-A4 E2, independently verified)
+date: 2026-11-06T21:59:17Z
+R1 binary: unmodified P-A1-R1 tree (probe + dumpdurations helper); R2 binary: this package.
+exit=132 is SIGILL (Swift fatal-error trap); a clean named error keeps exit 0.
+
+=== Defect a: MKV lace duration .partialValue dropped overflow flag - REAL ===
+-- R1: demux lace-duration-overflow.mkv
+OK tracks=1 packets=95 payloadBytes=192000
+exit=0
+-- R1: per-packet durations (silent garbage: absurd then nil, sum not conserved)
+PKT 0 trackID=0 duration=4611686018427387903/1000
+PKT 1 trackID=0 duration=nil
+PKT 2 trackID=0 duration=21/1000
+PKT 3 trackID=0 duration=21/1000
+-- R2: same input
+ERROR unsupported: lace duration split overflow
+exit=0
+
+=== Defect b: rescaleToMicros unchecked rounding addition - REAL ===
+-- R1: demux rescale-rounding-overflow.mp4 (dts=9223372036355, timescale=1e9:
+   dts*1000000 fits Int64; r + timescale/2 overflows and traps)
+exit=132
+
+*** Signal 4: Backtracing from 0x55d447b73dd7... done ***
+-- R2: same input
+exit=0
+ERROR unsupported: dts 9223372036355 rounding addition overflows Int64

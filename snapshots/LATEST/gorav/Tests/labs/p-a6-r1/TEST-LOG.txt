@@ -1,0 +1,126 @@
+TEST LOG - BridgeDemux P-A1-R2
+date: 2026-11-06T21:59:27Z
+toolchain: Swift version 5.9.2 (swift-5.9.2-RELEASE)
+platform: Linux 7.2.14 x86_64
+
+=== swift test (debug) ===
+[0/1] Planning build
+Building for debugging...
+Build complete! (0.36s)
+Test Suite 'All tests' started at 2026-11-06 21:59:28.094
+Test Suite 'debug.xctest' started at 2026-11-06 21:59:28.095
+Test Suite 'DemuxTests' started at 2026-11-06 21:59:28.095
+Test Case 'DemuxTests.testAllFixturesMatchFFprobeOracle' started at 2026-11-06 21:59:28.095
+Test Case 'DemuxTests.testAllFixturesMatchFFprobeOracle' passed (0.006 seconds)
+Test Case 'DemuxTests.testConcreteDemuxerTypes' started at 2026-11-06 21:59:28.101
+Test Case 'DemuxTests.testConcreteDemuxerTypes' passed (0.001 seconds)
+Test Case 'DemuxTests.testDeterministicOutput' started at 2026-11-06 21:59:28.102
+Test Case 'DemuxTests.testDeterministicOutput' passed (0.017 seconds)
+Test Case 'DemuxTests.testEmptyInputThrows' started at 2026-11-06 21:59:28.118
+Test Case 'DemuxTests.testEmptyInputThrows' passed (0.0 seconds)
+Test Case 'DemuxTests.testFragmentedBFrameReorder' started at 2026-11-06 21:59:28.118
+Test Case 'DemuxTests.testFragmentedBFrameReorder' passed (0.0 seconds)
+Test Case 'DemuxTests.testFragmentedBaseMoofVariantMatchesDefault' started at 2026-11-06 21:59:28.119
+Test Case 'DemuxTests.testFragmentedBaseMoofVariantMatchesDefault' passed (0.017 seconds)
+Test Case 'DemuxTests.testFragmentedFaithfulFirstDuration' started at 2026-11-06 21:59:28.135
+Test Case 'DemuxTests.testFragmentedFaithfulFirstDuration' passed (0.0 seconds)
+Test Case 'DemuxTests.testFragmentedFixturesMatchFFprobeOracle' started at 2026-11-06 21:59:28.136
+Test Case 'DemuxTests.testFragmentedFixturesMatchFFprobeOracle' passed (0.004 seconds)
+Test Case 'DemuxTests.testFragmentedMultiFragmentContinuity' started at 2026-11-06 21:59:28.140
+Test Case 'DemuxTests.testFragmentedMultiFragmentContinuity' passed (0.0 seconds)
+Test Case 'DemuxTests.testMKVMillisecondTimebase' started at 2026-11-06 21:59:28.140
+Test Case 'DemuxTests.testMKVMillisecondTimebase' passed (0.0 seconds)
+Test Case 'DemuxTests.testMP4BFrameReorder' started at 2026-11-06 21:59:28.140
+Test Case 'DemuxTests.testMP4BFrameReorder' passed (0.0 seconds)
+Test Case 'DemuxTests.testMP4EditListAndAACPriming' started at 2026-11-06 21:59:28.141
+Test Case 'DemuxTests.testMP4EditListAndAACPriming' passed (0.0 seconds)
+Test Case 'DemuxTests.testMissingClusterTimestampYieldsNilNotZero' started at 2026-11-06 21:59:28.141
+Test Case 'DemuxTests.testMissingClusterTimestampYieldsNilNotZero' passed (0.001 seconds)
+Test Case 'DemuxTests.testPacketPayloadsMatchFFprobeHashes' started at 2026-11-06 21:59:28.141
+Test Case 'DemuxTests.testPacketPayloadsMatchFFprobeHashes' passed (0.099 seconds)
+Test Case 'DemuxTests.testRationalTimeBasics' started at 2026-11-06 21:59:28.241
+Test Case 'DemuxTests.testRationalTimeBasics' passed (0.0 seconds)
+Test Case 'DemuxTests.testTruncatedInputThrows' started at 2026-11-06 21:59:28.241
+Test Case 'DemuxTests.testTruncatedInputThrows' passed (0.001 seconds)
+Test Suite 'DemuxTests' passed at 2026-11-06 21:59:28.242
+	 Executed 16 tests, with 0 failures (0 unexpected) in 0.147 (0.147) seconds
+Test Suite 'MalformedSafetyTests' started at 2026-11-06 21:59:28.242
+Test Case 'MalformedSafetyTests.testFailedReopenInProcess' started at 2026-11-06 21:59:28.242
+Test Case 'MalformedSafetyTests.testFailedReopenInProcess' passed (0.0 seconds)
+Test Case 'MalformedSafetyTests.testFailedReopenNoStalePacketLeakSubprocess' started at 2026-11-06 21:59:28.242
+Test Case 'MalformedSafetyTests.testFailedReopenNoStalePacketLeakSubprocess' passed (0.494 seconds)
+Test Case 'MalformedSafetyTests.testMalformedFixturesNoProcessTrap' started at 2026-11-06 21:59:28.736
+Test Case 'MalformedSafetyTests.testMalformedFixturesNoProcessTrap' passed (0.489 seconds)
+Test Case 'MalformedSafetyTests.testMalformedFixturesThrowNamedErrorsInProcess' started at 2026-11-06 21:59:29.225
+Test Case 'MalformedSafetyTests.testMalformedFixturesThrowNamedErrorsInProcess' passed (0.003 seconds)
+Test Case 'MalformedSafetyTests.testProbeControlOnGoodFixtures' started at 2026-11-06 21:59:29.228
+Test Case 'MalformedSafetyTests.testProbeControlOnGoodFixtures' passed (0.22 seconds)
+Test Case 'MalformedSafetyTests.testSuccessfulOpenAfterFailedReopenMatchesFreshOpen' started at 2026-11-06 21:59:29.448
+Test Case 'MalformedSafetyTests.testSuccessfulOpenAfterFailedReopenMatchesFreshOpen' passed (0.002 seconds)
+Test Suite 'MalformedSafetyTests' passed at 2026-11-06 21:59:29.449
+Executed 6 tests, with 0 failures (0 unexpected) in 1.207 (1.207) seconds
+Test Suite 'debug.xctest' passed at 2026-11-06 21:59:29.449
+Executed 22 tests, with 0 failures (0 unexpected) in 1.354 (1.354) seconds
+Test Suite 'All tests' passed at 2026-11-06 21:59:29.449
+Executed 22 tests, with 0 failures (0 unexpected) in 1.354 (1.354) seconds
+
+=== swift test -c release ===
+[0/1] Planning build
+Building for production...
+Build complete! (0.28s)
+Test Suite 'All tests' started at 2026-11-06 21:59:29.957
+Test Suite 'release.xctest' started at 2026-11-06 21:59:29.958
+Test Suite 'DemuxTests' started at 2026-11-06 21:59:29.958
+Test Case 'DemuxTests.testAllFixturesMatchFFprobeOracle' started at 2026-11-06 21:59:29.958
+Test Case 'DemuxTests.testAllFixturesMatchFFprobeOracle' passed (0.004 seconds)
+Test Case 'DemuxTests.testConcreteDemuxerTypes' started at 2026-11-06 21:59:29.963
+Test Case 'DemuxTests.testConcreteDemuxerTypes' passed (0.0 seconds)
+Test Case 'DemuxTests.testDeterministicOutput' started at 2026-11-06 21:59:29.963
+Test Case 'DemuxTests.testDeterministicOutput' passed (0.008 seconds)
+Test Case 'DemuxTests.testEmptyInputThrows' started at 2026-11-06 21:59:29.971
+Test Case 'DemuxTests.testEmptyInputThrows' passed (0.0 seconds)
+Test Case 'DemuxTests.testFragmentedBFrameReorder' started at 2026-11-06 21:59:29.971
+Test Case 'DemuxTests.testFragmentedBFrameReorder' passed (0.0 seconds)
+Test Case 'DemuxTests.testFragmentedBaseMoofVariantMatchesDefault' started at 2026-11-06 21:59:29.971
+Test Case 'DemuxTests.testFragmentedBaseMoofVariantMatchesDefault' passed (0.008 seconds)
+Test Case 'DemuxTests.testFragmentedFaithfulFirstDuration' started at 2026-11-06 21:59:29.979
+Test Case 'DemuxTests.testFragmentedFaithfulFirstDuration' passed (0.0 seconds)
+Test Case 'DemuxTests.testFragmentedFixturesMatchFFprobeOracle' started at 2026-11-06 21:59:29.979
+Test Case 'DemuxTests.testFragmentedFixturesMatchFFprobeOracle' passed (0.003 seconds)
+Test Case 'DemuxTests.testFragmentedMultiFragmentContinuity' started at 2026-11-06 21:59:29.981
+Test Case 'DemuxTests.testFragmentedMultiFragmentContinuity' passed (0.0 seconds)
+Test Case 'DemuxTests.testMKVMillisecondTimebase' started at 2026-11-06 21:59:29.981
+Test Case 'DemuxTests.testMKVMillisecondTimebase' passed (0.0 seconds)
+Test Case 'DemuxTests.testMP4BFrameReorder' started at 2026-11-06 21:59:29.982
+Test Case 'DemuxTests.testMP4BFrameReorder' passed (0.0 seconds)
+Test Case 'DemuxTests.testMP4EditListAndAACPriming' started at 2026-11-06 21:59:29.982
+Test Case 'DemuxTests.testMP4EditListAndAACPriming' passed (0.0 seconds)
+Test Case 'DemuxTests.testMissingClusterTimestampYieldsNilNotZero' started at 2026-11-06 21:59:29.982
+Test Case 'DemuxTests.testMissingClusterTimestampYieldsNilNotZero' passed (0.0 seconds)
+Test Case 'DemuxTests.testPacketPayloadsMatchFFprobeHashes' started at 2026-11-06 21:59:29.982
+Test Case 'DemuxTests.testPacketPayloadsMatchFFprobeHashes' passed (0.032 seconds)
+Test Case 'DemuxTests.testRationalTimeBasics' started at 2026-11-06 21:59:30.014
+Test Case 'DemuxTests.testRationalTimeBasics' passed (0.0 seconds)
+Test Case 'DemuxTests.testTruncatedInputThrows' started at 2026-11-06 21:59:30.014
+Test Case 'DemuxTests.testTruncatedInputThrows' passed (0.001 seconds)
+Test Suite 'DemuxTests' passed at 2026-11-06 21:59:30.014
+	 Executed 16 tests, with 0 failures (0 unexpected) in 0.056 (0.056) seconds
+Test Suite 'MalformedSafetyTests' started at 2026-11-06 21:59:30.014
+Test Case 'MalformedSafetyTests.testFailedReopenInProcess' started at 2026-11-06 21:59:30.014
+Test Case 'MalformedSafetyTests.testFailedReopenInProcess' passed (0.0 seconds)
+Test Case 'MalformedSafetyTests.testFailedReopenNoStalePacketLeakSubprocess' started at 2026-11-06 21:59:30.015
+Test Case 'MalformedSafetyTests.testFailedReopenNoStalePacketLeakSubprocess' passed (0.508 seconds)
+Test Case 'MalformedSafetyTests.testMalformedFixturesNoProcessTrap' started at 2026-11-06 21:59:30.523
+Test Case 'MalformedSafetyTests.testMalformedFixturesNoProcessTrap' passed (0.51 seconds)
+Test Case 'MalformedSafetyTests.testMalformedFixturesThrowNamedErrorsInProcess' started at 2026-11-06 21:59:31.033
+Test Case 'MalformedSafetyTests.testMalformedFixturesThrowNamedErrorsInProcess' passed (0.002 seconds)
+Test Case 'MalformedSafetyTests.testProbeControlOnGoodFixtures' started at 2026-11-06 21:59:31.035
+Test Case 'MalformedSafetyTests.testProbeControlOnGoodFixtures' passed (0.223 seconds)
+Test Case 'MalformedSafetyTests.testSuccessfulOpenAfterFailedReopenMatchesFreshOpen' started at 2026-11-06 21:59:31.258
+Test Case 'MalformedSafetyTests.testSuccessfulOpenAfterFailedReopenMatchesFreshOpen' passed (0.001 seconds)
+Test Suite 'MalformedSafetyTests' passed at 2026-11-06 21:59:31.258
+	 Executed 6 tests, with 0 failures (0 unexpected) in 1.244 (1.244) seconds
+Test Suite 'release.xctest' passed at 2026-11-06 21:59:31.258
+	 Executed 22 tests, with 0 failures (0 unexpected) in 1.3 (1.3) seconds
+Test Suite 'All tests' passed at 2026-11-06 21:59:31.258
+	 Executed 22 tests, with 0 failures (0 unexpected) in 1.3 (1.3) seconds
