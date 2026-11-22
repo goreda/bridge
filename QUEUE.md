@@ -77,3 +77,7 @@ This current amendment supersedes prior199cg/ch queue-empty relay lines retained
 Exact owner charter additions landed instinct main ccae99da13b92f54a772a977b48f5d4f07c1ba4a (docs/ARCHITECT.md only, named arch-199cj). Authenticated source phonemsg-01M82KTGH04SMQQ5KAK3VBB00V. Current199ci checker remains unqualified/pending, not claimed available in LATEST.
 
 199cj claim coordination update2026-11-23 00:52+03: three M1 whole-row assignments above are accepted, not merely requested. Coordinator maintains next unclaimed lowest-milestone allocation; no duplicate EmbeddedSession writer or independent source publication/native dispatch. Native scripts become ready only on actual evidence, all ready scripts retained for the daily combined500free-minute-month batch. Consumed/reserved native minutes remain unverified here. Pending deletion decisions remain with main, unchanged.
+
+## Current qualified structure tooling
+
+Checker c2e74f276300ecb774cb23df32cd066de232779ef24faae2870f7a82668f3925 is now available at snapshots/LATEST/tools/check-structure.sh, with exact law and registry under snapshots/LATEST/docs/. This is an explicit tooling overlay; existing source manifest identities are unchanged. Earlier implementation-pending relay wording above is historical. Measured actual gor a8153 violations: 96; canonical gorav07091 violations: NOT_ESTABLISHED. Source is not green. Source-lane wiring and native qualification remain pending; no deletion or extra CI authorized.

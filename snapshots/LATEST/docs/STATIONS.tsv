@@ -1,0 +1,13 @@
+name	responsibility	may import
+App	Application lifecycle, window and menu wiring, station composition	Session, Player, Engine (PlayerBackend only), Media, UI, Platform
+Player	Playback control surface: PlayerController, PlayerView, Input	Engine (PlayerBackend only), UI, Platform
+Engine	Engine selection and backends; the only station that talks to an engine	mpv IPC (MPVCommand), GorAV* modules, Platform
+Media	Media inventory, sources, file browser, torrent endpoints	Session, Platform
+Picture	Picture pipeline policy: color, filters, presentation preferences	Platform
+Stereo	Stereoscopic playback policy and metadata presentation	Platform
+Camera	Camera capture, preview and device policy	Platform
+Subtitles	Subtitle tracks, parsing policy and presentation	Platform
+UI	Shared UI components, menu actions and helpers	Platform
+Modes	Playback modes and presets policy	Platform
+Session	Playback session context, resources, diagnostics and log transport	Platform
+Platform	Cross-station shared mechanisms	none
