@@ -1,6 +1,6 @@
 # QUEUE
 
-Standing199cg: one queue, no quotas. M1 first except actual owner bugs. Historical BACKLOG A/B and GORAV-BACKLOG120 are not dispatch lists. A028-A070 and generated120 retired as queues, retained only as history. A/B work survives here only with actual owner bug or LEDGER mapping. No rows available = say "queue empty", never pad. Return git diff + actual test log in returns/. Count returned and APPLIED/ASSEMBLED diffs separately.
+Standing199cg: one queue, no quotas. M1 first except actual owner bugs. Historical BACKLOG A/B and GORAV-BACKLOG120 are not dispatch lists. A028-A070 and generated120 retired as queues, retained only as history. A/B work survives here only with actual owner bug or LEDGER mapping. 199cj supersedes queue-empty: free workers take the next unclaimed whole LEDGER row of the lowest open milestone; no filler. Return git diff + actual test log in returns/. Count returned and APPLIED/ASSEMBLED diffs separately.
 
 Canonical gorav source: actual goreda/gorav main07091c9c06f7d036f8776d18458429a947b70b92 in snapshots/LATEST/gorav.888selectedfiles including actual Sources/Tests/Package/PLAN/LEDGER/STATUS andv5draft input. Existing gor2dd source baseline remains alongside it, NOT a claim vendoredgorav equals upstream. Integration owns porting embedded-ahead product into main first, then vendor equality. No private code overwritten. Actual ratification landed mainc7692865da375a53e3e727315ae936c9ec9e293e, PLAN.md-only parent984aa; v5substance ratified199cf, v4 retainedashistory, draftunchanged. No merge/defaultswitch authority.
 
@@ -64,3 +64,11 @@ RELAY 1nstinct + in2tinct (verbatim): Every diff you return must pass tools/chec
 Source: authenticated owner iMessage phonemsg-01M82JVNMJMJA5JPJJY3CBXAAE,2026-11-23 00:33:39+03. Implementation status: tools/check-structure.sh and repo CODE-STRUCTURE.md/STATIONS.tsv are being implemented by the structure owner, NOT yet claimed available in snapshots/LATEST. This relay does not claim the missing script currently executes. One audit lane, station commits, no overlapping writers; daily native batch/deletion gate retained. Exact docs spec is held by structure owner for verbatim repository delivery, no rewritten substitute.
 
 Cue correction supersedes prior combined-both-toolchains timeout caveat: actual restored uninstrumented2dd+selectedCueRepeatedIndex+safeAutoLoadv2 with genuine28fixtures completedSwift6 in46seconds,220657PASS0FAIL. Prior30second bound was too short, notSwift6hang. Swift5.10 remains unclosed, selectedCue publication held; no genericAPIcausalclaim.
+
+## Owner199cj capacity amendment and exact lab relay
+
+RELAY 1nstinct + in2tinct (verbatim, GO, standing): Use 100% of your budget. Each worker owns one whole LEDGER row from bridge QUEUE.md: read the mpv/FFmpeg/libplacebo implementation on the public web, write the spec, implement in gorav per CODE-STRUCTURE.md, add Linux golden tests and a native test script, return git diff + logs. When a row is done, take the next unclaimed row of the lowest open milestone. The queue does not run empty.
+
+This current amendment supersedes prior199cg/ch queue-empty relay lines retained above as history. One worker owns a whole LEDGER row: public reference file@tag, behavior spec, owning-module implementation, Linux golden fixtures, and native script. Lowest open milestone M1 then M2/M3/M4; architect coordinates claims, no competing writer. All ready native scripts go into the daily combined batch within500free monthly minutes, no extra dispatch authority. Pulse per Instinct is budget %, peak workers and rows taken/returned/assembled/owner-Mac-verified, measured not inferred.
+
+Exact owner charter additions landed instinct main ccae99da13b92f54a772a977b48f5d4f07c1ba4a (docs/ARCHITECT.md only, named arch-199cj). Authenticated source phonemsg-01M82KTGH04SMQQ5KAK3VBB00V. Current199ci checker remains unqualified/pending, not claimed available in LATEST.
