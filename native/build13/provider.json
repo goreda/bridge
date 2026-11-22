@@ -1,0 +1,1 @@
+{"source": "/Users/builder/clone/payload/gor/.build/gorav-provider/df6d9c450535a094321ccf01/ffmpeg-7.1", "libraries": ["libavformat", "libavcodec", "libswscale", "libswresample", "libavutil"], "provider": "7.1-full-codec", "deployment_target": "13.0"}

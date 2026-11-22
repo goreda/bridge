@@ -1,0 +1,32 @@
+{
+  "candidate_commit": "4f8ae6aa9cb42ca4e3f549d4190f890daa96954f",
+  "carrier_commit": "ebbe4cc8f4851596f2312655b2c9e1b3bff432bf",
+  "scope": "199co selected real MultipleAudioRefusalPixelTests, capture-only test instrumentation, product unchanged",
+  "steps": [
+    {
+      "name": "provider",
+      "exit": 0
+    },
+    {
+      "name": "selected-pixel-test",
+      "exit": 0
+    }
+  ],
+  "result": "PASS",
+  "cases": [
+    [
+      "-[gorTests.MultipleAudioRefusalPixelTests testRefusalSurvivesRoutineHUDAndIsActuallyRasterized]",
+      "passed"
+    ]
+  ],
+  "evidence_files": [
+    "refusal-render.png",
+    "refusal-render.json",
+    "retention-diff.png",
+    "provider.json",
+    "pixel-deltas.json",
+    "expected-retention-pretransient.png"
+  ],
+  "boundary": "Expected frame is actual same HUD before transient, not golden OCR-approved reference. Original OCR assertions unchanged. No product fix/native normal launch/owner acceptance claim.",
+  "seconds": 131.38
+}

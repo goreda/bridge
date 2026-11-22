@@ -1,0 +1,26 @@
+{
+  "build_url": "https://codemagic.io/app/6b0161b442edd9c1272517bc/build/6b036d108f52ca27512a52be",
+  "product": "4f8ae6aa9cb42ca4e3f549d4190f890daa96954f",
+  "carrier": "ebbe4cc8f4851596f2312655b2c9e1b3bff432bf",
+  "selected_test": "GREEN, one scene, random committed face MillingTriplexVARRoman-1mm",
+  "cause": "build12 DMTLLVIP failure NOT reproduced or fixed",
+  "expected": "actual same HUD pretransient retention witness, not OCR golden",
+  "visual_inspection": "both frames show full readable refusal line; diff shows spine-button weight changes, not refusal text",
+  "next": "deterministic all-three-committed-face preparation for scheduled batch; no extra random rerun",
+  "billed_seconds": 178,
+  "fresh_account_seconds_used": 9726,
+  "fresh_account_allowance_seconds": 30000,
+  "shared_batch_allocation_remaining_seconds": 2378.5,
+  "boundary": "No normal AppKit standalone launch or owner acceptance; test harness duration131.38seconds differs from billed178seconds",
+  "files": {
+    "native/build13/refusal-render.json": "2dfeefc4b4b016fff34e81151efa75c465f7df587bbc5d7dcab63afce896816a",
+    "native/build13/selected-pixel-test.log": "b27cf4bdcd3eca894676f5d97e6731338cac9ed8a1bf6f10c4f033d80aa42915",
+    "native/build13/provider.log": "4132d95ca76667c2d0e8128200788807d5c605a4c9c65c4e277eb5c73ecfa9cf",
+    "native/build13/expected-retention-pretransient.png": "c8e08705488354ab9aaca915fd51647fc1022e9434eec321bd5fdb40d22fa755",
+    "native/build13/pixel-deltas.json": "f7034056e57d844ab3faac11bca140b996762f57a82e73ffdb0a2de4cfb52124",
+    "native/build13/retention-diff.png": "9bc292bbcc6d40e80a916587f61b8aef57fc9283221b43c03ff365603c1be0c0",
+    "native/build13/refusal-render.png": "5f4b0d87536c36800976669241fb79e93329d5dca104f042d5de14cef0a98178",
+    "native/build13/pixel-diagnostic-receipt.json": "711f1590274c26322b4fc2181bdf6d89edf6bdd643816c5cc84bc9fbbea645b3",
+    "native/build13/provider.json": "901cf484071dfb893b7afb151cb926afc54519b23e41531aa30fad56237cf5f7"
+  }
+}

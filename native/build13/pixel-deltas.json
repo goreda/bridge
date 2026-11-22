@@ -1,0 +1,11 @@
+{
+  "changedPixels" : 1846,
+  "maxChannelDelta" : 1,
+  "meanMaxChannelDelta" : 0.0012707349156348834,
+  "oracle" : [
+    "gorav to mpv",
+    "multiple audio tracks"
+  ],
+  "referenceMeaning" : "Actual same HUD before transient updates, not golden or claimed passing OCR reference",
+  "totalPixels" : 700000
+}

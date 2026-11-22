@@ -1,0 +1,135 @@
+{
+  "fontName" : "MillingTriplexVARRoman-1mm",
+  "layers" : [
+    {
+      "font" : "Optional(\"MillingTriplexVARRoman-5mm 16.03 pt. P [] (0x7e53fc000) fobj=0x7e53fc000, spc=4.38\")",
+      "fontSize" : "16.02782608695652",
+      "frame" : "{{10.202086956521743, 0}, {26.027826086956519, 530.28973913043478}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : ""
+    },
+    {
+      "font" : "Optional(\"MillingTriplexVARRoman-5mm 16.03 pt. P [] (0x7e53ff480) fobj=0x7e53fd180, spc=4.38\")",
+      "fontSize" : "16.02782608695652",
+      "frame" : "{{0, 0}, {21.246956521739129, 20.03478260869565}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "Q"
+    },
+    {
+      "font" : "Optional(\"MillingTriplexVARRoman-5mm 16.03 pt. P [] (0x7e53ff480) fobj=0x7e53fd180, spc=4.38\")",
+      "fontSize" : "16.02782608695652",
+      "frame" : "{{0, 0}, {21.246956521739129, 20.03478260869565}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "M"
+    },
+    {
+      "font" : "Optional(\"MillingTriplexVARRoman-5mm 16.03 pt. P [] (0x7e53ff480) fobj=0x7e53fd180, spc=4.38\")",
+      "fontSize" : "16.02782608695652",
+      "frame" : "{{0, 0}, {21.246956521739129, 20.03478260869565}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "F"
+    },
+    {
+      "font" : "Optional(\"MillingTriplexVARRoman-5mm 16.03 pt. P [] (0x7e53ff480) fobj=0x7e53fd180, spc=4.38\")",
+      "fontSize" : "16.02782608695652",
+      "frame" : "{{0, 0}, {21.246956521739129, 20.03478260869565}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "B"
+    },
+    {
+      "font" : "Optional(\"MillingTriplexVARRoman-5mm 16.03 pt. P [] (0x7e53ff480) fobj=0x7e53fd180, spc=4.38\")",
+      "fontSize" : "16.02782608695652",
+      "frame" : "{{0, 0}, {21.246956521739129, 20.03478260869565}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "P"
+    },
+    {
+      "font" : "Optional(\"MillingTriplexVARRoman-5mm 16.03 pt. P [] (0x7e53ff480) fobj=0x7e53fd180, spc=4.38\")",
+      "fontSize" : "16.02782608695652",
+      "frame" : "{{0, 0}, {21.246956521739129, 20.03478260869565}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "F"
+    },
+    {
+      "font" : "Optional(\"MillingTriplexVARRoman-5mm 16.03 pt. P [] (0x7e53fc000) fobj=0x7e53fc000, spc=4.38\")",
+      "fontSize" : "16.02782608695652",
+      "frame" : "{{0, 0}, {21.246956521739129, 20.03478260869565}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "V"
+    },
+    {
+      "font" : "Optional(\"MillingTriplexVARRoman-5mm 16.03 pt. P [] (0x7e53ff480) fobj=0x7e53fd180, spc=4.38\")",
+      "fontSize" : "16.02782608695652",
+      "frame" : "{{0, 0}, {21.246956521739129, 20.03478260869565}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "S"
+    },
+    {
+      "font" : "Optional(\"MillingTriplexVARRoman-1mm 16.03 pt. P [] (0x7e513f200) fobj=0x7e513f200, spc=4.38\")",
+      "fontSize" : "16.02782608695652",
+      "frame" : "{{0, 0}, {21.246956521739129, 20.03478260869565}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "C"
+    },
+    {
+      "font" : "Optional(\"MillingTriplexVARRoman-1mm 16.03 pt. P [] (0x7e513f200) fobj=0x7e513f200, spc=4.38\")",
+      "fontSize" : "16.02782608695652",
+      "frame" : "{{0, 0}, {21.246956521739129, 20.03478260869565}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "A"
+    },
+    {
+      "font" : "Optional(\"MillingTriplexVARRoman-1mm 16.03 pt. P [] (0x7e513f200) fobj=0x7e513f200, spc=4.38\")",
+      "fontSize" : "16.02782608695652",
+      "frame" : "{{0, 0}, {21.246956521739129, 20.03478260869565}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "V"
+    },
+    {
+      "font" : "Optional(\"MillingTriplexVARRoman-1mm 16.03 pt. P [] (0x7e513f200) fobj=0x7e513f200, spc=4.38\")",
+      "fontSize" : "16.02782608695652",
+      "frame" : "{{0, 0}, {21.246956521739129, 25.03478260869565}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "O"
+    },
+    {
+      "font" : "Optional(\"MillingTriplexVARRoman-2,5mm 16.03 pt. P [] (0x7e513ef80) fobj=0x7e513ef80, spc=4.38\")",
+      "fontSize" : "16.02782608695652",
+      "frame" : "{{39.678956521739167, 673.75617391304343}, {951.10504347826088, 22.027826086956519}}",
+      "hidden" : "false",
+      "opacity" : "0.9",
+      "scale" : "1.0",
+      "text" : "gorav to mpv: multiple audio tracks are not supported yet"
+    }
+  ],
+  "ocr" : "gorav to mpv: multiple audio tracks are not supported yet",
+  "refusalLine" : "gorav to mpv: multiple audio tracks are not supported yet",
+  "rootBounds" : "{{0, 0}, {1000, 700}}",
+  "spineFrame" : "{{0, 0}, {39.678956521739124, 700}}"
+}
