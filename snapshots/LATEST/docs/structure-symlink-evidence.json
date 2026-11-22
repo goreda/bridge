@@ -1,0 +1,107 @@
+{
+  "source_commit": "07091c9c06f7d036f8776d18458429a947b70b92",
+  "paths": [
+    "Sources/cache-parity-tests/Sources/cache-parity-tests/CachePolicyConsumption.swift",
+    "Sources/cache-parity-tests/Sources/cache-parity-tests/CacheTuningPolicy.swift",
+    "Sources/cache-parity-tests/Sources/cache-parity-tests/HLSCacheBudget.swift",
+    "Tests/CaptureStats/CaptureHUDFeed.swift",
+    "Tests/CaptureStats/CaptureHeatReport.swift",
+    "Tests/CaptureStats/CaptureStats.swift",
+    "Tests/CaptureStats/HeatComparison.swift",
+    "Tests/CaptureStats/HeatProducer.swift",
+    "Tests/CaptureStats/HeatTrialCapture.swift",
+    "Tests/CaptureStats/MetalPresenterTelemetry.swift",
+    "Tests/CaptureStats/PlatformHeatSources.swift"
+  ],
+  "targets": "All11 lexically resolve within checkout to committed regular blobs, no outside read; prior archive escape diagnosis was incorrect",
+  "links": [
+    {
+      "path": "Sources/cache-parity-tests/Sources/cache-parity-tests/CachePolicyConsumption.swift",
+      "target": "../../../GorAVPlaybackCore/CacheParity/CachePolicyConsumption.swift",
+      "read": "Committed symlink blob only, never dereferenced",
+      "resolved_path": "Sources/GorAVPlaybackCore/CacheParity/CachePolicyConsumption.swift",
+      "resolved_tree_entry": "100644 blob 799b0145b4cbf0173e52a4c7d7454bfefee91f88",
+      "status": "IN_TREE_REGULAR_BLOB"
+    },
+    {
+      "path": "Sources/cache-parity-tests/Sources/cache-parity-tests/CacheTuningPolicy.swift",
+      "target": "../../../GorAVPlaybackCore/CacheParity/CacheTuningPolicy.swift",
+      "read": "Committed symlink blob only, never dereferenced",
+      "resolved_path": "Sources/GorAVPlaybackCore/CacheParity/CacheTuningPolicy.swift",
+      "resolved_tree_entry": "100644 blob 4037abd0f7b0f3a66ca3f824042715ef6d86d489",
+      "status": "IN_TREE_REGULAR_BLOB"
+    },
+    {
+      "path": "Sources/cache-parity-tests/Sources/cache-parity-tests/HLSCacheBudget.swift",
+      "target": "../../../GorAVPlaybackCore/CacheParity/HLSCacheBudget.swift",
+      "read": "Committed symlink blob only, never dereferenced",
+      "resolved_path": "Sources/GorAVPlaybackCore/CacheParity/HLSCacheBudget.swift",
+      "resolved_tree_entry": "100644 blob 0fbc35e9f44b8f084c0daf169a21cd721a7b51e5",
+      "status": "IN_TREE_REGULAR_BLOB"
+    },
+    {
+      "path": "Tests/CaptureStats/CaptureHUDFeed.swift",
+      "target": "../../Sources/GorAVPlaybackCore/CaptureStats/CaptureHUDFeed.swift",
+      "read": "Committed symlink blob only, never dereferenced",
+      "resolved_path": "Sources/GorAVPlaybackCore/CaptureStats/CaptureHUDFeed.swift",
+      "resolved_tree_entry": "100644 blob 7752ee4b9bebd40743aef7166e4f9db8d15ec891",
+      "status": "IN_TREE_REGULAR_BLOB"
+    },
+    {
+      "path": "Tests/CaptureStats/CaptureHeatReport.swift",
+      "target": "../../Sources/GorAVPlaybackCore/CaptureStats/CaptureHeatReport.swift",
+      "read": "Committed symlink blob only, never dereferenced",
+      "resolved_path": "Sources/GorAVPlaybackCore/CaptureStats/CaptureHeatReport.swift",
+      "resolved_tree_entry": "100644 blob 7787b0abbeab42b8929401a7b882e9fd84226448",
+      "status": "IN_TREE_REGULAR_BLOB"
+    },
+    {
+      "path": "Tests/CaptureStats/CaptureStats.swift",
+      "target": "../../Sources/GorAVPlaybackCore/CaptureStats/CaptureStats.swift",
+      "read": "Committed symlink blob only, never dereferenced",
+      "resolved_path": "Sources/GorAVPlaybackCore/CaptureStats/CaptureStats.swift",
+      "resolved_tree_entry": "100644 blob 0bd0b1ebee61d5854b2e7e96c199a9e2b92cf63b",
+      "status": "IN_TREE_REGULAR_BLOB"
+    },
+    {
+      "path": "Tests/CaptureStats/HeatComparison.swift",
+      "target": "../../Sources/GorAVPlaybackCore/CaptureStats/HeatComparison.swift",
+      "read": "Committed symlink blob only, never dereferenced",
+      "resolved_path": "Sources/GorAVPlaybackCore/CaptureStats/HeatComparison.swift",
+      "resolved_tree_entry": "100644 blob 385c5db2ca05d3426ffe5bac107bf9e3c6bda9ce",
+      "status": "IN_TREE_REGULAR_BLOB"
+    },
+    {
+      "path": "Tests/CaptureStats/HeatProducer.swift",
+      "target": "../../Sources/GorAVPlaybackCore/CaptureStats/HeatProducer.swift",
+      "read": "Committed symlink blob only, never dereferenced",
+      "resolved_path": "Sources/GorAVPlaybackCore/CaptureStats/HeatProducer.swift",
+      "resolved_tree_entry": "100644 blob dd99c5a391e905e25fc396e5d53248b8b9de36b7",
+      "status": "IN_TREE_REGULAR_BLOB"
+    },
+    {
+      "path": "Tests/CaptureStats/HeatTrialCapture.swift",
+      "target": "../../Sources/GorAVPlaybackCore/CaptureStats/HeatTrialCapture.swift",
+      "read": "Committed symlink blob only, never dereferenced",
+      "resolved_path": "Sources/GorAVPlaybackCore/CaptureStats/HeatTrialCapture.swift",
+      "resolved_tree_entry": "100644 blob 61e133e85673561ce21aade6f613b85bcb74fb3b",
+      "status": "IN_TREE_REGULAR_BLOB"
+    },
+    {
+      "path": "Tests/CaptureStats/MetalPresenterTelemetry.swift",
+      "target": "../../Sources/GorAVMetalPresenter/core/MetalPresenterTelemetry.swift",
+      "read": "Committed symlink blob only, never dereferenced",
+      "resolved_path": "Sources/GorAVMetalPresenter/core/MetalPresenterTelemetry.swift",
+      "resolved_tree_entry": "100644 blob 485a474447f9ff490b4e8483a8f734d8598137cb",
+      "status": "IN_TREE_REGULAR_BLOB"
+    },
+    {
+      "path": "Tests/CaptureStats/PlatformHeatSources.swift",
+      "target": "../../Sources/GorAVPlaybackCore/CaptureStats/PlatformHeatSources.swift",
+      "read": "Committed symlink blob only, never dereferenced",
+      "resolved_path": "Sources/GorAVPlaybackCore/CaptureStats/PlatformHeatSources.swift",
+      "resolved_tree_entry": "100644 blob 322b2bdbc9581c09a9bdaa989df3bea6e3ee6d46",
+      "status": "IN_TREE_REGULAR_BLOB"
+    }
+  ]
+}
