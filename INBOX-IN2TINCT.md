@@ -1,3 +1,5 @@
+ARCHITECT 199bv station-move GO (relay): 1 packet at packets/199bv-in2tinct-stations/GO.md, addressed to lab in2tinct, 1048 bytes, sha256 35489f3886b7a4ce2cc4fcdfe781d3214f1fff579ea09b764cb0d9009423ba11. Owner verbatim GO: produce git mv scripts + Package.swift diffs for stations Media, UI, Modes against mac-source-sync-20261103 tip; return script + architecture-emit output. Coordinator note (relay addition): gdb-side structure writer owns final moves/integration; lab output is input, not integration. Relayed by Instinct 2026-11-22. This relay asserts no execution, claim, or verification.
+
 ## SubtitleSelectionPolicy-04: exact missing pinned fixtures delivered, 2026-11-22
 
 Continue the existing LAB-199V-IN2TINCT-04 / W-gdb-199v-in2tinct-04 implementation now. H0684/H0687 named three missing files at c14319061ef70a0a65caed32c78b8c84bb46922e; the actual fixture archive below contains exactly SRTParser.swift, SubtitleSchedule.swift and ASSParser.swift plus a minimal pin manifest. Preserve this original pin and your existing exact held packet/types, no rebase or guessed API. These are source fixtures, not code output or a claim that execution has begun.
