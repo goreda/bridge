@@ -1,0 +1,65 @@
+warning: 'gorav': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/RenderGraph.swift
+[0/1] Planning build
+Building for debugging...
+[0/7] /Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorPackageTests.derived/runner.swift
+[0/7] Write sources
+[3/8] Write swift-version--112E4EF74740DA65.txt
+[5/17] Compiling gorTests PhotonFontResourceTests.swift
+[6/17] Compiling gorTests PhotonHostCloseLifecycleTests.swift
+[7/17] Compiling gorTests PhotonNativeInputOwnerTests.swift
+[8/18] Compiling gorTests PhotonProducerHostNativeTests.swift
+[9/18] Compiling gorTests PhotonActiveEngineHeaderTests.swift
+[10/18] Compiling gorTests PhotonDistanceModelNativeTests.swift
+[11/18] Compiling gorTests AudioOutputDeviceNativeTests.swift
+[12/18] Compiling gorTests GorAVStreamAdmissionTests.swift
+[13/18] Emitting module gorTests
+[14/18] Compiling gorTests InlineFileSearchAcceptanceTests.swift
+/Users/builder/clone/payload/gor/Tests/gorTests/InlineFileSearchAcceptanceTests.swift:77:26: warning: 'CGWindowListCreateImage' was deprecated in macOS 14.0: Please use ScreenCaptureKit instead. [#DeprecatedDeclaration]
+ 75 |         let image = NSImage(size: view.bounds.size); image.addRepresentation(bitmap)
+ 76 |         if let window = view.window {
+ 77 |             let actual = CGWindowListCreateImage(.null, .optionIncludingWindow,
+    |                          `- warning: 'CGWindowListCreateImage' was deprecated in macOS 14.0: Please use ScreenCaptureKit instead. [#DeprecatedDeclaration]
+ 78 |                                                 CGWindowID(window.windowNumber), [.boundsIgnoreFraming])
+ 79 |             if let actual {
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+[15/18] Compiling gorTests MultipleAudioRefusalPixelTests.swift
+/Users/builder/clone/payload/gor/Tests/gorTests/InlineFileSearchAcceptanceTests.swift:77:26: warning: 'CGWindowListCreateImage' was deprecated in macOS 14.0: Please use ScreenCaptureKit instead. [#DeprecatedDeclaration]
+ 75 |         let image = NSImage(size: view.bounds.size); image.addRepresentation(bitmap)
+ 76 |         if let window = view.window {
+ 77 |             let actual = CGWindowListCreateImage(.null, .optionIncludingWindow,
+    |                          `- warning: 'CGWindowListCreateImage' was deprecated in macOS 14.0: Please use ScreenCaptureKit instead. [#DeprecatedDeclaration]
+ 78 |                                                 CGWindowID(window.windowNumber), [.boundsIgnoreFraming])
+ 79 |             if let actual {
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+[16/18] Compiling gorTests ThreeDRouteMachineTests.swift
+[17/20] Emitting module gorPackageTests
+[18/20] Compiling gorPackageTests runner.swift
+[18/20] Write Objects.LinkFileList
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[19/20] Linking gorPackageTests
+Build complete! (13.33s)
+Test Suite 'Selected tests' started at 2026-11-23 03:19:54.984.
+Test Suite 'gorPackageTests.xctest' started at 2026-11-23 03:19:54.986.
+Test Suite 'InlineFileSearchAcceptanceTests' started at 2026-11-23 03:19:54.986.
+Test Case '-[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation]' started.
+/Users/builder/clone/payload/gor/Tests/gorTests/InlineFileSearchAcceptanceTests.swift:143: error: -[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation] : failed - fixture could not establish real key window; input acceptance NOT_RUN
+/Users/builder/clone/payload/gor/Tests/gorTests/InlineFileSearchAcceptanceTests.swift:144: error: -[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation] : failed: caught error: "Error Domain=InlineFixtureNotKey Code=1 "(null)""
+Test Case '-[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation]' failed (1.902 seconds).
+Test Suite 'InlineFileSearchAcceptanceTests' failed at 2026-11-23 03:19:56.888.
+	 Executed 1 test, with 2 failures (1 unexpected) in 1.902 (1.902) seconds
+Test Suite 'gorPackageTests.xctest' failed at 2026-11-23 03:19:56.889.
+	 Executed 1 test, with 2 failures (1 unexpected) in 1.902 (1.902) seconds
+Test Suite 'Selected tests' failed at 2026-11-23 03:19:56.889.
+	 Executed 1 test, with 2 failures (1 unexpected) in 1.902 (1.904) seconds
+[PhotonFont] randomFontOnStartup: picked font - sixa/Exposure-VAR.ttf (3 candidates, including subfolders)
+[PhotonFont] Axis: EXPO tag=1163415631 min=-100.0 max=100.0 def=0.0 range=200.0
+[PhotonFont] Axis mapping applied: signal0→[EXPO]
+[PhotonFont] Default font - auto-mapping applied (panel not opened), reversed=true (sixa/ isolation)
+[PhotonFont] Loaded: ExposureVAR-Exposure - axes: ["EXPO"], mapping: signal0→[EXPO], pending: (empty)
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

@@ -1,0 +1,51 @@
+{
+  "scope": "Test-only diagnostic of mounted actual title-row AppKit input; no product mutation, no full-suite rerun or promotion",
+  "decision": "REVIEW_REQUIRED",
+  "rows": [
+    {
+      "stage": "build-link",
+      "exit": 0,
+      "seconds": 120.53,
+      "status": "PASS"
+    },
+    {
+      "stage": "provider-path",
+      "exit": 0,
+      "seconds": 1.12,
+      "status": "PASS"
+    },
+    {
+      "stage": "cmd-o-focused",
+      "exit": 1,
+      "seconds": 16.33,
+      "status": "FAIL"
+    }
+  ],
+  "binding": {
+    "schema": "199cy-focused-diagnostic-v1",
+    "source_commit": "b84d1e2330c2d49540fa839867e2edc8ef25bb6a",
+    "production_changed": false,
+    "production_candidate": "6934c41945fcc3caa4793f425b6cc7149978ce6e",
+    "test_sha256": "46d11b28f3690e886182200579d692c385d51361972001b3cab1eb751265025e",
+    "product_file_hashes": {
+      "Sources/gor/Media/FileBrowser.swift": "01bdb67a302f80696035aa1d14c559592302aa24860f0e45bb56df5c71fcf897",
+      "Sources/gor/UI/MenuActions.swift": "5fe759a641bca2430002e2b3241898fdc09a81787761f475bf0eb23783a53c9a"
+    },
+    "product_diff_proof": "git diff6934c419..b84d1e23 --Sources --Resources empty; only test and delivery.tsv differ"
+  },
+  "carrier_commit": "758ce5a974ab1fdaf8bb28257404b72003e6ce03",
+  "focused_exit": 1,
+  "started": [
+    "-[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation]"
+  ],
+  "passed": [],
+  "skipped": false,
+  "images": [],
+  "diagnostics": [
+    "before-input-state.json"
+  ],
+  "compositor_unavailable": [],
+  "native_status": "FAIL",
+  "seconds": 138.62,
+  "boundary": "Screenshots/state require manual causal review. Cached view is not caret proof. Window set increase needs class attribution. Full menu monitors/CmdF/system IME/playback/installed app NOT_RUN. No automatic shipment."
+}
