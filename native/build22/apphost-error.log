@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/builder/clone/ci/apphost-native.py", line 87, in <module>
+    if not (pre_evidence/'app-host-result.txt').exists():raise RuntimeError('synthetic same-host load/test result missing; product NOT_RUN')
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: synthetic same-host load/test result missing; product NOT_RUN
