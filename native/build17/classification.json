@@ -1,0 +1,117 @@
+{
+  "build": "6b03ab5a8f52ca27512a64f9",
+  "url": "https://codemagic.io/app/6b0161b442edd9c1272517bc/build/6b03ab5a8f52ca27512a64f9",
+  "carrier": "92e58d023f98340c4c1a613d6cd76ac94acfd31e",
+  "baseline": "0dcd9825785056578733627cf533a6072c0e97f3",
+  "candidate": "6934c41945fcc3caa4793f425b6cc7149978ce6e",
+  "reference": "last delivered runtime-bound release with normal-use corroboration, not installed-byte forensic inventory",
+  "decision": "BLOCKED_FOCUSED_ACCEPTANCE_FAIL",
+  "shared_suite": "NO_NEW_FAILURE",
+  "existing_tests_both": {
+    "cases": 42,
+    "passed": 37,
+    "skipped_not_run": 4,
+    "failed": 1,
+    "same_failure_assertions": [
+      87,
+      88
+    ]
+  },
+  "candidate_additional_normal_suite_test": "InlineFileSearchAcceptanceTests skipped without opt-in; separate focused execution actually ran and failed",
+  "failure_rows": [
+    {
+      "stage": "timepos-vectors",
+      "classification": "BASELINE",
+      "new": false,
+      "normalized_failure": [
+        "timepos-tests: FAIL - kits/timepos-vectors/vectors.json not found"
+      ]
+    },
+    {
+      "stage": "photon-presenter",
+      "classification": "BASELINE",
+      "new": false,
+      "normalized_failure": [
+        "/Users/builder/clone/work-VARIANT/payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:83:43: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "/Users/builder/clone/work-VARIANT/payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:89:47: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "/Users/builder/clone/work-VARIANT/payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:97:51: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'"
+      ]
+    },
+    {
+      "stage": "n6",
+      "classification": "BASELINE",
+      "new": false,
+      "normalized_failure": [
+        "/Users/builder/clone/work-VARIANT/payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:83:43: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "/Users/builder/clone/work-VARIANT/payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:89:47: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "/Users/builder/clone/work-VARIANT/payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:97:51: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'"
+      ]
+    },
+    {
+      "stage": "e1-vt",
+      "classification": "BASELINE",
+      "new": false,
+      "normalized_failure": [
+        "E1-VT-LIVE-GATE FAIL: open /Users/builder/clone/work-VARIANT/fixtures/synthetic-av24.mp4: rejected(\"no pinned local roots configured; refusing open\")"
+      ]
+    },
+    {
+      "stage": "duration",
+      "classification": "BASELINE",
+      "new": false,
+      "normalized_failure": [
+        "DURATION NATIVE FAIL failed(\"open event/observation/snapshot duration mismatch\")"
+      ]
+    },
+    {
+      "stage": "session-venue",
+      "classification": "BASELINE",
+      "new": false,
+      "normalized_failure": [
+        "SESSION-VENUE BAD: V4 no EOF within 4s of seek"
+      ]
+    }
+  ],
+  "refusal_pixels": "All9actual/reference/diff across3faces pixel-identical baseline/candidate; DMT original OCR failure remains",
+  "normal_standalone_launch": "NOT_RUN both after existing refusal failure",
+  "focused": {
+    "scope": "Mounted actual AppKit/title field/native field-editor and marked-text protocol only; full menu monitors, CmdF, system IME, engine playback and installed app NOT_RUN",
+    "status": "FAIL",
+    "exit": 1,
+    "started": [
+      "-[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation]"
+    ],
+    "passed": [],
+    "skipped": false,
+    "images": [
+      "inline-direct-title-caret.png",
+      "inline-editing.png",
+      "inline-idle.png",
+      "inline-results-context.png"
+    ],
+    "visual_review": "REQUIRED, runner cannot accept pixels"
+  },
+  "focused_failures": [
+    {
+      "line": 105,
+      "observed": "window not key"
+    },
+    {
+      "line": 111,
+      "observed": "NSApp.windows set grew, class/cause not recorded"
+    },
+    {
+      "line": 143,
+      "observed": "currentEditor nil after search button reopening; aborted before navigation/Esc"
+    }
+  ],
+  "pixel_review": "Original idle/results long titles overlap heavily; editing r shown as small grey glyph; cached view lacks visible caret. No visual acceptance. Window compositor capture needed to disambiguate field-editor/caret visibility. No extra product panel proven from window-set assertion alone.",
+  "budget": {
+    "billed_seconds": 631,
+    "free_used_seconds": 11694,
+    "free_limit_seconds": 30000,
+    "paid_seconds": 0,
+    "remaining_today_seconds": 410.5
+  },
+  "limits": "Full MenuActions monitors, CmdF, system IME, engines and owner install NOT_RUN; no retry started"
+}

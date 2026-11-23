@@ -1,0 +1,17 @@
+{
+  "scope": "Mounted actual AppKit/title field/native field-editor and marked-text protocol only; full menu monitors, CmdF, system IME, engine playback and installed app NOT_RUN",
+  "status": "FAIL",
+  "exit": 1,
+  "started": [
+    "-[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation]"
+  ],
+  "passed": [],
+  "skipped": false,
+  "images": [
+    "inline-direct-title-caret.png",
+    "inline-editing.png",
+    "inline-idle.png",
+    "inline-results-context.png"
+  ],
+  "visual_review": "REQUIRED, runner cannot accept pixels"
+}

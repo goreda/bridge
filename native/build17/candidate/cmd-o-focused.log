@@ -1,0 +1,29 @@
+warning: 'gorav': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-candidate/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/RenderGraph.swift
+[0/1] Planning build
+Building for debugging...
+[0/4] Write swift-version--112E4EF74740DA65.txt
+Build complete! (1.33s)
+Test Suite 'Selected tests' started at 2026-11-23 03:06:59.089.
+Test Suite 'gorPackageTests.xctest' started at 2026-11-23 03:06:59.090.
+Test Suite 'InlineFileSearchAcceptanceTests' started at 2026-11-23 03:06:59.090.
+Test Case '-[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation]' started.
+/Users/builder/clone/work-candidate/payload/gor/Tests/gorTests/InlineFileSearchAcceptanceTests.swift:105: error: -[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation] : XCTAssertTrue failed - actual AppKit key ownership required
+/Users/builder/clone/work-candidate/payload/gor/Tests/gorTests/InlineFileSearchAcceptanceTests.swift:111: error: -[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation] : XCTAssertEqual failed: ("[ObjectIdentifier(0x00000009c56b9b80), ObjectIdentifier(0x0000000103f147c0)]") is not equal to ("[ObjectIdentifier(0x0000000103f147c0)]") - inline search must not construct another window or panel
+/Users/builder/clone/work-candidate/payload/gor/Tests/gorTests/InlineFileSearchAcceptanceTests.swift:143: error: -[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation] : XCTUnwrap failed: expected non-nil value of type "NSTextView"
+Test Case '-[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation]' failed (1.450 seconds).
+Test Suite 'InlineFileSearchAcceptanceTests' failed at 2026-11-23 03:07:00.541.
+	 Executed 1 test, with 3 failures (0 unexpected) in 1.450 (1.450) seconds
+Test Suite 'gorPackageTests.xctest' failed at 2026-11-23 03:07:00.541.
+	 Executed 1 test, with 3 failures (0 unexpected) in 1.450 (1.450) seconds
+Test Suite 'Selected tests' failed at 2026-11-23 03:07:00.541.
+	 Executed 1 test, with 3 failures (0 unexpected) in 1.450 (1.452) seconds
+[PhotonFont] randomFontOnStartup: picked font - sixa/Milling-TriplexVAR.ttf (3 candidates, including subfolders)
+[PhotonFont] Axis: wght tag=2003265652 min=100.0 max=500.0 def=400.0 range=400.0
+[PhotonFont] Axis mapping applied: signal0→[wght]
+[PhotonFont] Default font - auto-mapping applied (panel not opened), reversed=true (sixa/ isolation)
+[PhotonFont] Loaded: MillingTriplexVARRoman-1mm - axes: ["wght"], mapping: signal0→[wght], pending: (empty)
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

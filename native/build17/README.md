@@ -1,0 +1,3 @@
+# 199cy build17, blocked
+
+Actual shared-suite comparison NO_NEW_FAILURE, but independent candidate-only focused typing test FAIL. Three assertion failures concern AppKit key ownership, extra window identity and missing field editor. Screenshots are evidence, not visual acceptance. Product versus fixture cause unresolved. Compiled product is not release-ready from this result. Source6934c419, carrier92e58d02; reference0dcd982 is last delivered runtime-bound release, not forensic installed inventory. Owner route remains0dcd982, no promotion or rerun performed. Original build14/15/16 evidence remains untouched. The new focused test was skipped without opt-in in normal suite, then truly executed separately and failed, never hidden by inherited root failure.
