@@ -1,0 +1,74 @@
+{
+  "/Users/builder/clone/payload/gor/Sources/gor/Stereo/LookToolsRoute.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/LookToolsRoute.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/LookToolsRoute.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/LookToolsRoute.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/LookToolsRoute.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Stereo/Prepare.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Prepare.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Prepare.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Prepare.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Prepare.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Stereo/RealtimeProbe.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/RealtimeProbe.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/RealtimeProbe.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/RealtimeProbe.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/RealtimeProbe.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Stereo/Render.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Render.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Render.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Render.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Render.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Stereo/Source.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Source.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Source.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Source.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Source.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Stereo/StereoDetection.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoDetection.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoDetection.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoDetection.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoDetection.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Stereo/StereoGeometry.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoGeometry.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoGeometry.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoGeometry.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoGeometry.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Stereo/StereoLookNativeCommands.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoLookNativeCommands.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoLookNativeCommands.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoLookNativeCommands.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoLookNativeCommands.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Stereo/StereoLookNativeInputOwner.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoLookNativeInputOwner.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoLookNativeInputOwner.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoLookNativeInputOwner.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoLookNativeInputOwner.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Stereo/StereoLookNativeIntentAdapter.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoLookNativeIntentAdapter.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoLookNativeIntentAdapter.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoLookNativeIntentAdapter.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoLookNativeIntentAdapter.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Stereo/VR180Controller.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/VR180Controller.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/VR180Controller.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/VR180Controller.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/VR180Controller.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Stereo/VRDistanceModel.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/VRDistanceModel.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/VRDistanceModel.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/VRDistanceModel.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/VRDistanceModel.swiftdeps"
+  }
+}

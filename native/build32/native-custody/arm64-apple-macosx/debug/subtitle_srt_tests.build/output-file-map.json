@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/subtitle_srt_tests.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/subtitle-tests/SRTTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/subtitle_srt_tests.build/SRTTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/subtitle_srt_tests.build/SRTTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/subtitle_srt_tests.build/SRTTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/subtitle_srt_tests.build/SRTTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/subtitle_srt_tests.build/SRTTests.dia"
+  }
+}

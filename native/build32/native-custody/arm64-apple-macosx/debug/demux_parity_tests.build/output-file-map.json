@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/demux_parity_tests.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/demux-parity-tests/DemuxParity.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/demux_parity_tests.build/DemuxParity.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/demux_parity_tests.build/DemuxParity.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/demux_parity_tests.build/DemuxParity~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/demux_parity_tests.build/DemuxParity.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/demux_parity_tests.build/DemuxParity.dia"
+  }
+}

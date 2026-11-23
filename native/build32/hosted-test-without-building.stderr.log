@@ -1,0 +1,12 @@
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:macOS, arch:arm64, id:0000FE00-343A79319AA17942, name:My Mac }
+{ platform:macOS, arch:x86_64, id:0000FE00-343A79319AA17942, name:My Mac }
+2026-11-23 05:46:20.441 xcodebuild[7755:26871] [MT] IDETestOperationsObserverDebug: 8.326 elapsed -- Testing started completed.
+2026-11-23 05:46:20.441 xcodebuild[7755:26871] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-23 05:46:20.441 xcodebuild[7755:26871] [MT] IDETestOperationsObserverDebug: 8.326 sec, +8.326 sec -- end
+Failing tests:
+	InlineFileSearchAcceptanceTests.testInlineNativeInputAndFixtureNavigation()
+	InlineFileSearchAcceptanceTests.testInlineNativeInputAndFixtureNavigation()
+
+** TEST EXECUTE FAILED **
+

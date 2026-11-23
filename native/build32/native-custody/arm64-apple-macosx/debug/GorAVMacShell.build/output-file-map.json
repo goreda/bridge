@@ -1,0 +1,61 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMacShell/AudioUnitSink.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/AudioUnitSink.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/AudioUnitSink.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/AudioUnitSink~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/AudioUnitSink.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/AudioUnitSink.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMacShell/CoreAudioOutputInventory.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/CoreAudioOutputInventory.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/CoreAudioOutputInventory.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/CoreAudioOutputInventory~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/CoreAudioOutputInventory.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/CoreAudioOutputInventory.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMacShell/DisplaySink.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/DisplaySink.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/DisplaySink.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/DisplaySink~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/DisplaySink.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/DisplaySink.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMacShell/FrameTap.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/FrameTap.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/FrameTap.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/FrameTap~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/FrameTap.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/FrameTap.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMacShell/ShellClock.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/ShellClock.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/ShellClock.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/ShellClock~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/ShellClock.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/ShellClock.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMacShell/ShellFrameSource.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/ShellFrameSource.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/ShellFrameSource.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/ShellFrameSource~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/ShellFrameSource.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/ShellFrameSource.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMacShell/TappedFrameLuma.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/TappedFrameLuma.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/TappedFrameLuma.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/TappedFrameLuma~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/TappedFrameLuma.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/TappedFrameLuma.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMacShell/WindowModeController.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/WindowModeController.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/WindowModeController.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/WindowModeController~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/WindowModeController.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/WindowModeController.dia"
+  }
+}

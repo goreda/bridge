@@ -1,0 +1,96 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/ASSParser.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/ASSParser.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/ASSParser.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/ASSParser~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/ASSParser.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/ASSParser.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SRTParser.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SRTParser.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SRTParser.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SRTParser~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SRTParser.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SRTParser.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleAutoLoad.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleAutoLoad.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleAutoLoad.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleAutoLoad~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleAutoLoad.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleAutoLoad.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleController.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleController.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleController.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleController~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleController.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleController.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleCue.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCue.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCue.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCue~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCue.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCue.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleCueDelivery.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCueDelivery.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCueDelivery.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCueDelivery~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCueDelivery.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCueDelivery.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleCueOutput.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCueOutput.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCueOutput.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCueOutput~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCueOutput.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCueOutput.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitlePlan.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitlePlan.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitlePlan.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitlePlan~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitlePlan.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitlePlan.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleSchedule.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleSchedule.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleSchedule.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleSchedule~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleSchedule.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleSchedule.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleSidecarSession.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleSidecarSession.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleSidecarSession.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleSidecarSession~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleSidecarSession.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleSidecarSession.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleTrack.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleTrack.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleTrack.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleTrack~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleTrack.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleTrack.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleTypography.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleTypography.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleTypography.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleTypography~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleTypography.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleTypography.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/VTTParser.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/VTTParser.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/VTTParser.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/VTTParser~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/VTTParser.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/VTTParser.dia"
+  }
+}

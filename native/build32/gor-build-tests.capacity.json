@@ -1,0 +1,17 @@
+{
+  "max_bytes": 536870912,
+  "observed_peak_bytes": 3430855,
+  "seconds": 55.426,
+  "reason": null,
+  "exit": 0,
+  "roots": [
+    "/Users/builder/clone/out/swift-driver-temporaries"
+  ],
+  "generated_product_growth_peak": 669413062,
+  "growth_caps": [
+    [
+      "/Users/builder/clone/payload/gor",
+      2147483648
+    ]
+  ]
+}

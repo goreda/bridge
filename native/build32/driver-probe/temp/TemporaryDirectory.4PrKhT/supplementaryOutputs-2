@@ -1,0 +1,7 @@
+{
+  "/Users/builder/clone/out/driver-probe/helper.swift" : {
+    "llvm-ir" : "./helper.ll",
+    "object" : "helper-1.o",
+    "sil" : "./helper.sil"
+  }
+}

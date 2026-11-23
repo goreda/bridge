@@ -1,0 +1,229 @@
+// !$*UTF8*$!
+{
+ "archiveVersion" = 1;
+ "classes" = {
+
+ };
+ "objectVersion" = 56;
+ "objects" = {
+  F03453927B1B8496433E0F7A = {
+   "isa" = "PBXFileReference";
+   "lastKnownFileType" = "sourcecode.swift";
+   "path" = "main.swift";
+   "sourceTree" = "<group>";
+  };
+  B558902D89AD8BB780282E84 = {
+   "isa" = "PBXFileReference";
+   "lastKnownFileType" = "sourcecode.swift";
+   "path" = "InlineFileSearchAcceptanceTests.swift";
+   "sourceTree" = "<group>";
+  };
+  681C948D238C526E9E3424E0 = {
+   "isa" = "PBXFileReference";
+   "explicitFileType" = "wrapper.application";
+   "includeInIndex" = 0;
+   "path" = "HostedAcceptance.app";
+   "sourceTree" = "BUILT_PRODUCTS_DIR";
+  };
+  F739566ED5280322FF98A798 = {
+   "isa" = "PBXFileReference";
+   "explicitFileType" = "wrapper.cfbundle";
+   "includeInIndex" = 0;
+   "path" = "HostedAcceptanceTests.xctest";
+   "sourceTree" = "BUILT_PRODUCTS_DIR";
+  };
+  3496022B23ED4BEB5BF158A8 = {
+   "isa" = "PBXBuildFile";
+   "fileRef" = F03453927B1B8496433E0F7A;
+  };
+  C9F6181A603CEC80DBFCC70D = {
+   "isa" = "PBXBuildFile";
+   "fileRef" = B558902D89AD8BB780282E84;
+  };
+  AFF87A50730392B6633ACECE = {
+   "isa" = "PBXSourcesBuildPhase";
+   "buildActionMask" = 2147483647;
+   "files" = (3496022B23ED4BEB5BF158A8);
+   "runOnlyForDeploymentPostprocessing" = 0;
+  };
+  7A4C2DC8FCA657188648E999 = {
+   "isa" = "PBXFrameworksBuildPhase";
+   "buildActionMask" = 2147483647;
+   "files" = ();
+   "runOnlyForDeploymentPostprocessing" = 0;
+  };
+  F9187E824FE171A6F0EFAE28 = {
+   "isa" = "PBXResourcesBuildPhase";
+   "buildActionMask" = 2147483647;
+   "files" = ();
+   "runOnlyForDeploymentPostprocessing" = 0;
+  };
+  DEE94446A282611C16F7781C = {
+   "isa" = "PBXSourcesBuildPhase";
+   "buildActionMask" = 2147483647;
+   "files" = (C9F6181A603CEC80DBFCC70D);
+   "runOnlyForDeploymentPostprocessing" = 0;
+  };
+  B10CDED79664567B030B2B4F = {
+   "isa" = "PBXFrameworksBuildPhase";
+   "buildActionMask" = 2147483647;
+   "files" = ();
+   "runOnlyForDeploymentPostprocessing" = 0;
+  };
+  1F030AB36D1A3A4389CF71AE = {
+   "isa" = "PBXResourcesBuildPhase";
+   "buildActionMask" = 2147483647;
+   "files" = ();
+   "runOnlyForDeploymentPostprocessing" = 0;
+  };
+  0A3E27B8CA818264D75C8D81 = {
+   "isa" = "PBXGroup";
+   "children" = (681C948D238C526E9E3424E0,F739566ED5280322FF98A798);
+   "name" = "Products";
+   "sourceTree" = "<group>";
+  };
+  4813494D137E1631BBA301D5 = {
+   "isa" = "PBXGroup";
+   "children" = (F03453927B1B8496433E0F7A,B558902D89AD8BB780282E84,0A3E27B8CA818264D75C8D81);
+   "sourceTree" = "<group>";
+  };
+  2879CB63FFAEEE98C564D678 = {
+   "isa" = "XCBuildConfiguration";
+   "buildSettings" = {
+    "CLANG_ENABLE_MODULES" = "YES";
+    "SWIFT_VERSION" = "5.0";
+    "MACOSX_DEPLOYMENT_TARGET" = "14.0";
+    "SDKROOT" = "macosx";
+    "CODE_SIGN_STYLE" = "Manual";
+    "CODE_SIGN_IDENTITY" = "-";
+    "ENABLE_HARDENED_RUNTIME" = "NO";
+    "SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
+    "DEBUG_INFORMATION_FORMAT" = "dwarf";
+    "ONLY_ACTIVE_ARCH" = "YES";
+   };
+   "name" = "Debug";
+  };
+  B4E10CAA9C5E22150B71559C = {
+   "isa" = "XCConfigurationList";
+   "buildConfigurations" = (2879CB63FFAEEE98C564D678);
+   "defaultConfigurationIsVisible" = 0;
+   "defaultConfigurationName" = "Debug";
+  };
+  CBFEBD2F63179235C5E76939 = {
+   "isa" = "XCBuildConfiguration";
+   "buildSettings" = {
+    "CLANG_ENABLE_MODULES" = "YES";
+    "SWIFT_VERSION" = "5.0";
+    "MACOSX_DEPLOYMENT_TARGET" = "14.0";
+    "SDKROOT" = "macosx";
+    "CODE_SIGN_STYLE" = "Manual";
+    "CODE_SIGN_IDENTITY" = "-";
+    "ENABLE_HARDENED_RUNTIME" = "NO";
+    "SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
+    "DEBUG_INFORMATION_FORMAT" = "dwarf";
+    "ONLY_ACTIVE_ARCH" = "YES";
+    "PRODUCT_NAME" = "HostedAcceptance";
+    "PRODUCT_BUNDLE_IDENTIFIER" = "com.gor.tests.supportedhost";
+    "GENERATE_INFOPLIST_FILE" = "YES";
+    "INFOPLIST_KEY_NSPrincipalClass" = "NSApplication";
+    "ENABLE_TESTABILITY" = "YES";
+    "LD_RUNPATH_SEARCH_PATHS" = ("$(inherited)","@executable_path/../Frameworks");
+   };
+   "name" = "Debug";
+  };
+  7BCEE9A04133D8A2FED7D4D3 = {
+   "isa" = "XCConfigurationList";
+   "buildConfigurations" = (CBFEBD2F63179235C5E76939);
+   "defaultConfigurationIsVisible" = 0;
+   "defaultConfigurationName" = "Debug";
+  };
+  E2F6F6A5A24793469DAFDED0 = {
+   "isa" = "XCBuildConfiguration";
+   "buildSettings" = {
+    "CLANG_ENABLE_MODULES" = "YES";
+    "SWIFT_VERSION" = "5.0";
+    "MACOSX_DEPLOYMENT_TARGET" = "14.0";
+    "SDKROOT" = "macosx";
+    "CODE_SIGN_STYLE" = "Manual";
+    "CODE_SIGN_IDENTITY" = "-";
+    "ENABLE_HARDENED_RUNTIME" = "NO";
+    "SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
+    "DEBUG_INFORMATION_FORMAT" = "dwarf";
+    "ONLY_ACTIVE_ARCH" = "YES";
+    "PRODUCT_NAME" = "HostedAcceptanceTests";
+    "PRODUCT_MODULE_NAME" = "gorTests";
+    "PRODUCT_BUNDLE_IDENTIFIER" = "com.gor.tests.supportedhost.tests";
+    "GENERATE_INFOPLIST_FILE" = "YES";
+    "TEST_HOST" = "$(BUILT_PRODUCTS_DIR)/HostedAcceptance.app/Contents/MacOS/HostedAcceptance";
+    "BUNDLE_LOADER" = "$(TEST_HOST)";
+    "LD_RUNPATH_SEARCH_PATHS" = ("$(inherited)","@executable_path/../Frameworks","@loader_path/../Frameworks");
+    "SWIFT_INCLUDE_PATHS" = ("/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/Modules");
+    "OTHER_SWIFT_FLAGS" = ("$(inherited)","-Xcc","-fmodule-map-file=/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVCAtomics/module.modulemap","-Xcc","-I","-Xcc","/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVCAtomics","-Xcc","-fmodule-map-file=/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVAudioClock.build/module.modulemap","-Xcc","-I","-Xcc","/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVAudioClock/include","-Xcc","-fmodule-map-file=/Users/builder/clone/payload/gor/Packages/gorav/Sources/CFFmpeg/module.modulemap","-F","/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-I","/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-Xcc","-isysroot","-Xcc","/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk","-Xcc","-F","-Xcc","/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-fPIC","-Xcc","-g","-Xcc","-I/Users/builder/clone/payload/gor/.build/gorav-provider/df6d9c450535a094321ccf01/ffmpeg-7.1");
+    "OTHER_LDFLAGS" = ("$(inherited)","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVAudioClock.build/src/gorav_audio_clock.c.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVAudioClockSwift.build/AudioClock.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVAudioClockSwift.build/AudioPacing.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVCAtomics.build/gorav_atomics.c.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVCore.build/AdmissionTable.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVCore.build/Boundary.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVCore.build/OpenURLRouter.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVEmbeddedShell.build/GorAVEmbeddedSession.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/ActiveTransportSnapshot.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareAudioDecoder.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareDecoder.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FrameObservation.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3AVCoordinator.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3Admission.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3HardwareDecode.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3PixelConvert.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3SampleConvert.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/LabSwrBackendBinding.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/MediaInventory.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SnapshotAVIOOwner.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SnapshotInput.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SourceOpenOptions.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/VTHardwareFrameProducer.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/AudioUnitSink.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/CoreAudioOutputInventory.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/DisplaySink.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/FrameTap.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/ShellClock.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/ShellFrameSource.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/TappedFrameLuma.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMacShell.build/WindowModeController.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/AspectFit.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/CVPixelBufferTap.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/GorAVMetalShellApp.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/HDRSurfaceState.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenter.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenterTelemetry.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalRenderer.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMeasurementShader.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMetalEffects.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonP22ApplyShader.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonP22UpdateConsumer.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonSourceMeasurementStage.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonWorkingGraph.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StagePass.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StereoLookPresenterBinding.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StereoProjectionPass.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/SurfaceContract.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/DemuxerPolicy.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/GorAVSeekContract.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/LeaseTable.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/NativeProbe.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/PacketFeedMachine.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ArchiveItemSource.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/AudioOutputDeviceTransaction.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/AudioTrackPlan.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ChapterMenuStep.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ChapterNavigation.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ChromeStateModel.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ColorStage.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ControlBus.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/CoreSeekDriver.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/CropStage.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/DecodeHeartbeat.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/DecodedFrameLeaseBridge.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/DecodedFrameTap.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/DecoderInventory.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/FrameLeaseStore.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/FrameUniformABI.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/HLSVODSource.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/HUDStateModel.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/HostTransform.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/LabColorCurves.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/LabCropEngine.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/LabHLSPlaylist.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/LabMarginOracle.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/LabMusicMode.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/LabPGSDecoder.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/LabPTSDuration.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/LabStereoMetaFeed.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/LabStereoResolver.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/LabSwrConverter.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/LabVobSubDecoder.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/LabYtdlpAdapter.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/Lane0Contract.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/LifetimeRegistry.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/LiveControlActuator.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/LookParameters.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/MPVDefaultKeymap.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/MinimizeRoutePlanner.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/NativeFrameOwnership.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/NodeSourcePreparation.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ObservationSurface.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PCMOutputBoost.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PhotonAdmission.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PhotonAdmissionP22Binding.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PhotonGrainClock.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PhotonGrainRuntime.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PhotonMeasurementP22.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PhotonParameterPublisher.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PhotonPresenterProducer.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PhotonSceneFeed.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PhotonSharpRuntime.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PhotonSharpShaderGenerator.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PhotonSourceMeasurement.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PhotonV4Model.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PlayArguments.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PlaybackCore.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PlayerControlPlane.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PlayheadObservers.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PlayheadPosition.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PreparedAdoption.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PreparedShotSession.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PreparedVideoFrameSource.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ReadinessAnchorSession.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/RenderGraph.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/SPSC.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ShellSeekBridge.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StageGeometry.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookDistanceTrace.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookFramePayload.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookProducer.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookStageAdapter.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookStageSource.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookStageSubmission.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoSideDataMap.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoStreamMetadataBridge.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoStreamMetadataTransport.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/TapCropDetector.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/TimingLedger.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/UniformPacking.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/WindowModePlan.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/YtdlpProcessSource.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSeekComposition.build/SeekComposition.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/ASSParser.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SRTParser.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleAutoLoad.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleController.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCue.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCueDelivery.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleCueOutput.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitlePlan.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleSchedule.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleSidecarSession.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleTrack.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/SubtitleTypography.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVSubtitles.build/VTTParser.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/AdaptiveColor.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/AppDelegate.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/ArchiveBrowser.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/ArchiveLibrary.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/ArchiveRandom.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/BinocularGaze.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/BlinkCommandRoute.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/BlinkEpisodes.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Brightness.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Build.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/CDPSession.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/CaptureConsumerRules.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Control.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/CropDetector.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Depth.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Diag.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/EngineObservation.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/FileBrowser.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/FlatControlRefreshGate.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GazeCrosshairController.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVAppGate.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVHostMotion.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVHostWindow.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVLocalOffer.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVNativeGate.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVPlayerHost.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVPostOpenFallback.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVStreamAdmission.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/HeadPose.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/IPTV.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/IPTVModeController.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/IconBarFit.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/IndependentDocumentRouter.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Input.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/LiveCaption.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/LookToolsRoute.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/MPVCommand.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/MagnetBrowser.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/MegaStreamManager.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/MenuActions.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/MusicController.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/MusicModeController.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/MusicPanel.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/MusicRowLabel.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PPController.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PPControllerEngineRefusalHUD.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PPControllerMenuQueries.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PhotonActiveEngineHeader.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PhotonFont.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerRuntimeResources.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionBarrierAdapter.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionContext.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionDrainPlan.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionFileTransport.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionNativeSink.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionPipeDrain.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerTorrentEndpoint.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerViewStub.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Pose192d.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PoseFrameQuality.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PoseMeasurementValidity.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Prepare.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/QuitChildKiller.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/RealtimeProbe.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Render.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Runtime.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/ScreenCaptureEngine.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Sensing.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/SidebarUI.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Source.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/SpineUI.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoDetection.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoGeometry.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoLookNativeCommands.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoLookNativeInputOwner.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/StereoLookNativeIntentAdapter.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/SubtitleView.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/TorrentManager.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/TransferResolver.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/TransferTicketContext.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/VR180Controller.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/VRDistanceModel.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/VRStereoControlInput.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/VariationBroadcaster.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Viewport.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/WTSessionPipeDrain.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Windowing.swift.o","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/main.swift.o","-F","/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-L","/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx","-L","/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/lib/swift","-rpath","/usr/lib/swift","-L","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug","-L","/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Users/builder/clone/payload/gor/.build/gorav-provider/df6d9c450535a094321ccf01/ffmpeg-7.1/libavformat","-L","/Users/builder/clone/payload/gor/.build/gorav-provider/df6d9c450535a094321ccf01/ffmpeg-7.1/libavcodec","-L","/Users/builder/clone/payload/gor/.build/gorav-provider/df6d9c450535a094321ccf01/ffmpeg-7.1/libswscale","-L","/Users/builder/clone/payload/gor/.build/gorav-provider/df6d9c450535a094321ccf01/ffmpeg-7.1/libswresample","-L","/Users/builder/clone/payload/gor/.build/gorav-provider/df6d9c450535a094321ccf01/ffmpeg-7.1/libavutil","-Xlinker","-no_warn_duplicate_libraries","-Xlinker","-bundle","-Xlinker","-rpath","-Xlinker","@loader_path/../../../","-Xlinker","-rpath","-Xlinker","/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx","-Xlinker","-add_ast_path","-Xlinker","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/Modules/GorAVAudioClockSwift.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/Modules/GorAVCore.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/Modules/GorAVEmbeddedShell.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/Modules/GorAVFFmpegAdapter.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/Modules/GorAVMacShell.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/Modules/GorAVMetalPresenter.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/Modules/GorAVNativeProbeKit.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/Modules/GorAVPlaybackCore.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/Modules/GorAVSeekComposition.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/Modules/GorAVSubtitles.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/Modules/gor.swiftmodule");
+   };
+   "name" = "Debug";
+  };
+  AD7020964E1E033F765FE484 = {
+   "isa" = "XCConfigurationList";
+   "buildConfigurations" = (E2F6F6A5A24793469DAFDED0);
+   "defaultConfigurationIsVisible" = 0;
+   "defaultConfigurationName" = "Debug";
+  };
+  1241936D4DD3AAD68FE7BFBD = {
+   "isa" = "PBXContainerItemProxy";
+   "containerPortal" = 244210E48437B6556980A702;
+   "proxyType" = 1;
+   "remoteGlobalIDString" = C1E9827DB735CA9BAA54A540;
+   "remoteInfo" = "HostedAcceptance";
+  };
+  F26350DAFE3F19AABFD69AC4 = {
+   "isa" = "PBXTargetDependency";
+   "target" = C1E9827DB735CA9BAA54A540;
+   "targetProxy" = 1241936D4DD3AAD68FE7BFBD;
+  };
+  C1E9827DB735CA9BAA54A540 = {
+   "isa" = "PBXNativeTarget";
+   "buildConfigurationList" = 7BCEE9A04133D8A2FED7D4D3;
+   "buildPhases" = (AFF87A50730392B6633ACECE,7A4C2DC8FCA657188648E999,F9187E824FE171A6F0EFAE28);
+   "buildRules" = ();
+   "dependencies" = ();
+   "name" = "HostedAcceptance";
+   "productName" = "HostedAcceptance";
+   "productReference" = 681C948D238C526E9E3424E0;
+   "productType" = "com.apple.product-type.application";
+  };
+  9805CBD60EB4F66728D5D195 = {
+   "isa" = "PBXNativeTarget";
+   "buildConfigurationList" = AD7020964E1E033F765FE484;
+   "buildPhases" = (DEE94446A282611C16F7781C,B10CDED79664567B030B2B4F,1F030AB36D1A3A4389CF71AE);
+   "buildRules" = ();
+   "dependencies" = (F26350DAFE3F19AABFD69AC4);
+   "name" = "HostedAcceptanceTests";
+   "productName" = "HostedAcceptanceTests";
+   "productReference" = F739566ED5280322FF98A798;
+   "productType" = "com.apple.product-type.bundle.unit-test";
+  };
+  244210E48437B6556980A702 = {
+   "isa" = "PBXProject";
+   "attributes" = {
+    "LastUpgradeCheck" = "1600";
+    "TargetAttributes" = {
+     9805CBD60EB4F66728D5D195 = {
+      "TestTargetID" = C1E9827DB735CA9BAA54A540;
+     };
+    };
+   };
+   "buildConfigurationList" = B4E10CAA9C5E22150B71559C;
+   "compatibilityVersion" = "Xcode 14.0";
+   "developmentRegion" = "en";
+   "hasScannedForEncodings" = 0;
+   "knownRegions" = ("en","Base");
+   "mainGroup" = 4813494D137E1631BBA301D5;
+   "productRefGroup" = 0A3E27B8CA818264D75C8D81;
+   "projectDirPath" = "";
+   "projectRoot" = "";
+   "targets" = (C1E9827DB735CA9BAA54A540,9805CBD60EB4F66728D5D195);
+  };
+ };
+ "rootObject" = 244210E48437B6556980A702;
+}

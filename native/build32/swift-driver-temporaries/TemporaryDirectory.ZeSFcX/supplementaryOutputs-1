@@ -1,0 +1,20 @@
+{
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/AspectFit.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/AspectFit.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/AspectFit.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/AspectFit.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/AspectFit.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/CVPixelBufferTap.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/CVPixelBufferTap.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/CVPixelBufferTap.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/CVPixelBufferTap.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/CVPixelBufferTap.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/GorAVMetalShellApp.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/GorAVMetalShellApp.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/GorAVMetalShellApp.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/GorAVMetalShellApp.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/GorAVMetalShellApp.swiftdeps"
+  }
+}

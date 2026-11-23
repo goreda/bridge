@@ -1,0 +1,26 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_composition_tests.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/seek-composition-tests/SeekCompositionTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_composition_tests.build/SeekCompositionTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_composition_tests.build/SeekCompositionTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_composition_tests.build/SeekCompositionTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_composition_tests.build/SeekCompositionTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_composition_tests.build/SeekCompositionTests.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/seek-composition-tests/SeekVectorPack.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_composition_tests.build/SeekVectorPack.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_composition_tests.build/SeekVectorPack.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_composition_tests.build/SeekVectorPack~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_composition_tests.build/SeekVectorPack.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_composition_tests.build/SeekVectorPack.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/seek-composition-tests/SeekVectorReplay.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_composition_tests.build/SeekVectorReplay.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_composition_tests.build/SeekVectorReplay.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_composition_tests.build/SeekVectorReplay~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_composition_tests.build/SeekVectorReplay.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_composition_tests.build/SeekVectorReplay.dia"
+  }
+}

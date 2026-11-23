@@ -1,0 +1,80 @@
+{
+  "/Users/builder/clone/payload/gor/Sources/gor/App/AppDelegate.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/AppDelegate.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/AppDelegate.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/AppDelegate.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/AppDelegate.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/App/Build.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Build.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Build.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Build.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Build.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/App/IndependentDocumentRouter.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/IndependentDocumentRouter.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/IndependentDocumentRouter.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/IndependentDocumentRouter.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/IndependentDocumentRouter.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/App/main.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/main.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/main.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/main.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/main.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Camera/BinocularGaze.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/BinocularGaze.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/BinocularGaze.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/BinocularGaze.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/BinocularGaze.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Camera/BlinkCommandRoute.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/BlinkCommandRoute.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/BlinkCommandRoute.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/BlinkCommandRoute.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/BlinkCommandRoute.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Camera/BlinkEpisodes.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/BlinkEpisodes.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/BlinkEpisodes.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/BlinkEpisodes.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/BlinkEpisodes.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Camera/CaptureConsumerRules.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/CaptureConsumerRules.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/CaptureConsumerRules.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/CaptureConsumerRules.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/CaptureConsumerRules.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Camera/HeadPose.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/HeadPose.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/HeadPose.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/HeadPose.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/HeadPose.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Camera/Pose192d.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Pose192d.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Pose192d.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Pose192d.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Pose192d.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Camera/PoseFrameQuality.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PoseFrameQuality.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PoseFrameQuality.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PoseFrameQuality.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PoseFrameQuality.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Camera/PoseMeasurementValidity.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PoseMeasurementValidity.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PoseMeasurementValidity.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PoseMeasurementValidity.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PoseMeasurementValidity.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Camera/Runtime.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Runtime.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Runtime.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Runtime.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Runtime.swiftdeps"
+  }
+}

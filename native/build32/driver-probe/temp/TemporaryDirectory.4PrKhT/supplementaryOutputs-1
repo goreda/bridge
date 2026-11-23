@@ -1,0 +1,7 @@
+{
+  "/Users/builder/clone/out/driver-probe/main.swift" : {
+    "llvm-ir" : "./main.ll",
+    "object" : "main-1.o",
+    "sil" : "./main.sil"
+  }
+}

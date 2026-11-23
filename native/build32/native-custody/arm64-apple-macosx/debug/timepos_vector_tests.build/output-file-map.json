@@ -1,0 +1,26 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timepos_vector_tests.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/timepos-vector-tests/PlayheadTracker.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timepos_vector_tests.build/PlayheadTracker.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timepos_vector_tests.build/PlayheadTracker.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timepos_vector_tests.build/PlayheadTracker~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timepos_vector_tests.build/PlayheadTracker.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timepos_vector_tests.build/PlayheadTracker.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/timepos-vector-tests/VectorModel.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timepos_vector_tests.build/VectorModel.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timepos_vector_tests.build/VectorModel.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timepos_vector_tests.build/VectorModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timepos_vector_tests.build/VectorModel.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timepos_vector_tests.build/VectorModel.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/timepos-vector-tests/main.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timepos_vector_tests.build/main.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timepos_vector_tests.build/main.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timepos_vector_tests.build/main~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timepos_vector_tests.build/main.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timepos_vector_tests.build/main.dia"
+  }
+}

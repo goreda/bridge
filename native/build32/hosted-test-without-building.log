@@ -1,0 +1,46 @@
+Command line invocation:
+    /Applications/Xcode-26.6.app/Contents/Developer/usr/bin/xcodebuild -project /Users/builder/clone/out/supported-host-project/HostedAcceptance.xcodeproj -scheme HostedAcceptance -destination platform=macOS -derivedDataPath /Users/builder/clone/supported-derived -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=NO -resultBundlePath /Users/builder/clone/out/gor-acceptance.xcresult "-only-testing:HostedAcceptanceTests/InlineFileSearchAcceptanceTests" test-without-building
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+
+Writing result bundle at path:
+	/Users/builder/clone/out/gor-acceptance.xcresult
+
+2026-11-23 05:46:12.682318+0000 HostedAcceptance[7765:27024] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-23 05:46:12.682492+0000 HostedAcceptance[7765:27024] [Application] Error registering app with intents framework: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-23 05:46:12.682753+0000 HostedAcceptance[7765:27023] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-23 05:46:12.682765+0000 HostedAcceptance[7765:27023] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-23 05:46:12.683343+0000 HostedAcceptance[7765:27024] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-23 05:46:12.683385+0000 HostedAcceptance[7765:27024] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-23 05:46:12.683760+0000 HostedAcceptance[7765:27024] [Connection] Will NOT re-try to establish the connection
+2026-11-23 05:46:12.683791+0000 HostedAcceptance[7765:27023] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-23 05:46:12.683802+0000 HostedAcceptance[7765:27023] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-23 05:46:12.829763+0000 HostedAcceptance[7765:27005] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/w2/rrf5p87d1bbfyphxc7jdnyvh0000gn/T/com.gor.tests.supportedhost.savedState
+Test Suite 'Selected tests' started at 2026-11-23 05:46:13.087.
+Test Suite 'HostedAcceptanceTests.xctest' started at 2026-11-23 05:46:13.087.
+Test Suite 'InlineFileSearchAcceptanceTests' started at 2026-11-23 05:46:13.087.
+Test Case '-[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation]' started.
+[PhotonFont] randomFontOnStartup: picked font - DMTLLVIPWeb-Regular-6a47c86c.woff2 (3 candidates, including subfolders)
+[PhotonFont] Axis: SIZE tag=1397316165 min=0.0 max=100.0 def=0.0 range=100.0
+[PhotonFont] Axis: ROTA tag=1380930625 min=0.0 max=360.0 def=0.0 range=360.0
+[PhotonFont] Axis: wght tag=2003265652 min=300.0 max=700.0 def=400.0 range=400.0
+[PhotonFont] Axis mapping applied: signal0→[wght], signal1→[SIZE], signal2→[ROTA]
+[PhotonFont] Default font - auto-mapping applied (panel not opened), reversed=false (sixa/ isolation)
+[PhotonFont] Loaded: DMTLLVIP-Light - axes: ["SIZE", "wght", "ROTA"], mapping: signal2→[ROTA], signal0→[wght], signal1→[SIZE], pending: (empty)
+2026-11-23 05:46:13.307668+0000 HostedAcceptance[7765:27026] [Common] Unable to obtain a task name port right for pid 170: (os/kern) failure (0x5)
+/Users/builder/clone/out/supported-host-project/InlineFileSearchAcceptanceTests.swift:160: error: -[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation] : XCTAssertEqual failed: ("[ObjectIdentifier(0x00000009cb7d6580), ObjectIdentifier(0x00000009cb7d4280)]") is not equal to ("[ObjectIdentifier(0x00000009cb7d4280)]") - inline search must not construct another window or panel
+2026-11-23 05:46:14.963909+0000 HostedAcceptance[7765:27005] [CursorUI] ViewBridge to RemoteViewService Terminated: Error Domain=com.apple.ViewBridge Code=18 "(null)" UserInfo={com.apple.ViewBridge.error.hint=this process disconnected remote view controller -- benign unless unexpected, com.apple.ViewBridge.error.description=NSViewBridgeErrorCanceled}
+/Users/builder/clone/out/supported-host-project/InlineFileSearchAcceptanceTests.swift:235: error: -[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation] : XCTAssertEqual failed: ("Optional("/private/var/folders/w2/rrf5p87d1bbfyphxc7jdnyvh0000gn/T/51663118-99F5-4270-A6FF-F4E9C3C80F8F/first/Café river.mp4")") is not equal to ("Optional("/var/folders/w2/rrf5p87d1bbfyphxc7jdnyvh0000gn/T/51663118-99F5-4270-A6FF-F4E9C3C80F8F/first/Café river.mp4")") - case/diacritic folded filtered list Return uses its actual entry
+Test Case '-[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation]' failed (4.228 seconds).
+Test Suite 'InlineFileSearchAcceptanceTests' failed at 2026-11-23 05:46:17.316.
+	 Executed 1 test, with 2 failures (0 unexpected) in 4.228 (4.229) seconds
+Test Suite 'HostedAcceptanceTests.xctest' failed at 2026-11-23 05:46:17.317.
+	 Executed 1 test, with 2 failures (0 unexpected) in 4.228 (4.229) seconds
+Test Suite 'Selected tests' failed at 2026-11-23 05:46:17.317.
+	 Executed 1 test, with 2 failures (0 unexpected) in 4.228 (4.231) seconds
+
+Test session results, code coverage, and logs:
+	/Users/builder/clone/out/gor-acceptance.xcresult
+
+Testing started

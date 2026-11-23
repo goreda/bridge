@@ -1,0 +1,40 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVNativeProbeKit/DemuxerPolicy.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/DemuxerPolicy.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/DemuxerPolicy.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/DemuxerPolicy~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/DemuxerPolicy.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/DemuxerPolicy.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVNativeProbeKit/GorAVSeekContract.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/GorAVSeekContract.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/GorAVSeekContract.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/GorAVSeekContract~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/GorAVSeekContract.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/GorAVSeekContract.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVNativeProbeKit/LeaseTable.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/LeaseTable.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/LeaseTable.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/LeaseTable~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/LeaseTable.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/LeaseTable.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVNativeProbeKit/NativeProbe.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/NativeProbe.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/NativeProbe.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/NativeProbe~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/NativeProbe.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/NativeProbe.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVNativeProbeKit/PacketFeedMachine.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/PacketFeedMachine.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/PacketFeedMachine.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/PacketFeedMachine~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/PacketFeedMachine.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVNativeProbeKit.build/PacketFeedMachine.dia"
+  }
+}

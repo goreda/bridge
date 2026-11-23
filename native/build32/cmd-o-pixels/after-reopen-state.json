@@ -1,0 +1,44 @@
+{
+  "active" : true,
+  "editor" : "NSTextView",
+  "fieldFrame" : "{{36, 0}, {936.57780281690179, 23.470373019366196}}",
+  "font" : "font0000000030b40aa6_SIZE_ROTA1680000_wght12C0000",
+  "fontSize" : 16.225352112676056,
+  "key" : true,
+  "policy" : 0,
+  "windows" : [
+    {
+      "class" : "DraggableOverlayWindow",
+      "content" : "NSView",
+      "frame" : "{{80, 80}, {1100, 600}}",
+      "id" : "ObjectIdentifier(0x00000009cb7d4280)",
+      "key" : "true",
+      "number" : "42",
+      "responder" : "NSTextView",
+      "style" : "0",
+      "visible" : "true"
+    },
+    {
+      "class" : "TUINSWindow",
+      "content" : "NSView",
+      "frame" : "{{0, 0}, {500, 500}}",
+      "id" : "ObjectIdentifier(0x00000009cb7d6580)",
+      "key" : "false",
+      "number" : "43",
+      "responder" : "TUINSWindow",
+      "style" : "32768",
+      "visible" : "false"
+    },
+    {
+      "class" : "SPRoundedWindow",
+      "content" : "NSRemoteView",
+      "frame" : "{{104, 414}, {312, 237}}",
+      "id" : "ObjectIdentifier(0x00000009cb7d7700)",
+      "key" : "true",
+      "number" : "47",
+      "responder" : "NSRemoteView",
+      "style" : "0",
+      "visible" : "false"
+    }
+  ]
+}

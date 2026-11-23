@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorPackageTests.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorPackageTests.derived/runner.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorPackageTests.build/runner.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorPackageTests.build/runner.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorPackageTests.build/runner~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorPackageTests.build/runner.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorPackageTests.build/runner.dia"
+  }
+}

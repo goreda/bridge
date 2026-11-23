@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/builder/clone/ci/gor-host-preflight.py", line 141, in <module>
+    output=stage('hosted-test-without-building',common+['-resultBundlePath',result,'-only-testing:HostedAcceptanceTests/InlineFileSearchAcceptanceTests','test-without-building'],60)+(OUT/'hosted-test-without-building.stderr.log').read_text(errors='replace')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/builder/clone/ci/gor-host-preflight.py", line 25, in stage
+    if code and not (allow_help and code!=124 and 'Usage:' in text+diagnostics):raise RuntimeError(name+' failed: '+str(code))
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: hosted-test-without-building failed: 65

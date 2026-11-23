@@ -1,0 +1,74 @@
+{
+  "/Users/builder/clone/payload/gor/Sources/gor/Session/Diag.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Diag.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Diag.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Diag.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Diag.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Session/PlayerRuntimeResources.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerRuntimeResources.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerRuntimeResources.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerRuntimeResources.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerRuntimeResources.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Session/PlayerSessionBarrierAdapter.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionBarrierAdapter.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionBarrierAdapter.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionBarrierAdapter.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionBarrierAdapter.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Session/PlayerSessionContext.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionContext.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionContext.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionContext.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionContext.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Session/PlayerSessionDrainPlan.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionDrainPlan.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionDrainPlan.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionDrainPlan.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionDrainPlan.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Session/PlayerSessionFileTransport.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionFileTransport.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionFileTransport.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionFileTransport.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionFileTransport.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Session/PlayerSessionNativeSink.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionNativeSink.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionNativeSink.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionNativeSink.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionNativeSink.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Session/PlayerSessionPipeDrain.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionPipeDrain.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionPipeDrain.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionPipeDrain.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerSessionPipeDrain.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Session/PlayerTorrentEndpoint.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerTorrentEndpoint.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerTorrentEndpoint.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerTorrentEndpoint.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/PlayerTorrentEndpoint.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Stereo/Control.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Control.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Control.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Control.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Control.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Stereo/Depth.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Depth.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Depth.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Depth.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Depth.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Stereo/GazeCrosshairController.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GazeCrosshairController.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GazeCrosshairController.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GazeCrosshairController.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GazeCrosshairController.swiftdeps"
+  }
+}

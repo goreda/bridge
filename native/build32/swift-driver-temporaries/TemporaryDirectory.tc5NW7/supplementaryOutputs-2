@@ -1,0 +1,80 @@
+{
+  "/Users/builder/clone/payload/gor/Sources/gor/Camera/ScreenCaptureEngine.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/ScreenCaptureEngine.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/ScreenCaptureEngine.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/ScreenCaptureEngine.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/ScreenCaptureEngine.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Camera/Sensing.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Sensing.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Sensing.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Sensing.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/Sensing.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Engine/GorAVAppGate.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVAppGate.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVAppGate.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVAppGate.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVAppGate.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Engine/GorAVHostMotion.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVHostMotion.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVHostMotion.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVHostMotion.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVHostMotion.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Engine/GorAVHostWindow.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVHostWindow.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVHostWindow.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVHostWindow.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVHostWindow.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Engine/GorAVLocalOffer.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVLocalOffer.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVLocalOffer.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVLocalOffer.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVLocalOffer.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Engine/GorAVNativeGate.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVNativeGate.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVNativeGate.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVNativeGate.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVNativeGate.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Engine/GorAVPlayerHost.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVPlayerHost.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVPlayerHost.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVPlayerHost.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVPlayerHost.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Engine/GorAVPostOpenFallback.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVPostOpenFallback.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVPostOpenFallback.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVPostOpenFallback.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVPostOpenFallback.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Engine/GorAVStreamAdmission.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVStreamAdmission.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVStreamAdmission.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVStreamAdmission.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/GorAVStreamAdmission.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Engine/MPVCommand.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/MPVCommand.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/MPVCommand.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/MPVCommand.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/MPVCommand.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Media/ArchiveBrowser.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/ArchiveBrowser.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/ArchiveBrowser.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/ArchiveBrowser.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/ArchiveBrowser.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Sources/gor/Media/ArchiveLibrary.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/ArchiveLibrary.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/ArchiveLibrary.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/ArchiveLibrary.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gor.build/ArchiveLibrary.swiftdeps"
+  }
+}

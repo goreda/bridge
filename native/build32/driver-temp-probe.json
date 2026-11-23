@@ -1,0 +1,28 @@
+{
+  "clang": [
+    "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang",
+    "-filelist",
+    "/Users/builder/clone/out/driver-probe/temp/TemporaryDirectory.4PrKhT/inputs-1.LinkFileList",
+    "--sysroot",
+    "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+    "--target=arm64-apple-macosx13.0",
+    "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/libswiftCompatibilityPacks.a",
+    "-L",
+    "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+    "-L",
+    "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/lib/swift",
+    "-rpath",
+    "/usr/lib/swift",
+    "-o",
+    "/Users/builder/clone/out/driver-probe/probe"
+  ],
+  "filelist": "/Users/builder/clone/out/driver-probe/temp/TemporaryDirectory.4PrKhT/inputs-1.LinkFileList",
+  "sha256": "3aaab12b500a500aa3b950da9b4f52fe752ccc001beb333fc8cf7209794cfa28",
+  "objects": [
+    "/Users/builder/clone/out/driver-probe/temp/TemporaryDirectory.4PrKhT/main-1.o",
+    "/Users/builder/clone/out/driver-probe/temp/TemporaryDirectory.4PrKhT/helper-1.o"
+  ],
+  "retained_files": 18,
+  "retained_bytes": 58779,
+  "boundary": "tiny selected-driver semantics only, not product acceptance or full product temp cost"
+}

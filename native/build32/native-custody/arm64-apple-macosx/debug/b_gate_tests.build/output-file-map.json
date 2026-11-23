@@ -1,0 +1,19 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/b_gate_tests.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/b-gate-tests/BoundsTable.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/b_gate_tests.build/BoundsTable.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/b_gate_tests.build/BoundsTable.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/b_gate_tests.build/BoundsTable~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/b_gate_tests.build/BoundsTable.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/b_gate_tests.build/BoundsTable.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/b-gate-tests/main.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/b_gate_tests.build/main.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/b_gate_tests.build/main.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/b_gate_tests.build/main~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/b_gate_tests.build/main.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/b_gate_tests.build/main.dia"
+  }
+}

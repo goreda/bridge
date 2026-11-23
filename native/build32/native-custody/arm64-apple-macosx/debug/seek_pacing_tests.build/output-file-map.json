@@ -1,0 +1,19 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_pacing_tests.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/seek-pacing-tests/ClockScenarioReplay.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_pacing_tests.build/ClockScenarioReplay.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_pacing_tests.build/ClockScenarioReplay.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_pacing_tests.build/ClockScenarioReplay~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_pacing_tests.build/ClockScenarioReplay.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_pacing_tests.build/ClockScenarioReplay.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/seek-pacing-tests/SeekPacingTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_pacing_tests.build/SeekPacingTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_pacing_tests.build/SeekPacingTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_pacing_tests.build/SeekPacingTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_pacing_tests.build/SeekPacingTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/seek_pacing_tests.build/SeekPacingTests.dia"
+  }
+}
