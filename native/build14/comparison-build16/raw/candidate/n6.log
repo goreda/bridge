@@ -1,0 +1,74 @@
+warning: 'gorav': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/seek-composition-tests/README-SEEKVECTORS.md
+warning: 'gorav': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/timing-ledger-tests/ClockScenarioReplay.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/photon-sharp-tests/fixtures/photon-sharp.glsl
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/photon-sharp-tests/fixtures/photon-sharp-temporal.glsl
+warning: 'gorav': found 7 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/live-control-tests/lua-reference/regenerate-reference.sh
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/live-control-tests/lua-reference/vendor/photon-live-control.lua
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/live-control-tests/lua-reference/README.md
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/live-control-tests/generate-vectors.py
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/live-control-tests/lua-reference/live-control-lua-reference.json
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/live-control-tests/lua-reference/run-live-control.lua
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/live-control-tests/live-control-vectors.json
+warning: 'gorav': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/hud-state-tests/hud-vectors.json
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/hud-state-tests/generate-vectors.py
+warning: 'gorav': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/chrome-state-tests/chrome-vectors.json
+    /Users/builder/clone/work-candidate/payload/gorav/Sources/chrome-state-tests/generate-vectors.py
+[0/1] Planning build
+Building for debugging...
+[0/4] Write swift-version--112E4EF74740DA65.txt
+[2/6] Emitting module n6_native_tests
+[3/6] Compiling n6_native_tests N6NativeTests.swift
+/Users/builder/clone/work-candidate/payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:83:43: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'
+ 81 |             // to the checks above; typed absence fails the check, never skips it.
+ 82 |             if let full = CVPixelBufferTap.copyPixels(buffer: copied) {
+ 83 |                 switch PixelEvidence.diff(full, bytes) {
+    |                                           `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'
+ 84 |                 case .success(let d):
+ 85 |                     check("N6 BGRA copy numerically identical (differing=\(d.differingPixels) maxDelta=\(d.maxChannelDelta))", d.identical)
+
+/Users/builder/clone/work-candidate/payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:89:47: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'
+ 87 |                     check("N6 BGRA numeric evidence unavailable: \(e)", false)
+ 88 |                 }
+ 89 |                 switch PixelEvidence.writePNG(full, width: 4, height: 4, label: "n6-bgra-copied", order: .bgra) {
+    |                                               `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'
+ 90 |                 case .success(let url): print("PIXEL-EVIDENCE n6-bgra-copied: \(url.path)")
+ 91 |                 case .failure(let e): check("N6 BGRA PNG evidence unavailable: \(e)", false)
+
+/Users/builder/clone/work-candidate/payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:97:51: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'
+ 95 |                 case .failure(let e): check("N6 BGRA reference PNG unavailable: \(e)", false)
+ 96 |                 }
+ 97 |                 switch PixelEvidence.writeDiffPNG(full, bytes, width: 4, height: 4, label: "n6-bgra-copied-vs-source") {
+    |                                                   `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'
+ 98 |                 case .success(let url): print("PIXEL-EVIDENCE diff-image: \(url.path)")
+ 99 |                 case .failure(let e): check("N6 BGRA diff-image unavailable: \(e)", false)

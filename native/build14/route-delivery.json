@@ -1,0 +1,22 @@
+{
+  "head": "0dcd9825785056578733627cf533a6072c0e97f3",
+  "previous_route": "b461066b9cca56e04b24a50a00c765142b984105",
+  "ref": "refs/heads/mac-source-sync-20261103",
+  "product_hashes": {
+    "archive/gor/Sources/gor/Media/MagnetBrowser.swift": "385cdaff9fcdafd5c53c00024a3676ce6f88f8ffaaf73dcbde0f3c63572fd1ba",
+    "archive/gor/Resources/vendor/wt_server/wt_server.mjs": "1890c71d6e6e0cf037f9321501f190988fa42048b605c166f5c91ed233b714ea"
+  },
+  "urls": {
+    "archive/gor/Sources/gor/Media/MagnetBrowser.swift": "https://github.com/goreda/instinct/blob/0dcd9825785056578733627cf533a6072c0e97f3/archive/gor/Sources/gor/Media/MagnetBrowser.swift",
+    "archive/gor/Resources/vendor/wt_server/wt_server.mjs": "https://github.com/goreda/instinct/blob/0dcd9825785056578733627cf533a6072c0e97f3/archive/gor/Resources/vendor/wt_server/wt_server.mjs",
+    "archive/gor/build.sh": "https://github.com/goreda/instinct/blob/0dcd9825785056578733627cf533a6072c0e97f3/archive/gor/build.sh",
+    "archive/gor/architecture/delivery.tsv": "https://github.com/goreda/instinct/blob/0dcd9825785056578733627cf533a6072c0e97f3/archive/gor/architecture/delivery.tsv"
+  },
+  "tested_product_source": "e846c4f84bb1ca812cc9c692034574777675811c",
+  "native_build": 16,
+  "native_carrier": "950b7aa21cbdaaca112d8fae73d259200373d749",
+  "comparison": "NO_NEW_FAILURE; same seven baseline stage failure classes",
+  "update_command": "cd ~/Downloads/gor && ./build.sh --update",
+  "rollback_command": "cd ~/Downloads/gor && ./build.sh --rollback",
+  "boundary": "Standalone launch NOT_RUN, no local owner install/playback claimed. Existing guard metadata preserved; no sidefix runtime delta."
+}

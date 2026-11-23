@@ -1,0 +1,2220 @@
+warning: 'gorav': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/seek-composition-tests/README-SEEKVECTORS.md
+warning: 'gorav': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/timing-ledger-tests/ClockScenarioReplay.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/photon-sharp-tests/fixtures/photon-sharp-temporal.glsl
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/photon-sharp-tests/fixtures/photon-sharp.glsl
+warning: 'gorav': found 7 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/live-control-tests/generate-vectors.py
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/live-control-tests/lua-reference/README.md
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/live-control-tests/live-control-vectors.json
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/live-control-tests/lua-reference/live-control-lua-reference.json
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/live-control-tests/lua-reference/regenerate-reference.sh
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/live-control-tests/lua-reference/run-live-control.lua
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/live-control-tests/lua-reference/vendor/photon-live-control.lua
+warning: 'gorav': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/hud-state-tests/hud-vectors.json
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/hud-state-tests/generate-vectors.py
+warning: 'gorav': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/chrome-state-tests/generate-vectors.py
+    /Users/builder/clone/work-baseline/payload/gorav/Sources/chrome-state-tests/chrome-vectors.json
+[0/1] Planning build
+Building for debugging...
+[0/479] Write sources
+[0/479] Write vt-public-producer-tests-entitlement.plist
+[0/479] Write vtt-parser-tests-entitlement.plist
+[0/479] Write sources
+[0/479] Write window-mode-tests-entitlement.plist
+[0/479] Write sources
+[0/479] Write vt-producer-tests-entitlement.plist
+[0/479] Write sources
+[0/479] Write video-remote-open-tests-entitlement.plist
+[0/479] Write sources
+[0/479] Write untagged-color-tests-entitlement.plist
+[0/479] Write video-refusal-tests-entitlement.plist
+[0/479] Write sources
+[0/479] Write uniform-packing-tests-entitlement.plist
+[0/479] Write sources
+[0/479] Write transport-vector-tests-entitlement.plist
+[0/479] Write timing-ledger-tests-entitlement.plist
+[0/479] Write trace-dump-entitlement.plist
+[0/479] Write sources
+[0/479] Write subtitle-srt-tests-entitlement.plist
+[0/479] Write sources
+[0/479] Write subtitle-track-tests-entitlement.plist
+[0/479] Write subtitle-plan-tests-entitlement.plist
+[0/480] Write subtitle-ass-tests-entitlement.plist
+[0/480] Write sources
+[0/480] Write subtitle-controller-tests-entitlement.plist
+[0/480] Write sources
+[0/480] Write shell-seek-bridge-tests-entitlement.plist
+[0/480] Write shell-mac-test-entitlement.plist
+[0/480] Write session-venue-tests-entitlement.plist
+[0/480] Write sources
+[0/480] Write seek-test-entitlement.plist
+[0/480] Write sources
+[0/480] Write seek-ring-reset-tests-entitlement.plist
+[0/480] Write seek-restart-probe-entitlement.plist
+[0/480] Write sources
+[0/480] Write seek-composition-tests-entitlement.plist
+[0/480] Write seek-pacing-tests-entitlement.plist
+[0/480] Write seek-contract-tests-entitlement.plist
+[0/480] Write render-graph-tests-entitlement.plist
+[0/480] Write sources
+[0/480] Write remote-source-tests-entitlement.plist
+[0/480] Write refusal-tests-entitlement.plist
+[0/480] Write sources
+[0/480] Write real-seek-tests-entitlement.plist
+[0/480] Write sources
+[0/480] Write prepared-shot-tests-entitlement.plist
+[0/480] Write race-witness-tests-entitlement.plist
+[0/480] Write sources
+[0/480] Write photon-sharp-tests-entitlement.plist
+[0/480] Write photon-admission-tests-entitlement.plist
+[0/480] Write sources
+[0/480] Write photon-measurement-tests-entitlement.plist
+[0/480] Write sources
+[0/480] Write playback-test-entitlement.plist
+[0/480] Write sources
+[0/480] Write parity-pixel-tests-entitlement.plist
+[0/480] Write pause-resume-tests-entitlement.plist
+[0/480] Write open-url-tests-entitlement.plist
+[0/480] Write open-intent-dispatch-tests-entitlement.plist
+[0/480] Write sources
+[0/480] Write observation-tests-entitlement.plist
+[0/480] Write sources
+[0/480] Write n6-native-tests-entitlement.plist
+[0/480] Write sources
+[0/480] Write media-inventory-tests-entitlement.plist
+[0/480] Write sources
+[0/480] Write live-control-tests-entitlement.plist
+[0/482] Write sources
+[0/483] Write isolation-test-entitlement.plist
+[0/483] Write l3-convert-matrix-tests-entitlement.plist
+[0/483] Write k9-adversarial-entitlement.plist
+[0/483] Write l4-hwdecode-tests-entitlement.plist
+[1/483] Write sources
+[1/483] Write hud-state-tests-entitlement.plist
+[1/483] Write sources
+[1/483] Write hosttransform-tests-entitlement.plist
+[1/483] Write sources
+[1/483] Write hdr-presenter-tests-entitlement.plist
+[1/483] Write sources
+[12/483] Write gorav-sink-check-entitlement.plist
+[19/483] Write gorav-play-entitlement.plist
+[29/483] Write gorav-probe-entitlement.plist
+[30/483] Write gorav-metal-check-entitlement.plist
+[31/483] Write sources
+[42/483] Write gorav-first-frame-entitlement.plist
+[71/483] Write frame-dump-entitlement.plist
+[97/483] Write sources
+[108/483] Write frame-lease-tests-entitlement.plist
+[110/483] Write frame-tap-tests-entitlement.plist
+[118/483] Write e1-vt-live-gate-entitlement.plist
+[118/483] Write sources
+[121/483] Write e1-shapes-tests-entitlement.plist
+[122/483] Write e1-headless-tests-entitlement.plist
+[123/483] Write duration-native-witness-entitlement.plist
+[124/483] Write dovi-vectest-entitlement.plist
+[125/483] Write dovi-selftest-entitlement.plist
+[126/483] Write dovi-hdrtest-entitlement.plist
+[127/483] Write dovi-fuzz-entitlement.plist
+[128/483] Write sources
+[129/483] Write demux-parity-tests-entitlement.plist
+[130/483] Write sources
+[132/483] Write decoder-lifetime-tests-entitlement.plist
+[133/483] Write decoder-inventory-tests-entitlement.plist
+[134/483] Write sources
+[135/483] Write cue-output-tests-entitlement.plist
+[136/483] Write crop-tests-entitlement.plist
+[137/483] Write sources
+[139/483] Write core-seek-tests-entitlement.plist
+[139/483] Write sources
+[141/483] Write controlbus-tests-entitlement.plist
+[142/483] Write sources
+[143/483] Write color-stage-tests-entitlement.plist
+[144/483] Write coexist-test-entitlement.plist
+[144/483] Write sources
+[147/483] Write codec-decode-matrix-tests-entitlement.plist
+[148/483] Write sources
+[149/483] Write chrome-state-tests-entitlement.plist
+[150/483] Write b-gate-tests-entitlement.plist
+[151/483] Write sources
+[154/483] Write avsync-golden-tests-entitlement.plist
+[155/483] Write sources
+[160/483] Write audio-test-entitlement.plist
+[160/483] Write sources
+[162/483] Write audio-seek-tests-entitlement.plist
+[163/483] Write audio-refusal-tests-entitlement.plist
+[164/483] Write audio-delay-tests-entitlement.plist
+[164/483] Write audio-interrupt-tests-entitlement.plist
+[166/483] Write audio-continuity-tests-entitlement.plist
+[167/483] Write audio-baseline-tests-entitlement.plist
+[168/483] Write sources
+[168/483] Write adversarial-seek-tests-entitlement.plist
+[170/483] Write sources
+[171/483] Write admission-tests-entitlement.plist
+[171/483] Write sources
+[174/483] Write active-transport-tests-entitlement.plist
+[175/483] Write active-media-inventory-tests-entitlement.plist
+[176/483] Write sources
+[189/483] /Users/builder/clone/work-baseline/payload/gorav/.build/arm64-apple-macosx/debug/GorAVDecoderOnlyCandidatePackageTests.derived/runner.swift
+[190/483] Write sources
+[193/483] Compiling DVRPUAnnexB.c
+[194/483] Write sources
+[201/483] Compiling gorav_audio_clock.c
+[202/483] Compiling dovi-selftest dv_selftest.c
+[203/483] Write Objects.LinkFileList
+[204/483] Compiling dovi-fuzz dv_fuzz.c
+[205/483] Write Objects.LinkFileList
+[206/483] Compiling dovi-hdrtest dv_hdrtest.c
+[207/483] Write Objects.LinkFileList
+[208/483] Compiling dovi-vectest dv_vectest.c
+[209/483] Write Objects.LinkFileList
+[210/483] Write swift-version--112E4EF74740DA65.txt
+[211/479] Linking dovi-fuzz
+[212/479] Linking dovi-selftest
+[213/479] Linking dovi-hdrtest
+[213/479] Linking dovi-vectest
+[216/495] Compiling window_mode_tests main.swift
+[217/495] Emitting module window_mode_tests
+[218/495] Compiling transport_vector_tests main.swift
+[219/495] Emitting module transport_vector_tests
+[220/495] Compiling seek_ring_reset_tests SeekRingResetTests.swift
+[221/495] Emitting module seek_ring_reset_tests
+[222/500] Emitting module uniform_packing_tests
+[223/500] Compiling uniform_packing_tests main.swift
+[224/504] Compiling seek_pacing_tests SeekPacingTests.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/seek-pacing-tests/SeekPacingTests.swift:19:51: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 17 |     let clock: FakeClock
+ 18 |     init(_ c: FakeClock) { clock = c }
+ 19 |     func show(_ f: SourceFrame) async -> Bool { l.lock(); shown.append(f.ptsSeconds); showWalls.append(clock.t); l.unlock(); return true }
+    |                                                   `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 20 |     func show(_ f: SourceFrame, admission: CancelCommit.AdmissionTicket) async -> Bool { await show(f) }
+ 21 |     func snapshot() -> ([Double], [Double]) { l.lock(); defer { l.unlock() }; return (shown, showWalls) }
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/seek-pacing-tests/SeekPacingTests.swift:19:116: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 17 |     let clock: FakeClock
+ 18 |     init(_ c: FakeClock) { clock = c }
+ 19 |     func show(_ f: SourceFrame) async -> Bool { l.lock(); shown.append(f.ptsSeconds); showWalls.append(clock.t); l.unlock(); return true }
+    |                                                                                                                    `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 20 |     func show(_ f: SourceFrame, admission: CancelCommit.AdmissionTicket) async -> Bool { await show(f) }
+ 21 |     func snapshot() -> ([Double], [Double]) { l.lock(); defer { l.unlock() }; return (shown, showWalls) }
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/seek-pacing-tests/SeekPacingTests.swift:28:11: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 26 |     func setScript(_ pts: [Double], end: Bool) { l.lock(); script = pts; idx = 0; endWhenDrained = end; l.unlock() }
+ 27 |     func nextEvent() async -> SourceEvent {
+ 28 |         l.lock()
+    |           `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 29 |         defer { l.unlock() }
+ 30 |         guard idx < script.count else { return endWhenDrained ? .ended(.endOfStream) : .temporarilyUnavailable }
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/seek-pacing-tests/SeekPacingTests.swift:29:19: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 27 |     func nextEvent() async -> SourceEvent {
+ 28 |         l.lock()
+ 29 |         defer { l.unlock() }
+    |                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 30 |         guard idx < script.count else { return endWhenDrained ? .ended(.endOfStream) : .temporarilyUnavailable }
+ 31 |         let pts = script[idx]; idx += 1
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+[225/504] Emitting module seek_pacing_tests
+[226/504] Compiling seek_pacing_tests ClockScenarioReplay.swift
+[227/506] Compiling untagged_color_tests main.swift
+[228/506] Emitting module untagged_color_tests
+[229/506] Emitting module photon_sharp_tests
+[230/506] Compiling photon_sharp_tests main.swift
+[231/510] Compiling open_url_tests main.swift
+[232/510] Emitting module open_url_tests
+[233/512] Emitting module photon_admission_tests
+[234/512] Compiling photon_admission_tests main.swift
+[235/512] Compiling render_graph_tests main.swift
+[236/512] Emitting module render_graph_tests
+[237/512] Compiling prepared_shot_tests main.swift
+[238/512] Emitting module prepared_shot_tests
+[239/514] Emitting module open_intent_dispatch_tests
+[240/514] Compiling open_intent_dispatch_tests DispatchTests.swift
+[241/516] Compiling race_witness_tests RaceArms2.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/race-witness-tests/RaceArms2.swift:214:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+212 |     }
+213 |     func coordinateSeek(revision: UInt64) async -> SeekBarrierOutcome {
+214 |         lock.lock(); coordinatedRevision = revision; lock.unlock()
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+215 |         return .flushed
+216 |     }
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/race-witness-tests/RaceArms2.swift:214:59: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+212 |     }
+213 |     func coordinateSeek(revision: UInt64) async -> SeekBarrierOutcome {
+214 |         lock.lock(); coordinatedRevision = revision; lock.unlock()
+    |                                                           `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+215 |         return .flushed
+216 |     }
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/race-witness-tests/RaceArms2.swift:352:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+350 |     func coordinateSeek(revision: UInt64) async -> SeekBarrierOutcome {
+351 |         var parked = false
+352 |         lock.lock()
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+353 |         barrierCalls.append(revision)
+354 |         if parkBarrierNext { parkBarrierNext = false; parked = true; barrierParked = true }
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/race-witness-tests/RaceArms2.swift:355:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+353 |         barrierCalls.append(revision)
+354 |         if parkBarrierNext { parkBarrierNext = false; parked = true; barrierParked = true }
+355 |         lock.unlock()
+    |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+356 |         if parked {
+357 |             await withCheckedContinuation { cc in
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/race-witness-tests/RaceArms2.swift:364:39: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+362 |         // On a REAL flush receipt, the pre-seek queued frames are ACTUALLY
+363 |         // dropped - this is the decoder-queue obligation the receipt attests.
+364 |         if outcome == .flushed { lock.lock(); queue.removeAll(); lock.unlock() }
+    |                                       `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+365 |         return outcome
+366 |     }
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/race-witness-tests/RaceArms2.swift:364:71: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+362 |         // On a REAL flush receipt, the pre-seek queued frames are ACTUALLY
+363 |         // dropped - this is the decoder-queue obligation the receipt attests.
+364 |         if outcome == .flushed { lock.lock(); queue.removeAll(); lock.unlock() }
+    |                                                                       `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+365 |         return outcome
+366 |     }
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+[242/516] Emitting module race_witness_tests
+[243/516] Compiling race_witness_tests main.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/race-witness-tests/main.swift:180:37: warning: initialization of immutable value 'bGo' was never used; consider replacing with assignment to '_' or removing it [#no-usage]
+178 |     // Deterministic 2-racer overshoot: ceiling 1; BOTH racers load 0 before
+179 |     // EITHER increments (handshake via atomics, no wide barrier).
+180 |     let aLoaded = AtomicU64()!; let bGo = AtomicU64()!; let done = AtomicU64()!
+    |                                     `- warning: initialization of immutable value 'bGo' was never used; consider replacing with assignment to '_' or removing it [#no-usage]
+181 |     let sem = DispatchSemaphore(value: 0)
+182 |     DispatchQueue.global().async {
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/race-witness-tests/main.swift:574:9: warning: variable 'bytes' was never mutated; consider changing to 'let' constant
+572 | func armRW18() {
+573 |     guard let ring = SPSCPCMRing(capacityFrames: 16) else { check(false, "RW18 alloc"); return }
+574 |     var bytes = [UInt8](repeating: 0xAB, count: 12)
+    |         `- warning: variable 'bytes' was never mutated; consider changing to 'let' constant
+575 |     let pr = bytes.withUnsafeBufferPointer { ring.push($0) }
+576 |     check(pr.admittedFrames == 3, "RW18 3 frames admitted")
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/race-witness-tests/main.swift:584:9: warning: variable 'five' was never mutated; consider changing to 'let' constant
+582 |     check(ring.pushedFrames.load() == 0 && ring.availableFrames == 0, "RW18 live counters zero after reset")
+583 |     guard let small = SPSCPCMRing(capacityFrames: 2) else { return }
+584 |     var five = [UInt8](repeating: 1, count: 20)
+    |         `- warning: variable 'five' was never mutated; consider changing to 'let' constant
+585 |     let ov = five.withUnsafeBufferPointer { small.push($0) }
+586 |     check(ov.admittedFrames == 2 && ov.droppedFrames == 3 && small.droppedBytes.load() == 12 && small.droppedAnything.load() == 1, "RW18 NEG overflow drop byte-exact + sticky latch")
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/race-witness-tests/main.swift:587:9: warning: variable 'tail' was never mutated; consider changing to 'let' constant
+585 |     let ov = five.withUnsafeBufferPointer { small.push($0) }
+586 |     check(ov.admittedFrames == 2 && ov.droppedFrames == 3 && small.droppedBytes.load() == 12 && small.droppedAnything.load() == 1, "RW18 NEG overflow drop byte-exact + sticky latch")
+587 |     var tail = [UInt8](repeating: 2, count: 10)
+    |         `- warning: variable 'tail' was never mutated; consider changing to 'let' constant
+588 |     let pt = tail.withUnsafeBufferPointer { small.push($0) } // ring already full
+589 |     check(pt.droppedTailBytes == 2 && small.partialTailDrops.load() == 1, "RW18 NEG partial-frame tail refused byte-exact, never misaligned")
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/race-witness-tests/main.swift:626:7: warning: 't' mutated after capture by sendable closure
+610 | // refuses success with a visibly corrupted record.
+611 | func armRW20() {
+612 |     nonisolated(unsafe) var t = 1000.0
+    |                             `- note: variable defined here
+613 |     let l = TimingLedger(capacity: 64, clock: { t })
+    |                                               | `- note: capturing use
+    |                                               `- note: variable captured by sendable closure
+614 |     let req: [LedgerKind] = [.audioStartAttempt, .audioStartAccepted, .audioStopAttempt, .audioStopAccepted, .disposeCompleted]
+615 |     for k in req { l.append(session: 1, generation: 1, segment: .teardown, subsystem: .audio, kind: k) }
+    :
+624 |     l3.append(session: 0, generation: 0, segment: .teardown, subsystem: .core, kind: .teardownStart)
+625 |     check(l3.invalidStampCount == 1 && !l3.allowsSuccess && l3.snapshot().first?.note.hasPrefix("INVALID_STAMP:") == true, "RW20 NEG non-finite stamp counted, marked, refuses success")
+626 |     t += 1
+    |       `- warning: 't' mutated after capture by sendable closure
+627 | }
+628 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/race-witness-tests/main.swift:626:7: warning: 't' mutated after capture by sendable closure
+610 | // refuses success with a visibly corrupted record.
+611 | func armRW20() {
+612 |     nonisolated(unsafe) var t = 1000.0
+    |                             `- note: variable defined here
+613 |     let l = TimingLedger(capacity: 64, clock: { t })
+614 |     let req: [LedgerKind] = [.audioStartAttempt, .audioStartAccepted, .audioStopAttempt, .audioStopAccepted, .disposeCompleted]
+    :
+617 |     check(l.missingSequence(session: 1, generation: 2, required: req) == req, "RW20 NEG foreign generation fulfills nothing")
+618 |     check(l.missingSequence(session: 2, generation: 1, required: req) == req, "RW20 NEG foreign session fulfills nothing")
+619 |     let l2 = TimingLedger(capacity: 3, clock: { t })
+    |                                               | `- note: capturing use
+    |                                               `- note: variable captured by sendable closure
+620 |     for i in 0..<5 { l2.append(session: 0, generation: 0, segment: .teardown, subsystem: .core, kind: .teardownStart, bytes: i) }
+621 |     check(l2.count == 3 && l2.overflowed && l2.droppedEventCount == 2 && !l2.allowsSuccess, "RW20 NEG ceiling exact: 3 kept 2 dropped, refuses success")
+    :
+624 |     l3.append(session: 0, generation: 0, segment: .teardown, subsystem: .core, kind: .teardownStart)
+625 |     check(l3.invalidStampCount == 1 && !l3.allowsSuccess && l3.snapshot().first?.note.hasPrefix("INVALID_STAMP:") == true, "RW20 NEG non-finite stamp counted, marked, refuses success")
+626 |     t += 1
+    |       `- warning: 't' mutated after capture by sendable closure
+627 | }
+628 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/race-witness-tests/main.swift:623:63: warning: 'bad' mutated after capture by sendable closure
+620 |     for i in 0..<5 { l2.append(session: 0, generation: 0, segment: .teardown, subsystem: .core, kind: .teardownStart, bytes: i) }
+621 |     check(l2.count == 3 && l2.overflowed && l2.droppedEventCount == 2 && !l2.allowsSuccess, "RW20 NEG ceiling exact: 3 kept 2 dropped, refuses success")
+622 |     nonisolated(unsafe) var bad = false; let badClock: @Sendable () -> Double = { bad ? .nan : 1000.0 }
+    |                             |                                                   | `- note: capturing use
+    |                             |                                                   `- note: variable captured by sendable closure
+    |                             `- note: variable defined here
+623 |     let l3 = TimingLedger(capacity: 16, clock: badClock); bad = true
+    |                                                               `- warning: 'bad' mutated after capture by sendable closure
+624 |     l3.append(session: 0, generation: 0, segment: .teardown, subsystem: .core, kind: .teardownStart)
+625 |     check(l3.invalidStampCount == 1 && !l3.allowsSuccess && l3.snapshot().first?.note.hasPrefix("INVALID_STAMP:") == true, "RW20 NEG non-finite stamp counted, marked, refuses success")
+[244/522] Emitting module observation_tests
+[245/522] Compiling observation_tests main.swift
+[246/524] Compiling hosttransform_tests main.swift
+[247/524] Emitting module hosttransform_tests
+[248/524] Compiling hud_state_tests main.swift
+[249/524] Emitting module hud_state_tests
+[249/526] Applying dovi-vectest
+[250/526] Applying dovi-selftest
+[252/526] Emitting module k9_adversarial
+[253/526] Compiling k9_adversarial K9Adversarial.swift
+[254/526] Emitting module timing_ledger_tests
+/Users/builder/clone/work-baseline/payload/gorav/Sources/timing-ledger-tests/SPSCTests.swift:181:17: warning: variable 'b3' was never mutated; consider changing to 'let' constant
+179 |             guard let ring = unwrap(SPSCPCMRing(capacityFrames: 4), "init S8") else { return }
+180 |             check(ring.droppedAnything.load() == 0, "S8 latch starts clear")
+181 |             var b3: [UInt8] = [1, 2, 3]
+    |                 `- warning: variable 'b3' was never mutated; consider changing to 'let' constant
+182 |             _ = b3.withUnsafeBufferPointer { ring.push($0) } // tail refusal
+183 |             check(ring.droppedAnything.load() == 1, "S8 tail refusal latches sticky")
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/timing-ledger-tests/SPSCTests.swift:186:17: warning: variable 'full' was never mutated; consider changing to 'let' constant
+184 |             ring.resetForNewGeneration()
+185 |             check(ring.droppedAnything.load() == 0, "S8 reset clears latch")
+186 |             var full: [UInt8] = [UInt8](repeating: 9, count: 20) // 5 frames > cap 4
+    |                 `- warning: variable 'full' was never mutated; consider changing to 'let' constant
+187 |             _ = full.withUnsafeBufferPointer { ring.push($0) }
+188 |             check(ring.droppedAnything.load() == 1 && ring.droppedFrames.load() == 1, "S8 frame drop latches sticky")
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/timing-ledger-tests/TimingLedgerTests.swift:376:17: warning: variable 's0' was never mutated; consider changing to 'let' constant
+374 |         // stamps only a close that actually lands; a veto leaves no stamp.
+375 |         do {
+376 |             var s0 = CloseActorStamp()
+    |                 `- warning: variable 's0' was never mutated; consider changing to 'let' constant
+377 |             check(s0.actor == .none && !s0.closeIntent, "T25 initial: no actor, no intent")
+378 |             // probe first, close lands -> probe actor, intent recorded
+[255/526] Compiling timing_ledger_tests SPSCTests.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/timing-ledger-tests/SPSCTests.swift:24:17: warning: variable 'bytes' was never mutated; consider changing to 'let' constant
+ 22 |         do {
+ 23 |             guard let ring = unwrap(SPSCPCMRing(capacityFrames: 8), "init S1") else { return }
+ 24 |             var bytes = [UInt8](repeating: 0xAB, count: 10) // 2 frames + 2-byte tail
+    |                 `- warning: variable 'bytes' was never mutated; consider changing to 'let' constant
+ 25 |             let r = bytes.withUnsafeBufferPointer { ring.push($0) }
+ 26 |             check(r.admittedFrames == 2 && r.droppedFrames == 0 && r.droppedTailBytes == 2, "S1 partial tail refused BYTE-exact, not as a frame", "\(r)")
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/timing-ledger-tests/SPSCTests.swift:40:17: warning: variable 'extra' was never mutated; consider changing to 'let' constant
+ 38 |             let r1 = pushed.withUnsafeBufferPointer { ring.push($0) }
+ 39 |             check(r1.admittedFrames == 4 && r1.droppedFrames == 0, "S2 fill")
+ 40 |             var extra = frame(99) + frame(98)
+    |                 `- warning: variable 'extra' was never mutated; consider changing to 'let' constant
+ 41 |             let r2 = extra.withUnsafeBufferPointer { ring.push($0) }
+ 42 |             check(r2.admittedFrames == 0 && r2.droppedFrames == 2, "S2 overflow drop frame-quantized")
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/timing-ledger-tests/SPSCTests.swift:52:17: warning: variable 'two' was never mutated; consider changing to 'let' constant
+ 50 |         do {
+ 51 |             guard let ring = unwrap(SPSCPCMRing(capacityFrames: 8), "init S4") else { return }
+ 52 |             var two = [UInt8](repeating: 7, count: 8)
+    |                 `- warning: variable 'two' was never mutated; consider changing to 'let' constant
+ 53 |             _ = two.withUnsafeBufferPointer { ring.push($0) }
+ 54 |             let dst = UnsafeMutablePointer<UInt8>.allocate(capacity: 16); defer { dst.deallocate() }
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/timing-ledger-tests/SPSCTests.swift:152:21: warning: variable 'pcm' was never mutated; consider changing to 'let' constant
+150 |             do {
+151 |                 guard let ring2 = unwrap(SPSCPCMRing(capacityFrames: 64), "init S5b") else { return }
+152 |                 var pcm = [UInt8](repeating: 5, count: 4 * 16)
+    |                     `- warning: variable 'pcm' was never mutated; consider changing to 'let' constant
+153 |                 _ = pcm.withUnsafeBufferPointer { ring2.push($0) }
+154 |                 let dst2 = UnsafeMutablePointer<UInt8>.allocate(capacity: 64 * 4); defer { dst2.deallocate() }
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/timing-ledger-tests/SPSCTests.swift:181:17: warning: variable 'b3' was never mutated; consider changing to 'let' constant
+179 |             guard let ring = unwrap(SPSCPCMRing(capacityFrames: 4), "init S8") else { return }
+180 |             check(ring.droppedAnything.load() == 0, "S8 latch starts clear")
+181 |             var b3: [UInt8] = [1, 2, 3]
+    |                 `- warning: variable 'b3' was never mutated; consider changing to 'let' constant
+182 |             _ = b3.withUnsafeBufferPointer { ring.push($0) } // tail refusal
+183 |             check(ring.droppedAnything.load() == 1, "S8 tail refusal latches sticky")
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/timing-ledger-tests/SPSCTests.swift:186:17: warning: variable 'full' was never mutated; consider changing to 'let' constant
+184 |             ring.resetForNewGeneration()
+185 |             check(ring.droppedAnything.load() == 0, "S8 reset clears latch")
+186 |             var full: [UInt8] = [UInt8](repeating: 9, count: 20) // 5 frames > cap 4
+    |                 `- warning: variable 'full' was never mutated; consider changing to 'let' constant
+187 |             _ = full.withUnsafeBufferPointer { ring.push($0) }
+188 |             check(ring.droppedAnything.load() == 1 && ring.droppedFrames.load() == 1, "S8 frame drop latches sticky")
+[256/526] Compiling timing_ledger_tests TimingLedgerTests.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/timing-ledger-tests/TimingLedgerTests.swift:188:17: warning: variable 't' was never mutated; consider changing to 'let' constant
+186 |         do {
+187 |             let ledger = TimingLedger(capacity: 16, clock: { 0.0 })
+188 |             var t = 50.0
+    |                 `- warning: variable 't' was never mutated; consider changing to 'let' constant
+189 |             final class TB: @unchecked Sendable { var v = 50.0 }
+190 |             let tb = TB(); tb.v = t
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/timing-ledger-tests/TimingLedgerTests.swift:376:17: warning: variable 's0' was never mutated; consider changing to 'let' constant
+374 |         // stamps only a close that actually lands; a veto leaves no stamp.
+375 |         do {
+376 |             var s0 = CloseActorStamp()
+    |                 `- warning: variable 's0' was never mutated; consider changing to 'let' constant
+377 |             check(s0.actor == .none && !s0.closeIntent, "T25 initial: no actor, no intent")
+378 |             // probe first, close lands -> probe actor, intent recorded
+[257/526] Emitting module live_control_tests
+/Users/builder/clone/work-baseline/payload/gorav/Sources/live-control-tests/main.swift:243:9: warning: variable 'now' was never mutated; consider changing to 'let' constant
+241 | do {
+242 |     let writer = PhotonAdmissionP22Writer(lane: "GR_AMOUNT")
+243 |     var now = 0.0
+    |         `- warning: variable 'now' was never mutated; consider changing to 'let' constant
+244 |     let doc = PhotonAdmission.Document(gen: 1, name: "clip")
+245 |     let r = PhotonAdmission.Receiver(base: 10, cacheCapacity: 2,
+[258/526] Compiling live_control_tests main.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/live-control-tests/main.swift:243:9: warning: variable 'now' was never mutated; consider changing to 'let' constant
+241 | do {
+242 |     let writer = PhotonAdmissionP22Writer(lane: "GR_AMOUNT")
+243 |     var now = 0.0
+    |         `- warning: variable 'now' was never mutated; consider changing to 'let' constant
+244 |     let doc = PhotonAdmission.Document(gen: 1, name: "clip")
+245 |     let r = PhotonAdmission.Receiver(base: 10, cacheCapacity: 2,
+[258/526] Applying dovi-hdrtest
+[260/526] Emitting module frame_tap_tests
+[261/526] Compiling frame_tap_tests main.swift
+[261/526] Applying dovi-fuzz
+[263/536] Emitting module color_stage_tests
+[264/536] Compiling color_stage_tests main.swift
+[265/536] Compiling decoder_inventory_tests main.swift
+[266/536] Emitting module decoder_inventory_tests
+[267/536] Emitting module controlbus_tests
+[268/536] Compiling controlbus_tests main.swift
+[269/538] Compiling core_seek_tests CoreSeekTests.swift
+[270/538] Emitting module core_seek_tests
+[271/538] Emitting module crop_tests
+[272/538] Compiling crop_tests main.swift
+[273/538] Emitting module pause_resume_tests
+[274/538] Compiling pause_resume_tests PauseResumeTests.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/pause-resume-tests/PauseResumeTests.swift:19:51: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 17 |     let clock: FakeClock
+ 18 |     init(_ c: FakeClock) { clock = c }
+ 19 |     func show(_ f: SourceFrame) async -> Bool { l.lock(); shown.append(f.ptsSeconds); showWalls.append(clock.t); l.unlock(); return true }
+    |                                                   `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 20 |     func show(_ f: SourceFrame, admission: CancelCommit.AdmissionTicket) async -> Bool { await show(f) }
+ 21 |     func snapshot() -> ([Double], [Double]) { l.lock(); defer { l.unlock() }; return (shown, showWalls) }
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/pause-resume-tests/PauseResumeTests.swift:19:116: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 17 |     let clock: FakeClock
+ 18 |     init(_ c: FakeClock) { clock = c }
+ 19 |     func show(_ f: SourceFrame) async -> Bool { l.lock(); shown.append(f.ptsSeconds); showWalls.append(clock.t); l.unlock(); return true }
+    |                                                                                                                    `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 20 |     func show(_ f: SourceFrame, admission: CancelCommit.AdmissionTicket) async -> Bool { await show(f) }
+ 21 |     func snapshot() -> ([Double], [Double]) { l.lock(); defer { l.unlock() }; return (shown, showWalls) }
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/pause-resume-tests/PauseResumeTests.swift:31:11: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 29 |     func finish() { l.lock(); endWhenDrained = true; l.unlock() }
+ 30 |     func nextEvent() async -> SourceEvent {
+ 31 |         l.lock()
+    |           `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 32 |         defer { l.unlock() }
+ 33 |         pulls += 1
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/pause-resume-tests/PauseResumeTests.swift:32:19: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 30 |     func nextEvent() async -> SourceEvent {
+ 31 |         l.lock()
+ 32 |         defer { l.unlock() }
+    |                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 33 |         pulls += 1
+ 34 |         guard idx < script.count else { return endWhenDrained ? .ended(.endOfStream) : .temporarilyUnavailable }
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/pause-resume-tests/PauseResumeTests.swift:204:52: warning: no 'async' operations occur within 'await' expression
+202 |             let commit = CancelCommit(sessionEpoch: 44)
+203 |             let pump = FramePump(source: src, sink: rec, clock: clock, commit: commit,
+204 |                                  closeRequested: { await closed.value() }, onWait: makeWait(clock, gate))
+    |                                                    `- warning: no 'async' operations occur within 'await' expression
+205 |             let run = Task { await pump.run() }
+206 |             while rec.snapshot().0.count < 2 { await realSleep(2) }
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/pause-resume-tests/PauseResumeTests.swift:207:13: warning: no 'async' operations occur within 'await' expression
+205 |             let run = Task { await pump.run() }
+206 |             while rec.snapshot().0.count < 2 { await realSleep(2) }
+207 |             await closed.set()
+    |             `- warning: no 'async' operations occur within 'await' expression
+208 |             let stats = await run.value
+209 |             expect(stats.windowClosed && stats.endReason == .cancelled,
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/pause-resume-tests/PauseResumeTests.swift:221:52: warning: no 'async' operations occur within 'await' expression
+219 |             let commit = CancelCommit(sessionEpoch: 45)
+220 |             let pump = FramePump(source: src, sink: rec, clock: clock, commit: commit,
+221 |                                  closeRequested: { await closed.value() }, onWait: makeWait(clock, gate))
+    |                                                    `- warning: no 'async' operations occur within 'await' expression
+222 |             let run = Task { await pump.run() }
+223 |             while rec.snapshot().0.count < 2 { await realSleep(2) }
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/pause-resume-tests/PauseResumeTests.swift:226:13: warning: no 'async' operations occur within 'await' expression
+224 |             await pump.pause()
+225 |             await realSleep(20)
+226 |             await closed.set()
+    |             `- warning: no 'async' operations occur within 'await' expression
+227 |             let stats = await run.value
+228 |             expect(stats.windowClosed && stats.endReason == .cancelled, "closePaused: typed end while parked (got \(stats.endReason.rawValue))")
+[275/549] Compiling chrome_state_tests main.swift
+[276/549] Emitting module chrome_state_tests
+[277/549] Compiling avsync_golden_tests AVSyncGoldenChecker.swift
+[278/549] Emitting module avsync_golden_tests
+[279/576] Emitting module frame_lease_tests
+[280/576] Compiling frame_lease_tests main.swift
+[281/579] Compiling GorAVTestPixelEvidence PixelEvidence.swift
+[282/579] Emitting module GorAVTestPixelEvidence
+[283/579] Compiling GorAVFFmpegAdapter SnapshotInput.swift
+[284/579] Compiling GorAVFFmpegAdapter L3PixelConvert.swift
+[285/582] Compiling GorAVFFmpegAdapter L3AVCoordinator.swift
+[286/582] Compiling GorAVFFmpegAdapter LabSwrBackendBinding.swift
+[287/582] Compiling GorAVFFmpegAdapter MediaInventory.swift
+[288/582] Compiling GorAVFFmpegAdapter L3Admission.swift
+[289/582] Compiling GorAVFFmpegAdapter FFmpegSoftwareDecoder.swift
+[290/582] Compiling GorAVFFmpegAdapter FrameObservation.swift
+[291/582] Compiling GorAVFFmpegAdapter L3HardwareDecode.swift
+[292/582] Compiling GorAVFFmpegAdapter SnapshotAVIOOwner.swift
+[293/582] Compiling GorAVAudioClockSwift AudioPacing.swift
+[294/582] Compiling GorAVAudioClockSwift AudioClock.swift
+[295/582] Emitting module GorAVAudioClockSwift
+[296/582] Emitting module GorAVSubtitles
+[297/582] Compiling GorAVFFmpegAdapter ActiveTransportSnapshot.swift
+[298/582] Compiling GorAVFFmpegAdapter FFmpegSoftwareAudioDecoder.swift
+[299/588] Compiling BridgeDemux Types.swift
+[300/588] Compiling GorAVSubtitles VTTParser.swift
+[301/590] Emitting module audio_delay_tests
+[302/590] Compiling audio_delay_tests main.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVFFmpegAdapter/LabSwrBackendBinding.swift:93:21: warning: variable 'inArr' was never mutated; consider changing to 'let' constant
+ 91 |         return outArr.withUnsafeMutableBufferPointer { ob in
+ 92 |             if let inPlanes {
+ 93 |                 var inArr = inPlanes
+    |                     `- warning: variable 'inArr' was never mutated; consider changing to 'let' constant
+ 94 |                 return inArr.withUnsafeBufferPointer { ib in
+ 95 |                     swr_convert(ctx, ob.baseAddress, cap,
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVFFmpegAdapter/LabSwrBackendBinding.swift:93:21: warning: variable 'inArr' was never mutated; consider changing to 'let' constant
+ 91 |         return outArr.withUnsafeMutableBufferPointer { ob in
+ 92 |             if let inPlanes {
+ 93 |                 var inArr = inPlanes
+    |                     `- warning: variable 'inArr' was never mutated; consider changing to 'let' constant
+ 94 |                 return inArr.withUnsafeBufferPointer { ib in
+ 95 |                     swr_convert(ctx, ob.baseAddress, cap,
+[308/592] Compiling GorAVFFmpegAdapter L3SampleConvert.swift
+[313/594] Compiling vtt_parser_tests main.swift
+[314/594] Emitting module vtt_parser_tests
+[315/596] Compiling BridgeDemux Demuxer.swift
+[316/596] Compiling BridgeDemux MKVDemuxer.swift
+[317/596] Compiling BridgeDemux Cursor.swift
+[318/596] Emitting module BridgeDemux
+[319/596] Compiling BridgeDemux MP4Demuxer.swift
+[320/598] Compiling subtitle_track_tests SubtitleTrackTests.swift
+[321/598] Emitting module subtitle_track_tests
+[322/598] Compiling GorAVFFmpegAdapter SourceOpenOptions.swift
+[323/598] Compiling GorAVFFmpegAdapter VTHardwareFrameProducer.swift
+[324/598] Emitting module subtitle_srt_tests
+[325/598] Compiling subtitle_srt_tests SRTTests.swift
+[326/602] Compiling subtitle_plan_tests SubtitlePlanTests.swift
+[327/602] Emitting module subtitle_plan_tests
+[328/602] Compiling subtitle_controller_tests SubtitleControllerTests.swift
+[329/602] Emitting module subtitle_controller_tests
+[330/606] Compiling subtitle_ass_tests ASSTests.swift
+[331/606] Emitting module subtitle_ass_tests
+[332/610] Compiling demux_parity_tests DemuxParity.swift
+[333/610] Emitting module demux_parity_tests
+[334/613] Compiling cue_output_tests main.swift
+[335/613] Compiling cue_output_tests CueBatchFixtureRows.swift
+[336/613] Compiling cue_output_tests SidecarFixtureRows.swift
+[337/613] Emitting module cue_output_tests
+[338/615] Emitting module GorAVFFmpegAdapter
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift:2053:20: warning: stored property 'pixelBuffer' of 'Sendable'-conforming struct 'VTFrameLeaseInfo' has non-Sendable type 'CVPixelBuffer' (aka 'CVBuffer'); this is an error in the Swift 6 language mode
+2051 |     /// check failure - extraction never guesses.
+2052 |     public struct VTFrameLeaseInfo: Sendable {
+2053 |         public let pixelBuffer: CVPixelBuffer
+     |                    `- warning: stored property 'pixelBuffer' of 'Sendable'-conforming struct 'VTFrameLeaseInfo' has non-Sendable type 'CVPixelBuffer' (aka 'CVBuffer'); this is an error in the Swift 6 language mode
+2054 |         public let width: Int
+2055 |         public let height: Int
+
+CoreVideo.CVBuffer:1:14: note: class 'CVBuffer' does not conform to the 'Sendable' protocol
+1 | public class CVBuffer : _CFObject {
+  |              `- note: class 'CVBuffer' does not conform to the 'Sendable' protocol
+2 | }
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift:2053:20: warning: stored property 'pixelBuffer' of 'Sendable'-conforming struct 'VTFrameLeaseInfo' has non-Sendable type 'CVPixelBuffer' (aka 'CVBuffer'); this is an error in the Swift 6 language mode
+2051 |     /// check failure - extraction never guesses.
+2052 |     public struct VTFrameLeaseInfo: Sendable {
+2053 |         public let pixelBuffer: CVPixelBuffer
+     |                    `- warning: stored property 'pixelBuffer' of 'Sendable'-conforming struct 'VTFrameLeaseInfo' has non-Sendable type 'CVPixelBuffer' (aka 'CVBuffer'); this is an error in the Swift 6 language mode
+2054 |         public let width: Int
+2055 |         public let height: Int
+
+CoreVideo.CVBuffer:1:14: note: class 'CVBuffer' does not conform to the 'Sendable' protocol
+1 | public class CVBuffer : _CFObject {
+  |              `- note: class 'CVBuffer' does not conform to the 'Sendable' protocol
+2 | }
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift:2053:20: warning: stored property 'pixelBuffer' of 'Sendable'-conforming struct 'VTFrameLeaseInfo' has non-Sendable type 'CVPixelBuffer' (aka 'CVBuffer'); this is an error in the Swift 6 language mode
+2051 |     /// check failure - extraction never guesses.
+2052 |     public struct VTFrameLeaseInfo: Sendable {
+2053 |         public let pixelBuffer: CVPixelBuffer
+     |                    `- warning: stored property 'pixelBuffer' of 'Sendable'-conforming struct 'VTFrameLeaseInfo' has non-Sendable type 'CVPixelBuffer' (aka 'CVBuffer'); this is an error in the Swift 6 language mode
+2054 |         public let width: Int
+2055 |         public let height: Int
+
+CoreVideo.CVBuffer:1:14: note: class 'CVBuffer' does not conform to the 'Sendable' protocol
+1 | public class CVBuffer : _CFObject {
+  |              `- note: class 'CVBuffer' does not conform to the 'Sendable' protocol
+2 | }
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift:2053:20: warning: stored property 'pixelBuffer' of 'Sendable'-conforming struct 'VTFrameLeaseInfo' has non-Sendable type 'CVPixelBuffer' (aka 'CVBuffer'); this is an error in the Swift 6 language mode
+2051 |     /// check failure - extraction never guesses.
+2052 |     public struct VTFrameLeaseInfo: Sendable {
+2053 |         public let pixelBuffer: CVPixelBuffer
+     |                    `- warning: stored property 'pixelBuffer' of 'Sendable'-conforming struct 'VTFrameLeaseInfo' has non-Sendable type 'CVPixelBuffer' (aka 'CVBuffer'); this is an error in the Swift 6 language mode
+2054 |         public let width: Int
+2055 |         public let height: Int
+
+CoreVideo.CVBuffer:1:14: note: class 'CVBuffer' does not conform to the 'Sendable' protocol
+1 | public class CVBuffer : _CFObject {
+  |              `- note: class 'CVBuffer' does not conform to the 'Sendable' protocol
+2 | }
+[342/619] Compiling BridgeVTDecode SpatialContract.swift
+[343/619] Compiling BridgeVTDecode Types.swift
+[344/619] Emitting module BridgeVTDecode
+[345/619] Compiling BridgeVTDecode SoftwareStubDecoder.swift
+[346/622] Compiling vt_public_producer_tests ProducerTests.swift
+[347/622] Compiling vt_public_producer_tests NativeTests.swift
+[348/622] Emitting module vt_public_producer_tests
+[349/624] Compiling video_remote_open_tests main.swift
+[350/624] Emitting module video_remote_open_tests
+[351/626] Compiling video_refusal_tests VideoRefusalTests.swift
+[352/626] Emitting module video_refusal_tests
+[353/628] Compiling trace_dump TraceDump.swift
+[354/628] Emitting module trace_dump
+[355/630] Emitting module shell_seek_bridge_tests
+[356/630] Compiling shell_seek_bridge_tests ShellSeekBridgeTests.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/shell-seek-bridge-tests/ShellSeekBridgeTests.swift:115:26: warning: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead; this is an error in the Swift 6 language mode
+113 |             let bridge = ShellSeekBridge()
+114 |             async let out = bridge.seek(on: dec, position: target) { rev, _ in acks.add(rev) }
+115 |             gate.entered.wait()
+    |                          `- warning: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead; this is an error in the Swift 6 language mode
+116 |             chk("cancel.activeDuringHold", bridge.hasActiveSeek)
+117 |             bridge.cancelActiveSeek()
+
+Dispatch.DispatchSemaphore.wait:2:13: note: 'wait()' declared here
+1 | class DispatchSemaphore {
+2 | public func wait()}
+  |             `- note: 'wait()' declared here
+3 | 
+[357/632] Compiling seek_test SeekTest.swift
+[358/632] Emitting module seek_test
+[359/634] Emitting module seek_restart_probe
+[360/634] Compiling seek_restart_probe main.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/seek-restart-probe/main.swift:113:37: warning: immutable value 'common' was never used; consider replacing with '_' or removing it [#no-usage]
+111 |         let aSeek = Double(DispatchTime.now().uptimeNanoseconds - tA) / 1e9
+112 |         switch result {
+113 |         case .nativeReady(_, _, let common, let ticks):
+    |                                     `- warning: immutable value 'common' was never used; consider replacing with '_' or removing it [#no-usage]
+114 |             print(String(format: "SEEK-RESTART audio seek(\\(seekTarget)): nativeReady common=\\(common.value)/\\(common.timescale) ticks=\\(ticks) call=%.3fs", aSeek))
+115 |         case .refused(let why):
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/seek-restart-probe/main.swift:113:49: warning: immutable value 'ticks' was never used; consider replacing with '_' or removing it [#no-usage]
+111 |         let aSeek = Double(DispatchTime.now().uptimeNanoseconds - tA) / 1e9
+112 |         switch result {
+113 |         case .nativeReady(_, _, let common, let ticks):
+    |                                                 `- warning: immutable value 'ticks' was never used; consider replacing with '_' or removing it [#no-usage]
+114 |             print(String(format: "SEEK-RESTART audio seek(\\(seekTarget)): nativeReady common=\\(common.value)/\\(common.timescale) ticks=\\(ticks) call=%.3fs", aSeek))
+115 |         case .refused(let why):
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/seek-restart-probe/main.swift:115:27: warning: immutable value 'why' was never used; consider replacing with '_' or removing it [#no-usage]
+113 |         case .nativeReady(_, _, let common, let ticks):
+114 |             print(String(format: "SEEK-RESTART audio seek(\\(seekTarget)): nativeReady common=\\(common.value)/\\(common.timescale) ticks=\\(ticks) call=%.3fs", aSeek))
+115 |         case .refused(let why):
+    |                           `- warning: immutable value 'why' was never used; consider replacing with '_' or removing it [#no-usage]
+116 |             print(String(format: "SEEK-RESTART audio seek(\\(seekTarget)): REFUSED \\(why) call=%.3fs -> session would emit .failed(audioSeek:refusedMuted) and CANCEL the commit", aSeek))
+117 |         case .closeRequired(_, _, let code):
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/seek-restart-probe/main.swift:117:39: warning: immutable value 'code' was never used; consider replacing with '_' or removing it [#no-usage]
+115 |         case .refused(let why):
+116 |             print(String(format: "SEEK-RESTART audio seek(\\(seekTarget)): REFUSED \\(why) call=%.3fs -> session would emit .failed(audioSeek:refusedMuted) and CANCEL the commit", aSeek))
+117 |         case .closeRequired(_, _, let code):
+    |                                       `- warning: immutable value 'code' was never used; consider replacing with '_' or removing it [#no-usage]
+118 |             print(String(format: "SEEK-RESTART audio seek(\\(seekTarget)): CLOSE-REQUIRED nativeCode=\\(code) call=%.3fs -> session would emit .failed(audioSeek:closeRequired) and CANCEL the commit", aSeek))
+119 |         }
+[361/634] Compiling DecodeHeartbeatTests DecodeHeartbeatTests.swift
+[362/634] Emitting module DecodeHeartbeatTests
+[363/634] Emitting module J3AudioControlTests
+[364/634] Compiling J3AudioControlTests IdempotentLockTests.swift
+[365/634] Emitting module GorAVAudioClockTests
+[366/634] Compiling GorAVAudioClockTests AudioClockTests.swift
+[367/634] Emitting module PlayerControlPlaneTests
+[368/634] Compiling PlayerControlPlaneTests PlayerControlPlaneTests.swift
+[369/634] Compiling ReadinessAnchorTests ReadinessAnchorTests.swift
+[370/634] Emitting module ReadinessAnchorTests
+[371/634] Compiling ReadinessAnchorTests SeekPresentedAnchorTests.swift
+[372/634] Compiling J3AudioControlTests ControlTests.swift
+[373/646] Compiling PreparedVideoSwapTests PreparedVideoSwapTests.swift
+[374/646] Emitting module PreparedVideoSwapTests
+[375/648] Emitting module remote_source_tests
+[376/648] Compiling remote_source_tests main.swift
+[377/648] Emitting module refusal_tests
+[378/648] Compiling refusal_tests RefusalTests.swift
+[379/648] Compiling media_inventory_tests main.swift
+[380/648] Emitting module media_inventory_tests
+[381/650] Emitting module parity_pixel_tests
+[382/650] Compiling parity_pixel_tests main.swift
+[383/658] Compiling real_seek_tests RealSeekTests.swift
+[384/658] Emitting module real_seek_tests
+[385/660] Compiling l4_hwdecode_tests L4HWDecodeTests.swift
+[386/660] Emitting module l4_hwdecode_tests
+[387/660] Compiling seek_contract_tests SeekContractTests.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/seek-contract-tests/SeekContractTests.swift:138:5: warning: initialization of immutable value 'facts0' was never used; consider replacing with assignment to '_' or removing it [#no-usage]
+136 |                       target: SeekTarget(position: try! RationalTime(value: 1, timescale: 1), rounding: .floorToKeyframe, requestedFlags: 0),
+137 |                       expectedRevision: rev1)
+138 | let facts0 = NativeSeekFacts(avSeekReturn: nil, flagsApplied: 0, resolvedStreamIndex: nil, requestedTicks: nil,
+    |     `- warning: initialization of immutable value 'facts0' was never used; consider replacing with assignment to '_' or removing it [#no-usage]
+139 |                              resolvedStreamTimebase: nil, startOriginTicks: nil, flushObserved: false,
+140 |                              packetFeedReset: false, decoderReset: false, packetsReleased: nil, packetAccountingReconciled: false)
+[388/660] Emitting module seek_contract_tests
+[389/666] Emitting module gorav_first_frame
+[390/666] Compiling gorav_probe main.swift
+[391/666] Emitting module gorav_probe
+[392/666] Compiling gorav_first_frame FirstFrame.swift
+[393/666] Emitting module isolation_test
+[394/666] Compiling isolation_test IsolationTest.swift
+[395/670] Compiling playback_test PlaybackTest.swift
+[396/670] Emitting module playback_test
+[397/672] Compiling l3_convert_matrix_tests main.swift
+[398/672] Compiling l3_convert_matrix_tests ReferenceConverter.swift
+[399/672] Emitting module l3_convert_matrix_tests
+[400/672] Compiling l3_convert_matrix_tests ProviderRunner.swift
+[401/674] Compiling frame_dump RawPlaneDump.swift
+[402/674] Compiling frame_dump ConverterVariants.swift
+[403/674] Emitting module frame_dump
+[404/674] Compiling frame_dump FrameDump.swift
+[405/674] Emitting module decoder_lifetime_tests
+[406/674] Compiling decoder_lifetime_tests main.swift
+[407/680] Emitting module audio_refusal_tests
+[408/680] Emitting module coexist_test
+[409/680] Compiling coexist_test CoexistTest.swift
+[410/680] Emitting module audio_seek_tests
+[411/680] Compiling audio_seek_tests AudioSeekTests.swift
+[412/682] Compiling audio_continuity_tests main.swift
+[413/682] Emitting module audio_continuity_tests
+[414/682] Compiling audio_refusal_tests AudioRefusalTests.swift
+[415/686] Emitting module audio_baseline_tests
+[416/686] Compiling audio_baseline_tests AudioBaselineTests.swift
+[417/690] Emitting module audio_interrupt_tests
+[418/690] Compiling audio_interrupt_tests main.swift
+[419/690] Emitting module audio_test
+[420/690] Compiling audio_test AudioTest.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/audio-test/AudioTest.swift:144:13: warning: default will never be executed
+142 |             case .endOfStream: break loop
+143 |             case .failed(let code, let sm): cap.failed = "\(code) \(sm)"; break loop
+144 |             default: break
+    |             `- warning: default will never be executed
+145 |             }
+146 |         }
+[421/690] Emitting module active_transport_tests
+[422/690] Compiling active_transport_tests main.swift
+[423/699] Compiling AudioMasterScheduler SeekQueueCoordinator.swift
+[424/699] Emitting module AudioMasterScheduler
+[425/699] Compiling AudioMasterScheduler EnqueueGenerationAdapter.swift
+[426/699] Compiling AudioMasterScheduler AudioMasterScheduler.swift
+[426/699] Write Objects.LinkFileList
+[428/699] Compiling active_media_inventory_tests main.swift
+[429/699] Emitting module active_media_inventory_tests
+[430/701] Emitting module GorAVSeekComposition
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVSeekComposition/SeekComposition.swift:70:76: warning: converting non-Sendable function value to '@Sendable (UInt64) async -> Bool' may introduce data races
+ 68 |                            shouldStop: (@Sendable () async -> Bool)? = nil,
+ 69 |                            shouldPause: (@Sendable () async -> Bool)? = nil,
+ 70 |                            waitNanos: (@Sendable (UInt64) async -> Bool) = defaultWait) async -> BoundPumpOutcome {
+    |                                                                            `- warning: converting non-Sendable function value to '@Sendable (UInt64) async -> Bool' may introduce data races
+ 71 |         let generation = sink.currentFenceGeneration
+ 72 |         var pushed = 0, fencedStale = 0, firstLandingSeen = false
+[431/701] Compiling GorAVSeekComposition SeekComposition.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVSeekComposition/SeekComposition.swift:70:76: warning: converting non-Sendable function value to '@Sendable (UInt64) async -> Bool' may introduce data races
+ 68 |                            shouldStop: (@Sendable () async -> Bool)? = nil,
+ 69 |                            shouldPause: (@Sendable () async -> Bool)? = nil,
+ 70 |                            waitNanos: (@Sendable (UInt64) async -> Bool) = defaultWait) async -> BoundPumpOutcome {
+    |                                                                            `- warning: converting non-Sendable function value to '@Sendable (UInt64) async -> Bool' may introduce data races
+ 71 |         let generation = sink.currentFenceGeneration
+ 72 |         var pushed = 0, fencedStale = 0, firstLandingSeen = false
+[431/701] Write Objects.LinkFileList
+[433/701] Compiling GorAVDolbyVision DVRPUL3Bridge.swift
+[434/701] Emitting module GorAVDolbyVision
+[435/701] Compiling GorAVDolbyVision DVRPUSideData.swift
+[436/705] Compiling EngineContractTests ContractTests.swift
+[437/705] Emitting module EngineContractTests
+[437/705] Linking window-mode-tests
+[439/705] Emitting module AudioPacingTests
+[440/705] Compiling AudioPacingTests AudioPacingTests.swift
+/Users/builder/clone/work-baseline/payload/gorav/Tests/AudioPacingTests/AudioPacingTests.swift:399:19: warning: 'fence' mutated after capture by sendable closure
+371 |         let state = AudioAdmissionState()
+372 |         let violations = AtomicU64(0)!
+373 |         var fence: UInt64 = 1
+    |             `- note: variable defined here
+374 |         let stopFlag = AtomicU64(0)!
+375 |         let doneFlag = AtomicU64(0)!
+376 |         let startedFlag = AtomicU64(0)!
+377 |         let reader = Thread {
+    |                             `- note: variable captured by sendable closure
+378 |             startedFlag.store(1)
+379 |             while stopFlag.load() == 0 {
+380 |                 state.admissionLock.lock()
+381 |                 let decision = state.refusal(fenceActive: fence, expectedGeneration: fence)
+    |                                                           |                          `- note: capturing use
+    |                                                           `- note: capturing use
+382 |                 if state.isPaused {
+383 |                     if decision != .paused { violations.fetchAdd(1) }
+384 |                 } else if decision != nil { violations.fetchAdd(1) }
+385 |                 // A stale expectation must ALWAYS refuse, paused or not.
+386 |                 if state.refusal(fenceActive: fence, expectedGeneration: fence &+ 1) != .staleGeneration {
+    |                                               |                          `- note: capturing use
+    |                                               `- note: capturing use
+387 |                     violations.fetchAdd(1)
+388 |                 }
+    :
+397 |             state.pausedCell?.store(1)
+398 |             state.pausedCell?.store(0)
+399 |             fence &+= 1
+    |                   `- warning: 'fence' mutated after capture by sendable closure
+400 |             state.admissionLock.unlock()
+401 |         }
+[440/714] Applying window-mode-tests
+[441/714] Write Objects.LinkFileList
+[443/714] Linking vtt-parser-tests
+[445/714] Compiling admission_tests main.swift
+[446/714] Compiling seek_composition_tests SeekVectorReplay.swift
+[447/714] Emitting module admission_tests
+[447/714] Applying vtt-parser-tests
+[448/714] Write Objects.LinkFileList
+[451/714] Compiling seek_composition_tests SeekVectorPack.swift
+[452/714] Emitting module adversarial_seek_tests
+[453/714] Compiling adversarial_seek_tests AdversarialSeekTests.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/adversarial-seek-tests/AdversarialSeekTests.swift:84:26: warning: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead; this is an error in the Swift 6 language mode
+ 82 |             let driver = CoreSeekDriver()
+ 83 |             async let out = driver.seek(on: dec, position: target) { rev, _ in acks.add(rev) }
+ 84 |             gate.entered.wait()                      // decoder REALLY reached the pre-native boundary
+    |                          `- warning: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead; this is an error in the Swift 6 language mode
+ 85 |             driver.requestCancellationOfActive()
+ 86 |             gate.release.signal()
+
+Dispatch.DispatchSemaphore.wait:2:13: note: 'wait()' declared here
+1 | class DispatchSemaphore {
+2 | public func wait()}
+  |             `- note: 'wait()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/adversarial-seek-tests/AdversarialSeekTests.swift:107:26: warning: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead; this is an error in the Swift 6 language mode
+105 |             let driver = CoreSeekDriver()
+106 |             async let out = driver.seek(on: dec, position: target) { rev, _ in acks.add(rev) }
+107 |             gate.entered.wait()
+    |                          `- warning: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead; this is an error in the Swift 6 language mode
+108 |             let probe = CompletionProbe()
+109 |             let closer = Task { try? await dec.close(); probe.mark() }
+
+Dispatch.DispatchSemaphore.wait:2:13: note: 'wait()' declared here
+1 | class DispatchSemaphore {
+2 | public func wait()}
+  |             `- note: 'wait()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/adversarial-seek-tests/AdversarialSeekTests.swift:140:26: warning: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead; this is an error in the Swift 6 language mode
+138 |             let driver = CoreSeekDriver()
+139 |             async let out = driver.seek(on: dec, position: target) { rev, _ in acks.add(rev) }
+140 |             gate.entered.wait()
+    |                          `- warning: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead; this is an error in the Swift 6 language mode
+141 |             dec.requestInterrupt(session: sess(303))   // DISTINCT interrupt stimulus
+142 |             gate.release.signal()
+
+Dispatch.DispatchSemaphore.wait:2:13: note: 'wait()' declared here
+1 | class DispatchSemaphore {
+2 | public func wait()}
+  |             `- note: 'wait()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/adversarial-seek-tests/AdversarialSeekTests.swift:186:26: warning: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead; this is an error in the Swift 6 language mode
+184 |             let driver = CoreSeekDriver(); let driver2 = CoreSeekDriver()
+185 |             async let out = driver.seek(on: dec, position: target) { rev, _ in acks.add(rev) }
+186 |             gate.entered.wait()
+    |                          `- warning: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead; this is an error in the Swift 6 language mode
+187 |             let second = await driver2.seek(on: dec, position: target) { rev, _ in acks.add(rev) }
+188 |             guard case .admissionRefused(let why) = second, why == .busy else { chk("busyWhileHeld.refusedBusy", false); break case6 }
+
+Dispatch.DispatchSemaphore.wait:2:13: note: 'wait()' declared here
+1 | class DispatchSemaphore {
+2 | public func wait()}
+  |             `- note: 'wait()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/adversarial-seek-tests/AdversarialSeekTests.swift:207:26: warning: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead; this is an error in the Swift 6 language mode
+205 |             let driver = CoreSeekDriver()
+206 |             async let out = driver.seek(on: dec, position: target) { rev, _ in acks.add(rev) }
+207 |             gate.entered.wait()
+    |                          `- warning: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead; this is an error in the Swift 6 language mode
+208 |             let box = PullBox()
+209 |             let pull = Task { box.set(await dec.nextEvent()) }
+
+Dispatch.DispatchSemaphore.wait:2:13: note: 'wait()' declared here
+1 | class DispatchSemaphore {
+2 | public func wait()}
+  |             `- note: 'wait()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/adversarial-seek-tests/AdversarialSeekTests.swift:247:26: warning: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead; this is an error in the Swift 6 language mode
+245 |             let driver = CoreSeekDriver()
+246 |             async let out = driver.seek(on: dec, position: target) { rev, _ in acks.add(rev) }
+247 |             gate.entered.wait()
+    |                          `- warning: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead; this is an error in the Swift 6 language mode
+248 |             let probe = CompletionProbe()
+249 |             let closer = Task { try? await dec.close(); probe.mark() }
+
+Dispatch.DispatchSemaphore.wait:2:13: note: 'wait()' declared here
+1 | class DispatchSemaphore {
+2 | public func wait()}
+  |             `- note: 'wait()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/adversarial-seek-tests/AdversarialSeekTests.swift:280:26: warning: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead; this is an error in the Swift 6 language mode
+278 |             let driver = CoreSeekDriver()
+279 |             async let out = driver.seek(on: dec, position: target) { rev, _ in acks.add(rev) }
+280 |             gate.entered.wait()
+    |                          `- warning: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead; this is an error in the Swift 6 language mode
+281 |             dec.requestInterrupt(session: sess(308))   // synchronous poison registration
+282 |             gate.release.signal()
+
+Dispatch.DispatchSemaphore.wait:2:13: note: 'wait()' declared here
+1 | class DispatchSemaphore {
+2 | public func wait()}
+  |             `- note: 'wait()' declared here
+3 | 
+[454/714] Compiling codec_decode_matrix_tests main.swift
+[455/714] Emitting module codec_decode_matrix_tests
+[455/714] Write Objects.LinkFileList
+[457/714] Linking untagged-color-tests
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[458/714] Linking vt-public-producer-tests
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[459/714] Linking video-remote-open-tests
+[460/714] Applying untagged-color-tests
+[461/714] Linking uniform-packing-tests
+[462/714] Write Objects.LinkFileList
+[463/714] Applying vt-public-producer-tests
+[464/714] Applying uniform-packing-tests
+[465/714] Applying video-remote-open-tests
+[466/714] Write Objects.LinkFileList
+[470/714] Linking transport-vector-tests
+[471/714] Linking subtitle-track-tests
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[472/714] Linking video-refusal-tests
+[473/714] Applying transport-vector-tests
+[474/714] Applying subtitle-track-tests
+[475/714] Applying video-refusal-tests
+[476/714] Write Objects.LinkFileList
+[478/714] Linking subtitle-srt-tests
+[479/714] Linking timing-ledger-tests
+[480/714] Applying subtitle-srt-tests
+[481/714] Applying timing-ledger-tests
+[482/714] Write Objects.LinkFileList
+[485/714] Compiling GorAVMacShell TappedFrameLuma.swift
+[485/715] Linking subtitle-plan-tests
+[486/715] Linking subtitle-ass-tests
+[487/715] Applying subtitle-plan-tests
+[488/715] Applying subtitle-ass-tests
+[489/715] Write Objects.LinkFileList
+[491/715] Linking subtitle-controller-tests
+[492/715] Linking seek-ring-reset-tests
+[493/715] Applying subtitle-controller-tests
+[494/715] Applying seek-ring-reset-tests
+[495/715] Write Objects.LinkFileList
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[497/715] Linking trace-dump
+[498/715] Linking seek-pacing-tests
+[499/715] Applying trace-dump
+[500/715] Applying seek-pacing-tests
+[501/715] Write Objects.LinkFileList
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[503/715] Linking shell-seek-bridge-tests
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[504/715] Linking seek-test
+[505/715] Applying shell-seek-bridge-tests
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[506/715] Linking seek-restart-probe
+[507/715] Write Objects.LinkFileList
+[508/715] Linking render-graph-tests
+[509/715] Applying seek-test
+[510/715] Applying seek-restart-probe
+[511/715] Write Objects.LinkFileList
+[514/715] Compiling GorAVMacShell WindowModeController.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/WindowModeController.swift:44:19: warning: call to main actor-isolated instance method 'noteExternalFullscreen(entered:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 42 |         observers.append(center.addObserver(forName: NSWindow.didEnterFullScreenNotification,
+ 43 |                                             object: window, queue: .main) { [weak self] _ in
+ 44 |             self?.noteExternalFullscreen(entered: true)
+    |                   `- warning: call to main actor-isolated instance method 'noteExternalFullscreen(entered:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 45 |         })
+ 46 |         observers.append(center.addObserver(forName: NSWindow.didExitFullScreenNotification,
+    :
+ 58 |     /// User-initiated fullscreen through the window chrome bypasses
+ 59 |     /// transition(); reconcile the state machine with what AppKit reports.
+ 60 |     private func noteExternalFullscreen(entered: Bool) {
+    |                  `- note: calls to instance method 'noteExternalFullscreen(entered:)' from outside of its actor context are implicitly asynchronous
+ 61 |         if entered, state.mode == .windowed {
+ 62 |             state = WindowModeState(mode: .fullscreen,
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/WindowModeController.swift:48:19: warning: call to main actor-isolated instance method 'noteExternalFullscreen(entered:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 46 |         observers.append(center.addObserver(forName: NSWindow.didExitFullScreenNotification,
+ 47 |                                             object: window, queue: .main) { [weak self] _ in
+ 48 |             self?.noteExternalFullscreen(entered: false)
+    |                   `- warning: call to main actor-isolated instance method 'noteExternalFullscreen(entered:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 49 |         })
+ 50 |     }
+    :
+ 58 |     /// User-initiated fullscreen through the window chrome bypasses
+ 59 |     /// transition(); reconcile the state machine with what AppKit reports.
+ 60 |     private func noteExternalFullscreen(entered: Bool) {
+    |                  `- note: calls to instance method 'noteExternalFullscreen(entered:)' from outside of its actor context are implicitly asynchronous
+ 61 |         if entered, state.mode == .windowed {
+ 62 |             state = WindowModeState(mode: .fullscreen,
+
+[#ActorIsolatedCall]: <https://docs.swift.org/compiler/documentation/diagnostics/actor-isolated-call>
+[514/715] Applying render-graph-tests
+[516/715] Emitting module seek_composition_tests
+[517/715] Compiling seek_composition_tests SeekCompositionTests.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/seek-composition-tests/SeekCompositionTests.swift:66:11: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 64 |     }
+ 65 |     func resetRingForSeek() async -> UInt64? {
+ 66 |         l.lock(); resetCalls += 1; let r = resetResult; let hook = onReset; l.unlock()
+    |           `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 67 |         if let hook { _ = await hook() }
+ 68 |         return r
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/seek-composition-tests/SeekCompositionTests.swift:66:79: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 64 |     }
+ 65 |     func resetRingForSeek() async -> UInt64? {
+ 66 |         l.lock(); resetCalls += 1; let r = resetResult; let hook = onReset; l.unlock()
+    |                                                                               `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 67 |         if let hook { _ = await hook() }
+ 68 |         return r
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+[517/715] Write Objects.LinkFileList
+[519/715] Linking race-witness-tests
+[520/715] Linking prepared-shot-tests
+[521/715] Applying race-witness-tests
+[522/715] Applying prepared-shot-tests
+[523/715] Write Objects.LinkFileList
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[525/715] Linking seek-contract-tests
+[527/715] Compiling GorAVMacShell FrameTap.swift
+[528/715] Compiling GorAVMacShell ShellClock.swift
+[529/715] Compiling GorAVMacShell DisplaySink.swift
+[530/715] Emitting module GorAVMacShell
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/AudioUnitSink.swift:1046:5: warning: '@discardableResult' declared on a function returning 'Void' is unnecessary
+1044 |     }
+1045 | 
+1046 |     @discardableResult
+     |     `- warning: '@discardableResult' declared on a function returning 'Void' is unnecessary
+1047 | 
+1048 |     /// Early start aborts (a typed refusal AFTER the generation was
+[531/715] Compiling GorAVMacShell ShellFrameSource.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/ShellFrameSource.swift:186:25: warning: no 'async' operations occur within 'await' expression
+ 184 |                         // P30/W2: the CPU conversion is a MEASURED receipt
+ 185 |                         // event (VTRECEIPT cpuYUVtoRGB).
+ 186 |                         await decoder.l3NotePresentCPUYUVtoRGB(session: session)
+     |                         `- warning: no 'async' operations occur within 'await' expression
+ 187 |                         offerToTap(handle: f.handle, pts: pts, copy: copy,
+ 188 |                                    generation: admittedGeneration, source: origin.source)
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/ShellFrameSource.swift:371:25: warning: no 'async' operations occur within 'await' expression
+ 369 |                         }
+ 370 |                         payload = PixelPayload(width: copy.width, height: copy.height, bytes: rgba)
+ 371 |                         await decoder.l3NotePresentCPUYUVtoRGB(session: session)
+     |                         `- warning: no 'async' operations occur within 'await' expression
+ 372 |                         offerToTap(handle: f.handle, pts: pts, copy: copy, generation: 0, source: nil)
+ 373 |                     }
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/ShellFrameSource.swift:638:23: warning: result of call to 'stop()' is unused [#no-usage]
+ 636 |                 }
+ 637 |                 audio.drainRTTransitions(segment: .teardown)
+ 638 |                 audio.stop()
+     |                       `- warning: result of call to 'stop()' is unused [#no-usage]
+ 639 |                 audio.drainRTTransitions(segment: .teardown)
+ 640 |             }
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/ShellFrameSource.swift:671:23: warning: result of call to 'stop()' is unused [#no-usage]
+ 669 |                 if !audioProducerStarted { audio.producerNotExpected(generation: audio.currentGeneration) }
+ 670 |                 audio.drainRTTransitions(segment: .teardown)
+ 671 |                 audio.stop()
+     |                       `- warning: result of call to 'stop()' is unused [#no-usage]
+ 672 |                 audio.drainRTTransitions(segment: .teardown)
+ 673 |             }
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/ShellFrameSource.swift:1159:19: warning: result of call to 'stop()' is unused [#no-usage]
+1157 |             _ = await decoder.closeAndReport(session: session)
+1158 |             let drained = await audio.drainBounded(maxSeconds: 5.0)
+1159 |             audio.stop()
+     |                   `- warning: result of call to 'stop()' is unused [#no-usage]
+1160 |             print("gorav shell: shown=\(stats.shown) dropped=\(stats.dropped) waits=\(stats.waits) audioPushed=\(outcome.pushed) terminal=\(outcome.terminal) audioResidualAtStop=\(drained.remaining) drainCancelled=\(drained.cancelled ? 1 : 0)")
+1161 |             return ShellSummary(uploads: sink.uploads, visibleUploads: sink.visibleUploads,
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/ShellFrameSource.swift:1170:15: warning: result of call to 'stop()' is unused [#no-usage]
+1168 |         // stop(), or stop() sees a pending witness and fails retained.
+1169 |         audio.producerNotExpected(generation: audio.currentGeneration)
+1170 |         audio.stop()
+     |               `- warning: result of call to 'stop()' is unused [#no-usage]
+1171 |         print("gorav shell: shown=\(stats.shown) dropped=\(stats.dropped) waits=\(stats.waits)")
+1172 |         return ShellSummary(uploads: sink.uploads, visibleUploads: sink.visibleUploads,
+[532/715] Compiling GorAVMacShell AudioUnitSink.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/AudioUnitSink.swift:1046:5: warning: '@discardableResult' declared on a function returning 'Void' is unnecessary
+1044 |     }
+1045 | 
+1046 |     @discardableResult
+     |     `- warning: '@discardableResult' declared on a function returning 'Void' is unnecessary
+1047 | 
+1048 |     /// Early start aborts (a typed refusal AFTER the generation was
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/AudioUnitSink.swift:122:72: warning: string interpolation produces a debug description for an optional value; did you mean to make this explicit?
+ 120 |         var strongEdgeCount: Int { 1 + (ledger != nil ? 1 : 0) + (unit != nil ? 1 : 0) }
+ 121 |         var payloadDescription: String {
+ 122 |             "AudioFaultPayload(gen=\(generation) cause=\(cause) stop=\(stopStatus) uninit=\(uninitStatus) dispose=\(disposeStatus) drained=\(readersDrained) witnessed=\(producerWitnessed) unit=\(unit != nil ? "retained" : "none"))"
+     |                                                                        |- warning: string interpolation produces a debug description for an optional value; did you mean to make this explicit?
+     |                                                                        |- note: use a default value parameter to avoid this warning
+     |                                                                        |- note: provide a default value to avoid this warning
+     |                                                                        `- note: use 'String(describing:)' to silence this warning
+ 123 |         }
+ 124 |     }
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/AudioUnitSink.swift:122:93: warning: string interpolation produces a debug description for an optional value; did you mean to make this explicit?
+ 120 |         var strongEdgeCount: Int { 1 + (ledger != nil ? 1 : 0) + (unit != nil ? 1 : 0) }
+ 121 |         var payloadDescription: String {
+ 122 |             "AudioFaultPayload(gen=\(generation) cause=\(cause) stop=\(stopStatus) uninit=\(uninitStatus) dispose=\(disposeStatus) drained=\(readersDrained) witnessed=\(producerWitnessed) unit=\(unit != nil ? "retained" : "none"))"
+     |                                                                                             |- warning: string interpolation produces a debug description for an optional value; did you mean to make this explicit?
+     |                                                                                             |- note: use a default value parameter to avoid this warning
+     |                                                                                             |- note: provide a default value to avoid this warning
+     |                                                                                             `- note: use 'String(describing:)' to silence this warning
+ 123 |         }
+ 124 |     }
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/AudioUnitSink.swift:122:117: warning: string interpolation produces a debug description for an optional value; did you mean to make this explicit?
+ 120 |         var strongEdgeCount: Int { 1 + (ledger != nil ? 1 : 0) + (unit != nil ? 1 : 0) }
+ 121 |         var payloadDescription: String {
+ 122 |             "AudioFaultPayload(gen=\(generation) cause=\(cause) stop=\(stopStatus) uninit=\(uninitStatus) dispose=\(disposeStatus) drained=\(readersDrained) witnessed=\(producerWitnessed) unit=\(unit != nil ? "retained" : "none"))"
+     |                                                                                                                     |- warning: string interpolation produces a debug description for an optional value; did you mean to make this explicit?
+     |                                                                                                                     |- note: use a default value parameter to avoid this warning
+     |                                                                                                                     |- note: provide a default value to avoid this warning
+     |                                                                                                                     `- note: use 'String(describing:)' to silence this warning
+ 123 |         }
+ 124 |     }
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/AudioUnitSink.swift:324:39: warning: result of call to 'drain()' is unused [#no-usage]
+ 322 |         stateLock.unlock()
+ 323 |         guard let ring0 else { return }
+ 324 |         guard let ledger else { ring0.drain(); return }
+     |                                       `- warning: result of call to 'drain()' is unused [#no-usage]
+ 325 |         let evs = ring0.drain()
+ 326 |         if !evs.isEmpty { ledger.fold(rt: evs, session: ses, segment: segment) }
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/AudioUnitSink.swift:1138:17: warning: result of call to 'terminalOutcome' is unused [#no-usage]
+1136 |                     producerWitnessed: false, drainResidual: nil,
+1137 |                     retainedRegistration: retainedOk ? rid?.id : nil))
+1138 |                 terminalOutcome(out)
+     |                 `- warning: result of call to 'terminalOutcome' is unused [#no-usage]
+1139 |                 lifecycle.failStop(g)
+1140 |                 return out
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/AudioUnitSink.swift:1170:17: warning: result of call to 'terminalOutcome' is unused [#no-usage]
+1168 |                     producerWitnessed: false, drainResidual: nil,
+1169 |                     retainedRegistration: retainedOk ? rid?.id : nil))
+1170 |                 terminalOutcome(out)
+     |                 `- warning: result of call to 'terminalOutcome' is unused [#no-usage]
+1171 |                 lifecycle.failStop(g)
+1172 |                 return out
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/AudioUnitSink.swift:1200:17: warning: result of call to 'terminalOutcome' is unused [#no-usage]
+1198 |                     producerWitnessed: true, drainResidual: nil,
+1199 |                     retainedRegistration: retainedOk ? rid?.id : nil))
+1200 |                 terminalOutcome(out)
+     |                 `- warning: result of call to 'terminalOutcome' is unused [#no-usage]
+1201 |                 lifecycle.failStop(g)
+1202 |                 return out
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/AudioUnitSink.swift:1233:17: warning: result of call to 'terminalOutcome' is unused [#no-usage]
+1231 |                     producerWitnessed: true, drainResidual: nil,
+1232 |                     retainedRegistration: retainedOk ? rid?.id : nil))
+1233 |                 terminalOutcome(out)
+     |                 `- warning: result of call to 'terminalOutcome' is unused [#no-usage]
+1234 |                 lifecycle.failStop(g)
+1235 |                 return out
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/AudioUnitSink.swift:1251:17: warning: result of call to 'terminalOutcome' is unused [#no-usage]
+1249 |                     producerWitnessed: true, drainResidual: nil,
+1250 |                     retainedRegistration: retainedOk ? rid?.id : nil))
+1251 |                 terminalOutcome(out)
+     |                 `- warning: result of call to 'terminalOutcome' is unused [#no-usage]
+1252 |                 lifecycle.failStop(g)
+1253 |                 return out
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMacShell/AudioUnitSink.swift:1281:13: warning: result of call to 'terminalOutcome' is unused [#no-usage]
+1279 |                 producerWitnessed: true, drainResidual: residual, retainedRegistration: rid?.id))
+1280 |             // Verdict S4: publication precedes the lifecycle transition.
+1281 |             terminalOutcome(out)
+     |             `- warning: result of call to 'terminalOutcome' is unused [#no-usage]
+1282 |             lifecycle.finishStop(g)
+1283 |             return out
+[532/715] Applying seek-contract-tests
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[533/717] Linking remote-source-tests
+[534/717] Linking photon-sharp-tests
+[535/717] Applying remote-source-tests
+[536/719] Applying photon-sharp-tests
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[537/719] Linking real-seek-tests
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[538/719] Linking refusal-tests
+[539/719] Write Objects.LinkFileList
+[541/719] Emitting module shell_mac_test
+[542/719] Compiling shell_mac_test ShellMacTest.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/shell-mac-test/ShellMacTest.swift:46:18: warning: result of call to 'stop()' is unused [#no-usage]
+ 44 |             let stNil = sink.testRender(frames: 4, data: nil)
+ 45 |             sink.producerNotExpected(generation: sink.currentGeneration)
+ 46 |             sink.stop()
+    |                  `- warning: result of call to 'stop()' is unused [#no-usage]
+ 47 |             check("K9-12", st == noErr && untouched && stNil == noErr && sink.stoppedReceipt != nil,
+ 48 |                   "frames=0 no-op untouched=\(untouched) nilList=\(stNil)")
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/shell-mac-test/ShellMacTest.swift:66:18: warning: result of call to 'stop()' is unused [#no-usage]
+ 64 |             }
+ 65 |             sink.producerNotExpected(generation: sink.currentGeneration)
+ 66 |             sink.stop()
+    |                  `- warning: result of call to 'stop()' is unused [#no-usage]
+ 67 |             check("K9-13a", st == noErr && head && tail, "head=\(head) silenceTail=\(tail)")
+ 68 |         } catch {
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/shell-mac-test/ShellMacTest.swift:85:18: warning: result of call to 'stop()' is unused [#no-usage]
+ 83 |             }
+ 84 |             sink.producerNotExpected(generation: sink.currentGeneration)
+ 85 |             sink.stop()
+    |                  `- warning: result of call to 'stop()' is unused [#no-usage]
+ 86 |             check("K9-13b", st == noErr && written && canary, "written=\(written) canaryIntact=\(canary)")
+ 87 |         } catch {
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/shell-mac-test/ShellMacTest.swift:100:22: warning: result of call to 'stop()' is unused [#no-usage]
+ 98 |                 Thread.sleep(forTimeInterval: 0.3)
+ 99 |                 sink.producerNotExpected(generation: sink.currentGeneration)
+100 |                 sink.stop()
+    |                      `- warning: result of call to 'stop()' is unused [#no-usage]
+101 |             } catch {
+102 |                 ok = false
+[542/719] Applying refusal-tests
+[543/719] Write Objects.LinkFileList
+[545/719] Applying real-seek-tests
+[547/733] Compiling gorav_sink_check SinkCheck.swift
+[548/733] Emitting module gorav_sink_check
+[548/733] Write Objects.LinkFileList
+[550/733] Linking pause-resume-tests
+[550/733] Linking photon-admission-tests
+[552/733] Write Objects.LinkFileList
+[553/733] Applying photon-admission-tests
+[554/733] Applying pause-resume-tests
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[555/733] Linking seek-composition-tests
+[556/733] Applying seek-composition-tests
+[557/733] Write Objects.LinkFileList
+[559/733] Linking open-url-tests
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[560/733] Linking playback-test
+[561/733] Applying open-url-tests
+[562/733] Applying playback-test
+[563/733] Write Objects.LinkFileList
+[565/733] Linking open-intent-dispatch-tests
+[566/733] Linking observation-tests
+[567/733] Applying open-intent-dispatch-tests
+[568/733] Applying observation-tests
+[569/733] Write Objects.LinkFileList
+[571/733] Linking live-control-tests
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[572/733] Linking parity-pixel-tests
+[573/733] Applying live-control-tests
+[574/733] Applying parity-pixel-tests
+[575/733] Write Objects.LinkFileList
+[577/733] Linking k9-adversarial
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[578/733] Linking shell-mac-test
+[579/733] Applying k9-adversarial
+[580/733] Applying shell-mac-test
+[581/733] Write Objects.LinkFileList
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[583/733] Linking media-inventory-tests
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[584/733] Linking l4-hwdecode-tests
+[585/733] Applying media-inventory-tests
+[586/733] Applying l4-hwdecode-tests
+[587/733] Write Objects.LinkFileList
+[589/733] Linking hud-state-tests
+[590/733] Linking hosttransform-tests
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[591/733] Linking l3-convert-matrix-tests
+[592/733] Applying hud-state-tests
+[593/733] Applying hosttransform-tests
+[594/733] Write Objects.LinkFileList
+[596/733] Applying l3-convert-matrix-tests
+[597/733] Linking frame-tap-tests
+[598/733] Write Objects.LinkFileList
+[599/733] Applying frame-tap-tests
+[600/733] Linking frame-lease-tests
+[601/733] Write Objects.LinkFileList
+[602/733] Applying frame-lease-tests
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[603/733] Linking isolation-test
+[604/733] Write Objects.LinkFileList
+[606/733] Compiling GorAVMetalPresenter PhotonP22ApplyShader.swift
+[607/733] Compiling GorAVMetalPresenter PhotonP22UpdateConsumer.swift
+[608/733] Compiling GorAVMetalPresenter HDRSurfaceState.swift
+[609/733] Compiling GorAVMetalPresenter MetalPresenter.swift
+[609/735] Applying isolation-test
+[611/735] Compiling GorAVMetalPresenter PhotonSourceMeasurementStage.swift
+[612/735] Compiling GorAVMetalPresenter PhotonWorkingGraph.swift
+[613/735] Compiling GorAVMetalPresenter AspectFit.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/CVPixelBufferTap.swift:79:48: warning: capture of 'self' with non-Sendable type 'CVPixelBufferReadback' in a '@Sendable' closure [#SendableClosureCaptures]
+ 56 | /// It is not attached to presentation or screenshot requests. Caller must
+ 57 | /// provide a completed source frame; the utility owns its non-render worker.
+ 58 | public final class CVPixelBufferReadback {
+    |                    `- note: class 'CVPixelBufferReadback' does not conform to the 'Sendable' protocol
+ 59 |     private let device: MTLDevice
+ 60 |     private var textureCache: CVMetalTextureCache?
+    :
+ 77 |         await withCheckedContinuation { continuation in
+ 78 |             worker.async {
+ 79 |                 continuation.resume(returning: self.captureOnWorker(source: source,
+    |                                                `- warning: capture of 'self' with non-Sendable type 'CVPixelBufferReadback' in a '@Sendable' closure [#SendableClosureCaptures]
+ 80 |                     completedSource: completedSource, commandQueue: commandQueue))
+ 81 |             }
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/CVPixelBufferTap.swift:79:77: warning: capture of 'source' with non-Sendable type 'any MTLTexture' in a '@Sendable' closure [#SendableClosureCaptures]
+ 77 |         await withCheckedContinuation { continuation in
+ 78 |             worker.async {
+ 79 |                 continuation.resume(returning: self.captureOnWorker(source: source,
+    |                                                                             `- warning: capture of 'source' with non-Sendable type 'any MTLTexture' in a '@Sendable' closure [#SendableClosureCaptures]
+ 80 |                     completedSource: completedSource, commandQueue: commandQueue))
+ 81 |             }
+
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLTexture.h:313:11: note: protocol 'MTLTexture' does not conform to the 'Sendable' protocol
+311 |  */
+312 | API_AVAILABLE(macos(10.11), ios(8.0))
+313 | @protocol MTLTexture <MTLResource>
+    |           `- note: protocol 'MTLTexture' does not conform to the 'Sendable' protocol
+314 | 
+315 | /*!
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/CVPixelBufferTap.swift:3:1: warning: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Metal'
+  1 | #if canImport(Metal) && canImport(CoreVideo)
+  2 | import Foundation
+  3 | import Metal
+    | `- warning: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Metal'
+  4 | import CoreVideo
+  5 | import GorAVPlaybackCore
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/CVPixelBufferTap.swift:80:38: warning: capture of 'completedSource' with non-Sendable type 'any MTLCommandBuffer' in a '@Sendable' closure [#SendableClosureCaptures]
+ 78 |             worker.async {
+ 79 |                 continuation.resume(returning: self.captureOnWorker(source: source,
+ 80 |                     completedSource: completedSource, commandQueue: commandQueue))
+    |                                      `- warning: capture of 'completedSource' with non-Sendable type 'any MTLCommandBuffer' in a '@Sendable' closure [#SendableClosureCaptures]
+ 81 |             }
+ 82 |         }
+
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLCommandBuffer.h:245:11: note: protocol 'MTLCommandBuffer' does not conform to the 'Sendable' protocol
+243 |  */
+244 | API_AVAILABLE(macos(10.11), ios(8.0))
+245 | @protocol MTLCommandBuffer <NSObject>
+    |           `- note: protocol 'MTLCommandBuffer' does not conform to the 'Sendable' protocol
+246 | 
+247 | /*!
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/GorAVMetalShellApp.swift:152:19: warning: result of call to 'stop()' is unused [#no-usage]
+150 |             print("gorav play-metal: decoders closed")
+151 |             let drained = await audio.drainBounded(maxSeconds: 5.0).remaining
+152 |             audio.stop()
+    |                   `- warning: result of call to 'stop()' is unused [#no-usage]
+153 |             audioStarted = false
+154 |             heartbeat.cancel()
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/GorAVMetalShellApp.swift:176:37: warning: result of call to 'stop()' is unused [#no-usage]
+174 |             let typed = (error as? MetalRunError) ?? (error is CancellationError ? .cancelled : .playback("\(error)"))
+175 |             print("{\"section\":\"runMuxed\",\"error\":\"\(jsonEscape("\(typed)"))\",\"audioStarted\":\(audioStarted),\"audioOpened\":\(audioOpened),\"videoOpened\":\(videoOpened)}")
+176 |             if audioStarted { audio.stop() }
+    |                                     `- warning: result of call to 'stop()' is unused [#no-usage]
+177 |             if audioOpened { await adec.close(session: ases) }
+178 |             if videoOpened { _ = await decoder.closeAndReport(session: session) }
+
+[#SendableClosureCaptures]: <https://docs.swift.org/compiler/documentation/diagnostics/sendable-closure-captures>
+[614/735] Compiling GorAVMetalPresenter CVPixelBufferTap.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/CVPixelBufferTap.swift:79:48: warning: capture of 'self' with non-Sendable type 'CVPixelBufferReadback' in a '@Sendable' closure [#SendableClosureCaptures]
+ 56 | /// It is not attached to presentation or screenshot requests. Caller must
+ 57 | /// provide a completed source frame; the utility owns its non-render worker.
+ 58 | public final class CVPixelBufferReadback {
+    |                    `- note: class 'CVPixelBufferReadback' does not conform to the 'Sendable' protocol
+ 59 |     private let device: MTLDevice
+ 60 |     private var textureCache: CVMetalTextureCache?
+    :
+ 77 |         await withCheckedContinuation { continuation in
+ 78 |             worker.async {
+ 79 |                 continuation.resume(returning: self.captureOnWorker(source: source,
+    |                                                `- warning: capture of 'self' with non-Sendable type 'CVPixelBufferReadback' in a '@Sendable' closure [#SendableClosureCaptures]
+ 80 |                     completedSource: completedSource, commandQueue: commandQueue))
+ 81 |             }
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/CVPixelBufferTap.swift:79:77: warning: capture of 'source' with non-Sendable type 'any MTLTexture' in a '@Sendable' closure [#SendableClosureCaptures]
+ 77 |         await withCheckedContinuation { continuation in
+ 78 |             worker.async {
+ 79 |                 continuation.resume(returning: self.captureOnWorker(source: source,
+    |                                                                             `- warning: capture of 'source' with non-Sendable type 'any MTLTexture' in a '@Sendable' closure [#SendableClosureCaptures]
+ 80 |                     completedSource: completedSource, commandQueue: commandQueue))
+ 81 |             }
+
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLTexture.h:313:11: note: protocol 'MTLTexture' does not conform to the 'Sendable' protocol
+311 |  */
+312 | API_AVAILABLE(macos(10.11), ios(8.0))
+313 | @protocol MTLTexture <MTLResource>
+    |           `- note: protocol 'MTLTexture' does not conform to the 'Sendable' protocol
+314 | 
+315 | /*!
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/CVPixelBufferTap.swift:3:1: warning: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Metal'
+  1 | #if canImport(Metal) && canImport(CoreVideo)
+  2 | import Foundation
+  3 | import Metal
+    | `- warning: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Metal'
+  4 | import CoreVideo
+  5 | import GorAVPlaybackCore
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/CVPixelBufferTap.swift:80:38: warning: capture of 'completedSource' with non-Sendable type 'any MTLCommandBuffer' in a '@Sendable' closure [#SendableClosureCaptures]
+ 78 |             worker.async {
+ 79 |                 continuation.resume(returning: self.captureOnWorker(source: source,
+ 80 |                     completedSource: completedSource, commandQueue: commandQueue))
+    |                                      `- warning: capture of 'completedSource' with non-Sendable type 'any MTLCommandBuffer' in a '@Sendable' closure [#SendableClosureCaptures]
+ 81 |             }
+ 82 |         }
+
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLCommandBuffer.h:245:11: note: protocol 'MTLCommandBuffer' does not conform to the 'Sendable' protocol
+243 |  */
+244 | API_AVAILABLE(macos(10.11), ios(8.0))
+245 | @protocol MTLCommandBuffer <NSObject>
+    |           `- note: protocol 'MTLCommandBuffer' does not conform to the 'Sendable' protocol
+246 | 
+247 | /*!
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/GorAVMetalShellApp.swift:152:19: warning: result of call to 'stop()' is unused [#no-usage]
+150 |             print("gorav play-metal: decoders closed")
+151 |             let drained = await audio.drainBounded(maxSeconds: 5.0).remaining
+152 |             audio.stop()
+    |                   `- warning: result of call to 'stop()' is unused [#no-usage]
+153 |             audioStarted = false
+154 |             heartbeat.cancel()
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/GorAVMetalShellApp.swift:176:37: warning: result of call to 'stop()' is unused [#no-usage]
+174 |             let typed = (error as? MetalRunError) ?? (error is CancellationError ? .cancelled : .playback("\(error)"))
+175 |             print("{\"section\":\"runMuxed\",\"error\":\"\(jsonEscape("\(typed)"))\",\"audioStarted\":\(audioStarted),\"audioOpened\":\(audioOpened),\"videoOpened\":\(videoOpened)}")
+176 |             if audioStarted { audio.stop() }
+    |                                     `- warning: result of call to 'stop()' is unused [#no-usage]
+177 |             if audioOpened { await adec.close(session: ases) }
+178 |             if videoOpened { _ = await decoder.closeAndReport(session: session) }
+
+[#SendableClosureCaptures]: <https://docs.swift.org/compiler/documentation/diagnostics/sendable-closure-captures>
+[615/735] Compiling GorAVMetalPresenter GorAVMetalShellApp.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/CVPixelBufferTap.swift:79:48: warning: capture of 'self' with non-Sendable type 'CVPixelBufferReadback' in a '@Sendable' closure [#SendableClosureCaptures]
+ 56 | /// It is not attached to presentation or screenshot requests. Caller must
+ 57 | /// provide a completed source frame; the utility owns its non-render worker.
+ 58 | public final class CVPixelBufferReadback {
+    |                    `- note: class 'CVPixelBufferReadback' does not conform to the 'Sendable' protocol
+ 59 |     private let device: MTLDevice
+ 60 |     private var textureCache: CVMetalTextureCache?
+    :
+ 77 |         await withCheckedContinuation { continuation in
+ 78 |             worker.async {
+ 79 |                 continuation.resume(returning: self.captureOnWorker(source: source,
+    |                                                `- warning: capture of 'self' with non-Sendable type 'CVPixelBufferReadback' in a '@Sendable' closure [#SendableClosureCaptures]
+ 80 |                     completedSource: completedSource, commandQueue: commandQueue))
+ 81 |             }
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/CVPixelBufferTap.swift:79:77: warning: capture of 'source' with non-Sendable type 'any MTLTexture' in a '@Sendable' closure [#SendableClosureCaptures]
+ 77 |         await withCheckedContinuation { continuation in
+ 78 |             worker.async {
+ 79 |                 continuation.resume(returning: self.captureOnWorker(source: source,
+    |                                                                             `- warning: capture of 'source' with non-Sendable type 'any MTLTexture' in a '@Sendable' closure [#SendableClosureCaptures]
+ 80 |                     completedSource: completedSource, commandQueue: commandQueue))
+ 81 |             }
+
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLTexture.h:313:11: note: protocol 'MTLTexture' does not conform to the 'Sendable' protocol
+311 |  */
+312 | API_AVAILABLE(macos(10.11), ios(8.0))
+313 | @protocol MTLTexture <MTLResource>
+    |           `- note: protocol 'MTLTexture' does not conform to the 'Sendable' protocol
+314 | 
+315 | /*!
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/CVPixelBufferTap.swift:3:1: warning: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Metal'
+  1 | #if canImport(Metal) && canImport(CoreVideo)
+  2 | import Foundation
+  3 | import Metal
+    | `- warning: add '@preconcurrency' to suppress 'Sendable'-related warnings from module 'Metal'
+  4 | import CoreVideo
+  5 | import GorAVPlaybackCore
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/CVPixelBufferTap.swift:80:38: warning: capture of 'completedSource' with non-Sendable type 'any MTLCommandBuffer' in a '@Sendable' closure [#SendableClosureCaptures]
+ 78 |             worker.async {
+ 79 |                 continuation.resume(returning: self.captureOnWorker(source: source,
+ 80 |                     completedSource: completedSource, commandQueue: commandQueue))
+    |                                      `- warning: capture of 'completedSource' with non-Sendable type 'any MTLCommandBuffer' in a '@Sendable' closure [#SendableClosureCaptures]
+ 81 |             }
+ 82 |         }
+
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLCommandBuffer.h:245:11: note: protocol 'MTLCommandBuffer' does not conform to the 'Sendable' protocol
+243 |  */
+244 | API_AVAILABLE(macos(10.11), ios(8.0))
+245 | @protocol MTLCommandBuffer <NSObject>
+    |           `- note: protocol 'MTLCommandBuffer' does not conform to the 'Sendable' protocol
+246 | 
+247 | /*!
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/GorAVMetalShellApp.swift:152:19: warning: result of call to 'stop()' is unused [#no-usage]
+150 |             print("gorav play-metal: decoders closed")
+151 |             let drained = await audio.drainBounded(maxSeconds: 5.0).remaining
+152 |             audio.stop()
+    |                   `- warning: result of call to 'stop()' is unused [#no-usage]
+153 |             audioStarted = false
+154 |             heartbeat.cancel()
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/GorAVMetalShellApp.swift:176:37: warning: result of call to 'stop()' is unused [#no-usage]
+174 |             let typed = (error as? MetalRunError) ?? (error is CancellationError ? .cancelled : .playback("\(error)"))
+175 |             print("{\"section\":\"runMuxed\",\"error\":\"\(jsonEscape("\(typed)"))\",\"audioStarted\":\(audioStarted),\"audioOpened\":\(audioOpened),\"videoOpened\":\(videoOpened)}")
+176 |             if audioStarted { audio.stop() }
+    |                                     `- warning: result of call to 'stop()' is unused [#no-usage]
+177 |             if audioOpened { await adec.close(session: ases) }
+178 |             if videoOpened { _ = await decoder.closeAndReport(session: session) }
+
+[#SendableClosureCaptures]: <https://docs.swift.org/compiler/documentation/diagnostics/sendable-closure-captures>
+[616/735] Emitting module GorAVMetalPresenter
+[617/735] Compiling GorAVMetalPresenter PhotonMeasurementShader.swift
+[618/735] Compiling GorAVMetalPresenter PhotonMetalEffects.swift
+[619/735] Compiling GorAVMetalPresenter MetalPresenterTelemetry.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:511:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 509 |     /// live GPU work.
+ 510 |     private func transition(_ body: (inout TransitionContext) throws -> Void) async throws {
+ 511 |         lock.lock()
+     |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 512 |         if transitionInFlight { lock.unlock(); throw MetalRendererError.transitionInProgress }
+ 513 |         transitionInFlight = true
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:512:38: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 510 |     private func transition(_ body: (inout TransitionContext) throws -> Void) async throws {
+ 511 |         lock.lock()
+ 512 |         if transitionInFlight { lock.unlock(); throw MetalRendererError.transitionInProgress }
+     |                                      `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 513 |         transitionInFlight = true
+ 514 |         sealed = true
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:515:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 513 |         transitionInFlight = true
+ 514 |         sealed = true
+ 515 |         lock.unlock()
+     |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 516 |         let residual = await drainInFlight(maxWaitSeconds: 2.0)
+ 517 |         lock.lock()
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:517:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 515 |         lock.unlock()
+ 516 |         let residual = await drainInFlight(maxWaitSeconds: 2.0)
+ 517 |         lock.lock()
+     |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 518 |         lastDrainResidual = residual
+ 519 |         if residual != 0 {
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:521:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 519 |         if residual != 0 {
+ 520 |             transitionInFlight = false // stays sealed; close() or a later transition may retry
+ 521 |             lock.unlock()
+     |                  `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 522 |             throw MetalRendererError.transitionResidual(residual)
+ 523 |         }
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:536:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 534 |         } catch {
+ 535 |             transitionInFlight = false // stays sealed
+ 536 |             lock.unlock()
+     |                  `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 537 |             throw error
+ 538 |         }
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:541:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 539 |         if exhaustedSeal {
+ 540 |             transitionInFlight = false
+ 541 |             lock.unlock()
+     |                  `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 542 |             throw MetalRendererError.transitionExhausted
+ 543 |         }
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:545:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 543 |         }
+ 544 |         let pending = ctx.pendingLayerApply
+ 545 |         lock.unlock()
+     |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 546 |         // CAMetalLayer property writes are MainActor work (r6 finding 6);
+ 547 |         // admission stays sealed across the hop, so no frame can commit
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:552:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 550 |             await MainActor.run { SurfaceNegotiator.applyValidated(p.contract, to: p.layer, device: device) }
+ 551 |         }
+ 552 |         lock.lock()
+     |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 553 |         // Reopen ONLY when nothing sealed us externally (user close) while
+ 554 |         /// the drain/apply ran, and no exhaustion fired.
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:557:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 555 |         if !sealedExternally && !exhaustedSeal { sealed = false }
+ 556 |         transitionInFlight = false
+ 557 |         lock.unlock()
+     |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 558 |     }
+ 559 | 
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:550:68: warning: capture of 'p' with non-Sendable type '(layer: CAMetalLayer, contract: SurfaceContract)' in a '@Sendable' closure; this is an error in the Swift 6 language mode [#SendableClosureCaptures]
+ 548 |         // against the new state before the layer matches it.
+ 549 |         if let p = pending {
+ 550 |             await MainActor.run { SurfaceNegotiator.applyValidated(p.contract, to: p.layer, device: device) }
+     |                                                                    `- warning: capture of 'p' with non-Sendable type '(layer: CAMetalLayer, contract: SurfaceContract)' in a '@Sendable' closure; this is an error in the Swift 6 language mode [#SendableClosureCaptures]
+ 551 |         }
+ 552 |         lock.lock()
+
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/CAMetalLayer.h:54:12: note: class 'CAMetalLayer' does not conform to the 'Sendable' protocol
+ 52 | API_AVAILABLE(macos(10.11), ios(8.0), tvos(9.0)) API_UNAVAILABLE(watchos)
+ 53 | #endif
+ 54 | @interface CAMetalLayer : CALayer
+    |            `- note: class 'CAMetalLayer' does not conform to the 'Sendable' protocol
+ 55 | {
+ 56 | @private
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:1608:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+1606 |         while DispatchTime.now().uptimeNanoseconds < deadline {
+1607 |             if Task.isCancelled { break } // typed residual below, never a spin
+1608 |             lock.lock()
+     |                  `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+1609 |             let n = slots.reduce(0) { $0 + $1.readers } + legacyInFlight + admittedUncommitted
+1610 |             lock.unlock()
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:1610:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+1608 |             lock.lock()
+1609 |             let n = slots.reduce(0) { $0 + $1.readers } + legacyInFlight + admittedUncommitted
+1610 |             lock.unlock()
+     |                  `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+1611 |             if n == 0 { return 0 }
+1612 |             try? await Task.sleep(nanoseconds: 2_000_000)
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:1614:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+1612 |             try? await Task.sleep(nanoseconds: 2_000_000)
+1613 |         }
+1614 |         lock.lock(); defer { lock.unlock() }
+     |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+1615 |         return slots.reduce(0) { $0 + $1.readers } + legacyInFlight + admittedUncommitted
+1616 |     }
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:1614:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+1612 |             try? await Task.sleep(nanoseconds: 2_000_000)
+1613 |         }
+1614 |         lock.lock(); defer { lock.unlock() }
+     |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+1615 |         return slots.reduce(0) { $0 + $1.readers } + legacyInFlight + admittedUncommitted
+1616 |     }
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:1766:46: warning: capture 'off' was never used [#no-usage]
+1764 |             return .failed
+1765 |         }
+1766 |         cb.addCompletedHandler { [weak self, off] _ in
+     |                                              `- warning: capture 'off' was never used [#no-usage]
+1767 |             self?.finishOffscreen(box, bytes: obytes,
+1768 |                                   slotIndex: lease.slotIndex, slotEpoch: lease.epoch)
+
+[#SendableClosureCaptures]: <https://docs.swift.org/compiler/documentation/diagnostics/sendable-closure-captures>
+[620/735] Compiling GorAVMetalPresenter MetalRenderer.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:511:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 509 |     /// live GPU work.
+ 510 |     private func transition(_ body: (inout TransitionContext) throws -> Void) async throws {
+ 511 |         lock.lock()
+     |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 512 |         if transitionInFlight { lock.unlock(); throw MetalRendererError.transitionInProgress }
+ 513 |         transitionInFlight = true
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:512:38: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 510 |     private func transition(_ body: (inout TransitionContext) throws -> Void) async throws {
+ 511 |         lock.lock()
+ 512 |         if transitionInFlight { lock.unlock(); throw MetalRendererError.transitionInProgress }
+     |                                      `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 513 |         transitionInFlight = true
+ 514 |         sealed = true
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:515:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 513 |         transitionInFlight = true
+ 514 |         sealed = true
+ 515 |         lock.unlock()
+     |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 516 |         let residual = await drainInFlight(maxWaitSeconds: 2.0)
+ 517 |         lock.lock()
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:517:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 515 |         lock.unlock()
+ 516 |         let residual = await drainInFlight(maxWaitSeconds: 2.0)
+ 517 |         lock.lock()
+     |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 518 |         lastDrainResidual = residual
+ 519 |         if residual != 0 {
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:521:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 519 |         if residual != 0 {
+ 520 |             transitionInFlight = false // stays sealed; close() or a later transition may retry
+ 521 |             lock.unlock()
+     |                  `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 522 |             throw MetalRendererError.transitionResidual(residual)
+ 523 |         }
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:536:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 534 |         } catch {
+ 535 |             transitionInFlight = false // stays sealed
+ 536 |             lock.unlock()
+     |                  `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 537 |             throw error
+ 538 |         }
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:541:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 539 |         if exhaustedSeal {
+ 540 |             transitionInFlight = false
+ 541 |             lock.unlock()
+     |                  `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 542 |             throw MetalRendererError.transitionExhausted
+ 543 |         }
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:545:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 543 |         }
+ 544 |         let pending = ctx.pendingLayerApply
+ 545 |         lock.unlock()
+     |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 546 |         // CAMetalLayer property writes are MainActor work (r6 finding 6);
+ 547 |         // admission stays sealed across the hop, so no frame can commit
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:552:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 550 |             await MainActor.run { SurfaceNegotiator.applyValidated(p.contract, to: p.layer, device: device) }
+ 551 |         }
+ 552 |         lock.lock()
+     |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 553 |         // Reopen ONLY when nothing sealed us externally (user close) while
+ 554 |         /// the drain/apply ran, and no exhaustion fired.
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:557:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 555 |         if !sealedExternally && !exhaustedSeal { sealed = false }
+ 556 |         transitionInFlight = false
+ 557 |         lock.unlock()
+     |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 558 |     }
+ 559 | 
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:550:68: warning: capture of 'p' with non-Sendable type '(layer: CAMetalLayer, contract: SurfaceContract)' in a '@Sendable' closure; this is an error in the Swift 6 language mode [#SendableClosureCaptures]
+ 548 |         // against the new state before the layer matches it.
+ 549 |         if let p = pending {
+ 550 |             await MainActor.run { SurfaceNegotiator.applyValidated(p.contract, to: p.layer, device: device) }
+     |                                                                    `- warning: capture of 'p' with non-Sendable type '(layer: CAMetalLayer, contract: SurfaceContract)' in a '@Sendable' closure; this is an error in the Swift 6 language mode [#SendableClosureCaptures]
+ 551 |         }
+ 552 |         lock.lock()
+
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/CAMetalLayer.h:54:12: note: class 'CAMetalLayer' does not conform to the 'Sendable' protocol
+ 52 | API_AVAILABLE(macos(10.11), ios(8.0), tvos(9.0)) API_UNAVAILABLE(watchos)
+ 53 | #endif
+ 54 | @interface CAMetalLayer : CALayer
+    |            `- note: class 'CAMetalLayer' does not conform to the 'Sendable' protocol
+ 55 | {
+ 56 | @private
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:1608:18: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+1606 |         while DispatchTime.now().uptimeNanoseconds < deadline {
+1607 |             if Task.isCancelled { break } // typed residual below, never a spin
+1608 |             lock.lock()
+     |                  `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+1609 |             let n = slots.reduce(0) { $0 + $1.readers } + legacyInFlight + admittedUncommitted
+1610 |             lock.unlock()
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:1610:18: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+1608 |             lock.lock()
+1609 |             let n = slots.reduce(0) { $0 + $1.readers } + legacyInFlight + admittedUncommitted
+1610 |             lock.unlock()
+     |                  `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+1611 |             if n == 0 { return 0 }
+1612 |             try? await Task.sleep(nanoseconds: 2_000_000)
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:1614:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+1612 |             try? await Task.sleep(nanoseconds: 2_000_000)
+1613 |         }
+1614 |         lock.lock(); defer { lock.unlock() }
+     |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+1615 |         return slots.reduce(0) { $0 + $1.readers } + legacyInFlight + admittedUncommitted
+1616 |     }
+
+Foundation.NSLock.lock:2:11: note: 'lock()' declared here
+1 | class NSLock {
+2 | open func lock()}
+  |           `- note: 'lock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:1614:35: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+1612 |             try? await Task.sleep(nanoseconds: 2_000_000)
+1613 |         }
+1614 |         lock.lock(); defer { lock.unlock() }
+     |                                   `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+1615 |         return slots.reduce(0) { $0 + $1.readers } + legacyInFlight + admittedUncommitted
+1616 |     }
+
+Foundation.NSLock.unlock:2:11: note: 'unlock()' declared here
+1 | class NSLock {
+2 | open func unlock()}
+  |           `- note: 'unlock()' declared here
+3 | 
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift:1766:46: warning: capture 'off' was never used [#no-usage]
+1764 |             return .failed
+1765 |         }
+1766 |         cb.addCompletedHandler { [weak self, off] _ in
+     |                                              `- warning: capture 'off' was never used [#no-usage]
+1767 |             self?.finishOffscreen(box, bytes: obytes,
+1768 |                                   slotIndex: lease.slotIndex, slotEpoch: lease.epoch)
+
+[#SendableClosureCaptures]: <https://docs.swift.org/compiler/documentation/diagnostics/sendable-closure-captures>
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[620/735] Linking gorav-sink-check
+[621/735] Write Objects.LinkFileList
+[622/735] Applying gorav-sink-check
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[623/735] Linking gorav-probe
+[624/735] Write Objects.LinkFileList
+[625/735] Applying gorav-probe
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[626/735] Linking gorav-first-frame
+[627/735] Write Objects.LinkFileList
+[628/735] Applying gorav-first-frame
+[629/735] Linking decoder-inventory-tests
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[630/735] Linking demux-parity-tests
+[631/735] Write Objects.LinkFileList
+[632/735] Applying decoder-inventory-tests
+[634/735] Compiling GorAVMetalPresenter StagePass.swift
+[635/735] Compiling GorAVMetalPresenter SurfaceContract.swift
+[635/735] Applying demux-parity-tests
+[636/735] Write Objects.LinkFileList
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[637/740] Linking frame-dump
+[638/740] Linking cue-output-tests
+[639/740] Linking crop-tests
+[640/746] Linking core-seek-tests
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[641/746] Linking decoder-lifetime-tests
+[642/746] Applying frame-dump
+[644/750] Compiling vt_producer_tests VTProducerTests.swift
+[645/750] Emitting module n6_native_tests
+[646/750] Compiling n6_native_tests N6NativeTests.swift
+/Users/builder/clone/work-baseline/payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:83:43: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'
+ 81 |             // to the checks above; typed absence fails the check, never skips it.
+ 82 |             if let full = CVPixelBufferTap.copyPixels(buffer: copied) {
+ 83 |                 switch PixelEvidence.diff(full, bytes) {
+    |                                           `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'
+ 84 |                 case .success(let d):
+ 85 |                     check("N6 BGRA copy numerically identical (differing=\(d.differingPixels) maxDelta=\(d.maxChannelDelta))", d.identical)
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:89:47: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'
+ 87 |                     check("N6 BGRA numeric evidence unavailable: \(e)", false)
+ 88 |                 }
+ 89 |                 switch PixelEvidence.writePNG(full, width: 4, height: 4, label: "n6-bgra-copied", order: .bgra) {
+    |                                               `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'
+ 90 |                 case .success(let url): print("PIXEL-EVIDENCE n6-bgra-copied: \(url.path)")
+ 91 |                 case .failure(let e): check("N6 BGRA PNG evidence unavailable: \(e)", false)
+
+/Users/builder/clone/work-baseline/payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:97:51: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'
+ 95 |                 case .failure(let e): check("N6 BGRA reference PNG unavailable: \(e)", false)
+ 96 |                 }
+ 97 |                 switch PixelEvidence.writeDiffPNG(full, bytes, width: 4, height: 4, label: "n6-bgra-copied-vs-source") {
+    |                                                   `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'
+ 98 |                 case .success(let url): print("PIXEL-EVIDENCE diff-image: \(url.path)")
+ 99 |                 case .failure(let e): check("N6 BGRA diff-image unavailable: \(e)", false)
+[647/750] Emitting module gorav_play
+[648/750] Emitting module photon_measurement_tests
+[649/750] Emitting module vt_producer_tests
+error: fatalError

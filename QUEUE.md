@@ -34,3 +34,7 @@ Daily combined native batch: one fixed trigger, within500free monthly minutes; a
 | GOR-FFPROBE-OPTION | owner bug | gdb | LANDED_LANE_NOT_OWNER_ROUTE | 1f2fb162 |
 
 History: history/QUEUE-before-199cn.md. Existing named executor/custody details remain there; no reassignment by this table.
+
+## 199cx clean delivery and baseline issue custody
+
+Route0dcd982 published2026-11-23 after actual same-suite build16: installed2dd versus clean WT B+CmdM, no new failure. Existing repairs stay separate. Evidence and failure lists: native/build14/comparison-build16/. Original14/15 RED history retained, no absolute-green or owner-install claim. Post-delivery baseline rows: refusal OCR; N6 Data compile/layout and photon dependency; E1 local-root/payload receipt; duration mismatch; session EOF/paused acceptance; missing timepos vectors. Preserve existing LEDGER/owner-bug identities, no duplicate worker dispatch or new native run from this entry. E1 portable nine added checks pass but two comp4 failures reproduce locally; v4 helper/dependency/fixture/native acceptance unresolved. Paused no-frame-wait behavior retained, test repair separate.

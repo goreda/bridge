@@ -1,0 +1,1 @@
+{"url": "http://127.0.0.1:49236/live.ts", "vod_url": "http://127.0.0.1:49236/vod.mp4", "deadline_seconds": 90.0, "contract": "chunked200/noContentLength/noRange; repeating timestamp fixture not monotonic-clock acceptance"}

@@ -1,0 +1,136 @@
+{
+  "committedFace" : "sixa\/Exposure-VAR.ttf",
+  "fontName" : "ExposureVAR-Exposure",
+  "layers" : [
+    {
+      "font" : "Optional(\"ExposureVAR-Exposure 16.46 pt. P [] (0x91d99d400) fobj=0x91d99d400, spc=4.28\")",
+      "fontSize" : "16.458290896407394",
+      "frame" : "{{9.9868545517963021, 0}, {26.458290896407394, 532.54269131496335}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : ""
+    },
+    {
+      "font" : "Optional(\"ExposureVAR-Exposure 16.46 pt. P [] (0x91d99d400) fobj=0x91d99d400, spc=4.28\")",
+      "fontSize" : "16.458290896407394",
+      "frame" : "{{0, 0}, {20.485901639344263, 19.753163585629579}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "Q"
+    },
+    {
+      "font" : "Optional(\"ExposureVAR-Exposure 16.46 pt. P [] (0x91d99d400) fobj=0x91d99d400, spc=4.28\")",
+      "fontSize" : "16.458290896407394",
+      "frame" : "{{0, 0}, {20.485901639344263, 19.753163585629579}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "M"
+    },
+    {
+      "font" : "Optional(\"ExposureVAR-Exposure 16.46 pt. P [] (0x91d99d400) fobj=0x91d99d400, spc=4.28\")",
+      "fontSize" : "16.458290896407394",
+      "frame" : "{{0, 0}, {20.485901639344263, 19.753163585629579}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "F"
+    },
+    {
+      "font" : "Optional(\"ExposureVAR-Exposure 16.46 pt. P [] (0x91d99d400) fobj=0x91d99d400, spc=4.28\")",
+      "fontSize" : "16.458290896407394",
+      "frame" : "{{0, 0}, {20.485901639344263, 19.753163585629579}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "B"
+    },
+    {
+      "font" : "Optional(\"ExposureVAR-Exposure 16.46 pt. P [] (0x91d99d400) fobj=0x91d99d400, spc=4.28\")",
+      "fontSize" : "16.458290896407394",
+      "frame" : "{{0, 0}, {20.485901639344263, 19.753163585629579}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "P"
+    },
+    {
+      "font" : "Optional(\"ExposureVAR-Exposure 16.46 pt. P [] (0x91d99d400) fobj=0x91d99d400, spc=4.28\")",
+      "fontSize" : "16.458290896407394",
+      "frame" : "{{0, 0}, {20.485901639344263, 19.753163585629579}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "F"
+    },
+    {
+      "font" : "Optional(\"ExposureVAR-Exposure 16.46 pt. P [] (0x91d99d400) fobj=0x91d99d400, spc=4.28\")",
+      "fontSize" : "16.458290896407394",
+      "frame" : "{{0, 0}, {20.485901639344263, 19.753163585629579}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "V"
+    },
+    {
+      "font" : "Optional(\"ExposureVAR-Exposure 16.46 pt. P [] (0x91d99d400) fobj=0x91d99d400, spc=4.28\")",
+      "fontSize" : "16.458290896407394",
+      "frame" : "{{0, 0}, {20.485901639344263, 19.753163585629579}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "S"
+    },
+    {
+      "font" : "Optional(\"ExposureVAR-Exposure 16.46 pt. P [] (0x91d99d400) fobj=0x91d99d400, spc=4.28\")",
+      "fontSize" : "16.458290896407394",
+      "frame" : "{{0, 0}, {20.485901639344263, 19.753163585629579}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "C"
+    },
+    {
+      "font" : "Optional(\"ExposureVAR-Exposure 16.46 pt. P [] (0x91d99d400) fobj=0x91d99d400, spc=4.28\")",
+      "fontSize" : "16.458290896407394",
+      "frame" : "{{0, 0}, {20.485901639344263, 19.753163585629579}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "A"
+    },
+    {
+      "font" : "Optional(\"ExposureVAR-Exposure 16.46 pt. P [] (0x91d99d400) fobj=0x91d99d400, spc=4.28\")",
+      "fontSize" : "16.458290896407394",
+      "frame" : "{{0, 0}, {20.485901639344263, 19.753163585629579}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "V"
+    },
+    {
+      "font" : "Optional(\"ExposureVAR-Exposure 16.46 pt. P [] (0x91d99d400) fobj=0x91d99d400, spc=4.28\")",
+      "fontSize" : "16.458290896407394",
+      "frame" : "{{0, 0}, {20.485901639344263, 24.753163585629579}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "O"
+    },
+    {
+      "font" : "Optional(\"ExposureVAR-Exposure 16.46 pt. P [] (0x91d99d400) fobj=0x91d99d400, spc=4.28\")",
+      "fontSize" : "16.458290896407394",
+      "frame" : "{{38.917901639344223, 673.32570910359266}, {951.86609836065577, 22.458290896407394}}",
+      "hidden" : "false",
+      "opacity" : "0.9",
+      "scale" : "1.0",
+      "text" : "gorav to mpv: multiple audio tracks are not supported yet"
+    }
+  ],
+  "ocr" : "q m v gorav to mpv: multiple audio tracks are not supported yet",
+  "refusalLine" : "gorav to mpv: multiple audio tracks are not supported yet",
+  "rootBounds" : "{{0, 0}, {1000, 700}}",
+  "spineFrame" : "{{0, 0}, {38.917901639344265, 700}}"
+}

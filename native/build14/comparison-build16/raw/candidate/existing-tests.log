@@ -1,0 +1,275 @@
+warning: 'gorav': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/work-candidate/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/RenderGraph.swift
+[0/1] Planning build
+Building for debugging...
+[0/7] Write sources
+[0/7] /Users/builder/clone/work-candidate/payload/gor/.build/arm64-apple-macosx/debug/gorPackageTests.derived/runner.swift
+[2/8] Write sources
+[3/8] Write swift-version--112E4EF74740DA65.txt
+[5/16] Emitting module gorTests
+[6/16] Compiling gorTests MultipleAudioRefusalPixelTests.swift
+[7/16] Compiling gorTests PhotonActiveEngineHeaderTests.swift
+[8/16] Compiling gorTests PhotonProducerHostNativeTests.swift
+[9/16] Compiling gorTests PhotonDistanceModelNativeTests.swift
+[10/16] Compiling gorTests PhotonFontResourceTests.swift
+[11/16] Compiling gorTests PhotonHostCloseLifecycleTests.swift
+[12/16] Compiling gorTests AudioOutputDeviceNativeTests.swift
+[13/16] Compiling gorTests GorAVStreamAdmissionTests.swift
+[14/16] Compiling gorTests PhotonNativeInputOwnerTests.swift
+[15/17] Compiling gorTests ThreeDRouteMachineTests.swift
+[16/19] Compiling gorPackageTests runner.swift
+[17/19] Emitting module gorPackageTests
+[17/19] Write Objects.LinkFileList
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[18/19] Linking gorPackageTests
+Build complete! (15.96s)
+Test Suite 'All tests' started at 2026-11-23 01:10:23.575.
+Test Suite 'gorPackageTests.xctest' started at 2026-11-23 01:10:23.576.
+Test Suite 'AudioOutputDeviceNativeTests' started at 2026-11-23 01:10:23.576.
+Test Case '-[gorTests.AudioOutputDeviceNativeTests testExplicitDeviceHandoffReadbackAndRollbackToOriginal]' started.
+/Users/builder/clone/work-candidate/payload/gor/Tests/gorTests/AudioOutputDeviceNativeTests.swift:14: -[gorTests.AudioOutputDeviceNativeTests testExplicitDeviceHandoffReadbackAndRollbackToOriginal] : Test skipped - NOT_RUN: explicit hardware output-device test and UID required
+Test Case '-[gorTests.AudioOutputDeviceNativeTests testExplicitDeviceHandoffReadbackAndRollbackToOriginal]' skipped (0.001 seconds).
+Test Suite 'AudioOutputDeviceNativeTests' passed at 2026-11-23 01:10:23.577.
+	 Executed 1 test, with 1 test skipped and 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'GorAVStreamAdmissionTests' started at 2026-11-23 01:10:23.577.
+Test Case '-[gorTests.GorAVStreamAdmissionTests testAdmitsResolvedStreamShapes]' started.
+Test Case '-[gorTests.GorAVStreamAdmissionTests testAdmitsResolvedStreamShapes]' passed (0.000 seconds).
+Test Case '-[gorTests.GorAVStreamAdmissionTests testExplicitZeroStartAdmitted]' started.
+Test Case '-[gorTests.GorAVStreamAdmissionTests testExplicitZeroStartAdmitted]' passed (0.000 seconds).
+Test Case '-[gorTests.GorAVStreamAdmissionTests testRefusesBlockedHost]' started.
+Test Case '-[gorTests.GorAVStreamAdmissionTests testRefusesBlockedHost]' passed (0.000 seconds).
+Test Case '-[gorTests.GorAVStreamAdmissionTests testRefusesHeadersSubtitlesAndPositiveStart]' started.
+Test Case '-[gorTests.GorAVStreamAdmissionTests testRefusesHeadersSubtitlesAndPositiveStart]' passed (0.000 seconds).
+Test Case '-[gorTests.GorAVStreamAdmissionTests testRefusesNonHTTPSchemes]' started.
+Test Case '-[gorTests.GorAVStreamAdmissionTests testRefusesNonHTTPSchemes]' passed (0.000 seconds).
+Test Suite 'GorAVStreamAdmissionTests' passed at 2026-11-23 01:10:23.579.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'MultipleAudioRefusalPixelTests' started at 2026-11-23 01:10:23.579.
+Test Case '-[gorTests.MultipleAudioRefusalPixelTests testRefusalSurvivesRoutineHUDAndIsActuallyRasterized]' started.
+IOServiceMatchingfailed for: AppleM2ScalerParavirtDriver
+/Users/builder/clone/work-candidate/payload/gor/Tests/gorTests/MultipleAudioRefusalPixelTests.swift:87: error: -[gorTests.MultipleAudioRefusalPixelTests testRefusalSurvivesRoutineHUDAndIsActuallyRasterized] : XCTAssertTrue failed - rendered pixels must name the fallback
+/Users/builder/clone/work-candidate/payload/gor/Tests/gorTests/MultipleAudioRefusalPixelTests.swift:88: error: -[gorTests.MultipleAudioRefusalPixelTests testRefusalSurvivesRoutineHUDAndIsActuallyRasterized] : XCTAssertTrue failed - rendered pixels must show the actual reason
+Test Case '-[gorTests.MultipleAudioRefusalPixelTests testRefusalSurvivesRoutineHUDAndIsActuallyRasterized]' failed (24.831 seconds).
+Test Suite 'MultipleAudioRefusalPixelTests' failed at 2026-11-23 01:10:48.410.
+	 Executed 1 test, with 2 failures (0 unexpected) in 24.831 (24.831) seconds
+Test Suite 'PhotonActiveEngineHeaderTests' started at 2026-11-23 01:10:48.410.
+Test Case '-[gorTests.PhotonActiveEngineHeaderTests testDoesNotCreateVisibleContent]' started.
+Test Case '-[gorTests.PhotonActiveEngineHeaderTests testDoesNotCreateVisibleContent]' passed (0.000 seconds).
+Test Case '-[gorTests.PhotonActiveEngineHeaderTests testMetadataNeverChangesVisibleRows]' started.
+Test Case '-[gorTests.PhotonActiveEngineHeaderTests testMetadataNeverChangesVisibleRows]' passed (0.000 seconds).
+Test Suite 'PhotonActiveEngineHeaderTests' passed at 2026-11-23 01:10:48.411.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'PhotonDistanceModelNativeTests' started at 2026-11-23 01:10:48.411.
+Test Case '-[gorTests.PhotonDistanceModelNativeTests testHoldBoundaries]' started.
+Test Case '-[gorTests.PhotonDistanceModelNativeTests testHoldBoundaries]' passed (0.000 seconds).
+Test Case '-[gorTests.PhotonDistanceModelNativeTests testNoDistanceInputAppliesNothing]' started.
+Test Case '-[gorTests.PhotonDistanceModelNativeTests testNoDistanceInputAppliesNothing]' passed (0.000 seconds).
+Test Case '-[gorTests.PhotonDistanceModelNativeTests testNoOsdSizeRefusal]' started.
+Test Case '-[gorTests.PhotonDistanceModelNativeTests testNoOsdSizeRefusal]' passed (0.000 seconds).
+Test Case '-[gorTests.PhotonDistanceModelNativeTests testRealDisplayMillimetrePerPixelSource]' started.
+Test Case '-[gorTests.PhotonDistanceModelNativeTests testRealDisplayMillimetrePerPixelSource]' passed (0.000 seconds).
+Test Suite 'PhotonDistanceModelNativeTests' passed at 2026-11-23 01:10:48.413.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'PhotonFontResourceTests' started at 2026-11-23 01:10:48.413.
+Test Case '-[gorTests.PhotonFontResourceTests testAutomaticStartupSelectsStagedFont]' started.
+Test Case '-[gorTests.PhotonFontResourceTests testAutomaticStartupSelectsStagedFont]' passed (0.002 seconds).
+Test Case '-[gorTests.PhotonFontResourceTests testMissingResourceFallsBackBounded]' started.
+2026-11-23 01:10:48.415 xctest[15100:47857] [GORResources] fonts unavailable: no real bundled or sibling Resources/fonts
+Test Case '-[gorTests.PhotonFontResourceTests testMissingResourceFallsBackBounded]' passed (0.011 seconds).
+Test Case '-[gorTests.PhotonFontResourceTests testStagedFontsResolveAndRegister]' started.
+Test Case '-[gorTests.PhotonFontResourceTests testStagedFontsResolveAndRegister]' passed (0.203 seconds).
+Test Suite 'PhotonFontResourceTests' passed at 2026-11-23 01:10:48.629.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.216 (0.216) seconds
+Test Suite 'PhotonHostCloseLifecycleTests' started at 2026-11-23 01:10:48.629.
+Test Case '-[gorTests.PhotonHostCloseLifecycleTests testConcurrentUserAndProgrammaticClose]' started.
+2026-11-23 01:10:48.646 xctest[15100:47857] [GORResources] vendor unavailable: no real bundled or sibling Resources/vendor
+2026-11-23 01:10:48.901 xctest[15100:47895] [IPTV] index.m3u → HTTP 200  data=2660133 bytes  error=none
+Test Case '-[gorTests.PhotonHostCloseLifecycleTests testConcurrentUserAndProgrammaticClose]' passed (0.407 seconds).
+Test Case '-[gorTests.PhotonHostCloseLifecycleTests testFreshHostOnReusedWindowGetsFreshLifecycle]' started.
+Test Case '-[gorTests.PhotonHostCloseLifecycleTests testFreshHostOnReusedWindowGetsFreshLifecycle]' passed (0.100 seconds).
+Test Case '-[gorTests.PhotonHostCloseLifecycleTests testProgrammaticCloseResolvesEveryWaiter]' started.
+Test Case '-[gorTests.PhotonHostCloseLifecycleTests testProgrammaticCloseResolvesEveryWaiter]' passed (0.107 seconds).
+Test Case '-[gorTests.PhotonHostCloseLifecycleTests testQuitFadeJoinsInFlightOwnedPanelFade]' started.
+2026-11-23 01:10:49.263 xctest[15100:47901] [IPTV] index.m3u → HTTP 200  data=2660133 bytes  error=none
+2026-11-23 01:10:49.350 xctest[15100:47893] [IPTV] index.m3u → HTTP 200  data=2660133 bytes  error=none
+2026-11-23 01:10:49.373 xctest[15100:47861] [IPTV] index.m3u → HTTP 200  data=2660133 bytes  error=none
+2026-11-23 01:10:49.483 xctest[15100:47894] [IPTV] index.m3u → HTTP 200  data=2660133 bytes  error=none
+Test Case '-[gorTests.PhotonHostCloseLifecycleTests testQuitFadeJoinsInFlightOwnedPanelFade]' passed (0.908 seconds).
+Test Case '-[gorTests.PhotonHostCloseLifecycleTests testUserCloseThenProgrammaticWaiterJoins]' started.
+2026-11-23 01:10:50.378 xctest[15100:47901] [IPTV] index.m3u → HTTP 200  data=2660133 bytes  error=none
+Test Case '-[gorTests.PhotonHostCloseLifecycleTests testUserCloseThenProgrammaticWaiterJoins]' passed (0.940 seconds).
+Test Suite 'PhotonHostCloseLifecycleTests' passed at 2026-11-23 01:10:51.092.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 2.462 (2.463) seconds
+Test Suite 'PhotonNativeInputOwnerTests' started at 2026-11-23 01:10:51.092.
+Test Case '-[gorTests.PhotonNativeInputOwnerTests testAcceptedConstantMMUsesPullDisplayNotOrientationScale]' started.
+Test Case '-[gorTests.PhotonNativeInputOwnerTests testAcceptedConstantMMUsesPullDisplayNotOrientationScale]' passed (0.002 seconds).
+Test Suite 'PhotonNativeInputOwnerTests' passed at 2026-11-23 01:10:51.095.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'PhotonProducerHostNativeTests' started at 2026-11-23 01:10:51.095.
+Test Case '-[gorTests.PhotonProducerHostNativeTests testOrdinaryHostStartsSharpGrainWithRuntimeDefaults]' started.
+/Users/builder/clone/work-candidate/payload/gor/Tests/gorTests/PhotonProducerHostNativeTests.swift:13: -[gorTests.PhotonProducerHostNativeTests testOrdinaryHostStartsSharpGrainWithRuntimeDefaults] : Test skipped - NOT_RUN: real local media fixture required
+Test Case '-[gorTests.PhotonProducerHostNativeTests testOrdinaryHostStartsSharpGrainWithRuntimeDefaults]' skipped (0.001 seconds).
+Test Case '-[gorTests.PhotonProducerHostNativeTests testOrdinaryMasterOffNeverPublishesPhoton]' started.
+/Users/builder/clone/work-candidate/payload/gor/Tests/gorTests/PhotonProducerHostNativeTests.swift:71: -[gorTests.PhotonProducerHostNativeTests testOrdinaryMasterOffNeverPublishesPhoton] : Test skipped - NOT_RUN: local fixture required
+Test Case '-[gorTests.PhotonProducerHostNativeTests testOrdinaryMasterOffNeverPublishesPhoton]' skipped (0.001 seconds).
+Test Case '-[gorTests.PhotonProducerHostNativeTests testOrdinaryRemoteOpenUploadsPhoton]' started.
+/Users/builder/clone/work-candidate/payload/gor/Tests/gorTests/PhotonProducerHostNativeTests.swift:92: -[gorTests.PhotonProducerHostNativeTests testOrdinaryRemoteOpenUploadsPhoton] : Test skipped - NOT_RUN: direct HTTP fixture required
+Test Case '-[gorTests.PhotonProducerHostNativeTests testOrdinaryRemoteOpenUploadsPhoton]' skipped (0.001 seconds).
+Test Suite 'PhotonProducerHostNativeTests' passed at 2026-11-23 01:10:51.099.
+	 Executed 3 tests, with 3 tests skipped and 0 failures (0 unexpected) in 0.003 (0.004) seconds
+Test Suite 'ThreeDRouteMachineTests' started at 2026-11-23 01:10:51.099.
+Test Case '-[gorTests.ThreeDRouteMachineTests testAppliedStateDecoding]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testAppliedStateDecoding]' passed (0.001 seconds).
+Test Case '-[gorTests.ThreeDRouteMachineTests testCompleteFailOnMismatch]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testCompleteFailOnMismatch]' passed (0.000 seconds).
+Test Case '-[gorTests.ThreeDRouteMachineTests testCompleteOnlyOncePerBatch]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testCompleteOnlyOncePerBatch]' passed (0.000 seconds).
+Test Case '-[gorTests.ThreeDRouteMachineTests testCompletePass]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testCompletePass]' passed (0.000 seconds).
+Test Case '-[gorTests.ThreeDRouteMachineTests testCompleteStaleOrEmptyReceiptIgnored]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testCompleteStaleOrEmptyReceiptIgnored]' passed (0.000 seconds).
+Test Case '-[gorTests.ThreeDRouteMachineTests testCompleteUnverifiedWithoutContext]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testCompleteUnverifiedWithoutContext]' passed (0.000 seconds).
+Test Case '-[gorTests.ThreeDRouteMachineTests testDecisionForeignSender]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testDecisionForeignSender]' passed (0.000 seconds).
+Test Case '-[gorTests.ThreeDRouteMachineTests testDecisionNonProjectionAdmits]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testDecisionNonProjectionAdmits]' passed (0.000 seconds).
+Test Case '-[gorTests.ThreeDRouteMachineTests testDecisionProjectionKindMismatchFlat]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testDecisionProjectionKindMismatchFlat]' passed (0.000 seconds).
+Test Case '-[gorTests.ThreeDRouteMachineTests testDecisionProjectionKindMismatchNonFlat]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testDecisionProjectionKindMismatchNonFlat]' passed (0.001 seconds).
+Test Case '-[gorTests.ThreeDRouteMachineTests testDecisionStaleCommandRevision]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testDecisionStaleCommandRevision]' passed (0.000 seconds).
+Test Case '-[gorTests.ThreeDRouteMachineTests testDecisionWithoutBatch]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testDecisionWithoutBatch]' passed (0.000 seconds).
+Test Case '-[gorTests.ThreeDRouteMachineTests testNewRevisionClearsCompletion]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testNewRevisionClearsCompletion]' passed (0.000 seconds).
+Test Case '-[gorTests.ThreeDRouteMachineTests testOpenBatchForeignSenderIgnored]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testOpenBatchForeignSenderIgnored]' passed (0.000 seconds).
+Test Case '-[gorTests.ThreeDRouteMachineTests testOpenBatchStaleRevisionIgnored]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testOpenBatchStaleRevisionIgnored]' passed (0.000 seconds).
+Test Case '-[gorTests.ThreeDRouteMachineTests testRejectionDedupe]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testRejectionDedupe]' passed (0.000 seconds).
+Test Case '-[gorTests.ThreeDRouteMachineTests testSameRevisionRefreshKeepsCompletion]' started.
+Test Case '-[gorTests.ThreeDRouteMachineTests testSameRevisionRefreshKeepsCompletion]' passed (0.000 seconds).
+Test Suite 'ThreeDRouteMachineTests' passed at 2026-11-23 01:10:51.107.
+	 Executed 17 tests, with 0 failures (0 unexpected) in 0.005 (0.008) seconds
+Test Suite 'gorPackageTests.xctest' failed at 2026-11-23 01:10:51.107.
+	 Executed 42 tests, with 4 tests skipped and 2 failures (0 unexpected) in 27.524 (27.531) seconds
+Test Suite 'All tests' failed at 2026-11-23 01:10:51.107.
+	 Executed 42 tests, with 4 tests skipped and 2 failures (0 unexpected) in 27.524 (27.532) seconds
+[PhotonFont] Axis: EXPO tag=1163415631 min=-100.0 max=100.0 def=0.0 range=200.0
+[PhotonFont] Loaded: ExposureVAR-Exposure - axes: ["EXPO"], mapping: (empty), pending: 0→[EXPO]
+[VB][volume] visible=true window=true windowAlpha=1.0 hidden=false alpha=1.0 proximity=0.0
+[VB][volume] desired=Optional({
+}) layer=Optional(Optional({
+}))
+[PhotonFont] Axis: wght tag=2003265652 min=100.0 max=500.0 def=400.0 range=400.0
+[PhotonFont] Loaded: MillingTriplexVARRoman-1mm - axes: ["wght"], mapping: (empty), pending: 0→[wght]
+[VB][volume] visible=true window=true windowAlpha=1.0 hidden=false alpha=1.0 proximity=0.0
+[VB][volume] desired=Optional({
+    2003265652 = 100;
+}) layer=Optional(Optional({
+    2003265652 = 100;
+}))
+[PhotonFont] Axis: SIZE tag=1397316165 min=0.0 max=100.0 def=0.0 range=100.0
+[PhotonFont] Axis: ROTA tag=1380930625 min=0.0 max=360.0 def=0.0 range=360.0
+[PhotonFont] Axis: wght tag=2003265652 min=300.0 max=700.0 def=400.0 range=400.0
+[PhotonFont] Loaded: DMTLLVIP-Light - axes: ["SIZE", "ROTA", "wght"], mapping: (empty), pending: 1→[SIZE], 2→[ROTA], 0→[wght]
+[VB][volume] visible=true window=true windowAlpha=1.0 hidden=false alpha=1.0 proximity=0.0
+[VB][volume] desired=Optional({
+    2003265652 = 300;
+}) layer=Optional(Optional({
+    2003265652 = 300;
+}))
+[PhotonFont] randomFontOnStartup: picked font - sixa/Exposure-VAR.ttf (3 candidates, including subfolders)
+[PhotonFont] Axis: EXPO tag=1163415631 min=-100.0 max=100.0 def=0.0 range=200.0
+[PhotonFont] Axis mapping applied: signal0→[EXPO]
+[PhotonFont] Default font - auto-mapping applied (panel not opened), reversed=true (sixa/ isolation)
+[PhotonFont] Loaded: ExposureVAR-Exposure - axes: ["EXPO"], mapping: signal0→[EXPO], pending: (empty)
+[PhotonFont] Registration error: Error Domain=com.apple.CoreText.CTFontManagerErrorDomain Code=101 "The file does not exist at the specified URL." UserInfo={NSUnderlyingError=0x77170e700 {Error Domain=NSCocoaErrorDomain Code=260 "The file “Exposure-VAR.ttf” couldn’t be opened because there is no such file." UserInfo={NSURL=file:///Applications/Xcode-26.6.app/Contents/Developer/usr/Resources/fonts/Exposure-VAR.ttf, NSFilePath=/Applications/Xcode-26.6.app/Contents/Developer/usr/Resources/fonts/Exposure-VAR.ttf, NSUnderlyingError=0x77170e8e0 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}}, NSLocalizedDescription=The file does not exist at the specified URL., CTFontManagerErrorFontURLs=(
+    "file:///Applications/Xcode-26.6.app/Contents/Developer/usr/Resources/fonts/Exposure-VAR.ttf"
+), NSLocalizedFailureReason=Font registration was unsuccessful.}
+[PhotonFont] Axis: EXPO tag=1163415631 min=-100.0 max=100.0 def=0.0 range=200.0
+[PhotonFont] Loaded: ExposureVAR-Exposure - axes: ["EXPO"], mapping: (empty), pending: 0→[EXPO]
+[PhotonFont] Axis: wght tag=2003265652 min=100.0 max=500.0 def=400.0 range=400.0
+[PhotonFont] Loaded: MillingTriplexVARRoman-1mm - axes: ["wght"], mapping: (empty), pending: 0→[wght]
+[PhotonFont] Axis: SIZE tag=1397316165 min=0.0 max=100.0 def=0.0 range=100.0
+[PhotonFont] Axis: ROTA tag=1380930625 min=0.0 max=360.0 def=0.0 range=360.0
+[PhotonFont] Axis: wght tag=2003265652 min=300.0 max=700.0 def=400.0 range=400.0
+[PhotonFont] Loaded: DMTLLVIP-Light - axes: ["SIZE", "wght", "ROTA"], mapping: (empty), pending: 0→[wght], 2→[ROTA], 1→[SIZE]
+[PhotonFont] randomFontOnStartup: picked font - sixa/Milling-TriplexVAR.ttf (3 candidates, including subfolders)
+[PhotonFont] Axis: wght tag=2003265652 min=100.0 max=500.0 def=400.0 range=400.0
+[PhotonFont] Axis mapping applied: signal0→[wght]
+[PhotonFont] Default font - auto-mapping applied (panel not opened), reversed=true (sixa/ isolation)
+[PhotonFont] Loaded: MillingTriplexVARRoman-1mm - axes: ["wght"], mapping: signal0→[wght], pending: (empty)
+[VB][next] start main=true listeners=66
+[engine] backend=gorav refusal=unsupportedCapability("set_property user-data/gor-test-vr-mode"); no runtime replay on mpv
+[engine] backend=gorav refusal=unsupportedCapability("vr180_look: unsupported vr180_look message vr180-look-store-revision"); no runtime replay on mpv
+[engine] backend=gorav refusal=unsupportedCapability("vr180_look: missing or stale command origin"); no runtime replay on mpv
+[VB][volume] visible=true window=true windowAlpha=1.0 hidden=false alpha=1.0 proximity=0.0
+[VB][volume] desired=Optional({
+    2003265652 = 500;
+}) layer=Optional(Optional({
+    2003265652 = 500;
+}))
+[VB][next] tick=1 fanouts=9 listeners=94 mouse=(-9999.0, -9999.0) rawRange=0.0...0.0 smooth=0.0 fanout_ms=0.00/0.00 audio_skips=0+0 [heat] main_load=0.00 proc_cpu_pct=0 governed=0 governor=on hidden_skips=75 top_sites_10s=[SpineUI.swift:62=227,SpineUI.swift:379=25,SpineUI.swift:1246=25,SidebarUI.swift:952=8] font_changed_over_same_10s=[SpineUI.swift:69=49/35,SidebarUI.swift:525=37/0,SidebarUI.swift:523=37/0,SidebarUI.swift:521=37/0] mpv_cpu_pct=n/a vision_frames=0
+[brightness] loaded
+[brightness] captured at launch: 100%
+💡 App launched, original brightness: 100%
+[brightness] 100%
+[brightness] restore: 100%
+[engine] backend=gorav refusal=unsupportedCapability("set_property user-data/gor-test-vr-mode"); no runtime replay on mpv
+[engine] backend=gorav refusal=unsupportedCapability("vr180_look: unsupported vr180_look message vr180-look-store-revision"); no runtime replay on mpv
+[engine] backend=gorav refusal=unsupportedCapability("vr180_look: missing or stale command origin"); no runtime replay on mpv
+[brightness] loaded
+[brightness] captured at launch: 100%
+💡 App launched, original brightness: 100%
+[engine] backend=gorav refusal=unsupportedCapability("set_property user-data/gor-test-vr-mode"); no runtime replay on mpv
+[engine] backend=gorav refusal=unsupportedCapability("vr180_look: unsupported vr180_look message vr180-look-store-revision"); no runtime replay on mpv
+[engine] backend=gorav refusal=unsupportedCapability("vr180_look: missing or stale command origin"); no runtime replay on mpv
+[brightness] loaded
+[brightness] captured at launch: 100%
+💡 App launched, original brightness: 100%
+[brightness] 100%
+[brightness] restore: 100%
+[brightness] 100%
+[brightness] restore: 100%
+[engine] backend=gorav refusal=unsupportedCapability("set_property user-data/gor-test-vr-mode"); no runtime replay on mpv
+[engine] backend=gorav refusal=unsupportedCapability("vr180_look: unsupported vr180_look message vr180-look-store-revision"); no runtime replay on mpv
+[engine] backend=gorav refusal=unsupportedCapability("vr180_look: missing or stale command origin"); no runtime replay on mpv
+[brightness] loaded
+[brightness] captured at launch: 100%
+💡 App launched, original brightness: 100%
+[brightness] 100%
+[brightness] restore: 100%
+[engine] backend=gorav refusal=unsupportedCapability("set_property user-data/gor-test-vr-mode"); no runtime replay on mpv
+[engine] backend=gorav refusal=unsupportedCapability("vr180_look: unsupported vr180_look message vr180-look-store-revision"); no runtime replay on mpv
+[engine] backend=gorav refusal=unsupportedCapability("vr180_look: missing or stale command origin"); no runtime replay on mpv
+[brightness] loaded
+[brightness] captured at launch: 100%
+💡 App launched, original brightness: 100%
+[VB][volume] visible=true window=true windowAlpha=1.0 hidden=false alpha=1.0 proximity=0.0
+[VB][volume] desired=Optional({
+    2003265652 = "497.1839";
+}) layer=Optional(Optional({
+    2003265652 = "497.1839";
+}))
+[engine] backend=gorav refusal=unsupportedCapability("set_property user-data/gor-test-vr-mode"); no runtime replay on mpv
+[engine] backend=gorav refusal=unsupportedCapability("vr180_look: unsupported vr180_look message vr180-look-store-revision"); no runtime replay on mpv
+[engine] backend=gorav refusal=unsupportedCapability("vr180_look: missing or stale command origin"); no runtime replay on mpv
+[VB][volume] visible=true window=true windowAlpha=1.0 hidden=false alpha=1.0 proximity=0.0
+[VB][volume] desired=Optional({
+    2003265652 = "431.5338";
+}) layer=Optional(Optional({
+    2003265652 = "431.5338";
+}))
+[brightness] loaded
+[brightness] captured at launch: 100%
+💡 App launched, original brightness: 100%
+[brightness] 100%
+[brightness] restore: 100%
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

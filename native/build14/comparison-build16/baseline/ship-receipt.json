@@ -1,0 +1,40 @@
+{
+  "candidate_commit": "2ddfc14e381ea308d68b38e8a81b583dd1ffc3e8",
+  "carrier_commit": "950b7aa21cbdaaca112d8fae73d259200373d749",
+  "result": "FAIL",
+  "steps": [
+    {
+      "step": "build-link",
+      "exit": 0,
+      "status": "PASS",
+      "log": "build-link.log",
+      "seconds": 143.13
+    },
+    {
+      "step": "provider-path",
+      "exit": 0,
+      "status": "PASS",
+      "log": "provider-path.log",
+      "seconds": 1.42
+    },
+    {
+      "step": "existing-tests",
+      "exit": 1,
+      "status": "FAIL",
+      "log": "existing-tests.log",
+      "seconds": 44.3
+    },
+    {
+      "step": "normal-app-launch",
+      "status": "NOT_RUN",
+      "reason": "earlier required step failed"
+    }
+  ],
+  "errors": [
+    "RuntimeError('existing-tests failed exit=1')"
+  ],
+  "seconds": 189.26,
+  "architecture_health": "NOT_A_SHIPPING_GATE, separate violation report",
+  "known_debt": "15 baseline crop contract failures and old PlayerBackend extracted-harness compile failure remain outside this native root-XCTest qualification; no claim they pass",
+  "boundary": "R5 build/link + existing root tests + normal AppKit process launch. Skipped opt-in tests NOT_RUN. No owner installation, playback or complete product health claim."
+}

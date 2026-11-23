@@ -1,0 +1,164 @@
+warning: 'gorav': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/seek-composition-tests/README-SEEKVECTORS.md
+warning: 'gorav': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/timing-ledger-tests/ClockScenarioReplay.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/photon-sharp-tests/fixtures/photon-sharp.glsl
+    /Users/builder/clone/payload/gorav/Sources/photon-sharp-tests/fixtures/photon-sharp-temporal.glsl
+warning: 'gorav': found 7 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/lua-reference/README.md
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/lua-reference/vendor/photon-live-control.lua
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/lua-reference/live-control-lua-reference.json
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/live-control-vectors.json
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/lua-reference/regenerate-reference.sh
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/lua-reference/run-live-control.lua
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/generate-vectors.py
+warning: 'gorav': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/hud-state-tests/hud-vectors.json
+    /Users/builder/clone/payload/gorav/Sources/hud-state-tests/generate-vectors.py
+warning: 'gorav': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/chrome-state-tests/chrome-vectors.json
+    /Users/builder/clone/payload/gorav/Sources/chrome-state-tests/generate-vectors.py
+[0/1] Planning build
+Building for debugging...
+[0/4] Write swift-version--112E4EF74740DA65.txt
+[2/6] Compiling session_venue_tests main.swift
+/Users/builder/clone/payload/gorav/Sources/session-venue-tests/main.swift:71:17: warning: call to main actor-isolated initializer 'init(contentRect:styleMask:backing:defer:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 69 |     // Venue-only drawable hosting, never product geometry.
+ 70 |     func venueWindow(_ x: CGFloat) -> NSWindow {
+ 71 |         let w = NSWindow(contentRect: NSRect(x: x, y: 100, width: 64, height: 64),
+    |                 `- warning: call to main actor-isolated initializer 'init(contentRect:styleMask:backing:defer:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 72 |                          styleMask: [.titled], backing: .buffered, defer: false)
+ 73 |         w.isReleasedWhenClosed = false
+
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/System/Library/Frameworks/AppKit.framework/Headers/NSWindow.h:293:1: note: calls to initializer 'init(contentRect:styleMask:backing:defer:)' from outside of its actor context are implicitly asynchronous
+ 291 | - (NSRect)contentRectForFrameRect:(NSRect)frameRect;
+ 292 | 
+ 293 | - (instancetype)initWithContentRect:(NSRect)contentRect styleMask:(NSWindowStyleMask)style backing:(NSBackingStoreType)backingStoreType defer:(BOOL)flag NS_DESIGNATED_INITIALIZER;
+     | |- note: calls to initializer 'init(contentRect:styleMask:backing:defer:)' from outside of its actor context are implicitly asynchronous
+     | `- note: main actor isolation inferred from inheritance from class 'NSResponder'
+ 294 | - (instancetype)initWithContentRect:(NSRect)contentRect styleMask:(NSWindowStyleMask)style backing:(NSBackingStoreType)backingStoreType defer:(BOOL)flag screen:(nullable NSScreen *)screen;
+ 295 | - (instancetype)initWithCoder:(NSCoder *)coder NS_UNAVAILABLE; // Use initWithContentRect:. This method will throw an exception for coders that support allowsKeyedCoding, and is only available for compatibility with non keyed coding.
+
+/Users/builder/clone/payload/gorav/Sources/session-venue-tests/main.swift:73:11: warning: main actor-isolated property 'isReleasedWhenClosed' can not be mutated from a nonisolated context
+ 71 |         let w = NSWindow(contentRect: NSRect(x: x, y: 100, width: 64, height: 64),
+ 72 |                          styleMask: [.titled], backing: .buffered, defer: false)
+ 73 |         w.isReleasedWhenClosed = false
+    |           `- warning: main actor-isolated property 'isReleasedWhenClosed' can not be mutated from a nonisolated context
+ 74 |         w.makeKeyAndOrderFront(nil)
+ 75 |         w.orderFrontRegardless()
+
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/System/Library/Frameworks/AppKit.framework/Headers/NSWindow.h:393:46: note: mutation of this property is only permitted within the actor
+ 391 | @property (readonly) NSEventModifierFlags resizeFlags;
+ 392 | - (void)close;
+ 393 | @property (getter=isReleasedWhenClosed) BOOL releasedWhenClosed;
+     |                                              `- note: mutation of this property is only permitted within the actor
+ 394 | - (void)miniaturize:(nullable id)sender;
+ 395 | - (void)deminiaturize:(nullable id)sender;
+
+/Users/builder/clone/payload/gorav/Sources/session-venue-tests/main.swift:74:11: warning: call to main actor-isolated instance method 'makeKeyAndOrderFront' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 72 |                          styleMask: [.titled], backing: .buffered, defer: false)
+ 73 |         w.isReleasedWhenClosed = false
+ 74 |         w.makeKeyAndOrderFront(nil)
+    |           `- warning: call to main actor-isolated instance method 'makeKeyAndOrderFront' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 75 |         w.orderFrontRegardless()
+ 76 |         return w
+
+AppKit.NSWindow.makeKeyAndOrderFront:2:22: note: calls to instance method 'makeKeyAndOrderFront' from outside of its actor context are implicitly asynchronous
+1 | class NSWindow {
+2 | @MainActor open func makeKeyAndOrderFront(_ sender: Any?)}
+  |                      |- note: calls to instance method 'makeKeyAndOrderFront' from outside of its actor context are implicitly asynchronous
+  |                      `- note: main actor isolation inferred from inheritance from class 'NSResponder'
+3 | 
+
+/Users/builder/clone/payload/gorav/Sources/session-venue-tests/main.swift:75:11: warning: call to main actor-isolated instance method 'orderFrontRegardless()' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 73 |         w.isReleasedWhenClosed = false
+ 74 |         w.makeKeyAndOrderFront(nil)
+ 75 |         w.orderFrontRegardless()
+    |           `- warning: call to main actor-isolated instance method 'orderFrontRegardless()' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 76 |         return w
+ 77 |     }
+
+AppKit.NSWindow.orderFrontRegardless:2:22: note: calls to instance method 'orderFrontRegardless()' from outside of its actor context are implicitly asynchronous
+1 | class NSWindow {
+2 | @MainActor open func orderFrontRegardless()}
+  |                      |- note: calls to instance method 'orderFrontRegardless()' from outside of its actor context are implicitly asynchronous
+  |                      `- note: main actor isolation inferred from inheritance from class 'NSResponder'
+3 | 
+
+[#ActorIsolatedCall]: <https://docs.swift.org/compiler/documentation/diagnostics/actor-isolated-call>
+[3/6] Emitting module session_venue_tests
+[3/6] Write Objects.LinkFileList
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[4/6] Linking session-venue-tests
+[5/6] Applying session-venue-tests
+Build of product 'session-venue-tests' complete! (3.05s)
+SESSION-VENUE event[seq=1 t=+0.08s] durationKnown(seconds: 24.0)
+SESSION-VENUE event[seq=2 t=+0.09s] opened
+SESSION-VENUE event[seq=3 t=+0.15s] timePos(seconds: 1.249999968422344e-06, generation: 0)
+SESSION-VENUE event[seq=4 t=+0.15s] firstFrame
+SESSION-VENUE V1 open: .opened + .firstFrame, generation anchor=0.0s
+SESSION-VENUE V1 terminalStats shown=nil dropped=nil waits=nil lifecycle=playing
+SESSION-VENUE V1 firstPCM=[0.0]
+SESSION-VENUE event[seq=5 t=+0.20s] paused
+SESSION-VENUE event[seq=6 t=+0.60s] timePos(seconds: 0.05556229166666071, generation: 0)
+SESSION-VENUE V2 pause: .paused, no EOS across a 12s hold exceeding remaining content
+SESSION-VENUE V2 terminalStats shown=nil dropped=nil waits=nil lifecycle=paused
+SESSION-VENUE V2 firstPCM=[0.0]
+SESSION-VENUE event[seq=7 t=+12.21s] resumed
+SESSION-VENUE V3 resume: .resumed
+SESSION-VENUE V3 terminalStats shown=nil dropped=nil waits=nil lifecycle=playing
+SESSION-VENUE V3 firstPCM=[0.0]
+SESSION-VENUE event[seq=8 t=+12.28s] seekCommitted(seconds: 8.0)
+SESSION-VENUE event[seq=9 t=+12.28s] timePos(seconds: 8.000005541666724, generation: 1)
+SESSION-VENUE event[seq=10 t=+12.28s] firstFrame
+SESSION-VENUE event[seq=11 t=+12.56s] timePos(seconds: 8.2794302916667, generation: 1)
+SESSION-VENUE event[seq=12 t=+12.81s] timePos(seconds: 8.530790833333299, generation: 1)
+SESSION-VENUE event[seq=13 t=+13.06s] timePos(seconds: 8.786602874999971, generation: 1)
+SESSION-VENUE event[seq=14 t=+13.32s] timePos(seconds: 9.043879958333378, generation: 1)
+SESSION-VENUE event[seq=15 t=+13.58s] timePos(seconds: 9.302625791666742, generation: 1)
+SESSION-VENUE event[seq=16 t=+13.83s] timePos(seconds: 9.558468166666671, generation: 1)
+SESSION-VENUE event[seq=17 t=+14.09s] timePos(seconds: 9.809818083333312, generation: 1)
+SESSION-VENUE event[seq=18 t=+14.34s] timePos(seconds: 10.065859333333378, generation: 1)
+SESSION-VENUE event[seq=19 t=+14.60s] timePos(seconds: 10.319464499999981, generation: 1)
+SESSION-VENUE event[seq=20 t=+14.85s] timePos(seconds: 10.576227416666711, generation: 1)
+SESSION-VENUE event[seq=21 t=+15.10s] timePos(seconds: 10.827495416666693, generation: 1)
+SESSION-VENUE event[seq=22 t=+15.36s] timePos(seconds: 11.081748208333352, generation: 1)
+SESSION-VENUE event[seq=23 t=+15.61s] timePos(seconds: 11.332336291666707, generation: 1)
+SESSION-VENUE event[seq=24 t=+15.86s] timePos(seconds: 11.583745874999977, generation: 1)
+SESSION-VENUE event[seq=25 t=+16.11s] timePos(seconds: 11.838159625000003, generation: 1)
+SESSION-VENUE V4 terminalStats shown=nil dropped=nil waits=nil lifecycle=playing
+SESSION-VENUE V4 seekTrace seq=1 seekBegin
+SESSION-VENUE V4 seekTrace seq=2 seekVideoCommitted
+SESSION-VENUE V4 seekTrace seq=3 frame0Presented media=8.0
+SESSION-VENUE V4 seekTrace seq=4 audioRingReset
+SESSION-VENUE V4 seekTrace seq=5 audioSeekDone outcome=nativeReady
+SESSION-VENUE V4 seekTrace seq=6 audioProducerRearmed
+SESSION-VENUE V4 seekTrace seq=7 seekCommitted
+SESSION-VENUE V4 firstPCM=[0.0, 8.0]
+SESSION-VENUE BAD: V4 no EOF within 4s of seek

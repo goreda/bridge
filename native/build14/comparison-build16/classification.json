@@ -1,0 +1,138 @@
+{
+  "authority": "199cx phonemsg-01M82YF58M3H751H2J7XPBYTPT",
+  "build_url": "https://codemagic.io/app/6b0161b442edd9c1272517bc/build/6b03906f8f52ca27512a5eaa",
+  "carrier": "950b7aa21cbdaaca112d8fae73d259200373d749",
+  "baseline": "2ddfc14e381ea308d68b38e8a81b583dd1ffc3e8",
+  "candidate": "e846c4f84bb1ca812cc9c692034574777675811c",
+  "verdict": "NO_NEW_FAILURE",
+  "failure_rows": [
+    {
+      "stage": "app-root-and-launch",
+      "classification": "BASELINE",
+      "baseline": [
+        "-[gorTests.MultipleAudioRefusalPixelTests testRefusalSurvivesRoutineHUDAndIsActuallyRasterized]"
+      ],
+      "candidate": [
+        "-[gorTests.MultipleAudioRefusalPixelTests testRefusalSurvivesRoutineHUDAndIsActuallyRasterized]"
+      ],
+      "new": false
+    },
+    {
+      "stage": "timepos-vectors",
+      "classification": "BASELINE",
+      "baseline": [
+        "timepos-tests: FAIL - kits/timepos-vectors/vectors.json not found"
+      ],
+      "candidate": [
+        "timepos-tests: FAIL - kits/timepos-vectors/vectors.json not found"
+      ],
+      "new": false
+    },
+    {
+      "stage": "photon-presenter",
+      "classification": "BASELINE",
+      "baseline": [
+        "error: fatalError",
+        "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:83:43: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:89:47: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:97:51: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "|                                                   `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "|                                               `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "|                                           `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'"
+      ],
+      "candidate": [
+        "error: fatalError",
+        "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:83:43: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:89:47: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:97:51: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "|                                                   `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "|                                               `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "|                                           `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'"
+      ],
+      "new": false
+    },
+    {
+      "stage": "n6",
+      "classification": "BASELINE",
+      "baseline": [
+        "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:83:43: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:89:47: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:97:51: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "|                                                   `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "|                                               `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "|                                           `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'"
+      ],
+      "candidate": [
+        "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:83:43: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:89:47: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:97:51: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "|                                                   `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "|                                               `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+        "|                                           `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'"
+      ],
+      "new": false
+    },
+    {
+      "stage": "e1-vt",
+      "classification": "BASELINE",
+      "baseline": [
+        "E1-VT-LIVE-GATE FAIL: open /Users/builder/clone/work-baseline/fixtures/synthetic-av24.mp4: rejected(\"no pinned local roots configured; refusing open\")"
+      ],
+      "candidate": [
+        "E1-VT-LIVE-GATE FAIL: open /Users/builder/clone/work-candidate/fixtures/synthetic-av24.mp4: rejected(\"no pinned local roots configured; refusing open\")"
+      ],
+      "new": false
+    },
+    {
+      "stage": "duration",
+      "classification": "BASELINE",
+      "baseline": [
+        "DURATION NATIVE FAIL failed(\"open event/observation/snapshot duration mismatch\")"
+      ],
+      "candidate": [
+        "DURATION NATIVE FAIL failed(\"open event/observation/snapshot duration mismatch\")"
+      ],
+      "new": false
+    },
+    {
+      "stage": "session-venue",
+      "classification": "BASELINE",
+      "baseline": [
+        "SESSION-VENUE BAD: V4 no EOF within 4s of seek"
+      ],
+      "candidate": [
+        "SESSION-VENUE BAD: V4 no EOF within 4s of seek"
+      ],
+      "new": false
+    }
+  ],
+  "new_failures": [],
+  "passed_both": [
+    "build-link",
+    "provider-path",
+    "timepos"
+  ],
+  "root_tests_both": {
+    "executed": 42,
+    "passed": 37,
+    "skipped_not_run": 4,
+    "failed_cases": 1,
+    "failed_assertions": 2,
+    "case_identity_status_equal": true
+  },
+  "not_run_both": [
+    "normal standalone AppKit launch after same required test failure",
+    "Photon actual render because same N6 compile error",
+    "VT decode beyond same missing pin refusal",
+    "session checks after same V4 exit"
+  ],
+  "pixel_review": {
+    "all_three_faces_actual_reference_diff_equal_between_variants": true,
+    "retention_delta_all_faces": 0,
+    "DMT": "same faint failure both",
+    "Exposure": "readable both",
+    "Milling": "readable both"
+  },
+  "raw_signature_correction": "E1 path-only work-baseline vs work-candidate is not a new failure; exact refused policy and fixture bytes identical",
+  "scope": "Same original53750005 suite/provider/fixtures/gorav/overlays. Runtime product delta only WTserver+MagnetBrowser. No error-font/N6/E1/session side repair. No installed playback or full health claim."
+}

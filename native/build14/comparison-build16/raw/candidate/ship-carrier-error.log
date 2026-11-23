@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/builder/clone/work-candidate/ci/ship-native.py", line 38, in main
+    row=run('existing-tests',['swift','test']+flags,1200,testsenv)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/builder/clone/work-candidate/ci/ship-native.py", line 19, in run
+    if code:raise RuntimeError(name+' failed exit='+str(code))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: existing-tests failed exit=1

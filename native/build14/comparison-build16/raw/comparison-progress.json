@@ -1,0 +1,216 @@
+[
+  {
+    "variant": "baseline",
+    "source": "2ddfc14e381ea308d68b38e8a81b583dd1ffc3e8",
+    "exit": 1,
+    "failures": [
+      {
+        "stage": "app-root-and-launch",
+        "status": "FAIL",
+        "failures": [
+          "-[gorTests.MultipleAudioRefusalPixelTests testRefusalSurvivesRoutineHUDAndIsActuallyRasterized]"
+        ],
+        "details": [
+          "Tests/gorTests/MultipleAudioRefusalPixelTests.swift:87: error: -[gorTests.MultipleAudioRefusalPixelTests testRefusalSurvivesRoutineHUDAndIsActuallyRasterized] : XCTAssertTrue failed - rendered pixels must name the fallback",
+          "Tests/gorTests/MultipleAudioRefusalPixelTests.swift:88: error: -[gorTests.MultipleAudioRefusalPixelTests testRefusalSurvivesRoutineHUDAndIsActuallyRasterized] : XCTAssertTrue failed - rendered pixels must show the actual reason"
+        ],
+        "exit": 1
+      },
+      {
+        "stage": "timepos-vectors",
+        "status": "FAIL",
+        "failures": [
+          "timepos-tests: FAIL - kits/timepos-vectors/vectors.json not found"
+        ],
+        "details": [
+          "timepos-tests: FAIL - kits/timepos-vectors/vectors.json not found"
+        ],
+        "exit": 1
+      },
+      {
+        "stage": "photon-presenter",
+        "status": "FAIL",
+        "failures": [
+          "error: fatalError",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:83:43: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:89:47: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:97:51: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                                   `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                               `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                           `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'"
+        ],
+        "details": [
+          "error: fatalError",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:83:43: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:89:47: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:97:51: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                                   `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                               `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                           `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'"
+        ],
+        "exit": 1
+      },
+      {
+        "stage": "n6",
+        "status": "FAIL",
+        "failures": [
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:83:43: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:89:47: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:97:51: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                                   `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                               `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                           `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'"
+        ],
+        "details": [
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:83:43: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:89:47: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:97:51: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                                   `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                               `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                           `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'"
+        ],
+        "exit": 1
+      },
+      {
+        "stage": "e1-vt",
+        "status": "FAIL",
+        "failures": [
+          "E1-VT-LIVE-GATE FAIL: open /Users/builder/clone/work-baseline/fixtures/synthetic-av24.mp4: rejected(\"no pinned local roots configured; refusing open\")"
+        ],
+        "details": [
+          "E1-VT-LIVE-GATE FAIL: open /Users/builder/clone/work-baseline/fixtures/synthetic-av24.mp4: rejected(\"no pinned local roots configured; refusing open\")"
+        ],
+        "exit": 1
+      },
+      {
+        "stage": "duration",
+        "status": "FAIL",
+        "failures": [
+          "DURATION NATIVE FAIL failed(\"open event/observation/snapshot duration mismatch\")"
+        ],
+        "details": [
+          "DURATION NATIVE FAIL failed(\"open event/observation/snapshot duration mismatch\")"
+        ],
+        "exit": 1
+      },
+      {
+        "stage": "session-venue",
+        "status": "FAIL",
+        "failures": [
+          "SESSION-VENUE BAD: V4 no EOF within 4s of seek"
+        ],
+        "details": [
+          "SESSION-VENUE BAD: V4 no EOF within 4s of seek"
+        ],
+        "exit": 1
+      }
+    ]
+  },
+  {
+    "variant": "candidate",
+    "source": "e846c4f84bb1ca812cc9c692034574777675811c",
+    "exit": 1,
+    "failures": [
+      {
+        "stage": "app-root-and-launch",
+        "status": "FAIL",
+        "failures": [
+          "-[gorTests.MultipleAudioRefusalPixelTests testRefusalSurvivesRoutineHUDAndIsActuallyRasterized]"
+        ],
+        "details": [
+          "Tests/gorTests/MultipleAudioRefusalPixelTests.swift:87: error: -[gorTests.MultipleAudioRefusalPixelTests testRefusalSurvivesRoutineHUDAndIsActuallyRasterized] : XCTAssertTrue failed - rendered pixels must name the fallback",
+          "Tests/gorTests/MultipleAudioRefusalPixelTests.swift:88: error: -[gorTests.MultipleAudioRefusalPixelTests testRefusalSurvivesRoutineHUDAndIsActuallyRasterized] : XCTAssertTrue failed - rendered pixels must show the actual reason"
+        ],
+        "exit": 1
+      },
+      {
+        "stage": "timepos-vectors",
+        "status": "FAIL",
+        "failures": [
+          "timepos-tests: FAIL - kits/timepos-vectors/vectors.json not found"
+        ],
+        "details": [
+          "timepos-tests: FAIL - kits/timepos-vectors/vectors.json not found"
+        ],
+        "exit": 1
+      },
+      {
+        "stage": "photon-presenter",
+        "status": "FAIL",
+        "failures": [
+          "error: fatalError",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:83:43: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:89:47: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:97:51: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                                   `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                               `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                           `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'"
+        ],
+        "details": [
+          "error: fatalError",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:83:43: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:89:47: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:97:51: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                                   `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                               `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                           `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'"
+        ],
+        "exit": 1
+      },
+      {
+        "stage": "n6",
+        "status": "FAIL",
+        "failures": [
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:83:43: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:89:47: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:97:51: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                                   `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                               `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                           `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'"
+        ],
+        "details": [
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:83:43: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:89:47: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "payload/gorav/Sources/n6-native-tests/N6NativeTests.swift:97:51: error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                                   `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                               `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'",
+          "|                                           `- error: cannot convert value of type 'Data' to expected argument type '[UInt8]'"
+        ],
+        "exit": 1
+      },
+      {
+        "stage": "e1-vt",
+        "status": "FAIL",
+        "failures": [
+          "E1-VT-LIVE-GATE FAIL: open /Users/builder/clone/work-candidate/fixtures/synthetic-av24.mp4: rejected(\"no pinned local roots configured; refusing open\")"
+        ],
+        "details": [
+          "E1-VT-LIVE-GATE FAIL: open /Users/builder/clone/work-candidate/fixtures/synthetic-av24.mp4: rejected(\"no pinned local roots configured; refusing open\")"
+        ],
+        "exit": 1
+      },
+      {
+        "stage": "duration",
+        "status": "FAIL",
+        "failures": [
+          "DURATION NATIVE FAIL failed(\"open event/observation/snapshot duration mismatch\")"
+        ],
+        "details": [
+          "DURATION NATIVE FAIL failed(\"open event/observation/snapshot duration mismatch\")"
+        ],
+        "exit": 1
+      },
+      {
+        "stage": "session-venue",
+        "status": "FAIL",
+        "failures": [
+          "SESSION-VENUE BAD: V4 no EOF within 4s of seek"
+        ],
+        "details": [
+          "SESSION-VENUE BAD: V4 no EOF within 4s of seek"
+        ],
+        "exit": 1
+      }
+    ]
+  }
+]

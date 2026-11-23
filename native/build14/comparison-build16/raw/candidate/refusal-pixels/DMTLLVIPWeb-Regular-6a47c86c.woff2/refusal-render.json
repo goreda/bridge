@@ -1,0 +1,136 @@
+{
+  "committedFace" : "DMTLLVIPWeb-Regular-6a47c86c.woff2",
+  "fontName" : "DMTLLVIP-Light",
+  "layers" : [
+    {
+      "font" : "Optional(\"DMTLLVIP-Light 16.23 pt. P [] (0x76e422f80) fobj=0x76e422f80, spc=6.70\")",
+      "fontSize" : "16.225352112676056",
+      "frame" : "{{10.10332394366197, 0}, {26.225352112676056, 534.80501584507033}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : ""
+    },
+    {
+      "font" : "Optional(\"DMTLLVIP-Light 16.23 pt. P [] (0x76e422f80) fobj=0x76e422f80, spc=6.70\")",
+      "fontSize" : "16.225352112676056",
+      "frame" : "{{0, 0}, {16.519999999999996, 19.470373019366196}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "Q"
+    },
+    {
+      "font" : "Optional(\"DMTLLVIP-Light 16.23 pt. P [] (0x76e422f80) fobj=0x76e422f80, spc=6.70\")",
+      "fontSize" : "16.225352112676056",
+      "frame" : "{{0, 0}, {16.519999999999996, 19.470373019366196}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "M"
+    },
+    {
+      "font" : "Optional(\"DMTLLVIP-Light 16.23 pt. P [] (0x76e422f80) fobj=0x76e422f80, spc=6.70\")",
+      "fontSize" : "16.225352112676056",
+      "frame" : "{{0, 0}, {16.519999999999996, 19.470373019366196}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "F"
+    },
+    {
+      "font" : "Optional(\"DMTLLVIP-Light 16.23 pt. P [] (0x76e422f80) fobj=0x76e422f80, spc=6.70\")",
+      "fontSize" : "16.225352112676056",
+      "frame" : "{{0, 0}, {16.519999999999996, 19.470373019366196}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "B"
+    },
+    {
+      "font" : "Optional(\"DMTLLVIP-Light 16.23 pt. P [] (0x76e422f80) fobj=0x76e422f80, spc=6.70\")",
+      "fontSize" : "16.225352112676056",
+      "frame" : "{{0, 0}, {16.519999999999996, 19.470373019366196}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "P"
+    },
+    {
+      "font" : "Optional(\"DMTLLVIP-Light 16.23 pt. P [] (0x76e422f80) fobj=0x76e422f80, spc=6.70\")",
+      "fontSize" : "16.225352112676056",
+      "frame" : "{{0, 0}, {16.519999999999996, 19.470373019366196}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "F"
+    },
+    {
+      "font" : "Optional(\"DMTLLVIP-Light 16.23 pt. P [] (0x76e422f80) fobj=0x76e422f80, spc=6.70\")",
+      "fontSize" : "16.225352112676056",
+      "frame" : "{{0, 0}, {16.519999999999996, 19.470373019366196}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "V"
+    },
+    {
+      "font" : "Optional(\"DMTLLVIP-Light 16.23 pt. P [] (0x76e422f80) fobj=0x76e422f80, spc=6.70\")",
+      "fontSize" : "16.225352112676056",
+      "frame" : "{{0, 0}, {16.519999999999996, 19.470373019366196}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "S"
+    },
+    {
+      "font" : "Optional(\"DMTLLVIP-Light 16.23 pt. P [] (0x76e422f80) fobj=0x76e422f80, spc=6.70\")",
+      "fontSize" : "16.225352112676056",
+      "frame" : "{{0, 0}, {16.519999999999996, 19.470373019366196}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "C"
+    },
+    {
+      "font" : "Optional(\"DMTLLVIP-Light 16.23 pt. P [] (0x76e422f80) fobj=0x76e422f80, spc=6.70\")",
+      "fontSize" : "16.225352112676056",
+      "frame" : "{{0, 0}, {16.519999999999996, 19.470373019366196}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "A"
+    },
+    {
+      "font" : "Optional(\"DMTLLVIP-Light 16.23 pt. P [] (0x76e422f80) fobj=0x76e422f80, spc=6.70\")",
+      "fontSize" : "16.225352112676056",
+      "frame" : "{{0, 0}, {16.519999999999996, 19.470373019366196}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "V"
+    },
+    {
+      "font" : "Optional(\"DMTLLVIP-Light 16.23 pt. P [] (0x76e422f80) fobj=0x76e422f80, spc=6.70\")",
+      "fontSize" : "16.225352112676056",
+      "frame" : "{{0, 0}, {16.519999999999996, 24.470373019366196}}",
+      "hidden" : "false",
+      "opacity" : "1.0",
+      "scale" : "1.0",
+      "text" : "O"
+    },
+    {
+      "font" : "Optional(\"DMTLLVIP-Light 16.23 pt. P [] (0x76e422f80) fobj=0x76e422f80, spc=6.70\")",
+      "fontSize" : "16.225352112676056",
+      "frame" : "{{34.951999999999941, 673.5586478873239}, {955.83199999999999, 22.225352112676056}}",
+      "hidden" : "false",
+      "opacity" : "0.9",
+      "scale" : "1.0",
+      "text" : "gorav to mpv: multiple audio tracks are not supported yet"
+    }
+  ],
+  "ocr" : "gorov to movl multiple",
+  "refusalLine" : "gorav to mpv: multiple audio tracks are not supported yet",
+  "rootBounds" : "{{0, 0}, {1000, 700}}",
+  "spineFrame" : "{{0, 0}, {34.951999999999998, 700}}"
+}

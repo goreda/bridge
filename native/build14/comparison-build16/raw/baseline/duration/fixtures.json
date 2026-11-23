@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/Users/builder/clone/work-baseline/fixtures/duration/vod.mp4",
+    "duration": 4.0,
+    "oracle": "mpv0.41 tagged source preference, not actual binary output",
+    "sha256": "ca47ffd759e1d4fd40973c2880f58762b4b116c975def05250d8f89d29c98a1d"
+  },
+  {
+    "path": "/Users/builder/clone/work-baseline/fixtures/duration/nonzero.mp4",
+    "duration": 4.021333333333334,
+    "oracle": "mpv0.41 tagged source preference, not actual binary output",
+    "sha256": "24607426889746715b77a987c93ca62be88919d2f0afe5c2470d8b01e1577d93"
+  }
+]
