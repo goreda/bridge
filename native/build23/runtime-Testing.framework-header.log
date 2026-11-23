@@ -1,0 +1,4 @@
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Versions/A/Testing:
+Mach header
+      magic  cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags
+MH_MAGIC_64    ARM64          E USR00       DYLIB    35       4448   NOUNDEFS DYLDLINK TWOLEVEL NO_REEXPORTED_DYLIBS APP_EXTENSION_SAFE

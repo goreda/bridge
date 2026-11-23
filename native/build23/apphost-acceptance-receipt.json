@@ -1,0 +1,167 @@
+{
+  "scope": "Single shared original acceptance class in disposable LaunchServices host, no normal AppDelegate/PPController lifecycle",
+  "result": "FAIL_OR_NOT_RUN",
+  "rows": [
+    {
+      "stage": "developer-directory",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "selected-swift",
+      "exit": 0,
+      "seconds": 0.5
+    },
+    {
+      "stage": "runtime-discovery",
+      "exit": 0,
+      "seconds": 4.19
+    },
+    {
+      "stage": "runtime-libXCTestSwiftSupport.dylib-header",
+      "exit": 0,
+      "seconds": 0.51
+    },
+    {
+      "stage": "runtime-libXCTestSwiftSupport.dylib-linkage",
+      "exit": 0,
+      "seconds": 0.02
+    },
+    {
+      "stage": "runtime-libXCTestSwiftSupport.dylib-loadcommands",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "runtime-XCTest.framework-header",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "runtime-XCTest.framework-linkage",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "runtime-XCTest.framework-loadcommands",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "runtime-Testing.framework-header",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "runtime-Testing.framework-linkage",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "runtime-Testing.framework-loadcommands",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "runtime-XCTestCore.framework-header",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "runtime-XCTestCore.framework-linkage",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "runtime-XCTestCore.framework-loadcommands",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "toolchain-version",
+      "exit": 0,
+      "seconds": 0.64
+    },
+    {
+      "stage": "packaging-preflight",
+      "exit": 0,
+      "seconds": 15.95
+    },
+    {
+      "stage": "packaging-header",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "host-compile",
+      "exit": 0,
+      "seconds": 7.41
+    },
+    {
+      "stage": "host-linkage",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "host-loadcommands",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "synthetic-bundle-linkage",
+      "exit": 0,
+      "seconds": 0.02
+    },
+    {
+      "stage": "synthetic-bundle-loadcommands",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "preflight-host-sign",
+      "exit": 0,
+      "seconds": 0.03
+    },
+    {
+      "stage": "preflight-host-open",
+      "exit": 0,
+      "seconds": 0.15
+    }
+  ],
+  "carrier_commit": "aeb8432234ce6144608dcdf0c19ba78294ccc47c",
+  "binding": {
+    "schema": "199cy-shared-apphost-v1",
+    "source_commit": "34638e17405449b09603e68f41443497d8cf28ba",
+    "production_candidate": "6934c41945fcc3caa4793f425b6cc7149978ce6e",
+    "production_changed": false,
+    "inner_seconds": 300,
+    "workflow_seconds": 360,
+    "total_planning_reservation_seconds": 420,
+    "files": {
+      "ci/test_preflight_receipt.py": "48923d72941cfa9730b34d42587bd28b00dbca06f414df8212e5c426385accb9",
+      "ci/InlineFileSearchAcceptanceTests.swift": "cc1b0f21bc2e89ed0fdbd32f0aec7d8ea7c39c333cabe8cc7870eeb4d1783eb6",
+      "ci/preflight_receipt.py": "d0fb5cb52d2c9b8498b2e047dea8452e20793bf2579bcd14919f348d909e9e10",
+      "ci/test_host_runtime.py": "f5cfe03c1f9761ac142698a4c0ee0937c8b7fbf198d6b9b3ed2a632f8c14360c",
+      "ci/host_runtime.py": "6176a291933643edbc31726d5b946c89b59400bc1a18f0f40c8ea60cd3547229",
+      "ci/apphost-native.py": "1e0f7f585eb8e68d99f5c67f40da7a399278b6b3ff43516818ebb3118768789e",
+      "ci/bundle_executable.py": "1c8c5f29fc5e928daa336207b10b986910514014334e8d58676599ed933bd09f",
+      "ci/test_bundle_executable.py": "29c85771241bdf3c6339a92c19f9a6d97cb1cbb2880ac3c5dc606fcf7b2c9ec8",
+      "ci/HostAsyncPreflightTests.swift": "e2fcee9f771bf286a3c79ea1ff7c939058cd9e05bb0689d6e9f4a9f811e3f69c",
+      "ci/AcceptanceApplicationHost.swift": "07888a0e0508b00a508d381a48ab9f1b71d1158abe46d61cd0ed2c3f2bb75682",
+      "codemagic.yaml": "52b034f9188fc01ee86851edf67e0c813dd7da5b4270820cf4390728e6f09daa",
+      "payload/gor/Tests/gorTests/InlineFileSearchAcceptanceTests.swift": "cc1b0f21bc2e89ed0fdbd32f0aec7d8ea7c39c333cabe8cc7870eeb4d1783eb6"
+    },
+    "assertions_changed": false,
+    "test_only_delta": "guard duplicate finishLaunching only; source successor required",
+    "test_executable": "gorPackageTests",
+    "runner_correction": "V3 actual loader/discovery/rpaths unchanged; writer host worker keeps synchronous XCTest suite execution off NSApplication main event loop; same exact async synthetic pass gate before provider/product build",
+    "preflight_class": "ProbeTests.HostAsyncPreflightTests",
+    "native_discovery_status": "PASS_BUILD22",
+    "host_async_correction_native_status": "NOT_RUN"
+  },
+  "error": "RuntimeError('synthetic same-host load/test result missing; product NOT_RUN')",
+  "seconds": 50.25,
+  "images": [],
+  "states": [],
+  "boundary": "Manual actual compositor/cached image and causal review required. No OS keyboard/system IME, full menu monitors, CmdF, installed app or release acceptance. Stop on host failure, never fall back to invalid XCTest host."
+}

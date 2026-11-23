@@ -1,0 +1,4 @@
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework/Versions/A/XCTest:
+Mach header
+      magic  cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags
+MH_MAGIC_64    ARM64          E USR00       DYLIB    28       3936   NOUNDEFS DYLDLINK TWOLEVEL APP_EXTENSION_SAFE

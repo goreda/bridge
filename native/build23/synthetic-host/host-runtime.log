@@ -1,0 +1,26 @@
+HOST_PROGRESS bundle-loaded class-resolved main=true
+HOST_PROGRESS suite-run main=false
+*** Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'Test observers can only be registered and unregistered on the main thread.'
+*** First throw call stack:
+(
+	0   CoreFoundation                      0x000000018188d1c0 __exceptionPreprocess + 176
+	1   libobjc.A.dylib                     0x000000018131691c objc_exception_throw + 88
+	2   Foundation                          0x000000018311b330 -[NSCalendarDate initWithCoder:] + 0
+	3   XCTestCore                          0x00000001021a003c -[XCTestObservationCenter addTestObserver:] + 184
+	4   XCTestCore                          0x000000010219fc44 -[XCTestObservationCenter initWithObservers:exceptionHandler:] + 332
+	5   XCTestCore                          0x000000010219fdb0 -[XCTestObservationCenter init] + 168
+	6   XCTestCore                          0x000000010219fa00 +[XCTestObservationCenter sharedTestObservationCenter] + 56
+	7   XCTestCore                          0x0000000102167bb0 -[XCTest _xct_observationCenter] + 52
+	8   XCTestCore                          0x0000000102174634 -[XCTestSuiteRun start] + 60
+	9   XCTestCore                          0x0000000102178134 -[XCTestSuite performTest:] + 88
+	10  XCTestCore                          0x0000000102167c54 -[XCTest runTest] + 48
+	11  InlineAcceptance                    0x0000000102097790 $s16InlineAcceptance15TestSuiteWorker33_147E30E2142E498024D1ECCFBBE4EDE6LLC4mainyyFyyXEfU_ + 820
+	12  InlineAcceptance                    0x000000010209b260 $s16InlineAcceptance15TestSuiteWorker33_147E30E2142E498024D1ECCFBBE4EDE6LLC4mainyyFyyXEfU_TA + 28
+	13  InlineAcceptance                    0x00000001020981d8 $s10ObjectiveC15autoreleasepool8invokingq_q_yxYKXE_txYKs5ErrorRzRi__r0_lF + 144
+	14  InlineAcceptance                    0x000000010209741c $s16InlineAcceptance15TestSuiteWorker33_147E30E2142E498024D1ECCFBBE4EDE6LLC4mainyyF + 116
+	15  InlineAcceptance                    0x0000000102098264 $s16InlineAcceptance15TestSuiteWorker33_147E30E2142E498024D1ECCFBBE4EDE6LLC4mainyyFTo + 44
+	16  Foundation                          0x0000000183061a90 __NSThread__start__ + 732
+	17  libsystem_pthread.dylib             0x0000000181761c58 _pthread_start + 136
+	18  libsystem_pthread.dylib             0x000000018175cc1c thread_start + 8
+)
+libc++abi: terminating due to uncaught exception of type NSException

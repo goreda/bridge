@@ -1,0 +1,8 @@
+{
+  "developer": "/Applications/Xcode-26.6.app/Contents/Developer",
+  "directories": [
+    "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+    "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+    "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib"
+  ]
+}

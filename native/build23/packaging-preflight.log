@@ -1,0 +1,42 @@
+Building for debugging...
+[0/6] /Users/builder/clone/apphost-preflight/.build/arm64-apple-macosx/debug/ProbePackageTests.derived/runner.swift
+[1/6] Write sources
+[3/6] Write swift-version--112E4EF74740DA65.txt
+[5/8] Compiling ProbeTests ProbeTests.swift
+/Users/builder/clone/apphost-preflight/Tests/ProbeTests/ProbeTests.swift:8:62: warning: class property 'isMainThread' is unavailable from asynchronous contexts; Work intended for the main actor should be marked with @MainActor; this is an error in the Swift 6 language mode
+ 6 | final class HostAsyncPreflightTests: XCTestCase {
+ 7 |     @MainActor func testAsyncMainLoopAndKeyWindow() async throws {
+ 8 |         print("PREFLIGHT_PROGRESS body-entered main=\(Thread.isMainThread)")
+   |                                                              `- warning: class property 'isMainThread' is unavailable from asynchronous contexts; Work intended for the main actor should be marked with @MainActor; this is an error in the Swift 6 language mode
+ 9 |         fflush(stdout)
+10 |         XCTAssertTrue(Thread.isMainThread)
+
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSThread.h:51:34: note: 'isMainThread' declared here
+49 | @property (readonly) BOOL isMainThread API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0));
+50 | 
+51 | @property (class, readonly) BOOL isMainThread API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Work intended for the main actor should be marked with @MainActor"); // reports whether current thread is main
+   |                                  `- note: 'isMainThread' declared here
+52 | @property (class, readonly, strong) NSThread *mainThread API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0));
+53 | 
+
+/Users/builder/clone/apphost-preflight/Tests/ProbeTests/ProbeTests.swift:28:64: warning: class property 'isMainThread' is unavailable from asynchronous contexts; Work intended for the main actor should be marked with @MainActor; this is an error in the Swift 6 language mode
+26 |         }
+27 |         try await Task.sleep(nanoseconds: 150_000_000)
+28 |         print("PREFLIGHT_PROGRESS await-returned main=\(Thread.isMainThread)")
+   |                                                                `- warning: class property 'isMainThread' is unavailable from asynchronous contexts; Work intended for the main actor should be marked with @MainActor; this is an error in the Swift 6 language mode
+29 |         fflush(stdout)
+30 |         XCTAssertTrue(mainLoopCallback, "async XCTestSuite must permit main runloop callback")
+
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSThread.h:51:34: note: 'isMainThread' declared here
+49 | @property (readonly) BOOL isMainThread API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0));
+50 | 
+51 | @property (class, readonly) BOOL isMainThread API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Work intended for the main actor should be marked with @MainActor"); // reports whether current thread is main
+   |                                  `- note: 'isMainThread' declared here
+52 | @property (class, readonly, strong) NSThread *mainThread API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0));
+53 | 
+[6/8] Emitting module ProbeTests
+[7/10] Compiling ProbePackageTests runner.swift
+[8/10] Emitting module ProbePackageTests
+[8/10] Write Objects.LinkFileList
+[9/10] Linking ProbePackageTests
+Build complete! (12.47s)
