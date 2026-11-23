@@ -1,0 +1,20 @@
+{
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/HDRSurfaceState.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/HDRSurfaceState.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/HDRSurfaceState.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/HDRSurfaceState.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/HDRSurfaceState.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/MetalPresenter.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenter.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenter.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenter.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenter.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/MetalPresenterTelemetry.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenterTelemetry.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenterTelemetry.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenterTelemetry.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenterTelemetry.swiftdeps"
+  }
+}

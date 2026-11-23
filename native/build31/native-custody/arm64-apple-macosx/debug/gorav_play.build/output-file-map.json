@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_play.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/gorav-play/GorAVPlay.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_play.build/GorAVPlay.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_play.build/GorAVPlay.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_play.build/GorAVPlay~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_play.build/GorAVPlay.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_play.build/GorAVPlay.dia"
+  }
+}

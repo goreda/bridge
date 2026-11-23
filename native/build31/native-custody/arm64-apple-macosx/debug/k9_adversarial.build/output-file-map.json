@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/k9_adversarial.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/k9-adversarial/K9Adversarial.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/k9_adversarial.build/K9Adversarial.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/k9_adversarial.build/K9Adversarial.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/k9_adversarial.build/K9Adversarial~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/k9_adversarial.build/K9Adversarial.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/k9_adversarial.build/K9Adversarial.dia"
+  }
+}

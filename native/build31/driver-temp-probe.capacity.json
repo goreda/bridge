@@ -1,0 +1,12 @@
+{
+  "max_bytes": 33554432,
+  "observed_peak_bytes": 63592,
+  "seconds": 0.775,
+  "reason": null,
+  "exit": 0,
+  "roots": [
+    "/Users/builder/clone/out/driver-probe"
+  ],
+  "generated_product_growth_peak": 0,
+  "growth_caps": []
+}

@@ -1,0 +1,17 @@
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/AspectFit.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/CVPixelBufferTap.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/GorAVMetalShellApp.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/HDRSurfaceState.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/MetalPresenter.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/MetalPresenterTelemetry.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/PhotonMeasurementShader.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/PhotonMetalEffects.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/PhotonP22ApplyShader.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/PhotonP22UpdateConsumer.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/PhotonSourceMeasurementStage.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/PhotonWorkingGraph.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/StagePass.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/StereoLookPresenterBinding.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/StereoProjectionPass.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/SurfaceContract.swift

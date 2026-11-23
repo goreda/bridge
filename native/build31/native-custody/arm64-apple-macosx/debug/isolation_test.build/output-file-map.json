@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/isolation_test.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/isolation-test/IsolationTest.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/isolation_test.build/IsolationTest.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/isolation_test.build/IsolationTest.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/isolation_test.build/IsolationTest~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/isolation_test.build/IsolationTest.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/isolation_test.build/IsolationTest.dia"
+  }
+}

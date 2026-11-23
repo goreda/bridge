@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/builder/clone/ci/gor-host-preflight.py", line 118, in <module>
+    if not compiles or any(tokens[tokens.index('-target')+1] not in ['arm64-apple-macos'+recipe['host_deployment'],'arm64-apple-macosx'+recipe['host_deployment']] or tokens[tokens.index('-sdk')+1]!=recipe['sdk'] for tokens in compiles):raise RuntimeError('actual hosted test compile arch/deployment/SDK mismatch')
+                                                                                                                                                                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: actual hosted test compile arch/deployment/SDK mismatch

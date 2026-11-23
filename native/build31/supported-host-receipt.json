@@ -1,0 +1,128 @@
+{
+  "result": "FAIL_OR_NOT_RUN",
+  "scope": "Real unchanged gor candidate plus fixture-only lifecycle successor in proven Xcode host; pixel review required",
+  "carrier": "363e6bdbf78c0555c2fc189842eb8e39e089bc7b",
+  "rows": [
+    {
+      "stage": "developer-directory",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "xcodebuild-help",
+      "exit": 0,
+      "seconds": 0.64
+    },
+    {
+      "stage": "xcode-version",
+      "exit": 0,
+      "seconds": 0.11
+    },
+    {
+      "stage": "swift-version",
+      "exit": 0,
+      "seconds": 1.22
+    },
+    {
+      "stage": "swiftc-hidden-help",
+      "exit": 0,
+      "seconds": 0.69
+    },
+    {
+      "stage": "swift-build-help",
+      "exit": 0,
+      "seconds": 0.15
+    },
+    {
+      "stage": "selected-sdk",
+      "exit": 0,
+      "seconds": 0.57
+    },
+    {
+      "stage": "driver-temp-probe",
+      "exit": 0,
+      "seconds": 0.78
+    },
+    {
+      "stage": "provider-provision",
+      "exit": 0,
+      "seconds": 99.53
+    },
+    {
+      "stage": "gor-build-tests",
+      "exit": 0,
+      "seconds": 91.38
+    },
+    {
+      "stage": "gor-all-object-nm",
+      "exit": 0,
+      "seconds": 0.23
+    },
+    {
+      "stage": "generate-project",
+      "exit": 0,
+      "seconds": 0.16
+    },
+    {
+      "stage": "project-list",
+      "exit": 0,
+      "seconds": 1.92
+    },
+    {
+      "stage": "build-settings-HostedAcceptance",
+      "exit": 0,
+      "seconds": 1.27
+    },
+    {
+      "stage": "build-settings-HostedAcceptanceTests",
+      "exit": 0,
+      "seconds": 1.22
+    },
+    {
+      "stage": "hosted-build-for-testing",
+      "exit": 0,
+      "seconds": 17.02
+    }
+  ],
+  "binding": {
+    "schema": "199cy-real-gor-supported-host-v2",
+    "base_carrier": "43bf1d650d6fd7fd8fcc224848bd22a21f0e898d",
+    "canonical_source": "34638e17405449b09603e68f41443497d8cf28ba",
+    "product": "6934c41945fcc3caa4793f425b6cc7149978ce6e",
+    "production_changed": false,
+    "fixture_only": "SupportedAcceptanceApplication lifecycle guard only",
+    "canonical_acceptance_sha256": "cc1b0f21bc2e89ed0fdbd32f0aec7d8ea7c39c333cabe8cc7870eeb4d1783eb6",
+    "fixture_sha256": "cf8fa3f8920f0532c0f811c69cf98509bd06331d911e0e377b14f3c7e90e8068",
+    "inner_seconds": 420,
+    "workflow_seconds": 480,
+    "planning_reservation_seconds": 540,
+    "files": {
+      "ci/gor-host-preflight.py": "0d5afbc22e31938dcd87815314e8211eb35a6a993f6bbaae12f2fd644d2aeff7",
+      "ci/gor_recipe.py": "197c186dda346f7bd3e3494455396658e9469b0710f1d0587edaa43e44a3ae5a",
+      "ci/generate_gor_host.py": "d158dc934d05fa6a0b7ddf5fc9ca1bc97b8627d771971e33b0031d2f5f36bff9",
+      "ci/test_gor_recipe.py": "032cfaeb580a02cc8d4a19e48548abef22e28e7d10f9b50f707edc4bad07fe28",
+      "ci/InlineFileSearchAcceptanceTests.swift": "cf8fa3f8920f0532c0f811c69cf98509bd06331d911e0e377b14f3c7e90e8068",
+      "codemagic.yaml": "2265b7fdfd06b2e91e50508ee2a1fb6ab8cc134bae726f1cfbb419f980cd756a",
+      "ci/bounded_process.py": "647f5b75b840ce33f76b674280dda9995894e3ae22e5bd3ef390523ae63815ce",
+      "ci/test_driver_temp_probe.py": "bc5070586c14d9085f8af328cc73e423b827a876c17dec3104ae0c51e9379b50",
+      "ci/driver_temp_probe.py": "60e80c380cc7e9f733fcafdeca4ab3a694845113bca5509b0e33144b7a1fb212"
+    },
+    "required_existing_actual27_files": {
+      "ci/main.swift": "a321ae4e8e4f41a4b2211003e02bde10169471f47ae84d79dd097ef8cb424362",
+      "ci/generate_project.py": "frozen by base carrier MIRROR",
+      "ci/xcode_contract.py": "frozen by base carrier MIRROR",
+      "ci/process_capture.py": "frozen by base carrier MIRROR"
+    },
+    "installed_temp_semantics": "UNVERIFIED mandatory bounded tiny-probe before provider/product",
+    "temporary_caps": {
+      "probe_seconds": 8,
+      "probe_bytes": 33554432,
+      "temp_logs_bytes": 536870912,
+      "new_product_bytes": 2147483648,
+      "per_file_bytes": 536870912
+    }
+  },
+  "error": "RuntimeError('actual hosted test compile arch/deployment/SDK mismatch')",
+  "boundary": "No automatic release. Actual native assertions and compositor/cached pixels, caret and font diagnostics require human review. Original full-suite comparison and owner-installed app behavior are separate.",
+  "seconds": 219.98
+}

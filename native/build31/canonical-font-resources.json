@@ -1,0 +1,14 @@
+[
+  {
+    "path": "fonts/DMTLLVIPWeb-Regular-6a47c86c.woff2",
+    "sha256": "6a47c86cf8032e3acffea7b69eec24e7c13ce6506717bfd371fa0fc21930ac0c"
+  },
+  {
+    "path": "fonts/sixa/Exposure-VAR.ttf",
+    "sha256": "68dfd28e679a5f11176418e7edec22e31210c4a809ed6a6c9b100cb0be46d8a4"
+  },
+  {
+    "path": "fonts/sixa/Milling-TriplexVAR.ttf",
+    "sha256": "b7ea879b1d47d4793bd6e2a8d2a41b41672d95dbb1af7b28010180bcaecceec8"
+  }
+]

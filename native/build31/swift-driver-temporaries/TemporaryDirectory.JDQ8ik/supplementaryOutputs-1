@@ -1,0 +1,20 @@
+{
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/ActiveTransportSnapshot.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/ActiveTransportSnapshot.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/ActiveTransportSnapshot.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/ActiveTransportSnapshot.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/ActiveTransportSnapshot.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/FFmpegSoftwareAudioDecoder.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareAudioDecoder.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareAudioDecoder.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareAudioDecoder.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareAudioDecoder.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareDecoder.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareDecoder.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareDecoder.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareDecoder.swiftdeps"
+  }
+}

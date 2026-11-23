@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_metal_check.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/cli/MetalCheck.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_metal_check.build/MetalCheck.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_metal_check.build/MetalCheck.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_metal_check.build/MetalCheck~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_metal_check.build/MetalCheck.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_metal_check.build/MetalCheck.dia"
+  }
+}

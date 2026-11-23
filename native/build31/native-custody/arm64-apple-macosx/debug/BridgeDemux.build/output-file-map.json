@@ -1,0 +1,40 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Tests/labs/p-a1-r2/Sources/BridgeDemux/Cursor.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/Cursor.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/Cursor.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/Cursor~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/Cursor.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/Cursor.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Tests/labs/p-a1-r2/Sources/BridgeDemux/Demuxer.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/Demuxer.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/Demuxer.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/Demuxer~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/Demuxer.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/Demuxer.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Tests/labs/p-a1-r2/Sources/BridgeDemux/MKVDemuxer.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/MKVDemuxer.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/MKVDemuxer.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/MKVDemuxer~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/MKVDemuxer.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/MKVDemuxer.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Tests/labs/p-a1-r2/Sources/BridgeDemux/MP4Demuxer.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/MP4Demuxer.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/MP4Demuxer.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/MP4Demuxer~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/MP4Demuxer.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/MP4Demuxer.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Tests/labs/p-a1-r2/Sources/BridgeDemux/Types.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/Types.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/Types.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/Types~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/Types.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeDemux.build/Types.dia"
+  }
+}

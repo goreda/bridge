@@ -1,0 +1,19 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/race_witness_tests.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/race-witness-tests/RaceArms2.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/race_witness_tests.build/RaceArms2.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/race_witness_tests.build/RaceArms2.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/race_witness_tests.build/RaceArms2~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/race_witness_tests.build/RaceArms2.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/race_witness_tests.build/RaceArms2.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/race-witness-tests/main.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/race_witness_tests.build/main.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/race_witness_tests.build/main.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/race_witness_tests.build/main~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/race_witness_tests.build/main.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/race_witness_tests.build/main.dia"
+  }
+}

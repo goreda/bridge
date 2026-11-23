@@ -1,0 +1,26 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeVTDecode.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/BridgeVTDecode/SoftwareStubDecoder.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeVTDecode.build/SoftwareStubDecoder.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeVTDecode.build/SoftwareStubDecoder.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeVTDecode.build/SoftwareStubDecoder~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeVTDecode.build/SoftwareStubDecoder.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeVTDecode.build/SoftwareStubDecoder.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/BridgeVTDecode/SpatialContract.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeVTDecode.build/SpatialContract.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeVTDecode.build/SpatialContract.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeVTDecode.build/SpatialContract~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeVTDecode.build/SpatialContract.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeVTDecode.build/SpatialContract.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/BridgeVTDecode/Types.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeVTDecode.build/Types.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeVTDecode.build/Types.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeVTDecode.build/Types~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeVTDecode.build/Types.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/BridgeVTDecode.build/Types.dia"
+  }
+}

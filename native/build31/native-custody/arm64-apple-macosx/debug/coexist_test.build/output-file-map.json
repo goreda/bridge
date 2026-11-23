@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/coexist_test.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/coexist-test/CoexistTest.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/coexist_test.build/CoexistTest.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/coexist_test.build/CoexistTest.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/coexist_test.build/CoexistTest~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/coexist_test.build/CoexistTest.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/coexist_test.build/CoexistTest.dia"
+  }
+}
