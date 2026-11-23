@@ -1,0 +1,5 @@
+# Actual34 plain capture capability not established
+
+Carrier6849f481c8763f53c935b13c0fa02f2b5932d479. Plain-only preparation ran for5.753seconds inner. Developer selection, Xcode contract and project generation completed; build-for-testing failed with exit65 after3.396seconds. Original log reports Xcode build-system service crash before Swift compilation. This is not a Swift source diagnostic, capture unsupported result or permission denial. Native compile/runtime/access/focus/pairs NOT_RUN. No caret or product acceptance evidence. Original32/33 two failed acceptance assertions remain RED; separate plain control never waived them. No retry, reservation, permission change, release or promotion. Delivered route0dcd982 unchanged.
+
+Original small archive and raw extracted artifacts retained byte-for-byte. Publisher verified ZIP CRC, all inventory entries, exact binding equality and generated Swift/main bytes against binding. No DerivedData or large evidence duplicated. Capture output would still require pixel review, and all-onscreen composite is not a ScreenCaptureKit display stream.

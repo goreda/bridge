@@ -1,0 +1,55 @@
+{
+  "scope": "plain AppKit single-window versus all-onscreen composite, sequential pairs, not ScreenCaptureKit display stream",
+  "result": "NOT_ESTABLISHED",
+  "rows": [
+    {
+      "stage": "developer-selection",
+      "exit": 0,
+      "seconds": 0.265
+    },
+    {
+      "stage": "xcode-version",
+      "exit": 0,
+      "seconds": 0.257
+    },
+    {
+      "stage": "xcode-help",
+      "exit": 0,
+      "seconds": 0.779
+    },
+    {
+      "stage": "generate",
+      "exit": 0,
+      "seconds": 1.049
+    },
+    {
+      "stage": "build-for-testing",
+      "exit": 65,
+      "seconds": 3.396
+    }
+  ],
+  "binding": {
+    "schema": "199cy-plain-capture-v1",
+    "product_build": false,
+    "permission_changes": false,
+    "inner_seconds": 60,
+    "workflow_seconds": 120,
+    "planning_reservation_seconds": 180,
+    "custody_reserve_seconds": 10,
+    "evidence_bytes": 134217728,
+    "derived_growth_bytes": 1073741824,
+    "files": {
+      "codemagic.yaml": "d57df9d661c2ae215526b3e79f99ce09580b807b1eb6494c75ce8eb607367350",
+      "ci/bounded_process.py": "647f5b75b840ce33f76b674280dda9995894e3ae22e5bd3ef390523ae63815ce",
+      "ci/plain-capture-preflight.py": "974d560f62dfcffd9f24a0511e3f40e2bb1239c189ce35a464c1da5e7bbd1ece",
+      "ci/xcode_contract.py": "6c1146f93827e3136f55890072bc760bc1d16871970eb0154342b80a70daafa3",
+      "ci/main.swift": "a321ae4e8e4f41a4b2211003e02bde10169471f47ae84d79dd097ef8cb424362",
+      "ci/process_capture.py": "98f4208f522f408aede9dc6402fcab96156e87c9a94ab7b06ff9a0ca2a71e933",
+      "ci/generate_project.py": "08b4eadc9845cfb43c795a8ae1575aaca6c476d144953415cacfbd7f08530489",
+      "ci/HostAsyncPreflightTests.swift": "3f3302eb78ace1c3d4f88c73aae33ac5e5cb8b68b67cd7e0799204ad6e5fc7de"
+    }
+  },
+  "error": "RuntimeError('build-for-testing failed: 65')",
+  "seconds": 5.753,
+  "boundary": "No product acceptance. Sequential all-onscreen composite is not SCK display stream. Mouse cursor is not text caret. No permission changes or automatic retry."
+}

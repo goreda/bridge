@@ -1,0 +1,17 @@
+{
+  "max_bytes": 134217728,
+  "observed_peak_bytes": 46759,
+  "seconds": 3.396,
+  "reason": null,
+  "exit": 65,
+  "roots": [
+    "/Users/builder/clone/out"
+  ],
+  "generated_product_growth_peak": 719226,
+  "growth_caps": [
+    [
+      "/Users/builder/clone/plain-derived",
+      1073741824
+    ]
+  ]
+}
