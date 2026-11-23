@@ -1,0 +1,15 @@
+{
+  "archive_bytes": 21175,
+  "archive_sha256": "22bcd916abab6d238e30fa71b6fc5b3f288562d25dbb355fb7a389fe8309a1e7",
+  "crc": "PASS",
+  "inventory_rows": 22,
+  "inventory_hashes": "PASS",
+  "binding_equality": "PASS",
+  "generated_source_binding": "PASS",
+  "result": "NOT_ESTABLISHED",
+  "build_exit": 65,
+  "inner_seconds": 5.544,
+  "classification": "Xcode build-system service crash before source compilation",
+  "native_compile_runtime_access_focus_pairs": "NOT_RUN",
+  "retry_promotion": "NOT_ASSIGNED"
+}

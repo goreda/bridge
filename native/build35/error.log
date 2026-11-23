@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/Users/builder/clone/ci/plain-capture-preflight.py", line 34, in <module>
+    stage('build-for-testing',base+['build-for-testing'],30)
+  File "/Users/builder/clone/ci/plain-capture-preflight.py", line 15, in stage
+    if code and not (allow_help and code not in [124,125] and 'Usage:' in (OUT/(name+'.log')).read_text(errors='replace')+(OUT/(name+'.stderr.log')).read_text(errors='replace')):raise RuntimeError(name+' failed: '+str(code))
+                                                                                                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: build-for-testing failed: 65

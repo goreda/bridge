@@ -1,0 +1,2 @@
+/Users/builder/clone/out/plain-project/HostedAcceptance.xcodeproj
+Preparation only. Renderer must inspect current xcodebuild -showBuildSettings and synthetic test completion before product integration.

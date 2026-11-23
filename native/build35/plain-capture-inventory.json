@@ -1,0 +1,112 @@
+[
+  {
+    "path": "build-for-testing.capacity.json",
+    "bytes": 302,
+    "sha256": "1576cf6372f6ab3489690f744422d707cfa6aed8133e6010166b32a188624a19"
+  },
+  {
+    "path": "build-for-testing.log",
+    "bytes": 1950,
+    "sha256": "83f0285e6557dd2887014420999fe7bc45d2b6c92818303ef0992474fa19280c"
+  },
+  {
+    "path": "build-for-testing.stderr.log",
+    "bytes": 376,
+    "sha256": "85046a764e4dd96757bdca1b4f4f121a7b6fb4a76aecb2cd62fa57bc8eb1a651"
+  },
+  {
+    "path": "developer-selection.capacity.json",
+    "bytes": 293,
+    "sha256": "7a5b89bc66ec2237944b61df1d780d5f5116824bafaa25284184be020eaf6af5"
+  },
+  {
+    "path": "developer-selection.log",
+    "bytes": 48,
+    "sha256": "e0432f9f44d0255fd66348439230a9074f79c9b2ca9d1a718e02d9084ba85795"
+  },
+  {
+    "path": "developer-selection.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "error.log",
+    "bytes": 750,
+    "sha256": "cc141f4669e90e8087a90df24cc4bb79b4bf6f3e0aee822bd12e25b099faf1b1"
+  },
+  {
+    "path": "generate.capacity.json",
+    "bytes": 295,
+    "sha256": "5255a09bbd08a89c79883bf32ab7f2b7950f1ac31be63620cd6f5beb41935717"
+  },
+  {
+    "path": "generate.log",
+    "bytes": 202,
+    "sha256": "ec7ceeafb6d3fe387280acb43c8d838c5cd802ff6669c5b16132d4a939b48b5a"
+  },
+  {
+    "path": "generate.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "plain-capture-receipt.json",
+    "bytes": 1998,
+    "sha256": "6c995fa126b08b7d424bb4a586169a11f58e3a5b956b314e1a20a22fab325fd6"
+  },
+  {
+    "path": "plain-project/HostAsyncPreflightTests.swift",
+    "bytes": 5530,
+    "sha256": "3f3302eb78ace1c3d4f88c73aae33ac5e5cb8b68b67cd7e0799204ad6e5fc7de"
+  },
+  {
+    "path": "plain-project/HostedAcceptance.xcodeproj/project.pbxproj",
+    "bytes": 7336,
+    "sha256": "2c98e588c7719e4bb9394a8059b885f85f36519f21a4f0c6c1fff2049ee94b94"
+  },
+  {
+    "path": "plain-project/HostedAcceptance.xcodeproj/xcshareddata/xcschemes/HostedAcceptance.xcscheme",
+    "bytes": 2551,
+    "sha256": "18239074db731cbf495c1ec9da7ea6213a58334c7b66e298d22b40acae2b29e7"
+  },
+  {
+    "path": "plain-project/main.swift",
+    "bytes": 449,
+    "sha256": "a321ae4e8e4f41a4b2211003e02bde10169471f47ae84d79dd097ef8cb424362"
+  },
+  {
+    "path": "xcode-contract.json",
+    "bytes": 563,
+    "sha256": "c23c79092e703f84bf8787d9d9732cc19b06c4e4567e4f25dc73601d536c8571"
+  },
+  {
+    "path": "xcode-help.capacity.json",
+    "bytes": 296,
+    "sha256": "52a840c72ce98d240ad55b24b0bd232d646d7a1428224a9ba73e98651269e7ea"
+  },
+  {
+    "path": "xcode-help.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "xcode-help.stderr.log",
+    "bytes": 24217,
+    "sha256": "f3f857451aa98d7dbaa155bec86591cf35d70cd106d742fdd2ba2c65c75b3a09"
+  },
+  {
+    "path": "xcode-version.capacity.json",
+    "bytes": 294,
+    "sha256": "b9c5dd72e0559ab20c106d78567efbcf919f14c04ac7ce7b02cf0af383f579fa"
+  },
+  {
+    "path": "xcode-version.log",
+    "bytes": 32,
+    "sha256": "18730ed2ae28a2c9cf0c2d5db549033a4f07089331391a7133b7b32187454fa9"
+  },
+  {
+    "path": "xcode-version.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

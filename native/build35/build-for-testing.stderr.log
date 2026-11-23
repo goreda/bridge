@@ -1,0 +1,9 @@
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:macOS, arch:arm64, id:0000FE00-343A79319AA17942, name:My Mac }
+{ platform:macOS, arch:x86_64, id:0000FE00-343A79319AA17942, name:My Mac }
+** TEST BUILD FAILED **
+
+
+The following build commands failed:
+	Building project HostedAcceptance for testing with scheme HostedAcceptance
+(1 failure)
