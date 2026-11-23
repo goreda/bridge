@@ -1,0 +1,17 @@
+{
+  "active" : true,
+  "boundary" : "LaunchServices ordinary titled disposable NSApplication only. Not product overlay, typing, IME or release acceptance.",
+  "compositor" : "CAPTURED_REVIEW_REQUIRED",
+  "key" : true,
+  "pid" : 1168,
+  "policy" : 0,
+  "responder" : "NSTextView",
+  "result" : "GUI_ACTIVE_KEY",
+  "session" : {
+    "kCGSessionLoginDoneKey" : true
+  },
+  "ticks" : 1,
+  "visible" : true,
+  "windowClass" : "NSWindow",
+  "windowNumber" : 43
+}

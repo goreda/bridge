@@ -1,0 +1,63 @@
+{
+  "scope": "Disposable ordinary AppKit app via LaunchServices, no product/provider build",
+  "result": "GUI_ACTIVE_KEY",
+  "rows": [
+    {
+      "stage": "console-owner",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "gui-domain",
+      "exit": 0,
+      "seconds": 0.02
+    },
+    {
+      "stage": "windowserver-process",
+      "exit": 0,
+      "seconds": 0.03
+    },
+    {
+      "stage": "compile-probe",
+      "exit": 0,
+      "seconds": 6.81
+    },
+    {
+      "stage": "launchservices-open",
+      "exit": 0,
+      "seconds": 0.09
+    }
+  ],
+  "carrier_commit": "dabdaf8052106f7a4df6f6836dce91f26591ea8a",
+  "boundary": "Capability only. Never product typing, overlay focus, IME, pixels or release acceptance.",
+  "binding": {
+    "schema": "199cy-session-capability-v1",
+    "product_compiled": false,
+    "inner_seconds": 90,
+    "workflow_minutes": 2,
+    "files": {
+      "ci/session-probe.swift": "ce2254200b339a4ca98aa827e852b637d5c214d9aaf99dcf57c6627cbb4cd874",
+      "ci/session-capability.py": "a4d8056a418cf92f41d5fdb2fcd46f3471af8404c42572150ce8aec7b4171700",
+      "codemagic.yaml": "923a1fcb5296b2d71a0791cc64a3337bbfa377828d251db0b669f7753e90aff8"
+    }
+  },
+  "uid": 501,
+  "app_state": {
+    "active": true,
+    "boundary": "LaunchServices ordinary titled disposable NSApplication only. Not product overlay, typing, IME or release acceptance.",
+    "compositor": "CAPTURED_REVIEW_REQUIRED",
+    "key": true,
+    "pid": 1168,
+    "policy": 0,
+    "responder": "NSTextView",
+    "result": "GUI_ACTIVE_KEY",
+    "session": {
+      "kCGSessionLoginDoneKey": true
+    },
+    "ticks": 1,
+    "visible": true,
+    "windowClass": "NSWindow",
+    "windowNumber": 43
+  },
+  "seconds": 7.72
+}
