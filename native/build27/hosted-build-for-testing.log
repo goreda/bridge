@@ -1,0 +1,579 @@
+Command line invocation:
+    /Applications/Xcode-26.6.app/Contents/Developer/usr/bin/xcodebuild -project /Users/builder/clone/out/supported-host-project/HostedAcceptance.xcodeproj -scheme HostedAcceptance -destination platform=macOS -derivedDataPath /Users/builder/clone/supported-derived -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=NO build-for-testing
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+warning: Building targets in manual order is deprecated - choose Dependency Order in scheme settings instead, or set DISABLE_MANUAL_TARGET_ORDER_BUILD_WARNING in any of the targets in the current scheme to suppress this warning
+note: Target dependency graph (2 targets)
+    Target 'HostedAcceptanceTests' in project 'HostedAcceptance'
+        ➜ Explicit dependency on target 'HostedAcceptance' in project 'HostedAcceptance'
+    Target 'HostedAcceptance' in project 'HostedAcceptance' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: b3fdc8758bc73bd2507bb4e1ff0902bb
+Build description path: /Users/builder/clone/supported-derived/Build/Intermediates.noindex/XCBuildData/b3fdc8758bc73bd2507bb4e1ff0902bb.xcbuilddata
+CreateBuildDirectory /Users/builder/clone/supported-derived/Build/Products
+    cd /Users/builder/clone/out/supported-host-project/HostedAcceptance.xcodeproj
+    builtin-create-build-directory /Users/builder/clone/supported-derived/Build/Products
+
+CreateBuildDirectory /Users/builder/clone/supported-derived/Build/Intermediates.noindex
+    cd /Users/builder/clone/out/supported-host-project/HostedAcceptance.xcodeproj
+    builtin-create-build-directory /Users/builder/clone/supported-derived/Build/Intermediates.noindex
+
+ClangStatCache /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk /Users/builder/clone/supported-derived/SDKStatCaches.noindex/macosx26.5-25F70-d39842d2bf39f7fb7e16d75350e60f5d.sdkstatcache
+    cd /Users/builder/clone/out/supported-host-project/HostedAcceptance.xcodeproj
+    /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -o /Users/builder/clone/supported-derived/SDKStatCaches.noindex/macosx26.5-25F70-d39842d2bf39f7fb7e16d75350e60f5d.sdkstatcache
+
+CreateBuildDirectory /Users/builder/clone/supported-derived/Build/Intermediates.noindex/ExplicitPrecompiledModules
+    cd /Users/builder/clone/out/supported-host-project/HostedAcceptance.xcodeproj
+    builtin-create-build-directory /Users/builder/clone/supported-derived/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+CreateBuildDirectory /Users/builder/clone/supported-derived/Build/Products/Debug
+    cd /Users/builder/clone/out/supported-host-project/HostedAcceptance.xcodeproj
+    builtin-create-build-directory /Users/builder/clone/supported-derived/Build/Products/Debug
+
+CreateBuildDirectory /Users/builder/clone/supported-derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug
+    cd /Users/builder/clone/out/supported-host-project/HostedAcceptance.xcodeproj
+    builtin-create-build-directory /Users/builder/clone/supported-derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance-24f072cae10fcf75e3ee1c3d7dec4c6c-VFS/all-product-headers.yaml
+    cd /Users/builder/clone/out/supported-host-project/HostedAcceptance.xcodeproj
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance-24f072cae10fcf75e3ee1c3d7dec4c6c-VFS/all-product-headers.yaml
+
+CreateBuildDirectory /Users/builder/clone/supported-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+    cd /Users/builder/clone/out/supported-host-project/HostedAcceptance.xcodeproj
+    builtin-create-build-directory /Users/builder/clone/supported-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/empty-HostedAcceptance.plist (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/empty-HostedAcceptance.plist
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance_const_extract_protocols.json (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance-OutputFileMap.json (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.LinkFileList (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.LinkFileList
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.SwiftFileList (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.SwiftFileList
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.SwiftConstValuesFileList (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance.hmap (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance.hmap
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance.DependencyStaticMetadataFileList (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance.DependencyMetadataFileList (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance.DependencyMetadataFileList
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-project-headers.hmap (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-project-headers.hmap
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-own-target-headers.hmap (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-own-target-headers.hmap
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-generated-files.hmap (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-generated-files.hmap
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-all-target-headers.hmap (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-all-target-headers.hmap
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-all-non-framework-target-headers.hmap (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-DebugDylibPath-normal-arm64.txt (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-DebugDylibPath-normal-arm64.txt
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-DebugDylibInstallName-normal-arm64.txt (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-DebugDylibInstallName-normal-arm64.txt
+
+MkDir /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /bin/mkdir -p /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns
+
+MkDir /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/MacOS (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /bin/mkdir -p /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/MacOS
+
+MkDir /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /bin/mkdir -p /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks
+
+MkDir /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /bin/mkdir -p /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents
+
+MkDir /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /bin/mkdir -p /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app
+
+ProcessInfoPlistFile /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Info.plist /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/empty-HostedAcceptance.plist (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-infoPlistUtility /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/empty-HostedAcceptance.plist -producttype com.apple.product-type.application -genpkginfo /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Info.plist
+
+Ld /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/MacOS/__preview.dylib normal (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos13.0 -dynamiclib -isysroot /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -Os -L/Users/builder/clone/supported-derived/Build/Products/Debug -F/Users/builder/clone/supported-derived/Build/Products/Debug -install_name @rpath/HostedAcceptance.debug.dylib -rdynamic -Xlinker -dependency_info -Xlinker /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance_dependency_info.dat -o /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/MacOS/__preview.dylib
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks/libXCTestSwiftSupport.dylib /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks
+warning: not stripping binary because it is signed: /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib (in target 'HostedAcceptance' from project 'HostedAcceptance')
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks/libXCTestBundleInject.dylib /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/libXCTestBundleInject.dylib (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/libXCTestBundleInject.dylib /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks
+warning: not stripping binary because it is signed: /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/libXCTestBundleInject.dylib (in target 'HostedAcceptance' from project 'HostedAcceptance')
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks/XCUnit.framework /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks/XCUnit.framework (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks/XCUnit.framework /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks
+warning: not stripping binary because it is signed: /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks/XCUnit.framework/Versions/A/XCUnit (in target 'HostedAcceptance' from project 'HostedAcceptance')
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks/XCUIAutomation.framework /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/XCUIAutomation.framework (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/XCUIAutomation.framework /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks
+warning: not stripping binary because it is signed: /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Versions/A/XCUIAutomation (in target 'HostedAcceptance' from project 'HostedAcceptance')
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks/XCTestSupport.framework /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks/XCTestSupport.framework (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks/XCTestSupport.framework /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks
+warning: not stripping binary because it is signed: /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks/XCTestSupport.framework/Versions/A/XCTestSupport (in target 'HostedAcceptance' from project 'HostedAcceptance')
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks/XCTestCore.framework /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks/XCTestCore.framework (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks/XCTestCore.framework /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks
+warning: not stripping binary because it is signed: /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks/XCTestCore.framework/Versions/A/XCTestCore (in target 'HostedAcceptance' from project 'HostedAcceptance')
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks/XCTest.framework /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks
+warning: not stripping binary because it is signed: /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework/Versions/A/XCTest (in target 'HostedAcceptance' from project 'HostedAcceptance')
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks/XCTAutomationSupport.framework /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks/XCTAutomationSupport.framework (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks/XCTAutomationSupport.framework /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks
+warning: not stripping binary because it is signed: /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks/XCTAutomationSupport.framework/Versions/A/XCTAutomationSupport (in target 'HostedAcceptance' from project 'HostedAcceptance')
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks/Testing.framework /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks
+warning: not stripping binary because it is signed: /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Versions/A/Testing (in target 'HostedAcceptance' from project 'HostedAcceptance')
+
+SwiftDriver HostedAcceptance normal arm64 com.apple.xcode.tools.swift.compiler (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-SwiftDriver -- /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name HostedAcceptance -Onone @/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos13.0 -g -module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/builder/clone/supported-derived/Index.noindex/DataStore -swift-version 5 -I /Users/builder/clone/supported-derived/Build/Products/Debug -F /Users/builder/clone/supported-derived/Build/Products/Debug -c -j7 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/builder/clone/supported-derived/SDKStatCaches.noindex/macosx26.5-25F70-d39842d2bf39f7fb7e16d75350e60f5d.sdkstatcache -output-file-map /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -sdk-module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/builder/clone/supported-derived/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance_const_extract_protocols.json -Xcc -iquote -Xcc /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-generated-files.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-own-target-headers.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-all-target-headers.hmap -Xcc -iquote -Xcc /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-project-headers.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Products/Debug/include -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/DerivedSources-normal/arm64 -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/DerivedSources/arm64 -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance-Swift.h -working-directory /Users/builder/clone/out/supported-host-project -experimental-emit-module-separately -disable-cmo
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/DeveloperToolsSupport-5OHD0WRQA6G5D2L6025O14A4P.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/_Builtin_stdarg-7HDYLAIATQWUPBXQKMNGRWQPS.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/ptrauth-9V54CV18H79RHKK0C1APFTRXJ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/ptrcheck-96TGGU11QFW8D011QUNO53GS6.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/_SwiftConcurrencyShims-9V5ZF8E2B2RX2VL6I5EXZ78QM.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/_Builtin_float-1370VLAZ504GN8NB9VJUU6Y5V.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/_AvailabilityInternal-5M7QRLU7IVTGS9BN4HH2HFY9T.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/_Builtin_stdbool-28PKJIT2DV5W18CC2BKED0R2B.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/_Builtin_stddef-EX63246G4D338XTQ5IHZHSIHB.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/SwiftShims-CKYXOAJSQHYTX212VNIWOHG73.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/_DarwinFoundation1-8M7D2VX5TAE3M5H8AQI6WHN77.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/_Builtin_limits-4R6KPOWFHWHBU64AJ14N8L3O0.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/_DarwinFoundation2-9B8L9U52M2TXSYYIAUA30NXXZ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/_Builtin_stdint-BDCS48V6S7S4NTSN3HULCKKQC.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/sys_types-BYDC0MP4HMDYJ2FCH5TE7NATG.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/_Builtin_tgmath-5LPATNVISEXZ1J3KLUDVSN0KS.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/_Builtin_stdatomic-9QMCIHKQ7JIX9SXGVRPPK3IMI.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/_Builtin_intrinsics-14QNNKQCC8ZD0G2XSJ3L9RYXF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/libDER-E784X03Z97EZDQ6229420MKAI.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/OpenGL-9Z9F8D381C5RTTIZY4V8CN5H8.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/_DarwinFoundation3-DCNTKC6D0RYEHQ919L4JQN6OO.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/_Builtin_inttypes-7MI1MHEKB398V0F6WI8V4NEOJ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/Darwin-255PYHZHV6NWVZXGTAI5LVKPC.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/simd-71MQ1LS3I29LJKH8MV526GR00.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/libkern-1LGA745EZFXAEVYCF3PRHVTVB.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/CUPS-10JPRI8EWOJ9PMLUA886LCG1M.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/MachO-1MI20G7OVUTW0JR305PHXDOVY.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/launch-EZ55LSOMDKDCIDOHASS0RSZ44.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/Spatial-68PDGX887DLNOL18EOH4KN2G1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/ObjectiveC-A0TX1GFGXWY4K1TRZCAT5MZTY.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/os_object-1H9KWFH1O43UP57AOLHTA3HDX.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/os_workgroup-6J6BD7TJPTSFOAJ1UKSWCNHI3.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/Dispatch-BXYY7WDU5GUA5T1N3LE1CHIE9.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/XPC-BGDKYGNI2M0HO5DFCIAPBS6X5.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/CoreFoundation-2LA5GEGFKOW7NFEC2C7YT00PQ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/os-1W1H13FRXOFV86SS0JG6ZD4MV.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/IOKit-55INWQPT5A41EJ3PKCHAK20AL.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/Security-EKAL77DS7K286QX5XAK8XQYC5.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/ColorSync-D0TR6IXPAEBSL7QB1I4N5UUHF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/CFNetwork-CWP94NRN0OZK5HVBSPT1QRP18.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/CoreGraphics-DQ8K4H11CUSVMHFEN06XISZI4.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/DiskArbitration-CD9W73V21TGAUCJ0BC2N3JL2.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/CoreServices-5YLNDM5N9HFA99QRP1P3G60UE.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/CoreText-4WWPPUX0R0YVRQO4H3GZ89J29.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/ImageIO-9JI09A8GD3HAUDGX35LPSJZRK.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/Foundation-DU31PQZC4UYZU6ZJT0HN5QN1X.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/CoreData-29YZRT0NO1GN5RIMN2I2TZYE8.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/CoreTransferable-4RI7QK09YP1H6QGEK4M0M6BF2.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/ApplicationServices-638BXUXBIGW6DF87GN269JNPQ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/Symbols-6QBEZ7ITYECEE8MYJ8M8912S8.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/Accessibility-3WIB4EWSO0CLJ7HHQISFU5P2A.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/IOSurface-CDRCKJZ6JUH2DGX23N9GN097U.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/OSLog-7S6ZFTIKN0WADGMXJAN64CA17.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/UniformTypeIdentifiers-9OF3L6N0CM8HX50WUBFFTFFQ8.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/DataDetection-AC4FQNOSFMEURFWA86W1I1YUH.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/Metal-58HUPOFFGGJJFU5HOBHZNH8OY.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/CoreVideo-2EUQYY4V4K0M8LW4P4JAG66YB.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/QuartzCore-6HRNCXG97HMM9XPYC25FBCVYA.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/CoreImage-DNDUTFZ3J2W7V0QEIM6556JJ1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/SwiftUICore-8JH0E6DMZIBKBT41J2JWBW9OX.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/ModuleCache.noindex/AppKit-1GA9CAFEH9OV8XYP9C7YTS8FZ.pcm
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ HostedAcceptance (in target 'HostedAcceptance' from project 'HostedAcceptance')
+
+SwiftCompile normal arm64 /Users/builder/clone/out/supported-host-project/main.swift (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    
+
+SwiftCompile normal arm64 Compiling\ main.swift /Users/builder/clone/out/supported-host-project/main.swift (in target 'HostedAcceptance' from project 'HostedAcceptance')
+SwiftCompile normal arm64 /Users/builder/clone/out/supported-host-project/main.swift (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for HostedAcceptance (in target 'HostedAcceptance' from project 'HostedAcceptance')
+
+SwiftDriver\ Compilation\ Requirements HostedAcceptance normal arm64 com.apple.xcode.tools.swift.compiler (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name HostedAcceptance -Onone @/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos13.0 -g -module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/builder/clone/supported-derived/Index.noindex/DataStore -swift-version 5 -I /Users/builder/clone/supported-derived/Build/Products/Debug -F /Users/builder/clone/supported-derived/Build/Products/Debug -c -j7 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/builder/clone/supported-derived/SDKStatCaches.noindex/macosx26.5-25F70-d39842d2bf39f7fb7e16d75350e60f5d.sdkstatcache -output-file-map /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -sdk-module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/builder/clone/supported-derived/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance_const_extract_protocols.json -Xcc -iquote -Xcc /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-generated-files.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-own-target-headers.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-all-target-headers.hmap -Xcc -iquote -Xcc /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-project-headers.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Products/Debug/include -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/DerivedSources-normal/arm64 -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/DerivedSources/arm64 -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance-Swift.h -working-directory /Users/builder/clone/out/supported-host-project -experimental-emit-module-separately -disable-cmo
+
+SwiftMergeGeneratedHeaders /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/DerivedSources/HostedAcceptance-Swift.h /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance-Swift.h (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-swiftHeaderTool -arch arm64 /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance-Swift.h -o /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/DerivedSources/HostedAcceptance-Swift.h
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.swiftmodule/arm64-apple-macos.swiftmodule /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.swiftmodule (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.swiftmodule /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.swiftmodule/arm64-apple-macos.swiftmodule
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.swiftmodule/arm64-apple-macos.swiftdoc /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.swiftdoc (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.swiftdoc /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.swiftmodule/arm64-apple-macos.swiftdoc
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.swiftmodule/arm64-apple-macos.abi.json /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.abi.json (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.abi.json /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.swiftmodule/arm64-apple-macos.abi.json
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.swiftsourceinfo (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.swiftsourceinfo /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo
+
+SwiftDriverJobDiscovery normal arm64 Compiling main.swift (in target 'HostedAcceptance' from project 'HostedAcceptance')
+
+SwiftDriver\ Compilation HostedAcceptance normal arm64 com.apple.xcode.tools.swift.compiler (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-Swift-Compilation -- /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name HostedAcceptance -Onone @/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos13.0 -g -module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/builder/clone/supported-derived/Index.noindex/DataStore -swift-version 5 -I /Users/builder/clone/supported-derived/Build/Products/Debug -F /Users/builder/clone/supported-derived/Build/Products/Debug -c -j7 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/builder/clone/supported-derived/SDKStatCaches.noindex/macosx26.5-25F70-d39842d2bf39f7fb7e16d75350e60f5d.sdkstatcache -output-file-map /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -sdk-module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/builder/clone/supported-derived/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance_const_extract_protocols.json -Xcc -iquote -Xcc /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-generated-files.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-own-target-headers.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-all-target-headers.hmap -Xcc -iquote -Xcc /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-project-headers.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Products/Debug/include -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/DerivedSources-normal/arm64 -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/DerivedSources/arm64 -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance-Swift.h -working-directory /Users/builder/clone/out/supported-host-project -experimental-emit-module-separately -disable-cmo
+
+Ld /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/MacOS/HostedAcceptance.debug.dylib normal (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos13.0 -dynamiclib -isysroot /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -Os -L/Users/builder/clone/supported-derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -L/Users/builder/clone/supported-derived/Build/Products/Debug -F/Users/builder/clone/supported-derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -F/Users/builder/clone/supported-derived/Build/Products/Debug -filelist /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.LinkFileList -install_name @rpath/HostedAcceptance.debug.dylib -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @executable_path/../Frameworks -Xlinker -object_path_lto -Xlinker /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance_lto.o -rdynamic -Xlinker -dependency_info -Xlinker /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.swiftmodule @/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance-linker-args.resp -Xlinker -alias -Xlinker _main -Xlinker ___debug_main_executable_dylib_entry_point -o /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/MacOS/HostedAcceptance.debug.dylib
+
+ConstructStubExecutorLinkFileList /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-ExecutorLinkFileList-normal-arm64.txt (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    construct-stub-executor-link-file-list /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/MacOS/HostedAcceptance.debug.dylib /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/libPreviewsJITStubExecutor_no_swift_entry_point.a /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/libPreviewsJITStubExecutor.a --output /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-ExecutorLinkFileList-normal-arm64.txt
+note: Using stub executor library with Swift entry point. (in target 'HostedAcceptance' from project 'HostedAcceptance')
+
+Ld /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/MacOS/HostedAcceptance normal (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos13.0 -isysroot /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -Os -L/Users/builder/clone/supported-derived/Build/Products/Debug -F/Users/builder/clone/supported-derived/Build/Products/Debug -Xlinker -rpath -Xlinker @executable_path -Xlinker -rpath -Xlinker @executable_path/../Frameworks -rdynamic -e ___debug_blank_executor_main -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_dylib -Xlinker /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-DebugDylibPath-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_instlnm -Xlinker /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-DebugDylibInstallName-normal-arm64.txt -Xlinker -filelist -Xlinker /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance-ExecutorLinkFileList-normal-arm64.txt /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/MacOS/HostedAcceptance.debug.dylib -o /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/MacOS/HostedAcceptance
+
+CopySwiftLibs /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/MacOS/HostedAcceptance.debug.dylib --scan-folder /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks --scan-folder /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns --scan-folder /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Library/SystemExtensions --scan-folder /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Extensions --platform macosx --toolchain /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os --back-deploy-swift-span
+Ignoring --strip-bitcode because --sign was not passed
+
+ExtractAppIntentsMetadata (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name HostedAcceptance --sdk-root /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk --xcode-version 17F113 --platform-family macOS --deployment-target 13.0 --bundle-identifier com.gor.tests.supportedhost --output /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/Resources --target-triple arm64-apple-macos13.0 --binary-file /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/MacOS/HostedAcceptance --dependency-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance_dependency_info.dat --stringsdata-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.SwiftFileList --metadata-file-list /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance.DependencyMetadataFileList --static-metadata-file-list /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/HostedAcceptance.DependencyStaticMetadataFileList --swift-const-vals-list /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptance.build/Objects-normal/arm64/HostedAcceptance.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-11-23 04:45:32.376 appintentsmetadataprocessor[1261:13299] Starting appintentsmetadataprocessor export
+2026-11-23 04:45:32.382 appintentsmetadataprocessor[1261:13299] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/empty-HostedAcceptanceTests.plist (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/empty-HostedAcceptanceTests.plist
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests.LinkFileList (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests.LinkFileList
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests_const_extract_protocols.json (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests.hmap (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests.hmap
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests.SwiftConstValuesFileList (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests-OutputFileMap.json (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests.SwiftFileList (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests.SwiftFileList
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests.DependencyStaticMetadataFileList (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests.DependencyMetadataFileList (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests.DependencyMetadataFileList
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-project-headers.hmap (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-project-headers.hmap
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-own-target-headers.hmap (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-own-target-headers.hmap
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-generated-files.hmap (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-generated-files.hmap
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-all-target-headers.hmap (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-all-target-headers.hmap
+
+WriteAuxiliaryFile /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-all-non-framework-target-headers.hmap (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    write-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-all-non-framework-target-headers.hmap
+
+MkDir /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest/Contents/MacOS (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /bin/mkdir -p /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest/Contents/MacOS
+
+MkDir /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest/Contents (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /bin/mkdir -p /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest/Contents
+
+MkDir /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /bin/mkdir -p /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest
+
+ProcessInfoPlistFile /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest/Contents/Info.plist /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/empty-HostedAcceptanceTests.plist (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-infoPlistUtility /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/empty-HostedAcceptanceTests.plist -producttype com.apple.product-type.bundle.unit-test -expandbuildsettings -platform macosx -o /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest/Contents/Info.plist
+
+SwiftDriver HostedAcceptanceTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-SwiftDriver -- /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name ProbeTests -Onone @/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests.SwiftFileList -plugin-path /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos13.0 -g -module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -index-store-path /Users/builder/clone/supported-derived/Index.noindex/DataStore -swift-version 5 -I /Users/builder/clone/supported-derived/Build/Products/Debug -Isystem /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F /Users/builder/clone/supported-derived/Build/Products/Debug -F /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -parse-as-library -c -j7 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/builder/clone/supported-derived/SDKStatCaches.noindex/macosx26.5-25F70-d39842d2bf39f7fb7e16d75350e60f5d.sdkstatcache -output-file-map /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -sdk-module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/builder/clone/supported-derived/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-generated-files.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-own-target-headers.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-all-target-headers.hmap -Xcc -iquote -Xcc /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-project-headers.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Products/Debug/include -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/DerivedSources-normal/arm64 -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/DerivedSources/arm64 -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests-Swift.h -working-directory /Users/builder/clone/out/supported-host-project -experimental-emit-module-separately -disable-cmo
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules/XCUIAutomation-DQ8Y4K8G1KZ0U7DXA4S24NIIM.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/builder/clone/supported-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules/XCTest-DEGVQG7FGSGRC2L5FVMBNHRNX.pcm
+
+SwiftExplicitDependencyCompileModuleFromInterface arm64 /Users/builder/clone/supported-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules/XCUIAutomation-37LBI2X9RVRQS.swiftmodule
+
+SwiftExplicitDependencyCompileModuleFromInterface arm64 /Users/builder/clone/supported-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules/XCTest-2BMPI7TTB5PUQ.swiftmodule
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ ProbeTests (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+
+SwiftCompile normal arm64 /Users/builder/clone/out/supported-host-project/HostAsyncPreflightTests.swift (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    
+
+SwiftCompile normal arm64 Compiling\ HostAsyncPreflightTests.swift /Users/builder/clone/out/supported-host-project/HostAsyncPreflightTests.swift (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+SwiftCompile normal arm64 /Users/builder/clone/out/supported-host-project/HostAsyncPreflightTests.swift (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    
+/Users/builder/clone/out/supported-host-project/HostAsyncPreflightTests.swift:8:62: warning: class property 'isMainThread' is unavailable from asynchronous contexts; Work intended for the main actor should be marked with @MainActor; this is an error in the Swift 6 language mode
+        print("PREFLIGHT_PROGRESS body-entered main=\(Thread.isMainThread)")
+                                                             ^
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSThread.h:51:34: note: 'isMainThread' declared here
+@property (class, readonly) BOOL isMainThread API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Work intended for the main actor should be marked with @MainActor"); // reports whether current thread is main
+                                 ^
+/Users/builder/clone/out/supported-host-project/HostAsyncPreflightTests.swift:28:64: warning: class property 'isMainThread' is unavailable from asynchronous contexts; Work intended for the main actor should be marked with @MainActor; this is an error in the Swift 6 language mode
+        print("PREFLIGHT_PROGRESS await-returned main=\(Thread.isMainThread)")
+                                                               ^
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSThread.h:51:34: note: 'isMainThread' declared here
+@property (class, readonly) BOOL isMainThread API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Work intended for the main actor should be marked with @MainActor"); // reports whether current thread is main
+                                 ^
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for ProbeTests (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+
+SwiftDriver\ Compilation\ Requirements HostedAcceptanceTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name ProbeTests -Onone @/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests.SwiftFileList -plugin-path /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos13.0 -g -module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -index-store-path /Users/builder/clone/supported-derived/Index.noindex/DataStore -swift-version 5 -I /Users/builder/clone/supported-derived/Build/Products/Debug -Isystem /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F /Users/builder/clone/supported-derived/Build/Products/Debug -F /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -parse-as-library -c -j7 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/builder/clone/supported-derived/SDKStatCaches.noindex/macosx26.5-25F70-d39842d2bf39f7fb7e16d75350e60f5d.sdkstatcache -output-file-map /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -sdk-module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/builder/clone/supported-derived/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-generated-files.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-own-target-headers.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-all-target-headers.hmap -Xcc -iquote -Xcc /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-project-headers.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Products/Debug/include -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/DerivedSources-normal/arm64 -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/DerivedSources/arm64 -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests-Swift.h -working-directory /Users/builder/clone/out/supported-host-project -experimental-emit-module-separately -disable-cmo
+
+SwiftMergeGeneratedHeaders /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/DerivedSources/ProbeTests-Swift.h /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests-Swift.h (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-swiftHeaderTool -arch arm64 /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests-Swift.h -o /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/DerivedSources/ProbeTests-Swift.h
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/ProbeTests.swiftmodule/arm64-apple-macos.swiftdoc /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests.swiftdoc (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests.swiftdoc /Users/builder/clone/supported-derived/Build/Products/Debug/ProbeTests.swiftmodule/arm64-apple-macos.swiftdoc
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/ProbeTests.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests.swiftsourceinfo (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests.swiftsourceinfo /Users/builder/clone/supported-derived/Build/Products/Debug/ProbeTests.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/ProbeTests.swiftmodule/arm64-apple-macos.abi.json /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests.abi.json (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests.abi.json /Users/builder/clone/supported-derived/Build/Products/Debug/ProbeTests.swiftmodule/arm64-apple-macos.abi.json
+
+Copy /Users/builder/clone/supported-derived/Build/Products/Debug/ProbeTests.swiftmodule/arm64-apple-macos.swiftmodule /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests.swiftmodule (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests.swiftmodule /Users/builder/clone/supported-derived/Build/Products/Debug/ProbeTests.swiftmodule/arm64-apple-macos.swiftmodule
+
+SwiftDriverJobDiscovery normal arm64 Compiling HostAsyncPreflightTests.swift (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+
+SwiftDriver\ Compilation HostedAcceptanceTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-Swift-Compilation -- /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name ProbeTests -Onone @/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests.SwiftFileList -plugin-path /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos13.0 -g -module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -index-store-path /Users/builder/clone/supported-derived/Index.noindex/DataStore -swift-version 5 -I /Users/builder/clone/supported-derived/Build/Products/Debug -Isystem /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F /Users/builder/clone/supported-derived/Build/Products/Debug -F /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -parse-as-library -c -j7 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/builder/clone/supported-derived/SDKStatCaches.noindex/macosx26.5-25F70-d39842d2bf39f7fb7e16d75350e60f5d.sdkstatcache -output-file-map /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -sdk-module-cache-path /Users/builder/clone/supported-derived/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/builder/clone/supported-derived/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-generated-files.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-own-target-headers.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-all-target-headers.hmap -Xcc -iquote -Xcc /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests-project-headers.hmap -Xcc -I/Users/builder/clone/supported-derived/Build/Products/Debug/include -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/DerivedSources-normal/arm64 -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/DerivedSources/arm64 -Xcc -I/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests-Swift.h -working-directory /Users/builder/clone/out/supported-host-project -experimental-emit-module-separately -disable-cmo
+
+Ld /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest/Contents/MacOS/HostedAcceptanceTests normal (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos13.0 -bundle -isysroot /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -Os -L/Users/builder/clone/supported-derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -L/Users/builder/clone/supported-derived/Build/Products/Debug -L/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F/Users/builder/clone/supported-derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -F/Users/builder/clone/supported-derived/Build/Products/Debug -iframework /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -filelist /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @loader_path/../Frameworks -Xlinker -rpath -Xlinker @executable_path/../Frameworks -bundle_loader /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/MacOS/HostedAcceptance -Xlinker -object_path_lto -Xlinker /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests_lto.o -Xlinker -dependency_info -Xlinker /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests.swiftmodule @/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ProbeTests-linker-args.resp -Xlinker -needed_framework -Xlinker XCTest -framework XCTest -Xlinker -needed-lXCTestSwiftSupport -lXCTestSwiftSupport /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/MacOS/HostedAcceptance.debug.dylib -o /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest/Contents/MacOS/HostedAcceptanceTests
+/Users/builder/clone/out/supported-host-project/HostedAcceptance.xcodeproj: HostedAcceptanceTests: ld: warning: building for macOS-13.0, but linking with dylib '@rpath/XCTest.framework/Versions/A/XCTest' which was built for newer version 14.0
+/Users/builder/clone/out/supported-host-project/HostedAcceptance.xcodeproj: HostedAcceptanceTests: ld: warning: building for macOS-13.0, but linking with dylib '@rpath/libXCTestSwiftSupport.dylib' which was built for newer version 14.0
+
+ExtractAppIntentsMetadata (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name ProbeTests --sdk-root /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk --xcode-version 17F113 --platform-family macOS --deployment-target 13.0 --bundle-identifier com.gor.tests.supportedhost.tests --output /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest/Contents/Resources --target-triple arm64-apple-macos13.0 --binary-file /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest/Contents/MacOS/HostedAcceptanceTests --dependency-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests_dependency_info.dat --stringsdata-file /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests.SwiftFileList --metadata-file-list /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests.DependencyMetadataFileList --static-metadata-file-list /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/HostedAcceptanceTests.DependencyStaticMetadataFileList --swift-const-vals-list /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-11-23 04:45:33.898 appintentsmetadataprocessor[1270:13411] Starting appintentsmetadataprocessor export
+2026-11-23 04:45:33.899 appintentsmetadataprocessor[1270:13411] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CopySwiftLibs /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest/Contents/MacOS/HostedAcceptanceTests --scan-folder /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest/Contents/Frameworks --scan-folder /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest/Contents/PlugIns --scan-folder /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest/Contents/Library/SystemExtensions --scan-folder /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest/Contents/Extensions --platform macosx --toolchain /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest/Contents/Frameworks --strip-bitcode --scan-executable /Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os --back-deploy-swift-span
+Ignoring --strip-bitcode because --sign was not passed
+
+RegisterExecutionPolicyException /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-RegisterExecutionPolicyException /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest
+
+Touch /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest (in target 'HostedAcceptanceTests' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /usr/bin/touch -c /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app/Contents/PlugIns/HostedAcceptanceTests.xctest
+
+RegisterExecutionPolicyException /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-RegisterExecutionPolicyException /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app
+
+Validate /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    builtin-validationUtility /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app -no-validate-extension -infoplist-subpath Contents/Info.plist
+
+Touch /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /usr/bin/touch -c /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app
+
+RegisterWithLaunchServices /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app (in target 'HostedAcceptance' from project 'HostedAcceptance')
+    cd /Users/builder/clone/out/supported-host-project
+    /System/Library/Frameworks/CoreServices.framework/Versions/Current/Frameworks/LaunchServices.framework/Versions/Current/Support/lsregister -f -R -trusted /Users/builder/clone/supported-derived/Build/Products/Debug/HostedAcceptance.app
+
+** TEST BUILD SUCCEEDED **
+

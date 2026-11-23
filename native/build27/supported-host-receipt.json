@@ -1,0 +1,64 @@
+{
+  "result": "SYNTHETIC_HOSTED_PASS_PRODUCT_NOT_RUN",
+  "scope": "Xcode-managed synthetic app-hosted async XCTest only; product integration NOT_RUN",
+  "carrier": "134e0db8e8922b22f12d1303ce22e3b1e7e1354f",
+  "rows": [
+    {
+      "stage": "developer-directory",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "xcodebuild-help",
+      "exit": 0,
+      "seconds": 0.53
+    },
+    {
+      "stage": "xcode-version",
+      "exit": 0,
+      "seconds": 0.11
+    },
+    {
+      "stage": "generate-project",
+      "exit": 0,
+      "seconds": 0.05
+    },
+    {
+      "stage": "project-list",
+      "exit": 0,
+      "seconds": 1.41
+    },
+    {
+      "stage": "build-settings-HostedAcceptance",
+      "exit": 0,
+      "seconds": 1.09
+    },
+    {
+      "stage": "build-settings-HostedAcceptanceTests",
+      "exit": 0,
+      "seconds": 0.89
+    },
+    {
+      "stage": "hosted-build-for-testing",
+      "exit": 0,
+      "seconds": 13.2
+    },
+    {
+      "stage": "hosted-test-without-building",
+      "exit": 0,
+      "seconds": 4.27
+    }
+  ],
+  "started": [
+    "-[ProbeTests.HostAsyncPreflightTests testAsyncMainLoopAndKeyWindow]"
+  ],
+  "passed": [
+    "-[ProbeTests.HostAsyncPreflightTests testAsyncMainLoopAndKeyWindow]"
+  ],
+  "xcresult": "/Users/builder/clone/out/synthetic.xcresult",
+  "host_settings": {
+    "TEST_HOST": "/Users/builder/clone/out/supported-host-project/build/Debug/HostedAcceptance.app/Contents/MacOS/HostedAcceptance",
+    "BUNDLE_LOADER": "/Users/builder/clone/out/supported-host-project/build/Debug/HostedAcceptance.app/Contents/MacOS/HostedAcceptance"
+  },
+  "seconds": 21.89
+}
