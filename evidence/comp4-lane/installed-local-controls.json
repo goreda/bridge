@@ -1,0 +1,38 @@
+{
+  "base": "a71fd349eaec48358fd306650e639796016d9ebe",
+  "candidate": "29d7c0dbb0a5f055f4770278b327f738d74f8599",
+  "installed_hashes": {
+    "pre-push": "a889a1b04155b7c688f8bd2b0d6a2161ec537fd9fe4cd5a5f533d7a6ad0b6f24",
+    "check-identity.sh": "2a240a295621e17c036eb5f232df5c0a483cf051f60d1c49c4b85f9fd64fad39",
+    "check-structure.sh": "371a1bc40d1ccb28d62236a512a527607febe54f16ea2b68ac7518d0c955de3a",
+    "structure_growth_guard.py": "ad7d8a29fb4b906453fa7a5db3e965ccccc4a9a94f48d8744b8031bfffa6ff24"
+  },
+  "hook_config": "default .git/hooks, no core.hooksPath override",
+  "results": [
+    {
+      "case": "P1",
+      "commit": "29d7c0dbb0a5f055f4770278b327f738d74f8599",
+      "exit": 0,
+      "output": "structure baseline: 779 rows (was 783)\nSTRUCTURE_GROWTH PASS commits=1\n",
+      "hook_invoked_directly_no_push": true
+    },
+    {
+      "case": "P2",
+      "commit": "3b702c5d5a5e1b185b13aa856a0187081407564f",
+      "exit": 1,
+      "output": "structure baseline: 779 rows (was 783)\nPRE-PUSH STRUCTURE BLOCKED: baseline count grew: Sources/GorAVPlaybackCore/PlayheadObservers.swift F2 old=0 new=1\n",
+      "hook_invoked_directly_no_push": true
+    },
+    {
+      "case": "P3",
+      "commit": "095012bc15437231303ac219638a850f93f57675",
+      "exit": 1,
+      "output": "structure baseline: 779 rows (was 783)\nPRE-PUSH STRUCTURE BLOCKED: baseline count grew: Sources/GorAVPlaybackCore/HeaderlessProof.swift HEADER old=0 new=1; Sources/GorAVPlaybackCore/HeaderlessProof.swift S4 old=0 new=1\n",
+      "hook_invoked_directly_no_push": true
+    }
+  ],
+  "scope": "Direct invocation of actual unchanged installed hook, no Git push/remote transaction, no installed hook changes. Local P1/P2/P3 only, not historical real-push proof.",
+  "inventory": "rebased complete canonical content plus11source overlays and metadata-preserving baseline. Original frozen embedded SNAPSHOT-MANIFEST is stale self-referential metadata, not authoritative and not copied over newer canonical paths. External inventory authoritative for this preparation only.",
+  "no_native": true,
+  "no_external_mutation": true
+}

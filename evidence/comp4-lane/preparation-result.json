@@ -1,0 +1,71 @@
+{
+  "parent_baseline_matches": true,
+  "full_counts_nonincreasing": true,
+  "fixed_rows": [
+    [
+      "Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift",
+      "HEADER",
+      1
+    ],
+    [
+      "Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift",
+      "HEADER",
+      1
+    ],
+    [
+      "Sources/GorAVMacShell/AudioUnitSink.swift",
+      "HEADER",
+      1
+    ],
+    [
+      "Sources/GorAVPlaybackCore/PlayheadObservers.swift",
+      "HEADER",
+      1
+    ]
+  ],
+  "legacy_rows_preserved": 0,
+  "candidate_rows": 679,
+  "existing_outside_scope_symlinks": [],
+  "boundary": "Corrected local immutable Git-range guard PASS only. All surviving baseline row bytes including debt/queue/removal metadata preserved; only four fixed HEADER rows removed. Installed publisher hooks and P1-P3 publication checks not executed; no push or external ref mutation.",
+  "local_candidate": "29d7c0dbb0a5f055f4770278b327f738d74f8599",
+  "base": "a71fd349eaec48358fd306650e639796016d9ebe",
+  "immutable_guard_exit": 0,
+  "guard_log": "structure baseline: 779 rows (was 783)\nSTRUCTURE_GROWTH PASS commits=1\n",
+  "external_publication": false,
+  "policy": {
+    "checker_sha256": "371a1bc40d1ccb28d62236a512a527607febe54f16ea2b68ac7518d0c955de3a",
+    "guard_sha256": "ad7d8a29fb4b906453fa7a5db3e965ccccc4a9a94f48d8744b8031bfffa6ff24"
+  },
+  "superseded_local_candidate": "839a96668b15a7ee7d7474e0bb40a8599b34bd35",
+  "surviving_baseline_rows_preserved_byte_for_byte": true,
+  "removed_header_rows": [
+    {
+      "path": "Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift",
+      "rule": "HEADER",
+      "count": "1",
+      "queue id": "199ci-station-audit",
+      "removal condition": "actual structure count drops in its station lane"
+    },
+    {
+      "path": "Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift",
+      "rule": "HEADER",
+      "count": "1",
+      "queue id": "199ci-station-audit",
+      "removal condition": "actual structure count drops in its station lane"
+    },
+    {
+      "path": "Sources/GorAVMacShell/AudioUnitSink.swift",
+      "rule": "HEADER",
+      "count": "1",
+      "queue id": "199ci-station-audit",
+      "removal condition": "actual structure count drops in its station lane"
+    },
+    {
+      "path": "Sources/GorAVPlaybackCore/PlayheadObservers.swift",
+      "rule": "HEADER",
+      "count": "1",
+      "queue id": "199ci-station-audit",
+      "removal condition": "actual structure count drops in its station lane"
+    }
+  ]
+}

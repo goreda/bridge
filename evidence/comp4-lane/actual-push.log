@@ -1,0 +1,8 @@
+structure baseline: 779 rows (was 783)
+STRUCTURE_GROWTH PASS commits=1
+remote: 
+remote: Create a pull request for 'lane/gdb/m1-assembly-comp4' on GitHub by visiting:        
+remote:      https://github.com/goreda/gorav/pull/new/lane/gdb/m1-assembly-comp4        
+remote: 
+To https://github.com/goreda/gorav
+ * [new branch]        29d7c0dbb0a5f055f4770278b327f738d74f8599 -> lane/gdb/m1-assembly-comp4

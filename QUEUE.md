@@ -42,3 +42,7 @@ Route0dcd982 published2026-11-23 after actual same-suite build16: installed2dd v
 ## Audio199v03/04 portable review closure
 
 Independent recovered-source portable qualification COMPLETE: Mix Swift6 strict/debug16/release16 and EQ strict/harness9/debug18/release18 PASS. Exact source/patch identities reconcile with Ops independent source/model review. Review outcomes closed, integration remains separate; no adoption/merge/native/Darwin claim. RED/staging/mutant limits and raw logs: evidence/audio199v03-04-portable/QUALIFICATION.md. Main routes original Goreda result return.
+
+## Comp4 private integration lane published
+
+Qualified composition29d7c0dbb0a5f055f4770278b327f738d74f8599 is published to goreda/gorav lane/gdb/m1-assembly-comp4 over fresh canonicala71fd349. Actual unchanged installed pre-push identity+structure PASS; only11source overlays+metadata-preserving baseline, findings783 to779. Canonical main NOT moved, no merge/adoption, native/owner-Mac/working-app acceptance remains separate. Full current canonical inventory and original frozen self-manifest metadata exception: evidence/comp4-lane/. HAL SDK/ABI hold and CP wrapper ownership unchanged.
