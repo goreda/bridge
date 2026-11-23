@@ -1,0 +1,72 @@
+{
+  "result": "FAIL_OR_NOT_RUN",
+  "scope": "Real unchanged gor candidate plus fixture-only lifecycle successor in proven Xcode host; pixel review required",
+  "carrier": "43bf1d650d6fd7fd8fcc224848bd22a21f0e898d",
+  "rows": [
+    {
+      "stage": "developer-directory",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "xcodebuild-help",
+      "exit": 0,
+      "seconds": 0.57
+    },
+    {
+      "stage": "xcode-version",
+      "exit": 0,
+      "seconds": 0.09
+    },
+    {
+      "stage": "swift-version",
+      "exit": 0,
+      "seconds": 1.08
+    },
+    {
+      "stage": "swift-build-help",
+      "exit": 0,
+      "seconds": 0.17
+    },
+    {
+      "stage": "provider-provision",
+      "exit": 0,
+      "seconds": 69.81
+    },
+    {
+      "stage": "gor-build-tests",
+      "exit": 0,
+      "seconds": 50.89
+    }
+  ],
+  "binding": {
+    "schema": "199cy-real-gor-supported-host-v1",
+    "base_carrier": "6c76f109e3ec44c49409936e2441f7190ff37d66",
+    "canonical_source": "34638e17405449b09603e68f41443497d8cf28ba",
+    "product": "6934c41945fcc3caa4793f425b6cc7149978ce6e",
+    "production_changed": false,
+    "fixture_only": "SupportedAcceptanceApplication lifecycle guard only",
+    "canonical_acceptance_sha256": "cc1b0f21bc2e89ed0fdbd32f0aec7d8ea7c39c333cabe8cc7870eeb4d1783eb6",
+    "fixture_sha256": "cf8fa3f8920f0532c0f811c69cf98509bd06331d911e0e377b14f3c7e90e8068",
+    "inner_seconds": 420,
+    "workflow_seconds": 480,
+    "planning_reservation_seconds": 540,
+    "files": {
+      "ci/gor-host-preflight.py": "1b25d713cefdde8ebccd97694b7274d73f3e926dc9c076e195551d52e71b8c02",
+      "ci/gor_recipe.py": "f8e23798c80cc29208363f98758ff91f91d3ed9950a6c2c3864ce1617f576a1f",
+      "ci/generate_gor_host.py": "6e37052323c4f41503eaac000d703d2ce59553dad2276ff866af02c16f7e7f48",
+      "ci/test_gor_recipe.py": "959279b750641c7e658c4a2de802c1c9f1d4f2c049cb0de766b5d76d6f08afde",
+      "ci/InlineFileSearchAcceptanceTests.swift": "cf8fa3f8920f0532c0f811c69cf98509bd06331d911e0e377b14f3c7e90e8068",
+      "codemagic.yaml": "2265b7fdfd06b2e91e50508ee2a1fb6ab8cc134bae726f1cfbb419f980cd756a"
+    },
+    "required_existing_actual27_files": {
+      "ci/main.swift": "a321ae4e8e4f41a4b2211003e02bde10169471f47ae84d79dd097ef8cb424362",
+      "ci/generate_project.py": "frozen by base carrier MIRROR",
+      "ci/xcode_contract.py": "frozen by base carrier MIRROR",
+      "ci/process_capture.py": "frozen by base carrier MIRROR"
+    }
+  },
+  "error": "RuntimeError('clang command/list object disagreement')",
+  "boundary": "No automatic release. Actual native assertions and compositor/cached pixels, caret and font diagnostics require human review. Original full-suite comparison and owner-installed app behavior are separate.",
+  "seconds": 124.36
+}

@@ -1,0 +1,110 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/ActiveTransportSnapshot.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/ActiveTransportSnapshot.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/ActiveTransportSnapshot.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/ActiveTransportSnapshot~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/ActiveTransportSnapshot.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/ActiveTransportSnapshot.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/FFmpegSoftwareAudioDecoder.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareAudioDecoder.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareAudioDecoder.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareAudioDecoder~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareAudioDecoder.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareAudioDecoder.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareDecoder.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareDecoder.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareDecoder~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareDecoder.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FFmpegSoftwareDecoder.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/FrameObservation.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FrameObservation.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FrameObservation.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FrameObservation~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FrameObservation.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/FrameObservation.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/L3AVCoordinator.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3AVCoordinator.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3AVCoordinator.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3AVCoordinator~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3AVCoordinator.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3AVCoordinator.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/L3Admission.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3Admission.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3Admission.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3Admission~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3Admission.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3Admission.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/L3HardwareDecode.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3HardwareDecode.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3HardwareDecode.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3HardwareDecode~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3HardwareDecode.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3HardwareDecode.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/L3PixelConvert.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3PixelConvert.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3PixelConvert.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3PixelConvert~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3PixelConvert.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3PixelConvert.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/L3SampleConvert.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3SampleConvert.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3SampleConvert.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3SampleConvert~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3SampleConvert.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/L3SampleConvert.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/LabSwrBackendBinding.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/LabSwrBackendBinding.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/LabSwrBackendBinding.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/LabSwrBackendBinding~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/LabSwrBackendBinding.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/LabSwrBackendBinding.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/MediaInventory.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/MediaInventory.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/MediaInventory.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/MediaInventory~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/MediaInventory.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/MediaInventory.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/SnapshotAVIOOwner.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SnapshotAVIOOwner.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SnapshotAVIOOwner.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SnapshotAVIOOwner~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SnapshotAVIOOwner.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SnapshotAVIOOwner.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/SnapshotInput.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SnapshotInput.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SnapshotInput.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SnapshotInput~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SnapshotInput.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SnapshotInput.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/SourceOpenOptions.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SourceOpenOptions.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SourceOpenOptions.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SourceOpenOptions~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SourceOpenOptions.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/SourceOpenOptions.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/VTHardwareFrameProducer.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/VTHardwareFrameProducer.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/VTHardwareFrameProducer.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/VTHardwareFrameProducer~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/VTHardwareFrameProducer.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVFFmpegAdapter.build/VTHardwareFrameProducer.dia"
+  }
+}

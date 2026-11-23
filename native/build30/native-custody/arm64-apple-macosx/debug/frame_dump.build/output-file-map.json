@@ -1,0 +1,26 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/frame_dump.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/frame-dump/ConverterVariants.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/frame_dump.build/ConverterVariants.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/frame_dump.build/ConverterVariants.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/frame_dump.build/ConverterVariants~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/frame_dump.build/ConverterVariants.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/frame_dump.build/ConverterVariants.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/frame-dump/FrameDump.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/frame_dump.build/FrameDump.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/frame_dump.build/FrameDump.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/frame_dump.build/FrameDump~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/frame_dump.build/FrameDump.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/frame_dump.build/FrameDump.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/frame-dump/RawPlaneDump.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/frame_dump.build/RawPlaneDump.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/frame_dump.build/RawPlaneDump.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/frame_dump.build/RawPlaneDump~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/frame_dump.build/RawPlaneDump.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/frame_dump.build/RawPlaneDump.dia"
+  }
+}

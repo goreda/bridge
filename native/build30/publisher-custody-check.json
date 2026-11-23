@@ -1,0 +1,19 @@
+{
+  "archive_sha256": "c2873ae043235493db800c3398571916a1df31ee8fead40c27dd802bdf3b96fd",
+  "archive_bytes": 49498146,
+  "archive_crc_pass": true,
+  "inventory_rows": 901,
+  "verified_rows": 899,
+  "missing": [
+    {
+      "path": "debug.yaml",
+      "sha256": "950ecba26e1372237533fed873ca8f9513d5df2866212fe82424a8fbf7106a43",
+      "bytes": 2351302
+    },
+    {
+      "path": "plugin-tools.yaml",
+      "sha256": "950ecba26e1372237533fed873ca8f9513d5df2866212fe82424a8fbf7106a43",
+      "bytes": 2351302
+    }
+  ]
+}

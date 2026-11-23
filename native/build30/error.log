@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/builder/clone/ci/gor-host-preflight.py", line 64, in <module>
+    recipe=capture_recipe(scratch,compilelog,OUT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/builder/clone/ci/gor_recipe.py", line 43, in capture_recipe
+    if any(expanded.count(x)!=1 for x in ordered):raise RuntimeError('clang command/list object disagreement')
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: clang command/list object disagreement

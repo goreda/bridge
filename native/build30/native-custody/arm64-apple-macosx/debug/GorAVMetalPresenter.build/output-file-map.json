@@ -1,0 +1,124 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/AspectFit.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/AspectFit.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/AspectFit.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/AspectFit~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/AspectFit.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/AspectFit.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/CVPixelBufferTap.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/CVPixelBufferTap.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/CVPixelBufferTap.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/CVPixelBufferTap~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/CVPixelBufferTap.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/CVPixelBufferTap.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/GorAVMetalShellApp.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/GorAVMetalShellApp.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/GorAVMetalShellApp.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/GorAVMetalShellApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/GorAVMetalShellApp.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/GorAVMetalShellApp.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/HDRSurfaceState.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/HDRSurfaceState.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/HDRSurfaceState.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/HDRSurfaceState~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/HDRSurfaceState.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/HDRSurfaceState.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/MetalPresenter.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenter.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenter.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenter~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenter.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenter.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/MetalPresenterTelemetry.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenterTelemetry.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenterTelemetry.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenterTelemetry~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenterTelemetry.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalPresenterTelemetry.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalRenderer.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalRenderer.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalRenderer~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalRenderer.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalRenderer.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/PhotonMeasurementShader.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMeasurementShader.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMeasurementShader.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMeasurementShader~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMeasurementShader.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMeasurementShader.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/PhotonMetalEffects.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMetalEffects.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMetalEffects.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMetalEffects~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMetalEffects.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMetalEffects.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/PhotonP22ApplyShader.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonP22ApplyShader.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonP22ApplyShader.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonP22ApplyShader~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonP22ApplyShader.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonP22ApplyShader.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/PhotonP22UpdateConsumer.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonP22UpdateConsumer.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonP22UpdateConsumer.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonP22UpdateConsumer~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonP22UpdateConsumer.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonP22UpdateConsumer.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/PhotonSourceMeasurementStage.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonSourceMeasurementStage.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonSourceMeasurementStage.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonSourceMeasurementStage~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonSourceMeasurementStage.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonSourceMeasurementStage.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/PhotonWorkingGraph.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonWorkingGraph.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonWorkingGraph.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonWorkingGraph~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonWorkingGraph.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonWorkingGraph.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/StagePass.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StagePass.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StagePass.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StagePass~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StagePass.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StagePass.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/StereoLookPresenterBinding.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StereoLookPresenterBinding.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StereoLookPresenterBinding.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StereoLookPresenterBinding~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StereoLookPresenterBinding.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StereoLookPresenterBinding.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/StereoProjectionPass.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StereoProjectionPass.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StereoProjectionPass.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StereoProjectionPass~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StereoProjectionPass.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/StereoProjectionPass.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/SurfaceContract.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/SurfaceContract.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/SurfaceContract.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/SurfaceContract~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/SurfaceContract.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/SurfaceContract.dia"
+  }
+}

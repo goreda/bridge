@@ -1,0 +1,745 @@
+swift-driver version: 1.148.6 libavformat/avio.c:63:137: warning: implicit conversion from 'long long' to 'double' changes value from 9223372036854775807 to 9223372036854775808 [-Wimplicit-const-int-float-conversion]
+   63 |     {"rw_timeout", "Timeout for IO operations (in microseconds)", offsetof(URLContext, rw_timeout), AV_OPT_TYPE_INT64, { .i64 = 0 }, 0, INT64_MAX, AV_OPT_FLAG_ENCODING_PARAM | AV_OPT_FLAG_DECODING_PARAM },
+      |     ~                                                                                                                                   ^~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:94:26: note: expanded from macro 'INT64_MAX'
+   94 | #define INT64_MAX        9223372036854775807LL
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+libavformat/demux.c:1744:40: warning: implicit conversion from 'long long' to 'double' changes value from 9223372036854775807 to 9223372036854775808 [-Wimplicit-const-int-float-conversion]
+ 1744 |         if (bitrate >= 0 && bitrate <= INT64_MAX)
+      |                                     ~~ ^~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:94:26: note: expanded from macro 'INT64_MAX'
+   94 | #define INT64_MAX        9223372036854775807LL
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+libavformat/dump.c:231:53: warning: implicit conversion from 'unsigned int' to 'float' changes value from 4294967295 to 4294967296 [-Wimplicit-const-int-float-conversion]
+  231 |         av_log(ctx, log_level, "%f", (float) peak / UINT32_MAX);
+      |                                                   ~ ^~~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:109:27: note: expanded from macro 'UINT32_MAX'
+  109 | #define UINT32_MAX        4294967295U
+      |                           ^~~~~~~~~~~
+1 warning generated.
+libavformat/http.c:176:133: warning: implicit conversion from 'long long' to 'double' changes value from 9223372036854775807 to 9223372036854775808 [-Wimplicit-const-int-float-conversion]
+  176 |     { "end_offset", "try to limit the request to bytes preceding this offset", OFFSET(end_off), AV_OPT_TYPE_INT64, { .i64 = 0 }, 0, INT64_MAX, D },
+      |     ~                                                                                                                               ^~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:94:26: note: expanded from macro 'INT64_MAX'
+   94 | #define INT64_MAX        9223372036854775807LL
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+libavformat/http.c:175:89: warning: implicit conversion from 'long long' to 'double' changes value from 9223372036854775807 to 9223372036854775808 [-Wimplicit-const-int-float-conversion]
+  175 |     { "offset", "initial byte offset", OFFSET(off), AV_OPT_TYPE_INT64, { .i64 = 0 }, 0, INT64_MAX, D },
+      |     ~                                                                                   ^~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:94:26: note: expanded from macro 'INT64_MAX'
+   94 | #define INT64_MAX        9223372036854775807LL
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+2 warnings generated.
+libavformat/img2dec.c:170:12: warning: unused function 'img_read_probe' [-Wunused-function]
+  170 | static int img_read_probe(const AVProbeData *p)
+      |            ^~~~~~~~~~~~~~
+libavformat/img2dec.c:583:12: warning: unused function 'img_read_close' [-Wunused-function]
+  583 | static int img_read_close(struct AVFormatContext* s1)
+      |            ^~~~~~~~~~~~~~
+libavformat/img2dec.c:594:12: warning: unused function 'img_read_seek' [-Wunused-function]
+  594 | static int img_read_seek(AVFormatContext *s, int stream_index, int64_t timestamp, int flags)
+      |            ^~~~~~~~~~~~~
+libavformat/img2dec.c:682:12: warning: unused function 'bmp_probe' [-Wunused-function]
+  682 | static int bmp_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:700:12: warning: unused function 'cri_probe' [-Wunused-function]
+  700 | static int cri_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:711:12: warning: unused function 'dds_probe' [-Wunused-function]
+  711 | static int dds_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:722:12: warning: unused function 'dpx_probe' [-Wunused-function]
+  722 | static int dpx_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:740:12: warning: unused function 'exr_probe' [-Wunused-function]
+  740 | static int exr_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:749:12: warning: unused function 'j2k_probe' [-Wunused-function]
+  749 | static int j2k_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:759:12: warning: unused function 'jpeg_probe' [-Wunused-function]
+  759 | static int jpeg_probe(const AVProbeData *p)
+      |            ^~~~~~~~~~
+libavformat/img2dec.c:840:12: warning: unused function 'jpegls_probe' [-Wunused-function]
+  840 | static int jpegls_probe(const AVProbeData *p)
+      |            ^~~~~~~~~~~~
+libavformat/img2dec.c:849:12: warning: unused function 'jpegxl_probe' [-Wunused-function]
+  849 | static int jpegxl_probe(const AVProbeData *p)
+      |            ^~~~~~~~~~~~
+libavformat/img2dec.c:867:12: warning: unused function 'pcx_probe' [-Wunused-function]
+  867 | static int pcx_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:888:12: warning: unused function 'qdraw_probe' [-Wunused-function]
+  888 | static int qdraw_probe(const AVProbeData *p)
+      |            ^~~~~~~~~~~
+libavformat/img2dec.c:904:12: warning: unused function 'pictor_probe' [-Wunused-function]
+  904 | static int pictor_probe(const AVProbeData *p)
+      |            ^~~~~~~~~~~~
+libavformat/img2dec.c:913:12: warning: unused function 'png_probe' [-Wunused-function]
+  913 | static int png_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:922:12: warning: unused function 'psd_probe' [-Wunused-function]
+  922 | static int psd_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:950:12: warning: unused function 'sgi_probe' [-Wunused-function]
+  950 | static int sgi_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:962:12: warning: unused function 'sunrast_probe' [-Wunused-function]
+  962 | static int sunrast_probe(const AVProbeData *p)
+      |            ^~~~~~~~~~~~~
+libavformat/img2dec.c:971:12: warning: unused function 'svg_probe' [-Wunused-function]
+  971 | static int svg_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:996:12: warning: unused function 'tiff_probe' [-Wunused-function]
+  996 | static int tiff_probe(const AVProbeData *p)
+      |            ^~~~~~~~~~
+libavformat/img2dec.c:1006:12: warning: unused function 'webp_probe' [-Wunused-function]
+ 1006 | static int webp_probe(const AVProbeData *p)
+      |            ^~~~~~~~~~
+libavformat/img2dec.c:1034:12: warning: unused function 'pbm_probe' [-Wunused-function]
+ 1034 | static int pbm_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:1039:12: warning: unused function 'pfm_probe' [-Wunused-function]
+ 1039 | static int pfm_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:1045:12: warning: unused function 'phm_probe' [-Wunused-function]
+ 1045 | static int phm_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:1056:12: warning: unused function 'pgm_probe' [-Wunused-function]
+ 1056 | static int pgm_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:1062:12: warning: unused function 'pgmyuv_probe' [-Wunused-function]
+ 1062 | static int pgmyuv_probe(const AVProbeData *p) // custom FFmpeg format recognized by file extension
+      |            ^~~~~~~~~~~~
+libavformat/img2dec.c:1068:12: warning: unused function 'pgx_probe' [-Wunused-function]
+ 1068 | static int pgx_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:1076:12: warning: unused function 'ppm_probe' [-Wunused-function]
+ 1076 | static int ppm_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:1081:12: warning: unused function 'pam_probe' [-Wunused-function]
+ 1081 | static int pam_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:1086:12: warning: unused function 'hdr_probe' [-Wunused-function]
+ 1086 | static int hdr_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:1093:12: warning: unused function 'xbm_probe' [-Wunused-function]
+ 1093 | static int xbm_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:1103:12: warning: unused function 'xpm_probe' [-Wunused-function]
+ 1103 | static int xpm_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:1112:12: warning: unused function 'xwd_probe' [-Wunused-function]
+ 1112 | static int xwd_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:1142:12: warning: unused function 'gif_probe' [-Wunused-function]
+ 1142 | static int gif_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:1155:12: warning: unused function 'photocd_probe' [-Wunused-function]
+ 1155 | static int photocd_probe(const AVProbeData *p)
+      |            ^~~~~~~~~~~~~
+libavformat/img2dec.c:1166:12: warning: unused function 'qoi_probe' [-Wunused-function]
+ 1166 | static int qoi_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:1183:12: warning: unused function 'gem_probe' [-Wunused-function]
+ 1183 | static int gem_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+libavformat/img2dec.c:1203:12: warning: unused function 'vbn_probe' [-Wunused-function]
+ 1203 | static int vbn_probe(const AVProbeData *p)
+      |            ^~~~~~~~~
+39 warnings generated.
+libavformat/matroskadec.c:3157:40: warning: implicit conversion from 'unsigned long long' to 'double' changes value from 18446744073709551615 to 18446744073709551616 [-Wimplicit-const-int-float-conversion]
+ 3157 |                 if (default_duration > UINT64_MAX || default_duration < 0) {
+      |                                      ~ ^~~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:110:27: note: expanded from macro 'UINT64_MAX'
+  110 | #define UINT64_MAX        18446744073709551615ULL
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+In file included from libavformat/options.c:41:
+libavformat/options_table.h:111:181: warning: implicit conversion from 'long long' to 'double' changes value from 9223372036854775807 to 9223372036854775808 [-Wimplicit-const-int-float-conversion]
+  111 | {"duration_probesize", "Maximum number of bytes to probe the durations of the streams in estimate_timings_from_pts", OFFSET(duration_probesize), AV_OPT_TYPE_INT64, {.i64 = 0 }, 0, INT64_MAX, D},
+      | ~                                                                                                                                                                                   ^~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:94:26: note: expanded from macro 'INT64_MAX'
+   94 | #define INT64_MAX        9223372036854775807LL
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+In file included from libavformat/options.c:41:
+libavformat/options_table.h:89:146: warning: implicit conversion from 'long long' to 'double' changes value from 9223372036854775807 to 9223372036854775808 [-Wimplicit-const-int-float-conversion]
+   89 | {"max_interleave_delta", "maximum buffering duration for interleaving", OFFSET(max_interleave_delta), AV_OPT_TYPE_INT64, { .i64 = 10000000 }, 0, INT64_MAX, E },
+      | ~                                                                                                                                                ^~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:94:26: note: expanded from macro 'INT64_MAX'
+   94 | #define INT64_MAX        9223372036854775807LL
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+In file included from libavformat/options.c:41:
+libavformat/options_table.h:88:125: warning: implicit conversion from 'long long' to 'double' changes value from 9223372036854775807 to 9223372036854775808 [-Wimplicit-const-int-float-conversion]
+   88 | {"output_ts_offset", "set output timestamp offset", OFFSET(output_ts_offset), AV_OPT_TYPE_DURATION, {.i64 = 0}, -INT64_MAX, INT64_MAX, E},
+      | ~                                                                                                                           ^~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:94:26: note: expanded from macro 'INT64_MAX'
+   94 | #define INT64_MAX        9223372036854775807LL
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+In file included from libavformat/options.c:41:
+libavformat/options_table.h:88:113: warning: implicit conversion from 'long long' to 'double' changes value from -9223372036854775807 to -9223372036854775808 [-Wimplicit-const-int-float-conversion]
+   88 | {"output_ts_offset", "set output timestamp offset", OFFSET(output_ts_offset), AV_OPT_TYPE_DURATION, {.i64 = 0}, -INT64_MAX, INT64_MAX, E},
+      | ~                                                                                                               ^~~~~~~~~~
+libavformat/options_table.h:84:159: warning: implicit conversion from 'long long' to 'double' changes value from 9223372036854775806 to 9223372036854775808 [-Wimplicit-const-int-float-conversion]
+   84 | {"skip_initial_bytes", "set number of bytes to skip before reading header and frames", OFFSET(skip_initial_bytes), AV_OPT_TYPE_INT64, {.i64 = 0}, 0, INT64_MAX-1, D},
+      | ~                                                                                                                                                    ~~~~~~~~~^~
+libavformat/options_table.h:66:156: warning: implicit conversion from 'long long' to 'double' changes value from 9223372036854775807 to 9223372036854775808 [-Wimplicit-const-int-float-conversion]
+   66 | {"start_time_realtime", "wall-clock time when stream begins (PTS==0)", OFFSET(start_time_realtime), AV_OPT_TYPE_INT64, {.i64 = AV_NOPTS_VALUE}, INT64_MIN, INT64_MAX, E},
+      | ~                                                                                                                                                          ^~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:94:26: note: expanded from macro 'INT64_MAX'
+   94 | #define INT64_MAX        9223372036854775807LL
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+In file included from libavformat/options.c:41:
+libavformat/options_table.h:59:151: warning: implicit conversion from 'long long' to 'double' changes value from 9223372036854775807 to 9223372036854775808 [-Wimplicit-const-int-float-conversion]
+   59 | {"analyzeduration", "specify how many microseconds are analyzed to probe the input", OFFSET(max_analyze_duration), AV_OPT_TYPE_INT64, {.i64 = 0 }, 0, INT64_MAX, D},
+      | ~                                                                                                                                                     ^~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:94:26: note: expanded from macro 'INT64_MAX'
+   94 | #define INT64_MAX        9223372036854775807LL
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+In file included from libavformat/options.c:41:
+libavformat/options_table.h:39:96: warning: implicit conversion from 'long long' to 'double' changes value from 9223372036854775807 to 9223372036854775808 [-Wimplicit-const-int-float-conversion]
+   39 | {"probesize", "set probing size", OFFSET(probesize), AV_OPT_TYPE_INT64, {.i64 = 5000000 }, 32, INT64_MAX, D},
+      | ~                                                                                              ^~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:94:26: note: expanded from macro 'INT64_MAX'
+   94 | #define INT64_MAX        9223372036854775807LL
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+libavformat/options.c:427:91: warning: implicit conversion from 'long long' to 'double' changes value from 9223372036854775807 to 9223372036854775808 [-Wimplicit-const-int-float-conversion]
+  427 |     {"id", "Set group id", offsetof(AVStreamGroup, id), AV_OPT_TYPE_INT64, {.i64 = 0}, 0, INT64_MAX, AV_OPT_FLAG_ENCODING_PARAM },
+      |     ~                                                                                     ^~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:94:26: note: expanded from macro 'INT64_MAX'
+   94 | #define INT64_MAX        9223372036854775807LL
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+9 warnings generated.
+libavformat/rawdec.c:106:12: warning: unused function 'raw_data_read_header' [-Wunused-function]
+  106 | static int raw_data_read_header(AVFormatContext *s)
+      |            ^~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+libavcodec/aac/aacdec.c:2543:8: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+ 2543 |     .p.sample_fmts   = (const enum AVSampleFormat[]) {
+      |        ^
+./libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/aac/aacdec.c:2548:8: warning: 'ch_layouts' is deprecated [-Wdeprecated-declarations]
+ 2548 |     .p.ch_layouts    = ff_aac_ch_layout,
+      |        ^
+./libavcodec/codec.h:240:5: note: 'ch_layouts' has been explicitly marked deprecated here
+  240 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+2 warnings generated.
+libavcodec/ac3dec_float.c:75:8: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+   75 |     .p.sample_fmts  = (const enum AVSampleFormat[]) { AV_SAMPLE_FMT_FLTP,
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/ac3dec_float.c:93:8: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+   93 |     .p.sample_fmts  = (const enum AVSampleFormat[]) { AV_SAMPLE_FMT_FLTP,
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+2 warnings generated.
+libavcodec/dcadec.c:419:8: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  419 |     .p.sample_fmts  = (const enum AVSampleFormat[]) { AV_SAMPLE_FMT_S16P, AV_SAMPLE_FMT_S32P,
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+1 warning generated.
+libavcodec/decode.c:1469:60: warning: implicit conversion from enumeration type 'const enum AVPacketSideDataType' to different enumeration type 'enum AVFrameSideDataType' [-Wimplicit-enum-enum-cast]
+ 1469 |         const enum AVFrameSideDataType type_pkt   = map[i].packet;
+      |                                        ~~~~~~~~     ~~~~~~~^~~~~~
+libavcodec/decode.c:1474:58: warning: implicit conversion from enumeration type 'const enum AVFrameSideDataType' to different enumeration type 'enum AVPacketSideDataType' [-Wimplicit-enum-enum-cast]
+ 1474 |         sd_pkt = packet_side_data_get(sd_src, nb_sd_src, type_pkt);
+      |                  ~~~~~~~~~~~~~~~~~~~~                    ^~~~~~~~
+2 warnings generated.
+libavcodec/flacdec.c:830:8: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  830 |     .p.sample_fmts  = (const enum AVSampleFormat[]) { AV_SAMPLE_FMT_S16,
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+1 warning generated.
+libavcodec/h263dec.c:644:1: warning: unused label 'frame_end' [-Wunused-label]
+  644 | frame_end:
+      | ^~~~~~~~~~
+1 warning generated.
+libavcodec/mpeg4videodec.c:3563:22: warning: variable 'name' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+ 3563 |             else if (startcode <= 0x1FF)
+      |                      ^~~~~~~~~~~~~~~~~~
+libavcodec/mpeg4videodec.c:3566:31: note: uninitialized use occurs here
+ 3566 |                    startcode, name, get_bits_count(gb));
+      |                               ^~~~
+libavcodec/mpeg4videodec.c:3563:18: note: remove the 'if' if its condition is always true
+ 3563 |             else if (startcode <= 0x1FF)
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~
+ 3564 |                 name = "System start";
+libavcodec/mpeg4videodec.c:3510:29: note: initialize the variable 'name' to silence this warning
+ 3510 |             const char *name;
+      |                             ^
+      |                              = NULL
+libavcodec/mpegaudiodec_fixed.c:109:8: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  109 |     .p.sample_fmts  = (const enum AVSampleFormat[]) { AV_SAMPLE_FMT_S16P,
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+1 warning generated.
+libavcodec/mpegaudiodec_float.c:122:8: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  122 |     .p.sample_fmts  = (const enum AVSampleFormat[]) { AV_SAMPLE_FMT_FLTP,
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+1 warning generated.
+1 warning generated.
+In file included from libavcodec/options.c:39:
+libavcodec/options_table.h:50:110: warning: implicit conversion from 'long long' to 'double' changes value from 9223372036854775807 to 9223372036854775808 [-Wimplicit-const-int-float-conversion]
+   50 | {"b", "set bitrate (in bits/s)", OFFSET(bit_rate), AV_OPT_TYPE_INT64, {.i64 = AV_CODEC_DEFAULT_BITRATE }, 0, INT64_MAX, A|V|E},
+      | ~                                                                                                            ^~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:94:26: note: expanded from macro 'INT64_MAX'
+   94 | #define INT64_MAX        9223372036854775807LL
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+libavcodec/pcm.c:287:39: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  287 |     avctx->sample_fmt = avctx->codec->sample_fmts[0];
+      |                                       ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/pcm.c:598:1: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  598 | PCM_CODEC  (PCM_ALAW,         AV_SAMPLE_FMT_S16, pcm_alaw,         "PCM A-law / G.711 A-law");
+      | ^
+libavcodec/pcm.c:595:5: note: expanded from macro 'PCM_CODEC'
+  595 |     PCM_DECODER(id, sample_fmt_, name, long_name_)
+      |     ^
+libavcodec/pcm.c:591:5: note: expanded from macro 'PCM_DECODER'
+  591 |     PCM_DECODER_3(CONFIG_ ## id ## _DECODER, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:589:5: note: expanded from macro 'PCM_DECODER_3'
+  589 |     PCM_DECODER_2(cf, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:587:5: note: expanded from macro 'PCM_DECODER_2'
+  587 |     PCM_DECODER_ ## cf(id, sample_fmt, name, long_name)
+      |     ^
+<scratch space>:34:1: note: expanded from here
+   34 | PCM_DECODER_1
+      | ^
+libavcodec/pcm.c:582:8: note: expanded from macro 'PCM_DECODER_1'
+  582 |     .p.sample_fmts  = (const enum AVSampleFormat[]){ sample_fmt_,           \
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/pcm.c:601:1: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  601 | PCM_CODEC  (PCM_F32BE,        AV_SAMPLE_FMT_FLT, pcm_f32be,        "PCM 32-bit floating point big-endian");
+      | ^
+libavcodec/pcm.c:595:5: note: expanded from macro 'PCM_CODEC'
+  595 |     PCM_DECODER(id, sample_fmt_, name, long_name_)
+      |     ^
+libavcodec/pcm.c:591:5: note: expanded from macro 'PCM_DECODER'
+  591 |     PCM_DECODER_3(CONFIG_ ## id ## _DECODER, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:589:5: note: expanded from macro 'PCM_DECODER_3'
+  589 |     PCM_DECODER_2(cf, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:587:5: note: expanded from macro 'PCM_DECODER_2'
+  587 |     PCM_DECODER_ ## cf(id, sample_fmt, name, long_name)
+      |     ^
+<scratch space>:50:1: note: expanded from here
+   50 | PCM_DECODER_1
+      | ^
+libavcodec/pcm.c:582:8: note: expanded from macro 'PCM_DECODER_1'
+  582 |     .p.sample_fmts  = (const enum AVSampleFormat[]){ sample_fmt_,           \
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/pcm.c:602:1: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  602 | PCM_CODEC  (PCM_F32LE,        AV_SAMPLE_FMT_FLT, pcm_f32le,        "PCM 32-bit floating point little-endian");
+      | ^
+libavcodec/pcm.c:595:5: note: expanded from macro 'PCM_CODEC'
+  595 |     PCM_DECODER(id, sample_fmt_, name, long_name_)
+      |     ^
+libavcodec/pcm.c:591:5: note: expanded from macro 'PCM_DECODER'
+  591 |     PCM_DECODER_3(CONFIG_ ## id ## _DECODER, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:589:5: note: expanded from macro 'PCM_DECODER_3'
+  589 |     PCM_DECODER_2(cf, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:587:5: note: expanded from macro 'PCM_DECODER_2'
+  587 |     PCM_DECODER_ ## cf(id, sample_fmt, name, long_name)
+      |     ^
+<scratch space>:60:1: note: expanded from here
+   60 | PCM_DECODER_1
+      | ^
+libavcodec/pcm.c:582:8: note: expanded from macro 'PCM_DECODER_1'
+  582 |     .p.sample_fmts  = (const enum AVSampleFormat[]){ sample_fmt_,           \
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/pcm.c:603:1: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  603 | PCM_CODEC  (PCM_F64BE,        AV_SAMPLE_FMT_DBL, pcm_f64be,        "PCM 64-bit floating point big-endian");
+      | ^
+libavcodec/pcm.c:595:5: note: expanded from macro 'PCM_CODEC'
+  595 |     PCM_DECODER(id, sample_fmt_, name, long_name_)
+      |     ^
+libavcodec/pcm.c:591:5: note: expanded from macro 'PCM_DECODER'
+  591 |     PCM_DECODER_3(CONFIG_ ## id ## _DECODER, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:589:5: note: expanded from macro 'PCM_DECODER_3'
+  589 |     PCM_DECODER_2(cf, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:587:5: note: expanded from macro 'PCM_DECODER_2'
+  587 |     PCM_DECODER_ ## cf(id, sample_fmt, name, long_name)
+      |     ^
+<scratch space>:70:1: note: expanded from here
+   70 | PCM_DECODER_1
+      | ^
+libavcodec/pcm.c:582:8: note: expanded from macro 'PCM_DECODER_1'
+  582 |     .p.sample_fmts  = (const enum AVSampleFormat[]){ sample_fmt_,           \
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/pcm.c:604:1: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  604 | PCM_CODEC  (PCM_F64LE,        AV_SAMPLE_FMT_DBL, pcm_f64le,        "PCM 64-bit floating point little-endian");
+      | ^
+libavcodec/pcm.c:595:5: note: expanded from macro 'PCM_CODEC'
+  595 |     PCM_DECODER(id, sample_fmt_, name, long_name_)
+      |     ^
+libavcodec/pcm.c:591:5: note: expanded from macro 'PCM_DECODER'
+  591 |     PCM_DECODER_3(CONFIG_ ## id ## _DECODER, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:589:5: note: expanded from macro 'PCM_DECODER_3'
+  589 |     PCM_DECODER_2(cf, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:587:5: note: expanded from macro 'PCM_DECODER_2'
+  587 |     PCM_DECODER_ ## cf(id, sample_fmt, name, long_name)
+      |     ^
+<scratch space>:80:1: note: expanded from here
+   80 | PCM_DECODER_1
+      | ^
+libavcodec/pcm.c:582:8: note: expanded from macro 'PCM_DECODER_1'
+  582 |     .p.sample_fmts  = (const enum AVSampleFormat[]){ sample_fmt_,           \
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/pcm.c:606:1: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  606 | PCM_CODEC  (PCM_MULAW,        AV_SAMPLE_FMT_S16, pcm_mulaw,        "PCM mu-law / G.711 mu-law");
+      | ^
+libavcodec/pcm.c:595:5: note: expanded from macro 'PCM_CODEC'
+  595 |     PCM_DECODER(id, sample_fmt_, name, long_name_)
+      |     ^
+libavcodec/pcm.c:591:5: note: expanded from macro 'PCM_DECODER'
+  591 |     PCM_DECODER_3(CONFIG_ ## id ## _DECODER, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:589:5: note: expanded from macro 'PCM_DECODER_3'
+  589 |     PCM_DECODER_2(cf, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:587:5: note: expanded from macro 'PCM_DECODER_2'
+  587 |     PCM_DECODER_ ## cf(id, sample_fmt, name, long_name)
+      |     ^
+<scratch space>:93:1: note: expanded from here
+   93 | PCM_DECODER_1
+      | ^
+libavcodec/pcm.c:582:8: note: expanded from macro 'PCM_DECODER_1'
+  582 |     .p.sample_fmts  = (const enum AVSampleFormat[]){ sample_fmt_,           \
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/pcm.c:609:1: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  609 | PCM_CODEC  (PCM_S16BE,        AV_SAMPLE_FMT_S16, pcm_s16be,        "PCM signed 16-bit big-endian");
+      | ^
+libavcodec/pcm.c:595:5: note: expanded from macro 'PCM_CODEC'
+  595 |     PCM_DECODER(id, sample_fmt_, name, long_name_)
+      |     ^
+libavcodec/pcm.c:591:5: note: expanded from macro 'PCM_DECODER'
+  591 |     PCM_DECODER_3(CONFIG_ ## id ## _DECODER, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:589:5: note: expanded from macro 'PCM_DECODER_3'
+  589 |     PCM_DECODER_2(cf, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:587:5: note: expanded from macro 'PCM_DECODER_2'
+  587 |     PCM_DECODER_ ## cf(id, sample_fmt, name, long_name)
+      |     ^
+<scratch space>:115:1: note: expanded from here
+  115 | PCM_DECODER_1
+      | ^
+libavcodec/pcm.c:582:8: note: expanded from macro 'PCM_DECODER_1'
+  582 |     .p.sample_fmts  = (const enum AVSampleFormat[]){ sample_fmt_,           \
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/pcm.c:611:1: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  611 | PCM_CODEC  (PCM_S16LE,        AV_SAMPLE_FMT_S16, pcm_s16le,        "PCM signed 16-bit little-endian");
+      | ^
+libavcodec/pcm.c:595:5: note: expanded from macro 'PCM_CODEC'
+  595 |     PCM_DECODER(id, sample_fmt_, name, long_name_)
+      |     ^
+libavcodec/pcm.c:591:5: note: expanded from macro 'PCM_DECODER'
+  591 |     PCM_DECODER_3(CONFIG_ ## id ## _DECODER, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:589:5: note: expanded from macro 'PCM_DECODER_3'
+  589 |     PCM_DECODER_2(cf, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:587:5: note: expanded from macro 'PCM_DECODER_2'
+  587 |     PCM_DECODER_ ## cf(id, sample_fmt, name, long_name)
+      |     ^
+<scratch space>:131:1: note: expanded from here
+  131 | PCM_DECODER_1
+      | ^
+libavcodec/pcm.c:582:8: note: expanded from macro 'PCM_DECODER_1'
+  582 |     .p.sample_fmts  = (const enum AVSampleFormat[]){ sample_fmt_,           \
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/pcm.c:613:1: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  613 | PCM_CODEC  (PCM_S24BE,        AV_SAMPLE_FMT_S32, pcm_s24be,        "PCM signed 24-bit big-endian");
+      | ^
+libavcodec/pcm.c:595:5: note: expanded from macro 'PCM_CODEC'
+  595 |     PCM_DECODER(id, sample_fmt_, name, long_name_)
+      |     ^
+libavcodec/pcm.c:591:5: note: expanded from macro 'PCM_DECODER'
+  591 |     PCM_DECODER_3(CONFIG_ ## id ## _DECODER, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:589:5: note: expanded from macro 'PCM_DECODER_3'
+  589 |     PCM_DECODER_2(cf, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:587:5: note: expanded from macro 'PCM_DECODER_2'
+  587 |     PCM_DECODER_ ## cf(id, sample_fmt, name, long_name)
+      |     ^
+<scratch space>:147:1: note: expanded from here
+  147 | PCM_DECODER_1
+      | ^
+libavcodec/pcm.c:582:8: note: expanded from macro 'PCM_DECODER_1'
+  582 |     .p.sample_fmts  = (const enum AVSampleFormat[]){ sample_fmt_,           \
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/pcm.c:615:1: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  615 | PCM_CODEC  (PCM_S24LE,        AV_SAMPLE_FMT_S32, pcm_s24le,        "PCM signed 24-bit little-endian");
+      | ^
+libavcodec/pcm.c:595:5: note: expanded from macro 'PCM_CODEC'
+  595 |     PCM_DECODER(id, sample_fmt_, name, long_name_)
+      |     ^
+libavcodec/pcm.c:591:5: note: expanded from macro 'PCM_DECODER'
+  591 |     PCM_DECODER_3(CONFIG_ ## id ## _DECODER, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:589:5: note: expanded from macro 'PCM_DECODER_3'
+  589 |     PCM_DECODER_2(cf, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:587:5: note: expanded from macro 'PCM_DECODER_2'
+  587 |     PCM_DECODER_ ## cf(id, sample_fmt, name, long_name)
+      |     ^
+<scratch space>:163:1: note: expanded from here
+  163 | PCM_DECODER_1
+      | ^
+libavcodec/pcm.c:582:8: note: expanded from macro 'PCM_DECODER_1'
+  582 |     .p.sample_fmts  = (const enum AVSampleFormat[]){ sample_fmt_,           \
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/pcm.c:617:1: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  617 | PCM_CODEC  (PCM_S32BE,        AV_SAMPLE_FMT_S32, pcm_s32be,        "PCM signed 32-bit big-endian");
+      | ^
+libavcodec/pcm.c:595:5: note: expanded from macro 'PCM_CODEC'
+  595 |     PCM_DECODER(id, sample_fmt_, name, long_name_)
+      |     ^
+libavcodec/pcm.c:591:5: note: expanded from macro 'PCM_DECODER'
+  591 |     PCM_DECODER_3(CONFIG_ ## id ## _DECODER, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:589:5: note: expanded from macro 'PCM_DECODER_3'
+  589 |     PCM_DECODER_2(cf, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:587:5: note: expanded from macro 'PCM_DECODER_2'
+  587 |     PCM_DECODER_ ## cf(id, sample_fmt, name, long_name)
+      |     ^
+<scratch space>:179:1: note: expanded from here
+  179 | PCM_DECODER_1
+      | ^
+libavcodec/pcm.c:582:8: note: expanded from macro 'PCM_DECODER_1'
+  582 |     .p.sample_fmts  = (const enum AVSampleFormat[]){ sample_fmt_,           \
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/pcm.c:618:1: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  618 | PCM_CODEC  (PCM_S32LE,        AV_SAMPLE_FMT_S32, pcm_s32le,        "PCM signed 32-bit little-endian");
+      | ^
+libavcodec/pcm.c:595:5: note: expanded from macro 'PCM_CODEC'
+  595 |     PCM_DECODER(id, sample_fmt_, name, long_name_)
+      |     ^
+libavcodec/pcm.c:591:5: note: expanded from macro 'PCM_DECODER'
+  591 |     PCM_DECODER_3(CONFIG_ ## id ## _DECODER, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:589:5: note: expanded from macro 'PCM_DECODER_3'
+  589 |     PCM_DECODER_2(cf, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:587:5: note: expanded from macro 'PCM_DECODER_2'
+  587 |     PCM_DECODER_ ## cf(id, sample_fmt, name, long_name)
+      |     ^
+<scratch space>:189:1: note: expanded from here
+  189 | PCM_DECODER_1
+      | ^
+libavcodec/pcm.c:582:8: note: expanded from macro 'PCM_DECODER_1'
+  582 |     .p.sample_fmts  = (const enum AVSampleFormat[]){ sample_fmt_,           \
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/pcm.c:620:1: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+  620 | PCM_CODEC  (PCM_U8,           AV_SAMPLE_FMT_U8,  pcm_u8,           "PCM unsigned 8-bit");
+      | ^
+libavcodec/pcm.c:595:5: note: expanded from macro 'PCM_CODEC'
+  595 |     PCM_DECODER(id, sample_fmt_, name, long_name_)
+      |     ^
+libavcodec/pcm.c:591:5: note: expanded from macro 'PCM_DECODER'
+  591 |     PCM_DECODER_3(CONFIG_ ## id ## _DECODER, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:589:5: note: expanded from macro 'PCM_DECODER_3'
+  589 |     PCM_DECODER_2(cf, id, sample_fmt, name, long_name)
+      |     ^
+libavcodec/pcm.c:587:5: note: expanded from macro 'PCM_DECODER_2'
+  587 |     PCM_DECODER_ ## cf(id, sample_fmt, name, long_name)
+      |     ^
+<scratch space>:205:1: note: expanded from here
+  205 | PCM_DECODER_1
+      | ^
+libavcodec/pcm.c:582:8: note: expanded from macro 'PCM_DECODER_1'
+  582 |     .p.sample_fmts  = (const enum AVSampleFormat[]){ sample_fmt_,           \
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/pcm.c:41:20: warning: unused function 'pcm_encode_init' [-Wunused-function]
+   41 | static av_cold int pcm_encode_init(AVCodecContext *avctx)
+      |                    ^~~~~~~~~~~~~~~
+libavcodec/pcm.c:96:12: warning: unused function 'pcm_encode_frame' [-Wunused-function]
+   96 | static int pcm_encode_frame(AVCodecContext *avctx, AVPacket *avpkt,
+      |            ^~~~~~~~~~~~~~~~
+16 warnings generated.
+libavcodec/vorbisdec.c:1897:8: warning: 'ch_layouts' is deprecated [-Wdeprecated-declarations]
+ 1897 |     .p.ch_layouts    = ff_vorbis_ch_layouts,
+      |        ^
+libavcodec/codec.h:240:5: note: 'ch_layouts' has been explicitly marked deprecated here
+  240 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+libavcodec/vorbisdec.c:1898:8: warning: 'sample_fmts' is deprecated [-Wdeprecated-declarations]
+ 1898 |     .p.sample_fmts   = (const enum AVSampleFormat[]) { AV_SAMPLE_FMT_FLTP,
+      |        ^
+libavcodec/codec.h:218:5: note: 'sample_fmts' has been explicitly marked deprecated here
+  218 |     attribute_deprecated
+      |     ^
+./libavutil/attributes.h:100:49: note: expanded from macro 'attribute_deprecated'
+  100 | #    define attribute_deprecated __attribute__((deprecated))
+      |                                                 ^
+2 warnings generated.
+libswresample/options.c:111:144: warning: implicit conversion from 'long long' to 'double' changes value from 9223372036854775807 to 9223372036854775808 [-Wimplicit-const-int-float-conversion]
+  110 | {"first_pts"            , "Assume the first pts should be this value (in samples)."
+      | ~
+  111 |                                                         , OFFSET(firstpts_in_samples), AV_OPT_TYPE_INT64 ,{.i64=AV_NOPTS_VALUE    }, INT64_MIN,INT64_MAX, PARAM },
+      |                                                                                                                                                ^~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:94:26: note: expanded from macro 'INT64_MAX'
+   94 | #define INT64_MAX        9223372036854775807LL
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+libavutil/cpu.c:120:76: warning: implicit conversion from 'long long' to 'double' changes value from 9223372036854775807 to 9223372036854775808 [-Wimplicit-const-int-float-conversion]
+  120 |         { "flags"   , NULL, 0, AV_OPT_TYPE_FLAGS, { .i64 = 0 }, INT64_MIN, INT64_MAX, .unit = "flags" },
+      |         ~                                                                  ^~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:94:26: note: expanded from macro 'INT64_MAX'
+   94 | #define INT64_MAX        9223372036854775807LL
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+libavutil/eval.c:249:29: warning: implicit conversion from 'unsigned long long' to 'double' changes value from 18446744073709551615 to 18446744073709551616 [-Wimplicit-const-int-float-conversion]
+  249 |             return r * (1.0/UINT64_MAX);
+      |                            ~^~~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:110:27: note: expanded from macro 'UINT64_MAX'
+  110 | #define UINT64_MAX        18446744073709551615ULL
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~
+libavutil/eval.c:255:44: warning: implicit conversion from 'unsigned long long' to 'double' changes value from 18446744073709551615 to 18446744073709551616 [-Wimplicit-const-int-float-conversion]
+  255 |             return min + (max - min) * r / UINT64_MAX;
+      |                                          ~ ^~~~~~~~~~
+/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/usr/include/stdint.h:110:27: note: expanded from macro 'UINT64_MAX'
+  110 | #define UINT64_MAX        18446744073709551615ULL
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~
+2 warnings generated.

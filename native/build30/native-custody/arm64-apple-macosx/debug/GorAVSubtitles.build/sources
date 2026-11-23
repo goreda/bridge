@@ -1,0 +1,13 @@
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/ASSParser.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SRTParser.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleAutoLoad.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleController.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleCue.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleCueDelivery.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleCueOutput.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitlePlan.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleSchedule.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleSidecarSession.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleTrack.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/SubtitleTypography.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVSubtitles/VTTParser.swift
