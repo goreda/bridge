@@ -3,17 +3,11 @@
   "archive_bytes": 49498146,
   "archive_crc_pass": true,
   "inventory_rows": 901,
-  "verified_rows": 899,
-  "missing": [
-    {
-      "path": "debug.yaml",
-      "sha256": "950ecba26e1372237533fed873ca8f9513d5df2866212fe82424a8fbf7106a43",
-      "bytes": 2351302
-    },
-    {
-      "path": "plugin-tools.yaml",
-      "sha256": "950ecba26e1372237533fed873ca8f9513d5df2866212fe82424a8fbf7106a43",
-      "bytes": 2351302
-    }
-  ]
+  "verified_rows": 901,
+  "missing": [],
+  "note": "Two original YAML files recovered from separately published issuer artifacts and independently verified. Aggregate ZIP correctly lacked these, no reconstruction. Temporary driver filelist remains absent; not recipe gate closure.",
+  "separate_plan_sources": {
+    "debug.yaml": "https://api.codemagic.io/artifacts/c512299c-e898-4ea4-bd62-a143c65c7eb7/4559b679-fd65-4535-9d0b-c77ce5761541/debug.yaml",
+    "plugin-tools.yaml": "https://api.codemagic.io/artifacts/fec38fe9-1c01-4dd9-9e63-9823d59ae99e/c823a362-694f-471d-901a-6bb3775560b6/plugin-tools.yaml"
+  }
 }
