@@ -1,0 +1,19 @@
+{
+  "result": "FAIL_OR_NOT_RUN",
+  "scope": "Xcode-managed synthetic app-hosted async XCTest only; product integration NOT_RUN",
+  "carrier": "7e240110116825230b79dc96467a81d422f2baf5",
+  "rows": [
+    {
+      "stage": "developer-directory",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "xcodebuild-help",
+      "exit": 0,
+      "seconds": 0.55
+    }
+  ],
+  "error": "RuntimeError(\"installed CLI help missing required contract: ['build-for-testing', 'test-without-building']\")",
+  "seconds": 0.9
+}
