@@ -1,0 +1,15 @@
+{
+  "project": {
+    "configurations": [
+      "Debug"
+    ],
+    "name": "HostedAcceptance",
+    "schemes": [
+      "HostedAcceptance"
+    ],
+    "targets": [
+      "HostedAcceptance",
+      "HostedAcceptanceTests"
+    ]
+  }
+}

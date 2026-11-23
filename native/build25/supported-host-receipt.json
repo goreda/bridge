@@ -1,0 +1,39 @@
+{
+  "result": "FAIL_OR_NOT_RUN",
+  "scope": "Xcode-managed synthetic app-hosted async XCTest only; product integration NOT_RUN",
+  "carrier": "b97a472f811eb7ad654a0c6a90a4186dc6cedbdb",
+  "rows": [
+    {
+      "stage": "developer-directory",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "xcodebuild-help",
+      "exit": 0,
+      "seconds": 0.63
+    },
+    {
+      "stage": "xcode-version",
+      "exit": 0,
+      "seconds": 0.11
+    },
+    {
+      "stage": "generate-project",
+      "exit": 0,
+      "seconds": 0.09
+    },
+    {
+      "stage": "project-list",
+      "exit": 0,
+      "seconds": 1.92
+    },
+    {
+      "stage": "build-settings",
+      "exit": 0,
+      "seconds": 1.26
+    }
+  ],
+  "error": "JSONDecodeError('Expecting value: line 1 column 1 (char 0)')",
+  "seconds": 4.41
+}
