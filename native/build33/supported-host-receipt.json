@@ -1,0 +1,189 @@
+{
+  "result": "FAIL_OR_NOT_RUN",
+  "scope": "Real unchanged gor candidate plus fixture-only lifecycle successor in proven Xcode host; pixel review required",
+  "carrier": "7cc7794a6812cbff9a422c63be094262da7c2fd5",
+  "rows": [
+    {
+      "stage": "developer-directory",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "xcodebuild-help",
+      "exit": 0,
+      "seconds": 0.53
+    },
+    {
+      "stage": "xcode-version",
+      "exit": 0,
+      "seconds": 0.08
+    },
+    {
+      "stage": "swift-version",
+      "exit": 0,
+      "seconds": 1.04
+    },
+    {
+      "stage": "swiftc-hidden-help",
+      "exit": 0,
+      "seconds": 0.62
+    },
+    {
+      "stage": "swift-build-help",
+      "exit": 0,
+      "seconds": 0.19
+    },
+    {
+      "stage": "selected-sdk",
+      "exit": 0,
+      "seconds": 0.48
+    },
+    {
+      "stage": "driver-temp-probe",
+      "exit": 0,
+      "seconds": 0.77
+    },
+    {
+      "stage": "provider-provision",
+      "exit": 0,
+      "seconds": 70.95
+    },
+    {
+      "stage": "gor-build-tests",
+      "exit": 0,
+      "seconds": 56.09
+    },
+    {
+      "stage": "gor-all-object-nm",
+      "exit": 0,
+      "seconds": 0.2
+    },
+    {
+      "stage": "generate-project",
+      "exit": 0,
+      "seconds": 0.09
+    },
+    {
+      "stage": "project-list",
+      "exit": 0,
+      "seconds": 1.5
+    },
+    {
+      "stage": "build-settings-HostedAcceptance",
+      "exit": 0,
+      "seconds": 1.01
+    },
+    {
+      "stage": "build-settings-HostedAcceptanceTests",
+      "exit": 0,
+      "seconds": 0.87
+    },
+    {
+      "stage": "hosted-build-for-testing",
+      "exit": 0,
+      "seconds": 11.64
+    },
+    {
+      "stage": "hosted-test-nm",
+      "exit": 0,
+      "seconds": 0.21
+    },
+    {
+      "stage": "hosted-test-macho",
+      "exit": 0,
+      "seconds": 0.74
+    },
+    {
+      "stage": "hosted-test-loadcommands",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "hosted-test-without-building",
+      "exit": 65,
+      "seconds": 14.33
+    },
+    {
+      "stage": "separate-platform-control",
+      "exit": 0,
+      "seconds": 2.72
+    }
+  ],
+  "binding": {
+    "schema": "199cy-real-gor-supported-host-v4",
+    "base_carrier": "79654e03456d78d791f1735ed899017feffada66",
+    "canonical_source": "34638e17405449b09603e68f41443497d8cf28ba",
+    "product": "6934c41945fcc3caa4793f425b6cc7149978ce6e",
+    "production_changed": false,
+    "fixture_only": "Reviewed diagnostic measurements and existing lifecycle guard, original assertions unchanged; original RED authoritative; separate plain control only after original acceptance",
+    "canonical_acceptance_sha256": "cc1b0f21bc2e89ed0fdbd32f0aec7d8ea7c39c333cabe8cc7870eeb4d1783eb6",
+    "fixture_sha256": "6bffb388965c31e2e6fad21078ff5a503ad4efc512e01cf43e16735677f3df5f",
+    "inner_seconds": 420,
+    "workflow_seconds": 480,
+    "planning_reservation_seconds": 540,
+    "files": {
+      "ci/gor-host-preflight.py": "328e5405e95ce4880a76dfbc8bd76d713106d652976469f5efef92cbb7d3d936",
+      "ci/gor_recipe.py": "197c186dda346f7bd3e3494455396658e9469b0710f1d0587edaa43e44a3ae5a",
+      "ci/generate_gor_host.py": "d158dc934d05fa6a0b7ddf5fc9ca1bc97b8627d771971e33b0031d2f5f36bff9",
+      "ci/test_gor_recipe.py": "032cfaeb580a02cc8d4a19e48548abef22e28e7d10f9b50f707edc4bad07fe28",
+      "ci/InlineFileSearchAcceptanceTests.swift": "6bffb388965c31e2e6fad21078ff5a503ad4efc512e01cf43e16735677f3df5f",
+      "codemagic.yaml": "2265b7fdfd06b2e91e50508ee2a1fb6ab8cc134bae726f1cfbb419f980cd756a",
+      "ci/bounded_process.py": "647f5b75b840ce33f76b674280dda9995894e3ae22e5bd3ef390523ae63815ce",
+      "ci/test_driver_temp_probe.py": "bc5070586c14d9085f8af328cc73e423b827a876c17dec3104ae0c51e9379b50",
+      "ci/driver_temp_probe.py": "60e80c380cc7e9f733fcafdeca4ab3a694845113bca5509b0e33144b7a1fb212",
+      "ci/test_xcode_compile.py": "33b56c7804f910cb912b08ca3538586c5e5f705b95e545e722b83ba156a96a62",
+      "ci/xcode_compile.py": "4e5262bc5a023e6854137238be461b42e0427a7c2d08bef192b7acd77bd2bd6e"
+    },
+    "required_existing_actual27_files": {
+      "ci/main.swift": "a321ae4e8e4f41a4b2211003e02bde10169471f47ae84d79dd097ef8cb424362",
+      "ci/generate_project.py": "frozen by base carrier MIRROR",
+      "ci/xcode_contract.py": "frozen by base carrier MIRROR",
+      "ci/process_capture.py": "frozen by base carrier MIRROR"
+    },
+    "installed_temp_semantics": "UNVERIFIED mandatory bounded tiny-probe before provider/product",
+    "temporary_caps": {
+      "probe_seconds": 8,
+      "probe_bytes": 33554432,
+      "temp_logs_bytes": 536870912,
+      "new_product_bytes": 2147483648,
+      "per_file_bytes": 536870912
+    }
+  },
+  "original_acceptance": {
+    "exit": 65,
+    "started": [
+      "-[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation]"
+    ],
+    "passed": [],
+    "coverage_exists": true,
+    "xcresult_exists": true,
+    "images": [
+      "inline-after-navigation-compositor.png",
+      "inline-after-navigation.png",
+      "inline-direct-title-caret-compositor.png",
+      "inline-direct-title-caret.png",
+      "inline-editing-compositor.png",
+      "inline-editing.png",
+      "inline-esc-restored-full-list-compositor.png",
+      "inline-esc-restored-full-list.png",
+      "inline-idle-compositor.png",
+      "inline-idle.png",
+      "inline-results-context-compositor.png",
+      "inline-results-context.png",
+      "natural-caret-0-compositor.png",
+      "natural-caret-1-compositor.png",
+      "natural-caret-2-compositor.png",
+      "natural-caret-3-compositor.png",
+      "natural-caret-4-compositor.png"
+    ],
+    "states": [
+      "after-first-input-state.json",
+      "after-reopen-state.json",
+      "before-input-state.json",
+      "before-reopen-state.json"
+    ]
+  },
+  "error": "RuntimeError('original acceptance failed: 65; diagnostic control does not qualify it')",
+  "boundary": "No automatic release. Actual native assertions and compositor/cached pixels, caret and font diagnostics require human review. Original full-suite comparison and owner-installed app behavior are separate.",
+  "seconds": 166.53
+}

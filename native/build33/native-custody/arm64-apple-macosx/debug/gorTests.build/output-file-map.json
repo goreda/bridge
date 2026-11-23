@@ -1,0 +1,82 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Tests/gorTests/AudioOutputDeviceNativeTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/AudioOutputDeviceNativeTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/AudioOutputDeviceNativeTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/AudioOutputDeviceNativeTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/AudioOutputDeviceNativeTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/AudioOutputDeviceNativeTests.dia"
+  },
+  "/Users/builder/clone/payload/gor/Tests/gorTests/GorAVStreamAdmissionTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/GorAVStreamAdmissionTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/GorAVStreamAdmissionTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/GorAVStreamAdmissionTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/GorAVStreamAdmissionTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/GorAVStreamAdmissionTests.dia"
+  },
+  "/Users/builder/clone/payload/gor/Tests/gorTests/InlineFileSearchAcceptanceTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/InlineFileSearchAcceptanceTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/InlineFileSearchAcceptanceTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/InlineFileSearchAcceptanceTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/InlineFileSearchAcceptanceTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/InlineFileSearchAcceptanceTests.dia"
+  },
+  "/Users/builder/clone/payload/gor/Tests/gorTests/MultipleAudioRefusalPixelTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/MultipleAudioRefusalPixelTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/MultipleAudioRefusalPixelTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/MultipleAudioRefusalPixelTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/MultipleAudioRefusalPixelTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/MultipleAudioRefusalPixelTests.dia"
+  },
+  "/Users/builder/clone/payload/gor/Tests/gorTests/PhotonActiveEngineHeaderTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonActiveEngineHeaderTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonActiveEngineHeaderTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonActiveEngineHeaderTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonActiveEngineHeaderTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonActiveEngineHeaderTests.dia"
+  },
+  "/Users/builder/clone/payload/gor/Tests/gorTests/PhotonDistanceModelNativeTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonDistanceModelNativeTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonDistanceModelNativeTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonDistanceModelNativeTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonDistanceModelNativeTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonDistanceModelNativeTests.dia"
+  },
+  "/Users/builder/clone/payload/gor/Tests/gorTests/PhotonFontResourceTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonFontResourceTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonFontResourceTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonFontResourceTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonFontResourceTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonFontResourceTests.dia"
+  },
+  "/Users/builder/clone/payload/gor/Tests/gorTests/PhotonHostCloseLifecycleTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonHostCloseLifecycleTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonHostCloseLifecycleTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonHostCloseLifecycleTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonHostCloseLifecycleTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonHostCloseLifecycleTests.dia"
+  },
+  "/Users/builder/clone/payload/gor/Tests/gorTests/PhotonNativeInputOwnerTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonNativeInputOwnerTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonNativeInputOwnerTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonNativeInputOwnerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonNativeInputOwnerTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonNativeInputOwnerTests.dia"
+  },
+  "/Users/builder/clone/payload/gor/Tests/gorTests/PhotonProducerHostNativeTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonProducerHostNativeTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonProducerHostNativeTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonProducerHostNativeTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonProducerHostNativeTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/PhotonProducerHostNativeTests.dia"
+  },
+  "/Users/builder/clone/payload/gor/Tests/gorTests/ThreeDRouteMachineTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/ThreeDRouteMachineTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/ThreeDRouteMachineTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/ThreeDRouteMachineTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/ThreeDRouteMachineTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorTests.build/ThreeDRouteMachineTests.dia"
+  }
+}

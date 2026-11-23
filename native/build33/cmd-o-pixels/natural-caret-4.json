@@ -1,0 +1,75 @@
+{
+  "actualRange" : "{0, 0}",
+  "appearance" : "NSAppearanceNameAqua",
+  "backgroundColor" : "Catalog color: System textBackgroundColor",
+  "backgroundRGBA" : {
+    "alpha" : 1,
+    "available" : true,
+    "blue" : 1,
+    "green" : 1,
+    "red" : 1
+  },
+  "creationOrigin" : "image path only; creation stack not captured; no class allowlist inference",
+  "drawsBackground" : false,
+  "editor" : "NSTextView",
+  "editorBounds" : "{{0, 0}, {945, 24}}",
+  "editorFrame" : "{{0, 0}, {945, 24}}",
+  "editorImage" : "\/System\/Library\/Frameworks\/AppKit.framework\/Versions\/C\/AppKit",
+  "font" : "ExposureVAR-Exposure_EXPO640000",
+  "fontDescriptor" : "Optional([__C.NSFontDescriptorAttributeName(_rawValue: NSCTFontVariationAttribute): {\n    1163415631 = 100;\n}, __C.NSFontDescriptorAttributeName(_rawValue: NSFontNameAttribute): ExposureVAR-Exposure_EXPO640000, __C.NSFontDescriptorAttributeName(_rawValue: NSFontSizeAttribute): 16.45829089640739])",
+  "insertionPointColor" : "Optional(Catalog color: System textInsertionPointColor)",
+  "insertionRGBA" : {
+    "alpha" : 1,
+    "available" : true,
+    "blue" : 1,
+    "green" : 0.47843137254901963,
+    "red" : 0
+  },
+  "insertionScreenRect" : "{{118, 660}, {0, 20}}",
+  "rectIntersectsWindow" : false,
+  "rectNonempty" : false,
+  "rectWindowIntersection" : "{{118, 660}, {0, 20}}",
+  "selectedRange" : "{0, 0}",
+  "shouldDrawInsertionPoint" : true,
+  "textColor" : "Optional(Generic Gray Gamma 2.2 Profile colorspace 1 0.3)",
+  "textRGBA" : {
+    "alpha" : 0.29999999999999999,
+    "available" : true,
+    "blue" : 1,
+    "green" : 1,
+    "red" : 1
+  },
+  "time" : 428.33222858333335,
+  "windows" : [
+    {
+      "class" : "DraggableOverlayWindow",
+      "frame" : "{{80, 80}, {1100, 600}}",
+      "id" : "ObjectIdentifier(0x0000000c5443c280)",
+      "image" : "\/Users\/builder\/clone\/supported-derived\/Build\/Products\/Debug\/HostedAcceptance.app\/Contents\/PlugIns\/HostedAcceptanceTests.xctest\/Contents\/MacOS\/HostedAcceptanceTests",
+      "key" : "true",
+      "number" : "42",
+      "style" : "0",
+      "visible" : "true"
+    },
+    {
+      "class" : "TUINSWindow",
+      "frame" : "{{0, 0}, {500, 500}}",
+      "id" : "ObjectIdentifier(0x0000000c5443e580)",
+      "image" : "\/System\/Library\/PrivateFrameworks\/TextInputUIMacHelper.framework\/Versions\/A\/TextInputUIMacHelper",
+      "key" : "false",
+      "number" : "43",
+      "style" : "32768",
+      "visible" : "false"
+    },
+    {
+      "class" : "SPRoundedWindow",
+      "frame" : "{{104, 414}, {312, 237}}",
+      "id" : "ObjectIdentifier(0x0000000c5443f480)",
+      "image" : "\/System\/Library\/PrivateFrameworks\/SafariPlatformSupport.framework\/Versions\/A\/SafariPlatformSupport",
+      "key" : "true",
+      "number" : "47",
+      "style" : "0",
+      "visible" : "false"
+    }
+  ]
+}

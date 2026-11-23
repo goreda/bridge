@@ -1,0 +1,2 @@
+/Users/builder/clone/out/driver-probe/temp/TemporaryDirectory.EzJLjt/main-1.o
+/Users/builder/clone/out/driver-probe/temp/TemporaryDirectory.EzJLjt/helper-1.o

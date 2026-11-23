@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/trace_dump.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/trace-dump/TraceDump.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/trace_dump.build/TraceDump.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/trace_dump.build/TraceDump.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/trace_dump.build/TraceDump~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/trace_dump.build/TraceDump.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/trace_dump.build/TraceDump.dia"
+  }
+}

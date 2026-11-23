@@ -1,0 +1,22 @@
+{
+  "active" : true,
+  "editor" : "nil",
+  "fieldFrame" : "{{36, 0}, {944.78483153121772, 23.753163585629579}}",
+  "font" : "ExposureVAR-Exposure",
+  "fontSize" : 16.458290896407394,
+  "key" : true,
+  "policy" : 0,
+  "windows" : [
+    {
+      "class" : "DraggableOverlayWindow",
+      "content" : "NSView",
+      "frame" : "{{80, 80}, {1100, 600}}",
+      "id" : "ObjectIdentifier(0x0000000c5443c280)",
+      "key" : "true",
+      "number" : "42",
+      "responder" : "FileBrowserPanel",
+      "style" : "0",
+      "visible" : "true"
+    }
+  ]
+}

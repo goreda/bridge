@@ -1,0 +1,14 @@
+{
+  "windows" : [
+    {
+      "class" : "DraggableOverlayWindow",
+      "frame" : "{{80, 80}, {1100, 600}}",
+      "id" : "ObjectIdentifier(0x0000000c5443c280)",
+      "image" : "\/Users\/builder\/clone\/supported-derived\/Build\/Products\/Debug\/HostedAcceptance.app\/Contents\/PlugIns\/HostedAcceptanceTests.xctest\/Contents\/MacOS\/HostedAcceptanceTests",
+      "key" : "true",
+      "number" : "42",
+      "style" : "0",
+      "visible" : "true"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:macOS, arch:arm64, id:0000FE00-343A79319AA17942, name:My Mac }
+{ platform:macOS, arch:x86_64, id:0000FE00-343A79319AA17942, name:My Mac }
+2026-11-23 06:03:09.418 xcodebuild[7755:30283] [MT] IDETestOperationsObserverDebug: 1.669 elapsed -- Testing started completed.
+2026-11-23 06:03:09.418 xcodebuild[7755:30283] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-23 06:03:09.418 xcodebuild[7755:30283] [MT] IDETestOperationsObserverDebug: 1.669 sec, +1.669 sec -- end

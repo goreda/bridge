@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_first_frame.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/gorav-first-frame/FirstFrame.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_first_frame.build/FirstFrame.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_first_frame.build/FirstFrame.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_first_frame.build/FirstFrame~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_first_frame.build/FirstFrame.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorav_first_frame.build/FirstFrame.dia"
+  }
+}

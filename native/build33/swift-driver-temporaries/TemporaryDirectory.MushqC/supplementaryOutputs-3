@@ -1,0 +1,20 @@
+{
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/MetalRenderer.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalRenderer.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalRenderer.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalRenderer.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/MetalRenderer.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/PhotonMeasurementShader.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMeasurementShader.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMeasurementShader.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMeasurementShader.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMeasurementShader.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/PhotonMetalEffects.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMetalEffects.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMetalEffects.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMetalEffects.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVMetalPresenter.build/PhotonMetalEffects.swiftdeps"
+  }
+}

@@ -1,0 +1,15 @@
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/ActiveTransportSnapshot.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/FFmpegSoftwareAudioDecoder.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/FFmpegSoftwareDecoder.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/FrameObservation.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/L3AVCoordinator.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/L3Admission.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/L3HardwareDecode.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/L3PixelConvert.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/L3SampleConvert.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/LabSwrBackendBinding.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/MediaInventory.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/SnapshotAVIOOwner.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/SnapshotInput.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/SourceOpenOptions.swift
+/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVFFmpegAdapter/VTHardwareFrameProducer.swift

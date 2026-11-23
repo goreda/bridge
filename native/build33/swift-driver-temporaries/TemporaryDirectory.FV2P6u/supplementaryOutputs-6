@@ -1,0 +1,68 @@
+{
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVPlaybackCore/PreparedAdoption.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PreparedAdoption.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PreparedAdoption.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PreparedAdoption.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PreparedAdoption.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVPlaybackCore/PreparedShotSession.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PreparedShotSession.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PreparedShotSession.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PreparedShotSession.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PreparedShotSession.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVPlaybackCore/PreparedVideoFrameSource.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PreparedVideoFrameSource.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PreparedVideoFrameSource.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PreparedVideoFrameSource.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/PreparedVideoFrameSource.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVPlaybackCore/ReadinessAnchorSession.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ReadinessAnchorSession.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ReadinessAnchorSession.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ReadinessAnchorSession.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ReadinessAnchorSession.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVPlaybackCore/RenderGraph.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/RenderGraph.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/RenderGraph.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/RenderGraph.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/RenderGraph.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVPlaybackCore/SPSC.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/SPSC.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/SPSC.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/SPSC.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/SPSC.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVPlaybackCore/ShellSeekBridge.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ShellSeekBridge.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ShellSeekBridge.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ShellSeekBridge.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/ShellSeekBridge.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVPlaybackCore/StageGeometry.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StageGeometry.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StageGeometry.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StageGeometry.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StageGeometry.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVPlaybackCore/StereoLookDistanceTrace.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookDistanceTrace.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookDistanceTrace.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookDistanceTrace.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookDistanceTrace.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVPlaybackCore/StereoLookFramePayload.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookFramePayload.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookFramePayload.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookFramePayload.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookFramePayload.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVPlaybackCore/StereoLookProducer.swift" : {
+    "dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookProducer.d",
+    "diagnostics" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookProducer.dia",
+    "object" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookProducer.swift.o",
+    "swift-dependencies" : "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVPlaybackCore.build/StereoLookProducer.swiftdeps"
+  }
+}

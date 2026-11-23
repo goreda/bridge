@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/audio_test.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/audio-test/AudioTest.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/audio_test.build/AudioTest.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/audio_test.build/AudioTest.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/audio_test.build/AudioTest~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/audio_test.build/AudioTest.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/audio_test.build/AudioTest.dia"
+  }
+}

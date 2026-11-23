@@ -1,0 +1,34 @@
+{
+  "exit": 65,
+  "started": [
+    "-[gorTests.InlineFileSearchAcceptanceTests testInlineNativeInputAndFixtureNavigation]"
+  ],
+  "passed": [],
+  "coverage_exists": true,
+  "xcresult_exists": true,
+  "images": [
+    "inline-after-navigation-compositor.png",
+    "inline-after-navigation.png",
+    "inline-direct-title-caret-compositor.png",
+    "inline-direct-title-caret.png",
+    "inline-editing-compositor.png",
+    "inline-editing.png",
+    "inline-esc-restored-full-list-compositor.png",
+    "inline-esc-restored-full-list.png",
+    "inline-idle-compositor.png",
+    "inline-idle.png",
+    "inline-results-context-compositor.png",
+    "inline-results-context.png",
+    "natural-caret-0-compositor.png",
+    "natural-caret-1-compositor.png",
+    "natural-caret-2-compositor.png",
+    "natural-caret-3-compositor.png",
+    "natural-caret-4-compositor.png"
+  ],
+  "states": [
+    "after-first-input-state.json",
+    "after-reopen-state.json",
+    "before-input-state.json",
+    "before-reopen-state.json"
+  ]
+}

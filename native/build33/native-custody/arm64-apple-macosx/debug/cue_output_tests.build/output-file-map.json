@@ -1,0 +1,26 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/cue_output_tests.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/cue-output-tests/CueBatchFixtureRows.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/cue_output_tests.build/CueBatchFixtureRows.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/cue_output_tests.build/CueBatchFixtureRows.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/cue_output_tests.build/CueBatchFixtureRows~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/cue_output_tests.build/CueBatchFixtureRows.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/cue_output_tests.build/CueBatchFixtureRows.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/cue-output-tests/SidecarFixtureRows.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/cue_output_tests.build/SidecarFixtureRows.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/cue_output_tests.build/SidecarFixtureRows.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/cue_output_tests.build/SidecarFixtureRows~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/cue_output_tests.build/SidecarFixtureRows.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/cue_output_tests.build/SidecarFixtureRows.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/cue-output-tests/main.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/cue_output_tests.build/main.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/cue_output_tests.build/main.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/cue_output_tests.build/main~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/cue_output_tests.build/main.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/cue_output_tests.build/main.dia"
+  }
+}

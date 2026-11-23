@@ -1,0 +1,25 @@
+{
+  "boundary" : "plain AppKit field after original acceptance in separate test invocation",
+  "windows" : [
+    {
+      "class" : "NSWindow",
+      "frame" : "{{90, 90}, {600, 232}}",
+      "id" : "ObjectIdentifier(0x0000000ba6440280)",
+      "image" : "\/System\/Library\/Frameworks\/AppKit.framework\/Versions\/C\/AppKit",
+      "key" : "true",
+      "number" : "63",
+      "style" : "1",
+      "visible" : "true"
+    },
+    {
+      "class" : "TUINSWindow",
+      "frame" : "{{0, 0}, {500, 500}}",
+      "id" : "ObjectIdentifier(0x0000000ba6531e00)",
+      "image" : "\/System\/Library\/PrivateFrameworks\/TextInputUIMacHelper.framework\/Versions\/A\/TextInputUIMacHelper",
+      "key" : "false",
+      "number" : "64",
+      "style" : "32768",
+      "visible" : "false"
+    }
+  ]
+}

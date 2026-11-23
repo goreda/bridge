@@ -1,0 +1,19 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timing_ledger_tests.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/timing-ledger-tests/SPSCTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timing_ledger_tests.build/SPSCTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timing_ledger_tests.build/SPSCTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timing_ledger_tests.build/SPSCTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timing_ledger_tests.build/SPSCTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timing_ledger_tests.build/SPSCTests.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/timing-ledger-tests/TimingLedgerTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timing_ledger_tests.build/TimingLedgerTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timing_ledger_tests.build/TimingLedgerTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timing_ledger_tests.build/TimingLedgerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timing_ledger_tests.build/TimingLedgerTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/timing_ledger_tests.build/TimingLedgerTests.dia"
+  }
+}

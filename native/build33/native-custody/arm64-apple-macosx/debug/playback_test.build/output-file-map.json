@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/playback_test.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/playback-test/PlaybackTest.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/playback_test.build/PlaybackTest.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/playback_test.build/PlaybackTest.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/playback_test.build/PlaybackTest~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/playback_test.build/PlaybackTest.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/playback_test.build/PlaybackTest.dia"
+  }
+}

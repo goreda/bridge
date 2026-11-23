@@ -1,0 +1,33 @@
+{
+  "active" : true,
+  "editor" : "NSTextView",
+  "fieldFrame" : "{{36, 0}, {944.78483153121772, 23.753163585629579}}",
+  "font" : "ExposureVAR-Exposure",
+  "fontSize" : 16.458290896407394,
+  "key" : true,
+  "policy" : 0,
+  "windows" : [
+    {
+      "class" : "DraggableOverlayWindow",
+      "content" : "NSView",
+      "frame" : "{{80, 80}, {1100, 600}}",
+      "id" : "ObjectIdentifier(0x0000000c5443c280)",
+      "key" : "true",
+      "number" : "42",
+      "responder" : "NSTextView",
+      "style" : "0",
+      "visible" : "true"
+    },
+    {
+      "class" : "TUINSWindow",
+      "content" : "NSView",
+      "frame" : "{{0, 0}, {500, 500}}",
+      "id" : "ObjectIdentifier(0x0000000c5443e580)",
+      "key" : "false",
+      "number" : "43",
+      "responder" : "TUINSWindow",
+      "style" : "32768",
+      "visible" : "false"
+    }
+  ]
+}

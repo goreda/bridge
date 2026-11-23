@@ -1,0 +1,26 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/AudioMasterScheduler.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/AudioMasterScheduler/AudioMasterScheduler.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/AudioMasterScheduler.build/AudioMasterScheduler.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/AudioMasterScheduler.build/AudioMasterScheduler.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/AudioMasterScheduler.build/AudioMasterScheduler~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/AudioMasterScheduler.build/AudioMasterScheduler.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/AudioMasterScheduler.build/AudioMasterScheduler.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/AudioMasterScheduler/EnqueueGenerationAdapter.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/AudioMasterScheduler.build/EnqueueGenerationAdapter.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/AudioMasterScheduler.build/EnqueueGenerationAdapter.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/AudioMasterScheduler.build/EnqueueGenerationAdapter~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/AudioMasterScheduler.build/EnqueueGenerationAdapter.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/AudioMasterScheduler.build/EnqueueGenerationAdapter.dia"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/AudioMasterScheduler/SeekQueueCoordinator.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/AudioMasterScheduler.build/SeekQueueCoordinator.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/AudioMasterScheduler.build/SeekQueueCoordinator.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/AudioMasterScheduler.build/SeekQueueCoordinator~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/AudioMasterScheduler.build/SeekQueueCoordinator.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/AudioMasterScheduler.build/SeekQueueCoordinator.dia"
+  }
+}

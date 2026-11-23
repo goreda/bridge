@@ -1,0 +1,10 @@
+{
+  "archive_bytes": 149993801,
+  "archive_sha256": "44cbd3e0ae6bb9c95b0674cade8125b461a6e872f5c56ca23aed2d63751536ef",
+  "crc_pass": true,
+  "native_inventory_verified": 901,
+  "separate_original_yaml_included": true,
+  "acceptance": "ORIGINAL_EXECUTED_RED_TWO_ASSERTIONS",
+  "diagnostic_timing_extra_seconds": 0.8,
+  "caret_pixel_acceptance": "UNESTABLISHED"
+}

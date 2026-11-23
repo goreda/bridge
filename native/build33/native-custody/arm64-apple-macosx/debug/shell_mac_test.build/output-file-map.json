@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/shell_mac_test.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/shell-mac-test/ShellMacTest.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/shell_mac_test.build/ShellMacTest.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/shell_mac_test.build/ShellMacTest.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/shell_mac_test.build/ShellMacTest~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/shell_mac_test.build/ShellMacTest.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/shell_mac_test.build/ShellMacTest.dia"
+  }
+}

@@ -1,0 +1,39 @@
+Command line invocation:
+    /Applications/Xcode-26.6.app/Contents/Developer/usr/bin/xcodebuild -project /Users/builder/clone/out/supported-host-project/HostedAcceptance.xcodeproj -scheme HostedAcceptance -destination platform=macOS -derivedDataPath /Users/builder/clone/supported-derived -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=NO -resultBundlePath /Users/builder/clone/out/plain-field-control.xcresult "-only-testing:HostedAcceptanceTests/InlinePlatformInputControlTests" test-without-building
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+
+Writing result bundle at path:
+	/Users/builder/clone/out/plain-field-control.xcresult
+
+2026-11-23 06:03:08.081129+0000 HostedAcceptance[7763:30387] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-23 06:03:08.081494+0000 HostedAcceptance[7763:30393] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-23 06:03:08.081550+0000 HostedAcceptance[7763:30393] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-23 06:03:08.081555+0000 HostedAcceptance[7763:30387] [Application] Error registering app with intents framework: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-23 06:03:08.081858+0000 HostedAcceptance[7763:30394] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-23 06:03:08.082185+0000 HostedAcceptance[7763:30394] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-23 06:03:08.082396+0000 HostedAcceptance[7763:30394] [Connection] Will NOT re-try to establish the connection
+2026-11-23 06:03:08.082442+0000 HostedAcceptance[7763:30393] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-23 06:03:08.082472+0000 HostedAcceptance[7763:30393] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-23 06:03:08.104248+0000 HostedAcceptance[7763:30378] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/w2/rrf5p87d1bbfyphxc7jdnyvh0000gn/T/com.gor.tests.supportedhost.savedState
+Test Suite 'Selected tests' started at 2026-11-23 06:03:08.171.
+Test Suite 'HostedAcceptanceTests.xctest' started at 2026-11-23 06:03:08.171.
+Test Suite 'InlinePlatformInputControlTests' started at 2026-11-23 06:03:08.171.
+Test Case '-[gorTests.InlinePlatformInputControlTests testSeparatePlainFieldControl]' started.
+2026-11-23 06:03:08.217402+0000 HostedAcceptance[7763:30387] [Common] Unable to obtain a task name port right for pid 170: (os/kern) failure (0x5)
+2026-11-23 06:03:08.276886+0000 HostedAcceptance[7763:30378] [CursorUI] ViewBridge to RemoteViewService Terminated: Error Domain=com.apple.ViewBridge Code=18 "(null)" UserInfo={com.apple.ViewBridge.error.hint=this process disconnected remote view controller -- benign unless unexpected, com.apple.ViewBridge.error.description=NSViewBridgeErrorCanceled}
+Test Case '-[gorTests.InlinePlatformInputControlTests testSeparatePlainFieldControl]' passed (0.962 seconds).
+Test Suite 'InlinePlatformInputControlTests' passed at 2026-11-23 06:03:09.134.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.962 (0.963) seconds
+Test Suite 'HostedAcceptanceTests.xctest' passed at 2026-11-23 06:03:09.134.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.962 (0.963) seconds
+Test Suite 'Selected tests' passed at 2026-11-23 06:03:09.134.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.962 (0.964) seconds
+
+Test session results, code coverage, and logs:
+	/Users/builder/clone/out/plain-field-control.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

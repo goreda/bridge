@@ -1,0 +1,2 @@
+Actual AppKit view/window, hit-tested click, field-editor interpretKeyEvents, NSTextInputClient marked text and commit, Enter, direct central fixture navigation before debounce, close ownership, case/diacritic folded entry, full/filtered arrow-Return and field-editor Esc, rasterized view captures.
+NOT COVERED: OS keyboard or selected system IME, full MenuActions r/Esc monitors, Cmd+F menu route, actual Home /Volumes or Back/directory/random callback UI routes, playback engines/VR, installed app. NoActivate refused. Captures require human pixel inspection before acceptance.

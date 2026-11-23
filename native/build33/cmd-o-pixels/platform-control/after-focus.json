@@ -1,0 +1,65 @@
+{
+  "actualRange" : "{0, 0}",
+  "appearance" : "NSAppearanceNameAqua",
+  "backgroundColor" : "Catalog color: System textBackgroundColor",
+  "backgroundRGBA" : {
+    "alpha" : 1,
+    "available" : true,
+    "blue" : 1,
+    "green" : 1,
+    "red" : 1
+  },
+  "creationOrigin" : "image path only; creation stack not captured; no class allowlist inference",
+  "drawsBackground" : false,
+  "editor" : "NSTextView",
+  "editorBounds" : "{{0, 0}, {492, 17}}",
+  "editorFrame" : "{{4, 4}, {492, 17}}",
+  "editorImage" : "\/System\/Library\/Frameworks\/AppKit.framework\/Versions\/C\/AppKit",
+  "font" : ".AppleSystemUIFont",
+  "fontDescriptor" : "Optional([__C.NSFontDescriptorAttributeName(_rawValue: NSCTFontUIUsageAttribute): CTFontRegularUsage, __C.NSFontDescriptorAttributeName(_rawValue: NSFontSizeAttribute): 13])",
+  "insertionPointColor" : "Optional(Catalog color: System textInsertionPointColor)",
+  "insertionRGBA" : {
+    "alpha" : 1,
+    "available" : true,
+    "blue" : 1,
+    "green" : 0.47843137254901963,
+    "red" : 0
+  },
+  "insertionScreenRect" : "{{126, 175}, {0, 16}}",
+  "rectIntersectsWindow" : false,
+  "rectNonempty" : false,
+  "rectWindowIntersection" : "{{126, 175}, {0, 16}}",
+  "selectedRange" : "{0, 0}",
+  "shouldDrawInsertionPoint" : true,
+  "textColor" : "Optional(Catalog color: System controlTextColor)",
+  "textRGBA" : {
+    "alpha" : 0.84705882352941175,
+    "available" : true,
+    "blue" : 0,
+    "green" : 0,
+    "red" : 0
+  },
+  "time" : 439.38299087500002,
+  "windows" : [
+    {
+      "class" : "NSWindow",
+      "frame" : "{{90, 90}, {600, 232}}",
+      "id" : "ObjectIdentifier(0x0000000ba6440280)",
+      "image" : "\/System\/Library\/Frameworks\/AppKit.framework\/Versions\/C\/AppKit",
+      "key" : "true",
+      "number" : "63",
+      "style" : "1",
+      "visible" : "true"
+    },
+    {
+      "class" : "TUINSWindow",
+      "frame" : "{{0, 0}, {500, 500}}",
+      "id" : "ObjectIdentifier(0x0000000ba6531e00)",
+      "image" : "\/System\/Library\/PrivateFrameworks\/TextInputUIMacHelper.framework\/Versions\/A\/TextInputUIMacHelper",
+      "key" : "false",
+      "number" : "64",
+      "style" : "32768",
+      "visible" : "false"
+    }
+  ]
+}

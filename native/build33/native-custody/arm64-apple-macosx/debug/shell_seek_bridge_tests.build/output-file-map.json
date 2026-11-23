@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/shell_seek_bridge_tests.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/shell-seek-bridge-tests/ShellSeekBridgeTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/shell_seek_bridge_tests.build/ShellSeekBridgeTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/shell_seek_bridge_tests.build/ShellSeekBridgeTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/shell_seek_bridge_tests.build/ShellSeekBridgeTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/shell_seek_bridge_tests.build/ShellSeekBridgeTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/shell_seek_bridge_tests.build/ShellSeekBridgeTests.dia"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVEmbeddedShell.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVEmbeddedShell/GorAVEmbeddedSession.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVEmbeddedShell.build/GorAVEmbeddedSession.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVEmbeddedShell.build/GorAVEmbeddedSession.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVEmbeddedShell.build/GorAVEmbeddedSession~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVEmbeddedShell.build/GorAVEmbeddedSession.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/GorAVEmbeddedShell.build/GorAVEmbeddedSession.dia"
+  }
+}

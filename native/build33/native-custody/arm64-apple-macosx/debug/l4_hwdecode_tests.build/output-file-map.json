@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/l4_hwdecode_tests.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/payload/gor/Packages/gorav/Sources/l4-hwdecode-tests/L4HWDecodeTests.swift": {
+    "dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/l4_hwdecode_tests.build/L4HWDecodeTests.d",
+    "object": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/l4_hwdecode_tests.build/L4HWDecodeTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/l4_hwdecode_tests.build/L4HWDecodeTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/l4_hwdecode_tests.build/L4HWDecodeTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/l4_hwdecode_tests.build/L4HWDecodeTests.dia"
+  }
+}
