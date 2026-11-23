@@ -1,0 +1,106 @@
+{
+  "scope": "Single shared original acceptance class in disposable LaunchServices host, no normal AppDelegate/PPController lifecycle",
+  "result": "FAIL_OR_NOT_RUN",
+  "rows": [
+    {
+      "stage": "toolchain-version",
+      "exit": 0,
+      "seconds": 1.16
+    },
+    {
+      "stage": "packaging-preflight",
+      "exit": 0,
+      "seconds": 15.97
+    },
+    {
+      "stage": "packaging-header",
+      "exit": 0,
+      "seconds": 0.52
+    },
+    {
+      "stage": "developer-directory",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "host-compile",
+      "exit": 0,
+      "seconds": 9.7
+    },
+    {
+      "stage": "build-link",
+      "exit": 0,
+      "seconds": 137.15
+    },
+    {
+      "stage": "provider-path",
+      "exit": 0,
+      "seconds": 1.56
+    },
+    {
+      "stage": "test-bundle-build",
+      "exit": 0,
+      "seconds": 19.67
+    },
+    {
+      "stage": "bin-path",
+      "exit": 0,
+      "seconds": 0.36
+    },
+    {
+      "stage": "bundle-layout",
+      "exit": 0,
+      "seconds": 0.04
+    },
+    {
+      "stage": "test-bundle-filetype",
+      "exit": 0,
+      "seconds": 0.03
+    },
+    {
+      "stage": "test-bundle-linkage",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "host-sign",
+      "exit": 0,
+      "seconds": 0.16
+    },
+    {
+      "stage": "host-open",
+      "exit": 0,
+      "seconds": 0.22
+    }
+  ],
+  "carrier_commit": "58d15b699c240923d67b1cc1533e1036a97c387a",
+  "binding": {
+    "schema": "199cy-shared-apphost-v1",
+    "source_commit": "34638e17405449b09603e68f41443497d8cf28ba",
+    "production_candidate": "6934c41945fcc3caa4793f425b6cc7149978ce6e",
+    "production_changed": false,
+    "inner_seconds": 300,
+    "workflow_seconds": 360,
+    "total_planning_reservation_seconds": 420,
+    "files": {
+      "ci/apphost-native.py": "eb0f6c45409248a22e09cfea5d85226245a1e2650d6bc1425dee9466547fb380",
+      "ci/AcceptanceApplicationHost.swift": "50a5f333bbda63d17fadd22e1ad95218415d3a4490069ae7093fecfccab0cbbd",
+      "codemagic.yaml": "52b034f9188fc01ee86851edf67e0c813dd7da5b4270820cf4390728e6f09daa",
+      "payload/gor/Tests/gorTests/InlineFileSearchAcceptanceTests.swift": "cc1b0f21bc2e89ed0fdbd32f0aec7d8ea7c39c333cabe8cc7870eeb4d1783eb6",
+      "ci/bundle_executable.py": "1c8c5f29fc5e928daa336207b10b986910514014334e8d58676599ed933bd09f",
+      "ci/test_bundle_executable.py": "29c85771241bdf3c6339a92c19f9a6d97cb1cbb2880ac3c5dc606fcf7b2c9ec8"
+    },
+    "assertions_changed": false,
+    "test_only_delta": "guard duplicate finishLaunching only; source successor required",
+    "test_executable": "gorPackageTests",
+    "runner_correction": "metadata-or-explicit product binding, strict containment/executable, complete bundle entry inventory; actual Mach-O type still mandatory"
+  },
+  "host_result": "status=2 test bundle load failed: Error Domain=NSCocoaErrorDomain Code=3588 \"dlopen(/Users/builder/clone/apphost-build/InlineAcceptance.app/Contents/PlugIns/gorPackageTests.xctest/Contents/MacOS/gorPackageTests, 0x0109): Library not loaded: @rpath/libXCTestSwiftSupport.dylib\n  Referenced from: <93AA6CA5-E3FE-3988-A7E3-6412EE58DAF5> /Users/builder/clone/apphost-build/InlineAcceptance.app/Contents/PlugIns/gorPackageTests.xctest/Contents/MacOS/gorPackageTests\n  Reason: tried: '/usr/lib/swift/libXCTestSwiftSupport.dylib' (no such file, not in dyld cache), '/System/Volumes/Preboot/Cryptexes/OS/usr/lib/swift/libXCTestSwiftSupport.dylib' (no such file), '/Users/builder/clone/apphost-build/InlineAcceptance.app/Contents/PlugIns/gorPackageTests.xctest/Contents/MacOS/../../../libXCTestSwiftSupport.dylib' (no such file), '/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx/libXCTestSwiftSupport.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx/libXCTestSwiftSupport.dylib' (no such file), '/usr/lib/swift/libXCTestSwiftSupport.dylib' (no such file, not in dyld cache), '/System/Volumes/Preboot/Cryptexes/OS/usr/lib/swift/libXCTestSwiftSupport.dylib' (no such file), '/Users/builder/clone/apphost-build/InlineAcceptance.app/Contents/PlugIns/gorPackageTests.xctest/Contents/MacOS/../../../libXCTestSwiftSupport.dylib' (no such file), '/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx/libXCTestSwiftSupport.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx/libXCTestSwiftSupport.dylib' (no such file), '/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/libXCTestSwiftSupport.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/libXCTestSwiftSupport.dylib' (no such file)\" UserInfo={NSLocalizedFailureReason=The bundle couldn\u2019t be loaded., NSLocalizedRecoverySuggestion=Try reinstalling the bundle., NSFilePath=/Users/builder/clone/apphost-build/InlineAcceptance.app/Contents/PlugIns/gorPackageTests.xctest/Contents/MacOS/gorPackageTests, NSDebugDescription=dlopen(/Users/builder/clone/apphost-build/InlineAcceptance.app/Contents/PlugIns/gorPackageTests.xctest/Contents/MacOS/gorPackageTests, 0x0109): Library not loaded: @rpath/libXCTestSwiftSupport.dylib\n  Referenced from: <93AA6CA5-E3FE-3988-A7E3-6412EE58DAF5> /Users/builder/clone/apphost-build/InlineAcceptance.app/Contents/PlugIns/gorPackageTests.xctest/Contents/MacOS/gorPackageTests\n  Reason: tried: '/usr/lib/swift/libXCTestSwiftSupport.dylib' (no such file, not in dyld cache), '/System/Volumes/Preboot/Cryptexes/OS/usr/lib/swift/libXCTestSwiftSupport.dylib' (no such file), '/Users/builder/clone/apphost-build/InlineAcceptance.app/Contents/PlugIns/gorPackageTests.xctest/Contents/MacOS/../../../libXCTestSwiftSupport.dylib' (no such file), '/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx/libXCTestSwiftSupport.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx/libXCTestSwiftSupport.dylib' (no such file), '/usr/lib/swift/libXCTestSwiftSupport.dylib' (no such file, not in dyld cache), '/System/Volumes/Preboot/Cryptexes/OS/usr/lib/swift/libXCTestSwiftSupport.dylib' (no such file), '/Users/builder/clone/apphost-build/InlineAcceptance.app/Contents/PlugIns/gorPackageTests.xctest/Contents/MacOS/../../../libXCTestSwiftSupport.dylib' (no such file), '/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx/libXCTestSwiftSupport.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx/libXCTestSwiftSupport.dylib' (no such file), '/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/libXCTestSwiftSupport.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/libXCTestSwiftSupport.dylib' (no such file), NSBundlePath=/Users/builder/clone/apphost-build/InlineAcceptance.app/Contents/PlugIns/gorPackageTests.xctest, NSLocalizedDescription=The bundle \u201cgorPackageTests.xctest\u201d couldn\u2019t be loaded.}\n",
+  "started": [],
+  "passed": [],
+  "error": "RuntimeError('shared acceptance failed or did not execute, inspect host log and evidence')",
+  "seconds": 187.59,
+  "images": [],
+  "states": [],
+  "boundary": "Manual actual compositor/cached image and causal review required. No OS keyboard/system IME, full menu monitors, CmdF, installed app or release acceptance. Stop on host failure, never fall back to invalid XCTest host."
+}

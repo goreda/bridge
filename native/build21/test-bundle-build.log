@@ -1,0 +1,43 @@
+warning: 'gorav': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gor/Packages/gorav/Sources/GorAVMetalPresenter/core/RenderGraph.swift
+[0/1] Planning build
+Building for debugging...
+[0/7] /Users/builder/clone/payload/gor/.build/arm64-apple-macosx/debug/gorPackageTests.derived/runner.swift
+[0/7] Write sources
+[3/8] Write swift-version--112E4EF74740DA65.txt
+[5/17] Compiling gorTests AudioOutputDeviceNativeTests.swift
+[6/17] Compiling gorTests GorAVStreamAdmissionTests.swift
+[7/17] Emitting module gorTests
+[8/17] Compiling gorTests PhotonNativeInputOwnerTests.swift
+[9/17] Compiling gorTests InlineFileSearchAcceptanceTests.swift
+/Users/builder/clone/payload/gor/Tests/gorTests/InlineFileSearchAcceptanceTests.swift:77:26: warning: 'CGWindowListCreateImage' was deprecated in macOS 14.0: Please use ScreenCaptureKit instead. [#DeprecatedDeclaration]
+ 75 |         let image = NSImage(size: view.bounds.size); image.addRepresentation(bitmap)
+ 76 |         if let window = view.window {
+ 77 |             let actual = CGWindowListCreateImage(.null, .optionIncludingWindow,
+    |                          `- warning: 'CGWindowListCreateImage' was deprecated in macOS 14.0: Please use ScreenCaptureKit instead. [#DeprecatedDeclaration]
+ 78 |                                                 CGWindowID(window.windowNumber), [.boundsIgnoreFraming])
+ 79 |             if let actual {
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+[10/17] Compiling gorTests MultipleAudioRefusalPixelTests.swift
+/Users/builder/clone/payload/gor/Tests/gorTests/InlineFileSearchAcceptanceTests.swift:77:26: warning: 'CGWindowListCreateImage' was deprecated in macOS 14.0: Please use ScreenCaptureKit instead. [#DeprecatedDeclaration]
+ 75 |         let image = NSImage(size: view.bounds.size); image.addRepresentation(bitmap)
+ 76 |         if let window = view.window {
+ 77 |             let actual = CGWindowListCreateImage(.null, .optionIncludingWindow,
+    |                          `- warning: 'CGWindowListCreateImage' was deprecated in macOS 14.0: Please use ScreenCaptureKit instead. [#DeprecatedDeclaration]
+ 78 |                                                 CGWindowID(window.windowNumber), [.boundsIgnoreFraming])
+ 79 |             if let actual {
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+[11/17] Compiling gorTests PhotonFontResourceTests.swift
+[12/17] Compiling gorTests PhotonHostCloseLifecycleTests.swift
+[13/17] Compiling gorTests PhotonActiveEngineHeaderTests.swift
+[14/17] Compiling gorTests PhotonDistanceModelNativeTests.swift
+[15/17] Compiling gorTests PhotonProducerHostNativeTests.swift
+[16/18] Compiling gorTests ThreeDRouteMachineTests.swift
+[17/20] Emitting module gorPackageTests
+[18/20] Compiling gorPackageTests runner.swift
+[18/20] Write Objects.LinkFileList
+ld: warning: reducing alignment of section __DATA,__common from 0x8000 to 0x4000 because it exceeds segment maximum alignment
+[19/20] Linking gorPackageTests
+Build complete! (19.10s)

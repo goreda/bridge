@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/builder/clone/ci/apphost-native.py", line 86, in <module>
+    if not result.startswith('status=0 ') or not started or not passed:raise RuntimeError('shared acceptance failed or did not execute, inspect host log and evidence')
+                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: shared acceptance failed or did not execute, inspect host log and evidence

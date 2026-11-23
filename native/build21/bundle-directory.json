@@ -1,0 +1,98 @@
+[
+  {
+    "path": "Contents",
+    "file": false,
+    "directory": true,
+    "symlink": false,
+    "symlink_target": null,
+    "mode": "0o40755"
+  },
+  {
+    "path": "Contents/MacOS",
+    "file": false,
+    "directory": true,
+    "symlink": false,
+    "symlink_target": null,
+    "mode": "0o40755"
+  },
+  {
+    "path": "Contents/MacOS/gorPackageTests",
+    "file": true,
+    "directory": false,
+    "symlink": false,
+    "symlink_target": null,
+    "mode": "0o100755"
+  },
+  {
+    "path": "Contents/MacOS/gorPackageTests.dSYM",
+    "file": false,
+    "directory": true,
+    "symlink": false,
+    "symlink_target": null,
+    "mode": "0o40755"
+  },
+  {
+    "path": "Contents/MacOS/gorPackageTests.dSYM/Contents",
+    "file": false,
+    "directory": true,
+    "symlink": false,
+    "symlink_target": null,
+    "mode": "0o40755"
+  },
+  {
+    "path": "Contents/MacOS/gorPackageTests.dSYM/Contents/Info.plist",
+    "file": true,
+    "directory": false,
+    "symlink": false,
+    "symlink_target": null,
+    "mode": "0o100644"
+  },
+  {
+    "path": "Contents/MacOS/gorPackageTests.dSYM/Contents/Resources",
+    "file": false,
+    "directory": true,
+    "symlink": false,
+    "symlink_target": null,
+    "mode": "0o40755"
+  },
+  {
+    "path": "Contents/MacOS/gorPackageTests.dSYM/Contents/Resources/DWARF",
+    "file": false,
+    "directory": true,
+    "symlink": false,
+    "symlink_target": null,
+    "mode": "0o40755"
+  },
+  {
+    "path": "Contents/MacOS/gorPackageTests.dSYM/Contents/Resources/DWARF/gorPackageTests",
+    "file": true,
+    "directory": false,
+    "symlink": false,
+    "symlink_target": null,
+    "mode": "0o100644"
+  },
+  {
+    "path": "Contents/MacOS/gorPackageTests.dSYM/Contents/Resources/Relocations",
+    "file": false,
+    "directory": true,
+    "symlink": false,
+    "symlink_target": null,
+    "mode": "0o40755"
+  },
+  {
+    "path": "Contents/MacOS/gorPackageTests.dSYM/Contents/Resources/Relocations/aarch64",
+    "file": false,
+    "directory": true,
+    "symlink": false,
+    "symlink_target": null,
+    "mode": "0o40755"
+  },
+  {
+    "path": "Contents/MacOS/gorPackageTests.dSYM/Contents/Resources/Relocations/aarch64/gorPackageTests.yml",
+    "file": true,
+    "directory": false,
+    "symlink": false,
+    "symlink_target": null,
+    "mode": "0o100644"
+  }
+]
