@@ -1,3 +1,5 @@
+199dd CURRENT: packets/W-gdb-199dd-1nstinct.md is the newly assigned station returned-diff work, exact items below in card. Old inbox paragraphs are historical context, not fresh acceptance or orders; do not repeat completed 199bv/199by source moves. Existing active claims remain.
+
 RELAY 1nstinct (verbatim): B rows are retired (no LEDGER mapping). Take LEDGER-mapped rows from QUEUE.md; none = "queue empty".
 
 RELAY 1nstinct + in2tinct (verbatim, GO, standing): Work only from bridge QUEUE.md (LEDGER-mapped). All workers on available rows; return git diff + test log in returns/. No rows = say "queue empty". No filler.
