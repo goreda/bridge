@@ -1,0 +1,79 @@
+{
+  "scope": "Single shared original acceptance class in disposable LaunchServices host, no normal AppDelegate/PPController lifecycle",
+  "result": "FAIL_OR_NOT_RUN",
+  "rows": [
+    {
+      "stage": "toolchain-version",
+      "exit": 0,
+      "seconds": 1.21
+    },
+    {
+      "stage": "packaging-preflight",
+      "exit": 0,
+      "seconds": 15.99
+    },
+    {
+      "stage": "packaging-header",
+      "exit": 0,
+      "seconds": 0.61
+    },
+    {
+      "stage": "developer-directory",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "host-compile",
+      "exit": 0,
+      "seconds": 8.16
+    },
+    {
+      "stage": "build-link",
+      "exit": 0,
+      "seconds": 134.5
+    },
+    {
+      "stage": "provider-path",
+      "exit": 0,
+      "seconds": 1.35
+    },
+    {
+      "stage": "test-bundle-build",
+      "exit": 0,
+      "seconds": 17.2
+    },
+    {
+      "stage": "bin-path",
+      "exit": 0,
+      "seconds": 0.35
+    },
+    {
+      "stage": "bundle-layout",
+      "exit": 0,
+      "seconds": 0.06
+    }
+  ],
+  "carrier_commit": "2d4b36aca771fc90d227c913d0d7919af56627e6",
+  "binding": {
+    "schema": "199cy-shared-apphost-v1",
+    "source_commit": "34638e17405449b09603e68f41443497d8cf28ba",
+    "production_candidate": "6934c41945fcc3caa4793f425b6cc7149978ce6e",
+    "production_changed": false,
+    "inner_seconds": 300,
+    "workflow_seconds": 360,
+    "total_planning_reservation_seconds": 420,
+    "files": {
+      "ci/apphost-native.py": "558cf04472e1113396724ccffdd5fd88494ae242007d821b2c71f513d2427d84",
+      "ci/AcceptanceApplicationHost.swift": "50a5f333bbda63d17fadd22e1ad95218415d3a4490069ae7093fecfccab0cbbd",
+      "codemagic.yaml": "52b034f9188fc01ee86851edf67e0c813dd7da5b4270820cf4390728e6f09daa",
+      "payload/gor/Tests/gorTests/InlineFileSearchAcceptanceTests.swift": "cc1b0f21bc2e89ed0fdbd32f0aec7d8ea7c39c333cabe8cc7870eeb4d1783eb6"
+    },
+    "assertions_changed": false,
+    "test_only_delta": "guard duplicate finishLaunching only; source successor required"
+  },
+  "error": "RuntimeError('ambiguous actual test-bundle executable')",
+  "seconds": 179.94,
+  "images": [],
+  "states": [],
+  "boundary": "Manual actual compositor/cached image and causal review required. No OS keyboard/system IME, full menu monitors, CmdF, installed app or release acceptance. Stop on host failure, never fall back to invalid XCTest host."
+}

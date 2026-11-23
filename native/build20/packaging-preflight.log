@@ -1,0 +1,11 @@
+Building for debugging...
+[0/6] /Users/builder/clone/apphost-preflight/.build/arm64-apple-macosx/debug/ProbePackageTests.derived/runner.swift
+[1/6] Write sources
+[3/6] Write swift-version--112E4EF74740DA65.txt
+[5/8] Compiling ProbeTests ProbeTests.swift
+[6/8] Emitting module ProbeTests
+[7/10] Compiling ProbePackageTests runner.swift
+[8/10] Emitting module ProbePackageTests
+[8/10] Write Objects.LinkFileList
+[9/10] Linking ProbePackageTests
+Build complete! (12.22s)

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/builder/clone/ci/apphost-native.py", line 68, in <module>
+    if len(executables)!=1:raise RuntimeError('ambiguous actual test-bundle executable')
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: ambiguous actual test-bundle executable
