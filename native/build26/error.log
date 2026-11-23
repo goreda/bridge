@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/Users/builder/clone/ci/xcode-host-preflight.py", line 51, in <module>
+    stage('hosted-build-for-testing',common+['build-for-testing'],90)
+  File "/Users/builder/clone/ci/xcode-host-preflight.py", line 19, in stage
+    if code and not (allow_help and code!=124 and 'Usage:' in text+diagnostics):raise RuntimeError(name+' failed: '+str(code))
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: hosted-build-for-testing failed: 65

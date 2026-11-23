@@ -1,0 +1,49 @@
+{
+  "result": "FAIL_OR_NOT_RUN",
+  "scope": "Xcode-managed synthetic app-hosted async XCTest only; product integration NOT_RUN",
+  "carrier": "3240436008a3dbd6a0fbdb4ecfb11ffea7692865",
+  "rows": [
+    {
+      "stage": "developer-directory",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "xcodebuild-help",
+      "exit": 0,
+      "seconds": 0.54
+    },
+    {
+      "stage": "xcode-version",
+      "exit": 0,
+      "seconds": 0.11
+    },
+    {
+      "stage": "generate-project",
+      "exit": 0,
+      "seconds": 0.05
+    },
+    {
+      "stage": "project-list",
+      "exit": 0,
+      "seconds": 1.47
+    },
+    {
+      "stage": "build-settings-HostedAcceptance",
+      "exit": 0,
+      "seconds": 1.11
+    },
+    {
+      "stage": "build-settings-HostedAcceptanceTests",
+      "exit": 0,
+      "seconds": 0.99
+    },
+    {
+      "stage": "hosted-build-for-testing",
+      "exit": 65,
+      "seconds": 9.78
+    }
+  ],
+  "error": "RuntimeError('hosted-build-for-testing failed: 65')",
+  "seconds": 14.41
+}

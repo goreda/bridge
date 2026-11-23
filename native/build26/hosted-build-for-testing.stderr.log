@@ -1,0 +1,11 @@
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:macOS, arch:arm64, id:0000FE00-343A79319AA17942, name:My Mac }
+{ platform:macOS, arch:x86_64, id:0000FE00-343A79319AA17942, name:My Mac }
+** TEST BUILD FAILED **
+
+
+The following build commands failed:
+	SwiftCompile normal arm64 /Users/builder/clone/out/supported-host-project/ApplicationHost.swift (in target 'HostedAcceptance' from project 'HostedAcceptance')
+	SwiftEmitModule normal arm64 Emitting\ module\ for\ HostedAcceptance (in target 'HostedAcceptance' from project 'HostedAcceptance')
+	Building project HostedAcceptance for testing with scheme HostedAcceptance
+(3 failures)
