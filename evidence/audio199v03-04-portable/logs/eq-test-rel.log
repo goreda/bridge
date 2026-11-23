@@ -1,0 +1,69 @@
+Building for production...
+[0/9] Write sources
+[2/9] Write swift-version--9C6B84B6E025C5B.txt
+[4/10] Compiling GorAVPlaybackCore AudioEqualizer.swift
+[5/11] Compiling GorAVPlaybackCoreTests AudioEqualizerTests.swift
+/tmp/au/weq/kits/199v/1nstinct-04/Tests/GorAVPlaybackCoreTests/AudioEqualizerTests.swift:161:85: warning: '1e-320' underflows and loses precision during conversion to 'Double'
+159 |                 XCTAssertTrue(String(describing: $0).hasPrefix("nonFiniteCoefficients"), "got \($0)") }
+160 |         }
+161 |         XCTAssertThrowsError(try AudioEqualizer(sampleRate: fs, frequency: 1000, q: 1e-320, gainDb: 6), "q 1e-320 must be refused") {
+    |                                                                                     `- warning: '1e-320' underflows and loses precision during conversion to 'Double'
+162 |             XCTAssertTrue(String(describing: $0).hasPrefix("nonFiniteCoefficients"), "got \($0)") }
+163 |     }
+[5/11] /tmp/au/weq/kits/199v/1nstinct-04/.build/x86_64-unknown-linux-gnu/release/Kit199v1nstinct04PackageDiscoveredTests.derived/all-discovered-tests.swift
+[6/11] Write sources
+[8/12] Compiling Kit199v1nstinct04PackageDiscoveredTests GorAVPlaybackCoreTests.swift
+[8/12] /tmp/au/weq/kits/199v/1nstinct-04/.build/x86_64-unknown-linux-gnu/release/Kit199v1nstinct04PackageTests.derived/runner.swift
+[9/12] Write sources
+[11/13] Compiling Kit199v1nstinct04PackageTests runner.swift
+[11/13] Write Objects.LinkFileList
+[12/13] Linking Kit199v1nstinct04PackageTests.xctest
+Build complete! (6.47s)
+Test Suite 'All tests' started at 2026-11-23 08:08:45.781
+Test Suite 'release.xctest' started at 2026-11-23 08:08:45.782
+Test Suite 'AudioEqualizerTests' started at 2026-11-23 08:08:45.782
+Test Case 'AudioEqualizerTests.testBypassIsExactAndDoesNotAdvanceState' started at 2026-11-23 08:08:45.782
+Test Case 'AudioEqualizerTests.testBypassIsExactAndDoesNotAdvanceState' passed (0.001 seconds)
+Test Case 'AudioEqualizerTests.testBypassRefusesNonFiniteInput' started at 2026-11-23 08:08:45.783
+Test Case 'AudioEqualizerTests.testBypassRefusesNonFiniteInput' passed (0.0 seconds)
+Test Case 'AudioEqualizerTests.testBypassUnaffectedByOverflowGuard' started at 2026-11-23 08:08:45.783
+Test Case 'AudioEqualizerTests.testBypassUnaffectedByOverflowGuard' passed (0.0 seconds)
+Test Case 'AudioEqualizerTests.testCenterFrequencyGainMatchesGainDb' started at 2026-11-23 08:08:45.783
+Test Case 'AudioEqualizerTests.testCenterFrequencyGainMatchesGainDb' passed (0.1 seconds)
+Test Case 'AudioEqualizerTests.testConstantSignalConvergesToUnityDC' started at 2026-11-23 08:08:45.884
+Test Case 'AudioEqualizerTests.testConstantSignalConvergesToUnityDC' passed (0.0 seconds)
+Test Case 'AudioEqualizerTests.testDeterministicReplayAndReset' started at 2026-11-23 08:08:45.884
+Test Case 'AudioEqualizerTests.testDeterministicReplayAndReset' passed (0.0 seconds)
+Test Case 'AudioEqualizerTests.testExtremeFiniteInputRefusedTypedOnOverflow' started at 2026-11-23 08:08:45.884
+Test Case 'AudioEqualizerTests.testExtremeFiniteInputRefusedTypedOnOverflow' passed (0.001 seconds)
+Test Case 'AudioEqualizerTests.testFrequencyResponseMatchesIndependentCoefficients' started at 2026-11-23 08:08:45.885
+Test Case 'AudioEqualizerTests.testFrequencyResponseMatchesIndependentCoefficients' passed (0.001 seconds)
+Test Case 'AudioEqualizerTests.testImpulseResponseMatchesCoefficients' started at 2026-11-23 08:08:45.885
+Test Case 'AudioEqualizerTests.testImpulseResponseMatchesCoefficients' passed (0.0 seconds)
+Test Case 'AudioEqualizerTests.testInstanceIsolation' started at 2026-11-23 08:08:45.886
+Test Case 'AudioEqualizerTests.testInstanceIsolation' passed (0.0 seconds)
+Test Case 'AudioEqualizerTests.testLateOverflowRollbackContinuationVersusTwin' started at 2026-11-23 08:08:45.886
+Test Case 'AudioEqualizerTests.testLateOverflowRollbackContinuationVersusTwin' passed (0.0 seconds)
+Test Case 'AudioEqualizerTests.testNonFiniteInputRefusedWithoutMutation' started at 2026-11-23 08:08:45.886
+Test Case 'AudioEqualizerTests.testNonFiniteInputRefusedWithoutMutation' passed (0.0 seconds)
+Test Case 'AudioEqualizerTests.testRejectedExtremeRetuneLeavesStateUntouched' started at 2026-11-23 08:08:45.886
+Test Case 'AudioEqualizerTests.testRejectedExtremeRetuneLeavesStateUntouched' passed (0.0 seconds)
+Test Case 'AudioEqualizerTests.testRejectedRetuneDoesNotMutateState' started at 2026-11-23 08:08:45.886
+Test Case 'AudioEqualizerTests.testRejectedRetuneDoesNotMutateState' passed (0.0 seconds)
+Test Case 'AudioEqualizerTests.testRejectsMarginallyStableParams' started at 2026-11-23 08:08:45.886
+Test Case 'AudioEqualizerTests.testRejectsMarginallyStableParams' passed (0.1 seconds)
+Test Case 'AudioEqualizerTests.testRejectsNonFiniteCoefficientParams' started at 2026-11-23 08:08:45.986
+Test Case 'AudioEqualizerTests.testRejectsNonFiniteCoefficientParams' passed (0.0 seconds)
+Test Case 'AudioEqualizerTests.testStabilityExtremeSettings' started at 2026-11-23 08:08:45.987
+Test Case 'AudioEqualizerTests.testStabilityExtremeSettings' passed (0.001 seconds)
+Test Case 'AudioEqualizerTests.testValidationRefusals' started at 2026-11-23 08:08:45.988
+Test Case 'AudioEqualizerTests.testValidationRefusals' passed (0.0 seconds)
+Test Suite 'AudioEqualizerTests' passed at 2026-11-23 08:08:45.988
+	 Executed 18 tests, with 0 failures (0 unexpected) in 0.205 (0.205) seconds
+Test Suite 'release.xctest' passed at 2026-11-23 08:08:45.988
+	 Executed 18 tests, with 0 failures (0 unexpected) in 0.205 (0.205) seconds
+Test Suite 'All tests' passed at 2026-11-23 08:08:45.988
+	 Executed 18 tests, with 0 failures (0 unexpected) in 0.205 (0.205) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+✔ Test run with 0 tests passed after 0.001 seconds.

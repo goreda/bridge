@@ -1,0 +1,6 @@
+Building for debugging...
+[0/2] Write sources
+[1/2] Write swift-version--9C6B84B6E025C5B.txt
+[3/4] Emitting module AudioChannelMix
+[4/4] Compiling AudioChannelMix AudioChannelMix.swift
+Build complete! (1.71s)

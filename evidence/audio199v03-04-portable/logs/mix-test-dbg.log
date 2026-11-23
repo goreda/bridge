@@ -1,0 +1,63 @@
+[0/1] Planning build
+Building for debugging...
+[0/12] Write sources
+[1/12] Write swift-version--9C6B84B6E025C5B.txt
+[2/12] Wrapping AST for AudioChannelMix for debugging
+[4/14] Compiling AudioChannelMixTests AudioChannelMixTests.swift
+[5/14] Emitting module AudioChannelMixTests
+[6/15] /tmp/au/wmix/kits/199v/1nstinct-03/.build/x86_64-unknown-linux-gnu/debug/199v-1nstinct-03PackageDiscoveredTests.derived/all-discovered-tests.swift
+[7/15] Write sources
+[8/15] Wrapping AST for AudioChannelMixTests for debugging
+[10/17] Emitting module _99v_1nstinct_03PackageDiscoveredTests
+[11/17] Compiling _99v_1nstinct_03PackageDiscoveredTests AudioChannelMixTests.swift
+[12/18] Compiling _99v_1nstinct_03PackageDiscoveredTests all-discovered-tests.swift
+[13/19] /tmp/au/wmix/kits/199v/1nstinct-03/.build/x86_64-unknown-linux-gnu/debug/199v-1nstinct-03PackageTests.derived/runner.swift
+[14/19] Write sources
+[15/19] Wrapping AST for 199v-1nstinct-03PackageDiscoveredTests for debugging
+[17/21] Emitting module _99v_1nstinct_03PackageTests
+[18/21] Compiling _99v_1nstinct_03PackageTests runner.swift
+[19/22] Wrapping AST for 199v-1nstinct-03PackageTests for debugging
+[20/22] Write Objects.LinkFileList
+[21/22] Linking 199v-1nstinct-03PackageTests.xctest
+Build complete! (5.36s)
+Test Suite 'All tests' started at 2026-11-23 08:07:56.556
+Test Suite 'debug.xctest' started at 2026-11-23 08:07:56.557
+Test Suite 'debug.xctest' passed at 2026-11-23 08:07:56.557
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'All tests' passed at 2026-11-23 08:07:56.557
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+◇ Test nonFiniteSamplesRefusedTypedWithOffset() started.
+◇ Test refusalOrderIsStable() started.
+◇ Test monoToStereoDuplicatesEachSample() started.
+◇ Test determinismRepeatedRuns() started.
+◇ Test unsupportedLayoutRefusedTyped() started.
+◇ Test stagedBytesMatchProduction() started.
+◇ Test equalSubnormalMeanPreserved() started.
+◇ Test meanNeverOverflowsAtExtremes() started.
+◇ Test oppositeSignExtremesCancelExactly() started.
+◇ Test signedZeroMeanSemantics() started.
+◇ Test stereoToMonoArithmeticMean() started.
+◇ Test invalidFrameAlignmentRefusedTyped() started.
+◇ Test silenceStaysSilence() started.
+◇ Test unsafeCapacityGuard() started.
+◇ Test identityCopiesExactSamples() started.
+◇ Test polarityCancellationYieldsZero() started.
+✔ Test nonFiniteSamplesRefusedTypedWithOffset() passed after 0.001 seconds.
+✔ Test refusalOrderIsStable() passed after 0.001 seconds.
+✔ Test monoToStereoDuplicatesEachSample() passed after 0.001 seconds.
+✔ Test unsupportedLayoutRefusedTyped() passed after 0.001 seconds.
+✔ Test stagedBytesMatchProduction() passed after 0.001 seconds.
+✔ Test equalSubnormalMeanPreserved() passed after 0.001 seconds.
+✔ Test meanNeverOverflowsAtExtremes() passed after 0.001 seconds.
+✔ Test determinismRepeatedRuns() passed after 0.001 seconds.
+✔ Test signedZeroMeanSemantics() passed after 0.001 seconds.
+✔ Test oppositeSignExtremesCancelExactly() passed after 0.001 seconds.
+✔ Test stereoToMonoArithmeticMean() passed after 0.001 seconds.
+✔ Test invalidFrameAlignmentRefusedTyped() passed after 0.001 seconds.
+✔ Test silenceStaysSilence() passed after 0.001 seconds.
+✔ Test unsafeCapacityGuard() passed after 0.001 seconds.
+✔ Test polarityCancellationYieldsZero() passed after 0.001 seconds.
+✔ Test identityCopiesExactSamples() passed after 0.001 seconds.
+✔ Test run with 16 tests passed after 0.001 seconds.

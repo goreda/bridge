@@ -1,0 +1,10 @@
+HARNESS_PASS bypass-exact
+HARNESS_PASS impulse-b0
+HARNESS_PASS reject-retune
+HARNESS_PASS reject-nonfinite
+HARNESS_PASS reset-determinism
+HARNESS_PASS reject-nonfinite-coeffs
+HARNESS_PASS reject-unstable-coeffs
+HARNESS_PASS bypass-reject-nonfinite
+HARNESS_PASS bypass-still-exact
+HARNESS_DONE

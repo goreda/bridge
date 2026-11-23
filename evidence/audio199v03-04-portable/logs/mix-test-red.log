@@ -1,0 +1,70 @@
+Building for debugging...
+[0/13] Write sources
+[2/13] Write swift-version--9C6B84B6E025C5B.txt
+[4/15] Compiling AudioChannelMix AudioChannelMix.swift
+[5/15] Emitting module AudioChannelMix
+[6/16] Wrapping AST for AudioChannelMix for debugging
+[8/18] Emitting module AudioChannelMixTests
+[9/18] Compiling AudioChannelMixTests AudioChannelMixTests.swift
+[10/19] /tmp/au/wmix-red/kits/199v/1nstinct-03/.build/x86_64-unknown-linux-gnu/debug/199v-1nstinct-03PackageDiscoveredTests.derived/all-discovered-tests.swift
+[11/19] Write sources
+[12/19] Wrapping AST for AudioChannelMixTests for debugging
+[14/21] Compiling _99v_1nstinct_03PackageDiscoveredTests AudioChannelMixTests.swift
+[15/21] Emitting module _99v_1nstinct_03PackageDiscoveredTests
+[16/22] Compiling _99v_1nstinct_03PackageDiscoveredTests all-discovered-tests.swift
+[17/23] /tmp/au/wmix-red/kits/199v/1nstinct-03/.build/x86_64-unknown-linux-gnu/debug/199v-1nstinct-03PackageTests.derived/runner.swift
+[18/23] Write sources
+[19/23] Wrapping AST for 199v-1nstinct-03PackageDiscoveredTests for debugging
+[21/25] Emitting module _99v_1nstinct_03PackageTests
+[22/25] Compiling _99v_1nstinct_03PackageTests runner.swift
+[23/26] Wrapping AST for 199v-1nstinct-03PackageTests for debugging
+[24/26] Write Objects.LinkFileList
+[25/26] Linking 199v-1nstinct-03PackageTests.xctest
+Build complete! (6.93s)
+Test Suite 'All tests' started at 2026-11-23 08:08:25.595
+Test Suite 'debug.xctest' started at 2026-11-23 08:08:25.597
+Test Suite 'debug.xctest' passed at 2026-11-23 08:08:25.597
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'All tests' passed at 2026-11-23 08:08:25.597
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+◇ Test identityCopiesExactSamples() started.
+◇ Test refusalOrderIsStable() started.
+◇ Test silenceStaysSilence() started.
+◇ Test nonFiniteSamplesRefusedTypedWithOffset() started.
+◇ Test equalSubnormalMeanPreserved() started.
+◇ Test monoToStereoDuplicatesEachSample() started.
+◇ Test signedZeroMeanSemantics() started.
+◇ Test determinismRepeatedRuns() started.
+◇ Test meanNeverOverflowsAtExtremes() started.
+◇ Test unsafeCapacityGuard() started.
+◇ Test invalidFrameAlignmentRefusedTyped() started.
+◇ Test unsupportedLayoutRefusedTyped() started.
+◇ Test polarityCancellationYieldsZero() started.
+◇ Test oppositeSignExtremesCancelExactly() started.
+◇ Test stagedBytesMatchProduction() started.
+◇ Test stereoToMonoArithmeticMean() started.
+✘ Test equalSubnormalMeanPreserved() recorded an issue at AudioChannelMixTests.swift:137:9: Expectation failed: (out[0].bitPattern → 0) == (t.bitPattern → 1)
+↳ mean of equal subnormals must stay 1e-45, got 0.0
+✘ Test equalSubnormalMeanPreserved() recorded an issue at AudioChannelMixTests.swift:140:9: Expectation failed: (out[0].bitPattern → 2147483648) == ((-t).bitPattern → 2147483649)
+↳ negative equal subnormals must stay -1e-45, got -0.0
+✔ Test refusalOrderIsStable() passed after 0.001 seconds.
+✘ Test stagedBytesMatchProduction() recorded an issue at AudioChannelMixTests.swift:15:5: Expectation failed: try Data(contentsOf: prod) == Data(contentsOf: staged)
+↳ staged copy drifted from production; re-run stage.sh
+✔ Test silenceStaysSilence() passed after 0.001 seconds.
+✔ Test nonFiniteSamplesRefusedTypedWithOffset() passed after 0.001 seconds.
+✔ Test identityCopiesExactSamples() passed after 0.001 seconds.
+✔ Test monoToStereoDuplicatesEachSample() passed after 0.001 seconds.
+✔ Test signedZeroMeanSemantics() passed after 0.001 seconds.
+✔ Test determinismRepeatedRuns() passed after 0.001 seconds.
+✔ Test meanNeverOverflowsAtExtremes() passed after 0.001 seconds.
+✔ Test unsafeCapacityGuard() passed after 0.001 seconds.
+✔ Test invalidFrameAlignmentRefusedTyped() passed after 0.001 seconds.
+✔ Test unsupportedLayoutRefusedTyped() passed after 0.001 seconds.
+✔ Test polarityCancellationYieldsZero() passed after 0.001 seconds.
+✔ Test oppositeSignExtremesCancelExactly() passed after 0.001 seconds.
+✔ Test stereoToMonoArithmeticMean() passed after 0.001 seconds.
+✘ Test equalSubnormalMeanPreserved() failed after 0.001 seconds with 2 issues.
+✘ Test stagedBytesMatchProduction() failed after 0.001 seconds with 1 issue.
+✘ Test run with 16 tests failed after 0.002 seconds with 3 issues.
