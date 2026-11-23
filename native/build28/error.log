@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/builder/clone/ci/xcode-host-preflight.py", line 55, in <module>
+    if '_ExecutableEntrySentinel_main' not in symbols or 'callableExecutableSymbol' not in symbols:raise RuntimeError('renamed entry/callable symbol evidence absent')
+                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: renamed entry/callable symbol evidence absent

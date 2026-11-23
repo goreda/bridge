@@ -1,0 +1,192 @@
+{
+  "module": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules/ExecutableEntrySentinel.swiftmodule",
+  "module_directory": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules",
+  "objects": [
+    "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/main.swift.o"
+  ],
+  "sources": [
+    "/Users/builder/clone/ci/entry-sentinel/Sources/ExecutableEntrySentinel/main.swift"
+  ],
+  "test_linkfilelist": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.product/Objects.LinkFileList",
+  "ordered_test_objects": [
+    "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/main.swift.o",
+    "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.build/runner.swift.o",
+    "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/ExecutableEntrySentinelTests.swift.o"
+  ],
+  "triple": "arm64-apple-macosx13.0",
+  "sdk": "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+  "command": {
+    "executable": "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+    "fileList": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/sources",
+    "importPath": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules",
+    "inputs": [
+      {
+        "kind": "file",
+        "name": "/Users/builder/clone/ci/entry-sentinel/Sources/ExecutableEntrySentinel/main.swift"
+      },
+      {
+        "kind": "file",
+        "name": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/swift-version--112E4EF74740DA65.txt"
+      },
+      {
+        "kind": "file",
+        "name": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/sources"
+      }
+    ],
+    "isLibrary": false,
+    "moduleName": "ExecutableEntrySentinel",
+    "moduleOutputPath": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules/ExecutableEntrySentinel.swiftmodule",
+    "objects": [
+      "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/main.swift.o"
+    ],
+    "otherArguments": [
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-v",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j7",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "ExecutableEntrySentinel_main",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-F",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "entry_sentinel"
+    ],
+    "outputFileMapPath": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/output-file-map.json",
+    "outputs": [
+      {
+        "kind": "file",
+        "name": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/main.swift.o"
+      },
+      {
+        "kind": "file",
+        "name": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules/ExecutableEntrySentinel.swiftmodule"
+      }
+    ],
+    "prepareForIndexing": false,
+    "sources": [
+      "/Users/builder/clone/ci/entry-sentinel/Sources/ExecutableEntrySentinel/main.swift"
+    ],
+    "tempsPath": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build",
+    "wholeModuleOptimization": false
+  },
+  "inventory": [
+    {
+      "source": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/main.swift.o",
+      "retained": "arm64-apple-macosx/debug/ExecutableEntrySentinel.build/main.swift.o",
+      "sha256": "02ed2cb66622694f47c97ceeb0d32627aa2ed9d00998da6871e32077278290fb",
+      "bytes": 11920
+    },
+    {
+      "source": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/output-file-map.json",
+      "retained": "arm64-apple-macosx/debug/ExecutableEntrySentinel.build/output-file-map.json",
+      "sha256": "552fb3a27bf9588c0dbe5b037aaf6ab2e1d1d213ba64f4010f8afa7f4794c666",
+      "bytes": 865
+    },
+    {
+      "source": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.product/Objects.LinkFileList",
+      "retained": "arm64-apple-macosx/debug/ExecutableEntrySentinel.product/Objects.LinkFileList",
+      "sha256": "b180bda172c9847ff87b5ebb25f6b2b32a7a6fb1c1b16d36b096c5ff71ab98bd",
+      "bytes": 101
+    },
+    {
+      "source": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.build/output-file-map.json",
+      "retained": "arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.build/output-file-map.json",
+      "sha256": "4e93108a82a6cbd3c44429e62f926757c0af2ac4a7e0d8a7923eef7f8bdaa202",
+      "bytes": 980
+    },
+    {
+      "source": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.product/Objects.LinkFileList",
+      "retained": "arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.product/Objects.LinkFileList",
+      "sha256": "a9c9a34316388c4e52bc5ce513d5eb412e39768a5573d1102c3d2e9cafc765e4",
+      "bytes": 346
+    },
+    {
+      "source": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/output-file-map.json",
+      "retained": "arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/output-file-map.json",
+      "sha256": "9ab94d877c7d67014516417f15de2bd2b249977cc768206e1147a8e86278f85b",
+      "bytes": 1042
+    },
+    {
+      "source": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules/ExecutableEntrySentinel.abi.json",
+      "retained": "arm64-apple-macosx/debug/Modules/ExecutableEntrySentinel.abi.json",
+      "sha256": "4277ac6b49f8511196028a5ac20f5b1b1dfa754c24615d34068089f0b1739728",
+      "bytes": 149
+    },
+    {
+      "source": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules/ExecutableEntrySentinel.swiftdoc",
+      "retained": "arm64-apple-macosx/debug/Modules/ExecutableEntrySentinel.swiftdoc",
+      "sha256": "f230bd9154dd14321845222d8c38b07b41b6c7ba27c855e8d5f9fb99a14148be",
+      "bytes": 428
+    },
+    {
+      "source": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules/ExecutableEntrySentinel.swiftmodule",
+      "retained": "arm64-apple-macosx/debug/Modules/ExecutableEntrySentinel.swiftmodule",
+      "sha256": "2e3f0f5618d4beff897709d739fda5b335c0e82e9857f10558e18ebbe65347ae",
+      "bytes": 20468
+    },
+    {
+      "source": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules/ExecutableEntrySentinel.swiftsourceinfo",
+      "retained": "arm64-apple-macosx/debug/Modules/ExecutableEntrySentinel.swiftsourceinfo",
+      "sha256": "4696324dc0a70beb94a325091d8e6b5d05fe1df197e0d37bc7d8aed0cdf4dbfd",
+      "bytes": 852
+    },
+    {
+      "source": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/description.json",
+      "retained": "arm64-apple-macosx/debug/description.json",
+      "sha256": "22aba06ab06f9e682ce5df13ddfb8ffae5bcf0bc5759b835b169154552fc986d",
+      "bytes": 25545
+    },
+    {
+      "source": "/Users/builder/clone/entry-build/debug.yaml",
+      "retained": "debug.yaml",
+      "sha256": "72c094f82c141176c623ccc2ff28b5d5ee55abd72984761a4e45fb3b3a487d1c",
+      "bytes": 22456
+    },
+    {
+      "source": "/Users/builder/clone/entry-build/plugin-tools.yaml",
+      "retained": "plugin-tools.yaml",
+      "sha256": "72c094f82c141176c623ccc2ff28b5d5ee55abd72984761a4e45fb3b3a487d1c",
+      "bytes": 22456
+    }
+  ],
+  "provider": "NONE sentinel Foundation only; no gor/GorAV dependency",
+  "resources": "NONE declared in sentinel package; actual hosted bundle inventoried separately"
+}

@@ -1,0 +1,44 @@
+{
+  "result": "FAIL_OR_NOT_RUN",
+  "scope": "Xcode-managed executable-dependency sentinel plus unchanged async host proof only; gor/provider/acceptance NOT_RUN",
+  "carrier": "12c7e81bc9d6b9d33c79194e0077d2e93cdfba55",
+  "rows": [
+    {
+      "stage": "developer-directory",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "xcodebuild-help",
+      "exit": 0,
+      "seconds": 0.53
+    },
+    {
+      "stage": "xcode-version",
+      "exit": 0,
+      "seconds": 0.09
+    },
+    {
+      "stage": "swift-version",
+      "exit": 0,
+      "seconds": 1.06
+    },
+    {
+      "stage": "swift-build-help",
+      "exit": 0,
+      "seconds": 0.15
+    },
+    {
+      "stage": "swiftpm-build-tests",
+      "exit": 0,
+      "seconds": 17.04
+    },
+    {
+      "stage": "entry-nm-0",
+      "exit": 0,
+      "seconds": 0.55
+    }
+  ],
+  "error": "RuntimeError('renamed entry/callable symbol evidence absent')",
+  "seconds": 20.03
+}

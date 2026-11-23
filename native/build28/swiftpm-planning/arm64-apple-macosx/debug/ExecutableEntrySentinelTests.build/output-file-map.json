@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/primary.swiftdeps"
+  },
+  "/Users/builder/clone/ci/entry-sentinel/Tests/ExecutableEntrySentinelTests/ExecutableEntrySentinelTests.swift": {
+    "dependencies": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/ExecutableEntrySentinelTests.d",
+    "object": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/ExecutableEntrySentinelTests.swift.o",
+    "swiftmodule": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/ExecutableEntrySentinelTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/ExecutableEntrySentinelTests.swiftdeps",
+    "diagnostics": "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/ExecutableEntrySentinelTests.dia"
+  }
+}

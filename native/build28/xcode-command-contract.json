@@ -1,0 +1,22 @@
+{
+  "installed_options": [
+    "-target",
+    "-project",
+    "-scheme",
+    "-destination",
+    "-derivedDataPath",
+    "-resultBundlePath",
+    "-only-testing",
+    "-parallel-testing-enabled",
+    "-list",
+    "-json",
+    "-showBuildSettings"
+  ],
+  "action_argument": "<buildaction>",
+  "actions": [
+    "build-for-testing",
+    "test-without-building"
+  ],
+  "action_vocabulary_source": "https://developer.apple.com/library/archive/technotes/tn2339/_index.html",
+  "boundary": "Native invocation remains authoritative; unknown action fails with no retry"
+}
