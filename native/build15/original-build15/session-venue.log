@@ -1,0 +1,121 @@
+warning: 'gorav': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/seek-composition-tests/README-SEEKVECTORS.md
+warning: 'gorav': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/timing-ledger-tests/ClockScenarioReplay.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+warning: 'gorav': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/photon-sharp-tests/fixtures/photon-sharp.glsl
+    /Users/builder/clone/payload/gorav/Sources/photon-sharp-tests/fixtures/photon-sharp-temporal.glsl
+warning: 'gorav': found 7 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/lua-reference/regenerate-reference.sh
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/lua-reference/live-control-lua-reference.json
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/lua-reference/vendor/photon-live-control.lua
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/live-control-vectors.json
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/lua-reference/README.md
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/lua-reference/run-live-control.lua
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/generate-vectors.py
+warning: 'gorav': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/hud-state-tests/generate-vectors.py
+    /Users/builder/clone/payload/gorav/Sources/hud-state-tests/hud-vectors.json
+warning: 'gorav': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/chrome-state-tests/chrome-vectors.json
+    /Users/builder/clone/payload/gorav/Sources/chrome-state-tests/generate-vectors.py
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version--112E4EF74740DA65.txt
+Build of product 'session-venue-tests' complete! (1.06s)
+SESSION-VENUE event[seq=1 t=+0.13s] durationKnown(seconds: 10.005)
+SESSION-VENUE event[seq=2 t=+0.14s] opened
+SESSION-VENUE event[seq=3 t=+0.19s] timePos(seconds: 2.333333327442233e-06, generation: 0)
+SESSION-VENUE event[seq=4 t=+0.19s] firstFrame
+SESSION-VENUE V1 open: .opened + .firstFrame, generation anchor=0.0s
+SESSION-VENUE V1 terminalStats shown=nil dropped=nil waits=nil lifecycle=playing
+SESSION-VENUE V1 firstPCM=[0.0]
+SESSION-VENUE event[seq=5 t=+0.25s] paused
+SESSION-VENUE event[seq=6 t=+0.65s] timePos(seconds: 0.057329124999910164, generation: 0)
+SESSION-VENUE V2 pause: .paused, no EOS across a 12s hold exceeding remaining content
+SESSION-VENUE V2 terminalStats shown=nil dropped=nil waits=nil lifecycle=paused
+SESSION-VENUE V2 firstPCM=[0.0]
+SESSION-VENUE event[seq=7 t=+12.26s] resumed
+SESSION-VENUE V3 resume: .resumed
+SESSION-VENUE V3 terminalStats shown=nil dropped=nil waits=nil lifecycle=playing
+SESSION-VENUE V3 firstPCM=[0.0]
+SESSION-VENUE event[seq=8 t=+12.33s] seekCommitted(seconds: 8.0)
+SESSION-VENUE event[seq=9 t=+12.33s] timePos(seconds: 8.00000670833333, generation: 1)
+SESSION-VENUE event[seq=10 t=+12.33s] firstFrame
+SESSION-VENUE event[seq=11 t=+12.62s] timePos(seconds: 8.293247458333326, generation: 1)
+SESSION-VENUE event[seq=12 t=+12.88s] timePos(seconds: 8.549151625000036, generation: 1)
+SESSION-VENUE event[seq=13 t=+13.13s] timePos(seconds: 8.800387125000043, generation: 1)
+SESSION-VENUE event[seq=14 t=+13.39s] timePos(seconds: 9.057079458333419, generation: 1)
+SESSION-VENUE event[seq=15 t=+13.64s] timePos(seconds: 9.30983900000001, generation: 1)
+SESSION-VENUE event[seq=16 t=+13.90s] timePos(seconds: 9.570979583333383, generation: 1)
+SESSION-VENUE event[seq=17 t=+14.17s] timePos(seconds: 9.84098583333332, generation: 1)
+SESSION-VENUE event[seq=18 t=+14.35s] ended(reason: "eof")
+SESSION-VENUE V4 terminalStats shown=Optional(23) dropped=Optional(0) waits=Optional(20) lifecycle=closed
+SESSION-VENUE V4 seekTrace seq=1 seekBegin
+SESSION-VENUE V4 seekTrace seq=2 seekVideoCommitted
+SESSION-VENUE V4 seekTrace seq=3 frame0Presented media=8.0
+SESSION-VENUE V4 seekTrace seq=4 audioRingReset
+SESSION-VENUE V4 seekTrace seq=5 audioSeekDone outcome=nativeReady
+SESSION-VENUE V4 seekTrace seq=6 audioProducerRearmed
+SESSION-VENUE V4 seekTrace seq=7 seekCommitted
+SESSION-VENUE V4 firstPCM=[0.0, 8.0]
+SESSION-VENUE V4 PASS: committed, accepted frame0, eof within 4s
+SESSION-VENUE V5 event[seq=1] durationKnown(seconds: 10.005)
+SESSION-VENUE V5 event[seq=2] opened
+SESSION-VENUE V5 event[seq=3] timePos(seconds: 2.0416666757228086e-06, generation: 0)
+SESSION-VENUE V5 event[seq=4] firstFrame
+SESSION-VENUE V5 event[seq=5] paused
+SESSION-VENUE V5 event[seq=6] seekCommitted(seconds: 8.0)
+SESSION-VENUE V5 event[seq=7] timePos(seconds: 8.0, generation: 1)
+SESSION-VENUE V5 event[seq=8] firstFrame
+SESSION-VENUE V5-paused terminalStats shown=nil dropped=nil waits=nil lifecycle=paused
+SESSION-VENUE V5-paused seekTrace seq=1 seekBegin
+SESSION-VENUE V5-paused seekTrace seq=2 seekVideoCommitted
+SESSION-VENUE V5-paused seekTrace seq=3 audioRingReset
+SESSION-VENUE V5-paused seekTrace seq=4 audioSeekDone outcome=nativeReady
+SESSION-VENUE V5-paused seekTrace seq=5 audioProducerRearmed
+SESSION-VENUE V5-paused seekTrace seq=6 seekCommitted
+SESSION-VENUE V5-paused firstPCM=[0.0]
+SESSION-VENUE V5 event[seq=9] resumed
+SESSION-VENUE V5 event[seq=10] timePos(seconds: 8.085362375000045, generation: 1)
+SESSION-VENUE V5 event[seq=11] timePos(seconds: 8.34240187499995, generation: 1)
+SESSION-VENUE V5 event[seq=12] timePos(seconds: 8.599739666666665, generation: 1)
+SESSION-VENUE V5 event[seq=13] timePos(seconds: 8.850242166666703, generation: 1)
+SESSION-VENUE V5 event[seq=14] timePos(seconds: 9.113066874999957, generation: 1)
+SESSION-VENUE V5 event[seq=15] timePos(seconds: 9.366353583333309, generation: 1)
+SESSION-VENUE V5 event[seq=16] timePos(seconds: 9.62424845833334, generation: 1)
+SESSION-VENUE V5 event[seq=17] ended(reason: "eof")
+SESSION-VENUE V5 terminalStats shown=Optional(22) dropped=Optional(0) waits=Optional(19) lifecycle=closed
+SESSION-VENUE V5 seekTrace seq=1 seekBegin
+SESSION-VENUE V5 seekTrace seq=2 seekVideoCommitted
+SESSION-VENUE V5 seekTrace seq=3 audioRingReset
+SESSION-VENUE V5 seekTrace seq=4 audioSeekDone outcome=nativeReady
+SESSION-VENUE V5 seekTrace seq=5 audioProducerRearmed
+SESSION-VENUE V5 seekTrace seq=6 seekCommitted
+SESSION-VENUE V5 firstPCM=[0.0, 8.0]
+SESSION-VENUE BAD: V5 D1 order missing/out-of-order frame0Presented

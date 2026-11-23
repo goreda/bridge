@@ -1,0 +1,51 @@
+warning: 'gorav': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/seek-composition-tests/README-SEEKVECTORS.md
+warning: 'gorav': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/timing-ledger-tests/ClockScenarioReplay.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleControllerTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitlePlanTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/ASSTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SRTTests.swift
+    /Users/builder/clone/payload/gorav/Sources/subtitle-tests/SubtitleTrackTests.swift
+warning: 'gorav': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/photon-sharp-tests/fixtures/photon-sharp-temporal.glsl
+    /Users/builder/clone/payload/gorav/Sources/photon-sharp-tests/fixtures/photon-sharp.glsl
+warning: 'gorav': found 7 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/lua-reference/run-live-control.lua
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/live-control-vectors.json
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/lua-reference/vendor/photon-live-control.lua
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/lua-reference/live-control-lua-reference.json
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/lua-reference/regenerate-reference.sh
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/lua-reference/README.md
+    /Users/builder/clone/payload/gorav/Sources/live-control-tests/generate-vectors.py
+warning: 'gorav': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/hud-state-tests/hud-vectors.json
+    /Users/builder/clone/payload/gorav/Sources/hud-state-tests/generate-vectors.py
+warning: 'gorav': found 2 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /Users/builder/clone/payload/gorav/Sources/chrome-state-tests/generate-vectors.py
+    /Users/builder/clone/payload/gorav/Sources/chrome-state-tests/chrome-vectors.json
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version--112E4EF74740DA65.txt
+Build of product 'e1-vt-live-gate' complete! (1.07s)
+E1-VT-LIVE-GATE FAIL: frame 1 carried NO VT payload (digest=144d14a534576ce7) - the zero-copy path was not taken
