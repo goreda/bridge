@@ -1,0 +1,29 @@
+{
+  "" : {
+    "diagnostics" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests-primary.dia",
+    "emit-module-dependencies" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests-primary-emit-module.dia",
+    "pch" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostedAcceptanceTests-primary.swiftdeps"
+  },
+  "/Users/builder/clone/out/supported-host-project/ExecutableEntrySentinelTests.swift" : {
+    "const-values" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ExecutableEntrySentinelTests.swiftconstvalues",
+    "dependencies" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ExecutableEntrySentinelTests.d",
+    "diagnostics" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ExecutableEntrySentinelTests.dia",
+    "index-unit-output-path" : "/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ExecutableEntrySentinelTests.o",
+    "llvm-bc" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ExecutableEntrySentinelTests.bc",
+    "object" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ExecutableEntrySentinelTests.o",
+    "swift-dependencies" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ExecutableEntrySentinelTests.swiftdeps",
+    "swiftmodule" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/ExecutableEntrySentinelTests~partial.swiftmodule"
+  },
+  "/Users/builder/clone/out/supported-host-project/HostAsyncPreflightTests.swift" : {
+    "const-values" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostAsyncPreflightTests.swiftconstvalues",
+    "dependencies" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostAsyncPreflightTests.d",
+    "diagnostics" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostAsyncPreflightTests.dia",
+    "index-unit-output-path" : "/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostAsyncPreflightTests.o",
+    "llvm-bc" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostAsyncPreflightTests.bc",
+    "object" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostAsyncPreflightTests.o",
+    "swift-dependencies" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostAsyncPreflightTests.swiftdeps",
+    "swiftmodule" : "/Users/builder/clone/supported-derived/Build/Intermediates.noindex/HostedAcceptance.build/Debug/HostedAcceptanceTests.build/Objects-normal/arm64/HostAsyncPreflightTests~partial.swiftmodule"
+  }
+}

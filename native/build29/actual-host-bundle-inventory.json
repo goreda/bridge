@@ -1,0 +1,222 @@
+[
+  {
+    "path": "Contents/Frameworks/Testing.framework/Testing",
+    "sha256": "96b6c248ff012a338421f468bb4ab26c3b2aafa75e6d94fc430b75f552e64677",
+    "bytes": 10781152
+  },
+  {
+    "path": "Contents/Frameworks/Testing.framework/Versions/A/Resources/Info.plist",
+    "sha256": "a062000564f555174107956dffa0b30fe803c23aaedd1e09407a5e754115b2d8",
+    "bytes": 856
+  },
+  {
+    "path": "Contents/Frameworks/Testing.framework/Versions/A/Resources/version.plist",
+    "sha256": "997180b81a6cbecd421ff3262e25a33c65a58cf2043dec6587c43e4d0298c474",
+    "bytes": 457
+  },
+  {
+    "path": "Contents/Frameworks/Testing.framework/Versions/A/Testing",
+    "sha256": "96b6c248ff012a338421f468bb4ab26c3b2aafa75e6d94fc430b75f552e64677",
+    "bytes": 10781152
+  },
+  {
+    "path": "Contents/Frameworks/Testing.framework/Versions/A/_CodeSignature/CodeResources",
+    "sha256": "4b9bf167a54727fc1798036025cb62b77d9727f820f5ad6a6eb2058f4390a911",
+    "bytes": 5569
+  },
+  {
+    "path": "Contents/Frameworks/XCTAutomationSupport.framework/Versions/A/Resources/Info.plist",
+    "sha256": "3949cd10883bff50f2fde0096f3fc32d01e1629f3705b300c3269be500d7b7f7",
+    "bytes": 900
+  },
+  {
+    "path": "Contents/Frameworks/XCTAutomationSupport.framework/Versions/A/Resources/version.plist",
+    "sha256": "3e1ad3373051b13a0a6592623c267d9532cef007d9e9509787f4dd6a02ed4161",
+    "bytes": 460
+  },
+  {
+    "path": "Contents/Frameworks/XCTAutomationSupport.framework/Versions/A/XCTAutomationSupport",
+    "sha256": "d3d4e2e845c0614d7572cc6fd4204d244c3e3e99d125628788e2de2aeb7b85b4",
+    "bytes": 2403200
+  },
+  {
+    "path": "Contents/Frameworks/XCTAutomationSupport.framework/Versions/A/_CodeSignature/CodeResources",
+    "sha256": "07e8119ffe13e6766c4794f45a7d7057d980417a64b0aac5e6fac22e1cb1665d",
+    "bytes": 2674
+  },
+  {
+    "path": "Contents/Frameworks/XCTAutomationSupport.framework/XCTAutomationSupport",
+    "sha256": "d3d4e2e845c0614d7572cc6fd4204d244c3e3e99d125628788e2de2aeb7b85b4",
+    "bytes": 2403200
+  },
+  {
+    "path": "Contents/Frameworks/XCTest.framework/Versions/A/Resources/Info.plist",
+    "sha256": "9f9fb3458e2104f7dddb7385bd94b6d9e1b8f1e7429f0d1ee5ce8e1588f933f1",
+    "bytes": 822
+  },
+  {
+    "path": "Contents/Frameworks/XCTest.framework/Versions/A/Resources/version.plist",
+    "sha256": "3e1ad3373051b13a0a6592623c267d9532cef007d9e9509787f4dd6a02ed4161",
+    "bytes": 460
+  },
+  {
+    "path": "Contents/Frameworks/XCTest.framework/Versions/A/XCTest",
+    "sha256": "313d3fe8f343fe09b3000bfce5f9058fad168e997c46aff0826609d9ca047021",
+    "bytes": 323600
+  },
+  {
+    "path": "Contents/Frameworks/XCTest.framework/Versions/A/_CodeSignature/CodeResources",
+    "sha256": "5e67ee9eaa271a413550b8c8afb3c4f7ddf548b1044d90ea3183e001fcc714d0",
+    "bytes": 12202
+  },
+  {
+    "path": "Contents/Frameworks/XCTest.framework/XCTest",
+    "sha256": "313d3fe8f343fe09b3000bfce5f9058fad168e997c46aff0826609d9ca047021",
+    "bytes": 323600
+  },
+  {
+    "path": "Contents/Frameworks/XCTestCore.framework/Versions/A/Resources/Info.plist",
+    "sha256": "d7f98b0a471277236419fd3c18223633e40b0d5294b57816d078c43ea2f3df10",
+    "bytes": 830
+  },
+  {
+    "path": "Contents/Frameworks/XCTestCore.framework/Versions/A/Resources/version.plist",
+    "sha256": "3e1ad3373051b13a0a6592623c267d9532cef007d9e9509787f4dd6a02ed4161",
+    "bytes": 460
+  },
+  {
+    "path": "Contents/Frameworks/XCTestCore.framework/Versions/A/XCTestCore",
+    "sha256": "e8cba15781d8ae4b4935b88474b775cec0584c107793ee99c1b44276aa22e186",
+    "bytes": 6783584
+  },
+  {
+    "path": "Contents/Frameworks/XCTestCore.framework/Versions/A/_CodeSignature/CodeResources",
+    "sha256": "6efe1ee4fa9ad5feb20f2eebf442a8a6b61fc8328c1b5f8c408dca6be84c567c",
+    "bytes": 2674
+  },
+  {
+    "path": "Contents/Frameworks/XCTestCore.framework/XCTestCore",
+    "sha256": "e8cba15781d8ae4b4935b88474b775cec0584c107793ee99c1b44276aa22e186",
+    "bytes": 6783584
+  },
+  {
+    "path": "Contents/Frameworks/XCTestSupport.framework/Versions/A/Resources/Info.plist",
+    "sha256": "682565fbe027bc2815af7c563f82a48e82294c24355b023ffee60eca732737e9",
+    "bytes": 836
+  },
+  {
+    "path": "Contents/Frameworks/XCTestSupport.framework/Versions/A/Resources/version.plist",
+    "sha256": "3e1ad3373051b13a0a6592623c267d9532cef007d9e9509787f4dd6a02ed4161",
+    "bytes": 460
+  },
+  {
+    "path": "Contents/Frameworks/XCTestSupport.framework/Versions/A/XCTestSupport",
+    "sha256": "c176aca309292e1b5280d7de1ca76fb9ed0c94066db7dd658fd3f9d8e2c133b3",
+    "bytes": 318576
+  },
+  {
+    "path": "Contents/Frameworks/XCTestSupport.framework/Versions/A/_CodeSignature/CodeResources",
+    "sha256": "95a8cefd22253881ab46e31a307284f11507ed6a00456af7ced23654ef079dde",
+    "bytes": 2674
+  },
+  {
+    "path": "Contents/Frameworks/XCTestSupport.framework/XCTestSupport",
+    "sha256": "c176aca309292e1b5280d7de1ca76fb9ed0c94066db7dd658fd3f9d8e2c133b3",
+    "bytes": 318576
+  },
+  {
+    "path": "Contents/Frameworks/XCUIAutomation.framework/Versions/A/Resources/Info.plist",
+    "sha256": "6593c4245d567c23aaeac9cd5808110c3869bdcce7118e73b2cd252086e1281c",
+    "bytes": 838
+  },
+  {
+    "path": "Contents/Frameworks/XCUIAutomation.framework/Versions/A/Resources/version.plist",
+    "sha256": "3e1ad3373051b13a0a6592623c267d9532cef007d9e9509787f4dd6a02ed4161",
+    "bytes": 460
+  },
+  {
+    "path": "Contents/Frameworks/XCUIAutomation.framework/Versions/A/XCUIAutomation",
+    "sha256": "90d2c3dbbb7b2eecda8c9982eee4461bc91afa96687a7374eabe1de925ed4e65",
+    "bytes": 7143824
+  },
+  {
+    "path": "Contents/Frameworks/XCUIAutomation.framework/Versions/A/_CodeSignature/CodeResources",
+    "sha256": "54cf0282c825770da56164b127112464017e36b51ae6e3fb701031098f27feee",
+    "bytes": 8667
+  },
+  {
+    "path": "Contents/Frameworks/XCUIAutomation.framework/XCUIAutomation",
+    "sha256": "90d2c3dbbb7b2eecda8c9982eee4461bc91afa96687a7374eabe1de925ed4e65",
+    "bytes": 7143824
+  },
+  {
+    "path": "Contents/Frameworks/XCUnit.framework/Versions/A/Resources/Info.plist",
+    "sha256": "3f651867f053a4a6dead1ddf52e3810a92a4db784028a1842c083686cabed5c5",
+    "bytes": 822
+  },
+  {
+    "path": "Contents/Frameworks/XCUnit.framework/Versions/A/Resources/version.plist",
+    "sha256": "3e1ad3373051b13a0a6592623c267d9532cef007d9e9509787f4dd6a02ed4161",
+    "bytes": 460
+  },
+  {
+    "path": "Contents/Frameworks/XCUnit.framework/Versions/A/XCUnit",
+    "sha256": "bb8a4b212f5899e9167dd421a0b394f12006ff097a82e6b13ca1da7c01926cb1",
+    "bytes": 166240
+  },
+  {
+    "path": "Contents/Frameworks/XCUnit.framework/Versions/A/_CodeSignature/CodeResources",
+    "sha256": "c8d7eb7df4c9e0d875cd7f7f1e3403501b02bfa046e3ab36dfcc207136958d6b",
+    "bytes": 2674
+  },
+  {
+    "path": "Contents/Frameworks/XCUnit.framework/XCUnit",
+    "sha256": "bb8a4b212f5899e9167dd421a0b394f12006ff097a82e6b13ca1da7c01926cb1",
+    "bytes": 166240
+  },
+  {
+    "path": "Contents/Frameworks/libXCTestBundleInject.dylib",
+    "sha256": "39bbcb49a3dd3dfbb87ce6e29b70dc032c67186718b99530e1450178364224c6",
+    "bytes": 221600
+  },
+  {
+    "path": "Contents/Frameworks/libXCTestSwiftSupport.dylib",
+    "sha256": "4b7026c2345b6e3cae23b8caefa52784a98bf96e3b895f9a42fe518aeb420c5b",
+    "bytes": 3850528
+  },
+  {
+    "path": "Contents/Info.plist",
+    "sha256": "a2610269885c6829a0ee52d2431081edaea11ab7e9a7ce0d30d8bbb6be7f7e7b",
+    "bytes": 1252
+  },
+  {
+    "path": "Contents/MacOS/HostedAcceptance",
+    "sha256": "699b2491492d46f7f5f438d377a2bdb53a784c0d53473ed92ccf4a9c0c4f7507",
+    "bytes": 40352
+  },
+  {
+    "path": "Contents/MacOS/HostedAcceptance.debug.dylib",
+    "sha256": "672f176c9ab6029555d09b2a32e7409f4ef645d5d042d87281d9b06b068ba233",
+    "bytes": 65536
+  },
+  {
+    "path": "Contents/MacOS/__preview.dylib",
+    "sha256": "6d8a29f44ede4f2bf34ff0ac7f571e520f7975fb0886e9297dd0466477fc6696",
+    "bytes": 16768
+  },
+  {
+    "path": "Contents/PkgInfo",
+    "sha256": "82502191c9484b04d685374f9879a0066069c49b8acae7a04b01d38d07e8eca0",
+    "bytes": 8
+  },
+  {
+    "path": "Contents/PlugIns/HostedAcceptanceTests.xctest/Contents/Info.plist",
+    "sha256": "6ede4aca73ec764c92243fdb7e962054154d4c1c2ad3f9a3f06d8ca20a72dd4d",
+    "bytes": 1207
+  },
+  {
+    "path": "Contents/PlugIns/HostedAcceptanceTests.xctest/Contents/MacOS/HostedAcceptanceTests",
+    "sha256": "2f6bc1afc78c68910dec07312d79a59d457fd4c4eaa9f00898eeefcb973029c6",
+    "bytes": 141656
+  }
+]

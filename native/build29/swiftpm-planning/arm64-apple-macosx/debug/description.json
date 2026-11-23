@@ -1,0 +1,636 @@
+{
+  "builtTestProducts" : [
+    {
+      "binaryPath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.xctest/Contents/MacOS/ExecutableEntrySentinelPackageTests",
+      "packagePath" : "/Users/builder/clone/ci/entry-sentinel",
+      "productName" : "ExecutableEntrySentinelPackageTests"
+    }
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.ExecutableEntrySentinel-arm64-apple-macosx-debug.module" : {
+      "executable" : "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/sources",
+      "importPath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/ci/entry-sentinel/Sources/ExecutableEntrySentinel/main.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/swift-version--112E4EF74740DA65.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "ExecutableEntrySentinel",
+      "moduleOutputPath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules/ExecutableEntrySentinel.swiftmodule",
+      "objects" : [
+        "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/main.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-v",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j7",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "ExecutableEntrySentinel_main",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-F",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "entry_sentinel"
+      ],
+      "outputFileMapPath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/main.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules/ExecutableEntrySentinel.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/builder/clone/ci/entry-sentinel/Sources/ExecutableEntrySentinel/main.swift"
+      ],
+      "tempsPath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.ExecutableEntrySentinelPackageTests-arm64-apple-macosx-debug.module" : {
+      "executable" : "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.build/sources",
+      "importPath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.derived/runner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/swift-version--112E4EF74740DA65.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules/ExecutableEntrySentinelTests.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "ExecutableEntrySentinelPackageTests",
+      "moduleOutputPath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules/ExecutableEntrySentinelPackageTests.swiftmodule",
+      "objects" : [
+        "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.build/runner.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-v",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j7",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.build/include/ExecutableEntrySentinelPackageTests-Swift.h",
+        "-plugin-path",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-F",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "entry_sentinel"
+      ],
+      "outputFileMapPath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules/ExecutableEntrySentinelPackageTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.derived/runner.swift"
+      ],
+      "tempsPath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.ExecutableEntrySentinelTests-arm64-apple-macosx-debug.module" : {
+      "executable" : "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/sources",
+      "importPath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/ci/entry-sentinel/Tests/ExecutableEntrySentinelTests/ExecutableEntrySentinelTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/swift-version--112E4EF74740DA65.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "ExecutableEntrySentinelTests",
+      "moduleOutputPath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules/ExecutableEntrySentinelTests.swiftmodule",
+      "objects" : [
+        "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/ExecutableEntrySentinelTests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-v",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j7",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-F",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "entry_sentinel"
+      ],
+      "outputFileMapPath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/ExecutableEntrySentinelTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules/ExecutableEntrySentinelTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/builder/clone/ci/entry-sentinel/Tests/ExecutableEntrySentinelTests/ExecutableEntrySentinelTests.swift"
+      ],
+      "tempsPath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "ExecutableEntrySentinel" : [
+      "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "ExecutableEntrySentinel",
+      "-package-name",
+      "entry_sentinel",
+      "-c",
+      "/Users/builder/clone/ci/entry-sentinel/Sources/ExecutableEntrySentinel/main.swift",
+      "-I",
+      "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-v",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j7",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "ExecutableEntrySentinel_main",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-F",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "entry_sentinel",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "ExecutableEntrySentinelPackageTests" : [
+      "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "ExecutableEntrySentinelPackageTests",
+      "-package-name",
+      "entry_sentinel",
+      "-c",
+      "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.derived/runner.swift",
+      "-I",
+      "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-v",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j7",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.build/include/ExecutableEntrySentinelPackageTests-Swift.h",
+      "-plugin-path",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-F",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "entry_sentinel",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "ExecutableEntrySentinelTests" : [
+      "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "ExecutableEntrySentinelTests",
+      "-package-name",
+      "entry_sentinel",
+      "-c",
+      "/Users/builder/clone/ci/entry-sentinel/Tests/ExecutableEntrySentinelTests/ExecutableEntrySentinelTests.swift",
+      "-I",
+      "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-v",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j7",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-F",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "entry_sentinel",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "ExecutableEntrySentinel" : [
+
+    ],
+    "ExecutableEntrySentinelPackageTests" : [
+      "ExecutableEntrySentinelTests",
+      "ExecutableEntrySentinel"
+    ],
+    "ExecutableEntrySentinelTests" : [
+      "ExecutableEntrySentinel"
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+    "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.derived/runner.swift" : {
+      "inputs" : [
+
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.derived/runner.swift"
+        }
+      ]
+    }
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel-entitlement.plist" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<entitlement-plist>"
+        },
+        {
+          "kind" : "virtual",
+          "name" : "<com.apple.security.get-task-allow>"
+        }
+      ],
+      "outputFilePath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel-entitlement.plist"
+    },
+    "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/ci/entry-sentinel/Sources/ExecutableEntrySentinel/main.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/sources"
+    },
+    "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/main.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.product/Objects.LinkFileList"
+    },
+    "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.derived/runner.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.build/sources"
+    },
+    "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinel.build/main.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/ExecutableEntrySentinelTests.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelPackageTests.product/Objects.LinkFileList"
+    },
+    "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/builder/clone/ci/entry-sentinel/Tests/ExecutableEntrySentinelTests/ExecutableEntrySentinelTests.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/ExecutableEntrySentinelTests.build/sources"
+    },
+    "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/swift-version--112E4EF74740DA65.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode-26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/builder/clone/entry-build/arm64-apple-macosx/debug/swift-version--112E4EF74740DA65.txt"
+    }
+  }
+}

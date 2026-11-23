@@ -1,0 +1,115 @@
+{
+  "result": "EXECUTABLE_SENTINEL_HOSTED_PASS_GOR_NOT_RUN",
+  "scope": "Xcode-managed executable-dependency sentinel plus unchanged async host proof only; gor/provider/acceptance NOT_RUN",
+  "carrier": "6c76f109e3ec44c49409936e2441f7190ff37d66",
+  "rows": [
+    {
+      "stage": "developer-directory",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "xcodebuild-help",
+      "exit": 0,
+      "seconds": 0.51
+    },
+    {
+      "stage": "xcode-version",
+      "exit": 0,
+      "seconds": 0.06
+    },
+    {
+      "stage": "swift-version",
+      "exit": 0,
+      "seconds": 0.95
+    },
+    {
+      "stage": "swift-build-help",
+      "exit": 0,
+      "seconds": 0.2
+    },
+    {
+      "stage": "swiftpm-build-tests",
+      "exit": 0,
+      "seconds": 14.84
+    },
+    {
+      "stage": "entry-nm-0",
+      "exit": 0,
+      "seconds": 0.46
+    },
+    {
+      "stage": "swift-demangle-help",
+      "exit": 0,
+      "seconds": 0.47
+    },
+    {
+      "stage": "entry-symbols-demangled",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "generate-project",
+      "exit": 0,
+      "seconds": 0.1
+    },
+    {
+      "stage": "project-list",
+      "exit": 0,
+      "seconds": 1.28
+    },
+    {
+      "stage": "build-settings-HostedAcceptance",
+      "exit": 0,
+      "seconds": 1.07
+    },
+    {
+      "stage": "build-settings-HostedAcceptanceTests",
+      "exit": 0,
+      "seconds": 0.92
+    },
+    {
+      "stage": "hosted-build-for-testing",
+      "exit": 0,
+      "seconds": 10.58
+    },
+    {
+      "stage": "hosted-test-nm",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "hosted-symbols-demangled",
+      "exit": 0,
+      "seconds": 0.01
+    },
+    {
+      "stage": "hosted-test-macho",
+      "exit": 0,
+      "seconds": 0.73
+    },
+    {
+      "stage": "hosted-test-without-building",
+      "exit": 0,
+      "seconds": 3.77
+    }
+  ],
+  "entry_started": [
+    "-[ProbeTests.ExecutableEntrySentinelTests testCallableSymbolWithoutExecutingEntry]"
+  ],
+  "entry_passed": [
+    "-[ProbeTests.ExecutableEntrySentinelTests testCallableSymbolWithoutExecutingEntry]"
+  ],
+  "started": [
+    "-[ProbeTests.HostAsyncPreflightTests testAsyncMainLoopAndKeyWindow]"
+  ],
+  "passed": [
+    "-[ProbeTests.HostAsyncPreflightTests testAsyncMainLoopAndKeyWindow]"
+  ],
+  "xcresult": "/Users/builder/clone/out/synthetic.xcresult",
+  "host_settings": {
+    "TEST_HOST": "/Users/builder/clone/out/supported-host-project/build/Debug/HostedAcceptance.app/Contents/MacOS/HostedAcceptance",
+    "BUNDLE_LOADER": "/Users/builder/clone/out/supported-host-project/build/Debug/HostedAcceptance.app/Contents/MacOS/HostedAcceptance"
+  },
+  "seconds": 36.57
+}
