@@ -4817,3 +4817,6 @@ W-gdb-198z-in2tinct-09 | in2tinct | Sources/b-gate-tests/BoundsTable.swift | OPE
 W-gdb-198z-in2tinct-10 | in2tinct | Sources/active-transport-tests/main.swift | OPEN unclaimed
 W-gdb-capacity-e0-01 | Linux executor capacity/input-route questionnaire | packets/W-gdb-capacity-e0-01.md | AWAITING_REPLY; coordination notice only, NOT executable stock; no run/source supplied
 W-gdb-e0-qualification-01 | generic one-shot Linux/Node capacity gate OFFER | packets/W-gdb-e0-qualification-01.md | AWAITING_EXPLICIT_ACCEPTANCE then integrator GO; no execution/source export, NOT runnable product stock
+notice to the group, 2026-11-24 21:16 Europe/Istanbul - owner message for the labs, information only, no orders: Owner: every 15 minutes check all workers for a bottleneck; if one exists, resolve it; no bottleneck may remain. gdb and goreda have this trigger active.
+
+secret scan: clean
