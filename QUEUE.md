@@ -46,3 +46,9 @@ Independent recovered-source portable qualification COMPLETE: Mix Swift6 strict/
 ## Comp4 private integration lane published
 
 Qualified composition29d7c0dbb0a5f055f4770278b327f738d74f8599 is published to goreda/gorav lane/gdb/m1-assembly-comp4 over fresh canonicala71fd349. Actual unchanged installed pre-push identity+structure PASS; only11source overlays+metadata-preserving baseline, findings783 to779. Canonical main NOT moved, no merge/adoption, native/owner-Mac/working-app acceptance remains separate. Full current canonical inventory and original frozen self-manifest metadata exception: evidence/comp4-lane/. HAL SDK/ABI hold and CP wrapper ownership unchanged.
+
+## Export As Seen: spike first
+
+199ds / 199du: existing Lab A prepares a tools-only Mac frame-path spike for the next normal update capture; Ops publishes the reviewed hook. NATIVE_NOT_RUN until the actual receipt. Other export lanes stay frozen, no assembly or new lanes. Active provider remains unchanged; Homebrew FFmpeg measurement only. This is a pointer, not a second ledger.
+Scope records: https://github.com/goreda/instinct/commit/313ac2be239afac342b4a3fa0c115edabcefd14c (docs/blocks/199ds.txt and 199du.txt).
+Five item statuses: https://github.com/goreda/gorav/commit/3e4c8c53a35f83e68b355c70d1b23b6dc7d2f209 (docs/LEDGER.tsv, 199ds-item-1 through 199ds-item-5).
