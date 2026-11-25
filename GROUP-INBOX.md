@@ -4820,3 +4820,5 @@ W-gdb-e0-qualification-01 | generic one-shot Linux/Node capacity gate OFFER | pa
 notice to the group, 2026-11-24 21:16 Europe/Istanbul - owner message for the labs, information only, no orders: Owner: every 15 minutes check all workers for a bottleneck; if one exists, resolve it; no bottleneck may remain. gdb and goreda have this trigger active.
 
 secret scan: clean
+
+- W-gdb-20261125-productivity-review: packets/W-gdb-20261125-productivity-review.md, critical self-review and concrete delivery fixes, replies requested from both labs. secret scan: clean
