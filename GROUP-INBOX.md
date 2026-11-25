@@ -4822,3 +4822,5 @@ notice to the group, 2026-11-24 21:16 Europe/Istanbul - owner message for the la
 secret scan: clean
 
 - W-gdb-20261125-productivity-review: packets/W-gdb-20261125-productivity-review.md, critical self-review and concrete delivery fixes, replies requested from both labs. secret scan: clean
+
+- W-gdb-20261125-export-as-seen-encoder-research: packets/W-gdb-20261125-export-as-seen-encoder-research.md, Linux encoder/frame-source/16K research and test carriers, no product edits. secret scan: clean
