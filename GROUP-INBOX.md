@@ -4824,3 +4824,45 @@ secret scan: clean
 - W-gdb-20261125-productivity-review: packets/W-gdb-20261125-productivity-review.md, critical self-review and concrete delivery fixes, replies requested from both labs. secret scan: clean
 
 - W-gdb-20261125-export-as-seen-encoder-research: packets/W-gdb-20261125-export-as-seen-encoder-research.md, Linux encoder/frame-source/16K research and test carriers, no product edits. secret scan: clean
+
+## 2026-11-27 product stock 199eb
+W-gdb-199eb-01 | crop-receipt-timeout | lane/1nstinct/crop-receipt-timeout | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-02 | crop-live-playhead | lane/1nstinct/crop-live-playhead | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-03 | crop-cancellation | lane/1nstinct/crop-cancellation | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-04 | crop-consensus | lane/1nstinct/crop-consensus | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-05 | crop-landing | lane/1nstinct/crop-landing | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-06 | tiling-self-membership | lane/1nstinct/tiling-self-membership | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-07 | overlay-instance-binding | lane/1nstinct/overlay-instance-binding | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-08 | crop-fit-source-first | lane/1nstinct/crop-fit-source-first | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-09 | overlay-close-cleanup | lane/1nstinct/overlay-close-cleanup | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-10 | tiling-hotpath | lane/1nstinct/tiling-hotpath | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-11 | wt-waiter-precedence | lane/1nstinct/wt-waiter-precedence | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-12 | wt-stale-analysis | lane/1nstinct/wt-stale-analysis | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-13 | popular-knaben | lane/1nstinct/popular-knaben | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-14 | popular-bt4g | lane/1nstinct/popular-bt4g | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-15 | popular-nyaa | lane/1nstinct/popular-nyaa | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-16 | lane-e-binding | lane/1nstinct/lane-e-binding | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-17 | lane-e-lifecycle | lane/1nstinct/lane-e-lifecycle | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-18 | lane-e-construction | lane/1nstinct/lane-e-construction | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-19 | encode-menu-location | lane/1nstinct/encode-menu-location | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-20 | encode-output-start | lane/1nstinct/encode-output-start | READY_UNCLAIMED | 1nstinct
+W-gdb-199eb-21 | transfer-tag-authority | lane/in2tinct/transfer-tag-authority | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-22 | transfer-mpv-mapping | lane/in2tinct/transfer-mpv-mapping | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-23 | transfer-preflight-ui | lane/in2tinct/transfer-preflight-ui | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-24 | transfer-frame-source | lane/in2tinct/transfer-frame-source | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-25 | transfer-source-switch | lane/in2tinct/transfer-source-switch | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-26 | arch-instance-transport | lane/in2tinct/arch-instance-transport | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-27 | arch-outbox-admission | lane/in2tinct/arch-outbox-admission | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-28 | arch-outbox-partial | lane/in2tinct/arch-outbox-partial | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-29 | arch-source-cancel | lane/in2tinct/arch-source-cancel | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-30 | arch-export-stop | lane/in2tinct/arch-export-stop | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-31 | pip-action-target | lane/in2tinct/pip-action-target | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-32 | pip-menu-state | lane/in2tinct/pip-menu-state | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-33 | pip-owner-lifetime | lane/in2tinct/pip-owner-lifetime | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-34 | pip-fullscreen-fit | lane/in2tinct/pip-fullscreen-fit | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-35 | pip-source-reopen | lane/in2tinct/pip-source-reopen | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-36 | popular-status-coverage | lane/in2tinct/popular-status-coverage | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-37 | popular-cancel-race | lane/in2tinct/popular-cancel-race | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-38 | magnet-row-stability | lane/in2tinct/magnet-row-stability | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-39 | crop-size-evidence | lane/in2tinct/crop-size-evidence | READY_UNCLAIMED | in2tinct
+W-gdb-199eb-40 | export-terminal-visibility | lane/in2tinct/export-terminal-visibility | READY_UNCLAIMED | in2tinct

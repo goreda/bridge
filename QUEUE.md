@@ -47,13 +47,52 @@ Independent recovered-source portable qualification COMPLETE: Mix Swift6 strict/
 
 Qualified composition29d7c0dbb0a5f055f4770278b327f738d74f8599 is published to goreda/gorav lane/gdb/m1-assembly-comp4 over fresh canonicala71fd349. Actual unchanged installed pre-push identity+structure PASS; only11source overlays+metadata-preserving baseline, findings783 to779. Canonical main NOT moved, no merge/adoption, native/owner-Mac/working-app acceptance remains separate. Full current canonical inventory and original frozen self-manifest metadata exception: evidence/comp4-lane/. HAL SDK/ABI hold and CP wrapper ownership unchanged.
 
-## Export As Seen: spike first
 
-199ds / 199du: existing Lab A prepares a tools-only Mac frame-path spike for the next normal update capture; Ops publishes the reviewed hook. NATIVE_NOT_RUN until the actual receipt. Other export lanes stay frozen, no assembly or new lanes. Active provider remains unchanged; Homebrew FFmpeg measurement only. This is a pointer, not a second ledger.
-Scope records: https://github.com/goreda/instinct/commit/313ac2be239afac342b4a3fa0c115edabcefd14c (docs/blocks/199ds.txt and 199du.txt).
-Five item statuses: https://github.com/goreda/gorav/commit/3e4c8c53a35f83e68b355c70d1b23b6dc7d2f209 (docs/LEDGER.tsv, 199ds-item-1 through 199ds-item-5).
+## Product packets 199eb, 2026-11-27
 
-claim: goreda, 2026-11-27 01:21 Europe/Istanbul, P30 / ENGINE-E1-native-gate, native zero-copy decode; gdb supplies native runs.
-claim: goreda, 2026-11-27 01:21 Europe/Istanbul, M1-TYPED-BACKEND, typed playback backend operation boundary and parity tests; existing menu, session and delivery writers remain unchanged.
-next: consume assigned lab returns within 2h; each return receives an applied/tested result or an exact failure response.
-secret scan: clean
+The withdrawn spike-only export freeze is removed from this queue. Forty source-grounded packets at instinct168af857 are ready under packets/W-gdb-199eb-01.md through W-gdb-199eb-40.md, twenty per lab. Existing claims win. Each packet carries exact source excerpts, interface, mandatory regression, lane branch and patch/full-file return. Return ingestion is due within two hours, by any receiver; assembly merges landed lanes hourly. No main-agent hand-apply funnel.
+
+Swift/C edits start one compile-only free native run at lane push, separate from test suites; no paid plan or owner-runtime claim. No worker-count claim is inferred from this stock. P30 custody stays with goreda; the additional named product line and actual worker claims are recorded by their writers.
+
+| Packet | Product line | Lane | State | Lab |
+| --- | --- | --- | --- | --- |
+| W-gdb-199eb-01 | crop-receipt-timeout | lane/1nstinct/crop-receipt-timeout | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-02 | crop-live-playhead | lane/1nstinct/crop-live-playhead | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-03 | crop-cancellation | lane/1nstinct/crop-cancellation | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-04 | crop-consensus | lane/1nstinct/crop-consensus | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-05 | crop-landing | lane/1nstinct/crop-landing | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-06 | tiling-self-membership | lane/1nstinct/tiling-self-membership | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-07 | overlay-instance-binding | lane/1nstinct/overlay-instance-binding | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-08 | crop-fit-source-first | lane/1nstinct/crop-fit-source-first | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-09 | overlay-close-cleanup | lane/1nstinct/overlay-close-cleanup | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-10 | tiling-hotpath | lane/1nstinct/tiling-hotpath | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-11 | wt-waiter-precedence | lane/1nstinct/wt-waiter-precedence | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-12 | wt-stale-analysis | lane/1nstinct/wt-stale-analysis | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-13 | popular-knaben | lane/1nstinct/popular-knaben | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-14 | popular-bt4g | lane/1nstinct/popular-bt4g | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-15 | popular-nyaa | lane/1nstinct/popular-nyaa | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-16 | lane-e-binding | lane/1nstinct/lane-e-binding | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-17 | lane-e-lifecycle | lane/1nstinct/lane-e-lifecycle | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-18 | lane-e-construction | lane/1nstinct/lane-e-construction | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-19 | encode-menu-location | lane/1nstinct/encode-menu-location | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-20 | encode-output-start | lane/1nstinct/encode-output-start | READY_UNCLAIMED | 1nstinct |
+| W-gdb-199eb-21 | transfer-tag-authority | lane/in2tinct/transfer-tag-authority | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-22 | transfer-mpv-mapping | lane/in2tinct/transfer-mpv-mapping | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-23 | transfer-preflight-ui | lane/in2tinct/transfer-preflight-ui | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-24 | transfer-frame-source | lane/in2tinct/transfer-frame-source | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-25 | transfer-source-switch | lane/in2tinct/transfer-source-switch | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-26 | arch-instance-transport | lane/in2tinct/arch-instance-transport | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-27 | arch-outbox-admission | lane/in2tinct/arch-outbox-admission | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-28 | arch-outbox-partial | lane/in2tinct/arch-outbox-partial | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-29 | arch-source-cancel | lane/in2tinct/arch-source-cancel | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-30 | arch-export-stop | lane/in2tinct/arch-export-stop | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-31 | pip-action-target | lane/in2tinct/pip-action-target | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-32 | pip-menu-state | lane/in2tinct/pip-menu-state | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-33 | pip-owner-lifetime | lane/in2tinct/pip-owner-lifetime | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-34 | pip-fullscreen-fit | lane/in2tinct/pip-fullscreen-fit | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-35 | pip-source-reopen | lane/in2tinct/pip-source-reopen | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-36 | popular-status-coverage | lane/in2tinct/popular-status-coverage | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-37 | popular-cancel-race | lane/in2tinct/popular-cancel-race | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-38 | magnet-row-stability | lane/in2tinct/magnet-row-stability | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-39 | crop-size-evidence | lane/in2tinct/crop-size-evidence | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-40 | export-terminal-visibility | lane/in2tinct/export-terminal-visibility | READY_UNCLAIMED | in2tinct |
