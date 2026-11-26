@@ -52,3 +52,8 @@ Qualified composition29d7c0dbb0a5f055f4770278b327f738d74f8599 is published to go
 199ds / 199du: existing Lab A prepares a tools-only Mac frame-path spike for the next normal update capture; Ops publishes the reviewed hook. NATIVE_NOT_RUN until the actual receipt. Other export lanes stay frozen, no assembly or new lanes. Active provider remains unchanged; Homebrew FFmpeg measurement only. This is a pointer, not a second ledger.
 Scope records: https://github.com/goreda/instinct/commit/313ac2be239afac342b4a3fa0c115edabcefd14c (docs/blocks/199ds.txt and 199du.txt).
 Five item statuses: https://github.com/goreda/gorav/commit/3e4c8c53a35f83e68b355c70d1b23b6dc7d2f209 (docs/LEDGER.tsv, 199ds-item-1 through 199ds-item-5).
+
+claim: goreda, 2026-11-27 01:21 Europe/Istanbul, P30 / ENGINE-E1-native-gate, native zero-copy decode; gdb supplies native runs.
+claim: goreda, 2026-11-27 01:21 Europe/Istanbul, M1-TYPED-BACKEND, typed playback backend operation boundary and parity tests; existing menu, session and delivery writers remain unchanged.
+next: consume assigned lab returns within 2h; each return receives an applied/tested result or an exact failure response.
+secret scan: clean
