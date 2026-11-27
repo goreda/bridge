@@ -56,26 +56,26 @@ No compile/CI prerequisite is added here; current199ec/199edowner delivery rules
 
 | Packet | Product line | Lane | State | Lab |
 | --- | --- | --- | --- | --- |
-| W-gdb-199eb-01 | crop-receipt-timeout | lane/1nstinct/crop-receipt-timeout | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
-| W-gdb-199eb-02 | crop-live-playhead | lane/1nstinct/crop-live-playhead | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
-| W-gdb-199eb-03 | crop-cancellation | lane/1nstinct/crop-cancellation | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
-| W-gdb-199eb-04 | crop-consensus | lane/1nstinct/crop-consensus | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
-| W-gdb-199eb-05 | crop-landing | lane/1nstinct/crop-landing | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
-| W-gdb-199eb-06 | tiling-self-membership | lane/1nstinct/tiling-self-membership | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
-| W-gdb-199eb-07 | overlay-instance-binding | lane/1nstinct/overlay-instance-binding | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
-| W-gdb-199eb-08 | crop-fit-source-first | lane/1nstinct/crop-fit-source-first | APPLIED_SOURCE_RECONCILE | 1nstinct |
-| W-gdb-199eb-09 | overlay-close-cleanup | lane/1nstinct/overlay-close-cleanup | APPLIED_SOURCE_RECONCILE | 1nstinct |
-| W-gdb-199eb-10 | tiling-hotpath | lane/1nstinct/tiling-hotpath | APPLIED_SOURCE_RECONCILE | 1nstinct |
-| W-gdb-199eb-11 | wt-waiter-precedence | lane/1nstinct/wt-waiter-precedence | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
-| W-gdb-199eb-12 | wt-stale-analysis | lane/1nstinct/wt-stale-analysis | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
-| W-gdb-199eb-13 | popular-knaben | lane/1nstinct/popular-knaben | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
-| W-gdb-199eb-14 | popular-bt4g | lane/1nstinct/popular-bt4g | APPLIED_SOURCE_RECONCILE | 1nstinct |
-| W-gdb-199eb-15 | popular-nyaa | lane/1nstinct/popular-nyaa | APPLIED_SOURCE_RECONCILE | 1nstinct |
-| W-gdb-199eb-16 | lane-e-binding | lane/1nstinct/lane-e-binding | WAIT_STATION_REPIN | 1nstinct |
-| W-gdb-199eb-17 | lane-e-lifecycle | lane/1nstinct/lane-e-lifecycle | WAIT_STATION_REPIN | 1nstinct |
-| W-gdb-199eb-18 | lane-e-construction | lane/1nstinct/lane-e-construction | WAIT_STATION_REPIN | 1nstinct |
-| W-gdb-199eb-19 | encode-menu-location | lane/1nstinct/encode-menu-location | WAIT_STATION_REPIN | 1nstinct |
-| W-gdb-199eb-20 | encode-output-start | lane/1nstinct/encode-output-start | WAIT_STATION_REPIN | 1nstinct |
+| W-gdb-199eb-01 | crop-receipt-timeout | lane/1nstinct/crop-receipt-timeout | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-02 | crop-live-playhead | lane/1nstinct/crop-live-playhead | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-03 | crop-cancellation | lane/1nstinct/crop-cancellation | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-04 | crop-consensus | lane/1nstinct/crop-consensus | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-05 | crop-landing | lane/1nstinct/crop-landing | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-06 | tiling-self-membership | lane/1nstinct/tiling-self-membership | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-07 | overlay-instance-binding | lane/1nstinct/overlay-instance-binding | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-08 | crop-fit-source-first | lane/1nstinct/crop-fit-source-first | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-09 | overlay-close-cleanup | lane/1nstinct/overlay-close-cleanup | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-10 | tiling-hotpath | lane/1nstinct/tiling-hotpath | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-11 | wt-waiter-precedence | lane/1nstinct/wt-waiter-precedence | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-12 | wt-stale-analysis | lane/1nstinct/wt-stale-analysis | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-13 | popular-knaben | lane/1nstinct/popular-knaben | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-14 | popular-bt4g | lane/1nstinct/popular-bt4g | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-15 | popular-nyaa | lane/1nstinct/popular-nyaa | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-16 | lane-e-binding | lane/1nstinct/lane-e-binding | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-17 | lane-e-lifecycle | lane/1nstinct/lane-e-lifecycle | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-18 | lane-e-construction | lane/1nstinct/lane-e-construction | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-19 | encode-menu-location | lane/1nstinct/encode-menu-location | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
+| W-gdb-199eb-20 | encode-output-start | lane/1nstinct/encode-output-start | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
 | W-gdb-199eb-21 | transfer-tag-authority | lane/in2tinct/transfer-tag-authority | WAIT_STATION_REPIN | in2tinct |
 | W-gdb-199eb-22 | transfer-mpv-mapping | lane/in2tinct/transfer-mpv-mapping | WAIT_STATION_REPIN | in2tinct |
 | W-gdb-199eb-23 | transfer-preflight-ui | lane/in2tinct/transfer-preflight-ui | WAIT_STATION_REPIN | in2tinct |
@@ -98,18 +98,9 @@ No compile/CI prerequisite is added here; current199ec/199edowner delivery rules
 | W-gdb-199eb-40 | export-terminal-visibility | lane/in2tinct/export-terminal-visibility | WAIT_STATION_REPIN | in2tinct |
 
 
-## Packet contract199ee, supersedes legacy packet format
-
-Every packet uses an existing product file. Required fields:
-
-- Target: repository, existing file path@exact commit SHA, and blob SHA.
-- Change: the behavior or narrow existing symbol to change, preserving the packet's product intent.
-- Return: unified patch to that target file, based on the pinned SHA. No full-file replacement and no new source/test/helper file. A newly required file must first be named explicitly by an owner block line.
-- Occupancy: original packet ID, team, lane and earliest symbol claim remain unchanged. Check live claims/returns before writing; no duplicate worker or reassignment is created by this format update.
-- Reconcile: a queue READY label is not proof that work remains undone. Check current product source and subsequent applied/returned evidence. If already fixed, return the existing commit and remaining gap, not another patch.
-- A target moved by station consolidation must be repinned to its verified existing destination before more code is written. Never invent a destination path or reopen the old satellite file.
-- Return limits and actual checks must be stated. No compile/CI prerequisite is added by this documentation change; current owner delivery rules remain in effect.
-
-The previous extracted-helper-on-collision and complete-file-return alternatives are retired. On collision preserve custody and return the conflict, not a new helper file. Legacy40packet documents below are reissued in place under their original IDs. Source excerpts stay as historical problem context, not current execution pins. Known route applications are identified individually; other custody is explicitly unverified until reconciled. This change does not dispatch a new worker.
-
-Secret scan: clean. Only product paths, exact source identities and problem descriptions are included; no credentials, personal data or licensed fixture bytes.
+## Packet contract199ef
+Each packet attaches the complete target file(s), refreshed in snapshots/LATEST at issue time, and asks for the whole changed file back.199ee patch-only form is superseded. A packet carries file path@SHA, blob, attached public file and SHA256; no private-repo access is needed for its input. Held grain, Sensing and font bytes retain the existing redaction/hold and are not refreshed by this issue.
+Every return gets re:W-id | ACCEPTED / REJECTED / PARTIAL | commit SHA | reason within the same ingest pass. No return is represented as accepted merely because it was published. Existing earliest claim and station occupancy remain unchanged.
+199eb01-20 are reissued in place with complete target attachments.21-40 retain existing custody pending their own full-target issue; the superseded patch-only clause is not a new instruction. Before starting reconcile source and prior route applications. No new worker is dispatched by this documentation update.
+Refresh scope: only the14distinct complete target files needed by01-20, source83ad4e39f8df442fd10e638a5a3c3f67ea848692. Other snapshot files retain older per-file identity. See snapshots/LATEST/ISSUE-199ef.json; do not treat the whole snapshot as uniformly refreshed.
+Secret scan: clean.

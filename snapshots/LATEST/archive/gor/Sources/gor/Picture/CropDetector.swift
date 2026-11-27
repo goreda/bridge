@@ -1,3 +1,7 @@
+// Picture/CropDetector.swift
+// Accepted content crop analysis: one monotonic phase drives source UV and window frame.
+// Uses: AppKit, Foundation, App, Engine, Platform, Session, Stereo
+// Engine: none
 import Foundation
 #if canImport(AppKit)
 import AppKit
@@ -26,6 +30,11 @@ struct CropMotionClock {
 
 final class CropDetector {
     private let sourceScanner = SourcePixelCropScanner()
+    /// Receives the admitted sample positions of this detector's scans (the owning player's CropScanGuard).
+    var sampleRecorder: ((Double) -> Void)? {
+        get { sourceScanner.sampleRecorder }
+        set { sourceScanner.sampleRecorder = newValue }
+    }
     var stereoSBS = false
     var viewportOnly = false
     var sourcePixelWidth:Int { sourceScanner.decodedWidth }
@@ -33,6 +42,9 @@ final class CropDetector {
     var perEyeAspect:Double? {sourceScanner.perEyeAspect}
     var stereoTopBottom = false
     private let mpvPath: String
+    /// Typed probe source, injected by the composition root; the Picture
+    /// layer never names the backend command owner that mints these.
+    private let probeFactory: CropProbeFactory
     /// Main player IPC socket. Streams are sampled from the already-playing
     /// mpv through this: signed URLs (transfer.it) expire right after the main
     /// player opens them, so probe mpvs re-opening the URL got a 403 and
@@ -176,7 +188,7 @@ final class CropDetector {
     private func reportStatus(_ status: String?) {
         DispatchQueue.main.async { [weak self] in self?.onStatus?(status) }
     }
-    init(mpvPath: String) { self.mpvPath = mpvPath }
+    init(mpvPath: String, probeFactory: @escaping CropProbeFactory) { self.mpvPath = mpvPath; self.probeFactory = probeFactory }
     /// The wt server's playback endpoint, not its control POSTs or an
     /// arbitrary localhost web stream. Match the URL components so a port
     /// lookalike cannot accidentally enter the magnet-specific path.
@@ -185,14 +197,12 @@ final class CropDetector {
     }
     // MARK: - Crop analysis
     // ── Polling helpers ──────────────────
-    private func waitForFileLoaded(client: IPCClient, maxWait: TimeInterval) -> Bool {
+    private func waitForFileLoaded(client: CropProbeTransport, maxWait: TimeInterval) -> Bool {
         let pollInterval: TimeInterval = 0.1
         let startedAt = Date().timeIntervalSince1970
 
         while Date().timeIntervalSince1970 - startedAt < maxWait {
-            let lines = client.queryBatch("{\"command\":[\"get_property\",\"duration\"]}", timeout: 0.15)
-            let obj   = IPCClient.parseFirst(lines)
-            if let duration = obj["data"] as? Double, duration > 0 {
+            if let duration = client.fileDuration(timeout: 0.15), duration > 0 {
                 return true
             }
             Thread.sleep(forTimeInterval: pollInterval)
@@ -200,14 +210,12 @@ final class CropDetector {
         return false
     }
 
-    private func waitForSeekCompletion(client: IPCClient, maxWait: TimeInterval) {
+    private func waitForSeekCompletion(client: CropProbeTransport, maxWait: TimeInterval) {
         let pollInterval: TimeInterval = 0.1
         var elapsed: TimeInterval = 0
 
         while elapsed < maxWait {
-            let lines = client.queryBatch("{\"command\":[\"get_property\",\"seeking\"]}", timeout: 0.15)
-            let obj   = IPCClient.parseFirst(lines)
-            if let seeking = obj["data"] as? Bool, !seeking { return }
+            if let seeking = client.isSeeking(), !seeking { return }
             Thread.sleep(forTimeInterval: pollInterval)
             elapsed += pollInterval
         }
@@ -308,11 +316,11 @@ final class CropDetector {
     private func scheduleDarkRetry(filePath: String, videoW: Double, videoH: Double, duration: Double) {
         retryGeneration += 1
         let generation = retryGeneration
-        print("[cropdetect] no usable frames - one retry in 30s")
+        print("[cropdetect] no usable frames - one retry in 30s up=\(cropUptime())")
         analysisQueue.asyncAfter(deadline: .now() + 30.0) { [weak self] in
             guard let self = self else { return }
             guard self.retryGeneration == generation, !self.isPending else { return }
-            print("[cropdetect] dark-scene retry firing")
+            print("[cropdetect] dark-scene retry firing up=\(cropUptime())")
             self.detect(filePath: filePath, videoW: videoW, videoH: videoH, fallbackDuration: duration)
         }
     }
@@ -360,7 +368,7 @@ final class CropDetector {
         mainIPCPath: String, videoW: Double, videoH: Double,
         state: RoundState, stateQueue: DispatchQueue, filePath: String, manual: Bool
     ) {
-        let client = IPCClient(path: mainIPCPath)
+        let client = probeFactory(mainIPCPath)
         // The main player need not change its screenshot preferences: mpv
         // chooses the screenshot-to-file encoder from this unique extension.
         let ext = "jpg"
@@ -392,16 +400,13 @@ final class CropDetector {
                 finish(finalCrop: nil, filePath: filePath, definitive: false, expectedGeneration: state.generation)
                 return
             }
-            let paused = IPCClient.parseFirst(client.queryBatch(
-                "{\"command\":[\"get_property\",\"pause\"]}"))["data"] as? Bool
-            let loadedPath = IPCClient.parseFirst(client.queryBatch(
-                "{\"command\":[\"get_property\",\"path\"]}"))["data"] as? String
-            let position = IPCClient.parseFirst(client.queryBatch(
-                "{\"command\":[\"get_property\",\"time-pos\"]}"))["data"] as? NSNumber
+            let paused = client.isPaused()
+            let loadedPath = client.currentPath()
+            let position = client.timePosition()
             // Missing player status cannot vote, and a still playhead
             // cannot be mistaken for independent screenshot evidence.
             guard paused == false, loadedPath == filePath,
-                  let position = position?.doubleValue,
+                  let position = position,
                   position.isFinite,
                   lastPlaybackPosition.map({ position > $0 + 0.05 }) ?? true else {
                 continue
@@ -409,9 +414,7 @@ final class CropDetector {
             lastPlaybackPosition = position
 
             let shotPath = "/tmp/crop_frame_live_\(Int(Date().timeIntervalSince1970 * 1000))_\(iteration).\(ext)"
-            let command = ["command": ["screenshot-to-file", shotPath, "video"]]
-            guard let commandData = try? JSONSerialization.data(withJSONObject: command),
-                  let commandText = String(data: commandData, encoding: .utf8) else {
+            guard let shotCommand = client.screenshotCommand(to: shotPath) else {
                 continue
             }
             // mpv can finish writing the screenshot after the IPC response
@@ -420,14 +423,13 @@ final class CropDetector {
             if Diag.mediaTelemetryEnabled {
                 Diag.mediaRecord("[media-shot] caller=wt-live phase=request manual=\(manual)")
             }
-            _ = client.queryBatch(commandText)
+            client.sendPrepared(shotCommand)
             waitForScreenshotFile(at: shotPath, maxWait: 3.0)
             guard isCurrent(filePath, state.generation) else {
                 try? FileManager.default.removeItem(atPath: shotPath)
                 return
             }
-            let postShotPath = IPCClient.parseFirst(client.queryBatch(
-                "{\"command\":[\"get_property\",\"path\"]}"))["data"] as? String
+            let postShotPath = client.currentPath()
             guard postShotPath == filePath else {
                 try? FileManager.default.removeItem(atPath: shotPath)
                 continue
@@ -574,15 +576,13 @@ final class CropDetector {
                 self.finish(finalCrop: nil, filePath: filePath, definitive: false)
                 return
             }
-            let mainClient = IPCClient(path: mainPath)
+            let mainClient = probeFactory(mainPath)
             guard waitForFileLoaded(client: mainClient, maxWait: 10.0) else {
                 print("[cropdetect] stream duration unavailable from player")
                 self.finish(finalCrop: nil, filePath: filePath, definitive: false)
                 return
             }
-            let durLines = mainClient.queryBatch("{\"command\":[\"get_property\",\"duration\"]}")
-            let durObj   = IPCClient.parseFirst(durLines)
-            let duration = (durObj["data"] as? Double) ?? 0
+            let duration = mainClient.fileDuration() ?? 0
             guard duration > 0 else {
                 print("[cropdetect] could not determine duration")
                 self.finish(finalCrop: nil, filePath: filePath, definitive: false)
@@ -611,11 +611,9 @@ final class CropDetector {
             return
         }
 
-        let client = IPCClient(path: probeSocket)
+        let client = probeFactory(probeSocket)
         var duration: Double = 0
-        let durLines = client.queryBatch("{\"command\":[\"get_property\",\"duration\"]}")
-        let durObj   = IPCClient.parseFirst(durLines)
-        if let d = durObj["data"] as? Double { duration = d }
+        if let d = client.fileDuration() { duration = d }
         terminate(probeProc, socketPath: probeSocket)
 
         guard duration > 0 else {
@@ -797,7 +795,7 @@ final class CropDetector {
     }
 
     private func sampleAtPosition(
-        client: IPCClient, seekSec: Int, filePath: String, videoW: Double, videoH: Double,
+        client: CropProbeTransport, seekSec: Int, filePath: String, videoW: Double, videoH: Double,
         isStream: Bool, state: RoundState, stateQueue: DispatchQueue, manual: Bool = false
     ) {
         let alreadyLoaded = stateQueue.sync { state.fileConfirmedLoaded }
@@ -809,16 +807,14 @@ final class CropDetector {
         }
         stateQueue.sync { state.fileConfirmedLoaded = true }
 
-        let seekCmd = "{\"command\":[\"seek\",\"\(seekSec)\",\"absolute\"]}"
-        _ = client.queryBatch(seekCmd)
+        client.seekAbsolute(seconds: seekSec)
         waitForSeekCompletion(client: client, maxWait: state.seekWait)
 
         let screenshotPath = "/tmp/crop_frame_\(seekSec)_\(Int(Date().timeIntervalSince1970 * 1000)).jpg"
-        let shotCmd = "{\"command\":[\"screenshot-to-file\",\"\(screenshotPath)\",\"video\"]}"
         if Diag.mediaTelemetryEnabled {
             Diag.mediaRecord("[media-shot] caller=hidden-probe phase=request manual=\(manual)")
         }
-        _ = client.queryBatch(shotCmd)
+        _ = client.screenshotVideo(to: screenshotPath)
         waitForScreenshotFile(at: screenshotPath, maxWait: state.screenshotWait)
 
         defer { try? FileManager.default.removeItem(atPath: screenshotPath) }
@@ -843,7 +839,7 @@ final class CropDetector {
             if Diag.mediaTelemetryEnabled {
                 Diag.mediaRecord("[media-shot] caller=hidden-probe-retry phase=request manual=\(manual)")
             }
-            _ = client.queryBatch(shotCmd)
+            _ = client.screenshotVideo(to: screenshotPath)
             waitForScreenshotFile(at: screenshotPath, maxWait: state.screenshotWait)
             let retryResult = decodeAndAnalyze()
             if retryResult.eligible,
@@ -907,7 +903,7 @@ final class CropDetector {
             return
         }
 
-        let client = IPCClient(path: socketPath)
+        let client = probeFactory(socketPath)
         sampleAtPosition(
             client: client, seekSec: seekSec, filePath: filePath, videoW: videoW, videoH: videoH,
             isStream: isStream, state: state, stateQueue: stateQueue, manual: manual
@@ -924,7 +920,7 @@ final class CropDetector {
         count: Int, interval: TimeInterval, mainIPCPath: String, videoW: Double, videoH: Double,
         state: RoundState, stateQueue: DispatchQueue, filePath: String, manual: Bool = false
     ) {
-        let client = IPCClient(path: mainIPCPath)
+        let client = probeFactory(mainIPCPath)
 
         if !manual, !waitForMainPlayback(filePath: filePath, generation: state.generation, playback: state.playback) {
             guard isCurrent(filePath, state.generation), let playback = state.playback,
@@ -940,9 +936,7 @@ final class CropDetector {
             return
         }
 
-        let fmtLines = client.queryBatch("{\"command\":[\"get_property\",\"screenshot-format\"]}")
-        let fmtObj = IPCClient.parseFirst(fmtLines)
-        let ext = (fmtObj["data"] as? String) ?? "png"
+        let ext = client.screenshotFormat()
 
         for i in 0..<count {
             guard isCurrent(filePath, state.generation) else { return }
@@ -963,7 +957,7 @@ final class CropDetector {
             if Diag.mediaTelemetryEnabled {
                 Diag.mediaRecord("[media-shot] caller=stream-live phase=request manual=\(manual)")
             }
-            _ = client.queryBatch("{\"command\":[\"screenshot-to-file\",\"\(shotPath)\",\"video\"]}")
+            _ = client.screenshotVideo(to: shotPath)
             waitForScreenshotFile(at: shotPath, maxWait: Self.liveScreenshotWait)
             guard let image = NSImage(contentsOfFile: shotPath),
                   let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
@@ -1029,11 +1023,10 @@ final class CropDetector {
                 // no evidence either way, so don't burn more rounds on the
                 // same dark stretch - wait for the scene to brighten. A
                 // paused player will still be dark in 30s, so don't schedule.
-                let paused = IPCClient.parseFirst(IPCClient(path: mainPath).queryBatch(
-                    "{\"command\":[\"get_property\",\"pause\"]}"))["data"] as? Bool
+                let paused = probeFactory(mainPath).isPaused()
                 finish(finalCrop: nil, filePath: filePath, definitive: false)
                 if paused != false {
-                    print("[cropdetect] all-dark window but player paused - no retry scheduled")
+                    print("[cropdetect] all-dark window but player paused - no retry scheduled up=\(cropUptime())")
                 } else {
                     scheduleDarkRetry(filePath: filePath, videoW: videoW, videoH: videoH, duration: state.duration)
                 }
@@ -1429,3 +1422,6 @@ final class CropDetector {
         return (CGRect(x: finalCropX, y: finalCropY, width: finalCropW, height: finalCropH), centerLum, eligible, signature)
     }
 }
+
+// One bounded wall-clock stamp for every cropdetect boundary line (199ec logging split).
+private func cropUptime() -> String { String(format: "%.3f", ProcessInfo.processInfo.systemUptime) }

@@ -1,3 +1,16 @@
+// Player/PPController.swift
+// Overlay composition, playback controls and frame layout.
+// Uses: AppKit, CoreImage, Foundation, IOKit, CoreGraphics, Darwin, QuartzCore
+// Engine: both
+import AppKit
+import CoreImage
+import Foundation
+import CoreFoundation
+import IOKit
+import IOKit.ps
+import CoreGraphics
+import Darwin
+import QuartzCore
 // ================================================================
 //  PPController.swift - central overlay NSView
 //  Owns: construction, mpv IPC polling and dispatch, frame layout, cross-feature decisions
@@ -9,25 +22,12 @@
 //  broad or cross-feature decisions stay here. Read mode flags through
 //  forwarding properties. Keep unmigrated callers behind named shims.
 // ================================================================
-import AppKit
-import CoreImage
-import Foundation
-import CoreFoundation
-import IOKit
-import IOKit.ps
-import CoreGraphics
-import Darwin
-import QuartzCore
 // ================================================================
 //  PPController - overlay composition and dispatch
 // ================================================================
 // I14: construction sites are AppDelegate's launchMPV checkTimer, handleWakeUp (and its recovery timer), and attachOverlay.
 final class PPController: NSView {
 
-    // Typed backend composition only; wire format and decoding remain backend-owned.
-    var playbackOperations:PlayerPlaybackOperations {
-        PlayerPlaybackOperations(command:ipcCommand,persistent:persistentConnection.write,packet:ipcClient.sendCropPacket,reset:ipcClient.resetCropPackets)
-    }
     func pausePlayback() {playbackOperations.pause()}
     func enableLivePhoton() {playbackOperations.photonLive()}
 
@@ -50,12 +50,85 @@ final class PPController: NSView {
     // ── IPC state ───────────────────────────────────────────────────────
     let ipcPath: String
     let ipcClient: IPCClient
-    private let persistentConnection: PersistentEventConnection
+    // Typed channel, not the concrete handle: the backend-owner factory extension in
+    // Engine/MPVCommand.swift composes it; construction stays on the owner path at attach.
+    let persistentConnection: any PlayerPersistentEventChannel
 
     private let pollEngine: PollEngine
+    /// Observation snapshot of the producer run (NOT a commit-owning lease) and the wire observer that feeds it on the connection queue.
+    let exportLease: ExportRunLeaseBox   // assigned in init from a local: no read of self before every stored property is set
+    let exportWire: ExportWireObserver
+    /// The frame-request settlement tracker (per-attempt ACK/fail; single-wait, never-reused epoch/ordinal). Bound to the observer's ack/fail/purge below.
+    let exportSettlement = ExportFrameSettlement()
+    /// The export wire emitter bound to the persistent connection's REAL persistent enqueue: Bool = queued (entered the connection-owned outbox), never delivered.
+    /// Raw emitter plumbing only (progress, not a full consumer): each line is tagged with its connection generation, owner load, prepared run and pending
+    /// settlement attempt, and the persistent enqueue refuses anything stale or disconnected. The tag mint is Engine-owned: Player hands
+    /// engine-neutral origin/run/attempt legs and never names the tag type. The per-frame channel (typed seal re-query + lease-source
+    /// construction) is deliberately NOT composed: the live product keeps no channel and every frame acquisition refuses closed.
+    lazy var exportEmitter = ExportWireEmitter(enqueue: { [persistentConnection, exportWire, exportSettlement, exportLease] line in
+        let owner = exportWire.currentOwner()
+        return persistentConnection.enqueueExportLine(line,
+                                                      session: owner?.session ?? "", opening: owner?.opening ?? 0,
+                                                      runId: exportLease.preparedRun()?.run.runId,
+                                                      attempt: exportSettlement.pendingAttempt?.raw)
+    })
+    private var exportHubToken: ScriptMessageHub.ObserverToken?
+    private let exportStartCoordinator = ExportStartCoordinator()
+    private let exportStartProviderCell = ExportStartProviderCell()
+    /// The composition root's bound capability source, installed through `ExportAsSeenAction.installStartProvider` together with the
+    /// Start provider (Lane E, adapted to the landed root-owned source: the root builds and binds it, the controller reads it here).
+    /// nil before the root installs it: the snapshot read below falls back to the unbound default built from live cell state.
+    var exportCapabilitySource: ExportCapabilitySource?
+    /// The launch-scoped export frame-channel wiring (W-gdb-199eb-21, PANELS): owns the seal query client; its
+    /// request-id blocks are the connection's own (MPVCommand.sealQueryIdRange/sealDirtyQueryIdRange). Replies reach
+    /// the client through the connection's sealReplySink (consumed on the connection queue before the generic onLine
+    /// chain — MPVCommand.swift drainCompleteLines); cancel/unload/reconnect/load change invalidate it below.
+    /// nil = no channel composed: every frame acquisition keeps refusing typed (the state before the root installs it).
+    var exportFrameChannelWiring: ExportFrameChannelWiring? {
+        didSet { (persistentConnection as? PersistentEventConnection)?.sealReplySink = exportFrameChannelWiring.map { w in { obj in w.handleReply(obj) } } }
+    }
+    private let exportStartBackground = DispatchQueue(label: "gor.export.start", qos: .utility)
+
+    /// The owner fence for the E0 preflight probe: the owner's CURRENT accepted-load state read on the connection's
+    /// work queue (the emitter's own owner-read pattern, :69). nil = no owner state readable now (fail-closed).
+    func exportOwnerFence() -> ExportProbeFence? {
+        let owner = persistentConnection.workQueue.sync { exportWire.currentOwner() }
+        return owner.map { ExportProbeFence(session: $0.session, opening: $0.opening, path: $0.path,
+                                            connectionEpoch: $0.connectionEpoch, receiptRunId: $0.receiptRunId) }
+    }
+
+    /// Start/cancel intent from the panel (PARSE-ONLY DRAFT, Mac-only file: swiftc -parse, no full-tree compile). The App passes ONLY the preflight result and a terminal handler; it never sees
+    /// the owner queue, wire lines, backend factory, source or runner. The per-plan products (adapter, readback contract, renderer source, backend factory, filesystem, admission, timebase,
+    /// feed factory) come from `exportStartProvider`, which only the composition root sets; nil (today's state) = `.noProvider`, so Start keeps its typed refusal and nothing binds. The
+    /// controller owns the single-flight: a start while a previous operation is in flight or tearing down answers that typed decision without building anything.
+    /// Callbacks arrive on `exportStartBackground`; the App binds main delivery.
+    var exportStartProvider: ((ExportPreflightResult) -> ExportStartInputs?)? {
+        get { exportStartProviderCell.value }
+        set { exportStartProviderCell.value = newValue }
+    }
+    func exportStartFromPanel(result: ExportPreflightResult,
+                              onTerminal: @escaping (ExportStartOperation.Terminal) -> Void) -> ExportStartOperation.Decision {
+        let provider = exportStartProviderCell.value   // snapshot; the provider itself runs outside every controller lock (ExportStartCoordinator)
+        return exportStartCoordinator.start(
+            hasPlan: result.job != nil && result.capture != nil,
+            prepare: provider.map { p in { p(result) } },
+            build: { [self] inputs in
+                let legs = ExportControllerLegs(box: exportLease, wire: exportWire, ownerQueue: persistentConnection.workQueue,
+                                                enqueueLine: { [persistentConnection] line, session, opening, runId, attempt in
+                                                    persistentConnection.enqueueExportLine(line, session: session, opening: opening, runId: runId, attempt: attempt)
+                                                },
+                                                dropRun: { [persistentConnection] runId in persistentConnection.dropExportRun(runId) })
+                return ExportStartOperation.production(background: exportStartBackground, legs: legs, inputs: inputs, onTerminal: onTerminal)
+            },
+            onCancelledWhilePreparing: { onTerminal(.cancelledBeforeRun) })
+    }
+    /// Cancel before Export = nothing; while preparing it latches (inputs dropped); during start/run it latches or stops (see ExportStartOperation.cancel).
+    func exportCancelFromPanel() { exportStartCoordinator.cancel(); exportFrameChannelWiring?.invalidate(.cancel) }
 
     private let brightness:   BrightnessController
     private let cropDetector: CropDetector
+    /// This player's automatic-scan anchor and evidence; never shared with another player.
+    let cropScanGuard: CropScanGuard
 
     private var hideTimer:    Timer?
     private var eventMonitor: Any?
@@ -86,6 +159,10 @@ final class PPController: NSView {
     /// Callback fired right after each fileLoadedGeneration bump on the
     /// persistent connection queue.
     var onFileLoaded: ((Int) -> Void)?
+    /// gor-fit publishes user-data/gor/fit-natural (the opening owner's untiled natural size, bound to
+    /// session/opening/path). Observed on the persistent connection and forwarded on main; the consumer
+    /// (AppDelegate.noteFitNatural) owns admission. nil = nobody consumes, the publication is inert.
+    var onFitNatural: ((Any?) -> Void)?
     private(set) var volume: Float = PPController.defaultVolume
 
     var cursorHidden = false
@@ -148,13 +225,20 @@ final class PPController: NSView {
         sourceCropPropertyActive=false;requestRealCrop(CGRect(x:0,y:0,width:1,height:1),newIntent:true);refreshStereoMenuGeometry(force:true);refreshEffectiveGap()
         appliedVideoFrame = .zero;appliedVideoFrameWindowSize = .zero;applyVideoFrame(bounds:bounds)
     }
+    /// The window must fit what plain 2D shows for this film: one eye of a packed stereo source, not the packed frame.
+    /// flatUIEyeAspect is the controller's own measured eye aspect; otherwise the packing the crop detector was last told.
+    private func singleEyeWindowAspect() -> Double? {
+        vr180Controller?.flatUIEyeAspect
+            ?? CropSourcePacking.singleEyeAspect(packedAspect: nativeVideoAspect, stereo: cropDetector.stereoSBS, topBottom: cropDetector.stereoTopBottom)
+    }
     private func offReset() {
+        let eyeAspect = singleEyeWindowAspect()
         retireSBSFilmFrame()
         (NSApp.delegate as? AppDelegate)?.currentAspectPreset = .defaultAR
         stereoManualAspect=nil;stereoGeometryKey="";stereoRestorePending=false;stereoProjectionBaseAspect=nil
         ipcCommand(#"{"command":["set","video-aspect-override","no"]}"#)
         sourceCropPropertyActive=false;clearOwnedCropFromMenu()
-        requestRealCrop(CGRect(x:0,y:0,width:1,height:1),newIntent:true);clearStereoMenuCrop(refit:false);restoreStereoMenuFrame();refreshStereoMenuGeometry(force:true)
+        requestRealCrop(CGRect(x:0,y:0,width:1,height:1),newIntent:true);clearStereoMenuCrop(refit:false);restoreStereoMenuFrame(eyeAspect: eyeAspect);refreshStereoMenuGeometry(force:true)
         appliedVideoFrame = .zero;appliedVideoFrameWindowSize = .zero;applyVideoFrame(bounds:bounds)
     }
     /// Leaving 3D back to plain 2D. offReset() clears the crop through the menu path, which
@@ -269,6 +353,16 @@ final class PPController: NSView {
     private let vrChromeMask = CALayer()
     /// Root overlay clip: both SBS eye bands, or the single 2D film frame.
     private let uiChromeMask = CAShapeLayer()
+    /// The tiling bleed clip in content coordinates (nil = no clip). Intersected into the chrome mask
+    /// so titlebar/content/controls render only inside this player's reserved cell. The setter
+    /// re-applies the mask with the current chrome geometry in the SAME main-thread transaction, so a
+    /// new clip - or nil on fullscreen / PiP / peer departure - never leaves the previous mask in
+    /// place until an unrelated layout pass.
+    var tilingContentClip: CGRect? = nil { didSet { refreshTilingClipMask() } }
+    /// Last chrome geometry handed to updateUIChromeClip, so the mask can be rebuilt on clip change
+    /// without waiting for the next layout pass.
+    private var lastChromeClip: (rect: CGRect, eyeShift: CGFloat)? = nil
+    private weak var chromeClipHost: CALayer? = nil
     // AppKit-owned button/sidebar backing layers cannot be moved into a CAReplicator without breaking
     // AppKit's view ownership. Mirror their actual rendered pixels instead, after their final layout.
     // The right eye is visual only. The original left-eye controls keep all actions and hit testing.
@@ -287,9 +381,26 @@ final class PPController: NSView {
         trackedUIRoll=roll.isFinite ? roll:0; applyTrackedUITilt()
     }
     private func updateUIChromeClip(hostLayer: CALayer, rect: CGRect, eyeShift: CGFloat, replicating: Bool) {
+        lastChromeClip = (rect, replicating ? eyeShift : 0)
+        chromeClipHost = hostLayer
+        applyUIChromeClip(hostLayer: hostLayer)
+    }
+    private func refreshTilingClipMask() {
+        guard Thread.isMainThread else { DispatchQueue.main.async { [weak self] in self?.refreshTilingClipMask() }; return }
+        if let host = chromeClipHost { applyUIChromeClip(hostLayer: host) }
+    }
+    private func applyUIChromeClip(hostLayer: CALayer) {
+        guard let last = lastChromeClip else { return }
+        let clip = tilingContentClip.map { GorFitRect(x: $0.origin.x, y: $0.origin.y, w: $0.width, h: $0.height) }
+        // Each eye is translated to its own position FIRST, then intersected separately with the same
+        // fixed tiling clip (eyeClips): shifting an already-clipped rect would push the second eye out
+        // of the cell or drop its valid in-cell part. replicating=false stored eyeShift 0 -> one eye.
+        // != 0, not > 0: a negative eye shift keeps its second eye.
+        let rects = GorPlayerTiling.eyeClips(
+            rect: GorFitRect(x: last.rect.origin.x, y: last.rect.origin.y, w: last.rect.width, h: last.rect.height),
+            eyeShift: last.eyeShift != 0 ? last.eyeShift : nil, tilingClip: clip)
         let path = CGMutablePath()
-        path.addRect(rect)
-        if replicating, eyeShift > 0 { path.addRect(rect.offsetBy(dx: eyeShift, dy: 0)) }
+        for r in rects { path.addRect(CGRect(x: r.x, y: r.y, width: r.w, height: r.h)) }
         uiChromeMask.path = path
         uiChromeMask.fillColor = NSColor.black.cgColor
         uiChromeMask.frame = hostLayer.bounds
@@ -826,6 +937,62 @@ final class PPController: NSView {
     private var cropMotionActive=false
     private var cropGeometryOwnedUntil:Double=0
     var cropGeometryTransitionActive:Bool {cropMotionActive || ProcessInfo.processInfo.systemUptime<cropGeometryOwnedUntil}
+    // Suspected contention mitigation, sampling fail-safe only: never receipt, acceptance or landing evidence.
+    // gor-fit publishes user-data/gor/crop-window-motion while its window spring runs. cropGeometryOwnedUntil is
+    // unchanged. This is a BOUNDED mitigation, not guaranteed whole-animation coverage: the cap assumes at most a
+    // 16384 px window move from rest (Lua law, OMEGA 9, settles in 1.45 s) plus margin. A spring retargeted with
+    // nonzero velocity, a stalled scheduler or a lost false can outlive it; sampling then resumes by design.
+    private var cropWindowMotion=CropWindowMotionHold()
+    private var cropWindowMotionHoldActive:Bool {
+        cropWindowMotion.holding(now:ProcessInfo.processInfo.systemUptime,token:cropPacketToken,path:currentFilePath,
+                                 intent:cropPacketIntentGen,motion:cropMotionGeneration,mediaPending:mediaTransitionPending)
+    }
+    /// Cheap and main-safe: memory reads only, no IPC. Used by the screen samplers.
+    var cropCaptureDeferred:Bool {cropGeometryTransitionActive || cropWindowMotionHoldActive}
+    private func noteCropWindowMotion(_ data:Any?) {cropWindowMotion.note(data,now:ProcessInfo.processInfo.systemUptime)}
+    // BEGIN CropWindowMotionHold (pure state; extracted verbatim by Tests/CropDetect/crop_window_motion_hold_test.py)
+    private struct CropWindowMotionHold {
+        static let startBound:Double=0.5+0.5      // Lua source-layout wait (0.5 s) + margin
+        static let holdCap:Double=1.5+0.5         // assumed spring bound (see comment above) + margin
+        static let maxGen=1_000_000
+        private(set) var gate:(token:String,path:String,intent:UInt64,motion:UInt64,sequence:UInt64,expires:Double)?
+        private(set) var watermark = -1            // newest gen seen for this gate, kept after false
+        private(set) var held:(gen:Int,until:Double)?
+        mutating func arm(token:String,path:String,intent:UInt64,motion:UInt64,sequence:UInt64,now:Double) {
+            gate=(token,path,intent,motion,sequence,now+Self.startBound);watermark = -1;held=nil
+        }
+        mutating func clear() {gate=nil;watermark = -1;held=nil}
+        private static func flag(_ v:Any?)->Bool? {
+            guard let n=v as? NSNumber,String(cString:n.objCType)=="c" else{return nil}
+            return n.boolValue
+        }
+        private static func generation(_ v:Any?)->Int? {
+            guard let n=v as? NSNumber,String(cString:n.objCType) != "c" else{return nil}   // reject Bool
+            let d=n.doubleValue
+            guard d.isFinite,d>=0,d<=Double(maxGen),d==d.rounded() else{return nil}
+            return Int(d)
+        }
+        mutating func note(_ data:Any?,now:Double) {
+            guard let d=data as? [String:Any],let g=gate,let active=Self.flag(d["active"]),let gen=Self.generation(d["gen"]),
+                  d["token"] as? String==g.token,d["path"] as? String==g.path,
+                  d["intent"] as? String==String(g.intent),d["motion"] as? String==String(g.motion),
+                  d["sequence"] as? String==String(g.sequence) else{return}
+            if active {
+                // Strictly newer gen only: duplicates, reordered or post-completion trues cannot re-arm or renew.
+                guard gen>watermark,now<g.expires else{return}
+                watermark=gen;held=(gen,now+Self.holdCap)   // hard expiry anchored once per accepted motion
+            } else {
+                guard gen>=watermark else{return}
+                watermark=gen;held=nil
+            }
+        }
+        func holding(now:Double,token:String?,path:String,intent:UInt64,motion:UInt64,mediaPending:Bool)->Bool {
+            guard let h=held,let g=gate,h.until>now,g.token==token,g.path==path,g.intent==intent,
+                  g.motion==motion,!mediaPending else{return false}
+            return true
+        }
+    }
+    // END CropWindowMotionHold
     private var cropMotionPlanning=false
     private var cropMotionWindowTarget:NSRect?
     private var cropMotionTargetRect:CGRect?
@@ -955,7 +1122,19 @@ final class PPController: NSView {
               videoW > 0, videoH > 0 else { return }
         openingFitArmedOpen = nil
         defer {
-            if let aspect=deferredWindowRefitAspect {refitWindowForCrop(aspect:aspect)}
+            // Source crop first: a deferred crop refit must not land the final window fit while the
+            // source crop is still unconfirmed. Hold it while a receipt is awaited; the accepted
+            // source-layout path refits on layout-ready, and the bounded deadline lands the fit
+            // 500ms later if confirmation never arrives.
+            if let aspect=deferredWindowRefitAspect,cropPacketAcceptance=="awaiting" {
+                let holdPath=currentFilePath,holdOpening=cropSourceOpening,holdIntent=cropPacketIntentGen
+                DispatchQueue.main.asyncAfter(deadline:.now()+0.5) { [weak self] in
+                    guard let self,self.currentFilePath==holdPath,self.cropSourceOpening==holdOpening,
+                          self.cropPacketIntentGen==holdIntent,self.deferredWindowRefitAspect==aspect else{return}
+                    self.deferredWindowRefitAspect=nil
+                    self.refitWindowForCrop(aspect:aspect)
+                }
+            } else if let aspect=deferredWindowRefitAspect {refitWindowForCrop(aspect:aspect)}
             reconcileCropPropertyWindow()
         }
         // gor-fit.lua already sized this window before the first frame (baseline opens only). A second geometry
@@ -1024,6 +1203,13 @@ final class PPController: NSView {
     static var cropPacketSession=""
     private var cropBoundLaunchSession=PPController.cropPacketSession
     /// Called only by AppDelegate's actual new-receiver launch path, never by receiver content.
+    /// The launch path's failure hook: the receiver process was never started (capture admission or spawn failed after the vouch). Revokes the
+    /// intent voucher so the minted session can never establish a fresh-lifecycle basis for a process that does not exist. No-op when the session
+    /// is not the current launch intent.
+    func cropReceiverLaunchFailed(_ session:String) {
+        guard !session.isEmpty,session==Self.cropPacketSession else{return}
+        exportLease.revokeVerifiedLaunch(session:session)
+    }
     func beginCropReceiverLaunch(_ session:String) {
         guard !session.isEmpty,session==Self.cropPacketSession,session != cropBoundLaunchSession else{return}
         cropDetectionStopped=false
@@ -1033,6 +1219,11 @@ final class PPController: NSView {
         cropReceiverCount=0;cropReceiverSeekGeneration=0;cropReceiverSeekToken=nil
         cropPacketTokenAttempts=0;cropPacketAcceptance="unresolved";cropConfirmedRect=nil;cropConfirmedIdentity=nil;cropSourceAcceptanceAnchor=nil
         cropSeekFenceActive=false;cropFreshMeasurementRequired=false;manualRedetectInFlight=false
+        // The exclusive issuer's fresh-process INTENT: AppDelegate minted this session and is about to launch a new receiver, and THIS path is the only
+        // caller. The voucher is launch intent, not proof of a started process: AppDelegate revokes it via cropReceiverLaunchFailed on every failure
+        // exit before MPVLifeline.run succeeds (capture admission, process spawn). Only the vouched session's first load (opening 1) may establish the
+        // fresh-lifecycle watermark bound to that load's origin.
+        exportLease.noteVerifiedLaunch(session:session)
         // Wire query ids and sample sequence stay launch-monotonic for this controller.
         cancelCropMotion()
         if !embeddedBackend,!vrModeEnabled,!surfaceToolsEnabled {cropDetector.invalidateMeasurementContext()}
@@ -1144,8 +1335,28 @@ final class PPController: NSView {
     /// Planning may coalesce active work; only accepted non-full crop may suppress a settled search.
     private var cropSearchOwnsSelection:Bool {
         if !usesCropCommandReceipts {return cropRect != nil}
+        if cropReceiptOwnsAutoSearch {return true}
         if cropCommandInFlight {return true}
         return commandAcceptedCropRect.map{$0 != Self.fullSourceCrop} ?? false
+    }
+    /// Pending final acceptance: a final crop command was sent and its receipt has not been seen, or the bounded recovery gave up for this player/load/intent. The automatic search is
+    /// silent in both states. This is neither accepted nor a success, and says nothing about full versus non-full (`commandAcceptedCropRect` stays the only accepted source).
+    private var cropReceiptKey:CropReceiptKey {CropReceiptKey(session:cropBoundLaunchSession,path:currentFilePath,opening:cropSourceOpening,intent:cropPacketIntentGen)}
+    private var cropReceiptGate=CropReceiptGate()
+    private var cropReceiptOwnsAutoSearch:Bool {
+        usesCropCommandReceipts && cropReceiptGate.ownsAutoSearch(cropReceiptKey,now:ProcessInfo.processInfo.systemUptime)
+    }
+    /// A receipt deadline passed or the receiver answered partial/failed. Typed status once the existing idempotent recovery has no attempt left; true = recovery may still run.
+    @discardableResult
+    private func noteCropReceiptMissed(resendLimit:Int=CropReceiptGate.recoveryDelays.count) -> Bool {
+        let exhausted=CropReceiptRecovery.exhausted(recoveryGen:cropCommandRecoveryGen,intentGen:cropPacketIntentGen,attempts:cropCommandRecoveryAttempts,resendLimit:resendLimit)
+        let status=cropReceiptGate.missed(cropReceiptKey,recoveryExhausted:exhausted,now:ProcessInfo.processInfo.systemUptime)
+        if status == .unresolved {
+            cropDetector.resetLastFile()
+            print("[crop-receipt] unresolved: recovery bound reached; automatic search silent for this load until an explicit detect")
+            return false
+        }
+        return true
     }
     private var cropMayRedriveIdenticalTarget:Bool {
         usesCropCommandReceipts && !cropCommandInFlight && commandAcceptedCropRect != cropRect
@@ -1191,6 +1402,11 @@ final class PPController: NSView {
               expected.intent==cropPacketIntentGen,expected.motion==cropMotionGeneration else{return}
         let source:String?=r.source,geometry:String?=r.geometry
         let policySatisfied=r.policySatisfied
+        if source=="accepted" && policySatisfied {
+            guard cropReceiptGate.accept(cropReceiptKey,now:ProcessInfo.processInfo.systemUptime) else {
+                print("[crop-receipt] stale receipt ignored: no pending final for this player/load/intent");return
+            }
+        }
         if source=="accepted" {
             let tag="\(expected.token)|\(expected.intent)|\(expected.motion)|\(expected.sequence)"
             if cropLayoutReadback?.tag != tag {
@@ -1216,10 +1432,20 @@ final class PPController: NSView {
             showCropDetectOSD("crop command accepted")
         } else {
             cropDetector.resetLastFile() // a later natural trigger may re-measure; no new scan loop
-            scheduleCropCommandRecovery()
+            if noteCropReceiptMissed() {scheduleCropCommandRecovery()}
             showCropDetectOSD("crop not confirmed: source \(source ?? "missing"), window \(geometry ?? "missing")")
             print("[crop-receipt] unresolved source=\(source ?? "missing") geometry=\(geometry ?? "missing")")
         }
+    }
+    /// A final command whose receipt never arrived (no accepted/partial verdict at all) is re-sent at most
+    /// once per intent: every re-send replays the window refit for the same target, and the owner log showed
+    /// four identical refits per crop. A real receipt verdict still uses the full recovery schedule.
+    static let receiptMissingResendLimit=1
+    private func scheduleReceiptMissingRecovery() {
+        if cropCommandRecoveryGen==cropPacketIntentGen,cropCommandRecoveryAttempts>=Self.receiptMissingResendLimit {
+            print("[crop-receipt] receipt still missing after \(cropCommandRecoveryAttempts) re-send; not re-sending the same crop again");return
+        }
+        scheduleCropCommandRecovery()
     }
     private var cropCommandRecoveryGen:UInt64=0
     private var cropCommandRecoveryAttempts=0
@@ -1231,10 +1457,10 @@ final class PPController: NSView {
               (!menuCropOwnsSelection || intent.rect==Self.fullSourceCrop) else{return}
         let gen=cropPacketIntentGen
         if cropCommandRecoveryGen != gen {cropCommandRecoveryGen=gen;cropCommandRecoveryAttempts=0;cropCommandRecoveryPending=nil}
-        guard cropCommandRecoveryAttempts<3,cropCommandRecoveryPending==nil else{return}
+        guard cropCommandRecoveryAttempts<CropReceiptGate.recoveryDelays.count,cropCommandRecoveryPending==nil else{return}
         cropCommandRecoveryAttempts+=1;cropCommandRecoveryPending=gen
         let attempt=cropCommandRecoveryAttempts,path=currentFilePath,opening=cropSourceOpening
-        let delay=[0.5,2.0,5.0][attempt-1]
+        let delay=CropReceiptGate.recoveryDelays[attempt-1]
         DispatchQueue.main.asyncAfter(deadline:.now()+delay) { [weak self] in
             guard let self,self.cropCommandRecoveryPending==gen,self.cropCommandRecoveryGen==gen else{return}
             self.cropCommandRecoveryPending=nil
@@ -1273,7 +1499,7 @@ final class PPController: NSView {
         let id=cropPacketQueryId,stamp=cropPacketLocalStamp,path=currentFilePath,gen=cropPacketIntentGen
         cropPacketPending=(id,stamp,path,rect,cropPacketIntentGen)
         if let bytes=try? JSONSerialization.data(withJSONObject:["command":["get_property","user-data/gor/crop-epoch-state"],"request_id":id]),let text=String(data:bytes,encoding:.utf8) {persistentConnection.write(text)}
-        DispatchQueue.main.asyncAfter(deadline:.now()+2) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline:.now()+CropReceiptGate.tokenDeadline) { [weak self] in
             guard let self,let pending=self.cropPacketPending,pending.id==id,pending.gen==gen,
                   pending.stamp==stamp,pending.path==path,self.cropPacketIntentGen==gen,
                   self.cropPacketLocalStamp==stamp,self.currentFilePath==path else{return}
@@ -1458,7 +1684,10 @@ final class PPController: NSView {
     var originalBrightness: Float { brightness.originalBrightness }
 
     private var autoPlayTried  = false
+    private var lastBufferGrowthNote = ""      // log dedupe only: the restart decision is unchanged
+    private var lastBufferGrowthSkipNote = ""
     private var wtCropRetry: [String: (n: Int, t: TimeInterval, scannedEnd: Double)] = [:]   // retries per remembered wt file; 64 most recent, oldest evicted
+    private var bufferGrowthFolded = 0   // bounded count of growth events folded into an armed retry window (log lines 1,64,128,...)
     // At most one vetoed final-result recovery per opening. A scan may finish
     // after its safety window; dropping it must not permanently lock the file.
     private var rejectedCropRetryAvailable = true
@@ -1545,17 +1774,26 @@ final class PPController: NSView {
     var embeddedSubtitlePosition:((_ percent:Double)->String?)?
     /// Installed only with a real native session adapter. nil is an unavailable operation.
     var embeddedSourceCrop:((_ source:String,_ crop:CGRect)->String?)?
+    /// Embedded track list rows for "sub" or "audio" from the current session's published surface; nil = unavailable.
+    var embeddedTrackList:((_ type:String)->[(id:Int,title:String)]?)?
     var embeddedCropWindow:((_ frame:NSRect,_ aspect:Double,_ finished:Bool)->Bool)?
     init(frame: NSRect, ipcPath: String, embeddedBackend:Bool=false) {
         self.embeddedBackend=embeddedBackend
         self.ipcPath      = ipcPath
         self.ipcClient    = IPCClient(path: ipcPath)
-        self.persistentConnection = PersistentEventConnection(path: ipcPath)
-        self.pollEngine   = PollEngine(connection: persistentConnection,receiverSession:{PPController.cropPacketSession})
+        let pipeline = PPController.makePersistentEventPipeline(path: ipcPath)
+        self.persistentConnection = pipeline.channel
+        self.pollEngine   = pipeline.poll
+        let exportBox = ExportRunLeaseBox(); self.exportLease = exportBox
+        self.exportWire   = ExportWireObserver(box: exportBox)
         self.brightness   = BrightnessController()
         // vendorPath: resolved vendored path, or the conventional sibling
         // path on a miss (logged); launchHiddenMpv's do/catch degrades crop.
-        self.cropDetector = CropDetector(mpvPath: GORResources.vendorPath("mpv/bin/mpv"))
+        let scanGuard = CropScanGuard()
+        self.cropScanGuard = scanGuard
+        let detector = PPController.makeCropDetector(mpvPath: GORResources.vendorPath("mpv/bin/mpv"))
+        detector.sampleRecorder = { scanGuard.recordSample($0) }
+        self.cropDetector = detector
         self.cropDetector.mainIPCPath = ipcPath
 
         super.init(frame: frame)
@@ -1570,6 +1808,8 @@ final class PPController: NSView {
             // Reload/on_load rotations surface here; the registration dies with the socket.
             self.persistentConnection.write(#"{"command":["observe_property",9196900,"user-data/gor/crop-epoch-state"]}"#)
             self.persistentConnection.write(#"{"command":["observe_property",9196901,"user-data/gor/crop-packet-receipt"]}"#)
+            self.persistentConnection.write(#"{"command":["observe_property",9196902,"user-data/gor/crop-window-motion"]}"#)
+            self.persistentConnection.write(#"{"command":["observe_property",9196903,"user-data/gor/fit-natural"]}"#)
         }
         persistentConnection.onLine = { [weak self] obj in
             if obj["event"] as? String == "start-file" {
@@ -1635,9 +1875,27 @@ final class PPController: NSView {
                     if obj["name"] as? String == "seeking", obj["data"] as? Bool == true {
                         DispatchQueue.main.async { [weak self] in self?.fenceCropMeasurementForSeek();self?.cropDetector.setMainPlaybackReady(false) }
                     }
+                    if obj["name"] as? String == "pause", obj["data"] as? Bool == false {
+                        // A source that never delivers playback-restart after a paused seek leaves the ready gate
+                        // cleared forever: the WT path refuses silently and the fresh path stops after its OSD.
+                        // Unpause IS that source's restart; arm only a gate still waiting, never re-arm a ready one.
+                        DispatchQueue.main.async { [weak self] in
+                            guard let self, !self.cropDetector.isMainPlaybackReady() else { return }
+                            self.cropDetector.setMainPlaybackReady(true)
+                            self.startAutomaticCropDetection(needsRedetect: self.cropFreshMeasurementRequired)
+                        }
+                    }
                     if obj["name"] as? String == "user-data/gor/crop-packet-receipt" {
                         let receipt=obj["data"]
                         DispatchQueue.main.async { [weak self] in self?.noteCropPacketReceipt(receipt) }
+                    }
+                    if obj["name"] as? String == "user-data/gor/crop-window-motion" {
+                        let motionData=obj["data"]
+                        DispatchQueue.main.async { [weak self] in self?.noteCropWindowMotion(motionData) }
+                    }
+                    if obj["name"] as? String == "user-data/gor/fit-natural" {
+                        let naturalData=obj["data"]
+                        DispatchQueue.main.async { [weak self] in self?.onFitNatural?(naturalData) }
                     }
                     if obj["name"] as? String == "user-data/gor/crop-epoch-state" {
                         let epochData=obj["data"],stamp=self?.cropPacketOpeningStamp ?? 0
@@ -1653,8 +1911,14 @@ final class PPController: NSView {
                     }
                     self?.pollEngine.handlePropertyChange(obj)
                 } else {
-                    if event == "start-file" { self?.pollEngine.purgeFileStateOnQueue() }
-                    if event == "file-loaded" {self?.pollEngine.noteFileLoadedOnQueue()}
+                    if event == "start-file" { self?.pollEngine.purgeFileStateOnQueue() }   // the purge hook (onExportPurgeOnQueue) invalidates the export run, here and on reconnect
+                    if event == "file-loaded" {
+                        self?.pollEngine.noteFileLoadedOnQueue(); self?.exportWire.noteLoaded(); self?.noteCropFitLoad()
+                        self?.exportFrameChannelWiring?.invalidate(.loadChanged)
+                        // the trusted load scope advances ONLY from this real owner load-change path
+                        if let self { let owner = self.exportWire.currentOwner(); self.persistentConnection.noteExportLoad(session: owner?.session ?? "", opening: owner?.opening ?? 0) }
+                    }
+                    if event == "client-message" { ScriptMessageHub.deliver(obj) }
                     self?.handleMPVEvent(event, obj)
                 }
             }
@@ -1672,19 +1936,19 @@ final class PPController: NSView {
             guard let self = self, !self.menuCropOwnsSelection else {return}
             var usableQueuedResult=false
             defer {self.finishQueuedManualCrop(terminal:confidence>=0,decisive:decisive,usable:usableQueuedResult)}
-            guard CropAcceptPolicy.accepts(rect: rect, stereo: self.cropDetector.stereoSBS || self.cropDetector.perEyeAspect != nil, startPlayhead: CropScanGuard.shared.startPlayhead, nowPlayhead: self.currentTime, stream: CropDetector.isWTPlayback(self.currentFilePath), manual: self.manualRedetectInFlight) else {
+            guard CropAcceptPolicy.accepts(rect: rect, stereo: self.cropDetector.stereoSBS || self.cropDetector.perEyeAspect != nil, startPlayhead: self.cropScanGuard.startPlayhead, nowPlayhead: self.currentTime, stream: CropDetector.isWTPlayback(self.currentFilePath), manual: self.manualRedetectInFlight, samples: self.cropScanGuard.samples) else {
                 self.recoverRejectedAutomaticCrop(early:confidence<0,manual:self.manualRedetectInFlight)
                 if confidence>=0 {self.manualRedetectInFlight=false}
                 return
             }
             usableQueuedResult=decisive
             // Detector aspect is UI-only; original per-eye picture aspect is unchanged.
-            let early = confidence < 0; let manual = self.manualRedetectInFlight; if decisive && !early { self.wtCropRetry[self.currentFilePath] = nil }; print("[cropdetect] result decisive=\(decisive) early=\(early) manual=\(manual) rect=\(String(describing: rect))")
+            let early = confidence < 0; let manual = self.manualRedetectInFlight; if decisive && !early { self.wtCropRetry[self.currentFilePath] = nil }; print("[cropdetect] result decisive=\(decisive) early=\(early) manual=\(manual) rect=\(String(describing: rect)) tok=\(cropDetector.retryToken) up=\(cropUptime())")
             if !early { self.manualRedetectInFlight = false }   // an early apply must not end the manual/retry state before the final result
             // Weak measurements never move the picture; the file stays
             // unlocked and a later trigger re-measures.
             guard decisive else {
-                print("[cropdetect] indecisive result — crop state unchanged"); var willRetry = false; if CropDetector.isWTPlayback(self.currentFilePath), self.isPlaying, (!manual || !self.cropSearchOwnsSelection) { let n = self.wtCropRetry[self.currentFilePath]?.n ?? 0; if self.wtCropRetry.index(forKey: self.currentFilePath) == nil, self.wtCropRetry.count >= 64, let old = self.wtCropRetry.min(by: { $0.value.t < $1.value.t })?.key { self.wtCropRetry.removeValue(forKey: old) }; self.wtCropRetry[self.currentFilePath] = (n + 1, ProcessInfo.processInfo.systemUptime, self.lastSeekableEnd); willRetry = true; let scheduled = self.currentFilePath; let token=self.cropDetector.retryToken; let delay = Self.wtCropRetryDelay(attempt: n + 1); print("[cropdetect] search continues in \(Int(delay))s (attempt \(n + 1), scanned to \(Int(self.lastSeekableEnd))s)"); DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in guard let self, self.currentFilePath == scheduled else { return }; self.fireWTCropRetry(scheduled,token:token) } }
+                print("[cropdetect] indecisive result — crop state unchanged up=\(cropUptime())"); var willRetry = false; if CropDetector.isWTPlayback(self.currentFilePath), self.isPlaying, (!manual || !self.cropSearchOwnsSelection) { let n = self.wtCropRetry[self.currentFilePath]?.n ?? 0; if self.wtCropRetry.index(forKey: self.currentFilePath) == nil, self.wtCropRetry.count >= 64, let old = self.wtCropRetry.min(by: { $0.value.t < $1.value.t })?.key { self.wtCropRetry.removeValue(forKey: old) }; self.wtCropRetry[self.currentFilePath] = (n + 1, ProcessInfo.processInfo.systemUptime, self.lastSeekableEnd); willRetry = true; let scheduled = self.currentFilePath; let token=self.cropDetector.retryToken; let delay = Self.wtCropRetryDelay(attempt: n + 1); print("[cropdetect] search continues in \(Int(delay))s (attempt \(n + 1), scanned to \(Int(self.lastSeekableEnd))s) up=\(cropUptime())"); DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in guard let self, self.currentFilePath == scheduled else { return }; self.fireWTCropRetry(scheduled,token:token) } }
                 if manual { self.showCropDetectOSD(CropDetector.isWTPlayback(self.currentFilePath) ? (willRetry ? "crop detect: not enough of the stream downloaded yet, retrying by itself" : "crop detect: not enough of the stream downloaded yet, try again") : "crop detect: no decision yet, file left unlocked") }
                 return
             }
@@ -1699,6 +1963,7 @@ final class PPController: NSView {
                 if manual { self.showCropDetectOSD("crop detect: no bars") }
                 self.transitionCrop(.revert, confidence: confidence, manual: manual)
             }
+            print("[cropdetect] apply receipt rect=\(rect == nil ? "nil" : "set") decisive=\(decisive) early=\(early) manual=\(manual) tok=\(cropDetector.retryToken) up=\(cropUptime())")
         }
 
         cropDetector.onStatus = { [weak self] status in
@@ -1729,7 +1994,10 @@ final class PPController: NSView {
                 sidebarUI: sidebarUI,
                 spineUI: spineUI,
                 ipcPath: ipcPath,
-                ipcCommand: { [weak self] cmd in self?.ipcCommand(cmd) },
+                commands: MusicModeCommands(
+                    ipcCommand: { [weak self] cmd in self?.ipcCommand(cmd) },
+                    gorFitScriptActive: { PPController.gorFitScriptActive }
+                ),
                 getAppliedVideoFrame: { [weak self] in self?.appliedVideoFrame ?? .zero },
                 setAppliedVideoFrame: { [weak self] f in self?.appliedVideoFrame = f },
                 setAppliedVideoFrameWindowSize: { [weak self] s in self?.appliedVideoFrameWindowSize = s },
@@ -1745,9 +2013,7 @@ final class PPController: NSView {
             musicModeController = mmc
         }
         if vr180Controller == nil {
-            vr180Controller = VR180Controller(
-                ipcCommand: { [weak self] cmd in self?.ipcCommand(cmd) }
-            )
+            vr180Controller = makeVR180Controller()
             vr180Controller?.applyThreeDState(MainActor.assumeIsolated {ThreeDStore.shared.snapshot},[.present])
             vr180Controller?.onUITilt = { [weak self] roll in
                 guard self?.vr180Controller?.usesLegacyPreviewChrome == true else{return}
@@ -1775,7 +2041,6 @@ final class PPController: NSView {
             let imc = IPTVModeController(
                 hostView: self,
                 spineUI: spineUI,
-                ipcCommand: { [weak self] cmd in self?.ipcCommand(cmd) },
                 batchIPC: { [weak self] batch in self?.batchIPC(batch) },
                 closeMusicModeIfActive: { [weak self] in
                     if self?.musicModeController?.isMusicMode == true {
@@ -1796,7 +2061,10 @@ final class PPController: NSView {
         if inputController == nil {
             inputController = InputController(
                 view: self,
-                ipcCommand: { [weak self] cmd in self?.ipcCommand(cmd) },
+                commands: InputKeyCommands(
+                    ipcCommand: { [weak self] cmd in self?.ipcCommand(cmd) },
+                    projectionActive: { [weak self] in self?.vrModeEnabled == true }
+                ),
                 wakeUI: { [weak self] in self?.wakeUI() },
                 musicModeActive: { [weak self] in self?.musicModeController?.isMusicMode == true },
                 iptvModeActive: { [weak self] in self?.iptvModeController?.isIptvMode == true },
@@ -1876,8 +2144,8 @@ final class PPController: NSView {
         }
 
         FilmPrepareOSD.shared.start { [weak self] t in self?.showCropDetectOSD(t) }; cursorTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
-            self?.checkCursorHide()
-            self?.refreshVRControlMirrorsFromTimer()
+            MainThreadDiag.time("cursorTimer.hide") { self?.checkCursorHide() }
+            MainThreadDiag.time("cursorTimer.vrMirror") { self?.refreshVRControlMirrorsFromTimer() }
         }
 
         NotificationCenter.default.addObserver(
@@ -1899,7 +2167,10 @@ final class PPController: NSView {
             streamTorrent: { (NSApp.delegate as? AppDelegate)?.streamTorrent($0) },
             openMediaFile: { [weak self] path in self?.openMediaFile(path) },
             photonEnabled: { (NSApp.delegate as? AppDelegate)?.photonEnabled ?? false },
-            ipcCommand: { [weak self] cmd in self?.ipcCommand(cmd) },
+            commands: InputKeyCommands(
+                ipcCommand: { [weak self] cmd in self?.ipcCommand(cmd) },
+                projectionActive: { [weak self] in self?.vrModeEnabled == true }
+            ),
             batchIPC: { [weak self] batch in self?.batchIPC(batch) }
         )
         dragDropHandler?.start()
@@ -2101,9 +2372,30 @@ final class PPController: NSView {
         window?.makeFirstResponder(self)
 
         guard !embeddedBackend else {return}
+        // Export run observation: the owner snapshot is read INLINE on the connection queue (reentrancy-safe accessor), the hub observer is token-scoped (the capture listener slot is untouched).
+        exportWire.bindOwner { [pollEngine] in pollEngine.exportOwnerSnapshot() }
+        pollEngine.onExportPurgeOnQueue = { [weak self] in   // owner purge (start-file/unload): kill the prepared run's still-queued lines typed FIRST (drop before invalidate), THEN unload the observer
+            let runId = self?.exportLease.preparedRun()?.run.runId   // captured BEFORE noteUnloaded: after the unload the prepared run reads nil
+            if let runId { self?.persistentConnection.dropExportRun(runId) }
+            self?.exportWire.noteUnloaded()
+            self?.exportFrameChannelWiring?.invalidate(.unload)
+        }
+        pollEngine.onExportReceiptOnQueue = { [weak self] in self?.exportWire.noteReceipt() }
+        // Frame-request composition: purge/reconnect/unload abandons the pending frame request; ACK/fail reach the tracker from the same labelled observer path.
+        exportWire.onPurge = { [exportSettlement] in exportSettlement.abandon() }
+        exportWire.onAck = { [exportSettlement] e, o, s in exportSettlement.noteAck(epoch: e, ordinal: o, script: s) }
+        exportWire.onFail = { [exportSettlement] e, o, s in exportSettlement.noteFail(epoch: e, ordinal: o, script: s) }
+        persistentConnection.onDisconnected = { [exportSettlement, weak self] in   // a dropped connection notifies the pending attempt; the seam demands a fresh prepare
+            exportSettlement.abandon()
+            self?.exportFrameChannelWiring?.invalidate(.reconnect)
+        }
+        persistentConnection.onExportEntryDropped = { [exportSettlement] tag, _ in   // every unwritten queued entry ends its exact attempt (typed terminal)
+            if let raw = tag.attempt { exportSettlement.abandonAttempt(ExportFrameAttempt(raw: raw)) }
+        }
+        if exportHubToken == nil { exportHubToken = ScriptMessageHub.addObserver { [weak self] args in self?.exportWire.handle(args: args) } }
         pollEngine.onLayoutInvalidated = { [weak self] in self?.invalidateOpeningLayout() }
         pollEngine.onResults = { [weak self] results, meta in
-            self?.handlePollResults(results, meta: meta)
+            MainThreadDiag.time("pollResults") { self?.handlePollResults(results, meta: meta) }
         }
         // G4: publish every flush to the engine-neutral observation surface
         // (G5 control bus / G6 presentation receipt consume it there).
@@ -2427,12 +2719,23 @@ final class PPController: NSView {
         guard !currentFilePath.isEmpty, CropDetector.isWTPlayback(currentFilePath),
               wtCropRetry[currentFilePath] != nil || cropDetector.isPending, !cropSearchOwnsSelection,
               !menuCropOwnsSelection else { return }
-        // Owner 2m50s crop report: a buffer-growth restart must not cancel a running scan or reset its
-        // retry count. The pending scan's own result re-fires the search with the grown range
-        // (startAutomaticCropDetection computes positions from the current ranges at fire time),
-        // so progress continues without the cancel/restart churn.
-        if cropDetector.isPending { print("[cropdetect] buffer-growth restart skipped: scan already pending (\(why))"); return }
-        print("[cropdetect] restarting the crop search (\(why))")
+        // A buffer-growth restart skips a pending scan that still holds fresh evidence: its own
+        // result re-fires the search with the grown range (startAutomaticCropDetection computes
+        // positions from the current ranges at fire time), so progress continues without
+        // cancel/restart churn. A scan whose evidence has gone stale is cancelled instead,
+        // because its result would be dropped on arrival.
+        if cropDetector.isPending {
+            guard cropScanGuard.scanDoomed(nowPlayhead: currentTime) else {
+                if lastBufferGrowthSkipNote != lastBufferGrowthNote {
+                    lastBufferGrowthSkipNote = lastBufferGrowthNote
+                    print("[cropdetect] buffer-growth restart skipped: scan already pending (\(why)) up=\(cropUptime())")
+                }
+                return
+            }
+            print("[cropdetect] pending scan's anchor and samples went stale (\(why)); rescanning the grown range")
+        }
+        lastBufferGrowthNote = "";lastBufferGrowthSkipNote = ""
+        print("[cropdetect] restarting the crop search (\(why)) up=\(cropUptime())")
         // Owner 2m50s crop report: a buffer-growth restart must not reset the retry backoff to
         // attempt 1 (the 199az "restart at once on cache growth" intent is the immediate rescan,
         // not erasing the retry count). The entry is kept so the next indecisive result backs off
@@ -2442,8 +2745,9 @@ final class PPController: NSView {
     }
     private func fireWTCropRetry(_ scheduled: String,token:Int) {
         guard currentFilePath==scheduled,cropDetector.retryToken==token,!menuCropOwnsSelection,!cropDetector.isPending else{return}
-        if !isPlaying { print("[cropdetect] retry re-armed: playback paused, no scan"); DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak self] in guard let self, self.currentFilePath == scheduled else { return }; self.fireWTCropRetry(scheduled,token:token) }; return }
-        if HeatTelemetry.thermalPressure { print("[cropdetect] retry deferred: thermal pressure"); DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak self] in guard let self, self.currentFilePath == scheduled else { return }; self.fireWTCropRetry(scheduled,token:token) }; return }
+        if !isPlaying { print("[cropdetect] retry re-armed: playback paused, no scan up=\(cropUptime())"); DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak self] in guard let self, self.currentFilePath == scheduled else { return }; self.fireWTCropRetry(scheduled,token:token) }; return }
+        if HeatTelemetry.thermalPressure { print("[cropdetect] retry deferred: thermal pressure up=\(cropUptime())"); DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak self] in guard let self, self.currentFilePath == scheduled else { return }; self.fireWTCropRetry(scheduled,token:token) }; return }
+        print("[cropdetect] retry fired attempt=\(self.wtCropRetry[scheduled]?.n ?? 0) file=\((scheduled as NSString).lastPathComponent) up=\(cropUptime())")
         self.startAutomaticCropDetection(needsRedetect:true)
     }
     private var cropSearchWake:UInt64=0
@@ -2459,6 +2763,7 @@ final class PPController: NSView {
             self.cropSearchWakePending=false
             guard !self.presentationIsQuitting,!self.cropDetectionStopped,!self.menuCropOwnsSelection else{return}
             if let accepted=self.commandAcceptedCropRect,accepted != Self.fullSourceCrop {return}
+            if self.cropReceiptOwnsAutoSearch {return}   // pending final acceptance: recovery owns the intent, no rescan and no re-arm
             self.maintainAutomaticCropSearch(min(attempt+1,3))
             if self.isPlaying,!HeatTelemetry.thermalPressure,!self.cropDetector.isPending {
                 self.cropDetector.resetLastFile()
@@ -2468,6 +2773,7 @@ final class PPController: NSView {
     }
     private func startAutomaticCropDetection(needsRedetect: Bool = false) {
         guard !presentationIsQuitting,!cropDetectionStopped else{return}
+        if cropReceiptOwnsAutoSearch {return}   // every automatic caller, including needsRedetect, stays silent while the final crop is pending or unresolved
         maintainAutomaticCropSearch()
         if embeddedBackend && embeddedSourceCrop == nil {return}
         guard !mediaTransitionPending else {return}
@@ -2478,7 +2784,8 @@ final class PPController: NSView {
               !cropDetector.isPending, !cropSearchOwnsSelection || needsRedetect || cropPackingNeedsRedetect else { return }
         if CropDetector.isWTPlayback(currentFilePath), !cropDetector.isMainPlaybackReady() { return }
         cropPackingNeedsRedetect=false
-        print("[cropdetect] dimensions ready \(Int(videoDisplayW))x\(Int(videoDisplayH)) — triggering"); CropScanGuard.shared.begin(playhead: currentTime)
+        cropFitScan &+= 1
+        print("[cropdetect] dimensions ready \(Int(videoDisplayW))x\(Int(videoDisplayH)) — triggering up=\(cropUptime())"); cropScanGuard.begin(playhead: currentTime)
         cropDetector.detect(filePath: currentFilePath, videoW: videoDisplayW,
                             videoH: videoDisplayH, fallbackDuration: duration)
     }
@@ -2878,8 +3185,22 @@ final class PPController: NSView {
             if end > lastSeekableEnd { lastSeekableEnd = end }
             // 199az: cache growth past the range the pending search could see restarts it at once.
             if let pending = wtCropRetry[currentFilePath], !cropSearchOwnsSelection, end > pending.scannedEnd + 2 {
-                print("[cropdetect] buffer grew past the scanned range (\(Int(pending.scannedEnd))s -> \(Int(end))s)")
-                restartPendingWTCropSearch("buffer-growth")
+                // The armed retry already fires with the grown range (positions are computed at fire time), so a
+                // rescan inside its window is the every-2s churn the 2/5/10/30s backoff exists to prevent (owner
+                // 2m50s crop report). Fold it into the scheduled fire; only a DUE retry restarts at once (199az).
+                if ProcessInfo.processInfo.systemUptime >= pending.t + Self.wtCropRetryDelay(attempt: pending.n) {
+                    let growth = "\(Int(pending.scannedEnd))s -> \(Int(end))s"
+                    if growth != lastBufferGrowthNote {
+                        lastBufferGrowthNote = growth
+                        print("[cropdetect] buffer grew past the scanned range (\(growth)) up=\(cropUptime())")
+                    }
+                    restartPendingWTCropSearch("buffer-growth")
+                } else {
+                    bufferGrowthFolded &+= 1
+                    if bufferGrowthFolded == 1 || bufferGrowthFolded % 64 == 0 {
+                        print("[cropdetect] buffer-growth folded into the scheduled retry (attempt \(pending.n)), total=\(bufferGrowthFolded)")
+                    }
+                }
             }
 
             if end >= 5.0, duration > 0, !isPlaying, !autoPlayTried {
@@ -2979,6 +3300,10 @@ final class PPController: NSView {
     /// Launch-monotonic ids for the reconnect chain readback: never reused, so
     /// a reply correlates to the connection the command was written to by
     /// construction (write() no-ops while disconnected).
+    /// The OSD chain readback's request ids: an explicit EXCLUSIVE upper bound (it was open-ended). Disjoint from every other id block, notably the export seal-query block
+    /// (MPVCommand.sealQueryIdRange 10_197_000_000..<10_198_000_000) and the observation-ack block (10_198_000_001..<11_198_000_000, the same id space). Launch-monotonic: never reused
+    /// across reconnect/teardown; at the bound the query is refused (chain stays uncertain) rather than wrapping.
+    static let osdQueryIdRange = 3_000_001..<9_000_000
     private var nextOsdQueryId = 3_000_001
     private var pendingOsdChainQueryId: Int? = nil
 
@@ -3091,7 +3416,7 @@ final class PPController: NSView {
         // External mpv source crop is a single final command. Lua waits for
         // source reconfiguration (or500ms) before animating only the window.
         let clock=CropMotionClock(started:ProcessInfo.processInfo.systemUptime,duration:usesCropPacket ? 0:0.42)
-        func step(_ host:PPController,_ now:Double) {
+        @MainActor func step(_ host:PPController,_ now:Double) {
             guard host.cropMotionGeneration==generation,host.currentFilePath==source,host.cropPacketToken==openingToken else{return}
             let phase=clock.phase(now),sample=CropMotionClock.mix(from,rect,phase)
             let previous=host.cropPresentationRect
@@ -3126,13 +3451,15 @@ final class PPController: NSView {
                     if phase>=1 {
                         host.cropPacketFinal=(openingToken,source,intent,generation,sequence,crop,rect)
                         host.cropPacketAcceptance="awaiting"
-                        DispatchQueue.main.asyncAfter(deadline:.now()+2) { [weak host] in
+                        host.cropReceiptGate.beginFinal(host.cropReceiptKey,now:ProcessInfo.processInfo.systemUptime)
+                        host.cropWindowMotion.arm(token:openingToken,path:source,intent:intent,motion:generation,sequence:sequence,now:ProcessInfo.processInfo.systemUptime)
+                        DispatchQueue.main.asyncAfter(deadline:.now()+CropReceiptGate.receiptDeadline) { [weak host] in
                             guard let host,host.cropPacketFinal?.sequence==sequence,host.cropPacketFinal?.motion==generation,host.cropPacketAcceptance=="awaiting" else{return}
                             host.cropPacketAcceptance="receipt-missing"
-                            host.scheduleCropCommandRecovery()
+                            if host.noteCropReceiptMissed(resendLimit:PPController.receiptMissingResendLimit) {host.scheduleReceiptMissingRecovery()}
                             host.cropDetector.resetLastFile() // remove only the settled-success latch, no immediate scan
                             host.showCropDetectOSD("crop not confirmed: receiver receipt missing")
-                            print("[crop-receipt] final command acceptance unresolved; intent retained")
+                            print("[crop-receipt] final command acceptance unresolved; intent retained intent=\(intent) motion=\(generation) sequence=\(sequence) resends=\(host.cropCommandRecoveryAttempts)")   // pairs with the script's "crop-packet drop" line of the same sequence
                         }
                     }
                     host.playbackOperations.deliver(prepared,generation:generation,final:phase>=1)
@@ -3161,7 +3488,7 @@ final class PPController: NSView {
             guard let self else{return}
             guard self.cropMotionGeneration==generation else{return}
             guard self.currentFilePath==source else {self.cancelCropMotion();return}
-            step(self,ProcessInfo.processInfo.systemUptime)
+            MainThreadDiag.time("cropMotionTimer") { MainActor.assumeIsolated {step(self,ProcessInfo.processInfo.systemUptime)} }
         }
         cropMotionTimer=timer;RunLoop.main.add(timer,forMode:.common)
     }
@@ -3173,12 +3500,13 @@ final class PPController: NSView {
             playbackOperations.fenceCropIntent()
         }
         cropPacketFinal=nil;cropPacketAcceptance="unresolved"
+        cropWindowMotion.clear()
         cropPacketPending=nil;cropPacketIntent=nil;cropPacketIntentGen &+= 1
     }
     private func cancelCropMotion() {
         cropWindowRecoveryTicket &+= 1;cropWindowRecoveryKey=nil
         cropLayoutReadback=nil;cropWindowIssuedLayout=nil;deferredWindowRefitAspect=nil
-        cropPacketFinal=nil
+        cropPacketFinal=nil;cropWindowMotion.clear()
         if cropMotionActive,!embeddedBackend,Self.gorFitScriptActive {ipcCommand(MPVCommand.make(["script-message-to","gor_fit","cancel"]))}
         cropMotionGeneration &+= 1
         playbackOperations.resetCrop(cropMotionGeneration)
@@ -3202,7 +3530,7 @@ final class PPController: NSView {
         return stereoManualAspect ?? manualMenuCropAspect ?? nativeVideoAspect.map {$0*Double(rect.width/rect.height)}
     }
     /// Each sample is applied through the real engine operation. No screenshot zoom substitute.
-    private func applyCropPresentation(_ rect:CGRect,publish:((PlayerCropSample)->Void)?=nil)->Bool {
+    private func applyCropPresentation(_ rect:CGRect,publish:(@MainActor (PlayerCropSample)->Void)?=nil)->Bool {
         let send=publish ?? { [weak self] in self?.playbackOperations.publish($0) }
         if embeddedBackend {
             if let why=embeddedSourceCrop?(currentFilePath,rect) {spineUI.showMPVOSD("gorav crop refused: "+why,force:true);return false}
@@ -3242,6 +3570,7 @@ final class PPController: NSView {
     /// THIS connection by construction (never reused; written only while
     /// connected, so only an mpv on this connection can answer it).
     private func sendOsdChainQuery() {
+        guard Self.osdQueryIdRange.contains(nextOsdQueryId) else { pendingOsdChainQueryId = nil; return }   // exhausted: refuse, the chain stays uncertain (landed bound)
         let id = nextOsdQueryId
         nextOsdQueryId += 1
         pendingOsdChainQueryId = id
@@ -3483,15 +3812,71 @@ final class PPController: NSView {
         refitWindowForCrop(aspect: aspect, settledFrame: frame)
         return true
     }
+    // (a) crop/fit evidence (owner 22:41): one bounded encoder per player; rows go to the existing
+    // bounded DiagSessionSink, never a new file. Repeated gate refusals aggregate into a counter
+    // per gate; a row is emitted on the 1st, 2nd, 4th, 8th... refusal so a stuck gate reads as a
+    // count, not as thousands of lines. Both the counter keys (a fixed gate-name set) and the
+    // emission schedule (log-spaced) are bounded; the encoder caps rows and bytes on top.
+    private var cropFitEvidence = CropFitEvidenceEncoder()
+    private var cropFitGateCounts: [String: Int] = [:]
+    private var cropFitLoad: UInt64 = 0
+    private var cropFitScan: UInt64 = 0
+
+    /// Log-spaced emission schedule for repeated gate refusals (pure; Linux-harness pinned).
+    static func cropFitGateEmits(_ count: Int) -> Bool { count > 0 && (count & (count - 1)) == 0 }
+
+    /// Landing row assembly (pure; Linux-harness pinned against the real encoder verdict).
+    /// Window-frame aspects are compared on both sides, so identical chrome cancels in the ratio.
+    static func cropFitLandingNumbers(physicallyMatched: Bool, target t: GorFitRect, observed o: GorFitRect?) -> (numbers: [String: Double], reason: String) {
+        var n: [String: Double] = ["target_x": t.x, "target_y": t.y, "target_w": t.w, "target_h": t.h,
+                                   "target_aspect": t.h > 0 ? t.w / t.h : 0, "tolerance": 0.005,
+                                   "observed": physicallyMatched ? 1 : 0, "matched": physicallyMatched ? 1 : 0]
+        if let o {
+            n["observed_x"] = o.x; n["observed_y"] = o.y; n["observed_w"] = o.w; n["observed_h"] = o.h
+            n["observed_aspect"] = o.h > 0 ? o.w / o.h : 0
+        }
+        return (n, physicallyMatched ? "landed" : "unproven")
+    }
+
+    func emitCropFit(_ stage: CropFitEvidenceEncoder.Stage, numbers: [String: Double] = [:], reason: String = "none") {
+        let event = CropFitEvidenceEncoder.Event(stage: stage,
+            utcMilliseconds: Int64(Date().timeIntervalSince1970 * 1000),
+            monotonicSeconds: ProcessInfo.processInfo.systemUptime, numbers: numbers, reason: reason)
+        let identity = CropFitEvidenceEncoder.Identity(
+            player: PlayerSessionContext.shared?.rawRoot.lastPathComponent ?? "main",
+            window: max(1, window?.windowNumber ?? 1), load: cropFitLoad, scan: cropFitScan)
+        if let data = cropFitEvidence.encode(event, identity: identity) { _ = DiagSessionSink.append(data) }
+    }
+
+    /// New owner load: the evidence identity advances and the per-load gate counters reset.
+    func noteCropFitLoad() {
+        cropFitLoad &+= 1
+        cropFitScan = 0
+        cropFitGateCounts.removeAll(keepingCapacity: true)
+    }
+
+    func noteRefitGate(_ gate: String) {
+        let n = (cropFitGateCounts[gate] ?? 0) + 1
+        cropFitGateCounts[gate] = n
+        if Self.cropFitGateEmits(n) { emitCropFit(.fitGated, numbers: ["gate": Double(n)], reason: gate) }
+    }
+
+    func emitCropFitLanding(outcome: GorGeometryOutcome, target: GorFitRect, observed: GorFitRect?) {
+        let r = Self.cropFitLandingNumbers(physicallyMatched: outcome == .landed, target: target, observed: observed)
+        emitCropFit(.landing, numbers: r.numbers, reason: r.reason)
+    }
+
     @discardableResult
     private func refitWindowForCrop(aspect: Double?, settledFrame: NSRect? = nil,completion:((GorGeometryOutcome)->Void)?=nil) -> Bool {
-        if cropMotionActive && !cropMotionPlanning {return false}
+        emitCropFit(.requested, numbers: ["target_aspect": aspect ?? appliedSourceCropAspect ?? 0])
+        if cropMotionActive && !cropMotionPlanning { noteRefitGate("crop-motion"); return false }
         if cropRect != nil { print(CropInvariant.transitionLine("window refit", crop: cropRect, display: (videoDisplayW, videoDisplayH))) }
         let a = aspect ?? appliedSourceCropAspect ?? (videoDisplayH > 0 ? videoDisplayW / videoDisplayH : 0)
-        guard a > 0 else { return false }
-        if mediaTransitionPending {deferredWindowRefitAspect=a;return false}
+        guard a > 0 else { noteRefitGate("no-aspect"); return false }
+        if mediaTransitionPending {deferredWindowRefitAspect=a;noteRefitGate("media-transition");return false}
         if (NSApp.delegate as? AppDelegate)?.windowGeometryTransitionActive == true {
             deferredWindowRefitAspect = a
+            noteRefitGate("geometry-transition")
             return false
         }
         if let delegate=NSApp.delegate as? AppDelegate,delegate.pictureInPictureActive {
@@ -3500,14 +3885,14 @@ final class PPController: NSView {
             } else {delegate.refitPictureInPicture(aspect:a,completion:completion)}
             return true
         }
-        guard let win = window else { return false };if openingFitPending { deferredWindowRefitAspect = a; return false }
+        guard let win = window else { noteRefitGate("no-window"); return false };if openingFitPending { deferredWindowRefitAspect = a; noteRefitGate("opening-fit"); return false }
         deferredWindowRefitAspect = nil
         let f = settledFrame ?? win.frame
         let receiptScreen = settledFrame.flatMap { f in NSScreen.screens.max {
             let a = $0.frame.intersection(f), b = $1.frame.intersection(f)
             return (a.isNull ? 0 : a.width*a.height) < (b.isNull ? 0 : b.width*b.height)
         } }
-        guard let screen = receiptScreen ?? win.screen ?? NSScreen.main else { return false }
+        guard let screen = receiptScreen ?? win.screen ?? NSScreen.main else { noteRefitGate("no-screen"); return false }
         let vf = screen.visibleFrame
         let probe = NSWindow.frameRect(forContentRect: NSRect(x: 0, y: 0, width: 100, height: 100),
                                        styleMask: GorOpeningFit.mpvWindowMask)
@@ -3518,15 +3903,20 @@ final class PPController: NSView {
         guard let r = GorCropPlan.refitFrame(
                 frame: GorFitRect(x: f.minX, y: f.minY, w: width, h: f.height),
                 aspect: a, chromeW: probe.width - 100, chromeH: probe.height - 100,
-                avail: GorFitRect(x: vf.minX, y: vf.minY, w: vf.width, h: vf.height)) else { return false }
+                avail: GorFitRect(x: vf.minX, y: vf.minY, w: vf.width, h: vf.height)) else { noteRefitGate("plan-nil"); return false }
         // A committed crop centers on the same screen; uncrop keeps its old anchor.
         let target = NSRect(x: aspect != nil ? vf.midX - r.w / 2 : r.x,
                             y: aspect != nil ? vf.midY - r.h / 2 : r.y,
                             width: r.w, height: r.h)
         if cropMotionPlanning {cropMotionWindowTarget=target;return true}
         if embeddedBackend {return embeddedCropWindow?(target,a,true)==true}
-        if target.isAlmostEqual(to:f,epsilon:1.5) {completion?(.alreadyEqual);return true}
-        guard let geom=GorOpeningFit.clampGeometry(frame:target,screen:screen) else{return false}
+        if target.isAlmostEqual(to:f,epsilon:1.5) {
+            let lr = Self.cropFitLandingNumbers(physicallyMatched: true, target: GorFitRect(x: target.minX, y: target.minY, w: target.width, h: target.height), observed: GorFitRect(x: f.minX, y: f.minY, w: f.width, h: f.height))
+            emitCropFit(.landing, numbers: lr.numbers, reason: "already-equal")
+            completion?(.alreadyEqual);return true
+        }
+        guard let geom=GorOpeningFit.clampGeometry(frame:target,screen:screen) else{noteRefitGate("clamp-nil");return false}
+        emitCropFit(.fitTarget, numbers: ["target_x": target.minX, "target_y": target.minY, "target_w": target.width, "target_h": target.height, "target_aspect": a])
         if let delegate = NSApp.delegate as? AppDelegate {
             // Same fence as the clamp: our own refit receipt is not mistaken for a user resize, and a user drag
             // during it is not swallowed (landing unproven -> re-evaluation).
@@ -3621,12 +4011,13 @@ final class PPController: NSView {
         stereoMenuCropAspect = nil
         if refit { refreshStereoMenuGeometry(force:true) }
     }
-    private func restoreStereoMenuFrame() {
+    private func restoreStereoMenuFrame(eyeAspect: Double? = nil) {
         stereoRestorePending = true
         stereoMenuOriginalFrame = nil
         // A historical size may have the previous mode's aspect. Use the same current-content
         // refit path as aspect/crop changes, including fullscreen transition deferral.
-        refitWindowForCrop(aspect: nativeVideoAspect)
+        // Leaving a packed stereo mode refits to ONE eye (the picture plain 2D shows), never the packed frame.
+        refitWindowForCrop(aspect: eyeAspect ?? nativeVideoAspect)
     }
     func resetCrop() {
         clearOwnedCropFromMenu()
@@ -3636,6 +4027,7 @@ final class PPController: NSView {
         guard !presentationIsQuitting else{return}
         cropDetectionStopped=false
         rejectedCropRetryAvailable=true;cropPacketTokenAttempts=0
+        cropReceiptGate.explicitRestart(cropReceiptKey)   // an explicit detect opens a new attempt for this load
         if embeddedBackend && embeddedSourceCrop == nil {_=refuseEmbedded("source crop adapter");return}
         refreshCropSourcePacking()
         menuCropOwnsSelection=false;manualMenuCropAspect=nil; stereoRestorePending = false
@@ -3686,9 +4078,12 @@ final class PPController: NSView {
 
     override func layout() {
         super.layout()
-        applyVideoFrame(bounds: bounds)
-        musicModeController?.relayout()
-        iptvModeController?.relayout()
+        // A changed video frame already relaid out both panels before refreshing mirrors.
+        // Preserve the fallback for unchanged/degenerate geometry and AppKit-only layout.
+        if !applyVideoFrame(bounds: bounds) {
+            musicModeController?.relayout()
+            iptvModeController?.relayout()
+        }
     }
 
     // MARK: - Brightness
@@ -3925,7 +4320,8 @@ final class PPController: NSView {
 
     // MARK: - Video frame calculation
     // I27: sole writer of spineUI/sidebarUI/subtitleView frames.
-    private func applyVideoFrame(bounds: CGRect) {
+    @discardableResult
+    private func applyVideoFrame(bounds: CGRect) -> Bool {
         // Native view frames and their free-standing HUD/OSD layers land in one
         // transaction. Otherwise CALayer geometry eases behind the moving UI.
         CATransaction.begin()
@@ -3933,7 +4329,7 @@ final class PPController: NSView {
         defer { CATransaction.commit() }
         let winW = bounds.width
         let winH = bounds.height
-        guard winW > 1, winH > 1 else { return }
+        guard winW > 1, winH > 1 else { return false }
         GeomTrace.log("applyVideoFrame", "win=\(Int(winW))x\(Int(winH)) applied=\(Int(appliedVideoFrameWindowSize.width))x\(Int(appliedVideoFrameWindowSize.height)) fs=\(window?.styleMask.contains(.fullScreen) ?? false)")
 
         if appliedVideoFrame != .zero,
@@ -3989,7 +4385,7 @@ final class PPController: NSView {
 
         let roundedTarget = CGRect(x: round(target.minX), y: round(target.minY),
                                    width: round(target.width), height: round(target.height))
-        guard !roundedTarget.isAlmostEqual(to: appliedVideoFrame, epsilon: 2.0) else { return }
+        guard !roundedTarget.isAlmostEqual(to: appliedVideoFrame, epsilon: 2.0) else { return false }
         appliedVideoFrame           = roundedTarget
         appliedVideoFrameWindowSize = CGSize(width: winW, height: winH)
         // The photon HUD bounds itself to this rect (horizontal crop edge and
@@ -4233,6 +4629,7 @@ final class PPController: NSView {
         musicModeController?.relayout()
         iptvModeController?.relayout()
         refreshVRControlMirrors()
+        return true
     }
 
     // MARK: - OSD
@@ -4255,13 +4652,8 @@ final class PPController: NSView {
         if refuseEmbedded("subtitle/audio property "+property) {return false}
         let command=reset ? MPVCommand.make(["set_property",property,property == "sub-scale" ? 1 : property == "sub-pos" ? 100 : 0]) : MPVCommand.make(["add",property,delta])
         let payload=command+"\n"+MPVCommand.make(["get_property",property])
-        let lines=ipcClient.queryBatch(payload,timeout:0.3)
-        let replies=lines.compactMap{line->[String:Any]? in
-            guard let data=line.data(using:.utf8) else{return nil}
-            return (try? JSONSerialization.jsonObject(with:data)) as? [String:Any]
-        }
-        let reply=IPCClient.parseFirst(lines)
-        guard replies.first?["error"] as? String == "success",let value=reply["data"] as? Double,value.isFinite else{
+        let reply=queryMenuPayload(payload,requiringWriteSuccess:true)
+        guard let value=reply["data"] as? Double,value.isFinite else{
             spineUI.showMPVOSD("subtitle control unavailable",duration:1.5,force:true);return false
         }
         if property == "sub-scale" {
@@ -4351,18 +4743,16 @@ final class PPController: NSView {
 
     func nativeOnTopState()->Bool? {
         if embeddedBackend {return window?.level == .floating}
-        return IPCClient.parseFirst(ipcClient.queryBatch(#"{"command":["get_property","ontop"]}"#,timeout:0.15))["data"] as? Bool
+        return menuQueryOperations.onTop()
     }
 
     func nativeTrackSnapshot() -> (path:String,tracks:[[String:Any]]) {
         if refuseEmbedded("audio/subtitle track snapshot") {return (currentFilePath,[])}
-        let path=IPCClient.parseFirst(ipcClient.queryBatch(#"{"command":["get_property","path"]}"#,timeout:0.15))["data"] as? String ?? ""
-        let tracks=IPCClient.parseFirst(ipcClient.queryBatch(#"{"command":["get_property","track-list"]}"#,timeout:0.15))["data"] as? [[String:Any]] ?? []
-        let after=IPCClient.parseFirst(ipcClient.queryBatch(#"{"command":["get_property","path"]}"#,timeout:0.15))["data"] as? String ?? ""
-        return path == after ? (path,tracks) : ("",[])
+        return menuQueryOperations.tracks()
     }
 
     func fetchTrackList(type: String, completion: @escaping ([(id: Int, title: String)]) -> Void) {
+        if embeddedBackend, let rows = embeddedTrackList?(type == "sub" ? "sub" : "audio") { completion(rows); return }
         if refuseEmbedded(type == "sub" ? "embedded subtitle track selection":"audio track selection") {completion([]);return}
         print("[fetchTrackList] type: \(type), ipcPath exists: \(FileManager.default.fileExists(atPath: ipcPath))")
 
@@ -4417,6 +4807,60 @@ final class PPController: NSView {
         return "{\"command\":[\"set_property\",\"geometry\",\"\(geom)\"]\(rid)}"
     }
 
+    /// The accepted active load identity (PollEngine's LoadIdentityGate), or nil when none is current.
+    func activeLoadIdentity() -> (session: String, opening: UInt64, path: String)? { pollEngine.activeLoadIdentity() }
+    /// Fired on main when an identity becomes active; listeners re-read activeLoadIdentity() and revalidate.
+    func onActiveLoadIdentity(_ handler: @escaping () -> Void) { pollEngine.onActiveIdentity = handler }
+    /// B7: the ONE atomic source snapshot, backed ONLY by the PollEngine LoadIdentityGate identity.
+    /// pending == true means no accepted identity: refuse. Equality of (session, opening, path)
+    /// across the send is the stale-reply check.
+    struct SourceSnapshot {
+        let pending: Bool
+        let session: String?
+        let opening: UInt64?
+        let path: String?
+    }
+    func sourceSnapshot() -> SourceSnapshot {
+        guard let id = pollEngine.activeLoadIdentity() else {
+            return SourceSnapshot(pending: true, session: nil, opening: nil, path: nil)
+        }
+        return SourceSnapshot(pending: false, session: id.session, opening: id.opening, path: id.path)
+    }
+    /// The accepted load identity and the producer's published load receipt (v12m) in one queue-coherent read
+    /// (PollEngine owns the queue): the consumer latch's input for the look capture's caller fence. A nil receipt
+    /// means no v12m peer or nothing published for this load: explicit unknown, never a freshness claim.
+    func acceptedLoadAndReceipt() -> (identity: SourceSnapshot, receipt: PhotonProducerReceipt?)? {
+        guard let p = pollEngine.acceptedLoadAndReceipt() else { return nil }
+        return (SourceSnapshot(pending: false, session: p.session, opening: p.opening, path: p.path), p.receipt)
+    }
+    /// The accepted load state with the connection epoch, read inline when already on the owner queue, sync otherwise. Callers label their own events with it at the moment they ask.
+    func exportOwnerSnapshot() -> ExportOwnerSnapshot? { pollEngine.exportOwnerSnapshot() }
+    /// Hands a verified look pin to the lease on the connection queue. The label was captured by the caller BEFORE the hop and is carried unchanged: if the owner moved meanwhile, the lease rejects it.
+    func exportNotePin(_ pin: String, runId: String, capturedAt s: ExportOwnerSnapshot) {
+        persistentConnection.workQueue.async { [weak self] in self?.exportWire.notePin(pin, runId: runId, capturedAt: s) }
+    }
+    /// The export panel's encoder state for a planned job: the typed provider/plan mapping lives in Picture
+    /// (ExportRunConstruction.encoderState); this adapter only answers the provider's availability for THIS
+    /// job's route without handing the caller a backend or its factory. The Start-time construction recheck stays.
+    func exportEncoderState(for job: ExportJob) -> ExportEncoderState {
+        ExportRunConstruction.encoderState(for: job, providerAvailability: { Self.exportProviderAvailability(for: job) })
+    }
+    /// The panel's typed capability read (Lane E seam, ruling 2026-11-26 + Lane A amendment): I/O-free and
+    /// non-blocking. The composition root's bound source answers from its off-main-computed cached snapshot;
+    /// before the root installs one, the unbound default built from live cell state (a lock-protected bool, no I/O).
+    func exportCapabilitySnapshot() -> ExportCapability {
+        exportCapabilitySource?.cachedSnapshot ?? UnboundExportCapability(providerAssigned: exportStartProviderCell.value != nil).cachedSnapshot
+    }
+#if canImport(CGorExport)
+    /// The provider availability read: the backend is created by the typed factory for this job's plan, queried
+    /// and dropped here (never opened, so nothing to close); it is never handed out.
+    private static func exportProviderAvailability(for job: ExportJob) -> ExportBackendAvailability? {
+        ExportRunConstruction.libavBackend(for: job).availability
+    }
+#else
+    /// No provider module compiled in: the typed mapping's .notConnected leg.
+    private static func exportProviderAvailability(for job: ExportJob) -> ExportBackendAvailability? { nil }
+#endif
     func cancelFitAnimation() {
         interruptCropMotion()
         guard !embeddedBackend,Self.gorFitScriptActive else { return }
@@ -4429,14 +4873,14 @@ final class PPController: NSView {
 
     /// Screen metrics for gor-fit.lua (usable size, backing scale, window chrome), pushed as mpv user-data so the
     /// next file is sized from the screen the window is on. Same inputs the old opening fit used.
-    static var lastFitMetrics: String?
-    static var lastFitAnchor: String?
+    /// Per player: another player's last push is never this player's fallback.
+    let fitInputs=PlayerFitInputs()
     func pushFitMetrics() {
         guard Self.gorFitScriptActive, let value = GorOpeningFit.fitMetricsString(screen: window?.screen ?? NSScreen.main, separator: ",") else { return }
-        Self.lastFitMetrics = value
+        fitInputs.setMetrics(value)
         if let win=window,let screen=win.screen ?? NSScreen.main,
            let anchor=GorOpeningFit.clampGeometry(frame:win.frame,screen:screen) {
-            Self.lastFitAnchor=anchor
+            fitInputs.setAnchor(anchor)
             playbackOperations.fitAnchor(anchor)
         }
         ipcCommand(MPVCommand.make(["set_property", "user-data/gor/fit", value]))
@@ -4444,8 +4888,8 @@ final class PPController: NSView {
 
     func sendTrackedGeometry(_ geom: String, requestId: Int) -> Bool {
         guard persistentConnection.isConnected else { return false }
-        persistentConnection.write(Self.geometryCommandJSON(geom, requestId: requestId))
-        return true
+        // true = the tracked line provably entered the wire (an ACK can come); false = fall back now.
+        return persistentConnection.writeAdmitted(Self.geometryCommandJSON(geom, requestId: requestId))
     }
 
     /// r before playback (owner order 2026-11-15): jump to a random playlist
@@ -4569,9 +5013,9 @@ final class PPController: NSView {
         guard Self.gorFitScriptActive else { return }
         if Thread.isMainThread, let win=window, let screen=win.screen ?? NSScreen.main,
            let anchor=GorOpeningFit.clampGeometry(frame:win.frame,screen:screen) {
-            Self.lastFitAnchor=anchor
+            fitInputs.setAnchor(anchor)
         }
-        if let anchor=Self.lastFitAnchor {
+        if let anchor=fitInputs.anchor {
             playbackOperations.fitAnchor(anchor)
         }
     }
@@ -4591,16 +5035,16 @@ final class PPController: NSView {
             if Self.isReplacingLoadfile(command) { replacing = true; break }
         }
         guard replacing else { return payload }
-        var value = Self.lastFitMetrics
+        var value = fitInputs.metrics
         if Thread.isMainThread,
            let live = GorOpeningFit.fitMetricsString(screen: window?.screen ?? NSScreen.main, separator: ",") {
-            value = live; Self.lastFitMetrics = live
+            value = live; fitInputs.setMetrics(live)
             if let win=window,let screen=win.screen ?? NSScreen.main {
-                Self.lastFitAnchor=GorOpeningFit.clampGeometry(frame:win.frame,screen:screen)
+                fitInputs.setAnchor(GorOpeningFit.clampGeometry(frame:win.frame,screen:screen))
             }
         }
         guard let v = value else { return payload }
-        return PlayerFitProtocol.fitBatch(payload,metrics:v,anchor:Self.lastFitAnchor)
+        return PlayerFitProtocol.fitBatch(payload,metrics:v,anchor:fitInputs.anchor)
     }
 
     func batchIPC(_ rawPayload: String, timeout: TimeInterval = 5.0) {
@@ -4620,6 +5064,30 @@ final class PPController: NSView {
     func openMediaFile(_ path: String) {
         guard Thread.isMainThread else {
             DispatchQueue.main.async { [weak self] in self?.openMediaFile(path) }
+            return
+        }
+        // SCRIPT-02 (P29 block_fonts.lua -> gor Swift; I11/TRAP-04): a font
+        // file must never reach mpv loadfile. PhotonFont-loadable extensions
+        // route to the font loader exactly as in DragDropHandler.start(); the
+        // other blocked extensions are rejected before session open. Only an
+        // absolute file path reaches the font loader: an http(s) or other
+        // URL-shaped string with a loadable extension is rejected and logged
+        // (URL(fileURLWithPath:) would turn it into a bogus relative file URL).
+        // Coupled: DragDropHandler.start() (Input.swift); edit both drag paths together.
+        if let fontExt = FontDropGuard.blockedExtension(of: path) {
+            if FontDropGuard.loadableExtensions.contains(fontExt) {
+                if path.hasPrefix("/") {
+                    let url = URL(fileURLWithPath: path)
+                    _ = PhotonFont.loadFromURL(url)
+                    if PhotonFont.needsAxisMapping {
+                        PhotonFont.presentAxisMapping()
+                    }
+                } else {
+                    NSLog("[block_fonts] rejected non-file font path: %@", path)
+                }
+            } else {
+                NSLog("[block_fonts] rejected font drop: %@", path)
+            }
             return
         }
         // Every local entrypoint goes through the selected engine, including
@@ -4842,12 +5310,13 @@ final class PPController: NSView {
         l.target = self; menu.addItem(l)
         NSMenu.popUpContextMenu(menu, with: NSApp.currentEvent ?? NSEvent(), for: v)
     }
-    @objc func cycleSubtitle() { ipcCommand(#"{"command":["cycle","sub"]}"#) }
+    private lazy var subtitleMenuCommands = SubtitleMenuCommands(transport: self)
+    @objc func cycleSubtitle() { subtitleMenuCommands.nextChannel() }
     @objc func loadSRT() {
         let panel = NSOpenPanel()
         panel.begin { [weak self] r in
             guard r == .OK, let url = panel.url else { return }
-            self?.ipcCommand(MPVCommand.make(["sub-add", url.path]))
+            self?.subtitleMenuCommands.loadFile(url.path)
         }
     }
 
@@ -5033,7 +5502,7 @@ final class PPController: NSView {
                    self.wtCropRetry[self.currentFilePath] != nil || self.cropDetector.isPending {
                     self.wtCropRetry[self.currentFilePath] = nil
                     self.cropDetector.cancel(); self.cropDetector.resetLastFile(); self.cropDetector.resetAutomaticWidenCursor()
-                    print("[cropdetect] seek - crop search restarts with a fresh cadence")
+                    print("[cropdetect] seek - crop search restarts with a fresh cadence up=\(cropUptime())")
                 }
             }
             pollEngine.kick()
@@ -5184,6 +5653,9 @@ final class PPController: NSView {
     // MARK: - Teardown
 
     deinit {
+        print("[PPController] deinit ipcPath=\(ipcPath) self=\(ObjectIdentifier(self)) up=\(cropUptime())")
+        // Token removal: a callback already snapshotted by an in-flight deliver is a no-op after this (the hub checks an active flag at call time).
+        if let t = exportHubToken { ScriptMessageHub.removeObserver(t) }
         stopCropFreshFollowthrough()
         pollEngine.stop()
         persistentConnection.stop()
@@ -5198,3 +5670,7 @@ final class PPController: NSView {
     }
 }
 
+extension PPController: PlayerCommandTransport {}
+
+// One bounded wall-clock stamp for every cropdetect boundary line (199ec logging split).
+private func cropUptime() -> String { String(format: "%.3f", ProcessInfo.processInfo.systemUptime) }

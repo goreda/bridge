@@ -1,4 +1,7 @@
-// Magnet metadata browser. No torrent content is fetched here.
+// Media/MagnetBrowser.swift
+// Magnet metadata search, result selection and provider checks.
+// Uses: App, Player, UI, Platform, AppKit, Foundation, WebKit
+// Engine: none
 import AppKit
 import Foundation
 import CoreFoundation
@@ -90,9 +93,6 @@ private enum MagnetSelectionTrace {
     }
 }
 
-// A separate full-height floating field follows gor's existing archive search
-// style. The results panel remains in the video frame while the field is key.
-//
 // Scroll-wheel events aimed at this layer-backed list never reach the app-wide
 // local monitor in PPController.setupAutoHide, so the idle timer faded the
 // panel mid-scroll while plain mouse movement (which the monitor does see)
@@ -176,14 +176,18 @@ struct MagnetEpisodeTracker {
 final class MagnetResultsPanel: NSView, NSTextFieldDelegate {
     var onClose: (() -> Void)?
     var onQuery: ((String) -> Void)?
+    var onQueryEdited: (() -> Void)?
     // Empty-query Enter lists popular torrents (owner 2026-11-20); nil falls back to dismiss.
     var onPopular: (() -> Void)?
     var onSelect: ((String) -> Void)?
     var onPendingSelect: ((String) -> Void)?
     var onSort: ((String, Bool) -> Void)?
-    private var fieldPanel: NSPanel?
-    private var searchMinimumWidth: CGFloat = 280
-    private var searchMaximumWidth: CGFloat = 960
+    private let searchField = NSTextField()
+    private var inlineEditing = false
+    private var liveSearchWork: DispatchWorkItem?
+    private var liveSearchRevision: UInt64 = 0
+    private var lastDispatchedQuery: String?
+    private weak var priorResponder: NSResponder?
     private var rows: [MagnetResult] = []
     // Rebuilt controls cannot select a different row through a reused numeric index.
     private var rowRevision: UInt64 = 0
@@ -230,7 +234,6 @@ final class MagnetResultsPanel: NSView, NSTextFieldDelegate {
     private let displayDate = DateFormatter()
     private let isoDate = ISO8601DateFormatter()
     private var variationToken: UUID?
-    private var fieldVariationToken: UUID?
     private var variationActive = true
 
     // A detached results panel may still be retained by AppKit event handling.
@@ -244,6 +247,7 @@ final class MagnetResultsPanel: NSView, NSTextFieldDelegate {
 
     override init(frame: NSRect) {
         super.init(frame: frame)
+        loadMore.isHidden = true
         wantsLayer = true; layer?.backgroundColor = NSColor.clear.cgColor
         displayDate.dateFormat = "yy.MM.dd HH:mm"
         displayDate.timeZone = .current
@@ -254,6 +258,13 @@ final class MagnetResultsPanel: NSView, NSTextFieldDelegate {
         scroll.autohidesScrollers = true
         addSubview(scroll)
         [source,time,seed,size,titleSort,close].forEach { addSubview($0) }
+        searchField.isBordered = false; searchField.drawsBackground = false
+        searchField.textColor = .white; searchField.font = PhotonFont.chromeNs()
+        searchField.focusRingType = .none; searchField.placeholderString = "title"
+        searchField.delegate = self; searchField.target = self
+        searchField.action = #selector(commitSearch(_:))
+        searchField.isHidden = true
+        addSubview(searchField)
         statusLayer.contentsScale = NSScreen.main?.backingScaleFactor ?? 2
         statusLayer.foregroundColor = NSColor(white:0.31,alpha:1).cgColor
         statusLayer.font = PhotonFont.chromeCt()
@@ -281,6 +292,7 @@ final class MagnetResultsPanel: NSView, NSTextFieldDelegate {
                 let driven = PhotonFont.chromeNsDriven(view: button, profile: .button)
                 if button.font != driven { button.font = driven }
             }
+            if self.inlineEditing { self.searchField.font = PhotonFont.chromeNsDriven(view: self.searchField, profile: .panel) }
             // Pool overscan slots are empty and hidden by design. Never read
             // attribute index 0 of their empty mutable attributed titles:
             // NSRangeException here escapes the shared variation timer.
@@ -304,7 +316,7 @@ final class MagnetResultsPanel: NSView, NSTextFieldDelegate {
     required init?(coder: NSCoder) { fatalError() }
     deinit {
         if let variationToken { VariationBroadcaster.shared.removeListener(variationToken) }
-        if let fieldVariationToken { VariationBroadcaster.shared.removeListener(fieldVariationToken) }
+        PanelKeyOwnership.shared.unregister(ObjectIdentifier(self))
     }
     override func mouseMoved(with event: NSEvent) {
         if let pt = window?.contentView?.convert(event.locationInWindow, from: nil) {
@@ -345,14 +357,16 @@ final class MagnetResultsPanel: NSView, NSTextFieldDelegate {
         let c = columns(w)
         // The panel is inset inside the video frame. Derive Quit's real
         // frame through the shared overlay coordinates, not from panel h.
-        let headerY: CGFloat
+        let rawHeaderY: CGFloat
         if let spine = (NSApp.delegate as? AppDelegate)?.controller?.spineUI,
            spine.superview != nil, spine.btnQ.superview != nil {
-            headerY = spine.convert(spine.btnQ.frame, to: self).minY
+            rawHeaderY = spine.convert(spine.btnQ.frame, to: self).minY
         } else {
-            headerY = h - PhotonFont.chromePad + 5 - PhotonFont.chromeLineH
+            rawHeaderY = h - PhotonFont.chromePad + 5 - PhotonFont.chromeLineH
         }
         let lineH = PhotonFont.chromeLineH + 4
+        let headerY = max(4, min(rawHeaderY, h - lineH + 4))
+        searchField.frame = CGRect(x: 14, y: headerY - 4, width: c.titleWidth, height: lineH)
         // Title stays left. Each sort label hugs its column's right edge so
         // it sits directly over the right-aligned row values; the size label
         // ends immediately left of the close button. Hit targets stay the
@@ -370,6 +384,8 @@ final class MagnetResultsPanel: NSView, NSTextFieldDelegate {
                                   width:max(0,measure),height:lineH)
         }
         close.frame = CGRect(x:max(0,w - 4 - close.frame.width),y:headerY-4,width:close.frame.width,height:lineH)
+        titleSort.isHidden = inlineEditing
+        statusLayer.isHidden = inlineEditing
         let statusX = titleSort.frame.maxX + 7
         statusLayer.frame = CGRect(x:statusX,y:headerY,
                                    width:max(0,c.source - columnGap - statusX),height:PhotonFont.chromeCharH + 3)
@@ -463,8 +479,26 @@ final class MagnetResultsPanel: NSView, NSTextFieldDelegate {
         for (slot, view) in rowPool.enumerated() where !assigned.contains(slot) { view.isHidden = true }
     }
     var visibleResultCount: Int { rows.count }
-    func setStatus(_ value: String) { statusLayer.string = "· " + value + (rows.isEmpty ? "" : " / checks cover the first 60 results") }
-    func setQuery(_ value: String) { queryText = value; windowPages = 1; lastContentSignature = ""; lastVerdictSignature = ""; setStatus("searching providers") }
+    private var showingPreviousResults = false
+    fileprivate func markPreviousResults() { showingPreviousResults = true }
+    func setStatus(_ value: String) {
+        let context = showingPreviousResults ? "previous results / checks not refreshed / " : ""
+        statusLayer.string = "· " + context + value + (rows.isEmpty ? "" : " / checks cover the first 60 results")
+    }
+    func clearResultsForEdit() {
+        invalidateSelection()
+        rows.removeAll(); lastShownResponse = nil
+        lastContentSignature = ""; lastVerdictSignature = ""
+        visibleRowRange = 0..<0; poolDirty = true
+        for row in rowPool { row.isHidden = true }
+        loadMore.isHidden = true
+        stack.frame.size.height = 0
+        scroll.contentView.scroll(to: .zero)
+        scroll.reflectScrolledClipView(scroll.contentView)
+        setStatus("type to search")
+        needsLayout = true
+    }
+    func setQuery(_ value: String) { showingPreviousResults = false; queryText = value; windowPages = 1; lastContentSignature = ""; lastVerdictSignature = ""; setStatus("searching providers") }
     // Keep the panel safe even if a different caller bypasses the controller.
     fileprivate func show(_ response: SearchResponse, keepScroll: Bool = false) {
         // Windowing (owner 2026-10-17): the first window is the top-1000 by
@@ -482,6 +516,7 @@ final class MagnetResultsPanel: NSView, NSTextFieldDelegate {
         let contentSignature = rows.map { "\($0.infoHash ?? $0.title)|\($0.source)|\($0.title)" }.joined(separator: "\n") + "|\(hiddenCount)"
         let verdictSignature = rows.map { "\($0.infoHash ?? $0.title):\($0.verdict?.label ?? "pending")" }.sorted().joined(separator: "\n")
         if keepScroll, contentSignature == lastContentSignature {
+            layoutResultRows()
             if verdictSignature != lastVerdictSignature {
                 updateVerdictLabelsInPlace()
                 lastVerdictSignature = verdictSignature
@@ -609,169 +644,118 @@ final class MagnetResultsPanel: NSView, NSTextFieldDelegate {
         sortKey = key; descending = value; currentSort = key; descendingSort = value
     }
     @objc private func closeTapped() { onClose?() }
-    var isSearchOpen: Bool { fieldPanel?.isVisible == true }
+    var isSearchOpen: Bool { inlineEditing }
     func setChromeAlpha(_ alpha: CGFloat, animated: Bool = false) {
-        if animated {
-            animator().alphaValue = alpha
-            if fieldPanel?.isVisible != true { fieldPanel?.animator().alphaValue = alpha }
-        } else {
-            alphaValue = alpha
-            if fieldPanel?.isVisible != true { fieldPanel?.alphaValue = alpha }
-        }
+        let value: CGFloat = inlineEditing ? 1 : alpha
+        if animated { animator().alphaValue = value } else { alphaValue = value }
     }
-    func dismissSearch() {
-        guard fieldPanel != nil else { return }
-        closeSearch()
-        if isHidden { onClose?() }
-    }
-    /// Cmd+F toggle (owner 2026-11-15): an open search closes; otherwise it
-    /// opens (openSearch reuses and refocuses an existing bar).
+    func dismissSearch() { closeSearch() }
     func toggleSearchFromKey() {
-        if fieldPanel != nil { closeSearch() } else { openSearch() }
+        if inlineEditing { closeSearch() } else { openSearch() }
     }
     func closeSearch() {
-        guard let panel = fieldPanel else { return }
-        fieldPanel = nil
-        if let fieldVariationToken { VariationBroadcaster.shared.removeListener(fieldVariationToken) }
-        fieldVariationToken = nil
-        let parent = window
-        panel.close()
-        parent?.makeKeyAndOrderFront(nil)
-        (NSApp.delegate as? AppDelegate)?.overlayWin?.ignoresMouseEvents = false
+        guard inlineEditing else { return }
+        cancelLiveSearch()
+        inlineEditing = false
+        titleSort.isHidden = false
+        statusLayer.isHidden = false
+        let host = window
+        if searchField.currentEditor() != nil { _ = host?.makeFirstResponder(nil) }
+        searchField.isHidden = true
+        PanelKeyOwnership.shared.unregister(ObjectIdentifier(self))
+        if let view = priorResponder as? NSView, view.window === host { _ = host?.makeFirstResponder(view) }
+        priorResponder = nil
+        needsLayout = true
     }
     func openSearch() {
-        // One-instance rule: any existing search bar is reused (never a second one),
-        // visible or not, and key + first responder are re-asserted with the same retry
-        // the first open uses (the app can activate a beat late after a click in mpv).
-        if let panel = fieldPanel {
-            if !NoActivate.active {NSApp.activate(ignoringOtherApps: true)}
-            panel.makeKeyAndOrderFront(nil)
-            if let field = (panel.stereoSession?.original ?? panel.contentView)?.subviews.first(where: { $0 is NSTextField }) {
-                panel.makeFirstResponder(field)
-                panel.assertKeyAndFocus(field)
-            }
-            print("[magnet-panel] reopen: refocused search field, key=\(panel.isKeyWindow)")
-            return
+        guard let host = window, host.canBecomeKey else { return }
+        isHidden = false
+        if !inlineEditing {
+            inlineEditing = true
+            lastDispatchedQuery = nil
+            titleSort.isHidden = true
+            statusLayer.isHidden = true
+            alphaValue = 1
+            priorResponder = host.firstResponder
+            searchField.stringValue = (NSApp.delegate as? AppDelegate)?.magnetEpisodeTracker.prefill(fallback: queryText) ?? queryText
+            searchField.isHidden = false
+            PanelKeyOwnership.shared.register(ObjectIdentifier(self))
         }
-        // Safety net: a stale bar from an earlier controller must not stack under a new one.
-        if let stale = MagnetFieldPanel.current, stale.isVisible { stale.close() }
-        guard let parent = window else { return }
-        // FileBrowserTopBar.openSearchPanel is the literal panel pattern.
-        // The only geometry difference requested here is player centering.
-        let ph: CGFloat = 54
-        let frame = SearchBarFit.initialFrame(host: parent, height: ph)
-        let pw = frame.width
-        searchMaximumWidth = SearchBarFit.maxWidth(host: parent)
-        searchMinimumWidth = pw
-        let panel = MagnetFieldPanel(
-            contentRect: frame,
-            styleMask: [.titled, .closable, .fullSizeContentView],
-            backing: .buffered, defer: false)
-        panel.onEscape = { [weak self] in self?.dismissSearch() }
-        panel.isFloatingPanel = true
-        panel.becomesKeyOnlyIfNeeded = false
-        panel.hidesOnDeactivate = false
-        panel.title = ""
-        panel.level = .modalPanel
-        panel.isMovableByWindowBackground = true
-        panel.backgroundColor = NSColor.black
-        panel.isOpaque = true
-        panel.titlebarAppearsTransparent = true
-        panel.appearance = NSAppearance(named: .darkAqua)
-        panel.standardWindowButton(.closeButton)?.isHidden = true
-        panel.standardWindowButton(.miniaturizeButton)?.isHidden = true
-        panel.standardWindowButton(.zoomButton)?.isHidden = true
-        NotificationCenter.default.addObserver(forName:NSWindow.willCloseNotification, object:panel, queue:.main) { [weak self, weak parent] _ in
-            if self?.fieldPanel === panel {
-                self?.fieldPanel = nil
-                if let token = self?.fieldVariationToken { VariationBroadcaster.shared.removeListener(token) }
-                self?.fieldVariationToken = nil
-            }
-            parent?.ignoresMouseEvents = false
-        }
-        let bg = NSView(frame: CGRect(x: 0, y: 0, width: pw, height: ph))
-        bg.wantsLayer = true
-        bg.layer?.backgroundColor = NSColor.black.cgColor
-        let field = NSTextField(frame: CGRect(x: 20, y: 14, width: pw - 40, height: 28))
-        // A series query whose picked episode played to its end advances to
-        // the next episode; any other query is restored unchanged.
-        field.stringValue = (NSApp.delegate as? AppDelegate)?.magnetEpisodeTracker.prefill(fallback: queryText) ?? queryText
-        field.font = PhotonFont.chromeNs(); field.textColor = .white
-        field.backgroundColor = .clear; field.drawsBackground = false
-        field.isBordered = false; field.focusRingType = .none
-        field.isEditable = true; field.isSelectable = true
-        field.refusesFirstResponder = false
-        field.placeholderString = "search"
-        field.target = self; field.action = #selector(commitSearch(_:))
-        field.delegate = self
-        fieldVariationToken = VariationBroadcaster.shared.addListener(weakLifetime: field) { [weak self, weak field] in
-            guard self?.variationActive == true, let field, field.window != nil else { return }
-            // The search field is in its own NSPanel, not the player window.
-            // Measure the pointer in screen space rather than reusing the
-            // broadcaster's player-window point or a fixed proximity.
-            guard let window = field.window else { return }
-            let rect = window.convertToScreen(field.convert(field.bounds, to: nil))
-            let pointer = NSEvent.mouseLocation
-            let dx = max(rect.minX - pointer.x, 0, pointer.x - rect.maxX)
-            let dy = max(rect.minY - pointer.y, 0, pointer.y - rect.maxY)
-            let p = max(0, min(1, 1 - hypot(dx, dy) / DriveProfile.panel.radius))
-            let vb = VariationBroadcaster.shared
-            let curve = vb.curve(p, power: DriveProfile.panel.power)
-            let driven = PhotonFont.chromeNsDriven(p: p, t_audio: Double(vb.audioBlend(curve)))
-            if field.font != driven { field.font = driven }
-        }
-        field.usesSingleLineMode = false
-        field.cell?.wraps = true; field.cell?.isScrollable = false
-        field.lineBreakMode = .byWordWrapping; field.maximumNumberOfLines = SearchBarFit.maxLines
-        bg.addSubview(field)
-        panel.onReturn = { [weak self, weak field] in if let field { self?.commitSearch(field) } }
-        panel.contentView = bg
-        fieldPanel = panel
-        MagnetFieldPanel.current = panel
-        // The floating key window is independent of the idle mouse-hide timer.
-        // Do not inherit the hidden spine alpha while the user is typing.
-        panel.alphaValue = 1
-        parent.ignoresMouseEvents = true
-        panel.installStereoIfNeeded(parent: parent)
-        panel.makeKeyAndOrderFront(nil); panel.assertKeyAndFocus(field)
-        resizeSearch(field)
-        SearchBarFit.observeHost(panel: panel, host: parent) { [weak self, weak field] in
-            if let field { self?.resizeSearch(field) }
-        }
+        needsLayout = true; layoutSubtreeIfNeeded()
+        host.ignoresMouseEvents = false
+        if !NSApp.isActive && !NoActivate.active { NSApp.activate(ignoringOtherApps: true) }
+        host.makeKeyAndOrderFront(nil)
+        guard host.makeFirstResponder(searchField) else { closeSearch(); return }
+        (searchField.currentEditor() as? NSTextView)?.selectAll(nil)
     }
-    private func resizeSearch(_ field: NSTextField) {
-        guard let panel = fieldPanel, field.window === panel else { return }
-        if let host = window {
-            searchMaximumWidth = SearchBarFit.maxWidth(host: host)
-            searchMinimumWidth = SearchBarFit.openWidth(host: host)
-        }
-        SearchBarFit.fit(panel: panel, field: field, minWidth: searchMinimumWidth,
-                         maxWidth: searchMaximumWidth, anchor: .center)
+    private func cancelLiveSearch() {
+        liveSearchRevision &+= 1
+        liveSearchWork?.cancel(); liveSearchWork = nil
     }
     func controlTextDidChange(_ notification: Notification) {
-        guard let field = notification.object as? NSTextField else { return }
-        resizeSearch(field)
+        guard inlineEditing, let field = notification.object as? NSTextField,
+              field === searchField else { return }
+        cancelLiveSearch()
+        // Cancel old callbacks immediately, not only after the debounce.
+        onQueryEdited?()
+        lastDispatchedQuery = nil
+        let marked = (field.currentEditor() as? NSTextView)?.hasMarkedText() == true
+        // Same gate the file browser search runs through. Live-empty keeps the
+        // current results on this panel, so the gate runs with no active
+        // search to restore.
+        switch FileBrowserSearchGate.liveDecision(rawText: field.stringValue, hasMarkedText: marked, isSearchActive: false) {
+        case .ignore, .restoreUnfiltered:
+            return
+        case .dispatch(let q):
+            // The gate trims spaces/tabs; this single-line field also strips
+            // pasted newlines, matching the debounce re-check below.
+            let query = q.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !query.isEmpty, query.count <= 120 else { return }
+            let revision = liveSearchRevision
+            let work = DispatchWorkItem { [weak self] in
+                guard let self, self.inlineEditing, self.liveSearchRevision == revision,
+                      self.searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines) == query else { return }
+                self.liveSearchWork = nil
+                self.queryText = query; self.lastDispatchedQuery = query
+                self.onQuery?(query)
+            }
+            liveSearchWork = work
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: work)
+        }
     }
     @objc private func commitSearch(_ sender: NSTextField) {
-        guard let search = fieldPanel, sender.window === search else { return }
-        let query = sender.stringValue.trimmingCharacters(in:.whitespacesAndNewlines)
-        // Owner 2026-11-20: Enter on an empty query lists popular torrents
-        // instead of dismissing; unwired falls back to the old dismiss.
-        if query.isEmpty {
-            guard let onPopular else { dismissSearch(); return }
-            closeSearch(); onPopular(); return
+        guard inlineEditing, sender === searchField else { return }
+        let marked = (sender.currentEditor() as? NSTextView)?.hasMarkedText() == true
+        switch FileBrowserSearchGate.commitDecision(rawText: sender.stringValue, hasMarkedText: marked) {
+        case .ignore:
+            return
+        case .restoreUnfiltered:
+            closeSearch()
+            onPopular?()
+        case .dispatch(let query):
+            let alreadyDispatched = lastDispatchedQuery == query
+            closeSearch()
+            guard query.count <= 120 else { setStatus("enter a shorter search"); return }
+            (NSApp.delegate as? AppDelegate)?.magnetEpisodeTracker.noteQueryCommitted()
+            queryText = query
+            if !alreadyDispatched { lastDispatchedQuery = query; onQuery?(query) }
         }
-        closeSearch()
-        if let app = NSApp.delegate as? AppDelegate { app.magnetEpisodeTracker.noteQueryCommitted() }
-        queryText = query; onQuery?(query)
     }
     func control(_ control: NSControl, textView: NSTextView, doCommandBy selector: Selector) -> Bool {
+        guard inlineEditing, control === searchField, !textView.hasMarkedText() else { return false }
         if selector == #selector(NSResponder.cancelOperation(_:)) { dismissSearch(); return true }
-        if selector == #selector(NSResponder.insertNewline(_:)), let field = control as? NSTextField {
-            commitSearch(field); return true
-        }
+        if selector == #selector(NSResponder.insertNewline(_:)) { commitSearch(searchField); return true }
         return false
     }
+    override func viewDidHide() {
+        super.viewDidHide()
+        closeSearch()
+    }
+    override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        if window == nil { closeSearch() }
+    }
+
 }
 
 /// One place that turns provider outcomes into the panel status line.
@@ -783,7 +767,8 @@ enum MagnetProviderStatusLine {
         "rate_limited": "rate limited",
         "http_or_network": "network error",
         "request_format": "bad request",
-        "layout_changed": "page layout changed"
+        "layout_changed": "page layout changed",
+        "no_popular_feed": "no popular feed available"
     ]
     static func label(_ provider: String, _ reason: String?) -> String {
         guard let reason, !reason.isEmpty else { return provider }
@@ -1003,6 +988,138 @@ private enum MagnetUIndexFailure: Error {
     }
 }
 
+// MARK: - Shared WebKit page route (PANELS bt4gWeek seam)
+/// One shared WebKit fetch route for read-only page HTML (bt4g detail pages and the like).
+/// At most 2 concurrent loads, one challenge check per fetch (no retry loop, no bypass),
+/// and a generation change cancels every in-flight fetch. Not a new browser layer: same
+/// WKWebView + probeJS mechanism as MagnetUIndexProvider.
+enum WebKitPageFetchError: Error { case busy, challengeSeen, httpOrNetwork, requestFormat, cancelled, timeout }
+
+/// Admission gate for the shared page route. Pure: no WebKit, fully testable headless.
+final class WebKitFetchGate {
+    struct Ticket { let generation: Int }
+    private let lock = NSLock()
+    private var active = 0
+    private var generation = 0
+    /// The contract caps concurrency at 2; a third caller is refused, never parked.
+    func admit() -> Ticket? {
+        lock.lock(); defer { lock.unlock() }
+        guard active < 2 else { return nil }
+        active += 1; return Ticket(generation: generation)
+    }
+    func valid(_ ticket: Ticket) -> Bool { lock.lock(); defer { lock.unlock() }; return ticket.generation == generation }
+    func release(_ ticket: Ticket) {
+        lock.lock(); defer { lock.unlock() }
+        // A ticket from an older generation was already accounted by cancelAll.
+        if ticket.generation == generation { active = max(0, active - 1) }
+    }
+    /// Generation change: every outstanding ticket dies, late completions must be dropped.
+    func cancelAll() { lock.lock(); generation += 1; active = 0; lock.unlock() }
+}
+
+protocol WebKitPageRouting: AnyObject {
+    func fetchPage(_ url: URL, completion: @escaping (Result<String, WebKitPageFetchError>) -> Void)
+    func cancelAll()
+}
+
+final class WebKitPageRoute: NSObject, WebKitPageRouting {
+    private let gate = WebKitFetchGate()
+    private var sessions: [Int: FetchSession] = [:]
+    private var nextSessionID = 0
+    private static let pageTimeout: TimeInterval = 30
+    private static let maxPageBytes = 4 * 1024 * 1024
+
+    func fetchPage(_ url: URL, completion: @escaping (Result<String, WebKitPageFetchError>) -> Void) {
+        guard url.scheme == "https", url.host != nil else { completion(.failure(.requestFormat)); return }
+        guard let ticket = gate.admit() else { completion(.failure(.busy)); return }
+        let id = nextSessionID; nextSessionID += 1
+        let session = FetchSession(url: url) { [weak self] result in
+            guard let self else { return }
+            self.sessions[id] = nil
+            self.gate.release(ticket)
+            guard self.gate.valid(ticket) else { completion(.failure(.cancelled)); return }
+            completion(result)
+        }
+        sessions[id] = session
+        session.start()
+    }
+
+    func cancelAll() {
+        gate.cancelAll()
+        let live = sessions; sessions = [:]
+        for (_, session) in live { session.stop() }
+    }
+
+    private final class FetchSession: NSObject, WKNavigationDelegate {
+        private var webView: WKWebView?
+        private let completion: (Result<String, WebKitPageFetchError>) -> Void
+        private var deadlineWork: DispatchWorkItem?
+        private var finished = false
+        init(url: URL, completion: @escaping (Result<String, WebKitPageFetchError>) -> Void) {
+            self.completion = completion
+            super.init()
+            let config = WKWebViewConfiguration()
+            config.websiteDataStore = .default() // same cf_clearance store as the magnet route
+            let view = WKWebView(frame: NSRect(x: 0, y: 0, width: 1024, height: 768), configuration: config)
+            view.navigationDelegate = self
+            webView = view
+            view.load(URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 20))
+        }
+        func start() {
+            let work = DispatchWorkItem { [weak self] in self?.finish(.failure(.timeout)) }
+            deadlineWork = work
+            DispatchQueue.main.asyncAfter(deadline: .now() + WebKitPageRoute.pageTimeout, execute: work)
+        }
+        func stop() { finish(.failure(.cancelled)) }
+        private func finish(_ result: Result<String, WebKitPageFetchError>) {
+            guard !finished else { return }
+            finished = true
+            deadlineWork?.cancel(); deadlineWork = nil
+            if let view = webView { view.navigationDelegate = nil; view.stopLoading(); webView = nil }
+            completion(result)
+        }
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            // One challenge check per fetch: a challenged page is a typed error, never a retry loop.
+            webView.evaluateJavaScript(MagnetUIndexProvider.probeJS) { [weak self] value, _ in
+                guard let self, let view = self.webView else { return }
+                if MagnetUIndexProvider.looksChallenged((value as? String) ?? "") { self.finish(.failure(.challengeSeen)); return }
+                view.evaluateJavaScript("document.documentElement.outerHTML") { [weak self] raw, _ in
+                    guard let self else { return }
+                    guard let html = raw as? String, !html.isEmpty, html.utf8.count <= WebKitPageRoute.maxPageBytes else {
+                        self.finish(.failure(.requestFormat)); return
+                    }
+                    self.finish(.success(html))
+                }
+            }
+        }
+        func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+            finish(.failure(.httpOrNetwork))
+        }
+        func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+            finish(.failure(.httpOrNetwork))
+        }
+    }
+}
+
+/// W-gdb-199eb-14 follow-up: VR's shared WebKit page route plugged into the bt4g weekly detail seam.
+/// One adapter, no copied WebKit code, no binding to another writer's private symbol. Error mapping:
+/// a seen challenge stops the fanout (.challenge, no retry loop); every other route failure is a
+/// row-level transport error; a cancelled fetch is dropped by the generation guard before it lands.
+final class MagnetWebKitDetailFetchAdapter: MagnetBrowserController.MagnetDetailPageFetching {
+    private let route: WebKitPageRouting
+    init(route: WebKitPageRouting) { self.route = route }
+    func fetchDetailPage(_ url: URL, completion: @escaping (Result<String, MagnetBrowserController.MagnetDetailRouteError>) -> Void) {
+        route.fetchPage(url) { result in
+            switch result {
+            case .success(let html): completion(.success(html))
+            case .failure(.challengeSeen): completion(.failure(.challenge))
+            case .failure(.busy), .failure(.httpOrNetwork), .failure(.requestFormat), .failure(.cancelled), .failure(.timeout):
+                completion(.failure(.transport))
+            }
+        }
+    }
+}
+
 private final class MagnetUIndexProvider: NSObject, WKNavigationDelegate {
     private var webView: WKWebView?
     private var completion: ((Result<[[String: Any]], MagnetUIndexFailure>) -> Void)?
@@ -1026,7 +1143,7 @@ private final class MagnetUIndexProvider: NSObject, WKNavigationDelegate {
     // Challenge sniff: title + the first 2000 chars of visible text.
     static let probeJS = #"((document.title||'')+' '+(document.body?document.body.innerText.slice(0,2000):''))"#
 
-    private static func looksChallenged(_ text: String) -> Bool {
+    fileprivate static func looksChallenged(_ text: String) -> Bool { // seam: shared with WebKitPageRoute in this file
         let t = text.lowercased()
         return t.contains("just a moment") || t.contains("cf-chl") || t.contains("challenge-platform") || t.contains("verify you are human")
     }
@@ -1132,6 +1249,31 @@ private final class MagnetUIndexProvider: NSObject, WKNavigationDelegate {
 }
 
 final class MagnetBrowserController {
+    struct Snapshot {
+        fileprivate let query: String
+        fileprivate let sort: String
+        fileprivate let descending: Bool
+        fileprivate let response: SearchResponse?
+    }
+    private static var previousSearch: Snapshot?
+    private var restoredPreviousSearch = false
+    private func snapshot() -> Snapshot {
+        Snapshot(query: query, sort: sort, descending: descending, response: lastResponse)
+    }
+    /// Restore display data only. Reopening never repeats provider requests or probes.
+    private func restore(_ saved: Snapshot) {
+        query = saved.query; sort = saved.sort; descending = saved.descending
+        lastResponse = saved.response
+        panel.setQuery(query)
+        panel.applySort(sort, descending: descending)
+        if let response = lastResponse {
+            panel.isHidden = false
+            panel.markPreviousResults()
+            panel.show(response)
+        } else if !query.isEmpty {
+            panel.setStatus("previous search / press Return to search again")
+        }
+    }
     let panel: MagnetResultsPanel
     private var generation = 0
     private var throttledUntil = Date.distantPast
@@ -1146,6 +1288,7 @@ final class MagnetBrowserController {
     private var sessions: [URLSession] = []
     private var parseSerial = 0
     private var lastResponse: SearchResponse?
+    private var verificationCancellation = Progress(totalUnitCount: 1)
     private var verdicts: [String:MagnetVerdict] = [:]
     private var scrapedHashes = Set<String>()
     private let trackerQueue: OperationQueue = {
@@ -1154,7 +1297,9 @@ final class MagnetBrowserController {
     }()
     init(app: AppDelegate, panel: MagnetResultsPanel) {
         self.panel = panel
+        bt4gDetailFetcher = MagnetWebKitDetailFetchAdapter(route: webKitPageRoute)
         panel.onQuery = { [weak self] in self?.search($0) }
+        panel.onQueryEdited = { [weak self] in self?.cancelSearchForEdit() }
         panel.onPopular = { [weak self] in self?.popular() }
         panel.onSort = { [weak self] key, desc in
             guard let self else { return }
@@ -1168,6 +1313,7 @@ final class MagnetBrowserController {
         }
     }
     func stop() {
+        Self.previousSearch = snapshot()
         generation += 1; parseSerial += 1
         refreshRevision &+= 1; reparsePending = false
         panel.invalidateSelection()
@@ -1175,10 +1321,28 @@ final class MagnetBrowserController {
         tasks.forEach { $0.cancel() }; tasks.removeAll()
         sessions.forEach { $0.invalidateAndCancel() }; sessions.removeAll()
         uindexProvider.cancel()
-        trackerQueue.cancelAllOperations()
+        webKitPageRoute.cancelAll()
+        verificationCancellation.cancel(); trackerQueue.cancelAllOperations(); verificationCancellation = Progress(totalUnitCount: 1)
         panel.retireVariation()
     }
-    func openSearch() { panel.openSearch() }
+    func openSearch() {
+        if !restoredPreviousSearch {
+            restoredPreviousSearch = true
+            if let saved = Self.previousSearch { restore(saved) }
+        }
+        panel.openSearch()
+    }
+    private func cancelSearchForEdit() {
+        generation += 1; parseSerial += 1
+        refreshRevision &+= 1; reparsePending = false
+        panel.invalidateSelection()
+        tasks.forEach { $0.cancel() }; tasks.removeAll()
+        sessions.forEach { $0.invalidateAndCancel() }; sessions.removeAll()
+        uindexProvider.cancel(); verificationCancellation.cancel(); trackerQueue.cancelAllOperations(); verificationCancellation = Progress(totalUnitCount: 1); webKitPageRoute.cancelAll()
+        pendingProviders.removeAll()
+        lastResponse = nil; parsedProviders = [:]; failures = [:]; bt4gWeekResults = []; bt4gRowErrors = []; bt4gFanoutGeneration = nil
+        panel.clearResultsForEdit()
+    }
     private func search(_ value: String) {
         let q = value.trimmingCharacters(in:.whitespacesAndNewlines)
         guard !q.isEmpty, q.count <= 120 else { panel.setStatus("enter a shorter search"); return }
@@ -1190,10 +1354,11 @@ final class MagnetBrowserController {
         panel.invalidateSelection()
         tasks.forEach { $0.cancel() }; tasks.removeAll()
         sessions.forEach { $0.invalidateAndCancel() }; sessions.removeAll()
-        query = q; parsedProviders = [:]; failures = [:]
+        webKitPageRoute.cancelAll()
+        query = q; parsedProviders = [:]; failures = [:]; bt4gWeekResults = []; bt4gRowErrors = []; bt4gFanoutGeneration = nil
         pendingProviders = ["apibay", "bitsearch", "magnetz", "bt4g", "bt4gRecent", "nyaa", "knaben", "eztv", "uindex"]
         lastResponse = nil
-        trackerQueue.cancelAllOperations(); verdicts = [:]; scrapedHashes = []
+        verificationCancellation.cancel(); trackerQueue.cancelAllOperations(); verificationCancellation = Progress(totalUnitCount: 1); verdicts = [:]; scrapedHashes = []
         panel.isHidden = false
         (NSApp.delegate as? AppDelegate)?.controller?.wakeUI()
         panel.setQuery(q)
@@ -1239,19 +1404,9 @@ final class MagnetBrowserController {
             }
         }
     }
-    // Empty-query Enter (owner 2026-11-20): popular listing. Popular scope
-    // (owner-pasted gdb note 2026-11-19, owner instruction 2026-11-20): only
-    // providers with a real popular list may be shown as popular;
-    // magnetz/bt4g/nyaa/eztv must not. Live endpoint audits this lane ran:
-    // 2026-11-20 apibay precompiled top100 endpoints all 404, bitsearch
-    // /trending and /popular 500, knaben /popular and /trending 404 and its
-    // empty-query search returns zero hits. Re-audit 2026-11-21: apibay
-    // data_top100_all.json is live again (200, 100 rows, same field shape as
-    // q.php, handled by the existing apibay parse arm), bitsearch and knaben
-    // unchanged. uindex.org's front page carries Trending tables, so the
-    // popular sources are uindex (WebKit route, same as search) and apibay
-    // below. If gdb's package lands with working endpoints for the rest, add
-    // them here.
+    // Empty-query Enter starts a new generation with provider coverage explicit.
+    // A search/latest feed is never relabeled popular. Providers without a
+    // supported popular endpoint remain visible with a specific reason.
     private func popular() {
         guard Date() >= throttledUntil else { panel.setStatus("wait before searching again"); return }
         throttledUntil = Date().addingTimeInterval(20)
@@ -1260,10 +1415,14 @@ final class MagnetBrowserController {
         panel.invalidateSelection()
         tasks.forEach { $0.cancel() }; tasks.removeAll()
         sessions.forEach { $0.invalidateAndCancel() }; sessions.removeAll()
-        query = ""; parsedProviders = [:]; failures = [:]
-        pendingProviders = ["uindex", "apibay"]
+        webKitPageRoute.cancelAll()
+        query = ""; parsedProviders = [:]; failures = [:]; bt4gWeekResults = []; bt4gRowErrors = []; bt4gFanoutGeneration = nil
+        pendingProviders = ["uindex", "apibay", "knaben", "bt4gWeek", "nyaaPopular"]
+        for provider in ["bitsearch", "magnetz", "bt4gRecent", "eztv"] {
+            failures[provider] = "no_popular_feed"
+        }
         lastResponse = nil
-        trackerQueue.cancelAllOperations(); verdicts = [:]; scrapedHashes = []
+        verificationCancellation.cancel(); trackerQueue.cancelAllOperations(); verificationCancellation = Progress(totalUnitCount: 1); verdicts = [:]; scrapedHashes = []
         panel.isHidden = false
         (NSApp.delegate as? AppDelegate)?.controller?.wakeUI()
         panel.setQuery("")
@@ -1273,6 +1432,28 @@ final class MagnetBrowserController {
         if let apibayTop = URL(string:"https://apibay.org/precompiled/data_top100_all.json") {
             fetch(apibayTop, provider:"apibay", token:token) { [weak self] in self?.parse() }
         } else { failures["apibay"] = "request_format"; pendingProviders.remove("apibay"); parse() }
+        // The documented query-less browse route supports seed ordering.
+        // Keep normal response/schema validation; an unavailable API is reported,
+        // never silently replaced by a search for an arbitrary title.
+        if let knabenTop = URL(string:"https://api.knaben.org/v2/browse?o=seeders&d=desc&s=100") {
+            fetch(knabenTop, provider:"knaben", token:token) { [weak self] in self?.parse() }
+        } else { failures["knaben"] = "request_format"; pendingProviders.remove("knaben"); parse() }
+        // bt4g has no popular RSS. The weekly HTML listing carries no hashes:
+        // rows parse as candidates, then a bounded detail fanout through the
+        // shared detail-route seam verifies real magnets (the hash comes from
+        // the page's own download link, never invented). The HTML never enters
+        // the "bt4g" RSS parse arm.
+        if let bt4gWeek = URL(string:"https://bt4gprx.com/week") {
+            fetch(bt4gWeek, provider:"bt4gWeek", token:token, mime:"text/html") { [weak self] in self?.parse() }
+        } else { failures["bt4gWeek"] = "request_format"; pendingProviders.remove("bt4gWeek"); parse() }
+        // nyaa has no popular RSS: the source ignores RSS sort parameters
+        // (verified live 2026-11-27: ?page=rss&s=seeders&o=desc returns an
+        // unsorted recent feed), and a recent feed is never relabeled popular.
+        // The HTML browse with s=seeders&o=desc is the real popular ordering;
+        // the nyaaPopular parse arm asserts the returned descending order.
+        if let nyaaTop = URL(string:"https://nyaa.si/?s=seeders&o=desc") {
+            fetch(nyaaTop, provider:"nyaaPopular", token:token, mime:"text/html") { [weak self] in self?.parse() }
+        } else { failures["nyaaPopular"] = "request_format"; pendingProviders.remove("nyaaPopular"); parse() }
         uindexProvider.popular { [weak self] (result: Result<[[String: Any]], MagnetUIndexFailure>) in
             DispatchQueue.main.async {
                 guard let self, self.generation == token else { return }
@@ -1313,6 +1494,74 @@ final class MagnetBrowserController {
         }
         sessions.append(session); tasks.append(task); task.resume()
     }
+    // ===== bt4g weekly detail fanout (W-gdb-199eb-14) =====
+    // Detail-page route seam. The shared route owner (VR lane) plugs its
+    // WebKit route in here; the adapter never binds to another writer's
+    // private symbol and never copies the WebKit code. Recorded fixtures
+    // exercise the same seam. No bypass and no new invisible browser layer:
+    // when the route cannot pass a challenge the fanout closes unavailable.
+    protocol MagnetDetailPageFetching: AnyObject {
+        func fetchDetailPage(_ url: URL, completion: @escaping (Result<String, MagnetDetailRouteError>) -> Void)
+    }
+    enum MagnetDetailRouteError: Error { case challenge, unavailable, transport }
+    /// The shared WebKit route instance this controller's detail fanout runs through (VR lane's
+    /// seam); cancelAll fires on every list generation change below so a replaced list never leaves
+    /// in-flight detail loads holding the cap-2 gate.
+    private let webKitPageRoute = WebKitPageRoute()
+    var bt4gDetailFetcher: MagnetDetailPageFetching?
+    private static let bt4gWeeklyDetailLimit = 10
+    private static let bt4gWeeklyDetailConcurrency = 2
+    private var bt4gWeekResults: [MagnetResult] = []
+    private var bt4gRowErrors: [String] = []
+    private var bt4gFanoutGeneration: Int?
+    // Bounded fanout: at most bt4gWeeklyDetailLimit pages per list load, at
+    // most bt4gWeeklyDetailConcurrency in flight, first rows first with the
+    // first rows' order preserved, each verified row shown as it arrives. A
+    // generation change ignores every queued and in-flight completion; a
+    // challenge stops the fanout for that generation with no retry loop.
+    private func launchBT4GWeeklyFanout(html: String, token: Int) {
+        let candidates = MagnetNative.parseBT4GWeeklyList(html)
+        guard !candidates.isEmpty else { failures["bt4gWeek"] = "weekly_empty_or_drift"; return }
+        guard let fetcher = bt4gDetailFetcher else { failures["bt4g"] = "detail_route_unavailable"; return }
+        var queue = Array(candidates.prefix(Self.bt4gWeeklyDetailLimit))
+        var inFlight = 0
+        func pump() {
+            while inFlight < Self.bt4gWeeklyDetailConcurrency && !queue.isEmpty {
+                let candidate = queue.removeFirst()
+                inFlight += 1
+                fetcher.fetchDetailPage(candidate.detailURL) { [weak self] outcome in
+                    DispatchQueue.main.async {
+                        guard let self, self.generation == token else { return }
+                        inFlight -= 1
+                        switch outcome {
+                        case .success(let page):
+                            do {
+                                self.bt4gWeekResults.append(try MagnetNative.parseBT4GDetail(html: page, candidate: candidate))
+                            } catch {
+                                // A row without a hash gets no magnet/download
+                                // action; its error stays visible in the status line.
+                                self.bt4gRowErrors.append(candidate.detailURL.path)
+                            }
+                        case .failure(let routeError):
+                            switch routeError {
+                            case .transport: self.bt4gRowErrors.append(candidate.detailURL.path)
+                            case .challenge:
+                                queue.removeAll(); self.failures["bt4g"] = "detail_challenge"
+                            case .unavailable:
+                                queue.removeAll(); self.failures["bt4g"] = "detail_route_unavailable"
+                            }
+                        }
+                        if queue.isEmpty && inFlight == 0, self.bt4gWeekResults.isEmpty, self.failures["bt4g"] == nil {
+                            self.failures["bt4g"] = "detail_fanout_failed"
+                        }
+                        self.parse(refresh: true)
+                        pump()
+                    }
+                }
+            }
+        }
+        pump()
+    }
     private var reparsePending = false
     private var refreshRevision: UInt64 = 0
     // Tracker scrapes arrive one by one (up to 25 hashes x trackers). Each used to re-merge,
@@ -1334,6 +1583,27 @@ final class MagnetBrowserController {
         var statuses: [String: ProviderStatus] = [:]
         var groups: [[MagnetResult]] = []
         for provider in parsedProviders.keys.sorted() {
+            if provider == "bt4gWeek" {
+                // Weekly HTML is not a MagnetNative parse payload: candidates
+                // feed the bounded detail fanout; verified rows arrive per row.
+                guard let html = parsedProviders[provider] as? String, html.contains("notion-list") else {
+                    statuses[provider] = ProviderStatus(status:"unavailable", reason:"bt4gWeek:html", pending:nil)
+                    continue
+                }
+                if bt4gFanoutGeneration != generation {
+                    bt4gFanoutGeneration = generation
+                    launchBT4GWeeklyFanout(html: html, token: generation)
+                }
+                statuses[provider] = ProviderStatus(status:"ok", reason:nil, pending:nil)
+                if let routeFailure = failures["bt4g"] {
+                    statuses["bt4g"] = ProviderStatus(status:"unavailable", reason:routeFailure, pending:nil)
+                } else if bt4gWeekResults.isEmpty {
+                    statuses["bt4g"] = ProviderStatus(status:"pending", reason:"detail fanout", pending:nil)
+                } else {
+                    statuses["bt4g"] = ProviderStatus(status:"ok", reason:nil, pending:nil)
+                }
+                continue
+            }
             do {
                 let rows = try MagnetNative.parse(provider, parsedProviders[provider]!)
                 groups.append(rows)
@@ -1348,6 +1618,7 @@ final class MagnetBrowserController {
         for provider in pendingProviders {
             statuses[provider] = ProviderStatus(status:"pending", reason:nil, pending:nil)
         }
+        if !bt4gWeekResults.isEmpty { groups.append(bt4gWeekResults) }
         let merged = MagnetNative.merge(groups,query:query)
         let enriched = merged.map { row -> MagnetResult in
             var out = row
@@ -1361,7 +1632,8 @@ final class MagnetBrowserController {
         let down = statuses.filter { $0.value.status == "unavailable" }.map { ($0.key, $0.value.reason) }
         let skipped = MagnetNative.skippedRows.sorted { $0.key < $1.key }.map { "\($0.key) \($0.value)" }
         panel.setStatus(MagnetProviderStatusLine.line(rows: panel.visibleResultCount, pending: !pendingProviders.isEmpty, unavailable: down)
-            + (skipped.isEmpty ? "" : " / skipped rows: " + skipped.joined(separator:", ")))
+            + (skipped.isEmpty ? "" : " / skipped rows: " + skipped.joined(separator:", "))
+            + (bt4gRowErrors.isEmpty ? "" : " / bt4g rows unverified: \(bt4gRowErrors.count)"))
     }
     // Window A for every row (highest claims first), then one independent window B
     // for rows that look contradicted or dead. Only both windows agreeing may
@@ -1372,6 +1644,7 @@ final class MagnetBrowserController {
     private static let scrapeCap = 60
     private func verifyRows(_ rows: [MagnetResult]) {
         let token = generation
+        let cancellation = verificationCancellation
         let ordered = rows.sorted { ($0.claims.values.max() ?? -1) > ($1.claims.values.max() ?? -1) }
         for row in ordered {
             guard scrapedHashes.count < MagnetBrowserController.scrapeCap, let hash = row.infoHash, !scrapedHashes.contains(hash),
@@ -1382,7 +1655,8 @@ final class MagnetBrowserController {
                 let diagnosticOldThreadName = Thread.current.name
                 Thread.current.name = "magnet.verify"
                 defer { Thread.current.name = diagnosticOldThreadName }
-                let a = MagnetVerify.probe(uri: uri, hash: hash, onPositive: { partial in
+                guard !cancellation.isCancelled else { return }
+                let a = MagnetVerify.probe(uri: uri, hash: hash, shouldStop: { cancellation.isCancelled }, onPositive: { partial in
                     DispatchQueue.main.async {
                         guard let self, self.generation == token else { return }
                         self.verdicts[hash] = MagnetVerify.verdict(claim: claim, a: partial, b: nil)
@@ -1401,7 +1675,8 @@ final class MagnetBrowserController {
                             let diagnosticOldThreadName = Thread.current.name
                             Thread.current.name = "magnet.verify"
                             defer { Thread.current.name = diagnosticOldThreadName }
-                            let b = MagnetVerify.probe(uri: uri, hash: hash)
+                            guard !cancellation.isCancelled else { return }
+                            let b = MagnetVerify.probe(uri: uri, hash: hash, shouldStop: { cancellation.isCancelled })
                             DispatchQueue.main.async {
                                 guard let self, self.generation == token else { return }
                                 self.verdicts[hash] = MagnetVerify.verdict(claim: claim, a: a, b: b)
@@ -1551,19 +1826,19 @@ private enum MagnetNative {
                 return tie()
             case "sizeBytes":
                 let x = a.sizeBytes, y = b.sizeBytes
-                if x == nil || y == nil { return x != nil && y == nil }
+                if x == nil || y == nil { return (x == nil && y == nil) ? tie() : x != nil }
                 if x != y { return descending ? x! > y! : x! < y! }
                 return tie()
             case "seeds":
                 let x = a.verdict.flatMap { $0.state == .verified ? $0.verifiedSeeds.map(Int64.init) : nil }
                 let y = b.verdict.flatMap { $0.state == .verified ? $0.verifiedSeeds.map(Int64.init) : nil }
-                if x == nil || y == nil { return x != nil && y == nil }
+                if x == nil || y == nil { return (x == nil && y == nil) ? tie() : x != nil }
                 if x != y { return descending ? x! > y! : x! < y! }
                 return tie()
             default: // uploadedAt
                 let x = a.uploadedAt.flatMap { isoDate.date(from:$0) ?? ISO8601DateFormatter().date(from:$0) }
                 let y = b.uploadedAt.flatMap { isoDate.date(from:$0) ?? ISO8601DateFormatter().date(from:$0) }
-                if x == nil || y == nil { return x != nil && y == nil }
+                if x == nil || y == nil { return (x == nil && y == nil) ? tie() : x != nil }
                 if x != y { return descending ? x! > y! : x! < y! }
                 return tie()
             }
@@ -1605,6 +1880,46 @@ private enum MagnetNative {
     static func topBySeeds(_ input: [MagnetResult], limit: Int) -> [MagnetResult] {
         if input.count <= limit { return input }
         return Array(input.sorted { sortSeeds($0) > sortSeeds($1) }.prefix(limit))
+    }
+    // ===== bt4g weekly popular (W-gdb-199eb-14) =====
+    // One weekly-listing row. No hash exists in the listing, so a candidate
+    // is not a result; the bounded detail fanout verifies it into one.
+    struct BT4GWeeklyCandidate {
+        let title: String
+        let detailURL: URL
+        let sizeBytes: Int64?
+        let seeders: Int?
+        let ageLabel: String?
+    }
+    static func parseBT4GWeeklyList(_ html: String) -> [BT4GWeeklyCandidate] {
+        guard html.count <= 1_000_000 else { return [] }
+        var out: [BT4GWeeklyCandidate] = []
+        for chunk in html.components(separatedBy: "<div class=\"notion-list-item\">").dropFirst().prefix(60) {
+            guard let m = matches(#"notion-list-item-title">\s*<a title="([^"]*)" href="(/magnet/[a-zA-Z0-9]+)""#, chunk).first,
+                  let detailURL = URL(string: "https://bt4gprx.com" + m[2]) else {
+                skippedRows["bt4gWeek", default: 0] += 1; continue
+            }
+            let title = unescape(m[1])
+            guard !title.isEmpty else { skippedRows["bt4gWeek", default: 0] += 1; continue }
+            let seeders = first(#"Seeders: <span class="notion-seeders"[^>]*>([0-9]+)</span>"#, chunk).flatMap { Int($0) }
+            let sizeBytes = first(#"Total Size: <b class="cpill[^"]*">([^<]+)</b>"#, chunk).flatMap { try? size($0, "bt4gWeek:size") }
+            let age = first(#"Creation Time:&nbsp;([^<]+)</span>"#, chunk)?.trimmingCharacters(in: .whitespaces)
+            out.append(BT4GWeeklyCandidate(title: title, detailURL: detailURL, sizeBytes: sizeBytes, seeders: seeders, ageLabel: age))
+        }
+        return out
+    }
+    // A candidate becomes a result only through its own detail page. The hash
+    // comes from the page's own download link (40-hex required), never
+    // invented. The page title must match the row title; that guard proves
+    // page/row matching only, not hash content.
+    static func parseBT4GDetail(html: String, candidate: BT4GWeeklyCandidate) throws -> MagnetResult {
+        guard html.count <= 1_000_000 else { throw fail("bt4gDetail:size") }
+        guard let h = first(#"downloadtorrentfile\.com/hash/([0-9a-fA-F]{40})"#, html)?.lowercased() else { throw fail("bt4gDetail:hash") }
+        let validHash = try hash(h, "bt4gDetail:hash")
+        if let pageTitle = first(#"<h1 class="notion-detail-title">([^<]+)</h1>"#, html), unescape(pageTitle) != candidate.title { throw fail("bt4gDetail:title") }
+        let seeders = first(#"Seeders</span>\s*<span class="notion-property-value"><span class="notion-seeders"[^>]*>([0-9]+)</span>"#, html).flatMap { Int($0) } ?? candidate.seeders
+        let sizeBytes = first(#"File Size</span>\s*<span class="notion-property-value">([^<]+)</span>"#, html).flatMap { try? size($0.trimmingCharacters(in:.whitespaces), "bt4gDetail:size") } ?? candidate.sizeBytes
+        return row("bt4g", candidate.title, validHash, sizeBytes, seeders, nil, candidate.detailURL.absoluteString)
     }
     static func parse(_ provider:String, _ payload:Any) throws -> [MagnetResult] {
         switch provider {
@@ -1680,6 +1995,35 @@ private enum MagnetNative {
                 guard link.range(of:#"^https://nyaa\.si/(view|download)/[0-9]+(?:\.torrent)?$"#,options:.regularExpression) != nil else {throw fail("nyaa:link")}
                 return try row("nyaa",name,h,size(field("nyaa:size",item),binary:true,"nyaa:size"),Int(num(field("nyaa:seeders",item),"nyaa:seeds")),date(field("pubDate",item),"nyaa:date"))
             }
+        case "nyaaPopular":
+            // Popular = the HTML browse with s=seeders&o=desc. The ordering is
+            // asserted, not assumed: this source ignores RSS sort parameters,
+            // so any non-descending emitted order fails the provider visibly
+            // instead of relabeling a recent feed as popular.
+            guard let html = payload as? String, html.count <= 1_000_000, html.contains("torrent-list") else { throw fail("nyaaPopular:html") }
+            let rowHtml = matches(#"<tr[^>]*class="(?:default|success|danger)"[^>]*>([\s\S]*?)</tr>"#, html).map { $0[1] }
+            guard !rowHtml.isEmpty, rowHtml.count <= 100 else { throw fail("nyaaPopular:rows") }
+            var emitted: [(Int, MagnetResult)] = []
+            for r in rowHtml {
+                do {
+                    let tds = matches(#"<td[^>]*>([\s\S]*?)</td>"#, r).map { $0[1] }
+                    guard tds.count == 8 else { throw fail("nyaaPopular:td") }
+                    guard let tm = matches(#"<a href="(/view/[0-9]+)" title="([^"]*)""#, tds[1]).first else { throw fail("nyaaPopular:title") }
+                    let name = try text(unescape(tm[2]), "nyaaPopular:title")
+                    guard let rawUri = first(#"href="(magnet:\?xt=urn:btih:[0-9a-fA-F]{40}[^"]*)""#, tds[2]) else { throw fail("nyaaPopular:magnet") }
+                    let uri = unescape(rawUri)
+                    let h = try hash(first(#"[?&]xt=urn:btih:([0-9a-fA-F]{40})"#, uri) ?? "", "nyaaPopular:hash")
+                    let seeds = Int(try num(tds[5].trimmingCharacters(in: .whitespaces), "nyaaPopular:seeds"))
+                    let sizeBytes = try size(tds[3].trimmingCharacters(in: .whitespaces), binary: true, "nyaaPopular:size")
+                    // The upload timestamp sits on the td tag itself, not in
+                    // its inner text, so it is read from the row markup.
+                    guard let ts = first(#"data-timestamp="([0-9]+)""#, r).flatMap({ Int64($0) }), ts > 0, ts <= 4102444800 else { throw fail("nyaaPopular:date") }
+                    emitted.append((seeds, row("nyaaPopular", name, h, sizeBytes, seeds, ISO8601DateFormatter().string(from: Date(timeIntervalSince1970: Double(ts))), "https://nyaa.si" + tm[1], uri: uri)))
+                } catch { skippedRows["nyaaPopular", default: 0] += 1 }
+            }
+            guard emitted.count >= rowHtml.count / 2 else { throw fail("nyaaPopular:rows") }
+            for i in 1..<emitted.count where emitted[i].0 > emitted[i-1].0 { throw fail("nyaaPopular:ordering") }
+            return emitted.map { $0.1 }
         case "uindex":
             // Collector output: magnet-anchored rows from a real WebKit page.
             // Live layout (verified 2026-10-17 on the real results DOM):
@@ -1733,8 +2077,8 @@ private extension DateFormatter {
 
 // BEP 15 swarm metadata only. No torrent payload is downloaded.
 private enum MagnetTracker {
-    static func scrape(_ tracker: String, hash: String, timeoutMS: Int32 = 4000) -> (seeders: Int, peers: Int)? {
-        guard let url = URL(string:tracker), url.scheme == "udp", let host = url.host,
+    static func scrape(_ tracker: String, hash: String, timeoutMS: Int32 = 4000, shouldStop: (() -> Bool)? = nil) -> (seeders: Int, peers: Int)? {
+        guard shouldStop?() != true, let url = URL(string:tracker), url.scheme == "udp", let host = url.host,
               let port = url.port, (1...65535).contains(port),
               hash.range(of:#"^[0-9a-f]{40}$"#,options:.regularExpression) != nil else { return nil }
         var hints = addrinfo()
@@ -1748,6 +2092,7 @@ private enum MagnetTracker {
         var info: UnsafeMutablePointer<addrinfo>?
         guard getaddrinfo(host, String(port), &hints, &info) == 0, let address = info else { return nil }
         defer { freeaddrinfo(info) }
+        guard shouldStop?() != true else { return nil }
         let fd = socket(address.pointee.ai_family, address.pointee.ai_socktype, address.pointee.ai_protocol)
         guard fd >= 0 else { return nil }
         defer { close(fd) }
@@ -1761,12 +2106,17 @@ private enum MagnetTracker {
             (UInt32(bytes[at]) << 24) | (UInt32(bytes[at+1]) << 16) | (UInt32(bytes[at+2]) << 8) | UInt32(bytes[at+3])
         }
         func exchange(_ packet: [UInt8], action: UInt32, transaction: UInt32, minimum: Int) -> [UInt8]? {
+            guard shouldStop?() != true else { return nil }
             let sent = packet.withUnsafeBytes { send(fd,$0.baseAddress,packet.count,0) }
             guard sent == packet.count else { return nil }
-            while Date() < deadline {
+            while Date() < deadline && shouldStop?() != true {
                 var waiter = pollfd(fd:fd,events:Int16(POLLIN),revents:0)
-                let remaining = Int32(max(1,deadline.timeIntervalSinceNow*1000))
-                guard poll(&waiter,1,remaining) > 0 else { return nil }
+                let remaining = Int32(max(1, min(100, deadline.timeIntervalSinceNow*1000)))
+                let ready = poll(&waiter,1,remaining)
+                if ready < 0 { if errno == EINTR { continue }; return nil }
+                if ready == 0 { continue }
+                if waiter.revents & Int16(POLLNVAL | POLLERR | POLLHUP) != 0 { return nil }
+                guard waiter.revents & Int16(POLLIN) != 0 else { return nil }
                 var bytes = [UInt8](repeating:0,count:2048)
                 let length = bytes.withUnsafeMutableBytes { recv(fd,$0.baseAddress,2048,0) }
                 guard length >= 8 else { continue }
@@ -1811,8 +2161,8 @@ private enum MagnetTracker {
         }
     }
     // BEP 48 HTTP(S) scrape: announce URL -> scrape URL, bencoded files[hash].
-    static func httpScrape(_ tracker: String, hash: String, timeout: TimeInterval = 4) -> (seeders: Int, peers: Int)? {
-        guard var parts = URLComponents(string:tracker), ["http","https"].contains(parts.scheme ?? ""),
+    static func httpScrape(_ tracker: String, hash: String, timeout: TimeInterval = 4, shouldStop: (() -> Bool)? = nil) -> (seeders: Int, peers: Int)? {
+        guard shouldStop?() != true, var parts = URLComponents(string:tracker), ["http","https"].contains(parts.scheme ?? ""),
               parts.path.hasSuffix("/announce"),
               hash.range(of:#"^[0-9a-f]{40}$"#,options:.regularExpression) != nil else { return nil }
         let raw = hashBytes(hash)
@@ -1826,7 +2176,12 @@ private enum MagnetTracker {
             done.signal()
         }
         task.resume()
-        guard done.wait(timeout:.now()+timeout+1) == .success, let data = box.data, data.count <= 65536 else { task.cancel(); return nil }
+        let deadline = Date().addingTimeInterval(timeout + 1)
+        var completed = false
+        while Date() < deadline && shouldStop?() != true {
+            if done.wait(timeout: .now() + 0.1) == .success { completed = true; break }
+        }
+        guard completed, shouldStop?() != true, let data = box.data, data.count <= 65536 else { task.cancel(); return nil }
         let bytes = [UInt8](data); var at = 0
         guard case .dict(let root)? = Bencode.parse(bytes,&at), case .dict(let files)? = root[Array("files".utf8)],
               case .dict(let entry)? = files[raw],
@@ -1891,13 +2246,13 @@ private enum MagnetVerify {
         }
     }
     // One window: UDP/HTTP scrape per tracker plus a bounded DHT lookup, run together.
-    static func probe(uri: String, hash: String,
+    static func probe(uri: String, hash: String, shouldStop: (() -> Bool)? = nil,
                       onPositive: ((MagnetProbeResult) -> Void)? = nil) -> MagnetProbeResult {
         let lock = NSLock(); var probes: [MagnetProbe] = []
         var publishedPositive = false
         let group = DispatchGroup()
         func add(_ p: MagnetProbe?) {
-            guard let p else { return }
+            guard shouldStop?() != true, let p else { return }
             var partial: MagnetProbeResult?
             lock.lock()
             probes.append(p)
@@ -1913,15 +2268,16 @@ private enum MagnetVerify {
             lock.unlock()
         }
         for tracker in MagnetTracker.trackers(uri) {
+            if shouldStop?() == true { break }
             group.enter()
             DispatchQueue.global(qos:.utility).async {
                 let diagnosticOldThreadName = Thread.current.name
                 Thread.current.name = tracker.hasPrefix("udp://") ? "magnet.udp" : "magnet.http"
                 defer { Thread.current.name = diagnosticOldThreadName }
                 if tracker.hasPrefix("udp://") {
-                    add(MagnetTracker.scrape(tracker,hash:hash).map { MagnetProbe(layer:.udp, seeders:$0.seeders, peers:$0.peers) })
+                    add(MagnetTracker.scrape(tracker,hash:hash,shouldStop:shouldStop).map { MagnetProbe(layer:.udp, seeders:$0.seeders, peers:$0.peers) })
                 } else {
-                    add(MagnetTracker.httpScrape(tracker,hash:hash).map { MagnetProbe(layer:.http, seeders:$0.seeders, peers:$0.peers) })
+                    add(MagnetTracker.httpScrape(tracker,hash:hash,shouldStop:shouldStop).map { MagnetProbe(layer:.http, seeders:$0.seeders, peers:$0.peers) })
                 }
                 group.leave()
             }
@@ -1934,10 +2290,12 @@ private enum MagnetVerify {
             // Release the queue slot's wait as soon as any layer published a
             // positive: the DHT tail (seconds) must not stall the other rows.
             add(MagnetDHT.lookup(hash:hash, shouldStop: {
-                lock.lock(); defer { lock.unlock() }; return publishedPositive
+                lock.lock(); defer { lock.unlock() }; return publishedPositive || shouldStop?() == true
             })); group.leave()
         }
-        group.wait()
+        while group.wait(timeout: .now() + 0.1) == .timedOut {
+            if shouldStop?() == true { break }
+        }
         lock.lock(); defer { lock.unlock() }
         let result = MagnetProbeResult(window:window(probes), seeds:probes.compactMap(\.seeders).max(),
                                        peers:probes.map(\.peers).max() ?? 0)
@@ -1956,7 +2314,7 @@ private enum MagnetDHT {
     private struct Node: Hashable { let ip: UInt32; let port: UInt16 }
     static func lookup(hash: String, budgetMS: Int = 4000, shouldStop: (() -> Bool)? = nil) -> MagnetProbe? {
         let target = MagnetTracker.hashBytes(hash)
-        guard target.count == 20 else { return nil }
+        guard shouldStop?() != true, target.count == 20 else { return nil }
         let fd = socket(AF_INET, SOCK_DGRAM, 0); guard fd >= 0 else { return nil }
         defer { close(fd) }
         let ownID = (0..<20).map { _ in UInt8.random(in:0...255) }
@@ -1964,10 +2322,12 @@ private enum MagnetDHT {
             + Array("e1:q9:get_peers1:t2:aa1:y1:qe".utf8)
         var ids: [Node: [UInt8]] = [:], asked = Set<Node>(), responders = Set<Node>(), values = Set<[UInt8]>()
         for (host, port) in routers {
+            if shouldStop?() == true { return nil }
             var hints = addrinfo(); hints.ai_family = AF_INET; hints.ai_socktype = SOCK_DGRAM
             var info: UnsafeMutablePointer<addrinfo>?
             guard getaddrinfo(host, port, &hints, &info) == 0, let found = info else { continue }
             defer { freeaddrinfo(info) }
+            guard shouldStop?() != true else { return nil }
             found.pointee.ai_addr.withMemoryRebound(to:sockaddr_in.self, capacity:1) {
                 ids[Node(ip:$0.pointee.sin_addr.s_addr, port:UInt16(bigEndian:$0.pointee.sin_port))] = [UInt8](repeating:0xff,count:20)
             }
@@ -1985,7 +2345,7 @@ private enum MagnetDHT {
                     sendto(fd, query, query.count, 0, $0, socklen_t(MemoryLayout<sockaddr_in>.size)) } }
             }
             var waiter = pollfd(fd:fd, events:Int16(POLLIN), revents:0)
-            while Date() < deadline {
+            while Date() < deadline && shouldStop?() != true {
                 let remainingMS = Int32(max(1, min(300, deadline.timeIntervalSinceNow * 1000)))
                 guard poll(&waiter, 1, remainingMS) > 0, Date() < deadline else { break }
                 var buffer = [UInt8](repeating:0, count:4096)

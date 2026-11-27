@@ -1,6 +1,7 @@
-// ThreeD/Source.swift - 3D station "Source": source format, probing, stereo source gate, crop sampling and recognition.
-// Move-only split of the former ThreeD.swift (arch-199s). The sections below are byte-identical to their former BEGIN/END spans,
-// in their original relative order. The import list is the union of the former file (a deliberate superset; narrow it only with a Darwin compile).
+// Stereo/Source.swift
+// Stereo source recognition, metadata and crop sampling.
+// Uses: AVFoundation, Accelerate, AppKit, Foundation
+// Engine: both
 #if canImport(AVFoundation)
 import AVFoundation
 #endif
@@ -87,11 +88,13 @@ enum ThreeDRecognitionBridge {
     static func filename(_ path:String)->ThreeDSource? {
         let name=URL(fileURLWithPath:path).lastPathComponent.lowercased()
         func tag(_ pattern:String)->Bool {name.range(of:pattern,options:.regularExpression) != nil}
-        let tb=tag(#"(?:^|[^a-z0-9])(?:tb|ou|htb|ftb)(?:[^a-z0-9]|$)"#)
+        let tb=tag(#"(?:^|[^a-z0-9])(?:tb|ou|htb|ftb|half[ ._-]?(?:tb|ou)|h[ ._-]?(?:tb|ou))(?:[^a-z0-9]|$)"#)
         if tag(#"(?:^|[^a-z0-9])(?:vr180|180|3dh)(?:x180|sbs|lr)?(?:[^a-z0-9]|$)"#) {return ThreeDSource(tb ? .vr180TB:.vr180SBS)}
         if tag(#"(?:^|[^a-z0-9])(?:vr360|360)(?:[^a-z0-9]|$)"#) {return ThreeDSource(tb ? .vr360TB:.vr360Mono)}
-        if tag(#"(?:^|[^a-z0-9])(?:sbs|hsbs|fsbs|lr)(?:[^a-z0-9]|$)"#) {return ThreeDSource(name.contains("hsbs") ? .sbsHalf:.sbsFull)}
-        if tb {return ThreeDSource(.tbFull)}
+        // Half packing is an explicit token (hsbs, half-sbs, h-sbs, htb, half-ou ...); same rule as SBSGeometry.packing, so the source format and the eye aspect agree.
+        let half=tag(#"(?:^|[^a-z0-9])(?:h|half)[ ._-]?(?:sbs|tb|ou)(?:[^a-z0-9]|$)"#)
+        if tag(#"(?:^|[^a-z0-9])(?:sbs|hsbs|fsbs|lr)(?:[^a-z0-9]|$)"#) {return ThreeDSource(half ? .sbsHalf:.sbsFull)}
+        if tb {return ThreeDSource(half ? .tbHalf:.tbFull)}
         return nil
     }
     static func internalMedia(_ path:String)->Bool {
@@ -998,7 +1001,15 @@ enum SourcePixelBounds {
     static func consistent(_ members: [Bounds], tol: Int = earlyTolerance, minCount: Int = earlyMinCount) -> Bounds? {
         guard members.count >= minCount, let first = members.first else { return nil }
         let u = members.dropFirst().reduce(first) { $0.union($1) }
-        for m in members where abs(m.x0-u.x0) > tol || abs(m.y0-u.y0) > tol || abs(m.x1-u.x1) > tol || abs(m.y1-u.y1) > tol { return nil }
+        // Contained intro/title picture is not evidence against wider picture bounds.
+        // Keep EVERY sampled nonblack pixel in u. Require at least minCount
+        // independent measured bounds to confirm u's edges; a single wider outlier
+        // expands u and prevents a decision until its edges are confirmed too.
+        let supporters = members.filter { m in
+            abs(m.x0-u.x0) <= tol && abs(m.y0-u.y0) <= tol &&
+            abs(m.x1-u.x1) <= tol && abs(m.y1-u.y1) <= tol
+        }
+        guard supporters.count >= minCount else { return nil }
         return u
     }
     /// Diagnostic only: luma mean/max (8-bit-equivalent, relative to black) of rows near the measured top and bottom bound, so a log shows the
@@ -1136,6 +1147,8 @@ enum SourcePixelBounds {
 
 final class SourcePixelCropScanner {
     private let lock = NSLock()
+    /// Where this scanner reports the film positions of the samples it admitted. Owned by the player that owns the scanner; unset means nothing is recorded.
+    var sampleRecorder: ((Double) -> Void)?
     private var epoch = 0
     private var freshnessFloor = 0 // only an explicit measurement boundary forbids cancelled carry reuse
     private var active: Process?
@@ -1231,7 +1244,7 @@ final class SourcePixelCropScanner {
             var lastFailure="none"
             func failure(_ reason:String) {
                 lastFailure=reason
-                print("[cropdetect] read failure epoch=\(e) reason=\(reason)")
+                print("[cropdetect] read failure epoch=\(e) reason=\(reason) up=\(cropUptime())")
             }
             // Only transfer relay probes wait. The worker is cancellable throughout;
             // no process exists and no upstream range is opened while deferred.
@@ -1262,16 +1275,16 @@ final class SourcePixelCropScanner {
             let key = "\(path)|\(stereo)|\(topBottom)|\(Int(duration.rounded()))"
             var idDims = ""   // set once the stream is probed
             func carryUsable(_ c: Carry?) -> Carry? { guard let c, c.key == key, ProcessInfo.processInfo.systemUptime - c.at <= SourcePixelCropScanner.carryTTL else { return nil }; return c }
-            print("[cropdetect] scan start caller=\(caller.isEmpty ? "?" : caller) wt=\(wt) stereo=\(stereo) file=\((path as NSString).lastPathComponent)")
+            print("[cropdetect] scan start caller=\(caller.isEmpty ? "?" : caller) wt=\(wt) stereo=\(stereo) file=\((path as NSString).lastPathComponent) epoch=\(e) up=\(cropUptime())")
             func finish(_ rect: CGRect?, _ decisive: Bool, _ why: String = "") {
                 DispatchQueue.main.async {
                     if self.valid(e) {
                         self.lock.lock(); let c = self.carry; if decisive { self.carry = nil; self.lastDeliveredEpoch = e }; self.lock.unlock()
                         if !decisive, wt, let c = carryUsable(c), c.undelivered {
-                            print("[cropdetect] scan ended without a result (\(why)); delivering the decisive rect measured earlier")
+                            print("[cropdetect] scan ended without a result (\(why)); delivering the decisive rect measured earlier up=\(cropUptime())")
                             self.lock.lock(); self.carry = nil; self.lock.unlock(); completion(c.rect,true,1); return
                         }
-                        if !decisive { print("[cropdetect] scan finished indecisive: \(why.isEmpty ? "no reason recorded" : why)") }
+                        if !decisive { print("[cropdetect] scan finished indecisive: \(why.isEmpty ? "no reason recorded" : why) up=\(cropUptime())") }
                         completion(rect,decisive,decisive ? 1 : 0)
                     } else if decisive, wt, !stereo {
                         self.lock.lock()
@@ -1293,6 +1306,7 @@ final class SourcePixelCropScanner {
                     finish(nil,false,"downloaded sample plan unavailable; no source probe opened")
                     return
                 }
+                admitted.forEach { self.sampleRecorder?($0) }
             }
             self.lock.lock(); guard self.epoch==e else {self.lock.unlock();return}; var c0: Carry? = wt ? carryUsable(self.carry) : nil; let keepFallback: Bool = fresh && c0?.undelivered == true; if fresh { c0 = nil }; if wt { if c0 == nil && !keepFallback { self.carry = nil }; self.newestKey = key }; self.lock.unlock()
             guard FileManager.default.isExecutableFile(atPath:ffmpeg) else { finish(nil,false,"ffmpeg not executable"); return }
@@ -1381,7 +1395,7 @@ final class SourcePixelCropScanner {
             let rgbVeto = pix.hasPrefix("rgb") || pix.hasPrefix("bgr") || pix.hasPrefix("gbr") || pix.isEmpty
             let scanDeadline=expires // includes queue, admission, probing and every decode
             for (positionIndex, t) in positions.enumerated() {
-                guard self.valid(e) else { print("[cropdetect] scan cancelled mid-run after \(sampled) of \(positions.count) samples (new scan or cancel)"); return }
+                guard self.valid(e) else { print("[cropdetect] scan cancelled mid-run after \(sampled) of \(positions.count) samples (new scan or cancel) epoch=\(e) up=\(cropUptime())"); return }
                 if ProcessInfo.processInfo.systemUptime>=scanDeadline { break }
                 // Software decode only. cropdetect runs on original decoded samples, no crop/scale/shader.
                 // yuv444p16le preserves full-resolution luma code values for the exact safety veto.
@@ -1429,7 +1443,7 @@ final class SourcePixelCropScanner {
                             for (i,at) in batch.enumerated() {
                                 batchedFrames[at]=decoded.0.subdata(in:i*expectedBytes..<(i+1)*expectedBytes)
                             }
-                            print("[cropdetect] wt bounded batch frames=\(batch.count) span_s=\(last-first) opens=1 cache_bytes=\(cachedBytes+expectedBytes*batch.count)")
+                            print("[cropdetect] wt bounded batch frames=\(batch.count) span_s=\(last-first) opens=1 cache_bytes=\(cachedBytes+expectedBytes*batch.count) up=\(cropUptime())")
                         } else {
                             wtBatching = false // at most one failed batch; never repeated speculative opens
                             print("[cropdetect] wt batch incomplete; original single-target fallback for rest of scan")
@@ -1441,7 +1455,7 @@ final class SourcePixelCropScanner {
                 else { decoded = decode(ffmpeg,args,epoch:e,cap:expectedBytes+65536,killAfter:killAfter) }
                 guard let decoded, decoded.2 == 0, decoded.0.count == expectedBytes else {
                     if let decoded { failure("\(ReadFailure.incomplete.rawValue) expected=\(expectedBytes) received=\(decoded.0.count) status=\(decoded.2)") }
-                    print("[cropdetect] sample failed epoch=\(e) position=\(t) reason=\(lastFailure)")
+                    print("[cropdetect] sample failed epoch=\(e) position=\(t) reason=\(lastFailure) up=\(cropUptime())")
                     continue
                 }
                 sampleSum += ProcessInfo.processInfo.systemUptime - sampleBegan; sampleN += 1
@@ -1452,7 +1466,7 @@ final class SourcePixelCropScanner {
                 }
                 if let b = SourcePixelBounds.scan(decoded.0,width:w,height:h,threshold:threshold,speck:speckTolerance,strong:strongThreshold) {
                     all = all.map { $0.union(b) } ?? b
-                    print("[cropdetect] edge rows sample=\(sampled) t=\(Int(t))s bounds y=\(b.y0)..\(b.y1) (8-bit-eq mean/max, black=\(black), levelUnit=\(levelUnit)): \(SourcePixelBounds.edgeRows(decoded.0,width:w,height:h,bounds:b,black:black,bits:bits,gray:outputGray))")
+                    print("[cropdetect] edge rows sample=\(sampled) t=\(Int(t))s bounds y=\(b.y0)..\(b.y1) (8-bit-eq mean/max, black=\(black), levelUnit=\(levelUnit)) up=\(cropUptime()): \(SourcePixelBounds.edgeRows(decoded.0,width:w,height:h,bounds:b,black:black,bits:bits,gray:outputGray))")
                     if wt || localOpening, !stereo, !rgbVeto { members.append(b); if members.count > 12 { members.removeFirst() } }
                 }
                 // Speed: apply as soon as three frames agree, then keep refining (the union only widens).
@@ -1469,7 +1483,7 @@ final class SourcePixelCropScanner {
                         interimSent = true
                         if localOpening { publishedLocalBounds = ci }
                         let ir = CGRect(x:Double(ci.x0)/Double(w),y:Double(ci.y0)/Double(h),width:Double(ci.x1-ci.x0)/Double(w),height:Double(ci.y1-ci.y0)/Double(h))
-                        print("[cropdetect] early apply after \(sampled) samples (\(members.count) non-black, agree): bounds=\(ci.x0),\(ci.y0)-\(ci.x1),\(ci.y1) of \(w)x\(h); refining on the remaining samples")
+                        print("[cropdetect] early apply after \(sampled) samples (\(members.count) non-black, agree): bounds=\(ci.x0),\(ci.y0)-\(ci.x1),\(ci.y1) of \(w)x\(h); refining on the remaining samples up=\(cropUptime())")
                         DispatchQueue.main.async { if self.valid(e) { interim(ir, -1) } }   // confidence < 0 marks an early apply (the final result still follows)
                     }
                 }
@@ -1498,7 +1512,25 @@ final class SourcePixelCropScanner {
             // seek, resolution/aspect change, track switch and cache growth past the scanned range (199az).
             // Manual Detect (fresh) keeps the union rule, and non-stream sources are unchanged.
             if wt, !stereo, !rgbVeto, !fresh, SourcePixelBounds.consistent(members) == nil {
-                print("[cropdetect] no agreement among \(members.count) non-black frames - full picture kept, search continues")
+                print("[cropdetect] no agreement among \(members.count) non-black frames - full picture kept, search continues up=\(cropUptime())")
+                // Name the frames behind the disagreement: the per-sample line prints only y bounds, so an x-edge outlier (or the union) was not visible.
+                if let first = members.first {
+                    let u = members.dropFirst().reduce(first) { $0.union($1) }
+                    let spread = members.map { max(abs($0.x0-u.x0), abs($0.y0-u.y0), abs($0.x1-u.x1), abs($0.y1-u.y1)) }
+                    // The per-sample line prints y only, so the union line cannot show whether the x-side
+                    // holds a majority the union rule misses. Print the per-edge median anchor and how many
+                    // frames sit within tol of it on all four edges: core >= minCount means the
+                    // median-majority loosening candidate would decide this episode. Diagnostic only; the
+                    // decision path above is unchanged.
+                    func med(_ v: [Int]) -> Int { v.sorted()[v.count / 2] }
+                    let mx0 = med(members.map { $0.x0 }), my0 = med(members.map { $0.y0 })
+                    let mx1 = med(members.map { $0.x1 }), my1 = med(members.map { $0.y1 })
+                    let core = members.filter { m in
+                        abs(m.x0-mx0) <= SourcePixelBounds.earlyTolerance && abs(m.y0-my0) <= SourcePixelBounds.earlyTolerance &&
+                        abs(m.x1-mx1) <= SourcePixelBounds.earlyTolerance && abs(m.y1-my1) <= SourcePixelBounds.earlyTolerance
+                    }.count
+                    print("[cropdetect] disagreement union=x\(u.x0)..\(u.x1) y\(u.y0)..\(u.y1) tol=\(SourcePixelBounds.earlyTolerance) max-edge-deviation-per-frame=\(spread) median=x\(mx0)..\(mx1) y\(my0)..\(my1) core=\(core)/\(members.count) minCount=\(SourcePixelBounds.earlyMinCount)")
+                }
                 finish(nil,false,"no agreement among \(members.count) non-black frames");return
             }
             if let eyes=halves {
@@ -1510,7 +1542,7 @@ final class SourcePixelCropScanner {
             let c = SourcePixelBounds.outward(b,width:w,height:h,stereo:stereo,topBottom:topBottom)
             let rect = CGRect(x:Double(c.x0)/Double(w),y:Double(c.y0)/Double(h),
                               width:Double(c.x1-c.x0)/Double(w),height:Double(c.y1-c.y0)/Double(h))
-            print("[cropdetect] scan done: sampled=\(sampled)/\(positions.count) bounds=\(c.x0),\(c.y0)-\(c.x1),\(c.y1) of \(w)x\(h) override=\(samplePositions != nil)")
+            print("[cropdetect] scan done: sampled=\(sampled)/\(positions.count) bounds=\(c.x0),\(c.y0)-\(c.x1),\(c.y1) of \(w)x\(h) override=\(samplePositions != nil) up=\(cropUptime())")
             GeomTrace.log("sourceCrop", "{\"k\":\"sourceCrop\",\"samples\":\(sampled),\"requested\":40,\"unsampledMayBeCut\":true,\"sbs\":\(stereo),\"sbsHorizontalPreserved\":true}")
             if viewportOnly,stereo,let eyes=halves,let viewport=SourcePixelBounds.eyeViewport(eyes,width:w,height:h,topBottom:topBottom) {
                 print("[cropdetect] verified per-eye viewport \(viewport) source pixels unchanged")
@@ -1607,10 +1639,22 @@ enum CropAcceptPolicy {
         guard let r = rect, stereo else { return true }
         return Double(r.width) >= minKeptFraction && Double(r.height) >= minKeptFraction
     }
-    static func accepts(rect: CGRect?, stereo: Bool, startPlayhead: Double?, nowPlayhead: Double, stream: Bool, manual: Bool) -> Bool {
-        if rect != nil, stream, !manual, let s = startPlayhead, abs(nowPlayhead - s) > maxPlayheadDrift {
-            print("[cropdetect] result dropped: stream scan began at \(Int(s)) s, playhead now \(Int(nowPlayhead)) s (stale samples)")
-            return false
+    static func accepts(rect: CGRect?, stereo: Bool, startPlayhead: Double?, nowPlayhead: Double, stream: Bool, manual: Bool, samples: [Double] = []) -> Bool {
+        if rect != nil, stream, !manual {
+            if samples.isEmpty {
+                // No measured samples on record: keep the scan-start anchor check unchanged.
+                if let s = startPlayhead, abs(nowPlayhead - s) > maxPlayheadDrift {
+                    print("[cropdetect] result dropped: stream scan began at \(Int(s)) s, playhead now \(Int(nowPlayhead)) s (stale samples)")
+                    return false
+                }
+            } else if let freshest = samples.map({ abs(nowPlayhead - $0) }).min(), freshest > maxPlayheadDrift {
+                // Measured sample identity: freshness is judged by where the admitted samples sit
+                // relative to the playhead the crop lands on, not only by the scan's start anchor.
+                // A long scan that kept sampling near the moving playhead carries fresh evidence and
+                // is admitted; a scan whose evidence all lies outside the window is dropped as before.
+                print("[cropdetect] result dropped: stream scan began at \(startPlayhead.map { String(Int($0)) } ?? "?") s, playhead now \(Int(nowPlayhead)) s, freshest sample \(Int(freshest)) s away (stale samples)")
+                return false
+            }
         }
         if !plausible(rect: rect, stereo: stereo) {
             print("[cropdetect] result dropped: crop would remove most of a stereo frame \(String(describing: rect))")
@@ -1621,10 +1665,35 @@ enum CropAcceptPolicy {
 }
 
 /// Playhead at the moment the current automatic scan was started.
+/// One instance per player: a second player's scan never changes this player's start anchor or evidence. The lock covers both fields because
+/// samples are recorded from the scan queue while the player reads them on the main thread.
 final class CropScanGuard {
-    static let shared = CropScanGuard()
-    private(set) var startPlayhead: Double?
-    func begin(playhead: Double) { startPlayhead = playhead }
+    private let lock = NSLock()
+    private var storedStartPlayhead: Double?
+    private var storedSamples: [Double] = []
+    var startPlayhead: Double? { lock.lock(); defer { lock.unlock() }; return storedStartPlayhead }
+    /// Film positions of the current automatic scan's admitted samples (the measured evidence
+    /// identity), bounded at 64 and cleared when a new scan begins. No disk growth: memory only.
+    var samples: [Double] { lock.lock(); defer { lock.unlock() }; return storedSamples }
+    func begin(playhead: Double) { lock.lock(); storedStartPlayhead = playhead; storedSamples.removeAll(keepingCapacity: true); lock.unlock() }
+    func recordSample(_ position: Double) {
+        guard position.isFinite, position >= 0 else { return }
+        lock.lock(); defer { lock.unlock() }
+        if storedSamples.count >= 64 { storedSamples.removeFirst() }
+        storedSamples.append(position)
+    }
+    /// Distance of the freshest admitted sample from a playhead; nil when no sample is recorded.
+    func freshestSampleDistance(from playhead: Double) -> Double? {
+        samples.map({ abs(playhead - $0) }).min()
+    }
+    /// A pending scan is doomed when its start anchor drifted out of the freshness window and none
+    /// of its admitted samples is fresh either: its result would be dropped on arrival, so a
+    /// buffer-growth restart may cancel it and rescan the grown range instead of skipping.
+    func scanDoomed(nowPlayhead: Double) -> Bool {
+        guard let s = startPlayhead, abs(nowPlayhead - s) > CropAcceptPolicy.maxPlayheadDrift else { return false }
+        if let d = freshestSampleDistance(from: nowPlayhead), d <= CropAcceptPolicy.maxPlayheadDrift { return false }
+        return true
+    }
 }
 // END relocated CropAcceptPolicy.swift
 // END relocated SourcePixelCrop.swift
@@ -1755,7 +1824,7 @@ enum WTCropSamples {
         guard (CropDetector.isWTPlayback(path) || TransferProbeAdmission.isSource(path)), let ipc = mainIPCPath else { return nil }
         let client = IPCClient(path: ipc)
         func property(_ name: String) -> Any? {
-            IPCClient.parseFirst(client.queryBatch(MPVCommand.make(["get_property", name]), timeout: 0.5))["data"]
+            client.propertyValue(name, timeout: 0.5)
         }
         var ranges: [(Double, Double)] = []
         if let state = property("demuxer-cache-state") as? [String: Any],
@@ -1770,7 +1839,7 @@ enum WTCropSamples {
         // One line per scan so a capture shows what the player said was on disk and where the scan will look.
         let span = ranges.map { String(format: "%.0f-%.0f", $0.0, $0.1) }.joined(separator: ",")
         let hasPlayhead = (playhead ?? .nan).isFinite
-        print("[cropdetect] wt samples: ranges=[\(span)] positions=\(spread.count) mode=\(manual ? "manual-around-playhead" : (hasPlayhead ? "auto-playhead-window" : "cache-tail")) playhead=\(playhead.map { String(format: "%.1f", $0) } ?? "?") widen=\(manual ? 0 : max(0, widenLevel))")
+        print("[cropdetect] wt samples: ranges=[\(span)] positions=\(spread.count) mode=\(manual ? "manual-around-playhead" : (hasPlayhead ? "auto-playhead-window" : "cache-tail")) playhead=\(playhead.map { String(format: "%.1f", $0) } ?? "?") widen=\(manual ? 0 : max(0, widenLevel)) up=\(cropUptime())")
         if !spread.isEmpty { return spread }
         if let now = (property("time-pos") as? NSNumber)?.doubleValue, now.isFinite, now >= 0 { return playedFallback(now: now) }
         return nil
@@ -1802,4 +1871,6 @@ extension WTCropSamples {
         positions.allSatisfy { p in ranges.contains { p >= $0.0 && p <= $0.1 - tailMargin } }
     }
 }
+// One bounded wall-clock stamp for every cropdetect boundary line (199ec logging split).
+private func cropUptime() -> String { String(format: "%.3f", ProcessInfo.processInfo.systemUptime) }
 // END relocated WTCropSamples.swift

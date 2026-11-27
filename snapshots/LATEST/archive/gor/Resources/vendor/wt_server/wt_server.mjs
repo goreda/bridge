@@ -891,6 +891,7 @@ class RingBufferStore {
     if (waiters?.length) {
       const list = waiters.splice(0);
       this._waiters.delete(index);
+      _refreshWaiterPriority(this);
       const stored = this.chunks.get(index) ?? buf;
       for (const { resolve, timer, onAbort, signal } of list) {
         clearTimeout(timer);
@@ -934,6 +935,7 @@ class RingBufferStore {
     if (!waiters?.length) return false;
     const list = waiters.splice(0);
     this._waiters.delete(index);
+    _refreshWaiterPriority(this);
     for (const { resolve, timer, onAbort, signal } of list) {
       clearTimeout(timer);
       if (signal && onAbort) signal.removeEventListener('abort', onAbort);
@@ -958,6 +960,7 @@ class RingBufferStore {
           if (i >= 0) list.splice(i, 1);
           if (!list.length) this._waiters.delete(index);
         }
+        _refreshWaiterPriority(this);
         entry.resolve(null);
       }, ms);
       entry.startTime = now; // reset for stuck-waiter detection
@@ -965,7 +968,7 @@ class RingBufferStore {
     return true;
   }
 
-  waitForPiece(index, ms, signal = null) {
+  waitForPiece(index, ms, signal = null, pumpId = null) {
     if (this.chunks.has(index)) return Promise.resolve(this.chunks.get(index));
     if (this.closed) return Promise.resolve(null);
 
@@ -983,6 +986,7 @@ class RingBufferStore {
           if (i >= 0) list.splice(i, 1);
           if (!list.length) this._waiters.delete(index);
         }
+        _refreshWaiterPriority(this);
       };
 
       timer = setTimeout(() => { cleanup(); resolve(null); }, ms);
@@ -994,9 +998,9 @@ class RingBufferStore {
       }
 
       if (!this._waiters.has(index)) this._waiters.set(index, []);
-      const entry = { resolve, timer, onAbort, signal, startTime: Date.now() };
+      const entry = { resolve, timer, onAbort, signal, pumpId, playbackToken: activePumps.get(pumpId)?.playbackToken, startTime: Date.now() };
       this._waiters.get(index).push(entry);
-      try { _boostWaiterPiece(index); } catch (_) { }
+      try { _refreshWaiterPriority(this); } catch (_) { }
     });
   }
 
@@ -1099,6 +1103,7 @@ class RingBufferStore {
       }
     }
     this._waiters.clear();
+    _refreshWaiterPriority(this);
     this.analysisVerified.clear();
     this.analysisEpoch++;
     this.chunks.clear();
@@ -1803,7 +1808,7 @@ torrent.on('warning', (err) => {
     if (ring?._waiters.has(index)) {
       const retryWaitMs = hashFailWaiterMs(torrent.pieceLength);
       const restarted = ring.restartWaiter(index, retryWaitMs);
-      try { _boostWaiterPiece(index); } catch (_) { }
+      try { _refreshWaiterPriority(ring); } catch (_) { }
       try {
         _pinRetry(index);
         // Old requests belong to the discarded Piece (see v22.1).
@@ -1995,6 +2000,7 @@ let _lastDlAtPrebuffer = 0;
 // PUMP_ABORT_RECOVERY_MS, trigger handleRefreshCommand + synthetic unchoke so
 // wt_server is ready when mpv reconnects (or prompts it to reconnect).
 let _lastPumpAbortAt = 0;
+let _deadObservedOwner = null;
 let _lastRangeStartPiece = -1, _lastStreamActivityAt = 0, _lastSkipAt = 0, _deadReqAt = 0, _deadPos = null, _deadPosSince = 0; // v22.3
 const PUMP_ABORT_RECOVERY_MS = 8_000;
 
@@ -2272,10 +2278,9 @@ function _emitAdmitStats(tag) {
   process.stdout.write(line + '\n');
 }
 setInterval(() => { try { _emitAdmitStats(); } catch (_) { } }, 10_000).unref?.();
-// A waiter boost is TEMPORARY, never a standing ownership grant. It owns its range only while a real
-// need remains: some piece in range is neither verified (bitfield) nor stored in the ring AND a ring
-// waiter or live reader is in range (or the boost is < BOOST_GRACE_MS old). Otherwise null.
-const BOOST_GRACE_MS = 3000;
+// A waiter boost owns priority only while a registered, pending playback
+// waiter is bound to its exact live pump, signal and current source token.
+// A reader without a pending wait, or elapsed grace, grants no ownership.
 function _boostOwned(ring) {
   const b = _waiterBoost;
   if (!b) return null;
@@ -2283,12 +2288,9 @@ function _boostOwned(ring) {
   let done = true;
   for (let p = b.from; p <= b.to; p++) if (!have(p)) { done = false; break; }
   if (done) return null;
-  if (Date.now() - (b.ts || 0) < BOOST_GRACE_MS) return b;
-  if (ring && ring.waitedPieces.some(p => p >= b.from && p <= b.to)) return b;
-  for (const o of activePumps.values()) {
-    if (!o.isProbe && !o.abortController?.signal?.aborted && !o.response?.destroyed &&
-        Number.isSafeInteger(o.cursorPiece) && o.cursorPiece >= b.from && o.cursorPiece <= b.to) return b;
-  }
+  // Grace never grants ownership. Only a still-registered waiter tied to
+  // this exact pump, signal and source token may keep shared priority.
+  for (let p = b.from; p <= b.to; p++) if (_liveWaiterOwner(ring, p, true)) return b;
   return null;
 }
 function _expireStaleBoost(ring) {
@@ -2650,21 +2652,64 @@ function _setStreamingPriority(owner, from, to, priority) {
 // One shared waiter priority must not become last-analysis-reader-wins.
 // Only an actually waiting, live playback cursor is eligible. Probe and
 // analysis ownership remains intact, but neither may displace that cursor.
+function _validWaiterEntry(ring, piece, entry, playbackOnly = false) {
+  if (!entry || !(ring?._waiters?.get(piece) || []).includes(entry)) return false;
+  const owner = activePumps.get(entry.pumpId);
+  return !!owner && entry.signal === owner.abortController?.signal &&
+    entry.playbackToken === owner.playbackToken && owner.playbackToken === _activePlaybackToken &&
+    !entry.signal?.aborted && !owner.response?.destroyed && !owner.response?.writableEnded &&
+    owner.cursorPiece === piece && (!playbackOnly || (!owner.isAnalysis && !owner.isProbe));
+}
+function _liveWaiterOwner(ring, piece, playbackOnly = false) {
+  for (const entry of ring?._waiters?.get(piece) || []) {
+    if (_validWaiterEntry(ring, piece, entry, playbackOnly)) return activePumps.get(entry.pumpId);
+  }
+  return null;
+}
 function _playbackWaiterPiece(ring) {
   if (!ring) return null;
-  const waiting = new Set(ring.waitedPieces);
-  let first = null;
-  for (const owner of activePumps.values()) {
-    if (owner.isAnalysis || owner.isProbe || owner.abortController?.signal?.aborted ||
-        owner.response?.destroyed || owner.response?.writableEnded ||
-        !Number.isSafeInteger(owner.cursorPiece) || !waiting.has(owner.cursorPiece)) continue;
-    first = first == null ? owner.cursorPiece : Math.min(first, owner.cursorPiece);
-  }
-  return first;
+  return ring.waitedPieces.filter(p => _liveWaiterOwner(ring, p, true)).sort((a, b) => a - b)[0] ?? null;
 }
-function _boostWaiterPiece(index) {
+function _refreshWaiterPriority(ring) {
+  // An old source ring may finish its callbacks after the global source swaps.
+  if (!ring || ring !== getRing()) return;
   if (_torrentGone || _shuttingDown || !torrent || torrent.destroyed) return;
-  index = _playbackWaiterPiece(getRing()) ?? index;
+  // Analysis gets a separate bounded selection, never playback authority.
+  // A live playback waiter always wins; source analysis may make progress
+  // only when it cannot displace that waiting cursor.
+  const index = _playbackWaiterPiece(ring);
+  const analysis = index == null ? ring.waitedPieces.filter(piece =>
+    (ring._waiters.get(piece) || []).some(entry => {
+      if (!_validWaiterEntry(ring, piece, entry)) return false;
+      const owner = activePumps.get(entry.pumpId);
+      return owner.isAnalysis && !owner.isProbe;
+    })).sort((a, b) => a - b)[0] : null;
+  const selected = torrent._selections?._items?.filter(i => i.gorPriorityOwner === 'analysis-waiter') || [];
+  if (analysis == null ? selected.length > 0 : selected.length !== 1 ||
+      selected[0].from !== analysis || selected[0].to !== analysis || selected[0].offset !== 0) {
+    _setStreamingPriority('analysis-waiter', analysis == null ? 1 : analysis,
+      analysis == null ? 0 : analysis, 1);
+  }
+  if (index == null) {
+    if (_waiterBoost || torrent._selections?._items?.some(i => i.gorPriorityOwner === 'waiter')) {
+      _setStreamingPriority('waiter', 1, 0, 2);
+    }
+    _waiterBoost = null;
+    return;
+  }
+  const entry = (ring._waiters.get(index) || []).find(e => _validWaiterEntry(ring, index, e, true));
+  _boostWaiterPiece(index, entry);
+}
+function _boostWaiterPiece(index, entry = null) {
+  if (_torrentGone || _shuttingDown || !torrent || torrent.destroyed) return;
+  const ring = getRing();
+  if (!_validWaiterEntry(ring, index, entry, true)) return;
+  index = _playbackWaiterPiece(ring);
+  if (index == null) {
+    _waiterBoost = null;
+    _setStreamingPriority('waiter', 1, 0, 2);
+    return;
+  }
   const to = Math.min(index + 1, totalFileLast);
   if (_waiterBoost && _waiterBoost.from === index && _waiterBoost.to === to &&
       torrent._selections?._items?.some(i => i.gorPriorityOwner === 'waiter' && i.from === index && i.to === to)) {
@@ -2947,6 +2992,7 @@ setInterval(() => {
       // Expired pump: abort so it exits waitForPiece and runs finally→end()
       try { v.abortController?.abort(); } catch (_) { }
       activePumps.delete(id);
+      _refreshWaiterPriority(getRing());
       process.stdout.write(`GUARD:pump-expired piece=${v.cursorPiece ?? v.startPiece} — aborted\n`);
     }
   }
@@ -3450,7 +3496,7 @@ function readerBudgetFloor(fallback) {
   let floor = fallback;
   const now = Date.now();
   for (const owner of activePumps.values()) {
-    if (owner.isProbe || owner.isAnalysis || owner.abortController.signal.aborted || owner.response.destroyed ||
+    if (owner.openingScanPacingRetired || owner.isProbe || owner.isAnalysis || owner.abortController.signal.aborted || owner.response.destroyed ||
         !Number.isSafeInteger(owner.cursorPiece)) continue;
     const lastAdvance = owner.cursorAt ?? owner.ts ?? 0;
     if (now - lastAdvance > READER_FLOOR_STALL_MS) continue;
@@ -3492,9 +3538,47 @@ async function waitForReaderBudget(piece, pumpId, signal) {
 
 let _lastConsumerEvidenceAt = 0; // actual validated /pos, not synthetic recovery
 
+// Before any decoder clock exists, a new far-forward main range is the
+// next opening scan demand. Superseded opening cursors keep their exact
+// retention/waiter ownership, but no longer pace the newest scan read.
+function _succeedOpeningScan(pumpId) {
+  if (lastMpvPosSec != null) return false;
+  const next = activePumps.get(pumpId);
+  if (!next || next.isProbe || next.isAnalysis ||
+      next.playbackToken !== _activePlaybackToken ||
+      next.abortController.signal.aborted || next.response.destroyed || next.response.writableEnded) return false;
+  const lead = Math.max(1, Math.min(WINDOW_AHEAD_MAX,
+    Math.floor((getRing()?.maxBytes || RAM_CAP_MIN) / torrent.pieceLength / 2)));
+  let retired = 0;
+  for (const owner of activePumps.values()) {
+    if (owner === next || owner.isProbe || owner.isAnalysis ||
+        owner.playbackToken !== next.playbackToken || owner.pumpOrder >= next.pumpOrder ||
+        owner.abortController.signal.aborted || owner.response.destroyed || owner.response.writableEnded ||
+        !Number.isSafeInteger(owner.cursorPiece) || next.cursorPiece <= owner.cursorPiece + lead) continue;
+    owner.openingScanPacingRetired = true;
+    retired++;
+  }
+  if (retired) process.stdout.write(`PUMP:opening-succession pump=${pumpId} piece=${next.cursorPiece} retired=${retired}\n`);
+  return retired > 0;
+}
+
+function openingSchedulingFloor(fallback) {
+  let floor = fallback;
+  const now = Date.now();
+  for (const owner of activePumps.values()) {
+    if (owner.openingScanPacingRetired || owner.isProbe || owner.isAnalysis ||
+        owner.playbackToken !== _activePlaybackToken || owner.abortController.signal.aborted ||
+        owner.response.destroyed || owner.response.writableEnded || !Number.isSafeInteger(owner.cursorPiece)) continue;
+    if (now - (owner.cursorAt ?? owner.ts ?? 0) > READER_FLOOR_STALL_MS) continue;
+    floor = Math.min(floor, owner.cursorPiece);
+  }
+  return floor;
+}
+
 function registerPump(startPiece, abortController, response, isProbe = false, isAnalysis = false) {
   const id = ++nextPumpId;
-  activePumps.set(id, { startPiece, cursorPiece: startPiece, cursorAt: Date.now(), floorStaleLogged: false, phase: 'running', ts: Date.now(), abortController, response, isProbe, isAnalysis });
+  activePumps.set(id, { startPiece, cursorPiece: startPiece, cursorAt: Date.now(), floorStaleLogged: false, phase: 'running', ts: Date.now(), abortController, response, isProbe, isAnalysis,
+    pumpOrder: id, playbackToken: _activePlaybackToken, acceptedAt: Date.now(), hasWritten: false, lastWriteAt: 0 });
   if (WT_PUMP_RECEIPTS) {
     const pump = activePumps.get(id);
     pump.receiptBornAtMs = Date.now();
@@ -3552,6 +3636,7 @@ function waitForPumpDrain(response, signal, pumpId, cursorPiece) {
 function unregisterPump(id) {
   pumpReceipt('unregister', id, activePumps.get(id));
   activePumps.delete(id);
+  _refreshWaiterPriority(getRing());
 }
 
 // v17.34: piece-count radius derived from DEDUP_BYTES so the dedup window stays
@@ -3582,6 +3667,7 @@ function abortPumpsOutsideWindow(exceptPiece) {
     activePumps.delete(id);
     aborted++;
   }
+  _refreshWaiterPriority(getRing());
   if (aborted > 0) {
     process.stdout.write(`SEEK:abort-old-pumps count=${aborted} new-piece=${exceptPiece}\n`);
   }
@@ -3797,6 +3883,22 @@ function _deadGateMissingFrontier(bitfield, startPiece, playPiece, waitedPiece) 
   return false;
 }
 
+// A main playback response owns its freeze clock ahead of auxiliary probes.
+// Only actually admitted, current-session, live pumps can become owners.
+function _deadConsumerOwner() {
+  let main = null, probe = null;
+  for (const owner of activePumps.values()) {
+    if (owner.isAnalysis || owner.playbackToken !== _activePlaybackToken ||
+        owner.abortController?.signal?.aborted || owner.response?.destroyed ||
+        owner.response?.writableEnded) continue;
+    if (!Number.isFinite(owner.acceptedAt) || !Number.isSafeInteger(owner.cursorPiece)) continue;
+    if (owner.isProbe) { if (!probe || owner.acceptedAt >= probe.acceptedAt) probe = owner; }
+    else if (!main || (owner.hasWritten && !main.hasWritten) ||
+        (owner.hasWritten === main.hasWritten && owner.pumpOrder > main.pumpOrder)) main = owner;
+  }
+  return main || probe;
+}
+
 // v22.3 C: dead-reader detector. Nobody reads, the piece mpv last asked for is
 // verified, mpv position is frozen: tell the app (REQ:stream-dead). Not while
 // user-paused for less than 30s. One request per 30s.
@@ -3804,10 +3906,26 @@ setInterval(() => {
   try {
     if (_isUserPaused || _torrentGone || _shuttingDown || !torrent || torrent.destroyed || _lastRangeStartPiece < 0) return;
     const now = Date.now();
-    if (_deadPos !== lastMpvPosSec) { _deadPos = lastMpvPosSec; _deadPosSince = now; return; }
+    const consumer = _deadConsumerOwner();
+    if (!consumer) return;
+    if (_deadObservedOwner !== consumer) {
+      _deadObservedOwner = consumer;
+      _deadPos = Number.isFinite(lastMpvPosSec) ? lastMpvPosSec : null;
+      _deadPosSince = now;
+    }
     if (_autoAdvanceActive) return;
-    const nonProbeReaders = [...activePumps.values()].filter(owner => !owner.isProbe);
-    if (nonProbeReaders.length && now - _deadPosSince < 15_000) return;
+    const hasPosition = Number.isFinite(lastMpvPosSec);
+    // Opening has no decoder clock. Observe its actual admitted byte owner,
+    // not a null===null epoch-duration or an unrelated RANGE arrival.
+    if (!hasPosition) {
+      _deadPos = null; _deadPosSince = now;
+      if (now - Math.max(consumer.acceptedAt, consumer.lastWriteAt) < 15_000) return;
+    } else {
+      if (_deadPosSince === 0 || _deadPos !== lastMpvPosSec) {
+        _deadPos = lastMpvPosSec; _deadPosSince = now; return;
+      }
+      if (now - _deadPosSince < 15_000) return;
+    }
     // v22.10: the needed piece itself is missing — a stream reload cannot
     // fetch it faster. It aborts the live pump whose waiter/boost drive that
     // very download, then the new pump re-waits the same piece (log
@@ -3820,11 +3938,12 @@ setInterval(() => {
     // piece (owner session 77383, 8 reloads, piece 2 never landed). Resume in
     // place: any missing piece between range start and the play frontier, or a
     // live waiter, means no reload; the stall detector keeps fetching it.
-    if (_deadGateMissingFrontier(torrent.bitfield, _lastRangeStartPiece, currentPlayPiece, getRing()?.waitedPieces?.[0] ?? null)) return;
-    const frozen = now - _deadPosSince, idle = now - _lastStreamActivityAt;
+    if (_deadGateMissingFrontier(torrent.bitfield, consumer.startPiece, consumer.cursorPiece, getRing()?.waitedPieces?.[0] ?? null)) return;
+    const frozen = hasPosition ? now - _deadPosSince : now - consumer.acceptedAt;
+    const idle = now - Math.max(consumer.acceptedAt, consumer.lastWriteAt);
     if (frozen < 10000 || idle < 10000 || now - _deadReqAt < 30000) return;
     _deadReqAt = now;
-    process.stdout.write(`REQ:stream-dead piece=${_lastRangeStartPiece} reason=frozen-consumer token=${_activePlaybackToken} pos=${lastMpvPosSec} posFrozenMs=${frozen} idleMs=${idle} paused=${_isUserPaused} — reload same stream\n`);
+    process.stdout.write(`REQ:stream-dead piece=${consumer.startPiece} reason=${hasPosition ? 'frozen-consumer' : 'opening-idle'} token=${_activePlaybackToken} pos=${lastMpvPosSec} posFrozenMs=${frozen} idleMs=${idle} paused=${_isUserPaused} — reload same stream\n`);
   } catch (_) { }
 }, 2000).unref();
 
@@ -3908,6 +4027,51 @@ function handleRefreshCommand() {
 
 // ─── applyMpvPosition ─────────────────────────────────────────────
 let lastKnownDuration = 0;
+
+// The first decoder clock ends opening-scan scheduling authority. Keep
+// every reader and its retention grant; only far opening readers lose the
+// right to move the shared window. New demux reads keep normal read-ahead.
+function _adoptOpeningPlayback(playPiece) {
+  const ring = getRing();
+  const lead = Math.max(1, Math.min(WINDOW_AHEAD_MAX,
+    Math.floor((ring?.maxBytes || RAM_CAP_MIN) / torrent.pieceLength / 2)));
+  if (currentPlayPiece <= playPiece + lead) return false;
+  let playback = null;
+  for (const owner of activePumps.values()) {
+    if (owner.isProbe || owner.isAnalysis || !owner.hasWritten ||
+        owner.playbackToken !== _activePlaybackToken ||
+        owner.abortController.signal.aborted || owner.response.destroyed ||
+        owner.response.writableEnded || !Number.isSafeInteger(owner.cursorPiece) ||
+        owner.cursorPiece < playPiece || owner.cursorPiece > playPiece + lead) continue;
+    if (!playback || owner.pumpOrder > playback.pumpOrder) playback = owner;
+  }
+  const frontier = playback ? playback.cursorPiece : playPiece;
+  for (const owner of activePumps.values()) {
+    if (owner.playbackToken === _activePlaybackToken &&
+        Number.isSafeInteger(owner.cursorPiece) && owner.cursorPiece > frontier + lead) {
+      owner.openingScheduleRetired = true;
+    }
+  }
+  currentPlayPiece = frontier;
+  if (ring) ring.setPlayhead(frontier);
+  _lastWindowForwardAt = 0;
+  updateSlidingWindow(frontier, totalFileFirst, totalFileLast, true);
+  process.stdout.write(`POS:opening-adopt play=${playPiece} frontier=${frontier} owner=${playback?.pumpOrder ?? 'none'}\n`);
+  return true;
+}
+
+function _advancePumpFrontier(piece, pumpId, ring, fileFirst, fileLast) {
+  const owner = activePumps.get(pumpId);
+  if (!owner || owner.openingScheduleRetired || owner.openingScanPacingRetired || owner.isProbe || owner.isAnalysis ||
+      owner.playbackToken !== _activePlaybackToken || owner.abortController.signal.aborted ||
+      owner.response.destroyed || owner.response.writableEnded) return;
+  const frontier = openingSchedulingFloor(piece);
+  if (frontier > currentPlayPiece) {
+    currentPlayPiece = frontier;
+    ring.setPlayhead(frontier);
+    updateSlidingWindow(frontier, fileFirst, fileLast, true);
+  }
+}
 
 function applyMpvPosition(seconds, duration) {
   if (typeof seconds !== 'number' || !Number.isFinite(seconds) || seconds < 0) return null;
@@ -4009,6 +4173,7 @@ function applyMpvPosition(seconds, duration) {
   _mpvSuppressedCount = 0; // v18.1: real pos advance — clear suppression counter
 
   const ring = getRing();
+  if (prevSeconds == null) _adoptOpeningPlayback(clamped);
   const wasForward = clamped >= currentPlayPiece;
 
   if (wasForward) {
@@ -4322,6 +4487,10 @@ torrent.on('metadata', () => {
     cancelAutoAdvance('startServer:new-file');
     const playbackToken = `${process.pid}-${++_serveGeneration}`;
     _activePlaybackToken = playbackToken;
+    _deadPos = null;
+    _deadPosSince = 0;
+    _deadReqAt = 0;
+    _deadObservedOwner = null;
     _playbackEventSequence = -1;
     _explicitRangeSeekUntil = 0;
     lastKnownDuration = 0;
@@ -4773,6 +4942,7 @@ torrent.on('metadata', () => {
         getRing()?.setPlayhead(currentPlayPiece);
 
         pumpId = registerPump(startPiece, abortCtrl, res, isProbeRequest, isAnalysisRequest);
+        _succeedOpeningScan(pumpId);
         req.on('close', onClose);
         res.on('close', onClose);
 
@@ -4799,12 +4969,7 @@ torrent.on('metadata', () => {
             if (aborted) break;
             const owner = activePumps.get(pumpId);
             if (owner) owner.phase = 'running';
-            const frontier = readerRetentionPiece(piece);
-            if (frontier > currentPlayPiece) {
-              currentPlayPiece = frontier;
-              ring.setPlayhead(frontier);
-              updateSlidingWindow(frontier, fileFirst, fileLast, true);
-            }
+            _advancePumpFrontier(piece, pumpId, ring, fileFirst, fileLast);
           }
 
           // Check store cache first — avoid waitForPiece if already in RAM
@@ -4827,7 +4992,7 @@ torrent.on('metadata', () => {
               // so GUARD's 120s expiry never fires while we're in waitForPiece.
               const _hbWait = activePumps.get(pumpId);
               if (_hbWait) _hbWait.ts = Date.now();
-              buf = await ring.waitForPiece(piece, stallDetector.pieceTimeout, abortCtrl.signal);
+              buf = await ring.waitForPiece(piece, stallDetector.pieceTimeout, abortCtrl.signal, pumpId);
               // v22.3 B: peers hold the piece and the swarm is alive: do not reset mpv's
               // connection (each reset grew mpv's reconnect backoff 0,1,3,7s then it gave
               // up in the 07:50 log). Rescue the block and wait again, bounded.
@@ -4837,7 +5002,7 @@ torrent.on('metadata', () => {
                 _holds++;
                 process.stdout.write(`PUMP:hold piece=${piece} hold=${_holds}/${HOLD_MAX_WAITS} — peers hold it, connection kept\n`);
                 try { _rescueStuckBlock(piece); } catch (_) { }
-                buf = await ring.waitForPiece(piece, stallDetector.pieceTimeout, abortCtrl.signal);
+                buf = await ring.waitForPiece(piece, stallDetector.pieceTimeout, abortCtrl.signal, pumpId);
               }
             }
           }
@@ -4905,7 +5070,9 @@ torrent.on('metadata', () => {
             }
 
             // Advance playhead past the skipped piece
-            if (!isDup && isForwardRequest && piece >= currentPlayPiece) {
+            if (!isDup && isForwardRequest && piece >= currentPlayPiece &&
+                !activePumps.get(pumpId)?.openingScheduleRetired &&
+                !activePumps.get(pumpId)?.openingScanPacingRetired) {
               currentPlayPiece = piece + 1;
               ring.setPlayhead(currentPlayPiece);
               updateSlidingWindow(currentPlayPiece, fileFirst, fileLast, true);
@@ -4921,6 +5088,16 @@ torrent.on('metadata', () => {
           const chunk = buf.slice(sliceFrom, sliceTo);
 
           const ok = res.write(chunk);
+          // Both true and false accept this nonempty chunk. Backpressure is
+          // not a failed write; analysis/old/aborted pumps are not evidence.
+          const owner = activePumps.get(pumpId);
+          if (chunk.length > 0 && owner && !owner.isAnalysis && !aborted &&
+              owner.playbackToken === _activePlaybackToken &&
+              playbackToken === _activePlaybackToken && owner.response === res &&
+              !abortCtrl.signal.aborted && !res.destroyed && !res.writableEnded) {
+            owner.hasWritten = true;
+            owner.lastWriteAt = Date.now();
+          }
           if (!ok && !aborted) {
             await waitForPumpDrain(res, abortCtrl.signal, pumpId, piece);
           }

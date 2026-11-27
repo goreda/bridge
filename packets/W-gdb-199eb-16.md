@@ -1,54 +1,15 @@
 # W-gdb-199eb-16: lane-e-binding
-Team: 1nstinct. State: WAIT_STATION_REPIN. Priority: product regression.
-Packet identity and occupancy: original W-gdb-199eb-16, lane lane/1nstinct/lane-e-binding; earliest existing symbol claim still wins.
-Legacy extracted-helper/new-file fallback and full-file return are RETIRED by199ee. This is the same packet reissued as an existing-file patch, not a new dispatch.
-
-## Target file@SHA
-Repository: goreda/instinct
-Target: archive/gor/Sources/gor/Player/ExportRunComposition.swift@37ccb29b7403bbc35b276ab5600947979de42f7d
+Revision:199ef. Prior199eb excerpt and199ee patch-only forms RETIRED. Same ID, team 1nstinct, lane lane/1nstinct/lane-e-binding, and earliest symbol claim preserved.
+State: REISSUED_FULL_TARGET_CUSTODY_RECONCILE. This record does not invent a new unclaimed assignment or undo an earlier application.
+Target: goreda/instinct archive/gor/Sources/gor/Player/ExportRunComposition.swift@83ad4e39f8df442fd10e638a5a3c3f67ea848692
 Blob: c261a9392e5f9a5cadb863902cc3a1d06124c68e
-The target existed at this exact pin. Historical168af857 excerpts below are not the current pin.
+Complete target attached: [ExportRunComposition.swift](199ef/W-gdb-199eb-16/ExportRunComposition.swift)
+Issue-time refreshed snapshot: [complete file](../snapshots/LATEST/archive/gor/Sources/gor/Player/ExportRunComposition.swift)
+Attachment SHA256: 3d83856dd19e718731aa47c518bd3f2fe40904bbbe4b81ad83d46345b2d51952
+Projection: source complete except owner-message identifier removed from a comment, if present; no executable behavior omitted.
 
-## Change
-Integrate real Lane E skeleton and bind source/runner to the same retained lease.
-
-## Return as patch to that file
-Unified patch against the exact target above. Modify its existing owning concept; no new source/test/helper file, full-file replacement or new Gate/Guard/Receipt/Proof/Admission/Stub type. A genuinely new file requires an explicit block line naming it first. Preserve source/load/player identity, existing interfaces and product behavior outside this change. On collision report it and preserve earliest custody instead of extracting a helper.
-
-## Current reconciliation
-Existing export target is being consolidated by the single station writer. Wait for its verified destination@SHA, then repin this same packet. No parallel satellite edit.
-A queue label alone does not prove the original defect is outstanding. Report already-fixed evidence before proposing a duplicate change. Tests and compile/runtime limitations are reported honestly; this packet adds no CI gate between code and owner delivery.
-
-## Historical source context
-```text
-43:     /// - resetTiming: the wire timing legs for the reset line.
-44:     /// - makeFeed: builds the frame feed AFTER the source exists, so its run context can read the
-45:     ///   source's live run token; makeRGBA64 checks it against the prepared binding at construction
-46:     ///   (the product ordering is prepare-first, construct-after).
-47:     public static func bindRun(box: ExportRunLeaseBox, wire: ExportWireObserver, inner: PhotonExportPixelSource,
-48:                                ownerQueue: DispatchQueue, capture: ExportLookCapture,
-49:                                contract: PhotonExportReadbackContract, timeBase: ExportTimeBase,
-50:                                enqueueLine: @escaping (_ line: String, _ session: String, _ opening: UInt64, _ runId: String?, _ attempt: UInt64?) -> Bool,
-51:                                dropRun: @escaping (String) -> Void,
-52:                                resetTiming: @escaping () -> (ptsUs: Int64, originUs: Int64),
-53:                                frameChannel: ExportFrameWireChannel? = nil,
-54:                                result: ExportPreflightResult, adapter: ExportSnapshotAdapter,
-55:                                backend: ExportRGBA64Backend?, makeFeed: (ExportLeasePixelSource) -> ExportRGBA64FrameFeed?,
-56:                                fileSystem: ExportFileSystem, admission: ExportAdmission,
-57:                                requireVideoEndProof: Bool,
-58:                                copyProof: ((ExportPartialFile) -> String?)?, copyProofInterrupt: (() -> Void)?) -> Result<BoundRun, Refusal> {
-59:         let emitter = ExportWireEmitter(enqueue: { line in
-60:             let owner = wire.currentOwner()
-61:             return enqueueLine(line, owner?.session ?? "", owner?.opening ?? 0, capture.loadReceipt.runId, nil)
-62:         })
-63:         let source = ExportLeasePixelSource(box: box, wire: wire, inner: inner, ownerQueue: ownerQueue, capture: capture,
-64:                                             queuedRunPurge: dropRun,
-65:                                             frameChannel: frameChannel,
-66:                                             emitReset: { epoch in
-67:                                                 let t = resetTiming()
-68:                                                 try emitter.reset(epoch: epoch, ptsUs: t.ptsUs, originUs: t.originUs)
-69:                                             })
-70:         let prepared: (producer: PhotonExportProducer, binding: ExportPreparedRun)
-```
-
-Secret scan: clean.
+Change: Integrate real Lane E skeleton and bind source/runner to the same retained lease.
+Return: the whole changed target file, preserving the same relative product path. No excerpt/private-repo access is needed to read this input. Include changed symbols, base SHA, known limits and actual output. Do not create a satellite file; newly required source files need an explicit block line naming them. If a station writer has since moved the target, return the conflict and current destination evidence before editing.
+Reconcile current source and earlier returns first: the defect may already be fixed. Preserve earliest claim and existing occupancy, and do not duplicate another writer. Product compile/CI is not made a prerequisite here. If additional complete dependency files are required, name them precisely for attachment rather than guessing their interfaces.
+Same ingest pass outcome required: re:W-gdb-199eb-16 | ACCEPTED / REJECTED / PARTIAL | commit SHA | reason. A publication is not product acceptance or evidence that a lab started.
+Secret scan: clean. Held grain/Sensing/font bytes unchanged and excluded from these attachments.

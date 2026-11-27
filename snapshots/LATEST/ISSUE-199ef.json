@@ -1,0 +1,90 @@
+{
+  "scope": "only listed target files refreshed; other snapshot bytes and held redactions unchanged",
+  "source_commit": "83ad4e39f8df442fd10e638a5a3c3f67ea848692",
+  "files": [
+    {
+      "path": "archive/gor/Resources/vendor/wt_server/wt_server.mjs",
+      "source_commit": "83ad4e39f8df442fd10e638a5a3c3f67ea848692",
+      "sha256": "d62d04beac0b24dccf00c13fc09fcb5cc199f3b325e85de498f74107b78de9b8",
+      "bytes": 263818
+    },
+    {
+      "path": "archive/gor/Sources/gor/App/AppDelegate.swift",
+      "source_commit": "83ad4e39f8df442fd10e638a5a3c3f67ea848692",
+      "sha256": "933cca2e1d409da9a00290ed1be265f4dfeb83f9fcf607db446e0014b7f61435",
+      "bytes": 261690
+    },
+    {
+      "path": "archive/gor/Sources/gor/App/ExportAsSeenAction.swift",
+      "source_commit": "83ad4e39f8df442fd10e638a5a3c3f67ea848692",
+      "sha256": "0b6c532c8b2d81edb49e5650351065eca2e73d4f5627f65f156202acc4a32c8a",
+      "bytes": 24499
+    },
+    {
+      "path": "archive/gor/Sources/gor/Engine/CropProbeTransport.swift",
+      "source_commit": "83ad4e39f8df442fd10e638a5a3c3f67ea848692",
+      "sha256": "9dcda68fed2da24c4665470467805dadc3e00a46de6dee9c0c77172e9d33a574",
+      "bytes": 3595
+    },
+    {
+      "path": "archive/gor/Sources/gor/Media/MagnetBrowser.swift",
+      "source_commit": "83ad4e39f8df442fd10e638a5a3c3f67ea848692",
+      "sha256": "e1d3913fda04b2fc0ef93758477c47fbbe910ab46a2f7294beebd1e9c307a9db",
+      "bytes": 149839
+    },
+    {
+      "path": "archive/gor/Sources/gor/Picture/CropDetector.swift",
+      "source_commit": "83ad4e39f8df442fd10e638a5a3c3f67ea848692",
+      "sha256": "6941f9b23ecb22ec4fbdf97af01cb127e3ece5a6dc26b67410383f93fbef5140",
+      "bytes": 70250
+    },
+    {
+      "path": "archive/gor/Sources/gor/Picture/ExportEncoder.swift",
+      "source_commit": "83ad4e39f8df442fd10e638a5a3c3f67ea848692",
+      "sha256": "add8a5e8e127fd20e62ec1f8c0cf177d47afd756cde9690f8bd02082af16478d",
+      "bytes": 97282
+    },
+    {
+      "path": "archive/gor/Sources/gor/Picture/Viewport.swift",
+      "source_commit": "83ad4e39f8df442fd10e638a5a3c3f67ea848692",
+      "sha256": "a478b377bcfbe323b1674d4a2061837a30b4120e38303c84862a3c3936e40024",
+      "bytes": 90764
+    },
+    {
+      "path": "archive/gor/Sources/gor/Player/ExportRunComposition.swift",
+      "source_commit": "83ad4e39f8df442fd10e638a5a3c3f67ea848692",
+      "sha256": "3d83856dd19e718731aa47c518bd3f2fe40904bbbe4b81ad83d46345b2d51952",
+      "bytes": 47670
+    },
+    {
+      "path": "archive/gor/Sources/gor/Player/ExportRunLease.swift",
+      "source_commit": "83ad4e39f8df442fd10e638a5a3c3f67ea848692",
+      "sha256": "420991a61b6b8a5d2f2ffef6155b785dc34797893e3844184bb412a36d561b54",
+      "bytes": 28550
+    },
+    {
+      "path": "archive/gor/Sources/gor/Player/PPController.swift",
+      "source_commit": "83ad4e39f8df442fd10e638a5a3c3f67ea848692",
+      "sha256": "fd94bd76970583ab769cba15fb51a0d98538a9744a2e7ad9ff34029878dd6dd1",
+      "bytes": 345150
+    },
+    {
+      "path": "archive/gor/Sources/gor/Session/CropFitEvidenceEncoder.swift",
+      "source_commit": "83ad4e39f8df442fd10e638a5a3c3f67ea848692",
+      "sha256": "301aca2d23c14f56a9d0cd4d078a1637f7e987e909d6d5e3bac80c40fd53f842",
+      "bytes": 3814
+    },
+    {
+      "path": "archive/gor/Sources/gor/Stereo/Source.swift",
+      "source_commit": "83ad4e39f8df442fd10e638a5a3c3f67ea848692",
+      "sha256": "abc003235e65e737aedf621dada02637ad95a13c1609fa59efa23aab77368559",
+      "bytes": 131190
+    },
+    {
+      "path": "archive/gor/Sources/gor/UI/ExportMenu.swift",
+      "source_commit": "83ad4e39f8df442fd10e638a5a3c3f67ea848692",
+      "sha256": "aaf7812720308133e384e2598e900eecc4831a0ea7016a9f20b69c3c980439b0",
+      "bytes": 13761
+    }
+  ]
+}

@@ -1,3 +1,7 @@
+// App/AppDelegate.swift
+// Application and mpv lifecycle: mpv process, overlay attachment, window and audio-device synchronization.
+// Uses: AppKit, CoreAudio, CoreFoundation, CoreGraphics, CryptoKit, Darwin, Dispatch, GorAVPlaybackCore, QuartzCore, Camera, Engine, Media, Picture, Platform, Player, Session, Stereo, Subtitles, UI
+// Engine: both
 import CoreFoundation
 // ================================================================
 //  AppDelegate.swift - application and mpv lifecycle
@@ -7,6 +11,7 @@ import CoreFoundation
 // ================================================================
 import AppKit
 import GorAVPlaybackCore
+import GorAVCore
 import CoreAudio
 import CoreGraphics
 import Dispatch
@@ -14,47 +19,28 @@ import QuartzCore
 import Darwin
 import CryptoKit
 
-// Current-process IPC ownership. A child-exit callback can run while AppKit termination is blocked;
-// remove only the socket inode observed after this app launched its own mpv, never a replacement path.
-private final class OwnedPlayerSocket {
-    private let path: String
-    private let lock = NSLock()
-    private var identity: (dev_t, ino_t)?
-    private let eligible: Bool
-    init(path: String) {
-        self.path = path
-        var st = stat()
-        eligible = lstat(path, &st) != 0 && errno == ENOENT
-    }
-    func observe() {
-        guard eligible else { return } // never claim a path that predates this launch
-        var st = stat()
-        guard lstat(path, &st) == 0, (st.st_mode & mode_t(S_IFMT)) == mode_t(S_IFSOCK), st.st_uid == getuid() else { return }
-        lock.lock(); defer { lock.unlock() }
-        if identity == nil { identity = (st.st_dev, st.st_ino) }
-    }
-    func childExited() {
-        lock.lock(); defer { lock.unlock() }
-        guard let owned = identity else { return }
-        var st = stat()
-        guard lstat(path, &st) == 0, st.st_dev == owned.0, st.st_ino == owned.1,
-              (st.st_mode & mode_t(S_IFMT)) == mode_t(S_IFSOCK), st.st_uid == getuid() else { return }
-        _ = unlink(path)
-        identity = nil
-    }
-}
-
 // ================================================================
 //  DraggableOverlayWindow - drag destination window
 // ================================================================
 final class DraggableOverlayWindow: NSWindow {
     override var canBecomeKey: Bool { !NoActivate.active }
     override var canBecomeMain: Bool { !NoActivate.active }
+    deinit { print("[overlay] window deinit windowNumber=\(windowNumber) up=\(String(format: "%.3f", ProcessInfo.processInfo.systemUptime))") }
 
     /// One player chrome constructor, shared by the mpv overlay and gorav.
     static func playerWindow(frame:NSRect)->DraggableOverlayWindow {
         let window=DraggableOverlayWindow(contentRect:frame,styleMask:[.borderless],backing:.buffered,defer:false)
         window.isReleasedWhenClosed=false
+        // Process-owned player-window identity for PlayerPeerObservation: the title is invisible on
+        // this borderless window and excluded from the Window menu; peers verify pid AND windowNumber
+        // against CGWindowList, so only the real player overlay of this process matches.
+        window.isExcludedFromWindowsMenu=true
+        // Publish only a real, positive window-server number; defer:false gives one at init, but a
+        // zero/negative id would be a placeholder - never publish that (peers would refuse it anyway,
+        // and a placeholder marker could never verify). attachOverlay re-stamps after ordering.
+        if window.windowNumber > 0 {
+            window.title=PlayerPeerMarkerMap.marker(pid:getpid(),windowNumber:window.windowNumber)
+        }
         return window
     }
 
@@ -170,6 +156,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     private var overlaySampleInFlight = false
     private var overlaySamplePending = false
     private var overlayFastTimer: Timer?
+    private var overlayTickGate = OverlayTickGate()
     private var overlayFastUntil: TimeInterval = 0
     var overlayDragActive = false
     private var overlayDragSettleUntil: TimeInterval = 0
@@ -481,6 +468,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         Thread.current.qualityOfService = .userInteractive
         DisplayHeadroomDiag.start()
         ThreadCpuDiag.start()  // diagnostic: set ThreadCpuDiag.enabled = false to turn off
+        RunForensics.start()  // previous-run cause report + mem ring + early warning; observation only
         MainThreadDiag.start()  // diagnostic: main run loop busy time and counted callbacks
         installWindowClampTrigger()  // gor 514 trigger/clamp (candidate v4)
 
@@ -574,13 +562,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     }
 
     /// The frontmost searchable browser panel (file browser, archive, magnet
-    /// results) in front-to-back window order - the Cmd+F target. Panels are
-    /// nested inside container views, so the scan recurses. A search field's
-    /// own NSPanel is never itself searchable, so panel windows are skipped by
-    /// the type checks, not by window filtering.
+    /// results, IPTV, music) in front-to-back window order - the Cmd+F target.
+    /// Panels are nested inside container views, so the scan recurses. A search
+    /// field's own NSPanel is never itself searchable, so panel windows are
+    /// skipped by the type checks, not by window filtering.
     func frontmostSearchablePanel() -> NSView? {
         func deepFind(_ v: NSView) -> NSView? {
-            if v is FileBrowserPanel || v is ArchiveBrowserPanel || v is MagnetResultsPanel { return v }
+            if v is FileBrowserPanel || v is ArchiveBrowserPanel || v is MagnetResultsPanel || v is IPTVPanel || v is MusicPanel { return v }
             for s in v.subviews { if let hit = deepFind(s) { return hit } }
             return nil
         }
@@ -1109,8 +1097,33 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     /// host through the production host's existing native87 gate surface.
     /// Same isolation shape as goravCurrentTime; goravHost stays private.
     var goravHostForAppGate: GorAVPlayerHost? { MainActor.assumeIsolated { goravHost } }
+    /// Forwarder for the embedded-PiP corner snap (MenuActions); goravHost stays private.
+    func goravSnapPiP(to frame: NSRect) { MainActor.assumeIsolated { goravHost?.snapPiP(to: frame) } }
     var goravSourceURL: URL? { MainActor.assumeIsolated { goravHost?.sourceURL } }
     var goravPreparedPlayback: PreparedShotPlayback? { MainActor.assumeIsolated { goravHost?.preparedPlayback } }
+    /// The E0 observation providers, built at the S2-allowed root (GorAVCore-typed naming stays here): PLAYBACK's
+    /// ExportE0NativeProbe host closures over the live gorav host, ENCODE's ExportStartContract over the adapter's
+    /// evidence (its decodedSignal.sourceTag already set from the adapter's own measured inventory), the owner fence
+    /// live from the controller (PPController.exportOwnerFence). The raster is the capture's expectedEncode echo (the
+    /// preflight's planned raster); withinDeadline bounds the bridge's ONE retry window (2 s from `entry`). MAIN
+    /// THREAD ONLY (the wiring site's ExportE0NativeProbe.onMain guarantees it). nil = no host or no planned raster
+    /// (fail-closed).
+    func goravE0Providers(capture: ExportLookCapture, evidence: ExportColourEvidence, controller: PPController?, entry: Date) -> ExportRenderObservationBridge.Providers? {
+        guard let encode = capture.raster.expectedEncode else { return nil }
+        guard let hostCalls = MainActor.assumeIsolated({ goravHost.map { ExportE0NativeProbe.Host.gorAV($0) } }) else { return nil }
+        let transfer = evidence.decodedSignal?.transfer
+        return ExportE0NativeProbe.providers(
+            host: hostCalls,
+            contract: ExportStartContract.contract(
+                evidence: evidence,
+                hdrSignalPresent: { transfer == "pq" || transfer == "hlg" },   // the measured transfer tag is the HDR signal
+                edrArm: { false },   // no renderer EDR arm is observable from the composition root; the E1 renderer's own gates still apply
+                overlayPolicy: .unresolved,   // the owner record is silent: a composited-overlay frame refuses typed, never bakes silently
+                outputRaster: PhotonExportRaster(width: encode.width, height: encode.height),
+                refusal: { _ in }),
+            ownerFence: { controller?.exportOwnerFence() },
+            withinDeadline: { Date().timeIntervalSince(entry) < 2 })
+    }
     private var engineSelectionOverride: PlayerEngine?
     var selectedPlayerEngine: PlayerEngine {
         engineSelectionOverride ?? PlayerEngine.selected(environment: ProcessInfo.processInfo.environment,
@@ -1416,7 +1429,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             "--no-osc",
             "--cursor-autohide=no",
             "--cursor-autohide-fs-only=no",
-            "--script-opts=osc-visibility=never" + GorOpeningFit.fitScriptOptSuffix(),
+            "--script-opts=osc-visibility=never" + GorOpeningFit.fitScriptOptSuffix() + tilingScriptOptSuffix(),
             "--script-opts-add=gor_fit-crop-session=\(PPController.cropPacketSession)",
             "--osd-level=0",
             "--sub-visibility=no",
@@ -1599,18 +1612,35 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
                 childDrain=nil
                 // Playback still consumes its protocol when capture is refused.
                 DispatchQueue.global(qos:.utility).async {
-                    do {while true {let bytes=try PlayerSessionPipeDrain.readAvailableChunk(mpvStderrPipe.fileHandleForReading);if bytes.isEmpty {break};try consumeRows(bytes)};try tail()}
+                    do {
+                        var more=true
+                        while more {
+                            let step={ () throws -> Bool in
+                                let bytes=try PlayerSessionPipeDrain.readAvailableChunk(mpvStderrPipe.fileHandleForReading)
+                                if bytes.isEmpty {return false}
+                                try consumeRows(bytes);return true
+                            }
+                            #if canImport(ObjectiveC)
+                            more=try autoreleasepool(invoking:step)
+                            #else
+                            more=try step()
+                            #endif
+                        }
+                        try tail()
+                    }
                     catch {NSLog("[GOR] mpv output reader failed")}
                 }
             }
-        }catch {NSLog("[GOR] mpv capture admission failed");return}
+        }catch {NSLog("[GOR] mpv capture admission failed");controller?.cropReceiverLaunchFailed(PPController.cropPacketSession);return}
         let previousExit=p.terminationHandler
         p.terminationHandler={ process in
             childDrain?.childExited();previousExit?(process)
         }
 
-        do {try MPVLifeline.run(p);try mpvStderrPipe.fileHandleForWriting.close()}
-        catch {try? mpvStderrPipe.fileHandleForWriting.close();return}
+        do {try MPVLifeline.run(p)}
+        catch {try? mpvStderrPipe.fileHandleForWriting.close();controller?.cropReceiverLaunchFailed(PPController.cropPacketSession);return}
+        // The spawn SUCCEEDED above: a pipe-close failure is not a launch failure (the voucher stays valid for the launched process's first load).
+        do {try mpvStderrPipe.fileHandleForWriting.close()} catch {NSLog("[GOR] mpv stderr pipe close failed")}
         ScreenCaptureEngine.shared.stopAudioCapture()
         mpvProcess = p
         ScreenCaptureEngine.shared.mpvPID = p.processIdentifier
@@ -1624,6 +1654,36 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             if self.controller == nil && FileManager.default.fileExists(atPath: self.ipcPath) {
                 let ctrl = PPController(frame: .zero, ipcPath: self.ipcPath)
                 self.controller = ctrl
+                // Lane E: Start provider on a BoundExportCapability; the encoder leg is bound next, other legs stay absent.
+                let exportCapability = BoundExportCapability(providerAssigned: { true })
+                // W-gdb-199eb-21 (PANELS): the launch-scoped frame channel wiring — one seal client per launch, its
+                // request-id blocks, reply routing through the controller's onLine, lifecycle invalidation there.
+                let frameWiring = ExportFrameChannelWiring(settlement: ctrl.exportSettlement,
+                                                           ownerFence: { [weak ctrl] in ctrl?.exportOwnerFence() })
+                ctrl.exportFrameChannelWiring = frameWiring
+                ExportAsSeenAction.installStartProvider(on: ctrl, capability: exportCapability) { result in
+                    // W-gdb-199eb-20: the real Start build (PANELS' ExportStartAssembly). The readback handle comes
+                    // from the live gorav host (nil = fail-closed); the run's adapter is a fresh read-only snapshot
+                    // adapter (lookSnapshot/fileIdentity fences; no render receipt is needed by the runner).
+                    ExportStartAssembly.makeInputs(result: result, adapter: ExportAsSeenAction(controller: ctrl),
+                                                   handle: MainActor.assumeIsolated { self.goravHost?.exportReadbackHandle() },
+                                                   channelWiring: frameWiring,
+                                                   // The present-session floor at Start build: this provider runs synchronously on the
+                                                   // main actor, so the floor is the current session's, taken early (prepare); a player
+                                                   // restart between build and run starts a new session/generation and the receipt book
+                                                   // fails closed against this floor.
+                                                   sessionFloor: MainActor.assumeIsolated { self.goravHost?.exportSessionFloor() })
+                }
+                exportCapability.bind { $0.encoder = ExportEncoderCapabilityBinding.reader(declaration: { GORResources.renderStackDeclarationURL() }) }
+                // The frame/seal channel leg: composed only while the controller really holds this launch's wiring (the factory, the seal client and the
+                // connection's id blocks exist); the reply routes through ctrl and the evidence names that wiring. The frames-baked chain leg is NOT bound
+                // here: its verification is per run (renderer receipt) and no production verifier exists yet, so it stays absent with its own reason.
+                exportCapability.bind { [weak ctrl, weak frameWiring] in
+                    $0.channel = {
+                        guard let ctrl = ctrl, let frameWiring = frameWiring, ctrl.exportFrameChannelWiring === frameWiring else { return ExportChannelEvidence(composed: false) }
+                        return ExportChannelEvidence(composed: true, evidence: ["wiring": "ExportFrameChannelWiring", "scope": "launch"])
+                    }
+                }
                 ctrl.ipcCommand("{\"command\":[\"keybind\",\"Meta+o\",\"ignore\"]}")
             }
             
@@ -1933,16 +1993,28 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             win.animator().alphaValue = 1
         }
 
+        // One refresh now that the window is really ordered: the marker binds the live windowNumber.
+        if win.windowNumber > 0 {
+            win.title = PlayerPeerMarkerMap.marker(pid: getpid(), windowNumber: win.windowNumber)
+        }
         overlayWin = win
 
         let previousController = controller
         controller = ctrl
         releaseOldController(previousController)
 
+        // Multi-player tiling: attach once both the controller and the overlay window exist.
+        // Idempotent - the hooked/observers guards inside startPlayerTiling make repeat calls
+        // no-ops; without the fit script there is nothing to tile against.
+        if PPController.gorFitScriptActive { startPlayerTiling() }
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
             self?.controller?.startPolling()
         }
 
+        // The engine samples the window findMPVWindowID binds below; that window's controller is the
+        // delegate's current `controller`, read at each tick: after a replacement or deinit the current controller decides (a replacement that is itself transitioning still defers).
+        ScreenCaptureEngine.shared.captureDeferred = { [weak self] in self?.controller?.cropCaptureDeferred == true }
         findMPVWindowID(retriesLeft: 10)
         ScreenCaptureEngine.shared.start()
         ctrl.setupAdaptiveColor()
@@ -2008,6 +2080,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     }
 
     private func releaseOldController(_ oldController: PPController?) {
+        // Measurement only (stacking probe, 199ec): window=-1/0 means the old controller never sat in an overlay window. No cleanup until a capture shows the retention branch.
+        print("[AppDelegate] releaseOldController old=\(oldController.map { ObjectIdentifier($0) } as Any) window=\(oldController?.window?.windowNumber ?? -1) up=\(String(format: "%.3f", ProcessInfo.processInfo.systemUptime))")
     }
 
     private func findMPVWindowID(retriesLeft: Int) {
@@ -2065,7 +2139,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             guard let self else { return }
             // Even a backend which only sends end-of-drag notifications gets fast tracking.
             if NSEvent.pressedMouseButtons & 1 != 0 { self.boostOverlaySync() }
-            self.syncOverlay()
+            // Idle gate (OverlayTickGate): the AX observer reports real changes at once, so a quiet overlay is sampled ~0.5 s apart, not every tick.
+            let urgent = self.overlayFastTimer != nil || self.minimizePending || self.overlayDragActive || self.overlaySamplePending
+                || self.overlayPositionInitializing || self.overlayPositionWriteInFlight || self.overlayPendingPosition != nil
+                || self.mpvEntryWritePending || self.mpvRestoreWritePending
+            if self.overlayTickGate.tick(axObserverInstalled: self.overlayAXObserver != nil, urgent: urgent) { self.syncOverlay() }
         }
         timer.tolerance = 0.01
         RunLoop.main.add(timer, forMode: .common)
@@ -2086,6 +2164,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         mpvRestoreWritePending = false
         overlaySyncGeneration &+= 1
         overlayDragGeneration &+= 1
+        overlayTickGate = OverlayTickGate()
         minimizeGeneration &+= 1
         minimizePending = false
         syncTimer?.invalidate()
@@ -2112,6 +2191,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     func boostOverlaySync() {
         guard syncTimer != nil, !isQuittingDeliberately else { return }
         overlayFastUntil = ProcessInfo.processInfo.systemUptime + 2.0
+        overlayTickGate.noteActivity()
         guard overlayFastTimer == nil else { return }
         let timer = Timer(timeInterval: 1.0 / 60.0, repeats: true) { [weak self] timer in
             guard let self else { timer.invalidate(); return }
@@ -2150,12 +2230,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         }
         window.contentView?.layoutSubtreeIfNeeded()
         window.contentView?.displayIfNeeded()
+        refreshOverlayTilingClip()   // mask + hit admission track every committed overlay frame, same transaction
     }
 
     func syncOverlay() {
         MainThreadDiag.count("syncOverlay")
         guard !isQuittingDeliberately, let ax = axWindow, let win = overlayWin else { return }
-        if ProcessInfo.processInfo.systemUptime >= overlayMinimizeHoldUntil { let pid = mpvProcess?.processIdentifier; _ = overlaySpace.apply(win, onScreen: HeatShadow.observeBool("mpvOnScreen", OverlaySpaceGate.mpvOnScreen(pid: pid), ttl: 0.25), pid: pid) } // Space follow: sync, every tick and on activeSpaceDidChange
+        if ProcessInfo.processInfo.systemUptime >= overlayMinimizeHoldUntil { MainThreadDiag.time("syncOverlay.space") { let pid = mpvProcess?.processIdentifier; _ = overlaySpace.apply(win, onScreen: HeatShadow.observeBool("mpvOnScreen", OverlaySpaceGate.mpvOnScreenCached(pid: pid), ttl: 0.25), pid: pid) } } // Space follow: sync, every tick and on activeSpaceDidChange
         // Mouse-up can be lost when focus/window/Space changes mid-drag.
         if overlayDragActive && NSEvent.pressedMouseButtons & 1 == 0 {
             resetMpvPositionCache()
@@ -2207,6 +2288,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
                         // moves the UI too, including fullscreen exit/entry animation frames.
                         self.lastFrame = frame
                         self.commitOverlayFrame(frame,window:win)
+                        self.overlayTickGate.noteActivity()
                         self.boostOverlaySync()
                         // gor 514 v2: this receipt passed every gor-write
                         // fence above, so it is an external (user/mpv)
@@ -2474,6 +2556,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     }
 
     private func updateOverlayHitTesting(_ win: NSWindow) {
+        // A point on this overlay outside its reserved cell belongs to the peer underneath and must
+        // be refused even when this overlay is inactive, non-key, or hosting an input/browser panel:
+        // the out-of-cell part is masked (invisible) and must never capture the peer's activating
+        // click. Runs first; nil cell (untiled / fullscreen / PiP) admits every point, so the
+        // existing guards below keep their exact behavior in those states.
+        if let cell = Self.tiling.overlayKernelCell, let screen = win.screen {
+            let u = tilingUsable(screen)
+            let mouse = NSEvent.mouseLocation
+            if !GorPlayerTiling.hitAllowed(appKitPointX: mouse.x, appKitPointY: mouse.y,
+                                           reservedCellKernel: cell,
+                                           usable: GorFitRect(x: u.minX, y: u.minY, w: u.width, h: u.height)) {
+                win.ignoresMouseEvents = true
+                return
+            }
+        }
         // An inactive overlay must receive the activating click, not pass it to
         // the separate mpv process whose activation races our key-window claim.
         guard !pictureInPictureActive,NSApp.isActive,win.isKeyWindow else {win.ignoresMouseEvents=false;return}
@@ -2930,7 +3027,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             menuItem.state=pictureInPictureActive ? .on : .off
             return available
         }
-        if action == #selector(menuWindowPlacement(_:)) {return overlayWin != nil && playerFullscreenState != true}
+        if action == #selector(menuWindowPlacement(_:)) {
+            // Size items do nothing in PiP (placePlayerWindow): dimmed there instead of silently ignoring the click.
+            let mode = menuItem.representedObject as? String ?? ""
+            return overlayWin != nil && playerFullscreenState != true && PipWindowMenuGate.acts(mode: mode, pictureInPictureActive: pictureInPictureActive)
+        }
         if action == #selector(menuWindowMinimize) {
             menuItem.title=playerWindowIsMinimized ? "restore" : "minimize"
             return overlayWin != nil
@@ -3092,9 +3193,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         let before=win.frame
         let usable=pictureInPictureActive ? screen.frame : PlayerWindowPlacement.usableFrame(screen:screen.frame,visible:screen.visibleFrame,menuAutoHides:false) // corners are of the usable area (menu bar/Dock/notch excluded); only pip owns true screen corners
         let video=controller?.windowMenuVideoSize ?? before.size
-        let position=["top-left","top-right","bottom-left","bottom-right","center"].contains(mode)
+        let position=PipWindowMenuGate.positionModes.contains(mode)
         if pictureInPictureActive {
-            guard position else{return}
+            guard PipWindowMenuGate.acts(mode:mode,pictureInPictureActive:true) else{return}
+            if !position,let resized=PlayerPictureInPicture.resizedFrame(current:before,screen:usable,mode:mode) {
+                guard let geom=GorOpeningFit.clampGeometry(frame:resized,screen:screen,chromeStyleMask:.borderless) else{return}
+                pipWindowFrame=resized;pipPreferredFrame=resized
+                UserDefaults.standard.set(NSStringFromRect(resized),forKey:"gor.pip.preferredFrame")
+                issueFencedGeometry(geom,before:before,target:resized)
+                return
+            }
             let target=mode == "center" ? PlayerPictureInPicture.nearestCorner(candidate:before,screen:usable) : PlayerWindowPlacement.frame(mode:mode,current:before,visible:usable)
             guard let geom=GorOpeningFit.clampGeometry(frame:target,screen:screen,chromeStyleMask:.borderless) else{return}
             pipWindowFrame=target
@@ -3232,7 +3340,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         // menu never double-fires. Plain = and - still zoom (handled by the monitor).
         func fnShift(_ f: Int) -> String { String(UnicodeScalar(UInt32(f))!) }
         let fs: NSEvent.ModifierFlags = [.shift, .function]
-        // Owner 2026-11-12 13:47 (phonemsg-01M77NX7459XYMH8W2B3VR9N01): video menu order is
+        // Owner 2026-11-12 13:47 (<owner-reference-redacted>): video menu order is
         // clip, crop directly under clip, aspect ratio directly under crop, and toggle LAST.
         let cropMenu = group("crop", in: videoMenu)
         let redetectCropItem=item("detect",action:#selector(menuCropDetect),key:"d",mods:[.command,.control,.option])
@@ -3295,6 +3403,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         photonFiltersMenu.addItem(item("chrome",         action: #selector(menuPhotonChrome),  key: "c", mods: []))
         photonFiltersMenu.addItem(item("chrome filter",  action: #selector(menuPhotonChromeFilter), key: "c", mods: [.shift]))
         photonFiltersMenu.addItem(item("negativ",        action: #selector(menuPhotonNegativ), key: "n", mods: []))
+
+        // ── encode ──────────────────────────────────────────────────────────
+        let encodeItem = NSMenuItem(); encodeItem.title = "encode"; main.addItem(encodeItem)
+        let encodeMenu = NSMenu(title: "encode"); encodeItem.submenu = encodeMenu
+        ExportAsSeenAction.installMenu(in: encodeMenu, target: self)   // plan-only export entries; Start stays disabled
 
         // ── audio ───────────────────────────────────────────────────────────────
         let audioItem = NSMenuItem(); audioItem.title = "audio"; main.addItem(audioItem)
@@ -3778,6 +3891,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     // MARK: - Menu Actions
 
     func applicationWillTerminate(_ aNotification: Notification) {
+        RunForensics.markCleanQuit()
+        // Tiling teardown: unregister the peer-observation tokens first so no retile fires mid-shutdown,
+        // then drop every tiling reference this process holds. The Lua-side publish/readback state dies
+        // with the mpv process; nothing here writes to a peer.
+        let tokens = Self.tiling.observers
+        Self.tiling.observers = []
+        for token in tokens {
+            NSWorkspace.shared.notificationCenter.removeObserver(token)
+            DistributedNotificationCenter.default().removeObserver(token)
+        }
+        Self.tiling.pending = nil
+        Self.tiling.overlayKernelCell = nil
+        Self.tiling.hooked = nil
+        controller?.tilingContentClip = nil
         MainActor.assumeIsolated {goravHost?.closeSession()}
         quitDebug("WillTerminate enter restart=\(pendingRestart)")
         _ = PoseTraceRing.shared.writeOnQuit()
@@ -4097,3 +4224,305 @@ enum Diag {
         print(message())
     }
 }
+
+// MARK: - Multi-player tiling (199du; source only, not compiled here)
+// Each player is its own process. Every process observes the live set itself (PlayerPeerObservation), computes the
+// plan from that observation alone (GorPlayerTiling) and moves ONLY its own window through the same fenced geometry
+// path as the window menu. Nothing a peer sends is read, so there is nothing to authenticate. Never spawns.
+// Convergence: a landed move posts one observation request, every process recomputes from what it then sees, and a
+// recompute that lands within 1 pt of the current frame ends the loop (at most 8 moves per process per 10 s).
+extension AppDelegate {
+    final class PlayerTilingState {
+        var natural: GorFitSize?          // the owner's pre-tiling size; a tile is never an input
+        var naturalGeneration: Int?       // fileLoadedGeneration the natural size belongs to
+        var lastTarget: NSRect?           // the last frame this process asked for
+        var ownerMoved = false            // a mouse drag or mouse-held resize: this window is no longer tiled
+        var observers: [NSObjectProtocol] = []
+        var scheduled = false
+        var pending: [[Int]]?
+        var passes = 0
+        var unreliablePasses = 0          // bounded re-checks while a peer is unresolved (a peer still publishing its window); reset once membership resolves
+        var applyTimes: [TimeInterval] = []
+        weak var hooked: PPController?
+        /// Visible result instead of a silent stop: nil = settled or never started; otherwise why the tiling of this
+        /// process is unfinished (move budget spent, observations never stabilised). Readable by status/diagnostics.
+        var unfinished: String?
+        /// Natural size published by the opening owner (gor-fit.lua) BEFORE any tile was applied: OUTER window points (chrome included),
+        /// bound to session + opening counter + full path. It outranks the frame-sampling heuristic for that film.
+        var published: (opening: UInt64, session: String, path: String, size: GorFitSize)?
+        var candidate: (session: String, opening: UInt64, path: String, size: GorFitSize)?
+        var naturalFromPublished = false  // natural came from an admitted publication (not the sampler fallback)
+        /// This process's reserved cell in kernel space, refreshed with every committed overlay frame;
+        /// nil = tiling inactive / fullscreen / PiP: hit testing and the chrome mask stay untouched.
+        var overlayKernelCell: GorFitRect?
+    }
+    static let tiling = PlayerTilingState()
+
+    func startPlayerTiling() {
+        if let c = controller, Self.tiling.hooked !== c {
+            // Chain, never replace: 6634c5d9 has no other onFileLoaded assignment, but a later tree may add one.
+            Self.tiling.hooked = c
+            let previous = c.onFileLoaded
+            // The fit-natural consumer: gor-fit publishes, PPController observes and forwards, this admits.
+            // Chain, never replace - same rule as onFileLoaded below.
+            let previousFit = c.onFitNatural
+            c.onFitNatural = { [weak self] data in
+                previousFit?(data)
+                self?.noteFitNatural(data, from: c)
+            }
+            c.onActiveLoadIdentity { [weak self] in DispatchQueue.main.async { self?.admitFitNatural() } }
+            c.onFileLoaded = { [weak self] generation in
+                previous?(generation)
+                DispatchQueue.main.async { self?.admitFitNatural(); self?.sampleTilingNatural(generation: generation, attempt: 0, previous: nil) }
+            }
+        }
+        guard Self.tiling.observers.isEmpty else { scheduleRetile("attach"); return }
+        Self.tiling.observers = PlayerPeerObservation.observeChanges { [weak self] in self?.scheduleRetile("membership") }
+        PlayerPeerObservation.postMembershipChanged()
+        scheduleRetile("attach")
+    }
+    /// Natural size of the film that just loaded, taken when the opening owner is really done: same film generation
+    /// as the callback (a newer film abandons this sample), opening fit disarmed, no crop/geometry transition or fenced
+    /// write in flight, and the frame equal on two samples 0.2 s apart. Polling is only the sampling cadence; the
+    /// gates above decide, and 25 attempts end the sample without recording anything.
+    func sampleTilingNatural(generation: Int, attempt: Int, previous: NSRect?) {
+        guard let c = controller, c.fileLoadedGeneration == generation, attempt < 25, let win = overlayWin else { return }
+        let settled = !c.openingFitPending && !c.cropGeometryTransitionActive && !windowClampWritePending
+            && cropGeometryCompletion == nil && !windowGeometryTransitionActive
+        let frame = win.frame
+        if settled, let p = previous, abs(p.width - frame.width) <= 1, abs(p.height - frame.height) <= 1 {
+            recordTilingNatural(frame, generation: generation); return
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.sampleTilingNatural(generation: generation, attempt: attempt + 1, previous: settled ? frame : nil)
+        }
+    }
+    /// If the window is still exactly the tile this process asked for, the opening owner did not resize it and the
+    /// stored natural size stays (a tile is never promoted to the natural size).
+    /// The opening owner's untiled natural OUTER size (window points, chrome included, the same unit as the window frame
+    /// and the tile) for one film. Admission needs the full active identity: this process's crop session, the opening
+    /// counter exactly equal to the receiver's accepted active opening (integer, not Bool/fractional) and the full path
+    /// equal to the active path. A publication that does not match yet (it can precede the receiver's load state) is
+    /// kept as a candidate and re-checked at file-loaded; a stale or foreign one is dropped. Admission only recomputes.
+    func noteFitNatural(_ data: Any?, from controller: PPController) {
+        guard controller === self.controller, let c = Self.parseFitNatural(data) else { return }
+        Self.tiling.candidate = c
+        admitFitNatural()
+    }
+    static func parseFitNatural(_ data: Any?) -> (session: String, opening: UInt64, path: String, size: GorFitSize)? {
+        guard let d = data as? [String: Any], let session = d["session"] as? String, !session.isEmpty,
+              let path = d["path"] as? String, !path.isEmpty,
+              let n = d["opening"] as? NSNumber, CFGetTypeID(n) != CFBooleanGetTypeID(),
+              let opening = UInt64(exactly: n), opening > 0, opening < 9_007_199_254_740_990,
+              let wn = d["w"] as? NSNumber, CFGetTypeID(wn) != CFBooleanGetTypeID(),
+              let hn = d["h"] as? NSNumber, CFGetTypeID(hn) != CFBooleanGetTypeID() else { return nil }
+        let w = wn.doubleValue, h = hn.doubleValue
+        guard w.isFinite, h.isFinite, w >= GorPlayerTiling.minWidth, h >= GorPlayerTiling.minHeight, w <= 20000, h <= 20000 else { return nil }
+        return (session, opening, path, GorFitSize(w: w, h: h))
+    }
+    func admitFitNatural() {
+        guard let c = Self.tiling.candidate, let ctl = controller else { return }
+        switch GorNaturalAdmission.decide(session: c.session, opening: c.opening, path: c.path,
+                                          active: ctl.activeLoadIdentity(), ownSession: PPController.cropPacketSession) {
+        case .wait: return
+        case .drop:
+            Self.tiling.candidate = nil
+            print("[fit-natural] dropped (stale or foreign identity)")   // bounded: one line per publication
+            return
+        case .admit: break
+        }
+        print("[fit-natural] admitted opening=\(c.opening) size=\(c.size.w)x\(c.size.h)")   // verdict line per admitted publication
+        Self.tiling.candidate = nil
+        Self.tiling.published = (c.opening, c.session, c.path, c.size)
+        guard !Self.tiling.ownerMoved else { return }
+        Self.tiling.natural = c.size
+        Self.tiling.naturalFromPublished = true
+        scheduleRetile("natural-published")
+    }
+    /// True only when the admitted natural is for the active identity right now (session, opening and full path).
+    func publishedNaturalIsCurrent() -> Bool {
+        guard let p = Self.tiling.published, let id = controller?.activeLoadIdentity() else { return false }
+        return p.session == id.session && p.opening == id.opening && p.path == id.path
+    }
+    func recordTilingNatural(_ frame: NSRect, generation: Int) {
+        guard !Self.tiling.ownerMoved, !pictureInPictureActive, playerFullscreenState != true else { return }
+        // The opening owner's published natural for this film is authoritative; sampling is only the fallback when none arrived.
+        if publishedNaturalIsCurrent() { return }
+        if let t = Self.tiling.lastTarget, abs(t.width - frame.width) <= 1, abs(t.height - frame.height) <= 1,
+           Self.tiling.natural != nil { return }
+        Self.tiling.natural = GorFitSize(w: frame.width, h: frame.height)
+        Self.tiling.naturalGeneration = generation
+        Self.tiling.naturalFromPublished = false
+        scheduleRetile("natural")
+    }
+    func scheduleRetile(_ why: String) {
+        guard !Self.tiling.scheduled else { return }
+        Self.tiling.scheduled = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            Self.tiling.scheduled = false
+            self?.retilePlayerWindow(why)
+        }
+    }
+    func tilingUsable(_ screen: NSScreen) -> CGRect {
+        PlayerWindowPlacement.usableFrame(screen: screen.frame, visible: screen.visibleFrame, menuAutoHides: false)
+    }
+    /// Stabilization: the plan is applied only when two observations 0.3 s apart agree on pid, screen AND size (2 pt
+    /// bins), so a window that is still appearing, animating, or a Space change in flight never settles a wrong slot.
+    func retilePlayerWindow(_ why: String) {
+        guard !isQuittingDeliberately, !Self.tiling.ownerMoved, !windowGeometryTransitionActive,
+              !pictureInPictureActive, playerFullscreenState != true,
+              let win = overlayWin, let screen = win.screen ?? NSScreen.main else { return }
+        let own = PlayerPeerObservation.screenID(of: screen)
+        let snap = PlayerPeerObservation.observe(ownPID: getpid(), ownScreenID: own)
+        // Unknown membership is not empty membership: an unresolved same-bundle peer may hold a cell
+        // this plan would hand out again. Refuse placement until every peer resolves.
+        guard snap.reliable else {
+            Self.tiling.pending = nil
+            Self.tiling.unfinished = "peer membership unknown (\(snap.unknown.count) unresolved); placement refused until resolved"
+            print("[tile] REFUSED membership-unknown unresolved=\(snap.unknown.count)")   // bounded: once per debounced retile
+            // A peer that is still starting publishes its window a moment later; waiting only for a launch/terminate/membership hint can miss that moment and leave
+            // every window at its opening spot. Re-check on a bounded schedule (20 x 0.3 s); an unresolved peer after that stays refused.
+            if Self.tiling.unreliablePasses < 20 { Self.tiling.unreliablePasses += 1; scheduleRetile(why) }
+            return
+        }
+        Self.tiling.unreliablePasses = 0
+        // Self enters through first-party facts (own pid, launch date, own window size), never the peer
+        // list: the marker proof exists so OTHER processes can verify us. No launch date = no stable
+        // order = refuse, the same standard a peer is held to.
+        guard let me = PlayerPeerObservation.ownPeer(screenID: own,
+                                                     size: (width: Double(win.frame.width), height: Double(win.frame.height))) else {
+            Self.tiling.pending = nil
+            Self.tiling.unfinished = "own launch date unavailable; placement refused (no stable order)"
+            print("[tile] REFUSED own-launch-date-unavailable")
+            return
+        }
+        let seen = snap.peers + [me]
+        let key = seen.map { [Int($0.pid), Int($0.screenID), Int(($0.size?.width ?? 0) / 2), Int(($0.size?.height ?? 0) / 2)] }
+        if let p = Self.tiling.pending, p == key { Self.tiling.pending = nil; Self.tiling.passes = 0 }
+        else {
+            Self.tiling.pending = key; Self.tiling.passes += 1
+            if Self.tiling.passes <= 6 { scheduleRetile(why) } else {
+                Self.tiling.pending = nil; Self.tiling.passes = 0
+                Self.tiling.unfinished = "peer observations did not stabilise in 6 passes, placement unfinished"
+                NSLog("[tile] UNFINISHED: %@", Self.tiling.unfinished ?? "")
+            }
+            return
+        }
+        // The natural must still belong to the active identity NOW (not only when it was admitted): a purge, reconnect or
+        // new opening between admission and this retile makes it stale; do not place with it, the next admission retriggers.
+        if Self.tiling.naturalFromPublished && !publishedNaturalIsCurrent() { return }
+        let before = win.frame
+        let natural = Self.tiling.natural ?? GorFitSize(w: before.width, h: before.height)
+        if Self.tiling.natural == nil { Self.tiling.natural = natural }
+        let peers = seen.map { GorTilePeer(pid: $0.pid, launchOrder: $0.launch, screenID: $0.screenID,
+                                           size: $0.size.map { GorFitSize(w: $0.width, h: $0.height) }) }
+        // Kernel space per screen: x/y relative to that screen's usable area, y down. Converted back below.
+        guard let k = GorPlayerTiling.frame(for: getpid(), natural: natural, peers: peers, avail: { id in
+            guard let s = PlayerPeerObservation.screen(withID: id) else { return nil }
+            let u = self.tilingUsable(s)
+            return GorFitRect(x: u.minX, y: 0, w: u.width, h: u.height)
+        }) else { return }
+        let u = tilingUsable(screen)
+        let target = NSRect(x: k.x, y: u.maxY - k.y - k.h, width: k.w, height: k.h)
+        // Fixed point: already within 1 pt on every side, the loop ends here without another post.
+        if abs(target.minX - before.minX) <= 1, abs(target.minY - before.minY) <= 1,
+           abs(target.width - before.width) <= 1, abs(target.height - before.height) <= 1 { Self.tiling.unfinished = nil }
+        guard abs(target.minX - before.minX) > 1 || abs(target.minY - before.minY) > 1
+                || abs(target.width - before.width) > 1 || abs(target.height - before.height) > 1,
+              let geom = GorOpeningFit.clampGeometry(frame: target, screen: screen, chromeStyleMask: .borderless) else { return }
+        let now = ProcessInfo.processInfo.systemUptime
+        Self.tiling.applyTimes.removeAll { now - $0 >= 10 }
+        guard Self.tiling.applyTimes.count < 8 else {
+            Self.tiling.unfinished = "move budget spent (8 moves in 10 s), placement unfinished"
+            NSLog("[tile] UNFINISHED: %@", Self.tiling.unfinished ?? "")
+            return
+        }
+        Self.tiling.applyTimes.append(now)
+        Self.tiling.lastTarget = target
+        issueFencedGeometry(geom, before: before, target: target) { [weak self] outcome in
+            switch outcome {
+            case .landed, .alreadyEqual:
+                // Peers recompute with the size this window now has; this process rechecks after its own settle.
+                PlayerPeerObservation.postMembershipChanged()
+                self?.refreshOverlayTilingClip()
+                self?.scheduleRetile("converge")
+            case .userTakeover: Self.tiling.ownerMoved = true
+            case .rejected, .unproven, .superseded: break   // no retry loop on an unproven or refused write
+            }
+        }
+        print("[tile] \(why) peers=\(peers.count) before=\(before) target=\(target) geom=\(geom)")
+    }
+
+    /// Recompute the overlay's tiling clip from the same peer observation and the same avail closure
+    /// the retile path used (x: u.minX, y: 0), and push it to the controller as a content-space clip.
+    /// Tiling inactive (screen group of one), fullscreen or PiP: clip cleared, hit testing untouched.
+    /// Called inside commitOverlayFrame's CATransaction, so the controller's mask setter refreshes
+    /// in the same main-thread transaction as the frame commit.
+    func refreshOverlayTilingClip() {
+        guard let win = overlayWin, let screen = win.screen,
+              playerFullscreenState != true, !pictureInPictureActive else {
+            Self.tiling.overlayKernelCell = nil
+            controller?.tilingContentClip = nil
+            return
+        }
+        let own = PlayerPeerObservation.screenID(of: screen)
+        let snap = PlayerPeerObservation.observe(ownPID: getpid(), ownScreenID: own)
+        guard snap.reliable else {   // partial-group clip can overlap an unresolved peer: stay inactive
+            Self.tiling.overlayKernelCell = nil
+            controller?.tilingContentClip = nil
+            return
+        }
+        guard let me = PlayerPeerObservation.ownPeer(screenID: own,
+                                                     size: (width: Double(win.frame.width), height: Double(win.frame.height))) else {
+            Self.tiling.overlayKernelCell = nil   // no stable order without a launch date: no clip
+            controller?.tilingContentClip = nil
+            return
+        }
+        let peers = (snap.peers + [me]).map {
+            GorTilePeer(pid: $0.pid, launchOrder: $0.launch, screenID: $0.screenID,
+                        size: $0.size.map { GorFitSize(w: $0.width, h: $0.height) })
+        }
+        let clipAvail: (UInt32) -> GorFitRect? = { id in
+            guard let s = PlayerPeerObservation.screen(withID: id) else { return nil }
+            let us = self.tilingUsable(s)
+            return GorFitRect(x: us.minX, y: 0, w: us.width, h: us.height)   // same closure as the retile path
+        }
+        Self.tiling.overlayKernelCell = GorPlayerTiling.reservedCell(for: getpid(), peers: peers, avail: clipAvail)
+        let f = win.frame
+        let u = tilingUsable(screen)
+        let clip = GorPlayerTiling.contentClipAppKit(
+            overlayFrame: GorFitRect(x: f.origin.x, y: f.origin.y, w: f.width, h: f.height),
+            usable: GorFitRect(x: u.minX, y: u.minY, w: u.width, h: u.height),
+            pid: getpid(), peers: peers, avail: clipAvail)
+        controller?.tilingContentClip = clip.map { NSRect(x: $0.x, y: $0.y, width: $0.w, height: $0.h) }
+    }
+}
+
+extension AppDelegate {
+    /// First-show cell for the mpv this process is about to launch: own observation only (peers on the same verified
+    /// screen, self counted), kernel space of that screen's usable area. Empty string = no tile (gor-fit.lua then takes
+    /// the single-window opening path). The window moves later only through the fenced retile.
+    func openingTileOptValue() -> String {
+        guard PPController.gorFitScriptActive, let screen = NSScreen.main else { return "" }
+        let own = PlayerPeerObservation.screenID(of: screen)
+        let snap = PlayerPeerObservation.observe(ownPID: getpid(), ownScreenID: own)
+        guard snap.reliable else { return "" }   // unresolved membership: open untiled, retile may follow
+        guard let me = PlayerPeerObservation.ownPeer(screenID: own, size: nil) else { return "" }   // no launch date, no stable order: open untiled
+        let peers = (snap.peers + [me])
+            .map { GorTilePeer(pid: $0.pid, launchOrder: $0.launch, screenID: $0.screenID, size: nil) }
+        guard let cell = GorPlayerTiling.openingTile(for: getpid(), peers: peers, avail: { id in
+            guard id == own else { return nil }
+            let u = self.tilingUsable(screen)
+            return GorFitRect(x: 0, y: 0, w: u.width, h: u.height)
+        }), let v = GorPlayerTiling.tileString(cell, separator: ";") else { return "" }
+        return v
+    }
+    /// Launch-time first-show tile as a script-opt suffix, same transport as fitScriptOptSuffix
+    /// (";" inside the value: "," separates script-opts; gor-fit.lua's parse_tile accepts both).
+    /// Empty = no tile, the opening takes the single-window path unchanged.
+    func tilingScriptOptSuffix() -> String {
+        let v = openingTileOptValue()
+        return v.isEmpty ? "" : ",gor_fit-tile=" + v
+    }
+}
+

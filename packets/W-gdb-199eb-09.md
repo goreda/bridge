@@ -1,54 +1,15 @@
 # W-gdb-199eb-09: overlay-close-cleanup
-Team: 1nstinct. State: APPLIED_SOURCE_RECONCILE. Priority: product regression.
-Packet identity and occupancy: original W-gdb-199eb-09, lane lane/1nstinct/overlay-close-cleanup; earliest existing symbol claim still wins.
-Legacy extracted-helper/new-file fallback and full-file return are RETIRED by199ee. This is the same packet reissued as an existing-file patch, not a new dispatch.
+Revision:199ef. Prior199eb excerpt and199ee patch-only forms RETIRED. Same ID, team 1nstinct, lane lane/1nstinct/overlay-close-cleanup, and earliest symbol claim preserved.
+State: REISSUED_FULL_TARGET_CUSTODY_RECONCILE. This record does not invent a new unclaimed assignment or undo an earlier application.
+Target: goreda/instinct archive/gor/Sources/gor/App/AppDelegate.swift@83ad4e39f8df442fd10e638a5a3c3f67ea848692
+Blob: 915513030b43854c1202ed0d73e89e33ae80357b
+Complete target attached: [AppDelegate.swift](199ef/W-gdb-199eb-09/AppDelegate.swift)
+Issue-time refreshed snapshot: [complete file](../snapshots/LATEST/archive/gor/Sources/gor/App/AppDelegate.swift)
+Attachment SHA256: 933cca2e1d409da9a00290ed1be265f4dfeb83f9fcf607db446e0014b7f61435
+Projection: source complete except owner-message identifier removed from a comment, if present; no executable behavior omitted.
 
-## Target file@SHA
-Repository: goreda/instinct
-Target: archive/gor/Sources/gor/App/AppDelegate.swift@37ccb29b7403bbc35b276ab5600947979de42f7d
-Blob: c5178dc12fdea2630a7636907a2ce9c38f7cb37e
-The target existed at this exact pin. Historical168af857 excerpts below are not the current pin.
-
-## Change
-Remove only the closing player overlay and its observers while another player stays active.
-
-## Return as patch to that file
-Unified patch against the exact target above. Modify its existing owning concept; no new source/test/helper file, full-file replacement or new Gate/Guard/Receipt/Proof/Admission/Stub type. A genuinely new file requires an explicit block line naming it first. Preserve source/load/player identity, existing interfaces and product behavior outside this change. On collision report it and preserve earliest custody instead of extracting a helper.
-
-## Current reconciliation
-Route application already recorded at ed6da8794efaf77d8b401f6b706f9a28f1d48833. Do not repeat this work; reconcile any remaining gap under this ID.
-A queue label alone does not prove the original defect is outstanding. Report already-fixed evidence before proposing a duplicate change. Tests and compile/runtime limitations are reported honestly; this packet adds no CI gate between code and owner delivery.
-
-## Historical source context
-```text
-6: // ================================================================
-7: //  AppDelegate.swift - application and mpv lifecycle
-8: //  Owns: mpv process, overlay attachment, window and audio-device synchronization
-9: //  Answers: I3 I13 I14 · TRAP-11
-10: //  Contract: PPController is created in launchMPV's checkTimer, handleWakeUp and attachOverlay (I14)
-11: // ================================================================
-12: import AppKit
-13: import GorAVPlaybackCore
-14: import CoreAudio
-15: import CoreGraphics
-16: import Dispatch
-17: import QuartzCore
-18: import Darwin
-19: import CryptoKit
-20: 
-21: // Current-process IPC ownership. A child-exit callback can run while AppKit termination is blocked;
-22: // remove only the socket inode observed after this app launched its own mpv, never a replacement path.
-23: private final class OwnedPlayerSocket {
-24:     private let path: String
-25:     private let lock = NSLock()
-26:     private var identity: (dev_t, ino_t)?
-27:     private let eligible: Bool
-28:     init(path: String) {
-29:         self.path = path
-30:         var st = stat()
-31:         eligible = lstat(path, &st) != 0 && errno == ENOENT
-32:     }
-33:     func observe() {
-```
-
-Secret scan: clean.
+Change: Remove only the closing player overlay and its observers while another player stays active.
+Return: the whole changed target file, preserving the same relative product path. No excerpt/private-repo access is needed to read this input. Include changed symbols, base SHA, known limits and actual output. Do not create a satellite file; newly required source files need an explicit block line naming them. If a station writer has since moved the target, return the conflict and current destination evidence before editing.
+Reconcile current source and earlier returns first: the defect may already be fixed. Preserve earliest claim and existing occupancy, and do not duplicate another writer. Product compile/CI is not made a prerequisite here. If additional complete dependency files are required, name them precisely for attachment rather than guessing their interfaces.
+Same ingest pass outcome required: re:W-gdb-199eb-09 | ACCEPTED / REJECTED / PARTIAL | commit SHA | reason. A publication is not product acceptance or evidence that a lab started.
+Secret scan: clean. Held grain/Sensing/font bytes unchanged and excluded from these attachments.

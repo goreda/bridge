@@ -1,3 +1,7 @@
+// Picture/Viewport.swift
+// Video fit math, opening fit and real mpv crop: one window sizing rule for all orientations.
+// Uses: AppKit, Foundation, App, Player
+// Engine: none
 import Foundation
 #if canImport(AppKit)
 import AppKit
@@ -1045,6 +1049,8 @@ struct GorClampFence {
     static let ackTimeout = 1.5, landingTimeout = 0.6, eps = 2.0
 
     var isUp: Bool { phase != .idle }
+    /// Read-only view of the fence's requested frame (telemetry landing rows).
+    var expectedTarget: GorFitRect { expected }
 
     /// mpv request_id for the geometry write of `seq` (own range, away from crop 9300..<9400 and the polls).
     /// Monotonic, never wraps in practice (a wrapped id could match a late reply to a NEWER write).
@@ -1297,9 +1303,11 @@ extension AppDelegate {
     /// the pre-write and requested frames, sends through the tracked path when the connection is up, otherwise
     /// the untracked fallback (fence then goes straight to landing with the short timeout, no ack is awaited).
     /// A deadline check re-evaluates the frame if the requested frame never provably landed.
-    func finishCropGeometryOutcome(seq:Int,outcome:GorGeometryOutcome) {
+    func finishCropGeometryOutcome(seq:Int,outcome:GorGeometryOutcome,observed:GorFitRect?=nil) {
         guard let pending=cropGeometryCompletion,pending.seq==seq else{return}
         cropGeometryCompletion=nil
+        print("[geom] outcome seq=\(seq) outcome=\(outcome)")   // verdict line: one per issued write, bounded
+        controller?.emitCropFitLanding(outcome: outcome, target: clampFence.expectedTarget, observed: observed)
         pending.callback(outcome)
     }
     @discardableResult
@@ -1309,9 +1317,10 @@ extension AppDelegate {
             finishCropGeometryOutcome(seq:pending.seq,outcome:.unproven)
             return false
         }
-        let verdict=clampFence.classify(receipt:GorFitRect(x:frame.minX,y:frame.minY,w:frame.width,h:frame.height),now:now,pointerDown:pointerDown)
-        if verdict == .user {finishCropGeometryOutcome(seq:pending.seq,outcome:.userTakeover);return false}
-        if !clampFence.isUp {finishCropGeometryOutcome(seq:pending.seq,outcome:.landed)}
+        let receipt=GorFitRect(x:frame.minX,y:frame.minY,w:frame.width,h:frame.height)
+        let verdict=clampFence.classify(receipt:receipt,now:now,pointerDown:pointerDown)
+        if verdict == .user {finishCropGeometryOutcome(seq:pending.seq,outcome:.userTakeover,observed:receipt);return false}
+        if !clampFence.isUp {finishCropGeometryOutcome(seq:pending.seq,outcome:.landed,observed:receipt)}
         return true
     }
     func issueFencedGeometry(_ geom: String, before: NSRect, target: NSRect,
@@ -1325,10 +1334,13 @@ extension AppDelegate {
         // Connection state is read first so the fence phase matches what was actually sent.
         let tracked = controller?.persistentConnectionUp ?? false
         let seq = clampFence.write(now: now, before: gb, expected: gt, tracked: tracked)
+        print("[geom] issue seq=\(seq) tracked=\(tracked) before=\(before) target=\(target)")   // fit target computed + write issued, one line per write
         if let completion {cropGeometryCompletion=(seq,completion)}
-        if !(tracked && controller?.sendTrackedGeometry(geom, requestId: GorClampFence.requestId(seq)) == true) {
+        let sentTracked = tracked && controller?.sendTrackedGeometry(geom, requestId: GorClampFence.requestId(seq)) == true
+        if !sentTracked {
             controller?.sendGeometryUntracked(geom)
         }
+        controller?.emitCropFit(.dispatched, reason: sentTracked ? "tracked" : "untracked")
         DispatchQueue.main.asyncAfter(deadline: .now() + GorClampFence.ackTimeout + GorClampFence.landingTimeout + 0.1) { [weak self] in
             guard let self else { return }
             guard self.clampFence.seq==seq else{return}
@@ -1342,6 +1354,7 @@ extension AppDelegate {
     /// mpv's reply to our tracked geometry write (routed from PPController). A stale id is ignored.
     func noteClampGeometryReply(id: Int, ok: Bool) {
         guard GorClampFence.requestId(clampFence.seq) == id else { return }
+        controller?.emitCropFit(.commandACK, numbers: ["ack": ok ? 1 : 0], reason: ok ? "ok" : "error")
         if ok {
             clampFence.ack(seq: clampFence.seq, now: ProcessInfo.processInfo.systemUptime)
         } else {
@@ -1353,3 +1366,206 @@ extension AppDelegate {
 
 }
 #endif
+
+// MARK: - Multi-player tiling (pure; membership is injected, nothing here reads windows)
+/// One live player process as the OS reports it. Membership only: a peer's natural size,
+/// PiP or owner-moved state is not observable and is not an input. A peer in PiP or moved
+/// by its owner keeps its cell reserved, so nobody else tiles into it.
+struct GorTilePeer: Equatable {
+    var pid: Int32
+    var launchOrder: Double      // NSRunningApplication.launchDate seconds; ties break by pid
+    var screenID: UInt32         // display the peer's player window is on
+    var size: GorFitSize? = nil  // the peer window's observed size; nil = assume it fills its cell
+}
+
+enum GorPlayerTiling {
+    static let gap = 8.0
+    /// Smallest player window a tile may produce (points). A cell below it is refused, not shrunk.
+    static let minWidth = 160.0
+    static let minHeight = 90.0
+    /// Rows per player count: 1 -> [1], 2 -> [2], 3 -> [1,2], 4 -> [2,2]; more -> rows of ceil(sqrt(n)).
+    static func rowShape(_ n: Int) -> [Int] {
+        switch n {
+        case ...0: return []
+        case 1: return [1]
+        case 2: return [2]
+        case 3: return [1, 2]
+        case 4: return [2, 2]
+        default:
+            let cols = Int(Double(n).squareRoot().rounded(.up))
+            var left = n, out: [Int] = []
+            while left > 0 { out.append(min(cols, left)); left -= cols }
+            return out
+        }
+    }
+    static func finite(_ r: GorFitRect) -> Bool {
+        r.x.isFinite && r.y.isFinite && r.w.isFinite && r.h.isFinite && r.w > 0 && r.h > 0
+    }
+    /// Equal cells in kernel space (origin top-left of the usable area, y down), one per player in
+    /// stable order. Rows are centered; the 3-player shape puts one cell on top, two below.
+    /// Empty when the area is not finite or a cell would be smaller than the minimum window.
+    static func cells(count n: Int, avail: GorFitRect) -> [GorFitRect] {
+        guard n > 0, finite(avail) else { return [] }
+        let shape = rowShape(n)
+        let cols = Double(shape.max() ?? 1), rows = Double(shape.count)
+        let cw = ((avail.w - gap * (cols - 1)) / cols).rounded(.down)
+        let ch = ((avail.h - gap * (rows - 1)) / rows).rounded(.down)
+        guard cw >= minWidth, ch >= minHeight else { return [] }
+        var out: [GorFitRect] = []
+        let blockH = ch * rows + gap * (rows - 1)
+        var y = avail.y + ((avail.h - blockH) / 2).rounded(.down)
+        for c in shape {
+            let rowW = cw * Double(c) + gap * Double(c - 1)
+            var x = avail.x + ((avail.w - rowW) / 2).rounded(.down)
+            for _ in 0..<c { out.append(GorFitRect(x: x, y: y, w: cw, h: ch)); x += cw + gap }
+            y += ch + gap
+        }
+        return out
+    }
+    /// Stable order every process computes identically from its own observation: one entry per pid
+    /// (the earliest launch wins a duplicate), launch time then pid.
+    static func ordered(_ peers: [GorTilePeer]) -> [GorTilePeer] {
+        var seen = Set<Int32>()
+        return peers.sorted { ($0.launchOrder, $0.pid) < ($1.launchOrder, $1.pid) }
+            .filter { seen.insert($0.pid).inserted }
+    }
+    /// The window of `natural` size (the owner's own pre-tiling fit size, never a previous tile) fitted
+    /// inside `cell`: shrink only, never grows, aspect kept to within half a point on the derived side, centered.
+    static func fit(natural: GorFitSize, in cell: GorFitRect) -> GorFitRect? {
+        guard natural.w.isFinite, natural.h.isFinite, natural.w > 0, natural.h > 0, finite(cell) else { return nil }
+        let k = min(1.0, cell.w / natural.w, cell.h / natural.h)
+        var w = (natural.w * k).rounded(.down)
+        var h = (w * natural.h / natural.w).rounded()
+        if h > cell.h { h = cell.h.rounded(.down); w = (h * natural.w / natural.h).rounded() }
+        if w > cell.w { w = cell.w.rounded(.down) }
+        guard w >= minWidth, h >= minHeight, w <= cell.w, h <= cell.h else { return nil }
+        return GorFitRect(x: cell.x + ((cell.w - w) / 2).rounded(.down),
+                          y: cell.y + ((cell.h - h) / 2).rounded(.down), w: w, h: h)
+    }
+    /// This process's own target frame, from its own observation only. nil = leave the window alone
+    /// (own pid missing from the observation, unknown screen, no room for the minimum window, or a
+    /// single-player group - one player on the screen keeps the window its opening fit gave it).
+    /// Nothing a peer says is an input: the caller observes membership itself and applies only its own frame.
+    /// Position: this window is fit(natural) and centered inside its own reserved cell. Neighbours' observed
+    /// sizes (PiP, owner-shrunk, oversize) are not inputs to the position, so a peer keeps its cell reserved.
+    static func frame(for pid: Int32, natural: GorFitSize, peers: [GorTilePeer],
+                      avail: (UInt32) -> GorFitRect?) -> GorFitRect? {
+        let live = ordered(peers)
+        guard let me = live.first(where: { $0.pid == pid }), let area = avail(me.screenID) else { return nil }
+        let group = live.filter { $0.screenID == me.screenID }
+        // A single player keeps the window its opening fit and the crop path gave it: tiling is
+        // multi-player placement, not a re-centrer, and a retile must never fight a crop animation.
+        guard group.count > 1 else { return nil }
+        let cells = cells(count: group.count, avail: area)
+        guard cells.count == group.count, let mine = group.firstIndex(where: { $0.pid == pid }),
+              let own = fit(natural: natural, in: cells[mine]) else { return nil }
+        return own   // fit() already centers the window in its own reserved cell; a peer's observed size never moves it
+    }
+}
+
+// MARK: - Opening tile (pure): the outer cell one process may occupy for its first show
+extension GorPlayerTiling {
+    /// This process's own cell in kernel space of its screen's usable area (origin 0,0 top-left, y down), from its own
+    /// observation only. nil = no tile (own pid missing, unknown screen, no room): the opening takes the single-window path.
+    static func openingTile(for pid: Int32, peers: [GorTilePeer], avail: (UInt32) -> GorFitRect?) -> GorFitRect? {
+        let live = ordered(peers)
+        guard let me = live.first(where: { $0.pid == pid }), let area = avail(me.screenID) else { return nil }
+        let group = live.filter { $0.screenID == me.screenID }
+        let all = cells(count: group.count, avail: area)
+        guard all.count == group.count, let i = group.firstIndex(where: { $0.pid == pid }), finite(all[i]) else { return nil }
+        return all[i]
+    }
+}
+extension GorPlayerTiling {
+    /// "x,y,w,h" for gor-fit.lua (points, usable top-left origin); nil for anything not finite, so no value is emitted.
+    static func tileString(_ r: GorFitRect, separator: String) -> String? {
+        guard GorPlayerTiling.finite(r), r.x.isFinite, r.x >= 0, r.y >= 0 else { return nil }
+        return [r.x, r.y, r.w, r.h].map { String(format: "%.3f", $0) }.joined(separator: separator)
+    }
+}
+
+// MARK: - Natural-size admission (pure decision)
+enum GorNaturalAdmission: Equatable {
+    case admit, wait, drop
+    /// A published natural is admitted only against the receiver's active identity: same session as this process's own,
+    /// same opening counter, same full path. An older opening is stale (drop); a newer opening or an identity that is not
+    /// active (none yet, revoked, not ready) waits; a foreign session or an unrelated path at the same opening is dropped.
+    static func decide(session: String, opening: UInt64, path: String,
+                       active: (session: String, opening: UInt64, path: String)?, ownSession: String) -> GorNaturalAdmission {
+        guard !session.isEmpty, session == ownSession else { return .drop }
+        guard let a = active, a.session == ownSession else { return .wait }
+        if opening < a.opening { return .drop }
+        if opening > a.opening { return .wait }
+        return path == a.path ? .admit : .drop
+    }
+}
+
+// MARK: - Overlay tiling clip (pure): the reserved cell as a content-space bound for mask + hit testing
+extension GorPlayerTiling {
+    /// The reserved cell for `pid` through the same cells() result the retile path uses; nil when the
+    /// screen group is a single player, so an untiled player carries no clip at all. `avail` must be the
+    /// same closure the retile passes to frame(for:) (x: u.minX, y: 0), not a different origin.
+    static func reservedCell(for pid: Int32, peers: [GorTilePeer], avail: (UInt32) -> GorFitRect?) -> GorFitRect? {
+        let live = ordered(peers)
+        guard let me = live.first(where: { $0.pid == pid }) else { return nil }
+        guard live.filter({ $0.screenID == me.screenID }).count > 1 else { return nil }
+        return openingTile(for: pid, peers: peers, avail: avail)
+    }
+    /// Kernel space of a screen's usable area: global x, y down with y = 0 at the usable area's top;
+    /// the space frame(for:) emits and retilePlayerWindow converts back from. AppKit y is up, so the
+    /// flip is y_kernel = u.maxY - frame.maxY. Skipping the flip clips the wrong edge.
+    static func kernelRect(appKit f: GorFitRect, usable u: GorFitRect) -> GorFitRect {
+        GorFitRect(x: f.x, y: (u.y + u.h) - (f.y + f.h), w: f.w, h: f.h)
+    }
+    static func appKitRect(kernel k: GorFitRect, usable u: GorFitRect) -> GorFitRect {
+        GorFitRect(x: k.x, y: (u.y + u.h) - k.y - k.h, w: k.w, h: k.h)
+    }
+    /// AppKit screen point -> kernel point through the same flip as the frame conversion.
+    static func kernelPoint(appKitX x: Double, appKitY y: Double, usable u: GorFitRect) -> (x: Double, y: Double) {
+        (x, (u.y + u.h) - y)
+    }
+    /// The part of the overlay's content inside the reserved cell, in the overlay content view's
+    /// coordinates. Both inputs share one space; the window frame itself is never changed, so content
+    /// coordinates and control layout are preserved. nil = no clip (tiling inactive or inputs unknown);
+    /// zero-area = the window is fully outside its cell.
+    static func contentClip(overlayFrame f: GorFitRect, cell: GorFitRect?) -> GorFitRect? {
+        guard let cell = cell, finite(cell), finite(f) else { return nil }
+        let x1 = max(f.x, cell.x), y1 = max(f.y, cell.y)
+        let x2 = min(f.x + f.w, cell.x + cell.w), y2 = min(f.y + f.h, cell.y + cell.h)
+        guard x2 > x1, y2 > y1 else { return GorFitRect(x: 0, y: 0, w: 0, h: 0) }
+        return GorFitRect(x: x1 - f.x, y: y1 - f.y, w: x2 - x1, h: y2 - y1)
+    }
+    /// Full pipeline, AppKit window frame in / content-space clip out: kernel reserved cell -> AppKit
+    /// -> content coordinates. `usable` is the overlay screen's usable frame in AppKit coordinates.
+    static func contentClipAppKit(overlayFrame f: GorFitRect, usable u: GorFitRect,
+                                  pid: Int32, peers: [GorTilePeer], avail: (UInt32) -> GorFitRect?) -> GorFitRect? {
+        guard let cell = reservedCell(for: pid, peers: peers, avail: avail) else { return nil }
+        return contentClip(overlayFrame: f, cell: appKitRect(kernel: cell, usable: u))
+    }
+    /// Hit admission in kernel space: the AppKit screen point passes through the same conversion as the
+    /// frame and is admitted only inside this player's reserved cell; a point on the overlay outside the
+    /// cell belongs to the peer underneath, not to this player. nil cell (tiling inactive) admits every
+    /// point; a window fully outside its cell admits none.
+    static func hitAllowed(appKitPointX x: Double, appKitPointY y: Double,
+                           reservedCellKernel cell: GorFitRect?, usable u: GorFitRect) -> Bool {
+        guard let cell = cell, finite(cell) else { return true }
+        let p = kernelPoint(appKitX: x, appKitY: y, usable: u)
+        return p.x >= cell.x && p.x < cell.x + cell.w && p.y >= cell.y && p.y < cell.y + cell.h
+    }
+    /// SBS/stereo mask order: translate each eye to its own position FIRST, then intersect each eye
+    /// SEPARATELY with the same fixed tiling clip (all in content coordinates). Clipping the left eye
+    /// and shifting the clipped result would push the right eye out of the cell or drop the valid
+    /// in-cell part of it. Eyes fully outside the clip are dropped; nil clip leaves both eyes as-is.
+    static func eyeClips(rect: GorFitRect, eyeShift: Double?, tilingClip: GorFitRect?) -> [GorFitRect] {
+        var eyes = [rect]
+        if let s = eyeShift, s != 0 { eyes.append(GorFitRect(x: rect.x + s, y: rect.y, w: rect.w, h: rect.h)) }
+        // No finite() gate here: a ZERO-AREA clip is a real clip (window fully outside its cell) and
+        // must hide every eye; only nil means "tiling inactive, no clip".
+        guard let c = tilingClip, c.x.isFinite, c.y.isFinite, c.w.isFinite, c.h.isFinite else { return eyes }
+        return eyes.compactMap { e in
+            let x1 = max(e.x, c.x), y1 = max(e.y, c.y)
+            let x2 = min(e.x + e.w, c.x + c.w), y2 = min(e.y + e.h, c.y + c.h)
+            return (x2 > x1 && y2 > y1) ? GorFitRect(x: x1, y: y1, w: x2 - x1, h: y2 - y1) : nil
+        }
+    }
+}

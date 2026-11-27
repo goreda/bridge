@@ -1,54 +1,15 @@
 # W-gdb-199eb-12: wt-stale-analysis
-Team: 1nstinct. State: REISSUED_CUSTODY_UNVERIFIED. Priority: product regression.
-Packet identity and occupancy: original W-gdb-199eb-12, lane lane/1nstinct/wt-stale-analysis; earliest existing symbol claim still wins.
-Legacy extracted-helper/new-file fallback and full-file return are RETIRED by199ee. This is the same packet reissued as an existing-file patch, not a new dispatch.
-
-## Target file@SHA
-Repository: goreda/instinct
-Target: archive/gor/Resources/vendor/wt_server/wt_server.mjs@37ccb29b7403bbc35b276ab5600947979de42f7d
+Revision:199ef. Prior199eb excerpt and199ee patch-only forms RETIRED. Same ID, team 1nstinct, lane lane/1nstinct/wt-stale-analysis, and earliest symbol claim preserved.
+State: REISSUED_FULL_TARGET_CUSTODY_RECONCILE. This record does not invent a new unclaimed assignment or undo an earlier application.
+Target: goreda/instinct archive/gor/Resources/vendor/wt_server/wt_server.mjs@83ad4e39f8df442fd10e638a5a3c3f67ea848692
 Blob: edc23aba0a285686d190738634f2848784ee6ad9
-The target existed at this exact pin. Historical168af857 excerpts below are not the current pin.
+Complete target attached: [wt_server.mjs](199ef/W-gdb-199eb-12/wt_server.mjs)
+Issue-time refreshed snapshot: [complete file](../snapshots/LATEST/archive/gor/Resources/vendor/wt_server/wt_server.mjs)
+Attachment SHA256: d62d04beac0b24dccf00c13fc09fcb5cc199f3b325e85de498f74107b78de9b8
+Projection: source complete except owner-message identifier removed from a comment, if present; no executable behavior omitted.
 
-## Change
-Reject old-source/token/cursor analysis waiters after seek or source replacement.
-
-## Return as patch to that file
-Unified patch against the exact target above. Modify its existing owning concept; no new source/test/helper file, full-file replacement or new Gate/Guard/Receipt/Proof/Admission/Stub type. A genuinely new file requires an explicit block line naming it first. Preserve source/load/player identity, existing interfaces and product behavior outside this change. On collision report it and preserve earliest custody instead of extracting a helper.
-
-## Current reconciliation
-No current claim/return proof found in the queue snapshot. Preserve any earlier claim; reconcile actual source and later returns before taking work. This is not a fresh unclaimed assignment.
-A queue label alone does not prove the original defect is outstanding. Report already-fixed evidence before proposing a duplicate change. Tests and compile/runtime limitations are reported honestly; this packet adds no CI gate between code and owner delivery.
-
-## Historical source context
-```text
-2651: }
-2652: // One shared waiter priority must not become last-analysis-reader-wins.
-2653: // Only an actually waiting, live playback cursor is eligible. Probe and
-2654: // analysis ownership remains intact, but neither may displace that cursor.
-2655: function _validWaiterEntry(ring, piece, entry, playbackOnly = false) {
-2656:   if (!entry || !(ring?._waiters?.get(piece) || []).includes(entry)) return false;
-2657:   const owner = activePumps.get(entry.pumpId);
-2658:   return !!owner && entry.signal === owner.abortController?.signal &&
-2659:     entry.playbackToken === owner.playbackToken && owner.playbackToken === _activePlaybackToken &&
-2660:     !entry.signal?.aborted && !owner.response?.destroyed && !owner.response?.writableEnded &&
-2661:     owner.cursorPiece === piece && (!playbackOnly || (!owner.isAnalysis && !owner.isProbe));
-2662: }
-2663: function _liveWaiterOwner(ring, piece, playbackOnly = false) {
-2664:   for (const entry of ring?._waiters?.get(piece) || []) {
-2665:     if (_validWaiterEntry(ring, piece, entry, playbackOnly)) return activePumps.get(entry.pumpId);
-2666:   }
-2667:   return null;
-2668: }
-2669: function _playbackWaiterPiece(ring) {
-2670:   if (!ring) return null;
-2671:   return ring.waitedPieces.filter(p => _liveWaiterOwner(ring, p, true)).sort((a, b) => a - b)[0] ?? null;
-2672: }
-2673: function _refreshWaiterPriority(ring) {
-2674:   // An old source ring may finish its callbacks after the global source swaps.
-2675:   if (!ring || ring !== getRing()) return;
-2676:   const index = _playbackWaiterPiece(ring);
-2677:   if (index == null) {
-2678:     _waiterBoost = null;
-```
-
-Secret scan: clean.
+Change: Reject old-source/token/cursor analysis waiters after seek or source replacement.
+Return: the whole changed target file, preserving the same relative product path. No excerpt/private-repo access is needed to read this input. Include changed symbols, base SHA, known limits and actual output. Do not create a satellite file; newly required source files need an explicit block line naming them. If a station writer has since moved the target, return the conflict and current destination evidence before editing.
+Reconcile current source and earlier returns first: the defect may already be fixed. Preserve earliest claim and existing occupancy, and do not duplicate another writer. Product compile/CI is not made a prerequisite here. If additional complete dependency files are required, name them precisely for attachment rather than guessing their interfaces.
+Same ingest pass outcome required: re:W-gdb-199eb-12 | ACCEPTED / REJECTED / PARTIAL | commit SHA | reason. A publication is not product acceptance or evidence that a lab started.
+Secret scan: clean. Held grain/Sensing/font bytes unchanged and excluded from these attachments.

@@ -1,54 +1,15 @@
 # W-gdb-199eb-05: crop-landing
-Team: 1nstinct. State: REISSUED_CUSTODY_UNVERIFIED. Priority: product regression.
-Packet identity and occupancy: original W-gdb-199eb-05, lane lane/1nstinct/crop-landing; earliest existing symbol claim still wins.
-Legacy extracted-helper/new-file fallback and full-file return are RETIRED by199ee. This is the same packet reissued as an existing-file patch, not a new dispatch.
-
-## Target file@SHA
-Repository: goreda/instinct
-Target: archive/gor/Sources/gor/Session/CropFitEvidenceEncoder.swift@37ccb29b7403bbc35b276ab5600947979de42f7d
+Revision:199ef. Prior199eb excerpt and199ee patch-only forms RETIRED. Same ID, team 1nstinct, lane lane/1nstinct/crop-landing, and earliest symbol claim preserved.
+State: REISSUED_FULL_TARGET_CUSTODY_RECONCILE. This record does not invent a new unclaimed assignment or undo an earlier application.
+Target: goreda/instinct archive/gor/Sources/gor/Session/CropFitEvidenceEncoder.swift@83ad4e39f8df442fd10e638a5a3c3f67ea848692
 Blob: b19c7a34a487521fa858a87380b264088c5bbdf6
-The target existed at this exact pin. Historical168af857 excerpts below are not the current pin.
+Complete target attached: [CropFitEvidenceEncoder.swift](199ef/W-gdb-199eb-05/CropFitEvidenceEncoder.swift)
+Issue-time refreshed snapshot: [complete file](../snapshots/LATEST/archive/gor/Sources/gor/Session/CropFitEvidenceEncoder.swift)
+Attachment SHA256: 301aca2d23c14f56a9d0cd4d078a1637f7e987e909d6d5e3bac80c40fd53f842
+Projection: source complete except owner-message identifier removed from a comment, if present; no executable behavior omitted.
 
-## Change
-Distinguish command acceptance from actual window landing in bounded evidence.
-
-## Return as patch to that file
-Unified patch against the exact target above. Modify its existing owning concept; no new source/test/helper file, full-file replacement or new Gate/Guard/Receipt/Proof/Admission/Stub type. A genuinely new file requires an explicit block line naming it first. Preserve source/load/player identity, existing interfaces and product behavior outside this change. On collision report it and preserve earliest custody instead of extracting a helper.
-
-## Current reconciliation
-No current claim/return proof found in the queue snapshot. Preserve any earlier claim; reconcile actual source and later returns before taking work. This is not a fresh unclaimed assignment.
-A queue label alone does not prove the original defect is outstanding. Report already-fixed evidence before proposing a duplicate change. Tests and compile/runtime limitations are reported honestly; this packet adds no CI gate between code and owner delivery.
-
-## Historical source context
-```text
-7: /// Pure event encoder. Owner injects UTC/monotonic clocks and sends the returned
-8: /// data to its existing bounded per-player DiagSessionSink, never a new file.
-9: /// One instance per player/load. This object deliberately does no I/O.
-10: struct CropFitEvidenceEncoder {
-11:     enum Stage: String {
-12:         case requested, readRequested, readCompleted, consensus, fitGated
-13:         case fitTarget, dispatched, commandACK, landing
-14:     }
-15:     struct Identity {
-16:         let player: String, window: Int, load: UInt64, scan: UInt64
-17:     }
-18:     struct Event {
-19:         let stage: Stage
-20:         let utcMilliseconds: Int64, monotonicSeconds: Double
-21:         /// Fixed numeric schema only. No source URLs, names, command bodies or stderr.
-22:         var numbers: [String: Double] = [:]
-23:         var reason: String = "none"
-24:     }
-25:     private static let allowedNumbers: Set<String> = [
-26:         "request_bytes", "actual_bytes", "deadline_s", "elapsed_s", "samples",
-27:         "supporters", "x", "y", "w", "h", "source_aspect", "target_aspect",
-28:         "observed_aspect", "tolerance", "ack", "gate", "observed", "matched",
-29:         "target_x", "target_y", "target_w", "target_h", "observed_x", "observed_y", "observed_w", "observed_h"
-30:     ]
-31:     private(set) var emitted = 0
-32:     private(set) var bytes = 0
-33:     static let maxRows = 2048
-34:     static let maxBytes = 1048576
-```
-
-Secret scan: clean.
+Change: Distinguish command acceptance from actual window landing in bounded evidence.
+Return: the whole changed target file, preserving the same relative product path. No excerpt/private-repo access is needed to read this input. Include changed symbols, base SHA, known limits and actual output. Do not create a satellite file; newly required source files need an explicit block line naming them. If a station writer has since moved the target, return the conflict and current destination evidence before editing.
+Reconcile current source and earlier returns first: the defect may already be fixed. Preserve earliest claim and existing occupancy, and do not duplicate another writer. Product compile/CI is not made a prerequisite here. If additional complete dependency files are required, name them precisely for attachment rather than guessing their interfaces.
+Same ingest pass outcome required: re:W-gdb-199eb-05 | ACCEPTED / REJECTED / PARTIAL | commit SHA | reason. A publication is not product acceptance or evidence that a lab started.
+Secret scan: clean. Held grain/Sensing/font bytes unchanged and excluded from these attachments.
