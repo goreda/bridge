@@ -50,49 +50,66 @@ Qualified composition29d7c0dbb0a5f055f4770278b327f738d74f8599 is published to go
 
 ## Product packets 199eb, 2026-11-27
 
-The withdrawn spike-only export freeze is removed from this queue. Forty source-grounded packets at instinct168af857 are ready under packets/W-gdb-199eb-01.md through W-gdb-199eb-40.md, twenty per lab. Existing claims win. Each packet carries exact source excerpts, interface, mandatory regression, lane branch and patch/full-file return. Return ingestion is due within two hours, by any receiver; assembly merges landed lanes hourly. No main-agent hand-apply funnel.
+The withdrawn spike-only export freeze is removed from this queue. Forty source-grounded packets at instinct168af857 are ready under packets/W-gdb-199eb-01.md through W-gdb-199eb-40.md, twenty per lab. Existing claims win. Legacy packet format is retired; the199eecontract below requires existing-file@SHA patch-only returns and custody reconciliation. Return ingestion is due within two hours, by any receiver; assembly merges landed lanes hourly. No main-agent hand-apply funnel.
 
-Swift/C edits start one compile-only free native run at lane push, separate from test suites; no paid plan or owner-runtime claim. No worker-count claim is inferred from this stock. P30 custody stays with goreda; the additional named product line and actual worker claims are recorded by their writers.
+No compile/CI prerequisite is added here; current199ec/199edowner delivery rules apply, and runtime proof remains separate. No worker-count claim is inferred from this stock. P30 custody stays with goreda; the additional named product line and actual worker claims are recorded by their writers.
 
 | Packet | Product line | Lane | State | Lab |
 | --- | --- | --- | --- | --- |
-| W-gdb-199eb-01 | crop-receipt-timeout | lane/1nstinct/crop-receipt-timeout | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-02 | crop-live-playhead | lane/1nstinct/crop-live-playhead | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-03 | crop-cancellation | lane/1nstinct/crop-cancellation | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-04 | crop-consensus | lane/1nstinct/crop-consensus | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-05 | crop-landing | lane/1nstinct/crop-landing | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-06 | tiling-self-membership | lane/1nstinct/tiling-self-membership | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-07 | overlay-instance-binding | lane/1nstinct/overlay-instance-binding | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-08 | crop-fit-source-first | lane/1nstinct/crop-fit-source-first | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-09 | overlay-close-cleanup | lane/1nstinct/overlay-close-cleanup | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-10 | tiling-hotpath | lane/1nstinct/tiling-hotpath | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-11 | wt-waiter-precedence | lane/1nstinct/wt-waiter-precedence | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-12 | wt-stale-analysis | lane/1nstinct/wt-stale-analysis | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-13 | popular-knaben | lane/1nstinct/popular-knaben | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-14 | popular-bt4g | lane/1nstinct/popular-bt4g | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-15 | popular-nyaa | lane/1nstinct/popular-nyaa | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-16 | lane-e-binding | lane/1nstinct/lane-e-binding | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-17 | lane-e-lifecycle | lane/1nstinct/lane-e-lifecycle | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-18 | lane-e-construction | lane/1nstinct/lane-e-construction | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-19 | encode-menu-location | lane/1nstinct/encode-menu-location | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-20 | encode-output-start | lane/1nstinct/encode-output-start | READY_UNCLAIMED | 1nstinct |
-| W-gdb-199eb-21 | transfer-tag-authority | lane/in2tinct/transfer-tag-authority | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-22 | transfer-mpv-mapping | lane/in2tinct/transfer-mpv-mapping | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-23 | transfer-preflight-ui | lane/in2tinct/transfer-preflight-ui | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-24 | transfer-frame-source | lane/in2tinct/transfer-frame-source | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-25 | transfer-source-switch | lane/in2tinct/transfer-source-switch | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-26 | arch-instance-transport | lane/in2tinct/arch-instance-transport | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-27 | arch-outbox-admission | lane/in2tinct/arch-outbox-admission | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-28 | arch-outbox-partial | lane/in2tinct/arch-outbox-partial | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-29 | arch-source-cancel | lane/in2tinct/arch-source-cancel | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-30 | arch-export-stop | lane/in2tinct/arch-export-stop | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-31 | pip-action-target | lane/in2tinct/pip-action-target | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-32 | pip-menu-state | lane/in2tinct/pip-menu-state | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-33 | pip-owner-lifetime | lane/in2tinct/pip-owner-lifetime | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-34 | pip-fullscreen-fit | lane/in2tinct/pip-fullscreen-fit | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-35 | pip-source-reopen | lane/in2tinct/pip-source-reopen | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-36 | popular-status-coverage | lane/in2tinct/popular-status-coverage | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-37 | popular-cancel-race | lane/in2tinct/popular-cancel-race | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-38 | magnet-row-stability | lane/in2tinct/magnet-row-stability | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-39 | crop-size-evidence | lane/in2tinct/crop-size-evidence | READY_UNCLAIMED | in2tinct |
-| W-gdb-199eb-40 | export-terminal-visibility | lane/in2tinct/export-terminal-visibility | READY_UNCLAIMED | in2tinct |
+| W-gdb-199eb-01 | crop-receipt-timeout | lane/1nstinct/crop-receipt-timeout | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
+| W-gdb-199eb-02 | crop-live-playhead | lane/1nstinct/crop-live-playhead | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
+| W-gdb-199eb-03 | crop-cancellation | lane/1nstinct/crop-cancellation | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
+| W-gdb-199eb-04 | crop-consensus | lane/1nstinct/crop-consensus | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
+| W-gdb-199eb-05 | crop-landing | lane/1nstinct/crop-landing | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
+| W-gdb-199eb-06 | tiling-self-membership | lane/1nstinct/tiling-self-membership | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
+| W-gdb-199eb-07 | overlay-instance-binding | lane/1nstinct/overlay-instance-binding | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
+| W-gdb-199eb-08 | crop-fit-source-first | lane/1nstinct/crop-fit-source-first | APPLIED_SOURCE_RECONCILE | 1nstinct |
+| W-gdb-199eb-09 | overlay-close-cleanup | lane/1nstinct/overlay-close-cleanup | APPLIED_SOURCE_RECONCILE | 1nstinct |
+| W-gdb-199eb-10 | tiling-hotpath | lane/1nstinct/tiling-hotpath | APPLIED_SOURCE_RECONCILE | 1nstinct |
+| W-gdb-199eb-11 | wt-waiter-precedence | lane/1nstinct/wt-waiter-precedence | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
+| W-gdb-199eb-12 | wt-stale-analysis | lane/1nstinct/wt-stale-analysis | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
+| W-gdb-199eb-13 | popular-knaben | lane/1nstinct/popular-knaben | REISSUED_CUSTODY_UNVERIFIED | 1nstinct |
+| W-gdb-199eb-14 | popular-bt4g | lane/1nstinct/popular-bt4g | APPLIED_SOURCE_RECONCILE | 1nstinct |
+| W-gdb-199eb-15 | popular-nyaa | lane/1nstinct/popular-nyaa | APPLIED_SOURCE_RECONCILE | 1nstinct |
+| W-gdb-199eb-16 | lane-e-binding | lane/1nstinct/lane-e-binding | WAIT_STATION_REPIN | 1nstinct |
+| W-gdb-199eb-17 | lane-e-lifecycle | lane/1nstinct/lane-e-lifecycle | WAIT_STATION_REPIN | 1nstinct |
+| W-gdb-199eb-18 | lane-e-construction | lane/1nstinct/lane-e-construction | WAIT_STATION_REPIN | 1nstinct |
+| W-gdb-199eb-19 | encode-menu-location | lane/1nstinct/encode-menu-location | WAIT_STATION_REPIN | 1nstinct |
+| W-gdb-199eb-20 | encode-output-start | lane/1nstinct/encode-output-start | WAIT_STATION_REPIN | 1nstinct |
+| W-gdb-199eb-21 | transfer-tag-authority | lane/in2tinct/transfer-tag-authority | WAIT_STATION_REPIN | in2tinct |
+| W-gdb-199eb-22 | transfer-mpv-mapping | lane/in2tinct/transfer-mpv-mapping | WAIT_STATION_REPIN | in2tinct |
+| W-gdb-199eb-23 | transfer-preflight-ui | lane/in2tinct/transfer-preflight-ui | WAIT_STATION_REPIN | in2tinct |
+| W-gdb-199eb-24 | transfer-frame-source | lane/in2tinct/transfer-frame-source | WAIT_STATION_REPIN | in2tinct |
+| W-gdb-199eb-25 | transfer-source-switch | lane/in2tinct/transfer-source-switch | WAIT_STATION_REPIN | in2tinct |
+| W-gdb-199eb-26 | arch-instance-transport | lane/in2tinct/arch-instance-transport | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
+| W-gdb-199eb-27 | arch-outbox-admission | lane/in2tinct/arch-outbox-admission | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
+| W-gdb-199eb-28 | arch-outbox-partial | lane/in2tinct/arch-outbox-partial | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
+| W-gdb-199eb-29 | arch-source-cancel | lane/in2tinct/arch-source-cancel | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
+| W-gdb-199eb-30 | arch-export-stop | lane/in2tinct/arch-export-stop | WAIT_STATION_REPIN | in2tinct |
+| W-gdb-199eb-31 | pip-action-target | lane/in2tinct/pip-action-target | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
+| W-gdb-199eb-32 | pip-menu-state | lane/in2tinct/pip-menu-state | WAIT_STATION_REPIN | in2tinct |
+| W-gdb-199eb-33 | pip-owner-lifetime | lane/in2tinct/pip-owner-lifetime | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
+| W-gdb-199eb-34 | pip-fullscreen-fit | lane/in2tinct/pip-fullscreen-fit | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
+| W-gdb-199eb-35 | pip-source-reopen | lane/in2tinct/pip-source-reopen | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
+| W-gdb-199eb-36 | popular-status-coverage | lane/in2tinct/popular-status-coverage | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
+| W-gdb-199eb-37 | popular-cancel-race | lane/in2tinct/popular-cancel-race | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
+| W-gdb-199eb-38 | magnet-row-stability | lane/in2tinct/magnet-row-stability | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
+| W-gdb-199eb-39 | crop-size-evidence | lane/in2tinct/crop-size-evidence | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
+| W-gdb-199eb-40 | export-terminal-visibility | lane/in2tinct/export-terminal-visibility | WAIT_STATION_REPIN | in2tinct |
+
+
+## Packet contract199ee, supersedes legacy packet format
+
+Every packet uses an existing product file. Required fields:
+
+- Target: repository, existing file path@exact commit SHA, and blob SHA.
+- Change: the behavior or narrow existing symbol to change, preserving the packet's product intent.
+- Return: unified patch to that target file, based on the pinned SHA. No full-file replacement and no new source/test/helper file. A newly required file must first be named explicitly by an owner block line.
+- Occupancy: original packet ID, team, lane and earliest symbol claim remain unchanged. Check live claims/returns before writing; no duplicate worker or reassignment is created by this format update.
+- Reconcile: a queue READY label is not proof that work remains undone. Check current product source and subsequent applied/returned evidence. If already fixed, return the existing commit and remaining gap, not another patch.
+- A target moved by station consolidation must be repinned to its verified existing destination before more code is written. Never invent a destination path or reopen the old satellite file.
+- Return limits and actual checks must be stated. No compile/CI prerequisite is added by this documentation change; current owner delivery rules remain in effect.
+
+The previous extracted-helper-on-collision and complete-file-return alternatives are retired. On collision preserve custody and return the conflict, not a new helper file. Legacy40packet documents below are reissued in place under their original IDs. Source excerpts stay as historical problem context, not current execution pins. Known route applications are identified individually; other custody is explicitly unverified until reconciled. This change does not dispatch a new worker.
+
+Secret scan: clean. Only product paths, exact source identities and problem descriptions are included; no credentials, personal data or licensed fixture bytes.
