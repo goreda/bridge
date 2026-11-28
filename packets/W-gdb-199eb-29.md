@@ -1,54 +1,16 @@
 # W-gdb-199eb-29: arch-source-cancel
-Team: in2tinct. State: REISSUED_CUSTODY_UNVERIFIED. Priority: product regression.
-Packet identity and occupancy: original W-gdb-199eb-29, lane lane/in2tinct/arch-source-cancel; earliest existing symbol claim still wins.
-Legacy extracted-helper/new-file fallback and full-file return are RETIRED by199ee. This is the same packet reissued as an existing-file patch, not a new dispatch.
-
-## Target file@SHA
-Repository: goreda/instinct
-Target: archive/gor/Sources/gor/Engine/CropProbeTransport.swift@37ccb29b7403bbc35b276ab5600947979de42f7d
+Revision:199ef. Prior199eb excerpt, 199ee patch-only and the WAIT_STATION_REPIN hold are RETIRED (199eh ended the station cause; the Export station move is not on the remote, so the target is repinned to remote tip 1a2ed9a3). Same ID, team in2tinct, lane lane/in2tinct/arch-source-cancel, and earliest symbol claim preserved.
+State: REISSUED_FULL_TARGET. This record does not invent a new unclaimed assignment and does not undo an earlier application.
+Target: goreda/instinct archive/gor/Sources/gor/Engine/CropProbeTransport.swift@1a2ed9a3b614813de66a5ef9cf53aff5dd726883
 Blob: 910471b301b2542ed3f9704a5d748f4a9d3bdfd9
-The target existed at this exact pin. Historical168af857 excerpts below are not the current pin.
+Complete target attached: [CropProbeTransport.swift](199ef/W-gdb-199eb-29/CropProbeTransport.swift)
+Issue-time refreshed snapshot: [complete file](../snapshots/LATEST/archive/gor/Sources/gor/Engine/CropProbeTransport.swift)
+Attachment SHA256: 9dcda68fed2da24c4665470467805dadc3e00a46de6dee9c0c77172e9d33a574
+Projection: complete file as stored at the pin; no content removed or edited by the writer. Blob hash recomputed from the attached bytes.
+Previous pin: archive/gor/Sources/gor/Engine/CropProbeTransport.swift@37ccb29b7403bbc35b276ab5600947979de42f7d blob 910471b301b2542ed3f9704a5d748f4a9d3bdfd9 (superseded by the pin above)
 
-## Change
-Keep read cancellation within its source/scan owner and isolate subprocess failure from UI queues.
-
-## Return as patch to that file
-Unified patch against the exact target above. Modify its existing owning concept; no new source/test/helper file, full-file replacement or new Gate/Guard/Receipt/Proof/Admission/Stub type. A genuinely new file requires an explicit block line naming it first. Preserve source/load/player identity, existing interfaces and product behavior outside this change. On collision report it and preserve earliest custody instead of extracting a helper.
-
-## Current reconciliation
-No current claim/return proof found in the queue snapshot. Preserve any earlier claim; reconcile actual source and later returns before taking work. This is not a fresh unclaimed assignment.
-A queue label alone does not prove the original defect is outstanding. Report already-fixed evidence before proposing a duplicate change. Tests and compile/runtime limitations are reported honestly; this packet adds no CI gate between code and owner delivery.
-
-## Historical source context
-```text
-29: final class CropProbeTransport {
-30:     private let capability: CropProbeCapability
-31:     init(capability: CropProbeCapability) { self.capability = capability }
-32:     /// Loaded-file duration in seconds; nil until the file reports one.
-33:     func fileDuration(timeout: TimeInterval = 0.8) -> Double? { capability.fileDuration(timeout) }
-34:     /// Seek-in-progress flag; nil while the reply carries no bool.
-35:     func isSeeking(timeout: TimeInterval = 0.15) -> Bool? { capability.isSeeking(timeout) }
-36:     /// Pause flag; nil while the reply carries no bool.
-37:     func isPaused() -> Bool? { capability.isPaused() }
-38:     /// Currently loaded path; nil while the reply carries no string.
-39:     func currentPath() -> String? { capability.currentPath() }
-40:     /// Playhead position in seconds; nil while the reply carries no number.
-41:     func timePosition() -> Double? { capability.timePosition() }
-42:     /// Screenshot format mpv is configured to write; "png" when unread.
-43:     func screenshotFormat() -> String { capability.screenshotFormat() }
-44:     /// Absolute seek; the caller's poll loop confirms completion.
-45:     func seekAbsolute(seconds: Int) { capability.seekAbsolute(seconds) }
-46:     /// Prepares the screenshot command without sending it; nil only when the
-47:     /// backend refuses to build it. The prepared token is opaque here: this
-48:     /// type can hold it and hand it back, never read or shape it. Callers
-49:     /// that log before sending hold this, log, then sendPrepared.
-50:     func screenshotCommand(to path: String) -> CropProbePreparedCommand? { capability.prepareScreenshot(path) }
-51:     /// Hands a prepared command back to the backend and discards the reply:
-52:     /// the screenshot file is the evidence of capture, not the socket result.
-53:     func sendPrepared(_ command: CropProbePreparedCommand) { capability.sendPrepared(command) }
-54:     /// Build + send in the old fire-and-forget order; the result is the
-55:     /// build-and-hand-off signal the header describes, nothing more.
-56:     @discardableResult
-```
-
-Secret scan: clean.
+Change: Keep read cancellation within its source/scan owner and isolate subprocess failure from UI queues.
+Return: the whole changed target file, preserving the same relative product path. No excerpt/private-repo access is needed to read this input. Include changed symbols, base SHA, known limits and actual output. Do not create a satellite file; newly required source files need an explicit block line naming them. If a station writer has since moved the target, return the conflict and current destination evidence before editing.
+Reconcile current source and earlier returns first: the defect may already be fixed. Preserve earliest claim and existing occupancy, and do not duplicate another writer. Product compile/CI is not made a prerequisite here. If additional complete dependency files are required, name them precisely for attachment rather than guessing their interfaces.
+Same ingest pass outcome required: re:W-gdb-199eb-29 | ACCEPTED / REJECTED / PARTIAL | commit SHA | reason. A publication is not product acceptance or evidence that a lab started.
+Secret scan: clean. Held grain/Sensing/font bytes unchanged and excluded from these attachments.

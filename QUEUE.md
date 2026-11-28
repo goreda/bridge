@@ -76,31 +76,31 @@ No compile/CI prerequisite is added here; current199ec/199edowner delivery rules
 | W-gdb-199eb-18 | lane-e-construction | lane/1nstinct/lane-e-construction | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
 | W-gdb-199eb-19 | encode-menu-location | lane/1nstinct/encode-menu-location | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
 | W-gdb-199eb-20 | encode-output-start | lane/1nstinct/encode-output-start | REISSUED_FULL_TARGET_CUSTODY_RECONCILE | 1nstinct |
-| W-gdb-199eb-21 | transfer-tag-authority | lane/in2tinct/transfer-tag-authority | WAIT_STATION_REPIN | in2tinct |
-| W-gdb-199eb-22 | transfer-mpv-mapping | lane/in2tinct/transfer-mpv-mapping | WAIT_STATION_REPIN | in2tinct |
-| W-gdb-199eb-23 | transfer-preflight-ui | lane/in2tinct/transfer-preflight-ui | WAIT_STATION_REPIN | in2tinct |
-| W-gdb-199eb-24 | transfer-frame-source | lane/in2tinct/transfer-frame-source | WAIT_STATION_REPIN | in2tinct |
-| W-gdb-199eb-25 | transfer-source-switch | lane/in2tinct/transfer-source-switch | WAIT_STATION_REPIN | in2tinct |
-| W-gdb-199eb-26 | arch-instance-transport | lane/in2tinct/arch-instance-transport | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
-| W-gdb-199eb-27 | arch-outbox-admission | lane/in2tinct/arch-outbox-admission | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
-| W-gdb-199eb-28 | arch-outbox-partial | lane/in2tinct/arch-outbox-partial | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
-| W-gdb-199eb-29 | arch-source-cancel | lane/in2tinct/arch-source-cancel | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
-| W-gdb-199eb-30 | arch-export-stop | lane/in2tinct/arch-export-stop | WAIT_STATION_REPIN | in2tinct |
-| W-gdb-199eb-31 | pip-action-target | lane/in2tinct/pip-action-target | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
-| W-gdb-199eb-32 | pip-menu-state | lane/in2tinct/pip-menu-state | WAIT_STATION_REPIN | in2tinct |
-| W-gdb-199eb-33 | pip-owner-lifetime | lane/in2tinct/pip-owner-lifetime | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
-| W-gdb-199eb-34 | pip-fullscreen-fit | lane/in2tinct/pip-fullscreen-fit | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
-| W-gdb-199eb-35 | pip-source-reopen | lane/in2tinct/pip-source-reopen | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
-| W-gdb-199eb-36 | popular-status-coverage | lane/in2tinct/popular-status-coverage | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
-| W-gdb-199eb-37 | popular-cancel-race | lane/in2tinct/popular-cancel-race | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
-| W-gdb-199eb-38 | magnet-row-stability | lane/in2tinct/magnet-row-stability | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
-| W-gdb-199eb-39 | crop-size-evidence | lane/in2tinct/crop-size-evidence | REISSUED_CUSTODY_UNVERIFIED | in2tinct |
-| W-gdb-199eb-40 | export-terminal-visibility | lane/in2tinct/export-terminal-visibility | WAIT_STATION_REPIN | in2tinct |
+| W-gdb-199eb-21 | transfer-tag-authority | lane/in2tinct/transfer-tag-authority | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-22 | transfer-mpv-mapping | lane/in2tinct/transfer-mpv-mapping | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-23 | transfer-preflight-ui | lane/in2tinct/transfer-preflight-ui | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-24 | transfer-frame-source | lane/in2tinct/transfer-frame-source | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-25 | transfer-source-switch | lane/in2tinct/transfer-source-switch | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-26 | arch-instance-transport | lane/in2tinct/arch-instance-transport | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-27 | arch-outbox-admission | lane/in2tinct/arch-outbox-admission | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-28 | arch-outbox-partial | lane/in2tinct/arch-outbox-partial | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-29 | arch-source-cancel | lane/in2tinct/arch-source-cancel | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-30 | arch-export-stop | lane/in2tinct/arch-export-stop | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-31 | pip-action-target | lane/in2tinct/pip-action-target | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-32 | pip-menu-state | lane/in2tinct/pip-menu-state | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-33 | pip-owner-lifetime | lane/in2tinct/pip-owner-lifetime | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-34 | pip-fullscreen-fit | lane/in2tinct/pip-fullscreen-fit | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-35 | pip-source-reopen | lane/in2tinct/pip-source-reopen | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-36 | popular-status-coverage | lane/in2tinct/popular-status-coverage | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-37 | popular-cancel-race | lane/in2tinct/popular-cancel-race | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-38 | magnet-row-stability | lane/in2tinct/magnet-row-stability | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-39 | crop-size-evidence | lane/in2tinct/crop-size-evidence | REISSUED_FULL_TARGET | in2tinct |
+| W-gdb-199eb-40 | export-terminal-visibility | lane/in2tinct/export-terminal-visibility | REISSUED_FULL_TARGET | in2tinct |
 
 
 ## Packet contract199ef
 Each packet attaches the complete target file(s), refreshed in snapshots/LATEST at issue time, and asks for the whole changed file back.199ee patch-only form is superseded. A packet carries file path@SHA, blob, attached public file and SHA256; no private-repo access is needed for its input. Held grain, Sensing and font bytes retain the existing redaction/hold and are not refreshed by this issue.
 Every return gets re:W-id | ACCEPTED / REJECTED / PARTIAL | commit SHA | reason within the same ingest pass. No return is represented as accepted merely because it was published. Existing earliest claim and station occupancy remain unchanged.
-199eb01-20 are reissued in place with complete target attachments.21-40 retain existing custody pending their own full-target issue; the superseded patch-only clause is not a new instruction. Before starting reconcile source and prior route applications. No new worker is dispatched by this documentation update.
-Refresh scope: only the14distinct complete target files needed by01-20, source83ad4e39f8df442fd10e638a5a3c3f67ea848692. Other snapshot files retain older per-file identity. See snapshots/LATEST/ISSUE-199ef.json; do not treat the whole snapshot as uniformly refreshed.
+199eb01-40 are reissued in place with complete target attachments (21-40 reissued after199eh d43185e ended the station hold); existing custody is unchanged by the reissue; the superseded patch-only clause is not a new instruction. Before starting reconcile source and prior route applications. No new worker is dispatched by this documentation update.
+Refresh scope: only the distinct complete target files needed by01-40 (01-20 at source83ad4e39f8df442fd10e638a5a3c3f67ea848692; 21-40 at 1a2ed9a3b614813de66a5ef9cf53aff5dd726883). Other snapshot files retain older per-file identity. See snapshots/LATEST/ISSUE-199ef.json; do not treat the whole snapshot as uniformly refreshed.
 Secret scan: clean.

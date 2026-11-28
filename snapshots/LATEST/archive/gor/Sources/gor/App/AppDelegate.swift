@@ -1070,6 +1070,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
 
     // MARK: - MPV Launch
     private var goravHost: GorAVPlayerHost?
+    /// The frames-baked chain verifier of this launch's export capability (bound at the composition root; the export menu action records preflight evidence into it).
+    var exportFramesBakedVerifier: ExportFramesBakedChainVerifier?
     private(set) var engineRouteStatus=PlayerRouteStatus() {
         didSet {controller?.spineUI.refreshPhotonHUDRoute()}
     }
@@ -1363,6 +1365,54 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             openEmbedded(file:admitted,remote:true,postOpenReplay:fallback);return true
         }
     }
+    /// The export composition for ONE controller (capability source, launch-scoped frame/seal wiring, Start provider, encoder/channel/frames-baked legs).
+    /// Every site that builds the player controller calls this; a controller without it answers the unbound default (nothing assigned, nothing composed).
+    func installExportComposition(on ctrl: PPController) {
+        // Lane E: Start provider on a BoundExportCapability; the encoder leg is bound next, other legs stay absent.
+        let exportCapability = BoundExportCapability(providerAssigned: { true })
+        // W-gdb-199eb-21 (PANELS): the launch-scoped frame channel wiring — one seal client per launch, its
+        // request-id blocks, reply routing through the controller's onLine, lifecycle invalidation there.
+        let frameWiring = ExportFrameChannelWiring(settlement: ctrl.exportSettlement,
+                                                   ownerFence: { [weak ctrl] in ctrl?.exportOwnerFence() })
+        ctrl.exportFrameChannelWiring = frameWiring
+        ExportAsSeenAction.installStartProvider(on: ctrl, capability: exportCapability) { result in
+            // W-gdb-199eb-20: the real Start build (PANELS' ExportStartAssembly). The readback handle comes
+            // from the live gorav host (nil = fail-closed); the run's adapter is a fresh read-only snapshot
+            // adapter (lookSnapshot/fileIdentity fences; no render receipt is needed by the runner).
+            var startAdapter = ExportAsSeenAction(controller: ctrl)
+            // The Start build's adapter answers the playing-source identity from this launch's native host open
+            // receipt (the decoder's own descriptor), converted field for field; nil keeps the start fence refusing.
+            startAdapter.playingSourceIdentitySource = { [weak self] in
+                MainActor.assumeIsolated { self?.goravHost?.activeSourceOpenReceipt() }.map { ExportFileIdentity(openReceipt: $0) }
+            }
+            return ExportStartAssembly.makeInputs(result: result, adapter: startAdapter,
+                                           handle: MainActor.assumeIsolated { self.goravHost?.exportReadbackHandle() },
+                                           channelWiring: frameWiring,
+                                           // The present-session floor at Start build: this provider runs synchronously on the
+                                           // main actor, so the floor is the current session's, taken early (prepare); a player
+                                           // restart between build and run starts a new session/generation and the receipt book
+                                           // fails closed against this floor.
+                                           sessionFloor: MainActor.assumeIsolated { self.goravHost?.exportSessionFloor() })
+        }
+        exportCapability.bind { $0.encoder = ExportEncoderCapabilityBinding.reader(declaration: { GORResources.renderStackDeclarationURL() }) }
+        // The frame/seal channel leg: composed only while the controller really holds this launch's wiring (the factory, the seal client and the
+        // connection's id blocks exist); the reply routes through ctrl and the evidence names that wiring.
+        // The frames-baked chain leg: the production verifier. Present only after a real preflight recorded same-job frames-baked colour evidence for the load that is current now.
+        let framesBaked = ExportFramesBakedChainVerifier(
+            handleAvailable: { [weak self] in DispatchQueue.main.sync { MainActor.assumeIsolated { self?.goravHost?.exportReadbackHandle() != nil } } },
+            sealChannelComposed: { [weak ctrl] in ctrl?.exportFrameChannelWiring != nil },
+            ledgerConfirmationBound: { [weak ctrl] in ctrl?.exportFrameChannelWiring != nil },   // the wiring's factory is built with ledgerConfirmsFor (ExportFrameChannelWiring.swift); per-run proof stays in the channel
+            currentLoadEpoch: { [weak ctrl] in ctrl?.exportOwnerFence().map { ExportLoadEpoch(session: $0.session, opening: $0.opening) } })
+        self.exportFramesBakedVerifier = framesBaked
+        exportCapability.bind { $0.framesBaked = framesBaked.reader }
+        exportCapability.bind { [weak ctrl, weak frameWiring] in
+            $0.channel = {
+                guard let ctrl = ctrl, let frameWiring = frameWiring, ctrl.exportFrameChannelWiring === frameWiring else { return ExportChannelEvidence(composed: false) }
+                return ExportChannelEvidence(composed: true, evidence: ["wiring": "ExportFrameChannelWiring", "scope": "launch"])
+            }
+        }
+    }
+
     private func launchMPVImplementation(file: String?) {
         let playerResources = PlayerSessionContext.shared
         guard let watchLater = try? PlayerRuntimeResources.path("gor_watch_later") else {
@@ -1654,36 +1704,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             if self.controller == nil && FileManager.default.fileExists(atPath: self.ipcPath) {
                 let ctrl = PPController(frame: .zero, ipcPath: self.ipcPath)
                 self.controller = ctrl
-                // Lane E: Start provider on a BoundExportCapability; the encoder leg is bound next, other legs stay absent.
-                let exportCapability = BoundExportCapability(providerAssigned: { true })
-                // W-gdb-199eb-21 (PANELS): the launch-scoped frame channel wiring — one seal client per launch, its
-                // request-id blocks, reply routing through the controller's onLine, lifecycle invalidation there.
-                let frameWiring = ExportFrameChannelWiring(settlement: ctrl.exportSettlement,
-                                                           ownerFence: { [weak ctrl] in ctrl?.exportOwnerFence() })
-                ctrl.exportFrameChannelWiring = frameWiring
-                ExportAsSeenAction.installStartProvider(on: ctrl, capability: exportCapability) { result in
-                    // W-gdb-199eb-20: the real Start build (PANELS' ExportStartAssembly). The readback handle comes
-                    // from the live gorav host (nil = fail-closed); the run's adapter is a fresh read-only snapshot
-                    // adapter (lookSnapshot/fileIdentity fences; no render receipt is needed by the runner).
-                    ExportStartAssembly.makeInputs(result: result, adapter: ExportAsSeenAction(controller: ctrl),
-                                                   handle: MainActor.assumeIsolated { self.goravHost?.exportReadbackHandle() },
-                                                   channelWiring: frameWiring,
-                                                   // The present-session floor at Start build: this provider runs synchronously on the
-                                                   // main actor, so the floor is the current session's, taken early (prepare); a player
-                                                   // restart between build and run starts a new session/generation and the receipt book
-                                                   // fails closed against this floor.
-                                                   sessionFloor: MainActor.assumeIsolated { self.goravHost?.exportSessionFloor() })
-                }
-                exportCapability.bind { $0.encoder = ExportEncoderCapabilityBinding.reader(declaration: { GORResources.renderStackDeclarationURL() }) }
-                // The frame/seal channel leg: composed only while the controller really holds this launch's wiring (the factory, the seal client and the
-                // connection's id blocks exist); the reply routes through ctrl and the evidence names that wiring. The frames-baked chain leg is NOT bound
-                // here: its verification is per run (renderer receipt) and no production verifier exists yet, so it stays absent with its own reason.
-                exportCapability.bind { [weak ctrl, weak frameWiring] in
-                    $0.channel = {
-                        guard let ctrl = ctrl, let frameWiring = frameWiring, ctrl.exportFrameChannelWiring === frameWiring else { return ExportChannelEvidence(composed: false) }
-                        return ExportChannelEvidence(composed: true, evidence: ["wiring": "ExportFrameChannelWiring", "scope": "launch"])
-                    }
-                }
+                self.installExportComposition(on: ctrl)
                 ctrl.ipcCommand("{\"command\":[\"keybind\",\"Meta+o\",\"ignore\"]}")
             }
             
@@ -1906,6 +1927,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             if FileManager.default.fileExists(atPath: self.ipcPath) {
                 let ctrl = PPController(frame: .zero, ipcPath: self.ipcPath)
                 self.controller = ctrl
+                self.installExportComposition(on: ctrl)
 
                 ctrl.ipcCommand("{\"command\":[\"set\",\"pause\",\"yes\"]}")
                 ctrl.ipcCommand("{\"command\":[\"audio-reload\"]}")
@@ -1927,6 +1949,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
                         }
                         if FileManager.default.fileExists(atPath: self.ipcPath) {
                             self.controller = PPController(frame: .zero, ipcPath: self.ipcPath)
+                            if let made = self.controller { self.installExportComposition(on: made) }
                         }
                         self.findMPVWindow()
                         if self.overlayWin != nil {
@@ -2001,6 +2024,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
 
         let previousController = controller
         controller = ctrl
+        installExportComposition(on: ctrl)
         releaseOldController(previousController)
 
         // Multi-player tiling: attach once both the controller and the overlay window exist.
@@ -3340,7 +3364,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         // menu never double-fires. Plain = and - still zoom (handled by the monitor).
         func fnShift(_ f: Int) -> String { String(UnicodeScalar(UInt32(f))!) }
         let fs: NSEvent.ModifierFlags = [.shift, .function]
-        // Owner 2026-11-12 13:47 (<owner-reference-redacted>): video menu order is
+        // Owner 2026-11-12 13:47 ([owner message id removed]): video menu order is
         // clip, crop directly under clip, aspect ratio directly under crop, and toggle LAST.
         let cropMenu = group("crop", in: videoMenu)
         let redetectCropItem=item("detect",action:#selector(menuCropDetect),key:"d",mods:[.command,.control,.option])
@@ -3709,6 +3733,30 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
                         self.quitDebug("gate mpv fade commands enqueued (not ACKed)")
                         fadeGroup.leave()
                     }
+                }
+            }
+        } else if activePlayerEngine == .gorav {
+            // gorav: the embedded engine's command surface is pause/seek/volume
+            // only (GorAVPlayerHost.handleChromeCommand), so the media fade is
+            // volume-only; video saturation/brightness have no gorav route. The
+            // display fade below (fadeToOriginalBrightnessForQuit) already runs
+            // on both engines. Same 0.66s eased shape as the mpv volume fade.
+            fadeGroup.enter()
+            quitDebug("gate gorav volume fade scheduled")
+            let volSteps = 33
+            let volDelay = 0.66 / Double(volSteps)
+            let startVolume = Double(controller.volume) * 100.0
+            for i in 0...volSteps {
+                DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * volDelay) {
+                    if self.quitApproved {
+                        if i == volSteps { fadeGroup.leave() }
+                        return
+                    }
+                    let t = Double(i) / Double(volSteps)
+                    let eased = t * t
+                    let volume = Int(startVolume * (1.0 - eased))
+                    controller.ipcCommand(#"{"command":["set_property","volume",\#(volume)]}"#)
+                    if i == volSteps { fadeGroup.leave() }
                 }
             }
         }

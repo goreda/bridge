@@ -300,13 +300,15 @@ extension ExportStartOperation {
     /// a bound run on today's evidence still refuses frame acquisition. Nothing starts until a caller calls `start`.
     public static func production(background: DispatchQueue, legs: ExportControllerLegs, inputs i: ExportStartInputs,
                                   onTerminal: @escaping (Terminal) -> Void) -> ExportStartOperation {
-        ExportStartOperation(background: background, makeBackend: i.makeBackend, bind: { backend in
+        let bind: (ExportRGBA64Backend?) -> Result<ExportRunComposition.BoundRun, ExportRunComposition.Refusal> = { backend in
             ExportRunComposition.bindRun(box: legs.box, wire: legs.wire, inner: i.inner, ownerQueue: legs.ownerQueue, capture: i.capture,
                                          contract: i.contract, timeBase: i.timeBase, enqueueLine: legs.enqueueLine, dropRun: legs.dropRun,
                                          resetTiming: i.resetTiming, frameChannel: i.makeFrameChannel?(legs), result: i.result, adapter: i.adapter, backend: backend,
                                          makeFeed: i.makeFeed, fileSystem: i.fileSystem, admission: i.admission,
                                          requireVideoEndProof: i.requireVideoEndProof, copyProof: i.copyProof, copyProofInterrupt: i.copyProofInterrupt)
-        }, scopeBusy: { [admission = i.admission] in admission.isBusy }, onTerminal: onTerminal)
+        }
+        let scopeBusy: () -> Bool = { [admission = i.admission] in admission.isBusy }
+        return ExportStartOperation(background: background, makeBackend: i.makeBackend, bind: bind, scopeBusy: scopeBusy, onTerminal: onTerminal)
     }
 }
 

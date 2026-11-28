@@ -484,7 +484,9 @@ public struct ExportChannelEvidence: Equatable {
 public struct ExportFramesBakedEvidence: Equatable {
     public let verified: Bool
     public let evidence: [String: String]
-    public init(verified: Bool, evidence: [String: String] = [:]) { self.verified = verified; self.evidence = evidence }
+    /// Why the chain is not verified, when the verifier knows the stage that failed (lowercase fragment). nil falls back to the generic reason.
+    public let reason: String?
+    public init(verified: Bool, evidence: [String: String] = [:], reason: String? = nil) { self.verified = verified; self.evidence = evidence; self.reason = reason }
 }
 
 /// The evidence readers. Each returns nil when its lane has not bound anything (that is "absent", never a guess). The readers may do I/O:
@@ -526,7 +528,7 @@ public enum ExportCapabilityDerivation {
     }
     public static func framesBakedLeg(_ f: ExportFramesBakedEvidence?) -> ExportCapabilityLeg {
         guard let f else { return .absent(reasonNoChain) }
-        return f.verified ? .present(f.evidence) : .absent(reasonChainNotVerified)
+        return f.verified ? .present(f.evidence) : .absent(f.reason ?? reasonChainNotVerified)
     }
     public static func derive(evidence e: ExportCapabilityEvidence, providerAssigned: Bool) -> ExportCapability {
         ExportCapability(encoderLinked: encoderLeg(e.encoder()), startProviderAssigned: providerLeg(assigned: providerAssigned),
@@ -1252,3 +1254,52 @@ extension ExportRunConstruction {
     }
 }
 // ===== END merged ExportRunConstruction.swift =====
+
+// ===== BEGIN merged ExportFramesBakedChainVerifier.swift =====
+// Picture/ExportFramesBakedChainVerifier.swift
+// The production reader for the frames-baked leg of the capability source. The leg is present only when the chain has actually been shown to work in THIS process, never from a constant:
+//   (1) the root states that the three chain parts are composed right now: the renderer readback handle, the frame/seal channel and the seal ledger confirmation (live closures, any false = absent);
+//   (2) a real preflight derived, from a real same-job readback receipt, colour evidence that says the frames carry the look as seen (renderPath displayReferredSDR, framesBakedAsSeen true) on the
+//       qualified source (ffprobe bt709, the transfer table's .sdr verdict), under an accepted-load epoch; and
+//   (3) that evidence belongs to the load that is current NOW (same session and opening); a new load drops the verification until a preflight shows it again.
+// It never writes `framesBakedAsSeen`, never plans, never reads mpv: it only decides whether the capability leg may read present. Per-frame validation stays in the producer (ExportFrameRenderAdmission).
+// Uses: ExportColourEvidence, ExportCapabilityDerived
+// Engine: none
+
+public final class ExportFramesBakedChainVerifier {
+    private let lock = NSLock()
+    private var recorded: ExportColourEvidence?
+    private let handleAvailable: () -> Bool
+    private let sealChannelComposed: () -> Bool
+    private let ledgerConfirmationBound: () -> Bool
+    private let currentLoadEpoch: () -> ExportLoadEpoch?
+
+    public init(handleAvailable: @escaping () -> Bool, sealChannelComposed: @escaping () -> Bool,
+                ledgerConfirmationBound: @escaping () -> Bool, currentLoadEpoch: @escaping () -> ExportLoadEpoch?) {
+        self.handleAvailable = handleAvailable; self.sealChannelComposed = sealChannelComposed
+        self.ledgerConfirmationBound = ledgerConfirmationBound; self.currentLoadEpoch = currentLoadEpoch
+    }
+
+    /// The preflight's final colour evidence (after the receipt derivation and the transfer gate). Replaces any earlier record.
+    public func record(_ evidence: ExportColourEvidence) { lock.lock(); recorded = evidence; lock.unlock() }
+    public func forget() { lock.lock(); recorded = nil; lock.unlock() }
+
+    /// nil = nothing to report (no evidence yet: leg absent "no verified chain yet"); verified false = a stage failed, and the reason names that stage (the panel's missing-item line then states the real cause, never the one generic "not verified").
+    public func evidence() -> ExportFramesBakedEvidence? {
+        lock.lock(); let e = recorded; lock.unlock()
+        guard let e else { return nil }
+        guard handleAvailable() else { return ExportFramesBakedEvidence(verified: false, reason: "the renderer readback handle is not available in this process") }
+        guard sealChannelComposed() else { return ExportFramesBakedEvidence(verified: false, reason: "the frame/seal channel is not composed") }
+        guard ledgerConfirmationBound() else { return ExportFramesBakedEvidence(verified: false, reason: "the seal ledger confirmation is not bound") }
+        guard e.renderPath == .displayReferredSDR, e.framesBakedAsSeen == true else { return ExportFramesBakedEvidence(verified: false, reason: "the recorded colour evidence does not state frames-baked-as-seen") }
+        guard let signal = e.decodedSignal, case .kind(.sdr) = ExportColourEvidence.transferVerdict(sourceTag: signal.sourceTag, mpvTRC: signal.transfer) else { return ExportFramesBakedEvidence(verified: false, reason: "the decoded source signal is not the qualified SDR source") }
+        guard let epoch = e.loadEpoch, let now = currentLoadEpoch(), epoch == now else { return ExportFramesBakedEvidence(verified: false, reason: "the recorded evidence belongs to an earlier load; no preflight on the current load has shown it again") }
+        return ExportFramesBakedEvidence(verified: true, evidence: [
+            "chain": "readback handle, frame/seal channel and seal ledger composed; same-job receipt derived frames-baked on the qualified source",
+            "renderPath": e.renderPath?.rawValue ?? "", "loadSession": epoch.session, "loadOpening": String(epoch.opening)])
+    }
+
+    /// The reader `BoundExportCapability.bind { $0.framesBaked = ... }` takes.
+    public var reader: () -> ExportFramesBakedEvidence? { { [self] in evidence() } }
+}
+// ===== END merged ExportFramesBakedChainVerifier.swift =====

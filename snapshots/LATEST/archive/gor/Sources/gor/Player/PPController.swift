@@ -2771,6 +2771,28 @@ final class PPController: NSView {
             }
         }
     }
+    /// Magnet playback-start crop trigger (owner 10-12 00:28: automatic as
+    /// playback starts, not before). A WT stream is admitted with
+    /// cache-pause-initial=yes, so the decoder's first restart can arrive
+    /// while the initial cache hold still pauses real playback; the true
+    /// playback-start signal for a WT path is the poll-delivered
+    /// paused-for-cache true -> false transition. Additive only: an accepted
+    /// crop, a scan in flight, or a user-owned selection makes it a no-op.
+    /// The retry ladder (2/5/10/30 s) and the auto search window are pinned
+    /// and untouched. A user pause during the hold defers consumption to the
+    /// unpause poll, matching the "as playback starts" requirement.
+    private var wtInitialCacheHoldSeen = false
+    private func noteWTCachePauseState(_ pausedForCache: Bool?) {
+        guard let pausedForCache, CropDetector.isWTPlayback(currentFilePath) else { return }
+        if pausedForCache { wtInitialCacheHoldSeen = true; return }
+        guard wtInitialCacheHoldSeen, isPlaying else { return }
+        wtInitialCacheHoldSeen = false
+        if !cropDetector.isMainPlaybackReady() { cropDetector.setMainPlaybackReady(true) }
+        if let accepted = commandAcceptedCropRect, accepted != Self.fullSourceCrop { return }
+        guard !cropDetector.isPending else { return }
+        print("[cropdetect] magnet cache hold lifted - playback start triggers the automatic search up=\(cropUptime())")
+        startAutomaticCropDetection(needsRedetect: cropFreshMeasurementRequired)
+    }
     private func startAutomaticCropDetection(needsRedetect: Bool = false) {
         guard !presentationIsQuitting,!cropDetectionStopped else{return}
         if cropReceiptOwnsAutoSearch {return}   // every automatic caller, including needsRedetect, stays silent while the final crop is pending or unresolved
@@ -3175,6 +3197,7 @@ final class PPController: NSView {
 
         if spineUI.isOSDVisible() { spineUI.refreshOSD(string: osdString()) }
         TransferProbeAdmission.update(path: currentFilePath, seconds: results["demuxer-cache-duration"] as? Double, pausedForCache: (results["seeking"] as? Bool == true) ? true : results["paused-for-cache"] as? Bool, stamp: "\(meta.connGen):\(meta.keySeq["demuxer-cache-duration"] ?? 0):\(meta.keySeq["paused-for-cache"] ?? 0)")
+        noteWTCachePauseState((results["seeking"] as? Bool == true) ? nil : results["paused-for-cache"] as? Bool)   // mid-seek the cache flag is forced, not a hold signal
         if let cacheState  = results["demuxer-cache-state"] as? [String: Any],
            let cacheRanges = cacheState["seekable-ranges"]  as? [[String: Any]],
            let lastRange   = cacheRanges.last,
@@ -5440,6 +5463,7 @@ final class PPController: NSView {
                 self.cropDetector.cancel()
                 self.cropDetector.resetLastFile()
                 self.cropDetector.resetMainPlayback(active: true)
+                self.wtInitialCacheHoldSeen = false
                 self.synchronizeLoadedVideoCamera()
             }
             TunnelForBlockedHosts.shared.fileLoaded()
@@ -5459,6 +5483,7 @@ final class PPController: NSView {
                 self.ambientPlaybackFileEnded = true
                 self.setCameraPlaybackActive(false)
                 self.cropDetector.resetMainPlayback(active: false)
+                self.wtInitialCacheHoldSeen = false
                 // gor 514 F3: consume a stale BASELINE arm at the terminal
                 // (audio-only file, empty-path end) so it cannot fire on an
                 // unrelated later dimension change. A music-exit arm (0.38)

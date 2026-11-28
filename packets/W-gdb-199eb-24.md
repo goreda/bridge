@@ -1,45 +1,16 @@
 # W-gdb-199eb-24: transfer-frame-source
-Team: in2tinct. State: WAIT_STATION_REPIN. Priority: product regression.
-Packet identity and occupancy: original W-gdb-199eb-24, lane lane/in2tinct/transfer-frame-source; earliest existing symbol claim still wins.
-Legacy extracted-helper/new-file fallback and full-file return are RETIRED by199ee. This is the same packet reissued as an existing-file patch, not a new dispatch.
-
-## Target file@SHA
-Repository: goreda/instinct
-Target: archive/gor/Sources/gor/Picture/ExportFrameSource.swift@37ccb29b7403bbc35b276ab5600947979de42f7d
+Revision:199ef. Prior199eb excerpt, 199ee patch-only and the WAIT_STATION_REPIN hold are RETIRED (199eh ended the station cause; the Export station move is not on the remote, so the target is repinned to remote tip 1a2ed9a3). Same ID, team in2tinct, lane lane/in2tinct/transfer-frame-source, and earliest symbol claim preserved.
+State: REISSUED_FULL_TARGET. This record does not invent a new unclaimed assignment and does not undo an earlier application.
+Target: goreda/instinct archive/gor/Sources/gor/Picture/ExportFrameSource.swift@1a2ed9a3b614813de66a5ef9cf53aff5dd726883
 Blob: 0bac076d481b7ff6ca2d6269de0eace826459536
-The target existed at this exact pin. Historical168af857 excerpts below are not the current pin.
+Complete target attached: [ExportFrameSource.swift](199ef/W-gdb-199eb-24/ExportFrameSource.swift)
+Issue-time refreshed snapshot: [complete file](../snapshots/LATEST/archive/gor/Sources/gor/Picture/ExportFrameSource.swift)
+Attachment SHA256: 662c55b137f38211f372ee7bd895c9ff354b747acd6842803993d3f1b6e531b2
+Projection: complete file as stored at the pin; no content removed or edited by the writer. Blob hash recomputed from the attached bytes.
+Previous pin: archive/gor/Sources/gor/Picture/ExportFrameSource.swift@37ccb29b7403bbc35b276ab5600947979de42f7d blob 0bac076d481b7ff6ca2d6269de0eace826459536 (repinned to remote tip 1a2ed9a3; the 199eh station move is not on the remote)
 
-## Change
-Bind source color evidence to each export frame source identity and reject mismatched source.
-
-## Return as patch to that file
-Unified patch against the exact target above. Modify its existing owning concept; no new source/test/helper file, full-file replacement or new Gate/Guard/Receipt/Proof/Admission/Stub type. A genuinely new file requires an explicit block line naming it first. Preserve source/load/player identity, existing interfaces and product behavior outside this change. On collision report it and preserve earliest custody instead of extracting a helper.
-
-## Current reconciliation
-Existing export target is being consolidated by the single station writer. Wait for its verified destination@SHA, then repin this same packet. No parallel satellite edit.
-A queue label alone does not prove the original defect is outstanding. Report already-fixed evidence before proposing a duplicate change. Tests and compile/runtime limitations are reported honestly; this packet adds no CI gate between code and owner delivery.
-
-## Historical source context
-```text
-3: // Uses: none
-4: // Engine: mpv
-5: import Foundation
-6: 
-7: public enum ExportFramePath: String, CaseIterable, Codable, Equatable { case libmpvRenderAPI = "libmpv-render-api", screenshotRawFrameStep = "screenshot-raw-frame-step" }
-8: 
-9: /// What the Codemagic measurement records per path. The winner is chosen from these numbers, not from this code.
-10: public struct ExportFramePathMeasurement: Codable, Equatable {
-11:     public var path: ExportFramePath
-12:     public var frames: Int
-13:     public var seconds: Double
-14:     public var exactPTSMatches: Int
-15:     public var bytesPerFrame: Int
-16:     public init(path: ExportFramePath, frames: Int, seconds: Double, exactPTSMatches: Int, bytesPerFrame: Int) {
-17:         self.path = path; self.frames = frames; self.seconds = seconds; self.exactPTSMatches = exactPTSMatches; self.bytesPerFrame = bytesPerFrame
-18:     }
-19:     public var framesPerSecond: Double { seconds > 0 ? Double(frames) / seconds : 0 }
-20:     public var ptsExact: Bool { frames > 0 && exactPTSMatches == frames }
-21: }
-```
-
-Secret scan: clean.
+Change: Bind source color evidence to each export frame source identity and reject mismatched source.
+Return: the whole changed target file, preserving the same relative product path. No excerpt/private-repo access is needed to read this input. Include changed symbols, base SHA, known limits and actual output. Do not create a satellite file; newly required source files need an explicit block line naming them. If a station writer has since moved the target, return the conflict and current destination evidence before editing.
+Reconcile current source and earlier returns first: the defect may already be fixed. Preserve earliest claim and existing occupancy, and do not duplicate another writer. Product compile/CI is not made a prerequisite here. If additional complete dependency files are required, name them precisely for attachment rather than guessing their interfaces.
+Same ingest pass outcome required: re:W-gdb-199eb-24 | ACCEPTED / REJECTED / PARTIAL | commit SHA | reason. A publication is not product acceptance or evidence that a lab started.
+Secret scan: clean. Held grain/Sensing/font bytes unchanged and excluded from these attachments.

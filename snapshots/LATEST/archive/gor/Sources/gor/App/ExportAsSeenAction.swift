@@ -4,6 +4,7 @@
 // Engine: none
 import AppKit
 import Foundation
+import GorAVCore
 
 /// Read-only adapter from the running player to the Picture preflight. Inputs that the app cannot supply yet
 /// (measured stream sizes, the Photon look snapshot, calibration) answer "not available": the panel then shows a typed refusal.
@@ -12,6 +13,10 @@ struct ExportAsSeenAction: ExportSnapshotAdapter {
     /// The renderer-owner's source of a real same-job readback receipt (composition injection). nil = no render owner wired: no receipt, the preflight keeps refusing.
     /// Nothing in the app sets it yet; an unset source is never a pass.
     var renderReceiptSource: ((ExportLookCapture) -> ExportRenderObservation?)? = nil
+    /// The composition root's source of the playing player's opened-file identity: the native host session's own
+    /// open receipt (the descriptor the decoder reads through), converted field for field. Called on the main thread.
+    /// nil = unwired: the playing identity stays unknown and the start fence refuses - never a fresh open of the path.
+    var playingSourceIdentitySource: (() -> ExportFileIdentity?)? = nil
     static let gate = ExportPanelGate()
     static let settingsBacking = DefaultsBacking()
 
@@ -36,8 +41,11 @@ struct ExportAsSeenAction: ExportSnapshotAdapter {
                 entry = NSMenuItem.separator()
             case .action:
                 // Always clickable: it opens the panel, which states the typed reason Start cannot run (never a dead menu item).
+                // The row model's disabledReason assumes an absent encode route; the route IS composed at the composition root
+                // (installExportComposition) and the panel gates Start on the live capability state, so the tooltip says what the
+                // click does - never "export is not available" while an export can in fact start from that click.
                 entry = NSMenuItem(title: row.title, action: #selector(AppDelegate.menuExportAsSeen), keyEquivalent: "")
-                entry.target = target; entry.toolTip = row.disabledReason
+                entry.target = target; entry.toolTip = "Opens the export panel; Start is gated by the capability state shown there."
             case .heading:
                 entry = NSMenuItem(title: row.title, action: nil, keyEquivalent: "")
                 entry.isEnabled = false
@@ -68,8 +76,9 @@ struct ExportAsSeenAction: ExportSnapshotAdapter {
     }
 
     /// encode > export: the preflight runs off the main thread with a timeout; a ready plan starts the export directly, otherwise the panel shows the plan or the typed refusal.
-    static func present(controller: PPController?) {
-        guard gate.begin() else { return }
+    static func present(controller: PPController?, framesBakedVerifier: ExportFramesBakedChainVerifier? = nil) {
+        guard gate.begin() else { note("busy", "export click ignored: a previous export panel or preflight is still open", controller: controller); return }
+        note("open", "export requested from the encode menu; preflight running", controller: controller)
         // Re-read the lanes' bound evidence off-main while the preflight runs; the panel reads the cached
         // snapshot when the preflight answers (E's refresh step, adapted: the root owns the source; refresh is
         // on the protocol - an UnboundExportCapability delivers its no-I/O snapshot inline).
@@ -93,19 +102,28 @@ struct ExportAsSeenAction: ExportSnapshotAdapter {
             if case .success(let observation) = ExportRenderObservationBridge.make(capture: capture, providers: providers) { return observation }
             return nil
         }
+        // The start fence's playing-source identity: the native host's open receipt for the current session,
+        // converted field for field; nil (no native engine, no session, unwired) keeps the fence refusing. Read on main.
+        adapter.playingSourceIdentitySource = {
+            MainActor.assumeIsolated { (NSApp.delegate as? AppDelegate)?.goravHostForAppGate?.activeSourceOpenReceipt() }.map { ExportFileIdentity(openReceipt: $0) }
+        }
         // W-gdb-199eb-20: record the preflight's colour probe and measured inventory for the Start build's
         // contract (the build runs on main, where no probe/IO is allowed); forwarding is otherwise verbatim.
         let recordingAdapter = ExportStartRecordingAdapter(base: adapter)
-        ExportAsSeenPreflight.runAsync(adapter: recordingAdapter, profile: profile, timeoutSeconds: 8) { result in
+        ExportAsSeenPreflight.runAsync(adapter: recordingAdapter, profile: profile, timeoutSeconds: 8, onColourEvidence: { framesBakedVerifier?.record($0) }) { result in
+            // The preflight has recorded its colour evidence: refresh the capability (the frames-baked leg reads it) and decide in the refresh callback, so Start works on the first click.
+            let decide: (ExportCapability) -> Void = { _ in
             defer { gate.end() }
+            // The capability state comes from the player's typed seam read, taken after the refresh above (ruling 2026-11-26: never a "ready" impression).
+            let capability = controller?.exportCapabilitySnapshot() ?? UnboundExportCapability(providerAssigned: false).cachedSnapshot
             // The capability state comes from the player's typed seam read (ruling 2026-11-26: the real state,
             // never a "ready" impression). No player = the unbound default with nothing assigned.
-            let capability = controller?.exportCapabilitySnapshot() ?? UnboundExportCapability(providerAssigned: false).cachedSnapshot
             let model = ExportPanelModel(result: result, capability: capability)
             // The export item is the Start: a ready plan (plan present and the capability start-capable) starts at once, with no second click. Anything else shows the panel with its
             // typed reasons and a disabled Start button (never a dead menu item).
             var choice = NSApplication.ModalResponse.alertSecondButtonReturn
             if !model.startEnabled {
+                note("panel", model.lines.joined(separator: " | "), controller: controller)
                 let alert = NSAlert()
                 alert.messageText = model.title
                 alert.informativeText = model.lines.joined(separator: "\n")
@@ -118,16 +136,37 @@ struct ExportAsSeenAction: ExportSnapshotAdapter {
             // sees the owner queue, wire lines, backend factory, source or runner. Both answers are typed: the
             // decision at call time, and the terminal outcome, which arrives on the controller's background queue
             // and is delivered back on main here.
-            guard choice == .alertSecondButtonReturn else { return }
+            guard choice == .alertSecondButtonReturn else { note("dismissed", "export panel closed without Start", controller: controller); return }
             let decision = controller?.exportStartFromPanel(result: result, onTerminal: { terminal in
-                DispatchQueue.main.async { ExportAsSeenAction.presentTerminal(terminal) }
+                DispatchQueue.main.async { ExportAsSeenAction.presentTerminal(terminal, controller: controller) }
             }) ?? .noProvider
-            if decision != .started { ExportAsSeenAction.presentStartDecision(decision) }
+            if decision == .started {
+                note("started", "export run started", controller: controller, hud: "export started")
+            } else {
+                ExportAsSeenAction.presentStartDecision(decision, controller: controller)
+            }
+            }
+            if let source = controller?.exportCapabilitySource { source.refresh(deliverOnMain: decide) } else { decide(UnboundExportCapability(providerAssigned: false).cachedSnapshot) }
+        }
+    }
+
+    /// One structured row in this player's gor_diag.log (kind=export-lifecycle) and an optional HUD line for an
+    /// export lifecycle point. The diag row rides the existing DiagSessionSink (admitted per-player sink, tagged,
+    /// dropped - never fatal - when the sink is unavailable); the HUD line rides the existing spineUI channels:
+    /// transient showPhotonHUD for started/terminal, the separate-lifetime engine-refusal line for refusals.
+    private struct ExportLifecycleRow: Encodable { let kind: String; let stage: String; let detail: String }
+    private static func note(_ stage: String, _ detail: String, controller: PPController?, hud: String? = nil, stickyHUD: Bool = false) {
+        if let data = try? JSONEncoder().encode(ExportLifecycleRow(kind: "export-lifecycle", stage: stage, detail: detail)) {
+            _ = DiagSessionSink.append(data + Data("\n".utf8))
+        }
+        guard let hud = hud else { return }
+        DispatchQueue.main.async {
+            if stickyHUD { controller?.spineUI.setEngineRefusalHUD(hud) } else { controller?.spineUI.showPhotonHUD(hud) }
         }
     }
 
     /// A Start decision that did not start a run, surfaced typed (never silent).
-    private static func presentStartDecision(_ decision: ExportStartOperation.Decision) {
+    private static func presentStartDecision(_ decision: ExportStartOperation.Decision, controller: PPController?) {
         let text: String
         switch decision {
         case .started: return
@@ -136,6 +175,7 @@ struct ExportAsSeenAction: ExportSnapshotAdapter {
         case .noPlan: text = "There is no plan to run."
         case .noProvider: text = "The export pipeline is not connected yet (no provider)."
         }
+        note("refused", text, controller: controller, hud: "export refused: " + text, stickyHUD: true)
         let alert = NSAlert()
         alert.messageText = "Export not started"
         alert.informativeText = text
@@ -145,7 +185,7 @@ struct ExportAsSeenAction: ExportSnapshotAdapter {
 
     /// The run's typed terminal outcome; the controller's callback arrives on its background queue and the caller
     /// of exportStartFromPanel delivers it here on main.
-    private static func presentTerminal(_ terminal: ExportStartOperation.Terminal) {
+    private static func presentTerminal(_ terminal: ExportStartOperation.Terminal, controller: PPController?) {
         var text: String
         switch terminal {
         case .refused(let r): text = "Export refused: \(String(describing: r))"
@@ -158,6 +198,8 @@ struct ExportAsSeenAction: ExportSnapshotAdapter {
             text = "Export failed: \(String(describing: failure)) (\(bytes) B written)."
             if let partial = partial { text += " Partial file kept at: \(partial)" }
         }
+        note("terminal", text, controller: controller, hud: text)
+        if case .finished(.published) = terminal { controller?.spineUI.setEngineRefusalHUD(nil) }
         let alert = NSAlert()
         alert.messageText = "Export"
         alert.informativeText = text
@@ -193,8 +235,13 @@ struct ExportAsSeenAction: ExportSnapshotAdapter {
         return ExportFileIdentity(device: UInt64(st.st_dev), inode: UInt64(st.st_ino), bytes: Int64(st.st_size), mtimeNs: mtimeNs, resolvedPath: resolved)
     }
 
-    /// The playing mpv's opened-file identity is still unknown: the lease's pathObservation is a separate open of the path, never mpv's descriptor, so it is not used here. The start fence refuses.
-    func playingSourceIdentity() -> ExportFileIdentity? { nil }
+    /// The playing player's opened-file identity, read from the composition-injected source: the native host's own
+    /// open receipt for the current session, converted field for field. A fresh open of the path is never a substitute:
+    /// a replaced or re-linked file must fail the start fence. nil = no source wired or no receipt: the fence keeps refusing.
+    func playingSourceIdentity() -> ExportFileIdentity? {
+        guard let source = playingSourceIdentitySource else { return nil }
+        return onMain { source() }
+    }
 
     /// Measured stream sizes through the Picture owner's typed measureForExport (mimar ruling, 2026-11-26): App
     /// passes its OWN independent stat observation as the expected identity (never the inventory's self-report),
@@ -236,7 +283,7 @@ struct ExportAsSeenAction: ExportSnapshotAdapter {
         ScriptMessageHub.setListener { capture.deliver(args: $0) }
         defer { ScriptMessageHub.setListener(nil) }
         // The declaration path comes from the same resolver the encoder leg reads (release set, then sibling Resources), never the mpv config dir.
-        let declarationPath = GORResources.renderStackDeclarationURL()?.path
+        let declarationPath = GORResources.renderStackDeclarationSearchPath()
         // A control or render property that moves while the look is read refuses that capture ("... changed during capture"); the player settles
         // within a moment, so retry that one refusal up to 3 times inside the caller's deadline. Every other refusal stays immediate.
         let startedAt = Date()
@@ -323,5 +370,5 @@ final class SettingsMenuHandler: NSObject {
 
 extension AppDelegate {
     /// encode > export: preflight, then a ready plan starts directly; otherwise the panel shows the typed refusal.
-    @objc func menuExportAsSeen(_ sender: NSMenuItem) { ExportAsSeenAction.present(controller: controller) }
+    @objc func menuExportAsSeen(_ sender: NSMenuItem) { ExportAsSeenAction.present(controller: controller, framesBakedVerifier: (NSApp.delegate as? AppDelegate)?.exportFramesBakedVerifier) }
 }
